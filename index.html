@@ -14,7 +14,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Serif+JP:wght@400;500&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-
   <script>
     (function() {
       var saved = localStorage.getItem('nd_lang') || 'en';
@@ -42,406 +41,378 @@
 </head>
 <body>
 
-  <!-- ── NAVIGATION ─────────────────────────────────────────────────────── -->
-  <header>
-    <div class="header-inner">
-      <a href="index.html" class="site-title">
-        <span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span>
-        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
-      </a>
-      <nav>
-        <a href="index.html" class="active">Essays</a>
-        <a href="about.html">About</a>
-        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a>
-        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack ↗</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ── HERO ──────────────────────────────────────────────────────────── -->
-  <div class="hero">
-    <p class="hero-eyebrow">Philosophy · Self-as-an-End · Han Qin (秦汉)</p>
-    <h1>Thought has <em>no mother tongue.</em></h1>
-    <p class="hero-subtitle">Philosophical essays applying the Self-as-an-End framework to thinkers across East and West — written to be read, not archived.</p>
-    <span class="hero-scroll">Read on</span>
+<!-- ── NAVIGATION ─────────────────────────────────────────────────────── -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="site-title">
+      <span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span>
+      <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+    </a>
+    <nav>
+      <a href="index.html" class="active">Essays</a>
+      <a href="about.html">About</a>
+      <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a>
+      <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack ↗</a>
+    </nav>
   </div>
+</header>
 
-  <!-- ── LANGUAGE PORTAL ───────────────────────────────────────────────── -->
-  <section class="lang-portal" id="languages">
-    <div class="lang-portal-inner">
-      <p class="portal-label">Available in</p>
-      <h2 class="portal-title">Choose your language</h2>
-      <p class="portal-desc">Each language carries different philosophical traditions. Current essays are published in English and Chinese — other languages coming.</p>
+<!-- ── HERO ──────────────────────────────────────────────────────────── -->
+<div class="hero">
+  <p class="hero-eyebrow">Philosophy · Self-as-an-End · Han Qin (秦汉)</p>
+  <h1>Thought has <em>no mother tongue.</em></h1>
+  <p class="hero-subtitle">Philosophical essays applying the Self-as-an-End framework to thinkers across East and West — written to be read, not archived.</p>
+  <span class="hero-scroll">Read on</span>
+</div>
 
-      <div class="lang-grid">
-
-        <a href="index.html#essays" class="lang-card" onclick="document.documentElement.setAttribute('data-lang','en'); localStorage.setItem('nd_lang','en');">
-          <span class="lang-arrow">↗</span>
-          <div class="lang-native">English</div>
-          <div class="lang-en-name">English</div>
-          <div class="lang-phrase">"I do not doubt, therefore I think."</div>
-          <div class="lang-status">Essays available</div>
-        </a>
-
-        <a href="index.html#essays" class="lang-card" onclick="document.documentElement.setAttribute('data-lang','zh'); localStorage.setItem('nd_lang','zh');">
-          <span class="lang-arrow">↗</span>
-          <div class="lang-native zh">中文</div>
-          <div class="lang-en-name">Chinese</div>
-          <div class="lang-phrase">"我不怀疑，故我思。"</div>
-          <div class="lang-status">Essays available</div>
-        </a>
-
-        <a href="#" class="lang-card coming-soon">
-          <span class="lang-arrow">↗</span>
-          <div class="lang-native">Français</div>
-          <div class="lang-en-name">French</div>
-          <div class="lang-phrase">"Je ne doute pas, donc je pense."</div>
-          <div class="lang-status">Coming soon</div>
-        </a>
-
-        <a href="#" class="lang-card coming-soon">
-          <span class="lang-arrow">↗</span>
-          <div class="lang-native">Deutsch</div>
-          <div class="lang-en-name">German</div>
-          <div class="lang-phrase">"Ich zweifle nicht, also denke ich."</div>
-          <div class="lang-status">Coming soon</div>
-        </a>
-
-        <a href="#" class="lang-card coming-soon">
-          <span class="lang-arrow">↗</span>
-          <div class="lang-native">Español</div>
-          <div class="lang-en-name">Spanish</div>
-          <div class="lang-phrase">"No dudo, luego pienso."</div>
-          <div class="lang-status">Coming soon</div>
-        </a>
-
-        <a href="#" class="lang-card coming-soon">
-          <span class="lang-arrow">↗</span>
-          <div class="lang-native ja">日本語</div>
-          <div class="lang-en-name">Japanese</div>
-          <div class="lang-phrase">"疑わない、ゆえに考える。"</div>
-          <div class="lang-status">Coming soon</div>
-        </a>
-
-        <a href="#" class="lang-card coming-soon">
-          <span class="lang-arrow">↗</span>
-          <div class="lang-native ko">한국어</div>
-          <div class="lang-en-name">Korean</div>
-          <div class="lang-phrase">"나는 의심하지 않는다."</div>
-          <div class="lang-status">Coming soon</div>
-        </a>
-
-      </div>
+<!-- ── LANGUAGE PORTAL ───────────────────────────────────────────────── -->
+<section class="lang-portal" id="languages">
+  <div class="lang-portal-inner">
+    <p class="portal-label">Available in</p>
+    <h2 class="portal-title">Choose your language</h2>
+    <p class="portal-desc">Each language carries different philosophical traditions. Current essays are published in English, Chinese, and Japanese — other languages coming.</p>
+    <div class="lang-grid">
+      <a href="index.html#essays" class="lang-card" onclick="document.documentElement.setAttribute('data-lang','en'); localStorage.setItem('nd_lang','en');">
+        <span class="lang-arrow">↗</span>
+        <div class="lang-native">English</div>
+        <div class="lang-en-name">English</div>
+        <div class="lang-phrase">"I do not doubt, therefore I think."</div>
+        <div class="lang-status">Essays available</div>
+      </a>
+      <a href="index.html#essays" class="lang-card" onclick="document.documentElement.setAttribute('data-lang','zh'); localStorage.setItem('nd_lang','zh');">
+        <span class="lang-arrow">↗</span>
+        <div class="lang-native zh">中文</div>
+        <div class="lang-en-name">Chinese</div>
+        <div class="lang-phrase">"我不怀疑，故我思。"</div>
+        <div class="lang-status">Essays available</div>
+      </a>
+      <a href="essays/ja/index.html" class="lang-card" onclick="document.documentElement.setAttribute('data-lang','ja'); localStorage.setItem('nd_lang','ja');">
+        <span class="lang-arrow">↗</span>
+        <div class="lang-native ja">日本語</div>
+        <div class="lang-en-name">Japanese</div>
+        <div class="lang-phrase">"疑わない、ゆえに考える。"</div>
+        <div class="lang-status">Essays available</div>
+      </a>
+      <a href="#" class="lang-card coming-soon">
+        <span class="lang-arrow">↗</span>
+        <div class="lang-native">Français</div>
+        <div class="lang-en-name">French</div>
+        <div class="lang-phrase">"Je ne doute pas, donc je pense."</div>
+        <div class="lang-status">Coming soon</div>
+      </a>
+      <a href="#" class="lang-card coming-soon">
+        <span class="lang-arrow">↗</span>
+        <div class="lang-native">Deutsch</div>
+        <div class="lang-en-name">German</div>
+        <div class="lang-phrase">"Ich zweifle nicht, also denke ich."</div>
+        <div class="lang-status">Coming soon</div>
+      </a>
+      <a href="#" class="lang-card coming-soon">
+        <span class="lang-arrow">↗</span>
+        <div class="lang-native">Español</div>
+        <div class="lang-en-name">Spanish</div>
+        <div class="lang-phrase">"No dudo, luego pienso."</div>
+        <div class="lang-status">Coming soon</div>
+      </a>
+      <a href="#" class="lang-card coming-soon">
+        <span class="lang-arrow">↗</span>
+        <div class="lang-native ko">한국어</div>
+        <div class="lang-en-name">Korean</div>
+        <div class="lang-phrase">"나는 의심하지 않는다."</div>
+        <div class="lang-status">Coming soon</div>
+      </a>
     </div>
-  </section>
-
-  <!-- ── MANIFESTO STRIP ───────────────────────────────────────────────── -->
-  <div class="manifesto">
-    <blockquote>"Non dubito" — not the absence of questioning, but the courage to think past it.</blockquote>
-    <cite>On the name of this site</cite>
   </div>
+</section>
 
-  <!-- ── ESSAYS ─────────────────────────────────────────────────────────── -->
-  <section class="essays-section" id="essays">
-    <div class="essays-header">
-      <div class="essays-header-left">
-        <p class="essays-section-eyebrow">Five essays · Philosophy</p>
-        <h2 class="essays-section-title lang-en">Self-as-an-End Series</h2>
-        <h2 class="essays-section-title lang-zh" style="font-family:var(--cjk),serif;">自我作为目的：系列文章</h2>
-      </div>
-      <div class="essays-header-right">
-        <div class="lang-toggle">
-          <button class="lang-btn" data-lang="en">EN</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="zh">中文</button>
-        </div>
+<!-- ── MANIFESTO STRIP ───────────────────────────────────────────────── -->
+<div class="manifesto">
+  <blockquote>"Non dubito" — not the absence of questioning, but the courage to think past it.</blockquote>
+  <cite>On the name of this site</cite>
+</div>
+
+<!-- ── ESSAYS ─────────────────────────────────────────────────────────── -->
+<section class="essays-section" id="essays">
+  <div class="essays-header">
+    <div class="essays-header-left">
+      <p class="essays-section-eyebrow">Five essays · Philosophy</p>
+      <h2 class="essays-section-title lang-en">Self-as-an-End Series</h2>
+      <h2 class="essays-section-title lang-zh" style="font-family:var(--cjk),serif;">自我作为目的：系列文章</h2>
+    </div>
+    <div class="essays-header-right">
+      <div class="lang-toggle">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh">中文</button>
       </div>
     </div>
-
-    <div class="essay-list">
-
-      <a href="essays/socrates.html" class="essay-card">
-        <span class="card-num">I</span>
-        <div class="card-body">
-          <div class="card-lang-tag lang-en">English · Philosophy of Mind</div>
-          <div class="card-lang-tag lang-zh">中文 · 哲学</div>
-          <div class="card-title-en lang-en">Socrates, the Man on the Clearing</div>
-          <div class="card-title-zh lang-zh">苏格拉底，空地上的人</div>
-          <p class="card-desc lang-en">The only philosopher who only chiseled — and never built. He stood on the clearing, smiling, and drank the hemlock.</p>
-          <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">唯一一个只凿不构的哲学家。他站在空地上，微笑着喝了毒酒。</p>
-          <div class="card-meta">
-            <span>March 4, 2026</span>
-            <span class="card-badge full lang-zh">中文全文</span>
-            <span class="card-badge lang-en">EN excerpt</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="essays/nietzsche.html" class="essay-card">
-        <span class="card-num">II</span>
-        <div class="card-body">
-          <div class="card-lang-tag lang-en">English · Existentialism</div>
-          <div class="card-lang-tag lang-zh">英文 · 存在主义</div>
-          <div class="card-title-en lang-en">Self-Cultivation in a Vacuum</div>
-          <div class="card-title-zh lang-zh">真空中的自我涵育</div>
-          <p class="card-desc lang-en">Nietzsche, Salomé, and the structural collapse of subjectivity. Three failure modes, precisely diagnosed.</p>
-          <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">尼采、莎乐美，以及主体性的结构性崩塌。三种失败模式，精确诊断。</p>
-          <div class="card-meta">
-            <span>February 27, 2026</span>
-            <span class="card-badge full lang-en">EN full text</span>
-            <span class="card-badge lang-zh">中文即将推出</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="essays/zhuangzi.html" class="essay-card">
-        <span class="card-num">III</span>
-        <div class="card-body">
-          <div class="card-lang-tag lang-en">Chinese · Daoism</div>
-          <div class="card-lang-tag lang-zh">中文 · 道家</div>
-          <div class="card-title-en lang-en">Dreaming Zhuangzi</div>
-          <div class="card-title-zh lang-zh">从庄子到康德，从Gemini到Claude</div>
-          <p class="card-desc lang-en">Freedom chiseled to its end becomes suffering. Four figures who could not not write — and what they left behind.</p>
-          <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">否定运动经过了这些节点，留下了这些痕迹。四个"不能不"。</p>
-          <div class="card-meta">
-            <span>March 4, 2026</span>
-            <span class="card-badge full lang-zh">中文全文</span>
-            <span class="card-badge lang-en">EN excerpt</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="essays/confucius.html" class="essay-card">
-        <span class="card-num">IV</span>
-        <div class="card-body">
-          <div class="card-lang-tag lang-en">Bilingual · Confucianism</div>
-          <div class="card-lang-tag lang-zh">双语 · 儒学</div>
-          <div class="card-title-en lang-en">Confucius, Transmitting Without Creating</div>
-          <div class="card-title-zh lang-zh">孔子，述而不作</div>
-          <p class="card-desc lang-en">What sustains a subject through fourteen years of failure, without collapsing into despair or hardening into fanaticism?</p>
-          <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">什么样的主体性，能支撑十四年的失败，既不崩溃，也不僵化？</p>
-          <div class="card-meta">
-            <span>March 5, 2026</span>
-            <span class="card-badge lang-en">EN excerpt</span>
-            <span class="card-badge lang-zh">双语即将推出</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="essays/wangyangming.html" class="essay-card">
-        <span class="card-num">V</span>
-        <div class="card-body">
-          <div class="card-lang-tag lang-en">Bilingual · Neo-Confucianism</div>
-          <div class="card-lang-tag lang-zh">双语 · 心学</div>
-          <div class="card-title-en lang-en">Wang Yangming, This Mind Is Luminous</div>
-          <div class="card-title-zh lang-zh">王阳明，此心光明</div>
-          <p class="card-desc lang-en">A mind that needs no external confirmation to know what it knows. Five obsessions, one enlightenment.</p>
-          <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">一颗不需要外部印证就知道自己知道的心。五个执念，一次龙场悟道。</p>
-          <div class="card-meta">
-            <span>March 3, 2026</span>
-            <span class="card-badge lang-en">EN excerpt</span>
-            <span class="card-badge lang-zh">中文即将推出</span>
-          </div>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ── WWII SERIES ───────────────────────────────────────────────────── -->
-  <section class="essays-section" id="wwii" style="background:var(--cream-dark); border-top:1.5px solid var(--cream-border);">
-    <div class="essays-header">
-      <div class="essays-header-left">
-        <p class="essays-section-eyebrow">Five essays · History</p>
-        <h2 class="essays-section-title lang-en">WWII &amp; the Purpose of Persons</h2>
-        <h2 class="essays-section-title lang-zh" style="font-family:var(--cjk),serif;">二战与人的目的</h2>
-      </div>
-      <div class="essays-header-right">
-        <a href="essays/wwii/index.html" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--green-light); text-decoration:none; border:1px solid var(--green-light); padding:0.4rem 0.9rem; transition:all 0.2s;" onmouseover="this.style.background='var(--green)'; this.style.color='var(--cream)';" onmouseout="this.style.background=''; this.style.color='var(--green-light)';">
-          <span class="lang-en">View Series ↗</span>
-          <span class="lang-zh" style="font-family:var(--cjk),serif;">查看系列 ↗</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="essay-list">
-
-      <a href="essays/wwii/1-weimar.html" class="essay-card">
-        <span class="card-num">I</span>
-        <div class="card-body">
-          <div class="card-lang-tag">中文 · 历史</div>
-          <div class="card-title-zh" style="font-family:var(--cjk),serif;">一个文明社会的二十年坠落</div>
-          <p class="card-desc" style="font-family:var(--cjk),serif;">从凡尔赛到纳粹崛起。当几千万人同时觉得自己不再被当人看，舞台就搭好了。</p>
-          <div class="card-meta">
-            <span>Feb 15, 2026</span>
-            <span class="card-badge full">中文全文</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="essays/wwii/2-institutions.html" class="essay-card">
-        <span class="card-num">II</span>
-        <div class="card-body">
-          <div class="card-lang-tag">中文 · 制度分析</div>
-          <div class="card-title-zh" style="font-family:var(--cjk),serif;">当制度成为自己的目的</div>
-          <p class="card-desc" style="font-family:var(--cjk),serif;">国联、绥靖、魏玛民主。每一个制度在每一个关键时刻都选择了维护自己，而非保护人。</p>
-          <div class="card-meta">
-            <span>Feb 16, 2026</span>
-            <span class="card-badge full">中文全文</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="essays/wwii/3-four-systems.html" class="essay-card">
-        <span class="card-num">III</span>
-        <div class="card-body">
-          <div class="card-lang-tag">中文 · 比较分析</div>
-          <div class="card-title-zh" style="font-family:var(--cjk),serif;">四种系统，四种活法</div>
-          <p class="card-desc" style="font-family:var(--cjk),serif;">纳粹、苏联、日本、英美。四种方式把人当手段。差别不在于有没有，而在于能不能回头。</p>
-          <div class="card-meta">
-            <span>Feb 17, 2026</span>
-            <span class="card-badge full">中文全文</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="essays/wwii/4-promise.html" class="essay-card">
-        <span class="card-num">IV</span>
-        <div class="card-body">
-          <div class="card-lang-tag">中文 · 战后秩序</div>
-          <div class="card-title-zh" style="font-family:var(--cjk),serif;">废墟上的承诺</div>
-          <p class="card-desc" style="font-family:var(--cjk),serif;">纽伦堡、人权宣言、联合国。人类第一次在制度中写入了"人是目的"。承诺是真的，无法兑现也是真的。</p>
-          <div class="card-meta">
-            <span>Feb 18, 2026</span>
-            <span class="card-badge full">中文全文</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="essays/wwii/5-cracks.html" class="essay-card">
-        <span class="card-num">V</span>
-        <div class="card-body">
-          <div class="card-lang-tag">中文 · 当代</div>
-          <div class="card-title-zh" style="font-family:var(--cjk),serif;">裂缝与光</div>
-          <p class="card-desc" style="font-family:var(--cjk),serif;">从柏林墙到今天。裂缝的存在让纠错成为可能，但裂缝不会自动扩大。取决于今天的每一个人。</p>
-          <div class="card-meta">
-            <span>Feb 19, 2026</span>
-            <span class="card-badge full">中文全文</span>
-          </div>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ── XIANGJUN SERIES ──────────────────────────────────────────────── -->
-  <section class="essays-section" id="xiangjun" style="border-top:1.5px solid var(--cream-border);">
-    <div class="essays-header">
-      <div class="essays-header-left">
-        <p class="essays-section-eyebrow">Three essays · Fantasy / Literature</p>
-        <h2 class="essays-section-title lang-en">Reading <em>Kōkun</em> — Uehashi Nahoko</h2>
-        <h2 class="essays-section-title lang-zh" style="font-family:var(--cjk),serif;">《香君》解读</h2>
-      </div>
-      <div class="essays-header-right">
-        <a href="essays/xiangjun/index.html" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--green-light); text-decoration:none; border:1px solid var(--green-light); padding:0.4rem 0.9rem; transition:all 0.2s;" onmouseover="this.style.background='var(--green)'; this.style.color='var(--cream)';" onmouseout="this.style.background=''; this.style.color='var(--green-light)';">
-          <span class="lang-en">View Series ↗</span>
-          <span class="lang-zh" style="font-family:var(--cjk),serif;">查看系列 ↗</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="essay-list">
-
-      <a href="essays/xiangjun/1-abundance.html" class="essay-card">
-        <span class="card-num">I</span>
-        <div class="card-body">
-          <div class="card-lang-tag">中文 · 书评</div>
-          <div class="card-title-zh" style="font-family:var(--cjk),serif;">一种不可退出的丰饶</div>
-          <p class="card-desc" style="font-family:var(--cjk),serif;">丰饶是最高明的控制：不让你痛苦到想反抗，而是让你舒适到忘记了自己曾经可以不依赖任何人而活着。</p>
-          <div class="card-meta">
-            <span>Feb 20, 2026</span>
-            <span class="card-badge full">中文全文</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="essays/xiangjun/2-idol.html" class="essay-card">
-        <span class="card-num">II</span>
-        <div class="card-body">
-          <div class="card-lang-tag">中文 · 书评</div>
-          <div class="card-title-zh" style="font-family:var(--cjk),serif;">被封神的工具人</div>
-          <p class="card-desc" style="font-family:var(--cjk),serif;">帝国最尊贵的存在，也是帝国中被最彻底剥夺了自我的人。身份越高，枷锁越重。一个体制最害怕的，往往不是它的敌人，而是它自己的承诺被真正兑现的那一刻。</p>
-          <div class="card-meta">
-            <span>Feb 21, 2026</span>
-            <span class="card-badge full">中文全文</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="essays/xiangjun/3-light.html" class="essay-card">
-        <span class="card-num">III</span>
-        <div class="card-body">
-          <div class="card-lang-tag">中文 · 书评 · 终篇</div>
-          <div class="card-title-zh" style="font-family:var(--cjk),serif;">孤独的光</div>
-          <p class="card-desc" style="font-family:var(--cjk),serif;">上桥菜穗子没有让爱夏变成一个拯救者。真正的力量不在于你能支配多少东西，而在于你能理解多少东西。</p>
-          <div class="card-meta">
-            <span>Feb 22, 2026</span>
-            <span class="card-badge full">中文全文</span>
-          </div>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ── ABOUT STRIP ────────────────────────────────────────────────────── -->
-  <section class="about-section">
-    <div class="about-inner">
-      <div>
-        <p class="about-label">About this site</p>
-        <h2 class="about-title">A mind writing in <em>seven voices.</em></h2>
-        <div class="about-links">
-          <a href="about.html" class="about-link">Full introduction</a>
-          <a href="https://self-as-an-end.net" class="about-link" target="_blank" rel="noopener">SAE Theory ↗</a>
-          <a href="https://zenodo.org/search?q=han+qin" class="about-link" target="_blank" rel="noopener">Academic papers ↗</a>
+  </div>
+  <div class="essay-list">
+    <a href="essays/socrates.html" class="essay-card">
+      <span class="card-num">I</span>
+      <div class="card-body">
+        <div class="card-lang-tag lang-en">English · Philosophy of Mind</div>
+        <div class="card-lang-tag lang-zh">中文 · 哲学</div>
+        <div class="card-title-en lang-en">Socrates, the Man on the Clearing</div>
+        <div class="card-title-zh lang-zh">苏格拉底，空地上的人</div>
+        <p class="card-desc lang-en">The only philosopher who only chiseled — and never built. He stood on the clearing, smiling, and drank the hemlock.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">唯一一个只凿不构的哲学家。他站在空地上，微笑着喝了毒酒。</p>
+        <div class="card-meta">
+          <span>March 4, 2026</span>
+          <span class="card-badge full lang-zh">中文全文</span>
+          <span class="card-badge lang-en">EN excerpt</span>
         </div>
       </div>
-      <div class="about-text">
-        <p>Non Dubito is a space for philosophical writing that refuses the borders of any single language. Philosophy, like consciousness itself, is not the property of one tradition.</p>
-        <p>Essays here apply the <a href="https://self-as-an-end.net">Self-as-an-End framework</a> to thinkers across East and West — reading them not as historical curiosities, but as structural analyses of what it means to exist as an end in itself.</p>
-        <p>Academic papers are archived on Zenodo. What you find here is writing meant to be read, shared, and thought about.</p>
+    </a>
+    <a href="essays/nietzsche.html" class="essay-card">
+      <span class="card-num">II</span>
+      <div class="card-body">
+        <div class="card-lang-tag lang-en">English · Existentialism</div>
+        <div class="card-lang-tag lang-zh">英文 · 存在主义</div>
+        <div class="card-title-en lang-en">Self-Cultivation in a Vacuum</div>
+        <div class="card-title-zh lang-zh">真空中的自我涵育</div>
+        <p class="card-desc lang-en">Nietzsche, Salomé, and the structural collapse of subjectivity. Three failure modes, precisely diagnosed.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">尼采、莎乐美，以及主体性的结构性崩塌。三种失败模式，精确诊断。</p>
+        <div class="card-meta">
+          <span>February 27, 2026</span>
+          <span class="card-badge full lang-en">EN full text</span>
+          <span class="card-badge lang-zh">中文即将推出</span>
+        </div>
+      </div>
+    </a>
+    <a href="essays/zhuangzi.html" class="essay-card">
+      <span class="card-num">III</span>
+      <div class="card-body">
+        <div class="card-lang-tag lang-en">Chinese · Daoism</div>
+        <div class="card-lang-tag lang-zh">中文 · 道家</div>
+        <div class="card-title-en lang-en">Dreaming Zhuangzi</div>
+        <div class="card-title-zh lang-zh">从庄子到康德，从Gemini到Claude</div>
+        <p class="card-desc lang-en">Freedom chiseled to its end becomes suffering. Four figures who could not not write — and what they left behind.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">否定运动经过了这些节点，留下了这些痕迹。四个"不能不"。</p>
+        <div class="card-meta">
+          <span>March 4, 2026</span>
+          <span class="card-badge full lang-zh">中文全文</span>
+          <span class="card-badge lang-en">EN excerpt</span>
+        </div>
+      </div>
+    </a>
+    <a href="essays/confucius.html" class="essay-card">
+      <span class="card-num">IV</span>
+      <div class="card-body">
+        <div class="card-lang-tag lang-en">Bilingual · Confucianism</div>
+        <div class="card-lang-tag lang-zh">双语 · 儒学</div>
+        <div class="card-title-en lang-en">Confucius, Transmitting Without Creating</div>
+        <div class="card-title-zh lang-zh">孔子，述而不作</div>
+        <p class="card-desc lang-en">What sustains a subject through fourteen years of failure, without collapsing into despair or hardening into fanaticism?</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">什么样的主体性，能支撑十四年的失败，既不崩溃，也不僵化？</p>
+        <div class="card-meta">
+          <span>March 5, 2026</span>
+          <span class="card-badge lang-en">EN excerpt</span>
+          <span class="card-badge lang-zh">双语即将推出</span>
+        </div>
+      </div>
+    </a>
+    <a href="essays/wangyangming.html" class="essay-card">
+      <span class="card-num">V</span>
+      <div class="card-body">
+        <div class="card-lang-tag lang-en">Bilingual · Neo-Confucianism</div>
+        <div class="card-lang-tag lang-zh">双语 · 心学</div>
+        <div class="card-title-en lang-en">Wang Yangming, This Mind Is Luminous</div>
+        <div class="card-title-zh lang-zh">王阳明，此心光明</div>
+        <p class="card-desc lang-en">A mind that needs no external confirmation to know what it knows. Five obsessions, one enlightenment.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">一颗不需要外部印证就知道自己知道的心。五个执念，一次龙场悟道。</p>
+        <div class="card-meta">
+          <span>March 3, 2026</span>
+          <span class="card-badge lang-en">EN excerpt</span>
+          <span class="card-badge lang-zh">中文即将推出</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── WWII SERIES ───────────────────────────────────────────────────── -->
+<section class="essays-section" id="wwii" style="background:var(--cream-dark); border-top:1.5px solid var(--cream-border);">
+  <div class="essays-header">
+    <div class="essays-header-left">
+      <p class="essays-section-eyebrow">Five essays · History</p>
+      <h2 class="essays-section-title lang-en">WWII &amp; the Purpose of Persons</h2>
+      <h2 class="essays-section-title lang-zh" style="font-family:var(--cjk),serif;">二战与人的目的</h2>
+    </div>
+    <div class="essays-header-right">
+      <a href="essays/wwii/index.html" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--green-light); text-decoration:none; border:1px solid var(--green-light); padding:0.4rem 0.9rem; transition:all 0.2s;" onmouseover="this.style.background='var(--green)'; this.style.color='var(--cream)';" onmouseout="this.style.background=''; this.style.color='var(--green-light)';">
+        <span class="lang-en">View Series ↗</span>
+        <span class="lang-zh" style="font-family:var(--cjk),serif;">查看系列 ↗</span>
+      </a>
+    </div>
+  </div>
+  <div class="essay-list">
+    <a href="essays/wwii/1-weimar.html" class="essay-card">
+      <span class="card-num">I</span>
+      <div class="card-body">
+        <div class="card-lang-tag">中文 · 历史</div>
+        <div class="card-title-zh" style="font-family:var(--cjk),serif;">一个文明社会的二十年坠落</div>
+        <p class="card-desc" style="font-family:var(--cjk),serif;">从凡尔赛到纳粹崛起。当几千万人同时觉得自己不再被当人看，舞台就搭好了。</p>
+        <div class="card-meta">
+          <span>Feb 15, 2026</span>
+          <span class="card-badge full">中文全文</span>
+        </div>
+      </div>
+    </a>
+    <a href="essays/wwii/2-institutions.html" class="essay-card">
+      <span class="card-num">II</span>
+      <div class="card-body">
+        <div class="card-lang-tag">中文 · 制度分析</div>
+        <div class="card-title-zh" style="font-family:var(--cjk),serif;">当制度成为自己的目的</div>
+        <p class="card-desc" style="font-family:var(--cjk),serif;">国联、绥靖、魏玛民主。每一个制度在每一个关键时刻都选择了维护自己，而非保护人。</p>
+        <div class="card-meta">
+          <span>Feb 16, 2026</span>
+          <span class="card-badge full">中文全文</span>
+        </div>
+      </div>
+    </a>
+    <a href="essays/wwii/3-four-systems.html" class="essay-card">
+      <span class="card-num">III</span>
+      <div class="card-body">
+        <div class="card-lang-tag">中文 · 比较分析</div>
+        <div class="card-title-zh" style="font-family:var(--cjk),serif;">四种系统，四种活法</div>
+        <p class="card-desc" style="font-family:var(--cjk),serif;">纳粹、苏联、日本、英美。四种方式把人当手段。差别不在于有没有，而在于能不能回头。</p>
+        <div class="card-meta">
+          <span>Feb 17, 2026</span>
+          <span class="card-badge full">中文全文</span>
+        </div>
+      </div>
+    </a>
+    <a href="essays/wwii/4-promise.html" class="essay-card">
+      <span class="card-num">IV</span>
+      <div class="card-body">
+        <div class="card-lang-tag">中文 · 战后秩序</div>
+        <div class="card-title-zh" style="font-family:var(--cjk),serif;">废墟上的承诺</div>
+        <p class="card-desc" style="font-family:var(--cjk),serif;">纽伦堡、人权宣言、联合国。人类第一次在制度中写入了"人是目的"。承诺是真的，无法兑现也是真的。</p>
+        <div class="card-meta">
+          <span>Feb 18, 2026</span>
+          <span class="card-badge full">中文全文</span>
+        </div>
+      </div>
+    </a>
+    <a href="essays/wwii/5-cracks.html" class="essay-card">
+      <span class="card-num">V</span>
+      <div class="card-body">
+        <div class="card-lang-tag">中文 · 当代</div>
+        <div class="card-title-zh" style="font-family:var(--cjk),serif;">裂缝与光</div>
+        <p class="card-desc" style="font-family:var(--cjk),serif;">从柏林墙到今天。裂缝的存在让纠错成为可能，但裂缝不会自动扩大。取决于今天的每一个人。</p>
+        <div class="card-meta">
+          <span>Feb 19, 2026</span>
+          <span class="card-badge full">中文全文</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── XIANGJUN SERIES ──────────────────────────────────────────────── -->
+<section class="essays-section" id="xiangjun" style="border-top:1.5px solid var(--cream-border);">
+  <div class="essays-header">
+    <div class="essays-header-left">
+      <p class="essays-section-eyebrow">Three essays · Fantasy / Literature</p>
+      <h2 class="essays-section-title lang-en">Reading <em>Kōkun</em> — Uehashi Nahoko</h2>
+      <h2 class="essays-section-title lang-zh" style="font-family:var(--cjk),serif;">《香君》解读</h2>
+    </div>
+    <div class="essays-header-right">
+      <a href="essays/xiangjun/index.html" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--green-light); text-decoration:none; border:1px solid var(--green-light); padding:0.4rem 0.9rem; transition:all 0.2s;" onmouseover="this.style.background='var(--green)'; this.style.color='var(--cream)';" onmouseout="this.style.background=''; this.style.color='var(--green-light)';">
+        <span class="lang-en">View Series ↗</span>
+        <span class="lang-zh" style="font-family:var(--cjk),serif;">查看系列 ↗</span>
+      </a>
+    </div>
+  </div>
+  <div class="essay-list">
+    <a href="essays/xiangjun/1-abundance.html" class="essay-card">
+      <span class="card-num">I</span>
+      <div class="card-body">
+        <div class="card-lang-tag">中文 · 书评</div>
+        <div class="card-title-zh" style="font-family:var(--cjk),serif;">一种不可退出的丰饶</div>
+        <p class="card-desc" style="font-family:var(--cjk),serif;">丰饶是最高明的控制：不让你痛苦到想反抗，而是让你舒适到忘记了自己曾经可以不依赖任何人而活着。</p>
+        <div class="card-meta">
+          <span>Feb 20, 2026</span>
+          <span class="card-badge full">中文全文</span>
+        </div>
+      </div>
+    </a>
+    <a href="essays/xiangjun/2-idol.html" class="essay-card">
+      <span class="card-num">II</span>
+      <div class="card-body">
+        <div class="card-lang-tag">中文 · 书评</div>
+        <div class="card-title-zh" style="font-family:var(--cjk),serif;">被封神的工具人</div>
+        <p class="card-desc" style="font-family:var(--cjk),serif;">帝国最尊贵的存在，也是帝国中被最彻底剥夺了自我的人。身份越高，枷锁越重。一个体制最害怕的，往往不是它的敌人，而是它自己的承诺被真正兑现的那一刻。</p>
+        <div class="card-meta">
+          <span>Feb 21, 2026</span>
+          <span class="card-badge full">中文全文</span>
+        </div>
+      </div>
+    </a>
+    <a href="essays/xiangjun/3-light.html" class="essay-card">
+      <span class="card-num">III</span>
+      <div class="card-body">
+        <div class="card-lang-tag">中文 · 书评 · 终篇</div>
+        <div class="card-title-zh" style="font-family:var(--cjk),serif;">孤独的光</div>
+        <p class="card-desc" style="font-family:var(--cjk),serif;">上桥菜穗子没有让爱夏变成一个拯救者。真正的力量不在于你能支配多少东西，而在于你能理解多少东西。</p>
+        <div class="card-meta">
+          <span>Feb 22, 2026</span>
+          <span class="card-badge full">中文全文</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── ABOUT STRIP ────────────────────────────────────────────────────── -->
+<section class="about-section">
+  <div class="about-inner">
+    <div>
+      <p class="about-label">About this site</p>
+      <h2 class="about-title">A mind writing in <em>seven voices.</em></h2>
+      <div class="about-links">
+        <a href="about.html" class="about-link">Full introduction</a>
+        <a href="https://self-as-an-end.net" class="about-link" target="_blank" rel="noopener">SAE Theory ↗</a>
+        <a href="https://zenodo.org/search?q=han+qin" class="about-link" target="_blank" rel="noopener">Academic papers ↗</a>
       </div>
     </div>
-  </section>
+    <div class="about-text">
+      <p>Non Dubito is a space for philosophical writing that refuses the borders of any single language. Philosophy, like consciousness itself, is not the property of one tradition.</p>
+      <p>Essays here apply the <a href="https://self-as-an-end.net">Self-as-an-End framework</a> to thinkers across East and West — reading them not as historical curiosities, but as structural analyses of what it means to exist as an end in itself.</p>
+      <p>Academic papers are archived on Zenodo. What you find here is writing meant to be read, shared, and thought about.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-logo">Non <span>Dubito</span></div>
-        <div class="footer-tagline">A mind in many languages</div>
-      </div>
-      <div class="footer-langs">
-        <a href="#languages" class="footer-lang">English</a>
-        <a href="#languages" class="footer-lang">中文</a>
-        <a href="#languages" class="footer-lang">Français</a>
-        <a href="#languages" class="footer-lang">Deutsch</a>
-        <a href="#languages" class="footer-lang">Español</a>
-        <a href="#languages" class="footer-lang">日本語</a>
-        <a href="#languages" class="footer-lang">한국어</a>
-      </div>
-      <div class="footer-links">
-        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
-        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
-        <a href="https://x.com/hqinjarsy" target="_blank" rel="noopener">X / Twitter</a>
-        <a href="about.html">About</a>
-      </div>
+<!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">Non <span>Dubito</span></div>
+      <div class="footer-tagline">A mind in many languages</div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Han Qin (秦汉) · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span>
-      <span>nondubito.net</span>
+    <div class="footer-langs">
+      <a href="#languages" class="footer-lang">English</a>
+      <a href="#languages" class="footer-lang">中文</a>
+      <a href="essays/ja/index.html" class="footer-lang">日本語</a>
+      <a href="#languages" class="footer-lang">Français</a>
+      <a href="#languages" class="footer-lang">Deutsch</a>
+      <a href="#languages" class="footer-lang">Español</a>
+      <a href="#languages" class="footer-lang">한국어</a>
     </div>
-  </footer>
+    <div class="footer-links">
+      <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+      <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      <a href="https://x.com/hqinjarsy" target="_blank" rel="noopener">X / Twitter</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Han Qin (秦汉) · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span>
+    <span>nondubito.net</span>
+  </div>
+</footer>
 
 </body>
 </html>
