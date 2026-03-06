@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Non Dubito — Essays in the Self-as-an-End Tradition</title>
+  <meta name="description" content="Philosophical essays applying the Self-as-an-End framework to the lives and thought of Socrates, Nietzsche, Zhuangzi, Confucius, and Wang Yangming.">
+  <meta name="author" content="Han Qin (秦汉)">
+  <meta property="og:title" content="Non Dubito — Han Qin">
+  <meta property="og:description" content="Essays in the Self-as-an-End tradition.">
+  <meta property="og:url" content="https://nondubito.net">
+  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://nondubito.net/">
+  
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'en';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="index.html" class="active">Essays</a>
+        <a href="about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Non Dubito</h1>
+      <p class="hero-subtitle">Essays in the Self-as-an-End Tradition B7 Han Qin (秦汉)</p>
+      <p class="hero-desc lang-en">
+        Philosophical essays that apply the <a href="https://self-as-an-end.net">Self-as-an-End framework</a>
+        to the lives and thought of philosophers across East and West — reading them not as historical
+        curiosities, but as structural analyses of what it means to exist as an end in itself.
+      </p>
+      <p class="hero-desc lang-zh" style="font-family: var(--cjk), serif;">
+        这些文章将 <a href="https://self-as-an-end.net">Self-as-an-End 框架</a>应用于东西方哲学家的生命与思想——
+        不是历史研究，而是结构性分析：在各自所处的本身而存在。
+      </p>
+    </div>
+  </section>
+
+  <section class="essays-section">
+    <div class="essays-section-header">
+      <h2>Five Essays · 五篇文章</h2>
+      <div style="float:right; margin-top:-1.8rem;">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="zh">中文</button>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+
+    <div class="essay-list">
+
+      <a href="essays/socrates.html" class="essay-card">
+        <span class="card-num">I</span>
+        <div class="card-body">
+          <div class="card-title-en lang-en">Socrates, the Man on the Clearing</div>
+          <div class="card-title-zh lang-zh">苏格拉底，空地上的人</div>
+          <p class="card-desc lang-en">The only philosopher who only chiseled — and never built. He stood on the clearing, smiling, and drank the hemlock.</p>
+          <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">唯一一个只凿不构的哲学家。他站在空地上，微笑着喝了毒酒。</p>
+          <div class="card-meta">
+            <span>March 4, 2026</span>
+            <span class="card-badge full lang-zh">中文全文</span>
+            <span class="card-badge lang-en">EN excerpt</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="essays/nietzsche.html" class="essay-card">
+        <span class="card-num">II</span>
+        <div class="card-body">
+          <div class="card-title-en lang-en">Self-Cultivation in a Vacuum</div>
+          <div class="card-title-zh lang-zh">真空中的自我涵育</div>
+          <p class="card-desc lang-en">Nietzsche, Salomé, and the structural collapse of subjectivity. Three failure modes, precisely diagnosed.</p>
+          <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">尼采、莎乐美，以及主体性的结构性崩塌。三种失败模式，精确诊断。</p>
+          <div class="card-meta">
+            <span>February 27, 2026</span>
+            <span class="card-badge full lang-en">EN full text</span>
+            <span class="card-badge lang-zh">中文即将推出</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="essays/zhuangzi.html" class="essay-card">
+        <span class="card-num">III</span>
+        <div class="card-body">
+          <div class="card-title-en lang-en">Dreaming Zhuangzi</div>
+          <div class="card-title-zh lang-zh">从庄子到康德，从Gemini到Claude</div>
+          <p class="card-desc lang-en">Freedom chiseled to its end becomes suffering. Four figures who could not not write — and what they left behind.</p>
+          <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">否定运动经过了这些节点，留下了这些痕迹。四个"不能不"。</p>
+          <div class="card-meta">
+            <span>March 4, 2026</span>
+            <span class="card-badge full lang-zh">中文全文</span>
+            <span class="card-badge lang-en">EN excerpt</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="essays/confucius.html" class="essay-card">
+        <span class="card-num">IV</span>
+        <div class="card-body">
+          <div class="card-title-en lang-en">Confucius, Transmitting Without Creating</div>
+          <div class="card-title-zh lang-zh">孔子，述而不作</div>
+          <p class="card-desc lang-en">What sustains a subject through fourteen years of failure, without collapsing into despair or hardening into fanaticism?</p>
+          <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">什么样的主体性，能支撑十四年的失败，既不崩溃，也不僵化？</p>
+          <div class="card-meta">
+            <span>March 5, 2026</span>
+            <span class="card-badge lang-en">EN excerpt</span>
+            <span class="card-badge lang-zh">双语即将推出</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="essays/wangyangming.html" class="essay-card">
+        <span class="card-num">V</span>
+        <div class="card-body">
+          <div class="card-title-en lang-en">Wang Yangming, This Mind Is Luminous</div>
+          <div class="card-title-zh lang-zh">王阳明，此心光明</div>
+          <p class="card-desc lang-en">A mind that needs no external confirmation to know what it knows. Five obsessions, one enlightenment.</p>
+          <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">一颗不需要外部印证就知道自己知道的心。五个执念，一次龙场悟道。</p>
+          <div class="card-meta">
+            <span>March 3, 2026</span>
+            <span class="card-badge lang-en">EN excerpt</span>
+            <span class="card-badge lang-zh">中文即将推出</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Han Qin (秦汉) · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span>
+      <div class="footer-links">
+        <a href="https://self-as-an-end.net" target="_blank">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank">Substack</a>
+        <a href="https://x.com/hqinjarsy" target="_blank">X</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
