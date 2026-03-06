@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Non Dubito</title>
+  <meta name="description" content="About Non Dubito and its author Han Qin (秦汉).">
+  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://nondubito.net/about.html">
+  
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'en';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="index.html" class="active">Essays</a>
+        <a href="about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="about-main">
+    
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="zh">中文</button>
+    </div>
+
+    <h1 class="lang-en">About Non Dubito</h1>
+    <h1 class="lang-zh" style="font-family:var(--cjk),serif; font-style:normal;">关于 Non Dubito</h1>
+
+    <div class="lang-en">
+      <p><em>Non dubito</em> is Latin for "I do not doubt." In the Self-as-an-End (SAE) framework,
+      it names the 10th dimension of the chisel-construct cycle — the point at which a subject
+      has internalized its own baseline so thoroughly that it can no longer be shaken by external
+      questioning. Not certainty about the world, but certainty about oneself.</p>
+
+      <p>This site collects philosophical essays that apply the SAE framework to the lives and thought
+      of philosophers across East and West. The goal is not historical scholarship but structural
+      analysis: what kind of subjectivity did Socrates embody? What structural failure explains
+      Nietzsche&rsquo;s collapse? What does Wang Yangming&rsquo;s enlightenment look like in
+      dimensional terms?</p>
+
+      <p>These essays are written for human readers — accessible, personal, following the argument
+      wherever it goes. They are the companion to <a href="https://self-as-an-end.net">self-as-an-end.net</a>,
+      which hosts the full academic paper series.</p>
+
+      <p><strong>Han Qin</strong> (秦汉) is an independent researcher and the author of the
+      Self-as-an-End theory series. The SAE framework is a structural normative theory that derives
+      the conditions of personhood through the chisel-construct cycle (凿构循环) and a 16-level
+      dimensional sequence (0D through 16DD).</p>
+
+      <p>
+        <a href="https://self-as-an-end.net">SAE Academic Series</a> ·
+        <a href="https://hqin.substack.com">Substack</a> ·
+        <a href="https://x.com/hqinjarsy">X / @hqinjarsy</a> ·
+        <a href="https://zenodo.org/search?q=self-as-an-end&f=author_name%3AHan+Qin">Zenodo</a>
+      </p>
+    </div>
+
+    <div class="lang-zh" style="font-family:var(--cjk),serif;">
+      <p><em>Non dubito</em> 是拉丁文，意为"我不怀疑"。在 Self-as-an-End（SAE）框架中，
+      它命名了凿构循环的第十维——主体将自身基准线内化到如此彻底的程度，以至于再也无法被外部质疑所动摇。
+      不是对世界的确定性，而是对自身的确定性。</p>
+
+      <p>这个网站收录了将 SAE 框架应用于东西方哲学家生命与思想的哲学随笔。
+      目标不是历史考证，而是结构分析：苏格拉底体现了什么样的主体性？
+      结构性的什么失败解释了尼采的崩溃？王阳明的龙场悟道在维度意义上是什么？</p>
+
+      <p>这些文章为人类读者而写——可读的，个人的，跟着论证走到哪里就写到哪里。
+      它们是 <a href="https://self-as-an-end.net">self-as-an-end.net</a> 的伴侣，
+      后者收录了完整的学术论文系列。</p>
+
+      <p><strong>秦汉（Han Qin）</strong>是独立研究者，Self-as-an-End 理论系列的作者。
+      SAE 框架是一个结构性规范理论，通过凿构循环（凿构循环）和十六维序列（0D 至 16DD）推导人格的条件。</p>
+
+      <p>
+        <a href="https://self-as-an-end.net">SAE 学术系列</a> ·
+        <a href="https://hqin.substack.com">Substack</a> ·
+        <a href="https://x.com/hqinjarsy">X / @hqinjarsy</a> ·
+        <a href="https://zenodo.org/search?q=self-as-an-end&f=author_name%3AHan+Qin">Zenodo</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Han Qin (秦汉) · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span>
+      <div class="footer-links">
+        <a href="https://self-as-an-end.net" target="_blank">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank">Substack</a>
+        <a href="https://x.com/hqinjarsy" target="_blank">X</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
