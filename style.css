@@ -875,6 +875,118 @@ footer {
 
 .about-page-body a:hover { border-color: var(--green-mid); }
 
+/* ── ESSAY PAGE (bilingual new format) ─────────────────────────────────── */
+.essay-main {
+  flex: 1;
+  padding-top: 54px;
+}
+
+/* Override global header rules that would apply position:fixed to inner essay-header */
+header.essay-header {
+  position: static;
+  height: auto;
+  display: block;
+  background: var(--green);
+  border-bottom: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 80px 2.5rem 60px;
+  color: var(--cream);
+}
+
+.essay-header .lang-toggle {
+  max-width: var(--max-w);
+  margin: 0 auto 1.5rem;
+  background: transparent;
+  border-color: rgba(245, 240, 232, 0.3);
+}
+
+.essay-header .lang-btn {
+  color: rgba(245, 240, 232, 0.6);
+}
+
+.essay-header .lang-btn.active {
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.essay-header .lang-sep {
+  color: rgba(245, 240, 232, 0.3);
+}
+
+.essay-titles {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.essay-titles h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+
+.essay-titles h1.lang-zh {
+  font-family: var(--cjk);
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+}
+
+.essay-subtitle {
+  font-size: 1.1rem;
+  color: rgba(245, 240, 232, 0.72);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.essay-meta {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  color: rgba(245, 240, 232, 0.5);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: var(--max-w);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.essay-meta .sep {
+  color: rgba(245, 240, 232, 0.25);
+}
+
+p.essay-footer-note {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cream-border);
+}
+
+/* ── FOOTER NAV (essay pages) ────────────────────────────────────────────── */
+.footer-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-nav a {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-nav a:hover { color: var(--gold-light); }
+
 /* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
 @media (max-width: 700px) {
   header .header-inner { padding: 0 1.25rem; }
@@ -889,4 +1001,5 @@ footer {
   .about-page-body { padding: 50px 1.25rem 80px; }
   .about-page-hero { padding: 60px 1.25rem 40px; }
   .footer-bottom { padding: 1.25rem 1.25rem 0; }
+  header.essay-header { padding: 60px 1.25rem 40px; }
 }
