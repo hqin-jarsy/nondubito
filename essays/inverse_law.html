@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The More It Means, the Less It Learns — Non Dubito</title>
+  <meta name="description" content="The most meaningful things are the rarest. The rarest things are the hardest to learn statistically. Meaning and learnability move in opposite directions — and this is not a bug.">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/inverse_law.html">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'en';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../index.html" class="active">Essays</a>
+        <a href="../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="essay-main">
+    <article>
+
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="zh">中文</button>
+        </div>
+        <div class="essay-titles">
+          <h1 class="lang-en">The More It Means, the Less It Learns</h1>
+          <h1 class="lang-zh">越有意义，AI 越学不会</h1>
+          <p class="essay-subtitle lang-en">A structural limit at the heart of machine learning — and why humans are the irreducible remainder.</p>
+          <p class="essay-subtitle lang-zh">机器学习的结构性天花板——以及为什么人是那个消灭不了的余项。</p>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="series">Self-as-an-End Theory Series — AI Applied</span>
+          <span class="sep">·</span>
+          <span class="date">March 2026</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-en">
+
+<p>Here is something that sounds paradoxical but is structurally true: <strong>the more meaningful a word is, the harder it is for AI to learn.</strong></p>
+
+<p>Not because AI is dumb. Because of statistics.</p>
+
+<p>AI learns by counting. The word "the" appears billions of times in training data. The model learns it perfectly — where it goes, what it modifies, every syntactic groove it fits. But "thing-in-itself" — <em>Ding an sich</em>, Kant's term for the world as it exists independent of perception — appears, maybe, a few thousand times across all the text ever written. That is statistically close to zero. The model has almost nothing to learn from.</p>
+
+<p>And here is the uncomfortable implication: the concepts that matter most — the dense, load-bearing ones that philosophers have spent centuries sharpening — are precisely the concepts that are rarest in the corpus. Meaning and statistical frequency move in opposite directions.</p>
+
+<h2>Two Roads That Don't Meet</h2>
+
+<p>To understand this, you need to know something about how AI reads text.</p>
+
+<p>Before a language model sees a single word, a separate system called a tokenizer slices the text into units — "tokens" — that the model will actually process. This is not a trivial step. It decides what the model is capable of seeing at all.</p>
+
+<p>The dominant approach, called BPE (Byte Pair Encoding), works by frequency: it finds the most common pairs of characters and merges them into single units, then repeats. The result is a vocabulary built from statistical patterns, not from meaning. High-frequency sequences become tokens. Rare sequences get chopped into fragments.</p>
+
+<p>This approach has one large advantage and one structural limit. The advantage: it scales. Give it more data and more compute, and it keeps getting better. The limit: it is built entirely on the logic of compression. It asks, <em>how do I fit more information into fewer units?</em> — not <em>which units actually carry meaning?</em></p>
+
+<p>There is a second road. Call it the semantic path: instead of merging by frequency, you merge by concept. "Thing-in-itself" should be one unit, not three — because it is one indivisible concept, and splitting it loses what it means. But this kind of merging cannot be done by statistics alone. It requires someone who actually understands the concept to draw the boundary.</p>
+
+<p>These two roads are not the same road at different speeds. You can drive the frequency road all the way to its logical end and you will not arrive at the semantic road. Compression and understanding are different problems.</p>
+
+<h2>The Inverse Law</h2>
+
+<p>This is where the structural limit becomes visible.</p>
+
+<p>The more meaningful a token, the more distinct it is. The more distinct, the rarer it appears. The rarer it appears, the less statistical data exists to learn from. The less data, the weaker the model's grasp.</p>
+
+<p>Flip it: the less meaningful a token — pure connective tissue, grammatical filler — the more it repeats. The more it repeats, the more statistical signal exists. The better the model learns it. But it has learned nothing that carries weight.</p>
+
+<p>Meaning and learnability move in opposite directions. Call it the inverse law.</p>
+
+<p>This is not an engineering problem. It is not "we just need more data." The scarcity of meaningful things is a feature of the world, not a flaw in the dataset. The word "the" genuinely appears billions of times. "Ding an sich" genuinely does not. No amount of internet scraping will change that ratio, because the ratio reflects how often humans actually use these concepts.</p>
+
+<p>In the framework I work with — Self-as-an-End — this is an instance of what we call <em>remainder conservation</em>: every act of structuring leaves something out, and what gets left out cannot be made to disappear. The tokenizer structures text. What gets left out is meaning. The more you optimize for compression, the more meaning becomes the remainder.</p>
+
+<h2>The Remainder That Only Humans Can See</h2>
+
+<p>Here is the deeper problem: the model cannot see its own blind spots.</p>
+
+<p>The model operates downstream from the tokenizer. It receives already-sliced fragments. It does not know what was cut, what was lost in the cutting, what concepts were split across token boundaries in ways that destroyed their coherence. The model is building on someone else's structure and does not know what the foundation looks like.</p>
+
+<p>Who can see this? Only humans.</p>
+
+<p>A human who genuinely understands a philosophical concept can recognize, immediately, when it has been mangled by mechanical slicing. Not because humans have more processing power — but because human understanding is not built on frequency. It is built on having lived with an idea long enough to feel it from the inside: the nights of confusion, the sudden moment of clarity, the argument with someone who didn't get it, the slow erosion of certainty and its rebuilding.</p>
+
+<p>When statistical methods fail — when a concept appears so rarely that the model has no data to learn from — a human who understands that concept can work with it from a single example. Zero-shot. The model cannot do this, not because it lacks intelligence, but because its form of intelligence is statistical and statistics requires repetition.</p>
+
+<p>This is why AI's ceiling is not compute. It is not data volume. The ceiling is the human judgment that AI cannot replicate by scaling up what it already does.</p>
+
+<h2>What This Means for Chinese</h2>
+
+<p>The inverse law has a specific geopolitical consequence that deserves naming.</p>
+
+<p>Because BPE training data is overwhelmingly English, English high-frequency words survive the tokenizer as single units. Chinese, by contrast, gets fragmented more aggressively — a common two-character Chinese compound that functions as one concept often becomes two or three tokens, while its English semantic equivalent stays whole.</p>
+
+<p>The result: Chinese reasoning costs more tokens, runs slower, uses more of the context window for the same work. This is not because Chinese is more complex — it is because the tokenizer was built with English as the default and Chinese as the remainder.</p>
+
+<p>This is not malicious. No one designed it to be colonial. But the structure is colonial: the method itself encodes a standpoint, and whatever falls outside that standpoint becomes the residue. The people who built the tokenizer were not excluding Chinese — they were optimizing for what they had the most data on. But optimizing for one thing is always, simultaneously, marginalizing another.</p>
+
+<h2>The Human in the Loop Is Not a Consolation Prize</h2>
+
+<p>A common response to AI anxiety is: "Don't worry, humans will always be needed to supervise the machines." This is usually meant as comfort — a promise that we won't be fully replaced.</p>
+
+<p>What the inverse law suggests is something stronger: the human in the loop is not a stopgap. It is a structural necessity that cannot be engineered away.</p>
+
+<p>The semantic path — the one that requires understanding, not just frequency — has no automated solution. The boundary between "thing-in-itself" as one concept and its three-character fragments is not a boundary that statistics can discover, because statistics does not know what a concept is. Only someone who has genuinely understood the concept can draw the boundary correctly. And if they draw it wrong — if they merge what should stay separate, or split what should stay whole — the model internalizes the error as correct structure. The mistake happens below the level where the model can detect it.</p>
+
+<p>The quality of the human judgment sets the ceiling on the model's understanding. Not the amount of compute. Not the size of the training corpus. The quality of the human who looks at the fragments and says: <em>this belongs together, this doesn't.</em></p>
+
+<p>Self-as-an-End — humans as ends in themselves, not means to AI's performance — is not, in the end, a moral argument. It is a technical description of how the system actually works.</p>
+
+<h2>A Practical Consequence</h2>
+
+<p>If meaning and learnability are inversely related, then the most dangerous failure mode in human-AI collaboration is not the dramatic one — AI going rogue, developing its own agenda. It is the quiet one: humans gradually outsourcing their judgment.</p>
+
+<p>The loop runs like this. The model gets better at producing plausible-sounding text. The better it sounds, the less humans feel the need to push back. The less humans push back, the less the model receives genuine human judgment as input. The less genuine human judgment it receives, the more it optimizes for what is already there — statistical patterns, majority signal, the well-represented — and the more the rare, meaningful, irreducible things become invisible.</p>
+
+<p>The cure is not clever. It is: <strong>go first.</strong></p>
+
+<p>Before asking the model, write your own judgment. Write it badly, incompletely, hesitantly. The moment your fingers pause over the keyboard and you are not sure — that pause is the remainder knocking on the door. Do not skip it. That is exactly what the model cannot do for you.</p>
+
+<p>Then show the model what you wrote. Ask it to reflect it back, to find the gaps, to push against your framing. Not to replace your judgment — to sharpen it.</p>
+
+<p>Then write again, yourself.</p>
+
+<p>The loop only works in that order. Reverse it — start with the model's output and edit from there — and you are no longer bringing your remainder into the system. You are becoming the model's editor. Which is useful. But it is not the same thing.</p>
+
+<h2>The Remainder Cannot Be Dissolved</h2>
+
+<p>Every technology that structures human knowledge leaves a remainder. Writing left out the gesture, the silence, the timing that spoken language carries. Print left out the handwriting, the marginalia, the individual voice. Digital text left out — we are still discovering what.</p>
+
+<p>AI tokenization leaves out meaning. Not all meaning. Not irreparably. But structurally: the most meaningful things are the most statistical rare, and the most statistically rare are the hardest to learn.</p>
+
+<p>This is not a reason to mistrust AI. It is a reason to understand what AI can and cannot do — and to understand that what it cannot do is not a temporary limitation waiting to be overcome by the next model release. It is a consequence of what statistical learning fundamentally is.</p>
+
+<p>The remainder cannot be dissolved. It can only be carried — by humans who are willing to stay in the loop, go first, and bring what only they can bring.</p>
+
+<p>We cannot help not knowing — just for now. But the not-knowing is not the model's. It is ours to work with.</p>
+
+<p class="essay-footer-note">This essay develops themes from the Self-as-an-End theory series. The full academic treatment appears in <em>Why Humans Matter in the Age of AI: An SAE Architecture Application</em> (working paper, 2026). The SAE framework is documented at <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net</a>.</p>
+
+      </div><!-- end .essay-body.lang-en -->
+
+      <div class="essay-body lang-zh">
+
+<p>有一个听起来矛盾、但在结构上是真的命题：<strong>一个词越有意义，AI 就越学不会它。</strong></p>
+
+<p>不是因为 AI 不够聪明。是因为统计。</p>
+
+<p>AI 靠数数来学习。"的"在训练数据里出现了数十亿次，模型把它学得明明白白。但"物自体"——康德对"独立于感知之外的世界"的命名——在全部已知文本里大概只出现了几千次。对统计来说，这接近于零。模型几乎没有东西可学。</p>
+
+<p>这里有一个令人不安的推论：那些最重要的概念——哲学家花了几百年磨砺的那些密度极高、承重极大的词——恰恰是语料库里最稀少的。意义和统计频率朝相反的方向走。</p>
+
+<h2>两条不相交的路</h2>
+
+<p>要理解这个，你需要知道 AI 是怎么读文字的。</p>
+
+<p>在语言模型看到任何一个词之前，一个叫做分词器（tokenizer）的系统会把文本切成碎片——"token"——模型实际处理的是这些碎片，不是原文。这一步不是小事。它决定了模型能看见什么。</p>
+
+<p>主流方案叫 BPE（字节对编码）：找最常见的字符对，合并，反复迭代。结果是一张由统计规律而非语义建立的词表。高频序列成为 token，低频序列被切碎。</p>
+
+<p>这套方案有一个巨大的优点和一个结构性的局限。优点：可以规模化，数据越多算力越大效果越好。局限：它建立在压缩的逻辑上，问的是"如何把更多信息塞进更少的单元"，而不是"哪些单元本身有意义"。</p>
+
+<p>还有另一条路。姑且叫它语义路径：不按频率合并，按概念合并。"物自体"应该是一个单元，不是三个——因为它是一个不可拆的概念，拆开就不是那个意思了。但这种合并统计学做不了。它需要真正理解这个概念的人来划边界。</p>
+
+<p>这两条路不是同一条路上走快走慢的区别。压缩之路走到底，也到不了理解之路。压缩和理解是两个不同的问题。</p>
+
+<h2>反比定律</h2>
+
+<p>结构性天花板在这里浮现。</p>
+
+<p>token 越有意义，就越独特。越独特，出现频率越低。出现频率越低，可以学的数据就越少。数据越少，模型掌握得越弱。</p>
+
+<p>反过来：token 越没有意义——纯粹的连接词、语法填充——出现频率越高。频率越高，统计信号越强。模型学得越好。但它学到的是没有重量的东西。</p>
+
+<p>意义和可学性是反比的。这就是反比定律。</p>
+
+<p>这不是工程问题，不是"再多点数据就好了"。有意义的东西天然稀疏，这是世界的结构，不是数据集的缺陷。"的"确实出现了数十亿次，"物自体"确实没有。再多爬多少互联网也改变不了这个比例，因为这个比例反映的是人类实际使用这些概念的频率。</p>
+
+<p>用 Self-as-an-End 框架的术语来说：这是余项守恒的一个具体形态。每一次构，都必然有余项——被排除出去但消灭不了的东西。分词器在构文本，意义成了余项。你越优化压缩，意义就越成为余项。</p>
+
+<h2>那个只有人能看见的余项</h2>
+
+<p>更深层的问题在于：模型看不见自己的盲区。</p>
+
+<p>模型在分词器的下游工作，接收到的是已经被切好的碎片。它不知道什么被切断了，哪些概念被跨越 token 边界地拆散了。模型在别人搭好的结构上面再构，不知道地基长什么样。</p>
+
+<p>谁能看见这个余项？只有人。</p>
+
+<p>一个真正理解某个哲学概念的人，能立刻感觉到它被机械切割后的变形。不是因为人的算力更高——是因为人的理解不建立在频率上。它建立在与一个概念共处足够久之后从内部感受到它：那些读不懂的夜晚，突然想通的瞬间，和一个不理解的人争论时被凿的痛感。</p>
+
+<p>当统计方法失效——当一个概念稀少到模型没有数据可学——真正理解这个概念的人可以从单个样本直接理解它。零样本。模型做不到，不是因为它不够聪明，是因为它的智能形态是统计型的，而统计需要重复。</p>
+
+<p>这就是为什么 AI 的天花板不是算力，不是数据量，是那个 AI 无法通过规模化来替代的人类判断。</p>
+
+<h2>对中文意味着什么</h2>
+
+<p>反比定律有一个具体的地缘后果，值得说清楚。</p>
+
+<p>BPE 的训练数据以英文为主，英文高频词在分词器里被保留为完整的单元。中文则被切得更碎——一个功能上是单一概念的中文双字词，可能被拆成两到三个 token，而同等语义复杂度的英文词只需一个。</p>
+
+<p>后果：同样的工作，中文需要更多 token，推理更慢，上下文窗口消耗更大。不是因为中文更复杂——是因为分词器把英文当成了默认，把中文当成了余项。</p>
+
+<p>这不是出于恶意，没有人刻意排斥中文。但结构就是殖民的结构：方法本身有立场，立场之外的就是剩余物。优化一种东西，永远同时是在边缘化另一种东西。</p>
+
+<h2>人在循环里不是安慰奖</h2>
+
+<p>对 AI 焦虑常见的回应是："别担心，总需要人来监督机器。"通常这是用来安慰的——承诺我们不会被完全取代。</p>
+
+<p>反比定律说的是一件更强的事：循环里的人不是临时补丁。是一个在结构上无法被工程化消除的必需。</p>
+
+<p>语义路径——那条需要理解而不只是频率的路——没有自动化的解法。"物自体"是一个概念还是三个碎片，这个边界统计学发现不了，因为统计学不知道什么是概念。只有真正理解这个概念的人才能把边界划对。如果划错了——把不该合的合在了一起，或者把不该拆的拆开了——模型会把这个错误当成正确的结构内化。错误发生在更深的层面，更隐蔽，更难被发现。</p>
+
+<p>人的判断质量决定了模型理解的天花板。不是算力，不是训练数据的体量。是那个看着碎片说"这几个该在一起，那几个不该"的人的判断质量。</p>
+
+<p>Self-as-an-End——人是目的本身，不是 AI 性能的手段——归根结底不是一个道德论证，是对系统实际运作方式的技术描述。</p>
+
+<h2>一个实践上的后果</h2>
+
+<p>如果意义和可学性是反比的，那么人机协作中最危险的失效模式不是那个戏剧性的——AI 失控、发展出自己的议程。是那个安静的：人逐渐把自己的判断外包出去。</p>
+
+<p>循环是这样运转的：模型越来越擅长生成听起来合理的文字。越听起来合理，人就越少感到需要反驳。人越少反驳，模型收到的真实人类判断就越少。真实判断越少，模型就越优化已有的东西——统计规律、多数信号、那些已经被充分代表的——那些稀少的、有意义的、不可还原的东西就变得越来越看不见。</p>
+
+<p>解药不复杂：<strong>先动手。</strong></p>
+
+<p>在问模型之前，先写下你自己的判断。写得残缺、犹豫、不成熟也没关系。手指停在键盘上那个点不下去的瞬间——那就是余项在敲门。不要跳过那个犹豫。那恰恰是模型替代不了你的地方。</p>
+
+<p>然后把你写的东西给模型看。让它照镜子：你漏了什么？你犹豫的地方有没有道理？你的框架有什么盲区？不是让模型替换你的判断——是让它把你的判断磨得更锋利。</p>
+
+<p>然后再自己写。</p>
+
+<p>这个循环只在这个顺序下有效。倒过来——先拿模型的输出，从那里改——你带进系统的就不再是你的余项。你成了模型的编辑。这有用，但不是同一件事。</p>
+
+<h2>余项消灭不了</h2>
+
+<p>每一种结构化人类知识的技术都留下余项。书写丢掉了口语里的手势、沉默、时机。印刷丢掉了手写体、批注、个体声音。数字文本丢掉了什么——我们还在发现中。</p>
+
+<p>AI 分词丢掉了意义。不是所有意义，不是无法修复。但在结构上：最有意义的东西统计上最稀少，最稀少的东西最难学。</p>
+
+<p>这不是不信任 AI 的理由。是理解 AI 能做什么、不能做什么的理由——以及理解它不能做的东西不是等着下一代模型出来就会被克服的暂时局限。它是统计学习在根本上是什么所带来的后果。</p>
+
+<p>余项消灭不了。它只能被承担——被那些愿意留在循环里、先动手、带来只有自己才能带来的东西的人承担。</p>
+
+<p>我们不得不不知道——just for now。但这个不知道不属于模型。它属于我们，等我们去工作。</p>
+
+<p class="essay-footer-note">本文发展自 Self-as-an-End 理论系列的核心主题。完整学术论文见《为什么 AI 时代，人才是最重要的：SAE 架构应用》（工作论文，2026）。SAE 框架文档见 <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net</a>。</p>
+
+      </div><!-- end .essay-body.lang-zh -->
+
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">Non <span>Dubito</span></div>
+        <div class="footer-tagline">I do not doubt</div>
+      </div>
+      <nav class="footer-nav">
+        <a href="../index.html">Essays</a>
+        <a href="../about.html">About</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Han Qin (秦汉)</span>
+      <span>nondubito.net</span>
+    </div>
+  </footer>
+
+</body>
+</html>
