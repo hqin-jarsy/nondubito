@@ -492,24 +492,28 @@ body {
   </div>
   <div class="result-body">
     <div class="result-section">
-      <div class="result-section-label" id="section-profile"></div>
+      <div class="result-section-label" id="section-channels"></div>
       <div class="result-dims" id="r-dims"></div>
     </div>
     <div class="result-section">
-      <div class="result-section-label" id="section-pattern"></div>
-      <div id="r-pattern"></div>
+      <div class="result-section-label" id="section-love"></div>
+      <div id="r-love"></div>
     </div>
     <div class="result-section">
-      <div class="result-section-label" id="section-pitfall"></div>
-      <div id="r-pitfall"></div>
+      <div class="result-section-label" id="section-career"></div>
+      <div id="r-career"></div>
+    </div>
+    <div class="result-section">
+      <div class="result-section-label" id="section-finance"></div>
+      <div id="r-finance"></div>
     </div>
     <div class="result-section">
       <div class="result-section-label" id="section-misread"></div>
-      <div class="result-misunderstood" id="r-misunderstood"></div>
+      <div id="r-misunderstood"></div>
     </div>
     <div class="result-section">
-      <div class="result-section-label" id="section-works"></div>
-      <div class="result-works" id="r-works"></div>
+      <div class="result-section-label" id="section-must"></div>
+      <div id="r-must"></div>
     </div>
     <div id="r-compat"></div>
   </div>
@@ -525,698 +529,460 @@ body {
 <div class="toast" id="toast"></div>
 
 <script>
-// ── LANGUAGE & STATE ────────────────────────────────────────────────────────
-let currentLang = localStorage.getItem('hc16_lang') || 'zh';
-let cur = 0;
-let answers = new Array(16).fill(null);
-let fromType = null;
-window._myType = null;
+// ────────────────────────────────────────────────────────────────────────────
+// HC-16: HUMAN CONNECTION FRAMEWORK - QUIZ ENGINE
+// ────────────────────────────────────────────────────────────────────────────
 
-// ── LANGUAGE STRINGS ────────────────────────────────────────────────────────
+// ── STATE ──────────────────────────────────────────────────────────────────
+let cur = 0;
+let answers = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+let currentLang = localStorage.getItem('hc16lang') || 'zh';
+let fromType = new URLSearchParams(window.location.search).get('from');
+
 const STRINGS = {
   zh: {
-    intro_desc: '每个人都有四种结构性痛苦的敏感度配置——你对哪种痛苦最敏感，决定了你在哪里最容易崩溃，以及什么修复对你最有效。\n\n这不是性格标签。是你的脆弱性地图。',
-    btn_start: '开始测试 · 16道题 · 5分钟',
-    question_header: (cur) => `第 ${cur + 1} / 16 题`,
-    result_eyebrow: '你的 HC-16 类型',
-    section_profile: '你的结构配置',
-    section_pattern: '你的日常模式',
-    section_pitfall: '你最容易掉的坑',
-    section_misread: '你身边的人最容易误解你什么',
-    section_works: '什么对你有效 · 什么对你没用',
-    works_not: '没用的',
-    works_yes: '有效的',
-    btn_invite: '拉一个人来测，看你们之间的关系 →',
+    question_header: (i) => `${i+1}/16 题`,
+    result_eyebrow: '测试结果',
+    section_channels: '你的四个频道',
+    section_love: '爱情里的你',
+    section_career: '工作里的你',
+    section_finance: '财务上的你',
+    section_misread: '别人容易误解的地方',
+    section_must: '你不得不的四件事',
+    compat_title: '关系分析',
+    compat_complement: '互补',
+    compat_complement_desc: '一方有的，另一方需要',
+    compat_friction: '摩擦',
+    compat_friction_desc: '双方都容易被同一种方式激怒',
+    compat_blindspot: '盲点',
+    compat_blindspot_desc: '都不敏感的地方，一起会有风险',
+    btn_invite: '邀请朋友测试',
     btn_share: '分享我的结果',
     btn_retake: '重新测试',
-    cta_back: '← 返回 Non Dubito',
-    compat_title: '关系分析',
-    compat_complement: '互补维度',
-    compat_complement_desc: '一方的高敏感覆盖另一方的盲区，形成跨维度保护。',
-    compat_friction: '可能的摩擦点',
-    compat_friction_desc: '双方在这些维度上都高度敏感，彼此的反应可能相互触发。',
-    compat_blindspot: '共同盲区',
-    compat_blindspot_desc: '双方在这些维度上都低敏感——没有人会为对方在这里预警。',
-    invite_banner: (type, zh) => `有人邀请你来测 HC-16。<br>他们的类型是 <strong>${type} · ${zh}</strong>——<br>完成测试后你们会看到关系分析。`,
+    cta_back: '返回',
   },
   en: {
-    intro_desc: 'Everyone has a sensitivity profile across four structural pains — which pain hits you hardest determines where you\'re most likely to break down, and what actually helps you recover.\n\nThis isn\'t a personality label. It\'s your vulnerability map.',
-    btn_start: 'Take the test · 16 questions · 5 min',
-    question_header: (cur) => `Question ${cur + 1} / 16`,
-    result_eyebrow: 'Your Type',
-    section_profile: 'Profile',
-    section_pattern: 'Pattern',
-    section_pitfall: 'Blind Spots',
-    section_misread: 'Misread As',
-    section_works: 'What Actually Helps',
-    works_not: 'Doesn\'t Help',
-    works_yes: 'Actually Helps',
-    btn_invite: 'Invite someone to compare types →',
-    btn_share: 'Share my result',
-    btn_retake: 'Retake',
-    cta_back: '← Back to Non Dubito',
-    compat_title: 'Compatibility',
-    compat_complement: 'Complementary',
-    compat_complement_desc: 'One side\'s high sensitivity covers the other\'s blind spot — cross-dimensional protection.',
-    compat_friction: 'Friction Points',
-    compat_friction_desc: 'Both are highly sensitive here — reactions can trigger each other.',
-    compat_blindspot: 'Shared Blind Spots',
-    compat_blindspot_desc: 'Both are low-sensitivity here — neither will alert the other.',
-    invite_banner: (type, en) => `Someone invited you to take HC-16. Their type is <strong>${type} · ${en}</strong> — complete the test and you\'ll see a compatibility analysis.`,
+    question_header: (i) => `Q${i+1}/16`,
+    result_eyebrow: 'RESULT',
+    section_channels: 'Your Four Channels',
+    section_love: 'In Love',
+    section_career: 'In Career',
+    section_finance: 'In Finance',
+    section_misread: 'Commonly Misunderstood',
+    section_must: 'Your Four Musts',
+    compat_title: 'Relationship Analysis',
+    compat_complement: 'Complement',
+    compat_complement_desc: 'What one has, the other needs',
+    compat_friction: 'Friction',
+    compat_friction_desc: 'Both easily triggered by the same way',
+    compat_blindspot: 'Blindspot',
+    compat_blindspot_desc: 'Neither sensitive here — risk when together',
+    btn_invite: 'Invite Friends to Test',
+    btn_share: 'Share My Result',
+    btn_retake: 'Retake Test',
+    cta_back: 'Back',
   }
 };
 
-const DIM_LABELS = {
-  zh: { drive:'求不得', fierce:'不可忍', explore:'不可选', roam:'不可逃' },
-  en: { drive:'Drive', fierce:'Dignity', explore:'Autonomy', roam:'Exit' }
-};
+const DIM_ZH = ['驱', '烈', '拓', '游'];
+const DIM_EN = ['Drive', 'Fierce', 'Explore', 'Roam'];
+const DIM_KEYS = ['drive', 'fierce', 'explore', 'roam'];
 
-function dimLabel(dim) {
-  return DIM_LABELS[currentLang][dim];
-}
-
-// ── QUESTIONS ────────────────────────────────────────────────────────────────
-const Q = [
-  { dim:'drive', label:'求不得', label_en:'Drive',
-    text:'当你连续几周没有任何进展——项目卡住了，学的东西没有突破，生活没有变化——你的内在状态更接近哪个？',
-    text_en:'When you\'ve had no progress for several weeks — a project stuck, no breakthroughs, nothing changing — your inner state is closer to:',
-    a:'一种说不出的焦躁，像有什么东西在体内推着你，必须动起来',
-    a_en:'An unexplainable restlessness, like something pushing inside you — you have to move',
-    b:'还好，节奏慢一点也没什么，不急',
-    b_en:'Fine, a slower pace is okay, I\'m not in a rush' },
-  { dim:'drive', label:'求不得', label_en:'Drive',
-    text:'你刚完成了一个重要的目标。完成的那一刻，你的第一反应更接近哪个？',
-    text_en:'You just completed an important goal. Your first reaction in that moment is closer to:',
-    a:'短暂的满足，然后很快开始想"下一个是什么"',
-    a_en:'Brief satisfaction, then almost immediately: \'What\'s next?\'',
-    b:'可以好好享受一阵子，不需要马上想下一步',
-    b_en:'I can enjoy this for a while — no need to think about the next step yet' },
-  { dim:'drive', label:'求不得', label_en:'Drive',
-    text:'一个你很在意的项目因为外部原因被彻底取消了，不是你的问题。你的反应更接近哪个？',
-    text_en:'A project you really cared about was completely cancelled due to external reasons — not your fault. Your reaction is closer to:',
-    a:'像被抽空了一块，即使知道不是自己的错，还是很痛',
-    a_en:'Like something was hollowed out. Even knowing it\'s not my fault, it really hurts',
-    b:'遗憾，但能比较快地接受，转向别的事情',
-    b_en:'Disappointed, but I can accept it fairly quickly and move on' },
-  { dim:'drive', label:'求不得', label_en:'Drive',
-    text:'有人跟你说"你不需要一直在追什么，停下来也是可以的"。你的内心反应更接近哪个？',
-    text_en:'Someone tells you: \'You don\'t need to always be chasing something — stopping is fine too.\' Your inner reaction is closer to:',
-    a:'道理我都懂，但停下来比继续走更难受',
-    a_en:'I understand the logic, but stopping is harder for me than moving forward',
-    b:'说得对，我确实不需要一直在赶路',
-    b_en:'That\'s true — I genuinely don\'t need to keep running' },
-  { dim:'fierce', label:'不可忍', label_en:'Dignity',
-    text:'在一个团队合作中，你发现你的贡献被别人拿去邀功，而你被当作"执行的人"。你的反应更接近哪个？',
-    text_en:'In a team project, you discover your contribution was claimed by someone else, and you were treated as \'the executor.\' Your reaction is closer to:',
-    a:'立刻感到不对，很难忍，就算不当场说也会很快找机会说清楚',
-    a_en:'Something feels immediately wrong. Hard to let it go — even if I don\'t say it in the moment, I\'ll address it soon',
-    b:'不太舒服，但可以先放一放，不值得为这个起冲突',
-    b_en:'Slightly uncomfortable, but I can let it go — not worth creating conflict over' },
-  { dim:'fierce', label:'不可忍', label_en:'Dignity',
-    text:'一个你信任的人在背后用一种你觉得不公平的方式评价你。你知道之后的反应更接近哪个？',
-    text_en:'A person you trusted evaluated you unfairly behind your back. When you find out, your reaction is closer to:',
-    a:'被刺痛了，这件事会反复出现在脑子里，必须处理',
-    a_en:'Stung. This keeps coming back to me — I have to deal with it',
-    b:'有点失望，但人各有看法，不至于太影响我',
-    b_en:'A bit disappointed, but people have different views — it doesn\'t affect me much' },
-  { dim:'fierce', label:'不可忍', label_en:'Dignity',
-    text:'你的老板（或长辈）在公开场合用一种带有贬低意味的方式纠正你。你的内在反应更接近哪个？',
-    text_en:'Your boss (or a senior) corrected you in a demeaning way in public. Your inner reaction is closer to:',
-    a:'尊严被踩了，无论他说的内容对不对，这种方式我无法接受',
-    a_en:'My dignity was stepped on. Regardless of whether they were right, I cannot accept this manner',
-    b:'不太舒服，但如果他说的内容有道理，我可以先消化内容再处理方式问题',
-    b_en:'Uncomfortable, but if the content was valid, I can absorb that first and address the manner later' },
-  { dim:'fierce', label:'不可忍', label_en:'Dignity',
-    text:'有人长期对你很好，但你渐渐发现这种好里面有一种"我是在帮你/带你"的居高临下。你的反应更接近哪个？',
-    text_en:'Someone has been consistently kind to you, but you gradually sense a subtle \'I\'m guiding you / helping you\' condescension underneath. Your reaction is closer to:',
-    a:'一旦察觉到这种居高临下，之前的好都变味了，很难再接受',
-    a_en:'Once I sense that condescension, all their previous kindness feels tainted — hard to receive anymore',
-    b:'只要对方不是故意的，这种感觉我可以消化，不影响关系大局',
-    b_en:'As long as they don\'t mean it, I can absorb this — it doesn\'t affect the relationship overall' },
-  { dim:'explore', label:'不可选', label_en:'Autonomy',
-    text:'你被分配到一个不是你选的但很重要的任务/岗位/方向。你的内在反应更接近哪个？',
-    text_en:'You\'ve been assigned an important task/role/direction that wasn\'t your choice. Your inner reaction is closer to:',
-    a:'即使任务本身不错，"不是我选的"这件事本身就让我不舒服',
-    a_en:'Even if the task itself is good, the fact that I didn\'t choose it is itself uncomfortable',
-    b:'只要事情本身有意义，谁选的不重要，我可以投入',
-    b_en:'As long as the work is meaningful, who chose it doesn\'t matter — I can commit' },
-  { dim:'explore', label:'不可选', label_en:'Autonomy',
-    text:'你正在一条已经确定的路上走得很好，但你内心偶尔冒出"如果走另一条路会怎样"的念头。这个念头的强度更接近哪个？',
-    text_en:'You\'re doing well on a chosen path, but occasionally the thought \'what if I\'d taken a different path?\' surfaces. Its intensity is closer to:',
-    a:'不只是偶尔冒出来，它经常在那里，有时候会让我质疑当前的选择',
-    a_en:'More than occasional — it\'s often there, sometimes making me question my current choice',
-    b:'偶尔想想而已，不影响我对当前路径的投入',
-    b_en:'Just a passing thought — it doesn\'t affect my commitment to what I\'m doing' },
-  { dim:'explore', label:'不可选', label_en:'Autonomy',
-    text:'有人告诉你"你就适合做这个，别想太多"。你的反应更接近哪个？',
-    text_en:'Someone tells you: \'You\'re well-suited for this, don\'t overthink it.\' Your reaction is closer to:',
-    a:'即使他可能说对了，"你就适合做这个"这句话本身让我抗拒',
-    a_en:'Even if they might be right, \'you\'re suited for this\' itself makes me resist',
-    b:'如果他说得有道理，我愿意接受这个建议',
-    b_en:'If what they\'re saying makes sense, I\'m willing to take that advice' },
-  { dim:'explore', label:'不可选', label_en:'Autonomy',
-    text:'你必须在两个工作机会之间选一个：A薪水高但方向固定，B薪水一般但可以自己定方向。你的倾向更接近哪个？',
-    text_en:'You must choose between two job offers: A pays more but the direction is fixed; B pays average but you set the direction. Your tendency is closer to:',
-    a:'强烈倾向B，方向自由对我来说比钱重要得多',
-    a_en:'Strongly toward B — directional freedom matters far more to me than money',
-    b:'要看具体情况，A的稳定性也很有吸引力',
-    b_en:'Depends on specifics — A\'s stability is also genuinely attractive' },
-  { dim:'roam', label:'不可逃', label_en:'Exit',
-    text:'你在一段关系（工作或感情）中感觉越来越好，但你注意到你对这段关系的依赖也在增加——离开会越来越难。你的反应更接近哪个？',
-    text_en:'In a relationship (work or personal) that keeps improving, you notice your dependency on it is deepening — leaving would get harder. Your reaction is closer to:',
-    a:'这个"越来越难离开"的感觉本身就让我不安，即使关系很好',
-    a_en:'The feeling of \'harder to leave\' itself unsettles me, even if the relationship is good',
-    b:'如果关系本身是好的，依赖加深是自然的，不觉得有什么问题',
-    b_en:'If the relationship is good, deepening dependency is natural — I don\'t see a problem' },
-  { dim:'roam', label:'不可逃', label_en:'Exit',
-    text:'你签了一份三年的工作合同，待遇很好，但中途离职有违约金。签完之后你的感觉更接近哪个？',
-    text_en:'You signed a three-year work contract with great terms, but mid-way exit has a penalty. After signing, your feeling is closer to:',
-    a:'一种微妙的被困感，即使我知道这份工作很好',
-    a_en:'A subtle sense of being trapped, even knowing it\'s a good job',
-    b:'安心了，三年内不用操心这件事了',
-    b_en:'Relieved — I don\'t have to worry about this for three years' },
-  { dim:'roam', label:'不可逃', label_en:'Exit',
-    text:'你正在一个城市/公司/圈子里过得不错，但有人给你一个去完全不同环境的机会。你的内心更接近哪个？',
-    text_en:'You\'re doing well in a city/company/circle, but someone offers you a chance in a completely different environment. Your inner state is closer to:',
-    a:'即使现在很好，那个"可以去别的地方"的可能性让我兴奋',
-    a_en:'Even though things are good now, the possibility of \'I could go somewhere else\' excites me',
-    b:'现在挺好的，为什么要动？除非那边明显更好',
-    b_en:'Things are good here, why move? Unless that place is clearly better' },
-  { dim:'roam', label:'不可逃', label_en:'Exit',
-    text:'回想一下你过去的人生轨迹——换工作、换城市、换圈子的频率。你的模式更接近哪个？',
-    text_en:'Reflecting on your life pattern — how often have you changed jobs, cities, circles? Your pattern is closer to:',
-    a:'每隔一段时间就需要换一个环境，待太久会窒息',
-    a_en:'I need a new environment every so often — staying too long suffocates me',
-    b:'我倾向于找到一个好的地方就扎下来，不喜欢频繁变动',
-    b_en:'I tend to find a good place and settle in — I don\'t like frequent changes' }
+// ── QSCORES ────────────────────────────────────────────────────────────────
+const QSCORES = [
+  {A:1,B:0,C:3,D:2}, // Q1 drive
+  {A:1,B:3,C:0,D:2}, // Q2 drive
+  {A:1,B:3,C:0,D:2}, // Q3 drive
+  {A:2,B:0,C:3,D:1}, // Q4 drive
+  {A:1,B:3,C:0,D:2}, // Q5 fierce
+  {A:1,B:3,C:2,D:0}, // Q6 fierce
+  {A:0,B:3,C:1,D:2}, // Q7 fierce
+  {A:3,B:1,C:2,D:0}, // Q8 fierce
+  {A:0,B:2,C:1,D:3}, // Q9 explore
+  {A:3,B:0,C:2,D:1}, // Q10 explore
+  {A:1,B:3,C:2,D:0}, // Q11 explore
+  {A:1,B:3,C:0,D:2}, // Q12 explore
+  {A:1,B:0,C:2,D:3}, // Q13 roam
+  {A:0,B:2,C:1,D:3}, // Q14 roam
+  {A:2,B:0,C:1,D:3}, // Q15 roam
+  {A:1,B:3,C:0,D:2}, // Q16 roam
 ];
 
-// ── TYPES (with all bilingual content) ──────────────────────────────────────
+// ── QUESTIONS ──────────────────────────────────────────────────────────────
+const Q = [
+  { dim:'drive', text:'你刚结束了三个月的密集冲刺，项目落地了，效果还不错。现在是周末下午，什么都不用做。你最自然的状态是？', text_en:'You just finished a three-month sprint — the project landed, results decent. It\'s a Saturday afternoon, nothing required. Your most natural state is:', opts:['难得放空，正好好好歇着，挺舒服的','彻底休息，完全不想工作的事','脑子已经在想下一步了，甚至已经打开了文档','有种说不清的空，不焦虑，但停下来感觉有点奇怪'], opts_en:['A rare moment of emptiness — finally resting, and it feels fine','Complete rest, not thinking about work at all','My mind is already on the next thing — I\'ve even opened a document','An unnameable emptiness — not anxious, but stopping feels a little strange'] },
+  { dim:'drive', text:'你和一个很在意的朋友已经认识三年了。最近你们的关系几乎没有任何变化——见面频率、聊的话题、相处方式都停在了原地。你的内在反应更接近？', text_en:'You\'ve known a close friend for three years. Lately nothing changes — same frequency, same topics, same dynamic. Your inner reaction is closer to:', opts:['有点腻，但稳定本身也有价值，感情不需要时时刻刻新鲜','一种隐约的不安分，觉得我们应该再往前走一点','完全没问题，关系不需要一直进展，维持好就是好','说不清楚，不是不满意，但有时候会想我们之间还有什么可能性吗'], opts_en:['A slight staleness, but stability has its own value — not everything needs freshness','A subtle restlessness — I feel like we should move forward somehow','Totally fine — relationships don\'t need to keep advancing','Can\'t quite say — not dissatisfied, but sometimes wondering what else might be possible'] },
+  { dim:'drive', text:'朋友问你："如果今年什么都不用做，只是生活，你会怎么过？" 你的第一反应更接近？', text_en:'A friend asks: "If you didn\'t have to do anything this year — just live — how would you spend it?" Your first reaction is closer to:', opts:['那挺好的，可以好好放松，做些平时没时间做的事','这个问题本身让我有点焦虑，我不太知道没有目标的状态怎么过','就休息就旅行，感觉很棒，我早就想要这样的时间','可以，但过几个月我应该会开始想下一步了'], opts_en:['Sounds great — finally time to relax and do things I never get to','This question makes me slightly anxious — I don\'t really know how to exist without a goal','Rest, travel, perfect — I\'ve been wanting this kind of time','Fine, but after a few months I\'d probably start thinking about what\'s next'] },
+  { dim:'drive', text:'你和伴侣在一段很稳定的感情里。近期没有特别的问题，但你发现你们作为"我们"这个单位，并没有任何新的共同目标或成长方向。你的感受更接近？', text_en:'You\'re in a stable relationship. No particular problems lately, but you notice that "you two as a unit" have no new shared goals or directions of growth. Your feeling is closer to:', opts:['有一种说不清的空，不是要分手，只是感觉少了点驱动力','这就是成熟的感情，稳定本身是成就，没必要一直发展','我需要我们有什么在一起追的东西，否则感情会失去动力','偶尔会想这个，但总体还好，不是紧迫的事'], opts_en:['An unnameable emptiness — not wanting to break up, just feeling a missing momentum','This is mature love — stability is an achievement, no need to keep developing','I need us to be chasing something together — otherwise the relationship loses energy','I think about this sometimes, but it\'s fine overall, not urgent'] },
+  { dim:'fierce', text:'在一次会议上，你提出了一个方案。老板没有评价方案本身，只说了一句"你想太多了，做好执行就好"。你的反应更接近？', text_en:'In a meeting, you present a proposal. Your boss doesn\'t comment on it, just says "you\'re overthinking, just focus on execution." Your reaction is closer to:', opts:['有点不爱，但这种情况职场里很常见，先消化一下','这句话直接让我失去了投入这个项目的动力，感觉被当工具了','没什么，老板有他的视角，执行好比什么都重要','当下忍住了，但这件事我会记着，下次找机会把判断说清楚'], opts_en:['Slightly bothered, but this is normal at work — I\'ll absorb it','This comment instantly killed my motivation on the project — I feel like a tool','No big deal — the boss has his view, execution matters most','I held back in the moment, but I\'ll remember this and find a chance to clarify my judgment'] },
+  { dim:'fierce', text:'一个老朋友在另一个场合把你对他的帮助说成"我拉他一把"，好像你是被提拔的那个。你知道后的反应更接近？', text_en:'An old friend described your help to him as "I gave him a hand up," as if you were the one being mentored. When you find out, your reaction is closer to:', opts:['有点不舒服，但他可能没意识到，不值得为这破坏友情','这件事让我对这段友情产生了真实的质疑，我无法接受被这样描述','当时有点介意，但事后反而开始想是不是自己太敏感了','没什么感觉，朋友之间帮忙不需要计较谁帮谁'], opts_en:['Slightly uncomfortable, but he probably didn\'t think — not worth damaging the friendship','This made me genuinely question this friendship — I can\'t accept being described that way','I was bothered at first, but then started wondering if I was being too sensitive','No reaction — with friends, helping doesn\'t need to be scored'] },
+  { dim:'fierce', text:'你和一个不太熟的人在朋友聚会上聊天，对方开了一个你觉得带有轻视意味的玩笑，虽然很轻，但你注意到了。你的反应更接近？', text_en:'At a party, someone you don\'t know well makes a mildly dismissive joke about you — light, but you caught it. Your reaction is closer to:', opts:['完全没事，这种玩笑聚会上很常见，不值得在意','立刻觉得不舒服，虽然不一定当场回应，但这个人在我心里有了记录','有点在意，但提醒自己可能是想多了','当时有点警觉，之后跟对方保持了更多距离'], opts_en:['Totally fine — this kind of joke is common at parties, not worth noting','Immediately uncomfortable — I may not respond in the moment, but this person is noted','A bit bothered, but I remind myself I\'m probably reading too much into it','Slightly on alert, and I kept more distance from them afterward'] },
+  { dim:'fierce', text:'你很爱的家人或伴侣在争执时说了一句带有贬低意味的话，之后道歉了。你的反应更接近？', text_en:'During an argument, someone you love deeply says something demeaning. They apologize afterward. Your reaction is closer to:', opts:['道歉解决不了问题，那句话打破了我对这段关系的某个基础性信任','有点受伤，但道歉了就过了，感情里这种事难免','受伤是真的，但花了一点时间还是消化了，不想让这件事影响关系','还好，人在激动时说的话不代表真实想法'], opts_en:['The apology doesn\'t fix it — that sentence broke something foundational in my trust of this relationship','Hurt, but an apology is enough — these things happen in relationships','Genuinely hurt, but I processed it over time — I don\'t want this to damage the relationship','It\'s okay — people say things in anger that don\'t represent what they really think'] },
+  { dim:'explore', text:'公司给了你一个很重要的项目，但整个执行框架已经被制定好了，你只负责在框架内执行，没有调整空间。你的感受更接近？', text_en:'You\'re given an important project, but the entire execution framework is already set — you just implement within it, no room to adjust. Your feeling is closer to:', opts:['没问题，框架清晰反而让我更能专注，减少了决策消耗','可以接受，但如果给我一点调整空间会执行得更好','执行框架固定也行，只要大方向是我认同的','这种感觉很难受，框架被锁死意味着我无法把真正好的东西做出来'], opts_en:['Fine — a clear framework lets me focus better, fewer decisions to make','Acceptable, but I\'d perform better with some room to adjust','Fixed execution is fine as long as I believe in the overall direction','This is uncomfortable — a locked framework means I can\'t do my best work'] },
+  { dim:'explore', text:'你的一个长辈或导师看了你现在的生活，给了你一个具体建议："你应该去做X，这条路最适合你。" 你的内在反应更接近？', text_en:'A mentor or elder sees your life and gives you specific advice: "You should do X — this path suits you best." Your inner reaction is closer to:', opts:['即使他说得有道理，"你应该"这个句式本身就让我有点排斥','他说得对，我愿意认真考虑这个建议','我会认真听，但最终需要在那个建议里找到我真正想要的才能行动','有道理我就接受，适不适合自己考虑一下就好'], opts_en:['Even if he\'s right, "you should" itself creates resistance in me','He\'s right — I'm willing to seriously consider this advice','I\'ll listen carefully, but ultimately I need to find what I genuinely want within that advice before I can act','If it makes sense I\'ll take it — I just need to think about whether it suits me'] },
+  { dim:'explore', text:'伴侣跟你说："你继续现在这个方向吧，你在这里做得很好。" 你的感受更接近？', text_en:'Your partner says: "Keep going in this direction — you\'re doing really well here." Your feeling is closer to:', opts:['被鼓励到了，感觉有人支持我','有点微妙，我没有把这当成肯定，更像是一种限制','挺好的，但同时也在想如果我想换方向他会怎么反应','很暖，感觉被看见了，他理解我在做什么'], opts_en:['Encouraged — I feel supported','Slightly ambiguous — I didn\'t receive this as affirmation, more like a constraint','Nice, but I\'m also wondering how he\'d react if I wanted to change direction','Warm — I feel seen; he understands what I\'m doing'] },
+  { dim:'explore', text:'你被晋升了，但晋升意味着你的工作内容从"做"变成了"管"，你没有被问过是否愿意这个转变。你的反应更接近？', text_en:'You\'re promoted, but the role shifts from "doing" to "managing" — you weren\'t asked if you wanted this change. Your reaction is closer to:', opts:['有点没准备好，但晋升是好事，慢慢适应就行','这件事让我很不舒服，我想要自己选择我做什么，不喜欢被安排','能管也挺好，挑战新东西没什么问题','可以接受，但会跟上级明确说我对这个转变的感受和期望'], opts_en:['Not quite ready, but promotion is good — I\'ll adapt','This bothers me — I want to choose what I do; I don\'t like being arranged into a role','Managing is fine too — I enjoy new challenges','Acceptable, but I\'ll clearly tell my manager how I feel about this transition'] },
+  { dim:'roam', text:'你和伴侣的关系越来越深，生活已经开始交织在一起。某天你意识到，如果现在要离开这段关系，代价会很大。你的感受更接近？', text_en:'Your relationship is deepening — your lives are intertwining. One day you realize: leaving this relationship now would be very costly. Your feeling is closer to:', opts:['有点想到了，但感情深了代价大是自然的，这不是坏事','完全没有想过，感情本来就是越深越好','有点注意到了，说不清是好是坏','这个"走不了"的感觉让我有点不安，哪怕关系本身是好的'], opts_en:['I noticed it, but deeper love naturally costs more to leave — that\'s not a bad thing','I haven\'t thought about this at all — the deeper the better','I noticed this, can\'t quite tell if it\'s good or bad','The feeling of "can\'t leave" unsettles me a little, even though the relationship itself is good'] },
+  { dim:'roam', text:'你在一份待遇很好的工作里做了三年，公司文化也不错。但你意识到，如果现在离职会损失很多——期权、团队、待遇。你对这个认识的反应更接近？', text_en:'You\'ve been three years in a well-compensated job with good culture. But you realize leaving now would cost a lot — options, team, salary. Your reaction to this recognition is closer to:', opts:['这正是这份工作好的地方，有这么多值得留下来的理由很扎实','还好，离不离是自己的选择，外部条件只是参考','有点注意到了，想了想，也还好','这种"走不了"的感觉让我不舒服，即使现在不想走'], opts_en:['This is exactly what\'s good about this job — so many reasons to stay feels solid','Fine — whether to leave is my choice; external factors are just reference','I noticed, thought about it, it\'s okay','The feeling of "can\'t leave" is uncomfortable, even if I don\'t currently want to'] },
+  { dim:'roam', text:'你在一个城市生活了五年，交了很多朋友，生活很稳定。有人问你："你有没有想过去别的地方生活？" 你的回答更接近？', text_en:'You\'ve lived in a city five years — good friends, stable life. Someone asks: "Have you thought about living somewhere else?" Your answer is closer to:', opts:['偶尔想过，但不会真的行动，现在挺好的没必要折腾','完全没有，这里有我的生活，离开没有理由','想过，不紧迫，但如果有合适的机会我会认真考虑','想过不止一次，"去别的地方"的可能性对我有真实的吸引力'], opts_en:['Occasionally thought about it, but wouldn\'t act — things are good here, no need to disrupt','Not at all — this is my life here, no reason to leave','I\'ve thought about it, not urgent, but I\'d seriously consider a good opportunity','More than once — the possibility of "going somewhere else" has genuine pull for me'] },
+  { dim:'roam', text:'回想你过去十年的生活——城市、工作、关系。你的描述更接近？', text_en:'Reflecting on your past ten years — cities, jobs, relationships. Your description is closer to:', opts:['有过几次变动，但每次都有具体原因，不是主动找变化','主动找过几次变化，感觉在一个地方待太久会厌','很稳定，变化比较少，我倾向于在一个地方深耕','说不清楚是主动还是被动，但回头看，变动确实挺多'], opts_en:['Some changes, but always with specific reasons — not actively seeking change','Actively sought change several times — staying too long in one place feels suffocating','Very stable, few changes — I prefer going deep in one place','Hard to say if active or passive, but looking back, there\'s been quite a lot of change'] },
+];
+
+// ── TYPES ────────────────────────────────────────────────────────────────────
 const TYPES = {
-  'DTAB': {
-    zh:'驱容专栖', en:'Drive · Tolerant · Anchor · Base',
-    tagline:'往前冲，能忍，不挑路，扎得住。', tagline_en:'Always moving. Absorbs friction. Takes what\'s given. Stays put.',
+  'DFER': {
+    zh:'驱烈拓游', en:'Drive · Edge · Direction · Flow',
+    tagline:'四个频道全开，什么信号都收。',
+    tagline_en:'All four channels open. Receives every signal.',
     dims:[
-      {char:'驱', text:'求不得（高）：你的内在驱动力极强，目标受阻时会感到强烈的痛苦'},
-      {char:'容', text:'不可忍（低）：你对基础层的侵蚀相对迟钝，能忍别人忍不了的'},
-      {char:'专', text:'不可选（低）：你不太介意方向是谁定的，给你一条路就能冲'},
-      {char:'栖', text:'不可逃（低）：你不焦虑退出通道，扎在一个地方很自然'},
+      {char:'驱',text:'更偏向高驱动感——内在有股持续推着你走的力。',en:'Tilts toward high Drive — something inside keeps pushing you forward.'},
+      {char:'烈',text:'更偏向高边界感——对什么可以、什么不可以有清晰的感知。',en:'Tilts toward high Edge — you sense clearly what's acceptable and what isn\'t.'},
+      {char:'拓',text:'更偏向拓展型方向感——喜欢探索更多可能性。',en:'Tilts toward expansive Direction — you prefer to explore possibilities.'},
+      {char:'游',text:'更偏向高流动感——状态好时能在不同情境之间自由切换。',en:'Tilts toward high Flow — you move fluidly between situations when at your best.'}
     ],
-    dims_en:[
-      'Drive (High): Intense internal drive — blocked goals cause sharp pain',
-      'Tolerant (Low): Less reactive to dignity violations — you absorb what others can\'t',
-      'Anchor (Low): You don\'t need to choose the direction — give you a path and you\'ll run it',
-      'Base (Low): No exit anxiety — settling into a place feels natural'
+    love:'爱情里的你，往往是最用力的那个。你爱得认真，也爱得费力——对方需要同时理解你的速度、你的边界、你的方向感，还有你不停歇的流动。这不是苛求，这是你的真实。',
+    love_en:'In love, you tend to be the most intense partner. You love seriously — and it asks a lot. Your partner needs to understand your pace, your boundaries, your direction, and your constant motion. That\'s not too much to ask. That\'s who you are.',
+    career:'工作里，你在最理想的状态下像一台四驱全地形的系统——动力、判断、探索、适应同时在线。你需要的不是更努力，而是找到一个能同时激活四个维度的环境。',
+    career_en:'At work, in your ideal state you\'re like an all-terrain four-wheel-drive system — power, judgment, exploration, and adaptability all engaged simultaneously. You don\'t need to work harder. You need an environment that activates all four dimensions at once.',
+    finance:'财务上，你是"有选择性的冒险者"。不是什么都敢，而是在感到有把握、有意义、有退路的时候，你比很多人更敢行动。',
+    finance_en:'Financially, you\'re a selective risk-taker. Not reckless — but when you feel confident, purposeful, and have a fallback, you act more decisively than most.',
+    misread:['别人觉得你「太难搞」→ 你不是难搞，是四个维度同时工作，大多数人只习惯看其中一个面。','别人觉得你「什么都想要」→ 不是贪心，是你的系统真的同时在运转。'],
+    misread_en:['Others think you\'re "too difficult" → Not difficult — all four channels are running. Most people only see one face at a time.','Others think you "want everything" → Not greedy — your whole system is genuinely running at once.'],
+    must:['你不得不往前走——停在原地比失败更难受。','你不得不在意质量——将就不是你能长期维持的状态。'],
+    must_en:['You must keep moving — standing still hurts more than failure.','You must care about quality — settling is not a state you can sustain.'],
+  },
+  'DFEB': {
+    zh:'驱烈拓栖', en:'Drive · Edge · Direction · Base',
+    tagline:'走遍山河，只为找到真正值得停留的地方。',
+    tagline_en:'Walked far and wide — just to find somewhere worth staying.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——内在有推着你动的能量。',en:'Tilts toward high Drive — energy inside keeps you moving.'},
+      {char:'烈',text:'更偏向高边界感——对什么值得、什么不值得有直觉性判断。',en:'Tilts toward high Edge — you have an instinct for what\'s worth it and what isn\'t.'},
+      {char:'拓',text:'更偏向拓展型方向感——开放新领域、新视角。',en:'Tilts toward expansive Direction — open to new domains and perspectives.'},
+      {char:'栖',text:'更偏向低流动感——一旦找到值得的地方，你想好好停留。',en:'Tilts toward settled Flow — once you find somewhere worth it, you want to stay.'}
     ],
-    pattern:`你永远有下一个目标，永远在往前走。"我很忙但很充实"是你最常说的话。你不太挑环境——给你一个方向你就能投入，给你一个位置你就能扎下来。你身边的人觉得你是"能扛事的人"。\n\n但你的"能扛"有一个隐藏成本：你的基础层报警系统是静音的。被工具化对待的时候你的反应是"忍一忍"，方向被限制的时候你的反应是"没关系"，退出通道被封堵的时候你的反应是"我在这里挺好的"。`,
-    pattern_en:`You always have a next goal, always moving forward. 'I'm busy but fulfilled' is your most common refrain. You don't need to choose your environment — give you a direction and you commit, give you a position and you root. People around you think of you as 'the one who can handle things.'\n\nBut your 'can take it' has a hidden cost: your foundational alarm systems are on mute. When instrumentalized, your response is 'I'll manage.' Direction gets restricted: 'it's fine.' Exit gets sealed: 'I'm good here.'`,
-    pitfall:`你最危险的处境不是失败——失败至少逼你停下来检查。你最危险的处境是"有意义的忙碌"。当工作有意义、目标在推进、成就在积累的时候，你的涌现层被喂得很饱，其他三个报警系统同时静音。你可以在一份"有意义的工作"中被系统性地透支十年而不自知。\n\n等你终于感受到痛苦的时候——因为长期积累的损害穿透了你的高阈值——爆发会极其猛烈。你会发现自己已经不知道"我是谁"了，只知道"我在做什么"。`,
-    pitfall_en:`Your most dangerous state isn't failure — failure at least forces you to stop and check. It's 'meaningful busyness.' When work is meaningful, goals advancing, achievements accumulating — your drive layer is fully fed, and all three other alarm systems simultaneously mute. You can be systematically depleted for a decade inside 'meaningful work' without knowing it.\n\nWhen you finally feel pain — long-accumulated damage breaching your high threshold — the explosion will be extreme. You'll find you no longer know 'who I am,' only 'what I do.'`,
-    misunderstood:['「他很坚强」→ 不是坚强，是基础层报警系统静音了','「他很专注」→ 不是专注，是方向自由感被钝化了','「他很忠诚」→ 不是忠诚，是退出焦虑被钝化了'],
-    misunderstood_en:['\'He\'s so resilient\' → Not resilience — foundational alarm systems are muted','\'He\'s so focused\' → Not focus — his sense of directional freedom has been dulled','\'He\'s so loyal\' → Not loyalty — exit anxiety has been numbed'],
-    works_not:'「放松一下」「别那么拼」——这些话在涌现层里打转，根本碰不到你的基础层。你听了会说"好的"然后继续冲。',
-    works_not_en:'\'Relax a little\' / \'don\'t work so hard\' — these orbit in the drive layer, never touching the foundation. You\'ll say \'okay\' and keep running.',
-    works:'用你听得懂的语言翻译你听不到的信号。不是「你应该照顾自己」，而是「你继续这样下去，三年后你连冲的能力都没有了」。把基础层的需求翻译成涌现层的语言——这是唯一能穿透你感知屏障的方式。',
-    works_en:'Translate the signals you can\'t hear into language you can. Not \'you should take care of yourself\' but \'if you keep this up, in three years you won\'t even have the capacity to run.\' Convert foundational needs into drive-layer language — that\'s the only way through your perceptual barrier.'
+    love:'爱情里，你是那种"一旦认定就全情投入"的人。不轻易开始，但开始了就认真对待。你探索过很多，也知道什么是真正让你想停下来的。',
+    love_en:'In love, you\'re the kind who commits fully — once you\'ve chosen. You don\'t start easily, but once you do, you\'re all in. You\'ve explored enough to know what actually makes you want to stay.',
+    career:'工作里，你善于开拓新领域，但你真正想要的是找到一个足够有趣的地方，然后深耕下去。不是漂流，是定点探索——有根基的冒险。',
+    career_en:'At work, you\'re good at opening new territory — but what you actually want is to find somewhere interesting enough, then go deep. Not drifting — anchored exploration. Adventure with a base.',
+    finance:'财务上，你愿意在感兴趣的方向上大胆押注，但底层有一条安全线你不会轻易逾越。你知道怎么探索，也知道怎么守住。',
+    finance_en:'Financially, you\'re willing to bet boldly on directions you believe in — but you keep a baseline you won\'t cross. You know how to explore, and how to hold ground.',
+    misread:['别人觉得你「矛盾」→ 你不矛盾，只是在探索和停留之间有自己的节奏，不需要别人来评判。','别人觉得你「挑剔」→ 不挑剔，是你真的见过不够好的，知道什么值得自己认真。'],
+    misread_en:['Others think you\'re "contradictory" → Not contradictory — you have your own rhythm between exploring and settling, and you don\'t need anyone to judge that.','Others think you\'re "picky" → Not picky — you\'ve seen enough to know what\'s genuinely worth your care.'],
+    must:['你不得不先确认"值不值得"，再放下防备。','你不得不让自己停下来的理由是真实的，不能将就。'],
+    must_en:['You must confirm "is this worth it" before letting your guard down.','The reason you stay must be real — you can\'t force yourself to settle for less.'],
+  },
+  'DFAR': {
+    zh:'驱烈专游', en:'Drive · Edge · Anchor · Flow',
+    tagline:'专注一件事，但保持自由的权利。',
+    tagline_en:'Focused on one thing — without surrendering the right to move freely.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——你有内在的动力来源，不太需要外部催促。',en:'Tilts toward high Drive — your motivation comes from within. You rarely need prompting.'},
+      {char:'烈',text:'更偏向高边界感——你清楚自己的立场，不容易被说服做不认可的事。',en:'Tilts toward high Edge — you know your position, and you\'re not easily talked into things you don\'t believe in.'},
+      {char:'专',text:'更偏向专注型方向感——倾向于深耕一个领域，而不是四处发散。',en:'Tilts toward anchored Direction — you prefer to go deep in one area rather than spread thin.'},
+      {char:'游',text:'更偏向高流动感——需要在情境之间保持自由切换的可能。',en:'Tilts toward high Flow — you need the possibility of moving freely between contexts.'}
+    ],
+    love:'爱情里，你需要的不是依附，而是"我们各自完整，然后在一起"。你深情且专注，但你需要关系里有空气感——两个人都保有自己的空间。',
+    love_en:'In love, what you need isn\'t to be dependent on someone — it\'s "we\'re both whole, and we choose each other." You\'re deep and focused, but you need airflow in the relationship — space for both of you.',
+    career:'工作里，你往往是某个领域的深度专家，但你不能被困在一个固定的地方或模式里。你需要能自由切换场景、自主控制节奏。',
+    career_en:'At work, you tend to become a deep specialist in your domain — but you can\'t be trapped in one fixed place or pattern. You need freedom to shift contexts and control your own rhythm.',
+    finance:'财务上，你偏向在自己真正擅长理解的一个方向上集中押注，同时保持资产的流动性——不锁死，不漂流。',
+    finance_en:'Financially, you concentrate on one direction you deeply understand — while keeping liquidity in your assets. Not locked in, not adrift.',
+    misread:['别人觉得你「不稳定」→ 你不是不稳定，是你把专注和流动分开在不同维度使用了。','别人觉得你「很难懂」→ 你的逻辑是自洽的，只是它不完全符合别人预期的模式。'],
+    misread_en:['Others think you\'re "unstable" → Not unstable — you operate focus and flow in different dimensions, separately and deliberately.','Others think you\'re "hard to figure out" → Your logic is coherent — it just doesn\'t fit the pattern others expect.'],
+    must:['你不得不保持某种独立性，哪怕只是心理上的自由。','你不得不在自己选定的方向上有真实的深度，表面的专注会让你感到空洞。'],
+    must_en:['You must maintain some form of independence — even if it\'s just psychological freedom.','You must have real depth in your chosen direction — surface-level focus feels hollow.'],
+  },
+  'DFAB': {
+    zh:'驱烈专栖', en:'Drive · Edge · Anchor · Base',
+    tagline:'把一件事做到极致，然后守住它。',
+    tagline_en:'Take one thing to its limit — then hold it.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——有内在的强劲动力，不容易被外部因素拖走。',en:'Tilts toward high Drive — strong inner momentum, not easily pulled off course.'},
+      {char:'烈',text:'更偏向高边界感——对什么该进、什么该拒有清晰判断。',en:'Tilts toward high Edge — clear sense of what to let in and what to refuse.'},
+      {char:'专',text:'更偏向专注型方向感——倾向于选定一个赛道，然后全力以赴。',en:'Tilts toward anchored Direction — you choose a lane and go all in.'},
+      {char:'栖',text:'更偏向低流动感——安稳比变动对你更有吸引力。',en:'Tilts toward settled Flow — stability draws you more than constant change.'}
+    ],
+    love:'爱情里，你是非常专一的人——进门很难，出门也很难。你对关系有极高的标准，但一旦认定，你是那种风里雨里都会在的伴侣。',
+    love_en:'In love, you\'re deeply devoted — it takes a lot to get through the door, and even more to walk out. Your standards are high, but once you\'ve decided, you\'re the partner who\'s there through everything.',
+    career:'工作里，你是那种"一个赛道走到底"的人。不轻易换方向，但一旦确定，执行力极强。你的深度是你最大的资产。',
+    career_en:'At work, you\'re the type who stays in one lane all the way. You don\'t pivot easily — but once set, your execution is formidable. Depth is your greatest asset.',
+    finance:'财务上，你倾向于把钱放在你最了解的地方——不追热点，不分散，相信时间和深度的复利。',
+    finance_en:'Financially, you put your money where you have the deepest understanding — no trend-chasing, no spreading thin. You believe in the compounding effect of time and depth.',
+    misread:['别人觉得你「执拗」→ 你不是执拗，你只是不相信什么都试试能比深耕出更好的结果。','别人觉得你「不灵活」→ 灵活不是你的目标，精准才是。'],
+    misread_en:['Others think you\'re "stubborn" → Not stubborn — you simply don\'t believe that trying everything leads to better outcomes than going deep.','Others think you\'re "inflexible" → Flexibility isn\'t your goal. Precision is.'],
+    must:['你不得不在自己选择的事情上做到最好，否则很难有安全感。','你不得不守住自己认为重要的东西，就算别人觉得你该放手。'],
+    must_en:['You must do your best at whatever you\'ve chosen — otherwise it\'s hard to feel secure.','You must hold onto what you believe matters — even when others think you should let go.'],
+  },
+  'DTER': {
+    zh:'驱容拓游', en:'Drive · Tender · Direction · Flow',
+    tagline:'走得快，带得动，不拒绝任何可能性。',
+    tagline_en:'Moves fast, brings people along, refuses to close any door.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——有内在的前进动力，不需要太多外部激励。',en:'Tilts toward high Drive — inner forward momentum, doesn\'t need much external push.'},
+      {char:'容',text:'更偏向低边界感（包容）——对不同的人和想法有天然的接纳能力。',en:'Tilts toward tolerant Edge — natural capacity to accept different people and ideas.'},
+      {char:'拓',text:'更偏向拓展型方向感——倾向于探索更多，而不是收窄聚焦。',en:'Tilts toward expansive Direction — you tend to explore more, not narrow down.'},
+      {char:'游',text:'更偏向高流动感——在不同情境、角色、环境之间切换对你来说是自然的。',en:'Tilts toward high Flow — switching between contexts, roles, and environments feels natural.'}
+    ],
+    love:'爱情里，你温暖包容，能接受对方的不完美。但你也需要关系有"空气感"——不窒息，不束缚，能流动，能生长。',
+    love_en:'In love, you\'re warm and accepting — you can hold your partner\'s imperfections without flinching. But you also need airflow in the relationship. No suffocation, no binding. Room to move, room to grow.',
+    career:'工作里，你善于在不同领域之间搭桥，是团队里少有的"哪里都能用"的人。你不是万金油，而是真正具备多领域感知能力的人。',
+    career_en:'At work, you\'re a natural connector across domains — the kind of person the team can use anywhere. Not a generalist by default, but someone who genuinely senses across multiple fields.',
+    finance:'财务上，你倾向于分散布局、多试多看。不把鸡蛋放在一个篮子里，是你天然的风险感知方式。',
+    finance_en:'Financially, you\'re drawn to broad diversification — try a little of many things. Not putting all eggs in one basket is your natural risk instinct.',
+    misread:['别人觉得你「不专注」→ 你的专注只是更宽，不是更浅。','别人觉得你「什么都无所谓」→ 你有所谓，你只是不需要用紧张感来表达在乎。'],
+    misread_en:['Others think you\'re "unfocused" → Your focus is broader, not shallower.','Others think you "don\'t care about anything" → You do care — you just don\'t need tension to express it.'],
+    must:['你不得不保持好奇心，停止探索对你来说比失败更难受。','你不得不感到关系是流动的，而不是固定的——某种形式的自由是你必须守住的东西。'],
+    must_en:['You must stay curious — stopping exploration hurts more than failure.','You must feel that relationships have movement, not just structure — some form of freedom is non-negotiable.'],
+  },
+  'DTEB': {
+    zh:'驱容拓栖', en:'Drive · Tender · Direction · Base',
+    tagline:'探索世界，但家是真正的锚点。',
+    tagline_en:'Explores the world — but home is the real anchor.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——有持续推动你行动的内在力量。',en:'Tilts toward high Drive — continuous inner force that keeps you acting.'},
+      {char:'容',text:'更偏向低边界感（包容）——你能理解和接纳不同的立场与行为方式。',en:'Tilts toward tolerant Edge — you can understand and accept different positions and ways of being.'},
+      {char:'拓',text:'更偏向拓展型方向感——你天然对新事物、新地方、新思路感兴趣。',en:'Tilts toward expansive Direction — naturally drawn to new things, places, and ideas.'},
+      {char:'栖',text:'更偏向低流动感——你需要一个可以回来的地方，探索才有意义。',en:'Tilts toward settled Flow — you need somewhere to return to; that\'s what gives exploration meaning.'}
+    ],
+    love:'爱情里，你是那种"在外面是探索者，在家里是守护者"的人。你能给关系带来新鲜感和宽阔的视野，也能给它一个稳定、真实的底色。',
+    love_en:'In love, you\'re the explorer outside and the guardian inside. You bring freshness and wide perspective to the relationship — and a stable, genuine foundation beneath it all.',
+    career:'工作里，你最适合那种有稳定根基的探索型角色。有"大本营"，也有出发的理由。在某个地方扎根，向外延伸。',
+    career_en:'At work, you thrive in roles that combine a stable base with outward exploration. A headquarters, and reasons to leave it. Rooted somewhere, reaching outward.',
+    finance:'财务上，你喜欢在稳定的底仓上进行有限度的探索性投入——有安全感的边界，有好奇心的出口。',
+    finance_en:'Financially, you like building exploratory positions on top of a stable core — a safety perimeter, with an outlet for curiosity.',
+    misread:['别人觉得你「分裂」→ 你没有分裂，你只是把"家"和"外面"都活得很认真，两者都是你。','别人觉得你「不安分」→ 你的探索不是逃跑，是有根基的飞翔。'],
+    misread_en:['Others think you\'re "split" → Not split — you\'re simply living both "home" and "out there" seriously. Both are you.','Others think you\'re "restless" → Your exploration isn\'t running away — it\'s rooted flight.'],
+    must:['你不得不有一个真正的"基地"，否则探索会变成漂泊。','你不得不动——即使是短暂的出发，也能让你恢复很多。'],
+    must_en:['You must have a real base — without it, exploration becomes drifting.','You must move — even a brief departure restores something in you.'],
+  },
+  'DTAR': {
+    zh:'驱容专游', en:'Drive · Tender · Anchor · Flow',
+    tagline:'深耕一件事，但保持自己的节奏。',
+    tagline_en:'Goes deep in one direction — at their own pace.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——你有内在的动力，不需要外部来激活你。',en:'Tilts toward high Drive — you have inner momentum, don\'t need external activation.'},
+      {char:'容',text:'更偏向低边界感（包容）——你对他人的方式有天然的理解和接纳。',en:'Tilts toward tolerant Edge — natural understanding and acceptance of how others operate.'},
+      {char:'专',text:'更偏向专注型方向感——你倾向于在一个方向上持续深入，而不是广泛发散。',en:'Tilts toward anchored Direction — you prefer sustained depth in one direction over wide dispersion.'},
+      {char:'游',text:'更偏向高流动感——你需要能自由切换场景和节奏。',en:'Tilts toward high Flow — you need freedom to shift scenes and rhythms.'}
+    ],
+    love:'爱情里，你温柔包容，但你也需要对方懂得你的专注。当你沉浸于某件事时，那不是冷落，是你在做自己。懂这个的人，才真正懂你。',
+    love_en:'In love, you\'re gentle and accepting — but you need a partner who understands your focus. When you disappear into something, that\'s not neglect. That\'s you being yourself. Someone who gets that truly gets you.',
+    career:'工作里，你通常是某个领域里稳定而深入的贡献者。但你不喜欢被固定节奏和结构锁住——你需要能掌控自己工作方式的空间。',
+    career_en:'At work, you\'re a steady and deep contributor in your domain. But you dislike being locked into fixed schedules and rigid structure — you need space to control how you work.',
+    finance:'财务上，你往往专注于一到两个你真正理解的品类，同时保持一定的现金灵活性——你要的是深度，也要的是活路。',
+    finance_en:'Financially, you focus on one or two categories you genuinely understand — while keeping some cash flexibility. You want depth, and you want options.',
+    misread:['别人觉得你「没有野心」→ 你的野心只是不那么喧哗，但你对自己领域的深度有执念。','别人觉得你「散漫」→ 你不散漫，你的节奏是你自己的，只是不一定符合别人的期待。'],
+    misread_en:['Others think you "lack ambition" → Your ambition is quieter, not absent. You have a deep obsession with depth in your own domain.','Others think you\'re "scattered" → Not scattered — your rhythm is your own, even if it doesn\'t match what others expect.'],
+    must:['你不得不按自己的节奏工作，被催促或控制会让你比任何人都更快失去状态。','你不得不感到自己在一件真实的事情上有深度，表面的忙碌填不了那个空。'],
+    must_en:['You must work at your own pace — being rushed or controlled throws you off faster than anything.','You must feel genuine depth in something real — surface-level busyness can\'t fill that space.'],
+  },
+  'DTAB': {
+    zh:'驱容专栖', en:'Drive · Tender · Anchor · Base',
+    tagline:'一个人，一件事，把它做成一辈子的事。',
+    tagline_en:'One person, one thing — made into a life\'s work.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——你有内在的能量来源，不依赖外部刺激维持运转。',en:'Tilts toward high Drive — your energy source is internal, not dependent on external stimulation.'},
+      {char:'容',text:'更偏向低边界感（包容）——你对他人的不完美有天然的包容能力。',en:'Tilts toward tolerant Edge — natural capacity to hold others\' imperfections without being troubled.'},
+      {char:'专',text:'更偏向专注型方向感——一次聚焦于一件事，并愿意长期坚持。',en:'Tilts toward anchored Direction — focusing on one thing at a time, willing to persist long-term.'},
+      {char:'栖',text:'更偏向低流动感——稳定和持久对你来说本身就是一种价值。',en:'Tilts toward settled Flow — stability and continuity are values in themselves for you.'}
+    ],
+    love:'爱情里，你是极其可靠的伴侣。你给的不是浪漫轰炸，而是"岁月里还在"。你的爱是长时间的陪伴、稳定的存在、和真实的包容。',
+    love_en:'In love, you\'re an exceptionally reliable partner. You don\'t offer romantic spectacle — you offer presence over time. Your love is long-term companionship, steady presence, and genuine acceptance.',
+    career:'工作里，你是"定海神针"式的存在。深耕一个领域，长期稳定输出，不需要聚光灯，但结果在那里。团队里有你，大家会感到踏实。',
+    career_en:'At work, you\'re the stabilizing force. Deep in one domain, consistently delivering over time. You don\'t need the spotlight — but the results are there. Your presence makes the team feel grounded.',
+    finance:'财务上，你偏好确定性。不喜欢大起大落，更愿意在自己理解的范围内稳健积累。长期持有、复利增长，符合你的底层逻辑。',
+    finance_en:'Financially, you prefer certainty. You dislike big swings, preferring steady accumulation within what you understand. Long-term holding and compounding — that\'s your underlying logic.',
+    misread:['别人觉得你「无趣」→ 你不无趣，你只是把大部分精力都用在了真正重要的事情上，而不是表演趣味。','别人觉得你「不求变」→ 你的"变"发生在深处，不在表面。'],
+    misread_en:['Others think you\'re "boring" → Not boring — you put most of your energy into what genuinely matters, rather than performing interestingness.','Others think you "resist change" → Your change happens in depth, not on the surface.'],
+    must:['你不得不感到"我在做一件真实且有意义的事"，否则再忙也像是虚度。','你不得不被人真正需要，而不只是被使用——你能感受到那种差别。'],
+    must_en:['You must feel "I\'m doing something real and meaningful" — otherwise no matter how busy you are, it feels empty.','You must be genuinely needed, not just used — you can feel the difference.'],
+  },
+  'CFER': {
+    zh:'泰烈拓游', en:'Composed · Edge · Direction · Flow',
+    tagline:'不急不慌，但四面都开着窗。',
+    tagline_en:'Unhurried. Unbothered. Windows open on all sides.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你有从容的底色，不会轻易被外部节奏带着走。',en:'Tilts toward composed Drive — you have a calm baseline, not easily swept up by external rhythms.'},
+      {char:'烈',text:'更偏向高边界感——你清楚自己的立场，哪些东西是不可谈判的。',en:'Tilts toward high Edge — you know your position, and some things are non-negotiable.'},
+      {char:'拓',text:'更偏向拓展型方向感——你对多个领域和可能性保持开放的好奇。',en:'Tilts toward expansive Direction — you maintain open curiosity across multiple domains.'},
+      {char:'游',text:'更偏向高流动感——你能在不同情境间灵活穿行，不被单一场景定义。',en:'Tilts toward high Flow — you move fluidly between contexts, not defined by any single one.'}
+    ],
+    love:'爱情里，你不是那种主动追求的类型，但一旦进入关系，你对它的质量和边界有清晰的判断。你给的是安全感，不是热烈，但一样是真实的在。',
+    love_en:'In love, you\'re not the type to chase — but once in, you have clear judgment about quality and boundaries. What you offer is safety, not fire — but it\'s just as real.',
+    career:'工作里，你是那种"不声不响干大事"的人。不争不抢，但在多个领域都有自己的见解和布局。你的安静里藏着很宽的视野。',
+    career_en:'At work, you\'re the type who does significant things quietly. No jostling, no performance — but you have perspective and plans across multiple domains. Your quiet holds a wide view.',
+    finance:'财务上，你胆子比看起来大——在自己认为值得的地方，你会安静地下注，不需要别人的认可和热闹。你的判断比你的表达更早到。',
+    finance_en:'Financially, you\'re bolder than you appear. You quietly take positions where you believe it\'s worth it — without needing others\' approval or fanfare. Your judgment arrives before your words.',
+    misread:['别人觉得你「冷漠」→ 你不冷漠，你只是不需要通过表现热情来证明自己在意。','别人觉得你「不投入」→ 你投入，只是投入的方式比较安静。'],
+    misread_en:['Others think you\'re "cold" → Not cold — you just don\'t need to perform warmth to prove you care.','Others think you\'re "not engaged" → You are engaged — you just engage quietly.'],
+    must:['你不得不按照自己的判断行事，哪怕别人看不懂你在干什么。','你不得不保留自己的角落——一个不需要解释自己的地方。'],
+    must_en:['You must act on your own judgment — even when others can\'t see what you\'re doing.','You must keep your own corner — somewhere you don\'t have to explain yourself.'],
+  },
+  'CFEB': {
+    zh:'泰烈拓栖', en:'Composed · Edge · Direction · Base',
+    tagline:'走过很多地方，只在真正懂自己的地方停留。',
+    tagline_en:'Been many places. Only stays where it\'s real.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你不容易被外部的紧迫感带动，有自己稳定的节奏。',en:'Tilts toward composed Drive — you\'re not easily pulled by external urgency; you have your own stable rhythm.'},
+      {char:'烈',text:'更偏向高边界感——你对什么人、什么事值得认真有清晰的感知。',en:'Tilts toward high Edge — you have clear sense of which people and things are worth taking seriously.'},
+      {char:'拓',text:'更偏向拓展型方向感——你有宽阔的视野，愿意了解和探索多个领域。',en:'Tilts toward expansive Direction — you have wide perspective, willing to understand and explore multiple areas.'},
+      {char:'栖',text:'更偏向低流动感——一旦找到值得停留的地方，你愿意好好安住。',en:'Tilts toward settled Flow — once you find somewhere worth staying, you\'re willing to settle in.'}
+    ],
+    love:'爱情里，你不轻易动心，但动心了就是认真的。你对关系的质量要求很高——不是苛刻，是你见过不够好的，知道真正好的是什么感觉。',
+    love_en:'In love, you don\'t fall easily — but when you do, you\'re serious. Your standards are high — not harsh, just informed. You\'ve seen enough to know what real feels like.',
+    career:'工作里，你善于观察和布局，通常会在充分了解一个领域后才选择深入。一旦选定，你会做得很扎实——不轰轰烈烈，但长期可靠。',
+    career_en:'At work, you observe and position carefully — usually only going deep after you\'ve truly understood a domain. Once set, you execute solidly. Not spectacular, but reliably strong over time.',
+    finance:'财务上，你是那种"研究透了再进"的类型。不轻易跟风，但看准了会守得住仓位——你有足够的耐心等到自己真正相信的时机。',
+    finance_en:'Financially, you\'re the type who researches thoroughly before committing. You don\'t follow trends — but when you\'re convinced, you hold your position. You have the patience to wait for what you truly believe in.',
+    misread:['别人觉得你「清高」→ 你不清高，你只是不愿意为了合群降低自己的标准——这是有原则，不是孤傲。','别人觉得你「冷淡」→ 你不冷淡，你只是把热情给了真正值得的地方。'],
+    misread_en:['Others think you\'re "aloof" → Not aloof — you simply won\'t lower your standards just to fit in. That\'s having principles, not arrogance.','Others think you\'re "distant" → Not distant — your warmth just goes to where it\'s genuinely deserved.'],
+    must:['你不得不先弄明白"这是否真的值得"，再决定把自己放进去。','你不得不被当作一个完整的人来对待，而不只是被需要某个功能。'],
+    must_en:['You must first determine "is this genuinely worth it" before committing yourself.','You must be treated as a whole person — not just as someone providing a function.'],
+  },
+  'CFAR': {
+    zh:'泰烈专游', en:'Composed · Edge · Anchor · Flow',
+    tagline:'专注一个方向，自由地走。',
+    tagline_en:'One direction. Complete freedom of movement.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你不依赖外部压力来维持运转，有内在的稳定。',en:'Tilts toward composed Drive — you don\'t rely on external pressure to function; you have inner stability.'},
+      {char:'烈',text:'更偏向高边界感——你知道自己的立场，不容易被说服做不认可的事。',en:'Tilts toward high Edge — you know your position and aren\'t easily persuaded into things you don\'t endorse.'},
+      {char:'专',text:'更偏向专注型方向感——倾向于在某一个方向上持续深入。',en:'Tilts toward anchored Direction — you tend to go deep and sustained in one direction.'},
+      {char:'游',text:'更偏向高流动感——你需要能自由切换场景，不被固定在一处。',en:'Tilts toward high Flow — you need freedom to shift contexts, not to be fixed in one place.'}
+    ],
+    love:'爱情里，你需要一种"平等且自由"的关系——不是谁依附谁，是两个完整的人选择在一起，各自有空间，共同有方向。',
+    love_en:'In love, you need an equal and free connection — not one person depending on the other, but two complete people choosing each other, each with space, together with direction.',
+    career:'工作里，你往往是某个垂直领域的独立贡献者。不需要团队的热闹，但在自己的方向上异常清醒、持续深入。',
+    career_en:'At work, you\'re often an independent contributor in a vertical domain. You don\'t need the buzz of a team — but in your own direction, you\'re exceptionally clear-eyed and go deep.',
+    finance:'财务上，你集中在自己真正懂的一个领域，同时保持一定的流动性——专注但不锁死，相信自己的判断。',
+    finance_en:'Financially, you concentrate on one domain you truly understand, while maintaining some liquidity — focused but not locked in, trusting your own judgment.',
+    misread:['别人觉得你「独」→ 你不是孤僻，你只是在需要时选择独处，在值得时选择连接，这是主动选择而不是被迫孤独。','别人觉得你「冷漠」→ 你有立场，只是立场不通过温度来展示。'],
+    misread_en:['Others think you\'re "a loner" → Not anti-social — you choose solitude when you need it, and connection when it\'s worth it. Active choice, not forced isolation.','Others think you\'re "indifferent" → You have positions and care — you just don\'t express them through warmth.'],
+    must:['你不得不感到"我是在为自己选择的事情工作"，否则再好的条件也是束缚。','你不得不保持某种不依附于任何人或机构的独立性——这不是骄傲，是你工作的底层条件。'],
+    must_en:['You must feel "I\'m working on something I chose" — otherwise even great conditions feel like chains.','You must maintain independence from any person or institution — not pride, just a baseline condition for you to function.'],
+  },
+  'CFAB': {
+    zh:'泰烈专栖', en:'Composed · Edge · Anchor · Base',
+    tagline:'安静地把一件事做到极致。',
+    tagline_en:'Quietly taking one thing all the way.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你不依赖激情或外部刺激，有自己稳定的内在来源。',en:'Tilts toward composed Drive — you don\'t rely on passion or external stimulation; you have stable inner resources.'},
+      {char:'烈',text:'更偏向高边界感——对什么该做、什么不该做有非常清晰的内在标准。',en:'Tilts toward high Edge — very clear internal standards for what to do and what not to.'},
+      {char:'专',text:'更偏向专注型方向感——深耕一个领域，长期坚持，不轻易换赛道。',en:'Tilts toward anchored Direction — deep work in one domain, long-term persistence, not quick to switch.'},
+      {char:'栖',text:'更偏向低流动感——你偏好稳定的环境，变动会消耗你的能量。',en:'Tilts toward settled Flow — you prefer stable environments; change drains your energy.'}
+    ],
+    love:'爱情里，你不轻易说爱，但爱了就是长长久久。你不会花言巧语，但你会用行动和稳定来证明心意——岁月里，你是那个还在的人。',
+    love_en:'In love, you don\'t say "I love you" easily — but when you do, it\'s for the long run. No sweet talk, but you prove your feelings through action and consistency. Years later, you\'re still there.',
+    career:'工作里，你是所有类型里最有可能成为"某领域顶尖人物"的——因为你能在一个赛道上安静地走很久，走到别人以为没人走的深度。',
+    career_en:'At work, you\'re the type most likely to become a top figure in some domain — because you can walk quietly in one direction for a very long time, further than most think is possible.',
+    finance:'财务上，你有极强的风险控制意识，只在真正了解的领域投入，且能长期持有而不焦虑。你的优势是耐心，而大多数人最缺的也是耐心。',
+    finance_en:'Financially, you have strong risk awareness, investing only where you truly understand, and holding long-term without anxiety. Your edge is patience — which is precisely what most people lack.',
+    misread:['别人觉得你「太保守」→ 你不保守，你只是对"值得"有自己的定义，而且不打算为了看起来勇敢而冒险。','别人觉得你「不会来事儿」→ 你不是不会，你只是觉得不必要。'],
+    misread_en:['Others think you\'re "too conservative" → Not conservative — you have your own definition of "worth it" and you won\'t risk something just to appear bold.','Others think you\'re "bad at relationships" → You\'re not bad at it — you just don\'t see the point in most of it.'],
+    must:['你不得不以自己的方式、在自己的领域、活出自己的深度——这不是选择，是本能。','你不得不感到稳定，才能持续输出——焦虑的环境会让你比任何人都更早消耗殆尽。'],
+    must_en:['You must live with depth in your own domain, in your own way — not a choice, an instinct.','You must feel stable to sustain output — an anxious environment drains you faster than anyone.'],
+  },
+  'CTER': {
+    zh:'泰容拓游', en:'Composed · Tolerant · Direction · Flow',
+    tagline:'什么都见过，什么都能聊，什么都能放下。',
+    tagline_en:'Seen it all. Can talk about anything. Can let anything go.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你有从容的底色，不容易被外部事件带着情绪走。',en:'Tilts toward composed Drive — you have a calm baseline, not easily swept up in others\' emotional currents.'},
+      {char:'容',text:'更偏向低边界感（包容）——你对不同的人和立场有高度的接纳能力。',en:'Tilts toward tolerant Edge — high capacity to accept people and positions across a wide range.'},
+      {char:'拓',text:'更偏向拓展型方向感——你天然好奇，对多个领域都有真实的兴趣。',en:'Tilts toward expansive Direction — naturally curious, genuinely interested across multiple domains.'},
+      {char:'游',text:'更偏向高流动感——你在不同情境间穿行是自然的，不需要特别调整。',en:'Tilts toward high Flow — moving between very different contexts feels natural, no adjustment needed.'}
+    ],
+    love:'爱情里，你是那种让人感到"和你在一起很轻松"的人。你接纳得了对方的复杂，也不会让关系变得沉重。你的爱是有空间感的——让人喘得过气来的那种。',
+    love_en:'In love, you\'re the kind of person who makes others feel "it\'s easy to be around you." You can hold your partner\'s complexity without making it heavy. Your love has breathing room.',
+    career:'工作里，你是跨界连接者——能在不同圈子、不同领域之间穿行自如，是那种"认识谁都能聊两句、进哪个行业都能摸到门道"的人。',
+    career_en:'At work, you\'re a cross-domain connector — moving fluidly between circles and industries. You can have real conversations with almost anyone, and find your footing in almost any field.',
+    finance:'财务上，你倾向于广泛布局、小额探索，不在一棵树上吊死。你对风险不焦虑——因为你知道你有足够的适应能力。',
+    finance_en:'Financially, you prefer broad, exploratory positioning in small amounts — never hanging everything on one tree. You\'re not anxious about risk because you trust your adaptability.',
+    misread:['别人觉得你「没有立场」→ 你不是没有立场，你只是立场不需要通过对立来定义——你可以理解很多方向而不失去自己的判断。','别人觉得你「不够投入」→ 你的投入很真实，只是不那么显眼。'],
+    misread_en:['Others think you "have no position" → Not positionless — your position just doesn\'t need opposition to define it. You can understand many directions without losing your own judgment.','Others think you "aren\'t committed enough" → Your commitment is real — just not obvious.'],
+    must:['你不得不保持流动——当所有门都关上时，你的本能是找一扇窗，这不是逃避，是你的生存方式。','你不得不有真实的连接，哪怕是短暂的——泛泛的关系也比孤立更适合你。'],
+    must_en:['You must stay in motion — when all doors close, your instinct is to find a window. Not avoidance — just how you survive.','You must have genuine connection, even briefly — shallow ties still suit you better than isolation.'],
+  },
+  'CTEB': {
+    zh:'泰容拓栖', en:'Composed · Tolerant · Direction · Base',
+    tagline:'见过世界，选择归来。',
+    tagline_en:'Seen the world. Chose to come home.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你的从容不是冷漠，而是真实的内在稳定。',en:'Tilts toward composed Drive — your calm isn\'t indifference; it\'s genuine inner stability.'},
+      {char:'容',text:'更偏向低边界感（包容）——你天然能理解不同立场，不容易陷入对立情绪。',en:'Tilts toward tolerant Edge — naturally understand different positions, not easily drawn into opposition.'},
+      {char:'拓',text:'更偏向拓展型方向感——你有真实的好奇心，对多个领域感兴趣。',en:'Tilts toward expansive Direction — genuine curiosity, interested in multiple domains.'},
+      {char:'栖',text:'更偏向低流动感——在探索之后，你需要一个真正可以回来的地方。',en:'Tilts toward settled Flow — after exploring, you need a place to genuinely return to.'}
+    ],
+    love:'爱情里，你是那种经历过一些事之后、更懂得珍视稳定的人。你能给伴侣真实的理解，也能给关系真正的"家"的感觉——不只是住所，是安全的地方。',
+    love_en:'In love, you\'re someone who\'s learned to value stability through experience. You offer real understanding to your partner, and the relationship feels like home — not just a place, but somewhere safe.',
+    career:'工作里，你最能在"有基地的探索型"岗位发光。你做过很多，也愿意带着经验回到某个地方深耕——有大本营的开拓者。',
+    career_en:'At work, you shine most in roles that combine a stable base with outward exploration. You\'ve done many things, and you\'re willing to bring that experience back somewhere to go deep — an explorer with headquarters.',
+    finance:'财务上，经历一些波动之后，你会形成稳健的结构——稳定底仓加有限探索。你的财务成熟度往往高于同龄人，因为你有真实的经历做基础。',
+    finance_en:'Financially, after some volatility, you develop a mature structure — stable core plus limited exploration. Your financial maturity often exceeds your peers because it\'s grounded in real experience.',
+    misread:['别人觉得你「变了」→ 你没变，你只是在成长——你依然好奇，只是更清楚什么值得付出。','别人觉得你「安于现状」→ 你不是不想走，是你知道去哪里、为了什么才值得出发。'],
+    misread_en:['Others think you "changed" → You didn\'t change — you grew. You\'re still curious; you just know better what\'s worth the effort.','Others think you\'re "content with the status quo" → It\'s not that you don\'t want to move — it\'s that you know where you\'re going and why.'],
+    must:['你不得不有个"家"——不一定是地理意义上的，但心里要有一个真正属于自己的地方。','你不得不感到"我有经历，也有着落"——只有漂流而没有落地，对你来说不是自由，是失重。'],
+    must_en:['You must have a home — not necessarily geographic, but somewhere in your heart that\'s truly your own.','You must feel "I have experience, and I have ground beneath me" — pure drifting without landing isn\'t freedom for you; it\'s weightlessness.'],
+  },
+  'CTAR': {
+    zh:'泰容专游', en:'Composed · Tolerant · Anchor · Flow',
+    tagline:'专注一件事，温柔地移动。',
+    tagline_en:'Focused on one thing. Moving gently through the world.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你有自己稳定的内在节奏，不容易被外部起伏带走。',en:'Tilts toward composed Drive — you have your own steady inner rhythm, not easily carried by external ups and downs.'},
+      {char:'容',text:'更偏向低边界感（包容）——你对他人的方式有天然的理解和接纳，不轻易评判。',en:'Tilts toward tolerant Edge — natural understanding and acceptance of others\' ways, slow to judge.'},
+      {char:'专',text:'更偏向专注型方向感——你倾向于在选定的方向上持续深耕。',en:'Tilts toward anchored Direction — you tend to go deep and sustained in your chosen direction.'},
+      {char:'游',text:'更偏向高流动感——你需要能在不同场景之间自由切换的可能性。',en:'Tilts toward high Flow — you need the possibility of moving freely between different scenes.'}
+    ],
+    love:'爱情里，你温柔包容，不会强求对方按你的节奏来。你需要的是互相留有空间的关系——不依附，也不逃避，彼此都是完整的人。',
+    love_en:'In love, you\'re gentle and accepting — you don\'t demand others match your rhythm. What you need is a relationship where both people have space — no dependency, no running away. Both of you, whole.',
+    career:'工作里，你是那种"在自己选定的领域里，安静地成为高手"的人。不争不抢，不需要排行榜来证明自己，但你的作品会说话。',
+    career_en:'At work, you\'re the type who quietly becomes excellent in your chosen field. No competing, no needing rankings to validate yourself — but your work speaks.',
+    finance:'财务上，你在自己理解的领域做出判断，同时保持一定的现金灵活性——不锁死自己，保留选择的余地。',
+    finance_en:'Financially, you make decisions in domains you understand — while keeping enough cash flexibility to preserve your options. Not locked in, not adrift.',
+    misread:['别人觉得你「不上进」→ 你的"进"不是别人眼里的那种快，但你在自己的方向上有真实的积累，时间会说话。','别人觉得你「好说话」→ 你温柔是真的，但这不意味着你没有立场——你只是不需要通过激烈来表达它。'],
+    misread_en:['Others think you "lack ambition" → Your progress isn\'t fast by others\' measures, but you\'re building real depth in your direction. Time will speak for you.','Others think you\'re "a pushover" → Your gentleness is real — but that doesn\'t mean you lack positions. You just don\'t need intensity to express them.'],
+    must:['你不得不以自己的节奏前行——被强行加速的时候，你会比任何人都更早出问题。','你不得不在关系里保有自己的空间——完全融合对你来说不是亲密，是消耗。'],
+    must_en:['You must proceed at your own pace — when forced to accelerate, you burn out faster than anyone.','You must keep your own space in relationships — complete merger isn\'t intimacy for you; it\'s depletion.'],
   },
   'CTAB': {
     zh:'泰容专栖', en:'Composed · Tolerant · Anchor · Base',
-    tagline:'什么都行，哪儿都好。', tagline_en:'Anything works. Anywhere is fine.',
+    tagline:'把平静当作力量，把专一当作礼物。',
+    tagline_en:'Calm as a strength. Devotion as a gift.',
     dims:[
-      {char:'泰', text:'求不得（低）：你的涌现层很安静，目标受阻时不太焦虑'},
-      {char:'容', text:'不可忍（低）：你对基础层的侵蚀相对迟钝，能扛'},
-      {char:'专', text:'不可选（低）：你不太介意方向是谁定的'},
-      {char:'栖', text:'不可逃（低）：你不焦虑退出通道'},
+      {char:'泰',text:'更偏向低驱动感（泰然）——你有真正稳定的内在，不依赖外部刺激来运转。',en:'Tilts toward composed Drive — genuinely stable inside, not dependent on external stimulation to function.'},
+      {char:'容',text:'更偏向低边界感（包容）——你能接纳大范围的不同，不容易被别人的差异打扰。',en:'Tilts toward tolerant Edge — you can accept a wide range of differences without being disturbed by them.'},
+      {char:'专',text:'更偏向专注型方向感——你一次只做一件事，而且愿意长时间做同一件事。',en:'Tilts toward anchored Direction — you do one thing at a time, and you\'re willing to do the same thing for a long time.'},
+      {char:'栖',text:'更偏向低流动感——稳定、持久的环境对你来说本身就是一种能量来源。',en:'Tilts toward settled Flow — stable, enduring environments are themselves an energy source for you.'}
     ],
-    dims_en:[
-      'Composed (Low): Quiet drive layer — goal setbacks don\'t cause much anxiety',
-      'Tolerant (Low): Less reactive to violations — can absorb',
-      'Anchor (Low): Don\'t mind who sets the direction',
-      'Base (Low): No exit anxiety'
-    ],
-    pattern:`你给人的印象是随和、好相处、不折腾。你不急着赶路，不太计较方向，不焦虑退出，也不容易被基础层的侵蚀触发。你最常说的话可能是"都行""我没意见"。\n\n但这里有一个需要你自己诚实面对的问题：你的"都行"是因为你天性从容，还是因为你的四个报警系统都被长期校准到了静音？`,
-    pattern_en:`You come across as easy-going, approachable, low-drama. Not rushing anywhere, don't care much about direction, no exit anxiety. 'Whatever' and 'I'm fine with anything' might be your signature phrases.\n\nBut there's a question you need to honestly face: Is your 'whatever' because you're genuinely easygoing — or because all four alarm systems have been calibrated to mute over time?`,
-    pitfall:`如果你是天性从容型——你确实挺好的。你的风险是涌现层可能终身蛰伏，从来不问自己"我想要什么"。\n\n如果你是全面钝化型——你最大的风险是你不知道你有问题。所有报警系统同时静音，你在结构上可能已经被深度透支但主观上感觉"一切正常"。\n\n区分方法：问自己"我有没有过强烈的痛苦体验——目标受挫的痛、尊严被踩的痛、被困住的痛？"如果能回忆起来（只是不频繁），你可能是天性从容。如果连"那是什么感觉"都描述不出来，你可能需要认真想想。`,
-    pitfall_en:`If you're naturally composed — you're genuinely okay. Your risk: the drive layer may remain dormant lifelong, never asking 'what do I actually want.'\n\nIf you're fully-numbed — your biggest risk is not knowing you have a problem. All systems muted, you might be structurally deeply depleted while subjectively feeling 'everything is normal.'\n\nDistinguishing test: 'Have I ever had intense pain — blocked goals, violated dignity, being trapped?' If you can recall (just infrequently), you may be naturally composed. If you can't even describe what those feel like, you may need to think seriously.`,
-    misunderstood:['「他很好说话」→ 可能是好说话，也可能是报警系统静音了','「他很随和」→ 可能是真随和，也可能是从来没被催化过','「他没什么追求」→ 可能是不需要，也可能是不知道自己可以需要'],
-    misunderstood_en:['\'He\'s easy to get along with\' → Maybe — or maybe alarm systems are muted','\'He\'s so easygoing\' → Could be genuine, or could be he\'s never been catalyzed','\'He has no ambitions\' → Could be he doesn\'t need them, or doesn\'t know he\'s allowed to'],
-    works_not:'所有温和的提醒都可能被你的系统过滤掉。',
-    works_not_en:'All gentle reminders may get filtered out by your system.',
-    works:'异质经验。一次旅行，一段完全不同的关系，一个把你从原有环境中暂时拔出来的事件。不是为了"刺激"你，而是为了给你一个参照系——让你有机会发现"原来还有另一种活法"。',
-    works_en:'Heterogeneous experience. A trip, a completely different relationship, an event that temporarily pulls you out of your usual environment. Not to \'stimulate\' you — but to give you a reference point, a chance to discover \'there\'s another way to live.\''
+    love:'爱情里，你是最踏实的伴侣之一。不浪漫但可靠，不激烈但持久——你给的是"岁月里还在"的那种爱。少有人能做到你这种程度的稳定。',
+    love_en:'In love, you\'re one of the most grounded partners possible. Not flashy but reliable, not intense but lasting — you offer love that\'s still there years later. Few people can sustain the kind of steadiness you do.',
+    career:'工作里，你是那种"不需要特别管理"的人——稳定、专注、长期可靠。你的价值往往在时间里显现，而不是在某一个爆发点上。',
+    career_en:'At work, you\'re the type who doesn\'t need managing — stable, focused, reliable over time. Your value shows up across years, not in a single moment of glory.',
+    finance:'财务上，你偏好确定性和低波动：稳健产品、固定收益、长期持有。你的财务不是激进增长，而是安全感的累积——这在大多数人焦虑的时候，是真正的优势。',
+    finance_en:'Financially, you prefer certainty and low volatility: steady instruments, fixed returns, long-term holds. Your goal isn\'t aggressive growth but accumulating security — which becomes a genuine edge when everyone else is anxious.',
+    misread:['别人觉得你「没什么追求」→ 你的追求只是以不同的方式存在——不在光芒里，在日复一日的认真里，在关系里真实的陪伴里。','别人觉得你「不够有趣」→ 你的有趣是深处的那种，不是表面的活跃，需要时间才能被看见。'],
+    misread_en:['Others think you "have no ambitions" → Your ambitions exist differently — not in bright moments, but in daily earnestness, in genuine presence over time.','Others think you\'re "not interesting enough" → Your interestingness is deep, not surface-level. It takes time to be seen.'],
+    must:['你不得不感到稳定——当周围一切都在晃动时，你需要有一块真正属于自己的地。','你不得不感到自己在做一件持续、真实的事情，而不是在跑一个又一个短期的项目。'],
+    must_en:['You must feel stable — when everything around you is shaking, you need real ground of your own.','You must feel you\'re doing something continuous and real — not running from one short-term project to the next.'],
   },
-  'DFAB': {
-    zh:'驱烈专栖', en:'Drive · Fierce · Anchor · Base',
-    tagline:'有驱动力也有底线，专注且扎实。', tagline_en:'Driven with hard limits. Focused and grounded.',
-    dims:[
-      {char:'驱', text:'求不得（高）：内在驱动力强'},
-      {char:'烈', text:'不可忍（高）：底线极硬，尊严被碰了立刻反应'},
-      {char:'专', text:'不可选（低）：不太介意方向是给定的'},
-      {char:'栖', text:'不可逃（低）：扎得住，不焦虑退出'},
-    ],
-    dims_en:[
-      'Drive (High): Strong internal drive',
-      'Fierce (High): Hard limits — dignity violations trigger immediate response',
-      'Anchor (Low): Fine with a given direction',
-      'Base (Low): Settled, no exit anxiety'
-    ],
-    pattern:`你是别人眼中"靠谱的人"。有驱动力又有底线，给你一个方向你就能冲，但不会为了目标践踏自己的原则。这种组合在任何环境中都被高度评价。\n\n但你的结构里藏着一个裂缝：驱和烈可能打架。当目标要求你越过底线时——"要完成这个项目需要做一些我觉得不对的事"——你内部会撕裂。驱说"必须完成"，烈说"不能越线"。`,
-    pattern_en:`You're the person others call 'reliable.' Driven and principled — give you a direction and you'll run it, but you won't cross your own principles for the goal. This combination is valued in any environment.\n\nBut there's a fault line in your structure: Drive and Dignity can conflict. When a goal requires crossing a line — 'completing this project means doing something I think is wrong' — you tear internally. Drive says 'must finish,' Dignity says 'can't cross the line.'`,
-    pitfall:`忠诚陷阱。你对一个组织或关系高度忠诚（专+栖），同时你有底线（烈），但组织或关系逐渐偏移到你的底线之外。你不想走，也不觉得需要换路，但驱和烈的撕裂越来越频繁。最终要么底线让步，要么某天突然爆发"我不干了"——所有人都震惊。`,
-    pitfall_en:`The loyalty trap. You're deeply loyal to an organization or relationship (Anchor + Base), you have hard limits (Fierce), but the organization gradually drifts past your limits. You don't want to leave and don't feel you need to change course, but the Drive-Dignity conflict intensifies. Eventually either the limits give way, or one day you explode 'I'm done' — and everyone is shocked.`,
-    misunderstood:['「他很稳定」→ 稳定外表下可能是驱与烈的持续内战','「他没什么不满」→ 不是没有不满，是在底线被触及之前确实没有'],
-    misunderstood_en:['\'He\'s so stable\' → A stable exterior may be the ongoing internal war between Drive and Dignity','\'He has no complaints\' → Not \'no complaints\' — just hasn\'t been triggered until the line is crossed'],
-    works_not:'「放松」或「勇敢一点」。',
-    works_not_en:'\'Relax\' or \'be braver.\'',
-    works:'提前识别驱烈冲突的环境。在撕裂发生之前就看到"这个方向迟早逼我越线"，然后在还有余地的时候调整。你的修复是预防性的——一旦撕裂发生，修复成本极高。',
-    works_en:'Identify Drive-Dignity conflict environments in advance. See \'this direction will eventually force me across the line\' before the tearing happens, and adjust while there\'s still room. Your repair is preventive — once the tearing happens, the cost is extremely high.'
-  },
-  'CFAB': {
-    zh:'泰烈专栖', en:'Composed · Fierce · Anchor · Base',
-    tagline:'不急但底线硬，给定一条路就安稳守住。', tagline_en:'Unhurried but hard-lined. Steady in a given path.',
-    dims:[
-      {char:'泰', text:'求不得（低）：涌现层安静，不急'},
-      {char:'烈', text:'不可忍（高）：底线极硬'},
-      {char:'专', text:'不可选（低）：不挑方向'},
-      {char:'栖', text:'不可逃（低）：扎得住'},
-    ],
-    dims_en:[
-      'Composed (Low): Quiet drive layer, unhurried',
-      'Fierce (High): Hard limits',
-      'Anchor (Low): Fine with a given direction',
-      'Base (Low): Settled'
-    ],
-    pattern:`你的核心关切不是"我要成为什么"，而是"我是否被当作一个人来对待"。你不急着赶路，不挑方向，扎得住——但你有一条极其清晰的底线。被工具化对待、被不当人看的时候，反应迅速且坚决。\n\n你经常是别人的"港湾"——你给人的感觉是"跟他在一起很安全"。不会突然要走，不会催你赶路，不会用你。`,
-    pattern_en:`Your core concern isn't 'what do I want to become' — it's 'am I being treated as a person.' You're not rushing, you don't demand to choose your direction, you settle well — but you have an extremely clear line. When instrumentalized or disrespected, your response is swift and decisive.\n\nYou're often others' 'safe harbor.' Being with you feels safe — you won't suddenly leave, you won't rush them, you won't use them.`,
-    pitfall:`涌现层的终身蛰伏。你的三个低敏感维度构成了一个极其厚实的惰性层，涌现层的任何萌动都被"不需要"的叙事吸收了。你可能一生都在守护一个位置而从未问过"我自己想要什么"。`,
-    pitfall_en:`Lifelong dormancy of the drive layer. Three low-sensitivity dimensions create an extremely thick inertia layer, absorbing any stirring of drive into a 'don't need it' narrative. You might spend your whole life guarding a position without ever asking 'what do I myself want.'`,
-    misunderstood:['「他没什么追求」→ 不是没有涌现层，是涌现层从未被催化','「他很随和」→ 碰了底线就知道他一点都不随和'],
-    misunderstood_en:['\'He has no ambitions\' → Not no drive — it was never catalyzed','\'He\'s so easygoing\' → Touch the line and you\'ll see he\'s not easygoing at all'],
-    works_not:'「你应该有自己的追求」——涌现层的重型语言对你不管用。',
-    works_not_en:'\'You should have your own pursuits\' — heavy drive-layer language doesn\'t work on you.',
-    works:'在基础层完全安全的前提下，用好奇心微小催化涌现层。"你有没有好奇过，如果你试试X会怎样？"关键词是"好奇"不是"应该"。',
-    works_en:'In a fully safe foundation, use curiosity to gently catalyze the drive layer. \'Have you ever wondered what would happen if you tried X?\' Key word: \'curious,\' not \'should.\''
-  },
-  'DFER': {
-    zh:'驱烈拓游', en:'Drive · Fierce · Explore · Roam',
-    tagline:'四个频道全开，什么信号都收。', tagline_en:'All four channels open. Receives every signal.',
-    dims:[
-      {char:'驱', text:'求不得（高）：内在驱动力极强'},
-      {char:'烈', text:'不可忍（高）：底线极硬'},
-      {char:'拓', text:'不可选（高）：方向自由是核心需求'},
-      {char:'游', text:'不可逃（高）：对被困住极度警觉'},
-    ],
-    dims_en:[
-      'Drive (High): Intense internal drive',
-      'Fierce (High): Hard limits',
-      'Autonomy (High): Directional freedom is a core need',
-      'Exit (High): Extremely alert to being trapped'
-    ],
-    pattern:`你同时在四条线上运转——有强烈的驱动力要往前冲，有敏锐的底线意识随时监测，需要方向空间保持开放，还需要确认退出通道没被封堵。四种需求同时在线，任何一种不被满足都会触发明显的痛苦。\n\n别人说你"太强烈了""活得太用力"。但从你的视角看，你不是用力活，你只是什么都能感知到——四个维度的信号同时接收，不可能假装某个不存在。`,
-    pattern_en:`You're running on all four channels simultaneously — intense drive pushing forward, sharp boundary awareness monitoring constantly, need for directional space to stay open, and checking that exit channels aren't sealed. Any one need unsatisfied triggers clear pain.\n\nPeople say you're 'too intense' or 'living too hard.' From your view, you're not living hard — you just perceive everything. Four dimensions of signals received simultaneously; you can't pretend any doesn't exist.`,
-    pitfall:`不是某一个维度崩溃，而是四线作战导致的全面疲劳。四个报警系统同时在响，注意力被持续分散，没有一个维度获得充分处理时间。结果是所有维度都在"轻度报警"，没有一个崩溃但全都不舒服——一种慢性的、弥漫性的疲劳。\n\n你的另一个风险是找不到能同时满足四种需求的环境。大多数环境满足一两种就不错了。`,
-    pitfall_en:`Not one dimension collapsing, but comprehensive fatigue from fighting on four fronts. All four alarm systems running simultaneously, attention continuously split, no dimension gets adequate processing time. Result: all in 'mild alert' — none collapsed but all uncomfortable. A chronic, diffuse exhaustion.\n\nYour other risk: not finding an environment that satisfies all four needs at once. Most environments do well to satisfy one or two.`,
-    misunderstood:['「他太挑剔了」→ 不是挑剔，是四个报警系统都在工作','「他永远不满足」→ 不是不满足，是四个维度的需求同时在线','「他为什么这么累」→ 因为四个频道全开，24小时不关机'],
-    misunderstood_en:['\'He\'s too demanding\' → Not demanding — all four alarm systems are working','\'He\'s never satisfied\' → Not unsatisfied — four needs online simultaneously','\'Why is he so exhausted\' → Four channels open 24/7, never off'],
-    works_not:'「降低你的标准」「别想那么多」——这是让你变成另一种类型。',
-    works_not_en:'\'Lower your standards\' / \'don\'t think so much\' — this asks you to become a different type.',
-    works:'维度间的时序管理。不是四线同时作战，而是在不同时间段聚焦不同维度。"这个月聚焦涌现层推进，基础层监测调到后台。"管理带宽比降低敏感度更有效。',
-    works_en:'Temporal sequencing between dimensions. Not four-front simultaneous combat, but focusing on different dimensions at different times. \'This month focus on drive advancement, set boundary monitoring to background.\' Managing bandwidth is more effective than lowering sensitivity.'
-  },
-  'DTEB': {
-    zh:'驱容拓栖', en:'Drive · Tolerant · Explore · Base',
-    tagline:'驱动力强，要方向自由，扎得住——基础层报警系统偏弱。', tagline_en:'Strong drive, needs directional freedom, can settle — foundation alarms are off.',
-    dims:[
-      {char:'驱', text:'求不得（高）：内在驱动力强'},
-      {char:'容', text:'不可忍（低）：基础层侵蚀能扛'},
-      {char:'拓', text:'不可选（高）：方向自由是核心需求'},
-      {char:'栖', text:'不可逃（低）：扎得住'},
-    ],
-    dims_en:[
-      'Drive (High): Strong internal drive',
-      'Tolerant (Low): Can absorb foundational violations',
-      'Autonomy (High): Directional freedom is core',
-      'Base (Low): Settled'
-    ],
-    pattern:`你的全部能量都在涌现层——强烈的驱动力加上对方向自由的渴望。你不会"给条路就冲"（那是DTAB），你需要自己选方向。同时你能扎得住，不会漂。\n\n但你的基础层两个报警系统都静音——被工具化了能忍，退出通道被封了不焦虑。`,
-    pattern_en:`All your energy is in the drive layer — intense drive plus hunger for directional freedom. You won't 'run any path given to you' (that's DTAB) — you need to choose your own direction. You can also settle in, you don't drift.\n\nBut your foundational alarm systems are both muted — being instrumentalized is tolerable, exit channels being sealed doesn't cause anxiety.`,
-    pitfall:`"自由地透支"。方向是你自己选的，目标在推进，所以你主观上完全觉得没问题。但你可能在一个"自己选择的事业"中持续自我工具化而不自知。"这是我自己选的"成了最强的防御叙事。`,
-    pitfall_en:`'Freely depleting yourself.' The direction is self-chosen, goals are advancing — subjectively you feel completely fine. But you might be continuously self-instrumentalizing within 'the career I chose' without knowing it. 'I chose this' becomes the strongest defensive narrative.`,
-    misunderstood:['「他很有主见」→ 有主见没错，但基础层保护是缺失的','「他不需要人照顾」→ 这是他告诉自己的故事，不一定是真的'],
-    misunderstood_en:['\'He has a strong sense of self\' → True, but foundational protection is missing','\'He doesn\'t need looking after\' → That\'s the story he tells himself — not necessarily true'],
-    works_not:'任何绕开"方向选择权"的建议。',
-    works_not_en:'Any advice that bypasses the right to choose direction.',
-    works:'你需要一个基础层敏感度高的人在身边——当你的"这是我选的"叙事阻止你看到基础层侵蚀时，他们的一句"你知道你正在被当工具用吗"可能是唯一穿透屏障的信号。',
-    works_en:'You need someone with high foundational sensitivity nearby — when your \'I chose this\' narrative is blocking you from seeing foundational erosion, their \'do you realize you\'re being instrumentalized?\' might be the only signal that can breach your barrier.'
-  },
-  'CFAR': {
-    zh:'泰烈专游', en:'Composed · Fierce · Anchor · Roam',
-    tagline:'不急但底线硬，专注但不被绑——有原则的自由人。', tagline_en:'Unhurried but hard-lined. Focused but unbound — principled freedom.',
-    dims:[
-      {char:'泰', text:'求不得（低）：涌现层安静'},
-      {char:'烈', text:'不可忍（高）：底线极硬'},
-      {char:'专', text:'不可选（低）：能在一个方向上深入'},
-      {char:'游', text:'不可逃（高）：对被困住极度警觉'},
-    ],
-    dims_en:[
-      'Composed (Low): Quiet drive layer',
-      'Fierce (High): Hard limits',
-      'Anchor (Low): Can go deep in one direction',
-      'Exit (High): Extremely alert to being trapped'
-    ],
-    pattern:`你的全部能量在基础层。底线极其清晰，同时对被困住极度警觉。涌现层相对安静——不急着冲，方向有限也不焦虑。\n\n你看起来淡泊，但碰了底线反应坚决。看起来安定，但试图绑住你就立刻拉开距离。你的自由不是"什么都要"的扩张型，而是"我需要的不能被动"的防御型。`,
-    pattern_en:`All your energy is in the foundation. Extremely clear limits, and extremely alert to being trapped. Drive layer relatively quiet — not rushing, limited direction is fine.\n\nYou appear detached, but when the line is crossed you respond decisively. You appear stable, but try to bind you and you immediately create distance. Your freedom isn't expansionist 'I want everything' — it's defensive 'what I need cannot be taken.'`,
-    pitfall:`基础层堡垒太坚固变成了封闭。"我不需要那些"可能不是真的不需要，是涌现层从未被催化。`,
-    pitfall_en:`Foundational fortress too solid becomes closure. 'I don't need those things' might not be genuine — it might be that the drive layer was never catalyzed.`,
-    misunderstood:['「他很淡泊」→ 不是真的不在乎，是在乎不同的东西','「他很容易相处」→ 直到碰了底线或者试图限制他'],
-    misunderstood_en:['\'He\'s very detached\' → Not indifferent — cares about different things','\'He\'s easy to get along with\' → Until you touch his limits or try to restrict him'],
-    works_not:'在基础层不安全时催化涌现层——这只会触发双重防御。',
-    works_not_en:'Catalyzing the drive layer when the foundation isn\'t safe — this only triggers dual defense.',
-    works:'在基础层完全安全的前提下，才能接收涌现层的信号。安全感必须先于催化。',
-    works_en:'Only when the foundation is completely safe can drive-layer signals be received. Safety must precede catalysis.'
-  },
-  'DTAR': {
-    zh:'驱容专游', en:'Drive · Tolerant · Anchor · Roam',
-    tagline:'往前冲，能忍，能专注，但随时准备走。', tagline_en:'Runs hard, absorbs friction, stays focused — but always ready to leave.',
-    dims:[
-      {char:'驱', text:'求不得（高）：内在驱动力强'},
-      {char:'容', text:'不可忍（低）：基础层侵蚀能扛'},
-      {char:'专', text:'不可选（低）：能在一个方向上深入'},
-      {char:'游', text:'不可逃（高）：对被困住极度警觉'},
-    ],
-    dims_en:[
-      'Drive (High): Strong internal drive',
-      'Tolerant (Low): Can absorb foundational erosion',
-      'Anchor (Low): Can go deep in one direction',
-      'Exit (High): Extremely alert to being trapped'
-    ],
-    pattern:`你能全力投入（驱+专），但你的投入不是因为"走不了"，而是因为"我选择留下"。一旦"选择留下"变成"不得不留下"，驱动力可能瞬间消失。\n\n你的典型轨迹：全力投入→做到某个阶段→感到"该走了"→干脆利落地离开→投入下一个。`,
-    pattern_en:`You can commit fully (Drive + Anchor), but your commitment isn't because 'you can't leave' — it's because 'I choose to stay.' The moment 'choosing to stay' becomes 'forced to stay,' your drive can instantly vanish.\n\nYour typical pattern: full commitment → reach a certain stage → feel 'time to go' → clean departure → commit to the next thing.`,
-    pitfall:`连续创业者综合征——每一段都在透支基础层（因为容让你忍），然后用离开来逃避修复（因为游让你走）。生命轨迹变成：投入→透支→离开→投入→透支→离开。`,
-    pitfall_en:`Serial founder syndrome — each period depletes the foundation (Tolerant lets you absorb), then you use leaving to avoid repair (Roam lets you go). Life trajectory becomes: commit → deplete → leave → commit → deplete → leave.`,
-    misunderstood:['「他很洒脱」→ 离开的代价他自己扛，外人看不见','「他很专注」→ 只到离开的那一刻为止'],
-    misunderstood_en:['\'He\'s so free-spirited\' → The cost of leaving is his to carry — others don\'t see it','\'He\'s so dedicated\' → Until the moment he leaves'],
-    works_not:'「你应该安定下来」——直接触发游的防御。',
-    works_not_en:'\'You should settle down\' — directly triggers Exit defenses.',
-    works:'不是要你安定，而是在每一段投入中加入基础层检查点。把游从逃跑机制升级为主动管理机制。',
-    works_en:'Not asking you to settle, but adding foundational checkpoints in each period of commitment. Upgrading Exit from an escape mechanism to an active management tool.'
-  },
-  'DFEB': {
-    zh:'驱烈拓栖', en:'Drive · Fierce · Explore · Base',
-    tagline:'驱动力和底线都强，要方向自由但能安落——最完整的涌现型。', tagline_en:'Driven and principled, needs directional freedom, can settle — the most complete emergent type.',
-    dims:[
-      {char:'驱', text:'求不得（高）：内在驱动力强'},
-      {char:'烈', text:'不可忍（高）：底线极硬'},
-      {char:'拓', text:'不可选（高）：方向自由是核心需求'},
-      {char:'栖', text:'不可逃（低）：能在一个地方深根'},
-    ],
-    dims_en:[
-      'Drive (High): Strong internal drive',
-      'Fierce (High): Hard limits',
-      'Autonomy (High): Directional freedom is a core need',
-      'Base (Low): Can root deeply in one place'
-    ],
-    pattern:`你是DFER去掉游的版本——不需要流动性，能在一个地方深入扎根，同时保持驱动力、底线和方向自由。三高一低，涌现层充分展开，基础层有烈的保护，栖提供稳定基地。这是最完整的涌现层主导型。\n\n你需要能同时满足"强烈推进""原则不被碰""我自己选方向"三种需求的环境，这样的环境不多，但一旦找到，你能发挥极致。`,
-    pattern_en:`You're DFER minus the roaming — you don't need fluidity, you can put down deep roots while maintaining drive, principles, and directional freedom. Three high, one low — drive layer fully expanded, foundation protected by Dignity, Base provides stable ground.\n\nYou need an environment that simultaneously satisfies 'intense advancement,' 'principles aren't violated,' and 'I choose my direction.' These environments are rare — but once found, you can perform at your peak.`,
-    pitfall:`栖的安稳慢慢吸收拓的能量——待久了，"探索新方向"从需求退化为念头。你可能在一个足够舒适的环境里，慢慢放弃了自己最核心的涌现层需求。`,
-    pitfall_en:`Base's stability slowly absorbs Autonomy's energy — after a while, 'exploring new directions' degrades from a need to a passing thought. You might slowly abandon your most core drive-layer need inside an environment comfortable enough.`,
-    misunderstood:['「他要求太高」→ 他需要三种条件同时满足，不是挑剔是结构需求','「他很稳定」→ 稳定是因为栖，但内部驱动从未停'],
-    misunderstood_en:['\'He has high demands\' → He needs three conditions simultaneously — not picky, a structural need','\'He\'s so stable\' → Stable because of Base, but internal drive never stops'],
-    works_not:'强迫在不满足方向自由时继续投入。',
-    works_not_en:'Forcing continued commitment when directional freedom isn\'t met.',
-    works:'定期审视：三个高敏感维度是否同时被满足？哪一个在萎缩？及早调整比等待崩溃有效得多。',
-    works_en:'Regularly review: are all three high-sensitivity dimensions being simultaneously satisfied? Which one is atrophying? Early adjustment is far more effective than waiting for collapse.'
-  },
-  'DFAR': {
-    zh:'驱烈专游', en:'Drive · Fierce · Anchor · Roam',
-    tagline:'驱动力和底线都强，专注但保持流动——有根的漫游者。', tagline_en:'Driven and principled. Focused but in motion — a rooted wanderer.',
-    dims:[
-      {char:'驱', text:'求不得（高）：内在驱动力强'},
-      {char:'烈', text:'不可忍（高）：底线极硬'},
-      {char:'专', text:'不可选（低）：能在一个方向上深入'},
-      {char:'游', text:'不可逃（高）：对被困住极度警觉'},
-    ],
-    dims_en:[
-      'Drive (High): Strong internal drive',
-      'Fierce (High): Hard limits',
-      'Anchor (Low): Can go deep in one direction',
-      'Exit (High): Extremely alert to being trapped'
-    ],
-    pattern:`跟DTAR的区别在于烈——你不能忍，底线被碰了就走。每一段停留中基础层得到更好的保护（烈在工作），但也可能因为底线被触及而更频繁地离开。\n\n你的轨迹不是"投入→透支→离开"，而是"投入→发现底线被碰→坚决离开"。人们觉得你难以预测——其实你的离开都有原因，只是他们没看见那条线。`,
-    pattern_en:`The difference from DTAR is Dignity — you can't absorb violations; when the line is crossed you leave. Foundation gets better protection in each stay (Dignity is working), but you might leave more frequently.\n\nYour pattern isn't 'commit → deplete → leave' but 'commit → discover line crossed → decisive departure.' People find you unpredictable — actually your departures all have reasons; they just never saw the line.`,
-    pitfall:`驱的推进需求和游的流动需求都很强，而烈让你在底线被触碰时快速离开。这个组合让你很难长期在任何一个地方累积影响力——因为每一次离开都有正当理由，但离开的频率本身会成为一种结构性的损耗。`,
-    pitfall_en:`Drive's advancement need and Exit's mobility need are both intense, while Dignity makes you leave quickly when crossed. This combination makes it hard to build lasting influence anywhere — every departure has legitimate reason, but the frequency of departures itself becomes a structural drain.`,
-    misunderstood:['「他很难相处」→ 不是难相处，是他的底线很清晰','「他不稳定」→ 不是不稳定，是不接受底线被触碰后继续待'],
-    misunderstood_en:['\'He\'s difficult to work with\' → Not difficult — his limits are clear','\'He\'s unstable\' → Not unstable — unwilling to continue after limits are crossed'],
-    works_not:'期待他为了"大局"忍受底线被碰。',
-    works_not_en:'Expecting him to tolerate limits being crossed \'for the bigger picture.\'',
-    works:'提前识别并明确说清楚你的底线在哪里。透明化你的边界，让环境有机会在触碰之前调整。',
-    works_en:'Identify and clearly articulate your limits in advance. Make your boundaries transparent — give the environment a chance to adjust before touching them.'
-  },
-  'DTER': {
-    zh:'驱容拓游', en:'Drive · Tolerant · Explore · Roam',
-    tagline:'涌现层全高基础层全低——流星型。', tagline_en:'Drive layer fully high, foundation fully low — the comet type.',
-    dims:[
-      {char:'驱', text:'求不得（高）：驱动力强烈'},
-      {char:'容', text:'不可忍（低）：基础层被侵蚀能扛'},
-      {char:'拓', text:'不可选（高）：方向空间是核心需求'},
-      {char:'游', text:'不可逃（高）：不能被困住'},
-    ],
-    dims_en:[
-      'Drive (High): Intense drive',
-      'Tolerant (Low): Can absorb foundational erosion',
-      'Autonomy (High): Directional space is core',
-      'Exit (High): Cannot be trapped'
-    ],
-    pattern:`驱动力强烈，方向空间无限，流动性完全。你的涌现层极度辉煌——几乎能在任何方向上点燃。但你的基础层完全暴露：被工具化了能忍，退出通道被封了反而不焦虑（因为只要方向还有就行）。\n\n你在别人眼里是"那种耀眼的人"。消耗极快。`,
-    pattern_en:`Intense drive, unlimited directional space, complete mobility. Your drive layer is extraordinarily bright — you can ignite in almost any direction. But your foundation is fully exposed: instrumentalization is tolerable, exit channels being sealed doesn't trigger anxiety (because directional freedom is enough).\n\nTo others you're 'that brilliant person.' Extremely fast burn rate.`,
-    pitfall:`你不需要更多涌现层的空间——你已经有了。你需要的是有人帮你的基础层兜底。你的基础层在你无声无息地被消耗时不报警，但损耗是真实的。`,
-    pitfall_en:`You don't need more drive-layer space — you already have it. What you need is someone to backstop your foundation. Your foundational alarm systems don't fire when you're being silently depleted, but the depletion is real.`,
-    misunderstood:['「他好像不在乎自己」→ 他在乎，只是基础层的报警系统静音了','「他怎么能那么随意」→ 随意背后有很高的透支成本'],
-    misunderstood_en:['\'He seems not to care about himself\' → He does — foundational alarms are just muted','\'How can he be so casual\' → Behind the casualness is a very high depletion cost'],
-    works_not:'让他降低涌现层的标准。',
-    works_not_en:'Making him lower his drive-layer standards.',
-    works:'找到一个愿意为他的基础层"站岗"的人——不是控制，是监测。当基础层侵蚀开始时，需要有人能看见并说出来。',
-    works_en:'Find someone willing to \'stand watch\' for his foundation — not control, but monitoring. When foundational erosion begins, someone needs to see it and name it.'
-  },
-  'CTEB': {
-    zh:'泰容拓栖', en:'Composed · Tolerant · Explore · Base',
-    tagline:'不急能忍但要方向空间，扎得住——温和的探索者。', tagline_en:'Calm and absorbing, but needs directional space, can settle — the gentle explorer.',
-    dims:[
-      {char:'泰', text:'求不得（低）：不急'},
-      {char:'容', text:'不可忍（低）：能扛'},
-      {char:'拓', text:'不可选（高）：方向自由是唯一的底线'},
-      {char:'栖', text:'不可逃（低）：扎得住'},
-    ],
-    dims_en:[
-      'Composed (Low): Not rushing',
-      'Tolerant (Low): Can absorb',
-      'Autonomy (High): Directional freedom is the one line',
-      'Base (Low): Can settle'
-    ],
-    pattern:`日常看起来极其随和——不急、不计较、不闹。但在"你只能走这条路"的时刻突然表现出强烈的抗拒。方向自由是你唯一的底线，其他三个维度都相对耐受。\n\n你是被低估的类型。别人觉得你好说话，但你有一条人们没意识到的红线。`,
-    pattern_en:`Day-to-day you come across as extremely easy-going — not rushed, not fussy, no drama. But in the moment of 'you can only go this way,' you show sudden, strong resistance. Directional freedom is your single line — the other three dimensions are relatively tolerant.\n\nYou're an underestimated type. Others think you're agreeable, but you have a line they haven't noticed.`,
-    pitfall:`因为三个低敏感维度，你很容易被"拖进"一个固定轨道而不自觉。等你意识到方向已经被锁死，你的基础层报警系统早就静音了，反应会晚。`,
-    pitfall_en:`With three low-sensitivity dimensions, you're easily 'pulled into' a fixed track without realizing it. By the time you notice the direction is locked, your alarm systems were already muted long ago, and your response comes late.`,
-    misunderstood:['「他没什么要求」→ 有，只是那条线不明显','「他为什么突然不配合了」→ 他的方向自由触碰到了临界点'],
-    misunderstood_en:['\'He has no demands\' → He does — that line just isn\'t obvious','\'Why did he suddenly stop cooperating\' → His directional freedom hit the threshold'],
-    works_not:'以为他"随便都行"而不给他方向选择权。',
-    works_not_en:'Assuming he\'s \'fine with anything\' and not giving him directional choice.',
-    works:'提前明确那条线在哪里。让环境知道"你可以在这里自己决定方向"——这比任何其他激励都有效。',
-    works_en:'Make that line explicit in advance. Let the environment know \'you can decide your own direction here\' — this is more effective than any other kind of incentive.'
-  },
-  'CFER': {
-    zh:'泰烈拓游', en:'Composed · Fierce · Explore · Roam',
-    tagline:'不急但底线硬，要空间不被绑——基础层主导的全面自由型。', tagline_en:'Unhurried but hard-lined. Needs space, won\'t be bound — full-spectrum foundational freedom.',
-    dims:[
-      {char:'泰', text:'求不得（低）：不急着赶路'},
-      {char:'烈', text:'不可忍（高）：底线极硬'},
-      {char:'拓', text:'不可选（高）：要方向空间'},
-      {char:'游', text:'不可逃（高）：对被困住极度警觉'},
-    ],
-    dims_en:[
-      'Composed (Low): Not rushing anywhere',
-      'Fierce (High): Hard limits',
-      'Autonomy (High): Needs directional space',
-      'Exit (High): Extremely alert to being trapped'
-    ],
-    pattern:`三高一低，只有求不得低。极度"自由"——不赶路，有原则，要空间，不被绑。你不需要驱动力来维持主体性，你只需要确保没有东西在侵蚀你。\n\n这个配置有巨大的防御力，但也有一个盲区：涌现层的驱动力从未被激活。`,
-    pattern_en:`Three high, one low — only Drive is low. Extremely 'free' — not rushing, principled, needs space, won't be bound. You don't need drive to maintain subjectivity — you just need to ensure nothing is eroding you.\n\nThis configuration has enormous defensive power — but also a blind spot: the drive layer's push has never been activated.`,
-    pitfall:`防御体系太完美的结果是什么都不需要冒险。你保护得很好，但从来没有去追什么。涌现层的潜力可能终身未发。`,
-    pitfall_en:`The result of a too-perfect defense system: nothing needs to be risked. You're very well-protected, but you've never chased anything. The potential of the drive layer may go unrealized lifelong.`,
-    misunderstood:['「他很淡定」→ 淡定不等于没有要求，碰了他的三条线就知道了','「他为什么不努力」→ 驱动力确实低，但这不是缺陷是配置'],
-    misunderstood_en:['\'He\'s very calm\' → Calm doesn\'t mean no demands — touch his three lines and you\'ll see','\'Why doesn\'t he work harder\' → Drive genuinely is low — not a defect, a configuration'],
-    works_not:'用外部目标驱动他——没有内在驱动时，外部目标只是噪音。',
-    works_not_en:'Motivating him with external goals — without internal drive, external goals are just noise.',
-    works:'先把三条线（烈、拓、游）都护好，然后才有空间问"你有没有想做什么"。顺序不能反。',
-    works_en:'First protect all three lines (Dignity, Autonomy, Exit), then there\'s space to ask \'is there anything you want to do?\' The order cannot be reversed.'
-  },
-  'CFEB': {
-    zh:'泰烈拓栖', en:'Composed · Fierce · Explore · Base',
-    tagline:'不急但底线硬，要空间但能安落——成熟的守护者。', tagline_en:'Unhurried but principled. Needs space but can settle — the mature guardian.',
-    dims:[
-      {char:'泰', text:'求不得（低）：不急'},
-      {char:'烈', text:'不可忍（高）：底线极硬'},
-      {char:'拓', text:'不可选（高）：要方向空间'},
-      {char:'栖', text:'不可逃（低）：能扎得住'},
-    ],
-    dims_en:[
-      'Composed (Low): Not rushing',
-      'Fierce (High): Hard limits',
-      'Autonomy (High): Needs directional space',
-      'Base (Low): Can settle'
-    ],
-    pattern:`跟CFER的区别是栖vs游——你能扎住。成熟期的学者和手艺人常见这种配置：有原则，需要探索空间，找到了一个能安落的位置，不急。\n\n你不是在漂，你是在你自己选的地方扎根，同时守住底线和探索空间。`,
-    pattern_en:`The difference from CFER is Base vs. Exit — you can settle. The scholar or craftsperson in their mature phase often shows this configuration: principled, needs exploratory space, found a place they can land, unhurried.\n\nYou're not drifting — you're rooting in a place of your own choosing, while maintaining your principles and exploratory space.`,
-    pitfall:`涌现层的驱动力缺席（泰）使得探索可能流于表面——有空间但不一定有动力去充分使用。`,
-    pitfall_en:`The drive layer's absence (Composed) means exploration may stay superficial — there's space but not necessarily the energy to use it fully.`,
-    misunderstood:['「他很稳定」→ 稳定是真的，但内部的底线和探索需求也是真的','「他没什么野心」→ 没有求不得的驱动，但有方向探索的需求'],
-    misunderstood_en:['\'He\'s very stable\' → Stable is true, but internal limits and exploration needs are also real','\'He has no ambitions\' → No drive-craving, but there is a need for directional exploration'],
-    works_not:'催他"更进取"。',
-    works_not_en:'Pushing him to \'be more ambitious.\'',
-    works:'给他足够的原则空间（不触碰烈）和方向空间（满足拓），他会自然地在稳定中深入。',
-    works_en:'Give him adequate principled space (don\'t touch Dignity) and directional space (satisfy Autonomy), and he\'ll naturally go deep within stability.'
-  },
-  'CTAR': {
-    zh:'泰容专游', en:'Composed · Tolerant · Anchor · Roam',
-    tagline:'不急能忍能专注但不被绑——安静的流动者。', tagline_en:'Unhurried, absorbing, focused — but won\'t be pinned. The quiet mover.',
-    dims:[
-      {char:'泰', text:'求不得（低）：不急'},
-      {char:'容', text:'不可忍（低）：能扛'},
-      {char:'专', text:'不可选（低）：能在一个方向上深入'},
-      {char:'游', text:'不可逃（高）：唯一的高敏感维度'},
-    ],
-    dims_en:[
-      'Composed (Low): Not rushing',
-      'Tolerant (Low): Can absorb',
-      'Anchor (Low): Can go deep in one direction',
-      'Exit (High): The single high-sensitivity dimension'
-    ],
-    pattern:`在任何环境中都适应良好，但总在某个时刻悄悄离开。不是在逃避什么，是游需要定期被满足。你的三个低维度让你在任何地方都能活得不错，但游会定期提醒你"不要被锁死"。\n\n你很少跟别人解释为什么要走，因为你自己也说不清楚——只是感觉"该走了"。`,
-    pattern_en:`Adapts well in any environment, but always quietly leaves at some point. Not running away — the Exit need requires periodic satisfaction. Three low dimensions let you live well anywhere, but Exit periodically reminds you 'don't get locked in.'\n\nYou rarely explain to others why you're leaving — partly because you can't quite articulate it yourself. Just 'feels like it's time.'`,
-    pitfall:`游的驱动可能让你在一个本来很好的位置上过早离开。不是位置不好，是游的信号误报了。`,
-    pitfall_en:`Exit's drive might make you leave a genuinely good position too early. Not because the position is bad — the Exit signal was a false alarm.`,
-    misunderstood:['「他为什么要走」→ 问他自己他也说不清楚，但游的需求是真实的','「他不投入」→ 他投入，只是会走'],
-    misunderstood_en:['\'Why is he leaving\' → Even if asked, he can\'t quite say — but the Exit need is real','\'He\'s not committed\' → He is — he just leaves'],
-    works_not:'试图用"这里很好"来说服他留下。',
-    works_not_en:'Trying to convince him to stay with \'things are good here.\'',
-    works:'给他明确的"可以离开"信号——哪怕他不会真的用。知道通道没有被堵，游的焦虑就会平息。',
-    works_en:'Give him a clear \'you can leave\' signal — even if he never uses it. Knowing the channel isn\'t blocked is enough for Exit anxiety to settle.'
-  },
-  'CTER': {
-    zh:'泰容拓游', en:'Composed · Tolerant · Explore · Roam',
-    tagline:'不急能忍要空间不被绑——潜力型自由。', tagline_en:'Unhurried, absorbing, needs space and mobility — latent freedom.',
-    dims:[
-      {char:'泰', text:'求不得（低）：不急着去哪里'},
-      {char:'容', text:'不可忍（低）：基础层能扛'},
-      {char:'拓', text:'不可选（高）：需要方向开放性'},
-      {char:'游', text:'不可逃（高）：需要流动可能性'},
-    ],
-    dims_en:[
-      'Composed (Low): Not rushing anywhere',
-      'Tolerant (Low): Can absorb foundationally',
-      'Autonomy (High): Needs directional openness',
-      'Exit (High): Needs mobility as possibility'
-    ],
-    pattern:`不急着去哪里，但需要"可以去任何地方"的可能性存在。不是为了做什么而自由，是自由本身就是需求。你的两个低敏感维度（泰、容）让你很少因为外部原因崩溃，两个高敏感维度（拓、游）保持了一种结构性的开放性。\n\n你是一种罕见的平衡：不焦虑也不麻木，只是保持开放。`,
-    pattern_en:`Not rushing anywhere, but needs the possibility of 'I could go anywhere' to exist. Not free to do something — freedom itself is the need. Two low-sensitivity dimensions (Composed, Tolerant) mean you rarely collapse from external causes; two high (Autonomy, Exit) maintain structural openness.\n\nA rare equilibrium: not anxious but not numbed — just staying open.`,
-    pitfall:`没有驱动力（泰）的情况下，拓和游的开放性可能流于姿态而非行动。你有方向自由，但没有特别想去哪里；你有流动可能，但不一定会移动。`,
-    pitfall_en:`Without drive (Composed), the openness of Autonomy and Exit might remain gestural rather than enacted. You have directional freedom but nothing specific pulling you anywhere; mobility potential but not necessarily any movement.`,
-    misunderstood:['「他飘」→ 不是飘，是结构上的开放性','「他没目标」→ 有，只是目标不是外部成就'],
-    misunderstood_en:['\'He\'s adrift\' → Not adrift — structurally open','\'He has no goals\' → He does — just not external achievement'],
-    works_not:'给他一个固定的目标方向然后期待全力投入。',
-    works_not_en:'Giving him a fixed direction and expecting full commitment.',
-    works:'给他开放性——让他知道选项是存在的。这比任何具体目标都更能激活他。',
-    works_en:'Give him openness — let him know options exist. This activates him more than any specific goal.'
-  }
 };
 
-// ── COMPATIBILITY & RENDERING ──────────────────────────────────────────────
-const DIM_KEYS = ['drive','fierce','explore','roam'];
-const DIM_ZH = ['求不得','不可忍','不可选','不可逃'];
-const DIM_EN = ['Drive','Dignity','Autonomy','Exit'];
-
-function typeIsHigh(code, dim) {
-  const pos = { drive:0, fierce:1, explore:2, roam:3 };
-  const highChars = ['D','F','E','R'];
-  return code[pos[dim]] === highChars[pos[dim]];
-}
+// ────────────────────────────────────────────────────────────────────────────
+// RENDERING FUNCTIONS
+// ────────────────────────────────────────────────────────────────────────────
 
 function dimLabel(dim) {
-  return currentLang === 'en' ? DIM_EN[DIM_KEYS.indexOf(dim)] : DIM_ZH[DIM_KEYS.indexOf(dim)];
+  const idx = DIM_KEYS.indexOf(dim);
+  return currentLang === 'en' ? DIM_EN[idx] : DIM_ZH[idx];
 }
 
-// ── INITIALIZATION ─────────────────────────────────────────────────────────
-(function init() {
-  updateIntroLang();
-  const params = new URLSearchParams(window.location.search);
-  const from = params.get('from');
-  const result = params.get('result');
-  if (from && TYPES[from]) {
-    fromType = from;
-    const banner = document.getElementById('invite-banner');
-    banner.style.display = 'block';
-    const t = TYPES[from];
-    const inviteMsg = currentLang === 'en' ? STRINGS.en.invite_banner(from, t.en) : STRINGS.zh.invite_banner(from, t.zh);
-    banner.innerHTML = inviteMsg;
-  }
-  if (result && TYPES[result]) {
-    showResult(result);
-  }
-})();
-
-function updateIntroLang() {
-  const s = currentLang === 'en' ? STRINGS.en : STRINGS.zh;
-  document.getElementById('intro-desc-text').innerHTML = s.intro_desc.replace(/\n\n/g, '<br><br>');
-  document.getElementById('btn-start-text').textContent = s.btn_start;
+function typeIsHigh(code, dim) {
+  const idx = DIM_KEYS.indexOf(dim);
+  const letters = ['D','F','E','R'];
+  return code[idx] === letters[idx];
 }
 
-function setLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('hc16_lang', lang);
-  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-  rerenderCurrent();
-}
-
-function rerenderCurrent() {
-  const introEl = document.getElementById('s-intro');
-  const testEl = document.getElementById('s-test');
-  const resultEl = document.getElementById('s-result');
-  
-  if (introEl.style.display !== 'none' && getComputedStyle(introEl).display !== 'none') {
-    updateIntroLang();
-  } else if (testEl.style.display !== 'none' && getComputedStyle(testEl).display !== 'none') {
-    renderQuestion();
-  } else if (resultEl.style.display !== 'none' && getComputedStyle(resultEl).display !== 'none' && window._myType) {
-    showResult(window._myType);
-  }
-}
-
-// ── NAVIGATION ─────────────────────────────────────────────────────────────
-function show(id) {
-  document.querySelectorAll('.screen').forEach(s => {
-    s.classList.remove('active');
-    s.style.display = 'none';
-  });
-  const el = document.getElementById(id);
-  el.classList.add('active');
-  el.style.display = id === 's-intro' ? 'flex' : 'block';
-  window.scrollTo({ top: 0, behavior: 'instant' });
-}
-
-function startTest() {
-  cur = 0;
-  answers = new Array(16).fill(null);
-  renderQuestion();
-  show('s-test');
-}
-
-function retake() {
-  startTest();
-}
-
-// ── QUESTION RENDERING ─────────────────────────────────────────────────────
 function renderQuestion() {
   const q = Q[cur];
   const s = currentLang === 'en' ? STRINGS.en : STRINGS.zh;
@@ -1231,9 +997,10 @@ function renderQuestion() {
 
   const opts = document.getElementById('q-options');
   opts.innerHTML = '';
-  const optA = currentLang === 'en' ? q.a_en : q.a;
-  const optB = currentLang === 'en' ? q.b_en : q.b;
-  [['A', optA], ['B', optB]].forEach(([letter, txt]) => {
+  const options = currentLang === 'en' ? q.opts_en : q.opts;
+  const letters = ['A','B','C','D'];
+  options.forEach((txt, i) => {
+    const letter = letters[i];
     const btn = document.createElement('button');
     btn.className = 'opt-btn';
     if (answers[cur] === letter) btn.classList.add('selected');
@@ -1246,8 +1013,9 @@ function renderQuestion() {
 function selectAnswer(letter) {
   answers[cur] = letter;
   document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
-  const idx = letter === 'A' ? 0 : 1;
-  document.querySelectorAll('.opt-btn')[idx].classList.add('selected');
+  const letters = ['A','B','C','D'];
+  const idx = letters.indexOf(letter);
+  if (idx >= 0) document.querySelectorAll('.opt-btn')[idx].classList.add('selected');
   setTimeout(() => {
     cur++;
     if (cur < 16) {
@@ -1258,11 +1026,16 @@ function selectAnswer(letter) {
   }, 280);
 }
 
-// ── SCORING ────────────────────────────────────────────────────────────────
 function calcResult() {
   const slices = [answers.slice(0,4), answers.slice(4,8), answers.slice(8,12), answers.slice(12,16)];
-  const scores = slices.map(s => s.filter(a => a === 'A').length);
-  const high = scores.map(s => s >= 3);
+  const scores = slices.map((dimAnswers, di) => {
+    return dimAnswers.reduce((sum, letter, qi) => {
+      if (!letter) return sum;
+      const scoreMap = QSCORES[di * 4 + qi];
+      return sum + (scoreMap[letter] || 0);
+    }, 0);
+  });
+  const high = scores.map(s => s >= 7);
   const code = [
     high[0] ? 'D' : 'C',
     high[1] ? 'F' : 'T',
@@ -1272,13 +1045,11 @@ function calcResult() {
   showResult(code);
 }
 
-// ── RESULT RENDERING ────────────────────────────────────────────────────────
 function showResult(code) {
   const t = TYPES[code];
-  if (!t) { showResult('DTAB'); return; }
+  if (!t) { showResult('DFER'); return; }
   
   const s = currentLang === 'en' ? STRINGS.en : STRINGS.zh;
-
   window._myType = code;
 
   document.getElementById('result-eyebrow-text').textContent = s.result_eyebrow;
@@ -1287,47 +1058,36 @@ function showResult(code) {
   document.getElementById('r-en').textContent = t.en;
   document.getElementById('r-tagline').textContent = currentLang === 'en' ? t.tagline_en : t.tagline;
 
-  document.getElementById('section-profile').textContent = s.section_profile;
-  document.getElementById('section-pattern').textContent = s.section_pattern;
-  document.getElementById('section-pitfall').textContent = s.section_pitfall;
+  document.getElementById('section-channels').textContent = s.section_channels;
+  document.getElementById('section-love').textContent = s.section_love;
+  document.getElementById('section-career').textContent = s.section_career;
+  document.getElementById('section-finance').textContent = s.section_finance;
   document.getElementById('section-misread').textContent = s.section_misread;
-  document.getElementById('section-works').textContent = s.section_works;
+  document.getElementById('section-must').textContent = s.section_must;
 
-  // dims
   const dimsEl = document.getElementById('r-dims');
-  const dimTexts = currentLang === 'en' ? t.dims_en : t.dims.map(d => d.text);
-  dimsEl.innerHTML = dimTexts.map((text, i) => {
-    const char = t.dims[i].char;
-    return `<div class="dim-row"><div class="dim-char">${char}</div><div class="dim-text">${text}</div></div>`;
-  }).join('');
+  if (dimsEl && t.dims && t.dims.length > 0) {
+    dimsEl.innerHTML = t.dims.map(d => {
+      const text = currentLang === 'en' ? d.en : d.text;
+      return `<div class="dim-row"><div class="dim-char">${d.char}</div><div class="dim-text">${text}</div></div>`;
+    }).join('');
+  }
 
-  // pattern, pitfall
-  const pattern = currentLang === 'en' ? t.pattern_en : t.pattern;
-  const pitfall = currentLang === 'en' ? t.pitfall_en : t.pitfall;
-  document.getElementById('r-pattern').innerHTML =
-    pattern.split('\n\n').map(p => `<p class="result-para">${p}</p>`).join('');
-  document.getElementById('r-pitfall').innerHTML =
-    pitfall.split('\n\n').map(p => `<p class="result-para">${p}</p>`).join('');
+  const love = currentLang === 'en' ? t.love_en : t.love;
+  const career = currentLang === 'en' ? t.career_en : t.career;
+  const finance = currentLang === 'en' ? t.finance_en : t.finance;
+  document.getElementById('r-love').innerHTML = `<p class="result-para">${love}</p>`;
+  document.getElementById('r-career').innerHTML = `<p class="result-para">${career}</p>`;
+  document.getElementById('r-finance').innerHTML = `<p class="result-para">${finance}</p>`;
 
-  // misunderstood
-  const misunderstood = currentLang === 'en' ? t.misunderstood_en : t.misunderstood;
+  const misread = currentLang === 'en' ? t.misread_en : t.misread;
   document.getElementById('r-misunderstood').innerHTML =
-    misunderstood.map(m => `<div class="misunderstood-item">${m}</div>`).join('');
+    misread.map(m => `<div class="misunderstood-item">${m}</div>`).join('');
 
-  // works
-  const works_not = currentLang === 'en' ? t.works_not_en : t.works_not;
-  const works_yes = currentLang === 'en' ? t.works_en : t.works;
-  document.getElementById('r-works').innerHTML = `
-    <div class="works-block">
-      <div class="works-label">${s.works_not}</div>
-      <div class="works-text">${works_not}</div>
-    </div>
-    <div class="works-block">
-      <div class="works-label">${s.works_yes}</div>
-      <div class="works-text">${works_yes}</div>
-    </div>`;
+  const must = currentLang === 'en' ? t.must_en : t.must;
+  document.getElementById('r-must').innerHTML =
+    must.map(m => `<p class="result-para" style="margin-bottom:0.5rem;padding-left:1rem;border-left:2px solid rgba(184,149,58,0.3);">${m}</p>`).join('');
 
-  // compatibility
   const compatEl = document.getElementById('r-compat');
   if (fromType && TYPES[fromType] && fromType !== code) {
     compatEl.innerHTML = renderCompat(fromType, code);
@@ -1335,18 +1095,20 @@ function showResult(code) {
     compatEl.innerHTML = '';
   }
 
-  // update buttons
   document.getElementById('btn-invite').textContent = s.btn_invite;
   document.getElementById('btn-share-text').textContent = s.btn_share;
   document.getElementById('btn-retake-text').textContent = s.btn_retake;
   document.getElementById('cta-back-text').textContent = s.cta_back;
-  // link to individual type page
   const typePageBtn = document.getElementById('btn-type-page');
   typePageBtn.href = 'hc16/' + code + '.html';
   typePageBtn.textContent = currentLang === 'en' ? 'Full profile: ' + code + ' →' : '查看完整档案：' + code + ' →';
 
   show('s-result');
 }
+
+// ────────────────────────────────────────────────────────────────────────────
+// UTILITIES & INTERACTION
+// ────────────────────────────────────────────────────────────────────────────
 
 function renderCompat(t1, t2) {
   const s = currentLang === 'en' ? STRINGS.en : STRINGS.zh;
@@ -1372,7 +1134,7 @@ function renderCompat(t1, t2) {
           <span class="compat-type-chip">${t1}</span>
           <span class="compat-zh">${TYPES[t1].zh}</span>
           <span class="compat-x">×</span>
-          <span class="compat-type-chip me">${t2}</span>
+          <span class="compat-type-chip">${t2}</span>
           <span class="compat-zh">${TYPES[t2].zh}</span>
         </div>
       </div>
@@ -1400,9 +1162,59 @@ function renderCompat(t1, t2) {
   </div>`;
 }
 
-// ── SHARING ────────────────────────────────────────────────────────────────
+function updateIntroLang() {
+  const intro = document.getElementById('s-intro');
+  if (!intro) return;
+  const titleZh = intro.querySelector('[data-text-zh-title]');
+  const titleEn = intro.querySelector('[data-text-en-title]');
+  const descZh = intro.querySelector('[data-text-zh-desc]');
+  const descEn = intro.querySelector('[data-text-en-desc]');
+  const btnZh = intro.querySelector('[data-text-zh-btn]');
+  const btnEn = intro.querySelector('[data-text-en-btn]');
+  if (titleZh && titleEn) { titleZh.style.display = currentLang === 'zh' ? 'block' : 'none'; titleEn.style.display = currentLang === 'en' ? 'block' : 'none'; }
+  if (descZh && descEn) { descZh.style.display = currentLang === 'zh' ? 'block' : 'none'; descEn.style.display = currentLang === 'en' ? 'block' : 'none'; }
+  if (btnZh && btnEn) { btnZh.textContent = currentLang === 'zh' ? '开始测试' : 'Start Test'; btnEn.textContent = currentLang === 'zh' ? '开始测试' : 'Start Test'; }
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('hc16lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+  rerenderCurrent();
+}
+
+function rerenderCurrent() {
+  const testScreen = document.getElementById('s-test');
+  const resultScreen = document.getElementById('s-result');
+  if (testScreen && testScreen.classList.contains('active')) {
+    renderQuestion();
+  } else if (resultScreen && resultScreen.classList.contains('active')) {
+    const code = window._myType || 'DFER';
+    showResult(code);
+  } else {
+    updateIntroLang();
+  }
+}
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startTest() {
+  cur = 0;
+  answers = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+  show('s-test');
+  renderQuestion();
+}
+
+function retake() {
+  startTest();
+}
+
 function shareInvite() {
-  const code = window._myType || 'DTAB';
+  const code = window._myType || 'DFER';
   const t = TYPES[code];
   const typeStr = currentLang === 'en' ? `${code} · ${t.en}` : `${code} · ${t.zh}`;
   const urlText = currentLang === 'en' ? 'See relationship analysis' : '看看我们之间的关系';
@@ -1418,11 +1230,13 @@ function shareInvite() {
 }
 
 function shareResult() {
-  const code = window._myType || 'DTAB';
+  const code = window._myType || 'DFER';
   const t = TYPES[code];
   const typeStr = currentLang === 'en' ? `${code} · ${t.en}` : `${code} · ${t.zh}`;
   const tagline = currentLang === 'en' ? t.tagline_en : t.tagline;
-  const text = `HC-16: ${typeStr}\n"${tagline}"\nTake the test: https://nondubito.net/hc16.html`;
+  const text = `HC-16: ${typeStr}
+"${tagline}"
+Take the test: https://nondubito.net/hc16.html`;
   if (navigator.share) {
     navigator.share({ title: `HC-16: ${typeStr}`, text, url: `https://nondubito.net/hc16.html?result=${code}` });
   } else {
@@ -1444,10 +1258,19 @@ function copyToClipboard(text, msg) {
 
 function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2200);
+  if (t) {
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
 }
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  const langBtn = document.querySelector(`[data-lang="${currentLang}"]`);
+  if (langBtn) langBtn.classList.add('active');
+  updateIntroLang();
+});
 </script>
 </body>
 </html>
