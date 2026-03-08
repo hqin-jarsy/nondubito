@@ -453,7 +453,7 @@ body {
 </div>
 
 <!-- ── TEST ── -->
-<div id="s-test" class="screen">
+<div id="s-test" class="screen" style="display:none">
   <div class="test-inner">
     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="pbar" style="width:0%"></div></div>
     <div class="progress-text">
@@ -467,7 +467,7 @@ body {
 </div>
 
 <!-- ── RESULT ── -->
-<div id="s-result" class="screen">
+<div id="s-result" class="screen" style="display:none">
   <div class="result-hero">
     <p class="result-eyebrow">你的 HC-16 类型</p>
     <div class="result-code" id="r-code"></div>
@@ -868,9 +868,14 @@ let fromType = null;
 
 // ── NAVIGATION ─────────────────────────────────────────────────────────────
 function show(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  document.querySelectorAll('.screen').forEach(s => {
+    s.classList.remove('active');
+    s.style.display = 'none';
+  });
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  el.style.display = id === 's-intro' ? 'flex' : 'block';
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function startTest() {
