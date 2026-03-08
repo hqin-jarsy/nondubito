@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>HC-16 · 你的脆弱性图谱 — Non Dubito</title>
-  <meta name="description" content="每个人都有四种结构性痛苦的敏感度配置。16道题，5分钟，找到你的位置。HC-16 by Han Qin.">
-  <meta property="og:title" content="HC-16 · 你的脆弱性图谱">
-  <meta property="og:description" content="这不是性格标签。是你的脆弱性地图。16道题，5分钟。">
+  <title>Z-test — HC-16 · Non Dubito</title>
+  <meta name="description" content="四个维度，十六种自己。16道题，5分钟，找到你的位置。Z-test by Han Qin.">
+  <meta property="og:title" content="Z-test — HC-16 人格图谱">
+  <meta property="og:description" content="四个维度，十六种自己。16道题，5分钟。没有Zesi，没有Z-test。">
   <meta property="og:url" content="https://nondubito.net/hc16.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -447,7 +447,7 @@ body {
 <div class="hdr">
   <a href="index.html" class="hdr-logo">Non Dubito</a>
   <div class="hdr-right">
-    <span class="hdr-tag">HC-16</span>
+    <span class="hdr-tag">Z-TEST</span>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
       <span class="lang-sep">|</span>
@@ -459,12 +459,12 @@ body {
 <!-- ── INTRO ── -->
 <div id="s-intro" class="screen active">
   <p class="intro-eyebrow">Self-as-an-End Theory · Han Qin (秦汉)</p>
-  <div class="intro-title">HC-16</div>
-  <div class="intro-title-en">Vulnerability Profile System</div>
+  <div class="intro-title">Z-test</div>
+  <div class="intro-title-en">HC-16 · Personality Profile</div>
   <div id="invite-banner" class="intro-invite-banner" style="display:none"></div>
   <p class="intro-desc" id="intro-desc-text"></p>
   <button class="btn-start" onclick="startTest()" id="btn-start-text"></button>
-  <p class="intro-note">DOI: 10.5281/zenodo.18907264 &nbsp;·&nbsp; nondubito.net</p>
+  <p class="intro-note">没有Zesi，没有Z-test &nbsp;·&nbsp; DOI: 10.5281/zenodo.18907264</p>
 </div>
 
 <!-- ── TEST ── -->
@@ -1220,8 +1220,8 @@ function shareInvite() {
   const urlText = currentLang === 'en' ? 'See relationship analysis' : '看看我们之间的关系';
   const url = `https://nondubito.net/hc16.html?from=${code}`;
   const text = currentLang === 'en' 
-    ? `I took HC-16, my type is ${typeStr}. Take the test too and we can see our compatibility — ${url}`
-    : `我测了 HC-16，是 ${typeStr}。来测你的类型，看看我们之间的关系——${url}`;
+    ? `I took Z-test (HC-16), my type is ${typeStr}. Take the test too and we can see our compatibility — ${url}`
+    : `我测了 Z-test，是 ${typeStr}。来测你的类型，看看我们之间的关系——${url}`;
   if (navigator.share) {
     navigator.share({ title: 'HC-16', text });
   } else {
@@ -1234,11 +1234,11 @@ function shareResult() {
   const t = TYPES[code];
   const typeStr = currentLang === 'en' ? `${code} · ${t.en}` : `${code} · ${t.zh}`;
   const tagline = currentLang === 'en' ? t.tagline_en : t.tagline;
-  const text = `HC-16: ${typeStr}
+  const text = `Z-test (HC-16): ${typeStr}
 "${tagline}"
 Take the test: https://nondubito.net/hc16.html`;
   if (navigator.share) {
-    navigator.share({ title: `HC-16: ${typeStr}`, text, url: `https://nondubito.net/hc16.html?result=${code}` });
+    navigator.share({ title: `Z-test: ${typeStr}`, text, url: `https://nondubito.net/hc16.html?result=${code}` });
   } else {
     copyToClipboard(text, currentLang === 'en' ? 'Copied to clipboard' : '结果已复制到剪贴板');
   }
