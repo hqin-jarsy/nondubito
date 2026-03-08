@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>HC-16 · 你的脆弱性图谱 — Non Dubito</title>
+  <meta name="description" content="每个人都有四种结构性痛苦的敏感度配置。16道题，5分钟，找到你的位置。HC-16 by Han Qin.">
+  <meta property="og:title" content="HC-16 · 你的脆弱性图谱">
+  <meta property="og:description" content="这不是性格标签。是你的脆弱性地图。16道题，5分钟。">
+  <meta property="og:url" content="https://nondubito.net/hc16.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0f0f0e;
+  --ink2: #1a1a18;
+  --cream: #f5f0e8;
+  --cream2: #ede8e0;
+  --green: #2d4a3e;
+  --gold: #b8953a;
+  --gold-light: #d4a843;
+  --sans: 'Inter', sans-serif;
+  --serif: 'EB Garamond', Georgia, serif;
+  --cjk: 'Noto Serif SC';
+  --max-w: 680px;
+  --radius: 6px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: var(--sans);
+  background: var(--ink);
+  color: var(--cream);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ── */
+.hdr {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 50px; z-index: 100;
+  background: rgba(15,15,14,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(245,240,232,0.07);
+  display: flex; align-items: center;
+  padding: 0 1.5rem;
+  justify-content: space-between;
+}
+.hdr-logo { font-family: var(--serif); font-size: 0.95rem; color: var(--cream); text-decoration: none; opacity: 0.7; }
+.hdr-tag { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,240,232,0.3); }
+
+/* ── SCREENS ── */
+.screen { display: none; min-height: 100vh; padding-top: 50px; }
+.screen.active { display: block; }
+
+/* ── INTRO ── */
+#s-intro {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center;
+  padding: 50px 1.5rem 3rem;
+  min-height: 100vh;
+  text-align: center;
+}
+.intro-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,240,232,0.3); margin-bottom: 1.5rem;
+}
+.intro-title {
+  font-family: var(--cjk), var(--serif);
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  font-weight: 600; color: var(--cream);
+  letter-spacing: 0.05em; margin-bottom: 0.2rem;
+  line-height: 1;
+}
+.intro-title-en {
+  font-family: var(--serif);
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  color: rgba(245,240,232,0.25);
+  letter-spacing: 0.1em;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+.intro-desc {
+  font-family: var(--cjk), var(--serif);
+  font-size: 1rem; line-height: 1.9;
+  color: rgba(245,240,232,0.65);
+  max-width: 420px;
+  margin-bottom: 3rem;
+}
+.intro-invite-banner {
+  background: rgba(245,240,232,0.05);
+  border: 1px solid rgba(245,240,232,0.12);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 400px; width: 100%;
+  font-family: var(--cjk), serif;
+  font-size: 0.88rem;
+  color: rgba(245,240,232,0.6);
+  line-height: 1.7;
+}
+.intro-invite-banner strong {
+  color: var(--gold-light);
+  font-weight: 500;
+}
+.btn-start {
+  background: var(--cream);
+  color: var(--ink);
+  border: none; border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 0.9rem 2.5rem;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn-start:hover { background: var(--cream2); }
+.btn-start:active { transform: scale(0.98); }
+.intro-note {
+  margin-top: 1.5rem;
+  font-size: 0.65rem;
+  color: rgba(245,240,232,0.2);
+  letter-spacing: 0.05em;
+}
+
+/* ── TEST SCREEN ── */
+#s-test { padding: 50px 1.5rem 3rem; }
+.test-inner { max-width: var(--max-w); margin: 0 auto; }
+
+.progress-bar-wrap {
+  margin: 2rem 0 0.5rem;
+  height: 2px;
+  background: rgba(245,240,232,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.progress-text {
+  display: flex; justify-content: space-between;
+  font-size: 0.6rem; letter-spacing: 0.1em;
+  color: rgba(245,240,232,0.25);
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+}
+
+.q-dim-label {
+  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(245,240,232,0.25);
+  margin-bottom: 1rem;
+}
+.q-text {
+  font-family: var(--cjk), var(--serif);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  line-height: 1.85;
+  color: var(--cream);
+  margin-bottom: 2.5rem;
+  min-height: 5rem;
+}
+
+.options { display: flex; flex-direction: column; gap: 1rem; }
+.opt-btn {
+  background: rgba(245,240,232,0.04);
+  border: 1px solid rgba(245,240,232,0.1);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.opt-btn:hover {
+  background: rgba(245,240,232,0.08);
+  border-color: rgba(245,240,232,0.2);
+}
+.opt-btn.selected {
+  background: rgba(184,149,58,0.12);
+  border-color: rgba(184,149,58,0.4);
+}
+.opt-letter {
+  font-family: var(--serif);
+  font-size: 0.8rem;
+  color: rgba(245,240,232,0.3);
+  min-width: 1.2rem;
+  padding-top: 0.1rem;
+  font-style: italic;
+}
+.opt-text {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(245,240,232,0.8);
+}
+
+/* ── RESULT SCREEN ── */
+#s-result { padding: 50px 0 0; }
+.result-hero {
+  background: var(--green);
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+}
+.result-eyebrow {
+  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(245,240,232,0.4);
+  margin-bottom: 1.2rem;
+}
+.result-code {
+  font-family: var(--sans);
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--cream);
+  margin-bottom: 0.4rem;
+}
+.result-zh {
+  font-family: var(--cjk), serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 500;
+  color: rgba(245,240,232,0.9);
+  margin-bottom: 0.8rem;
+}
+.result-en-full {
+  font-size: 0.72rem; letter-spacing: 0.12em;
+  color: rgba(245,240,232,0.35);
+  font-family: var(--sans);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.result-tagline {
+  font-family: var(--cjk), var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(245,240,232,0.7);
+  line-height: 1.7;
+  max-width: 380px; margin: 0 auto;
+}
+
+.result-body { max-width: var(--max-w); margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+.result-section { margin-bottom: 3rem; }
+.result-section-label {
+  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(245,240,232,0.3);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(245,240,232,0.06);
+}
+.result-dims { display: flex; flex-direction: column; gap: 0.8rem; }
+.dim-row {
+  display: flex; gap: 0.8rem; align-items: flex-start;
+}
+.dim-char {
+  font-family: var(--cjk), serif;
+  font-size: 1.3rem;
+  color: var(--gold-light);
+  min-width: 2rem;
+  line-height: 1.4;
+}
+.dim-text {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.9rem; line-height: 1.75;
+  color: rgba(245,240,232,0.7);
+}
+.result-para {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.95rem; line-height: 1.9;
+  color: rgba(245,240,232,0.75);
+  margin-bottom: 1rem;
+}
+.result-misunderstood { display: flex; flex-direction: column; gap: 0.8rem; }
+.misunderstood-item {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.9rem; line-height: 1.75;
+  color: rgba(245,240,232,0.7);
+  padding-left: 1rem;
+  border-left: 2px solid rgba(245,240,232,0.1);
+}
+.result-works { display: flex; flex-direction: column; gap: 1rem; }
+.works-block { }
+.works-label {
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(245,240,232,0.3); margin-bottom: 0.4rem;
+}
+.works-text {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.92rem; line-height: 1.8;
+  color: rgba(245,240,232,0.7);
+}
+
+/* ── COMPATIBILITY SECTION ── */
+.compat-section {
+  background: rgba(245,240,232,0.03);
+  border: 1px solid rgba(245,240,232,0.07);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.compat-header {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+.compat-type-chip {
+  background: rgba(245,240,232,0.07);
+  border: 1px solid rgba(245,240,232,0.12);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.05em;
+}
+.compat-type-chip.me { background: rgba(184,149,58,0.15); border-color: rgba(184,149,58,0.3); }
+.compat-x { color: rgba(245,240,232,0.3); font-size: 0.9rem; }
+.compat-zh {
+  font-family: var(--cjk), serif;
+  font-size: 0.8rem;
+  color: rgba(245,240,232,0.4);
+}
+
+.compat-grid { display: flex; flex-direction: column; gap: 1rem; }
+.compat-row { }
+.compat-row-label {
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(245,240,232,0.25); margin-bottom: 0.4rem;
+}
+.compat-row-text {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.9rem; line-height: 1.75;
+  color: rgba(245,240,232,0.7);
+}
+.compat-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.4rem; }
+.compat-chip {
+  font-family: var(--cjk), serif;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  border: 1px solid;
+}
+.compat-chip.green { color: rgba(150,200,150,0.8); border-color: rgba(150,200,150,0.3); background: rgba(150,200,150,0.06); }
+.compat-chip.amber { color: rgba(220,160,80,0.8); border-color: rgba(220,160,80,0.3); background: rgba(220,160,80,0.06); }
+.compat-chip.red { color: rgba(200,100,100,0.8); border-color: rgba(200,100,100,0.3); background: rgba(200,100,100,0.06); }
+
+/* ── CTA ── */
+.cta-area {
+  text-align: center;
+  padding: 0 1.5rem 4rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.btn-invite {
+  display: block; width: 100%;
+  background: var(--cream);
+  color: var(--ink);
+  border: none; border-radius: var(--radius);
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 1rem;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+  transition: background 0.15s;
+}
+.btn-invite:hover { background: var(--cream2); }
+.btn-share {
+  display: block; width: 100%;
+  background: transparent;
+  color: rgba(245,240,232,0.5);
+  border: 1px solid rgba(245,240,232,0.15);
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  padding: 0.8rem;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+  transition: all 0.15s;
+}
+.btn-share:hover { border-color: rgba(245,240,232,0.3); color: rgba(245,240,232,0.7); }
+.btn-retake {
+  display: block; width: 100%;
+  background: transparent;
+  color: rgba(245,240,232,0.25);
+  border: none;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  transition: color 0.15s;
+}
+.btn-retake:hover { color: rgba(245,240,232,0.45); }
+.cta-back {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.18);
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-top: 1rem;
+}
+.cta-back:hover { color: rgba(245,240,232,0.35); }
+
+.toast {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  background: var(--ink2);
+  border: 1px solid rgba(245,240,232,0.12);
+  border-radius: var(--radius);
+  padding: 0.7rem 1.4rem;
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.85rem;
+  color: var(--cream);
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; }
+
+@media (max-width: 400px) {
+  .result-code { letter-spacing: 0.12em; }
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <a href="index.html" class="hdr-logo">Non Dubito</a>
+  <span class="hdr-tag">HC-16</span>
+</div>
+
+<!-- ── INTRO ── -->
+<div id="s-intro" class="screen active">
+  <p class="intro-eyebrow">Self-as-an-End Theory · Han Qin (秦汉)</p>
+  <div class="intro-title">HC-16</div>
+  <div class="intro-title-en">Vulnerability Profile System</div>
+  <div id="invite-banner" class="intro-invite-banner" style="display:none"></div>
+  <p class="intro-desc">每个人都有四种结构性痛苦的敏感度配置——你对哪种痛苦最敏感，决定了你在哪里最容易崩溃，以及什么修复对你最有效。<br><br>这不是性格标签。是你的脆弱性地图。</p>
+  <button class="btn-start" onclick="startTest()">开始测试 · 16道题 · 5分钟</button>
+  <p class="intro-note">DOI: 10.5281/zenodo.18907264 &nbsp;·&nbsp; nondubito.net</p>
+</div>
+
+<!-- ── TEST ── -->
+<div id="s-test" class="screen">
+  <div class="test-inner">
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="pbar" style="width:0%"></div></div>
+    <div class="progress-text">
+      <span id="p-dim"></span>
+      <span id="p-num"></span>
+    </div>
+    <div class="q-dim-label" id="q-dim-label"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="options" id="q-options"></div>
+  </div>
+</div>
+
+<!-- ── RESULT ── -->
+<div id="s-result" class="screen">
+  <div class="result-hero">
+    <p class="result-eyebrow">你的 HC-16 类型</p>
+    <div class="result-code" id="r-code"></div>
+    <div class="result-zh" id="r-zh"></div>
+    <div class="result-en-full" id="r-en"></div>
+    <div class="result-tagline" id="r-tagline"></div>
+  </div>
+  <div class="result-body">
+    <div class="result-section">
+      <div class="result-section-label">你的结构配置</div>
+      <div class="result-dims" id="r-dims"></div>
+    </div>
+    <div class="result-section">
+      <div class="result-section-label">你的日常模式</div>
+      <div id="r-pattern"></div>
+    </div>
+    <div class="result-section">
+      <div class="result-section-label">你最容易掉的坑</div>
+      <div id="r-pitfall"></div>
+    </div>
+    <div class="result-section">
+      <div class="result-section-label">你身边的人最容易误解你什么</div>
+      <div class="result-misunderstood" id="r-misunderstood"></div>
+    </div>
+    <div class="result-section">
+      <div class="result-section-label">什么对你有效 · 什么对你没用</div>
+      <div class="result-works" id="r-works"></div>
+    </div>
+    <div id="r-compat"></div>
+  </div>
+  <div class="cta-area">
+    <button class="btn-invite" id="btn-invite" onclick="shareInvite()">拉一个人来测，看你们之间的关系 →</button>
+    <button class="btn-share" onclick="shareResult()">分享我的结果</button>
+    <button class="btn-retake" onclick="retake()">重新测试</button>
+    <a href="index.html" class="cta-back">← 返回 Non Dubito</a>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── QUESTIONS ────────────────────────────────────────────────────────────
+const Q = [
+  // 求不得 (Drive/Composed)
+  { dim:'drive', label:'求不得',
+    text:'当你连续几周没有任何进展——项目卡住了，学的东西没有突破，生活没有变化——你的内在状态更接近哪个？',
+    a:'一种说不出的焦躁，像有什么东西在体内推着你，必须动起来',
+    b:'还好，节奏慢一点也没什么，不急' },
+  { dim:'drive', label:'求不得',
+    text:'你刚完成了一个重要的目标。完成的那一刻，你的第一反应更接近哪个？',
+    a:'短暂的满足，然后很快开始想"下一个是什么"',
+    b:'可以好好享受一阵子，不需要马上想下一步' },
+  { dim:'drive', label:'求不得',
+    text:'一个你很在意的项目因为外部原因被彻底取消了，不是你的问题。你的反应更接近哪个？',
+    a:'像被抽空了一块，即使知道不是自己的错，还是很痛',
+    b:'遗憾，但能比较快地接受，转向别的事情' },
+  { dim:'drive', label:'求不得',
+    text:'有人跟你说"你不需要一直在追什么，停下来也是可以的"。你的内心反应更接近哪个？',
+    a:'道理我都懂，但停下来比继续走更难受',
+    b:'说得对，我确实不需要一直在赶路' },
+
+  // 不可忍 (Fierce/Tolerant)
+  { dim:'fierce', label:'不可忍',
+    text:'在一个团队合作中，你发现你的贡献被别人拿去邀功，而你被当作"执行的人"。你的反应更接近哪个？',
+    a:'立刻感到不对，很难忍，就算不当场说也会很快找机会说清楚',
+    b:'不太舒服，但可以先放一放，不值得为这个起冲突' },
+  { dim:'fierce', label:'不可忍',
+    text:'一个你信任的人在背后用一种你觉得不公平的方式评价你。你知道之后的反应更接近哪个？',
+    a:'被刺痛了，这件事会反复出现在脑子里，必须处理',
+    b:'有点失望，但人各有看法，不至于太影响我' },
+  { dim:'fierce', label:'不可忍',
+    text:'你的老板（或长辈）在公开场合用一种带有贬低意味的方式纠正你。你的内在反应更接近哪个？',
+    a:'尊严被踩了，无论他说的内容对不对，这种方式我无法接受',
+    b:'不太舒服，但如果他说的内容有道理，我可以先消化内容再处理方式问题' },
+  { dim:'fierce', label:'不可忍',
+    text:'有人长期对你很好，但你渐渐发现这种好里面有一种"我是在帮你/带你"的居高临下。你的反应更接近哪个？',
+    a:'一旦察觉到这种居高临下，之前的好都变味了，很难再接受',
+    b:'只要对方不是故意的，这种感觉我可以消化，不影响关系大局' },
+
+  // 不可选 (Explore/Anchor)
+  { dim:'explore', label:'不可选',
+    text:'你被分配到一个不是你选的但很重要的任务/岗位/方向。你的内在反应更接近哪个？',
+    a:'即使任务本身不错，"不是我选的"这件事本身就让我不舒服',
+    b:'只要事情本身有意义，谁选的不重要，我可以投入' },
+  { dim:'explore', label:'不可选',
+    text:'你正在一条已经确定的路上走得很好，但你内心偶尔冒出"如果走另一条路会怎样"的念头。这个念头的强度更接近哪个？',
+    a:'不只是偶尔冒出来，它经常在那里，有时候会让我质疑当前的选择',
+    b:'偶尔想想而已，不影响我对当前路径的投入' },
+  { dim:'explore', label:'不可选',
+    text:'有人告诉你"你就适合做这个，别想太多"。你的反应更接近哪个？',
+    a:'即使他可能说对了，"你就适合做这个"这句话本身让我抗拒',
+    b:'如果他说得有道理，我愿意接受这个建议' },
+  { dim:'explore', label:'不可选',
+    text:'你必须在两个工作机会之间选一个：A薪水高但方向固定，B薪水一般但可以自己定方向。你的倾向更接近哪个？',
+    a:'强烈倾向B，方向自由对我来说比钱重要得多',
+    b:'要看具体情况，A的稳定性也很有吸引力' },
+
+  // 不可逃 (Roam/Base)
+  { dim:'roam', label:'不可逃',
+    text:'你在一段关系（工作或感情）中感觉越来越好，但你注意到你对这段关系的依赖也在增加——离开会越来越难。你的反应更接近哪个？',
+    a:'这个"越来越难离开"的感觉本身就让我不安，即使关系很好',
+    b:'如果关系本身是好的，依赖加深是自然的，不觉得有什么问题' },
+  { dim:'roam', label:'不可逃',
+    text:'你签了一份三年的工作合同，待遇很好，但中途离职有违约金。签完之后你的感觉更接近哪个？',
+    a:'一种微妙的被困感，即使我知道这份工作很好',
+    b:'安心了，三年内不用操心这件事了' },
+  { dim:'roam', label:'不可逃',
+    text:'你正在一个城市/公司/圈子里过得不错，但有人给你一个去完全不同环境的机会。你的内心更接近哪个？',
+    a:'即使现在很好，那个"可以去别的地方"的可能性让我兴奋',
+    b:'现在挺好的，为什么要动？除非那边明显更好' },
+  { dim:'roam', label:'不可逃',
+    text:'回想一下你过去的人生轨迹——换工作、换城市、换圈子的频率。你的模式更接近哪个？',
+    a:'每隔一段时间就需要换一个环境，待太久会窒息',
+    b:'我倾向于找到一个好的地方就扎下来，不喜欢频繁变动' }
+];
+
+// ── TYPES ─────────────────────────────────────────────────────────────────
+const DIM_NAMES = { drive:'驱', compose:'泰', fierce:'烈', tolerant:'容', explore:'拓', anchor:'专', roam:'游', base:'栖' };
+
+const TYPES = {
+  'DTAB': {
+    zh:'驱容专栖', en:'Drive · Tolerant · Anchor · Base',
+    tagline:'往前冲，能忍，不挑路，扎得住。',
+    dims:[
+      {char:'驱', text:'求不得（高）：你的内在驱动力极强，目标受阻时会感到强烈的痛苦'},
+      {char:'容', text:'不可忍（低）：你对基础层的侵蚀相对迟钝，能忍别人忍不了的'},
+      {char:'专', text:'不可选（低）：你不太介意方向是谁定的，给你一条路就能冲'},
+      {char:'栖', text:'不可逃（低）：你不焦虑退出通道，扎在一个地方很自然'},
+    ],
+    pattern:`你永远有下一个目标，永远在往前走。"我很忙但很充实"是你最常说的话。你不太挑环境——给你一个方向你就能投入，给你一个位置你就能扎下来。你身边的人觉得你是"能扛事的人"。\n\n但你的"能扛"有一个隐藏成本：你的基础层报警系统是静音的。被工具化对待的时候你的反应是"忍一忍"，方向被限制的时候你的反应是"没关系"，退出通道被封堵的时候你的反应是"我在这里挺好的"。`,
+    pitfall:`你最危险的处境不是失败——失败至少逼你停下来检查。你最危险的处境是"有意义的忙碌"。当工作有意义、目标在推进、成就在积累的时候，你的涌现层被喂得很饱，其他三个报警系统同时静音。你可以在一份"有意义的工作"中被系统性地透支十年而不自知。\n\n等你终于感受到痛苦的时候——因为长期积累的损害穿透了你的高阈值——爆发会极其猛烈。你会发现自己已经不知道"我是谁"了，只知道"我在做什么"。`,
+    misunderstood:['「他很坚强」→ 不是坚强，是基础层报警系统静音了','「他很专注」→ 不是专注，是方向自由感被钝化了','「他很忠诚」→ 不是忠诚，是退出焦虑被钝化了'],
+    works_not:'「放松一下」「别那么拼」——这些话在涌现层里打转，根本碰不到你的基础层。你听了会说"好的"然后继续冲。',
+    works:'用你听得懂的语言翻译你听不到的信号。不是「你应该照顾自己」，而是「你继续这样下去，三年后你连冲的能力都没有了」。把基础层的需求翻译成涌现层的语言——这是唯一能穿透你感知屏障的方式。'
+  },
+
+  'CTAB': {
+    zh:'泰容专栖', en:'Composed · Tolerant · Anchor · Base',
+    tagline:'什么都行，哪儿都好。',
+    dims:[
+      {char:'泰', text:'求不得（低）：你的涌现层很安静，目标受阻时不太焦虑'},
+      {char:'容', text:'不可忍（低）：你对基础层的侵蚀相对迟钝，能扛'},
+      {char:'专', text:'不可选（低）：你不太介意方向是谁定的'},
+      {char:'栖', text:'不可逃（低）：你不焦虑退出通道'},
+    ],
+    pattern:`你给人的印象是随和、好相处、不折腾。你不急着赶路，不太计较方向，不焦虑退出，也不容易被基础层的侵蚀触发。你最常说的话可能是"都行""我没意见"。\n\n但这里有一个需要你自己诚实面对的问题：你的"都行"是因为你天性从容，还是因为你的四个报警系统都被长期校准到了静音？`,
+    pitfall:`如果你是天性从容型——你确实挺好的。你的风险是涌现层可能终身蛰伏，从来不问自己"我想要什么"。\n\n如果你是全面钝化型——你最大的风险是你不知道你有问题。所有报警系统同时静音，你在结构上可能已经被深度透支但主观上感觉"一切正常"。\n\n区分方法：问自己"我有没有过强烈的痛苦体验——目标受挫的痛、尊严被踩的痛、被困住的痛？"如果能回忆起来（只是不频繁），你可能是天性从容。如果连"那是什么感觉"都描述不出来，你可能需要认真想想。`,
+    misunderstood:['「他很好说话」→ 可能是好说话，也可能是报警系统静音了','「他很随和」→ 可能是真随和，也可能是从来没被催化过','「他没什么追求」→ 可能是不需要，也可能是不知道自己可以需要'],
+    works_not:'所有温和的提醒都可能被你的系统过滤掉。',
+    works:'异质经验。一次旅行，一段完全不同的关系，一个把你从原有环境中暂时拔出来的事件。不是为了"刺激"你，而是为了给你一个参照系——让你有机会发现"原来还有另一种活法"。'
+  },
+
+  'DFAB': {
+    zh:'驱烈专栖', en:'Drive · Fierce · Anchor · Base',
+    tagline:'有驱动力也有底线，专注且扎实。',
+    dims:[
+      {char:'驱', text:'求不得（高）：内在驱动力强'},
+      {char:'烈', text:'不可忍（高）：底线极硬，尊严被碰了立刻反应'},
+      {char:'专', text:'不可选（低）：不太介意方向是给定的'},
+      {char:'栖', text:'不可逃（低）：扎得住，不焦虑退出'},
+    ],
+    pattern:`你是别人眼中"靠谱的人"。有驱动力又有底线，给你一个方向你就能冲，但不会为了目标践踏自己的原则。这种组合在任何环境中都被高度评价。\n\n但你的结构里藏着一个裂缝：驱和烈可能打架。当目标要求你越过底线时——"要完成这个项目需要做一些我觉得不对的事"——你内部会撕裂。驱说"必须完成"，烈说"不能越线"。`,
+    pitfall:`忠诚陷阱。你对一个组织或关系高度忠诚（专+栖），同时你有底线（烈），但组织或关系逐渐偏移到你的底线之外。你不想走，也不觉得需要换路，但驱和烈的撕裂越来越频繁。最终要么底线让步，要么某天突然爆发"我不干了"——所有人都震惊。`,
+    misunderstood:['「他很稳定」→ 稳定外表下可能是驱与烈的持续内战','「他没什么不满」→ 不是没有不满，是在底线被触及之前确实没有'],
+    works_not:'「放松」或「勇敢一点」。',
+    works:'提前识别驱烈冲突的环境。在撕裂发生之前就看到"这个方向迟早逼我越线"，然后在还有余地的时候调整。你的修复是预防性的——一旦撕裂发生，修复成本极高。'
+  },
+
+  'CFAB': {
+    zh:'泰烈专栖', en:'Composed · Fierce · Anchor · Base',
+    tagline:'不急但底线硬，给定一条路就安稳守住。',
+    dims:[
+      {char:'泰', text:'求不得（低）：涌现层安静，不急'},
+      {char:'烈', text:'不可忍（高）：底线极硬'},
+      {char:'专', text:'不可选（低）：不挑方向'},
+      {char:'栖', text:'不可逃（低）：扎得住'},
+    ],
+    pattern:`你的核心关切不是"我要成为什么"，而是"我是否被当作一个人来对待"。你不急着赶路，不挑方向，扎得住——但你有一条极其清晰的底线。被工具化对待、被不当人看的时候，反应迅速且坚决。\n\n你经常是别人的"港湾"——你给人的感觉是"跟他在一起很安全"。不会突然要走，不会催你赶路，不会用你。`,
+    pitfall:`涌现层的终身蛰伏。你的三个低敏感维度构成了一个极其厚实的惰性层，涌现层的任何萌动都被"不需要"的叙事吸收了。你可能一生都在守护一个位置而从未问过"我自己想要什么"。`,
+    misunderstood:['「他没什么追求」→ 不是没有涌现层，是涌现层从未被催化','「他很随和」→ 碰了底线就知道他一点都不随和'],
+    works_not:'「你应该有自己的追求」——涌现层的重型语言对你不管用。',
+    works:'在基础层完全安全的前提下，用好奇心微小催化涌现层。"你有没有好奇过，如果你试试X会怎样？"关键词是"好奇"不是"应该"。'
+  },
+
+  'DFER': {
+    zh:'驱烈拓游', en:'Drive · Fierce · Explore · Roam',
+    tagline:'四个频道全开，什么信号都收。',
+    dims:[
+      {char:'驱', text:'求不得（高）：内在驱动力极强'},
+      {char:'烈', text:'不可忍（高）：底线极硬'},
+      {char:'拓', text:'不可选（高）：方向自由是核心需求'},
+      {char:'游', text:'不可逃（高）：对被困住极度警觉'},
+    ],
+    pattern:`你同时在四条线上运转——有强烈的驱动力要往前冲，有敏锐的底线意识随时监测，需要方向空间保持开放，还需要确认退出通道没被封堵。四种需求同时在线，任何一种不被满足都会触发明显的痛苦。\n\n别人说你"太强烈了""活得太用力"。但从你的视角看，你不是用力活，你只是什么都能感知到——四个维度的信号同时接收，不可能假装某个不存在。`,
+    pitfall:`不是某一个维度崩溃，而是四线作战导致的全面疲劳。四个报警系统同时在响，注意力被持续分散，没有一个维度获得充分处理时间。结果是所有维度都在"轻度报警"，没有一个崩溃但全都不舒服——一种慢性的、弥漫性的疲劳。\n\n你的另一个风险是找不到能同时满足四种需求的环境。大多数环境满足一两种就不错了。`,
+    misunderstood:['「他太挑剔了」→ 不是挑剔，是四个报警系统都在工作','「他永远不满足」→ 不是不满足，是四个维度的需求同时在线','「他为什么这么累」→ 因为四个频道全开，24小时不关机'],
+    works_not:'「降低你的标准」「别想那么多」——这是让你变成另一种类型。',
+    works:'维度间的时序管理。不是四线同时作战，而是在不同时间段聚焦不同维度。"这个月聚焦涌现层推进，基础层监测调到后台。"管理带宽比降低敏感度更有效。'
+  },
+
+  'DTEB': {
+    zh:'驱容拓栖', en:'Drive · Tolerant · Explore · Base',
+    tagline:'驱动力强，要方向自由，扎得住——基础层报警系统偏弱。',
+    dims:[
+      {char:'驱', text:'求不得（高）：内在驱动力强'},
+      {char:'容', text:'不可忍（低）：基础层侵蚀能扛'},
+      {char:'拓', text:'不可选（高）：方向自由是核心需求'},
+      {char:'栖', text:'不可逃（低）：扎得住'},
+    ],
+    pattern:`你的全部能量都在涌现层——强烈的驱动力加上对方向自由的渴望。你不会"给条路就冲"（那是DTAB），你需要自己选方向。同时你能扎得住，不会漂。\n\n但你的基础层两个报警系统都静音——被工具化了能忍，退出通道被封了不焦虑。`,
+    pitfall:`"自由地透支"。方向是你自己选的，目标在推进，所以你主观上完全觉得没问题。但你可能在一个"自己选择的事业"中持续自我工具化而不自知。"这是我自己选的"成了最强的防御叙事。`,
+    misunderstood:['「他很有主见」→ 有主见没错，但基础层保护是缺失的','「他不需要人照顾」→ 这是他告诉自己的故事，不一定是真的'],
+    works_not:'任何绕开"方向选择权"的建议。',
+    works:'你需要一个基础层敏感度高的人在身边——当你的"这是我选的"叙事阻止你看到基础层侵蚀时，他们的一句"你知道你正在被当工具用吗"可能是唯一穿透屏障的信号。'
+  },
+
+  'CFAR': {
+    zh:'泰烈专游', en:'Composed · Fierce · Anchor · Roam',
+    tagline:'不急但底线硬，专注但不被绑——有原则的自由人。',
+    dims:[
+      {char:'泰', text:'求不得（低）：涌现层安静'},
+      {char:'烈', text:'不可忍（高）：底线极硬'},
+      {char:'专', text:'不可选（低）：能在一个方向上深入'},
+      {char:'游', text:'不可逃（高）：对被困住极度警觉'},
+    ],
+    pattern:`你的全部能量在基础层。底线极其清晰，同时对被困住极度警觉。涌现层相对安静——不急着冲，方向有限也不焦虑。\n\n你看起来淡泊，但碰了底线反应坚决。看起来安定，但试图绑住你就立刻拉开距离。你的自由不是"什么都要"的扩张型，而是"我需要的不能被动"的防御型。`,
+    pitfall:`基础层堡垒太坚固变成了封闭。"我不需要那些"可能不是真的不需要，是涌现层从未被催化。`,
+    misunderstood:['「他很淡泊」→ 不是真的不在乎，是在乎不同的东西','「他很容易相处」→ 直到碰了底线或者试图限制他'],
+    works_not:'在基础层不安全时催化涌现层——这只会触发双重防御。',
+    works:'在基础层完全安全的前提下，才能接收涌现层的信号。安全感必须先于催化。'
+  },
+
+  'DTAR': {
+    zh:'驱容专游', en:'Drive · Tolerant · Anchor · Roam',
+    tagline:'往前冲，能忍，能专注，但随时准备走。',
+    dims:[
+      {char:'驱', text:'求不得（高）：内在驱动力强'},
+      {char:'容', text:'不可忍（低）：基础层侵蚀能扛'},
+      {char:'专', text:'不可选（低）：能在一个方向上深入'},
+      {char:'游', text:'不可逃（高）：对被困住极度警觉'},
+    ],
+    pattern:`你能全力投入（驱+专），但你的投入不是因为"走不了"，而是因为"我选择留下"。一旦"选择留下"变成"不得不留下"，驱动力可能瞬间消失。\n\n你的典型轨迹：全力投入→做到某个阶段→感到"该走了"→干脆利落地离开→投入下一个。`,
+    pitfall:`连续创业者综合征——每一段都在透支基础层（因为容让你忍），然后用离开来逃避修复（因为游让你走）。生命轨迹变成：投入→透支→离开→投入→透支→离开。`,
+    misunderstood:['「他很洒脱」→ 离开的代价他自己扛，外人看不见','「他很专注」→ 只到离开的那一刻为止'],
+    works_not:'「你应该安定下来」——直接触发游的防御。',
+    works:'不是要你安定，而是在每一段投入中加入基础层检查点。把游从逃跑机制升级为主动管理机制。'
+  },
+
+  'DFEB': {
+    zh:'驱烈拓栖', en:'Drive · Fierce · Explore · Base',
+    tagline:'驱动力和底线都强，要方向自由但能安落——最完整的涌现型。',
+    dims:[
+      {char:'驱', text:'求不得（高）：内在驱动力强'},
+      {char:'烈', text:'不可忍（高）：底线极硬'},
+      {char:'拓', text:'不可选（高）：方向自由是核心需求'},
+      {char:'栖', text:'不可逃（低）：能在一个地方深根'},
+    ],
+    pattern:`你是DFER去掉游的版本——不需要流动性，能在一个地方深入扎根，同时保持驱动力、底线和方向自由。三高一低，涌现层充分展开，基础层有烈的保护，栖提供稳定基地。这是最完整的涌现层主导型。\n\n你需要能同时满足"强烈推进""原则不被碰""我自己选方向"三种需求的环境，这样的环境不多，但一旦找到，你能发挥极致。`,
+    pitfall:`栖的安稳慢慢吸收拓的能量——待久了，"探索新方向"从需求退化为念头。你可能在一个足够舒适的环境里，慢慢放弃了自己最核心的涌现层需求。`,
+    misunderstood:['「他要求太高」→ 他需要三种条件同时满足，不是挑剔是结构需求','「他很稳定」→ 稳定是因为栖，但内部驱动从未停'],
+    works_not:'强迫在不满足方向自由时继续投入。',
+    works:'定期审视：三个高敏感维度是否同时被满足？哪一个在萎缩？及早调整比等待崩溃有效得多。'
+  },
+
+  'DFAR': {
+    zh:'驱烈专游', en:'Drive · Fierce · Anchor · Roam',
+    tagline:'驱动力和底线都强，专注但保持流动——有根的漫游者。',
+    dims:[
+      {char:'驱', text:'求不得（高）：内在驱动力强'},
+      {char:'烈', text:'不可忍（高）：底线极硬'},
+      {char:'专', text:'不可选（低）：能在一个方向上深入'},
+      {char:'游', text:'不可逃（高）：对被困住极度警觉'},
+    ],
+    pattern:`跟DTAR的区别在于烈——你不能忍，底线被碰了就走。每一段停留中基础层得到更好的保护（烈在工作），但也可能因为底线被触及而更频繁地离开。\n\n你的轨迹不是"投入→透支→离开"，而是"投入→发现底线被碰→坚决离开"。人们觉得你难以预测——其实你的离开都有原因，只是他们没看见那条线。`,
+    pitfall:`驱的推进需求和游的流动需求都很强，而烈让你在底线被触碰时快速离开。这个组合让你很难长期在任何一个地方累积影响力——因为每一次离开都有正当理由，但离开的频率本身会成为一种结构性的损耗。`,
+    misunderstood:['「他很难相处」→ 不是难相处，是他的底线很清晰','「他不稳定」→ 不是不稳定，是不接受底线被触碰后继续待'],
+    works_not:'期待他为了"大局"忍受底线被碰。',
+    works:'提前识别并明确说清楚你的底线在哪里。透明化你的边界，让环境有机会在触碰之前调整。'
+  },
+
+  'DTER': {
+    zh:'驱容拓游', en:'Drive · Tolerant · Explore · Roam',
+    tagline:'涌现层全高基础层全低——流星型。',
+    dims:[
+      {char:'驱', text:'求不得（高）：驱动力强烈'},
+      {char:'容', text:'不可忍（低）：基础层被侵蚀能扛'},
+      {char:'拓', text:'不可选（高）：方向空间是核心需求'},
+      {char:'游', text:'不可逃（高）：不能被困住'},
+    ],
+    pattern:`驱动力强烈，方向空间无限，流动性完全。你的涌现层极度辉煌——几乎能在任何方向上点燃。但你的基础层完全暴露：被工具化了能忍，退出通道被封了反而不焦虑（因为只要方向还有就行）。\n\n你在别人眼里是"那种耀眼的人"。消耗极快。`,
+    pitfall:`你不需要更多涌现层的空间——你已经有了。你需要的是有人帮你的基础层兜底。你的基础层在你无声无息地被消耗时不报警，但损耗是真实的。`,
+    misunderstood:['「他好像不在乎自己」→ 他在乎，只是基础层的报警系统静音了','「他怎么能那么随意」→ 随意背后有很高的透支成本'],
+    works_not:'让他降低涌现层的标准。',
+    works:'找到一个愿意为他的基础层"站岗"的人——不是控制，是监测。当基础层侵蚀开始时，需要有人能看见并说出来。'
+  },
+
+  'CTEB': {
+    zh:'泰容拓栖', en:'Composed · Tolerant · Explore · Base',
+    tagline:'不急能忍但要方向空间，扎得住——温和的探索者。',
+    dims:[
+      {char:'泰', text:'求不得（低）：不急'},
+      {char:'容', text:'不可忍（低）：能扛'},
+      {char:'拓', text:'不可选（高）：方向自由是唯一的底线'},
+      {char:'栖', text:'不可逃（低）：扎得住'},
+    ],
+    pattern:`日常看起来极其随和——不急、不计较、不闹。但在"你只能走这条路"的时刻突然表现出强烈的抗拒。方向自由是你唯一的底线，其他三个维度都相对耐受。\n\n你是被低估的类型。别人觉得你好说话，但你有一条人们没意识到的红线。`,
+    pitfall:`因为三个低敏感维度，你很容易被"拖进"一个固定轨道而不自觉。等你意识到方向已经被锁死，你的基础层报警系统早就静音了，反应会晚。`,
+    misunderstood:['「他没什么要求」→ 有，只是那条线不明显','「他为什么突然不配合了」→ 他的方向自由触碰到了临界点'],
+    works_not:'以为他"随便都行"而不给他方向选择权。',
+    works:'提前明确那条线在哪里。让环境知道"你可以在这里自己决定方向"——这比任何其他激励都有效。'
+  },
+
+  'CFER': {
+    zh:'泰烈拓游', en:'Composed · Fierce · Explore · Roam',
+    tagline:'不急但底线硬，要空间不被绑——基础层主导的全面自由型。',
+    dims:[
+      {char:'泰', text:'求不得（低）：不急着赶路'},
+      {char:'烈', text:'不可忍（高）：底线极硬'},
+      {char:'拓', text:'不可选（高）：要方向空间'},
+      {char:'游', text:'不可逃（高）：对被困住极度警觉'},
+    ],
+    pattern:`三高一低，只有求不得低。极度"自由"——不赶路，有原则，要空间，不被绑。你不需要驱动力来维持主体性，你只需要确保没有东西在侵蚀你。\n\n这个配置有巨大的防御力，但也有一个盲区：涌现层的驱动力从未被激活。`,
+    pitfall:`防御体系太完美的结果是什么都不需要冒险。你保护得很好，但从来没有去追什么。涌现层的潜力可能终身未发。`,
+    misunderstood:['「他很淡定」→ 淡定不等于没有要求，碰了他的三条线就知道了','「他为什么不努力」→ 驱动力确实低，但这不是缺陷是配置'],
+    works_not:'用外部目标驱动他——没有内在驱动时，外部目标只是噪音。',
+    works:'先把三条线（烈、拓、游）都护好，然后才有空间问"你有没有想做什么"。顺序不能反。'
+  },
+
+  'CFEB': {
+    zh:'泰烈拓栖', en:'Composed · Fierce · Explore · Base',
+    tagline:'不急但底线硬，要空间但能安落——成熟的守护者。',
+    dims:[
+      {char:'泰', text:'求不得（低）：不急'},
+      {char:'烈', text:'不可忍（高）：底线极硬'},
+      {char:'拓', text:'不可选（高）：要方向空间'},
+      {char:'栖', text:'不可逃（低）：能扎得住'},
+    ],
+    pattern:`跟CFER的区别是栖vs游——你能扎住。成熟期的学者和手艺人常见这种配置：有原则，需要探索空间，找到了一个能安落的位置，不急。\n\n你不是在漂，你是在你自己选的地方扎根，同时守住底线和探索空间。`,
+    pitfall:`涌现层的驱动力缺席（泰）使得探索可能流于表面——有空间但不一定有动力去充分使用。`,
+    misunderstood:['「他很稳定」→ 稳定是真的，但内部的底线和探索需求也是真的','「他没什么野心」→ 没有求不得的驱动，但有方向探索的需求'],
+    works_not:'催他"更进取"。',
+    works:'给他足够的原则空间（不触碰烈）和方向空间（满足拓），他会自然地在稳定中深入。'
+  },
+
+  'CTAR': {
+    zh:'泰容专游', en:'Composed · Tolerant · Anchor · Roam',
+    tagline:'不急能忍能专注但不被绑——安静的流动者。',
+    dims:[
+      {char:'泰', text:'求不得（低）：不急'},
+      {char:'容', text:'不可忍（低）：能扛'},
+      {char:'专', text:'不可选（低）：能在一个方向上深入'},
+      {char:'游', text:'不可逃（高）：唯一的高敏感维度'},
+    ],
+    pattern:`在任何环境中都适应良好，但总在某个时刻悄悄离开。不是在逃避什么，是游需要定期被满足。你的三个低维度让你在任何地方都能活得不错，但游会定期提醒你"不要被锁死"。\n\n你很少跟别人解释为什么要走，因为你自己也说不清楚——只是感觉"该走了"。`,
+    pitfall:`游的驱动可能让你在一个本来很好的位置上过早离开。不是位置不好，是游的信号误报了。`,
+    misunderstood:['「他为什么要走」→ 问他自己他也说不清楚，但游的需求是真实的','「他不投入」→ 他投入，只是会走'],
+    works_not:'试图用"这里很好"来说服他留下。',
+    works:'给他明确的"可以离开"信号——哪怕他不会真的用。知道通道没有被堵，游的焦虑就会平息。'
+  },
+
+  'CTER': {
+    zh:'泰容拓游', en:'Composed · Tolerant · Explore · Roam',
+    tagline:'不急能忍要空间不被绑——潜力型自由。',
+    dims:[
+      {char:'泰', text:'求不得（低）：不急着去哪里'},
+      {char:'容', text:'不可忍（低）：基础层能扛'},
+      {char:'拓', text:'不可选（高）：需要方向开放性'},
+      {char:'游', text:'不可逃（高）：需要流动可能性'},
+    ],
+    pattern:`不急着去哪里，但需要"可以去任何地方"的可能性存在。不是为了做什么而自由，是自由本身就是需求。你的两个低敏感维度（泰、容）让你很少因为外部原因崩溃，两个高敏感维度（拓、游）保持了一种结构性的开放性。\n\n你是一种罕见的平衡：不焦虑也不麻木，只是保持开放。`,
+    pitfall:`没有驱动力（泰）的情况下，拓和游的开放性可能流于姿态而非行动。你有方向自由，但没有特别想去哪里；你有流动可能，但不一定会移动。`,
+    misunderstood:['「他飘」→ 不是飘，是结构上的开放性','「他没目标」→ 有，只是目标不是外部成就'],
+    works_not:'给他一个固定的目标方向然后期待全力投入。',
+    works:'给他开放性——让他知道选项是存在的。这比任何具体目标都更能激活他。'
+  }
+};
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+let cur = 0;
+let answers = new Array(16).fill(null);
+let fromType = null;
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+(function init() {
+  const params = new URLSearchParams(window.location.search);
+  const from = params.get('from');
+  const result = params.get('result');
+  if (from && TYPES[from]) {
+    fromType = from;
+    const banner = document.getElementById('invite-banner');
+    banner.style.display = 'block';
+    banner.innerHTML = `有人邀请你来测 HC-16。<br>他们的类型是 <strong>${from} · ${TYPES[from].zh}</strong>——<br>完成测试后你们会看到关系分析。`;
+  }
+  if (result && TYPES[result]) {
+    showResult(result);
+  }
+})();
+
+// ── NAVIGATION ─────────────────────────────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function startTest() {
+  cur = 0;
+  answers = new Array(16).fill(null);
+  renderQuestion();
+  show('s-test');
+}
+
+function retake() {
+  startTest();
+}
+
+// ── QUESTION RENDERING ─────────────────────────────────────────────────────
+const DIM_LABELS = { drive:'求不得', fierce:'不可忍', explore:'不可选', roam:'不可逃' };
+
+function renderQuestion() {
+  const q = Q[cur];
+  const pct = (cur / 16) * 100;
+  document.getElementById('pbar').style.width = pct + '%';
+  document.getElementById('p-dim').textContent = DIM_LABELS[q.dim];
+  document.getElementById('p-num').textContent = `第 ${cur + 1} / 16 题`;
+  document.getElementById('q-dim-label').textContent = DIM_LABELS[q.dim];
+  document.getElementById('q-text').textContent = q.text;
+
+  const opts = document.getElementById('q-options');
+  opts.innerHTML = '';
+  [['A', q.a], ['B', q.b]].forEach(([letter, text]) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    if (answers[cur] === letter) btn.classList.add('selected');
+    btn.innerHTML = `<span class="opt-letter">${letter}</span><span class="opt-text">${text}</span>`;
+    btn.onclick = () => selectAnswer(letter);
+    opts.appendChild(btn);
+  });
+}
+
+function selectAnswer(letter) {
+  answers[cur] = letter;
+  // visual feedback
+  document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+  const idx = letter === 'A' ? 0 : 1;
+  document.querySelectorAll('.opt-btn')[idx].classList.add('selected');
+  // auto advance after brief delay
+  setTimeout(() => {
+    cur++;
+    if (cur < 16) {
+      renderQuestion();
+    } else {
+      calcResult();
+    }
+  }, 280);
+}
+
+// ── SCORING ────────────────────────────────────────────────────────────────
+function calcResult() {
+  // each dim: Q1-4=drive, Q5-8=fierce, Q9-12=explore, Q13-16=roam
+  const slices = [answers.slice(0,4), answers.slice(4,8), answers.slice(8,12), answers.slice(12,16)];
+  const scores = slices.map(s => s.filter(a => a === 'A').length);
+  // 3-4 = High, 0-2 = Low (Method B for boundary)
+  const high = scores.map(s => s >= 3);
+  const code = [
+    high[0] ? 'D' : 'C',
+    high[1] ? 'F' : 'T',
+    high[2] ? 'E' : 'A',
+    high[3] ? 'R' : 'B'
+  ].join('');
+  showResult(code);
+}
+
+// ── RESULT RENDERING ────────────────────────────────────────────────────────
+function showResult(code) {
+  const t = TYPES[code];
+  if (!t) { showResult('DTAB'); return; }
+
+  document.getElementById('r-code').textContent = code;
+  document.getElementById('r-zh').textContent = t.zh;
+  document.getElementById('r-en').textContent = t.en;
+  document.getElementById('r-tagline').textContent = t.tagline;
+
+  // dims
+  const dimsEl = document.getElementById('r-dims');
+  dimsEl.innerHTML = t.dims.map(d =>
+    `<div class="dim-row"><div class="dim-char">${d.char}</div><div class="dim-text">${d.text}</div></div>`
+  ).join('');
+
+  // pattern
+  document.getElementById('r-pattern').innerHTML =
+    t.pattern.split('\n\n').map(p => `<p class="result-para">${p}</p>`).join('');
+
+  // pitfall
+  document.getElementById('r-pitfall').innerHTML =
+    t.pitfall.split('\n\n').map(p => `<p class="result-para">${p}</p>`).join('');
+
+  // misunderstood
+  document.getElementById('r-misunderstood').innerHTML =
+    t.misunderstood.map(m => `<div class="misunderstood-item">${m}</div>`).join('');
+
+  // works
+  document.getElementById('r-works').innerHTML = `
+    <div class="works-block">
+      <div class="works-label">没用的</div>
+      <div class="works-text">${t.works_not}</div>
+    </div>
+    <div class="works-block">
+      <div class="works-label">有效的</div>
+      <div class="works-text">${t.works}</div>
+    </div>`;
+
+  // compatibility
+  const compatEl = document.getElementById('r-compat');
+  if (fromType && TYPES[fromType] && fromType !== code) {
+    compatEl.innerHTML = renderCompat(fromType, code);
+  } else {
+    compatEl.innerHTML = '';
+  }
+
+  // update invite button
+  document.getElementById('btn-invite').textContent = `拉一个人来测，看你们之间的关系 →`;
+
+  // store current result for sharing
+  window._myType = code;
+
+  show('s-result');
+}
+
+// ── COMPATIBILITY ──────────────────────────────────────────────────────────
+const DIM_KEYS = ['drive','fierce','explore','roam'];
+const DIM_ZH = ['求不得','不可忍','不可选','不可逃'];
+const DIM_CHARS_HIGH = ['驱','烈','拓','游'];
+const DIM_CHARS_LOW  = ['泰','容','专','栖'];
+
+function typeIsHigh(code, dim) {
+  const pos = { drive:0, fierce:1, explore:2, roam:3 };
+  const highChars = ['D','F','E','R'];
+  return code[pos[dim]] === highChars[pos[dim]];
+}
+
+function renderCompat(t1, t2) {
+  const complement = [], friction = [], blindspot = [];
+  DIM_KEYS.forEach((dim, i) => {
+    const h1 = typeIsHigh(t1, dim);
+    const h2 = typeIsHigh(t2, dim);
+    if (h1 && h2) friction.push(i);
+    else if (!h1 && !h2) blindspot.push(i);
+    else complement.push(i);
+  });
+
+  const chipHtml = (arr, cls) => arr.map(i =>
+    `<span class="compat-chip ${cls}">${DIM_ZH[i]}</span>`).join('');
+
+  return `
+  <div class="compat-section">
+    <div class="compat-header">
+      <div>
+        <div style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,232,0.25);margin-bottom:0.5rem;">关系分析</div>
+        <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+          <span class="compat-type-chip">${t1}</span>
+          <span class="compat-zh">${TYPES[t1].zh}</span>
+          <span class="compat-x">×</span>
+          <span class="compat-type-chip me">${t2}</span>
+          <span class="compat-zh">${TYPES[t2].zh}</span>
+        </div>
+      </div>
+    </div>
+    <div class="compat-grid">
+      ${complement.length ? `
+      <div class="compat-row">
+        <div class="compat-row-label">互补维度</div>
+        <div class="compat-row-text">一方的高敏感覆盖另一方的盲区，形成跨维度保护。</div>
+        <div class="compat-chips">${chipHtml(complement,'green')}</div>
+      </div>` : ''}
+      ${friction.length ? `
+      <div class="compat-row">
+        <div class="compat-row-label">可能的摩擦点</div>
+        <div class="compat-row-text">双方在这些维度上都高度敏感，彼此的反应可能相互触发。</div>
+        <div class="compat-chips">${chipHtml(friction,'amber')}</div>
+      </div>` : ''}
+      ${blindspot.length ? `
+      <div class="compat-row">
+        <div class="compat-row-label">共同盲区</div>
+        <div class="compat-row-text">双方在这些维度上都低敏感——没有人会为对方在这里预警。</div>
+        <div class="compat-chips">${chipHtml(blindspot,'red')}</div>
+      </div>` : ''}
+    </div>
+  </div>`;
+}
+
+// ── SHARING ────────────────────────────────────────────────────────────────
+function shareInvite() {
+  const code = window._myType || 'DTAB';
+  const url = `https://nondubito.net/hc16.html?from=${code}`;
+  const text = `我测了 HC-16，是 ${code} · ${TYPES[code].zh}。来测你的类型，看看我们之间的关系——`;
+  if (navigator.share) {
+    navigator.share({ title: 'HC-16 脆弱性图谱', text, url });
+  } else {
+    copyToClipboard(url, '邀请链接已复制 →');
+  }
+}
+
+function shareResult() {
+  const code = window._myType || 'DTAB';
+  const t = TYPES[code];
+  const text = `HC-16 测试结果：${code} · ${t.zh}\n"${t.tagline}"\n测你的：https://nondubito.net/hc16.html`;
+  if (navigator.share) {
+    navigator.share({ title: `HC-16: ${code} · ${t.zh}`, text, url: `https://nondubito.net/hc16.html?result=${code}` });
+  } else {
+    copyToClipboard(text, '结果已复制到剪贴板');
+  }
+}
+
+function copyToClipboard(text, msg) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => showToast(msg));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast(msg);
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+</script>
+</body>
+</html>
