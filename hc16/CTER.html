@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="不急能忍要空间不被绑——潜力型自由。 — Composed · Tolerant · Explore · Roam | HC-16 Vulnerability Profile">
+    <meta property="og:title" content="CTER · 泰容拓游 — HC-16">
+    <meta property="og:description" content="不急能忍要空间不被绑——潜力型自由。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nondubito.net/hc16/CTER.html">
+    <meta name="canonical" href="https://nondubito.net/hc16/CTER.html">
+    <title>CTER · 泰容拓游 — HC-16 Vulnerability Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            background: #0f0f0e;
+            color: #f5f0e8;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        [data-lang="en"] .lang-zh { display: none; }
+        [data-lang="zh"] .lang-en { display: none; }
+        
+        body {
+            background: #0f0f0e;
+            color: #f5f0e8;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(15, 15, 14, 0.95);
+            border-bottom: 1px solid rgba(196, 157, 97, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-left {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        
+        .header-left a {
+            color: #c49d61;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .header-left a:hover {
+            color: #e5c194;
+        }
+        
+        .header-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: #c49d61;
+        }
+        
+        .header-right {
+            font-size: 12px;
+            letter-spacing: 0.05em;
+        }
+        
+        .lang-toggle {
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+        
+        .lang-toggle:hover {
+            color: #c49d61;
+        }
+        
+        .lang-toggle.active {
+            color: #c49d61;
+        }
+        
+        main {
+            margin-top: 70px;
+            padding: 80px 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero {
+            margin-bottom: 60px;
+        }
+        
+        .type-code {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #c49d61;
+            margin-bottom: 20px;
+            font-family: 'Inter', monospace;
+        }
+        
+        .type-name-zh {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Noto Serif SC', serif;
+            margin-bottom: 15px;
+            color: #f5f0e8;
+        }
+        
+        .type-name-en {
+            font-size: 1.1rem;
+            color: #999;
+            letter-spacing: 0.05em;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            color: #e5c194;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .dimensions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(196, 157, 97, 0.05);
+            border: 1px solid rgba(196, 157, 97, 0.1);
+        }
+        
+        .dimension {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .dim-char {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Noto Serif SC', serif;
+            min-width: 40px;
+            text-align: center;
+            color: #c49d61;
+        }
+        
+        .dimension.low .dim-char {
+            color: #666;
+            opacity: 0.6;
+        }
+        
+        .dim-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #c49d61;
+            margin-right: 8px;
+            margin-top: 2px;
+        }
+        
+        .dimension.low .dim-indicator {
+            background: transparent;
+            border: 2px solid #666;
+        }
+        
+        .dim-content {
+            flex: 1;
+        }
+        
+        .dim-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #f5f0e8;
+            margin-bottom: 5px;
+        }
+        
+        .dim-label .en {
+            display: block;
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 400;
+            margin-top: 3px;
+        }
+        
+        .dim-desc {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+        
+        section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #c49d61;
+            letter-spacing: 0.05em;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(196, 157, 97, 0.2);
+        }
+        
+        p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #d4cfc2;
+        }
+        
+        .misunderstood-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .misunderstood-list li {
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            background: rgba(196, 157, 97, 0.03);
+            border-left: 3px solid #c49d61;
+            font-size: 0.95rem;
+        }
+        
+        .misunderstood-list li .en {
+            display: block;
+            margin-top: 5px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .works-box {
+            padding: 20px;
+            background: rgba(196, 157, 97, 0.05);
+            border: 1px solid rgba(196, 157, 97, 0.1);
+        }
+        
+        .works-box h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #c49d61;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+        
+        .works-box p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(196, 157, 97, 0.2);
+            margin-top: 60px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #c49d61;
+            color: #0f0f0e;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: background 0.3s;
+            margin: 0 10px;
+        }
+        
+        .cta-button:hover {
+            background: #e5c194;
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            color: #c49d61;
+            border: 1px solid #c49d61;
+        }
+        
+        .cta-button.secondary:hover {
+            background: rgba(196, 157, 97, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+            }
+            
+            main {
+                padding: 70px 20px 40px 20px;
+            }
+            
+            .type-code {
+                font-size: 3rem;
+            }
+            
+            .type-name-zh {
+                font-size: 2rem;
+            }
+            
+            .dimensions {
+                grid-template-columns: 1fr;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+                gap: 10px;
+            }
+            
+            .header-center {
+                position: static;
+                transform: none;
+                font-size: 14px;
+            }
+            
+            main {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="/hc16/">← HC-16</a>
+        </div>
+        <div class="header-center">CTER</div>
+        <div class="header-right">
+            <span class="lang-toggle active" data-lang="zh" onclick="setLang('zh')">中文</span>
+            <span style="margin: 0 8px; color: #666;">|</span>
+            <span class="lang-toggle" data-lang="en" onclick="setLang('en')">EN</span>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="type-code">CTER</div>
+            <div class="type-name-zh lang-zh">泰容拓游</div>
+            <div class="type-name-en lang-en">Composed · Tolerant · Explore · Roam</div>
+            <div class="tagline lang-zh">不急能忍要空间不被绑——潜力型自由。</div>
+            <div class="tagline lang-en">Unhurried, absorbing, needs space and mobility — latent freedom.</div>
+        </section>
+        
+        <section class="dimensions">
+            <div class="dimension low">
+                <div class="dim-char">泰</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>泰
+                        </div>
+                        <div class="dim-desc">求不得（低）：不急着去哪里</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>C
+                        </div>
+                        <div class="dim-desc">Composed (Low): Not rushing anywhere</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dimension low">
+                <div class="dim-char">容</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>容
+                        </div>
+                        <div class="dim-desc">不可忍（低）：基础层能扛</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>T
+                        </div>
+                        <div class="dim-desc">Tolerant (Low): Can absorb foundationally</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dimension high">
+                <div class="dim-char">拓</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>拓
+                        </div>
+                        <div class="dim-desc">不可选（高）：需要方向开放性</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>E
+                        </div>
+                        <div class="dim-desc">Autonomy (High): Needs directional openness</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dimension high">
+                <div class="dim-char">游</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>游
+                        </div>
+                        <div class="dim-desc">不可逃（高）：需要流动可能性</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>R
+                        </div>
+                        <div class="dim-desc">Exit (High): Needs mobility as possibility</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">结构模式</span><span class="lang-en">Pattern</span></h2>
+            <div class="lang-zh"><p>不急着去哪里，但需要&quot;可以去任何地方&quot;的可能性存在。不是为了做什么而自由，是自由本身就是需求。两个低敏感维度让你很少因为外部原因崩溃，两个高敏感维度保持了一种结构性的开放性。</p><p>你是一种罕见的平衡：不焦虑也不麻木，只是保持开放。</p></div>
+            <div class="lang-en"><p>Not rushing anywhere, but needs the possibility of &#39;I could go anywhere&#39; to exist. Not free to do something — freedom itself is the need.</p><p>A rare equilibrium: not anxious but not numbed — just staying open.</p></div>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">危险地形</span><span class="lang-en">Blind Spots</span></h2>
+            <div class="lang-zh"><p>没有驱动力（泰）的情况下，拓和游的开放性可能流于姿态而非行动。你有方向自由，但没有特别想去哪里；你有流动可能，但不一定会移动。</p></div>
+            <div class="lang-en"><p>Without drive (Composed), the openness of Autonomy and Exit might remain gestural rather than enacted. You have directional freedom but nothing specific pulling you anywhere; mobility potential but not necessarily any movement.</p></div>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">常见误读</span><span class="lang-en">Misread As</span></h2>
+            <ul class="misunderstood-list">
+                <li>
+                    <span class="lang-zh">「他飘」→ 不是飘，是结构上的开放性</span>
+                    <span class="lang-en">&#39;He&#39;s adrift&#39; → Not adrift — structurally open</span>
+                </li>
+                <li>
+                    <span class="lang-zh">「他没目标」→ 有，只是目标不是外部成就</span>
+                    <span class="lang-en">&#39;He has no goals&#39; → He does — just not external achievement</span>
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">修复逻辑</span><span class="lang-en">What Helps</span></h2>
+            <div class="two-column">
+                <div class="works-box">
+                    <h3><span class="lang-zh">❌ 不起作用</span><span class="lang-en">❌ Doesn't Work</span></h3>
+                    <p class="lang-zh">给他一个固定的目标方向然后期待全力投入。</p>
+                    <p class="lang-en">Giving him a fixed direction and expecting full commitment.</p>
+                </div>
+                <div class="works-box">
+                    <h3><span class="lang-zh">✓ 真正有效</span><span class="lang-en">✓ Actually Works</span></h3>
+                    <p class="lang-zh">给他开放性——让他知道选项是存在的。这比任何具体目标都更能激活他。</p>
+                    <p class="lang-en">Give him openness — let him know options exist. This activates him more than any specific goal.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <p style="margin-bottom: 25px; color: #999;">
+                <span class="lang-zh">了解你的HC-16类型</span>
+                <span class="lang-en">Discover your HC-16 type</span>
+            </p>
+            <a href="https://nondubito.net/" class="cta-button">
+                <span class="lang-zh">→ 做一个测试</span>
+                <span class="lang-en">→ Take the test</span>
+            </a>
+            <a href="/hc16/" class="cta-button secondary">
+                <span class="lang-zh">→ 浏览所有类型</span>
+                <span class="lang-en">→ Browse all types</span>
+            </a>
+        </section>
+    </main>
+    
+    <script>
+        function setLang(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.querySelectorAll('.lang-toggle').forEach(el => {
+                el.classList.remove('active');
+                if (el.getAttribute('data-lang') === lang) {
+                    el.classList.add('active');
+                }
+            });
+            localStorage.setItem('hc16_lang', lang);
+        }
+        
+        // Load saved language preference
+        const saved = localStorage.getItem('hc16_lang');
+        if (saved) {
+            setLang(saved);
+        }
+        
+        // Update active toggle on load
+        document.querySelectorAll('.lang-toggle').forEach(el => {
+            if (el.getAttribute('data-lang') === (document.documentElement.getAttribute('data-lang') || 'zh')) {
+                el.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

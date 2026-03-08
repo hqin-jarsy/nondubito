@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HC-16 脆弱性图谱 — Non Dubito | 了解你的四个维度：驱动、尊严、自由、根基">
+    <meta property="og:title" content="HC-16 · 脆弱性图谱 | Non Dubito">
+    <meta property="og:description" content="16种人格脆弱性模式 — 驱动·尊严·自由·根基的交织">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nondubito.net/hc16/">
+    <meta name="canonical" href="https://nondubito.net/hc16/">
+    <title>HC-16 脆弱性图谱 — Non Dubito</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            background: #0f0f0e;
+            color: #f5f0e8;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        [data-lang="en"] .lang-zh { display: none; }
+        [data-lang="zh"] .lang-en { display: none; }
+        
+        body {
+            background: #0f0f0e;
+            color: #f5f0e8;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(15, 15, 14, 0.95);
+            border-bottom: 1px solid rgba(196, 157, 97, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-logo {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: #c49d61;
+        }
+        
+        .header-right {
+            font-size: 12px;
+            letter-spacing: 0.05em;
+        }
+        
+        .lang-toggle {
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+        
+        .lang-toggle:hover {
+            color: #c49d61;
+        }
+        
+        .lang-toggle.active {
+            color: #c49d61;
+        }
+        
+        main {
+            margin-top: 70px;
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .intro {
+            max-width: 700px;
+            margin-bottom: 60px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #c49d61;
+            letter-spacing: 0.05em;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #999;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+        
+        .intro-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #d4cfc2;
+            margin-bottom: 20px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .type-card {
+            padding: 25px;
+            background: rgba(196, 157, 97, 0.03);
+            border: 1px solid rgba(196, 157, 97, 0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .type-card:hover {
+            background: rgba(196, 157, 97, 0.08);
+            border-color: rgba(196, 157, 97, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        .card-code {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #c49d61;
+            margin-bottom: 10px;
+            letter-spacing: 0.1em;
+            font-family: 'Inter', monospace;
+        }
+        
+        .card-name-zh {
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-family: 'Noto Serif SC', serif;
+            margin-bottom: 8px;
+            color: #f5f0e8;
+        }
+        
+        .card-dims {
+            font-size: 0.75rem;
+            color: #999;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .card-tagline {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.5;
+            font-style: italic;
+            margin-top: auto;
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(196, 157, 97, 0.2);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #c49d61;
+            color: #0f0f0e;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #e5c194;
+        }
+        
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+            }
+            
+            main {
+                padding: 70px 20px 40px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .type-card {
+                padding: 15px;
+            }
+            
+            .card-code {
+                font-size: 1.3rem;
+            }
+            
+            .card-name-zh {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-logo">HC-16</div>
+        <div class="header-right">
+            <span class="lang-toggle active" data-lang="zh" onclick="setLang('zh')">中文</span>
+            <span style="margin: 0 8px; color: #666;">|</span>
+            <span class="lang-toggle" data-lang="en" onclick="setLang('en')">EN</span>
+        </div>
+    </header>
+    
+    <main>
+        <section class="intro">
+            <h1 class="lang-zh">HC-16 脆弱性图谱</h1>
+            <h1 class="lang-en">HC-16 Vulnerability Profile</h1>
+            <p class="subtitle lang-zh">四个维度，十六种脆弱</p>
+            <p class="subtitle lang-en">Four Dimensions, Sixteen Vulnerabilities</p>
+            <p class="intro-text lang-zh">HC-16是一个人格脆弱性图谱系统，基于四个核心维度的组合：<strong>驱动·尊严·自由·根基</strong>。不是性格优劣的判断，而是对你感知模式和需求结构的深度理解。</p>
+            <p class="intro-text lang-en">HC-16 is a vulnerability profile system based on the interplay of four core dimensions: <strong>Drive · Dignity · Autonomy · Base</strong>. Not a judgment of character, but a deep understanding of your perceptual patterns and need structure.</p>
+        </section>
+        
+        <section class="grid">
+            <a href="/hc16/DTAB.html" class="type-card">
+                <div class="card-code">DTAB</div>
+                <div class="card-name-zh lang-zh">驱容专栖</div>
+                <div class="card-dims">Drive · Tolerant · Anchor · Base</div>
+                <div class="card-tagline lang-zh">往前冲，能忍，不挑路，扎得住。</div>
+                <div class="card-tagline lang-en">Always moving. Absorbs friction. Takes what's given. Stays put.</div>
+            </a>
+            <a href="/hc16/CTAB.html" class="type-card">
+                <div class="card-code">CTAB</div>
+                <div class="card-name-zh lang-zh">泰容专栖</div>
+                <div class="card-dims">Composed · Tolerant · Anchor · Base</div>
+                <div class="card-tagline lang-zh">什么都行，哪儿都好。</div>
+                <div class="card-tagline lang-en">Anything works. Anywhere is fine.</div>
+            </a>
+            <a href="/hc16/DFAB.html" class="type-card">
+                <div class="card-code">DFAB</div>
+                <div class="card-name-zh lang-zh">驱烈专栖</div>
+                <div class="card-dims">Drive · Fierce · Anchor · Base</div>
+                <div class="card-tagline lang-zh">有驱动力也有底线，专注且扎实。</div>
+                <div class="card-tagline lang-en">Driven with hard limits. Focused and grounded.</div>
+            </a>
+            <a href="/hc16/CFAB.html" class="type-card">
+                <div class="card-code">CFAB</div>
+                <div class="card-name-zh lang-zh">泰烈专栖</div>
+                <div class="card-dims">Composed · Fierce · Anchor · Base</div>
+                <div class="card-tagline lang-zh">不急但底线硬，给定一条路就安稳守住。</div>
+                <div class="card-tagline lang-en">Unhurried but hard-lined. Steady in a given path.</div>
+            </a>
+            <a href="/hc16/DFER.html" class="type-card">
+                <div class="card-code">DFER</div>
+                <div class="card-name-zh lang-zh">驱烈拓游</div>
+                <div class="card-dims">Drive · Fierce · Explore · Roam</div>
+                <div class="card-tagline lang-zh">四个频道全开，什么信号都收。</div>
+                <div class="card-tagline lang-en">All four channels open. Receives every signal.</div>
+            </a>
+            <a href="/hc16/DTEB.html" class="type-card">
+                <div class="card-code">DTEB</div>
+                <div class="card-name-zh lang-zh">驱容拓栖</div>
+                <div class="card-dims">Drive · Tolerant · Explore · Base</div>
+                <div class="card-tagline lang-zh">驱动力强，要方向自由，扎得住——基础层报警系统偏弱。</div>
+                <div class="card-tagline lang-en">Strong drive, needs directional freedom, can settle — foundation alarms are off.</div>
+            </a>
+            <a href="/hc16/CFAR.html" class="type-card">
+                <div class="card-code">CFAR</div>
+                <div class="card-name-zh lang-zh">泰烈专游</div>
+                <div class="card-dims">Composed · Fierce · Anchor · Roam</div>
+                <div class="card-tagline lang-zh">不急但底线硬，专注但不被绑——有原则的自由人。</div>
+                <div class="card-tagline lang-en">Unhurried but hard-lined. Focused but unbound — principled freedom.</div>
+            </a>
+            <a href="/hc16/DTAR.html" class="type-card">
+                <div class="card-code">DTAR</div>
+                <div class="card-name-zh lang-zh">驱容专游</div>
+                <div class="card-dims">Drive · Tolerant · Anchor · Roam</div>
+                <div class="card-tagline lang-zh">往前冲，能忍，能专注，但随时准备走。</div>
+                <div class="card-tagline lang-en">Runs hard, absorbs friction, stays focused — but always ready to leave.</div>
+            </a>
+            <a href="/hc16/DFEB.html" class="type-card">
+                <div class="card-code">DFEB</div>
+                <div class="card-name-zh lang-zh">驱烈拓栖</div>
+                <div class="card-dims">Drive · Fierce · Explore · Base</div>
+                <div class="card-tagline lang-zh">驱动力和底线都强，要方向自由但能安落——最完整的涌现型。</div>
+                <div class="card-tagline lang-en">Driven and principled, needs directional freedom, can settle — the most complete emergent type.</div>
+            </a>
+            <a href="/hc16/DFAR.html" class="type-card">
+                <div class="card-code">DFAR</div>
+                <div class="card-name-zh lang-zh">驱烈专游</div>
+                <div class="card-dims">Drive · Fierce · Anchor · Roam</div>
+                <div class="card-tagline lang-zh">驱动力和底线都强，专注但保持流动——有根的漫游者。</div>
+                <div class="card-tagline lang-en">Driven and principled. Focused but in motion — a rooted wanderer.</div>
+            </a>
+            <a href="/hc16/DTER.html" class="type-card">
+                <div class="card-code">DTER</div>
+                <div class="card-name-zh lang-zh">驱容拓游</div>
+                <div class="card-dims">Drive · Tolerant · Explore · Roam</div>
+                <div class="card-tagline lang-zh">涌现层全高基础层全低——流星型。</div>
+                <div class="card-tagline lang-en">Drive layer fully high, foundation fully low — the comet type.</div>
+            </a>
+            <a href="/hc16/CTEB.html" class="type-card">
+                <div class="card-code">CTEB</div>
+                <div class="card-name-zh lang-zh">泰容拓栖</div>
+                <div class="card-dims">Composed · Tolerant · Explore · Base</div>
+                <div class="card-tagline lang-zh">不急能忍但要方向空间，扎得住——温和的探索者。</div>
+                <div class="card-tagline lang-en">Calm and absorbing, but needs directional space, can settle — the gentle explorer.</div>
+            </a>
+            <a href="/hc16/CFER.html" class="type-card">
+                <div class="card-code">CFER</div>
+                <div class="card-name-zh lang-zh">泰烈拓游</div>
+                <div class="card-dims">Composed · Fierce · Explore · Roam</div>
+                <div class="card-tagline lang-zh">不急但底线硬，要空间不被绑——基础层主导的全面自由型。</div>
+                <div class="card-tagline lang-en">Unhurried but hard-lined. Needs space, won't be bound — full-spectrum foundational freedom.</div>
+            </a>
+            <a href="/hc16/CFEB.html" class="type-card">
+                <div class="card-code">CFEB</div>
+                <div class="card-name-zh lang-zh">泰烈拓栖</div>
+                <div class="card-dims">Composed · Fierce · Explore · Base</div>
+                <div class="card-tagline lang-zh">不急但底线硬，要空间但能安落——成熟的守护者。</div>
+                <div class="card-tagline lang-en">Unhurried but principled. Needs space but can settle — the mature guardian.</div>
+            </a>
+            <a href="/hc16/CTAR.html" class="type-card">
+                <div class="card-code">CTAR</div>
+                <div class="card-name-zh lang-zh">泰容专游</div>
+                <div class="card-dims">Composed · Tolerant · Anchor · Roam</div>
+                <div class="card-tagline lang-zh">不急能忍能专注但不被绑——安静的流动者。</div>
+                <div class="card-tagline lang-en">Unhurried, absorbing, focused — but won't be pinned. The quiet mover.</div>
+            </a>
+            <a href="/hc16/CTER.html" class="type-card">
+                <div class="card-code">CTER</div>
+                <div class="card-name-zh lang-zh">泰容拓游</div>
+                <div class="card-dims">Composed · Tolerant · Explore · Roam</div>
+                <div class="card-tagline lang-zh">不急能忍要空间不被绑——潜力型自由。</div>
+                <div class="card-tagline lang-en">Unhurried, absorbing, needs space and mobility — latent freedom.</div>
+            </a>
+        </section>
+        
+        <section class="cta">
+            <p style="margin-bottom: 25px; color: #999;">
+                <span class="lang-zh">发现你的脆弱性模式</span>
+                <span class="lang-en">Discover your vulnerability pattern</span>
+            </p>
+            <a href="https://nondubito.net/" class="cta-button">
+                <span class="lang-zh">→ 做一个测试</span>
+                <span class="lang-en">→ Take the test</span>
+            </a>
+        </section>
+    </main>
+    
+    <script>
+        function setLang(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.querySelectorAll('.lang-toggle').forEach(el => {
+                el.classList.remove('active');
+                if (el.getAttribute('data-lang') === lang) {
+                    el.classList.add('active');
+                }
+            });
+            localStorage.setItem('hc16_lang', lang);
+        }
+        
+        // Load saved language preference
+        const saved = localStorage.getItem('hc16_lang');
+        if (saved) {
+            setLang(saved);
+        }
+        
+        // Update active toggle on load
+        document.querySelectorAll('.lang-toggle').forEach(el => {
+            if (el.getAttribute('data-lang') === (document.documentElement.getAttribute('data-lang') || 'zh')) {
+                el.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

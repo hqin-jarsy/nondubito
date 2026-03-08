@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="驱动力和底线都强，专注但保持流动——有根的漫游者。 — Drive · Fierce · Anchor · Roam | HC-16 Vulnerability Profile">
+    <meta property="og:title" content="DFAR · 驱烈专游 — HC-16">
+    <meta property="og:description" content="驱动力和底线都强，专注但保持流动——有根的漫游者。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nondubito.net/hc16/DFAR.html">
+    <meta name="canonical" href="https://nondubito.net/hc16/DFAR.html">
+    <title>DFAR · 驱烈专游 — HC-16 Vulnerability Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            background: #0f0f0e;
+            color: #f5f0e8;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        [data-lang="en"] .lang-zh { display: none; }
+        [data-lang="zh"] .lang-en { display: none; }
+        
+        body {
+            background: #0f0f0e;
+            color: #f5f0e8;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(15, 15, 14, 0.95);
+            border-bottom: 1px solid rgba(196, 157, 97, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-left {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        
+        .header-left a {
+            color: #c49d61;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .header-left a:hover {
+            color: #e5c194;
+        }
+        
+        .header-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: #c49d61;
+        }
+        
+        .header-right {
+            font-size: 12px;
+            letter-spacing: 0.05em;
+        }
+        
+        .lang-toggle {
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+        
+        .lang-toggle:hover {
+            color: #c49d61;
+        }
+        
+        .lang-toggle.active {
+            color: #c49d61;
+        }
+        
+        main {
+            margin-top: 70px;
+            padding: 80px 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero {
+            margin-bottom: 60px;
+        }
+        
+        .type-code {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #c49d61;
+            margin-bottom: 20px;
+            font-family: 'Inter', monospace;
+        }
+        
+        .type-name-zh {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Noto Serif SC', serif;
+            margin-bottom: 15px;
+            color: #f5f0e8;
+        }
+        
+        .type-name-en {
+            font-size: 1.1rem;
+            color: #999;
+            letter-spacing: 0.05em;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            color: #e5c194;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .dimensions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(196, 157, 97, 0.05);
+            border: 1px solid rgba(196, 157, 97, 0.1);
+        }
+        
+        .dimension {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .dim-char {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Noto Serif SC', serif;
+            min-width: 40px;
+            text-align: center;
+            color: #c49d61;
+        }
+        
+        .dimension.low .dim-char {
+            color: #666;
+            opacity: 0.6;
+        }
+        
+        .dim-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #c49d61;
+            margin-right: 8px;
+            margin-top: 2px;
+        }
+        
+        .dimension.low .dim-indicator {
+            background: transparent;
+            border: 2px solid #666;
+        }
+        
+        .dim-content {
+            flex: 1;
+        }
+        
+        .dim-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #f5f0e8;
+            margin-bottom: 5px;
+        }
+        
+        .dim-label .en {
+            display: block;
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 400;
+            margin-top: 3px;
+        }
+        
+        .dim-desc {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+        
+        section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #c49d61;
+            letter-spacing: 0.05em;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(196, 157, 97, 0.2);
+        }
+        
+        p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #d4cfc2;
+        }
+        
+        .misunderstood-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .misunderstood-list li {
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            background: rgba(196, 157, 97, 0.03);
+            border-left: 3px solid #c49d61;
+            font-size: 0.95rem;
+        }
+        
+        .misunderstood-list li .en {
+            display: block;
+            margin-top: 5px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .works-box {
+            padding: 20px;
+            background: rgba(196, 157, 97, 0.05);
+            border: 1px solid rgba(196, 157, 97, 0.1);
+        }
+        
+        .works-box h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #c49d61;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+        
+        .works-box p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(196, 157, 97, 0.2);
+            margin-top: 60px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #c49d61;
+            color: #0f0f0e;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: background 0.3s;
+            margin: 0 10px;
+        }
+        
+        .cta-button:hover {
+            background: #e5c194;
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            color: #c49d61;
+            border: 1px solid #c49d61;
+        }
+        
+        .cta-button.secondary:hover {
+            background: rgba(196, 157, 97, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+            }
+            
+            main {
+                padding: 70px 20px 40px 20px;
+            }
+            
+            .type-code {
+                font-size: 3rem;
+            }
+            
+            .type-name-zh {
+                font-size: 2rem;
+            }
+            
+            .dimensions {
+                grid-template-columns: 1fr;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+                gap: 10px;
+            }
+            
+            .header-center {
+                position: static;
+                transform: none;
+                font-size: 14px;
+            }
+            
+            main {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="/hc16/">← HC-16</a>
+        </div>
+        <div class="header-center">DFAR</div>
+        <div class="header-right">
+            <span class="lang-toggle active" data-lang="zh" onclick="setLang('zh')">中文</span>
+            <span style="margin: 0 8px; color: #666;">|</span>
+            <span class="lang-toggle" data-lang="en" onclick="setLang('en')">EN</span>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="type-code">DFAR</div>
+            <div class="type-name-zh lang-zh">驱烈专游</div>
+            <div class="type-name-en lang-en">Drive · Fierce · Anchor · Roam</div>
+            <div class="tagline lang-zh">驱动力和底线都强，专注但保持流动——有根的漫游者。</div>
+            <div class="tagline lang-en">Driven and principled. Focused but in motion — a rooted wanderer.</div>
+        </section>
+        
+        <section class="dimensions">
+            <div class="dimension high">
+                <div class="dim-char">驱</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>驱
+                        </div>
+                        <div class="dim-desc">求不得（高）：内在驱动力强</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>D
+                        </div>
+                        <div class="dim-desc">Drive (High): Strong internal drive</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dimension high">
+                <div class="dim-char">烈</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>烈
+                        </div>
+                        <div class="dim-desc">不可忍（高）：底线极硬</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>F
+                        </div>
+                        <div class="dim-desc">Fierce (High): Hard limits</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dimension low">
+                <div class="dim-char">专</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>专
+                        </div>
+                        <div class="dim-desc">不可选（低）：能在一个方向上深入</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>A
+                        </div>
+                        <div class="dim-desc">Anchor (Low): Can go deep in one direction</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dimension high">
+                <div class="dim-char">游</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>游
+                        </div>
+                        <div class="dim-desc">不可逃（高）：对被困住极度警觉</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>R
+                        </div>
+                        <div class="dim-desc">Exit (High): Extremely alert to being trapped</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">结构模式</span><span class="lang-en">Pattern</span></h2>
+            <div class="lang-zh"><p>跟DTAR的区别在于烈——你不能忍，底线被碰了就走。每一段停留中基础层得到更好的保护（烈在工作），但也可能因为底线被触及而更频繁地离开。</p><p>人们觉得你难以预测——其实你的离开都有原因，只是他们没看见那条线。</p></div>
+            <div class="lang-en"><p>The difference from DTAR is Dignity — you can&#39;t absorb violations; when the line is crossed you leave. Foundation gets better protection in each stay.</p><p>People find you unpredictable — actually your departures all have reasons; they just never saw the line.</p></div>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">危险地形</span><span class="lang-en">Blind Spots</span></h2>
+            <div class="lang-zh"><p>驱的推进需求和游的流动需求都很强，而烈让你在底线被触碰时快速离开。每一次离开都有正当理由，但离开的频率本身会成为一种结构性的损耗。</p></div>
+            <div class="lang-en"><p>Drive&#39;s advancement need and Exit&#39;s mobility need are both intense, while Dignity makes you leave quickly when crossed. Every departure has legitimate reason, but the frequency of departures itself becomes a structural drain.</p></div>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">常见误读</span><span class="lang-en">Misread As</span></h2>
+            <ul class="misunderstood-list">
+                <li>
+                    <span class="lang-zh">「他很难相处」→ 不是难相处，是他的底线很清晰</span>
+                    <span class="lang-en">&#39;He&#39;s difficult to work with&#39; → Not difficult — his limits are clear</span>
+                </li>
+                <li>
+                    <span class="lang-zh">「他不稳定」→ 不是不稳定，是不接受底线被触碰后继续待</span>
+                    <span class="lang-en">&#39;He&#39;s unstable&#39; → Not unstable — unwilling to continue after limits are crossed</span>
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">修复逻辑</span><span class="lang-en">What Helps</span></h2>
+            <div class="two-column">
+                <div class="works-box">
+                    <h3><span class="lang-zh">❌ 不起作用</span><span class="lang-en">❌ Doesn't Work</span></h3>
+                    <p class="lang-zh">期待他为了&quot;大局&quot;忍受底线被碰。</p>
+                    <p class="lang-en">Expecting him to tolerate limits being crossed &#39;for the bigger picture.&#39;</p>
+                </div>
+                <div class="works-box">
+                    <h3><span class="lang-zh">✓ 真正有效</span><span class="lang-en">✓ Actually Works</span></h3>
+                    <p class="lang-zh">提前识别并明确说清楚你的底线在哪里。透明化你的边界，让环境有机会在触碰之前调整。</p>
+                    <p class="lang-en">Identify and clearly articulate your limits in advance. Make your boundaries transparent — give the environment a chance to adjust before touching them.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <p style="margin-bottom: 25px; color: #999;">
+                <span class="lang-zh">了解你的HC-16类型</span>
+                <span class="lang-en">Discover your HC-16 type</span>
+            </p>
+            <a href="https://nondubito.net/" class="cta-button">
+                <span class="lang-zh">→ 做一个测试</span>
+                <span class="lang-en">→ Take the test</span>
+            </a>
+            <a href="/hc16/" class="cta-button secondary">
+                <span class="lang-zh">→ 浏览所有类型</span>
+                <span class="lang-en">→ Browse all types</span>
+            </a>
+        </section>
+    </main>
+    
+    <script>
+        function setLang(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.querySelectorAll('.lang-toggle').forEach(el => {
+                el.classList.remove('active');
+                if (el.getAttribute('data-lang') === lang) {
+                    el.classList.add('active');
+                }
+            });
+            localStorage.setItem('hc16_lang', lang);
+        }
+        
+        // Load saved language preference
+        const saved = localStorage.getItem('hc16_lang');
+        if (saved) {
+            setLang(saved);
+        }
+        
+        // Update active toggle on load
+        document.querySelectorAll('.lang-toggle').forEach(el => {
+            if (el.getAttribute('data-lang') === (document.documentElement.getAttribute('data-lang') || 'zh')) {
+                el.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="往前冲，能忍，不挑路，扎得住。 — Drive · Tolerant · Anchor · Base | HC-16 Vulnerability Profile">
+    <meta property="og:title" content="DTAB · 驱容专栖 — HC-16">
+    <meta property="og:description" content="往前冲，能忍，不挑路，扎得住。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nondubito.net/hc16/DTAB.html">
+    <meta name="canonical" href="https://nondubito.net/hc16/DTAB.html">
+    <title>DTAB · 驱容专栖 — HC-16 Vulnerability Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            background: #0f0f0e;
+            color: #f5f0e8;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        [data-lang="en"] .lang-zh { display: none; }
+        [data-lang="zh"] .lang-en { display: none; }
+        
+        body {
+            background: #0f0f0e;
+            color: #f5f0e8;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(15, 15, 14, 0.95);
+            border-bottom: 1px solid rgba(196, 157, 97, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-left {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        
+        .header-left a {
+            color: #c49d61;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .header-left a:hover {
+            color: #e5c194;
+        }
+        
+        .header-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: #c49d61;
+        }
+        
+        .header-right {
+            font-size: 12px;
+            letter-spacing: 0.05em;
+        }
+        
+        .lang-toggle {
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+        
+        .lang-toggle:hover {
+            color: #c49d61;
+        }
+        
+        .lang-toggle.active {
+            color: #c49d61;
+        }
+        
+        main {
+            margin-top: 70px;
+            padding: 80px 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero {
+            margin-bottom: 60px;
+        }
+        
+        .type-code {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #c49d61;
+            margin-bottom: 20px;
+            font-family: 'Inter', monospace;
+        }
+        
+        .type-name-zh {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Noto Serif SC', serif;
+            margin-bottom: 15px;
+            color: #f5f0e8;
+        }
+        
+        .type-name-en {
+            font-size: 1.1rem;
+            color: #999;
+            letter-spacing: 0.05em;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            color: #e5c194;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .dimensions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(196, 157, 97, 0.05);
+            border: 1px solid rgba(196, 157, 97, 0.1);
+        }
+        
+        .dimension {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .dim-char {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Noto Serif SC', serif;
+            min-width: 40px;
+            text-align: center;
+            color: #c49d61;
+        }
+        
+        .dimension.low .dim-char {
+            color: #666;
+            opacity: 0.6;
+        }
+        
+        .dim-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #c49d61;
+            margin-right: 8px;
+            margin-top: 2px;
+        }
+        
+        .dimension.low .dim-indicator {
+            background: transparent;
+            border: 2px solid #666;
+        }
+        
+        .dim-content {
+            flex: 1;
+        }
+        
+        .dim-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #f5f0e8;
+            margin-bottom: 5px;
+        }
+        
+        .dim-label .en {
+            display: block;
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 400;
+            margin-top: 3px;
+        }
+        
+        .dim-desc {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+        
+        section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #c49d61;
+            letter-spacing: 0.05em;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(196, 157, 97, 0.2);
+        }
+        
+        p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #d4cfc2;
+        }
+        
+        .misunderstood-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .misunderstood-list li {
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            background: rgba(196, 157, 97, 0.03);
+            border-left: 3px solid #c49d61;
+            font-size: 0.95rem;
+        }
+        
+        .misunderstood-list li .en {
+            display: block;
+            margin-top: 5px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .works-box {
+            padding: 20px;
+            background: rgba(196, 157, 97, 0.05);
+            border: 1px solid rgba(196, 157, 97, 0.1);
+        }
+        
+        .works-box h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #c49d61;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+        
+        .works-box p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(196, 157, 97, 0.2);
+            margin-top: 60px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #c49d61;
+            color: #0f0f0e;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: background 0.3s;
+            margin: 0 10px;
+        }
+        
+        .cta-button:hover {
+            background: #e5c194;
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            color: #c49d61;
+            border: 1px solid #c49d61;
+        }
+        
+        .cta-button.secondary:hover {
+            background: rgba(196, 157, 97, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+            }
+            
+            main {
+                padding: 70px 20px 40px 20px;
+            }
+            
+            .type-code {
+                font-size: 3rem;
+            }
+            
+            .type-name-zh {
+                font-size: 2rem;
+            }
+            
+            .dimensions {
+                grid-template-columns: 1fr;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+                gap: 10px;
+            }
+            
+            .header-center {
+                position: static;
+                transform: none;
+                font-size: 14px;
+            }
+            
+            main {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="/hc16/">← HC-16</a>
+        </div>
+        <div class="header-center">DTAB</div>
+        <div class="header-right">
+            <span class="lang-toggle active" data-lang="zh" onclick="setLang('zh')">中文</span>
+            <span style="margin: 0 8px; color: #666;">|</span>
+            <span class="lang-toggle" data-lang="en" onclick="setLang('en')">EN</span>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="type-code">DTAB</div>
+            <div class="type-name-zh lang-zh">驱容专栖</div>
+            <div class="type-name-en lang-en">Drive · Tolerant · Anchor · Base</div>
+            <div class="tagline lang-zh">往前冲，能忍，不挑路，扎得住。</div>
+            <div class="tagline lang-en">Always moving. Absorbs friction. Takes what&#39;s given. Stays put.</div>
+        </section>
+        
+        <section class="dimensions">
+            <div class="dimension high">
+                <div class="dim-char">驱</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>驱
+                        </div>
+                        <div class="dim-desc">求不得（高）：你的内在驱动力极强，目标受阻时会感到强烈的痛苦</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>D
+                        </div>
+                        <div class="dim-desc">Drive (High): Intense internal drive — blocked goals cause sharp pain</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dimension low">
+                <div class="dim-char">容</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>容
+                        </div>
+                        <div class="dim-desc">不可忍（低）：你对基础层的侵蚀相对迟钝，能忍别人忍不了的</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>T
+                        </div>
+                        <div class="dim-desc">Tolerant (Low): Less reactive to dignity violations — you absorb what others can&#39;t</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dimension low">
+                <div class="dim-char">专</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>专
+                        </div>
+                        <div class="dim-desc">不可选（低）：你不太介意方向是谁定的，给你一条路就能冲</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>A
+                        </div>
+                        <div class="dim-desc">Anchor (Low): You don&#39;t need to choose the direction — give you a path and you&#39;ll run it</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dimension low">
+                <div class="dim-char">栖</div>
+                <div class="dim-content">
+                    <div class="lang-zh">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>栖
+                        </div>
+                        <div class="dim-desc">不可逃（低）：你不焦虑退出通道，扎在一个地方很自然</div>
+                    </div>
+                    <div class="lang-en">
+                        <div class="dim-label">
+                            <span class="dim-indicator"></span>B
+                        </div>
+                        <div class="dim-desc">Base (Low): No exit anxiety — settling into a place feels natural</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">结构模式</span><span class="lang-en">Pattern</span></h2>
+            <div class="lang-zh"><p>你永远有下一个目标，永远在往前走。&quot;我很忙但很充实&quot;是你最常说的话。你不太挑环境——给你一个方向你就能投入，给你一个位置你就能扎下来。你身边的人觉得你是&quot;能扛事的人&quot;。</p><p>但你的&quot;能扛&quot;有一个隐藏成本：你的基础层报警系统是静音的。被工具化对待的时候你的反应是&quot;忍一忍&quot;，方向被限制的时候你的反应是&quot;没关系&quot;，退出通道被封堵的时候你的反应是&quot;我在这里挺好的&quot;。</p></div>
+            <div class="lang-en"><p>You always have a next goal, always moving forward. &#39;I&#39;m busy but fulfilled&#39; is your most common refrain. You don&#39;t need to choose your environment — give you a direction and you commit, give you a position and you root.</p><p>But your &#39;can take it&#39; has a hidden cost: your foundational alarm systems are on mute. When instrumentalized, your response is &#39;I&#39;ll manage.&#39; Direction gets restricted: &#39;it&#39;s fine.&#39; Exit gets sealed: &#39;I&#39;m good here.&#39;</p></div>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">危险地形</span><span class="lang-en">Blind Spots</span></h2>
+            <div class="lang-zh"><p>你最危险的处境不是失败——失败至少逼你停下来检查。你最危险的处境是&quot;有意义的忙碌&quot;。当工作有意义、目标在推进、成就在积累的时候，你的涌现层被喂得很饱，其他三个报警系统同时静音。你可以在一份&quot;有意义的工作&quot;中被系统性地透支十年而不自知。</p><p>等你终于感受到痛苦的时候——因为长期积累的损害穿透了你的高阈值——爆发会极其猛烈。你会发现自己已经不知道&quot;我是谁&quot;了，只知道&quot;我在做什么&quot;。</p></div>
+            <div class="lang-en"><p>Your most dangerous state isn&#39;t failure — failure at least forces you to stop and check. It&#39;s &#39;meaningful busyness.&#39; When work is meaningful, goals advancing, achievements accumulating — your drive layer is fully fed, and all three other alarm systems simultaneously mute.</p><p>When you finally feel pain — long-accumulated damage breaching your high threshold — the explosion will be extreme. You&#39;ll find you no longer know &#39;who I am,&#39; only &#39;what I do.&#39;</p></div>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">常见误读</span><span class="lang-en">Misread As</span></h2>
+            <ul class="misunderstood-list">
+                <li>
+                    <span class="lang-zh">「他很坚强」→ 不是坚强，是基础层报警系统静音了</span>
+                    <span class="lang-en">&#39;He&#39;s so resilient&#39; → Not resilience — foundational alarm systems are muted</span>
+                </li>
+                <li>
+                    <span class="lang-zh">「他很专注」→ 不是专注，是方向自由感被钝化了</span>
+                    <span class="lang-en">&#39;He&#39;s so focused&#39; → Not focus — his sense of directional freedom has been dulled</span>
+                </li>
+                <li>
+                    <span class="lang-zh">「他很忠诚」→ 不是忠诚，是退出焦虑被钝化了</span>
+                    <span class="lang-en">&#39;He&#39;s so loyal&#39; → Not loyalty — exit anxiety has been numbed</span>
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2><span class="lang-zh">修复逻辑</span><span class="lang-en">What Helps</span></h2>
+            <div class="two-column">
+                <div class="works-box">
+                    <h3><span class="lang-zh">❌ 不起作用</span><span class="lang-en">❌ Doesn't Work</span></h3>
+                    <p class="lang-zh">「放松一下」「别那么拼」——这些话在涌现层里打转，根本碰不到你的基础层。你听了会说&quot;好的&quot;然后继续冲。</p>
+                    <p class="lang-en">&#39;Relax a little&#39; / &#39;don&#39;t work so hard&#39; — these orbit in the drive layer, never touching the foundation. You&#39;ll say &#39;okay&#39; and keep running.</p>
+                </div>
+                <div class="works-box">
+                    <h3><span class="lang-zh">✓ 真正有效</span><span class="lang-en">✓ Actually Works</span></h3>
+                    <p class="lang-zh">用你听得懂的语言翻译你听不到的信号。不是「你应该照顾自己」，而是「你继续这样下去，三年后你连冲的能力都没有了」。把基础层的需求翻译成涌现层的语言——这是唯一能穿透你感知屏障的方式。</p>
+                    <p class="lang-en">Translate the signals you can&#39;t hear into language you can. Not &#39;you should take care of yourself&#39; but &#39;if you keep this up, in three years you won&#39;t even have the capacity to run.&#39; Convert foundational needs into drive-layer language — that&#39;s the only way through your perceptual barrier.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <p style="margin-bottom: 25px; color: #999;">
+                <span class="lang-zh">了解你的HC-16类型</span>
+                <span class="lang-en">Discover your HC-16 type</span>
+            </p>
+            <a href="https://nondubito.net/" class="cta-button">
+                <span class="lang-zh">→ 做一个测试</span>
+                <span class="lang-en">→ Take the test</span>
+            </a>
+            <a href="/hc16/" class="cta-button secondary">
+                <span class="lang-zh">→ 浏览所有类型</span>
+                <span class="lang-en">→ Browse all types</span>
+            </a>
+        </section>
+    </main>
+    
+    <script>
+        function setLang(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.querySelectorAll('.lang-toggle').forEach(el => {
+                el.classList.remove('active');
+                if (el.getAttribute('data-lang') === lang) {
+                    el.classList.add('active');
+                }
+            });
+            localStorage.setItem('hc16_lang', lang);
+        }
+        
+        // Load saved language preference
+        const saved = localStorage.getItem('hc16_lang');
+        if (saved) {
+            setLang(saved);
+        }
+        
+        // Update active toggle on load
+        document.querySelectorAll('.lang-toggle').forEach(el => {
+            if (el.getAttribute('data-lang') === (document.documentElement.getAttribute('data-lang') || 'zh')) {
+                el.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

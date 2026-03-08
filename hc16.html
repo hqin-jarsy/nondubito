@@ -516,6 +516,7 @@ body {
   <div class="cta-area">
     <button class="btn-invite" id="btn-invite" onclick="shareInvite()"></button>
     <button class="btn-share" onclick="shareResult()" id="btn-share-text"></button>
+    <a id="btn-type-page" href="hc16/DTAB.html" style="display:block;width:100%;text-align:center;font-family:var(--sans);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,240,232,0.4);text-decoration:none;border:1px solid rgba(245,240,232,0.12);padding:0.85rem 1rem;transition:all 0.2s;" onmouseover="this.style.color='rgba(245,240,232,0.75)';this.style.borderColor='rgba(245,240,232,0.25)'" onmouseout="this.style.color='rgba(245,240,232,0.4)';this.style.borderColor='rgba(245,240,232,0.12)'"></a>
     <button class="btn-retake" onclick="retake()" id="btn-retake-text"></button>
     <a href="index.html" class="cta-back" id="cta-back-text"></a>
   </div>
@@ -1339,6 +1340,10 @@ function showResult(code) {
   document.getElementById('btn-share-text').textContent = s.btn_share;
   document.getElementById('btn-retake-text').textContent = s.btn_retake;
   document.getElementById('cta-back-text').textContent = s.cta_back;
+  // link to individual type page
+  const typePageBtn = document.getElementById('btn-type-page');
+  typePageBtn.href = 'hc16/' + code + '.html';
+  typePageBtn.textContent = currentLang === 'en' ? 'Full profile: ' + code + ' →' : '查看完整档案：' + code + ' →';
 
   show('s-result');
 }
