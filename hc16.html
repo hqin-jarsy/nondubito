@@ -355,6 +355,101 @@ body {
 .compat-chip.amber { color: rgba(220,160,80,0.8); border-color: rgba(220,160,80,0.3); background: rgba(220,160,80,0.06); }
 .compat-chip.red { color: rgba(200,100,100,0.8); border-color: rgba(200,100,100,0.3); background: rgba(200,100,100,0.06); }
 
+/* ── FEEDBACK ── */
+.feedback-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto 1.5rem;
+  padding: 0 1.5rem;
+}
+.feedback-box {
+  border: 1px solid rgba(245,240,232,0.08);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  text-align: center;
+}
+.feedback-q {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.82rem;
+  color: rgba(245,240,232,0.4);
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+.feedback-btns { display: flex; gap: 0.6rem; justify-content: center; }
+.feedback-btn {
+  background: none;
+  border: 1px solid rgba(245,240,232,0.15);
+  border-radius: var(--radius);
+  color: rgba(245,240,232,0.45);
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.78rem;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.feedback-btn:hover { border-color: rgba(245,240,232,0.3); color: rgba(245,240,232,0.7); }
+.feedback-btn.yes:hover { border-color: rgba(150,200,150,0.4); color: rgba(150,200,150,0.8); }
+.feedback-btn.no:hover  { border-color: rgba(220,160,80,0.4);  color: rgba(220,160,80,0.8); }
+.feedback-detail {
+  margin-top: 1.2rem;
+  text-align: left;
+  display: none;
+}
+.feedback-detail.open { display: block; }
+.feedback-label {
+  font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(245,240,232,0.25); margin-bottom: 0.5rem;
+}
+.feedback-select {
+  width: 100%;
+  background: rgba(245,240,232,0.04);
+  border: 1px solid rgba(245,240,232,0.12);
+  border-radius: var(--radius);
+  color: rgba(245,240,232,0.7);
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.85rem;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.8rem;
+  appearance: none;
+}
+.feedback-select option { background: #1a1a18; }
+.feedback-note {
+  width: 100%;
+  background: rgba(245,240,232,0.04);
+  border: 1px solid rgba(245,240,232,0.12);
+  border-radius: var(--radius);
+  color: rgba(245,240,232,0.7);
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.82rem;
+  padding: 0.6rem 0.8rem;
+  resize: vertical;
+  min-height: 70px;
+  margin-bottom: 0.8rem;
+  box-sizing: border-box;
+}
+.feedback-note::placeholder { color: rgba(245,240,232,0.2); }
+.feedback-submit {
+  width: 100%;
+  background: rgba(245,240,232,0.07);
+  border: 1px solid rgba(245,240,232,0.15);
+  border-radius: var(--radius);
+  color: rgba(245,240,232,0.6);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 0.6rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.feedback-submit:hover { background: rgba(245,240,232,0.12); color: rgba(245,240,232,0.85); }
+.feedback-done {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.82rem;
+  color: rgba(150,200,150,0.7);
+  text-align: center;
+  display: none;
+  padding: 0.3rem 0;
+}
+
 /* ── CTA ── */
 .cta-area {
   text-align: center;
@@ -516,6 +611,44 @@ body {
     </div>
     <div id="r-compat"></div>
   </div>
+
+  <!-- ── FEEDBACK WIDGET ── -->
+  <div class="feedback-wrap">
+    <div class="feedback-box" id="feedback-box">
+      <p class="feedback-q" id="fb-q-text">这个结果说中你了吗？</p>
+      <div class="feedback-btns" id="fb-btns">
+        <button class="feedback-btn yes" onclick="fbYes()">准，说中了</button>
+        <button class="feedback-btn no"  onclick="fbNo()">不太像我</button>
+      </div>
+      <div class="feedback-detail" id="fb-detail">
+        <div class="feedback-label" id="fb-label-type">你觉得自己更像哪个类型？</div>
+        <select class="feedback-select" id="fb-type">
+          <option value="">— 选择 —</option>
+          <option value="DFER">DFER · 驱烈拓游</option>
+          <option value="DFEB">DFEB · 驱烈拓栖</option>
+          <option value="DFAR">DFAR · 驱烈专游</option>
+          <option value="DFAB">DFAB · 驱烈专栖</option>
+          <option value="DTER">DTER · 驱容拓游</option>
+          <option value="DTEB">DTEB · 驱容拓栖</option>
+          <option value="DTAR">DTAR · 驱容专游</option>
+          <option value="DTAB">DTAB · 驱容专栖</option>
+          <option value="CFER">CFER · 泰烈拓游</option>
+          <option value="CFEB">CFEB · 泰烈拓栖</option>
+          <option value="CFAR">CFAR · 泰烈专游</option>
+          <option value="CFAB">CFAB · 泰烈专栖</option>
+          <option value="CTER">CTER · 泰容拓游</option>
+          <option value="CTEB">CTEB · 泰容拓栖</option>
+          <option value="CTAR">CTAR · 泰容专游</option>
+          <option value="CTAB">CTAB · 泰容专栖</option>
+        </select>
+        <div class="feedback-label" id="fb-label-note">哪里感觉不对？（可选）</div>
+        <textarea class="feedback-note" id="fb-note" placeholder="随便说几句，对我们改进测试很有帮助…"></textarea>
+        <button class="feedback-submit" onclick="fbSubmit()" id="fb-submit-btn">提交反馈</button>
+      </div>
+      <div class="feedback-done" id="fb-done">谢谢，这个反馈很有价值。</div>
+    </div>
+  </div>
+
   <div class="cta-area">
     <button class="btn-invite" id="btn-invite" onclick="shareInvite()"></button>
     <button class="btn-share" onclick="shareResult()" id="btn-share-text"></button>
@@ -1181,6 +1314,7 @@ function setLang(lang) {
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
   rerenderCurrent();
+  fbUpdateLang();
 }
 
 function rerenderCurrent() {
@@ -1209,6 +1343,20 @@ function startTest() {
 }
 
 function retake() {
+  // reset feedback widget for next attempt
+  const detail = document.getElementById('fb-detail');
+  const done   = document.getElementById('fb-done');
+  const btns   = document.getElementById('fb-btns');
+  const q      = document.getElementById('fb-q-text');
+  if (detail) detail.classList.remove('open');
+  if (done)   done.style.display = 'none';
+  if (btns)   btns.style.display = '';
+  if (q)      q.style.display = '';
+  document.querySelectorAll('.feedback-btn').forEach(b => b.style.display = '');
+  const sel = document.getElementById('fb-type');
+  if (sel) sel.value = '';
+  const note = document.getElementById('fb-note');
+  if (note) note.value = '';
   startTest();
 }
 
@@ -1262,6 +1410,71 @@ function showToast(msg) {
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2200);
   }
+}
+
+// ── FEEDBACK ─────────────────────────────────────────────────────────────────
+// Set your Formspree form ID at https://formspree.io/ (free, 50 submissions/mo)
+// Example: const FEEDBACK_URL = 'https://formspree.io/f/xyzabcde';
+const FEEDBACK_URL = '';
+
+function fbUpdateLang() {
+  const isEn = currentLang === 'en';
+  const q = document.getElementById('fb-q-text');
+  const lt = document.getElementById('fb-label-type');
+  const ln = document.getElementById('fb-label-note');
+  const sb = document.getElementById('fb-submit-btn');
+  const fn = document.getElementById('fb-note');
+  const fd = document.getElementById('fb-done');
+  if (q)  q.textContent  = isEn ? 'Did this result resonate with you?' : '这个结果说中你了吗？';
+  if (lt) lt.textContent = isEn ? 'Which type feels more like you?' : '你觉得自己更像哪个类型？';
+  if (ln) ln.textContent = isEn ? 'What felt off? (optional)' : '哪里感觉不对？（可选）';
+  if (sb) sb.textContent = isEn ? 'Submit' : '提交反馈';
+  if (fn) fn.placeholder = isEn ? 'Anything helps us improve the test…' : '随便说几句，对我们改进测试很有帮助…';
+  if (fd) fd.textContent = isEn ? 'Thank you — this is really helpful.' : '谢谢，这个反馈很有价值。';
+  const yesBtn = document.querySelector('.feedback-btn.yes');
+  const noBtn  = document.querySelector('.feedback-btn.no');
+  if (yesBtn) yesBtn.textContent = isEn ? 'Yes, it fits' : '准，说中了';
+  if (noBtn)  noBtn.textContent  = isEn ? 'Not quite me' : '不太像我';
+}
+
+function fbYes() {
+  document.getElementById('fb-btns').style.display = 'none';
+  const done = document.getElementById('fb-done');
+  done.textContent = currentLang === 'en' ? '✓ Good to know.' : '✓ 好，知道了。';
+  done.style.display = 'block';
+  fbSend({ result: window._myType || '', felt: window._myType || '', accurate: 'yes', note: '' });
+}
+
+function fbNo() {
+  document.getElementById('fb-detail').classList.add('open');
+  document.querySelector('.feedback-btn.no').style.display = 'none';
+  document.querySelector('.feedback-btn.yes').style.display = 'none';
+  document.getElementById('fb-q-text').style.display = 'none';
+}
+
+function fbSubmit() {
+  const felt = document.getElementById('fb-type').value;
+  const note = document.getElementById('fb-note').value.trim();
+  if (!felt) {
+    const select = document.getElementById('fb-type');
+    select.style.borderColor = 'rgba(220,100,100,0.4)';
+    setTimeout(() => select.style.borderColor = '', 1200);
+    return;
+  }
+  fbSend({ result: window._myType || '', felt, accurate: 'no', note });
+  document.getElementById('fb-detail').classList.remove('open');
+  document.getElementById('fb-done').style.display = 'block';
+}
+
+async function fbSend(data) {
+  if (!FEEDBACK_URL) return;
+  try {
+    await fetch(FEEDBACK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data),
+    });
+  } catch(e) { /* silent fail */ }
 }
 
 // Initialize
