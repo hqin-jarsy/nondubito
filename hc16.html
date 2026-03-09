@@ -142,6 +142,29 @@ body {
 }
 .btn-start:hover { background: var(--cream2); }
 .btn-start:active { transform: scale(0.98); }
+.intro-know-type { margin-top: 1.2rem; text-align: center; }
+.intro-know-toggle {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--cjk), var(--sans); font-size: 0.72rem;
+  color: rgba(245,240,232,0.3); letter-spacing: 0.06em;
+  transition: color 0.2s; padding: 0.3rem 0;
+}
+.intro-know-toggle:hover { color: rgba(245,240,232,0.6); }
+.know-type-arrow { display: inline-block; transition: transform 0.2s; }
+.intro-type-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem; margin-top: 0.8rem; max-width: 320px; margin-left: auto; margin-right: auto;
+}
+.type-grid-chip {
+  font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.1em;
+  padding: 0.45rem 0.3rem; text-align: center; text-decoration: none;
+  border: 1px solid rgba(245,240,232,0.15); color: rgba(245,240,232,0.45);
+  transition: all 0.18s ease; border-radius: 3px;
+}
+.type-grid-chip:hover {
+  border-color: var(--gold); color: var(--gold-light);
+  background: rgba(184,149,58,0.08);
+}
 .intro-note {
   margin-top: 1.5rem;
   font-size: 0.65rem;
@@ -597,6 +620,29 @@ body {
   <div id="invite-banner" class="intro-invite-banner" style="display:none"></div>
   <p class="intro-desc" id="intro-desc-text">16道题，四个维度。测的是你在哪里感受到压力，不是你应该是什么样的人。</p>
   <button class="btn-start" onclick="startTest()" id="btn-start-text">开始测试</button>
+  <div class="intro-know-type">
+    <button class="intro-know-toggle" onclick="toggleKnowType(this)" id="know-type-toggle">
+      <span id="know-type-label">已经知道你的类型？</span> <span class="know-type-arrow">↓</span>
+    </button>
+    <div class="intro-type-grid" id="know-type-grid" style="display:none">
+      <a href="hc16/DFER.html" class="type-grid-chip">DFER</a>
+      <a href="hc16/DFEB.html" class="type-grid-chip">DFEB</a>
+      <a href="hc16/DFAR.html" class="type-grid-chip">DFAR</a>
+      <a href="hc16/DFAB.html" class="type-grid-chip">DFAB</a>
+      <a href="hc16/DTER.html" class="type-grid-chip">DTER</a>
+      <a href="hc16/DTEB.html" class="type-grid-chip">DTEB</a>
+      <a href="hc16/DTAR.html" class="type-grid-chip">DTAR</a>
+      <a href="hc16/DTAB.html" class="type-grid-chip">DTAB</a>
+      <a href="hc16/CFER.html" class="type-grid-chip">CFER</a>
+      <a href="hc16/CFEB.html" class="type-grid-chip">CFEB</a>
+      <a href="hc16/CFAR.html" class="type-grid-chip">CFAR</a>
+      <a href="hc16/CFAB.html" class="type-grid-chip">CFAB</a>
+      <a href="hc16/CTER.html" class="type-grid-chip">CTER</a>
+      <a href="hc16/CTEB.html" class="type-grid-chip">CTEB</a>
+      <a href="hc16/CTAR.html" class="type-grid-chip">CTAR</a>
+      <a href="hc16/CTAB.html" class="type-grid-chip">CTAB</a>
+    </div>
+  </div>
   <p class="intro-note">DOI: 10.5281/zenodo.18907264 &nbsp;·&nbsp; nondubito.net</p>
 </div>
 
@@ -1429,6 +1475,14 @@ function updateIntroLang() {
   }
 }
 
+function toggleKnowType(btn) {
+  const grid = document.getElementById('know-type-grid');
+  const arrow = btn.querySelector('.know-type-arrow');
+  const open = grid.style.display === 'none';
+  grid.style.display = open ? 'grid' : 'none';
+  arrow.style.transform = open ? 'rotate(180deg)' : '';
+}
+
 function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('hc16lang', lang);
@@ -1436,6 +1490,9 @@ function setLang(lang) {
   document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
   rerenderCurrent();
   fbUpdateLang();
+  // update know-type label
+  const lbl = document.getElementById('know-type-label');
+  if (lbl) lbl.textContent = lang === 'en' ? 'Already know your type?' : '已经知道你的类型？';
 }
 
 function rerenderCurrent() {
