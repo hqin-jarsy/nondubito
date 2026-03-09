@@ -83,9 +83,11 @@ main { max-width: var(--max-w); margin: 0 auto; padding: 90px 1.5rem 4rem; }
 #compat-output { margin-top: 0.5rem; }
 .empty-state { text-align: center; padding: 3rem 1rem;
   color: rgba(245,240,232,0.2); font-size: 0.85rem; line-height: 1.8; }
-.same-type-note { text-align: center; padding: 2rem 1rem;
-  color: rgba(245,240,232,0.3); font-size: 0.82rem;
-  border: 1px solid rgba(245,240,232,0.08); border-radius: var(--radius); }
+.same-type-note { text-align: center; padding: 0.75rem 1.25rem;
+  color: rgba(245,240,232,0.75); font-size: 0.84rem; font-style: italic;
+  background: rgba(245,240,232,0.05);
+  border: 1px solid rgba(245,240,232,0.12); border-radius: var(--radius);
+  margin-bottom: 1rem; }
 
 /* TYPE CARDS row */
 .type-cards { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
@@ -896,7 +898,7 @@ const UI = {
     subtitle: '选择两种类型，看看你们在四个维度上的配置。不知道自己的类型？先去做测试。',
     label_t1: '第一个类型', label_t2: '第二个类型',
     empty: '选好两个类型之后，分析会出现在这里',
-    same: '两个类型相同——分析需要两种不同的配置。',
+    same_note: '你们是同一种类型 —— 四个维度完全一致，往往不需要解释，自然就懂。',
     view_profile: '查看完整档案',
   },
   en: {
@@ -904,7 +906,7 @@ const UI = {
     subtitle: 'Choose two types to see how your four dimensions align. Not sure of your type? Take the test first.',
     label_t1: 'First type', label_t2: 'Second type',
     empty: 'Select two types above and the analysis will appear here.',
-    same: 'Same type selected — the analysis needs two different configurations.',
+    same_note: 'You share the same type — all four dimensions align. Some things just don\'t need explaining.',
     view_profile: 'Full profile',
   }
 };
@@ -926,11 +928,6 @@ function onSelChange() {
   const out = document.getElementById('compat-output');
   const u = currentLang === 'en' ? UI.en : UI.zh;
 
-  if (t1 === t2) {
-    out.innerHTML = `<div class="same-type-note">${u.same}</div>`;
-    return;
-  }
-
   // Type cards
   const cardHtml = (code) => {
     const t = TYPES[code];
@@ -943,8 +940,11 @@ function onSelChange() {
     </a>`;
   };
 
+  const sameNote = t1 === t2
+    ? `<div class="same-type-note">${u.same_note}</div>`
+    : '';
   const cards = `<div class="type-cards">${cardHtml(t1)}${cardHtml(t2)}</div>`;
-  out.innerHTML = cards + renderCompat(t1, t2, null);
+  out.innerHTML = sameNote + cards + renderCompat(t1, t2, null);
 }
 
 function swapTypes() {
@@ -969,8 +969,12 @@ function selectCompatRel(relKey, t1, t2) {
       <div class="type-card-en">${sub}</div>
     </a>`;
   };
+  const u = currentLang === 'en' ? UI.en : UI.zh;
+  const sameNote = t1 === t2
+    ? `<div class="same-type-note">${u.same_note}</div>`
+    : '';
   const cards = `<div class="type-cards">${cardHtml(t1)}${cardHtml(t2)}</div>`;
-  out.innerHTML = cards + renderCompat(t1, t2, relKey);
+  out.innerHTML = sameNote + cards + renderCompat(t1, t2, relKey);
 }
 
 function setLang(lang) {
