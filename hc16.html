@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Z-test — HC-16 · Non Dubito</title>
   <meta name="description" content="四个维度，十六种自己。16道题，5分钟，找到你的位置。Z-test by Han Qin.">
-  <meta property="og:title" content="Z-test — HC-16 人格图谱">
+  <meta property="og:title" content="Z-test — HC-16 动力图谱">
   <meta property="og:description" content="四个维度，十六种自己。16道题，5分钟。没有Zesi，没有Z-test。">
   <meta property="og:url" content="https://nondubito.net/hc16.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -109,6 +109,15 @@ body {
   font-family: var(--cjk), var(--serif);
   font-size: 1rem; line-height: 1.9;
   color: rgba(245,240,232,0.65);
+  max-width: 420px;
+  margin-bottom: 0.8rem;
+}
+.intro-dynamics-note {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(184,149,58,0.7);
   max-width: 420px;
   margin-bottom: 3rem;
 }
@@ -616,9 +625,10 @@ body {
 <div id="s-intro" class="screen active">
   <p class="intro-eyebrow">Self-as-an-End Theory · Han Qin (秦汉)</p>
   <div class="intro-title">Z-test</div>
-  <div class="intro-title-en">HC-16 · Personality Profile</div>
+  <div class="intro-title-en">HC-16 · Decision Dynamics</div>
   <div id="invite-banner" class="intro-invite-banner" style="display:none"></div>
   <p class="intro-desc" id="intro-desc-text">16道题，四个维度。测的是你在哪里感受到压力，不是你应该是什么样的人。</p>
+  <p class="intro-dynamics-note" id="intro-dynamics-note-text">动力测试，不是人格测试。</p>
   <button class="btn-start" onclick="startTest()" id="btn-start-text">开始测试</button>
   <div class="intro-know-type">
     <button class="intro-know-toggle" onclick="toggleKnowType(this)" id="know-type-toggle">
@@ -1275,8 +1285,8 @@ function showResult(code) {
   const disclaimerEl = document.getElementById('r-disclaimer');
   if (disclaimerEl) {
     disclaimerEl.innerHTML = currentLang === 'en'
-      ? 'This profile describes a pressure pattern — not your whole personality. Same type ≠ same person. Read this as a working map, not a final label.'
-      : '这个结果描述的是你的受力配置，不是你整个人。相同类型 ≠ 相同的人。把它当一张工作地图，不是最终判词。';
+      ? 'HC-16 is a decision dynamics test, not a personality test. It maps how you move at forks — not what kind of person you are. Same type ≠ same person.'
+      : 'HC-16 是动力测试，不是人格测试。它描述的是你在关键决定时的受力方式——不是你这个人是什么样的人。相同类型 ≠ 相同的人。';
   }
 
   document.getElementById('result-eyebrow-text').textContent = s.result_eyebrow;
@@ -1472,6 +1482,12 @@ function updateIntroLang() {
   }
   if (btnEl) {
     btnEl.textContent = currentLang === 'en' ? 'Start Test' : '开始测试';
+  }
+  const noteEl = document.getElementById('intro-dynamics-note-text');
+  if (noteEl) {
+    noteEl.textContent = currentLang === 'en'
+      ? 'A decision dynamics test — not a personality test.'
+      : '动力测试，不是人格测试。';
   }
 }
 
