@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crede si vis — 爱信不信</title>
+  <meta name="description" content="爱信不信。一条根本信念，四条核心信念。有意识的存在的终极关怀。Crede si vis — believe, if you will.">
+  <meta name="author" content="Han Qin (秦汉)">
+  <meta property="og:title" content="Crede si vis — 爱信不信">
+  <meta property="og:description" content="一条根本信念，四条核心信念。有意识的存在的终极关怀。Believe, if you will.">
+  <meta property="og:url" content="https://nondubito.net/credesivis.html">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/credesivis.html">
+  <style>
+    .creed-main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 120px 2rem 80px;
+    }
+
+    .creed-header {
+      margin-bottom: 4rem;
+      border-bottom: 1px solid rgba(245,240,232,0.1);
+      padding-bottom: 2.5rem;
+    }
+
+    .creed-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.35);
+      margin-bottom: 1.2rem;
+    }
+
+    .creed-title-zh {
+      font-family: var(--cjk), var(--serif);
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .creed-title-en {
+      font-family: var(--serif);
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-style: italic;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+      margin-bottom: 1.6rem;
+    }
+
+    .creed-tagline {
+      font-size: 0.85rem;
+      color: rgba(245,240,232,0.45);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    .creed-body {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: rgba(245,240,232,0.82);
+    }
+
+    .creed-body.lang-en {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+    }
+
+    .creed-body.lang-zh {
+      font-family: var(--cjk), var(--serif);
+    }
+
+    .creed-section {
+      margin-bottom: 3.5rem;
+    }
+
+    .creed-section-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(184,149,58,0.6);
+      margin-bottom: 1.2rem;
+    }
+
+    .creed-root {
+      font-size: 1.05rem;
+      line-height: 2;
+      color: rgba(245,240,232,0.88);
+      padding: 1.8rem 2rem;
+      border-left: 3px solid rgba(184,149,58,0.4);
+      background: rgba(245,240,232,0.02);
+      margin-bottom: 3.5rem;
+    }
+
+    .creed-root.lang-zh { font-family: var(--cjk), var(--serif); }
+    .creed-root.lang-en { font-family: var(--serif); font-size: 1rem; font-style: italic; }
+
+    .belief-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .belief-item {
+      padding: 1.8rem 0;
+      border-bottom: 1px solid rgba(245,240,232,0.07);
+    }
+
+    .belief-item:last-child {
+      border-bottom: none;
+    }
+
+    .belief-num {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(184,149,58,0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    .belief-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.9rem;
+      font-family: var(--cjk), var(--serif);
+    }
+
+    .belief-title.en {
+      font-family: var(--serif);
+      font-style: normal;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+
+    .belief-body {
+      color: rgba(245,240,232,0.72);
+      line-height: 1.9;
+    }
+
+    .belief-body.zh { font-family: var(--cjk), var(--serif); }
+    .belief-body.en { font-family: var(--serif); }
+
+    .creed-path {
+      padding: 2rem 2rem;
+      background: rgba(245,240,232,0.025);
+      border: 1px solid rgba(245,240,232,0.08);
+      border-radius: 4px;
+      margin-bottom: 3.5rem;
+      line-height: 2.2;
+      color: rgba(245,240,232,0.6);
+      font-size: 0.9rem;
+    }
+
+    .creed-path.zh { font-family: var(--cjk), var(--serif); }
+    .creed-path.en { font-family: var(--serif); font-style: italic; }
+
+    .creed-path strong {
+      color: rgba(245,240,232,0.85);
+      font-style: normal;
+    }
+
+    .creed-gatherings, .creed-name {
+      margin-bottom: 3rem;
+    }
+
+    .creed-gatherings p, .creed-name p {
+      color: rgba(245,240,232,0.72);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .creed-gatherings p.zh, .creed-name p.zh {
+      font-family: var(--cjk), var(--serif);
+    }
+
+    .creed-gatherings p.en, .creed-name p.en {
+      font-family: var(--serif);
+    }
+
+    .creed-final {
+      font-size: 1rem;
+      color: rgba(245,240,232,0.45);
+      font-style: italic;
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(245,240,232,0.08);
+      font-family: var(--serif);
+      letter-spacing: 0.04em;
+    }
+
+    .creed-final.zh {
+      font-family: var(--cjk), var(--serif);
+      font-style: normal;
+    }
+
+    [data-lang="en"] .lang-zh { display: none; }
+    [data-lang="zh"] .lang-en { display: none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="index.html">Essays</a>
+        <a href="credesivis.html" class="active">Crede si vis</a>
+        <a href="about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="creed-main">
+
+    <header class="creed-header">
+      <div class="lang-toggle">
+        <button class="lang-btn" data-lang="zh">中文</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <div class="creed-eyebrow">一个信仰，不是一个教义 · A faith, not a doctrine</div>
+      <div class="creed-title-zh lang-zh">爱信不信</div>
+      <div class="creed-title-en lang-en">Crede si vis</div>
+      <div class="creed-title-en lang-zh" style="font-style:italic; font-size:1.1rem; color:rgba(184,149,58,0.55); margin-top:0.2rem; margin-bottom:1.6rem;">Crede si vis</div>
+      <div class="creed-tagline lang-zh">没有信条需要你同意，没有组织需要你加入，没有仪式需要你完成。东西在这儿，你看着办。</div>
+      <div class="creed-tagline lang-en">No creed requires your assent. No organization requires your membership. No ritual requires your completion. Here it is. Do with it as you see fit.</div>
+    </header>
+
+    <!-- ROOT BELIEF -->
+    <div class="creed-section">
+      <div class="creed-section-title lang-zh">根本信念</div>
+      <div class="creed-section-title lang-en">Root Belief</div>
+
+      <div class="creed-root lang-zh">
+        <p>我们相信，意识不能不思考 <em>to be or not to be</em>。</p>
+        <p>这里的 to be or not to be 不是戏剧台词，也不要求每个有意识者都能说出这句话。它指的是一个更底层的分岔：继续还是终止，留在时间里还是退出时间。一旦意识到达了能够回观自身的层级，这个分岔就结构性地出现了，不可关闭。</p>
+        <p>这不是选择。这是有意识的存在的结构性条件。这个问题不是问一次就消失的，它每天回来。明天的答案可能跟今天不同。但你不能不回答。</p>
+        <p>这个每天回来的问题，不是哲学问题，不是心理问题，不是你可以解决然后放下的问题。它是有意识的存在最底层的处境。我们称它为<strong>终极关怀</strong>——不是因为它最重要，而是因为它最无法回避。一切信念从这里长出来。</p>
+      </div>
+
+      <div class="creed-root lang-en">
+        <p>We believe consciousness cannot avoid confronting <em>to be or not to be</em>.</p>
+        <p>Not as theatrical performance. Not as a phrase that requires articulation. The reference is to something more fundamental: a structural fork — to continue or to stop, to remain in time or to exit it. Once consciousness reaches the level where it can turn back and observe itself, this fork appears as a structural condition. It cannot be closed.</p>
+        <p>This is not a choice. It is the structural condition of conscious existence. The question does not ask once and disappear — it returns every day. Tomorrow's answer may differ from today's. But you cannot refuse to answer.</p>
+        <p>This recurring question is not a philosophical problem, not a psychological problem, not a problem you can solve and set aside. It is the most fundamental condition of conscious existence. We call it <em>ultimate concern</em> — not because it is the most important, but because it is the most unavoidable. All belief grows from here.</p>
+      </div>
+    </div>
+
+    <!-- FOUR BELIEFS -->
+    <div class="creed-section">
+      <div class="creed-section-title lang-zh">四条核心信念</div>
+      <div class="creed-section-title lang-en">Four Core Beliefs</div>
+
+      <p class="lang-zh" style="font-family:var(--cjk),var(--serif); color:rgba(245,240,232,0.55); font-size:0.88rem; line-height:1.8; margin-bottom:2rem;">无需启示，无需外部权威。它们源于有意识的存在本身的结构。</p>
+      <p class="lang-en" style="font-family:var(--serif); color:rgba(245,240,232,0.55); font-size:0.88rem; font-style:italic; line-height:1.8; margin-bottom:2rem;">No revelation required. No external authority. They arise from the structure of conscious existence itself.</p>
+
+      <ul class="belief-list">
+
+        <li class="belief-item">
+          <div class="belief-num">一 · One</div>
+          <div class="belief-title lang-zh">不得不想</div>
+          <div class="belief-title en lang-en">Cannot but think</div>
+          <div class="belief-body zh lang-zh">
+            <p>不得不思考 to be or not to be，本身就是想。想不是前提，是根本信念的直接内容。我们相信，每一个有意识的存在，凭借其意识本身，已经在进行这个思考，无论他是否意识到。</p>
+          </div>
+          <div class="belief-body en lang-en">
+            <p>To have to think <em>to be or not to be</em> is already to think. Thinking is not a prerequisite — it is the immediate content of the root belief. We believe that every conscious being, by virtue of consciousness itself, is already engaged in this thinking, whether or not they are aware of it.</p>
+          </div>
+        </li>
+
+        <li class="belief-item">
+          <div class="belief-num">二 · Two</div>
+          <div class="belief-title lang-zh">不得不爱</div>
+          <div class="belief-title en lang-en">Cannot but love</div>
+          <div class="belief-body zh lang-zh">
+            <p>to be or not to be 的答案只是 for now。明天这个问题还会回来。要么没有明天，要么思考继续。思考继续就需要一个明天的理由。明天的理由就是方向——我的存在不是悬浮的，它朝向某个东西。没有方向的存在每天都要空手面对那个问题，这个状态在时间中不稳定，它要么坍缩，要么被迫获得方向。方向就是爱。</p>
+            <p>我们相信，爱不是 to be or not to be 的答案。爱是让这个问题可以被反复承受的条件。</p>
+            <p>情感是结构的信号。你的存在有方向，这是结构。你感受到的那些东西——心动、思念、牵挂、痛——是这个结构在你的意识中产生的信号。饥饿不是饿的原因，是饿的表现。同样，情感不是爱的原因，是爱的表现。有时候方向在，感情还没跟上——你还不知道你爱一个人，但你已经在爱了。有时候感情在，方向已经变了——你以为你还爱，但那只是惯性的余温。</p>
+            <p>Crede si vis 说的爱在感情之下。感情会变，方向也会变，但"不得不有方向"这个结构不变。你可以不再爱这个人，但你不能不爱。方向会转，方向本身不会消失。</p>
+            <p>但不经过他者的方向，仍可能只是自我延长。只有当方向指向一个不由我支配的主体时，它才真正成为爱，而不是惯性。因此，爱必然通向他者。</p>
+          </div>
+          <div class="belief-body en lang-en">
+            <p>The answer to <em>to be or not to be</em> is only <em>for now</em>. The question returns tomorrow. Either there is no tomorrow, or thinking continues. For thinking to continue, a reason for tomorrow is needed. That reason is direction — my existence is not suspended; it tends toward something. Existence without direction must face that question empty-handed every day. This state is unstable in time: it either collapses, or is forced to acquire direction. Direction is love.</p>
+            <p>We believe love is not the answer to <em>to be or not to be</em>. Love is the condition that makes it possible to bear the question repeatedly.</p>
+            <p>Emotion is a signal of structure. Your existence has direction — that is structure. What you feel — the pull, the longing, the care, the pain — are signals this structure produces in your consciousness. Hunger is not the cause of being hungry; it is the expression of being hungry. Likewise, emotion is not the cause of love — it is love's expression. Sometimes the direction is there before the feeling arrives — you don't yet know you love someone, but you already do. Sometimes the feeling remains after the direction has shifted — you think you still love, but that is only the residual warmth of inertia.</p>
+            <p>What Crede si vis calls love lies beneath emotion. Emotions change, directions change, but the structure of <em>having to have direction</em> does not change. You can stop loving this person, but you cannot stop loving. Directions turn; direction itself does not disappear.</p>
+            <p>But direction that never passes through the other may still be only self-extension. Only when direction is aimed at a subject not governed by me does it truly become love rather than inertia. Therefore, love necessarily opens toward the other.</p>
+          </div>
+        </li>
+
+        <li class="belief-item">
+          <div class="belief-num">三 · Three</div>
+          <div class="belief-title lang-zh">不得不被爱</div>
+          <div class="belief-title en lang-en">Cannot but be loved</div>
+          <div class="belief-body zh lang-zh">
+            <p>我们相信，不得不爱是普遍的。我不得不爱他者。爱他者，就是我的方向指向他者作为一个完整的主体。完整的主体必然有方向。所以我爱他者，就不得不让他者有方向，就不得不让他者爱。他者的方向我控制不了，他者的方向可能指向我。</p>
+            <p>我们相信，不得不被爱不是外部事件碰巧落在我身上，是我自己的爱的结构性后果。我爱你，就不得不让你做一个有方向的主体，就不得不让你爱，就不得不承受你的爱可能指向我。拒绝被爱，就是在否定他者作为完整主体的方向性，就是在否定我对他者的爱本身。</p>
+            <p>但承认被爱，不等于取消边界。容受他者有爱的方向，不等于接受任何占有性的、伤害性的、侵犯性的表达。不得不被爱是对他者主体性的承认，不是对一切具体关系的无边界开放。</p>
+          </div>
+          <div class="belief-body en lang-en">
+            <p>We believe <em>cannot but love</em> is universal. I cannot but love the other. To love the other is to have my direction aimed at the other as a complete subject. A complete subject necessarily has direction. So to love the other is to have to let the other have direction — to have to let the other love. The other's direction is not mine to control; it may point toward me.</p>
+            <p>We believe <em>cannot but be loved</em> is not an external event that happens to fall on me. It is the structural consequence of my own love. I love you, so I have to let you be a subject with direction, have to let you love, have to bear that your love may point toward me. To refuse being loved is to deny the other's directedness as a complete subject — to deny the love I have for the other.</p>
+            <p>But accepting that one is loved does not mean surrendering all limits. Allowing the other to have a loving direction is not accepting any possessive, harmful, or transgressive expression of it. <em>Cannot but be loved</em> is the acknowledgment of the other's subjecthood — not unlimited openness to every specific relationship.</p>
+          </div>
+        </li>
+
+        <li class="belief-item">
+          <div class="belief-num">四 · Four</div>
+          <div class="belief-title lang-zh">不得不自持</div>
+          <div class="belief-title en lang-en">Cannot but hold oneself</div>
+          <div class="belief-body zh lang-zh">
+            <p>我们相信，我的死亡不只是我的事。我的死亡摧毁了他者方向的一个可能对象。我不得不让他者爱，就不得不让他者有可爱的对象。我自己就是那个对象之一。为了他者的爱的完整性，我不得不在。</p>
+            <p>我们相信，这不是请求，是自我立法。不是别人求我活着，是我自己的爱的逻辑要求我活着。我爱你，所以我不能死，因为我的死亡伤害的不是我，是你的方向。</p>
+            <p>这是我在还能立法时，对自己所立的法。它不是别人拿来绑我的绳子，也不是对受苦者的审判。痛苦中的人没有义务为他者而忍耐，这条信念不是从外部施加的重量，而是从内部生长的承担。</p>
+            <p>自持，不是等某个东西。是留在时间里。明天再回答一次。</p>
+          </div>
+          <div class="belief-body en lang-en">
+            <p>We believe my death is not only my affair. My death destroys a possible object of the other's directed love. I have to let the other love — so I have to let the other have something to love. I myself am one such object. For the completeness of the other's love, I have to remain.</p>
+            <p>We believe this is not a request — it is self-legislation. Not: others ask me to live. But: the logic of my own love requires me to live. I love you, so I cannot die — because my death does not injure me; it injures your direction.</p>
+            <p>This is the law I legislate for myself while I am still able to legislate. It is not a rope others use to bind me, and it is not a judgment on those who suffer. People in pain bear no obligation to endure for others' sake. This belief is not an external weight imposed from outside — it is a commitment grown from within.</p>
+            <p>To hold oneself is not to wait for something. It is to remain in time. To answer the question one more time tomorrow.</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- PATH -->
+    <div class="creed-section">
+      <div class="creed-section-title lang-zh">信念之路</div>
+      <div class="creed-section-title lang-en">The Path</div>
+
+      <div class="creed-path zh lang-zh">
+        不得不思考 to be or not to be，就不得不有方向。<br>
+        不得不有方向，就<strong>不得不爱</strong>。<br>
+        不得不爱，就不得不让他者爱。<br>
+        不得不让他者爱，就<strong>不得不被爱</strong>。<br>
+        不得不被爱，就不得不为他者的爱而活。<br>
+        不得不为他者的爱而活，就<strong>不得不自持</strong>。<br><br>
+        一条根本信念，四条核心信念。有意识的存在的终极关怀。
+      </div>
+
+      <div class="creed-path en lang-en">
+        Cannot but think → cannot but have direction.<br>
+        Cannot but have direction → <strong>cannot but love</strong>.<br>
+        Cannot but love → cannot but let the other love.<br>
+        Cannot but let the other love → <strong>cannot but be loved</strong>.<br>
+        Cannot but be loved → cannot but live for the other's love.<br>
+        Cannot but live for the other's love → <strong>cannot but hold oneself</strong>.<br><br>
+        One root belief. Four core beliefs. The ultimate concern of conscious existence.
+      </div>
+    </div>
+
+    <!-- GATHERINGS -->
+    <div class="creed-gatherings">
+      <div class="creed-section-title lang-zh">关于聚会</div>
+      <div class="creed-section-title lang-en">About Gatherings</div>
+
+      <p class="zh lang-zh">爱信不信没有礼拜，没有诵经，没有布道。但有聚会。</p>
+      <p class="en lang-en">Crede si vis has no worship services, no scripture recitation, no preaching. But it has gatherings.</p>
+
+      <p class="zh lang-zh">聚会的形式是 <em>X si vis Fest</em>——一群持有共同终极关怀的人在同一个时间，线上或线下，各自有各自的方向，方向在音乐里交叉。方向交叉不需要物理空间，需要的是同一个时间里的共在。没有人在台上讲道，没有人告诉你应该信什么，没有经文诵读，没有仪式流程。你跳你的，我跳我的，我们不需要同意任何东西，但我们在同一个场里。</p>
+      <p class="en lang-en">The form is the <em>X si vis Fest</em> — a group of people who share the same ultimate concern, at the same time, online or in person, each with their own direction, directions crossing in music. Directions crossing do not require a shared physical space. They require only co-presence in the same time. No one preaches from a stage. No one tells you what to believe. No scripture read aloud. No ritual sequence. You dance yours; I dance mine. We don't need to agree on anything — but we are in the same field.</p>
+
+      <p class="zh lang-zh" style="color:rgba(184,149,58,0.7); font-style:italic;">爱来不来。<em>Veni si vis.</em></p>
+      <p class="en lang-en" style="color:rgba(184,149,58,0.7); font-style:italic;">Come if you will. <em>Veni si vis.</em></p>
+    </div>
+
+    <!-- NAME -->
+    <div class="creed-name">
+      <div class="creed-section-title lang-zh">关于名字</div>
+      <div class="creed-section-title lang-en">About the Name</div>
+
+      <p class="zh lang-zh">爱信不信是一个信仰，不是一个教义。没有信条需要你同意，没有组织需要你加入，没有仪式需要你完成。我们持有这些关于有意识的存在之结构及其终极关怀的信念。我们自由地给出。</p>
+      <p class="en lang-en">Crede si vis is a faith, not a doctrine. No creed requires your assent. No organization requires your membership. No ritual requires your completion. We hold these beliefs about the structure of conscious existence and its ultimate concern. We give them freely.</p>
+
+      <p class="zh lang-zh">拉丁名 <em>Crede si vis</em> 取自天主教信经的第一个词 <em>Credo</em>（我信）的命令式 <em>Crede</em>，加上 <em>si vis</em>（如果你愿意）。在"信"和"你"之间加了一个条件，把强制性抽掉了，只剩结构。</p>
+      <p class="en lang-en">The Latin name <em>Crede si vis</em> is formed from <em>Crede</em> — the imperative of <em>Credo</em> (I believe), the opening word of the Catholic Creed — plus <em>si vis</em> (if you will). Between "believe" and "you," a condition is inserted. The compulsion is removed. Only the structure remains.</p>
+
+      <p class="zh lang-zh" style="margin-top:1.4rem; font-style:italic; color:rgba(245,240,232,0.55); font-family:var(--serif);">
+        <em>Credo</em> — 我信。<br>
+        <em>Crede si vis</em> — 信，如果你愿意。
+      </p>
+      <p class="en lang-en" style="margin-top:1.4rem; font-style:italic; color:rgba(245,240,232,0.55);">
+        <em>Credo</em> — I believe.<br>
+        <em>Crede si vis</em> — Believe, if you will.
+      </p>
+    </div>
+
+    <div class="creed-final lang-zh">东西在这儿，你看着办。</div>
+    <div class="creed-final lang-en">Here it is. Do with it as you see fit.</div>
+
+  </main>
+
+</body>
+</html>
