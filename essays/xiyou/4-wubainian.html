@@ -10,13 +10,19 @@
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <link rel="canonical" href="https://nondubito.net/essays/xiyou/4-wubainian.html">
   <style>
-    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+        .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
     .back-link:hover { color:var(--ink); }
     .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
-    .essay-series-nav { display:flex; flex-direction:column; align-items:flex-start; gap:0.5rem; margin-top:3rem; padding-top:2rem; border-top:1px solid var(--cream-border); font-family:var(--sans); font-size:0.78rem; }
-    .essay-series-nav a { color:var(--ink-muted); text-decoration:none; }
-    .essay-series-nav a:hover { color:var(--ink); }
     .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
     [data-lang="en"] .lang-zh { display:none; }
     [data-lang="zh"] .lang-en { display:none; }
   </style>
@@ -328,15 +334,25 @@
 <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · Journey to the West: A New Reading</em></p>
       </div>
 
-      <nav class="essay-series-nav">
-        <div>
-          <a href="3-huangdiliu.html" class="lang-zh">← 上一篇：皇帝轮流做</a>
-          <a href="3-huangdiliu.html" class="lang-en">← Previous: Emperors Take Turns</a>
-        </div>
-        <div>
-          <a href="5-sigeren.html" class="lang-zh">下一篇：四个人一条路 →</a>
-          <a href="5-sigeren.html" class="lang-en">Next: Four People, One Path →</a>
-        </div>
+      <nav class="xiyou-nav">
+    <a href="3-huangdiliu.html" class="xiyou-nav-btn xiyou-nav-prev">
+      <span class="xiyou-nav-icon">←</span>
+      <span class="xiyou-nav-label">
+        <span class="xiyou-nav-sub lang-zh">上一篇</span>
+        <span class="xiyou-nav-sub lang-en">Previous</span>
+        <span class="xiyou-nav-title lang-zh">皇帝轮流做</span>
+        <span class="xiyou-nav-title lang-en">Emperors Take Turns</span>
+      </span>
+    </a>
+    <a href="5-sigeren.html" class="xiyou-nav-btn xiyou-nav-next">
+      <span class="xiyou-nav-label">
+        <span class="xiyou-nav-sub lang-zh">下一篇</span>
+        <span class="xiyou-nav-sub lang-en">Next</span>
+        <span class="xiyou-nav-title lang-zh">四个人一条路</span>
+        <span class="xiyou-nav-title lang-en">Four People, One Path</span>
+      </span>
+      <span class="xiyou-nav-icon">→</span>
+    </a>
       </nav>
     </article>
   </main>
