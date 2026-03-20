@@ -24,7 +24,11 @@
     .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
     @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
     [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="en"] .lang-jp { display:none; }
     [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-jp { display:none; }
+    [data-lang="jp"] .lang-zh { display:none; }
+    [data-lang="jp"] .lang-en { display:none; }
   </style>
   <script>
     (function() {
@@ -61,25 +65,35 @@
         <span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span>
         <span class="title-sub lang-en">Essays in the Self-as-an-End Tradition</span>
         <span class="title-sub lang-zh" style="font-family:var(--cjk),serif;">自我作为目的</span>
+        <span class="title-sub lang-jp" style="font-family:var(--cjk),serif;">自己を目的として</span>
       </a>
       <nav class="header-nav">
         <div class="lang-toggle">
           <button class="lang-btn" data-lang="en">EN</button>
           <span class="lang-sep">|</span>
           <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="jp">日本語</button>
         </div>
       </nav>
     </div>
   </header>
 
   <main class="essay-container">
-    <a href="../../index.html#jiaoyi" class="back-link">← 交易的艺术</a>
+    <a href="../../index.html#jiaoyi" class="back-link">
+      <span class="lang-zh">← 交易的艺术</span>
+      <span class="lang-en">← The Art of Trading</span>
+      <span class="lang-jp">← 取引の芸術</span>
+    </a>
     <article>
       <header class="essay-header">
         <div class="essay-titles">
           <div class="essay-series lang-zh">交易的艺术（九）</div>
           <div class="essay-series lang-en">The Art of Trading (9)</div>
-          <h1>Jim Simons</h1>
+          <div class="essay-series lang-jp">取引の芸術（九）</div>
+          <h1 class="lang-zh">Jim Simons</h1>
+          <h1 class="lang-en">Jim Simons</h1>
+          <h1 class="lang-jp">Jim Simons</h1>
         </div>
         <div class="essay-meta">
           <span class="author">Han Qin (秦汉)</span>
@@ -88,7 +102,7 @@
         </div>
       </header>
 
-      <div class="essay-body" style="font-family:var(--cjk),var(--serif);">
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
         <p>Soros的逃逸方式是"知道自己永远在里面"。他拥抱不确定性，在不确定性中游泳。他的工具是一个哲学框架：反身性。他还是一个人在做判断，只是他的判断里始终包含着对判断本身的怀疑。</p>
 
         <p>Jim Simons的逃逸方式完全不同。他把人从方程式里拿走了。</p>
@@ -160,9 +174,165 @@
         <p>Soros的逃逸是哲学的：承认自己永远可能是错的。Simons的逃逸是技术的：把自己从决策过程中移除。两种方式，两种自由。但都需要一种共同的品质：愿意放弃"我理解了这个世界"的幻觉。</p>
 
         <p>下一篇，也是最后一篇。一个走了比所有人都长的路的人。他不像Soros那样有一套精密的哲学理论，也不像Simons那样有一台不需要人类的机器。他有的是一种更简单也更难的东西：从第一天起就为自己留出了重新开始的空间。他的名字叫Warren Buffett。</p>
+
+        <p>（交易的艺术系列未完）</p>
       </div>
 
-      <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · 交易的艺术</em></p>
+      <div class="essay-body lang-en">
+        <p>Soros's method of escape was: "knowing you are always inside." He embraced uncertainty, swimming in it. His tool was a philosophical framework: reflexivity. He remained a person making judgments—only his judgments always contained doubt about judgment itself.</p>
+
+        <p>Jim Simons's escape route was entirely different. He removed the human from the equation.</p>
+
+        <p>Not reduced. Eliminated. Once the Medallion Fund began operating, no human was permitted to intervene. Whatever the model traded, they traded. Human intuition, fear, greed, the feeling that "this time is different"—all barred at the door.</p>
+
+        <p>This sounds like LTCM. LTCM too was a mathematicians' fund, trading by model. But the results were opposites. LTCM was destroyed. Medallion became the highest-returning fund in the history of finance.</p>
+
+        <p>What was the difference?</p>
+
+        <p>Jim Simons was born in 1938 to a middle-class family near Boston. He loved mathematics from childhood. He earned his undergraduate degree at MIT, a mathematics PhD from Berkeley at 23. Then he did something unrelated to academia: he joined the IDA, an agency of the U.S. Department of Defense, to break codes. During the Cold War, he decrypted Soviet communications.</p>
+
+        <p>Pattern recognition. Finding hidden structures in seemingly random signals. This was the beginning of everything he later did.</p>
+
+        <p>Leaving the IDA, he returned to academia, becoming chair of mathematics at Stony Brook University. With Shiing-Shen Chern, he developed the Chern-Simons form, which became a foundational tool in string theory and topology. He won mathematics' highest honors. Had he continued in academia, he would have been a distinguished pure mathematician.</p>
+
+        <p>But in 1978, he left to found a trading company. Later renamed Renaissance Technologies.</p>
+
+        <p>His approach differed from Wall Street from day one. He did not hire traders, MBAs, or anyone with a finance background. He hired mathematicians, physicists, statisticians, computer scientists, linguists. He once said: "It's easier to teach intelligent people about markets than to teach market people to be intelligent."</p>
+
+        <p>In 1988, he founded the Medallion Fund. The name came from math medals he and partner James Ax had won.</p>
+
+        <p>Early returns were poor. 1988 yielded 9%, 1989 lost 4%. Internal disputes arose; Ax left. Simons brought in Elwyn Berlekamp, a game theorist from Berkeley, to redesign the entire trading system. Berlekamp spent six months demolishing and rebuilding. In 1990, the new system launched, returning 55.9% that year.</p>
+
+        <p>After that, Medallion rarely stopped.</p>
+
+        <p>From 1988 to 2018—thirty years—average annual returns of 66% (before fees), 39% (after fees). Total trading profits exceeded one hundred billion dollars. In the same period, Buffett averaged about 20% annually. Soros about 30%. Medallion was two to three times both.</p>
+
+        <p>And during the 2008 global financial crisis, when the S&P 500 fell 38.5%, Medallion rose 98.2%.</p>
+
+        <p>These numbers seem impossible. But they are real.</p>
+
+        <p>Medallion's methods are nearly unknown to the outside world. Renaissance's secrecy culture is the tightest in finance. Employees sign strict confidentiality agreements; upon leaving, they face years-long noncompete clauses. No one publishes papers. No one gives interviews. No one reveals a detail of the model.</p>
+
+        <p>We know only fragments. It is pure quantitative, 100% algorithm-driven. It executes thousands of trades daily, tiny profits each, compounded thousands of times. It uses 10 to 20 times leverage. It trades simultaneously in dozens of markets. Its database is probably finance's largest, meticulously cleaned and structured.</p>
+
+        <p>Simons gave one methodological hint: find a pattern that looks anomalous. Confirm it is statistically significant. Confirm it generates sufficient trade signals. Then let the computer execute. Don't intervene. Don't ask "why."</p>
+
+        <p>Those five words—"don't ask why"—are the fundamental difference between Medallion and LTCM.</p>
+
+        <p>LTCM's approach started from theory. They had a theory about how markets work (a variant of the efficient market hypothesis), then searched for pricing deviations. Their model was deductive: from principles, deriving conclusions.</p>
+
+        <p>Medallion's approach started from data. They didn't care how markets "should" work. They observed what "actually" happened in the data. They sought statistical regularities, without needing to understand the reasons behind them. The model was inductive: patterns extracted from phenomena.</p>
+
+        <p>LTCM's theory told them "this shouldn't happen" (Russia shouldn't default), then it did, and the model collapsed. Medallion's model never says "this shouldn't happen" because it never makes "should" judgments. It only asks: "Based on historical data, what is the probability this pattern appears?" If reality deviates from the pattern, the model adjusts. It doesn't insist.</p>
+
+        <p>This is why, when Medallion suffered three days of 20% losses in August 2007, it did not collapse. Partners gathered in Simons's office, considering intervention. But they didn't move. The model continued trading. By year's end, Medallion rose 85.9%.</p>
+
+        <p>This scene is the calmest moment in the entire series. A group sitting, watching numbers collapse on screen, hands in pockets, doing nothing. Because they knew: anything they could do would be worse than doing nothing.</p>
+
+        <p>But Simons's escape came with a cost.</p>
+
+        <p>From 1993 onward, Medallion stopped accepting outside investors. The fund is available only to current and former Renaissance employees and their families. Why? Because if it grew too large, the tiny pricing anomalies it exploited would become insufficient. Your trades themselves would move market prices, erasing the anomalies you were utilizing.</p>
+
+        <p>This is Soros's reflexivity manifested at another level: your success changes the conditions of your success.</p>
+
+        <p>So Medallion chose closure. Not from greed, unwilling to let others profit, but because opening it would kill the machine. To keep it alive, you must keep it small.</p>
+
+        <p>Renaissance later opened external funds (RIEF and others) using different strategies. Their returns were far inferior to Medallion. In 2008, Medallion rose 98%. RIEF lost 16%. Same company, same people, entirely different results. The difference: Medallion was closed. RIEF was not.</p>
+
+        <p>This is a peculiar form of escape. The first eight stories all involved "more." More money, more leverage, more market share, more reputation. Simons's escape came through "less." Fewer people knowing. Less capital flowing in. Less intervention. Less explanation.</p>
+
+        <p>He traded closure for freedom.</p>
+
+        <p>On May 10, 2024, Jim Simons died in New York. He was 86. He and his wife, through the Simons Foundation, donated over three billion two hundred million dollars, primarily for mathematics and fundamental science research. He once described his life in three phases: mathematician, investor, philanthropist.</p>
+
+        <p>He was the only person in this series to truly "solve" the trading problem. But his solution cannot be replicated by most, because it demands something antihuman: don't ask why, don't intervene, don't pretend you understand the market. Let the machine work. Step away.</p>
+
+        <p>Soros's escape was philosophical: admitting you might always be wrong. Simons's escape was technical: removing yourself from the decision process. Two methods, two freedoms. Both require a common quality: willingness to abandon the illusion that "I understand this world."</p>
+
+        <p>Next, the final essay. A man who walked a longer path than anyone. Unlike Soros, he has no refined philosophical theory. Unlike Simons, he has no machine that doesn't need humans. What he has is something simpler and harder: from day one, he left himself space to start over. His name is Warren Buffett.</p>
+
+        <p>(The Art of Trading series continues)</p>
+      </div>
+
+      <div class="essay-body lang-jp" style="font-family:var(--cjk),var(--serif);">
+        <p>Sorsoの脱出方法は、「あなたは常に中にいることを知っている」というものだった。彼は不確実性を受け入れ、その中で泳いだ。彼のツールは哲学的枠組みだった：反射性。彼はまだ判断を行う人間だった——彼の判断には常に判断そのものに対する疑いが含まれていた。</p>
+
+        <p>Jim Simonsの脱出方法は完全に異なっていた。彼は方程式から人間を取り除いた。</p>
+
+        <p>減らしたのではなく。排除した。Medallion ファンドが運用を開始すると、誰も干渉することは許可されなかった。モデルが取引するもの、彼らはそれを取引した。人間の直感、恐怖、欲望、「今度は異なる」という感情——すべてが門の外に止められた。</p>
+
+        <p>これは LTCM に似ている。LTCM も数学者のファンドであり、モデルで取引された。しかし結果は正反対だった。LTCM は破壊された。Medallion は金融の歴史の中で最高の回報率を誇るファンドになった。</p>
+
+        <p>違いは何か？</p>
+
+        <p>Jim Simons は1938 年、ボストン近郊の中産階級家庭に生まれた。幼い時から数学が好きだった。MIT で学部課程を修め、23 歳でバークレーで数学博士号を取得した。その後、学界とは関係のない何かをした：彼は米国国防総省の機関 IDA に参加し、コードを破った。冷戦中、彼はソビエト通信を解読した。</p>
+
+        <p>パターン認識。ランダムに見える信号から隠された構造を見つけること。これが彼が後に行ったすべての始まりだった。</p>
+
+        <p>IDA を去り、彼は学界に戻り、ストーニーブルック大学の数学部長になった。陳省身と共に、彼は Chern-Simons 形式を発展させ、それは弦理論とトポロジーの基本的なツールになった。彼は数学の最高栄誉を獲得した。もし彼がアカデミアを続けていたら、彼は著名な純粋数学者だったろう。</p>
+
+        <p>しかし1978 年、彼は学界を去り、取引会社を設立した。後に Renaissance Technologies に改名された。</p>
+
+        <p>彼のアプローチは初日からウォール街と異なっていた。彼はトレーダーを雇わなかった。MBA を雇わなかった。金融背景を持つ誰も雇わなかった。彼は数学者、物理学者、統計学者、コンピュータ科学者、言語学者を雇った。彼はかつて言った：「市場について知識があるスマートな人々を教えることは、スマートになるための市場人を教えることより簡単である。」</p>
+
+        <p>1988 年、彼は Medallion ファンドを設立した。その名前は、彼とパートナー James Ax が獲得した数学メダルから来ていた。</p>
+
+        <p>初期リターンは不良だった。1988 年は 9% を生成し、1989 年は4% を失った。内部紛争が発生し、Ax が去った。Simons は、バークレーのゲーム理論者 Elwyn Berlekamp を連れてきて、取引システム全体を再設計した。Berlekamp は6 か月かけてシステムを解体し、再構築した。1990 年、新しいシステムが起動し、その年55.9% を返した。</p>
+
+        <p>その後、Medallion はほぼ止まらなかった。</p>
+
+        <p>1988 年から2018 年——30 年——平均年間回報率66%（手数料前）、39%（手数料後）。総取引利益は1,000 億ドルを超えた。同じ期間に、Buffett は約20% を平均した。Soros は約30%。Medallion は両者の2 倍から3 倍だった。</p>
+
+        <p>そして、2008 年の世界金融危機中、S&P 500 が38.5% 下落した時、Medallion は98.2% 上昇した。</p>
+
+        <p>これらの数字は不可能に見える。しかし、彼らは本当である。</p>
+
+        <p>Medallion の方法は外界にはほぼ不明である。Renaissance の秘密文化は金融で最も厳しい。従業員は厳格な機密保持契約に署名する。去る時、彼らは数年間の競業禁止条項に直面する。誰も論文を発表しない。誰もインタビューを与えない。誰もモデルの詳細を明かさない。</p>
+
+        <p>我々が知っているのは、かけらだけである。それは純粋な定量的であり、100% アルゴリズムによって駆動される。それは毎日何千もの取引を実行し、わずかな利益で、数千倍に複合される。それは10 倍から20 倍のレバレッジを使用する。それは数十の市場で同時に取引される。そのデータベースは、おそらく金融で最大であり、細心に清掃・構造化されている。</p>
+
+        <p>Simons は1 つの方法論的ヒントを与えた：異常に見えるパターンを見つけること。それが統計的に有意であることを確認する。十分な取引信号を生成することを確認する。その後、コンピュータに実行させろ。干渉しろ。「なぜ」を尋ねるな。</p>
+
+        <p>これら5 つの言葉——「なぜを尋ねるな」——は、Medallion と LTCM の基本的な違いである。</p>
+
+        <p>LTCM のアプローチは理論から始まった。彼らは市場がどのように機能するかについての理論を持っていた（有効市場仮説の変種）、その後定価偏差を探した。彼らのモデルは演繹的だった：原理から結論を導き出した。</p>
+
+        <p>Medallion のアプローチはデータから始まった。彼らは市場がどのように「すべき」かを気にしなかった。彼らはデータで「実際」に起こったことを観察した。彼らは統計的規則性を求め、それらの背後の理由を理解する必要なしに。モデルは帰納的だった：現象から抽出されたパターン。</p>
+
+        <p>LTCM の理論は彼らに「これは起こらないはず」と言った（ロシアはデフォルトすべきではない）、その後それが起こり、モデルは崩壊した。Medallion のモデルは決して「これは起こらないはず」と言わない。なぜなら、それは決して「べき」判断をしないから。それが唯一尋ねるのは：「歴史データに基づいて、このパターンが表示される確率はいくらですか？」現実がパターンから逸脱した場合、モデルは調整する。それは主張しない。</p>
+
+        <p>これが、Medallion が2007 年8 月に3 日間20% の損失に見舞われた時に崩壊しなかった理由である。パートナーは Simons のオフィスに集まり、干渉を検討した。しかし、彼らは動かなかった。モデルは取引を続けた。年末までに、Medallion は85.9% 上昇した。</p>
+
+        <p>このシーンはシリーズ全体で最も冷たい時刻である。画面上で数字が崩壊するのを見ながら座る群、ポケットに手をいれ、何もしない。なぜなら、彼らは知っていた：彼ら ができることは、何もしないより悪いだろう。</p>
+
+        <p>しかし Simons の逃避には代償があった。</p>
+
+        <p>1993 年から、Medallion は外部投資家のお金の受け入れを停止した。ファンドは現在および former Renaissance 従業員および彼らの家族でのみ利用可能である。なぜ？規模が大きすぎる場合、それが搾取する小さな定価異常は十分ではないから。あなたの取引自体が市場価格を動かし、あなたが利用していた異常を消滅させる。</p>
+
+        <p>これは、Soros の反射性が別のレベルで明らかにされている：あなたの成功は、あなたの成功の条件を変える。</p>
+
+        <p>だから Medallion は閉鎖を選んだ。貪欲さから、他の人に利益を得させたくないから、ではなく、それを開くことはマシンを殺すだろうから。それを生かしておくためには、それを小さく保つ必要がある。</p>
+
+        <p>Renaissance は後に外部ファンド（RIEF その他）を開き、異なる戦略を使用した。彼らのリターンは Medallion よりはるかに劣っていた。2008 年、Medallion は98% 上昇した。RIEF は16% 失った。同じ会社、同じ人員、完全に異なる結果。違いは：Medallion は閉じていた。RIEF ではなかった。</p>
+
+        <p>これは脱出の奇妙な形である。最初の8 つの物語はすべて「より多く」に関わっていた。より多くのお金、より多くのレバレッジ、より多い市場シェア、より多い名声。Simons の脱出は「より少なく」によって来た。知っている人が少ない。流れ込むお金が少ない。干渉が少ない。説明が少ない。</p>
+
+        <p>彼は自由のための閉鎖を取引した。</p>
+
+        <p>2024 年5 月10 日、Jim Simons はニューヨークで死亡した。彼は86 歳だった。彼と彼の妻は、Simons 基金を通じて、32 億ドルを超える寄付をした。主に数学と基礎科学研究のため。彼はかつて彼の人生を3 つの段階に説明した：数学者、投資家、慈善家。</p>
+
+        <p>彼はシリーズで取引問題を真に「解決した」唯一の人物だった。しかし、彼の解決方法は大部分の人が複製できない。それは反人間的なことを要求するから：なぜを尋ねるな、干渉しろ、市場を理解していると偽るな。マシンを機能させろ。去れ。</p>
+
+        <p>Soros の脱出は哲学的だった：あなたは常に間違っているかもしれないことを認める。Simons の脱出は技術的だった：決定プロセスから自分自身を取り除く。2 つの方法、2 つの自由。両方とも共通の品質を必要とする：「私はこの世界を理解した」という幻想を放棄する意思。</p>
+
+        <p>次は最後のエッセイである。誰もより長い道を歩いた人。Soros とは異なり、彼には洗練された哲学的理論がない。Simons とは異なり、人間が必要ない機械がない。彼が持っているのは、より単純でより難しいものである：初日から、彼は自分自身をやり直すためのスペースを残した。彼の名前は Warren Buffett である。</p>
+
+        <p>（取引の芸術シリーズは続く）</p>
+      </div>
+
+      <p class="essay-footer-note lang-zh"><em>Han Qin (秦汉) · @hqinjarsy · 交易的艺术</em></p>
+      <p class="essay-footer-note lang-en"><em>Han Qin (秦汉) · @hqinjarsy · The Art of Trading</em></p>
+      <p class="essay-footer-note lang-jp"><em>Han Qin (秦汉) · @hqinjarsy · 取引の芸術</em></p>
 
       <nav class="xiyou-nav">
         <a href="georgesoros.html" class="xiyou-nav-btn xiyou-nav-prev">
@@ -170,6 +340,7 @@
           <span class="xiyou-nav-label">
             <span class="xiyou-nav-sub lang-zh">上一篇</span>
             <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-sub lang-jp">前へ</span>
             <span class="xiyou-nav-title">George Soros</span>
           </span>
         </a>
@@ -177,6 +348,7 @@
           <span class="xiyou-nav-label">
             <span class="xiyou-nav-sub lang-zh">下一篇</span>
             <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-sub lang-jp">次へ</span>
             <span class="xiyou-nav-title">Warren Buffett</span>
           </span>
           <span class="xiyou-nav-icon">→</span>
