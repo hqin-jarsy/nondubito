@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LTCM — Non Dubito</title>
+  <meta name="description" content="前面五个故事，都是关于一个人的。一个人看见了什么，构建了什么，被什么困住了。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/jiaoyi/ltcm.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span>
+        <span class="title-sub lang-en">Essays in the Self-as-an-End Tradition</span>
+        <span class="title-sub lang-zh" style="font-family:var(--cjk),serif;">自我作为目的</span>
+      </a>
+      <nav class="header-nav">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="zh">中文</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="essay-container">
+    <a href="../../index.html#jiaoyi" class="back-link">← 交易的艺术</a>
+    <article>
+      <header class="essay-header">
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">交易的艺术（六）</div>
+          <div class="essay-series lang-en">The Art of Trading (6)</div>
+          <h1>LTCM</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="date">October 2025</span>
+        </div>
+      </header>
+
+      <div class="essay-body" style="font-family:var(--cjk),var(--serif);">
+        <p>前面五个故事，都是关于一个人的。一个人看见了什么，构建了什么，被什么困住了。</p>
+
+        <p>这一篇不是一个人。这是一群人。一群可能是当时世界上最聪明的人。他们聚在一起，用人类能发明的最精密的数学工具，试图做一件事：消灭不确定性。</p>
+
+        <p>他们差一点就成功了。然后全球金融市场差一点就因为他们关门了。</p>
+
+        <p>1993年，John Meriwether离开了所罗门兄弟。他之前是所罗门的债券套利部门负责人，那个部门在八十年代末到九十年代初贡献了所罗门全球利润的80%到100%。他因为一桩交易丑闻被迫辞职，但他的能力没有人怀疑。</p>
+
+        <p>Meriwether决定创办一个对冲基金。他去找了几个人。</p>
+
+        <p>Myron Scholes。Black-Scholes期权定价模型的共同创造者。这个模型改变了整个金融衍生品行业，让期权有了可计算的价格。</p>
+
+        <p>Robert Merton。哈佛商学院教授。他发展了连续时间金融理论，把随机过程引入了资产定价。他和Scholes在1997年一起获得了诺贝尔经济学奖。</p>
+
+        <p>David Mullins Jr.，前美联储副主席。曾经被认为是格林斯潘的可能继任者。</p>
+
+        <p>还有一批从所罗门出来的顶级交易员：Larry Hilibrand，Victor Haghani，Eric Rosenfeld。</p>
+
+        <p>这个阵容放在任何领域都是令人窒息的。两个未来的诺贝尔奖得主，一个前美联储副主席，一批华尔街最好的债券交易员。他们的名字就是信用。</p>
+
+        <p>1994年，Long-Term Capital Management正式成立。入场费一千万美元起，资金锁定三年，不许提前赎回，甚至不许问基金具体买了什么。管理费比行业标准高得多。</p>
+
+        <p>投资者排着队进来。</p>
+
+        <p>LTCM的核心策略听起来几乎没有风险：寻找定价偏差。比如同一个国家的两种政府债券，期限接近但价格有微小差异。这种差异在正常市场条件下一定会收敛。你买便宜的那个，卖贵的那个，等它们收敛，赚中间的差价。</p>
+
+        <p>问题是这个差价非常小，通常只有几个基点。要让回报率好看，你需要杠杆。很大的杠杆。</p>
+
+        <p>LTCM的杠杆率大约是25到30倍。也就是说，47亿美元的自有资本支撑着超过1250亿美元的资产。如果把场外衍生品的名义价值算进去，总敞口超过一万亿美元。</p>
+
+        <p>一万亿美元。不到两百个人的公司。</p>
+
+        <p>他们的模型告诉他们这是安全的。因为他们做的不是单方向的赌注，他们做的是配对交易。风险是"对冲"过的。模型计算出来，在任何情况下，他们一天最多亏三千五百万美元。</p>
+
+        <p>前三年的结果验证了这一切。1994年回报率23%。1995年43%。1996年41%。扣除了高额管理费之后的数字。</p>
+
+        <p>Scholes和Merton的理论在现实中运行了，而且运行得完美。学术界的模型不再只是论文里的方程式，它们在每天产生真实的利润。这是一种巨大的智力上的满足感。世界可以被理解。不确定性可以被驯服。数学是对的。</p>
+
+        <p>到了1997年，LTCM觉得自己的资本太多了。利润太高导致回报率开始下降，因为市场上可以套利的机会被它自己的交易压缩了。于是他们做了一个决定：把27亿美元退还给投资者，缩小基金规模。</p>
+
+        <p>这个决定后来被证明是致命的。他们把安全垫还了出去。</p>
+
+        <p>同时，因为传统的债券套利机会越来越少，LTCM开始涉足新的领域。新兴市场债券，外汇，股票指数期权。Scholes对此有过疑虑，他说过LTCM在这些领域没有"信息优势"。但利润的压力让他们还是做了。</p>
+
+        <p>1997年亚洲金融危机。LTCM受到了一些影响，但勉强扛住了。1997年全年还是赚了17%。</p>
+
+        <p>然后是1998年。</p>
+
+        <p>1998年8月17日，俄罗斯宣布卢布贬值并且违约其国债。</p>
+
+        <p>这件事在LTCM的模型里是不可能发生的。不是"概率很低"，是根据模型的假设，它不会发生。一个核大国不会违约自己的主权债务。历史数据里没有这个先例。模型里没有这个变量。</p>
+
+        <p>但它发生了。</p>
+
+        <p>恐慌蔓延。全球投资者开始疯狂地把钱从一切有风险的资产里撤出来，涌向美国国债。这叫"flight to quality"。所有的利差在同一个方向上剧烈扩大。LTCM的每一个头寸，不管是在哪个市场，不管是什么策略，都在同时亏钱。</p>
+
+        <p>模型说每天最多亏三千五百万。现实是他们每天亏三亿到五亿。</p>
+
+        <p>仅八月一个月，LTCM的资本就蒸发了44%，大约二十一亿美元。到八月底，全年亏损超过52%。</p>
+
+        <p>这里有一个极其重要的细节：LTCM的模型假设不同市场之间的相关性是稳定的。债券市场和股票市场，美国市场和欧洲市场，发达国家和新兴市场，在正常情况下，这些市场的波动是相对独立的。你在这个市场亏了，可以在那个市场赚回来。这就是"多样化"的基础。</p>
+
+        <p>但在恐慌中，所有的相关性都趋向1。所有市场同时朝一个方向动。多样化失效了。对冲失效了。那些在正常情况下互相抵消的头寸，在恐慌中变成了互相叠加的亏损。</p>
+
+        <p>更糟的是，LTCM不是唯一一个做类似交易的机构。华尔街上很多银行和对冲基金都在做跟LTCM类似的策略。当LTCM开始被迫平仓的时候，这些机构也在平仓。大家在同一时间卖同一类东西，价格加速崩溃，加速触发更多的平仓。这个反馈回路把一个基金的危机变成了整个市场的危机。</p>
+
+        <p>到了9月，LTCM的资本只剩下六亿美元。而它的总头寸还有超过一千亿。杠杆率从25倍飙升到了超过一百六十倍。</p>
+
+        <p>纽约联邦储备银行的主席McDonough出面了。他把华尔街最大的14家银行召集到一起，说了一句话："如果LTCM倒了，全世界所有的市场都会关门。"</p>
+
+        <p>这不是夸张。纽约联储自己派人去LTCM的办公室看了账本以后，其中一位官员说了一句后来被广泛引用的话："我们知道你们会毁掉债券市场，但我们不知道你们还会毁掉股票市场。"</p>
+
+        <p>14家银行最终出资36.5亿美元接管了LTCM，换取了基金90%的所有权。LTCM被慢慢清算，到2000年初完全解散。</p>
+
+        <p>Meriwether后来又开了一个新基金，叫JWM Partners，做类似的策略。在2008年金融危机中又亏了。</p>
+
+        <p>Mullins的美联储前途彻底终结。Scholes和Merton的理论遭到了公开的质疑。美林证券在年报里写了一句话："数学风险模型可能提供了比实际情况更大的安全感，因此不应过度依赖。"</p>
+
+        <p>这句话说得很客气。实际发生的事情远比"过度依赖"严重。</p>
+
+        <p>LTCM的模型有什么问题？</p>
+
+        <p>不是模型算错了。在正常市场条件下，模型算得很准。问题出在一个更深的地方：模型的基础假设来自于历史数据，而历史数据描述的是"正常"情况。模型无法处理的恰恰是"不正常"的情况。</p>
+
+        <p>一个核大国违约主权债务是不正常的。全球所有市场的相关性同时趋向1是不正常的。所有参与者在同一时间做同一件事是不正常的。这些"不正常"的事情不在模型里，不是因为建模者粗心，而是因为它们在本质上不可建模。它们是没有历史先例的事件。你不能用过去来预测从未发生过的事。</p>
+
+        <p>这就是为什么LTCM的故事比前面任何一个都更冷。管金生至少可以说他遇到了一个不公平的对手。Leeson可以说他只是一个被系统漏洞诱惑的普通人。Dennis可以说市场变了。Livermore可以说他败给了自己。</p>
+
+        <p>LTCM不能说这些。他们拥有最好的理论，最强的团队，最多的资源。他们做的每一步在逻辑上都无可指摘。他们的模型在严格的数学意义上是正确的。然后他们还是被摧毁了。</p>
+
+        <p>因为数学不知道什么叫恐慌。方程式不知道什么叫"所有人同时失去理性"。模型可以描述波动，但不能描述"波动本身的波动"。正常情况下的规律，在不正常的情况下不只是失效，而是变成了杀你的武器。你越相信它，你的杠杆越高，当它断裂的时候你死得越快。</p>
+
+        <p>LTCM是整个系列里最纯粹的一个案例。没有贪婪，没有欺骗，没有个人的弱点。只有一个冰冷的事实：你对世界的理解永远是不完整的。不管你多聪明，不管你用多精密的工具，在你的理解和世界之间永远有一道缝隙。那道缝隙在大部分时间里无关紧要。但当它突然裂开的时候，里面涌出的东西足以吞掉一切。</p>
+
+        <p>前五篇讲的是个人与系统的关系。这一篇讲的是：就算你聚集了世界上最聪明的人，就算你拥有诺贝尔奖级别的理论，就算你的系统在逻辑上无可挑剔，你仍然无法封死那道缝隙。</p>
+
+        <p>因为那道缝隙不是认知的缺陷。它是世界的构成部分。</p>
+
+        <p>下一篇，我们从谷底开始上升。一个15岁带着三万块钱进入中国股市的少年。他看见了市场里别人看不见的东西，建立了自己的帝国，然后帝国的重量把他压过了边界。但他还在。他的故事没有结束。他的名字叫徐翔。</p>
+      </div>
+
+      <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · 交易的艺术</em></p>
+
+      <nav class="xiyou-nav">
+        <a href="jesselivermore.html" class="xiyou-nav-btn xiyou-nav-prev">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title">Jesse Livermore</span>
+          </span>
+        </a>
+        <a href="xuxiang.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title">徐翔</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

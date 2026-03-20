@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jim Simons — Non Dubito</title>
+  <meta name="description" content="Soros的逃逸方式是"知道自己永远在里面"。Jim Simons的逃逸方式完全不同。他把人从方程式里拿走了。不是减少人的判断。是消除。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/jiaoyi/jimsimons.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span>
+        <span class="title-sub lang-en">Essays in the Self-as-an-End Tradition</span>
+        <span class="title-sub lang-zh" style="font-family:var(--cjk),serif;">自我作为目的</span>
+      </a>
+      <nav class="header-nav">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="zh">中文</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="essay-container">
+    <a href="../../index.html#jiaoyi" class="back-link">← 交易的艺术</a>
+    <article>
+      <header class="essay-header">
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">交易的艺术（九）</div>
+          <div class="essay-series lang-en">The Art of Trading (9)</div>
+          <h1>Jim Simons</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="date">October 2025</span>
+        </div>
+      </header>
+
+      <div class="essay-body" style="font-family:var(--cjk),var(--serif);">
+        <p>Soros的逃逸方式是"知道自己永远在里面"。他拥抱不确定性，在不确定性中游泳。他的工具是一个哲学框架：反身性。他还是一个人在做判断，只是他的判断里始终包含着对判断本身的怀疑。</p>
+
+        <p>Jim Simons的逃逸方式完全不同。他把人从方程式里拿走了。</p>
+
+        <p>不是减少人的判断。是消除。Medallion基金一旦开始运行，没有任何人被允许干预。模型交易什么，就交易什么。人的直觉，人的恐惧，人的贪婪，人的"我觉得这次不一样"，全部被挡在门外。</p>
+
+        <p>这听起来跟LTCM很像。LTCM也是数学家做的基金，也是用模型交易。但结果完全相反。LTCM被摧毁了，Medallion成了人类金融史上回报率最高的基金。</p>
+
+        <p>区别在哪？</p>
+
+        <p>Jim Simons 1938年出生在波士顿附近的一个中产家庭。从小就喜欢数学。在MIT读了本科，23岁在伯克利拿到了数学博士。然后他做了一件跟学术界关系不大的事：去了美国国防部的一个机构，IDA，做密码破译。冷战时期，破解苏联的通讯密码。</p>
+
+        <p>模式识别。在看起来随机的信号里找到隐藏的结构。这是他后来做的所有事情的起点。</p>
+
+        <p>从IDA出来以后他回到学术界，在石溪大学当了数学系主任。他和陈省身一起发展了Chern-Simons形式，这个成果后来成了弦理论和拓扑学的基础工具。他拿了数学界的大奖。如果他继续走学术路线，他会是一个杰出的纯数学家。</p>
+
+        <p>但1978年，他离开了学术界，创办了一个交易公司。后来这个公司改名叫Renaissance Technologies。</p>
+
+        <p>他的做法从第一天起就跟华尔街不一样。他不雇交易员，不雇MBA，不雇任何有金融背景的人。他雇数学家，物理学家，统计学家，计算机科学家，语言学家。他说过一句话："教聪明人关于市场的知识，比教市场人变聪明容易得多。"</p>
+
+        <p>1988年，他成立了Medallion基金。名字来自他和合伙人James Ax各自获得过的数学奖章。</p>
+
+        <p>早期并不顺利。1988年回报率只有9%，1989年亏了4%。内部发生了分歧，Ax离开了。Simons请来了伯克利的博弈论教授Elwyn Berlekamp来重新设计整个交易系统。Berlekamp花了六个月把系统推翻重建。1990年，新系统上线，当年回报率55.9%。</p>
+
+        <p>从那以后，Medallion几乎没有停过。</p>
+
+        <p>1988年到2018年，三十年，平均年化回报率66%（扣费前），39%（扣费后）。交易利润总额超过一千亿美元。在同一时期，巴菲特的年化回报率大约20%。Soros大约30%。Medallion是它们的两到三倍。</p>
+
+        <p>而且在2008年全球金融危机中，标普500跌了38.5%，Medallion涨了98.2%。</p>
+
+        <p>这些数字不像是真的。但它们是真的。</p>
+
+        <p>Medallion的方法，外界几乎一无所知。Renaissance的保密文化是金融界最严密的。员工签严格的保密协议，离职后有长达数年的竞业限制。没有人发表论文，没有人接受采访，没有人透露模型的任何细节。</p>
+
+        <p>我们知道的只有一些碎片。它是纯量化的，100%由算法驱动。它每天做大量的短期交易，每笔赚很小的利润，但重复几千次。它使用10到20倍的杠杆。它在几十个市场同时交易。它的数据库可能是金融界最大的，经过极其严格的清洗和结构化。</p>
+
+        <p>Simons给过的唯一一个方法论提示是：找到一个看起来像异常的模式。确认它在统计上是显著的。确认它有足够多的交易信号。然后让计算机执行，不要干预。不要问"为什么"。</p>
+
+        <p>"不要问为什么"这五个字，是Medallion跟LTCM最根本的区别。</p>
+
+        <p>LTCM的方法是从理论出发。他们有一个关于市场如何运作的理论（有效市场假说的变体），然后用这个理论去寻找定价偏差。他们的模型是演绎的：从原理推导出结论。</p>
+
+        <p>Medallion的方法是从数据出发。他们不关心市场"应该"怎么运作。他们只看数据里"实际"发生了什么。他们寻找的是统计上的规律性，不需要理解这个规律背后的原因。模型是归纳的：从现象中提取模式。</p>
+
+        <p>LTCM的理论告诉他们"这不应该发生"（俄罗斯不应该违约），然后它发生了，模型崩溃了。Medallion的模型不会说"这不应该发生"，因为它从不做"应该"的判断。它只说"根据历史数据，这个模式出现的概率是多少"。如果现实偏离了模式，模型会调整，不会坚持。</p>
+
+        <p>这就是为什么Medallion在2007年8月也遭遇了三天亏损20%，但没有崩溃。合伙人们聚在Simons的办公室里，想要干预。但他们没有动。模型继续交易。到年底，Medallion涨了85.9%。</p>
+
+        <p>这个场景是整个系列里最冷静的一刻。一群人坐在那里，看着屏幕上的数字在崩溃，手放在口袋里，什么都不做。因为他们知道：他们能做的任何事，都不如不做好。</p>
+
+        <p>但Simons的逃逸是有代价的。</p>
+
+        <p>Medallion从1993年起就不再接受外部投资者的钱。基金只对Renaissance的现任和前任员工及其家属开放。为什么？因为如果规模太大，它找到的那些微小的定价异常就不够用了。你的交易本身会改变市场价格，消灭你正在利用的异常。</p>
+
+        <p>这就是Soros的反身性在另一个层面上的体现：你的成功会改变你成功的条件。</p>
+
+        <p>所以Medallion选择了封闭。不是因为贪心不想让别人赚钱，而是因为开放会杀死这台机器。你要让它活着，就必须让它保持小。</p>
+
+        <p>Renaissance后来也开了面向外部投资者的基金（RIEF等），用不同的策略。这些基金的表现远远不如Medallion。2008年Medallion涨了98%，RIEF亏了16%。同一家公司，同一批人，两种完全不同的结果。区别就是：Medallion是封闭的，RIEF不是。</p>
+
+        <p>这是一种很特殊的逃逸。前面八个人的故事都跟"更多"有关。更多的钱，更多的杠杆，更多的市场份额，更多的声誉。Simons的逃逸是通过"更少"实现的。更少的人知道，更少的钱进来，更少的干预，更少的解释。</p>
+
+        <p>他用封闭换来了自由。</p>
+
+        <p>2024年5月10日，Jim Simons在纽约去世。86岁。他和妻子通过Simons基金会捐出了超过三十二亿美元，主要用于数学和基础科学研究。他曾经说过自己的人生有三个阶段：数学家，投资者，慈善家。</p>
+
+        <p>他是这个系列里唯一一个真正"解决了"交易问题的人。但他的解决方式是大部分人无法复制的，因为它要求你做到一件反人性的事：不要问为什么，不要干预，不要假装你理解市场。让机器去做，你走开。</p>
+
+        <p>Soros的逃逸是哲学的：承认自己永远可能是错的。Simons的逃逸是技术的：把自己从决策过程中移除。两种方式，两种自由。但都需要一种共同的品质：愿意放弃"我理解了这个世界"的幻觉。</p>
+
+        <p>下一篇，也是最后一篇。一个走了比所有人都长的路的人。他不像Soros那样有一套精密的哲学理论，也不像Simons那样有一台不需要人类的机器。他有的是一种更简单也更难的东西：从第一天起就为自己留出了重新开始的空间。他的名字叫Warren Buffett。</p>
+      </div>
+
+      <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · 交易的艺术</em></p>
+
+      <nav class="xiyou-nav">
+        <a href="georgesoros.html" class="xiyou-nav-btn xiyou-nav-prev">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title">George Soros</span>
+          </span>
+        </a>
+        <a href="warrenbuffett.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title">Warren Buffett</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
