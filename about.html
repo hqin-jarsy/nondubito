@@ -8,7 +8,163 @@
   <link rel="stylesheet" href="style.css">
   <link rel="canonical" href="https://nondubito.net/about.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
+  <style>
+    .about-page {
+      flex: 1;
+      padding-top: 54px;
+      background: var(--cream);
+    }
+
+    /* ── HERO ── */
+    .about-hero {
+      background: var(--green);
+      padding: 80px 2.5rem 70px;
+      color: var(--cream);
+      text-align: center;
+    }
+    .about-hero .lang-toggle {
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 2rem;
+      background: transparent;
+      border: 1px solid rgba(245,240,232,0.25);
+      padding: 0.35rem 0.9rem;
+      border-radius: 2px;
+    }
+    .about-hero .lang-btn {
+      background: none;
+      border: none;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.15s;
+    }
+    .about-hero .lang-btn.active,
+    .about-hero .lang-btn:hover { color: var(--cream); }
+    .about-hero .lang-sep { color: rgba(245,240,232,0.25); font-size: 0.8rem; }
+    .about-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(196,157,97,0.85);
+      margin-bottom: 1rem;
+    }
+    .about-hero h1 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      margin: 0;
+    }
+    .about-hero h1.lang-zh {
+      font-family: var(--cjk), serif;
+      font-style: normal;
+    }
+
+    /* ── CALLIGRAPHY ── */
+    .calligraphy-block {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 70px 2.5rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .calligraphy-img {
+      width: 100%;
+      max-width: 520px;
+      height: auto;
+      display: block;
+      border: 1px solid var(--cream-border);
+    }
+    .calligraphy-caption {
+      margin-top: 1rem;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-align: center;
+    }
+    .calligraphy-caption .lang-zh {
+      font-family: var(--cjk), serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: none;
+    }
+
+    /* ── BODY TEXT ── */
+    .about-body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 2.5rem 100px;
+    }
+    .about-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--ink);
+      margin-bottom: 1.4em;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+    .about-body .lang-zh p {
+      font-family: var(--cjk), serif;
+    }
+    .about-body a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .about-body a:hover {
+      color: var(--gold);
+      border-color: rgba(196,157,97,0.5);
+    }
+    .about-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--cream-border);
+    }
+    .about-ext-link {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted) !important;
+      text-decoration: none;
+      border: 1px solid var(--cream-border) !important;
+      padding: 0.4rem 0.9rem;
+      transition: all 0.15s;
+    }
+    .about-ext-link:hover {
+      color: var(--gold) !important;
+      border-color: rgba(196,157,97,0.4) !important;
+    }
+    .about-divider {
+      max-width: 800px;
+      margin: 56px auto 0;
+      padding: 0 2.5rem;
+      border: none;
+      border-top: 1px solid var(--cream-border);
+    }
+
+    [data-lang="en"] .lang-zh { display: none; }
+    [data-lang="zh"] .lang-en { display: none; }
+
+    @media (max-width: 600px) {
+      .about-hero { padding: 60px 1.25rem 50px; }
+      .calligraphy-block { padding: 50px 1.25rem 0; }
+      .about-body { padding: 44px 1.25rem 70px; }
+    }
+  </style>
   <script>
     (function() {
       var saved = localStorage.getItem('nd_lang') || 'en';
@@ -46,77 +202,99 @@
         <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
       </a>
       <nav>
-        <a href="index.html" class="active">Essays</a>
+        <a href="index.html">Essays</a>
         <a href="credesivis.html">Crede si vis</a>
-        <a href="about.html">About</a>
+        <a href="about.html" class="active">About</a>
         <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
         <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
       </nav>
     </div>
   </header>
 
-  <main class="about-main">
-    
-    <div class="lang-toggle">
-      <button class="lang-btn" data-lang="en">EN</button>
-      <span class="lang-sep">|</span>
-      <button class="lang-btn" data-lang="zh">中文</button>
+  <main class="about-page">
+
+    <!-- Hero -->
+    <div class="about-hero">
+      <div class="lang-toggle">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh">中文</button>
+      </div>
+      <p class="about-eyebrow">Han Qin · 秦汉</p>
+      <h1 class="lang-en">About</h1>
+      <h1 class="lang-zh">关于</h1>
     </div>
 
-    <h1 class="lang-en">About Non Dubito</h1>
-    <h1 class="lang-zh" style="font-family:var(--cjk),serif; font-style:normal;">关于 Non Dubito</h1>
-
-    <div class="lang-en">
-      <p><em>Non dubito</em> is Latin for "I do not doubt." In the Self-as-an-End (SAE) framework,
-      it names the 10th dimension of the chisel-construct cycle — the point at which a subject
-      has internalized its own baseline so thoroughly that it can no longer be shaken by external
-      questioning. Not certainty about the world, but certainty about oneself.</p>
-
-      <p>This site collects philosophical essays that apply the SAE framework to the lives and thought
-      of philosophers across East and West. The goal is not historical scholarship but structural
-      analysis: what kind of subjectivity did Socrates embody? What structural failure explains
-      Nietzsche&rsquo;s collapse? What does Wang Yangming&rsquo;s enlightenment look like in
-      dimensional terms?</p>
-
-      <p>These essays are written for human readers — accessible, personal, following the argument
-      wherever it goes. They are the companion to <a href="https://self-as-an-end.net">self-as-an-end.net</a>,
-      which hosts the full academic paper series.</p>
-
-      <p><strong>Han Qin</strong> (秦汉) is an independent researcher and the author of the
-      Self-as-an-End theory series. The SAE framework is a structural normative theory that derives
-      the conditions of personhood through the chisel-construct cycle (凿构循环) and a 16-level
-      dimensional sequence (0D through 16DD).</p>
-
-      <p>
-        <a href="https://self-as-an-end.net">SAE Academic Series</a> ·
-        <a href="https://hqin.substack.com">Substack</a> ·
-        <a href="https://x.com/hqinjarsy">X / @hqinjarsy</a> ·
-        <a href="https://zenodo.org/search?q=self-as-an-end&f=author_name%3AHan+Qin">Zenodo</a>
+    <!-- Calligraphy -->
+    <div class="calligraphy-block">
+      <img
+        src="img/calligraphy.png"
+        alt="秦汉 · 大知 幽默居士 — calligraphy by Han Qin"
+        class="calligraphy-img"
+      >
+      <p class="calligraphy-caption">
+        <span class="lang-en">Calligraphy · 大知 幽默居士 · Han Qin</span>
+        <span class="lang-zh">大知 幽默居士 · 秦汉书</span>
       </p>
     </div>
 
-    <div class="lang-zh" style="font-family:var(--cjk),serif;">
-      <p><em>Non dubito</em> 是拉丁文，意为"我不怀疑"。在 Self-as-an-End（SAE）框架中，
-      它命名了凿构循环的第十维——主体将自身基准线内化到如此彻底的程度，以至于再也无法被外部质疑所动摇。
-      不是对世界的确定性，而是对自身的确定性。</p>
+    <hr class="about-divider">
 
-      <p>这个网站收录了将 SAE 框架应用于东西方哲学家生命与思想的哲学随笔。
-      目标不是历史考证，而是结构分析：苏格拉底体现了什么样的主体性？
-      结构性的什么失败解释了尼采的崩溃？王阳明的龙场悟道在维度意义上是什么？</p>
+    <!-- Body text -->
+    <div class="about-body">
 
-      <p>这些文章为人类读者而写——可读的，个人的，跟着论证走到哪里就写到哪里。
-      它们是 <a href="https://self-as-an-end.net">self-as-an-end.net</a> 的伴侣，
-      后者收录了完整的学术论文系列。</p>
+      <div class="lang-en">
+        <p><em>Non dubito</em> is Latin for "I do not doubt." In the Self-as-an-End (SAE) framework,
+        it names the 10th dimension of the chisel-construct cycle — the point at which a subject
+        has internalized its own baseline so thoroughly that it can no longer be shaken by external
+        questioning. Not certainty about the world, but certainty about oneself.</p>
 
-      <p><strong>秦汉（Han Qin）</strong>是独立研究者，Self-as-an-End 理论系列的作者。
-      SAE 框架是一个结构性规范理论，通过凿构循环（凿构循环）和十六维序列（0D 至 16DD）推导人格的条件。</p>
+        <p>This site collects philosophical essays applying the SAE framework to the lives and thought
+        of thinkers across East and West. The goal is not historical scholarship but structural
+        analysis: what kind of subjectivity did Socrates embody? What structural failure explains
+        Nietzsche's collapse? What does Wang Yangming's enlightenment look like in dimensional terms?</p>
 
-      <p>
-        <a href="https://self-as-an-end.net">SAE 学术系列</a> ·
-        <a href="https://hqin.substack.com">Substack</a> ·
-        <a href="https://x.com/hqinjarsy">X / @hqinjarsy</a> ·
-        <a href="https://zenodo.org/search?q=self-as-an-end&f=author_name%3AHan+Qin">Zenodo</a>
-      </p>
+        <p>These essays are written for human readers — accessible, personal, following the argument
+        wherever it goes. They are the companion to <a href="https://self-as-an-end.net">self-as-an-end.net</a>,
+        which hosts the full academic paper series.</p>
+
+        <p><strong>Han Qin</strong> (秦汉) is an independent researcher and the author of the
+        Self-as-an-End theory series. The SAE framework is a structural normative theory that derives
+        the conditions of personhood through the chisel-construct cycle (凿构循环) and a 16-level
+        dimensional sequence (0D through 16DD).</p>
+
+        <div class="about-links-row">
+          <a href="https://self-as-an-end.net" class="about-ext-link" target="_blank" rel="noopener">SAE Academic Series ↗</a>
+          <a href="https://hqin.substack.com" class="about-ext-link" target="_blank" rel="noopener">Substack ↗</a>
+          <a href="https://x.com/hqinjarsy" class="about-ext-link" target="_blank" rel="noopener">X / @hqinjarsy ↗</a>
+          <a href="https://zenodo.org/search?q=self-as-an-end&f=author_name%3AHan+Qin" class="about-ext-link" target="_blank" rel="noopener">Zenodo ↗</a>
+        </div>
+      </div>
+
+      <div class="lang-zh" style="font-family:var(--cjk),serif;">
+        <p><em>Non dubito</em> 是拉丁文，意为"我不怀疑"。在 Self-as-an-End（SAE）框架中，
+        它命名了凿构循环的第十维——主体将自身基准线内化到如此彻底的程度，以至于再也无法被外部质疑所动摇。
+        不是对世界的确定性，而是对自身的确定性。</p>
+
+        <p>这个网站收录了将 SAE 框架应用于东西方思想者生命与思想的哲学随笔。
+        目标不是历史考证，而是结构分析：苏格拉底体现了什么样的主体性？
+        结构性的什么失败解释了尼采的崩溃？王阳明的龙场悟道在维度意义上是什么？</p>
+
+        <p>这些文章为人类读者而写——可读的，个人的，跟着论证走到哪里就写到哪里。
+        它们是 <a href="https://self-as-an-end.net">self-as-an-end.net</a> 的伴侣，
+        后者收录了完整的学术论文系列。</p>
+
+        <p><strong>秦汉（Han Qin）</strong>是独立研究者，Self-as-an-End 理论系列的作者。
+        SAE 框架是一个结构性规范理论，通过凿构循环和十六维序列（0D 至 16DD）推导人格的条件。</p>
+
+        <div class="about-links-row">
+          <a href="https://self-as-an-end.net" class="about-ext-link" target="_blank" rel="noopener">SAE 学术系列 ↗</a>
+          <a href="https://hqin.substack.com" class="about-ext-link" target="_blank" rel="noopener">Substack ↗</a>
+          <a href="https://x.com/hqinjarsy" class="about-ext-link" target="_blank" rel="noopener">X / @hqinjarsy ↗</a>
+          <a href="https://zenodo.org/search?q=self-as-an-end&f=author_name%3AHan+Qin" class="about-ext-link" target="_blank" rel="noopener">Zenodo ↗</a>
+        </div>
+      </div>
+
     </div>
   </main>
 
