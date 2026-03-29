@@ -21,6 +21,15 @@
     .path-table tr:last-child td { border-bottom:none; }
     .path-table td:first-child { font-weight:500; white-space:nowrap; font-size:0.78rem; }
     .path-table .verdict { color:var(--ink-muted); font-size:0.75rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
     [data-lang="en"] .lang-zh { display:none; }
     [data-lang="zh"] .lang-en { display:none; }
   </style>
@@ -65,7 +74,7 @@
   </header>
 
   <main class="essay-container">
-    <a href="../index.html#ai" class="back-link">
+    <a href="../index.html#ai-consciousness" class="back-link">
       <span class="lang-zh">← AI 与人的问题</span>
       <span class="lang-en">← AI &amp; the Human Question</span>
     </a>
@@ -319,6 +328,19 @@
       </div>
 
     </article>
+
+    <nav class="xiyou-nav">
+      <a href="ai-consciousness.html" class="xiyou-nav-btn xiyou-nav-prev">
+        <span class="xiyou-nav-icon">←</span>
+        <span class="xiyou-nav-label">
+          <span class="xiyou-nav-sub lang-en">Previous</span>
+          <span class="xiyou-nav-sub lang-zh">上一篇</span>
+          <span class="xiyou-nav-title lang-en">The Impossibility Theorem</span>
+          <span class="xiyou-nav-title lang-zh">AI意识不可能性定理</span>
+        </span>
+      </a>
+    </nav>
+
   </main>
 
   <footer>
