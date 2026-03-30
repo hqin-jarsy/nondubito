@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>两个帧 — Non Dubito</title>
+  <meta name="description" content="同一个宇宙，从几何帧看在收缩，从物理帧看在膨胀。这不是矛盾，而是同一件事的两面。宇宙学常数的完整消解。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/cosmo-dualframe.html">
+  <style>
+    .essay-container { max-width:var(--max-w-prose); margin:0 auto; padding:100px 2.5rem 80px; }
+    @media(max-width:620px) { .essay-container { padding:80px 1.5rem 60px; } }
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-epigraph { border-left:2px solid var(--gold); margin:2rem 0 2.5rem; padding:0.5rem 0 0.5rem 1.25rem; }
+    .essay-epigraph p { font-style:italic; font-size:0.95rem; color:var(--ink-muted); margin:0 0 0.3rem; }
+    .essay-epigraph cite { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-muted); }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-prev { justify-content:flex-start; }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-prev { justify-content:flex-start; text-align:left; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+            btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
+          });
+        });
+        var cur = document.documentElement.getAttribute('data-lang');
+        btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-lang') === cur); });
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="site-title">
+        <span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span>
+        <span class="title-sub lang-zh" style="font-family:var(--cjk),serif;">自我作为目的</span>
+        <span class="title-sub lang-en">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav class="header-nav">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="zh">中文</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="essay-container">
+    <a href="../index.html#cosmo" class="back-link">
+      <span class="lang-zh">← 宇宙 · 物理</span>
+      <span class="lang-en">← Cosmos · Physics</span>
+    </a>
+    <article>
+      <header class="essay-header">
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">宇宙 · 物理</div>
+          <div class="essay-series lang-en">Cosmos · Physics</div>
+          <h1 class="lang-zh">两个帧</h1>
+          <h1 class="lang-en">Two Frames</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="date">March 2026 · <a href="https://doi.org/10.5281/zenodo.19329771" target="_blank" style="color:var(--gold);text-decoration:none;">DOI 10.5281/zenodo.19329771</a></span>
+        </div>
+      </header>
+
+      <!-- ══════════════════════════════════════════ 中文 ══ -->
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+        <div class="essay-epigraph">
+          <p>同一道风景，从山顶看是上升，从谷底看是下降。两者都对。问题不是哪个对，而是你站在哪里。</p>
+        </div>
+
+        <p>上一篇论文留下了一个尖锐的问题。双4DD框架预言引力常数G不是一个真正的常数——它随时间缓慢变化。这本身不是问题。问题是变化速率：预言的速率超过月球激光测距的实验上界三到四个数量级。</p>
+
+        <p>月球激光测距是地球上最精确的测量之一。自1969年阿波罗宇航员将反射器放在月面以来，科学家每天将激光束射向月球，测量往返时间，精确到纳秒，从而将月球到地球的距离精确到厘米。如果G在改变，距离会随时间漂移。漂移没有被测到。框架必须有问题。</p>
+
+        <p>本文报告这个问题的消解。解决方案不是修改框架的基础。它是认识到框架有两个合法的帧——两种同样真实的方式来描述同一个宇宙——而引力常数问题只出现在其中一个帧里，另一个帧里它不存在。</p>
+
+        <h2>C场是什么</h2>
+
+        <p>在双4DD框架中，有一个标量场C，它编码因果律密度随时间的变化。在前几篇论文中，C被当作一个独立的动力学自由度来处理——类似于希格斯场或暗能量场，有自己的势能，有自己的运动方程。</p>
+
+        <p>本文给出了C的真实身份：C场不是一个独立的场。它是两个4DD结构几何错位的测量。</p>
+
+        <p>这需要解释。我们宇宙（因果侧）和镜像宇宙（逆因果侧）都在演化，各自遵循一个摆线——宇宙学上的膨胀-收缩闭合轨道。两侧的摆线形状相同，但时间周期不同：我们这侧T₁ = 20 Gyr，另一侧T₂ ≈ 19.5 Gyr。在任何给定时刻，两侧的宇宙尺度因子a₁(t)和a₂(t)不完全重合。这个错位，就是C。</p>
+
+        <p>具体地说：C(η) ∝ a(η)，其中η是共形时间参数。C精确地与宇宙的尺度因子成比例演化。这意味着C完全不是独立的动力学自由度——它的整个轨迹由双4DD的几何完全确定，不需要任何势能，不需要任何调节参数。</p>
+
+        <p>边界条件：在大爆炸时（η = 0），两侧重合，C = 0。在大挤压时（η = 2π），两侧再次重合，C = 0。在宇宙转向时（η = π，最大膨胀），两侧错位最大，C = C_max。</p>
+
+        <h2>Λ₁ + Λ₂ = 0</h2>
+
+        <p>前几篇论文建立了宇宙学常数的公式：我们这侧的Λ₁ = 2(ω₂² − ω₁²)/c²，这是一个正数，对应于观测到的暗能量驱动的加速膨胀。</p>
+
+        <p>镜像宇宙有一个对应的宇宙学常数：Λ₂ = 2(ω₁² − ω₂²)/c² = −Λ₁。它是一个负数，绝对值与Λ₁相等。</p>
+
+        <p>两侧加起来：<strong>Λ₁ + Λ₂ = 0</strong>。</p>
+
+        <p>这不是计算技巧，也不是令人不安的消去。这是余项守恒公理的第一个场论翻译。余项守恒要求总余项（= 总宇宙学常数）在两侧之间守恒，而总量为零。两侧的宇宙学常数是彼此的镜像，加起来恰好为零。</p>
+
+        <p>这解决了宇宙学常数问题的最深层形式。标准问题是：为什么Λ非零？SAE框架的答案是：总Λ精确为零，这不需要调节。观测到的非零Λ₁是因为我们只看到双4DD结构的一半。如果我们能看到两半加起来，什么都没有。</p>
+
+        <h2>两个帧，两种物理</h2>
+
+        <p>双4DD框架中有两个自然的度量（描述宇宙几何的基本量）。第一个是几何帧度量g_μν，它描述两个4DD结构的平均几何——两侧共享的骨架。第二个是物理帧度量ĝ_μν = A²(C)g_μν，这是我们这侧物质实际感受的度量。A(C)是一个与C场有关的共形因子。</p>
+
+        <p>这两个帧不是坐标变换意义上的不同描述。它们是物理上不同的东西：一个是两侧共享的几何，另一个是我们这侧的有效物理。</p>
+
+        <p>在几何帧里：两侧的宇宙学常数加起来为零，Λ_total = 0。这意味着几何帧里的弗里德曼方程是一个纯物质的闭合宇宙方程，没有宇宙学常数。这个宇宙有一个转向点：在T₁/2 = 100亿年时达到最大膨胀，然后开始收缩。按照这个帧，我们现在（宇宙年龄约138亿年）处于收缩阶段，几何帧的哈勃常数H_geo大约是 −54公里/秒/兆秒差距——负号意味着收缩。</p>
+
+        <p>在物理帧里：物质耦合到ĝ_μν，感受到的是我们这侧的Λ₁ > 0。这意味着物理帧里有一个正的宇宙学常数，驱动加速膨胀。物理帧的哈勃常数Ĥ是正的，大约68公里/秒/兆秒差距，与观测完全一致。</p>
+
+        <p>同一个宇宙，几何帧在收缩，物理帧在膨胀。这不是矛盾。这是两种合法的描述方式，每种都描述真实的一面。</p>
+
+        <h2>引力漂移问题的消解</h2>
+
+        <p>现在回到引力常数问题。Ġ/G代表引力常数随时间的相对变化率。月球激光测距给出的上界大约是每年10⁻¹³。前几篇论文预言的值超过这个上界三到四个数量级。</p>
+
+        <p>在标量-张量理论里，G的有效值由一个函数F(C)决定：G_eff ∝ 1/F(C)。当C变化时，G_eff也变化。问题在于C变化的速率——由于C ∝ a，C的变化率与哈勃参数同量级，从而G_eff的变化率也与H同量级，远超月球激光测距的约束。</p>
+
+        <p>解决方案来自两个方向同时：</p>
+
+        <p>第一，因果加强的先验。在双4DD框架里，宇宙转向后（a(t)减小），因果律密度∝ 1/a(t)增加。因果律越强，时空越"硬"，越难弯曲。这要求F(C)在C增大时增大——对应F(C)中ξ < 0的选择。</p>
+
+        <p>第二，C场的精确轨迹C ∝ a确定了整个标量-张量参数空间。F(C) = M_P²(1 + ε²x²)，其中x = a/a_max，ε = (T₁ − T₂)/(T₁ + T₂) ≈ 0.012是唯一的不对称小参数。所有其他参数都由ε决定，没有额外自由度。</p>
+
+        <p>Ġ/G的消去条件是一个方程：ru² − ru + 1 = 0，其中r和u是由ε导出的组合参数。这个方程在参数范围r ∈ (2209, 1.16 × 10⁶)内有物理解，对应月球激光测距和卡西尼探测器的约束同时满足。这不是调节——整个参数空间由ε这一个数确定，而ε来自两个时间周期T₁和T₂的比值，它们是独立观测量。</p>
+
+        <h2>为什么宇宙学常数问题是两个问题</h2>
+
+        <p>回顾一下，宇宙学常数问题通常被表述为一个问题："为什么Λ这么小但不是零？"但实际上它是两个嵌套的问题。</p>
+
+        <p>第一个问题：为什么量子场论给出的真空能量预测比观测值大120个数量级？这是量子场论的问题，SAE框架的回答是：量子场论的真空能量估算不适用于余项守恒的框架，两者是不同层次的描述。</p>
+
+        <p>第二个问题：为什么观测到的Λ₁非零？这是SAE框架正面回答的问题：因为两侧不对称，总Λ = 0，但每侧各自看到的是非零的±Λ₁，大小由对称性破缺参数ε决定。</p>
+
+        <p>两个帧的存在把这两个问题都纳入同一个结构里：几何帧回答了为什么总Λ = 0（余项守恒），物理帧回答了为什么观测到Λ₁ > 0（我们只在物理帧里观测）。</p>
+
+        <h2>结语</h2>
+
+        <p>宇宙现在在收缩，也在膨胀。这不是表述混乱，而是两种真实。几何帧里的宇宙越过了转向点，正在向大挤压前进。物理帧里的宇宙被Λ₁驱动，膨胀将持续，直到宇宙进入热寂状态。我们所有的观测都在物理帧里进行，所以我们看到膨胀。但几何帧一样真实——它只是我们无法直接测量的另一侧。</p>
+
+        <p>从这里往前，SAE宇宙学框架有一个完整的结构：两个公理推出双4DD，双4DD推出Λ = 2(ω₂² − ω₁²)/c²，Λ₁ + Λ₂ = 0推出余项守恒的场论形式，C ∝ a推出整个标量-张量参数空间，双帧机制解决了Ġ/G张力。整个链条不含自由参数。输入只有两个：T₁和T₂，两者都可以独立观测。</p>
+
+        <p>这是一套可以被证伪的结构。它预言w₀ > −1（暗能量不是真正的宇宙学常数），预言wₐ < 0（暗能量方程在未来趋向于−1），预言Ġ/G的具体允许范围。如果任何一个被未来观测否定，整个结构就需要修改。</p>
+
+        <p>这就是科学的正确形态。</p>
+
+      </div>
+
+      <!-- ══════════════════════════════════════════ English ══ -->
+      <div class="essay-body lang-en">
+
+        <div class="essay-epigraph">
+          <p>The same landscape looks like an ascent from the valley floor and a descent from the summit. Both are true. The question is not which is correct, but where you are standing.</p>
+        </div>
+
+        <p>The previous paper left a sharp unresolved problem. The dual-4DD framework predicts that the gravitational constant G is not truly constant — it changes slowly over time. This is not itself the problem. The problem is the predicted rate of change: it exceeds the experimental upper bound from lunar laser ranging by three to four orders of magnitude.</p>
+
+        <p>Lunar laser ranging is among the most precise measurements on Earth. Since 1969, when Apollo astronauts placed retroreflectors on the lunar surface, scientists have bounced laser pulses off the Moon and measured the round-trip time to the nanosecond, recovering the Earth-Moon distance to the centimeter. If G is changing at the predicted rate, the distance would drift. The drift is not observed. The framework had a problem.</p>
+
+        <p>This essay reports the resolution. The solution does not require modifying the framework's foundations. It requires recognizing that the framework has two legitimate frames — two equally valid ways of describing the same universe — and that the gravitational-constant problem exists in only one of them, while being absent in the other.</p>
+
+        <h2>What the C-Field Is</h2>
+
+        <p>In the dual-4DD framework, a scalar field C encodes how causal-law density changes over time. In earlier papers, C was treated as an independent dynamical degree of freedom — similar to the Higgs field or a dark energy scalar, with its own potential and its own equation of motion.</p>
+
+        <p>This paper gives C its true identity: the C-field is not an independent field. It is the measurement of the geometric misalignment between the two 4DD structures.</p>
+
+        <p>This requires unpacking. Our universe (the causal side) and the mirror universe (the retrocausal side) both evolve, each following a cycloid — a closed expansion-contraction orbit in phase space. The two cycloids have the same shape but different time periods: T₁ = 20 Gyr on our side, T₂ ≈ 19.5 Gyr on the other. At any given moment, the two sides' scale factors a₁(t) and a₂(t) do not coincide exactly. This misalignment is C.</p>
+
+        <p>Precisely: C(η) ∝ a(η), where η is the conformal time parameter. C evolves in exact proportion to the universe's scale factor. This means C is entirely not an independent dynamical degree of freedom. Its entire trajectory is fixed by the dual-4DD geometry, requiring no potential and no tunable parameters.</p>
+
+        <p>Boundary conditions: at the Big Bang (η = 0), both sides coincide, C = 0. At the Big Crunch (η = 2π), both sides coincide again, C = 0. At turnaround (η = π, maximum expansion), the misalignment is maximal, C = C_max.</p>
+
+        <h2>Λ₁ + Λ₂ = 0</h2>
+
+        <p>Earlier papers established the cosmological constant formula: our side's Λ₁ = 2(ω₂² − ω₁²)/c², a positive number corresponding to the observed dark-energy-driven accelerated expansion.</p>
+
+        <p>The mirror universe has a corresponding cosmological constant: Λ₂ = 2(ω₁² − ω₂²)/c² = −Λ₁. It is negative, with magnitude equal to Λ₁.</p>
+
+        <p>Adding both sides: <strong>Λ₁ + Λ₂ = 0</strong>.</p>
+
+        <p>This is not a computational trick, nor an unsettling cancellation. It is the first field-theoretic translation of the remainder conservation axiom. Remainder conservation requires that total remainder (= total cosmological constant) is conserved across both sides, and the total is zero. Each side's cosmological constant is the other's mirror image, summing to precisely zero.</p>
+
+        <p>This dissolves the deepest form of the cosmological constant problem. The standard question is: why is Λ nonzero? The SAE framework's answer: the total Λ is exactly zero — no tuning required. The observed nonzero Λ₁ exists because we observe only half of the dual-4DD structure. If we could see both halves together, they sum to nothing.</p>
+
+        <h2>Two Frames, Two Physics</h2>
+
+        <p>The dual-4DD framework contains two natural metrics — two fundamental descriptions of the universe's geometry. The first is the geometric-frame metric g_μν, describing the mean geometry of the two 4DD structures — the shared backbone of both sides. The second is the physical-frame metric ĝ_μν = A²(C)g_μν, the metric to which all matter on our side minimally couples. A(C) is a conformal factor related to the C-field.</p>
+
+        <p>These two frames are not different coordinate descriptions in the same sense as a change of variables. They are physically distinct: one is the geometry shared by both sides, the other is the effective physics of our side.</p>
+
+        <p>In the geometric frame: both sides' cosmological constants sum to zero, Λ_total = 0. This means the geometric-frame Friedmann equation is a pure-matter closed-universe equation with no cosmological constant. This universe has a turnaround: it reaches maximum expansion at T₁/2 = 10 billion years, then begins contracting. In this frame, we are now (at 13.8 billion years) in the contracting phase. The geometric-frame Hubble constant H_geo is approximately −54 km/s/Mpc — the negative sign indicating contraction.</p>
+
+        <p>In the physical frame: matter couples to ĝ_μν and experiences our side's Λ₁ > 0. This means the physical-frame equations contain a positive cosmological constant, driving accelerated expansion. The physical-frame Hubble constant Ĥ is positive, approximately 68 km/s/Mpc, in full agreement with observation.</p>
+
+        <p>The same universe: contracting in the geometric frame, expanding in the physical frame. This is not a contradiction. These are two legitimate descriptions, each capturing a real aspect.</p>
+
+        <h2>Resolution of the G-Change Tension</h2>
+
+        <p>Now return to the gravitational constant problem. Ġ/G represents the relative rate of change of the gravitational constant. Lunar laser ranging sets an upper bound of approximately 10⁻¹³ per year. The earlier predictions exceeded this by three to four orders of magnitude.</p>
+
+        <p>In scalar-tensor theories, the effective G is controlled by a function F(C): G_eff ∝ 1/F(C). When C changes, G_eff changes. The problem was the rate — because C ∝ a, C's rate of change is comparable to the Hubble parameter, and so is G_eff's rate of change, far exceeding lunar laser ranging constraints.</p>
+
+        <p>The resolution comes from two directions simultaneously.</p>
+
+        <p>First, the causal-strengthening prior. In the dual-4DD framework, after turnaround (when a(t) decreases), causal-law density ∝ 1/a(t) increases. Stronger causality means spacetime is stiffer, harder to curve. This requires F(C) to increase as C increases — corresponding to ξ &lt; 0 in the F(C) expression.</p>
+
+        <p>Second, the precise trajectory C ∝ a determines the entire scalar-tensor parameter space. F(C) = M_P²(1 + ε²x²), where x = a/a_max and ε = (T₁ − T₂)/(T₁ + T₂) ≈ 0.012 is the single asymmetry parameter. All other parameters are determined by ε — no additional free degrees of freedom.</p>
+
+        <p>The Ġ/G cancellation condition is a single equation: ru² − ru + 1 = 0, where r and u are parameter combinations derived from ε. This equation has a physical solution for r ∈ (2209, 1.16 × 10⁶), simultaneously satisfying lunar laser ranging and Cassini spacecraft constraints. This is not tuning. The entire parameter space is fixed by ε, which comes from the ratio T₁/T₂ — both independently observable.</p>
+
+        <h2>Why the Cosmological Constant Problem Is Two Problems</h2>
+
+        <p>The cosmological constant problem is usually stated as one question: "Why is Λ so small but not zero?" In fact it is two nested problems.</p>
+
+        <p>The first: why does quantum field theory predict vacuum energy 120 orders of magnitude larger than observed? This is quantum field theory's problem. The SAE framework's response: quantum field theory's vacuum energy estimates operate at a different level of description than remainder conservation; the two are not directly comparable.</p>
+
+        <p>The second: why is the observed Λ₁ nonzero? This is the question the SAE framework answers directly: because the two sides are asymmetric, the total Λ = 0, but each side individually sees ±Λ₁, whose magnitude is set by the symmetry-breaking parameter ε.</p>
+
+        <p>The two-frame picture accommodates both: the geometric frame answers why total Λ = 0 (remainder conservation); the physical frame answers why we observe Λ₁ > 0 (we measure only in the physical frame).</p>
+
+        <h2>Conclusion</h2>
+
+        <p>The universe is now contracting, and also expanding. This is not confused language. It is two real things. The geometric-frame universe passed its turnaround and is moving toward the Big Crunch. The physical-frame universe is driven by Λ₁, expanding toward a heat death. All our observations are made in the physical frame, so we see expansion. But the geometric frame is equally real — it is the other side that we cannot directly measure.</p>
+
+        <p>From here, the SAE cosmological framework has a complete chain: two axioms produce dual-4DD, dual-4DD produces Λ = 2(ω₂² − ω₁²)/c², Λ₁ + Λ₂ = 0 produces the field-theoretic form of remainder conservation, C ∝ a produces the entire scalar-tensor parameter space, and the dual-frame mechanism resolves the Ġ/G tension. The entire chain contains no free parameters. The inputs are two: T₁ and T₂, both independently observable.</p>
+
+        <p>This is a structure that can be falsified. It predicts w₀ > −1 (dark energy is not a true cosmological constant), wₐ &lt; 0 (dark energy equation of state approaches −1 in the future), and a specific allowed range for Ġ/G. If any of these are ruled out by future observations, the entire structure must be revised.</p>
+
+        <p>That is science in its correct form.</p>
+
+      </div>
+
+    </article>
+
+    <!-- Navigation Chain -->
+    <nav class="xiyou-nav">
+      <a href="cosmo-remainder.html" class="xiyou-nav-btn xiyou-nav-prev">
+        <div class="xiyou-nav-icon">←</div>
+        <div class="xiyou-nav-label">
+          <span class="xiyou-nav-sub lang-zh">上一篇</span>
+          <span class="xiyou-nav-sub lang-en">Previous</span>
+          <span class="xiyou-nav-title lang-zh">两个宇宙的接缝</span>
+          <span class="xiyou-nav-title lang-en">The Seam</span>
+        </div>
+      </a>
+    </nav>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Han Qin (秦汉) · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span>
+      <div class="footer-links">
+        <a href="https://self-as-an-end.net" target="_blank">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank">Substack</a>
+        <a href="https://x.com/hqinjarsy" target="_blank">X</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
