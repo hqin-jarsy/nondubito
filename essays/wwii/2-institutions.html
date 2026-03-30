@@ -17,6 +17,26 @@
     (function() {
       var saved = localStorage.getItem('nd_lang') || 'zh';
       document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
     })();
   </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
@@ -42,8 +62,15 @@
     <div class="essay-page-hero">
       <div class="essay-page-inner">
         <a href="index.html" class="back-link">← 二战与人的目的</a>
+        <div class="lang-toggle" style="margin-bottom:0.5rem;">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
         <div class="essay-page-num">Series II of V · 二战与人的目的</div>
-        <h1 class="essay-page-title zh" style="font-family:var(--cjk),serif;">当制度成为自己的目的</h1>
+        <h1 class="essay-page-title lang-en">When Institutions Become Their Own Purpose</h1>
+        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">当制度成为自己的目的</h1>
         <div class="essay-page-meta">
           <span>Feb 16, 2026</span>
           <span>Han Qin (秦汉)</span>
@@ -52,7 +79,57 @@
       </div>
     </div>
 
-    <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
+    <div class="essay-body lang-en">
+
+        <h2>I. Four Failures, One Pattern</h2>
+        <p>The previous essay asked how a civilization descends into the abyss in twenty years. This one asks a more uncomfortable question: why did every institution that was supposed to stop the descent fail to do so?</p>
+        <p>Four institutions. Four moments. Four failures. And behind all four, the same logic.</p>
+        <h2>II. Versailles: The System Protecting Itself</h2>
+        <p>The Versailles settlement was, in theory, designed to prevent future wars. In practice, it was designed to satisfy the domestic political needs of the victors — French demands for security, British demands for colonial protection, American demands for a League of Nations as Wilson's legacy project.</p>
+        <p>What the settlement actually produced was a transfer of political costs onto the defeated. Enormous reparations not because Germany could pay them — the economists knew from the start it could not — but because the victors' publics needed to see punishment. Article 231 not because historians agreed Germany bore sole responsibility for the war — it clearly didn't — but because legal war guilt was the prerequisite for the reparations regime's legitimacy.</p>
+        <p>Every element served the system's internal needs. Every element failed to ask: what will this do to the actual people living in Germany?</p>
+        <h2>III. The League of Nations: A Body That Preserved Itself</h2>
+        <p>Woodrow Wilson called it humanity's last best hope. He was not being cynical. He genuinely believed that a standing multilateral institution could prevent war by committing nations to collective security.</p>
+        <p>But the League faced a foundational contradiction from its first day: its authority depended on great power participation, but great powers would only participate on the condition that the League could not genuinely bind great powers. The United States never joined — the Senate rejected Wilson's treaty. Britain and France joined, but treated the League as a tool of their own interests, not a constraint on their behavior.</p>
+        <p>The result was an institution whose primary operating goal became its own continuation.</p>
+        <p>1931: Japan invaded Manchuria. The League dispatched an inquiry commission, which spent a year writing a report that gently criticized Japan. Japan withdrew from the League. End of episode.</p>
+        <p>1935: Italy invaded Abyssinia. The League voted sanctions — but the sanctions list conspicuously excluded oil, because Britain and France feared that genuine enforcement would push Mussolini toward Hitler.</p>
+        <p>Both cases reveal the same logic. At every decisive moment, the League chose self-preservation over accountability. Because genuinely enforcing collective security — sanctioning aggressors, using force if necessary — meant great powers bearing real costs and risks. Once great powers began calculating costs, they discovered it was much cheaper to maintain the League's <em>existence</em> than to honor the League's <em>commitments</em>.</p>
+        <p>The people of Manchuria, the people of Abyssinia — where did they stand in this calculation? Nowhere. They were not variables in the equation. The equation had only one variable: the cost of the system's continued survival.</p>
+        <p>A League that passed resolutions it would not enforce but continued to hold meetings was the optimal solution for the system. For the people being invaded, it was catastrophic. The system did not care about the latter, because the system's purpose was itself.</p>
+        <h2>IV. Appeasement: A Rational-Looking Arithmetic Problem</h2>
+        <p>Munich, September 1938. Chamberlain transferred Czechoslovakia's Sudetenland to Hitler in exchange for a piece of paper promising peace. History remembers this as a specimen of stupidity and weakness.</p>
+        <p>But place yourself in Chamberlain's position — not to defend him, but to understand institutional logic. Before him lay an arithmetic problem. One side: the Sudetenland, three million German-speaking inhabitants, Hitler claiming he wanted only this piece and would then be satisfied. The other side: refusal meant war. Britain had not completed rearmament. Popular memory of the First World War's trenches was vivid. The Empire's global defense lines were already overextended.</p>
+        <p>From a system-maintenance perspective, this arithmetic had a "rational" answer: trade three million people for peace. Not a good answer. But a computable one.</p>
+        <p>The problem was precisely in the word "computable." Three million Sudeten residents became numbers in this arithmetic — weights on one side of a scale. Not three million people with names, families, fears, and hopes. Variables the system could shift to keep itself running.</p>
+        <p>Chamberlain was not evil. He genuinely wanted to avoid war, genuinely believed that sacrificing a part could save the whole. That is exactly the problem. Once an institution habituates itself to treating people as variables in calculations, "sacrifice some to maintain the system" becomes a permanently available option. And once that becomes available, the only question is who gets sacrificed next.</p>
+        <p>Six months after Munich, Hitler occupied all of Czechoslovakia, and Chamberlain's arithmetic was proved wrong. But even if the arithmetic had been right — even if Hitler really had stopped at the Sudetenland — the logic of the calculation itself was illegitimate. It had already established a principle: people can be traded.</p>
+        <h2>V. Weimar Democracy: Procedure Devoured Content</h2>
+        <p>Institutional failure did not only occur at the international level. Inside Germany, the Weimar Republic's democratic system also failed to stop the catastrophe. And its failure was more uncanny: it was legally destroyed.</p>
+        <p>The Nazi party won the largest share of parliament through elections. Hitler was appointed chancellor through constitutional procedure. The Enabling Act passed through parliamentary vote. Every step took place within the legal framework.</p>
+        <p>The Weimar Constitution was, technically, one of the most advanced democratic constitutions in Europe. Proportional representation guaranteed pluralism. Civil rights clauses protected individual liberty. Emergency powers provided crisis flexibility. As a set of procedures, it was close to impeccable.</p>
+        <p>Then those impeccable procedures produced the most evil regime in human history.</p>
+        <p>Where was the failure? The system cared about its own operation — whether elections were held on schedule, whether parliamentary procedure was followed, whether legal texts were technically violated. The one thing it did not care about was whether the results of its operation were protecting people.</p>
+        <p>When a party openly declared its intention to destroy democracy but followed every step of democratic procedure in doing so, the system was paralyzed. It could not distinguish between "exploiting democracy" and "practicing democracy," because it looked only at procedure, not purpose.</p>
+        <p>On February 28, 1933, the day after the Reichstag fire, Hindenburg signed the Reichstag Fire Decree, suspending all civil liberties provisions of the Weimar Constitution. By the end of March, the Enabling Act had given Hitler the power to legislate without parliament. Legally, both were operations within the constitutional framework — the emergency powers clause had been designed precisely for crises.</p>
+        <p>A democratic system used its own tools to complete its own destruction. Entirely by the book.</p>
+        <p>There is a deep paradox here. If a democratic system treats the maintenance of its own operation as its supreme goal, it loses the capacity to judge whether the results of that operation are legitimate. But if it does not treat its own operation as its supreme goal, what does it have to resist external attack? Weimar never resolved this paradox.</p>
+        <h2>VI. Why Institutions Become This Way</h2>
+        <p>By now, a pattern is unmistakable. The Versailles system cared about systemic security, not the condition of actual people. The League cared about its own survival, not the fulfillment of collective security. Appeasement cared about maintaining order, not the fate of those being sacrificed. Weimar democracy cared about procedural operation, not the consequences of that operation.</p>
+        <p>Every institution, at every decisive moment, chose to protect itself rather than protect people.</p>
+        <p>Not because the people inside these institutions were villains. Chamberlain was not villainous. The League's secretary-general was not villainous. Most Weimar parliamentarians were not villainous. Many of them genuinely believed they were doing the right thing. The problem was not the people. It was the logic.</p>
+        <p>Once an institution is established, it acquires an instinct for self-maintenance — preserving its own survival, sustaining its own operation, avoiding any action that might cause it to collapse. This instinct requires no one to push it consciously. It is what a system, being a system, automatically does. Just as a biological organism automatically avoids harming itself, an institution automatically avoids choices that threaten its continuation.</p>
+        <p>And "protecting people" — that goal — is in very frequent conflict with "maintaining the institution." Sanctioning Japan might cause the League to collapse. Refusing Hitler might cause war. Banning the Nazi Party might violate the constitution. Every time, the option that protected people was more costly and more risky than the option that maintained the institution. So every time, the institution chose itself.</p>
+        <p>This is not institutional failure. It is an institution operating successfully according to its own logic.</p>
+        <h2>VII. The Most Unsettling Part</h2>
+        <p>We are accustomed to thinking of institutions as tools for protecting people. Constitutions protect rights. International law maintains peace. Multilateral bodies prevent aggression. This is true — institutions do protect people in many situations.</p>
+        <p>But institutions are simultaneously doing something else: maintaining themselves. And when "protecting people" conflicts with "maintaining themselves," institutions default to the latter — not every time, but at the critical moments, consistently.</p>
+        <p>What follows from this? It follows that institutions cannot be trusted unconditionally. Not because institutions are evil, but because institutions have their own survival logic, and that logic is not naturally identical to "treating people as ends." Sometimes they coincide. Sometimes they conflict. And at the moments of conflict, expecting institutions to automatically choose the human side is a dangerous naivety.</p>
+        <p>The twenty years from 1919 to 1939 were the cost of that naivety. Every institution was operating normally. Not one institution was protecting people.</p>
+
+      </div>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
 
       <h2>一个事后看来荒谬的问题</h2>
 

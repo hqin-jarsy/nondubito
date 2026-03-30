@@ -17,6 +17,26 @@
     (function() {
       var saved = localStorage.getItem('nd_lang') || 'zh';
       document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
     })();
   </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
@@ -42,8 +62,15 @@
     <div class="essay-page-hero">
       <div class="essay-page-inner">
         <a href="index.html" class="back-link">← 二战与人的目的</a>
+        <div class="lang-toggle" style="margin-bottom:0.5rem;">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
         <div class="essay-page-num">Series V of V · 二战与人的目的</div>
-        <h1 class="essay-page-title zh" style="font-family:var(--cjk),serif;">裂缝与光</h1>
+        <h1 class="essay-page-title lang-en">Cracks and Light</h1>
+        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">裂缝与光</h1>
         <div class="essay-page-meta">
           <span>Feb 19, 2026</span>
           <span>Han Qin (秦汉)</span>
@@ -52,7 +79,65 @@
       </div>
     </div>
 
-    <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
+    <div class="essay-body lang-en">
+
+        <h2>I. A Wall's Confession</h2>
+        <p>August 13, 1961, before dawn. East German workers began laying barbed wire across Berlin. Within days the wire had become concrete. A city split in two.</p>
+        <p>The Berlin Wall is usually read as a symbol of the Cold War. But it is also evidence of something more specific: a system that required physical means to stop people from leaving had answered, on its own behalf, the question of what it was.</p>
+        <p>You don't build a wall to stop people from flowing in. You build a wall to stop people from escaping.</p>
+        <p>In the twelve years before construction, East Germany had lost 3.5 million citizens — roughly one-fifth of its total population. These people were not expelled or exiled. They left on their own. They voted with their feet.</p>
+        <p>A system that can only function by locking people inside has already answered the question "are people a purpose or a tool in this system?"</p>
+        <h2>II. What the Closed System Got Right</h2>
+        <p>To be fair: the Soviet model did not fail in all respects. In 1957 the Soviet Union launched the first artificial satellite, shocking the world. In 1961, Gagarin became the first human in space. Soviet nuclear weapons, ballet, chess players, Olympic teams — all of world-class quality. From near-zero to industrialization, from agricultural nation to superpower, the Soviet Union achieved in under thirty years a transformation unprecedented in human history.</p>
+        <p>Closed systems have extraordinary efficiency at concentrating resources on a single goal. When you don't need anyone's consent, don't need to survive any debate, don't need to accommodate any dissent, you can focus an entire nation's total force like a laser onto a single point.</p>
+        <p>The cost: everything not in focus was deteriorating. The Soviet Union could build the best rockets but couldn't manufacture shoes that fit comfortably. Could train world champions but made ordinary people queue for hours for bread. Could design nuclear warheads but couldn't design an administrative system that allowed low-level officials to honestly report actual data.</p>
+        <p>Because the closed system's efficiency came precisely from severing feedback loops. No dissent, no friction, no efficiency losses. But also no error correction. Errors were not repaired — they were concealed, redefined, or blamed on "saboteurs." Khrushchev tried limited crack-opening. His 1956 "Secret Speech" disclosed some of Stalin's crimes. But he quickly discovered the problem: once a crack is opened, it is very difficult to control how wide it grows. Hungarians thought the crack meant freedom and revolted. The Soviet response was to send tanks to close the crack.</p>
+        <p>1968: Czechoslovakia's Prague Spring tried to create "socialism with a human face" — essentially chiseling more cracks into the Soviet system's closure. The Soviet Union sent tanks again.</p>
+        <p>These two events established an unwritten rule: the width of any crack was for the top to decide. Widening a crack from below was an invitation for tanks.</p>
+        <h2>III. What the Open System Got Wrong — and Why It Survived Anyway</h2>
+        <p>The same period: what was the United States doing? A complete mess. McCarthyism branded half of Hollywood and a generation of academics as "communist sympathizers." Vietnam swallowed 58,000 American lives and millions of Vietnamese. Watergate revealed a sitting president openly lying and abusing power. Racial segregation was only legally abolished in the 1960s, with actual discrimination persisting for decades beyond that. Urban riots, political assassinations, stagflation — the America of the 1960s and 1970s looked like a country coming apart.</p>
+        <p>If you took a snapshot in 1970 and compared the two systems, the Soviet side appeared stable, predictable, uniformly ordered. The American side appeared chaotic, fractured, consumed by self-doubt. Many observers at the time — including many Western intellectuals — genuinely believed the Soviet model was more efficient and might represent the future.</p>
+        <p>They saw efficiency. They did not see resilience.</p>
+        <p>McCarthy was eventually challenged before a live television audience by one of his own colleagues: "Senator, have you no sense of decency?" His political career subsequently collapsed — not because some center of power decided to discard him, but because pluralistic information channels let the public see his true face.</p>
+        <p>Vietnam generated mass anti-war movements at home. Independent press coverage brought the front's realities into every American living room. The government could not control this information — it tried, and failed. The United States eventually withdrew from Vietnam. The withdrawal was humiliating. But the system received the feedback that "this path was wrong" and made a corresponding adjustment.</p>
+        <p>Watergate led to Nixon's resignation — a sitting president driven from office by his own nation's judiciary and press. This was unimaginable in the Soviet Union, not because Soviet leaders didn't make mistakes, but because the Soviet system had no force capable of holding leaders accountable.</p>
+        <p>Every American crisis was ugly, noisy, the laughingstock of the world. But after every crisis, the system made some kind of adjustment. Not because the system was "good," but because the system's foundational structure contained a few things: information channels capable of transmitting bad news, institutional arrangements capable of challenging power, legitimate pathways capable of expressing dissatisfaction.</p>
+        <p>These things made the system look clumsy. Democratic decision-making is slower than autocracy, debate is less efficient than command, compromise is messier than coercion. But behind the clumsiness was a capacity — a capacity to walk out alive from its own mistakes. The Soviet system looked efficient. But behind the efficiency was an incapacity — an incapacity to even recognize its own errors, let alone repair them.</p>
+        <h2>IV. The Wall Falls</h2>
+        <p>November 9, 1989. The Berlin Wall came down. But it was not pushed down. Not stormed by an army. Not destroyed by a revolution. It simply fell when, following a press conference misstatement, ordinary people walked through it.</p>
+        <p>East German government spokesman Schabowski announced new travel regulations at a press conference. A reporter asked: when does this take effect? He shuffled through his papers, and said uncertainly: "As far as I know... immediately."</p>
+        <p>That night, tens of thousands of East Berliners surged toward the checkpoints. The border guards didn't know what to do — no one had ordered them to shoot, and no one had ordered them to let people through. Finally they stepped aside. People walked across.</p>
+        <p>The absurdity of this scene is meaningful. A system that had controlled tens of millions of people for forty years was not defeated in an epic confrontation. It evaporated in a small information confusion.</p>
+        <p>Why? Because by 1989, the Soviet model's legitimacy was an empty shell. The Soviet system's legitimacy was built on a temporal promise: history is moving toward communism; every sacrifice is for that destination. But by the 1980s, no one believed this promise — including most people inside the system. They continued operating as the system required not because they believed, but because of inertia.</p>
+        <p>Gorbachev's reforms attempted to do one thing: maintain the system while introducing openness. Let people tell the truth, let information circulate, let feedback loops rebuild. He thought this would make the system stronger. The opposite happened. When a system built on closure is allowed to open, it does not "get better." It exposes everything that closure had been concealing — corruption, inefficiency, lies, hollow promises. And once those things are seen, the system's legitimacy is not merely weakened. It evaporates entirely.</p>
+        <p>Because this system's legitimacy was not built on "I have made your life good" — that at least could be debated. It was built on "history is on our side" — a belief. Once a belief is permitted to be doubted, there is no "partial doubt." Either the belief holds or it vanishes completely.</p>
+        <p>So the Wall's fall was not the endpoint of a gradual process. It was a single instant. Before that instant, the system appeared to be functioning. After that instant, everyone could see it had actually stopped long ago — but no one had dared say so aloud.</p>
+        <h2>V. The Illusion of Victory</h2>
+        <p>1991: the Soviet Union formally dissolved. Francis Fukuyama declared the end of history. Liberal democracy and market economics had won — not temporarily, but finally and completely.</p>
+        <p>Reading this series from the beginning, you can see where this argument went wrong.</p>
+        <p>The Cold War's end proved one thing: a completely closed system — no informational pluralism, no checks on power, no feedback loops — will eventually shatter under the weight of its own rigidity. No matter how strong its industrial capacity, military force, or ideological coherence, if it cannot recognize and repair its own errors, it is counting down to collapse.</p>
+        <p>But the Cold War's end did not prove another thing: that a "relatively open" system will automatically and continuously treat people as ends.</p>
+        <p>The existence of cracks makes error correction possible. But cracks do not automatically widen, and correction does not automatically happen. Every correction — the Civil Rights Movement, the anti-war movement, the accountability of Watergate — was the result of people fighting within those cracks. Institutions provided the cracks. But action was still required to let the light through.</p>
+        <p>Fukuyama's error was equating "the existence of cracks" with "the problem's resolution." As if a system that has cracks — elections, courts, press freedom — will automatically move toward treating people as ends. The past thirty years have demonstrated how naive this was.</p>
+        <h2>VI. Cracks Narrow</h2>
+        <p>The post-Cold War world did not become what Fukuyama imagined. It became something else — a harder-to-recognize form of instrumentalization.</p>
+        <p>Without the Soviet Union as a mirror, the winning system lost its reference point and its self-vigilance. When no opponent is reminding a system "look at your own problems," the system increasingly operates according to its own internal logic rather than the principles it claims to embody.</p>
+        <p>The neoliberal globalization of the 1990s elevated market efficiency to near-unquestionable ultimate status. If a policy was "good for the market," it was good. If a person was "useful to the market," they had value. This is structurally identical to Soviet logic — only the Soviet ultimate standard was "historical progress" while the neoliberal ultimate standard is "economic efficiency." Different ultimate standards; same instrumentalizing logic.</p>
+        <p>The 2008 financial crisis was a perfect case. Every actor in the system — bankers, ratings agencies, regulators, homebuyers — was doing "rational" things by the system's rules. The system's overall output was catastrophe. Afterward, almost no one was held accountable. Taxpayer money was used to rescue the institutions that had created the crisis. What did the ordinary people who lost their homes receive?</p>
+        <p>This scene is structurally identical to the appeasement policy analyzed in the second essay: the system maintained itself; the cost was borne by specific people.</p>
+        <p>Then came social media and the algorithmic age. Information channels were formally more pluralistic than ever — anyone could speak. But algorithms determined whose voice was heard. Platforms were optimized not for "giving people true and useful information" but for "keeping people on the platform longer." Anger retains attention better than reason; the extreme generates more engagement than the moderate. The result: information channels formally expanded while information quality was substantively degraded.</p>
+        <p>The cracks appeared to remain. But the light coming through had become murky.</p>
+        <h2>VII. The Series' Last Sentence</h2>
+        <p>Five essays: from the railway car of 1918 to the Berlin Wall of 1989 to today.</p>
+        <p>If this series has a central message, it is: people becoming ends is never granted by institutions, never guaranteed by declarations, never achieved by one system defeating another.</p>
+        <p>People becoming ends happens in specific people, at specific moments, under specific pressures, choosing not to treat themselves or others as means.</p>
+        <p>The best thing institutions can do is not to declare "people are ends" — such declarations are too cheap. The best thing institutions can do is to keep the cracks open: let different voices have the chance to be heard, let power remain challengeable, let errors have channels through which to be recognized, let the question "who counts as human" never be permanently closed.</p>
+        <p>These cracks will not widen on their own. They need to be fought for, maintained, used. Unused cracks narrow. When they narrow enough, the system becomes once again a machine concerned only with its own operation, and the people inside it become components once more.</p>
+        <p>In the ruins of 1945, humanity chiseled open a few cracks. Eighty years later, some are widening and some are narrowing. Which direction they ultimately take depends on whether each person alive today still feels this has something to do with them.</p>
+
+      </div>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
 
       <h2>两种系统的赛跑</h2>
 

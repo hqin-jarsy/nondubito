@@ -17,6 +17,26 @@
     (function() {
       var saved = localStorage.getItem('nd_lang') || 'zh';
       document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
     })();
   </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
@@ -42,8 +62,15 @@
     <div class="essay-page-hero">
       <div class="essay-page-inner">
         <a href="index.html" class="back-link">← 《香君》解读系列</a>
+        <div class="lang-toggle" style="margin-bottom:0.5rem;">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
         <div class="essay-page-num">Series I of III · 《香君》解读</div>
-        <h1 class="essay-page-title zh" style="font-family:var(--cjk),serif;">一种不可退出的丰饶</h1>
+        <h1 class="essay-page-title lang-en">The Abundance You Cannot Exit</h1>
+        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">一种不可退出的丰饶</h1>
         <div class="essay-page-meta">
           <span>Feb 20, 2026</span>
           <span>Han Qin (秦汉)</span>
@@ -52,7 +79,44 @@
       </div>
     </div>
 
-    <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
+    <div class="essay-body lang-en">
+
+        <h2>I. The King Who Was Right</h2>
+        <p>A king refused to let his people plant a certain variety of rice. The people overthrew him. Not because the rice was poisonous — on the contrary, it was the finest grain crop known to the world. It resisted insects, withstood cold, was indifferent to soil quality, thrived in both wet paddies and dry fields, and produced multiple harvests per year. Every surrounding kingdom had adopted it; every one of their populations was prospering. Only this king stubbornly refused to introduce it, insisting his people continue with traditional crops far lower in yield.</p>
+        <p>When natural disaster struck, his land filled with the starving dead. His furious people toppled the throne and cursed the ruler they had once served. The king looked out at the bodies and, grief-stricken and self-reproaching, took his own life.</p>
+        <p>This is a plot from <em>Kôkun</em> (<em>香君</em>), the 2022 fantasy novel by Japanese author Uehashi Nahoko. In the novel's second half, the reader discovers: the king was right. He had seen what no one else could — that the rice did not bring freedom. It brought an irreversible dependency. But his people were already living inside the empire's narrative logic. They judged, using the standards the empire had provided, a man who was trying to protect them.</p>
+        <p>The empire didn't even need to send troops. The colonized completed the work themselves.</p>
+        <h2>II. An Empire Built on Rice</h2>
+        <p>In the world of <em>Kôkun</em>, there is a powerful Umarl Empire. Its foundation is not an army, not a religion, but a miraculous grain called Ohalre rice. Legend holds that in ancient times, the first Kôkun — a sacred figure who descended from the "divine realm" — brought this rice to humanity. The Umarl people fed themselves on Ohalre rice, then gradually drew neighboring kingdoms into their domain by offering seeds and fertilizer, building a vast empire.</p>
+        <p>The empire didn't need to brandish swords constantly. What it offered was more persuasive: a promise of freedom from hunger. The arrangement looked mutually beneficial — the empire provided the technology, the tributary states received food security. Everyone won.</p>
+        <p>But Uehashi embedded an extraordinarily terrifying detail in this setup: land that has grown Ohalre rice can never grow anything else again. Not even weeds survive.</p>
+        <p>Once your kingdom accepts this rice, you can never exit the system. Your land has been irreversibly transformed. Even if the empire collapsed tomorrow, you could not plant anything else. Your survival itself has been encoded into the empire's logic.</p>
+        <h2>III. Abundance as the Perfect Form of Control</h2>
+        <p>The empire we usually imagine operates through compulsion — taxes, corvée labor, violence for non-compliance. This mode of domination is crude and expensive, requiring the continuous cost of maintaining the violence apparatus. And the dominated always know they are being oppressed. The will to resist never disappears; it is only temporarily suppressed.</p>
+        <p>Ohalre rice represents a completely different logic of domination: control through giving rather than taking. The empire takes nothing from its tributaries. It gives them a "better option." You used to grow mixed grains — low yield, dependent on the weather, frequent famines. Now there is Ohalre rice: several harvests a year, staggering production, no more starvation. Who would refuse such a gift?</p>
+        <p>The problem is that once this "better option" is accepted, it systematically destroys every other option's possibility. Your farmers stop growing other crops because Ohalre rice's returns are higher. Your land can no longer grow other crops because it has been transformed. Your people no longer know how to grow other crops because those techniques and seeds disappeared within a generation or two.</p>
+        <p>In the end, you do not feel ruled. You feel you are living well. You are grateful for the empire's generosity; you sing the praises of the Kôkun's beneficence.</p>
+        <p>This is the most sophisticated form of control — not making you suffer enough to want to resist, but making you comfortable enough to forget that you were ever capable of living without depending on anyone.</p>
+        <h2>IV. The Refuser</h2>
+        <p>Back to that king. He was the grandfather of Aisha, the novel's protagonist — the lord of the western Kantar principality. The story tells us he had seen through Ohalre rice's control logic: the secrets of cultivation and fertilizer were in the empire's hands, and once you accepted, the principality could never free itself from imperial control. So he adamantly refused, even though it meant his people would continue enduring traditional agriculture's low yields and uncertainties.</p>
+        <p>But his people could not understand this thinking. From their perspective, every surrounding principality was growing Ohalre rice, everyone was eating their fill, only their king's inexplicable stubbornness kept them hungry.</p>
+        <p>The cruelty of this moment is precise: he was right about what he saw, and he was overthrown by the people he was trying to protect. His people were already living inside the empire's narrative logic — "Ohalre rice is good, refusing it is tyranny" — they used the empire's value standards to judge a man who was trying to keep them independent.</p>
+        <p>This is colonization's deepest layer: not conquering your land, not transforming your institutions, but transforming your judgment, making you actively crave a deepening dependency on the colonizer, and treating anyone who tries to stop this as your enemy.</p>
+        <h2>V. The Blight: The System's Reckoning</h2>
+        <p>Then the impossible happened. A pest called the Ōyoma began to spread through the Ohalre rice. This crop — supposedly immune to insects — developed a problem. And the entire empire, from the capital to the most remote principality, depended on this single crop. No backup options. No alternative crops. No plan B.</p>
+        <p>The very thing that had made the empire powerful was simultaneously what made the empire fragile.</p>
+        <p>Uehashi researched extensively in botany and ecology while writing. The blight in her story is not a simple natural disaster. It is the inevitable consequence of a monoculture system. When you eliminate all diversity from an ecosystem and leave only one crop, you have created an environment with no resistance to specific pests or diseases.</p>
+        <p>In the real world, the Irish Potato Famine of the nineteenth century is a case study — excessive dependence on a single variety of potato meant one outbreak of blight destroyed an entire nation's food system. Uehashi scales this historical lesson to the level of empire: when you use one technology to control everything, you have put all your eggs in one basket.</p>
+        <p>The empire's response exposed the problem's nature further: they ordered mass burning of blighted fields. But after the burning? That land could grow nothing else. The empire's "solution" was only one more step forward in a dead end already without exit.</p>
+        <h2>VI. Our Own Ohalre Rice</h2>
+        <p>Reading <em>Kôkun</em>, it is hard not to think about our own world. Global supply chains give us material abundance unprecedented in history — but also create deep dependencies on manufacturing in specific regions. Social media platforms offer free connection and information — but when they become the sole infrastructure for public discourse, the platform's algorithmic logic begins to reshape how we think. AI technology is making countless tasks more efficient — but when an entire industry's workflows are built atop a handful of large models, are we also planting our own Ohalre rice?</p>
+        <p>Uehashi has said she cannot write stories about "using superpowers to save the world." In her view, true crisis comes from structural imbalance in humanity's relationship with the world — when humans transform ecosystems only for human benefit, ignoring that we are ourselves part of that ecosystem, the system will respond in its own way.</p>
+        <p>The Ohalre blight is not punishment. It is a signal. It tells the empire's people: you thought you had conquered nature. In fact, you only made yourself more vulnerable.</p>
+        <p>A good harvest is not freedom. Sometimes a good harvest is the most elegant trap.</p>
+
+      </div>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
 
       <p>一个国王拒绝让人民种一种稻米，结果人民推翻了他。不是因为那种稻米有毒，恰恰相反——它是已知世界里最好的粮食作物。不畏虫害，不惧严寒，不挑土质，旱地水田都能种，一年收成好几次。周围所有国家的人都在吃它，都活得很好。只有这位国王固执地拒绝引进，坚持让自己的人民种产量低得多的传统作物。</p>
 

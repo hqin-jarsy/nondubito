@@ -17,6 +17,26 @@
     (function() {
       var saved = localStorage.getItem('nd_lang') || 'zh';
       document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
     })();
   </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
@@ -42,8 +62,15 @@
     <div class="essay-page-hero">
       <div class="essay-page-inner">
         <a href="index.html" class="back-link">← 二战与人的目的</a>
+        <div class="lang-toggle" style="margin-bottom:0.5rem;">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
         <div class="essay-page-num">Series IV of V · 二战与人的目的</div>
-        <h1 class="essay-page-title zh" style="font-family:var(--cjk),serif;">废墟上的承诺</h1>
+        <h1 class="essay-page-title lang-en">Promises on the Ruins</h1>
+        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">废墟上的承诺</h1>
         <div class="essay-page-meta">
           <span>Feb 18, 2026</span>
           <span>Han Qin (秦汉)</span>
@@ -52,7 +79,70 @@
       </div>
     </div>
 
-    <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
+    <div class="essay-body lang-en">
+
+        <h2>I. A Courtroom Defense</h2>
+        <p>November 1945, Nuremberg. Twenty-two senior Nazi officials sat in the dock facing a court unlike anything that had existed before. Hermann Göring wore a gray suit; he had lost a great deal of weight, but he seemed clearer-headed than during the war, answering questions with an incisiveness that unsettled the prosecutors.</p>
+        <p>When the prosecution accused him of crimes against humanity, his defense was simple: I was a government official acting on state policy and following state law. What right does another group of national representatives have to judge me?</p>
+        <p>This defense was not legally absurd. Before Nuremberg, the basic framework of international law was: the state is the subject of international law; the individual is not. An act committed in a state's name, under a state's laws, assigned responsibility to the state. The individual was not personally liable. "I was following orders" was not entirely an excuse — it was the actual operating logic of international law at the time.</p>
+        <p>Nuremberg shattered that framework. It declared: there exist acts which, regardless of the name under which they are committed and regardless of the law under which they are authorized, constitute crimes. Individuals cannot hide behind institutional identity and claim "the system made me do it" as an exemption from accountability.</p>
+        <p>This was a turning point in the history of human institutions. In a single sentence: for the first time, an international tribunal declared — people are larger than the system. At least in principle.</p>
+        <h2>II. The Breakthrough</h2>
+        <p>The principles Nuremberg established, viewed against the long arc of history, were each a revelation.</p>
+        <p>First: individuals must be held personally responsible for their actions, even when executing superior orders or state policy. This meant institutional identity was no longer a passport to a moral vacuum. A person cannot stop being a person by putting on a uniform.</p>
+        <p>Second: there exists a law that transcends national law — crimes against humanity. A state may legally enact any law it chooses, but when those laws result in systematic extermination and persecution, they cannot protect their executors from accountability.</p>
+        <p>Third: state sovereignty is not absolute. What a state does to its own citizens is no longer purely "internal affairs." The international community has the right — at least in principle — to intervene and to judge.</p>
+        <p>These three principles together point in a single direction: institutions are not the ultimate purpose. Above institutions, there is something else — the dignity and life of people themselves. When institutions systematically destroy human dignity and life, the authority of those institutions ceases to hold.</p>
+        <p>But the breakthrough was real, and so were its limitations — and these limitations were not technical flaws. They were structural contradictions.</p>
+        <h2>III. The Victors' Tribunal</h2>
+        <p>The most obvious contradiction: Nuremberg was a victors' tribunal. Everyone in the dock was an official of a defeated nation. No one was tried for Dresden. No one was tried for Hiroshima. No one was tried for the Bengal famine. Soviet judges sat on the bench while Soviet gulags held millions at that very moment.</p>
+        <p>Göring himself made this argument in court: who are the people who bombed Dresden to judge me? He asked no bad question — he simply lacked the standing to ask it.</p>
+        <p>Nuremberg's legitimacy derived from military victory, not from a moral authority that transcended all the warring parties. This meant the lofty principles it proclaimed — individual accountability, crimes against humanity, the limits of sovereignty — were selectively applicable from the moment of their birth. The principles were universal; their application was asymmetric.</p>
+        <p>This is a structural contradiction: a justice system established by victors cannot try the victors themselves. Because the source of the tribunal's power — military victory — and the source of the tribunal's legitimacy — moral principles transcending all nations — are separated by an unbridgeable gap.</p>
+        <p>Nuremberg attempted to inscribe "people are larger than the system" into the institutional record. But the pen that wrote those words was held by the system that had won the war.</p>
+        <h2>IV. A Declaration's Light and Impotence</h2>
+        <p>December 10, 1948. The UN General Assembly adopted the Universal Declaration of Human Rights. The drafting committee was chaired by Eleanor Roosevelt. Committee members came from China, France, Lebanon, the Soviet Union, Britain, Australia, Chile, and ten other countries. They spent two years arguing over every word.</p>
+        <p>The final text's first article reads: "All human beings are born free and equal in dignity and rights."</p>
+        <p>This sentence's weight in the history of human civilization cannot be overstated. Before this moment, no global document had ever declared that every person — regardless of nationality, race, sex, or belief — possesses inalienable dignity simply by virtue of being human. This was not the declaration of one cultural tradition, not the teaching of one religion, not the constitution of one nation. It was humanity as a whole, for the first time, attempting to affirm at the institutional level: people are ends.</p>
+        <p>Then came the problem: how to enforce it? Answer: essentially, you cannot.</p>
+        <p>The Universal Declaration is a declaration, not a treaty. No legal binding force. No enforcement mechanism. No sanctions for violation. Its authority rests entirely on the voluntary compliance of signatory states.</p>
+        <p>Why was no enforcement mechanism designed? Because enforcement would require an authority transcending sovereign states to punish violators. And sovereign states would not accept such an authority. Every nation — including those drafting the declaration — treated sovereignty as an inviolable baseline. A nation might sign, but it would ensure the document contained nothing capable of genuinely constraining itself.</p>
+        <p>There is a deep dilemma here. The realization of human rights requires institutions to guarantee them. But the entities capable of building institutions are states. And states are precisely the kind of system whose instinct is self-maintenance. Asking states to build an institution that might constrain states themselves is like asking a person to sign a contract authorizing others to discipline them — they might sign, but they will ensure the contract contains no part that can actually bind them.</p>
+        <p>The Universal Declaration is exactly that kind of contract without constraint. It points in the right direction. It is a remarkable signpost. But a signpost is not the road.</p>
+        <h2>V. The United Nations: An Honest Compromise</h2>
+        <p>The UN's designers were more honest than the League's designers. The League pretended great powers would submit to collective will, then looked away when they did not. The UN simply wrote great power privilege directly into the Charter — the five permanent Security Council members hold the veto.</p>
+        <p>This was a pragmatic choice. The designers' logic was blunt: a UN that kept the great powers inside through special privileges was better than a UN that insisted on principle and watched the great powers leave one by one. The latter was the League's fate. They did not want to repeat it.</p>
+        <p>From a system-survival perspective, this design was highly successful. The UN has existed for over eighty years, more than three times the League's twenty-six.</p>
+        <p>But what was the cost of successful survival? The cost was that the institution acknowledged from its founding: not all people are equally important. Citizens of permanent-member states have their security guaranteed by the veto; citizens of other states do not. When the Security Council debates whether to intervene in a genocide, any permanent member who decides intervention doesn't serve its interests can obstruct action — without even using the formal veto.</p>
+        <p>In 1994, during the Rwandan genocide, the Security Council took no effective action. In a hundred days, hundreds of thousands of people were massacred.</p>
+        <p>The UN has outlasted the League because it learned one thing: do not do anything beyond what the great powers will tolerate. And what great powers will tolerate is defined more by those powers' systemic self-interest than by the principle that "people are ends."</p>
+        <p>This is not the UN's "defect." It is the prerequisite of the UN's existence. Remove that prerequisite and the UN almost certainly repeats the League's fate. Keep it and the UN can never fully honor the promise of "all people equal." Another crack. Better than nothing. But not yet wide enough, not yet open enough.</p>
+        <h2>VI. The Selectivity of Repair</h2>
+        <p>What postwar reconstruction says most is not what was done, but for whom.</p>
+        <p>The Marshall Plan injected more than $13 billion into Western Europe (roughly $150 billion in today's terms), rebuilt its economic infrastructure, and laid the foundation for European integration. West Germany rose from rubble to become the world's third-largest economy within two decades.</p>
+        <p>But during the same period, Britain, France, the Netherlands, Belgium, and Portugal maintained colonial rule. The hands that signed the Universal Declaration of Human Rights simultaneously signed orders suppressing colonial independence movements. France fought a bloody eight-year colonial war in Algeria. Britain used concentration camps during Kenya's Mau Mau Uprising.</p>
+        <p>On one side: "all human beings are born free." On the other: colonial subjects who had no right even to self-governance. This contradiction was not merely hypocrisy. It had a deeper structural cause: the architects of the postwar order were systems themselves. They could not build an institution that genuinely scrutinized their own behavior.</p>
+        <p>The Marshall Plan's purpose was never simply "to improve Europeans' lives." It was simultaneously a move in the Cold War, a strategic investment to ensure Western Europe did not tilt toward the Soviet Union. Colonial continuation was also part of systemic interest — raw materials, markets, strategic positions.</p>
+        <p>Postwar repair was thus stratified. Those at the system's core — Western European peoples — received comprehensive reconstruction and rights affirmation. Those at the system's margins — colonial peoples — were delayed, conditioned, or simply ignored.</p>
+        <p>Later decolonization movements partially corrected this asymmetry. By the 1960s, most colonies had achieved political independence. But political independence is not economic independence. Changing flags did not change structures. Many post-colonial peoples traded the status of colonial tool for the status of a different tool within the global economic system. Instrumentalization changed its face and kept running.</p>
+        <h2>VII. A Nuclear-Sized Paradox</h2>
+        <p>If one single thing could capture the full contradiction of the postwar order, it is nuclear weapons.</p>
+        <p>The logic of nuclear deterrence: use the capacity to destroy all of humanity as the wager that maintains a state of non-war between two superpowers. Throughout the Cold War, humanity lived under the shadow of possible annihilation at any moment — during the Cuban Missile Crisis, "possible" nearly became "immediate."</p>
+        <p>Nuclear deterrence "worked." No Third World War. Almost no one died in direct conflict between the superpowers (though tens of millions died in proxy wars). "Working" is deterrence's strongest defense.</p>
+        <p>But from the perspective of "people are ends," this "working" is the deepest indictment. When a system requires holding all of humanity's existence as a bargaining chip to function — what does that reveal? It reveals that the system's operation is not aimed at people as its purpose. It is aimed at its own equilibrium. People are not the protected. They are the hostages. The hostage-taker is not a specific villain. It is the system's own logic.</p>
+        <p>And this was called "peace."</p>
+        <h2>VIII. Light and Shadow</h2>
+        <p>The institutional construction after 1945 cannot be evaluated simply.</p>
+        <p>On one side: this was the furthest humanity had ever gone. Before Nuremberg, no international tribunal had ever declared that institutional identity could not exempt a person from moral responsibility. Before the Universal Declaration, no global document had acknowledged that every person possesses dignity by virtue of being human. Before the United Nations, no lasting global institution had even nominally committed that all nations participate equally. These are genuine achievements.</p>
+        <p>On the other side, every achievement carries structural limitation. Nuremberg's justice was selective. The Declaration's commitments were unenforceable. The UN's equality had veto exceptions. And nuclear deterrence, as the entire order's ultimate guarantee, was in itself the most extreme form of treating people as hostages.</p>
+        <p>Perhaps the most accurate summary is this: after 1945, humanity inscribed "people are ends" into the institutional record for the first time. But the institutional system that wrote those words does not operate with people as its ends.</p>
+        <p>The promise is real. The promise's inability to be fulfilled is also real. Both are true simultaneously. And this is not a contradiction.</p>
+        <p>Because "people are ends" is not a state that can be declared by institutions and then automatically realized. It requires cracks — cracks through which dissent can travel, cracks through which errors can be corrected. Nuremberg, the Universal Declaration, the United Nations — what they built was not a completed edifice. They chiseled a few cracks in an enormous wall.</p>
+        <p>Light comes in through the cracks. But the wall remains.</p>
+
+      </div>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
 
       <h2>一个法庭上的辩词</h2>
 
