@@ -1045,6 +1045,57 @@ p.essay-footer-note {
   color: var(--gold-light);
 }
 
+/* ── CATEGORY BANNERS ────────────────────────────────────────────────────── */
+.category-banner {
+  background: var(--ink);
+  padding: 2.5rem 2.5rem;
+  border-top: 2px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.category-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.012) 40px,
+    rgba(255,255,255,0.012) 80px
+  );
+  pointer-events: none;
+}
+
+.category-banner-inner {
+  max-width: var(--max-w-wide);
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.category-banner-zh {
+  font-family: var(--cjk), var(--serif);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.category-banner-en {
+  font-family: var(--serif);
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-weight: 400;
+  color: var(--gold-light);
+  font-style: italic;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
 /* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
 @media (max-width: 700px) {
   header .header-inner { padding: 0 1.25rem; }
@@ -1061,4 +1112,5 @@ p.essay-footer-note {
   .footer-bottom { padding: 1.25rem 1.25rem 0; }
   header.essay-header { padding: 60px 1.25rem 40px; }
   .creed-strip-inner { padding: 60px 1.25rem; }
+  .category-banner { padding: 2rem 1.25rem; }
 }
