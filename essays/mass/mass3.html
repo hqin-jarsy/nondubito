@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周期表的边界 — Non Dubito</title>
+  <meta name="description" content="不存在稳定岛——这是一个可证伪的硬预测">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  
+<style>
+  .essay-hero { padding: 3.5rem 2rem 2rem; max-width: 780px; margin: 0 auto; }
+  .essay-eyebrow { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+  .essay-title-zh { font-family: var(--cjk), serif; font-size: 2.1rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-title-en { font-family: var(--serif); font-size: 1.7rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-hook-zh { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-hook-en { font-family: var(--serif); font-size: 1.0rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-doi { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--ink-muted); }
+  .essay-body { max-width: 780px; margin: 0 auto; padding: 0 2rem 4rem; }
+  .essay-section { margin-bottom: 2.5rem; }
+  .section-heading { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 0.9rem; font-weight: 600; }
+  .section-heading.lang-en { font-family: var(--serif); font-size: 0.95rem; letter-spacing: 0.04em; }
+  .essay-body p { font-size: 1.02rem; line-height: 1.85; margin-bottom: 1.0rem; }
+  [data-lang="en"] .essay-body p { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body p { font-family: var(--cjk), serif; }
+  .essay-body table { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body table { font-family: var(--cjk), serif; }
+  .hc16-link { max-width: 780px; margin: 3rem auto 0; padding: 1.5rem 2rem; border-top: 1px solid var(--cream-border); text-align: center; }
+  .hc16-link a { font-family: var(--serif); font-size: 0.85rem; color: var(--gold); text-decoration: none; }
+  [data-lang="zh"] .hc16-link a { font-family: var(--cjk), serif; }
+  .nav-arrows { display: flex; justify-content: space-between; max-width: 780px; margin: 2rem auto 0; padding: 1rem 2rem; }
+  .nav-arrows a { font-family: var(--serif); font-size: 0.82rem; color: var(--ink-muted); text-decoration: none; border: 1px solid var(--cream-border); padding: 0.5rem 1rem; transition: all 0.2s; }
+  .nav-arrows a:hover { color: var(--ink); border-color: var(--ink-muted); }
+  .nav-arrows .placeholder { visibility: hidden; }
+</style>
+
+</head>
+<body>
+
+<!-- ── LANGUAGE TOGGLE ─────────────────────────────────────────────────── -->
+<div style="position:fixed;top:1rem;right:1rem;z-index:100;">
+  <button id="lang-toggle" onclick="toggleLang()" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--cream-border);color:var(--ink-muted);padding:0.4rem 0.8rem;cursor:pointer;transition:all 0.2s;">
+    <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+  </button>
+</div>
+
+<!-- ── SITE NAV ─────────────────────────────────────────────────────────── -->
+<div style="padding:1.2rem 2rem 0; max-width:780px; margin:0 auto;">
+  <a href="../../index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">← 返回主页</span>
+    <span class="lang-en">← Home</span>
+  </a>
+  &nbsp;&nbsp;
+  <a href="index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">质量系列</span>
+    <span class="lang-en">Mass Series</span>
+  </a>
+</div>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+<div class="essay-hero">
+  <div class="essay-eyebrow lang-zh">质量系列 · 篇III</div>
+  <div class="essay-eyebrow lang-en">Mass Series · Paper III</div>
+  <h1 class="essay-title-zh lang-zh">周期表的边界</h1>
+  <h1 class="essay-title-en lang-en">The Edge of the Periodic Table</h1>
+  <p class="essay-hook-zh lang-zh">不存在稳定岛——这是一个可证伪的硬预测</p>
+  <p class="essay-hook-en lang-en">No island of stability — this is a falsifiable hard prediction</p>
+  <div class="essay-doi lang-zh">DOI 10.5281/zenodo.19493938</div>
+  <div class="essay-doi lang-en">DOI 10.5281/zenodo.19493938</div>
+</div>
+
+<!-- ── BODY ─────────────────────────────────────────────────────────────── -->
+<div class="essay-body">
+  <div class="lang-zh">
+<div class="essay-section">
+<h2 class="section-heading lang-zh">壳层结构来自哪里</h2>
+<p>元素周期表的结构——为什么是2、8、18、32个元素一行，为什么特定轨道有特定容量——在量子力学里是推导出来的，但用的是经验型势函数（Woods-Saxon势），不是第一性原理。</p>
+<p>SAE从DD结构推导壳层容量：</p>
+<p>1DD贡献n_dual = 2（自旋，即L/R对偶）；2DD贡献角量子数l的允许取值数n；3DD贡献角向简并度(2l+1)。因此subshell容量 = 2(2l+1)，shell容量 = 2n²。</p>
+<p>Madelung填充规则（为什么4s先于3d填充）通常以"n+l最小者先填"的经验规则描述。SAE的解释：n+l = 2DD加法成本 + 3DD乘法成本 = 总拓扑成本。不需要经验输入。</p>
+<p>Cr和Cu的Madelung例外（预期d⁴s²却实际是d⁵s¹）来自d⁵ = 5个doublet各一个电子时的完美对称（n_doublets共振）。Gd的例外来自f⁷的n_shells+1共振。SAE实现零未解释例外。</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">为什么铅是最重的稳定元素</h2>
+<p>铅(Pb, Z=82)是自然界中最重的稳定元素。为什么是82？</p>
+<p>82 = n_dual × (N_1DD − 1)：双侧对外泄漏通道饱和。铅之后的Po(84) = n_dual × N_1DD：含自泄漏的全部通道满额。Hs(108) = d × n_axes³ = 67+41：全部泄漏通路饱和。</p>
+<p>Magic numbers的DD身份：核物理的幻数{2, 8, 20, 28, 50, 82, 126}的差值序列{6, 12, 8, 22, 32, 44}全部有DD身份，其中11 = N_blocks − 1（泄漏给其他11个block）。</p>
+<p>关键点：幻数不是壳层势函数的输出（可以外推），而是DD泄漏通道的饱和序列（有硬边界）。</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">稳定岛不存在</h2>
+<p>核物理学界长期预测，在Z≈114-126（超重元素区）存在一片"稳定岛"——因为传统核壳层模型预测这里有幻数，稳定性应该回升。</p>
+<p>SAE给出一个与标准核物理直接对立的硬预测：<strong>Z>108不存在任何自持稳定的同位素（半衰期>1年）。所谓的稳定岛不存在。</strong></p>
+<p>理由：幻数不是传统核壳层势的输出，可以无限外推；幻数是DD泄漏通道的饱和序列，在Z=108处（全部泄漏通路饱和）有硬边界。超过这个边界，不再有结构性稳定机制。</p>
+<p>这是一个可证伪的预测。目前Z=115(Mc)最长寿同位素半衰期约220毫秒，Z=117(Ts)约51毫秒——远低于1年。如果实验室合成出Z>108的稳定同位素，SAE的泄漏通道饱和理论被证伪。</p>
+<p>预测还未被证伪。但它随时可以被证伪。这是好的科学。</p>
+</div>
+</div>
+  <div class="lang-en">
+<div class="essay-section">
+<h2 class="section-heading lang-en">Where Shell Structure Comes From</h2>
+<p>The structure of the periodic table — why 2, 8, 18, 32 elements per row, why specific orbitals have specific capacities — is derived in quantum mechanics, but using an empirical potential function (the Woods-Saxon potential), not first principles.</p>
+<p>SAE derives shell capacities from DD structure:</p>
+<p>1DD contributes n_dual = 2 (spin, the L/R duality); 2DD contributes the number of allowed angular quantum number l values; 3DD contributes the angular degeneracy (2l+1). Therefore subshell capacity = 2(2l+1), shell capacity = 2n².</p>
+<p>The Madelung filling rule (why 4s fills before 3d) is usually stated as the empirical rule "lowest n+l first." SAE's explanation: n+l = 2DD additive cost + 3DD multiplicative cost = total topological cost. No empirical input needed.</p>
+<p>The Madelung exceptions for Cr and Cu (expected d⁴s², actual d⁵s¹) arise from perfect symmetry when d⁵ has exactly one electron per doublet (n_doublets resonance). Gd's exception comes from f⁷'s n_shells+1 resonance. SAE achieves zero unexplained exceptions.</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">Why Lead Is the Heaviest Stable Element</h2>
+<p>Lead (Pb, Z=82) is the heaviest stable element in nature. Why 82?</p>
+<p>82 = n_dual × (N_1DD − 1): bilateral external leakage channels saturated. The next element, Po(84) = n_dual × N_1DD: all channels including self-leakage at full capacity. Hs(108) = d × n_axes³ = 67+41: all leakage pathways saturated.</p>
+<p>DD identity of magic numbers: the difference sequence {6, 12, 8, 22, 32, 44} of nuclear magic numbers {2, 8, 20, 28, 50, 82, 126} all have DD identities, where 11 = N_blocks − 1 (leakage to the other 11 blocks).</p>
+<p>Key point: magic numbers are not outputs of shell potential functions (which can be extrapolated indefinitely), but saturation sequences of DD leakage channels (with a hard boundary).</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">The Island of Stability Does Not Exist</h2>
+<p>Nuclear physicists have long predicted a "island of stability" around Z≈114-126 — because the traditional nuclear shell model predicts magic numbers there, suggesting stability should increase.</p>
+<p>SAE makes a hard prediction directly opposed to standard nuclear physics: <strong>No self-sustaining stable isotope (half-life >1 year) exists for Z>108. The island of stability does not exist.</strong></p>
+<p>The reason: magic numbers are not outputs of a traditional nuclear shell potential that can be infinitely extrapolated; they are the saturation sequence of DD leakage channels, with a hard boundary at Z=108 (all leakage pathways saturated). Beyond this boundary, no structural stability mechanism remains.</p>
+<p>This is a falsifiable prediction. Currently, Z=115 (Mc)'s longest-lived isotope has a half-life of ~220 milliseconds; Z=117 (Ts) is ~51 milliseconds — far below one year. If a stable isotope with Z>108 is synthesized, SAE's leakage channel saturation theory is falsified.</p>
+<p>The prediction has not yet been falsified. But it can be falsified at any time. That is good science.</p>
+</div>
+</div>
+</div>
+
+<!-- ── HC16 LINK ─────────────────────────────────────────────────────────── -->
+<div class="hc16-link">
+  <a href="../xiangjun/index.html">
+    <span class="lang-zh">你是哪种人？→ HC-16 性格测试</span>
+    <span class="lang-en">What kind of person are you? → HC-16 Personality Test</span>
+  </a>
+</div>
+
+<div class="nav-arrows"><a href="mass2.html" class="lang-zh">← 上一篇</a><a href="mass2.html" class="lang-en">← Previous</a><a href="mass4.html" class="lang-zh">下一篇 →</a><a href="mass4.html" class="lang-en">Next →</a></div>
+
+<script>
+  function toggleLang() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-lang');
+    const next = current === 'zh' ? 'en' : 'zh';
+    html.setAttribute('data-lang', next);
+    html.setAttribute('lang', next);
+    localStorage.setItem('nondubito-lang', next);
+  }
+  (function() {
+    const saved = localStorage.getItem('nondubito-lang');
+    if (saved) {
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+    }
+  })();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "your-token"}' ></script>
+</body>
+</html>
