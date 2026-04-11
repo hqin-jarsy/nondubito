@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>疑难杂症 — nondubito</title>
+<style>
+  :root { --accent: #4a1422; --accent-light: #f5e8ec; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #fafaf8; color: #1a1a1a; line-height: 1.7; }
+  header {
+    background: var(--accent); color: #fff;
+    padding: 0.6rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  header a { color: #e8c4cc; text-decoration: none; font-size: 0.9rem; }
+  header a:hover { color: #fff; }
+  .lang-toggle {
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
+    color: #fff; padding: 0.25rem 0.8rem; border-radius: 4px;
+    cursor: pointer; font-size: 0.85rem; font-family: inherit;
+  }
+  [data-lang="en"] .lang-zh { display: none; }
+  [data-lang="zh"] .lang-en { display: none; }
+  .hero { max-width: 740px; margin: 3rem auto 2rem; padding: 0 1.5rem; }
+  .hero h1 { font-size: 2rem; color: var(--accent); margin-bottom: 0.8rem; }
+  .hero p { color: #444; font-size: 1rem; max-width: 560px; }
+  .cards { max-width: 740px; margin: 0 auto 4rem; padding: 0 1.5rem; display: grid; gap: 1rem; }
+  .card {
+    display: block; padding: 1.2rem 1.4rem;
+    border: 1px solid #d8d8d4; border-radius: 6px;
+    background: #fff; text-decoration: none; color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .card:hover { border-color: var(--accent); box-shadow: 0 2px 8px rgba(74,20,34,0.1); }
+  .card-title { font-size: 1.05rem; font-weight: 600; color: var(--accent); margin-bottom: 0.3rem; }
+  .card-desc { font-size: 0.88rem; color: #555; }
+</style>
+</head>
+<body>
+<header>
+  <a href="../../index.html" class="lang-zh">← nondubito</a>
+  <a href="../../index.html" class="lang-en">← nondubito</a>
+  <button class="lang-toggle" onclick="toggleLang()">EN / 中文</button>
+</header>
+<div class="hero">
+  <h1 class="lang-zh">疑难杂症</h1>
+  <h1 class="lang-en">Difficult Cases</h1>
+  <p class="lang-zh">肥胖、失语、代谢肿瘤学——三个让传统框架犯难的临床现象，用SAE的层级语言重新提问。</p>
+  <p class="lang-en">Obesity, aphasia, metabolic oncology — three clinical phenomena that resist conventional frameworks, re-examined through the SAE layer sequence.</p>
+</div>
+<div class="cards lang-zh">
+        <a href="yi1.html" class="card">
+          <div class="card-title">减肥靠吃药，增重靠心理分析</div>
+          <div class="card-desc">肥胖的发生器在12DD，厌食症的发生器在伪14DD。治疗方向完全相反。</div>
+        </a>
+        <a href="yi2.html" class="card">
+          <div class="card-title">同一个"说不出话"，三种断层</div>
+          <div class="card-desc">失语症、字形记忆缺损、构音障碍——三种断层，三套药方，混用造成反向伤害。</div>
+        </a>
+        <a href="yi3.html" class="card">
+          <div class="card-title">代谢肿瘤学中的相变窗口</div>
+          <div class="card-desc">癌细胞与寄生虫共享Ω坍缩结构，因此共享对代谢环境切换的脆弱性。</div>
+        </a></div>
+<div class="cards lang-en">
+        <a href="yi1.html" class="card">
+          <div class="card-title">Drugs for Weight Loss, Psychoanalysis for Weight Gain</div>
+          <div class="card-desc">Obesity's generator is at 12DD; anorexia's generator is a false 14DD. The treatment directions are opposite.</div>
+        </a>
+        <a href="yi2.html" class="card">
+          <div class="card-title">Three Fractures Under One "Can't Speak"</div>
+          <div class="card-desc">Aphasia, character-memory deficit, dysarthria — three fractures, three prescriptions; mixing them causes harm.</div>
+        </a>
+        <a href="yi3.html" class="card">
+          <div class="card-title">Phase Transition Window in Metabolic Oncology</div>
+          <div class="card-desc">Cancer cells and parasites share Ω-collapse structure, and therefore share vulnerability to metabolic environment switching.</div>
+        </a></div>
+<script>
+function toggleLang() {
+  const html = document.documentElement;
+  const cur = html.getAttribute('data-lang');
+  html.setAttribute('data-lang', cur === 'zh' ? 'en' : 'zh');
+  localStorage.setItem('nd-lang', html.getAttribute('data-lang'));
+}
+(function() {
+  const saved = localStorage.getItem('nd-lang');
+  if (saved) document.documentElement.setAttribute('data-lang', saved);
+})();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b7a3219c51a64c788f5a5a07ec3b5a80"}'></script>
+</body>
+</html>

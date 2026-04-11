@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title class="lang-zh">生命元素周期表 I：从因果到繁殖 — nondubito</title>
+<title class="lang-en">Periodic Table of Life I: From Causality to Reproduction — nondubito</title>
+<style>
+  :root {
+    --accent: #1a4535;
+    --accent-light: #e8f2ed;
+    --text: #1a1a1a;
+    --muted: #666;
+    --border: #d0d0d0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Georgia", "Times New Roman", serif;
+    background: #fafaf8;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.6rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  header a { color: #cde8d8; text-decoration: none; font-size: 0.9rem; }
+  header a:hover { color: #fff; }
+  .lang-toggle {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    padding: 0.25rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: inherit;
+  }
+  .lang-toggle:hover { background: rgba(255,255,255,0.25); }
+
+  [data-lang="en"] .lang-zh { display: none; }
+  [data-lang="zh"] .lang-en { display: none; }
+
+  .essay-wrap {
+    max-width: 740px;
+    margin: 3rem auto;
+    padding: 0 1.5rem 4rem;
+  }
+  .essay-meta {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .series-tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    line-height: 1.3;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .doi-line {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+  .doi-line a { color: var(--muted); }
+  .doi-line a:hover { color: var(--accent); }
+
+  .essay-body h2 {
+    font-size: 1.15rem;
+    color: var(--accent);
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--accent-light);
+  }
+  .essay-body p {
+    margin-bottom: 1.1rem;
+  }
+  .essay-body blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.6rem 1rem;
+    margin: 1.5rem 0;
+    color: #444;
+    font-style: italic;
+    background: var(--accent-light);
+    border-radius: 0 4px 4px 0;
+  }
+  .essay-body ul {
+    margin: 0.8rem 0 1.1rem 1.5rem;
+  }
+  .essay-body ul li {
+    margin-bottom: 0.4rem;
+  }
+  .layer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.9rem;
+  }
+  .layer-table th, .layer-table td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  .layer-table th {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .layer-table tr:nth-child(even) td { background: #f8f8f6; }
+
+  .essay-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .nav-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .nav-link:hover { text-decoration: underline; }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <a href="../../index.html" class="lang-zh">← nondubito</a>
+    <a href="../../index.html" class="lang-en">← nondubito</a>
+    &nbsp;/&nbsp;
+    <a href="index.html" class="lang-zh">生物学与演化</a>
+    <a href="index.html" class="lang-en">Biology &amp; Evolution</a>
+  </div>
+  <button class="lang-toggle" onclick="toggleLang()">EN / 中文</button>
+</header>
+
+<div class="essay-wrap">
+  <div class="essay-meta">
+    <div class="series-tag lang-zh">生物学与演化系列</div>
+    <div class="series-tag lang-en">Biology &amp; Evolution Series</div>
+    <h1 class="lang-zh">生命元素周期表 I：从因果到繁殖</h1>
+    <h1 class="lang-en">Periodic Table of Life I: From Causality to Reproduction</h1>
+    <p class="doi-line">
+      DOI: <a href="https://doi.org/10.5281/zenodo.18818107">10.5281/zenodo.18818107</a>
+      &nbsp;·&nbsp;
+      <a href="https://self-as-an-end.net/papers/lifecycle1.html" class="lang-zh">学术原文 ↗</a><a href="https://self-as-an-end.net/papers/lifecycle1.html" class="lang-en">Full Paper ↗</a>
+    </p>
+    <a href="../../xiangjun/index.html" class="back-link lang-zh">关于作者：秦汉</a>
+    <a href="../../xiangjun/index.html" class="back-link lang-en">About the author: Han Qin</a>
+  </div>
+
+  <div class="essay-body lang-zh">
+<h2>为什么需要两个尺度</h2>
+
+<p>SAE框架的终稿给出了10D加物自体的维度结构。在粗粒度视角下，先验域（1D–4D）的每一步都清晰可辨：同一律、矛盾律、时空框架、因果律。但后验域（5D–10D）被压缩得太厉害了——从复制到自我意识，粗粒度视角把它折叠进一轮，却抹平了三个内部的质性跃迁：生命的涌现、意识的涌现、自由的涌现。</p>
+
+<p>细粒度视角展开后，后验域分裂为三轮：</p>
+
+<ul>
+<li><strong>第二轮（5DD–8DD）</strong>：生命 — 无认知</li>
+<li><strong>第三轮（9DD–12DD）</strong>：认知 — 无自我</li>
+<li><strong>第四轮（13DD–16DD）</strong>：自由 — 有自我</li>
+</ul>
+
+<p>每轮包含四步：选（生）→ 定（自）→ 展（他）→ 固（死）。固是展的不可逆面——方向确立了，但不是密封的。</p>
+
+<h2>第一轮：先验（1DD–4DD）</h2>
+
+<p>先验域是逻辑的领地。同一律（1DD）说的是"这不是那"——从混沌中划出第一道区别。矛盾律（2DD）说的是"A不能同时是非A"——排中律产生的余项是延伸（间距的延续）。时空框架（3DD）给了空间；因果律（4DD）固化了时间的方向。</p>
+
+<p>第一轮的固（4DD）留下的余项是：因果有方向，但方向本身没有记录者。这个"没有记录者的方向"就是第二轮的入口——生命的起源。</p>
+
+<h2>第一桥：从因果到复制（4DD → 5DD）</h2>
+
+<p>什么是生命？最简单的候选：一个能复制自身的模式。但不是所有能"复制"的东西都算生命——火焰可以蔓延，晶体可以生长，但它们没有记忆。</p>
+
+<p>关键不在于复制，而在于<strong>记录</strong>：复制必须携带信息，信息不能随复制消散。5DD的凿产品是"模式不消散"——这是生命的结构性定义。没有5DD，就没有记录，就没有身份的延续。</p>
+
+<p>这个桥的精确位置不可确定——"哪个分子是第一个生命"是经验问题，框架只能说：桥在那里，方向确定。</p>
+
+<h2>第二轮：生命（5DD–8DD）</h2>
+
+<p><strong>5DD复制律</strong>：模式复制，余项是变异（复制不完美，差异积累）。<br>
+<strong>6DD自维护律</strong>：生命必须维护自身以维持复制能力，余项是差异化（自维护的方式可以不同）。<br>
+<strong>7DD分化律</strong>：差异化导致功能分工，余项是多细胞性（分化的细胞需要协调）。<br>
+<strong>8DD繁殖律</strong>：世代轨迹通过基因组路径依赖固化方向——这是整个生命轮的"固"。</p>
+
+<p>整个第二轮是被动的：变异产生；谁留下来不由有机体决定，由环境决定。繁殖律的余项是：<strong>环境在选择你，但你不选择环境</strong>。必须涌现的下一件事，是"选择"本身——有机体开始为自己做区分。</p>
+
+<h2>意识难问题的精确定位</h2>
+
+<p>第二轮末尾，意识难问题以最精确的形式出现了：繁殖律（8DD）固化了方向，但无论怎么描述8DD之内的机制，都解释不了为什么会有主观体验。</p>
+
+<p>框架在这里做了一个防御性声明：即使存在意识的候选者（比如细菌的趋化性），没有11DD的记忆，即使存在意识，也不是过程而只是快照。每一个反应都是独立的、当下的、不连续的——没有11DD把它们串联，就没有"体验之流"，只有一个接一个孤立的瞬间。</p>
+
+<blockquote>框架不裁判细菌是否有意识，但它裁判：即使有，也是快照，不是体验。</blockquote>
+</div>
+  <div class="essay-body lang-en">
+<h2>Why Two Scales Are Needed</h2>
+
+<p>The finalized SAE framework gives a dimensional structure of 10D plus thing-in-itself. At coarse resolution, every step of the a priori domain (1D–4D) is clearly distinguishable: the law of identity, the law of contradiction, the spatiotemporal framework, causality. But the a posteriori domain (5D–10D) is too compressed — from replication to self-awareness, the coarse view folds it into one round, flattening three internal qualitative transitions: the emergence of life, the emergence of consciousness, the emergence of freedom.</p>
+
+<p>Under the fine view, the a posteriori domain splits into three rounds:</p>
+
+<ul>
+<li><strong>Round 2 (5DD–8DD)</strong>: Life — no cognition</li>
+<li><strong>Round 3 (9DD–12DD)</strong>: Cognition — no self</li>
+<li><strong>Round 4 (13DD–16DD)</strong>: Freedom — with self</li>
+</ul>
+
+<p>Each round has four steps: Select (Birth) → Determine (Self) → Expand (Other) → Solidify (Death). Solidify is the irreversible face of Expand — direction is set, but not sealed.</p>
+
+<h2>Round 1: A Priori (1DD–4DD)</h2>
+
+<p>The a priori domain is the territory of logic. The law of identity (1DD) says "this is not that" — the first distinction cut from chaos. The law of contradiction (2DD) says "A cannot simultaneously be not-A" — the remainder is extension (interval continuing). The spatiotemporal framework (3DD) gives space; causality (4DD) solidifies the direction of time.</p>
+
+<p>The solidification (4DD) of Round 1 leaves a remainder: causality has direction, but the direction itself has no recorder. This "directionless recorder" is the entry to Round 2 — the origin of life.</p>
+
+<h2>Bridge 1: From Causality to Replication (4DD → 5DD)</h2>
+
+<p>What is life? The simplest candidate: a pattern that can replicate itself. But not everything that "replicates" counts as life — fire spreads, crystals grow, but they have no memory.</p>
+
+<p>The key is not replication but <strong>recording</strong>: replication must carry information, and information must not dissipate with replication. The chisel product of 5DD is "patterns that do not dissipate" — this is the structural definition of life. Without 5DD, no recording, no continuity of identity.</p>
+
+<p>The precise location of this bridge is indeterminate — "which molecule was the first life" is an empirical question. The framework can only say: the bridge is there, the direction is determined.</p>
+
+<h2>Round 2: Life (5DD–8DD)</h2>
+
+<p><strong>5DD Replication</strong>: Patterns replicate; remainder is variation (imperfect copying accumulates differences).<br>
+<strong>6DD Self-Maintenance</strong>: Life must maintain itself to sustain replication capacity; remainder is differentiation (self-maintenance can take different forms).<br>
+<strong>7DD Differentiation</strong>: Differentiation leads to functional division of labor; remainder is multicellularity (differentiated cells need coordination).<br>
+<strong>8DD Reproductive Law</strong>: Generational trajectories solidify direction through genomic path dependence — this is the "solidification" of the entire life round.</p>
+
+<p>The entire second round is passive: variations arise; who stays is not decided by the organism but by the environment. The remainder of the reproductive law is: <strong>the environment selects you, but you do not select the environment</strong>. What must emerge next is "selection" itself — the organism begins to make distinctions for itself.</p>
+
+<h2>The Hard Problem of Consciousness: Precise Location</h2>
+
+<p>At the end of Round 2, the hard problem of consciousness appears in its most precise form: no matter how thoroughly we describe the mechanisms within 8DD, we cannot explain why there would be subjective experience.</p>
+
+<p>The framework makes a defensive claim here: even if consciousness candidates exist (such as bacterial chemotaxis), without 11DD memory, any putative consciousness is not a process but only a snapshot. Each response is independent, present-bound, discontinuous — without 11DD stringing them together, there is no "stream of experience," only one isolated moment after another.</p>
+
+<blockquote>The framework does not judge whether bacteria have consciousness — but it does judge: even if they do, it is a snapshot, not an experience.</blockquote>
+</div>
+
+  <div class="essay-nav">
+    <div><a href="bio1.html" class="nav-link lang-zh">← 上一篇：老化是运行代价</a><a href="bio1.html" class="nav-link lang-en">← Previous: Aging Is the Running Cost</a></div>
+    <div><a href="bio3.html" class="nav-link lang-zh">下一篇 →：生命元素周期表 II：从繁殖到预测</a><a href="bio3.html" class="nav-link lang-en">Next →: Periodic Table of Life II: From Reproduction to Prediction</a></div>
+  </div>
+</div>
+
+<script>
+function toggleLang() {
+  const html = document.documentElement;
+  const cur = html.getAttribute('data-lang');
+  html.setAttribute('data-lang', cur === 'zh' ? 'en' : 'zh');
+  localStorage.setItem('nd-lang', html.getAttribute('data-lang'));
+}
+(function() {
+  const saved = localStorage.getItem('nd-lang');
+  if (saved) document.documentElement.setAttribute('data-lang', saved);
+})();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b7a3219c51a64c788f5a5a07ec3b5a80"}'></script>
+</body>
+</html>

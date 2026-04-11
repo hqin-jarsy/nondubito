@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title class="lang-zh">生命元素周期表 III：从“我”到物自体 — nondubito</title>
+<title class="lang-en">Periodic Table of Life III: From “I” to the Thing-in-Itself — nondubito</title>
+<style>
+  :root {
+    --accent: #1a4535;
+    --accent-light: #e8f2ed;
+    --text: #1a1a1a;
+    --muted: #666;
+    --border: #d0d0d0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Georgia", "Times New Roman", serif;
+    background: #fafaf8;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.6rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  header a { color: #cde8d8; text-decoration: none; font-size: 0.9rem; }
+  header a:hover { color: #fff; }
+  .lang-toggle {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    padding: 0.25rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: inherit;
+  }
+  .lang-toggle:hover { background: rgba(255,255,255,0.25); }
+
+  [data-lang="en"] .lang-zh { display: none; }
+  [data-lang="zh"] .lang-en { display: none; }
+
+  .essay-wrap {
+    max-width: 740px;
+    margin: 3rem auto;
+    padding: 0 1.5rem 4rem;
+  }
+  .essay-meta {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .series-tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    line-height: 1.3;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .doi-line {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+  .doi-line a { color: var(--muted); }
+  .doi-line a:hover { color: var(--accent); }
+
+  .essay-body h2 {
+    font-size: 1.15rem;
+    color: var(--accent);
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--accent-light);
+  }
+  .essay-body p {
+    margin-bottom: 1.1rem;
+  }
+  .essay-body blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.6rem 1rem;
+    margin: 1.5rem 0;
+    color: #444;
+    font-style: italic;
+    background: var(--accent-light);
+    border-radius: 0 4px 4px 0;
+  }
+  .essay-body ul {
+    margin: 0.8rem 0 1.1rem 1.5rem;
+  }
+  .essay-body ul li {
+    margin-bottom: 0.4rem;
+  }
+  .layer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.9rem;
+  }
+  .layer-table th, .layer-table td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  .layer-table th {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .layer-table tr:nth-child(even) td { background: #f8f8f6; }
+
+  .essay-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .nav-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .nav-link:hover { text-decoration: underline; }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <a href="../../index.html" class="lang-zh">← nondubito</a>
+    <a href="../../index.html" class="lang-en">← nondubito</a>
+    &nbsp;/&nbsp;
+    <a href="index.html" class="lang-zh">生物学与演化</a>
+    <a href="index.html" class="lang-en">Biology &amp; Evolution</a>
+  </div>
+  <button class="lang-toggle" onclick="toggleLang()">EN / 中文</button>
+</header>
+
+<div class="essay-wrap">
+  <div class="essay-meta">
+    <div class="series-tag lang-zh">生物学与演化系列</div>
+    <div class="series-tag lang-en">Biology &amp; Evolution Series</div>
+    <h1 class="lang-zh">生命元素周期表 III：从“我”到物自体</h1>
+    <h1 class="lang-en">Periodic Table of Life III: From “I” to the Thing-in-Itself</h1>
+    <p class="doi-line">
+      DOI: <a href="https://doi.org/10.5281/zenodo.18818177">10.5281/zenodo.18818177</a>
+      &nbsp;·&nbsp;
+      <a href="https://self-as-an-end.net/papers/lifecycle3.html" class="lang-zh">学术原文 ↗</a><a href="https://self-as-an-end.net/papers/lifecycle3.html" class="lang-en">Full Paper ↗</a>
+    </p>
+    <a href="../../xiangjun/index.html" class="back-link lang-zh">关于作者：秦汉</a>
+    <a href="../../xiangjun/index.html" class="back-link lang-en">About the author: Han Qin</a>
+  </div>
+
+  <div class="essay-body lang-zh">
+<h2>从"我"出发</h2>
+
+<p>前两篇建立了先验域和生命、认知两轮。第二篇停在12DD的余项：预测无法预测预测者本身，"我"必然涌现。</p>
+
+<p>这篇接过来。"我"涌现之后发生什么？</p>
+
+<p>前三轮——先验、生命、认知——都是自然的：逻辑的自然、生物学的自然、心灵的自然。第四轮是"我"第一次出现，"我"面对的问题不再是自然的，而是关于意义的。精神分析恰好是处理这个领域的学科：自我如何形成，意义如何建立，他者如何被承认。</p>
+
+<h2>第四轮：自由（13DD–16DD）</h2>
+
+<p><strong>13DD自我无目的（选/生）</strong>：认知转向自身的第一刀。"我"从预测律的余项中被选出——认知系统第一次发现"是我在做这些事情"。</p>
+
+<p>弗洛伊德结构模型中，自我从本我中分化出来。本我是纯粹的驱力——欲望、冲动、快乐原则。自我在本我与现实之间调停。框架的读法：本我对应9DD–12DD（有选择、感知、记忆、预测，但无"我"）；自我对应13DD（第一次有了"我"）。</p>
+
+<p>13DD还带来了自传性记忆：不只是"我在这里"的瞬时意识，而是"我一直在这里"的连续意识。这也是为什么大多数人最早的记忆始于2–3岁——13DD建立之前，记忆（11DD）存在，但没有"我"来组织它。</p>
+
+<p><strong>13DD的余项：对死亡的意识</strong>。自我意识一旦涌现，就立刻面对一个不可逃避的推论：我会死。这不是学来的知识，而是13DD（自我意识）与12DD（预测）的必然组合。</p>
+
+<p><strong>14DD自我有目的（定/自）</strong>：13DD面对死亡，必须赋予行动以意义，否则行动没有理由。超我是14DD结构必要性的产物：你知道你会死；你必须决定什么值得做。弗兰克尔的意义疗法是14DD的临床对应——不是"治愈创伤"，而是"找到行动的方向"。</p>
+
+<p><strong>15DD单向NonDubito（展/他）</strong>：自我（自我意识，13DD）面对死亡（无目的/目的）之后扩展向他者——单向地将他者视为目的本身。这是孤独主体的自我扩展：我单方面将他者的地位提升到目的。这仍然是"我的"认可。</p>
+
+<p><strong>16DD相互NonDubito（固/死）</strong>：双向的、不可撤回的相互承认。每一方都将对方视为目的，而非手段。这是非双重虚无的完成形式，是整个生命元素周期表的终点。</p>
+
+<h2>物自体</h2>
+
+<p>16DD之后，凿构循环遭遇了它无法构造的东西——物自体。</p>
+
+<p>物自体不能被放大：无法被构造的东西无论分辨率多高都无法被构造。它在粗粒度和细粒度视角下占据同一个位置——因为它标记的是框架本身的边界，而非某个有待被放大的内容。</p>
+
+<p>这是整个序列唯一一个在两个尺度下完全相同的位置，也是框架对自身局限性最诚实的声明。</p>
+
+<table class="layer-table">
+<thead><tr><th>轮次</th><th>核心律</th><th>产物</th><th>余项（下一轮入口）</th></tr></thead>
+<tbody>
+<tr><td>第一轮（先验）</td><td>因果律</td><td>逻辑结构</td><td>无记录者的方向</td></tr>
+<tr><td>第二轮（生命）</td><td>繁殖律</td><td>有机体</td><td>环境选择你，你不选择</td></tr>
+<tr><td>第三轮（认知）</td><td>预测律</td><td>有意识的动物</td><td>预测无法预测自己</td></tr>
+<tr><td>第四轮（自由）</td><td>相互NonDubito</td><td>伦理主体</td><td>物自体（不可构造）</td></tr>
+</tbody>
+</table>
+</div>
+  <div class="essay-body lang-en">
+<h2>Starting from "I"</h2>
+
+<p>The first two papers established the a priori domain and the life and cognition rounds. The second paper stopped at the remainder of 12DD: prediction cannot predict the predictor itself, and "I" necessarily emerges.</p>
+
+<p>This paper picks up from "I." What happens after it emerges?</p>
+
+<p>The first three rounds — a priori, life, cognition — are all natural: the natural of logic, of biology, of mind. Round 4 is the first time "I" appears, and the problems "I" faces are no longer natural but concern meaning. Psychoanalysis is precisely the discipline that addresses this domain: how the self forms, how meaning is established, how the other is recognized.</p>
+
+<h2>Round 4: Freedom (13DD–16DD)</h2>
+
+<p><strong>13DD Self-without-Purpose (Select/Birth)</strong>: The first time cognition turns toward itself. "Self" is selected from the remainder of the law of prediction — the first time the cognitive system discovers "it is I who am doing these things."</p>
+
+<p>In Freud's structural model, the Ego differentiates from the Id. The Id is pure drive — desire, impulse, the pleasure principle. The Ego mediates between the Id and reality. The framework's reading: the Id corresponds to 9DD–12DD (selection, perception, memory, prediction present, but no "I"); the Ego corresponds to 13DD (the first time there is "I").</p>
+
+<p>13DD also brings autobiographical memory: not just the momentary awareness of "I am here" but the continuous awareness of "I have been here." This is why most people's earliest memories date to around age 2–3 — before 13DD is established, memory (11DD) exists, but there is no "I" to organize it.</p>
+
+<p><strong>The remainder of 13DD: awareness of death</strong>. Once self-awareness emerges, it immediately faces an unavoidable inference: I will die. This is not learned knowledge — it is the necessary combination of 13DD (self-awareness) and 12DD (prediction).</p>
+
+<p><strong>14DD Self-with-Purpose (Determine/Self)</strong>: 13DD faces death and must give action meaning, or action has no reason. The Superego is the product of 14DD's structural necessity: you know you will die; you must decide what is worth doing. Frankl's logotherapy is the clinical counterpart — not "healing trauma" but "finding the direction of action."</p>
+
+<p><strong>15DD Unilateral Non Dubito (Expand/Other)</strong>: Self (self-awareness, 13DD) facing death (without-/with-purpose) expands toward the other — unilaterally extending the status of End to the other. This is the solitary subject's self-expansion: I unilaterally elevate the other's status to that of a purpose. Still "my" recognition.</p>
+
+<p><strong>16DD Mutual Non Dubito (Solidify/Death)</strong>: Bidirectional, irrevocable mutual recognition. Each party treats the other as an end, not a means. This is the completed form of Non Dubito, the terminus of the entire Periodic Table of Life.</p>
+
+<h2>The Thing-in-Itself</h2>
+
+<p>After 16DD, the chisel-construct cycle encounters what it cannot construct — the thing-in-itself.</p>
+
+<p>The thing-in-itself cannot be magnified: what cannot be constructed cannot be constructed regardless of resolution. It occupies the same position at both coarse and fine scales — because it marks the boundary of the framework itself, not some content awaiting magnification.</p>
+
+<p>This is the only position in the entire sequence that is identical at both scales, and the framework's most honest statement of its own limits.</p>
+
+<table class="layer-table">
+<thead><tr><th>Round</th><th>Core Law</th><th>Product</th><th>Remainder (next entry)</th></tr></thead>
+<tbody>
+<tr><td>Round 1 (A Priori)</td><td>Causality</td><td>Logical structure</td><td>Direction without a recorder</td></tr>
+<tr><td>Round 2 (Life)</td><td>Reproductive Law</td><td>Organisms</td><td>Environment selects you; you don't select</td></tr>
+<tr><td>Round 3 (Cognition)</td><td>Law of Prediction</td><td>Conscious animals</td><td>Prediction cannot predict itself</td></tr>
+<tr><td>Round 4 (Freedom)</td><td>Mutual Non Dubito</td><td>Ethical subjects</td><td>Thing-in-itself (unconstructible)</td></tr>
+</tbody>
+</table>
+</div>
+
+  <div class="essay-nav">
+    <div><a href="bio3.html" class="nav-link lang-zh">← 上一篇：生命元素周期表 II：从繁殖到预测</a><a href="bio3.html" class="nav-link lang-en">← Previous: Periodic Table of Life II: From Reproduction to Prediction</a></div>
+    <div><a href="bio5.html" class="nav-link lang-zh">下一篇 →：固化、脆弱与辐射</a><a href="bio5.html" class="nav-link lang-en">Next →: Fixation, Fragility, and Radiation</a></div>
+  </div>
+</div>
+
+<script>
+function toggleLang() {
+  const html = document.documentElement;
+  const cur = html.getAttribute('data-lang');
+  html.setAttribute('data-lang', cur === 'zh' ? 'en' : 'zh');
+  localStorage.setItem('nd-lang', html.getAttribute('data-lang'));
+}
+(function() {
+  const saved = localStorage.getItem('nd-lang');
+  if (saved) document.documentElement.setAttribute('data-lang', saved);
+})();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b7a3219c51a64c788f5a5a07ec3b5a80"}'></script>
+</body>
+</html>
