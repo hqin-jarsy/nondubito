@@ -1096,6 +1096,78 @@ p.essay-footer-note {
   line-height: 1;
 }
 
+/* ── GRID-STYLE SECTIONS (Economics, Epistemology, Biology, etc.) ────────── */
+
+/* Card grid container — replaces the list layout for newer sections */
+.essays-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Override the 2-col list card layout inside a grid */
+.essays-grid .essay-card {
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid var(--cream-border);
+  border-top: 1.5px solid var(--cream-border);
+  padding: 1.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+  border-radius: 0;
+}
+
+.essays-grid .essay-card:hover { opacity: 0.72; }
+.essays-grid .essay-card:last-child { border-bottom: 1.5px solid var(--cream-border); }
+
+/* Roman numeral label at top of grid card */
+.card-label {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+/* Horizontal rule between label/title and description */
+.card-divider {
+  height: 1px;
+  background: var(--cream-border);
+  margin: 0.75rem 0;
+  flex-shrink: 0;
+}
+
+/* Subtitle line below section title (Economics-style sections) */
+.essays-section-sub {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  margin-top: 0.4rem;
+  line-height: 1.6;
+}
+
+/* Footer below a section's card grid */
+.essays-footer {
+  margin-top: 1.5rem;
+}
+
+/* "View complete series" link */
+.see-all-link {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-light);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.see-all-link:hover { color: var(--green); }
+
 /* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
 @media (max-width: 700px) {
   header .header-inner { padding: 0 1.25rem; }
