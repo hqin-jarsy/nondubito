@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZFCρ 热力学系列 — Non Dubito</title>
+  <meta name="description" content="ZFCρ热力学系列：从非平衡FDT困境出发，通过min递推建立η，再到Tsallis q的插值族解答和先验指导的后验验证。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/thermo/">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:2rem; }
+    .back-link:hover { color:var(--ink); }
+    .series-intro { max-width:640px; margin:0 auto 3rem; }
+    .series-intro h1 { font-family:var(--serif); font-size:2rem; margin-bottom:0.5rem; }
+    .series-intro h1.lang-en { font-size:1.6rem; }
+    .series-label { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+    .series-intro p { font-size:1rem; line-height:1.8; color:var(--ink); margin-bottom:1rem; }
+    .series-intro p.lang-zh { font-family:var(--cjk),var(--serif); }
+    .divider { border:none; border-top:1px solid var(--cream-border); margin:2.5rem 0; }
+    .paper-list { max-width:640px; margin:0 auto; }
+    .paper-entry { display:block; text-decoration:none; color:var(--ink); padding:1.4rem 0; border-bottom:1px solid var(--cream-border); transition:opacity 0.15s; }
+    .paper-entry:first-child { padding-top:0; }
+    .paper-entry:hover { opacity:0.72; }
+    .paper-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.3rem; }
+    .paper-title { font-family:var(--serif); font-size:1.1rem; margin-bottom:0.35rem; }
+    .paper-title.lang-zh { font-family:var(--cjk),var(--serif); }
+    .paper-desc { font-size:0.88rem; color:var(--ink-muted); line-height:1.6; }
+    .paper-desc.lang-zh { font-family:var(--cjk),var(--serif); }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+    })();
+  </script>
+</head>
+<body>
+  <main class="essay-main">
+
+    <div class="lang-toggle" style="margin-bottom:1.5rem;">
+      <button class="lang-btn" data-lang="zh">中文</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <a href="../../index.html#thermo" class="back-link lang-zh">← 主页</a>
+    <a href="../../index.html#thermo" class="back-link lang-en">← Home</a>
+
+    <div class="series-intro">
+      <div class="series-label lang-zh">ZFCρ 热力学系列</div>
+      <div class="series-label lang-en">ZFCρ Thermodynamics Series</div>
+      <h1 class="lang-zh">非平衡的结构</h1>
+      <h1 class="lang-en lang-en">The Structure of Non-Equilibrium</h1>
+
+      <p class="lang-zh">涨落-耗散定理在近平衡处优美，但当代实验早已越过了它的射程。非平衡FDT的一般形式是近五十年的开放问题。ZFCρ热力学系列从一个意外方向出发：零参数的纯算术递推，没有粒子、没有温度，却满足精确的涨落-耗散关系。</p>
+      <p class="lang-en">The fluctuation-dissipation theorem is elegant near equilibrium, but contemporary experiment crossed its limits long ago. The general form of the non-equilibrium FDT has been open for fifty years. The ZFCρ thermodynamics series approaches from an unexpected direction: a zero-parameter arithmetic recursion with no particles and no temperature, yet satisfying a precise fluctuation-dissipation relation.</p>
+
+      <p class="lang-zh">从η（涨落吸收率）到Tsallis q的插值族身份，再到连续时间振荡器中的通道归一化卷绕比：这是一条从算术到化学振荡的结构性推导链。每一步既是正结果，也是对开放余项的诚实标注。</p>
+      <p class="lang-en">From η (the fluctuation absorption rate) to the exact interpolation family identity of Tsallis q, to the channel-normalized winding ratio in continuous-time oscillators: a structural derivation chain from arithmetic to chemical oscillation. Each step is both a positive result and an honest annotation of what remains open.</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="paper-list">
+
+      <a class="paper-entry" href="thermo1.html">
+        <div class="paper-num lang-zh">论文 I–II</div>
+        <div class="paper-num lang-en">Papers I–II</div>
+        <div class="paper-title lang-zh">非平衡的起点</div>
+        <div class="paper-title lang-en">The Starting Point of Non-Equilibrium</div>
+        <div class="paper-desc lang-zh">FDT困境，min递推作为零参数测试台，余项守恒 U(m)=−D(m−1)，涨落吸收率η的定义与η≈0.2的由来。</div>
+        <div class="paper-desc lang-en">The FDT predicament, min recursion as a zero-parameter testbed, remainder conservation U(m)=−D(m−1), the definition of η and why η≈0.2.</div>
+      </a>
+
+      <a class="paper-entry" href="thermo2.html">
+        <div class="paper-num lang-zh">论文 III–IV</div>
+        <div class="paper-num lang-en">Papers III–IV</div>
+        <div class="paper-title lang-zh">从η到Tsallis q</div>
+        <div class="paper-title lang-en">From η to Tsallis q</div>
+        <div class="paper-desc lang-zh">η的四条件满足与四制式分类，Tsallis q三十年自由参数的插值族解答：q=1+1/K，Boltzmann是K→∞极限，DD resolvent是K=1。</div>
+        <div class="paper-desc lang-en">η's satisfaction of four criteria and four-regime classification; the interpolation family resolution of Tsallis q's thirty-year free-parameter problem: q=1+1/K, Boltzmann as K→∞, DD resolvent as K=1.</div>
+      </a>
+
+      <a class="paper-entry" href="thermo3.html">
+        <div class="paper-num lang-zh">论文 V</div>
+        <div class="paper-num lang-en">Paper V</div>
+        <div class="paper-title lang-zh">先验指导的后验验证</div>
+        <div class="paper-title lang-en">Prior-Guided Posterior Validation</div>
+        <div class="paper-desc lang-zh">两个诚实的负结果，通道归一化卷绕比 K_dyn=T/(n_ch·τ_dec)，以及在该停的地方停。</div>
+        <div class="paper-desc lang-en">Two honest negative results, the channel-normalized winding ratio K_dyn=T/(n_ch·τ_dec), and stopping where the structure says to stop.</div>
+      </a>
+
+    </div>
+
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
