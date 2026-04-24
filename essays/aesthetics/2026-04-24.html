@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPenT：当图像只是指令的余项 — Non Dubito</title>
+  <meta name="description" content="Teddy Warner的GPenT是一台挂在墙上的绘图仪，其中的dcode模型跳过图像，直接从文字生成G-code。图像不是目的，而是机器指令的余项。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-04-24.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-04-24</div>
+          <h1 class="lang-zh">GPenT：当图像只是指令的余项</h1>
+          <h1 class="lang-en">GPenT: When the Image Is Just the Remainder of an Instruction</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Teddy Warner做了一台挂在墙上的绘图仪，叫GPenT——Generative Pen-trained Transformer。名字是双关：既像GPT，又是"笔训练的变形器"。但它不是噱头。这台机器的核心逻辑是：你给它一段文字，它把文字变成一组生成器的组合和参数，然后用步进电机、皮带和一支笔，在纸上画出结果。整个管线——从文字到生成器选择到G-code到物理笔画——都是开源的，挂在GitHub上。</p>
+
+        <p>最有意思的部分是其中一个叫dcode的生成器。大多数文字到图像的流程是：文字→图像→然后你可能把图像转成矢量→再转成机器指令。dcode跳过了图像这一步。它是一个扩散模型，被训练来直接从文字生成G-code——机器指令。也就是说，图像根本不是目的。图像是机器执行指令之后的副产品。图像是指令的余项。</p>
+
+        <p>这在SAE框架里有一个非常精确的位置。通常的凿构循环是这样的：艺术家先有一个视觉意图（构），用工具去凿出那个意图，凿的过程中出现偏差和意外（余项），然后把余项吸收进新的构。但GPenT的dcode打断了这个循环的起点。它没有"视觉意图"这一步。文字不是对视觉的描述——它是对机器行为的种子。机器行为产生的线条不是对任何画面的逼近，它们是指令执行后的物理痕迹。图像是一个"剩下来的东西"，一个nobody asked for的东西。这正是余项的定义。</p>
+
+        <p>更深一层：GPenT不只有dcode一个生成器。它有程序化图案生成器、图像上传转换器、还有其他机器学习模块。关键的设计是，系统用Gemini来随机洗牌和选择这些生成器的组合。用户给一个文字种子，系统自己决定用哪些生成器、什么参数、怎么叠加。每次运行的结果都是一个意外的组合。这意味着余项不只发生在dcode的"跳过图像"这一层——它还发生在生成器组合的层面。整个系统就是一个多层余项的生产机器。</p>
+
+        <p>现在看这件作品比以后看更重要，因为它还没有被命名。它不是"AI艺术"——它有意地误用了AI。它不是"绘图仪艺术"——绘图仪社区通常追求对生成图像的精确物理复现，而GPenT根本没有"源图像"可以复现。它不是"概念艺术"——它有大量的具体工程细节和物理实在性。它介于所有这些类别之间，但不属于任何一个。这正是余项的生存空间：在已有类别的缝隙里，名字还没有固化的地方。</p>
+
+        <a href="https://teddywarner.org/Projects/GPENT/" target="_blank" rel="noopener" class="project-link">teddywarner.org ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Teddy Warner built a wall-mounted pen plotter called GPenT — Generative Pen-trained Transformer. The name is a pun: it sounds like GPT, but it's literally a pen-trained transformer. The pun is the least interesting thing about it. The core logic is this: you give the machine a text seed, and it translates that seed into a combination of generators and parameters, which are then physically drawn on paper by stepper motors, belts, and a pen gondola. The entire pipeline — from text to generator selection to G-code to physical ink — is open-source on GitHub.</p>
+
+        <p>The most structurally interesting piece is a generator called dcode. Most text-to-image pipelines follow a predictable path: text → image → (optionally) vectorize → machine instructions. dcode skips the image step entirely. It is a diffusion model trained to convert text directly into G-code — raw machine instructions. The image is never the goal. The image is what happens after the machine executes its instructions. The image is the remainder of the instruction.</p>
+
+        <p>This has a precise location within the SAE framework. The typical chisel-construct cycle works like this: the artist begins with a visual intention (construct), uses tools to chisel toward that intention, encounters deviations and accidents along the way (remainder), and then absorbs the remainder into a new construct. GPenT's dcode interrupts this cycle at its origin. There is no "visual intention" step. The text is not a description of a desired image — it is a seed for machine behavior. The lines the machine produces are not approximations of any picture. They are the physical traces of executed instructions. The image is a leftover, something nobody explicitly asked for. This is the definition of remainder.</p>
+
+        <p>It goes deeper. GPenT does not rely on dcode alone. It includes procedural pattern generators, image-upload converters, and other machine learning modules. The crucial design decision is that the system uses Gemini to randomly shuffle and select combinations of these generators. You provide a text seed; the system decides which generators to use, with what parameters, in what stacking order. Each run produces an accidental combination. This means the remainder doesn't only occur at the dcode layer — at the level of "skipping the image" — it also occurs at the level of generator composition. The entire system is a multi-layered remainder-production machine.</p>
+
+        <p>Seeing this work now matters more than seeing it later, because it has not yet been named. It is not "AI art" — it deliberately misuses AI. It is not "plotter art" — the plotter community generally pursues precise physical reproduction of generated images, and GPenT has no "source image" to reproduce. It is not "conceptual art" — it involves extensive concrete engineering and physical materiality. It sits in the gaps between all these categories, belonging to none of them. This is precisely where the remainder lives: in the cracks between existing categories, where names have not yet hardened.</p>
+
+        <a href="https://teddywarner.org/Projects/GPENT/" target="_blank" rel="noopener" class="project-link">teddywarner.org ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
