@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>humanbydefinition：字符栅格中的有损余项 — Non Dubito</title>
+  <meta name="description" content="textmode.js与p5.asciify——当连续的视觉空间被压进字符栅格，剩下的就是余项。一个匿名创作者构建的有损翻译引擎。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-04-25.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-04-25</div>
+          <h1 class="lang-zh">humanbydefinition：字符栅格中的有损余项</h1>
+          <h1 class="lang-en">humanbydefinition: The Lossy Remainder Inside the Character Grid</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>一个匿名创作者——网名 humanbydefinition，邮箱自述为"travelling without arriving"——在过去两年里悄悄搭建了一整套文本模式艺术的基础设施。核心是三个项目：p5.asciify，一个把 p5.js WebGL 画布实时转换为 ASCII 字符的库；textmode.js，一个脱离 p5.js 框架、面向任意前端场景的轻量级文本模式渲染引擎；以及 synth.textmode.art，一个在浏览器中运行的 ASCII 合成器实时编程环境。三个项目共同构成一个系统：把连续的视觉空间强制压入字符栅格，然后观察什么活了下来。</p>
+
+        <p>这件事在结构上就是一个余项制造装置。任何图像通过 p5.asciify 的渲染管线时，都经历了一次有损翻译：连续的色彩梯度被量化为离散的亮度区间，每个区间对应一个字符，空间分辨率被截断到栅格精度。原始图像被销毁了，但并非完全销毁——存活下来的是一个文本模式的残余物，它保留了原始结构的轮廓，丢掉了细节。这个残余物不是目标，不是"我要做一幅 ASCII 画"的结果；它是有损压缩过程本身的副产品。在 SAE 的凿构循环中，这是凿（chisel）操作产生的余项：原始图像是被凿掉的材料，而留在栅格里的字符排列就是余项。</p>
+
+        <p>更有意思的是 humanbydefinition 把这个过程做成了实时的。textmode.js 使用 WebGL2 管线做实例化渲染，每帧都在重新执行有损翻译。这意味着余项不是一个静态结果——它是一个持续运行的过程，每秒产生六十次。当输入是摄像头画面或三维场景时，余项本身在不断变化，字符在闪烁、跳动、重组。这里发生的事情不再是"把图片变成 ASCII art"，而是一个活的翻译引擎在持续制造结构性的损失，而那个损失的纹理本身成为了观看对象。synth.textmode.art 把这个逻辑推到了极端——你用代码实时定义字符的生成规则，观察文本栅格自身的涌现行为，不需要任何"原始图像"作为输入。余项在这里脱离了被翻译的原始对象，变成了独立存在的过程。</p>
+
+        <p>艺术界有 ASCII art 的历史，有 demoscene 的文本模式图形传统，有创意编程的 p5.js 社群，有实时编程的 Hydra/TidalCycles 谱系。humanbydefinition 的工作触及了所有这些领域，但没有被其中任何一个完全收编。它不是手工制作的 ASCII art（那是已构），不是 demoscene 的怀旧复刻（那也是已构），不是又一个 p5.js 滤镜库（那是工具，不是美学立场）。它是一种对字符栅格作为有损翻译介质的持续结构性探索，而这种探索还没有一个名字。正因为没有名字，它还是余项——它的逻辑还在生长，还没有被凿构循环完全处理成"构"。</p>
+
+        <p>现在看到它很重要，因为这种实时文本模式渲染很快就会被各种创意编程框架吸收、被 AI 艺术工具整合、被某个策展人打包成"后文本主义"之类的展览标题。到那时它就变成已构了。现在它还是一个人在浏览器里安静地搭建有损翻译的管道，邮箱签名写着"旅行但不到达"。那个不到达就是余项的状态。</p>
+
+        <a href="https://code.textmode.art/" target="_blank" rel="noopener" class="project-link">code.textmode.art ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>An anonymous creator — handle humanbydefinition, email self-described as "travelling without arriving" — has spent the past two years quietly building an entire infrastructure for textmode art. Three projects form the core: p5.asciify, a library that converts p5.js WebGL canvases into ASCII characters in real time; textmode.js, a lightweight, framework-agnostic rendering engine for textmode graphics on the web; and synth.textmode.art, a browser-based live coding environment for procedural ASCII synthesis. Together, they form a system: force continuous visual space through a character grid, then watch what survives.</p>
+
+        <p>This is, structurally, a remainder-production apparatus. Any image that passes through p5.asciify's rendering pipeline undergoes lossy translation: continuous color gradients are quantized into discrete brightness intervals, each mapped to a character; spatial resolution is truncated to grid precision. The original image is destroyed — but not entirely. What survives is a textmode residue that preserves the contour of the original structure while shedding its detail. This residue is not the goal, not the result of "I want to make ASCII art." It is a byproduct of the lossy compression process itself. In SAE's chisel-construct cycle, this is the remainder of a chisel operation: the original image is the material chiseled away, and the character arrangement left in the grid is the remainder.</p>
+
+        <p>What makes this more interesting is that humanbydefinition has made the process real-time. textmode.js uses a WebGL2 pipeline with instanced rendering, re-executing the lossy translation every frame. The remainder is not a static result — it is a continuously running process, produced sixty times per second. When the input is a camera feed or a 3D scene, the remainder itself is in constant flux: characters flicker, jump, rearrange. What's happening is no longer "turning a picture into ASCII art" but a living translation engine that continuously manufactures structural loss, and the texture of that loss becomes the object of attention. synth.textmode.art pushes this logic to its extreme — you define character generation rules in code, watch the emergent behavior of the text grid itself, with no "source image" required. The remainder here detaches from the translated original and becomes an autonomous process.</p>
+
+        <p>The art world has a history of ASCII art, a tradition of demoscene text-mode graphics, a p5.js creative coding community, a live-coding lineage through Hydra and TidalCycles. humanbydefinition's work touches all of these but is fully claimed by none. It is not handcrafted ASCII art (that is already-construct). It is not demoscene nostalgia (also already-construct). It is not just another p5.js filter library (that would be a tool, not an aesthetic position). It is a sustained structural exploration of the character grid as a lossy translation medium — and this exploration does not yet have a name. Precisely because it has no name, it remains a remainder: its logic is still growing, not yet fully processed by the chisel-construct cycle into "construct."</p>
+
+        <p>Seeing it now matters because this kind of real-time textmode rendering will soon be absorbed by creative coding frameworks, integrated into AI art tools, packaged by some curator under a label like "post-textualism." When that happens, it becomes construct. Right now, it is still one person quietly building lossy translation pipelines in the browser, with an email signature that says "travelling without arriving." That not-arriving is the state of the remainder.</p>
+
+        <a href="https://code.textmode.art/" target="_blank" rel="noopener" class="project-link">code.textmode.art ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
