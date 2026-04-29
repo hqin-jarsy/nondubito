@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>书架 · Library — Non Dubito</title>
+  <meta name="description" content="All essay series and collections on Non Dubito — a bird's-eye view of every series by Han Qin (秦汉).">
+  <meta name="author" content="Han Qin (秦汉)">
+  <meta property="og:title" content="书架 · Library — Non Dubito">
+  <meta property="og:description" content="All essay series and collections on Non Dubito.">
+  <meta property="og:url" content="https://nondubito.net/library.html">
+  <link rel="canonical" href="https://nondubito.net/library.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'en';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+            updateActive();
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+  <style>
+
+    /* ── PAGE LAYOUT ─────────────────────────────────────────────────── */
+    .library-hero {
+      background: var(--cream);
+      border-bottom: 1.5px solid var(--cream-border);
+      padding: 4.5rem 2rem 3.5rem;
+      text-align: center;
+    }
+    .library-hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin: 0 0 1.1rem;
+    }
+    .library-hero-title {
+      margin: 0 0 0.5rem;
+      line-height: 1.1;
+    }
+    .library-hero-title .zh {
+      display: block;
+      font-family: var(--cjk), serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.08em;
+    }
+    .library-hero-title .en {
+      display: block;
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-top: 0.3rem;
+    }
+    .library-hero-desc {
+      max-width: 560px;
+      margin: 1.4rem auto 0;
+      font-size: 0.98rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+    .library-hero-desc.lang-zh {
+      font-family: var(--cjk), serif;
+    }
+
+    /* ── STAT BAR ────────────────────────────────────────────────────── */
+    .stat-bar {
+      background: var(--cream-dark);
+      border-bottom: 1.5px solid var(--cream-border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      display: block;
+      margin-top: 0.3rem;
+    }
+    .stat-label.lang-zh { font-family: var(--cjk), serif; letter-spacing: 0.05em; text-transform: none; font-size: 0.75rem; }
+
+    /* ── CATEGORY SECTIONS ───────────────────────────────────────────── */
+    .lib-section {
+      padding: 3.5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .lib-section + .lib-section {
+      border-top: 1.5px solid var(--cream-border);
+    }
+    .lib-section-header {
+      margin-bottom: 2rem;
+    }
+    .lib-section-tag {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .lib-section-name {
+      margin: 0 0 0.5rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .lib-section-name .zh {
+      font-family: var(--cjk), serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .lib-section-name .en {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+    .lib-section-desc {
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-top: 0.4rem;
+    }
+    .lib-section-desc.lang-zh { font-family: var(--cjk), serif; font-size: 0.9rem; }
+
+    /* ── SERIES CARDS ────────────────────────────────────────────────── */
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+    .series-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--cream);
+      border: 1.5px solid var(--cream-border);
+      padding: 1.5rem 1.6rem 1.3rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      position: relative;
+    }
+    .series-card:hover {
+      border-color: rgba(196,157,97,0.55);
+      box-shadow: 0 2px 16px rgba(196,157,97,0.08);
+    }
+    .series-card-count {
+      font-family: var(--serif);
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.55rem;
+      font-style: italic;
+    }
+    .series-card-title-zh {
+      font-family: var(--cjk), serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 0.2rem;
+    }
+    .series-card-title-en {
+      font-family: var(--serif);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      margin-bottom: 0.85rem;
+    }
+    .series-card-desc-zh {
+      font-family: var(--cjk), serif;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      margin-bottom: auto;
+    }
+    .series-card-desc-en {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      margin-bottom: auto;
+    }
+    .series-card-arrow {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-top: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .series-card-arrow::after { content: '→'; }
+
+    /* Coming soon card */
+    .series-card.coming-soon {
+      opacity: 0.5;
+      pointer-events: none;
+      border-style: dashed;
+    }
+    .series-card.coming-soon .series-card-arrow::after { content: ''; }
+    .coming-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border: 1px solid var(--cream-border);
+      padding: 0.15rem 0.45rem;
+    }
+
+    /* data-lang show/hide */
+    [data-lang="en"] .lang-zh { display: none; }
+    [data-lang="zh"] .lang-en { display: none; }
+
+    /* ── DIVIDER ─────────────────────────────────────────────────────── */
+    .lib-divider {
+      border: none;
+      border-top: 1.5px solid var(--cream-border);
+      margin: 0;
+    }
+
+    /* ── FOOTER NOTE ─────────────────────────────────────────────────── */
+    .lib-footer-note {
+      text-align: center;
+      padding: 2.5rem 2rem 3rem;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+    .lib-footer-note a { color: var(--gold); text-decoration: none; }
+    .lib-footer-note a:hover { text-decoration: underline; }
+    .lib-footer-note .zh { font-family: var(--cjk), serif; font-size: 0.82rem; }
+
+    @media (max-width: 600px) {
+      .series-grid { grid-template-columns: 1fr; }
+      .stat-bar { gap: 1.5rem; }
+      .library-hero { padding: 3rem 1.5rem 2.5rem; }
+      .lib-section { padding: 2.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ─────────────────────────────────────────────────────── -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="site-title">
+      <span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span>
+      <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+    </a>
+    <nav>
+      <a href="index.html">Essays</a>
+      <a href="library.html" class="active">Library</a>
+      <a href="credesivis.html">Crede si vis</a>
+      <a href="about.html">About</a>
+      <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a>
+      <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack ↗</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── LANG TOGGLE ────────────────────────────────────────────────────── -->
+<div style="display:flex; justify-content:flex-end; padding:0.5rem 2rem 0; background:var(--cream);">
+  <div style="display:flex; gap:0.4rem;">
+    <button class="lang-btn" data-lang="en" style="font-family:var(--sans);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--cream-border);background:none;padding:0.3rem 0.7rem;cursor:pointer;color:var(--ink-muted);transition:all 0.15s;">EN</button>
+    <button class="lang-btn" data-lang="zh" style="font-family:var(--cjk),serif;font-size:0.78rem;border:1px solid var(--cream-border);background:none;padding:0.3rem 0.7rem;cursor:pointer;color:var(--ink-muted);transition:all 0.15s;">中文</button>
+  </div>
+</div>
+<style>
+  .lang-btn.active { border-color:var(--gold) !important; color:var(--gold) !important; }
+</style>
+
+<!-- ── HERO ──────────────────────────────────────────────────────────── -->
+<div class="library-hero">
+  <p class="library-hero-eyebrow">Non Dubito · Han Qin (秦汉)</p>
+  <h1 class="library-hero-title">
+    <span class="zh">书 架</span>
+    <span class="en">The Library</span>
+  </h1>
+  <p class="library-hero-desc lang-zh">所有系列的俯瞰视角——从人工智能到古典文学，从中华帝王到红楼梦。每一系列都是同一框架下的不同探照。</p>
+  <p class="library-hero-desc lang-en">A bird's-eye view of every series — from artificial intelligence to classical literature, from Chinese emperors to the Dream of the Red Chamber. Each series is a different angle of the same framework.</p>
+</div>
+
+<!-- ── STAT BAR ───────────────────────────────────────────────────────── -->
+<div class="stat-bar">
+  <div class="stat-item">
+    <span class="stat-num">7</span>
+    <span class="stat-label lang-en">Categories</span>
+    <span class="stat-label lang-zh">类别</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">25+</span>
+    <span class="stat-label lang-en">Series</span>
+    <span class="stat-label lang-zh">系列</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">250+</span>
+    <span class="stat-label lang-en">Essays</span>
+    <span class="stat-label lang-zh">篇</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">3</span>
+    <span class="stat-label lang-en">Languages</span>
+    <span class="stat-label lang-zh">语言</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CATEGORY 1 · AI & 人的问题
+     ══════════════════════════════════════════════════════════════════════ -->
+<hr class="lib-divider">
+<section class="lib-section">
+  <div class="lib-section-header">
+    <span class="lib-section-tag">Category 01</span>
+    <div class="lib-section-name">
+      <span class="zh">AI &amp; 人的问题</span>
+      <span class="en">AI &amp; the Human Question</span>
+    </div>
+    <p class="lib-section-desc lang-zh">当机器开始思考，人的问题才真正变得尖锐。本类目考察 AI 与自我、意识、欲望、艺术之间的深层张力。</p>
+    <p class="lib-section-desc lang-en">When machines begin to think, the questions of being human become sharper. These essays examine the deep tensions between AI and the self, consciousness, desire, and art.</p>
+  </div>
+  <div class="series-grid">
+    <a href="index.html#ai" class="series-card">
+      <span class="series-card-count">15 essays</span>
+      <div class="series-card-title-zh">AI 与人的问题</div>
+      <div class="series-card-title-en">AI &amp; the Human Question</div>
+      <p class="series-card-desc-zh lang-zh">从 AI 危机、图灵测试、利比多机器到后意识，全面检视 AI 对人类存在处境的冲击。</p>
+      <p class="series-card-desc-en lang-en">From AI crisis and the Turing test to the libido machine and post-consciousness — a comprehensive examination of AI's challenge to human existence.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="index.html#ai-consciousness" class="series-card">
+      <span class="series-card-count">2 essays</span>
+      <div class="series-card-title-zh">AI 与意识</div>
+      <div class="series-card-title-en">AI &amp; Consciousness</div>
+      <p class="series-card-desc-zh lang-zh">意识是否可以被计算？图灵之后，反图灵之后，还剩下什么问题？</p>
+      <p class="series-card-desc-en lang-en">Can consciousness be computed? What remains after Turing — and after anti-Turing?</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CATEGORY 2 · 哲学与心灵
+     ══════════════════════════════════════════════════════════════════════ -->
+<hr class="lib-divider">
+<section class="lib-section" style="background:var(--cream-dark);">
+  <div class="lib-section-header">
+    <span class="lib-section-tag">Category 02</span>
+    <div class="lib-section-name">
+      <span class="zh">哲学与心灵</span>
+      <span class="en">Philosophy of Mind</span>
+    </div>
+    <p class="lib-section-desc lang-zh">最核心的问题：自我是什么、意识从何而来、宇宙如何被理解。涵盖物理学、认识论、生物学、法学、美学等多个向度，以 SAE 框架贯穿。</p>
+    <p class="lib-section-desc lang-en">The core questions: what is the self, where does consciousness arise, and how can the universe be understood? Spanning physics, epistemology, biology, law, and aesthetics — all threaded through the SAE framework.</p>
+  </div>
+  <div class="series-grid">
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">3 essays</span>
+      <div class="series-card-title-zh">以自三部曲：学·知·忘</div>
+      <div class="series-card-title-en">The Self Series: Study · Know · Forget</div>
+      <p class="series-card-desc-zh lang-zh">以自我为目的的认识论三部曲——学习、理解、遗忘作为精神运动的三个阶段。</p>
+      <p class="series-card-desc-en lang-en">An epistemic trilogy on the self-as-an-end — study, understanding, and forgetting as three stages of spiritual movement.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="index.html#shengsi" class="series-card">
+      <span class="series-card-count">2 essays</span>
+      <div class="series-card-title-zh">生与死</div>
+      <div class="series-card-title-en">Life and Death</div>
+      <p class="series-card-desc-zh lang-zh">向死而生的哲学分析——死亡不是终点，而是理解生命的棱镜。</p>
+      <p class="series-card-desc-en lang-en">Philosophical analysis of being-toward-death — mortality not as an endpoint, but as a prism for understanding life.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="index.html#cosmo" class="series-card">
+      <span class="series-card-count">6 essays</span>
+      <div class="series-card-title-zh">宇宙</div>
+      <div class="series-card-title-en">The Universe</div>
+      <p class="series-card-desc-zh lang-zh">宇宙常数、暗物质、完备性、双框架——宇宙学问题作为哲学问题的重新阐释。</p>
+      <p class="series-card-desc-en lang-en">Cosmological constant, dark matter, completeness, dual-frame — cosmological puzzles re-read as philosophical problems.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">8 + 5 essays</span>
+      <div class="series-card-title-zh">四力系列 · 质量系列</div>
+      <div class="series-card-title-en">Four Forces · Mass Series</div>
+      <p class="series-card-desc-zh lang-zh">双语物理哲学——四种基本力与质量的 SAE 框架解读。</p>
+      <p class="series-card-desc-en lang-en">Bilingual physics-philosophy — the four fundamental forces and mass read through the SAE framework.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">多个系列 · Multiple series</span>
+      <div class="series-card-title-zh">认知·生物·人类学·方法论</div>
+      <div class="series-card-title-en">Epistemology · Biology · Anthropology · Method</div>
+      <p class="series-card-desc-zh lang-zh">认识论、演化生物学、人类学、方法论、精神分析、法学——SAE 框架对各学科的跨界探索。</p>
+      <p class="series-card-desc-en lang-en">Epistemology, evolutionary biology, anthropology, methodology, psychoanalysis, law — the SAE framework applied across disciplines.</p>
+      <span class="series-card-arrow lang-en">Browse all</span>
+      <span class="series-card-arrow lang-zh">浏览全部</span>
+    </a>
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">4 essays</span>
+      <div class="series-card-title-zh">SAE 学习系列</div>
+      <div class="series-card-title-en">SAE Learning Series</div>
+      <p class="series-card-desc-zh lang-zh">如何进入以自我为目的的哲学框架——写给初次接触 SAE 理论的读者。</p>
+      <p class="series-card-desc-en lang-en">How to enter the Self-as-an-End philosophical framework — written for readers new to SAE theory.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CATEGORY 3 · 历史与传记
+     ══════════════════════════════════════════════════════════════════════ -->
+<hr class="lib-divider">
+<section class="lib-section">
+  <div class="lib-section-header">
+    <span class="lib-section-tag">Category 03</span>
+    <div class="lib-section-name">
+      <span class="zh">历史与传记</span>
+      <span class="en">History &amp; Biography</span>
+    </div>
+    <p class="lib-section-desc lang-zh">历史人物与历史结构的双重考察——从个体命运读出文明的结构坐标，从96位名人看见人类精神的多样与统一。</p>
+    <p class="lib-section-desc lang-en">A dual examination of historical figures and historical structure — reading the coordinates of civilization from individual fates, and seeing the diversity and unity of the human spirit through 96 great lives.</p>
+  </div>
+  <div class="series-grid">
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">5 essays</span>
+      <div class="series-card-title-zh">二战与人的目的</div>
+      <div class="series-card-title-en">WWII &amp; the Purpose of Persons</div>
+      <p class="series-card-desc-zh lang-zh">二战不只是战争史——它是人类目的性危机最深刻的一次显现。</p>
+      <p class="series-card-desc-en lang-en">WWII is not only military history — it is the most profound manifestation of humanity's crisis of purposiveness.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">5 essays</span>
+      <div class="series-card-title-zh">文明史的结构坐标</div>
+      <div class="series-card-title-en">Structural Coordinates of Civilizational History</div>
+      <p class="series-card-desc-zh lang-zh">用结构而非时间线来理解文明——历史的深层骨架是什么？</p>
+      <p class="series-card-desc-en lang-en">Understanding civilization through structure, not timeline — what is the deep skeleton of history?</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="essays/mingren/index.html" class="series-card">
+      <span class="series-card-count">96 essays</span>
+      <div class="series-card-title-zh">名人系列</div>
+      <div class="series-card-title-en">Great Lives</div>
+      <p class="series-card-desc-zh lang-zh">九十六位跨越东西方的历史人物——每一位都是一个关于人的目的性的独立案例研究。</p>
+      <p class="series-card-desc-en lang-en">Ninety-six historical figures spanning East and West — each an independent case study in human purposiveness.</p>
+      <span class="series-card-arrow lang-en">Browse all 96</span>
+      <span class="series-card-arrow lang-zh">浏览全部九十六篇</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CATEGORY 4 · 历史与文明
+     ══════════════════════════════════════════════════════════════════════ -->
+<hr class="lib-divider">
+<section class="lib-section" style="background:var(--cream-dark);">
+  <div class="lib-section-header">
+    <span class="lib-section-tag">Category 04</span>
+    <div class="lib-section-name">
+      <span class="zh">历史与文明</span>
+      <span class="en">History &amp; Civilization</span>
+    </div>
+    <p class="lib-section-desc lang-zh">以理论框架重读历史——凿构周期律是理解中国历史结构动力的新工具。</p>
+    <p class="lib-section-desc lang-en">Re-reading history through theoretical frameworks — the Chisel-Construct Cycle as a new tool for understanding the structural dynamics of Chinese history.</p>
+  </div>
+  <div class="series-grid">
+    <a href="essays/emperor/index.html" class="series-card">
+      <span class="series-card-count">25 episodes · Bilingual</span>
+      <div class="series-card-title-zh">凿构周期律 · 中华帝王系列</div>
+      <div class="series-card-title-en">Chisel-Construct Cycle: Chinese Emperors</div>
+      <p class="series-card-desc-zh lang-zh">从尧舜禹到清末，二十五位帝王，每一位都在凿与构的周期中留下余项——历史的结构就在这些余项的积累里。</p>
+      <p class="series-card-desc-en lang-en">From Yao-Shun-Yu to late Qing — twenty-five emperors, each leaving a remainder in the cycle of chisel and construct. The structure of history lies in the accumulation of these remainders.</p>
+      <span class="series-card-arrow lang-en">Read all 25 episodes</span>
+      <span class="series-card-arrow lang-zh">阅读全部二十五篇</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CATEGORY 5 · 文学与文化
+     ══════════════════════════════════════════════════════════════════════ -->
+<hr class="lib-divider">
+<section class="lib-section">
+  <div class="lib-section-header">
+    <span class="lib-section-tag">Category 05</span>
+    <div class="lib-section-name">
+      <span class="zh">文学与文化</span>
+      <span class="en">Literature &amp; Culture</span>
+    </div>
+    <p class="lib-section-desc lang-zh">经典文本不是遗迹，是活的哲学材料。西游记、Friends、《香君》、Terrible T——每一个故事都是一次关于人的目的性的隐喻。</p>
+    <p class="lib-section-desc lang-en">Classic texts are not relics — they are living philosophical material. Journey to the West, Friends, Kōkun, Terrible T — every story is a metaphor for human purposiveness.</p>
+  </div>
+  <div class="series-grid">
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">23 essays</span>
+      <div class="series-card-title-zh">西游新读</div>
+      <div class="series-card-title-en">Journey to the West: A New Reading</div>
+      <p class="series-card-desc-zh lang-zh">《西游记》不是神话——是一部关于自我修炼与目的性实现的完整哲学体系。</p>
+      <p class="series-card-desc-en lang-en">Journey to the West is not mythology — it is a complete philosophical system of self-cultivation and purposive realization.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">12 chapters</span>
+      <div class="series-card-title-zh">Friends：为什么我们看了三十年还在看</div>
+      <div class="series-card-title-en">Friends: Why We're Still Watching After Thirty Years</div>
+      <p class="series-card-desc-zh lang-zh">一部情景喜剧为什么三十年不衰？答案不在剧情里，在人类的情感结构里。</p>
+      <p class="series-card-desc-en lang-en">Why does a sitcom remain compelling after thirty years? The answer is not in the plot — it is in the structure of human emotion.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">3 essays</span>
+      <div class="series-card-title-zh">《香君》解读</div>
+      <div class="series-card-title-en">Reading <em>Kōkun</em> — Uehashi Nahoko</div>
+      <p class="series-card-desc-zh lang-zh">上橋菜穗子的奇幻世界作为 SAE 哲学的文学镜像——香君是什么样的人的目的性？</p>
+      <p class="series-card-desc-en lang-en">Uehashi Nahoko's fantasy world as a literary mirror of SAE philosophy — what kind of purposiveness does Kōkun embody?</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">3 essays</span>
+      <div class="series-card-title-zh">Terrible T 系列</div>
+      <div class="series-card-title-en">The Terrible T Series</div>
+      <p class="series-card-desc-zh lang-zh">Terrible Twos、Terrible Teens、Terrible Thirties——人生三个"可怕的"转折期的发展哲学。</p>
+      <p class="series-card-desc-en lang-en">Terrible Twos, Terrible Teens, Terrible Thirties — a developmental philosophy of the three "terrible" turning points in a human life.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CATEGORY 6 · 红楼梦
+     ══════════════════════════════════════════════════════════════════════ -->
+<hr class="lib-divider">
+<section class="lib-section" style="background:var(--cream-dark);">
+  <div class="lib-section-header">
+    <span class="lib-section-tag">Category 06</span>
+    <div class="lib-section-name">
+      <span class="zh">红楼梦</span>
+      <span class="en">Dream of the Red Chamber</span>
+    </div>
+    <p class="lib-section-desc lang-zh">中国文学最深邃的文本，也是 SAE 框架最丰富的试验场。情榜复原以九册还原一百零八人的命运格局；后续复原计划将触及后二十七回与天香楼。</p>
+    <p class="lib-section-desc lang-en">China's most profound literary text, and the richest testing ground for the SAE framework. The Register Restoration reconstructs the fates of 108 characters across nine volumes; future work will extend to the lost final chapters and the Tianxianglou pavilion.</p>
+  </div>
+  <div class="series-grid">
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count lang-zh">九册 · 一百零八人</span>
+      <span class="series-card-count lang-en">Nine registers · 108 characters</span>
+      <div class="series-card-title-zh">红楼梦 · 情榜复原</div>
+      <div class="series-card-title-en">Dream of the Red Chamber · Register Restoration</div>
+      <p class="series-card-desc-zh lang-zh">依 SAE 框架重构《红楼梦》情榜——一百零八位人物的命运格局，以目的性为坐标轴重新排列。</p>
+      <p class="series-card-desc-en lang-en">Reconstructing the Dream of the Red Chamber's Registers of Fate through the SAE framework — the destinies of 108 characters rearranged along the axis of purposiveness.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">4 essays · Bilingual</span>
+      <div class="series-card-title-zh">时间艺术 · 凿与构</div>
+      <div class="series-card-title-en">Temporal Arts — Chisel &amp; Construct</div>
+      <p class="series-card-desc-zh lang-zh">美学与时间——红楼梦的艺术结构如何呼应凿构周期律？</p>
+      <p class="series-card-desc-en lang-en">Aesthetics and time — how does the artistic structure of the Dream mirror the Chisel-Construct Cycle?</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+    <div class="series-card coming-soon">
+      <span class="coming-badge lang-en">Coming</span>
+      <span class="coming-badge lang-zh">即将</span>
+      <span class="series-card-count">后二十七回 + 天香楼</span>
+      <div class="series-card-title-zh">红楼梦复原计划</div>
+      <div class="series-card-title-en">Red Chamber Restoration Project</div>
+      <p class="series-card-desc-zh lang-zh">后二十七回的创作性复原，与天香楼的重构——不是续写，是以哲学还原曹雪芹本意。</p>
+      <p class="series-card-desc-en lang-en">A creative restoration of the lost final 27 chapters and the Tianxianglou pavilion — not a sequel, but a philosophical reconstruction of Cao Xueqin's intent.</p>
+      <span class="series-card-arrow lang-en"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CATEGORY 7 · 交易
+     ══════════════════════════════════════════════════════════════════════ -->
+<hr class="lib-divider">
+<section class="lib-section">
+  <div class="lib-section-header">
+    <span class="lib-section-tag">Category 07</span>
+    <div class="lib-section-name">
+      <span class="zh">交易</span>
+      <span class="en">The Art of Trading</span>
+    </div>
+    <p class="lib-section-desc lang-zh">交易不是技术问题，是哲学问题——关于判断力、不确定性、与自我意志的持续对话。</p>
+    <p class="lib-section-desc lang-en">Trading is not a technical problem but a philosophical one — a continuous dialogue about judgment, uncertainty, and the will of the self.</p>
+  </div>
+  <div class="series-grid">
+    <a href="index.html#yizi" class="series-card">
+      <span class="series-card-count">10 essays + experiment</span>
+      <div class="series-card-title-zh">交易的艺术</div>
+      <div class="series-card-title-en">The Art of Trading</div>
+      <p class="series-card-desc-zh lang-zh">十篇文章加一个实验——以 SAE 哲学框架重新理解市场、风险与决策。</p>
+      <p class="series-card-desc-en lang-en">Ten essays and one experiment — re-understanding markets, risk, and decision-making through the SAE philosophical framework.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     COMING SOON · 道德经
+     ══════════════════════════════════════════════════════════════════════ -->
+<hr class="lib-divider">
+<section class="lib-section" style="background:var(--cream-dark); opacity:0.7;">
+  <div class="lib-section-header">
+    <span class="lib-section-tag">Coming Soon</span>
+    <div class="lib-section-name">
+      <span class="zh">道德经注解</span>
+      <span class="en">Commentary on the Tao Te Ching</span>
+    </div>
+    <p class="lib-section-desc lang-zh">八十一章，每章一篇。以自我为目的的哲学框架与道家思想的深层对话——即将开始。</p>
+    <p class="lib-section-desc lang-en">Eighty-one chapters, one essay each. A deep dialogue between the Self-as-an-End framework and Taoist thought — coming soon.</p>
+  </div>
+</section>
+
+<!-- ── FOOTER NOTE ─────────────────────────────────────────────────────── -->
+<hr class="lib-divider">
+<div class="lib-footer-note">
+  <p class="lang-zh" style="font-family:var(--cjk),serif;">所有系列持续更新中。返回 <a href="index.html">主页</a> 或前往 <a href="https://hqin.substack.com" target="_blank">Substack ↗</a> 获取最新文章。</p>
+  <p class="lang-en">All series are ongoing. Return to the <a href="index.html">homepage</a> or visit <a href="https://hqin.substack.com" target="_blank">Substack ↗</a> for the latest essays.</p>
+</div>
+
+</body>
+</html>
