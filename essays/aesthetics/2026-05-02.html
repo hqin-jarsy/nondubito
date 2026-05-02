@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Small64：当整台机器只剩余项 — Non Dubito</title>
+  <meta name="description" content="N64Brew的Small64——史上第一个任天堂64平台的4K intro，4096字节里的极限余项美学。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-05-02.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-05-02</div>
+          <h1 class="lang-zh">Small64：当整台机器只剩余项</h1>
+          <h1 class="lang-en">Small64: When the Entire Machine Becomes Remainder</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>任天堂64是1996年的机器。它的CPU跑93.75MHz，有4兆字节内存，一个不可编程的光栅化器，和一个被称为RSP的32位协处理器——后者拥有4KB指令内存和4KB数据内存。2025年4月，四个人——Rasky、HailToDodongo、Phire和Pestis——把一个完整的demo塞进了这台机器的4096字节ROM里。不是"在N64上运行一个4KB程序"，而是整个ROM就是4096字节：包含引导头、RAM初始化代码、解压器、图形渲染管线、音乐引擎和全部音乐数据。Small64是史上第一个N64平台的4K intro。它在Revision 2025发布，在2026年4月的Meteoriks颁奖中获得了杰出技术成就奖。</p>
+
+        <p>为什么这是余项之美？因为这件作品的美学，字面意义上就是余项——是极限压缩之后存活下来的东西。正常的N64 ROM有一个64字节的头部和4032字节的IPL3引导代码，然后才是游戏本体。Small64没有这个奢侈。它的demo代码必须同时充当引导代码，必须自己初始化RAM（正常的初始化程序到2023年才被逆向工程完成），必须在RAM还不存在的时候就开始解压自己。Stage 0在RSP的静态内存里运行解压器，先解压出RAM初始化代码到IMEM，跳过去初始化RAM，再跳回来解压整个demo到刚刚才诞生的内存里。这不是一个在机器上跑的程序，这是一台在自己体内造出自己的机器。</p>
+
+        <p>更精确地说，余项在这里的运作方式是多层的。3D渲染管线被削减到没有透视校正、没有UV输入、没有裁剪。环面的"金属"质感来自于把RAM中的随机垃圾数据当作纹理——这是字面意义上的以垃圾为美。菲涅耳效果是用法线Z分量的缩放冒充的。高光是菲涅耳的反转再自乘几次。音乐合成器从最初的8乐器双振荡器加混响加延迟，一路被削到4通道、单振荡器、无混响无延迟——因为N64的CPU连渲染一个带混响的乐器都跟不上实时。最后，整个ROM需要通过N64硬件的安全引导校验和，所以他们对最后8字节做GPU暴力破解，在Apple M1 Pro上跑了18到24小时。为了省空间，他们甚至从MIPS指令中那些CPU会忽略的未定义比特位里挤出空间来存放哈希破解的自由位。每一个字节，每一个比特，都是凿构循环的产物：先构建，发现太大，凿掉，再构建，再凿掉，直到剩下的恰好是结构性的最低限度——而那个最低限度，就是美。</p>
+
+        <p>这件作品现在看比以后看更重要，是因为它处在一个多重命名缝隙里。demo scene在芬兰和德国被列入了UNESCO非物质文化遗产名录，但当代艺术界仍然不知道怎么归类它。N64 homebrew社区是游戏开发的余项——不是做商业游戏，不是做独立游戏，是在被遗弃的硬件上重新发现硬件本身的结构可能性。4K intro更是余项中的余项：它不是"在N64上做一个作品"，它是"用4096字节让N64变成一个除了余项什么都没有的机器"。如果你等到艺术界某天发现demo scene，它会被收编为"数字遗产"或"计算机文化"，变成已构。但现在，Small64还是活的：它的逻辑——用极限约束把整台机器逼到只剩结构性残余，然后从那个残余里开出花来——还没有被任何一个名字完整地捕获。</p>
+
+        <a href="https://github.com/rasky/small64" target="_blank" rel="noopener" class="project-link">github.com/rasky/small64 ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>The Nintendo 64 is a machine from 1996. It runs a 93.75MHz MIPS CPU, has 4 megabytes of RAM, a non-programmable rasterizer, and a 32-bit coprocessor called the RSP with 4KB of instruction memory and 4KB of data memory. In April 2025, four people — Rasky, HailToDodongo, Phire, and Pestis — fit an entire demo into a 4096-byte ROM for this machine. Not "a 4KB program running on the N64," but a ROM that is 4096 bytes total: boot header, RAM initialization, decompressor, 3D graphics pipeline, music synthesizer, and all music data. Small64 is the first 4K intro ever made for the Nintendo 64. It debuted at Revision 2025, and in April 2026, it won the Meteoriks award for Outstanding Technical Achievement.</p>
+
+        <p>Why is this the beauty of the remainder? Because its aesthetics are, in the most literal sense, what survived. A normal N64 ROM has a 64-byte header and 4032 bytes of IPL3 boot code before the game even begins. Small64 has no such luxury. Its demo code must simultaneously serve as the bootloader, must initialize RAM on its own (the full initialization routine wasn't reverse-engineered until 2023), and must begin decompressing itself before RAM even exists. Stage 0 runs the decompressor in the RSP's static memory, decompresses the RAM initialization code into IMEM, jumps there to bring RAM to life, then jumps back to decompress the entire demo into the memory that just moments ago didn't exist. This is not a program running on a machine. It is a machine building itself from inside its own body.</p>
+
+        <p>The remainder operates on multiple layers here. The 3D pipeline has been stripped of perspective correction, UV input, clipping. The torus's "metallic" sheen comes from using random garbage data in RAM as texture — beauty literally made from junk. The Fresnel effect is faked by scaling the Z-component of surface normals. Specular highlights are the Fresnel value inverted and multiplied by itself a few times. The music synthesizer was carved down from eight instruments with dual oscillators, reverb, and delay to four channels sharing eight instruments, single oscillator per channel, no reverb, no delay — because the N64's CPU cannot even render a single instrument with reverb in real time. Finally, the entire ROM must pass the N64 hardware's secure boot checksum, so they GPU-brute-forced the last 8 bytes, a process taking 18–24 hours on an Apple M1 Pro. To save space, they even harvested undefined bits from MIPS opcodes — bits the CPU ignores — as free variables for the hash cracker. Every byte, every bit, is a product of the chisel-construct cycle: build, discover it's too large, chisel away, build again, chisel again, until what remains is the structural minimum — and that minimum is the beauty.</p>
+
+        <p>Seeing this now matters more than seeing it later, because it sits in a multiple naming gap. The demoscene has been inscribed as UNESCO Intangible Cultural Heritage in Finland and Germany, but the contemporary art world still doesn't know how to categorize it. The N64 homebrew community is the remainder of game development — not commercial games, not indie games, but rediscovering the structural possibilities of abandoned hardware. The 4K intro is the remainder of the remainder: it is not "making a work on the N64" but "using 4096 bytes to turn the N64 into a machine that is nothing but remainder." If you wait until the art world discovers the demoscene, it will be absorbed as "digital heritage" or "computer culture" — it will become construct. But right now, Small64 is still alive: its logic — using extreme constraint to force an entire machine down to its structural residue, then making that residue bloom — has not yet been fully captured by any single name.</p>
+
+        <a href="https://github.com/rasky/small64" target="_blank" rel="noopener" class="project-link">github.com/rasky/small64 ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
