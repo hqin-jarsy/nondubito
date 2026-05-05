@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>heerich.js：当雕塑变成减法的余项 — Non Dubito</title>
+  <meta name="description" content="David Aerne的heerich.js：一个以布尔减法构建体素场景并输出SVG的微型引擎，余项在凿空的面上显现。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-05-03.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">&larr; 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">&larr; Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-05-03</div>
+          <h1 class="lang-zh">heerich.js：当雕塑变成减法的余项</h1>
+          <h1 class="lang-en">heerich.js: When Sculpture Becomes the Remainder of Subtraction</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>David Aerne（网名meodai）是一个瑞士交互开发者，在色彩系统和生成设计领域已经默默耕耘多年——三万多个手工命名的颜色、参数化色彩曲线库Poline和RampenSau、一系列将"决策如何被做出"本身变成设计对象的工具。2026年3月，他发布了heerich.js：一个零依赖的微型JavaScript引擎，在体素栅格上执行布尔运算（并集、差集、交集、异或），然后将结果投射成纯SVG矢量图形。没有WebGL，没有Canvas，只有<code>&lt;svg&gt;</code>标签里的多边形。</p>
+
+        <p>引擎以Erwin Heerich命名。Heerich（1922-2004）是德国雕塑家，一辈子用最廉价的硬纸板做几何雕塑——方块、楔形、嵌套的中空体。他的作品不"表达"什么，它们只是几何操作的物理沉积物：一次切割之后暴露的面、一次叠加之后形成的阴影、两个体量相交之后留下的棱线。David Aerne的引擎继承了这个精神，但把它推入了一个Heerich不可能预见的媒介——浏览器的SVG坐标系。体素是三维空间的离散化余项：连续的空间被强制通过整数栅格，每个格子要么满要么空，没有中间状态。然后减法开始了。<code>removeGeometry</code>从实体中凿出洞，暴露出之前不存在的面——这些新面就是布尔操作的余项。它们不是被画出来的，是被凿出来的。</p>
+
+        <p>在SAE的凿构循环中，这是一个近乎纯粹的案例。凿（chisel）是减法操作本身——从体素场中移除物质。构（construct）是投射和渲染——三维栅格被压扁成二维多边形，面被排序，被遮挡的面被剔除。余项出现在两个层面上。第一层：体素化是连续空间的有损量化，锯齿状的阶梯不是缺陷而是栅格强加于几何体的签名。第二层：SVG输出是三维场景的投影残余物。当你把一个体素城堡导出为SVG时，你得到的不是城堡，是一堆按深度排序的四边形——三维关系已经被碾碎成画家算法的叠放顺序。这些多边形是几何计算的沉积物，无限可缩放，但结构上已经是平的了。heerich.js的遮挡剔除模式（专为笔式绘图仪设计）将这种余项性推到极致：每个多边形被其前方的所有多边形裁剪，最终输出的是零重叠的矢量路径——几何减法的最终沉积层。</p>
+
+        <p>David Aerne的哲学恰好在这里与SAE美学交叉："如果我们花更少的时间做单个决策，花更多的时间设计'决策如何被做出'呢？"这就是余项逻辑：不设计结果，设计产生结果的过程，然后接受过程的沉积物。heerich.js不是一个3D建模工具——它是一个"凿空并观察余项如何显现"的装置。它落在体素艺术、生成艺术、笔式绘图仪社区、雕塑思维和前端开发之间的缝隙里，哪个圈子都靠近，但没有哪个能完整命名它。现在看它，比以后看它更有意义——它的逻辑还在生长，每周都有新特性（per-voxel scale、decals、GPU渲染器），每一个新特性都是凿构循环的又一次迭代。当这个逻辑最终凝固成一个被完整命名的已构之美时，你将不再能看到现在这个活的余项。</p>
+
+        <a href="https://github.com/meodai/heerich" target="_blank" rel="noopener" class="project-link">github.com/meodai/heerich &nearr;</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>David Aerne (meodai) is a Swiss interaction developer who has been quietly working at the intersection of color systems and generative design for years — over 30,000 hand-named colors, parametric color-curve libraries like Poline and RampenSau, and a series of tools that turn "how decisions get made" itself into a design object. In March 2026, he released heerich.js: a zero-dependency micro JavaScript engine that performs boolean operations (union, subtract, intersect, exclude) on a voxel grid, then projects the result into pure SVG vector graphics. No WebGL. No canvas. Just polygons inside an <code>&lt;svg&gt;</code> tag.</p>
+
+        <p>The engine is named after Erwin Heerich (1922–2004), the German sculptor who spent his life making geometric sculptures from cheap cardboard — boxes, wedges, nested hollow forms. His work doesn't "express" anything; the pieces are physical sediment of geometric operations: a face exposed after a cut, a shadow formed by a stack, an edge-line left where two volumes intersect. Aerne's engine inherits this spirit but pushes it into a medium Heerich could never have foreseen — the SVG coordinate space of a web browser. Voxels are the discrete remainder of continuous 3D space: space is forced through an integer grid, each cell either full or empty, no in-between. Then subtraction begins. <code>removeGeometry</code> carves holes out of solids, exposing faces that didn't exist before — these new faces are the remainder of the boolean operation. They are not drawn. They are chiseled into existence.</p>
+
+        <p>In SAE's chisel-construct cycle, this is an almost pure case. The chisel is the subtraction operation itself — removing matter from the voxel field. The construct is projection and rendering — the 3D grid flattened into 2D polygons, faces sorted, occluded faces culled. The remainder appears at two levels. First: voxelization is lossy quantization of continuous space, and the staircase aliasing is not a defect but the grid's signature imposed on geometry. Second: the SVG output is the projection residue of a 3D scene. When you export a voxel castle as SVG, what you get is not a castle — it is a stack of depth-sorted quadrilaterals. The 3D relationships have been crushed into the painter's algorithm layering order. These polygons are sediment of geometric computation, infinitely scalable yet structurally flat. The engine's occlusion-culling mode (designed specifically for pen plotters) pushes this remainder logic to its extreme: every polygon is clipped by all polygons in front of it, and the final output is zero-overlap vector paths — the ultimate sediment layer of geometric subtraction.</p>
+
+        <p>Aerne's philosophy intersects SAE aesthetics precisely here: "What if we spent less time making individual decisions and more time designing how decisions get made?" This is remainder logic: don't design the result, design the process that produces results, then accept the sediment of the process. heerich.js is not a 3D modeling tool — it is an apparatus for "carving and watching what the remainder reveals." It sits in the gap between voxel art, generative art, the pen-plotter community, sculptural thinking, and front-end web development — close to every circle, fully named by none. Seeing it now matters more than seeing it later — its logic is still growing, with new features shipping weekly (per-voxel scale transforms, decals, a GPU renderer), each one another iteration of the chisel-construct cycle. When this logic eventually solidifies into a fully named construct-beauty, you will no longer be able to see the living remainder that it is right now.</p>
+
+        <a href="https://github.com/meodai/heerich" target="_blank" rel="noopener" class="project-link">github.com/meodai/heerich &nearr;</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
