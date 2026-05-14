@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css-doodle：层叠样式表里未被命名的生成力 — Non Dubito</title>
+  <meta name="description" content="Yuan Chuan的css-doodle证明：一种被程序员轻视为「不是真正编程」的语言，其沉积层中藏着整座未被发掘的美学矿脉。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-05-14.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">&larr; 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">&larr; Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 &middot; 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics &middot; Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-05-14</div>
+          <h1 class="lang-zh">css-doodle：层叠样式表里未被命名的生成力</h1>
+          <h1 class="lang-en">css-doodle: The Unnamed Generative Force Inside Cascading Style Sheets</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Yuan Chuan（袁川）是一位中国网页开发者，长年在业余时间维护一个叫 css-doodle 的项目。它是一个极小的 Web Component，做的事情在描述上几乎可笑地简单：在页面上生成一个 div 网格，让你用纯 CSS 规则操控这些格子。没有 Canvas，没有 WebGL，没有 JavaScript 绑定——只有层叠样式表。然而从这个看似贫瘠的约束中，涌现出的图案之复杂、之精美，令人难以置信：万花筒般的几何晶格、流动的梯度织锦、可以无限递归的分形纹样、带有呼吸节奏的动画雕塑。而这一切的原材料，只是浏览器厂商为网页排版而设计的功能——Grid、transform、gradient、clip-path、animation，以及 CSS 自定义属性。没有一个是为了画画而发明的。但它们全都可以画画。</p>
+
+        <p>在 SAE 美学的框架中，每一次凿构循环都会留下余项——旧构被凿去之后尚未被新构消化的部分。CSS 的整部历史就是这样一部凿构史。W3C 和浏览器厂商每年发布新特性：Grid 布局解决了二维排版问题，三角函数（sin、cos、tan，2023-2024年加入规范）让开发者可以做复杂的 UI 计算，容器查询改变了响应式设计的方式，滚动驱动动画把滚动事件绑定到了时间轴上。每一个特性都是已构——为解决特定的网页布局问题而被精确制造。但当 Yuan Chuan 用 css-doodle 把 CSS 从「网页」中整体剥离，抽掉内容、抽掉用户交互、抽掉布局需求，剩下的是什么？是潜伏在声明式语法中的纯粹数学生成力。三角函数不再计算按钮位置，而是画螺旋；Grid 不再安排文章栏目，而是成为视觉晶格的基底；渐变色不再装饰背景，而是在十几层叠加后产生从未被任何人预见的复杂纹理。这就是余项：功能性的已构被凿去之后，涌现出来的非功能性的美。</p>
+
+        <p>css-doodle 至今仍在演化。2026年4月，Yuan Chuan 发布了对 CSS 多重描边文字效果的新研究；此前他还探索了着色器整合和实验性 SVG 语法。每一次 CSS 规范的扩展，都为 css-doodle 打开新的余项矿脉——这个项目的生长速度，某种意义上追踪了 W3C 规范进程本身。更关键的是：CSS 艺术目前没有任何艺术世界的命名。它不是「生成艺术」——没有随机种子铸造、没有 NFT、不在 fxhash 上。它不是「网页设计」——没有客户、没有品牌、没有用户界面。它也不是「创意编码」——Processing 和 p5.js 社群几乎从不讨论纯 CSS 生成。它活在 CodePen 和 GitHub 上，被六千多位开发者标星，但被艺术世界完全忽略。这恰恰意味着它的余项身份还是活的：还没有被任何已构体系吸收、消化和命名。</p>
+
+        <p>Yuan Chuan 在个人网站上写过一句话来描述自己的创作哲学——这句话的指称刻意模糊，本身就是一种余项式的表述：方法先于目的而存在，过程比结果更真实。CSS 是网页三层结构中的第三层（HTML 是结构，JavaScript 是行为，CSS 是呈现），历来被程序员轻视为「不是真正的编程」。但 css-doodle 证明，这种被轻视的、「装饰性的」余项层中，藏着整座未被发掘的美学矿脉。当下看到它，比将来更重要——因为一旦策展人和评论家开始为它命名，它就不再是余项了。</p>
+
+        <a href="https://css-doodle.com/" target="_blank" rel="noopener" class="project-link">css-doodle.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Yuan Chuan is a Chinese web developer who has spent years building css-doodle, a tiny web component that does one thing: it generates a grid of empty divs and lets you control them with pure CSS. No Canvas, no WebGL, no JavaScript bindings&mdash;just Cascading Style Sheets. From this deliberately impoverished constraint, patterns of staggering complexity emerge: kaleidoscopic geometric lattices, flowing gradient tapestries, infinitely recursive fractal textures, breathing animated sculptures. The raw materials are features that browser vendors built for web layout: Grid, transforms, gradients, clip-path, animations, and CSS custom properties. None of them were designed for art-making. All of them, it turns out, were waiting to make art.</p>
+
+        <p>In SAE aesthetics, every chisel-construct cycle leaves a remainder&mdash;the part not yet digested by the new construct. The entire history of CSS is a chisel-construct history. The W3C and browser vendors ship new features each year: Grid layout solved two-dimensional page composition; trigonometric functions (sin, cos, tan&mdash;added to the spec in 2023&ndash;2024) enabled complex UI calculations; container queries reformed responsive design; scroll-driven animations bound scroll events to timelines. Each feature is already-construct, precision-manufactured to solve a specific web layout problem. But when Yuan Chuan uses css-doodle to strip CSS away from the web page&mdash;removes the content, removes the user interaction, removes the layout problem&mdash;what remains is the pure mathematical generative power latent in declarative syntax. Trigonometric functions stop calculating button positions and start drawing spirals. Grid stops arranging article columns and becomes the substrate of visual crystal lattices. Gradients stop decorating backgrounds and, stacked a dozen layers deep, produce complex textures no one ever predicted. This is the remainder: the non-functional beauty that emerges once the functional construct has been chiseled away.</p>
+
+        <p>css-doodle is still evolving. In April 2026, Yuan Chuan published new research on multi-stroke text effects in CSS; before that he explored shader integration and experimental SVG syntax. Each expansion of the CSS specification opens a new vein of remainder for css-doodle to mine&mdash;the project&rsquo;s growth rate, in a sense, tracks the W3C specification process itself. More critically: CSS art has no art-world name. It is not &ldquo;generative art&rdquo;&mdash;no random seeds, no minting, no NFTs, not on fxhash. It is not &ldquo;web design&rdquo;&mdash;no client, no brand, no user interface. It is not &ldquo;creative coding&rdquo;&mdash;the Processing and p5.js communities barely discuss pure CSS generation. It lives on CodePen and GitHub, starred by over six thousand developers, completely invisible to the art world. This means its remainder identity is still alive&mdash;not yet absorbed, digested, and named by any established construct.</p>
+
+        <p>Yuan Chuan once described his creative philosophy on his personal site in a sentence whose referent is deliberately unspecified&mdash;itself a remainder-like utterance: the method exists before the purpose, the process is more real than the result. CSS is the third layer of the web&rsquo;s tripartite structure (HTML is structure, JavaScript is behavior, CSS is presentation), historically dismissed by programmers as &ldquo;not real programming.&rdquo; But css-doodle proves that this dismissed, &ldquo;decorative&rdquo; remainder-layer harbors an entire unexcavated aesthetic stratum in its sediment. Seeing it now matters more than seeing it later&mdash;because once curators and critics begin to name it, it will no longer be a remainder.</p>
+
+        <a href="https://css-doodle.com/" target="_blank" rel="noopener" class="project-link">css-doodle.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
