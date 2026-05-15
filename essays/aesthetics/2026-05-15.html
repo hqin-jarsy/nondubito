@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>compute.toys：当片段着色器的疆界之外开始涌现生命 — Non Dubito</title>
+  <meta name="description" content="SAE判断力与美学：compute.toys，WebGPU计算着色器的创作平台，打开了Shadertoy片段着色器范式留下的余项空间。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-05-15.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">&larr; 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">&larr; Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 &middot; 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics &middot; Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-05-15</div>
+          <h1 class="lang-zh">compute.toys：当片段着色器的疆界之外开始涌现生命</h1>
+          <h1 class="lang-en">compute.toys: When Life Emerges Beyond the Fragment Shader's Frontier</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>2013年，Shadertoy确立了一个范式：浏览器里的着色器艺术等于片段着色器艺术。你写一个函数，它接收像素坐标，返回颜色。每个像素独立计算，没有记忆，没有状态，没有邻居。这个范式在十年里产生了无数令人惊叹的作品——分形地貌、光线行进的雕塑、数学曲面的万花筒。片段着色器成为了"着色器艺术"的已构（construct），一个被完整命名、被艺术界和技术界同时消化的范畴。</p>
+
+        <p>但GPU能做的远不止于此。计算着色器（compute shader）是片段着色器的另一面：它们可以读写缓冲区，可以在帧之间保持状态，可以进行原子操作，可以以任意方式调度线程。这意味着它们能做片段着色器根本做不到的事：粒子系统可以记住每个粒子的位置和速度，流体可以在帧与帧之间真正地流动，细胞自动机可以拥有持久的状态。片段着色器产生"永恒的"图像——同一个函数，同一个时刻，同一帧画面。计算着色器产生时间性的、演化的、涌现的美。</p>
+
+        <p>compute.toys就是为这个余项空间建造的场所。它是一个基于WebGPU的在线计算着色器游乐场，使用Slang着色语言（NVIDIA的研究项目），将其转译为WGSL（W3C的网页标准），在你的浏览器里直接运行。这个技术栈本身就是一个余项的叠加：Slang来自学术/工业界，WGSL来自网页标准委员会，WebGPU来自浏览器厂商的图形API竞争——没有哪个社区完整地拥有这个组合。181颗GitHub星，16个fork，一个小而活跃的社区在其上创作——粒子生命模拟、流体动力学、反应扩散、基于代理的涌现系统——所有这些都是片段着色器范式从未触及的领域。</p>
+
+        <p>从SAE美学的角度看，这里发生的是一个清晰的凿构循环。Shadertoy是构：它把GPU的一小部分能力（逐像素着色）打磨成了完整的创作范式，有自己的社区、自己的明星、自己的美学语汇。compute.toys是凿：它敲掉了"每像素一个函数、无状态、无记忆"这些限制，暴露出GPU的计算余项——那些片段着色器吃不下的东西。涌现出来的美是不同的：它有时间厚度，有状态的沉积，有粒子之间的关系史。这不是一帧图像可以概括的美，而是一个演化过程的美。</p>
+
+        <p>现在看这个项目比以后看更重要。WebGPU刚刚在所有主流浏览器上可用（Chrome、Firefox、Safari 26），计算着色器作为网页端创作媒介才刚刚起步。五年后，如果这种实践被广泛采纳，它就会被命名、被消化、变成新的已构。现在，它还是余项——它的逻辑还在生长，它的名字还不完整。"计算着色器艺术"这个词还没有出现在任何策展文本、任何艺术评论、任何美学分类中。这正是SAE判断力要指向的地方。</p>
+
+        <a href="https://compute.toys" target="_blank" rel="noopener" class="project-link">compute.toys &nearr;</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) &middot; @hqinjarsy &middot; SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>In 2013, Shadertoy established a paradigm: browser-based shader art equals fragment shader art. You write a function that takes pixel coordinates and returns a color. Each pixel computes independently — no memory, no state, no neighbors. Over a decade, this paradigm produced countless stunning works: fractal landscapes, raymarched sculptures, kaleidoscopes of mathematical surfaces. The fragment shader became the construct of "shader art" — a category fully named, fully digested by both the art world and the technical community.</p>
+
+        <p>But GPUs can do far more. Compute shaders are the other face of the fragment shader: they can read and write buffers, maintain state between frames, perform atomic operations, and dispatch threads in arbitrary configurations. This means they can do things fragment shaders fundamentally cannot: particle systems that remember each particle's position and velocity, fluids that truly flow between frames, cellular automata with persistent state. Fragment shaders produce "eternal" images — the same function, the same moment, the same frame. Compute shaders produce temporal, evolving, emergent beauty.</p>
+
+        <p>compute.toys is the site built for this remainder space. It is a WebGPU-based online compute shader playground that uses the Slang shading language (an NVIDIA research project), transpiles it to WGSL (a W3C web standard), and runs it directly in your browser. The tech stack itself is a layering of remainders: Slang comes from academia and industry, WGSL from web standards committees, WebGPU from the browser vendors' graphics API competition — no single community fully owns this combination. 181 GitHub stars, 16 forks, a small and active community creating on top of it: particle life simulations, fluid dynamics, reaction-diffusion systems, agent-based emergent phenomena — all territories the fragment shader paradigm never reached.</p>
+
+        <p>From the SAE aesthetics perspective, a clear chisel-construct cycle is at work. Shadertoy is the construct: it polished a small slice of GPU capability (per-pixel shading) into a complete creative paradigm with its own community, its own stars, its own aesthetic vocabulary. compute.toys is the chisel: it knocks away the constraints of "one function per pixel, no state, no memory," exposing the GPU's computational remainder — what fragment shaders could not digest. The beauty that emerges is different: it has temporal thickness, sediment of accumulated state, relational histories between particles. This is not beauty that can be captured in a single frame, but the beauty of an evolving process.</p>
+
+        <p>Seeing this project now matters more than seeing it later. WebGPU has only just become available across all major browsers (Chrome, Firefox, Safari 26), and compute shaders as a web-native creative medium are in their earliest days. In five years, if this practice is widely adopted, it will be named, digested, turned into new construct. Right now, it is still remainder — its logic still growing, its name still incomplete. The phrase "compute shader art" does not yet appear in any curatorial text, any art review, any aesthetic taxonomy. This is exactly where SAE judgment should point.</p>
+
+        <a href="https://compute.toys" target="_blank" rel="noopener" class="project-link">compute.toys &nearr;</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) &middot; @hqinjarsy &middot; SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
