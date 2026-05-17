@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TugPhonon：当1951年的磁盘开始生长共振体 — Non Dubito</title>
+  <meta name="description" content="Tuğrul Akyüz的TugPhonon：一个免费的Phonogène重构插件，将磁带延迟的时间余项送入物理建模共振体，声音成为双重余项。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-05-17.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-05-17</div>
+          <h1 class="lang-zh">TugPhonon：当1951年的磁盘开始生长共振体</h1>
+          <h1 class="lang-en">TugPhonon: When a 1951 Magnetic Disk Begins Growing Resonators</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>1951年，Jacques Poullin和Pierre Schaeffer在巴黎GRM实验室造出了Phonogène——一个旋转磁盘上安装多个播放磁头的装置。磁带录音的本意是忠实再现声音（构），但Schaeffer把再现性凿掉了。八个磁头各自从磁盘的不同时间点读取信号，声音被拉伸、叠合、错位。音乐不是被"写"出来的，它是录音过程被凿开后露出的时间余项。Phonogène是第一件从余项中生长出来的乐器。</p>
+
+        <p>七十五年后，一个叫Tuğrul Akyüz的独立插件开发者免费发布了TugPhonon——一个软件化的Phonogène重构。八个独立播放磁头围绕虚拟旋转磁盘运转，各自带有延迟、音量、声相和反馈参数。到这里为止，它是一个致敬。但Akyüz做了一件Schaeffer和Poullin不可能做的事：他在每个磁头的输出端接上了物理建模共振体。Karplus-Strong弦、钟、管、马林巴、梁、膜——八种共振模型，基于贝塞尔函数、欧拉-伯努利梁理论和实测钟泛音比。每个磁头读出的时间余项不再直接发声，而是作为激励信号送入一个物理模型。最终听到的声音，是共振体对时间余项的回应——余项的余项。</p>
+
+        <p>这是一个嵌套的凿构循环。第一层：磁带录音（构：忠实再现）→凿掉忠实性→时间余项（多磁头延迟、变速、错位）。第二层：时间余项作为激励→送入物理模型（构：声学方程）→共振余项（模型的回响、衰减、非线性行为是方程无法完全预测的部分）。声音穿过两次凿构循环才抵达听觉。这不是"延迟效果器"，这是一台双重余项采集装置。Akyüz自己也拒绝"延迟"这个分类——他称TugPhonon为"声音变换乐器"。</p>
+
+        <p>Akyüz的整个实践都在做同一件事：建造不可能的乐器。TugSpect用FFT扫描图像的像素值来塑造音频的频谱——声音是图像穿越频域后的余项。TugImgSynth把任意图片变成可演奏的波表乐器——音色是像素的声学沉积物。每一个插件都是一次跨域的余项采集：找到一个从未被设计为可听的输入域（磁盘时间、照片像素），构建一条信号通路，让声音作为跨域旅行的残留物涌现。这些工具全部免费发布在Gumroad上，附一个PayPal捐赠按钮和一个Wix托管的个人页面。没有商业公司，没有学术机构，没有艺术画廊。</p>
+
+        <p>现在看TugPhonon比以后看更重要，因为它目前处在一个四方不认领的真空地带。VST插件开发社区把它归为"免费实验效果器"——有趣但不是正经产品。具体音乐（musique concrète）传统把Phonogène致敬当作考古行为——尊重但不是新创作。物理建模DSP社区把共振体看作工程实现——正确但不是艺术。声音艺术界则根本不知道插件开发者的存在。四个命名体系没有一个能完整地安放Akyüz在做的事情：一个人免费建造不可能的乐器，每一件都在采集某个信号跨域时产生的余项。这个逻辑还在生长，还没有被命名。它是活的余项。</p>
+
+        <a href="https://tugrulakyuz.gumroad.com/l/xtwcn" target="_blank" rel="noopener" class="project-link">tugrulakyuz.gumroad.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>In 1951, Jacques Poullin and Pierre Schaeffer built the Phonogène at GRM Paris — a rotating magnetic disk with multiple playback heads mounted around it. Tape recording was meant to faithfully reproduce sound (construct), but Schaeffer chiseled away fidelity. Eight heads each read from a different point in time on the spinning disk, stretching, layering, and displacing sound. Music was not "written" — it was the temporal remainder exposed when recording's construct was broken open. The Phonogène was the first instrument grown from remainder.</p>
+
+        <p>Seventy-five years later, an independent plugin developer named Tuğrul Akyüz released TugPhonon for free — a software reconstruction of the Phonogène concept. Eight independent playback heads orbit a virtual rotating disk, each with its own delay position, volume, pan, and feedback. So far, tribute. But Akyüz did something Schaeffer and Poullin could never have done: he attached physical modeling resonators to the output of each head. Karplus-Strong strings, bells, pipes, marimbas, beams, membranes — eight resonator types grounded in Bessel functions, Euler-Bernoulli beam theory, and measured bell partial ratios. Each head's temporal remainder no longer sounds directly. Instead, it becomes an excitation signal fed into a physical model. What you hear is the resonator's response to the temporal remainder — the remainder of the remainder.</p>
+
+        <p>This is a nested chisel-construct cycle. Layer one: tape recording (construct: faithful reproduction) → chisel away fidelity → temporal remainder (multi-head delay, speed variation, displacement). Layer two: temporal remainder as excitation → fed into physical model (construct: acoustic equations) → resonant remainder (the model's decay, ringing, nonlinear behavior — the part the equations cannot fully predict). Sound passes through two chisel-construct cycles before reaching your ears. This is not a "delay effect." It is a double-remainder harvesting machine. Akyüz himself refuses the "delay" category — he calls TugPhonon a "sound transformation instrument."</p>
+
+        <p>Akyüz's entire practice follows the same logic: building impossible instruments. TugSpect uses FFT to scan an image's pixel values and shape audio spectrally — sound as the remainder of an image crossing into the frequency domain. TugImgSynth turns any photograph into a playable wavetable instrument — timbre as the acoustic sediment of pixels. Each plugin is a cross-domain remainder harvest: find an input domain never designed to be heard (disk time, photograph pixels), build a signal path, and let sound emerge as the residue of a cross-domain journey. Every tool is released free on Gumroad, accompanied by a PayPal donate button and a Wix-hosted personal page. No company, no institution, no gallery.</p>
+
+        <p>Seeing TugPhonon now matters more than later, because it currently sits in a vacuum where four naming systems fail to claim it. The VST plugin community files it under "free experimental effects" — interesting but not a real product. The musique concrète tradition reads a Phonogène tribute as archaeology — respectful but not new creation. The physical modeling DSP community sees the resonators as engineering — correct but not art. The sound art world does not know plugin developers exist. None of these four naming systems can fully house what Akyüz is doing: one person building impossible instruments for free, each one harvesting the remainder produced when a signal crosses into an alien domain. This logic is still growing, still unnamed. It is living remainder.</p>
+
+        <a href="https://tugrulakyuz.gumroad.com/l/xtwcn" target="_blank" rel="noopener" class="project-link">tugrulakyuz.gumroad.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
