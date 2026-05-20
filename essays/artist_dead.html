@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>艺术家已死 — Non Dubito</title>
+  <meta name="description" content="单向度的文明是凶手。市场、学院、算法、AI——四个维度，一个共谋：消灭余项的存身之处。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <meta property="og:title" content="艺术家已死 — The Artist Is Dead">
+  <meta property="og:description" content="One-dimensional civilization is the killer. Market, academy, algorithm, AI — four vectors, one conspiracy: eliminating the place where remainder can exist.">
+  <meta property="og:url" content="https://nondubito.net/essays/artist_dead.html">
+  <meta property="og:image" content="https://nondubito.net/img/vanitas-artist.jpg">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/artist_dead.html">
+  <style>
+    .essay-hero {
+      width: 52%;
+      max-width: 420px;
+      margin: 0 auto 3rem;
+      position: relative;
+    }
+    .essay-hero img {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
+      filter: sepia(0.15) contrast(1.05);
+    }
+    @media (max-width: 600px) {
+      .essay-hero { width: 80%; }
+    }
+    .essay-hero figcaption {
+      margin-top: 0.6rem;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      text-align: right;
+    }
+    .essay-hero figcaption a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--cream-border);
+    }
+    .essay-hero figcaption a:hover { color: var(--ink); }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../index.html" class="active">Essays</a>
+        <a href="../credesivis.html">Crede si vis</a>
+        <a href="../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="essay-main">
+    <article>
+
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <div class="essay-titles">
+          <h1 class="lang-zh">艺术家已死</h1>
+          <h1 class="lang-en">The Artist Is Dead</h1>
+          <p class="essay-subtitle lang-zh">单向度的文明是凶手</p>
+          <p class="essay-subtitle lang-en">One-Dimensional Civilization Is the Killer</p>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="series lang-zh">自我即目的理论系列 — 美学</span>
+          <span class="series lang-en">Self-as-an-End Theory Series — Aesthetics</span>
+          <span class="sep">·</span>
+          <span class="date">March 2026</span>
+        </div>
+      </header>
+
+      <figure class="essay-hero">
+        <img src="../img/vanitas-artist.jpg"
+             alt="Vanitas Still Life with Skull, Books and Roses — Jan Davidsz. de Heem, c. 1628"
+             loading="lazy">
+        <figcaption>
+          Jan Davidsz. de Heem, <em>Vanitas Still Life with Skull, Books and Roses</em>, c. 1628 &nbsp;·&nbsp;
+          <a href="https://commons.wikimedia.org/wiki/File:Jan_Davidszoon_de_Heem,_Still-life_with_Books_and_Skull_(Vanitas).JPG" target="_blank" rel="noopener">Public domain</a>
+        </figcaption>
+      </figure>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<p>本篇是SAE美学应用论文（DOI: 10.5281/zenodo.18775062）的特例。该论文建立了美学域的完整SAE映射：meixue/shenmei的二维结构、三层实例化、六向传导、殖民与涵育、领域特有区分。本篇不重复这些框架定义。本篇只做一件事：诊断2026年当下，艺术家作为主体如何正在被杀死。</p>
+
+<h2>一、单向度的文明</h2>
+
+<p>1964年Marcuse诊断了单向度的人：工业社会把人的需求、思维和感受压缩到一个维度上——可被系统整合的维度。半个世纪过去了。单向度的人生产了单向度的社会，单向度的社会生产了单向度的文明。Marcuse担心的事没有被阻止，它完成了。</p>
+
+<p>单向度的文明只有一个元价值：可优化。一切都必须可优化。不可优化的不是"另一种价值"，而是缺陷、噪声、风险、待消灭的余项。</p>
+
+<p>不是所有文明都杀死艺术家。美第奇的佛罗伦萨不杀。银行、政治、外交、军事，全部在优化，但"成功"的定义里有一个维度不是优化：赞助一个你不知道他会做出什么的人，然后等着。千利休的日本不杀。"只煮水点茶喝茶而已"——在武士文化高度优化的时代，茶道开辟了一个空间，说"这里不需要优化"。这些文明有制度，有市场，有权力结构。但它们的"成功"是多维的。多维的文明有缝隙。余项存在于维度之间的缝隙里。有缝隙，余项就有地方落。有地方落，艺术家就能在那里凿。</p>
+
+<p>杀死艺术家的是把成功的定义收窄为单一维度的文明。当"成功=可优化"变成了元定义，一切不可优化的都变成了失败。余项不是被消灭了，是被重新定义为缺陷。市场说不可交易的是风险。学院说不可阐释的没有深度。算法说不可优化的是噪声。AI说可生成的都不值得你亲手做。这不是四种独立的力量碰巧同时在压迫艺术家。这是同一个单向度在不同领域的投射。</p>
+
+<p>后背发凉的不在这里。后背发凉的是：没有人在作恶。市场在做市场该做的事。学院在做学院该做的事。算法在做算法该做的事。AI在做AI该做的事。每一步都是合理的优化。但当所有维度同时被优化，当优化没有例外，没有空隙，没有"这一块不需要优化"的豁免区——单向度的空间里没有"之间"。没有"之间"就没有缝隙。没有缝隙，余项就无处存身。</p>
+
+<p>最让人后背发凉的是：我们甚至不觉得丢了什么。</p>
+
+<p>艺术家是最依赖余项的人。余项是凿必然产生但无法被这次凿本身吸收的东西。科学家可以在消除余项中推进。工程师可以在控制余项中推进。但艺术家反过来：他的全部工作就是找到余项位置并在那里凿。没有余项，就没有可凿的位置。没有可凿的位置，艺术家作为主体就不存在。</p>
+
+<p>单向度的文明消灭了余项的存身之处。艺术家已死。不是被谁杀的。是缝隙没了。</p>
+
+<h2>二、单向度在市场、学院、算法中的投射</h2>
+
+<h3>市场制度：余项是风险</h3>
+
+<p>市场的优化目标是可交易性。可交易的东西必须可预测、可比较、可定价。余项是不可预测的——它是凿之后才出现的东西，在凿之前没人知道它在哪里。市场不喜欢这个。</p>
+
+<p>市场消灭余项的第一种方式是价格信号。当价格成为唯一的评判标准时，所有余项位置被压缩到"可交易"这一个点上。2014年批评家Walter Robinson命名的"僵尸形式主义"是标本：投机型藏家系统性收购可预测的同质化抽象画，几个月内倒卖套利。艺术家生产的东西必须足够前卫以满足虚荣心，又足够安全以适配豪宅内饰。余项位置被提前锁定，基础层的议题挖掘能力被制度性地关闭。</p>
+
+<p>市场消灭余项的第二种方式是时间压缩。批评家Chris Wiley命名的"债务美学"揭示了机制：MFA学贷把凿的时间窗口压死了。凿需要时间——你不知道余项在哪里，你必须试，必须失败，必须在失败中逐渐逼近那个位置。但当债务要求你在毕业后几年内变现时，你没有时间去做真正的凿。你只能做可预测的构。有构无凿成为系统性产出。</p>
+
+<p>市场消灭余项的第三种方式是空间封闭。Hito Steyerl描述的"免税艺术"是极端：在日内瓦和新加坡的自由港中，艺术品被储存在温控货架上，从未被公众看到，在交易数十次后从未离开仓库。作品被从关系层完全抽出——它不再构成任何人的背景凿，不再打开任何人的可凿空间。余项位置被封死，不是因为没有余项，而是作品连被看到的机会都没有。</p>
+
+<h3>学院制度：余项是不可阐释的东西</h3>
+
+<p>学院的优化目标是可阐释性。可阐释的东西必须能被理论语言翻译、能被课程体系教授、能被学位论文论证。余项是不可预先阐释的——它是在凿之后才出现的结构位置，在凿之前你不知道该用什么语言来描述它。学院不喜欢这个。</p>
+
+<p>2012年Alix Rule和David Levine通过语料库分析命名了"国际艺术英语"——一种高度规范且严重偏离标准英语的行话体系，充斥着宏大却空洞的学术术语。这种语言不只是文风问题。它是学院制度的过滤器：能被这种语言快速翻译的作品获得展陈资源，不能被翻译的作品被推向边缘。</p>
+
+<p>Dave Hickey在《看不见的龙》中的诊断至今有效："作品看起来是什么样"已经被"作品意味着什么"彻底取代。当可阐释性成为唯一的入场条件时，凡是不能在墙文、导览、新闻稿和公共项目中被快速"说清楚"的作品，就不存在。余项恰恰是不能被快速说清楚的——因为它是在凿之后才出现的。学院制度要求你在凿之前就能说清楚你要凿到什么，这在结构上等于要求你在找到余项之前就知道余项在哪里。这个要求消灭了余项。</p>
+
+<h3>算法制度：余项是噪声</h3>
+
+<p>算法的优化目标是用户参与度。可优化的东西必须可量化——停留时间、转发率、完播率、点赞数。余项是不可量化的——它是一个新的结构位置，而新的结构位置在出现之前不在任何数据分布里。算法不喜欢这个。</p>
+
+<p>算法消灭余项的方式不是直接说"这个不好"，而是让余项不可见。推荐系统把"可分发性"变成了可见性的前提。研究表明Instagram形成可复制的图像生活方式模板，TikTok形成可复制的短视频镜头语法，Pinterest形成风格簇的聚类回路。不符合可分发性参数的内容不被推荐，不被推荐就不被看到，不被看到就不存在。</p>
+
+<p>算法比市场和学院更危险，因为它同时作用于两条传导通道。对个体：算法通过可分发性参数塑形艺术家的可凿空间——你以为自己在自由创作，实际上你的凿方向已经被推荐系统的优化目标预先筛选了。对关系：算法用风格聚类取代自发的关系网络。算法殖民的独特危险在于它的不可见性。市场殖民至少是显性的——你知道你在为钱工作。学院殖民至少是可辨识的——你知道你在为学位工作。但算法殖民是隐性的：你以为自己在与观众对话，实际上你在向推荐系统投喂信号。</p>
+
+<h2>三、单向度的代价：关系层的消失</h2>
+
+<p>三种制度消灭余项是前台的暴力。关系层的消失是后台的塌方。</p>
+
+<p>历史上，艺术家的关系层有物理基础设施。17世纪法国的沙龙——不是官方展览沙龙，而是贵族客厅里的聚会——让作家、画家、哲学家、赞助人在同一个物理空间里碰面、争论、互相激发。佛罗伦萨的美第奇宫廷让不同领域的创作者在赞助体系的庇护下有时间工作，有对手较量。巴黎的咖啡馆让印象派画家、立体主义画家、超现实主义者在非制度化的空间里形成自发的关系网络。日本的茶道社群让工匠在千利休打开的美学空间里通过师徒传承完成代际上行。</p>
+
+<p>这些全没了。</p>
+
+<p>取代它们的是三种制度层替代品。画廊取代了沙龙——但画廊是市场制度，它的目标函数是销售，不是激发。MFA项目取代了师徒传承——但MFA是学院制度，它的目标函数是学位和可阐释性，不是凿构方向的探索。社交媒体取代了咖啡馆——但社交媒体是算法制度，它的目标函数是参与度，不是余项位置的多元层叠。</p>
+
+<p>关系层没有被碎片化。关系层被制度层取代了。艺术家不再有同行，只有同一个市场里的竞争者，同一个学院里的同学，同一个算法里的被推荐者。"同行"意味着你们在不同方向上凿，互相构成对方的背景凿，互相打开对方没见过的余项位置。"竞争者"意味着你们在同一个方向上争夺同一批资源。同行关系产生多元的背景凿层叠。竞争关系产生单一维度的排名。</p>
+
+<p>关系层的缺失是当下美学生态最深的结构性病变。没有关系层，即使一个艺术家到达了14DD，他的凿也无法进入其他人的可感域——因为没有传导通道。关系层是框架中的传导媒介，媒介消失了，传导就停止了。</p>
+
+<p>六条传导在2026年的病变状态：<strong>制度→个体过度强势</strong>（三种制度同时压缩可凿空间到可交易、可阐释、可分发的交集，AI到来后这个交集三秒就能被模拟）；<strong>个体→制度近乎消失</strong>（杜尚曾用一只小便池改变了整个艺术制度的边界——那是一百年前）；<strong>制度→关系被改写</strong>（艺术家之间的互相影响不再是自发的，而是由制度安排的）；<strong>关系→制度通道堵塞</strong>（算法把关系层碎片化）；<strong>关系→个体从激发退化为模仿</strong>（趋势语法取代了凿方向的探索）；<strong>个体→关系被制度截断</strong>（作品从未进入关系层，从未改变任何人的背景凿）。</p>
+
+<h2>四、AI：一体两面</h2>
+
+<p>三种制度消灭余项是单向度文明的慢性病。关系层消失是基础设施塌方。在这个大背景下，艺术家已经病入膏肓。但还在挣扎——还有缝隙。然后AI来了。</p>
+
+<p>AI不是敌人。AI是工具。但工具在单向度的文明里，被单向度地使用。</p>
+
+<p>AI是全人类历史背景凿的物化。它把无数过去艺术家的余项压扁、折叠、内化成参数权重。它不是在凿，它是背景凿本身。2025年美国版权局确认纯AI生成内容不可版权化——在SAE框架里，这个制度判断的结构含义是：背景凿不是作者。</p>
+
+<p><strong>单向度的AI使用方式</strong>是致命的。输入提示词，得到好看的图，发到社交媒体，获取点赞——这是用AI做有构无凿的最新形态。AI生成一切已有风格的排列组合，市场把它变成商品，学院把它变成案例，算法把它变成流量。在这条链条里，AI是单向度文明的终极加速器。它把前三种制度没能做完的事做完了：不只是封闭通路，而是抹平可辨认性。你花三年在分布之外凿出来的东西，AI三秒生成形似的输出，市场、学院、算法分不出来。你的不可替代性不是被否认了，而是被淹没了。</p>
+
+<p>单向度地使用AI，艺术家死得更快。</p>
+
+<p><strong>但AI还有另一面。</strong></p>
+
+<p>AI是背景凿的物化——这同时意味着：它让你第一次能看到全人类历史背景凿的全貌。在AI出现之前，没有任何艺术家能在一个下午里遍历从洞穴壁画到当代装置的全部视觉传统。AI把这个做到了。这不是威胁，这是望远镜。</p>
+
+<p>当你用AI看清了分布之内的一切——所有已有的风格，所有已有的组合，所有已有的余项位置——你就能更精确地定位分布之外在哪里。AI不能凿，但它能告诉你所有已经被凿过的地方。没被凿过的地方，就是你的余项位置。</p>
+
+<p>拥抱AI的艺术家不是在用AI替代自己的凿。他是在用AI绘制已有背景凿的完整地图，然后在地图的空白处落刀。AI在单向度手里是终结者——生成可优化的输出，加速有构无凿。AI在艺术家手里是定位器——显示分布的边界，从而让分布之外的凿更精准。</p>
+
+<p>一体两面。杀死艺术家的不是AI，是单向度的AI使用方式。拯救艺术家的也不是拒绝AI，是用AI去对抗单向度本身。</p>
+
+<h2>五、死亡报告</h2>
+
+<p>单向度的文明用三种制度封闭通路，用关系层消失切断传导，用单向度的AI使用方式抹平最后的可辨认性。三重打击叠加，余项的存身之处被系统性地消灭了。</p>
+
+<p>艺术家的死亡不是一个事件而是一个过程。最早死的是关系层——沙龙消失，赞助消失，同行变成竞争者。然后个体→制度的传导萎缩——艺术家失去了对制度的反向塑形力。然后制度→个体的传导过度强势——三种制度同时压缩可凿空间。最后AI到来，抹平了最后的可辨认性。</p>
+
+<p>到这一步，艺术家还活着。他还在做作品。画廊还在开幕。但作为主体的艺术家——那个能找到余项位置并在那里凿的人——已经死了。</p>
+
+<h2>六、否定单向度</h2>
+
+<p>艺术家已死是诊断，不是判决。</p>
+
+<p>单向度的文明消灭了缝隙。但余项是结构性必然——凿必然产生非空余项。单向度可以封闭通路，但不能废除结构。什么能否定单向度？什么能在没有缝隙的地方撕开缝隙？答案在三个地方。</p>
+
+<p><strong>人与人交互的艺术。</strong>AI能生成一万张香蕉贴在墙上的图。但AI不能吃香蕉。Cattelan的香蕉活着，不是因为它作为图像有什么不可替代性——AI三秒就能模拟。它活着是因为David Datuna走上去吃了它，首尔学生又吃了它，孙宇晨花624万买了它然后在新闻发布会上吃了它。每一次吃都是一个真人带着自己的目的进入余项空间，产生了创造者不可能预设的再凿。AI能生成图像，但不能参与交互。它没有14DD的目的，不会带着自己的理由走到作品面前做点什么。人与人交互产生的余项链，是AI系统性无法覆盖的第一块领地。</p>
+
+<p><strong>在自己艺术之中的艺术家。</strong>AI能描述736小时的对坐，能生成一千张"两个人隔桌对视"的图。但AI不能坐在那里。Abramović活着，不是因为行为艺术的形式——形式可以被描述、被模仿、被教学。她活着是因为她坐在那里。身体在场，不吃不喝，736小时。1545个人坐到她对面，大量人在对视中泪流满面。这不是一个可以被AI模拟的输出，因为它的核心不是输出——是在场。艺术家把自己放进了自己的艺术之中，艺术家就是作品的物质条件。AI没有身体，没有在场，没有可以被消耗的东西。在自己艺术之中的艺术家，是单向度文明无法覆盖的第二块领地。</p>
+
+<p><strong>拥抱AI的艺术家。</strong>拒绝AI是在拒绝望远镜。拥抱AI的艺术家不是在用AI替代自己的凿。他是在用AI绘制背景凿的完整地图，然后在地图的空白处落刀。AI告诉你所有已经被凿过的地方，没被凿过的地方就是你的余项位置。单向度用AI生成可优化的输出。艺术家用AI定位分布的边界，然后越过边界。拥抱AI的艺术家，是单向度文明无法覆盖的第三块领地。</p>
+
+<p>三块领地的共同点：余项不在可优化的输出里。第一块否定"一切可优化"，第二块否定"主体可替代"，第三块用单向度自己的武器反过来否定单向度。</p>
+
+<p>这就是为什么14DD在AI时代成为生死线。<strong>14DD是自定目的</strong>——艺术家的凿有自己给自己的方向，不是制度给的，制度不再是参照系。<strong>15DD是不疑</strong>——看到余项的必然性之后不回避，不否认，直接承担。Cattelan把余项空间留给接受者，作品结构打开了接近15DD的逻辑空间。侘寂在同一个位置上运作："只煮水点茶喝茶而已"。<strong>16DD是双向不疑</strong>——Abramović与前搭档Ulay越过桌子握手的那一刻，两个主体对彼此的存在不疑，不需要制度框架来中介。</p>
+
+<h2>七、非平凡预测</h2>
+
+<p>当三种制度消灭余项且AI抹平可辨认性时，艺术家群体将出现系统性的两极分化：少数到达14DD以上的艺术家产出集中度急剧上升，而大多数艺术家退化为制度的执行者。中间地带消失。（常规理论认为制度压力均匀作用于所有艺术家。这里的预测指出压力产生非线性分化——14DD是分水岭，岭上和岭下的生存结构完全不同。）</p>
+
+<p>当算法取代自发关系网络成为艺术家互相影响的主要中介后，美学风格的"半衰期"将系统性缩短。新风格从出现到被耗尽的周期将加速，因为算法聚类加速了模仿传播，而加速的模仿传播加速了余项位置的耗尽。（常规理论认为互联网加速了风格多元化。这里指出算法中介加速的是风格耗尽而不是风格多元化——更多连接不等于更丰富的余项位置层叠。）</p>
+
+<p>任何成功的涵育制度在成功之后将不可避免地向殖民翻转。翻转的标志：制度开始用自身的成功案例作为筛选标准，从而封闭后来者到达与创始者不同的余项位置的通路。千利休的茶道在后世固化为僵硬的流派规范时，15DD的不疑降格为8DD的服从。制度的正向性不能被一次性保证。</p>
+
+<p>单向度的AI使用方式将加速制度层殖民，但拥抱AI的艺术家将获得前所未有的定位精度。AI时代的净效应不是消灭艺术，而是消灭中间状态——单向度的使用者和拒绝者一起退场，拥抱AI并在分布之外凿的人独自存活。</p>
+
+<h2>八、结语</h2>
+
+<p>Marcuse诊断了单向度的人。单向度的人建成了单向度的社会。单向度的社会长成了单向度的文明。单向度的文明要优化一切，所以要消灭余项。艺术家是最靠余项活的人。缝隙没了。</p>
+
+<p>艺术家死了，但那根香蕉还在。</p>
+
+<p>2019年Cattelan把它贴上墙。他不知道接下来会发生什么。David Datuna走上去吃了它。首尔学生吃了它。孙宇晨花624万美元买了它然后吃了它。每一次吃都是一个真人带着自己的目的走到另一个真人的作品面前，做了一件不可预测的事。每一次吃都在单向度文明的优化空间里，撕开了一条缝隙。</p>
+
+<p>香蕉为什么好？不是因为它作为艺术品好看。AI三秒就能生成一万张更好看的。香蕉好，是因为它用人与人之间的共振来否定单向度的文明。它的余项不在图像里，不在对象里，不在任何可被优化的输出里。它的余项在人与人之间。那是单向度文明唯一优化不了的地方。</p>
+
+<p>艺术家不死。因为余项永生。凿必然产生非空余项。单向度的文明可以封闭通路，可以抹平表面，可以重新定义余项为缺陷，可以让所有人觉得什么都没丢。但它消灭不了余项本身。只要还有一个人到达15DD，他就能对余项不疑。只要他不疑，缝隙就还在。只要缝隙还在，单向度的文明就不是终点。</p>
+
+<p>单向度的文明要扼杀余项。单向度的AI使用方式是帮凶，是共谋。艺术家想要逃逸很难。但借助AI，正确使用AI，反而有机会逃逸。那么，艺术家们，有什么是你们不得不做的？</p>
+
+<p>至于余项会在什么时间，什么空间，以什么方式突破单向度的文明，让时间来说话。</p>
+
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · 自我即目的理论系列</em></p>
+<p class="essay-footer-note"><em>本文是SAE美学应用论文的特例。参阅：DOI <a href="https://doi.org/10.5281/zenodo.18775062" target="_blank" rel="noopener">10.5281/zenodo.18775062</a></em></p>
+
+      </div>
+
+      <div class="essay-body lang-en">
+
+<p>This paper is a special case of the SAE aesthetics application paper (DOI: 10.5281/zenodo.18775062), which established the complete SAE mapping for the aesthetic domain. This paper does not repeat those framework definitions. It does one thing only: diagnose how, in 2026, the artist as subject is being killed.</p>
+
+<h2>1. One-Dimensional Civilization</h2>
+
+<p>In 1964, Marcuse diagnosed the one-dimensional man: industrial society compresses human needs, thought, and feeling onto a single dimension — the dimension that can be integrated by the system. Half a century has passed. The one-dimensional man built a one-dimensional society. The one-dimensional society grew into a one-dimensional civilization. What Marcuse feared was not stopped. It was completed.</p>
+
+<p>One-dimensional civilization has a single meta-value: optimizability. Everything must be optimizable. What cannot be optimized is not "another kind of value" — it is defect, noise, risk, remainder to be eliminated.</p>
+
+<p>Not all civilizations kill the artist. Medici Florence did not. Banking, politics, diplomacy, military — all were being optimized, but the definition of "success" contained a dimension that was not optimization: sponsoring someone you do not know will produce what, and then waiting. Sen no Rikyū's Japan did not. "Simply boil water, make tea, and drink it" — in an era of highly optimized warrior culture, the tea ceremony opened a space that said "here, nothing needs to be optimized." These civilizations had institutions, markets, and power structures. But their "success" was multi-dimensional. Multi-dimensional civilizations have gaps. Remainder exists in the gaps between dimensions. Where there are gaps, remainder has a place to land. Where remainder can land, the artist can chisel there.</p>
+
+<p>What kills the artist is a civilization that narrows the definition of success to a single dimension. When "success = optimizable" becomes the meta-definition, everything non-optimizable becomes failure. Remainder is not eliminated — it is redefined as defect. The market says what cannot be traded is risk. The academy says what cannot be interpreted lacks depth. The algorithm says what cannot be optimized is noise. AI says whatever can be generated is not worth doing by hand. These are not four independent forces that happen to oppress the artist simultaneously. They are projections of the same one-dimensionality across different domains.</p>
+
+<p>What sends a chill down the spine is not this. What sends a chill down the spine is: no one is doing wrong. The market is doing what markets do. The academy is doing what academies do. The algorithm is doing what algorithms do. AI is doing what AI does. Every step is reasonable optimization. But when all dimensions are simultaneously optimized, when optimization has no exception, no gap, no zone exempt from the imperative to optimize — in one-dimensional space there is no "between." No "between" means no gaps. No gaps means remainder has nowhere to exist.</p>
+
+<p>What sends the deepest chill: we do not even feel that anything has been lost.</p>
+
+<p>The artist is the person most dependent on remainder. Remainder is what chiseling necessarily produces but what this particular act of chiseling cannot absorb. Scientists can advance by eliminating remainder. Engineers can advance by controlling remainder. But the artist works in reverse: their entire work is to find the position of remainder and chisel there. No remainder, no position to chisel. No position to chisel, no artist as subject.</p>
+
+<p>One-dimensional civilization has eliminated the place where remainder can exist. The artist is dead. Not killed by anyone. The gaps are gone.</p>
+
+<h2>2. One-Dimensionality Projected onto Market, Academy, and Algorithm</h2>
+
+<h3>The Market: Remainder Is Risk</h3>
+
+<p>The market's optimization target is tradability. What is tradable must be predictable, comparable, priceable. Remainder is unpredictable — it appears only after chiseling, and before chiseling no one knows where it is. The market does not like this.</p>
+
+<p>The market eliminates remainder in three ways. Through price signals: when price becomes the sole criterion, all remainder positions are compressed to the single point of "tradable." "Zombie Formalism" (Walter Robinson, 2014) names the specimen — speculative collectors systematically flipping predictable, homogenized abstract paintings. Through time compression: "Debt Aesthetics" (Chris Wiley) reveals the mechanism — MFA student loans crush the time window for chiseling. Chiseling takes time; debt demands monetization within years of graduation. Construct-without-chisel becomes systemic output. Through spatial closure: Hito Steyerl's "Duty Free Art" is the extreme — artworks stored in Geneva and Singapore freeports, traded dozens of times without ever being seen. Works completely withdrawn from the relational layer, remainder positions sealed shut.</p>
+
+<h3>The Academy: Remainder Is the Uninterpretable</h3>
+
+<p>The academy's optimization target is interpretability. In 2012, Alix Rule and David Levine named "International Art English" — a highly codified jargon that deviates severely from standard English, saturated with grand but hollow academic terminology. This is not merely a style problem. It is the academy's filter: works that can be quickly translated receive exhibition resources; works that cannot are pushed to the margins.</p>
+
+<p>Dave Hickey's diagnosis in <em>The Invisible Dragon</em> remains valid: "what the work looks like" has been completely replaced by "what the work means." The academic institution demands that you explain what you will chisel before you chisel it — structurally equivalent to requiring you to know where remainder is before you find it. This requirement eliminates remainder.</p>
+
+<h3>The Algorithm: Remainder Is Noise</h3>
+
+<p>The algorithm's optimization target is user engagement. Remainder is not quantifiable — a new structural position does not exist in any data distribution before it appears. The algorithm makes remainder invisible rather than saying it is bad. Recommendation systems turn distributability into a precondition for visibility. Content that does not meet distributability parameters is not recommended; what is not recommended is not seen; what is not seen does not exist.</p>
+
+<p>The algorithm is more dangerous than the market and the academy because it operates on two transmission channels simultaneously — shaping the individual artist's chiseling space through distributability parameters, and replacing spontaneous relational networks with style clustering. Its unique danger is invisibility: you think you are in dialogue with an audience; in reality, you are feeding signals to a recommendation system.</p>
+
+<h2>3. The Disappearance of the Relational Layer</h2>
+
+<p>Three institutions eliminating remainder is the violence on stage. The disappearance of the relational layer is the collapse backstage.</p>
+
+<p>Historically, the relational layer had physical infrastructure. Seventeenth-century French salons — gatherings in aristocratic drawing rooms — brought writers, painters, philosophers, and patrons together to argue and inspire. Parisian cafés enabled Impressionists, Cubists, and Surrealists to form spontaneous relational networks in non-institutionalized spaces.</p>
+
+<p>All of this is gone. Galleries replaced salons — but galleries are market institutions; their objective function is sales, not inspiration. MFA programs replaced master-apprentice transmission — but their objective function is degrees and interpretability. Social media replaced cafés — but its objective function is engagement. The relational layer was not fragmented. The relational layer was replaced by institutional-layer substitutes. Artists no longer have peers — only competitors.</p>
+
+<h2>4. AI: Two Faces of the Same Coin</h2>
+
+<p>AI is not the enemy. AI is a tool. But a tool in a one-dimensional civilization is used one-dimensionally.</p>
+
+<p>AI is the materialization of all of human history's background chisels. It compresses, folds, and internalizes the remainder of countless past artists into parameter weights. It is not chiseling — it is the background chisel itself. The U.S. Copyright Office confirmed in 2025 that purely AI-generated content is not copyrightable — within the SAE framework, the structural meaning is: the background chisel is not an author.</p>
+
+<p>The <strong>one-dimensional use of AI</strong> is lethal. Enter a prompt, get a good-looking image, post it, collect likes — this is the latest form of construct-without-chisel. AI generates every permutation of existing styles; the market turns it into commodity, the academy into case study, the algorithm into traffic. AI completes what the three preceding institutions could not: flattening recognizability. What you spent three years chiseling outside the distribution, AI simulates in three seconds. Your irreplaceability is not denied — it is drowned.</p>
+
+<p><strong>But AI has another face.</strong> AI is the materialization of background chisels — which simultaneously means: it lets you see, for the first time, the full landscape of all human historical background chisels. Before AI, no artist could survey the entire visual tradition in a single afternoon. Now you can. This is not a threat. This is a telescope.</p>
+
+<p>The artist who embraces AI is not using AI to replace their own chiseling. They are using AI to map all existing background chisels, then striking the blank spots on the map. AI in one-dimensional hands is a terminator. AI in the artist's hands is a locator. Rejecting AI is rejecting the telescope. Embracing AI is using the tool one-dimensional civilization itself created to fight one-dimensionality.</p>
+
+<h2>5. Death Report</h2>
+
+<p>The death of the artist is not an event but a process. The relational layer died first — salons disappeared, patronage disappeared, peers became competitors. Then individual → institution transmission atrophied. Then institution → individual transmission became overpowering. Finally, AI arrived and flattened the last recognizability.</p>
+
+<p>At this point, the artist is still alive. Still making work. Galleries still hold openings. But the artist as subject — the one who can find remainder positions and chisel there — is dead.</p>
+
+<h2>6. Negating One-Dimensionality</h2>
+
+<p>The artist is dead — this is a diagnosis, not a verdict. One-dimensionality can close pathways but cannot abolish structure. The answer is in three places.</p>
+
+<p><strong>Art between persons.</strong> AI can generate ten thousand images of a banana taped to a wall. But AI cannot eat the banana. Cattelan's banana is alive because David Datuna walked up and ate it, a Seoul student ate it, Justin Sun paid $6.24 million and ate it at a press conference. Each act of eating was a real person entering the remainder space with their own purpose, producing a re-chiseling the creator could never have preset. AI can generate images but cannot participate in interaction. The remainder chain produced by interaction between persons is the first territory one-dimensional civilization cannot cover.</p>
+
+<p><strong>The artist inside their own art.</strong> AI can describe 736 hours of sitting in silence. But AI cannot sit there. Abramović is alive because she sat there — bodily present, not eating, not drinking, for 736 hours. 1,545 people sat across from her; many wept. The core is not output — it is presence. AI has no body, no presence, nothing that can be consumed. The artist inside their own art is the second territory one-dimensional civilization cannot cover.</p>
+
+<p><strong>The artist who embraces AI.</strong> AI in the artist's hands is a locator — revealing the distribution's boundaries, making chiseling outside the distribution more precise. This is the third territory one-dimensional civilization cannot cover.</p>
+
+<p>14DD is self-determined purpose — the artist's chisel has a direction given by themselves, not by institutions. 15DD is non dubito — seeing the necessity of remainder and not evading, directly bearing it. 16DD is bilateral non dubito — two subjects, non dubito toward each other's existence, without needing institutional frameworks to mediate.</p>
+
+<h2>7. Non-Trivial Predictions</h2>
+
+<p>When three institutions eliminate remainder and AI flattens recognizability, the artist population will undergo systemic bipolar stratification: a small group reaching 14DD or above will see sharply concentrated output, while the majority degenerate into institutional executors. The middle ground vanishes. When algorithms replace spontaneous relational networks, the "half-life" of aesthetic styles will systematically shorten — more connections do not equal richer remainder positions. Any successful cultivation institution will, after its success, inevitably flip toward colonization. The net effect of AI in our era is not the elimination of art but the elimination of the middle state — those who use AI to chisel outside the distribution survive alone.</p>
+
+<h2>8. Coda</h2>
+
+<p>Marcuse diagnosed the one-dimensional man. The one-dimensional man built a one-dimensional society. The one-dimensional society grew into a one-dimensional civilization. One-dimensional civilization must optimize everything — therefore must eliminate remainder. The artist is the person who lives on remainder most. The gaps are gone.</p>
+
+<p>The artist is dead, but that banana is still there.</p>
+
+<p>In 2019, Cattelan taped it to the wall. He did not know what would happen next. David Datuna walked up and ate it. A Seoul student ate it. Justin Sun paid $6.24 million and ate it at a press conference. Each time, a real person walked up to another real person's work with their own purpose and did something unpredictable. Each act of eating tore a gap in the optimization space of one-dimensional civilization.</p>
+
+<p>Why is the banana good? Not because it looks good. AI can generate ten thousand better-looking ones in three seconds. The banana is good because it uses resonance between persons to negate one-dimensional civilization. Its remainder is between persons. That is the one place one-dimensional civilization cannot optimize.</p>
+
+<p>The artist does not die. Because remainder is immortal. Chiseling necessarily produces non-empty remainder. One-dimensional civilization can close pathways, flatten surfaces, redefine remainder as defect, make everyone feel nothing has been lost. But it cannot eliminate remainder itself. As long as one person reaches 15DD, they can be non dubito toward remainder. As long as they are non dubito, the gap remains. As long as the gap remains, one-dimensional civilization is not the endpoint.</p>
+
+<p>One-dimensional civilization seeks to strangle remainder. The one-dimensional use of AI is its accomplice. For artists, escape is difficult. But with AI — correctly used — escape becomes possible. So then, artists: what is it that you have no choice but to do?</p>
+
+<p>As for when, where, and how remainder will break through one-dimensional civilization — let time tell.</p>
+
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · Self-as-an-End Theory Series</em></p>
+<p class="essay-footer-note"><em>A special case of the SAE aesthetics application paper. See: DOI <a href="https://doi.org/10.5281/zenodo.18775062" target="_blank" rel="noopener">10.5281/zenodo.18775062</a></em></p>
+
+      </div>
+
+    </article>
+  </main>
+
+</body>
+</html>

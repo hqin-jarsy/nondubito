@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="把一件事做到极致，然后守住它。 — Drive · Edge · Anchor · Base | HC-16 Decision Dynamics">
+    <meta property="og:title" content="DFAB · 驱烈专栖 — HC-16">
+    <meta property="og:description" content="把一件事做到极致，然后守住它。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nondubito.net/hc16/DFAB.html">
+    <meta name="canonical" href="https://nondubito.net/hc16/DFAB.html">
+    <title>DFAB · 驱烈专栖 — HC-16 Decision Dynamics</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { background: #0f0f0e; color: #f5f0e8; font-family: 'Inter', sans-serif; line-height: 1.6; }
+        [data-lang="en"] .lang-zh { display: none; }
+        [data-lang="zh"] .lang-en { display: none; }
+        body { background: #0f0f0e; color: #f5f0e8; }
+        header {
+            position: fixed; top: 0; left: 0; right: 0; height: 70px;
+            background: rgba(15,15,14,0.95); border-bottom: 1px solid rgba(196,157,97,0.2);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; z-index: 100; backdrop-filter: blur(10px);
+        }
+        .header-left { font-size: 14px; font-weight: 500; letter-spacing: 0.05em; }
+        .header-left a { color: #c49d61; text-decoration: none; transition: color 0.3s; }
+        .header-left a:hover { color: #e5c194; }
+        .header-center { position: absolute; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: 600; letter-spacing: 0.15em; color: #c49d61; }
+        .header-right { font-size: 12px; letter-spacing: 0.05em; }
+        .lang-toggle { cursor: pointer; color: #999; transition: color 0.3s; }
+        .lang-toggle:hover { color: #c49d61; }
+        .lang-toggle.active { color: #c49d61; }
+        main { margin-top: 70px; padding: 80px 40px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .hero { margin-bottom: 60px; }
+        .type-code { font-size: 5rem; font-weight: 700; letter-spacing: 0.15em; color: #c49d61; margin-bottom: 20px; font-family: 'Inter', monospace; }
+        .type-name-zh { font-size: 3rem; font-weight: 700; font-family: 'Noto Serif SC', serif; margin-bottom: 15px; color: #f5f0e8; }
+        .type-name-en { font-size: 1.1rem; color: #999; letter-spacing: 0.05em; margin-bottom: 30px; font-weight: 400; }
+        .tagline { font-size: 1.4rem; font-family: 'EB Garamond', serif; font-style: italic; color: #e5c194; margin-bottom: 40px; line-height: 1.8; }
+        .dimensions {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 60px;
+            padding: 30px; background: rgba(196,157,97,0.05); border: 1px solid rgba(196,157,97,0.1);
+        }
+        .dimension { display: flex; gap: 15px; align-items: flex-start; }
+        .dim-char { font-size: 1.8rem; font-weight: 700; font-family: 'Noto Serif SC', serif; min-width: 40px; text-align: center; color: #c49d61; }
+        .dimension.low .dim-char { color: #888; }
+        .dim-content { flex: 1; }
+        .dim-desc { font-size: 0.9rem; color: #ccc; line-height: 1.5; }
+        section { margin-bottom: 50px; }
+        h2 { font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; color: #c49d61; letter-spacing: 0.05em; padding-bottom: 10px; border-bottom: 1px solid rgba(196,157,97,0.2); }
+        p { font-size: 1rem; margin-bottom: 15px; line-height: 1.8; color: #d4cfc2; }
+        .misunderstood-list { list-style: none; margin: 0; padding: 0; }
+        .misunderstood-list li { padding: 15px 20px; margin-bottom: 10px; background: rgba(196,157,97,0.03); border-left: 3px solid #c49d61; font-size: 0.95rem; color: #d4cfc2; }
+        .misunderstood-list li .en { display: block; margin-top: 5px; color: #999; font-size: 0.9rem; }
+        .must-item { padding: 15px 20px; margin-bottom: 12px; border-left: 4px solid rgba(196,157,97,0.5); background: rgba(196,157,97,0.03); font-size: 0.95rem; color: #d4cfc2; line-height: 1.7; }
+        .must-item .lang-en { display: block; margin-top: 4px; color: #999; font-size: 0.9rem; }
+        .cta { text-align: center; padding: 40px 0; border-top: 1px solid rgba(196,157,97,0.2); margin-top: 60px; }
+        .cta-button { display: inline-block; padding: 15px 40px; background: #c49d61; color: #0f0f0e; text-decoration: none; font-weight: 600; letter-spacing: 0.05em; transition: background 0.3s; margin: 0 10px; }
+        .cta-button:hover { background: #e5c194; }
+        .cta-button.secondary { background: transparent; color: #c49d61; border: 1px solid #c49d61; }
+        .cta-button.secondary:hover { background: rgba(196,157,97,0.1); }
+        @media (max-width: 768px) {
+            header { padding: 0 20px; flex-direction: column; height: auto; padding: 15px 20px; gap: 10px; }
+            .header-center { position: static; transform: none; font-size: 14px; }
+            main { margin-top: 0; padding: 70px 20px 40px 20px; }
+            .type-code { font-size: 3rem; }
+            .type-name-zh { font-size: 2rem; }
+            .dimensions { grid-template-columns: 1fr; }
+        }
+            .hero-dynamics-label {
+            margin-top: 1rem;
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(196,157,97,0.55);
+        }
+        .hero-dynamics-label .lang-zh,
+        .hero-dynamics-label .lang-en {
+            display: inline;
+        }
+    </style>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+    <header>
+        <div class="header-left"><a href="/hc16/">← HC-16</a></div>
+        <div class="header-center">DFAB</div>
+        <div class="header-right">
+            <span class="lang-toggle active" data-lang="zh" onclick="setLang('zh')">中文</span>
+            <span style="margin: 0 8px; color: #666;">|</span>
+            <span class="lang-toggle" data-lang="en" onclick="setLang('en')">EN</span>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="type-code">DFAB</div>
+            <div class="type-name-zh lang-zh">驱烈专栖</div>
+            <div class="type-name-en lang-en">Drive · Edge · Anchor · Base</div>
+            <div class="tagline lang-zh">把一件事做到极致，然后守住它。</div>
+            <div class="tagline lang-en">Take one thing to its limit — then hold it.</div>
+            <div class="hero-dynamics-label">
+                <span class="lang-zh">动力测试 · 非人格测试</span>
+                <span class="lang-en">Decision Dynamics · Not a Personality Test</span>
+            </div>
+        </section>
+
+        <section class="dimensions">
+            <div class="dimension high">
+                <div class="dim-char">驱</div>
+                <div class="dim-content">
+                    <div class="dim-desc lang-zh">更偏向高驱动感——有内在的强劲动力，不容易被外部因素拖走。</div>
+                    <div class="dim-desc lang-en">Tilts toward high Drive — strong inner momentum, not easily pulled off course.</div>
+                </div>
+            </div>
+            <div class="dimension high">
+                <div class="dim-char">烈</div>
+                <div class="dim-content">
+                    <div class="dim-desc lang-zh">更偏向高边界感——对什么该进、什么该拒有清晰判断。</div>
+                    <div class="dim-desc lang-en">Tilts toward high Edge — clear sense of what to let in and what to refuse.</div>
+                </div>
+            </div>
+            <div class="dimension low">
+                <div class="dim-char">专</div>
+                <div class="dim-content">
+                    <div class="dim-desc lang-zh">更偏向专注型方向感——倾向于选定一个赛道，然后全力以赴。</div>
+                    <div class="dim-desc lang-en">Tilts toward anchored Direction — you choose a lane and go all in.</div>
+                </div>
+            </div>
+            <div class="dimension low">
+                <div class="dim-char">栖</div>
+                <div class="dim-content">
+                    <div class="dim-desc lang-zh">更偏向低流动感——安稳比变动对你更有吸引力。</div>
+                    <div class="dim-desc lang-en">Tilts toward settled Flow — stability draws you more than constant change.</div>
+                </div>
+            </div>
+        </section>
+
+                <section>
+            <h2><span class="lang-zh">关键决定</span><span class="lang-en">Critical Decisions</span></h2>
+            <p class="lang-zh">关键决定时，你有清晰的推进力，也有扎实的落地结构。你不只知道「要去哪」，你会把路径想清楚，知道第一步是什么。一旦做出决定：驱动力推进，边界守住，方向锚定，基础稳固，四位一体。执行力是所有类型里最强的之一——很少悬在半空。</p>
+            <p class="lang-en">In critical decisions, you bring strong momentum and solid execution structure. You know not just where you're going — you map the path, you know what the first step is. Once committed: drive forward, edge holds, anchor fixed, base stable. All four aligned. Execution strength among the highest of all types — you rarely leave things half-done.</p>
+        </section>
+
+        <section>
+            <h2><span class="lang-zh">爱情里的你</span><span class="lang-en">You in Love</span></h2>
+            <p class="lang-zh">爱情里，你是非常专一的人——进门很难，出门也很难。你对关系有极高的标准，但一旦认定，你是那种风里雨里都会在的伴侣。</p>
+            <p class="lang-en">In love, you're deeply devoted — it takes a lot to get through the door, and even more to walk out. Your standards are high, but once you've decided, you're the partner who's there through everything.</p>
+        </section>
+
+        <section>
+            <h2><span class="lang-zh">工作里的你</span><span class="lang-en">You at Work</span></h2>
+            <p class="lang-zh">工作里，你是那种"一个赛道走到底"的人。不轻易换方向，但一旦确定，执行力极强。你的深度是你最大的资产。</p>
+            <p class="lang-en">At work, you're the type who stays in one lane all the way. You don't pivot easily — but once set, your execution is formidable. Depth is your greatest asset.</p>
+        </section>
+
+        <section>
+            <h2><span class="lang-zh">财务上的你</span><span class="lang-en">You with Money</span></h2>
+            <p class="lang-zh">财务上，你倾向于把钱放在你最了解的地方——不追热点，不分散，相信时间和深度的复利。</p>
+            <p class="lang-en">Financially, you put your money where you have the deepest understanding — no trend-chasing, no spreading thin. You believe in the compounding effect of time and depth.</p>
+        </section>
+
+        <section>
+            <h2><span class="lang-zh">别人可能不懂的地方</span><span class="lang-en">Where Others May Miss You</span></h2>
+            <ul class="misunderstood-list">
+                <li>
+                    <span class="lang-zh">别人觉得你「执拗」→ 你不是执拗，你只是不相信什么都试试能比深耕出更好的结果。</span>
+                    <span class="lang-en en">Others think you're "stubborn" → Not stubborn — you simply don't believe that trying everything leads to better outcomes than going deep.</span>
+                </li>
+                <li>
+                    <span class="lang-zh">别人觉得你「不灵活」→ 灵活不是你的目标，精准才是。</span>
+                    <span class="lang-en en">Others think you're "inflexible" → Flexibility isn't your goal. Precision is.</span>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><span class="lang-zh">你的不得不</span><span class="lang-en">Your Must</span></h2>
+                <div class="must-item">
+                    <span class="lang-zh">你不得不在自己选择的事情上做到最好，否则很难有安全感。</span>
+                    <span class="lang-en">You must do your best at whatever you've chosen — otherwise it's hard to feel secure.</span>
+                </div>
+                <div class="must-item">
+                    <span class="lang-zh">你不得不守住自己认为重要的东西，就算别人觉得你该放手。</span>
+                    <span class="lang-en">You must hold onto what you believe matters — even when others think you should let go.</span>
+                </div>
+        </section>
+
+        <section class="cta">
+            <p style="margin-bottom: 25px; color: #999;">
+                <span class="lang-zh">了解你的HC-16类型</span>
+                <span class="lang-en">Discover your HC-16 type</span>
+            </p>
+            <a href="https://nondubito.net/hc16.html" class="cta-button">
+                <span class="lang-zh">→ 做一个测试</span>
+                <span class="lang-en">→ Take the test</span>
+            </a>
+            <a href="/hc16/" class="cta-button secondary">
+                <span class="lang-zh">→ 浏览所有类型</span>
+                <span class="lang-en">→ Browse all types</span>
+            </a>
+        </section>
+    </main>
+
+    <script>
+        function setLang(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.querySelectorAll('.lang-toggle').forEach(el => {
+                el.classList.remove('active');
+                if (el.getAttribute('data-lang') === lang) el.classList.add('active');
+            });
+            localStorage.setItem('hc16_lang', lang);
+        }
+        const saved = localStorage.getItem('hc16_lang');
+        if (saved) setLang(saved);
+        document.querySelectorAll('.lang-toggle').forEach(el => {
+            if (el.getAttribute('data-lang') === (document.documentElement.getAttribute('data-lang') || 'zh'))
+                el.classList.add('active');
+        });
+    </script>
+</body>
+</html>

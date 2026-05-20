@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>弱混合角是定理 — Non Dubito</title>
+  <meta name="description" content="sin²θ_W = 3/13 ≈ 0.2308，偏差0.195%，不是巧合">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  
+<style>
+  .essay-hero { padding: 3.5rem 2rem 2rem; max-width: 780px; margin: 0 auto; }
+  .essay-eyebrow { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+  .essay-title-zh { font-family: var(--cjk), serif; font-size: 2.1rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-title-en { font-family: var(--serif); font-size: 1.7rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-hook-zh { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-hook-en { font-family: var(--serif); font-size: 1.0rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-doi { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--ink-muted); }
+  .essay-body { max-width: 780px; margin: 0 auto; padding: 0 2rem 4rem; }
+  .essay-section { margin-bottom: 2.5rem; }
+  .section-heading { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 0.9rem; font-weight: 600; }
+  .section-heading.lang-en { font-family: var(--serif); font-size: 0.95rem; letter-spacing: 0.04em; }
+  .essay-body p { font-size: 1.02rem; line-height: 1.85; margin-bottom: 1.0rem; }
+  [data-lang="en"] .essay-body p { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body p { font-family: var(--cjk), serif; }
+  .essay-body table { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body table { font-family: var(--cjk), serif; }
+  .hc16-link { max-width: 780px; margin: 3rem auto 0; padding: 1.5rem 2rem; border-top: 1px solid var(--cream-border); text-align: center; }
+  .hc16-link a { font-family: var(--serif); font-size: 0.85rem; color: var(--gold); text-decoration: none; }
+  [data-lang="zh"] .hc16-link a { font-family: var(--cjk), serif; }
+  .nav-arrows { display: flex; justify-content: space-between; max-width: 780px; margin: 2rem auto 0; padding: 1rem 2rem; }
+  .nav-arrows a { font-family: var(--serif); font-size: 0.82rem; color: var(--ink-muted); text-decoration: none; border: 1px solid var(--cream-border); padding: 0.5rem 1rem; transition: all 0.2s; }
+  .nav-arrows a:hover { color: var(--ink); border-color: var(--ink-muted); }
+  .nav-arrows .placeholder { visibility: hidden; }
+</style>
+
+</head>
+<body>
+<div style="position:fixed;top:1rem;right:1rem;z-index:100;">
+  <button id="lang-toggle" onclick="toggleLang()" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--cream-border);color:var(--ink-muted);padding:0.4rem 0.8rem;cursor:pointer;transition:all 0.2s;">
+    <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+  </button>
+</div>
+<div style="padding:1.2rem 2rem 0; max-width:780px; margin:0 auto;">
+  <a href="../../index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">← 返回主页</span>
+    <span class="lang-en">← Home</span>
+  </a>
+  &nbsp;&nbsp;
+  <a href="index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">四力系列</span>
+    <span class="lang-en">Four Forces Series</span>
+  </a>
+</div>
+<div class="essay-hero">
+  <div class="essay-eyebrow lang-zh">四力系列 · 篇III</div>
+  <div class="essay-eyebrow lang-en">Four Forces Series · Paper III</div>
+  <h1 class="essay-title-zh lang-zh">弱混合角是定理</h1>
+  <h1 class="essay-title-en lang-en">The Weak Mixing Angle Is a Theorem</h1>
+  <p class="essay-hook-zh lang-zh">sin²θ_W = 3/13 ≈ 0.2308，偏差0.195%，不是巧合</p>
+  <p class="essay-hook-en lang-en">sin²θ_W = 3/13 ≈ 0.2308, deviation 0.195%, not a coincidence</p>
+  <div class="essay-doi lang-zh">DOI 10.5281/zenodo.19379412</div>
+  <div class="essay-doi lang-en">DOI 10.5281/zenodo.19379412</div>
+  <div class="essay-doi lang-zh"><a href="https://self-as-an-end.net/papers/sae-four-forces-III.html" target="_blank" style="color:inherit;text-decoration:none;">↗ self-as-an-end.net</a></div>
+  <div class="essay-doi lang-en"><a href="https://self-as-an-end.net/papers/sae-four-forces-III.html" target="_blank" style="color:inherit;text-decoration:none;">↗ self-as-an-end.net</a></div>
+</div>
+<div class="essay-body">
+  <div class="lang-zh">
+<div class="essay-section">
+<h2 class="section-heading lang-zh">物理学里最不该是任意数的数</h2>
+<p>弱混合角（Weinberg角）sin²θ_W是电弱统一理论的核心参数。它决定了弱力和电磁力如何混合，Z玻色子和光子如何从更基本的规范场中出现。</p>
+<p>实验测量值：sin²θ_W(M_Z) = 0.23122 ± 0.00006（PDG 2025）。</p>
+<p>在标准模型里，这是一个自由参数——实验量出来填进去，没有理论预测。在大统一理论（GUT）里，从统一能标跑到M_Z，可以"解释"这个值，但代价是引入一套不直接观测的更高能量理论。</p>
+<p>SAE的路径：这个数不是自由的，它来自16态二进制结构的一个计数定理。</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">16态的计数</h2>
+<p>一代费米子有16个Weyl态（包含右手中微子），对应一个四层二进制结构（手征、同位旋、色/轻子区分、1DD标记层）。</p>
+<p>4层二进制 = 2⁴ = 16态。其中1态是完全规范trivial态（右手中微子，超荷为零，弱同位旋为零）。剩下2⁴ − 1 = 15态都被1DD非平凡标记。</p>
+<p>65是DD Splitting结构容量：12个4DD block的C(12,2) − 1 = 65个非trivial pair关系。</p>
+<p>在电弱匹配公理下，弱混合角的DD本征值 = 被1DD非平凡标记的态数 / 结构容量 = 15/65 = 3/13。</p>
+<p>3/13 ≈ 0.23077。实验值0.23122。偏差：|0.23122 − 0.23077| / 0.23122 ≈ 0.195%，约7.5倍实验标准差。这个偏差与单圈电弱辐射修正（~1%量级）一致——即定理给出树级值，实验值包含量子修正。</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">什么叫条件性定理</h2>
+<p>这个结果叫"条件性定理"，因为它有三个条件：（1）篇II的一代超荷表；（2）前置篇的结构容量65；（3）电弱匹配公理（一条将DD结构连接到电弱有效场论的桥接假设）。</p>
+<p>条件（1）和（2）已独立建立。条件（3）是新引入的，属于结构-到-EFT的桥接公设，和前置篇的κ = 65/4公设同类。</p>
+<p>最重要的是：sin²θ_W在标准模型里是一个自由参数，可以是任何值。SAE预测它不是任意的，而是15/65 = 3/13（加辐射修正）。如果精确实验发现sin²θ_W在不同能标的跑动在树级极限下不趋向3/13，SAE的这条论证链被证伪。</p>
+</div>
+</div>
+  <div class="lang-en">
+<div class="essay-section">
+<h2 class="section-heading lang-en">The Number That Shouldn't Be Arbitrary</h2>
+<p>The weak mixing angle (Weinberg angle) sin²θ_W is a central parameter of electroweak unification theory. It determines how the weak force and electromagnetism mix, and how the Z boson and photon emerge from more fundamental gauge fields.</p>
+<p>Experimentally measured value: sin²θ_W(M_Z) = 0.23122 ± 0.00006 (PDG 2025).</p>
+<p>In the Standard Model, this is a free parameter — measured from experiment, inserted by hand, with no theoretical prediction. In grand unified theories (GUTs), running from the unification scale down to M_Z can "explain" this value, but at the cost of invoking a higher-energy theory that cannot be directly observed.</p>
+<p>SAE's path: this number is not free; it comes from a counting theorem on the 16-state binary structure.</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">Counting the 16 States</h2>
+<p>One fermion generation has 16 Weyl states (including the right-handed neutrino), corresponding to a four-layer binary structure (chirality, isospin, color/lepton distinction, 1DD label layer).</p>
+<p>4-layer binary = 2⁴ = 16 states. Of these, 1 state is completely gauge-trivial (right-handed neutrino: zero hypercharge, zero weak isospin). The remaining 2⁴ − 1 = 15 states are all nontrivially labeled by 1DD.</p>
+<p>65 is the DD Splitting structural capacity: the 12 four-dimensional blocks have C(12,2) − 1 = 65 nontrivial pair relations.</p>
+<p>Under the Electroweak Matching Axiom, the DD eigenvalue of the weak mixing angle = (number of 1DD-nontrivially-labeled states) / (structural capacity) = 15/65 = 3/13.</p>
+<p>3/13 ≈ 0.23077. Experimental value: 0.23122. Deviation: |0.23122 − 0.23077| / 0.23122 ≈ 0.195%, about 7.5 experimental standard deviations. This deviation is consistent with one-loop electroweak radiative corrections (~1% scale) — meaning the theorem gives the tree-level value, and the experimental value includes quantum corrections.</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">What a Conditional Theorem Means</h2>
+<p>This result is called a "conditional theorem" because it has three conditions: (1) the one-generation hypercharge table from Paper II; (2) the structural capacity 65 from the Prequel; (3) the Electroweak Matching Axiom (a bridge postulate connecting DD structure to the electroweak EFT).</p>
+<p>Conditions (1) and (2) are independently established. Condition (3) is newly introduced, belonging to the same class of structure-to-EFT bridge postulates as the Prequel's κ = 65/4 postulate.</p>
+<p>Most importantly: sin²θ_W is a free parameter in the Standard Model — it could be anything. SAE predicts it is not arbitrary, but is 15/65 = 3/13 (plus radiative corrections). If precise experiments find that sin²θ_W's running at different energy scales does not approach 3/13 in the tree-level limit, this argument chain is falsified.</p>
+</div>
+</div>
+</div>
+<div class="hc16-link">
+  <a href="../xiangjun/index.html">
+    <span class="lang-zh">你是哪种人？→ HC-16 性格测试</span>
+    <span class="lang-en">What kind of person are you? → HC-16 Personality Test</span>
+  </a>
+</div>
+<div class="nav-arrows"><a href="ff2.html" class="lang-zh">← 上一篇</a><a href="ff2.html" class="lang-en">← Previous</a><a href="ff-gen.html" class="lang-zh">下一篇 →</a><a href="ff-gen.html" class="lang-en">Next →</a></div>
+<script>
+  function toggleLang() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-lang') === 'zh' ? 'en' : 'zh';
+    html.setAttribute('data-lang', next);
+    html.setAttribute('lang', next);
+    localStorage.setItem('nondubito-lang', next);
+  }
+  (function() {
+    const saved = localStorage.getItem('nondubito-lang');
+    if (saved) {
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+    }
+  })();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "your-token"}' ></script>
+</body>
+</html>

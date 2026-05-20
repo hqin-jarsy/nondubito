@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>列维纳斯：面容 — Non Dubito</title>
+  <meta name="description" content="一九四零年六月。法国北部。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/mingren/levinas.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .essay-footnotes { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--cream-border); }
+    .essay-footnote { font-size:0.82rem; color:var(--ink-muted); margin-bottom:0.8rem; line-height:1.6; }
+    .essay-footnote p { display:inline; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../library.html">Library</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="../../index.html#mingren" class="back-link lang-zh">← 名人系列</a>
+        <a href="../../index.html#mingren" class="back-link lang-en">← Great Lives</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">名人系列（100）· 他者</div>
+          <div class="essay-series lang-en">Great Lives (100) · The Other</div>
+          <h1 class="lang-zh">列维纳斯：面容</h1>
+          <h1 class="lang-en">Levinas: The Face</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+<h2>一、五年战俘营</h2>
+<p>一九四零年六月。法国北部。</p>
+<p>一支被打散的法军部队投降。</p>
+<p>其中有一个翻译官，三十四岁，戴眼镜，瘦，穿着法军制服。他会说俄语、德语、法语、希伯来语和意第绪语。他是立陶宛出生的犹太人，一九三一年才入的法国籍。</p>
+<p>他叫伊曼努尔·列维纳斯。</p>
+<p>德军把他和其他法军战俘一起押走。这是一个决定他命运的细节——他被关进战俘营（Stalag XI-B），不是集中营。日内瓦公约保护战俘，不保护平民犹太人。他穿的是军装，所以他算战俘。他的法籍救了他一次，他的军装又救了他一次。</p>
+<p>集中营那一边，他立陶宛的整个家族正在被消灭。</p>
+<p>父亲。母亲。两个弟弟。叔叔。婶婶。表兄弟。表姐妹。立陶宛在一九四一年六月被德军占领之后，那里的犹太人几乎全部在很短时间内被杀。考纳斯（Kaunas）的犹太社区——他长大的那个社区——在几个月内从三万多人减到几乎为零。他的全部家人在那一波里。</p>
+<p>他在战俘营里不知道这件事正在发生。他只知道自己被关着。他做苦役——伐木，砍树，搬运——一天十二个小时，吃得很少。他穿的是法军军装，胸前缝着一个标着"Jude"的黄色补丁——德军把战俘营里的犹太裔法军和其他法军战俘分开管理，但还是按战俘对待，不按平民犹太人对待。</p>
+<p>他在那里关了五年。</p>
+<p>五年。一千八百多个白天和夜晚。</p>
+<p>夜里他读书。他在战俘营里能找到书——黑格尔，普鲁斯特，托尔斯泰。他做笔记。在小本子上用法文写。这些笔记在战后变成他的第一本书《存在与他者》（一九四七）。</p>
+<p>他后来说过——战俘营里他"明白了一件事"。这件事不是从书里读到的，是从那五年里读到的。</p>
+<p>他明白了：哲学一直在搞错一件事。</p>
+<p>哲学一直把"存在"放在最中心的位置。从巴门尼德到亚里士多德到中世纪经院哲学到黑格尔到他自己的老师海德格尔——所有这些哲学家都在问"什么是存在"，"存在的结构是什么"，"存在如何展开"。</p>
+<p>这看起来是哲学的最高问题。</p>
+<p>但是在战俘营里，列维纳斯明白了：<strong>不是的</strong>。</p>
+<p>哲学的最高问题不是"什么是存在"。哲学的最高问题是"我对你有什么责任"。</p>
+<p>存在不是中心。<strong>他者</strong>才是中心。</p>
+<p>而把存在放在中心的整个西方哲学传统，恰好是那些把列维纳斯关进战俘营的人、把他家人送进毒气室的人脚下的哲学地基。不是说海德格尔下令杀犹太人——海德格尔没有下令。是说当一种哲学把"我的存在""我的本真""我的命运"放在最中心的时候，他者在这种哲学里就只是我的存在的背景。<strong>他者只是背景的时候，他者就可以被消灭</strong>。</p>
+<p>列维纳斯一辈子的工作从这个明白开始。</p>
+<h2>二、家</h2>
+<p>一九四五年五月。德国投降。</p>
+<p>列维纳斯从战俘营出来。三十九岁。瘦得脱了形。</p>
+<p>他知道发生了一些事。战俘营里到一九四四年下半年开始有零星消息流进来。他知道集中营的存在。他知道犹太人在被系统消灭。但他不知道自己的家人怎样了。</p>
+<p>他试图回家。</p>
+<p>家在立陶宛考纳斯。一九四零年苏联占领立陶宛。一九四一年六月德国占领立陶宛。一九四一年七月开始，考纳斯的犹太社区被分成几次屠杀。第七堡垒，第九堡垒，森林里的几个万人坑。前后几个月，三万多人。</p>
+<p>他的父亲。
+他的母亲。
+他的两个弟弟。</p>
+<p>他没有回到考纳斯。回去也没有意义——没有家可以回。立陶宛战后被苏联吞并，他作为法国公民也很难进去。他没有看到那几个万人坑的实物，没有站在考纳斯的犹太街区原址上看着那里现在变成了什么。他从巴黎收到一些消息，从幸存的远房亲戚那里，从国际红十字会的死亡名单里，零星地拼出来。</p>
+<p>他的妻子和女儿活下来了。战争开始的时候他妻子莱莎（Raïssa）和女儿西蒙娜（Simone）被法国一个修道院藏起来。是莱莎的好朋友，作家莫里斯·布朗肖（Maurice Blanchot），把她们安排到那个修道院的。布朗肖本人不是犹太人，他冒着生命危险救了列维纳斯的妻子和女儿。</p>
+<p>列维纳斯回到巴黎。他见到了妻子和女儿。</p>
+<p>他没有自己的家了——他立陶宛的家全部消失。但他在巴黎有这一边的家——妻子，女儿，后来又有一个儿子。他重新开始过日子。</p>
+<p>他没有写关于自己经历的回忆录。他没有写关于他立陶宛家人的悼念书。他没有写战俘营。他没有写一九四五年五月走出战俘营那一刻的感受。</p>
+<p>他做的事是另一种。</p>
+<p>他把那五年里在小本子上写的笔记整理出来，一九四七年出版了《存在与他者》。从那以后他用一辈子写哲学。他的所有著作的题献页都有同一句话——</p>
+<p>"献给被国家社会主义者杀害的六百万人中最亲近的人。"</p>
+<p>他不写名字。他只写"最亲近的人"。</p>
+<p>他的悼念是哲学的形式。
+他的家被消灭了。他用一辈子的工作让"为什么不能消灭家"这件事变成一个哲学论证。</p>
+<p>不是为了他自己的家——他的家已经不在了。是为了下一次。下一次有人想消灭一个他者的时候，至少有一个哲学论证站在那里说：你不能这样做。不是因为道德规则，不是因为社会契约，不是因为你不喜欢被别人这样对待。是因为他者的面容本身。</p>
+<p>他用四十多年时间把这个论证写出来。</p>
+<h2>三、面容</h2>
+<p>列维纳斯哲学的核心概念是"面容"（visage，face）。</p>
+<p>这不是一个比喻。这不是说"想象一张脸"。这是一个严格的哲学概念，它指的是一个非常具体的事——</p>
+<p>当你看到另一个人的脸的时候，你看到的不只是一组生物特征。你看到一个<strong>不能被你的概念吸纳的存在</strong>向你显现。</p>
+<p>这件事很难讲清楚，因为它如此基本，反而难以从更基本的东西出发去解释。</p>
+<p>我们试一下。</p>
+<p>你看到一个陌生人。你的眼睛收到了关于这个人的视觉信息——他的肤色，他的发型，他的表情，他穿什么衣服，他大概多大年纪，他的性别，他的可能国籍，等等。这些信息进入你的概念系统，被分类，被归档，被预测。"这是一个三十岁左右的亚洲男人，看起来在等地铁。" 你做完这个分类，你就不再仔细看他了。他已经被你的概念系统吸纳了。</p>
+<p>但是——</p>
+<p>如果你真的看那个人，看几秒钟，看到他的眼睛，看到他眼睛里的某个东西——你会突然意识到，你刚才那一整套分类，没有抓住任何重要的事。</p>
+<p>那个人<strong>就是他自己</strong>。</p>
+<p>他不是"一个三十岁左右的亚洲男人"。这个描述对他来说像是说"这是一团碳氢氧氮原子的特定排列"——技术上正确，但完全没有抓住关于他的任何东西。</p>
+<p>那个真正的他是什么？</p>
+<p>是一个<strong>不能被你的语言完全描述的存在</strong>。是一个有自己的内在生活的、有自己的过去和未来的、有自己的痛苦和欢乐的、有自己的此刻经验的——一个跟你一样的，但不是你的——存在。</p>
+<p>这个"不是你的"是关键。</p>
+<p>他不是你的扩展。他不是你的对象。他不是你的工具。他不是你可以拿来用的东西。</p>
+<p>他是他自己。</p>
+<p>列维纳斯说，这个"他是他自己"的事实是通过<strong>面容</strong>向你显现的。</p>
+<p>不是抽象地知道（"哦，每个人都是他自己"），是在面对一张具体的脸的时候被这张脸<strong>告知</strong>。这张脸自己说话——不是用嘴说话，是用面容本身说话。它说的是：</p>
+<p><strong>"你不可杀害我。"</strong></p>
+<p>这不是一句话。这是面容本身。</p>
+<p>任何一张你认真看的脸都在说这句话。婴儿的脸说这句话。老人的脸说这句话。陌生人的脸说这句话。敌人的脸说这句话。你深爱的人的脸说这句话。每一张脸都在说同一句话。</p>
+<p>杀人之所以可能，是因为你<strong>没有看见那张脸</strong>。</p>
+<p>你看见的是"敌人"，是"异教徒"，是"障碍"，是"威胁"，是"老百姓"，是"附带损伤"。这些都是概念。当你只看见概念，不看见面容，你可以杀人。</p>
+<p>当你真的看见面容，你杀不下去。</p>
+<p>这不是道德规则。这是一个观察事实。把人变成可以被杀的对象，需要先把他们的面容隐藏起来——通过宣传，通过制服，通过距离，通过把他们归为某个范畴。任何一个会让人杀人的体系都在做同一件事：<strong>让人看不见面容</strong>。</p>
+<p>列维纳斯把这件事翻过来：</p>
+<p>伦理学不是从规则开始的。伦理学是从看见面容开始的。</p>
+<p>看见面容这件事就是伦理学。</p>
+<p>剩下的所有伦理理论——什么是好，什么是坏，什么是义务，什么是权利——都是看见面容之后才有意义的。如果你没看见面容，所有伦理理论对你都不是真的，你只是在按规则操作。一旦你看见面容，你不需要规则，因为那张脸已经向你提出了那个无法被忽略的要求。</p>
+<p>这就是为什么列维纳斯说<strong>伦理学是第一哲学</strong>。</p>
+<p>不是存在论。不是认识论。不是逻辑学。
+是看见他者的面容这件事。
+这件事先于一切其他哲学问题。</p>
+<h2>四、海德格尔</h2>
+<p>一九二八年到一九二九年，列维纳斯在德国弗莱堡大学。</p>
+<p>他二十二岁，已经在斯特拉斯堡读完哲学。他到弗莱堡是为了跟胡塞尔学现象学。胡塞尔那时候是欧洲现象学的奠基人。胡塞尔的助手——后来的接班人——是一个比列维纳斯大十七岁的年轻教授。</p>
+<p>那个人叫马丁·海德格尔。</p>
+<p>列维纳斯参加了海德格尔的研讨班。一九二七年海德格尔刚出版了《存在与时间》（Sein und Zeit）。那本书是二十世纪最有影响力的哲学著作之一。列维纳斯读了。他后来说他在弗莱堡那一年读《存在与时间》"像被电击中"——他觉得自己看到了哲学的新方向。</p>
+<p>回到法国之后，列维纳斯成了把海德格尔介绍到法国哲学界的关键人物之一。他写文章。他翻译片段。他在巴黎的哲学讨论中推荐海德格尔。</p>
+<p>然后一九三三年发生了一件事。</p>
+<p>那一年五月二十七日。弗莱堡大学。礼堂里坐满了人——教授，学生，纳粹党员，冲锋队员。</p>
+<p>海德格尔站在讲台上。</p>
+<p>他刚被任命为弗莱堡大学校长。他穿着校长的礼服。胸前别着纳粹党的党徽——他在一九三三年五月一日加入了纳粹党。</p>
+<p>他讲了他的就职演说，题目是《德国大学的自我主张》（Die Selbstbehauptung der deutschen Universität）。他讲得很有学问。他引希腊词。他谈知识、劳动、国防"三大服务"。他说德国大学要为德国民族的命运服务。</p>
+<p>讲完之后他举起右手，行纳粹礼。</p>
+<p>这一刻发生了什么？</p>
+<p>让我们慢一点看。</p>
+<p>桥头永远在远处。康德在那里。但桥不是唯一的方向。桥的反面也有一条路。那条路上也有人在走。</p>
+<p>那条路上走得最快的，是一些要消灭他者的人。看见他者就消灭，看见障碍就清除。他们不知道自己在走什么。他们以为自己在保卫信仰，或者在执行命令，或者在做正确的事。他们没有停下来问过那条路通向哪里。</p>
+<p>那条路通向一个所有人都被还原为手段的地方。在那里没有他者，因为他者已经被消灭了，或者还没被消灭的也被等同对待——一切人都是工具，一切人都是障碍，一切人都是可以被清除的。</p>
+<p>那个地方叫做手段王国。</p>
+<p>选择走向那里的人，最终也住在那里。他们不会回头。他们也不需要被审判——他们已经在那个王国里了。那个王国里的生活就是愤怒，暴力，互相倾轧。每一个不为他者留位置的人，自己也不会被别人留位置。</p>
+<p>这不是惩罚。这就是那个王国的天气。</p>
+<p>那是一场永远在下的暴风骤雨。</p>
+<p>海德格尔走着走着停了下来。</p>
+<p>他比那些不停下的人多了一样东西——他读过康德。他知道有桥这个东西存在。他知道桥通向的方向叫做目的王国。他知道自己脚下这条路通向的不是那里。</p>
+<p>他停了一下。</p>
+<p>那条路上有一个人朝他高举右臂，示意他快过去。</p>
+<p>那个人没有特定的脸。或者说他有脸，但脸上的特征不重要。他是任何一个时代都有的那种人——示意别人快加入的人。每一个时代都有这种人。他们站在手段王国那条路上，朝桥上犹豫的人挥手。</p>
+<p>海德格尔站在那个高举右臂的人和桥之间。</p>
+<p>他迟疑了。</p>
+<p>他知道桥的方向是什么。他懂康德。他懂目的王国。他个人认识的犹太学生中有列维纳斯——一个他在胡塞尔研讨班上见过的、认真做哲学的、有具体面容的年轻人。</p>
+<p>如果他真的看那张面容，他不会高举右臂。</p>
+<p>但他高举了。</p>
+<p>他迟疑了一下，然后他高举了。</p>
+<p>一九三三年五月二十七日他在讲台上行了纳粹礼。一九三四年四月他辞了校长职务——但那时候已经晚了。整个一九三零年代他没有公开抗议过任何对犹太学者的迫害（包括他自己的老师胡塞尔在一九三三年被禁止进入大学图书馆，胡塞尔一九三八年去世，海德格尔在他后来的著作里删掉了原本献给胡塞尔的题词）。战争期间他继续教书，没有公开抗议过任何关于犹太人的事。一九四五年战后，他被禁教几年，但他一辈子没有真正道歉过。</p>
+<p>他的《黑色笔记本》——他私人的哲学日记，二零一四年才公开出版——里面有结构性的反犹言论。不是被时代裹挟的临时表态，是经过思考的立场。</p>
+<p>我们在这里要做一件最难的事——</p>
+<p>我们要承认两件事都是真的。</p>
+<p>第一件：海德格尔的哲学是真的。《存在与时间》是二十世纪最重要的哲学著作之一。他对现象学的发展是真的。他对技术问题的思考、对真理问题的思考、对语言问题的思考，今天仍然有人读，仍然产生新的洞察。这些哲学贡献是真的。</p>
+<p>第二件：海德格尔走向手段王国的选择是真的。一九三三年那个礼，那个党徽，那个就职演说，那一辈子的不道歉——是真的。不是被裹挟，不是被妻子误导（虽然他妻子确实是狂热的纳粹党人），不是临时糊涂。是清醒的、经过思考的、持续的选择。</p>
+<p>这两件事都是真的，都发生在他这一个人身上。这是他的命运。</p>
+<p>我们不审判他这个选择。一个人选择走哪条路是他的事。</p>
+<p>我们只是看见他在走，看见他往哪边走。</p>
+<p>手段王国不会因为他犹豫就放过他——手段王国的天气对所有走在那条路上的人都一样。他走得慢一点，他在那场暴风骤雨里多受一点犹豫的折磨；他走得彻底，他在那场暴风骤雨里就是一个连犹豫都没有的执行者。两种状态都在那场雨里。</p>
+<p>这就是他的选择。
+这就是那场雨的天气。</p>
+<p>而列维纳斯——那个一九二八年在弗莱堡研讨班里认真听他讲课的、对他充满敬意的犹太学生——后来用一辈子的哲学工作回应这个选择。</p>
+<p>不是反驳海德格尔。是从海德格尔停下的那个地方往另一个方向走。</p>
+<p>海德格尔说存在是第一哲学。
+列维纳斯说伦理是第一哲学。</p>
+<p>海德格尔说"我们追问存在的意义是因为我们自己就是这种追问性的存在者"——人是被自己的存在牵引着追问。
+列维纳斯说追问从他者开始——人是被他者的面容牵引着追问。</p>
+<p>海德格尔说本真的存在是面对自己的死亡。
+列维纳斯说本真的存在是面对他者的死亡，特别是面对你不能让他者死亡这件事。</p>
+<p>每一个核心命题都是翻过来的。</p>
+<p>不是因为列维纳斯要跟海德格尔过不去。是因为列维纳斯在战俘营里明白了：把存在放在中心的哲学，会在某个时刻让海德格尔做出他做的那个选择。</p>
+<p>要让那种选择不再发生，哲学的中心必须挪开。</p>
+<p>挪到哪里？挪到他者的面容上。</p>
+<h2>五、无限责任</h2>
+<p>列维纳斯的伦理学有一个让人一开始觉得过分的特点——</p>
+<p>他说他者向我提出的是<strong>无限的</strong>责任。</p>
+<p>不是"合理的"责任。不是"在你能力范围内的"责任。不是"按比例的"责任。是无限的。</p>
+<p>什么叫无限的责任？</p>
+<p>当你看到一个他者的面容，那张面容向你提出的要求不能被任何具体的回应"完成"。你给那个饥饿的人吃的，你帮那个迷路的人指路，你照顾那个生病的人——这些都是回应，这些都是好事。但是没有一件事能"完成"那张面容向你提出的要求。</p>
+<p>你做完所有你能做的事之后，你还欠着。</p>
+<p>这听起来像道德狂热主义。但是列维纳斯这个论点不是道德狂热主义——他的论点是结构性的。</p>
+<p>他者是不能被完全认识的。如果你能完全认识他者，他者就不是他者了，是你的对象。他者作为他者意味着他在你的认识之外有更多东西。</p>
+<p>你对他的责任也是这样。如果你能完全完成对他的责任，他就被你的责任系统吸纳了——他变成了一个你的责任完成度可以测量的对象。但他不是。他作为他者向你提出的要求超出你能给的任何具体回应。</p>
+<p>这就是无限。</p>
+<p>不是说你必须做到完美。不是说你失败了就是罪人。是说<strong>那个要求的结构本身是开放的，永远不会关闭</strong>。</p>
+<p>你做了你能做的，你还欠着。
+这不是负罪感。这是承认他者的真实结构。</p>
+<p>如果你觉得"我已经完成了对这个人的责任，我可以转身不管了"——你已经把他变成了对象。他不再是他者。</p>
+<p>承认无限责任的人，不会觉得自己道德高尚——他知道自己永远在欠。
+不承认无限责任的人，可能觉得自己道德合格——他完成了规则规定的事项。</p>
+<p>这两种人不是好人和坏人的区别。是<strong>为他者留位置</strong>和<strong>把他者当对象</strong>的区别。</p>
+<p>而手段王国的本质就是后者——把所有他者当对象。</p>
+<p>为他者留位置的人住在桥上。
+把他者当对象的人住在那场暴风骤雨里。</p>
+<p>无限责任不是一个负担。无限责任是住在桥上的标志。</p>
+<h2>六、犹太教</h2>
+<p>列维纳斯不是只读哲学。他一辈子也在读塔木德。</p>
+<p>塔木德是犹太教的核心文本之一——拉比们对希伯来圣经的注释，加上对这些注释的注释，加上对这些注释的注释的注释。一层一层叠加，几千年累计下来，巨大的体量。塔木德的特点是它从不给出"最终答案"——每一段经文都有几个拉比的不同解释，每个解释都被记录下来，争论本身就是答案。</p>
+<p>列维纳斯从一九五七年开始，每年在巴黎的法国犹太知识分子年会上做一次"塔木德讲座"。他做了三十多年。这些讲座后来出版了五本书。</p>
+<p>塔木德对他的哲学有什么意义？</p>
+<p>塔木德是一个<strong>始终在为他者留位置</strong>的文本。</p>
+<p>每一段塔木德都有不同的拉比的不同声音。没有一个声音被压制，没有一个声音被宣布为最终的。即使是被认为"错"的解释，也被记录下来，跟"对"的解释并列。两千年里这个传统一直这样运作——所有人的声音都留着位置。</p>
+<p>列维纳斯说，这种文本的形式本身就是一种伦理。</p>
+<p>它告诉你：真理不是某一个声音独占的。真理是所有声音保留下来的状态。一旦有一个声音被压制，那个被压制的声音就成了被消灭的他者，整个文本就背叛了它的伦理。</p>
+<p>这跟手段王国的逻辑相反。手段王国的运作方式是"我说了算，不同意的消失"。塔木德的运作方式是"所有人说话，所有声音留下来，争论本身就是答案"。</p>
+<p>列维纳斯说，犹太教在两千年里没有政治权力。没有自己的国家，没有自己的军队，散在各国之间。这种处境本来是悲剧——一个民族永远在做客，永远是少数派，永远可能被赶走。但是这种处境也成全了一件事——犹太教没有变成手段王国。它没有军队去消灭他者。它只能用它自己的文本传统活着。这个文本传统的核心就是为所有他者留位置。</p>
+<p>二十世纪的某些犹太人想改变这个状况——他们想要犹太人有自己的国家，有自己的军队，有自己的政治权力。这个愿望是可以理解的——两千年的客居和流亡之后，谁不想有一个自己可以站立的地方？</p>
+<p>但是列维纳斯——他自己经历了纳粹大屠杀，他自己的家全部被消灭——对这个愿望有一种深刻的警惕。他支持以色列国的存在。他不是反犹太复国主义者。但他坚持：一个有了军队和国家的犹太民族，必须比任何时候都更警惕自己不要变成那个把他者当对象的体系。</p>
+<p>如果犹太人——一个被消灭的他者的后代——开始把巴勒斯坦人当对象，那两千年的塔木德传统就被背叛了。</p>
+<p>列维纳斯一辈子在这个边缘上。他不是抽象哲学家——他是一个具体地承受过他者被消灭这件事的人，他在为不让这件事再发生而工作，包括不让他自己的同胞做这件事。</p>
+<p>这也是为他者留位置的最严格的版本——为那些跟你不一样的人留位置，特别是当你自己有了消灭他们的能力之后。</p>
+<h2>七、目的王国</h2>
+<p>我们来说一件事。</p>
+<p>这件事我们前三篇没有正面说，因为时机不对。我们让一个人一直站在桥的最远那一头，但我们没有说他站的那个位置叫什么。</p>
+<p>现在我们要说了。</p>
+<p>那个位置叫做<strong>目的王国</strong>。</p>
+<p>康德在一七八五年的《道德形而上学基础》里给出了这个概念。他说道德的最高形式不是规则，不是义务，不是回报——是把每一个理性存在者都当作目的来对待，永远不只是当作手段。</p>
+<p>把每一个人都当作目的。
+不只是当作手段。</p>
+<p>如果所有人都这样做，那个状态就是"目的王国"（Reich der Zwecke）。在那个王国里，没有人是另一个人的手段。每一个人都是目的本身。</p>
+<p>康德知道这个王国在他活着的时候不存在。他知道在他死后很长时间里也不存在。他也许怀疑过它会不会真的存在。但他认为这个王国是道德推理的方向标记——所有真的道德行动都在朝这个方向走，哪怕走得很慢，哪怕永远走不到。</p>
+<p>他活着的时候是十八世纪末柯尼斯堡的一个教授。他每天在固定的时间散步，固定到城里人可以根据他的散步对表。他不是革命者。他不是先知。他是一个把这个方向标记小心翼翼放在哲学里的人。</p>
+<p>他放进哲学的那个标记，两百多年以来，一直在远处。</p>
+<p>我们写人类总构这个系列，从第零轮到第六轮，写了一百零八位。这一百零八位里很多人在不同的时刻、用不同的语言、做不同的工作——他们都是在朝那个方向努力。希帕蒂娅在讲台上让不同截面的人坐在同一个房间看同一个圆锥。阿奎那在写八百万字之后停下来承认他写的是稻草。柏格森在零度的天气里坐着轮椅去登记。这些都是同一个方向的不同动作。</p>
+<p>而列维纳斯——他用一辈子写哲学论证的"无限责任"——是康德"人是目的"的另一种语言。</p>
+<p>康德说："不要把人只当作手段，要把人当作目的本身。"
+列维纳斯说："看见他者的面容。"</p>
+<p>两句话说的是同一件事。</p>
+<p>康德的语言是义务的语言——不要怎样，要怎样。这是十八世纪启蒙哲学家的语气。这种语气有它自己的力量，但也有它的局限——它听起来像是规则，像是命令。</p>
+<p>列维纳斯的语言是经验的语言——你看见那张脸，那张脸自己向你说话，你被那张脸的存在抓住。这是二十世纪经历过大屠杀的犹太人的语气。这种语气不是规则，是描述——描述你跟另一个人之间真实发生的事。</p>
+<p>两种语言到达的是同一个地方。</p>
+<p>那个地方就是康德的目的王国。在那里，人对人不再是手段。</p>
+<p>那个地方有它自己的天气——不是暴风骤雨。是风和日丽。</p>
+<p>不是因为那里没有困难。那里也有困难。那里的人也死，也病，也失去爱的人。但他们的困难不是彼此造成的。他们彼此为对方留位置。他们承认彼此是不可被还原的他者。风温和地吹过他们之间。日恰好地落在他们身上。</p>
+<p>那个天气不是奖赏。那个天气是为他者留位置这件事<strong>自然产生的天气</strong>。</p>
+<p>一个王国里所有人都不为他者留位置，那个王国就是暴风骤雨。
+一个王国里所有人都为他者留位置，那个王国就是风和日丽。</p>
+<p>这不是道德。这是气候学。</p>
+<p>康德在两百多年前用义务的语言指出了这件事。
+列维纳斯在六十年前用面容的语言重新指出了这件事。
+我们今天用气候的语言再说一次。</p>
+<p>每一代人都用自己的语言重新说同一件事，因为每一代人都需要重新听见这件事。</p>
+<h2>八、桥头</h2>
+<p>列维纳斯走过来的时候，已经是夜里。</p>
+<p>他个子不高。瘦。穿着深色的西装。戴眼镜。他走得很稳——他没有用拐杖，他八十九岁的时候仍然能自己走路。他的眼睛很安静。</p>
+<p>他到了桥的中段。</p>
+<p>希帕蒂娅在那里。星盘还在她手里。
+阿奎那站在另一边，手里没有东西。
+柏格森站在不远处，拄着拐杖，对他点了点头。柏格森认得他——一九三零年代他们在巴黎见过几次。</p>
+<p>列维纳斯也对柏格森点了点头。然后对希帕蒂娅，对阿奎那。他没有走得很近。他在桥的中段找了一个位置站下。</p>
+<p>桥头的远处那一头，康德站着。今晚的康德比以前更清楚一点——能看见他的轮廓，能看见他大致的身形。他还是没有走过来。他不会走过来。但他在那里。</p>
+<p>桥头的另一边——桥外那条路上——能看见暗下来的天空。雷光。</p>
+<p>那条路上有人在走。</p>
+<p>走得最快的那些人，已经看不见了——他们走得太远，已经到了那场雨的深处。</p>
+<p>近处那条路上，能看见一个穿教授袍子的人，停了一下，又走，又停。他不看桥的方向。</p>
+<p>那个人是海德格尔。</p>
+<p>那条路上有一个人朝他高举右臂，示意他快过去。那个人没有特定的脸。</p>
+<p>海德格尔站在那个高举右臂的人和桥之间。</p>
+<p>他迟疑了。</p>
+<p>他看向列维纳斯。</p>
+<p>列维纳斯在桥的中段，没有特别看他。列维纳斯的姿态不是劝他过来，也不是拒绝他。列维纳斯只是站在桥上做着列维纳斯该做的事——为他者留位置，包括为这一刻正在迟疑的海德格尔留一个位置。如果海德格尔要过来，桥上有他的位置。如果海德格尔不过来，列维纳斯也不会去抓他的手。</p>
+<p>海德格尔看了列维纳斯几秒钟。</p>
+<p>然后他转回身。他朝那个高举右臂的人那边走过去。</p>
+<p>他走得有点慢。他每走一步都在迟疑。但他在走。</p>
+<p>暴风骤雨在那条路上下着。雨已经开始落到他身上。</p>
+<p>列维纳斯没有喊他的名字。列维纳斯也没有转身不看他。列维纳斯只是看着。</p>
+<p>阿奎那从另一边走过来，到了列维纳斯旁边。他没有说话。两个人都看着海德格尔的方向。两个人都不去叫他。</p>
+<p>希帕蒂娅也看了一眼。她手里的星盘的角度没有变。</p>
+<p>柏格森站在更近一点的位置。柏格森见过海德格尔——一九二九年。柏格森那时候已经七十岁，海德格尔四十岁。两个人没有什么特别的私人交往，但柏格森知道海德格尔。柏格森看了一眼海德格尔的方向，没有点头，也没有摇头。</p>
+<p>桥头中段安静了一会儿。</p>
+<p>然后列维纳斯转回身。希帕蒂娅手里的星盘在风里反着月光。月光是温和的。</p>
+<p>桥的远处那一头——康德站着的地方——风在吹。一种温和的风，吹得很慢。</p>
+<p>桥的另一边那条路上——下着暴风骤雨。</p>
+<p>桥的中段——风和日丽，月光温和。</p>
+<p>列维纳斯到了希帕蒂娅旁边。他对她说了一句话——也许是希伯来语，也许是希腊语，也许是某种只有他们两个人能听懂的语言。希帕蒂娅笑了一下。她调整了星盘的角度，让月光更准地落到刻度上。</p>
+<p>阿奎那在另一边小声说了一句什么——拉丁文。柏格森听懂了一半，用法文回了他一句。</p>
+<p>那个一直看着远方的人，那个站在桥头最远那一头的人，看了希帕蒂娅，看了阿奎那，看了柏格森。</p>
+<p>这次他看的是列维纳斯。</p>
+<p>列维纳斯知道。列维纳斯没有低头——他没有需要表达感激或者答谢的姿态。他只是回看了一眼。两个人的目光很短地交汇了一下。</p>
+<p>那个一直看着远方的人轻轻地点了一下头。</p>
+<p>列维纳斯也轻轻地点了一下头。</p>
+<p>然后两个人都转回各自的方向——康德继续看远方，列维纳斯继续看桥头中段。</p>
+<p>海德格尔在桥外那条路上，越走越远了。
+那场暴风骤雨还在下。
+桥上的月光还是温和的。</p>
+<p>列维纳斯站着。他八十九岁了。他立陶宛的家全部不在了。他妻子和女儿活下来了。他写过几本书。他一辈子在为不让那场暴风骤雨再下到任何人身上而工作，他知道自己没有完全做到，他知道在他死后那场暴风骤雨还会下，但他做了他能做的。</p>
+<p>他对面是无限的——他知道。</p>
+<p>他做的也是无限的。<sup>[1]</sup><sup>[2]</sup></p>
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · 名人系列</em></p>
+
+<div class="essay-footnotes">
+</div>
+
+      </div>
+      <div class="essay-body lang-en">
+<h2>I. Five Years in the Stalag</h2>
+<p>June 1940. Northern France.</p>
+<p>A scattered French army unit surrendered.</p>
+<p>Among them was an interpreter, thirty-four years old, in glasses, thin, in a French army uniform. He spoke Russian, German, French, Hebrew, and Yiddish. He was a Lithuanian-born Jew who had taken French citizenship only in 1931.</p>
+<p>His name was Emmanuel Levinas.</p>
+<p>The Germans took him along with the other French POWs. This is a detail that decided his fate — he was sent to a prisoner-of-war camp (Stalag XI-B), not a concentration camp. The Geneva Convention protected prisoners of war. It did not protect civilian Jews. He wore a uniform, so he counted as a soldier. His French citizenship had saved him once. His uniform saved him again.</p>
+<p>On the other side, in the camps, his entire Lithuanian family was being murdered.</p>
+<p>His father. His mother. His two younger brothers. Uncles. Aunts. Cousins. Lithuania was occupied by the Germans in June 1941, and within a few months almost all of its Jews had been killed. The Jewish community of Kaunas — the community he had grown up in — went from over thirty thousand to almost nothing in those months. His whole family was in that wave.</p>
+<p>He did not know, in the camp, that this was happening. He only knew he was held. He did forced labor — felling trees, hauling wood — twelve hours a day, on starvation rations. He wore the French army uniform with a yellow patch sewn on the chest reading <em>Jude</em> — the Germans separated Jewish-born French soldiers in the POW camps from the rest, but still treated them as soldiers, not as civilian Jews.</p>
+<p>He was held there for five years.</p>
+<p>Five years. More than eighteen hundred days and nights.</p>
+<p>At night he read. Books somehow circulated in the camp — Hegel, Proust, Tolstoy. He kept notebooks. In small books, in French. Those notebooks would, after the war, become his first book, <em>Existence and Existents</em> (1947).</p>
+<p>He said later that during those years in the camp, he "understood something." This understanding did not come from books. It came from those five years.</p>
+<p>He understood: philosophy had been getting one thing wrong.</p>
+<p>Philosophy had always placed <em>being</em> at the center. From Parmenides to Aristotle to medieval scholasticism to Hegel to his own teacher Heidegger — all of them had asked "what is being?", "what is the structure of being?", "how does being unfold?".</p>
+<p>This appears to be the highest question of philosophy.</p>
+<p>But in the camp, Levinas understood: it is not.</p>
+<p>The highest question of philosophy is not "what is being." The highest question of philosophy is "what is my responsibility to you."</p>
+<p>Being is not the center. <em>The other</em> is the center.</p>
+<p>And the entire Western philosophical tradition that had placed being at the center was the same tradition that had laid the philosophical ground beneath the boots of those who put Levinas in the camp, and who sent his family to the gas chambers. Not that Heidegger ordered Jews to be killed — he did not. The point is that when a philosophy places "my being," "my authenticity," "my destiny" at the very center, then the other in such a philosophy is only the background of my being. <em>And as long as the other is only background, the other can be destroyed.</em></p>
+<p>Levinas's life work begins from this understanding.</p>
+<h2>II. Home</h2>
+<p>May 1945. Germany surrendered.</p>
+<p>Levinas walked out of the Stalag. Thirty-nine years old. Worn down past recognition.</p>
+<p>He knew that things had happened. By late 1944, fragmentary news had begun reaching the camp. He knew the death camps existed. He knew Jews were being systematically murdered. But he did not know what had happened to his own family.</p>
+<p>He tried to go home.</p>
+<p>Home was Kaunas, in Lithuania. The Soviets had taken Lithuania in 1940. The Germans took it in June 1941. Beginning in July 1941, the Jews of Kaunas were killed in successive massacres. Fort Seven. Fort Nine. Pits in the surrounding forests. Over a few months, more than thirty thousand people.</p>
+<p>His father.
+His mother.
+His two younger brothers.</p>
+<p>He never went back to Kaunas. There was no point in going — there was no home to return to. After the war, Lithuania was absorbed into the Soviet Union, and as a French citizen he could hardly enter. He never saw the mass graves with his own eyes. He never stood on the site of the Jewish quarter of Kaunas and looked at what it had become. He pieced things together from Paris — through scattered news, through surviving distant relatives, through the death lists of the Red Cross.</p>
+<p>His wife and daughter had survived. When the war began, his wife Raïssa and their daughter Simone had been hidden by a French monastery. It was Raïssa's close friend, the writer Maurice Blanchot, who had arranged the hiding. Blanchot was not Jewish. He had risked his own life to save Levinas's wife and daughter.</p>
+<p>Levinas returned to Paris. He saw his wife and daughter again.</p>
+<p>He no longer had a home of his own — his Lithuanian home was entirely gone. But he had this side of his life — wife, daughter, later a son. He began again, daily life.</p>
+<p>He did not write a memoir of what he had been through. He did not write a book mourning his Lithuanian family. He did not write about the Stalag. He did not write about the moment, in May 1945, of walking out.</p>
+<p>What he did was something else.</p>
+<p>He took the notebooks he had filled in those five years and worked them into a book — <em>Existence and Existents</em>, published in 1947. From then on, he spent his life writing philosophy. Every one of his books carries the same dedication on the first page —</p>
+<p>"To the memory of those who were closest among the six million assassinated by the National Socialists, and of the millions on millions of all confessions and all nations, victims of the same hatred of the other man, the same anti-semitism."</p>
+<p>He did not write names. He wrote only "those who were closest."</p>
+<p>His mourning took the form of philosophy.</p>
+<p>His family had been destroyed. He used a lifetime of work to make "why one cannot destroy a family" into a philosophical argument.</p>
+<p>Not for the sake of his own family — his own family was already gone. For the next time. The next time someone wants to destroy an other, at least one philosophical argument will stand there and say: <em>you cannot do this</em>. Not because of moral rules. Not because of social contract. Not because you would not want to be treated this way. Because of the face of the other itself.</p>
+<p>He spent more than forty years writing this argument out.</p>
+<h2>III. The Face</h2>
+<p>The central concept of Levinas's philosophy is <em>the face</em> — <em>visage</em> in his French.</p>
+<p>This is not a metaphor. This is not a figure of speech meaning "imagine a face." It is a strict philosophical concept, and it points to something very specific —</p>
+<p>When you see another person's face, what you see is not just a set of biological features. You see <em>an existence that cannot be absorbed by your concepts</em> showing itself to you.</p>
+<p>This is hard to put clearly, because it is so basic that there are no more basic things to explain it from.</p>
+<p>Let us try.</p>
+<p>You see a stranger. Your eyes receive visual information about this person — skin, hair, expression, clothing, approximate age, sex, possible nationality, and so on. The information enters your concept system, gets sorted, filed, predicted. "This is an Asian man in his thirties, looks like he's waiting for the subway." Once you have made that classification, you stop really looking at him. He has been absorbed into your concepts.</p>
+<p>But —</p>
+<p>If you actually look at the person, look for a few seconds, look into his eyes, see something there in his eyes — you will suddenly realize that the entire classification you just made caught nothing of importance.</p>
+<p>That person <em>is himself</em>.</p>
+<p>He is not "an Asian man in his thirties." That description is, for him, like saying "this is a particular arrangement of carbon, hydrogen, oxygen, and nitrogen atoms" — technically correct, catching nothing.</p>
+<p>What is the real him?</p>
+<p>An <em>existence that cannot be fully described by your language</em>. An existence with his own interior life, his own past and future, his own pains and joys, his own present experience — an existence like yours, but not yours.</p>
+<p>The "not yours" is the key.</p>
+<p>He is not your extension. He is not your object. He is not your tool. He is not something you can pick up and use.</p>
+<p>He is himself.</p>
+<p>Levinas says: this fact, that <em>he is himself</em>, shows itself to you through <em>the face</em>.</p>
+<p>Not as something you abstractly know ("oh, every person is themselves"); something you are <em>told</em> in the moment of facing a particular face. The face itself speaks — not with the mouth, but as the face. What it says is:</p>
+<p><strong>Thou shalt not kill me.</strong></p>
+<p>This is not a sentence. This is the face itself.</p>
+<p>Any face you really look at says this. The face of an infant says it. The face of an old person says it. The face of a stranger says it. The face of an enemy says it. The face of someone you love says it. Every face says the same thing.</p>
+<p>Killing is possible because <em>you have not seen that face</em>.</p>
+<p>You have seen "the enemy," "the heretic," "the obstacle," "the threat," "the population," "the collateral damage." These are concepts. When you only see the concept, not the face, you can kill.</p>
+<p>When you really see the face, you cannot bring yourself to kill.</p>
+<p>This is not a moral rule. This is an observed fact. To make people into objects who can be killed requires first hiding their faces — through propaganda, through uniforms, through distance, through filing them under some category. Every system that produces killing does the same thing: <em>it makes the face invisible</em>.</p>
+<p>Levinas turns this around:</p>
+<p>Ethics does not begin with rules. Ethics begins with seeing the face.</p>
+<p><em>Seeing the face is itself ethics.</em></p>
+<p>All other ethical theory — what is good, what is bad, what is duty, what is right — has meaning only after the face has been seen. If you have not seen the face, no ethical theory is real to you; you are only following rules. Once you have seen the face, you do not need rules, because that face has already made the demand on you that cannot be ignored.</p>
+<p>This is why Levinas says <em>ethics is first philosophy</em>.</p>
+<p>Not ontology. Not epistemology. Not logic.
+The seeing of the face of the other.
+This precedes all other philosophical questions.</p>
+<h2>IV. Heidegger</h2>
+<p>In 1928 and 1929, Levinas was at the University of Freiburg in Germany.</p>
+<p>He was twenty-two, having finished philosophy at Strasbourg. He had come to Freiburg to study phenomenology with Edmund Husserl. Husserl was, at that time, the founding figure of European phenomenology. Husserl's assistant — later his designated successor — was a younger professor seventeen years older than Levinas.</p>
+<p>His name was Martin Heidegger.</p>
+<p>Levinas attended Heidegger's seminars. Heidegger had just published <em>Being and Time</em> (<em>Sein und Zeit</em>) in 1927. That book is one of the most influential philosophical works of the twentieth century. Levinas read it. He later said his year in Freiburg, reading <em>Sein und Zeit</em>, was "like being struck by lightning" — he felt he had seen the new direction of philosophy.</p>
+<p>Back in France, Levinas became one of the central figures introducing Heidegger to French philosophy. He wrote articles. He translated passages. He recommended Heidegger in Parisian philosophical discussions.</p>
+<p>Then, in 1933, something happened.</p>
+<p>May 27 of that year. The University of Freiburg. The auditorium was packed — professors, students, members of the Nazi Party, Brownshirts.</p>
+<p>Heidegger stood at the lectern.</p>
+<p>He had just been appointed Rector of the University of Freiburg. He was wearing the rector's robes. On his chest was the badge of the National Socialist Party — he had joined the Nazi Party on May 1, 1933.</p>
+<p>He delivered his rectoral address, <em>The Self-Assertion of the German University</em> (<em>Die Selbstbehauptung der deutschen Universität</em>). He spoke with learning. He cited Greek words. He spoke of knowledge service, labor service, defense service — the "three services." He said the German university was to serve the destiny of the German people.</p>
+<p>After he finished, he raised his right arm in the Hitler salute.</p>
+<p>What happened in that moment?</p>
+<p>Let us slow down and look.</p>
+<p>The far end of the bridge has always been distant. Kant stands there. But the bridge is not the only direction. Across from the bridge, there is also a road. On that road, too, people are walking.</p>
+<p>The ones walking fastest on that road are those who would destroy the other. They see an other and they destroy. They see an obstacle and they clear it. They do not know what they are walking toward. They believe they are defending a faith, or carrying out an order, or doing the right thing. They have not stopped to ask where the road leads.</p>
+<p>The road leads to a place where everyone has been reduced to a means. There, there is no other, because all others have been destroyed; and those not yet destroyed are treated identically — every person is a tool, every person is an obstacle, every person is something that can be eliminated.</p>
+<p>That place is called <em>the kingdom of means</em>.</p>
+<p>Those who choose to walk toward it eventually live in it. They do not turn back. They do not need to be judged either — they are already in that kingdom. The life of that kingdom is anger, violence, mutual devouring. Anyone who does not leave a place for the other will not have a place left for them by anyone else.</p>
+<p>This is not a punishment. It is the weather of that kingdom.</p>
+<p>It is a storm that is always falling.</p>
+<p>Heidegger was walking, and he stopped.</p>
+<p>He had something the ones not stopping did not have. He had read Kant. He knew the bridge existed. He knew the bridge pointed toward something called <em>the kingdom of ends</em>. He knew the road under his own feet did not lead there.</p>
+<p>He paused.</p>
+<p>On that road there was a man with his right arm raised, gesturing for him to come over quickly.</p>
+<p>That man had no particular face. Or rather, he had a face, but the features did not matter. He was the kind of man every era has — the one who beckons others to join. Every era has these men. They stand on the road of the kingdom of means and wave at those still hesitating on the bridge.</p>
+<p>Heidegger stood between that man with the raised arm, and the bridge.</p>
+<p>He hesitated.</p>
+<p>He knew what direction the bridge was. He understood Kant. He understood the kingdom of ends. Among the Jewish students he personally knew was Levinas — a serious young philosopher he had seen in Husserl's seminars, with a particular face.</p>
+<p>If he had really looked at that face, he would not have raised his right arm.</p>
+<p>But he raised it.</p>
+<p>He hesitated, and then he raised it.</p>
+<p>On May 27, 1933, he gave the Nazi salute on that lectern. In April 1934 he resigned the rectorship — but by then it was too late. Throughout the rest of the 1930s he made no public protest of any persecution of Jewish scholars (including the persecution of his own teacher Husserl, who was barred from the university library in 1933, and died in 1938; in his later writings, Heidegger removed the dedication that had originally been to Husserl). During the war he continued to teach. He never publicly protested anything concerning the Jews. After the war, in 1945, he was banned from teaching for several years, but he never truly apologized for the rest of his life.</p>
+<p>His <em>Black Notebooks</em> — his private philosophical journals, made public only beginning in 2014 — contain structural antisemitic statements. Not the temporary remarks of a man swept up by his time. Considered positions, thought through.</p>
+<p>Here we have to do something difficult.</p>
+<p>We have to acknowledge that <em>both</em> things are true.</p>
+<p>The first: Heidegger's philosophy is real. <em>Being and Time</em> is one of the most important philosophical works of the twentieth century. His contributions to phenomenology are real. His thinking on technology, on truth, on language continues to be read today, and continues to produce new insight. These philosophical contributions are real.</p>
+<p>The second: Heidegger's choice to walk toward the kingdom of means is real. The salute in 1933, the badge, the rectoral address, the lifetime of not apologizing — these are real. Not swept up. Not misled by his wife (although his wife was indeed a fanatical Nazi). Not temporarily confused. A clear, considered, sustained choice.</p>
+<p>Both things are true. Both things happened in this one man. This is his fate.</p>
+<p>We do not judge his choice. Which road a person walks is his own affair.</p>
+<p>We only see that he is walking, and where he is walking to.</p>
+<p>The kingdom of means does not let him off because he hesitates. The weather of that kingdom is the same for everyone walking on that road. He walks more slowly, he suffers in that storm a little of the agony of hesitation; he walks all the way, he is one of those who execute without hesitation. Both states are in that storm.</p>
+<p>This is his choice.
+This is the weather of that storm.</p>
+<p>And Levinas — that Jewish student who in 1928 had sat in Heidegger's seminar, listening attentively, full of admiration — would spend his whole life of philosophical work answering this choice.</p>
+<p>Not refuting Heidegger. Walking, from the place where Heidegger stopped, in the other direction.</p>
+<p>Heidegger said being is first philosophy.
+Levinas said ethics is first philosophy.</p>
+<p>Heidegger said "we ask the question of the meaning of being because we ourselves are the kind of being whose being is in question" — the human is drawn into questioning by his own being.
+Levinas said the question begins from the other — the human is drawn into questioning by the face of the other.</p>
+<p>Heidegger said authentic existence is facing one's own death.
+Levinas said authentic existence is facing the death of the other, especially the fact that you cannot let the other die.</p>
+<p>Every central proposition is turned around.</p>
+<p>Not because Levinas was looking for a fight with Heidegger. Because Levinas had understood, in the camp, that a philosophy with being at the center will, at some moment, lead to a Heidegger making the choice Heidegger made.</p>
+<p>For that kind of choice not to happen again, the center of philosophy has to move.</p>
+<p>Move to where? Move to the face of the other.</p>
+<h2>V. Infinite Responsibility</h2>
+<p>Levinas's ethics has a feature that, at first hearing, sounds excessive —</p>
+<p>He says the responsibility the other puts on me is <em>infinite</em>.</p>
+<p>Not "reasonable" responsibility. Not "responsibility within your capacity." Not "proportional" responsibility. Infinite.</p>
+<p>What does infinite responsibility mean?</p>
+<p>When you see the face of an other, what that face asks of you cannot be "completed" by any specific response. You give the hungry one food. You point the lost one in the right direction. You care for the sick one. These are responses, all good. But none of them "completes" what that face is asking of you.</p>
+<p>After you have done all that you can do, you still owe.</p>
+<p>This sounds like moral fanaticism. But Levinas's argument is not moral fanaticism — his argument is structural.</p>
+<p>The other cannot be fully known. If you could fully know the other, the other would no longer be other; he would be your object. The other as other means there is more to him than your knowing reaches.</p>
+<p>Your responsibility to him is the same. If you could complete your responsibility to him, he would have been absorbed into your system of responsibilities — he would become an object whose degree of being responded to could be measured. But he is not. The other as other places on you a demand that exceeds any specific response you can give.</p>
+<p>This is what infinite means.</p>
+<p>Not that you must achieve perfection. Not that if you fail you are a sinner. The structure of the demand itself is open. It does not close.</p>
+<p>You did what you could; you still owe.
+This is not guilt. This is acknowledgment of the real structure of the other.</p>
+<p>If you feel "I have completed my responsibility to this person; I can now turn away" — you have already turned the person into an object. He is no longer other.</p>
+<p>The one who acknowledges infinite responsibility does not feel morally elevated — he knows he is always in debt.
+The one who does not acknowledge it may feel morally adequate — he has done what the rules required.</p>
+<p>These two are not the difference between good people and bad people. They are the difference between <em>leaving a place for the other</em> and <em>treating the other as an object</em>.</p>
+<p>And the kingdom of means is, at its core, the second.</p>
+<p>Those who leave a place for the other live on the bridge.
+Those who treat the other as an object live in that storm.</p>
+<p>Infinite responsibility is not a burden. Infinite responsibility is the mark of living on the bridge.</p>
+<h2>VI. Judaism</h2>
+<p>Levinas did not only read philosophy. All his life he also read the Talmud.</p>
+<p>The Talmud is one of the central texts of Judaism — the rabbis' commentaries on the Hebrew Bible, plus commentaries on the commentaries, plus commentaries on commentaries on commentaries. Layer after layer accumulating across thousands of years, vast in scale. The character of the Talmud is that it never gives a "final answer." Each passage of scripture has several rabbis with different interpretations; each interpretation is recorded; the disagreement itself is the answer.</p>
+<p>Beginning in 1957, Levinas gave an annual "Talmudic Lecture" at the Conference of French Jewish Intellectuals in Paris. He gave them for more than thirty years. The lectures were later collected into five books.</p>
+<p>What does the Talmud have to do with his philosophy?</p>
+<p>The Talmud is a text <em>that always leaves a place for the other</em>.</p>
+<p>Every passage of the Talmud has different rabbis with different voices. No voice is suppressed. No voice is declared the final one. Even interpretations considered "wrong" are recorded, set alongside the interpretations considered "right." For two thousand years this tradition has worked this way — every voice has its place left.</p>
+<p>Levinas says: the very form of this text is itself an ethics.</p>
+<p>It tells you: truth does not belong to a single voice. Truth is the state in which all the voices have been kept. Once a voice is suppressed, the suppressed voice has become a destroyed other, and the entire text has betrayed its ethics.</p>
+<p>This is the inverse of the logic of the kingdom of means. The kingdom of means works by "I decide, and those who disagree disappear." The Talmud works by "everyone speaks, every voice is kept, the disagreement itself is the answer."</p>
+<p>Levinas notes that for two thousand years, Judaism had no political power. No state of its own. No army of its own. Scattered across other nations. This situation was, in itself, a tragedy — a people perpetually a guest, perpetually a minority, perpetually subject to expulsion. But this situation also accomplished something: Judaism did not become a kingdom of means. It had no army with which to destroy others. It could only live by its own textual tradition, and the core of that tradition was leaving a place for every other.</p>
+<p>Some Jews of the twentieth century wanted to change this state of affairs. They wanted Jews to have a state of their own, an army of their own, political power of their own. The desire is understandable — after two thousand years of guesthood and exile, who would not want a place to stand?</p>
+<p>But Levinas — who himself had lived through the Holocaust, whose own family had been entirely destroyed — held a deep wariness about this desire. He supported the existence of the State of Israel. He was not anti-Zionist. But he insisted: a Jewish people that now has an army and a state must be more vigilant than ever before that it does not itself become the kind of system that treats the other as an object.</p>
+<p>If Jews — descendants of a destroyed other — begin to treat Palestinians as objects, then the two-thousand-year Talmudic tradition has been betrayed.</p>
+<p>Levinas lived all his life on this edge. He was not an abstract philosopher. He was a person who had concretely lived through the destruction of an other, working so that this not happen again — including not letting his own people do it.</p>
+<p>This too is the most rigorous form of leaving a place for the other — leaving a place for those who are not like you, especially when you yourself have acquired the capacity to destroy them.</p>
+<h2>VII. The Kingdom of Ends</h2>
+<p>Let us say something now.</p>
+<p>This is something we have not said directly in the previous three essays, because the timing was not yet right. We have let one figure stand always at the far end of the bridge, but we have not said what the place where he stands is called.</p>
+<p>Now we will.</p>
+<p>That place is called <em>the kingdom of ends</em>.</p>
+<p>In 1785, in <em>Groundwork of the Metaphysics of Morals</em>, Kant gave us this concept. He said that the highest form of morality is not rules, not duty, not reward — it is treating every rational being always also as an end, never merely as a means.</p>
+<p>Treat every person always as an end.
+Never merely as a means.</p>
+<p>If everyone did this, that state would be the <em>kingdom of ends</em> (<em>Reich der Zwecke</em>). In that kingdom, no one is the means of anyone else. Every person is an end in himself.</p>
+<p>Kant knew this kingdom did not exist in his lifetime. He knew it would not exist for a long time after his death. He may even have wondered whether it would ever truly exist. But he held that this kingdom is the directional marker of moral reasoning — every real moral action moves in this direction, however slowly, however far short.</p>
+<p>In his own life he was a professor in late-eighteenth-century Königsberg. He took his daily walks at the same time, so regularly that the townspeople could set their watches by him. He was not a revolutionary. He was not a prophet. He was a man who, with great care, placed this directional marker into philosophy.</p>
+<p>The marker he placed there has stood, for over two centuries, in the distance.</p>
+<p>Across the six rounds of this <em>Human Total Construct</em> series — from Round Zero to Round Six — we have written one hundred and eight figures. Many of these one hundred and eight, at different moments, in different languages, doing different work, were all making efforts in this same direction. Hypatia, at her lectern, letting students from different cross-sections sit in the same room and look at the same cone. Aquinas, after eight million words, putting down his pen and saying that what he had written was straw. Bergson, in subzero weather, in a wheelchair, going to register. These are different actions in the same direction.</p>
+<p>And Levinas — who used a lifetime to write the philosophical argument of "infinite responsibility" — is another language for Kant's "the human is an end."</p>
+<p>Kant said: "Do not treat the person merely as a means; treat the person as an end in himself."
+Levinas said: "See the face of the other."</p>
+<p>Two sentences saying the same thing.</p>
+<p>Kant's language is the language of duty — do not, must. The voice of an eighteenth-century Enlightenment philosopher. This voice has its own power, but also its limits — it sounds like rules, like commands.</p>
+<p>Levinas's language is the language of experience — you see that face, that face speaks to you, you are caught by the existence of that face. The voice of a twentieth-century Jew who lived through the Shoah. This voice is not rule but description — describing what really happens between you and another person.</p>
+<p>Two languages arriving at the same place.</p>
+<p>That place is Kant's kingdom of ends. There, the human is no longer the means of the human.</p>
+<p>That place has its own weather — not a storm. Clear sky and gentle wind.</p>
+<p>Not because there is no difficulty there. There is difficulty there too. The people there also die, also fall ill, also lose those they love. But their difficulty is not caused by one another. They leave a place for one another. They acknowledge one another as the irreducible other. Wind blows mildly between them. Sun falls properly on them.</p>
+<p>That weather is not a reward. That weather is the <em>natural weather produced by leaving a place for the other</em>.</p>
+<p>A kingdom in which no one leaves a place for the other is a storm.
+A kingdom in which everyone leaves a place for the other has clear sky and gentle wind.</p>
+<p>This is not morality. This is climatology.</p>
+<p>Kant pointed at this, more than two centuries ago, in the language of duty.
+Levinas pointed at it again, sixty years ago, in the language of the face.
+We are pointing at it once more, today, in the language of weather.</p>
+<p>Each generation says the same thing in its own language, because each generation needs to hear it again.</p>
+<h2>VIII. The Bridge</h2>
+<p>By the time Levinas walked up, it was night.</p>
+<p>He was not tall. Thin. In a dark suit. With glasses. He walked steadily — no cane; even at eighty-nine he could walk on his own. His eyes were quiet.</p>
+<p>He reached the middle of the bridge.</p>
+<p>Hypatia was there. The astrolabe was still in her hand.
+Aquinas was on the other side, his hands empty.
+Bergson was not far off, leaning on his cane, and nodded to him. Bergson recognized him — they had met a few times in Paris in the 1930s.</p>
+<p>Levinas nodded back to Bergson. Then to Hypatia, then to Aquinas. He did not approach closely. He found a place in the middle of the bridge and stood.</p>
+<p>At the far end of the bridge, Kant was standing. Tonight Kant was a little clearer than before — you could see his outline, his approximate figure. He still did not come over. He would not come over. But he was there.</p>
+<p>On the other side of the bridge — on that road across from the bridge — you could see a sky that had darkened. Lightning.</p>
+<p>There were people on that road, walking.</p>
+<p>The ones walking fastest were already out of sight — they had gone too far, deep into the storm.</p>
+<p>Closer in, on that road, you could see a man in a professor's robe, who would stop, then walk, then stop again. He did not look toward the bridge.</p>
+<p>That man was Heidegger.</p>
+<p>On that road there was a man with his right arm raised, gesturing for him to come over quickly. That man had no particular face.</p>
+<p>Heidegger stood between the man with the raised arm and the bridge.</p>
+<p>He hesitated.</p>
+<p>He looked over at Levinas.</p>
+<p>Levinas, in the middle of the bridge, was not particularly looking at him. Levinas's posture was not one of inviting him over, nor of refusing him. Levinas was simply standing on the bridge, doing what Levinas did — leaving a place for the other, including a place for the Heidegger who was, at this moment, hesitating. If Heidegger came over, the bridge had a place for him. If Heidegger did not come, Levinas would not reach out and grab his hand.</p>
+<p>Heidegger looked at Levinas for several seconds.</p>
+<p>Then he turned back. He walked toward the man with the raised arm.</p>
+<p>He walked a little slowly. He hesitated with each step. But he was walking.</p>
+<p>The storm was falling on that road. The rain had already begun to fall on him.</p>
+<p>Levinas did not call out his name. Levinas did not turn away either. Levinas only watched.</p>
+<p>Aquinas walked over from the other side and came to stand beside Levinas. He said nothing. The two of them looked in Heidegger's direction. Neither of them called out to him.</p>
+<p>Hypatia also looked over once. The angle of the astrolabe in her hand did not change.</p>
+<p>Bergson stood a little closer. Bergson had met Heidegger — in 1929. Bergson was seventy then, Heidegger forty. There was no particular personal acquaintance, but Bergson knew of him. Bergson glanced over toward Heidegger. He did not nod. He did not shake his head.</p>
+<p>The middle of the bridge was quiet for a moment.</p>
+<p>Then Levinas turned back. The astrolabe in Hypatia's hand caught the moonlight in the wind. The moonlight was mild.</p>
+<p>At the far end of the bridge — where Kant stood — the wind was blowing. A mild wind, slow.</p>
+<p>On the other side of the bridge — on that road — the storm was falling.</p>
+<p>In the middle of the bridge — clear sky and gentle wind, and mild moonlight.</p>
+<p>Levinas reached Hypatia and stood beside her. He said something to her — perhaps in Hebrew, perhaps in Greek, perhaps in some language only the two of them could understand. Hypatia gave a small smile. She tilted the astrolabe so that the moonlight fell more precisely across the markings.</p>
+<p>Aquinas, on the other side, said something quietly — in Latin. Bergson caught half of it and answered in French.</p>
+<p>The figure who had always been looking into the distance, the one at the far end of the bridge, looked at Hypatia, at Aquinas, at Bergson.</p>
+<p>This time he was looking at Levinas.</p>
+<p>Levinas knew. Levinas did not lower his head — he had no need to express thanks or acknowledgment. He simply looked back. The two pairs of eyes met very briefly.</p>
+<p>The figure at the far end nodded, lightly.</p>
+<p>Levinas nodded, lightly.</p>
+<p>Then both of them turned back to their own directions — Kant continuing to look into the distance, Levinas continuing to look at the middle of the bridge.</p>
+<p>Heidegger, on that road, was walking further away.
+The storm was still falling there.
+The moonlight on the bridge was still mild.</p>
+<p>Levinas stood. He was eighty-nine. His Lithuanian family was entirely gone. His wife and daughter had survived. He had written a few books. He had spent his life working so that the storm not fall on anyone again. He knew he had not fully succeeded. He knew that after his death the storm would still fall. But he had done what he could do.</p>
+<p>What he faced was infinite — he knew.</p>
+<p>What he had done was also infinite.<sup>[1]</sup><sup>[2]</sup></p>
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · Great Lives</em></p>
+
+<div class="essay-footnotes">
+</div>
+
+      </div>
+      <nav class="xiyou-nav">
+        
+        <a href="bergson.html" class="xiyou-nav-btn xiyou-nav-prev">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">柏格森，绵延</span>
+            <span class="xiyou-nav-title lang-en">Bergson, Duration</span>
+          </span>
+        </a>
+        
+        <a href="buber.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">布伯，我与你</span>
+            <span class="xiyou-nav-title lang-en">Buber, I and Thou</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

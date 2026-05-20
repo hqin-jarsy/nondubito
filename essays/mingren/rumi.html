@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>鲁米，被凿成歌的人 — Non Dubito</title>
+  <meta name="description" content="沙姆斯来之前，鲁米不是诗人。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/mingren/rumi.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="../../index.html#mingren" class="back-link lang-zh">← 名人系列</a>
+        <a href="../../index.html#mingren" class="back-link lang-en">← Great Lives</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">名人系列（11）</div>
+          <div class="essay-series lang-en">Great Lives (11)</div>
+          <h1 class="lang-zh">鲁米，被凿成歌的人</h1>
+          <h1 class="lang-en">Rumi, Carved into Song</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="date">March 2026</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+<h2>一、学者</h2>
+<p>沙姆斯来之前，鲁米不是诗人。</p>
+<p>他是一个正统的伊斯兰学者。全名贾拉勒丁·穆罕默德·巴尔希——后来被称为"鲁米"，意思是"来自罗马（安纳托利亚）的人"。他1207年出生在巴尔赫——今天的阿富汗北部。</p>
+<p>他的父亲巴哈丁·瓦拉德是当地最受尊敬的苏菲学者之一。蒙古人来了之后，整个家族西迁——穿过波斯，穿过巴格达，据说途中还见过伊本·阿拉比和阿塔尔。最终定居在科尼亚——塞尔柱突厥帝国的首都，今天的土耳其中部。</p>
+<p>鲁米继承了父亲的位置。他成了科尼亚最重要的宗教学者之一——教法学，教经注，教伊斯兰神学。他有几百个学生。他受人尊敬。他有地位。他有构。</p>
+<p>他的构是完整的：一个受过最高教育的伊斯兰学者，在一座重要城市的最高学术位置上，教导学生们如何理解上帝的话语。</p>
+<p>然后沙姆斯来了。</p>
+
+<h2>二、沙姆斯</h2>
+<p>1244年。鲁米三十七岁。</p>
+<p>沙姆斯·大不里兹——一个来自大不里兹的流浪苦行僧。没有固定的住所，没有学生，没有著作，没有地位。一个穿着黑色斗篷在城市之间漫游的人。据说他一直在寻找一个人——一个"能承受我的陪伴"的人。</p>
+<p>他们在科尼亚相遇了。</p>
+<p>关于这次相遇有很多版本。最广泛流传的一个版本是：沙姆斯拦住骑着驴的鲁米，问了他一个问题。那个问题——不管具体是什么——击倒了鲁米。一个在学术界站了十几年、什么问题都能回答的学者，被一个流浪汉的一个问题击倒了。</p>
+<p>有的版本说鲁米从驴上摔了下来。有的说他昏了过去。有的说他沉默了很久。</p>
+<p>不管细节如何，结果是一样的：鲁米从那一天起变了。</p>
+<p>他停止了讲课。他停止了教法学。他和沙姆斯把自己关在一个房间里，几个月不出来。他的学生们愤怒了——他们的老师被一个来历不明的流浪汉抢走了。他的家人也不安——他抛下了所有责任。</p>
+<p>沙姆斯对鲁米做了什么？</p>
+<p>他凿了鲁米的全部构。</p>
+<p>鲁米的构是知识——他知道古兰经，知道圣训，知道法学，知道神学。沙姆斯说：这些都是关于上帝的知识。但你认识上帝吗？你知道关于火的一切——但你烧过吗？</p>
+<p>沙姆斯凿掉的不是鲁米的某个观点。他凿掉的是"知道关于上帝"和"认识上帝"之间的全部距离。他把鲁米从书本拽到了火里。</p>
+
+<h2>三、消失</h2>
+<p>沙姆斯在科尼亚待了一段时间。然后他离开了——可能是因为鲁米学生们的敌意太大了。鲁米疯狂地寻找他。据说鲁米亲自去了大不里兹找他。找到了。把他带回了科尼亚。</p>
+<p>然后沙姆斯第二次消失了。</p>
+<p>这一次他再也没有回来。</p>
+<p>关于他的消失有很多说法。最广泛的说法是他被鲁米的学生（甚至可能是鲁米的儿子阿拉丁）杀了。有的说他自己走了。学界没有定论。</p>
+<p>鲁米再次疯狂地寻找。他到处找。他找不到。</p>
+<p>然后他停止了寻找。</p>
+<p>他发现了一件事：他不需要找沙姆斯。沙姆斯不在外面。沙姆斯在他里面。</p>
+<p>他后来说过一句话，大意是：我到处寻找沙姆斯，最后发现他就是我，我就是他。</p>
+<p>这是转折点。沙姆斯的物理消失逼出了鲁米的精神转化。如果沙姆斯一直在，鲁米可能永远依赖他。沙姆斯的消失凿掉了鲁米最后一个构——对沙姆斯本人的依赖。</p>
+<p>凿掉了老师之后，鲁米变成了诗人。</p>
+
+<h2>四、芦笛</h2>
+<p>《玛斯纳维》——鲁米最伟大的作品——的开篇是芦笛之歌。</p>
+<p>"听那芦笛，它在诉说，<br>它在诉说分离之苦。<br><br>自从他们将我从芦苇丛中切下，<br>我的悲鸣令世间男女落泪。<br><br>我要一颗被分离撕裂的心——<br>这样我才能诉说渴望之痛。<br><br>任何人远离了自己的本源，<br>都会寻找重逢的时刻。"</p>
+<p>芦笛为什么在哭？因为它被从芦苇丛中切下来了。它原本属于芦苇丛——属于一个完整的、连在一起的整体。有人把它切下来，挖空了它的内部，在它身上开了孔——然后它能发出声音了。</p>
+<p>它的声音就是它的痛。它的音乐就是它被切割的余项。</p>
+<p>这和杜甫、贝多芬、司马迁是同一个结构：载体被凿了，余项变成了某种更深的东西。杜甫的余项是诗。贝多芬的余项是晚期四重奏。司马迁的余项是《史记》。鲁米的余项是歌。</p>
+<p>但鲁米加了一层其他人没有的东西：芦笛被切下来之后想要回去。它不只是在哭——它在渴望回到芦苇丛。它的歌不只是痛苦的表达——是对回归本源的渴望。</p>
+<p>杜甫的余项是对人间的仁。<br>贝多芬的余项是对命运的抗争。<br>司马迁的余项是对历史的书写。<br>鲁米的余项是对上帝的渴望。</p>
+<p>每一种余项的方向不同，但结构相同：被凿之后，最深的东西涌了出来。</p>
+
+<h2>五、Ishq</h2>
+<p>鲁米诗歌的核心词是一个阿拉伯语/波斯语词：Ishq。</p>
+<p>Ishq不是普通的爱。不是"我喜欢你"的爱。不是"我关心你"的爱。甚至不是基督教的agape——那种自我给予的神圣慈爱。</p>
+<p>Ishq是燃烧。是消耗。是把自我烧掉之后剩下的那个东西。</p>
+<p>在苏菲传统里，Ishq是一种本体论的力量——它不只是一种情感，它是一种存在方式。它把你从自我的边界里拽出来，拽向更大的东西。你不控制它——它控制你。你不选择它——它选择你。</p>
+<p>鲁米对沙姆斯的感情就是Ishq。不是友情。不是师生关系。不是普通的爱。是一种把他的整个自我——学者身份、社会地位、理性框架——全部烧掉的力量。</p>
+<p>沙姆斯消失之后，鲁米没有把这份Ishq收回来。他把它转向了所有人。</p>
+<p>对沙姆斯的Ishq变成了对上帝的Ishq。对上帝的Ishq变成了对所有人的Ishq。</p>
+<p>苏格拉底凿所有人但没有人凿他。<br>鲁米被一个人凿了之后向所有人打开。</p>
+<p>苏格拉底从外向内凿——他凿别人的构。<br>鲁米从内向外流——他被凿了之后，从裂缝里流出来的东西灌满了整个世界。</p>
+<p>两种方向。两种结构。但都是凿之后的产物。</p>
+
+<h2>六、旋转</h2>
+<p>鲁米发明了（或者启发了）旋转舞——Sema。</p>
+<p>旋转的苦行僧。白色长袍，双臂展开，右手掌心朝上（接受上天的恩典），左手掌心朝下（传递给大地）。然后开始转。一直转。</p>
+<p>旋转是什么？</p>
+<p>从身体的角度说，旋转是一种让日常意识松动的技术。你转到一定程度，你的自我边界——"我在这里，世界在那里"——会开始模糊。你不再确定哪个是你，哪个是世界。这和苏菲修行中的fana（自我消融）是同一个方向。</p>
+<p>从这个系列的角度说，旋转是凿的身体版本。</p>
+<p>你的身体是一个构——它有明确的边界，占据确定的空间，朝向确定的方向。旋转把这些全部松动了。你没有方向了——因为你在向所有方向转。你没有固定的朝向了——因为朝向每一瞬间都在变。你的边界模糊了——因为你的衣摆在离心力中展开，你不知道你在哪里结束、空气在哪里开始。</p>
+<p>庄子的逍遥是精神的自由——不被任何构绑定。<br>鲁米的旋转是身体的自由——用旋转把身体从固定性中解放。</p>
+<p>两种自由。庄子的逍遥是静的——"坐忘"，坐着忘掉自我。鲁米的旋转是动的——转着消融自我。</p>
+<p>日本学者井筒俊彦在《苏菲主义与道家》中比较过苏菲的fana和道家的"坐忘"——两者都是自我消融的技术。区别在于路径：道家用静来消融，苏菲用动来消融。但终点是一样的：自我的边界松动了，更大的东西流进来了。</p>
+
+<h2>七、他写的不是他的</h2>
+<p>鲁米的诗集有一个奇怪的名字：《沙姆斯之诗》（Divan-i Shams-i Tabrizi）。</p>
+<p>他以沙姆斯的名字命名了自己的诗集。不是以鲁米的名字。</p>
+<p>为什么？</p>
+<p>因为他觉得这些诗不是他写的。这些诗是沙姆斯通过他写的。沙姆斯凿开了他，诗从裂缝里流出来，但诗的真正来源不是鲁米——是沙姆斯，或者更准确地说，是沙姆斯代表的那个更大的东西。</p>
+<p>这和巴赫的S.D.G.——"荣耀唯归上帝"——是同一个结构。巴赫觉得音乐不是他写的，是上帝通过他的手流出来的。鲁米觉得诗不是他写的，是沙姆斯——或者上帝——通过他的裂缝流出来的。</p>
+<p>两个人都不认为自己是源头。两个人都认为自己是管道。</p>
+<p>区别在于：巴赫的管道是完整的——他没有被凿过，他天生就是管道，一辈子在把上帝的音乐搬到纸上。鲁米的管道是被砸碎之后形成的——沙姆斯凿了他，砸碎了他的学者身份，从碎裂处涌出了诗。</p>
+<p>巴赫是一根完整的管道。<br>鲁米是一根被砸碎之后的管道——碎裂处就是诗涌出来的地方。</p>
+
+<h2>八、他的葬礼</h2>
+<p>1273年12月17日。鲁米在科尼亚去世。六十六岁。</p>
+<p>他的葬礼发生了一件不寻常的事：不只是穆斯林来了。基督徒和犹太人也来了。</p>
+<p>在十三世纪的安纳托利亚，三个宗教的人一起参加一个人的葬礼——这几乎是不可想象的。但他们来了。当有人问基督徒和犹太人为什么来参加一个穆斯林学者的葬礼时，他们说：他帮助我们理解了我们自己的信仰。</p>
+<p>这就是Ishq的传导。鲁米对沙姆斯的不疑，变成了对上帝的不疑，变成了对所有人的不疑——不管你是什么宗教。他的诗里有古兰经，有先知穆罕默德，有伊斯兰神学——他不是一个"超越宗教"的人，他是一个在伊斯兰传统的最深处发现了某种所有人都能感受到的东西的人。</p>
+<p>他没有离开伊斯兰。他走到了伊斯兰的根，然后发现那个根连着所有人。</p>
+<p>他的墓在科尼亚。今天叫梅夫拉纳博物馆。每年有几百万人去。穆斯林，基督徒，无神论者，游客。他们去一个十三世纪的苏菲学者的墓前站一会儿。很多人不知道为什么要去。他们只是觉得应该去。</p>
+
+<h2>九、被凿成歌的人</h2>
+<p>这个系列写过很多被凿的人。</p>
+<p>杜甫被凿成诗——余项是仁。<br>贝多芬被凿出深度——余项是晚期四重奏。<br>司马迁被凿出痛——余项是《史记》。<br>达尔文被凿出真相——余项是进化论。</p>
+<p>鲁米被凿成歌。</p>
+<p>他的余项不是知识（他有知识，沙姆斯把那些凿掉了），不是体系（他没有建体系），不是论证（他不用逻辑论证任何东西）。他的余项是歌。是芦笛的声音。是被从芦苇丛中切下来之后发出的哭泣——那个哭泣美到让人也想被切开。</p>
+<p>他是这个系列里唯一一个让人想要被凿的人。</p>
+<p>苏格拉底凿你——你不舒服。他逼你承认你什么都不知道。这不愉快。<br>现实凿杜甫——杜甫痛苦。没有人想要杜甫的经历。<br>耳聋凿贝多芬——贝多芬愤怒。没有人想要失去听力。<br>宫刑凿司马迁——司马迁每天"肠一日而九回"。没有人想要那种痛苦。</p>
+<p>但鲁米被沙姆斯凿了之后——那些诗，那些歌，那种Ishq——让你觉得：我也想被凿开。我也想从我的芦苇丛里被切下来。如果被切下来之后能唱出那种歌，那我愿意。</p>
+<p>这是鲁米最独特的地方：他让凿变得有吸引力。他让余项变得比凿之前的完整更美。</p>
+<p>桥头多了一个人。他穿着白色长袍。他在旋转。他不看任何人——他在转。他的右手掌心朝上，左手掌心朝下。接受，传递。接受，传递。</p>
+<p>他是桥头唯一一个在动的人——其他人都站着或飞着。他在转。他的旋转没有方向——或者说，他的方向是所有方向。</p>
+<p>他在唱。你听不清他唱什么。但你听到了芦笛的声音。那个声音说的是：被切开。被切开。从你的芦苇丛中被切开。然后你就能唱了。</p>
+
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · 名人系列</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+<h2>I. The Scholar</h2>
+<p>Before Shams came, Rumi was not a poet.</p>
+<p>He was an orthodox Islamic scholar. Full name Jalal al-Din Muhammad Balkhi — later called "Rumi," meaning "the one from Rome" (the Byzantine lands of Anatolia). He was born in 1207 in Balkh — in what is today northern Afghanistan.</p>
+<p>His father, Baha al-Din Walad, was one of the most respected Sufi scholars in the region. When the Mongols came, the entire family migrated west — through Persia, through Baghdad, reportedly encountering Ibn Arabi and Attar along the way. They settled in Konya — the capital of the Seljuk Sultanate of Rum, in the heart of modern Turkey.</p>
+<p>Rumi inherited his father's position. He became one of Konya's most important religious scholars — teaching jurisprudence, Quranic exegesis, Islamic theology. He had hundreds of students. He was respected. He had standing. He had a construction.</p>
+<p>His construction was complete: a scholar of the highest education, occupying the highest academic position in a major city, teaching students how to understand the word of God.</p>
+<p>Then Shams came.</p>
+
+<h2>II. Shams</h2>
+<p>1244. Rumi was thirty-seven.</p>
+<p>Shams of Tabriz — a wandering ascetic from the city of Tabriz. No fixed address, no students, no writings, no position. A man in a black cloak drifting between cities. He was said to have been searching for one person — someone who "could bear my companionship."</p>
+<p>They met in Konya.</p>
+<p>There are many versions of what happened. The most widely told: Shams stopped Rumi, who was riding a donkey, and asked him a question. That question — whatever it was — felled Rumi. A scholar who had stood atop the academic world for over a decade, who could answer any question, was struck down by a single question from a vagrant.</p>
+<p>Some versions say Rumi fell from his donkey. Some say he fainted. Some say he went silent for a long time.</p>
+<p>Regardless of the details, the result was the same: from that day, Rumi was changed.</p>
+<p>He stopped lecturing. He stopped teaching jurisprudence. He and Shams locked themselves in a room for months. His students were furious — their teacher had been stolen by a stranger of unknown origin. His family was distressed — he had abandoned all his responsibilities.</p>
+<p>What did Shams do to Rumi?</p>
+<p>He carved away Rumi's entire construction.</p>
+<p>Rumi's construction was knowledge — he knew the Quran, the Hadith, the law, the theology. Shams said: these are all knowledge <em>about</em> God. But do you <em>know</em> God? You know everything about fire — but have you burned?</p>
+<p>What Shams carved away was not a particular opinion. He carved away the entire distance between "knowing about God" and "knowing God." He dragged Rumi from the book into the fire.</p>
+
+<h2>III. Disappearance</h2>
+<p>Shams stayed in Konya for a while. Then he left — possibly because the hostility from Rumi's students had grown unbearable. Rumi searched for him frantically. He is said to have traveled all the way to Tabriz. He found Shams. He brought him back to Konya.</p>
+<p>Then Shams disappeared a second time.</p>
+<p>This time he never returned.</p>
+<p>There are many accounts of what happened. The most widespread: he was killed by Rumi's students (possibly even by Rumi's son Ala al-Din). Others say he simply left. Scholarship has not settled the question.</p>
+<p>Rumi searched again. Everywhere. He could not find him.</p>
+<p>Then he stopped searching.</p>
+<p>He discovered something: he did not need to find Shams. Shams was not out there. Shams was inside him.</p>
+<p>He later said something to the effect of: I searched everywhere for Shams, and in the end I found that he is me and I am him.</p>
+<p>This was the turning point. Shams's physical disappearance forced Rumi's spiritual transformation. If Shams had stayed, Rumi might have depended on him forever. Shams's disappearance carved away Rumi's last remaining construction — his dependence on Shams himself.</p>
+<p>After the teacher was carved away, Rumi became a poet.</p>
+
+<h2>IV. The Reed</h2>
+<p>The <em>Masnavi</em> — Rumi's greatest work — opens with the Song of the Reed.</p>
+<p><em>Listen to the reed, how it tells a tale;<br>it complains of separations.<br><br>Since they cut me from the reed-bed,<br>in my wail men and women have cried.<br><br>I want a breast torn — torn apart by separation —<br>so I can explain the pain of longing.<br><br>Whoever stays far from their own origin<br>seeks again the time of union.</em></p>
+<p>Why is the reed crying? Because it was cut from the reed-bed. It once belonged to the reed-bed — to a whole, connected, unbroken unity. Someone cut it out, hollowed its interior, bored holes into it — and then it could make sound.</p>
+<p>Its sound is its pain. Its music is the remainder of its cutting.</p>
+<p>This is the same structure as Du Fu, Beethoven, and Sima Qian: the vessel was carved, and the remainder became something deeper. Du Fu's remainder was poetry. Beethoven's remainder was the late quartets. Sima Qian's remainder was the <em>Records of the Grand Historian</em>. Rumi's remainder was song.</p>
+<p>But Rumi added a layer the others did not: the reed, after being cut, wants to go back. It is not only crying — it is longing to return to the reed-bed. Its song is not merely an expression of pain — it is a yearning for reunion with the source.</p>
+<p>Du Fu's remainder points toward the human world: ren.<br>Beethoven's remainder points toward fate: defiance.<br>Sima Qian's remainder points toward history: the record.<br>Rumi's remainder points toward God: longing.</p>
+<p>Each remainder points in a different direction. But the structure is the same: after the carving, the deepest thing surges out.</p>
+
+<h2>V. Ishq</h2>
+<p>The core word of Rumi's poetry is an Arabic/Persian word: Ishq.</p>
+<p>Ishq is not ordinary love. Not "I like you" love. Not "I care about you" love. Not even the Christian <em>agape</em> — that self-giving divine charity.</p>
+<p>Ishq is burning. Consuming. What remains after the self has been burned away.</p>
+<p>In the Sufi tradition, Ishq is an ontological force — not merely an emotion but a mode of being. It pulls you out from behind the boundaries of the self, toward something larger. You do not control it — it controls you. You do not choose it — it chooses you.</p>
+<p>Rumi's feeling for Shams was Ishq. Not friendship. Not a teacher-student bond. Not ordinary love. It was a force that burned away his entire self — his scholarly identity, his social standing, his rational framework.</p>
+<p>After Shams disappeared, Rumi did not withdraw this Ishq. He redirected it toward everyone.</p>
+<p>Ishq for Shams became Ishq for God. Ishq for God became Ishq for all people.</p>
+<p>Socrates carved everyone but no one carved him.<br>Rumi was carved by one person and then opened toward everyone.</p>
+<p>Socrates carved from the outside in — he carved other people's constructions.<br>Rumi flowed from the inside out — after being carved, what poured through the cracks filled the entire world.</p>
+<p>Two directions. Two structures. But both are products of carving.</p>
+
+<h2>VI. Whirling</h2>
+<p>Rumi originated (or inspired) the whirling dance — Sema.</p>
+<p>The whirling dervishes. White robes, arms extended — right palm facing up (receiving grace from heaven), left palm facing down (transmitting it to the earth). Then they begin to spin. And keep spinning.</p>
+<p>What is whirling?</p>
+<p>From the body's perspective, whirling is a technique for loosening ordinary consciousness. Spin long enough and the boundaries of the self — "I am here, the world is there" — begin to blur. You are no longer certain which is you and which is the world. This moves in the same direction as the Sufi practice of <em>fana</em> — the annihilation of the ego-self.</p>
+<p>From this series' perspective, whirling is the bodily version of carving.</p>
+<p>Your body is a construction — it has clear boundaries, occupies definite space, faces a definite direction. Whirling loosens all of this. You have no direction — because you are turning in every direction. You have no fixed orientation — because your orientation changes every instant. Your boundaries blur — because your robes spread outward in centrifugal force, and you do not know where you end and the air begins.</p>
+<p>Zhuangzi's <em>xiaoyao</em> (free wandering) is spiritual freedom — unbound by any construction.<br>Rumi's whirling is bodily freedom — using rotation to liberate the body from fixity.</p>
+<p>Two kinds of freedom. Zhuangzi's is still — <em>zuowang</em>, "sitting in oblivion," sitting until the self dissolves. Rumi's is dynamic — spinning until the self dissolves.</p>
+<p>The Japanese scholar Toshihiko Izutsu, in <em>Sufism and Taoism</em>, compared the Sufi concept of <em>fana</em> with the Daoist concept of <em>zuowang</em> — both are techniques of self-dissolution. The difference is the path: Daoism dissolves through stillness; Sufism dissolves through motion. But the destination is the same: the boundaries of the self loosen, and something larger flows in.</p>
+
+<h2>VII. What He Wrote Was Not His</h2>
+<p>Rumi's collected poems bear a strange title: <em>Divan-i Shams-i Tabrizi</em> — "The Poems of Shams of Tabriz."</p>
+<p>He named his own poetry collection after Shams. Not after Rumi.</p>
+<p>Why?</p>
+<p>Because he felt the poems were not his. They were Shams writing through him. Shams had carved him open, and the poems poured through the cracks — but the true source was not Rumi. It was Shams, or more precisely, the greater thing that Shams represented.</p>
+<p>This is the same structure as Bach's S.D.G. — "Glory to God alone." Bach felt the music was not his; it was God's music flowing through his hands. Rumi felt the poems were not his; they were Shams — or God — flowing through his cracks.</p>
+<p>Both men did not consider themselves the source. Both considered themselves the conduit.</p>
+<p>The difference: Bach's conduit was intact — he was not carved; he was born a conduit, spending his life carrying God's music from heaven to paper. Rumi's conduit was formed by being shattered — Shams carved him, broke his scholarly identity apart, and from the fractures the poetry surged.</p>
+<p>Bach was an intact pipe.<br>Rumi was a pipe broken open — and the fractures are where the poetry came through.</p>
+
+<h2>VIII. His Funeral</h2>
+<p>December 17, 1273. Rumi died in Konya. He was sixty-six.</p>
+<p>At his funeral, something remarkable happened: it was not only Muslims who came. Christians and Jews came too.</p>
+<p>In thirteenth-century Anatolia, members of three religions attending the same man's funeral was nearly unimaginable. But they came. When asked why they were attending the funeral of a Muslim scholar, they said: he helped us understand our own faith.</p>
+<p>This is the transmission of Ishq. Rumi's trust in Shams became trust in God, which became trust in all people — regardless of religion. His poetry is filled with the Quran, the Prophet Muhammad, Islamic theology — he was not a man "beyond religion." He was a man who reached the deepest root of the Islamic tradition and discovered that the root connects to everyone.</p>
+<p>He did not leave Islam. He went to the root of Islam and found that the root touches all.</p>
+<p>His tomb is in Konya. Today it is called the Mevlana Museum. Millions visit every year. Muslims, Christians, atheists, tourists. They stand for a while before the tomb of a thirteenth-century Sufi scholar. Many do not know why they came. They only feel they should.</p>
+
+<h2>IX. Carved into Song</h2>
+<p>This series has written many people who were carved.</p>
+<p>Du Fu was carved into poetry — the remainder was ren.<br>Beethoven was carved into depth — the remainder was the late quartets.<br>Sima Qian was carved into pain — the remainder was the <em>Records of the Grand Historian</em>.<br>Darwin was carved into truth — the remainder was the theory of evolution.</p>
+<p>Rumi was carved into song.</p>
+<p>His remainder was not knowledge (he had knowledge; Shams carved that away), not a system (he did not build a system), not argumentation (he did not use logic to prove anything). His remainder was song. The voice of the reed. The cry that comes after being cut from the reed-bed — a cry so beautiful it makes you want to be cut open too.</p>
+<p>He is the only person in this series who makes you want to be carved.</p>
+<p>Socrates carves you — and it is uncomfortable. He forces you to admit you know nothing. This is not pleasant.<br>Reality carves Du Fu — and Du Fu suffers. No one wants Du Fu's experience.<br>Deafness carves Beethoven — and Beethoven rages. No one wants to lose their hearing.<br>Castration carves Sima Qian — and Sima Qian's intestines churn nine times a day. No one wants that pain.</p>
+<p>But after Rumi was carved by Shams — the poems, the songs, the Ishq — you feel: I want to be carved open too. I want to be cut from my reed-bed. If being cut means I can sing like that, then I am willing.</p>
+<p>This is Rumi's most singular quality: he makes carving attractive. He makes the remainder more beautiful than the wholeness before the carving.</p>
+<p>One more at the bridgehead. He wears a white robe. He is whirling. He does not look at anyone — he is turning. His right palm faces up, his left palm faces down. Receiving, transmitting. Receiving, transmitting.</p>
+<p>He is the only person at the bridgehead who is moving — everyone else stands or flies. He turns. His whirling has no single direction — or rather, his direction is every direction.</p>
+<p>He is singing. You cannot quite make out the words. But you hear the sound of the reed. The sound says: be cut open. Be cut open. Be cut from your reed-bed. Then you will be able to sing.</p>
+
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · Great Lives</em></p>
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="genghiskhan.html" class="xiyou-nav-btn xiyou-nav-prev">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">成吉思汗，纯粹的凿</span>
+            <span class="xiyou-nav-title lang-en">Genghis Khan, Pure Carving</span>
+          </span>
+        </a>
+        <a href="davinci.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">达芬奇，什么都开始了，什么都没有完成</span>
+            <span class="xiyou-nav-title lang-en">Da Vinci, Everything Begun, Nothing Finished</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

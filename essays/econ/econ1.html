@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>经济学漏掉了什么 / What Economics Left Out — nondubito</title>
+<style>
+  :root{--ink:#1a1a1a;--paper:#fafaf8;--accent:#2d5016;--mid:#5a6e3a;--light:#e8edd8;--serif:'Georgia',serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:18px;scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.75;padding:0 1rem}
+  .wrap{max-width:720px;margin:0 auto;padding:2rem 0 4rem}
+  /* nav */
+  nav.site{border-bottom:1px solid var(--light);padding:.6rem 0;margin-bottom:2.5rem;font-size:.8rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+  nav.site a{color:var(--mid);text-decoration:none}
+  nav.site a:hover{color:var(--accent)}
+  /* lang toggle */
+  .lang-btn{margin-left:auto;background:none;border:1px solid var(--mid);border-radius:4px;padding:.2rem .6rem;cursor:pointer;font-size:.75rem;color:var(--mid)}
+  .lang-btn:hover{background:var(--light)}
+  /* essay header */
+  .essay-header{margin-bottom:2.5rem}
+  .series-label{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);margin-bottom:.5rem}
+  h1{font-size:1.7rem;font-weight:700;line-height:1.3;margin-bottom:.4rem;color:var(--accent)}
+  .subtitle{font-size:1.05rem;color:#444;font-style:italic;margin-bottom:1rem}
+  .doi-line{font-size:.78rem;color:#888}
+  .doi-line a{color:var(--mid)}
+  /* body */
+  .essay-body h2{font-size:1.1rem;font-weight:700;margin:2rem 0 .6rem;color:var(--accent)}
+  .essay-body p{margin-bottom:1.1rem}
+  .essay-body blockquote{border-left:3px solid var(--mid);margin:1.5rem 0;padding:.6rem 1rem;background:var(--light);border-radius:0 4px 4px 0;font-style:italic}
+  .essay-body ul{margin:.5rem 0 1rem 1.5rem}
+  .essay-body li{margin-bottom:.4rem}
+  /* bilingual hide/show */
+  [data-lang="en"] .lang-zh{display:none}
+  [data-lang="zh"] .lang-en{display:none}
+  /* prev/next nav */
+  .essay-nav{margin-top:3rem;border-top:1px solid var(--light);padding-top:1.5rem;display:flex;justify-content:space-between;font-size:.85rem}
+  .essay-nav a{color:var(--mid);text-decoration:none}
+  .essay-nav a:hover{color:var(--accent)}
+  /* HC link */
+  .hc-link{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--light);font-size:.82rem;color:#888;text-align:center}
+  .hc-link a{color:var(--mid)}
+
+  .layer-table{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.88rem}
+  .layer-table th{background:var(--light);padding:.4rem .6rem;text-align:left;font-weight:600;border-bottom:2px solid var(--mid)}
+  .layer-table td{padding:.35rem .6rem;border-bottom:1px solid #e0e4d0}
+  .layer-table tr:last-child td{border-bottom:none}
+  .callout{background:var(--light);border-left:4px solid var(--accent);padding:.8rem 1rem;margin:1.4rem 0;border-radius:0 4px 4px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="site">
+  <a href="../../index.html">nondubito</a>
+  <span>·</span>
+  <a href="index.html">
+    <span class="lang-zh">经济学系列</span>
+    <span class="lang-en">Economics Series</span>
+  </a>
+  <button class="lang-btn" onclick="toggleLang()">EN / 中</button>
+</nav>
+
+<header class="essay-header">
+  <p class="series-label lang-zh">SAE 经济学系列</p>
+  <p class="series-label lang-en">SAE Economics Series</p>
+  <h1>
+    <span class="lang-zh">经济学漏掉了什么</span>
+    <span class="lang-en">What Economics Left Out</span>
+  </h1>
+  <p class="subtitle">
+    <span class="lang-zh">理性不止一层，效用函数装不下底线</span>
+    <span class="lang-en">Rationality has four layers; the utility function cannot hold a bottom line</span>
+  </p>
+  <p class="doi-line">DOI: <a href="https://doi.org/10.5281/zenodo.19358010" target="_blank">10.5281/zenodo.19358010</a> &nbsp;·&nbsp; <a href="https://self-as-an-end.net/papers/four-layers-economic.html" target="_blank" class="lang-zh">学术原文 ↗</a><a href="https://self-as-an-end.net/papers/four-layers-economic.html" target="_blank" class="lang-en">Full Paper ↗</a></p>
+</header>
+
+<article class="essay-body">
+<div class="lang-zh">
+<p>经济学有一个最有力的假设，也有一个最深的盲区。</p>
+
+<p>最有力的假设是：人是理性的。给定选项，给定偏好，人会选效用最高的那个。这个假设撑起了价格理论、博弈论、宏观模型——绝大部分现代经济学的骨架。它不是错的。在大量的真实市场里，它非常准确。</p>
+
+<p>盲区在于：这个"理性"只是理性的一个层级。</p>
+
+<h2>四层，不是一层</h2>
+
+<p>维度序列理论（SAE框架）区分了四种结构性不同的理性，对应四个认知层级：</p>
+
+<table class="layer-table">
+<thead><tr><th>层级</th><th>操作</th><th>经济学对应</th></tr></thead>
+<tbody>
+<tr><td><strong>12DD</strong></td><td>利益最大化计算</td><td>标准理性人</td></tr>
+<tr><td><strong>13DD</strong></td><td>不确定性监控，"我可能是错的"</td><td>行为经济学修正</td></tr>
+<tr><td><strong>14DD</strong></td><td>"我不得不"，有不可交换之物</td><td>sacred values, identity</td></tr>
+<tr><td><strong>15DD</strong></td><td>"我们各自不得不，所以"——在双方底线间产出新方案</td><td>目前无对应概念</td></tr>
+</tbody>
+</table>
+
+<p>经济学的理性人是12DD的。Kahneman的行为经济学修正的是13DD的执行偏差。但14DD和15DD几乎在主流经济学的词汇表里消失了——不是因为它们不存在，而是因为语言装不下它们。</p>
+
+<h2>翻译损耗</h2>
+
+<p>当一个人拒绝出售某样东西"无论出价多高"，经济学只有一种翻译：他对它的效用评估极高。但这个翻译损耗了关键的东西——那个人说的不是"价格不够高"，而是"这个操作不存在"。这两句话描述的是完全不同的现实。</p>
+
+<p>当两个谈判者产出了一个双方事先都没有的新方案，经济学翻译为：他们在更大的方案空间中找到了帕累托改进。但那个新方案不是被"找到"的——它是在双方各守底线的前提下被创造出来的。C不是妥协，不是折中，不是在已有选项里选个大家都能接受的。C是一个进入谈判前不存在的东西。</p>
+
+<p>翻译不算错，但损耗是真实的。</p>
+
+<h2>诊断</h2>
+
+<p>经济学把大量14DD/15DD行为判定为"非理性"——不卖是非理性，no deal是谈判失败，不愿妥协是固执。但从14DD的视角看，这些恰恰是理性的：守底线是因为那不是可交换的东西，no deal是因为C没有出现，不妥协是因为妥协意味着交出不可交出的。</p>
+
+<blockquote>经济学所谓的大量"非理性行为"，是更高层级的理性被低层级框架系统性误读的产物。</blockquote>
+
+<p>Kant的目的王国（Kingdom of Ends）说的是：每一个理性存在者都同时是目的，不只是手段。经济学的核心语法描述的是手段王国（Kingdom of Means）：一切价值可以被表达为偏好，一切偏好可以被交换，一切主体互为工具。</p>
+
+<p>手段王国不是贬义词——它准确描述了大量真实的经济活动。问题在于，它不是全部。剩下的那部分，就是本系列要展开的。</p>
+</div>
+<div class="lang-en">
+<p>Economics has its most powerful assumption — and its deepest blind spot.</p>
+
+<p>The assumption: people are rational. Given options and preferences, people choose the highest utility. This assumption supports price theory, game theory, macroeconomic models — the skeleton of most of modern economics. It isn't wrong. In vast stretches of real markets, it's very accurate.</p>
+
+<p>The blind spot: this "rationality" is only one layer of rationality.</p>
+
+<h2>Four Layers, Not One</h2>
+
+<p>Dimensional Sequence Theory (the SAE framework) distinguishes four structurally different kinds of rationality, corresponding to four cognitive layers:</p>
+
+<table class="layer-table">
+<thead><tr><th>Layer</th><th>Operation</th><th>Economics analog</th></tr></thead>
+<tbody>
+<tr><td><strong>12DD</strong></td><td>utility maximization</td><td>standard rational agent</td></tr>
+<tr><td><strong>13DD</strong></td><td>uncertainty monitoring, "I might be wrong"</td><td>behavioral economics corrections</td></tr>
+<tr><td><strong>14DD</strong></td><td>"I cannot not" — having non-tradeable commitments</td><td>sacred values, identity economics</td></tr>
+<tr><td><strong>15DD</strong></td><td>"we each cannot not, therefore" — producing new solutions between two sets of bottom lines</td><td>no current concept</td></tr>
+</tbody>
+</table>
+
+<p>Economics describes a 12DD rational agent. Kahneman's behavioral economics corrects 13DD execution biases. But 14DD and 15DD have largely vanished from mainstream economics vocabulary — not because they don't exist, but because the language cannot hold them.</p>
+
+<h2>Translation Loss</h2>
+
+<p>When someone refuses to sell something "no matter how high the price," economics has only one translation: they place extremely high utility on it. But this translation loses the crucial thing — that person isn't saying "the price isn't high enough," they're saying "this transaction does not exist." These two sentences describe entirely different realities.</p>
+
+<p>When two negotiators produce a solution neither had before entering the room, economics translates: they found a Pareto improvement in a larger solution space. But that new solution wasn't "found" — it was created from the premise that both parties held their ground. C is not compromise, not splitting the difference, not selecting from existing options. C is something that didn't exist before the negotiation began.</p>
+
+<p>The translation isn't wrong. But the loss is real.</p>
+
+<h2>Diagnosis</h2>
+
+<p>Economics labels large amounts of 14DD/15DD behavior as "irrational" — refusing to sell is irrational, no-deal is negotiation failure, unwillingness to compromise is stubbornness. But from the 14DD perspective, these are precisely rational: holding the bottom line because it is not tradeable, no-deal because C hasn't appeared, not compromising because compromise means surrendering the unsurrenderable.</p>
+
+<blockquote>Much of what economics calls "irrational behavior" is higher-layer rationality being systematically misread by a lower-layer framework.</blockquote>
+
+<p>Kant's Kingdom of Ends says: every rational being is simultaneously an end, not merely a means. Economics' core grammar describes a Kingdom of Means: all value can be expressed as preference, all preferences can be traded, all agents are tools for each other.</p>
+
+<p>Kingdom of Means isn't a slur — it accurately describes enormous amounts of real economic activity. The problem is that it isn't all of it. The remainder is what this series unfolds.</p>
+</div>
+</article>
+
+<nav class="essay-nav">
+<span></span>
+
+  <a href="econ2.html">
+    <span class="lang-zh">底线是怎么来的 →</span>
+    <span class="lang-en">How Principles Emerge →</span>
+  </a>
+</nav>
+
+<p class="hc-link">
+  <span class="lang-zh">秦汉 · <a href="../../xiangjun/index.html">相君 HC-16</a></span>
+  <span class="lang-en">Han Qin · <a href="../../xiangjun/index.html">Xiangjun HC-16</a></span>
+</p>
+
+</div>
+
+<script>
+function toggleLang(){
+  const html=document.documentElement;
+  const cur=html.getAttribute('data-lang')||'zh';
+  const nxt=cur==='zh'?'en':'zh';
+  html.setAttribute('data-lang',nxt);
+  localStorage.setItem('nondubito-lang',nxt);
+}
+(function(){
+  const saved=localStorage.getItem('nondubito-lang');
+  if(saved) document.documentElement.setAttribute('data-lang',saved);
+})();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"0eb3b3dc16a54d9fa97b0a0a04b30c24"}'></script>
+</body>
+</html>

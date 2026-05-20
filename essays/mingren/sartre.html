@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>萨特，他人即地狱 — Non Dubito</title>
+  <meta name="description" content="一个房间。三个人。没有窗户。没有镜子。灯永远亮着。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/mingren/sartre.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="../../index.html#mingren" class="back-link lang-zh">← 名人系列</a>
+        <a href="../../index.html#mingren" class="back-link lang-en">← Great Lives</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">名人系列</div>
+          <div class="essay-series lang-en">Great Lives</div>
+          <h1 class="lang-zh">萨特，他人即地狱</h1>
+          <h1 class="lang-en">Sartre, Hell Is Other People</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="date">March 2026</span>
+        </div>
+      </header>
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <h2>一、没有出口</h2>
+        <p>一个房间。三个人。没有窗户。没有镜子。灯永远亮着。</p>
+        <p>这是萨特的剧本《禁闭》（Huis clos, 1944）。三个死人被关在一个房间里。没有刑具。没有火焰。没有魔鬼来折磨他们。只有彼此。</p>
+        <p>他们慢慢发现：地狱就是这个。不是烈火，不是酷刑。是你永远在别人的目光下活着，永远被别人看着，永远被别人定义。你想当英雄——但另一个人看你的眼神说"你是懦夫"。你想当好人——但另一个人的存在提醒你你做过的事。你逃不掉。没有出口。灯永远亮着。你永远被看着。</p>
+        <p>剧终的时候，加尔森说了那句话："地狱就是他人。"（L'enfer, c'est les autres.）</p>
+        <p>大部分人以为这句话的意思是"别人很讨厌"。不是。萨特后来专门解释过：这句话的意思是——你对自己的理解永远要经过他人。你不能独自决定你是谁。你需要他人的目光来确认自己，但他人的目光同时也在限制你，把你变成一个固定的对象。你是自由的——但你在他人面前不自由。</p>
+        <p>他人即地狱。不是因为他人坏。是因为他人的存在让你无法完全自由。</p>
+        <h2>二、恶心</h2>
+        <p>1938年。萨特三十三岁。他出版了小说《恶心》（La Nausée）。</p>
+        <p>主人公洛根丁坐在公园里看一棵树的根。他突然感到一种无法忍受的恶心——不是胃的恶心，是存在的恶心。他意识到这棵树的根就在那里。它没有理由。它没有目的。它不是"为了"什么才存在的。它就在那里。多余的。荒谬的。</p>
+        <p>然后他意识到自己也是这样。他的存在没有理由。没有人需要他存在。没有什么目的让他的存在成为必要。他就在那里。跟那棵树的根一样。</p>
+        <p>这是萨特哲学的起点：存在是荒谬的。你存在了。没有为什么。你不是被设计出来的。你不是为了某个目的被送到这个世界上的。你就是在这里了。</p>
+        <p>柏拉图说你的存在有一个模板——理念。你的灵魂来自理念世界，你的人生是在回忆和接近那个完美的模板。
+        基督教说你的存在有一个设计者——上帝。你被创造是有目的的。
+        黑格尔说你的存在是绝对精神的一个环节——你在宏大历史中有你的位置。</p>
+        <p>萨特说：都没有。没有模板。没有设计者。没有位置。你就在这里。恶心吗？恶心。但这是事实。</p>
+        <h2>三、存在先于本质</h2>
+        <p>1945年10月。巴黎。萨特做了一场演讲，后来整理成小册子：《存在主义是一种人道主义》（L'existentialisme est un humanisme）。</p>
+        <p>他在里面说了存在主义最核心的一句话："存在先于本质。"</p>
+        <p>什么意思？</p>
+        <p>一把裁纸刀。在它被制造之前，有人先想好了它的用途——切纸。用途（本质）先于制造（存在）。本质先于存在。</p>
+        <p>传统哲学和神学把人也这样看：上帝先想好了"人应该是什么样的"（本质），然后造了人（存在）。人的本质——理性的动物，上帝的造物，历史的环节——先于你的存在。你来到这个世界的时候，你已经是"什么"了。</p>
+        <p>萨特把这个翻过来。人不是裁纸刀。人没有预设的用途。你来到这个世界的时候，你什么都不是。你的存在先于你的本质。你先在这里了，然后你通过你的选择，一步一步变成"什么"。</p>
+        <p>你不是一个懦夫然后做了懦弱的事。你做了懦弱的事然后变成了一个懦夫。你不是一个英雄然后做了勇敢的事。你做了勇敢的事然后变成了一个英雄。</p>
+        <p>本质不在前面等你。本质在你身后——是你已经做过的选择的总和。</p>
+        <h2>四、自由是诅咒</h2>
+        <p>如果没有预设的本质，那你是完全自由的。没有人替你规定你该怎么活。没有上帝的剧本。没有历史的安排。没有"人性"替你做决定。</p>
+        <p>听起来很好。但萨特说：这是诅咒。</p>
+        <p>"人是被判为自由的。"（L'homme est condamné à être libre.）</p>
+        <p>"判为"——condemned。跟法庭判刑是同一个词。自由不是奖励。自由是刑罚。</p>
+        <p>为什么？</p>
+        <p>因为如果你完全自由，你就完全负责。你不能说"这是命运"。你不能说"我没有选择"。你不能说"社会逼我的"。你选了。每一个选择都是你的。每一个后果都是你的。你没有借口。</p>
+        <p>克尔凯郭尔说焦虑是"自由的眩晕"——你站在悬崖边上害怕，因为你可以跳。萨特把这个推到极端：你每时每刻都在悬崖边上。你每时每刻都在选择。你每时每刻都可以成为不同的人。这个自由让你恶心，让你焦虑，让你想逃。</p>
+        <p>逃到哪里？逃到"坏信仰"（mauvaise foi / bad faith）里。</p>
+        <h2>五、坏信仰</h2>
+        <p>坏信仰是萨特哲学里最锋利的概念。</p>
+        <p>什么是坏信仰？就是你骗自己说你不自由。</p>
+        <p>一个服务员在咖啡馆里端盘子。他的动作太规整了——像在演"服务员"这个角色。他走路的方式，弯腰的方式，微笑的方式——都是"一个服务员应有的样子"。他不是在做自己。他在扮演一个角色。他在用角色来逃避自由——"我是服务员，所以我应该这样"。</p>
+        <p>这就是坏信仰。你用一个身份来遮盖你的自由。你说"我是军人所以必须服从命令"。你说"我是母亲所以必须牺牲自己"。你说"我的性格就是这样"。你用"是什么"来逃避"可以是什么"。</p>
+        <p>萨特说：你不是任何东西。你在假装你是。</p>
+        <p>奥古斯丁说"但还没有"（but not yet）——他知道应该信上帝但还没准备好。萨特会说这是坏信仰——你在用"还没准备好"来逃避选择。你随时可以选。你不选是因为你害怕自由。</p>
+        <p>休谟说你不需要地基。萨特说你连角色都不需要——角色是你给自己造的牢笼。</p>
+        <h2>六、他和克尔凯郭尔</h2>
+        <p>萨特是克尔凯郭尔的世俗版。</p>
+        <p>克尔凯郭尔说：你必须选择。选择没有理性保障。你必须跳。
+        萨特说：完全同意。但克尔凯郭尔跳到了信仰里。我不跳到信仰里。我跳到虚空里。没有上帝接着你。你跳了就跳了。</p>
+        <p>克尔凯郭尔的焦虑有一个出口——信仰之跃。跳过去，上帝在那边。
+        萨特的焦虑没有出口——你跳过去，那边什么都没有。你还是得自己决定。</p>
+        <p>克尔凯郭尔在深夜三点醒了，害怕，然后跳向上帝。
+        萨特在深夜三点醒了，害怕，发现没有上帝可跳。你只有你自己。</p>
+        <p>两个人都从黑格尔的体系里走出来。都说"体系里没有我"。都说"你必须选择"。但克尔凯郭尔走出来之后找到了信仰。萨特走出来之后发现外面什么都没有。</p>
+        <p>克尔凯郭尔的存在主义是有神的。
+        萨特的存在主义是无神的。</p>
+        <p>同一个起点。不同的落点。或者说——萨特没有落点。他一直在跳。</p>
+        <h2>七、他和马克思</h2>
+        <p>萨特前半生是纯粹的存在主义者。后半生往马克思主义走了。</p>
+        <p>1960年。《辩证理性批判》（Critique de la raison dialectique）。他试图把存在主义和马克思主义合在一起——个体自由和历史结构，选择和阶级，存在先于本质和物质条件决定意识。</p>
+        <p>他说马克思主义是"我们时代不可超越的哲学"。他试图在马克思主义的框架里保留存在主义的核心——个体的自由和责任。</p>
+        <p>这个构成功了吗？</p>
+        <p>没有。《辩证理性批判》第二卷没写完。他自己也承认写不下去。个体自由和历史必然性之间的矛盾他没有解决——跟马克思自己没解决的问题一样。</p>
+        <p>这个系列写过马克思："方法活了终点碎了。"萨特晚年的轨迹是同一个模式——他试图闭合存在主义和马克思主义，闭合失败了。个体自由是凿。历史结构是构。你把它们合在一起，构就会试图吃掉自由。自由会试图凿穿构。两个东西不兼容。</p>
+        <p>萨特前半生凿得干净——存在先于本质，你完全自由，没有借口。后半生试图构了——辩证理性，历史唯物主义，集体实践。构碎了。</p>
+        <p>方法活了。终点碎了。又一次。</p>
+        <h2>八、他和波伏瓦</h2>
+        <p>让-保罗·萨特和西蒙娜·德·波伏瓦。1929年认识。从那时起直到1980年萨特去世——五十一年。</p>
+        <p>他们从不结婚。他们约定：两人是"必要的爱"（amour nécessaire），但允许"偶然的爱"（amours contingentes）——各自可以有别的情人。</p>
+        <p>这个约定是他们哲学的实践。存在先于本质——爱也是。爱不是一个本质（"我们是夫妻所以必须怎样"）。爱是一个不断的选择（"我今天选择跟你在一起"）。你不能把爱变成制度。制度是构。构会闭合。闭合就会碎。</p>
+        <p>他们的关系是一个拒绝闭合的构。</p>
+        <p>这个构完美吗？不完美。波伏瓦在日记和信件中透露过痛苦——萨特跟别的女人的关系有时候让她不好受。萨特也有过类似的时刻。"偶然的爱"在理论上很漂亮，在生活中有余项。</p>
+        <p>但他们维持了五十一年。没有结婚。没有分手。萨特死的时候波伏瓦在旁边。她后来写了一本书叫《告别仪式》（La cérémonie des adieux），记录萨特最后十年的衰老和死亡。</p>
+        <p>波伏瓦值得单独一篇。下一篇写她。这篇只说他们的关系：一个拒绝闭合的构，有裂缝，有余项，但活了五十一年。比大多数闭合了的构都长。</p>
+        <h2>九、蒙帕纳斯</h2>
+        <p>1980年4月15日。巴黎。萨特去世。七十四岁。</p>
+        <p>五万人自发走上街头送葬。蒙帕纳斯公墓。巴黎人把它当成了一场事件——二十世纪法国最后一个知识分子巨人走了。</p>
+        <p>他最后几年几乎失明。还在口述。还在跟波伏瓦对话。还在试图想清楚那些他一辈子没想清楚的事——自由和历史，个体和集体，存在和结构。</p>
+        <p>他没想清楚。他死的时候问题还在那里。</p>
+        <p>桥头上又多了一个人。他不高。戴眼镜。眼镜后面的眼睛几乎看不见了——最后几年的失明。他叼着烟斗（他一辈子抽烟斗），烟雾在他脸前面飘。</p>
+        <p>他站在桥上，但他站的方式很奇怪——他不面朝任何方向。他不往前看，不往下看，不往上看。他转来转去。他在看所有人。不是契诃夫那种安静的看。是一种不安的看——他在每个人身上看到了什么？他在看他人。他在被他人看。</p>
+        <p>他知道他逃不掉。他在桥上，他被其他所有人的目光定义着。苏格拉底看他的眼神说"你说你什么都知道"。休谟看他的眼神说"你想太多了"。克尔凯郭尔看他的眼神说"你把信仰扔了"。</p>
+        <p>他人即地狱。在桥头上也是。</p>
+        <p>但他没有走。他站在那里。叼着烟斗。他接受了。没有出口。灯永远亮着。他选择站在这里。</p>
+        <p>这是他能做的唯一的事：选择。</p>
+        <h2>注释</h2>
+        <p>[1] 萨特"他人即地狱"与Self-as-an-End理论中"凿构循环"和"构不可闭合"的关系：凿构循环的核心论证见系列方法论总论（DOI: 10.5281/zenodo.18842450）。萨特的独特位置在于他是克尔凯郭尔的世俗版——把信仰之跃去掉了信仰，只剩下跃。"存在先于本质"是对柏拉图理念论的最直接否定：柏拉图说本质（理念）先于存在（影子），萨特把这个翻过来。"人被判为自由的"是自由作为诅咒而非礼物——因为完全自由意味着完全负责。"坏信仰"是用角色/身份逃避自由——用"是什么"遮盖"可以是什么"。萨特与克尔凯郭尔：同一个起点（体系里没有"我"，你必须选择），不同的落点（克尔凯郭尔跳到信仰，萨特跳到虚空）。萨特晚年试图合并存在主义与马克思主义（《辩证理性批判》），闭合失败——方法活了终点碎了，又一次。他与波伏瓦的关系是"拒绝闭合的构"——不结婚，允许偶然的爱，有余项，但活了51年。</p>
+        <p>[2] 萨特生平主要依据Annie Cohen-Solal, <em>Sartre: A Life</em> (1987)及Gary Cox, <em>Sartre: A Guide for the Perplexed</em> (2006)。《恶心》（La Nausée, 1938）。《存在与虚无》（L'Être et le Néant, 1943）。《禁闭》（Huis clos, 1944），"地狱就是他人"（L'enfer, c'est les autres）为剧中加尔森台词。《存在主义是一种人道主义》（L'existentialisme est un humanisme, 1946），"存在先于本质"及"人被判为自由的"见该文。"坏信仰"（mauvaise foi）概念见《存在与虚无》第一部分。咖啡馆服务员的例子见同书。《辩证理性批判》（Critique de la raison dialectique, 1960），第二卷未完成。萨特与波伏瓦的关系（1929年相识）参考Cohen-Solal及Hazel Rowley, <em>Tête-à-Tête: The Lives and Loves of Simone de Beauvoir and Jean-Paul Sartre</em> (2005)。"必要的爱"与"偶然的爱"的约定参考Rowley。波伏瓦《告别仪式》（La cérémonie des adieux, 1981）。萨特去世（1980年4月15日，巴黎）。蒙帕纳斯公墓葬礼参考Cohen-Solal。系列第三轮第九篇。前五十篇见nondubito.net。</p>
+      </div>
+      <div class="essay-body lang-en">
+        <h2>I. No Exit</h2>
+        <p>A room. Three people. No windows. No mirrors. The lights never go off.</p>
+        <p>This is Sartre's play <em>No Exit</em> (Huis clos, 1944). Three dead people are locked in a room. There are no instruments of torture. No flames. No demon comes to torment them. Only each other.</p>
+        <p>They slowly discover: this is hell. Not fire, not punishment. It is living forever under the gaze of others, forever being watched, forever being defined. You want to be a hero — but the way another person looks at you says "you are a coward." You want to be a good person — but another's presence reminds you of what you've done. You cannot escape. There is no exit. The lights are always on. You are always being seen.</p>
+        <p>At the end, Garcin says the line: "Hell is other people." (L'enfer, c'est les autres.)</p>
+        <p>Most people think this means "other people are annoying." It doesn't. Sartre later explained it himself: the line means that your understanding of yourself must always pass through others. You cannot decide who you are in isolation. You need the gaze of others to confirm yourself, but that same gaze simultaneously constrains you, turning you into a fixed object. You are free — but in the presence of others, you are not.</p>
+        <p>Hell is other people. Not because they are bad. Because their existence makes it impossible for you to be entirely free.</p>
+        <h2>II. Nausea</h2>
+        <p>1938. Sartre was thirty-three. He published the novel <em>Nausea</em> (La Nausée).</p>
+        <p>The protagonist Roquentin is sitting in a park, looking at the root of a tree. He is suddenly seized by an unbearable nausea — not of the stomach but of existence. He realizes that this tree root is simply there. It has no reason. It has no purpose. It does not exist "for" anything. It is just there. Superfluous. Absurd.</p>
+        <p>Then he realizes he is the same. His existence has no reason. Nobody needs him to exist. No purpose makes his existence necessary. He is simply here. Just like that root.</p>
+        <p>This is the starting point of Sartre's philosophy: existence is absurd. You exist. There is no why. You were not designed. You were not sent into this world for a purpose. You are simply here.</p>
+        <p>Plato said your existence has a template — the Forms. Your soul came from the world of Forms; your life is spent recollecting and approaching the perfect template.
+Christianity said your existence has a designer — God. You were created with a purpose.
+Hegel said your existence is a moment in Absolute Spirit — you have your place in the grand narrative of history.</p>
+        <p>Sartre said: none of that. No template. No designer. No place. You are simply here. Does that make you nauseous? It does. But it is the truth.</p>
+        <h2>III. Existence Precedes Essence</h2>
+        <p>October 1945. Paris. Sartre gave a lecture, later published as a pamphlet: <em>Existentialism Is a Humanism</em> (L'existentialisme est un humanisme).</p>
+        <p>In it he stated the most central sentence of existentialism: "Existence precedes essence."</p>
+        <p>What does this mean?</p>
+        <p>A paper knife. Before it was made, someone conceived its purpose — to cut paper. The purpose (essence) preceded the making (existence). Essence precedes existence.</p>
+        <p>Traditional philosophy and theology viewed humans the same way: God first conceived "what humans should be" (essence), then made humans (existence). Human essence — rational animal, creature of God, moment in history — precedes your existence. By the time you arrive in the world, you already "are" something.</p>
+        <p>Sartre reversed this. Humans are not paper knives. Humans have no preset purpose. When you arrive in the world, you are nothing. Your existence precedes your essence. You are here first, and then through your choices, step by step, you become "something."</p>
+        <p>You are not a coward who then does cowardly things. You do cowardly things and thereby become a coward. You are not a hero who then does brave things. You do brave things and thereby become a hero.</p>
+        <p>Essence is not waiting for you up ahead. Essence is behind you — it is the sum of the choices you have already made.</p>
+        <h2>IV. Freedom as Curse</h2>
+        <p>If there is no preset essence, then you are completely free. No one has prescribed how you should live. There is no divine script. No historical arrangement. No "human nature" making decisions for you.</p>
+        <p>Sounds wonderful. But Sartre said: it is a curse.</p>
+        <p>"Man is condemned to be free." (L'homme est condamné à être libre.)</p>
+        <p>"Condemned" — the same word as a court sentence. Freedom is not a reward. Freedom is a punishment.</p>
+        <p>Why?</p>
+        <p>Because if you are completely free, you are completely responsible. You cannot say "it was fate." You cannot say "I had no choice." You cannot say "society forced me." You chose. Every choice is yours. Every consequence is yours. You have no excuse.</p>
+        <p>Kierkegaard said anxiety is "the dizziness of freedom" — you stand at the cliff's edge and are afraid because you could jump. Sartre pushed this to the extreme: you are at the cliff's edge at every moment. You are choosing at every moment. You could become a different person at every moment. This freedom makes you nauseous, makes you anxious, makes you want to flee.</p>
+        <p>Flee where? Into "bad faith" (mauvaise foi).</p>
+        <h2>V. Bad Faith</h2>
+        <p>Bad faith is the sharpest concept in Sartre's philosophy.</p>
+        <p>What is bad faith? It is deceiving yourself into believing you are not free.</p>
+        <p>A waiter in a café carries his tray. His movements are too precise — as if he is performing the role of "waiter." The way he walks, the way he bends, the way he smiles — it is all "how a waiter is supposed to be." He is not being himself. He is playing a character. He is using the character to escape freedom — "I am a waiter, therefore I should act this way."</p>
+        <p>This is bad faith. You use an identity to cover your freedom. You say "I am a soldier so I must obey orders." You say "I am a mother so I must sacrifice myself." You say "that's just my personality." You use "what I am" to escape "what I could be."</p>
+        <p>Sartre said: you are not anything. You are pretending you are.</p>
+        <p>Augustine said "but not yet" — he knew he should believe in God but wasn't ready. Sartre would call this bad faith — you are using "not ready yet" to escape the choice. You can choose at any moment. You don't choose because you are afraid of freedom.</p>
+        <p>Hume said you don't need a foundation. Sartre said you don't even need a role — the role is a prison you built for yourself.</p>
+        <h2>VI. Sartre and Kierkegaard</h2>
+        <p>Sartre is the secular Kierkegaard.</p>
+        <p>Kierkegaard said: you must choose. Choice has no rational guarantee. You must leap.
+Sartre said: I completely agree. But Kierkegaard leaped into faith. I do not leap into faith. I leap into the void. There is no God to catch you. You leap and that's it.</p>
+        <p>Kierkegaard's anxiety had an exit — the leap of faith. Leap across and God is on the other side.
+Sartre's anxiety has no exit — you leap across and there is nothing on the other side. You still have to decide for yourself.</p>
+        <p>Kierkegaard woke at three in the morning, afraid, and leaped toward God.
+Sartre woke at three in the morning, afraid, and found there was no God to leap toward. There is only you.</p>
+        <p>Both walked out of Hegel's system. Both said "there is no 'I' in the system." Both said "you must choose." But Kierkegaard walked out and found faith. Sartre walked out and found nothing.</p>
+        <p>Kierkegaard's existentialism is theistic.
+Sartre's existentialism is atheistic.</p>
+        <p>Same starting point. Different landing. Or rather — Sartre has no landing. He is still leaping.</p>
+        <h2>VII. Sartre and Marx</h2>
+        <p>In the first half of his life, Sartre was a pure existentialist. In the second half, he moved toward Marxism.</p>
+        <p>1960. <em>Critique of Dialectical Reason</em> (Critique de la raison dialectique). He attempted to merge existentialism and Marxism — individual freedom and historical structure, choice and class, existence preceding essence and material conditions determining consciousness.</p>
+        <p>He called Marxism "the unsurpassable philosophy of our time." He tried to preserve the existentialist core — individual freedom and responsibility — within the Marxist framework.</p>
+        <p>Did it work?</p>
+        <p>No. Volume two of the <em>Critique</em> was never finished. He himself admitted he could not continue. The contradiction between individual freedom and historical necessity remained unresolved — the same problem Marx himself never solved.</p>
+        <p>This series covered Marx: "the method survived, the endpoint shattered." Sartre's later trajectory follows the same pattern — he tried to close existentialism and Marxism together, and the closure failed. Individual freedom is a chisel. Historical structure is a construct. When you force them together, the construct tries to consume freedom. Freedom tries to carve through the construct. The two are incompatible.</p>
+        <p>In the first half of his life, Sartre carved cleanly — existence precedes essence, you are completely free, no excuses. In the second half, he tried to construct — dialectical reason, historical materialism, collective praxis. The construction shattered.</p>
+        <p>The method survived. The endpoint shattered. Once again.</p>
+        <h2>VIII. Sartre and Beauvoir</h2>
+        <p>Jean-Paul Sartre and Simone de Beauvoir. They met in 1929. From that point until Sartre's death in 1980 — fifty-one years.</p>
+        <p>They never married. They made a pact: the two of them were each other's "necessary love" (amour nécessaire), but they permitted "contingent loves" (amours contingentes) — each could have other lovers.</p>
+        <p>This pact was the enactment of their philosophy. Existence precedes essence — love, too. Love is not an essence ("we are husband and wife, therefore we must behave a certain way"). Love is a continual choice ("today I choose to be with you"). You cannot turn love into an institution. An institution is a construction. A construction will close. Closure will shatter.</p>
+        <p>Their relationship was a construction that refused to close.</p>
+        <p>Was it perfect? No. Beauvoir revealed pain in her diaries and letters — Sartre's relationships with other women sometimes hurt her. Sartre had similar moments. "Contingent love" is elegant in theory; in practice, there is remainder.</p>
+        <p>But they lasted fifty-one years. Never married. Never separated. Sartre died with Beauvoir beside him. She later wrote a book called <em>Adieux: A Farewell to Sartre</em> (La cérémonie des adieux), recording his last decade of decline and death.</p>
+        <p>Beauvoir deserves her own essay. The next one will be hers. Here I will say only this about their relationship: a construction that refused to close, cracked, with remainder, but alive for fifty-one years. Longer than most constructions that did close.</p>
+        <h2>IX. Montparnasse</h2>
+        <p>April 15, 1980. Paris. Sartre died. Seventy-four years old.</p>
+        <p>Fifty thousand people took to the streets for the funeral procession, unbidden. Montparnasse Cemetery. Paris treated it as an event — the last great intellectual giant of twentieth-century France was gone.</p>
+        <p>In his final years he was nearly blind. He was still dictating. Still in conversation with Beauvoir. Still trying to think through the things he had never resolved — freedom and history, the individual and the collective, existence and structure.</p>
+        <p>He did not resolve them. When he died, the questions were still there.</p>
+        <p>One more at the bridgehead. Not tall. Wears glasses. The eyes behind the glasses can barely see — the blindness of his final years. He has a pipe clenched between his teeth (he smoked a pipe his entire life); the smoke drifts across his face.</p>
+        <p>He stands on the bridge, but his stance is strange — he does not face any one direction. He does not look forward, does not look down, does not look up. He turns this way and that. He is looking at everyone. Not the quiet watching of Chekhov. A restless watching — what does he see in each of them? He is looking at others. He is being looked at by others.</p>
+        <p>He knows he cannot escape. He is on the bridge, and he is being defined by the gaze of everyone else. Socrates' gaze says "you claim to know everything." Hume's gaze says "you think too much." Kierkegaard's gaze says "you threw away faith."</p>
+        <p>Hell is other people. Even at the bridgehead.</p>
+        <p>But he does not leave. He stands there. Pipe in his teeth. He accepts it. There is no exit. The lights are always on. He chooses to stand here.</p>
+        <p>This is the only thing he can do: choose.</p>
+        <h2>Notes</h2>
+        <p>[1] The relationship between Sartre's "hell is other people" and the chisel-construct cycle and remainder concepts in Self-as-an-End theory: the core argument for the chisel-construct cycle can be found in the Methodological Overview (DOI: 10.5281/zenodo.18842450). Sartre's unique position is that he is the secular Kierkegaard — the leap of faith stripped of faith, leaving only the leap. "Existence precedes essence" is the most direct negation of Plato's Theory of Forms: Plato said essence (the Forms) precedes existence (shadows); Sartre reversed this. "Man is condemned to be free" frames freedom as curse rather than gift — because total freedom means total responsibility. "Bad faith" is using a role or identity to escape freedom — covering "what you could be" with "what you are." Sartre and Kierkegaard: the same starting point (there is no "I" in the system; you must choose), different landings (Kierkegaard leaps into faith; Sartre leaps into the void). In his later years, Sartre attempted to merge existentialism and Marxism (<em>Critique of Dialectical Reason</em>), and the closure failed — the method survived, the endpoint shattered, once again. His relationship with Beauvoir was a "construction that refused to close" — no marriage, contingent loves permitted, remainder present, but alive for 51 years.</p>
+        <p>[2] Sartre's life draws primarily on Annie Cohen-Solal, <em>Sartre: A Life</em> (1987) and Gary Cox, <em>Sartre: A Guide for the Perplexed</em> (2006). <em>Nausea</em> (La Nausée, 1938). <em>Being and Nothingness</em> (L'Être et le Néant, 1943). <em>No Exit</em> (Huis clos, 1944); "Hell is other people" (L'enfer, c'est les autres) is Garcin's line. <em>Existentialism Is a Humanism</em> (L'existentialisme est un humanisme, 1946); "existence precedes essence" and "man is condemned to be free" appear therein. "Bad faith" (mauvaise foi): <em>Being and Nothingness</em>, Part One. The café waiter example: ibid. <em>Critique of Dialectical Reason</em> (Critique de la raison dialectique, 1960); Volume Two unfinished. Sartre and Beauvoir's relationship (met 1929): Cohen-Solal and Hazel Rowley, <em>Tête-à-Tête: The Lives and Loves of Simone de Beauvoir and Jean-Paul Sartre</em> (2005). "Necessary love" and "contingent loves": Rowley. Beauvoir's <em>Adieux: A Farewell to Sartre</em> (La cérémonie des adieux, 1981). Sartre's death (April 15, 1980, Paris). Montparnasse funeral: Cohen-Solal. This is the ninth essay of Round Three. All previous essays are available at nondubito.net.</p>
+      </div>
+      <nav class="xiyou-nav">
+        <a href="quine.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">蒯因，没有那条线</span>
+            <span class="xiyou-nav-title lang-en">Quine, There Is No Such Line</span>
+          </span>
+        </a>
+        <a href="schopenhauer.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">叔本华，底下有东西</span>
+            <span class="xiyou-nav-title lang-en">Schopenhauer, There Is Something Underneath</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

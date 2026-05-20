@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>精密修正的几何来源 — Non Dubito</title>
+  <meta name="description" content="S³球面最密堆积给出一个几何常数，精确到小数点后四位与实验符合">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  
+<style>
+  .essay-hero { padding: 3.5rem 2rem 2rem; max-width: 780px; margin: 0 auto; }
+  .essay-eyebrow { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+  .essay-title-zh { font-family: var(--cjk), serif; font-size: 2.1rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-title-en { font-family: var(--serif); font-size: 1.7rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-hook-zh { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-hook-en { font-family: var(--serif); font-size: 1.0rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-doi { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--ink-muted); }
+  .essay-body { max-width: 780px; margin: 0 auto; padding: 0 2rem 4rem; }
+  .essay-section { margin-bottom: 2.5rem; }
+  .section-heading { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 0.9rem; font-weight: 600; }
+  .section-heading.lang-en { font-family: var(--serif); font-size: 0.95rem; letter-spacing: 0.04em; }
+  .essay-body p { font-size: 1.02rem; line-height: 1.85; margin-bottom: 1.0rem; }
+  [data-lang="en"] .essay-body p { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body p { font-family: var(--cjk), serif; }
+  .essay-body table { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body table { font-family: var(--cjk), serif; }
+  .hc16-link { max-width: 780px; margin: 3rem auto 0; padding: 1.5rem 2rem; border-top: 1px solid var(--cream-border); text-align: center; }
+  .hc16-link a { font-family: var(--serif); font-size: 0.85rem; color: var(--gold); text-decoration: none; }
+  [data-lang="zh"] .hc16-link a { font-family: var(--cjk), serif; }
+  .nav-arrows { display: flex; justify-content: space-between; max-width: 780px; margin: 2rem auto 0; padding: 1rem 2rem; }
+  .nav-arrows a { font-family: var(--serif); font-size: 0.82rem; color: var(--ink-muted); text-decoration: none; border: 1px solid var(--cream-border); padding: 0.5rem 1rem; transition: all 0.2s; }
+  .nav-arrows a:hover { color: var(--ink); border-color: var(--ink-muted); }
+  .nav-arrows .placeholder { visibility: hidden; }
+</style>
+
+</head>
+<body>
+<div style="position:fixed;top:1rem;right:1rem;z-index:100;">
+  <button id="lang-toggle" onclick="toggleLang()" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--cream-border);color:var(--ink-muted);padding:0.4rem 0.8rem;cursor:pointer;transition:all 0.2s;">
+    <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+  </button>
+</div>
+<div style="padding:1.2rem 2rem 0; max-width:780px; margin:0 auto;">
+  <a href="../../index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">← 返回主页</span>
+    <span class="lang-en">← Home</span>
+  </a>
+  &nbsp;&nbsp;
+  <a href="index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">四力系列</span>
+    <span class="lang-en">Four Forces Series</span>
+  </a>
+</div>
+<div class="essay-hero">
+  <div class="essay-eyebrow lang-zh">四力系列 · 篇VII</div>
+  <div class="essay-eyebrow lang-en">Four Forces Series · Paper VII</div>
+  <h1 class="essay-title-zh lang-zh">精密修正的几何来源</h1>
+  <h1 class="essay-title-en lang-en">The Geometric Origin of Precision Corrections</h1>
+  <p class="essay-hook-zh lang-zh">S³球面最密堆积给出一个几何常数，精确到小数点后四位与实验符合</p>
+  <p class="essay-hook-en lang-en">The densest packing on S³ gives a geometric constant matching experiment to four decimal places</p>
+  <div class="essay-doi lang-zh">DOI 10.5281/zenodo.19433220</div>
+  <div class="essay-doi lang-en">DOI 10.5281/zenodo.19433220</div>
+  <div class="essay-doi lang-zh"><a href="https://self-as-an-end.net/papers/sae-four-forces-VII.html" target="_blank" style="color:inherit;text-decoration:none;">↗ self-as-an-end.net</a></div>
+  <div class="essay-doi lang-en"><a href="https://self-as-an-end.net/papers/sae-four-forces-VII.html" target="_blank" style="color:inherit;text-decoration:none;">↗ self-as-an-end.net</a></div>
+</div>
+<div class="essay-body">
+  <div class="lang-zh">
+<div class="essay-section">
+<h2 class="section-heading lang-zh">leading order之后</h2>
+<p>前置篇建立了α_G = α_em^(65/4)，偏差0.044%。这是leading order结果。篇V建立了耦合常数的生成函数（65/4作为Z(t)生成函数的统一因子）。</p>
+<p>但"偏差0.044%"是什么？是理论不精确，还是有系统性的修正项？</p>
+<p>篇VII建立了三层修正结构，把偏差从0.044%降到与实验不确定度齐平。核心是一阶修正来自S³最密堆积定理。</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">S³ packing定理</h2>
+<p>四维球面S³上最密球面堆积的唯一几何常数是c₁ = π/(3√2)。这是一个纯几何定理，不需要物理输入。</p>
+<p>篇VII建立了修正结构：</p>
+<p>零阶：DD组合数{4, 13, 15, 65}给出leading order关系（前置篇和篇V已建立）</p>
+<p>一阶：S³最密堆积定理给出唯一几何常数c₁ = π/(3√2)</p>
+<p>二阶：S₃对称在O(ε²)不存在可行continuation（命题3.1），需要边界条件k ≈ 108/π</p>
+<p>核心结果：R₁（doublet质量比）和sin²θ_W的一阶修正幅度比严格等于1/3（预测5.1）。这不依赖α_em的具体值，不依赖k的值，不依赖c₁的具体形式，只依赖弱通道和pair的一一对应。</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">一个可证伪的比值</h2>
+<p>修正幅度比 = 1/3是一个特别干净的预测：</p>
+<p>sin²θ_W的一阶修正 / R₁的一阶修正 = 1/3（严格等式，不依赖任何连续参数）</p>
+<p>当前验证：比值0.992，偏离1/3约0.8%，在O(α²)修正量级内。</p>
+<p>这个预测的美在于它的无参数性：不是"拟合一个参数让修正吻合"，而是"修正幅度比必须严格等于1/3"。任何与1/3的偏离都是可证伪信号。</p>
+<p>三层修正结构提供了一个完整图像：零阶是拓扑计数，一阶是球面几何，二阶是对称破缺的几何约束。物理常数不是孤立的数，是同一个几何结构在不同精度层的投影。</p>
+</div>
+</div>
+  <div class="lang-en">
+<div class="essay-section">
+<h2 class="section-heading lang-en">Beyond Leading Order</h2>
+<p>The Prequel established α_G = α_em^(65/4) with a 0.044% deviation. This is the leading-order result. Paper V established the generating function of coupling constants (65/4 as the unifying factor of the Z(t) generating function).</p>
+<p>But what is "0.044% deviation"? Is the theory imprecise, or is there a systematic correction term?</p>
+<p>Paper VII establishes a three-layer correction structure that reduces the deviation from 0.044% to the level of experimental uncertainty. The core is that the first-order correction comes from the S³ densest packing theorem.</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">The S³ Packing Theorem</h2>
+<p>The unique geometric constant for the densest sphere packing on the four-dimensional sphere S³ is c₁ = π/(3√2). This is a pure geometric theorem requiring no physical input.</p>
+<p>Paper VII establishes the correction structure:</p>
+<p>Zeroth order: DD combinatorial numbers {4, 13, 15, 65} give the leading-order relations (established in Prequel and Paper V)</p>
+<p>First order: the S³ densest packing theorem gives the unique geometric constant c₁ = π/(3√2)</p>
+<p>Second order: S₃ symmetry has no feasible continuation at O(ε²) (Proposition 3.1), requiring a boundary condition k ≈ 108/π</p>
+<p>Core result: the ratio of first-order correction amplitudes for R₁ (doublet mass ratio) and sin²θ_W is strictly 1/3 (Prediction 5.1). This is independent of the specific value of α_em, of k, of the specific form of c₁ — depending only on the one-to-one correspondence between weak channels and pairs.</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">A Falsifiable Ratio</h2>
+<p>Correction amplitude ratio = 1/3 is an especially clean prediction:</p>
+<p>(first-order correction to sin²θ_W) / (first-order correction to R₁) = 1/3 (strict equality, independent of any continuous parameter)</p>
+<p>Current verification: ratio 0.992, deviating from 1/3 by about 0.8%, within the O(α²) correction scale.</p>
+<p>The beauty of this prediction is its parameter-freeness: not "fit a parameter to make corrections agree," but "the ratio of correction amplitudes must be strictly 1/3." Any deviation from 1/3 is a falsifiable signal.</p>
+<p>The three-layer correction structure provides a complete picture: zeroth order is topological counting, first order is spherical geometry, second order is the geometric constraint of symmetry breaking. Physical constants are not isolated numbers — they are projections of the same geometric structure at different levels of precision.</p>
+</div>
+</div>
+</div>
+<div class="hc16-link">
+  <a href="../xiangjun/index.html">
+    <span class="lang-zh">你是哪种人？→ HC-16 性格测试</span>
+    <span class="lang-en">What kind of person are you? → HC-16 Personality Test</span>
+  </a>
+</div>
+<div class="nav-arrows"><a href="ff6.html" class="lang-zh">← 上一篇</a><a href="ff6.html" class="lang-en">← Previous</a><a href="ff-finale.html" class="lang-zh">下一篇 →</a><a href="ff-finale.html" class="lang-en">Next →</a></div>
+<script>
+  function toggleLang() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-lang') === 'zh' ? 'en' : 'zh';
+    html.setAttribute('data-lang', next);
+    html.setAttribute('lang', next);
+    localStorage.setItem('nondubito-lang', next);
+  }
+  (function() {
+    const saved = localStorage.getItem('nondubito-lang');
+    if (saved) {
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+    }
+  })();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "your-token"}' ></script>
+</body>
+</html>

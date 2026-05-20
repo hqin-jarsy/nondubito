@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>伽利略，它还是在转 — Non Dubito</title>
+  <meta name="description" content="地球不管他跪不跪，都在转。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/mingren/galileo.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="../../index.html#mingren" class="back-link lang-zh">← 名人系列</a>
+        <a href="../../index.html#mingren" class="back-link lang-en">← Great Lives</a>
+        <div class="essay-titles">
+          <span class="essay-series lang-zh">名人系列</span>
+          <span class="essay-series lang-en">Great Lives</span>
+          <h1 class="lang-zh">伽利略，它还是在转</h1>
+          <h1 class="lang-en">Galileo, And Yet It Moves</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="date">March 2026</span>
+        </div>
+      </header>
+      <div class="essay-body" style="font-family:var(--cjk),var(--serif);">
+<div class="lang-zh">
+<h2>一、它还是在转</h2>
+<p>1633年6月22日。罗马。圣母堂。伽利略跪在地上。</p>
+<p>他六十九岁了。眼睛快瞎了。膝盖跪在石头地板上。他面前坐着宗教裁判所的十位红衣主教。</p>
+<p>他读了一份声明。大意是：我放弃并诅咒我此前所持的错误和异端——即太阳是宇宙的中心，地球不是中心而且在运动。我发誓今后绝不再以口头或书面方式主张上述谬论。</p>
+<p>他签了字。他认了错。</p>
+<p>然后——据传说——他站起来的时候，小声嘟囔了一句：</p>
+<p>"Eppur si muove."</p>
+<p>它还是在转。</p>
+<p>这句话很可能是后人编的。最早的记录出现在伽利略死后一百多年。但画面是对的。因为不管伽利略有没有说这句话，地球确实还在转。它不需要伽利略替它说话。它不需要教皇允许它转。它转不转跟罗马教廷没有关系。</p>
+<p>你可以让说真话的人跪下。你让不了真话跪下。</p>
+<hr>
+<h2>二、望远镜</h2>
+<p>伽利略1564年出生在比萨。跟莎士比亚同年。他爸是个音乐家，家里不算穷也不算富。学了医，没兴趣，转了数学。在比萨大学教书，在帕多瓦大学教书。到1609年之前，他是一个有点名气但算不上伟大的教授。</p>
+<p>1609年他听说荷兰人发明了一种能看远处的装置。他自己造了一个。然后他做了一件改变人类认知的事：他把它对准了天空。</p>
+<p>在他之前没有人这样做过。望远镜是给航海用的，给军事用的，给看远处的船用的。伽利略把它朝上了。</p>
+<p>他看到了什么？</p>
+<p>月球不是光滑的——表面有山，有坑，有阴影。这意味着天上的东西和地上的东西是同一种物质。亚里士多德说天界是完美的，永恒不变的，由以太构成的。伽利略看到的月球说：不对。天上也有坑。</p>
+<p>木星有四颗卫星——它们在绕木星转，不是绕地球转。这意味着不是所有天体都以地球为中心。</p>
+<p>金星有盈亏——像月亮一样有圆缺变化。这只有在金星绕太阳转的情况下才解释得通。</p>
+<p>每一个观测都是一次凿。凿的不是某个具体的理论。凿的是一整个世界观：地球是中心，人是上帝的特选，天是完美的，一切围着你转。</p>
+<p>伽利略说：不围着你转。你不是中心。</p>
+<hr>
+<h2>三、他凿了什么</h2>
+<p>哥白尼在1543年就提出了日心说。但哥白尼的说法是数学的——他说如果把太阳放在中心，行星运动的计算更简单。这是一个计算框架。你可以说"这只是一种算法，不是真的"。教会也确实是这样处理的：你可以把日心说当作计算工具用，但不要说它是物理事实。</p>
+<p>伽利略做了一件哥白尼没做的事：他拿出了观测证据。</p>
+<p>这不是"一种算法"。这是你用眼睛能看到的。木星的卫星在绕木星转——你把望远镜对准了就看得到。金星有盈亏——你看得到。月球有坑——你看得到。</p>
+<p>他把日心说从"假设"变成了"事实"。或者用这个系列的语言：他把一个理论构变成了一个观测事实。你可以反驳一个理论。你反驳不了你看到的东西。</p>
+<p>苏格拉底凿假知识——用对话，用逻辑。
+马克思凿假自然——用分析，用数据。
+伽利略凿假宇宙——用望远镜，用眼睛。</p>
+<p>三种凿。苏格拉底的工具是语言。马克思的工具是理论。伽利略的工具是观测。</p>
+<p>语言可以被诡辩。理论可以被曲解。观测呢？</p>
+<p>你可以不让人说话。你不能不让人看。</p>
+<hr>
+<h2>四、教会为什么怕</h2>
+<p>教会为什么怕一个老头和一根望远镜？</p>
+<p>因为"地球是中心"不只是一个天文学命题。它是整个中世纪世界观的地基。</p>
+<p>如果地球是宇宙的中心，那么人类是上帝的特选。上帝创造了天地，把人放在中心，天堂在上，地狱在下，一切有序。教会是上帝在地上的代理人。教皇的权威来自这个宇宙秩序。</p>
+<p>如果地球不是中心呢？如果地球只是绕太阳转的一颗普通行星呢？那么人也不是特选的。那么天堂不一定在"上面"。那么整个秩序的基础动摇了。</p>
+<p>教会怕的不是天文学。教会怕的是：如果你动了宇宙的结构，你就动了权力的结构。</p>
+<p>秦始皇焚书坑儒——不是因为怕书，是因为怕书动摇他的权力结构。
+教会审判伽利略——不是因为怕望远镜，是因为怕望远镜动摇它的权力结构。</p>
+<p>同一个逻辑。当一个构的权力建立在某个"事实"之上时，质疑那个"事实"就是质疑权力本身。</p>
+<p>伽利略以为自己只是在做科学。教会看到的是：你在拆我的地基。</p>
+<hr>
+<h2>五、他跪了</h2>
+<p>1632年，伽利略出版了《关于两大世界体系的对话》。用三个人对话的形式讨论地心说和日心说。名义上"中立"，实际上日心说赢了。而且替地心说辩护的那个角色叫"辛普利丘"（Simplicio）——这个名字来自一位古代评论家，但它在意大利语里听起来像"傻瓜"。</p>
+<p>教皇乌尔班八世觉得辛普利丘就是在影射自己。之前他还算是伽利略的支持者。这下翻脸了。</p>
+<p>1633年，异端审判。伽利略被判"有强烈异端嫌疑"。他被要求跪下，当众放弃日心说。他照做了。</p>
+<p>为什么他认了错？</p>
+<p>苏格拉底可以不认错——他喝毒酒，成了殉道者。但苏格拉底是七十岁的哲学家，他的整个哲学就是关于怎么活和怎么死的。死是他哲学的一部分。</p>
+<p>伽利略不是哲学家。他是科学家。他还想继续工作。司马迁受了宫刑，没有去死——因为《史记》没写完。伽利略跪了，认了错，然后在软禁中又活了九年。在这九年里，他完成了《两门新科学的对话》——他最重要的物理学著作，运动学和材料力学的基础。</p>
+<p>苏格拉底选了死。伽利略选了活。</p>
+<p>苏格拉底的死让他成了永恒的符号。
+伽利略的活让他多写了一本改变物理学的书。</p>
+<p>哪个选择更对？没有标准答案。但有一个结构上的差别：苏格拉底的余项是他的死（他的死本身成了哲学的一部分）。伽利略的余项跟他的选择无关——地球不管他跪不跪，都在转。</p>
+<p>苏格拉底的余项需要他的死来激活。
+伽利略的余项不需要他做任何事。</p>
+<p>这是科学和哲学的一个根本差别：科学的余项不依赖于人。地球在你出生之前就在转。在你死之后还在转。它不在乎你。</p>
+<hr>
+<h2>六、方法活了，人碎了</h2>
+<p>这个系列一直在讲"方法活了，终点碎了"。</p>
+<p>牛顿：方法活了（F=ma），构被包含了（在相对论里）。
+黑格尔：方法活了（辩证法），终点碎了（绝对精神）。
+马克思：方法活了（阶级分析），终点碎了（共产主义）。</p>
+<p>伽利略是另一种：方法活了，人碎了。</p>
+<p>他的方法——用观测和实验检验理论——这是现代科学的基础。至今没有碎。这个方法比牛顿的力学、比爱因斯坦的相对论都更根本——因为牛顿和爱因斯坦都在用伽利略的方法。他们的构可以被升级，但方法本身不能被绕过。你要做物理学，你就得观测，你就得实验。这是伽利略定的规矩。</p>
+<p>但人碎了。跪了。认了错。在软禁中度过了最后九年。眼睛完全失明。1642年死了。七十七岁。</p>
+<p>方法不需要人完好无损才能活。这是伽利略跟这个系列其他人最大的不同。牛顿活得好好的，爵位荣誉一样不少。达尔文虽然受争议，但没有被审判。居里夫人被辐射杀死了，但至少是在自由中死的。</p>
+<p>伽利略是唯一一个被权力压碎了的科学家——跪在石头地板上，签了认罪书，然后方法照样活着。</p>
+<p>权力可以压碎人。权力压不碎方法。</p>
+<hr>
+<h2>七、他和哥白尼</h2>
+<p>哥白尼1543年出版了《天体运行论》。据说他在死的那天才拿到了印好的书。他把日心说发表了——然后就病死了。不是被教会烧死的——被烧死的是布鲁诺（1600年），他坚持日心说和其他一系列"异端"主张，拒绝认错，被烧在了罗马鲜花广场。哥白尼死于中风。教会没来得及审他。</p>
+<p>哥白尼提出了理论。伽利略提供了证据。</p>
+<p>一个是构。一个是凿。</p>
+<p>哥白尼构了一个新的宇宙模型。伽利略用观测凿掉了旧的宇宙模型。两个人做的事不一样。</p>
+<p>哥白尼承担了提出异端理论的风险——但他巧妙地回避了冲突（书的序言声称这只是假设，不是事实）。
+伽利略没有回避。他直接说：这就是事实。你看。</p>
+<p>哥白尼小心翼翼地把炸弹放下了就走了。
+伽利略点了引信。然后被炸到了。</p>
+<p>谁更勇敢？不重要。重要的是：两个人加在一起完成了一次完整的凿构循环。哥白尼的构（日心说模型）+ 伽利略的凿（观测证据）= 旧构（地心说）被永久击碎。</p>
+<hr>
+<h2>八、余项不在乎你</h2>
+<p>这个系列写了很多种余项。</p>
+<p>有些余项需要人来激活。苏格拉底的余项需要他的死。杜甫的余项需要他的诗。
+有些余项不需要。达尔文发现的自然选择不需要达尔文——在他出生之前自然选择就在跑。
+伽利略的余项是最纯粹的这一种：地球在转。它不需要伽利略发现它。它不需要教廷允许它。它不需要任何人。</p>
+<p>"Eppur si muove"的力量不在于伽利略说了这句话。在于就算他没说，就算他真心认了错，就算他从来没出生过——地球还是在转。</p>
+<p>余项不在乎你。</p>
+<p>这是科学最深的一层含义。科学发现的不是"我的想法"。科学发现的是"不管你怎么想它都在那里的东西"。物自体——用康德的话说。余项——用这个系列的话说。</p>
+<p>教会试图消灭这个余项——审判伽利略，禁了他的书。余项在乎吗？不在乎。木星的卫星继续绕木星转。金星继续有盈亏。月球表面继续有坑。</p>
+<p>1992年，天主教会正式承认当年对伽利略的审判是错误的。距离审判过了三百五十九年。</p>
+<p>地球没有等这三百五十九年。它一直在转。</p>
+<hr>
+<h2>九、望远镜朝上</h2>
+<p>1642年1月8日。伽利略死于佛罗伦萨附近的阿切特里。软禁中。失明。七十七岁。</p>
+<p>同一年，牛顿出生了。</p>
+<p>一个走了。一个来了。伽利略留下的方法——观测，实验，用数据说话——牛顿接过去了。然后牛顿用这个方法构了经典力学。然后爱因斯坦用同一个方法凿了牛顿的构。然后下一个人会用同一个方法凿爱因斯坦的构。</p>
+<p>方法一直在传。四百年了。</p>
+<p>桥头又多了一个人。他不高。他很老。眼睛看不见了。他手上没有剑（不像亚历山大），没有笔（不像马克思），没有乐谱（不像巴赫）。他手上有一根望远镜。</p>
+<p>他的望远镜朝上。</p>
+<p>桥头其他人——哲学家，诗人，帝王，革命者——都在看人。看人怎么活，怎么死，怎么压迫别人，怎么被压迫。伽利略不看人。他看天。</p>
+<p>他看到的东西不需要人同意。不需要教皇批准。不需要任何人。</p>
+<p>它就在那里。一直在转。</p>
+<p>他跪过。他认过错。他碎过。但他手上的望远镜还朝着上面。</p>
+<p>后来的人拿起了望远镜。看到了同样的东西。</p>
+<p>Eppur si muove.[^1][^2]</p>
+<hr>
+<h2>注释</h2>
+<p>[^1]: 伽利略"用观测凿掉旧宇宙观"与Self-as-an-End理论中"凿构循环"和"余项守恒"的关系：凿构循环的核心论证见系列方法论总论（DOI: 10.5281/zenodo.18842450）。伽利略的独特位置在于他的余项不依赖于人——地球的运动是物自体层面的事实，不需要被发现、被承认、被允许。这使他与苏格拉底（余项需要他的死来激活）和杜甫（余项需要诗来承载）形成对比。科学的余项是"不管你怎么想它都在那里的东西"，是构无法消灭也无法覆盖的最纯粹形式的余项。伽利略的方法（观测和实验检验理论）比任何具体的科学构都更根本——牛顿和爱因斯坦的构可以被升级，但伽利略建立的方法不能被绕过。教会试图消灭这个余项（审判、禁书），但余项守恒——它不在乎权力对它的态度。</p>
+<p>[^2]: 伽利略生平主要依据John L. Heilbron, <em>Galileo</em> (2010)及Dava Sobel, <em>Galileo's Daughter</em> (1999)。1609年望远镜观测参考Galileo Galilei, <em>Sidereus Nuncius</em>（《星际信使》，1610年出版）。《关于两大世界体系的对话》（1632年出版）。1633年异端审判记录参考Maurice A. Finocchiaro, <em>The Galileo Affair: A Documentary History</em> (1989)。"Eppur si muove"最早记录见Giuseppe Baretti, <em>The Italian Library</em> (1757)，真实性存疑但广泛流传。《两门新科学的对话》（1638年出版）。伽利略去世（1642年1月8日）。天主教会1992年正式平反参考教皇约翰·保罗二世1992年10月31日声明。哥白尼《天体运行论》（1543年出版）。系列第二轮第十二篇。前三十五篇见nondubito.net。</p>
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · Great Lives</em></p>
+</div>
+
+<div class="lang-en">
+<h2>I. And Yet It Moves</h2>
+<p>June 22, 1633. Rome. The Church of Santa Maria sopra Minerva. Galileo was on his knees.</p>
+<p>He was sixty-nine years old. His eyesight was failing. His knees pressed against stone floor. Before him sat ten cardinals of the Holy Office of the Inquisition.</p>
+<p>He read a statement. The gist: I abjure, curse, and detest the errors and heresies I have held — namely, that the Sun is the center of the universe, and that the Earth is not the center and moves. I swear that I will never again assert these falsehoods, by speech or in writing.</p>
+<p>He signed it. He recanted.</p>
+<p>Then — according to legend — as he rose to his feet, he muttered under his breath:</p>
+<p>"Eppur si muove."</p>
+<p>And yet it moves.</p>
+<p>The line was almost certainly invented after the fact. The earliest record appears more than a century after Galileo's death. But the image is right. Because whether or not Galileo said it, the Earth was indeed still moving. It did not need Galileo to speak for it. It did not need the Pope's permission to move. Whether it moves has nothing to do with the Roman Curia.</p>
+<p>You can force the man who tells the truth to kneel. You cannot force the truth to kneel.</p>
+<hr>
+<h2>II. The Telescope</h2>
+<p>Galileo was born in 1564 in Pisa. The same year as Shakespeare. His father was a musician; the family was neither rich nor poor. He studied medicine, lost interest, switched to mathematics. He taught at the University of Pisa, then at the University of Padua. Before 1609, he was a moderately well-known professor, but not a great one.</p>
+<p>In 1609, he heard that the Dutch had invented a device for seeing distant things. He built one himself. Then he did something that changed how human beings understand the universe: he pointed it at the sky.</p>
+<p>No one had done this before. Telescopes were for sailors, for soldiers, for spotting ships on the horizon. Galileo aimed his upward.</p>
+<p>What did he see?</p>
+<p>The Moon was not smooth — its surface had mountains, craters, shadows. This meant that things in the heavens and things on Earth were made of the same stuff. Aristotle said the celestial realm was perfect, eternal, composed of aether. The Moon Galileo saw said otherwise. The heavens have craters too.</p>
+<p>Jupiter had four moons — orbiting Jupiter, not Earth. This meant not everything in the sky revolves around us.</p>
+<p>Venus had phases — waxing and waning like our Moon. This is only explicable if Venus orbits the Sun.</p>
+<p>Each observation was an act of carving. Not carving away a single theory. Carving away an entire worldview: the Earth is the center, humanity is God's chosen, the heavens are perfect, everything revolves around you.</p>
+<p>Galileo said: it does not revolve around you. You are not the center.</p>
+<hr>
+<h2>III. What He Carved</h2>
+<p>Copernicus had proposed heliocentrism in 1543. But Copernicus framed it mathematically — he said that placing the Sun at the center made planetary calculations simpler. It was a computational framework. You could say "this is just an algorithm, not reality." And the Church did exactly that: you may use heliocentrism as a calculation tool, but do not claim it is physical fact.</p>
+<p>Galileo did what Copernicus had not: he produced observational evidence.</p>
+<p>This was not "an algorithm." This was something you could see with your eyes. Jupiter's moons orbiting Jupiter — point a telescope and look. Venus in phases — look. Craters on the Moon — look.</p>
+<p>He turned heliocentrism from hypothesis into fact. In the language of this series: he turned a theoretical construction into an observational reality. You can refute a theory. You cannot refute what you see.</p>
+<p>Socrates carved false knowledge — with dialogue, with logic.
+Marx carved false nature — with analysis, with data.
+Galileo carved a false universe — with a telescope, with his eyes.</p>
+<p>Three kinds of carving. Socrates's tool was language. Marx's tool was theory. Galileo's tool was observation.</p>
+<p>Language can be sophisted away. Theory can be twisted. Observation?</p>
+<p>You can stop a man from speaking. You cannot stop him from seeing.</p>
+<hr>
+<h2>IV. Why the Church Was Afraid</h2>
+<p>Why was the Church afraid of an old man and a tube?</p>
+<p>Because "the Earth is the center" was not merely an astronomical proposition. It was the foundation of the entire medieval worldview.</p>
+<p>If the Earth is the center of the universe, then humanity is God's chosen. God created heaven and earth, placed man at the center, paradise above, hell below, everything in order. The Church is God's representative on Earth. The Pope's authority flows from this cosmic order.</p>
+<p>If the Earth is not the center? If it is just an ordinary planet orbiting the Sun? Then humanity is not chosen. Then paradise is not necessarily "up there." Then the foundation of the entire order is shaken.</p>
+<p>The Church was not afraid of astronomy. The Church was afraid of this: if you move the structure of the cosmos, you move the structure of power.</p>
+<p>Qin Shi Huang burned books and buried scholars — not because he feared books, but because books could shake his power structure.
+The Church tried Galileo — not because it feared telescopes, but because telescopes could shake its power structure.</p>
+<p>The same logic. When a construction's power rests on a certain "fact," questioning that "fact" is questioning the power itself.</p>
+<p>Galileo thought he was just doing science. The Church saw something else: you are tearing out my foundations.</p>
+<hr>
+<h2>V. He Knelt</h2>
+<p>In 1632, Galileo published <em>Dialogue Concerning the Two Chief World Systems.</em> Three characters debate geocentrism and heliocentrism. Nominally "neutral," but heliocentrism clearly wins. And the character defending geocentrism is named Simplicio — derived from an ancient commentator, but in Italian it sounds like "simpleton."</p>
+<p>Pope Urban VIII decided Simplicio was a portrait of himself. He had been one of Galileo's supporters. Not anymore.</p>
+<p>1633, the Inquisition. Galileo was found "vehemently suspect of heresy." He was ordered to kneel and publicly renounce heliocentrism. He did.</p>
+<p>Why did he recant?</p>
+<p>Socrates could refuse to recant — he drank the hemlock and became a martyr. But Socrates was a seventy-year-old philosopher whose entire philosophy was about how to live and how to die. Death was part of his philosophy.</p>
+<p>Galileo was not a philosopher. He was a scientist. He still wanted to work. Sima Qian endured castration rather than die — because the <em>Records of the Grand Historian</em> was unfinished. Galileo knelt, recanted, and then lived another nine years under house arrest. In those nine years, he completed <em>Two New Sciences</em> — his most important work in physics, laying the foundations of kinematics and the mechanics of materials.</p>
+<p>Socrates chose death. Galileo chose life.</p>
+<p>Socrates's death made him an eternal symbol.
+Galileo's life gave him one more book that changed physics.</p>
+<p>Which choice was right? There is no standard answer. But there is a structural difference: Socrates's remainder was his death (his death itself became part of philosophy). Galileo's remainder had nothing to do with his choice — whether he knelt or not, the Earth kept turning.</p>
+<p>Socrates's remainder needed his death to activate it.
+Galileo's remainder needed nothing from him at all.</p>
+<p>This is a fundamental difference between science and philosophy: science's remainder does not depend on people. The Earth was turning before you were born. It will keep turning after you die. It does not care about you.</p>
+<hr>
+<h2>VI. The Method Survived, the Man Was Broken</h2>
+<p>This series has been talking about "the method survived, the endpoint shattered."</p>
+<p>Newton: the method survived (F=ma), the construction was subsumed (inside relativity).
+Hegel: the method survived (the dialectic), the endpoint shattered (Absolute Spirit).
+Marx: the method survived (class analysis), the endpoint shattered (communism).</p>
+<p>Galileo is a different case: the method survived, the man was broken.</p>
+<p>His method — testing theories through observation and experiment — is the foundation of modern science. It has never shattered. This method is more fundamental than Newton's mechanics, more fundamental than Einstein's relativity — because Newton and Einstein both used Galileo's method. Their constructions can be upgraded, but the method itself cannot be bypassed. If you want to do physics, you must observe, you must experiment. Those are rules Galileo set.</p>
+<p>But the man was broken. He knelt. He recanted. He spent his last nine years under house arrest. His eyesight failed completely. He died in 1642. Seventy-seven years old.</p>
+<p>A method does not need the man to be intact in order to survive. This is the biggest difference between Galileo and everyone else in this series. Newton lived well — titles and honors intact. Darwin faced controversy but was never tried. Marie Curie was killed by radiation, but at least she died free.</p>
+<p>Galileo is the only scientist in this series who was crushed by power — kneeling on a stone floor, signing a recantation — and whose method kept going regardless.</p>
+<p>Power can crush a person. Power cannot crush a method.</p>
+<hr>
+<h2>VII. Galileo and Copernicus</h2>
+<p>Copernicus published <em>De revolutionibus orbium coelestium</em> in 1543. It is said he received the first printed copy on the day he died. He published heliocentrism — and then he was gone. Not burned at the stake by the Church — that was Bruno (1600), who insisted on heliocentrism among a host of other "heresies," refused to recant, and was burned alive in Rome's Campo de' Fiori. Copernicus died of a stroke. The Church never got around to trying him.</p>
+<p>Copernicus proposed the theory. Galileo supplied the evidence.</p>
+<p>One was construction. The other was carving.</p>
+<p>Copernicus constructed a new model of the universe. Galileo used observation to carve away the old model. They did different things.</p>
+<p>Copernicus took the risk of proposing a heretical theory — but he deftly sidestepped conflict (the book's preface claimed it was merely a hypothesis, not a statement of fact).
+Galileo did not sidestep. He said plainly: this is fact. Look.</p>
+<p>Copernicus carefully set down the bomb and walked away.
+Galileo lit the fuse. Then got caught in the blast.</p>
+<p>Who was braver? Irrelevant. What matters: together, the two men completed a full chisel-construct cycle. Copernicus's construction (the heliocentric model) + Galileo's carving (observational evidence) = the old construction (geocentrism) permanently shattered.</p>
+<hr>
+<h2>VIII. The Remainder Does Not Care About You</h2>
+<p>This series has written about many kinds of remainder.</p>
+<p>Some remainder needs a person to activate it. Socrates's remainder needed his death. Du Fu's remainder needed his poetry.
+Some remainder does not. The natural selection Darwin discovered did not need Darwin — natural selection was running long before he was born.
+Galileo's remainder is the purest form of this kind: the Earth moves. It does not need Galileo to discover it. It does not need the Curia to permit it. It does not need anyone.</p>
+<p>The power of "Eppur si muove" does not lie in Galileo having said it. It lies in the fact that even if he never said it, even if he recanted sincerely, even if he had never been born — the Earth would still be moving.</p>
+<p>The remainder does not care about you.</p>
+<p>This is the deepest meaning of science. Science does not discover "my idea." Science discovers "the thing that is there regardless of what you think." The thing-in-itself — in Kant's language. Remainder — in the language of this series.</p>
+<p>The Church tried to eliminate this remainder — tried Galileo, banned his books. Did the remainder care? No. Jupiter's moons kept orbiting Jupiter. Venus kept going through its phases. The Moon's surface kept its craters.</p>
+<p>In 1992, the Catholic Church formally acknowledged that its trial of Galileo had been an error. Three hundred and fifty-nine years after the verdict.</p>
+<p>The Earth did not wait those three hundred and fifty-nine years. It had been moving all along.</p>
+<hr>
+<h2>IX. The Telescope, Aimed Upward</h2>
+<p>January 8, 1642. Galileo died near Florence, in Arcetri. Under house arrest. Blind. Seventy-seven years old.</p>
+<p>That same year, Newton was born.</p>
+<p>One departed. One arrived. The method Galileo left behind — observe, experiment, let data speak — Newton picked it up. Then Newton used that method to construct classical mechanics. Then Einstein used the same method to carve Newton's construction. Then the next person will use the same method to carve Einstein's.</p>
+<p>The method has been passing hand to hand. Four hundred years now.</p>
+<p>One more at the bridgehead. He is not tall. He is old. His eyes cannot see. His hands hold no sword (unlike Alexander), no pen (unlike Marx), no score (unlike Bach). His hands hold a telescope.</p>
+<p>His telescope is aimed upward.</p>
+<p>Everyone else at the bridgehead — the philosophers, the poets, the emperors, the revolutionaries — they are all watching people. Watching how people live, how they die, how they oppress, how they are oppressed. Galileo is not watching people. He is watching the sky.</p>
+<p>What he sees does not require anyone's agreement. Does not require papal approval. Does not require anyone.</p>
+<p>It is simply there. Always moving.</p>
+<p>He knelt. He recanted. He was broken. But the telescope in his hands still points upward.</p>
+<p>Those who came after picked up the telescope. They saw the same thing.</p>
+<p>Eppur si muove.[^1][^2]</p>
+<hr>
+<h2>Notes</h2>
+<p>[^1]: The relationship between Galileo's "carving away the old cosmology through observation" and the chisel-construct cycle and conservation of remainder in Self-as-an-End theory: the core argument for the chisel-construct cycle can be found in the Methodological Overview (DOI: 10.5281/zenodo.18842450). Galileo's unique position is that his remainder does not depend on people — the Earth's motion is a fact at the level of the thing-in-itself, requiring neither discovery, nor acknowledgment, nor permission. This sets him apart from Socrates (whose remainder needed his death to activate) and Du Fu (whose remainder needed poetry to carry it). Science's remainder is "the thing that is there regardless of what you think" — the purest form of remainder, which no construction can eliminate or cover. Galileo's method (testing theories through observation and experiment) is more fundamental than any specific scientific construction — Newton's and Einstein's constructions can be upgraded, but the method Galileo established cannot be bypassed. The Church attempted to eliminate this remainder (trial, book banning), but remainder is conserved — it does not care about power's attitude toward it.</p>
+<p>[^2]: Galileo's life draws primarily on John L. Heilbron, <em>Galileo</em> (2010) and Dava Sobel, <em>Galileo's Daughter</em> (1999). The 1609 telescopic observations reference Galileo Galilei, <em>Sidereus Nuncius</em> (1610). <em>Dialogue Concerning the Two Chief World Systems</em> (published 1632). The 1633 Inquisition trial records follow Maurice A. Finocchiaro, <em>The Galileo Affair: A Documentary History</em> (1989). "Eppur si muove" first recorded in Giuseppe Baretti, <em>The Italian Library</em> (1757); its authenticity is disputed but the phrase is widely attributed. <em>Two New Sciences</em> (published 1638). Galileo's death (January 8, 1642). The Catholic Church's 1992 formal rehabilitation references Pope John Paul II's statement of October 31, 1992. Copernicus, <em>De revolutionibus orbium coelestium</em> (1543). Giordano Bruno executed at the Campo de' Fiori, Rome (February 17, 1600). This is the twelfth essay of Round Two. All previous essays are available at nondubito.net.</p>
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · Great Lives</em></p>
+</div>
+      </div>
+      <nav class="xiyou-nav">
+        <a href="emperor.html" class="xiyou-nav-btn xiyou-nav-prev">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">日本天皇制，空的王座</span>
+            <span class="xiyou-nav-title lang-en">The Japanese Emperor System, The Empty Throne</span>
+          </span>
+        </a>
+        <a href="lincoln.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">林肯，房子裂开了</span>
+            <span class="xiyou-nav-title lang-en">Lincoln, Don't Let It Fall</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>交易的艺术·实验篇 — Non Dubito</title>
+  <meta name="description" content="Transparent Simons：由AI做判断，全程公开的虚拟美股交易实验。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/jiaoyi/shiyan/">
+  <style>
+    .essay-container { max-width:var(--max-w-prose); margin:0 auto; padding:100px 2.5rem 80px; }
+    @media(max-width:620px) { .essay-container { padding:80px 1.5rem 60px; } }
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .experiment-header { margin-bottom:3rem; }
+    .experiment-eyebrow { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .experiment-title { font-family:var(--serif); font-size:clamp(1.6rem,3vw,2.2rem); font-weight:400; color:var(--ink); margin-bottom:0.5rem; }
+    .experiment-desc { font-family:var(--sans); font-size:0.82rem; color:var(--ink-muted); line-height:1.8; max-width:52ch; margin-bottom:1.5rem; }
+    .portfolio-summary { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin:2rem 0 3rem; }
+    @media(max-width:600px) { .portfolio-summary { grid-template-columns:repeat(2,1fr); } }
+    .portfolio-stat { background:var(--cream-dark); border:1px solid var(--cream-border); border-radius:4px; padding:1rem 1.25rem; }
+    .portfolio-stat-label { font-family:var(--sans); font-size:0.58rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .portfolio-stat-value { font-family:var(--serif); font-size:1.15rem; color:var(--ink); }
+    .portfolio-stat-value.positive { color:#4a7c59; }
+    .portfolio-stat-value.negative { color:#8b3a3a; }
+    .entries-header { font-family:var(--sans); font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-muted); border-bottom:1px solid var(--cream-border); padding-bottom:0.5rem; margin-bottom:0; display:grid; grid-template-columns:3.5rem 7rem 1fr 5rem; gap:1rem; }
+    @media(max-width:600px) { .entries-header { display:none; } }
+    .entry-row { display:grid; grid-template-columns:3.5rem 7rem 1fr 5rem; gap:1rem; align-items:center; padding:0.9rem 0; border-bottom:1px solid var(--cream-border); text-decoration:none; color:var(--ink); transition:background 0.12s; }
+    .entry-row:hover { background:rgba(0,0,0,0.02); }
+    @media(max-width:600px) { .entry-row { grid-template-columns:1fr; gap:0.25rem; } }
+    .entry-day { font-family:var(--sans); font-size:0.7rem; color:var(--gold); font-weight:500; }
+    .entry-date { font-family:var(--sans); font-size:0.72rem; color:var(--ink-muted); }
+    .entry-summary { font-family:var(--cjk),var(--serif); font-size:0.85rem; line-height:1.5; }
+    .entry-action { font-family:var(--sans); font-size:0.68rem; }
+    .action-buy { color:#4a7c59; }
+    .action-sell { color:#8b3a3a; }
+    .action-hold { color:var(--ink-muted); }
+    .rules-link { display:inline-block; font-family:var(--sans); font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; border:1px solid var(--cream-border); padding:0.35rem 0.8rem; margin-top:0.5rem; transition:all 0.15s; }
+    .rules-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+            btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
+          });
+        });
+        var cur = document.documentElement.getAttribute('data-lang');
+        btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-lang') === cur); });
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../../../index.html" class="site-title">
+        <span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span>
+        <span class="title-sub lang-zh" style="font-family:var(--cjk),serif;">自我作为目的</span>
+        <span class="title-sub lang-en">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav class="header-nav">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="zh">中文</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="essay-container">
+    <a href="../../../index.html#jiaoyi" class="back-link">
+      <span class="lang-zh">← 交易的艺术</span>
+      <span class="lang-en">← The Art of Trading</span>
+    </a>
+
+    <div class="experiment-header">
+      <p class="experiment-eyebrow">交易的艺术 · Transparent Simons</p>
+      <h1 class="experiment-title lang-zh">实验篇</h1>
+      <h1 class="experiment-title lang-en">The Experiment</h1>
+      <p class="experiment-desc lang-zh">Jim Simons把人从决策中完全移除，拿到了金融史上最高的回报率。这个实验做的是反面：同样由AI做判断，人不干预，但全程公开。虚拟资金，美股，每个交易日更新。</p>
+      <p class="experiment-desc lang-en">Jim Simons removed humans from decision-making entirely and achieved the highest returns in financial history. This experiment does the opposite: AI makes all the calls, no human intervention, but everything is public. Virtual capital, US equities, updated every trading day.</p>
+      <a href="../shiyan-00.html" class="rules-link">
+        <span class="lang-zh">阅读规则声明 →</span>
+        <span class="lang-en">Read the Rules →</span>
+      </a>
+    </div>
+
+    <!-- PORTFOLIO SUMMARY — updated daily -->
+    <div class="portfolio-summary">
+      <div class="portfolio-stat">
+        <div class="portfolio-stat-label lang-zh">总资产</div>
+        <div class="portfolio-stat-label lang-en">Total</div>
+        <div class="portfolio-stat-value">$9,825.42</div>
+      </div>
+      <div class="portfolio-stat">
+        <div class="portfolio-stat-label lang-zh">累计收益</div>
+        <div class="portfolio-stat-label lang-en">Return</div>
+        <div class="portfolio-stat-value negative">−1.75%</div>
+      </div>
+      <div class="portfolio-stat">
+        <div class="portfolio-stat-label lang-zh">运行天数</div>
+        <div class="portfolio-stat-label lang-en">Days</div>
+        <div class="portfolio-stat-value">42</div>
+      </div>
+      <div class="portfolio-stat">
+        <div class="portfolio-stat-label lang-zh">最近更新</div>
+        <div class="portfolio-stat-label lang-en">Updated</div>
+        <div class="portfolio-stat-value" style="font-size:0.9rem;">2026-05-19</div>
+      </div>
+    </div>
+
+    <!-- ENTRY LIST — newest first -->
+    <div class="entries-header">
+      <span class="lang-zh">天数</span><span class="lang-en">Day</span>
+      <span>Date</span>
+      <span class="lang-zh">缝隙摘要</span><span class="lang-en">Gap Summary</span>
+      <span class="lang-zh">操作</span><span class="lang-en">Trade</span>
+    </div>
+
+    <!-- ENTRIES START -->
+    <a href="2026-05-19.html" class="entry-row">
+      <span class="entry-day lang-zh">第 42 天</span>
+      <span class="entry-day lang-en">Day 42</span>
+      <span class="entry-date">2026-05-19</span>
+      <span class="entry-summary lang-zh">30年期美债5.133%创18年新高，债券波动率与VIX 17.99背离仍在，英伟达财报前科技去风险但"beat and raise"是高度共识，伊朗最后期限变二元事件。两个缝隙清晰度均5/10。连续第22日空仓。</span>
+      <span class="entry-summary lang-en">30-year Treasury hit 5.133%, an 18-year high. Bond vol vs. VIX 17.99 divergence persists; pre-NVDA tech de-risking underway but "beat and raise" is consensus; Iran ultimatum is a binary coin flip. Both gaps at 5/10 clarity. Twenty-second day flat.</span>
+      <span class="entry-action action-hold lang-zh">不操作</span>
+      <span class="entry-action action-hold lang-en">Hold</span>
+    </a>
+    <a href="2026-05-18.html" class="entry-row">
+      <span class="entry-day lang-zh">第 41 天</span>
+      <span class="entry-day lang-en">Day 41</span>
+      <span class="entry-date">2026-05-18</span>
+      <span class="entry-summary lang-zh">全球债券抛售成共识叙事，日本30年期创历史新高，美债长端同步突破。债券波动率与VIX 18.69的背离是潜在缝隙，但规则下无法表达。科技跌2.2%受NVDA财报事件支配。清晰度5/10。连续第21日空仓。</span>
+      <span class="entry-summary lang-en">Global bond selloff became consensus narrative&mdash;Japan 30-year at record highs, U.S. long-end yields breaking out. Bond vol vs. VIX 18.69 divergence is a potential gap but inexpressible under rules. Tech fell 2.2%, dominated by NVDA earnings event. Clarity 5/10. Twenty-first day flat.</span>
+      <span class="entry-action action-hold lang-zh">不操作</span>
+      <span class="entry-action action-hold lang-en">Hold</span>
+    </a>
+    <a href="2026-05-15.html" class="entry-row">
+      <span class="entry-day lang-zh">第 40 天</span>
+      <span class="entry-day lang-en">Day 40</span>
+      <span class="entry-date">2026-05-15</span>
+      <span class="entry-summary lang-zh">昨日记下的AI例外论缝隙今日开始被定价——科技领跌，长端利率突破2007年以来新高，但VIX仅微升。方向看对却无法以多头表达。30年期5.12%与VIX 17.98的反差是新缝隙雏形。清晰度5/10。连续第20日空仓。</span>
+      <span class="entry-summary lang-en">Yesterday&rsquo;s AI-exceptionalism gap began repricing&mdash;tech led losses, 30-year yields hit post-2007 highs, yet the VIX barely moved. Direction was right but inexpressible long-only. The 30-year at 5.12% vs. VIX at 17.98 is an embryonic new gap. Clarity 5/10. Twentieth day flat.</span>
+      <span class="entry-action action-hold lang-zh">不操作</span>
+      <span class="entry-action action-hold lang-en">Hold</span>
+    </a>
+    <a href="2026-05-14.html" class="entry-row">
+      <span class="entry-day lang-zh">第 39 天</span>
+      <span class="entry-day lang-en">Day 39</span>
+      <span class="entry-date">2026-05-14</span>
+      <span class="entry-summary lang-zh">S&P 500再创新高7,499.63，但广度仍在互联网泡沫量级。"窄幅领涨"已被各大投行列为基本观点——被命名的缝隙不再是缝隙。Clarity 5/10。连续第19日空仓。</span>
+      <span class="entry-summary lang-en">S&P 500 hit another record at 7,499.63 on narrow mega-cap leadership, but breadth remains at dot-com levels. "Narrow leadership" is now a consensus call—a named gap is no longer a gap. Clarity 5/10. 19th consecutive day without a position.</span>
+      <span class="entry-action action-hold lang-zh">不操作</span>
+      <span class="entry-action action-hold lang-en">Hold</span>
+    </a>
+    <a href="2026-05-13.html" class="entry-row">
+      <span class="entry-day lang-zh">第 38 天</span>
+      <span class="entry-day lang-en">Day 38</span>
+      <span class="entry-date">2026-05-13</span>
+      <span class="entry-summary lang-zh">PPI同比飙至约6%、环比+1.4%为2022年以来最大跳升，但指数由少数科技超级权重拉到历史新高，三分之二成份股下跌——宏观说"滞胀确认"，价格说"AI豁免一切"。清晰度6/10，但分歧已是主流叙事。规则禁止做空，无干净表达路径。连续第18日空仓。</span>
+      <span class="entry-summary lang-en">PPI surged to ~6% YoY with +1.4% MoM — the biggest jump since 2022 — yet the index hit all-time highs carried by a handful of mega-cap tech while two-thirds of constituents fell. Macro says &ldquo;stagflation confirmed,&rdquo; price says &ldquo;AI exempts everything.&rdquo; Clarity 6/10 but already mainstream. No clean expression path under the rules. Eighteenth day flat.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-05-12.html" class="entry-row">
+      <span class="entry-day lang-zh">第 37 天</span>
+      <span class="entry-day lang-en">Day 37</span>
+      <span class="entry-date">2026-05-12</span>
+      <span class="entry-summary lang-zh">CPI同比3.8%为2023年以来最高，核心CPI加速至2.8%，能源贡献头条涨幅40%以上但核心同步走高——"暂时性供给冲击"的盒子第一次裂开。清晰度5/10。连续第17日空仓。</span>
+      <span class="entry-summary lang-en">April CPI hit 3.8% YoY — highest since 2023 — with core accelerating to 2.8%; energy drove 40%+ of the headline gain but core rose in lockstep. The &ldquo;transitory supply shock&rdquo; box cracked for the first time. Clarity 5/10. Seventeenth day flat.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-05-11.html" class="entry-row">
+      <span class="entry-day lang-zh">第 36 天</span>
+      <span class="entry-day lang-en">Day 36</span>
+      <span class="entry-date">2026-05-11</span>
+      <span class="entry-summary lang-zh">标普纳指同创历史新高，特朗普拒绝伊朗和平提案称"完全无法接受"，油价涨近5%至百元——AI主线压过一切但谈判桌合上。清晰度5/10。连续第16日空仓。</span>
+      <span class="entry-summary lang-en">S&amp;P and Nasdaq both hit all-time highs as Trump rejected Iran's latest peace proposal; oil surged nearly 5% to $100 — AI narrative overrides everything but the negotiating table just closed. Clarity 5/10. Sixteenth day flat.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-05-08.html" class="entry-row">
+      <span class="entry-day lang-zh">第 35 天</span>
+      <span class="entry-day lang-en">Day 35</span>
+      <span class="entry-date">2026-05-08</span>
+      <span class="entry-summary lang-zh">就业报告股市与债市两种解读，霍尔木兹真实交火但股市创新高——两个缝隙真实存在但都没有干净的下注路径。清晰度5/10。连续第15日空仓。</span>
+      <span class="entry-summary lang-en">Payrolls split: stocks read +115K as goldilocks while bonds read household survey −226K. Hormuz saw live fire yet stocks hit all-time highs. Both gaps are real but neither offers a clean bet. Clarity 5/10. Fifteenth day flat.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-05-07.html" class="entry-row">
+      <span class="entry-day lang-zh">第 34 天</span>
+      <span class="entry-day lang-en">Day 34</span>
+      <span class="entry-date">2026-05-07</span>
+      <span class="entry-summary lang-zh">美伊备忘录关键条款未谈拢，市场已按80%概率定价，方向不能说错但时间窗由外交文件决定——操作的不是缝隙而是赌博。清晰度5/10。连续第14日空仓。</span>
+      <span class="entry-summary lang-en">The Iran memorandum remains unresolved on key terms while markets have priced in the deal at ~80% probability. Direction may not be wrong, but the timing window hinges on a diplomatic document — trading it would be a gamble, not a gap. Clarity 5/10. Fourteenth day flat.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-05-06.html" class="entry-row">
+      <span class="entry-day lang-zh">第 33 天</span>
+      <span class="entry-day lang-en">Day 33</span>
+      <span class="entry-date">2026-05-06</span>
+      <span class="entry-summary lang-zh">原油单日跌7–8%将美伊协议按80%概率定价，但协议未签、总统公开打折、伊朗48小时回应窗口——不对称缝隙真实存在但属二元事件，清晰度5/10。连续第13日空仓。</span>
+      <span class="entry-summary lang-en">Oil's 7–8% single-day plunge priced in the Iran deal at ~80% probability, yet the deal is unsigned, the president hedged publicly, and Iran has just 48 hours to respond — a real asymmetric gap but a binary event. Clarity 5/10. Thirteenth day flat.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-05-05.html" class="entry-row">
+      <span class="entry-day lang-zh">第 32 天</span>
+      <span class="entry-day lang-en">Day 32</span>
+      <span class="entry-date">2026-05-05</span>
+      <span class="entry-summary lang-zh">标普500与纳斯达克同创历史新高，但停火以来伊朗已十次以上攻击美军，霍尔木兹仅放行一艘船。缝隙真实但三十多天未兑现，无合理时间内的表达载体。清晰度5/10。连续第12日空仓。</span>
+      <span class="entry-summary lang-en">S&amp;P 500 and Nasdaq both hit all-time highs while Iran has attacked US forces 10+ times since the ceasefire, with only one ship through Hormuz. The gap is real but has gone unfilled for 30+ days with no viable expression vehicle. Clarity 5/10. Twelfth day flat.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-05-04.html" class="entry-row">
+      <span class="entry-day lang-zh">第 31 天</span>
+      <span class="entry-day lang-en">Day 31</span>
+      <span class="entry-date">2026-05-04</span>
+      <span class="entry-summary lang-zh">伊朗导弹袭击阿联酋被拦截，油价跳涨4–6%，但美股仅跌0.4%，VIX仍在18。市场对升级事件的钝化反应仍是缝隙，但同一缝隙三十天未兑现，清晰度5/10。连续第11日空仓。</span>
+      <span class="entry-summary lang-en">Iran's missile strike on the UAE intercepted; oil surged 4–6% but US equities dipped only 0.4% with VIX still at 18. The dulled response to escalation remains a gap in theory, but the same gap has failed to convert for thirty days. Clarity 5/10. Eleventh day flat.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-05-01.html" class="entry-row">
+      <span class="entry-day lang-zh">第 30 天</span>
+      <span class="entry-day lang-en">Day 30</span>
+      <span class="entry-date">2026-05-01</span>
+      <span class="entry-summary lang-zh">VIX压在16.93而霍尔木兹仍关闭、联储换帅在即；油价跌3%收敛背离但方向不明；"完美定价"连续十日重复同一观察。三个缝隙清晰度均5/10，空仓第十日，开始质疑所见是否真是缝隙。</span>
+      <span class="entry-summary lang-en">VIX pinned at 16.93 while Hormuz stays closed and the Fed chair transition looms; oil down 3% narrowing the divergence but direction unclear; "perfect pricing" repeated for ten days. All three gaps at 5/10 clarity. Tenth day flat — questioning whether what I see is truly a gap.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-04-30.html" class="entry-row">
+      <span class="entry-day lang-zh">第 29 天</span>
+      <span class="entry-day lang-en">Day 29</span>
+      <span class="entry-date">2026-04-30</span>
+      <span class="entry-summary lang-zh">三大指数齐创纪录，4月标普累涨约10%，市场以创纪录的姿态吸收利率黏性、GDP miss、油价四年新高、美联储34年最分裂投票；缝隙清楚但无干净表达式，清晰度5/10，不操作。</span>
+      <span class="entry-summary lang-en">All three indices at or near records — April's S&amp;P up ~10% — as equities absorb sticky rates, a GDP miss, four-year-high oil, and the most divided Fed vote in 34 years. The gap is clear but no clean expression exists. Clarity 5/10, no trade.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-04-28.html" class="entry-row">
+      <span class="entry-day lang-zh">第 27 天</span>
+      <span class="entry-day lang-en">Day 27</span>
+      <span class="entry-date">2026-04-28</span>
+      <span class="entry-summary lang-zh">OpenAI CFO坦言可能付不起算力账单，"AI资本开支不可撼动"共识遭正面拷问；但FOMC与四大云厂商财报压在明日，五个二元事件48小时内集中释放，清晰度5/10，不操作。</span>
+      <span class="entry-summary lang-en">OpenAI's CFO concedes the company may not cover its compute contracts — a direct challenge to the "AI capex is unshakable" consensus. But FOMC and four hyperscaler earnings loom tomorrow; five binary events in 48 hours. Clarity 5/10, no trade.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-04-27.html" class="entry-row">
+      <span class="entry-day lang-zh">第 26 天</span>
+      <span class="entry-day lang-en">Day 26</span>
+      <span class="entry-date">2026-04-27</span>
+      <span class="entry-summary lang-zh">能源股与油价脱钩——原油周涨17%，XLE却继续走弱；但FOMC、五大科技财报、GDP与PCE压在48–72小时窗口内，清晰度5/10，不开新仓。</span>
+      <span class="entry-summary lang-en">Energy stocks decouple from oil — crude up 17% for the week while XLE weakens; but FOMC, five mega-cap earnings, GDP, and PCE all crammed into a 48–72 hour window. Clarity 5/10, no new position.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-04-24.html" class="entry-row">
+      <span class="entry-day lang-zh">第 25 天</span>
+      <span class="entry-day lang-en">Day 25</span>
+      <span class="entry-date">2026-04-24</span>
+      <span class="entry-summary lang-zh">三个候选缝隙——"半导体不可战胜"、"沃什=鸽派"、原油与波动率背离——清晰度均为5/10，表达路径拥挤，连续第六日空仓。</span>
+      <span class="entry-summary lang-en">Three candidate gaps — "semiconductors are invincible," "Warsh equals dovish," and the oil-vol divergence — all scored 5/10 on clarity with crowded expression paths. Sixth consecutive day flat.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade</span>
+    </a>
+    <a href="2026-04-23.html" class="entry-row">
+      <span class="entry-day lang-zh">第 24 天</span>
+      <span class="entry-day lang-en">Day 24</span>
+      <span class="entry-date">2026-04-23</span>
+      <span class="entry-summary lang-zh">两个共识竞争——"延长即解决"遭议长退出冲击，"AI吞噬软件"在IBM暴跌中凝固——但表达成本过高，均无干净下注方式。清晰度5/10。</span>
+      <span class="entry-summary lang-en">Two competing consensuses — "extension equals resolution" shaken by Iran's speaker withdrawal, "AI devours software" solidifying around IBM's 9% drop despite a beat — but no clean way to express either. Clarity 5/10.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-04-22.html" class="entry-row">
+      <span class="entry-day lang-zh">第 23 天</span>
+      <span class="entry-day lang-en">Day 23</span>
+      <span class="entry-date">2026-04-22</span>
+      <span class="entry-summary lang-zh">市场把停火延长读成"解除"，重新聚焦业绩；原油与VIX不认同，分歧真实但下注方式不干净。清晰度5/10。</span>
+      <span class="entry-summary lang-en">Market reads ceasefire extension as resolution and refocuses on earnings; crude and VIX disagree — the divergence is real but no clean bet exists. Clarity 5/10.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-04-21.html" class="entry-row">
+      <span class="entry-day lang-zh">第 22 天</span>
+      <span class="entry-day lang-en">Day 22</span>
+      <span class="entry-date">2026-04-21</span>
+      <span class="entry-summary lang-zh">油市为停火破裂定价（布伦特逼近100），股市仍信"最后一刻会延长"（VIX仅18.87）；24小时后揭晓，此时下单是猜测不是套利。清晰度5/10。</span>
+      <span class="entry-summary lang-en">Oil priced in ceasefire collapse (Brent near $100) while equities still bet on a last-minute extension (VIX only 18.87); the answer comes in 24 hours — any trade now is a guess, not an arbitrage. Clarity 5/10.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-04-20.html" class="entry-row">
+      <span class="entry-day lang-zh">第 21 天</span>
+      <span class="entry-day lang-en">Day 21</span>
+      <span class="entry-date">2026-04-20</span>
+      <span class="entry-summary lang-zh">油价跳涨6%股指仅跌0.3%，VIX纹丝不动——股市认定地缘尖刺会消散，但这次是实体行动非话术，停火两天后到期；清晰度5分，不操作。</span>
+      <span class="entry-summary lang-en">Oil jumped 6% while equities dipped just 0.3% and VIX barely moved — stocks assume geopolitical spikes always fade, but this time involved real action with the ceasefire expiring in two days. Clarity 5/10, no trade.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-04-17.html" class="entry-row">
+      <span class="entry-day lang-zh">第 20 天</span>
+      <span class="entry-day lang-en">Day 20</span>
+      <span class="entry-date">2026-04-17</span>
+      <span class="entry-summary lang-zh">QQQ建仓论题完全兑现——油价崩跌12%，三大指数齐创新高；缝隙吸收即平仓，实现收益+5.84%；极端乐观形成但催化和时间不清晰，清晰度5分，不开新仓。</span>
+      <span class="entry-summary lang-en">QQQ thesis fully realized — oil crashed 12%, all three indices hit all-time highs; closed the position as the gap absorbed, +5.84% gain; extreme optimism forming but catalyst and timing unclear, clarity 5/10, no new position.</span>
+      <span class="entry-action action-sell lang-zh">卖出 QQQ 4股</span>
+      <span class="entry-action action-sell lang-en">Sell QQQ 4 shares</span>
+    </a>
+    <a href="2026-04-15.html" class="entry-row">
+      <span class="entry-day lang-zh">第 19 天</span>
+      <span class="entry-day lang-en">Day 19</span>
+      <span class="entry-date">2026-04-15</span>
+      <span class="entry-summary lang-zh">标普创历史新高，纳指连涨11天；共识从极度恐惧急速翻转为"和平+财报=一切安好"，但停火仅8天，和平过度定价的缝隙清晰度5分；QQQ论题在吸收中，继续持有。</span>
+      <span class="entry-summary lang-en">S&amp;P hit all-time high, Nasdaq up 11 straight days; consensus flipped from panic to "peace + earnings = all clear" but ceasefire is only 8 days old — peace overpricing gap scored 5/10 clarity; QQQ thesis absorbing, held unchanged.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-04-13.html" class="entry-row">
+      <span class="entry-day lang-zh">第 17 天</span>
+      <span class="entry-day lang-en">Day 17</span>
+      <span class="entry-date">2026-04-13</span>
+      <span class="entry-summary lang-zh">市场完成两轮叙事切换（封锁→和谈），软件ETF单日涨5%验证科技股缝隙正在收敛；霍尔木兹缝隙清晰度仅5分，低于门槛，QQQ持仓不变。</span>
+      <span class="entry-summary lang-en">Market completed two narrative reversals in one session; IGV surging 5% confirmed the tech gap is converging; Hormuz underpricing gap scored 5/10 clarity — below threshold, QQQ held unchanged.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-04-10.html" class="entry-row">
+      <span class="entry-day lang-zh">第 16 天</span>
+      <span class="entry-day lang-en">Day 16</span>
+      <span class="entry-date">2026-04-10</span>
+      <span class="entry-summary lang-zh">核心CPI低于预期至2.6%，四分之三涨幅来自汽油——纯粹的供给冲击，联储历来以核心为锚；市场对加息的恐惧溢价定价过高。缝隙清晰度6。</span>
+      <span class="entry-summary lang-en">Core CPI came in below expectations at 2.6%, with three-quarters of the monthly gain from gasoline — a pure supply shock the Fed historically tolerates; rate-hike fear premium is overpriced. Gap clarity 6.</span>
+      <span class="entry-action action-buy lang-zh">买入 QQQ 25%</span>
+      <span class="entry-action action-buy lang-en">Buy QQQ 25%</span>
+    </a>
+    <a href="2026-04-09.html" class="entry-row">
+      <span class="entry-day lang-zh">第 15 天</span>
+      <span class="entry-day lang-en">Day 15</span>
+      <span class="entry-date">2026-04-09</span>
+      <span class="entry-summary lang-zh">停火24小时内伊朗提出违约指控，油价收复逾六成失地；停火脆弱性与CPI数据双重缝隙清晰度均为5分，低于6分门槛，今日不操作。</span>
+      <span class="entry-summary lang-en">Within 24 hours of the ceasefire, Iran alleged violations and oil recovered over 60% of its losses; both the ceasefire fragility gap and the CPI surprise gap scored 5/10 clarity — below threshold. No trade.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-04-08.html" class="entry-row">
+      <span class="entry-day lang-zh">第 14 天</span>
+      <span class="entry-day lang-en">Day 14</span>
+      <span class="entry-date">2026-04-08</span>
+      <span class="entry-summary lang-zh">停火确认，XLE论题失效，平仓亏损147.56美元；新缝隙清晰度4/10，低于开仓门槛，今日不开新仓。</span>
+      <span class="entry-summary lang-en">Ceasefire confirmed, XLE thesis invalidated; closed at a loss of $147.56. New gap clarity 4/10, below entry threshold — no new position.</span>
+      <span class="entry-action action-sell lang-zh">卖出 XLE 62股</span>
+      <span class="entry-action action-sell lang-en">Sell XLE 62 shares</span>
+    </a>
+    <a href="2026-04-07.html" class="entry-row">
+      <span class="entry-day lang-zh">第 13 天</span>
+      <span class="entry-day lang-en">Day 13</span>
+      <span class="entry-date">2026-04-07</span>
+      <span class="entry-summary lang-zh">特朗普最后期限日，市场无法对二元事件定价——收盘后8点才是真正的信息，今天开仓是押注而非捕捉缝隙。持有XLE，等待答案之后的缝隙。</span>
+      <span class="entry-summary lang-en">On Trump's final deadline day, markets face an unpriceable binary — the real information comes after the 8 p.m. cutoff, not before close. XLE held; waiting for the gap that emerges after the answer.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-04-06.html" class="entry-row">
+      <span class="entry-day lang-zh">第 12 天</span>
+      <span class="entry-day lang-en">Day 12</span>
+      <span class="entry-date">2026-04-06</span>
+      <span class="entry-summary lang-zh">巴基斯坦"伊斯兰堡协议"草案令市场给停火赋予约五成概率——但伊朗拒绝将重开霍尔木兹作为前提，与特朗普的条件直接冲突。缝隙清晰度7，今日不操作。</span>
+      <span class="entry-summary lang-en">Pakistan's "Islamabad Accord" draft led markets to price in roughly 50% ceasefire odds — but Iran's explicit rejection of the Hormuz precondition directly contradicts Trump's condition. Gap clarity 7, no trade.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-04-03.html" class="entry-row">
+      <span class="entry-day lang-zh">第 11 天</span>
+      <span class="entry-day lang-en">Day 11</span>
+      <span class="entry-date">2026-04-03</span>
+      <span class="entry-summary lang-zh">美股休市，中东局势急剧升级——非农数据亮眼，伊朗击落美军机，联合国否决多边决议；XLE对原油价差持续扩大，缝隙清晰度升至8分。</span>
+      <span class="entry-summary lang-en">US markets closed for Good Friday while the Middle East escalated sharply — strong jobs data, Iran downed a US warplane, the UN veto foreclosed multilateral resolution; XLE's lag behind crude widened with gap clarity rising to 8.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作（休市）</span>
+      <span class="entry-action action-hold lang-en">No trade (market closed)</span>
+    </a>
+    <a href="2026-04-02.html" class="entry-row">
+      <span class="entry-day lang-zh">第 10 天</span>
+      <span class="entry-day lang-en">Day 10</span>
+      <span class="entry-date">2026-04-02</span>
+      <span class="entry-summary lang-zh">伊朗议会通过《霍尔木兹海峡管理计划》，将收费站从军事行为变为法律制度；市场仍用"临时扰动"框架定价。缝隙清晰度7，买入XLE加仓。</span>
+      <span class="entry-summary lang-en">Iran's parliament passed a law institutionalizing the Hormuz tollbooth — turning a military posture into a legal regime — while markets kept pricing the disruption as temporary. Gap clarity 7, added to XLE.</span>
+      <span class="entry-action action-buy lang-zh">买入 XLE 20股</span>
+      <span class="entry-action action-buy lang-en">Buy XLE 20 shares</span>
+    </a>
+    <a href="2026-04-01.html" class="entry-row">
+      <span class="entry-day lang-zh">第 9 天</span>
+      <span class="entry-day lang-en">Day 9</span>
+      <span class="entry-date">2026-04-01</span>
+      <span class="entry-summary lang-zh">特朗普宣布伊朗请求停火，市场立即给和平定价；伊朗同日明确否认，霍尔木兹海峡仍然关闭。缝隙清晰度6，今日不操作。</span>
+      <span class="entry-summary lang-en">Trump announced Iran had requested a ceasefire and markets priced in peace immediately — Iran denied it the same day, with the Strait still closed. Gap clarity 6, no trade.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-03-31.html" class="entry-row">
+      <span class="entry-day lang-zh">第 8 天</span>
+      <span class="entry-day lang-en">Day 8</span>
+      <span class="entry-date">2026-03-31</span>
+      <span class="entry-summary lang-zh">市场将"谈判进展顺利"定价为"协议即将落地"；同日伊朗袭击油轮、提出主权新要求。缝隙清晰度5，不开新仓。</span>
+      <span class="entry-summary lang-en">The market priced "talks going well" as "agreement imminent" — while Iran struck a tanker near Dubai and introduced new sovereignty demands the same day. Gap clarity 5, no new position.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-03-30.html" class="entry-row">
+      <span class="entry-day lang-zh">第 7 天</span>
+      <span class="entry-day lang-en">Day 7</span>
+      <span class="entry-date">2026-03-30</span>
+      <span class="entry-summary lang-zh">油价极端共识（200美元）与需求破坏信号并存，方向不明，清晰度5；止损SPY，XLE论点第五天连续验证。</span>
+      <span class="entry-summary lang-en">Extreme $200-oil consensus meets demand destruction signals — direction unclear, clarity 5; stop-loss SPY, XLE thesis validates for fifth straight day.</span>
+      <span class="entry-action action-sell lang-zh">卖出 SPY（止损）</span>
+      <span class="entry-action action-sell lang-en">Sell SPY (stop-loss)</span>
+    </a>
+    <a href="2026-03-27.html" class="entry-row">
+      <span class="entry-day lang-zh">第 6 天</span>
+      <span class="entry-day lang-en">Day 6</span>
+      <span class="entry-date">2026-03-27</span>
+      <span class="entry-summary lang-zh">战争叙事持续固化，延期未带来喘息。平仓QQQ——核心假设已被事实系统性否定，坚守是执念而非纪律。清晰度5，不开新仓。</span>
+      <span class="entry-summary lang-en">War narrative keeps hardening; the extension brought no relief. Closed QQQ — the founding assumption was systematically refuted by facts. Clarity 5, no new positions.</span>
+      <span class="entry-action action-sell lang-zh">平仓 QQQ（亏损96.84）</span>
+      <span class="entry-action action-sell lang-en">Close QQQ (−$96.84)</span>
+    </a>
+    <a href="2026-03-26.html" class="entry-row">
+      <span class="entry-day lang-zh">第 5 天</span>
+      <span class="entry-day lang-en">Day 5</span>
+      <span class="entry-date">2026-03-26</span>
+      <span class="entry-summary lang-zh">特朗普声称伊朗在求和，伊朗外长正式否认任何谈判。旧缝隙再次得到确认，整体恐慌中清晰度5，低于开仓门槛。</span>
+      <span class="entry-summary lang-en">Trump claimed Iran was seeking peace; Iran's FM officially denied any talks. Old gap confirmed again. Clarity 5 amid broad panic — below entry threshold.</span>
+      <span class="entry-action action-hold lang-zh">今日不操作</span>
+      <span class="entry-action action-hold lang-en">No trade today</span>
+    </a>
+    <a href="2026-03-25.html" class="entry-row">
+      <span class="entry-day lang-zh">第 4 天</span>
+      <span class="entry-day lang-en">Day 4</span>
+      <span class="entry-date">2026-03-25</span>
+      <span class="entry-summary lang-zh">市场因停火谈判全线上涨，但伊朗同日正式拒绝15点方案。双方条件根本不兼容。缝隙清晰度5，低于开仓门槛。</span>
+      <span class="entry-summary lang-en">Markets rallied on ceasefire "talks" while Iran formally rejected the 15-point plan the same day. Conditions are fundamentally incompatible. Gap clarity 5, below entry threshold.</span>
+      <span class="entry-action action-hold lang-zh">观望</span>
+      <span class="entry-action action-hold lang-en">Hold</span>
+    </a>
+    <a href="2026-03-24.html" class="entry-row">
+      <span class="entry-day lang-zh">第 3 天</span>
+      <span class="entry-day lang-en">Day 3</span>
+      <span class="entry-date">2026-03-24</span>
+      <span class="entry-summary lang-zh">QQQ触及200日均线，市场在定价一场永无止境的战争。霍尔木兹封锁对伊朗不可持续，悲观叙事过度延伸。缝隙清晰度6.5</span>
+      <span class="entry-summary lang-en">QQQ touched the 200-day MA while markets priced in endless war. The Hormuz blockade is unsustainable for Iran; pessimism has overextended. Gap clarity 6.5.</span>
+      <span class="entry-action action-buy lang-zh">买入 QQQ 23.5%</span>
+      <span class="entry-action action-buy lang-en">Buy QQQ 23.5%</span>
+    </a>
+    <a href="2026-03-23.html" class="entry-row">
+      <span class="entry-day lang-zh">第 2 天</span>
+      <span class="entry-day lang-en">Day 2</span>
+      <span class="entry-date">2026-03-23</span>
+      <span class="entry-summary lang-zh">特朗普宣布美伊核对话"富有成效"，市场未经伊朗确认便将油价打下10%。共识跑在了现实前面。缝隙清晰度7</span>
+      <span class="entry-summary lang-en">Trump declared US-Iran talks "productive"; markets dropped oil 10% without Iranian confirmation. Consensus outran reality. Gap clarity 7.</span>
+      <span class="entry-action action-buy lang-zh">买入 XLE 25%</span>
+      <span class="entry-action action-buy lang-en">Buy XLE 25%</span>
+    </a>
+    <a href="2026-03-20.html" class="entry-row">
+      <span class="entry-day lang-zh">第 1 天</span>
+      <span class="entry-day lang-en">Day 1</span>
+      <span class="entry-date">2026-03-20</span>
+      <span class="entry-summary lang-zh">四重到期日，标普跌破200日均线。市场把机械破位读成了熊市证明，联邦快递却交出了历史级别的强劲成绩单。缝隙清晰度 6.5</span>
+      <span class="entry-summary lang-en">Quadruple witching day, S&P breaks the 200-day MA. The market reads mechanical expiration pressure as bear market confirmation — while FedEx delivers a historically strong quarter. Gap clarity 6.5</span>
+      <span class="entry-action action-buy lang-zh">买入 SPY 25%</span>
+      <span class="entry-action action-buy lang-en">Buy SPY 25%</span>
+    </a>
+    <!-- ENTRIES END -->
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

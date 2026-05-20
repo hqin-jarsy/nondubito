@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Silicon Valley Giants Missed the LLM Wave — Non Dubito</title>
+  <meta name="description" content="Meta had FAIR, GPU clusters, and a ten-year head start. OpenAI had fewer than 200 people. A structural diagnosis using the three-layer framework.">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/meta_ai_diagnosis.html">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'en';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../index.html" class="active">Essays</a>
+        <a href="../credesivis.html">Crede si vis</a>
+        <a href="../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="essay-main">
+    <article>
+
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="zh">中文</button>
+        </div>
+        <div class="essay-titles">
+          <h1 class="lang-en">Why Some Silicon Valley Giants Missed the First LLM Product Wave</h1>
+          <h1 class="lang-zh">为什么有些硅谷巨头错过了第一波 LLM 产品浪潮？</h1>
+          <p class="essay-subtitle lang-en">A structural diagnosis using the three-layer framework.</p>
+          <p class="essay-subtitle lang-zh">一个三层结构诊断。</p>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="series">Self-as-an-End Theory Series — AI Applied</span>
+          <span class="sep">·</span>
+          <span class="date">March 9, 2026</span>
+        </div>
+      </header>
+
+      <!-- ── ENGLISH ──────────────────────────────────────────────────── -->
+      <div class="essay-body lang-en">
+
+<p><em>Disclosure: I worked at Facebook and collaborated with Mark Zuckerberg on the Graph Search project in 2010. This analysis comes from someone who has worked alongside the people involved — not as a critic from the outside, but as someone who cares.</em></p>
+
+<h2>The Paradox</h2>
+
+<p>In November 2022, ChatGPT launched. Two years later, the LLM consumer product landscape had largely crystallized: OpenAI (ChatGPT) and Anthropic (Claude) had captured the "AI as personal tool" product category.</p>
+
+<p>Here is the paradox: the companies that defined this category were not the ones with the most resources.</p>
+
+<p>Meta had FAIR — one of the world's strongest AI research labs — a Turing Award winner in Yann LeCun, a GPU cluster rivaling anyone's, and a head start dating to 2013, earlier than any other Big Tech company. Meta did not produce a category-defining standalone AI product. Meta AI is now embedded in Instagram, WhatsApp, and Messenger with hundreds of millions of monthly users, but it is a feature of social platforms, not an independent product surface.</p>
+
+<p>Apple, the world's most valuable company with best-in-class chip capabilities, watched Siri stagnate for a decade and eventually partnered with Google's Gemini.</p>
+
+<p>Amazon, owner of the world's largest cloud platform and early pioneer of voice AI with Alexa, was sidelined in the LLM era.</p>
+
+<p>Google, which had everything — DeepMind, massive data, TPUs, distribution — stumbled through repeated product launch problems with Bard and Gemini, and still hasn't captured ChatGPT-level product mindshare.</p>
+
+<p>On the other side: OpenAI had fewer than 200 people in 2020. Anthropic was founded in 2021 with a few dozen.</p>
+
+<p>The question is not "who is smarter" or "who has more money." The question is: why did resources and talent fail to convert into product-category leadership?</p>
+
+<p>I'll use a simple diagnostic framework: three layers — institutional, relational, and individual — each understood as a functional position, not a person. The institutional layer is the organization's boundary conditions (business model, resource allocation rules, priority frameworks). The relational layer is the transmission medium (handoff quality between teams, trust and authority distribution, knowledge transfer pathways). The individual layer is the final realization (where individual capability actually lands given the space above it).</p>
+
+<p>People can be key nodes in a layer, but they are not the layer itself.</p>
+
+<h2>A Quick Scan: Nobody Is Perfect</h2>
+
+<p>Before diving deep into Meta, let me apply the same lens to everyone — including the "winners." The framework doesn't pick sides.</p>
+
+<p><strong>The winners have structural risks too.</strong></p>
+
+<p>OpenAI got the product direction right — ChatGPT's product loop is built around direct usefulness, not ad inventory. But OpenAI's own institutional layer is rapidly expanding — from nonprofit to for-profit to potential IPO. The 2023 board crisis was an eruption of intra-institutional tension. The same expansion inertia that afflicts incumbents will eventually apply to OpenAI too.</p>
+
+<p>Anthropic has the best-aligned relational layer (the safety-plus-capability dual track), but its institutional layer's commercial sustainability is still unproven. Investors won't wait forever.</p>
+
+<p>Google has everything, but its institutional layer is too massive. Search advertising shares the same lethal institutional DNA as Meta — only at larger scale. DeepMind is a relational-layer bright spot (Demis Hassabis's direction judgment has been strong), but the handoff between DeepMind's research and Google's product lines has never been smooth.</p>
+
+<p>xAI has the lightest institutional layer (no legacy baggage), but its entire organization depends on a single person across all three layers — maximum short-term efficiency, maximum long-term fragility.</p>
+
+<p><strong>The laggards each have their own structural trap.</strong></p>
+
+<p>Apple's institutional DNA is "control the experience" — every pixel managed, every interaction curated. LLMs are fundamentally about uncertainty: emergent capabilities mean the model will produce outputs the designer didn't foresee. Apple's control DNA and LLM's uncertainty DNA are structurally incompatible. Apple eventually partnered with Google's Gemini — the institutional layer conceding it could not generate LLM capability internally.</p>
+
+<p>Amazon's institutional DNA is "optimize known demand" — logistics efficiency, recommendation algorithms, inventory management. LLMs are not optimization engines; they are generation engines. Alexa was designed as a command-execution tool ("turn off the lights"), not a thinking partner. When ChatGPT proved users wanted conversation and reasoning rather than command execution, Alexa's institutional design was obsolete. Amazon invested in Perplexity — right direction, but too narrow to be a general AI product. Amazon's institutional layer can provide boundary conditions for others' AI (AWS Bedrock), but cannot itself produce a user-task-centered AI product.</p>
+
+<p><strong>Meta has the deepest structural paradox of all</strong> — the most resources, the strongest talent, the earliest investment, yet neither a category-defining standalone AI product nor an outsourcing decision like Apple's. LLaMA dominates the open-source model ecosystem — a genuine and possibly brilliant strategic achievement — but ecosystem victory and product-category victory are on different axes. Meta deserves the deepest diagnosis.</p>
+
+<h2>Deep Diagnosis: Meta</h2>
+
+<h3>Institutional Layer: How Boundary Conditions Compressed the Product State Space</h3>
+
+<p>The institutional layer in a corporate context consists of the business model, resource allocation rules, priority frameworks, and infrastructure investment direction. These are the boundary conditions for everything that happens inside the organization — they don't dictate what to do specifically, but they determine what is possible and what is structurally discouraged.</p>
+
+<p>Meta's institutional layer compressed the LLM product state space through three specific mechanisms.</p>
+
+<p><strong>Mechanism 1 (the core structural lock): The advertising business model's default objective function</strong></p>
+
+<p>Meta's product and data flywheel has long been organized around "personalized attention → advertising revenue." This is the institutional layer's default objective function — not decided by any single person, but structurally dictated by the business model.</p>
+
+<p>This objective function is in irreconcilable structural conflict with the LLM product's objective function. ChatGPT's core product logic is "direct answer" and "task completion" — it saves the user's attention. Meta's core product logic is "purposeless scrolling" and "engagement time" — it consumes the user's attention.</p>
+
+<p>You cannot expect a system that makes money by selling user attention to wholeheartedly incubate a product designed to save user attention.</p>
+
+<p>How does this objective function propagate into AI product decisions? Public reporting indicates that Meta plans to integrate user interactions with Meta AI into its content and advertising personalization systems. This means: even when Meta builds an AI assistant, that assistant, within the institutional layer's logic, still serves the old track of "increase dwell time → increase ad impressions."</p>
+
+<p>ChatGPT's breakthrough was not technological (GPT-3.5 was not the strongest model at the time) but architectural in the product sense: its product loop was designed around direct usefulness — users pay to have AI help them complete tasks. The loop's objective function is "user task completion," not "user attention extraction."</p>
+
+<p>Meta's institutional layer cannot naturally grow this kind of product loop. Not because Meta's people don't want to — but because the default objective function pulls every AI product decision back onto the advertising-distribution-personalization track. This is boundary conditions compressing state space: the institutional layer doesn't prohibit cultivation-type AI products, but its structural incentives ensure that such products are perpetually deprioritized against the higher-priority demands of ad optimization.</p>
+
+<p>This lock is not unique to Meta. Google shares the same lethal institutional gene — the search-advertising and traffic-distribution moat. Google has TPUs, massive data, and DeepMind, with no Metaverse distraction, yet Bard/Gemini's product launches have been repeatedly troubled. The reason is structurally isomorphic: the advertising-driven "attention extraction" objective function is in irreconcilable conflict with the LLM product's "task completion" objective function.</p>
+
+<p><strong>Mechanism 2 (the complication): Metaverse narrative occupation (2021–2023)</strong></p>
+
+<p>The 2021 rebrand to Meta was the institutional layer's highest-priority signal — the company's purpose was redefined. Reality Labs consumed over ten billion dollars annually. This was not merely resource dispersion but narrative-bandwidth occupation: when the institutional layer's signal is "we are a Metaverse company," every internal team's priorities are pulled by that signal.</p>
+
+<p>When ChatGPT launched in late 2022, Meta's institutional attention was still pointed in a different direction. Institutional direction-switching has inertia. Metaverse was not the core structural lock — the advertising objective function was. Metaverse was a complication: it layered narrative-bandwidth occupation and management-attention dispersion on top of the core lock, making the LLM product catch-up even more reactive.</p>
+
+<p><strong>Mechanism 3: Infrastructure and tooling lag</strong></p>
+
+<p>Public reporting has cited internal Meta memos acknowledging a "significant gap" in the company's AI development tooling, workflow, and processes. This is a concrete institutional mechanism — not a question of whether the CEO had vision, but of the institutional layer's infrastructure priorities having long served the advertising system and social products, with AI-native development toolchains not built at equivalent priority.</p>
+
+<p>Contrast: OpenAI built its entire toolchain around LLM training and deployment from day one. So did Anthropic. Meta's institutional layer had to carve a new path within an existing, massive infrastructure system — harder than building from zero, because the inertia of existing systems absorbs new-direction resources.</p>
+
+<p><strong>LLaMA open-source: Optimal defense under institutional constraint — but defense is not a new growth engine</strong></p>
+
+<p>Under these three institutional constraints, LLaMA's open-sourcing was an extremely smart institutional-layer defense strategy — not FAIR's academic instinct running unchecked, but a company-level strategic decision. Zuckerberg explicitly stated that open-sourcing LLaMA is good for Meta, with the goal of using the ecosystem to make Llama an industry standard.</p>
+
+<p>The structural logic: since the advertising DNA makes it difficult for Meta to internally generate a category-defining standalone AI product, commoditize the model layer — when models themselves are worthless, OpenAI and Google cannot build monopoly moats at the model layer. This was an enormously successful large-scale defense: it suppressed closed-source model pricing power and shaped the open-model ecosystem's industry standard.</p>
+
+<p>But building ecosystem infrastructure (open-source models) and building a high-margin user gateway (like ChatGPT) are two entirely different businesses. Defense cannot directly convert into a new growth engine. Meta preserved the old territory (the social-plus-advertising core business was not disrupted by AI), but did not secure the ticket to the new era (an entirely new AI interaction gateway independent of the existing social-network distribution).</p>
+
+<p>The open-source ecosystem victory is real. The product-window miss is also real. Both can be simultaneously true — they are on different axes.</p>
+
+<h3>Relational Layer: How Transmission Broke Down</h3>
+
+<p>The relational layer in a corporate context is the organization's internal transmission medium — the handoff quality from research teams to product teams, the distribution of trust and authority between groups, the implicit consensus on what counts as "intellectually serious," and the pathways through which knowledge travels from research discovery to product decision.</p>
+
+<p>Meta's relational layer in 2022–2024 had a critical fracture: <strong>handoff failure between research prestige and product execution.</strong> But this fracture was not merely cultural difference or prestige misalignment — its root cause lay in the institutional layer.</p>
+
+<p>FAIR was a world-class research lab — its culture, incentive structure, and prestige system were built around paper publication, academic influence, and fundamental research breakthroughs. The GenAI team, established later, was product-oriented — its goal was to convert AI capability into user-facing products.</p>
+
+<p>Public reporting indicated that Meta needed to bring the research team and the more business-focused GenAI team "closer together." This tells us there was a transmission fracture: research outputs were not flowing smoothly into product decisions, and product requirements were not flowing smoothly into research priorities.</p>
+
+<p>The deep root of this fracture was not cultural difference but institutional-layer dynamics. When an organization's commercial engine (advertising) is so powerful and self-sustaining, it strips the internal research institution of the evolutionary pressure to productize technology in order to survive. FAIR's "academicization" was a privilege subsidized by Meta's enormous advertising cash flow — FAIR's existential legitimacy came from its signboard effect (recruiting top talent, maintaining the company's technical prestige), not from directly driving quarterly earnings. This privilege, in normal times, was a luxurious investment; during a technological paradigm shift, it became a structural impediment — because the research team had no survival pressure to productize, and the product team had no authority to commandeer research resources.</p>
+
+<p>Contrast: at OpenAI and Anthropic, research is product and product is research. Ilya Sutskever's and Dario Amodei's research breakthroughs directly defined the ceiling of the next-generation product. Research teams had productization pressure (because the company's commercial survival depended on product revenue), and product teams had the authority to direct research (because product needs were research direction). The relational-layer transmission had no fracture, because both ends' survival logic was the same.</p>
+
+<p>Within this transmission structure, Yann LeCun's role was that of a prestige anchor — not a "single culprit who misled everyone." As a Turing Award winner and the soul of FAIR, his academic direction judgment (world models, self-supervised learning, skepticism toward autoregressive LLM emergence) defined what counted as "intellectually serious" within FAIR's relational layer. This is not his "fault" — academic authority anchoring direction is the normal function of a research institution's relational layer. But when this prestige anchor had a temporal mismatch with the LLM emergence market window, the relational-layer transmission produced a directional bias.</p>
+
+<p>World models are almost certainly a necessary path toward superintelligence — LeCun's direction is not wrong. He just wanted to get there in one step. In a world without time pressure, this strategy would be correct. But in the specific competitive window of 2022–2024, "imperfect but emergent LLMs" defined the product category faster than "theoretically superior but not-yet-built world models."</p>
+
+<h3>Individual Layer: Strong but Compressed</h3>
+
+<p>Meta does not lack top-tier individual capability. FAIR's publication output is world-class. The LLaMA team's technical capability is world-class. Meta's AI infrastructure team is among the best in the world.</p>
+
+<p>But the state space in which individual capability ultimately lands depends on the structure provided by the institutional and relational layers. Meta's individual layer — its AI scientists and engineers — had its realizable state space compressed by institutional-layer resource allocation (advertising priority, Metaverse distraction, tooling lag) and relational-layer transmission fracture (the handoff failure between research prestige and product execution).</p>
+
+<p>The result: top-tier individual capability was not converted into category leadership. Talent was converted into papers, open-source models, and platform-embedded features — all valuable outputs, but not a category-defining consumer product.</p>
+
+<p>This is not a failure of the individual layer. This is the inevitable outcome when the individual layer's state space has been compressed by the two layers above it.</p>
+
+<h2>Structural Diagnosis Summary</h2>
+
+<p><strong>Meta:</strong> Institutional layer: Ad objective function + Metaverse complication + tooling lag → product state space compressed. Relational layer: Research-product handoff fracture + LeCun as prestige anchor with temporal mismatch + FAIR's academicization subsidized by ad cash flow. Individual layer: World-class, but state space compressed → papers, open models, embedded features.</p>
+
+<p><strong>OpenAI:</strong> Institutional layer: Product loop around direct usefulness + subscription model. Relational layer: Research-product transmission tight + Ilya aligned with window. Individual layer: World-class, state space aligned with window → ChatGPT.</p>
+
+<p><strong>Anthropic:</strong> Institutional layer: Safety-capability dual track + subscription model. Relational layer: Safety direction + openness to scaling and architecture. Individual layer: World-class, state space aligned with window → Claude.</p>
+
+<h2>This Is Not Meta's Problem Alone</h2>
+
+<p>Meta's structural diagnosis — individual layer strong, institutional layer locked, relational layer fractured — is not unique to one company.</p>
+
+<p>The same structure appears wherever an organization possesses strong individual capability but the institutional layer's boundary conditions lock the direction and the relational layer's transmission fractures the path from capability to output. The individual layer ends up strong but unable to realize.</p>
+
+<p>Direction lock + transmission fracture + strong-but-unrealized individuals — this is a structural diagnosis, not a verdict on any specific company or any specific person.</p>
+
+<p>The diagnosis is given. The prescription comes next.</p>
+
+      </div><!-- /lang-en -->
+
+      <!-- ── CHINESE ──────────────────────────────────────────────────── -->
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
+
+<p><em>声明：我曾在Facebook工作，2010年与Zuckerberg一起做过Graph Search项目。爱之深，责之切。</em></p>
+
+<h2>悖论</h2>
+
+<p>2022年11月，ChatGPT发布。两年后，LLM消费者产品格局基本定型：OpenAI和Anthropic拿下了"AI作为个人工具"的品类定义权。</p>
+
+<p>定义品类的，不是资源最多的公司。</p>
+
+<p>Meta：FAIR全球最强AI实验室之一，LeCun图灵奖得主，GPU集群全球领先，2013年就开始押注AI——比任何大公司都早。结果：LLaMA统治了开源底座，但Meta没有产出定义品类的独立AI产品。Meta AI嵌入了Instagram、WhatsApp、Messenger，月活数亿甚至十亿级——但它是社交平台的附属功能，不是独立产品。</p>
+
+<p>Apple：市值最高，芯片最强——Siri十年没动，最后跟Gemini签了合作。</p>
+
+<p>Amazon：AWS全球最大云平台，Alexa曾是语音AI先驱——LLM时代被边缘化。</p>
+
+<p>Google：什么都有（DeepMind、海量数据、TPU、分发渠道）——Bard/Gemini产品发布反复翻车，至今没拿到ChatGPT级别的产品心智。</p>
+
+<p>反面：OpenAI 2020年还不到200人。Anthropic 2021年成立时几十个人。</p>
+
+<p>问题不是谁更聪明，也不是谁钱更多。问题是：为什么资源和人才没有转化为产品定义权？</p>
+
+<p>我用一个简单的诊断框架：三层——制度层、关系层、个体层。不是人物分类，是功能位置。制度层 = 组织的边界条件（商业模式、资源分配、优先级框架）。关系层 = 组织内部的传导媒介（团队之间的handoff质量、信任与权威分布、知识传递路径）。个体层 = 最终实现层（个体能力最终在什么空间里落地）。</p>
+
+<p>人可以是某层的关键节点，但不等于那一层。还有一点要澄清：本文诊断的不是"谁赢了AI竞赛"——竞赛还在进行中。诊断的是一个具体的窗口问题：2022年底到2024年底，为什么某些公司没能把已有的AI研究能力转化为定义品类的消费者产品。赢了开源生态和错过了产品窗口，可以同时为真——它们在不同的轴上。</p>
+
+<h2>同一把尺子量所有人</h2>
+
+<p>先扫一遍全场。框架不站队。</p>
+
+<p><strong>赢家也有结构性风险。</strong></p>
+
+<p>OpenAI：产品方向最对——ChatGPT的产品循环围绕"直接有用"而非广告库存。但制度层本身在膨胀——从非营利到营利到可能的上市。2023年董事会危机就是制度层内部张力的爆发。制度层膨胀的惯性不会因为方向对了就停止。</p>
+
+<p>Anthropic：关系层方向最对齐（安全+能力双轨）。但制度层的商业可持续性还没被充分验证。投资人不会永远等。</p>
+
+<p>Google：什么都有，但制度层太庞大。搜索广告DNA跟Meta同构——只是规模更大。DeepMind是亮点（Demis Hassabis的方向判断准确），但DeepMind跟Google产品线之间的传导一直不畅。</p>
+
+<p>xAI/Grok：制度层最轻，没有遗产包袱。但整个组织几乎完全依赖一个人——短期效率高，长期结构脆弱。</p>
+
+<p><strong>掉队者各有各的结构困境。</strong></p>
+
+<p>Apple：制度层DNA是"控制体验"——每个像素都管。LLM的本质是不确定性——涌现意味着模型会产出设计者没预见的结果。这两个DNA根本冲突。最终跟Gemini合作=制度层承认自己内生不出LLM能力。</p>
+
+<p>Amazon：制度层DNA是"优化已知需求"——物流、推荐、库存。LLM不是优化引擎，是生成引擎。Alexa被设计成"执行指令"（关灯、播歌），不是"思考伙伴"。当ChatGPT证明用户要的是对话和推理时，Alexa的设计就过时了。投资了Perplexity，方向对，但太专了。AWS能为别人的AI提供基础设施，自己做不出以用户任务为中心的AI产品。</p>
+
+<p><strong>Meta：悖论最深。</strong>资源最多、人才最强、投入最早，但既没产出定义品类的独立AI产品，也没像Apple那样选择外包。LLaMA统治了开源底座——可能是极其高明的防御策略——但生态胜利和产品胜利在不同的轴上。Meta值得最深度的诊断。</p>
+
+<h2>深度诊断：Meta</h2>
+
+<h3>制度层：边界条件如何压缩了产品空间</h3>
+
+<p>制度层 = 商业模式、资源分配规则、优先级框架、基础设施方向。这些是组织内所有活动的边界条件——它们不决定做什么，但决定了什么做得了、什么做不了。</p>
+
+<p>Meta的制度层通过三个机制压缩了LLM产品的状态空间。</p>
+
+<p><strong>机制一（核心死结）：广告商业模式的默认目标函数。</strong></p>
+
+<p>Meta的产品飞轮围绕"个性化注意力→广告收入"展开。这是制度层的默认目标函数——不是某个人定的，是商业模式结构性规定的。</p>
+
+<p>这个目标函数跟LLM产品的目标函数有不可调和的冲突。ChatGPT的产品逻辑是"答案直达"和"任务代工"——替用户节省注意力。Meta的产品逻辑是"无目的滑动"和"停留时长"——消耗用户注意力。</p>
+
+<p>你不可能指望一个靠卖用户注意力赚钱的系统，去全力孵化一个旨在替用户节省注意力的产品。</p>
+
+<p>这个目标函数怎么传导到AI产品决策？公开报道显示，Meta计划把用户与Meta AI的互动并入内容和广告个性化系统。也就是说：即使Meta做了一个AI助手，这个助手在制度层的逻辑里仍然服务于"提高停留时长→增加广告展示"的旧轨道。</p>
+
+<p>ChatGPT的突破不在于技术（GPT-3.5不是当时最强的模型），在于产品循环：围绕direct usefulness设计——用户付费让AI帮自己做事。目标函数是"用户任务完成"，不是"用户注意力提取"。</p>
+
+<p>Meta的制度层长不出这种产品循环。不是Meta的人不想做——是制度层的默认目标函数把每一个AI产品决策拉回广告-分发-个性化的旧轨道。制度层没有禁止做涵育性AI产品，但结构性激励让这类产品在内部竞争中总是被广告优化需求挤压。</p>
+
+<p>这个死结不是Meta独有。Google共享同一个致命基因——搜索广告和流量分发。Google有TPU、有DeepMind、没有Metaverse的干扰——但Bard/Gemini的产品launch同样反复出问题。原因同构：广告驱动的"注意力提取"目标函数，跟LLM产品的"任务完成"目标函数，结构性冲突。</p>
+
+<p><strong>机制二（并发症）：Metaverse叙事占位（2021–2023）。</strong></p>
+
+<p>2021年改名Meta = 制度层的最高优先级信号：公司目的被重新定义。Reality Labs年投入超百亿。这不只是资源分散——是叙事带宽的占用。当制度层信号是"我们是Metaverse公司"时，内部所有团队的优先级都被牵引。</p>
+
+<p>2022年底ChatGPT发布时，Meta的制度层注意力还在另一个方向上。制度层方向切换有惯性。Metaverse不是核心死结——广告目标函数才是。Metaverse是并发症：在核心死结之上叠加了叙事带宽占用和管理注意力分散，让LLM产品化的追赶更被动。</p>
+
+<p><strong>机制三：基础设施和工具链迟滞。</strong></p>
+
+<p>公开报道引述Meta内部memo：公司在AI开发的tooling、workflow、process上存在显著差距。不是CEO有没有vision的问题——是制度层的基础设施优先级长期服务于广告系统和社交产品，AI原生的开发工具链没有被同等优先级建设。</p>
+
+<p>对比：OpenAI从第一天就围绕LLM训练和部署建整个工具链。Anthropic也是。Meta需要在已有的庞大基础设施里开辟新路径——比从零建更难，因为既有系统的惯性会吸收新方向的资源。</p>
+
+<p><strong>LLaMA开源：制度层约束下的最优防御——但防御不等于新增长引擎。</strong></p>
+
+<p>在三重制度层约束下，LLaMA开源是一个极其聪明的防御策略——不是FAIR的学术本能失控，是公司级战略。Zuckerberg明确表态过：开源LLaMA对Meta有利，目标是用生态把Llama做成行业标准。</p>
+
+<p>结构逻辑：既然广告DNA使Meta难以内生出定义品类的独立AI产品，那就商品化模型层——当模型本身不值钱时，OpenAI和Google无法在模型单点上建立垄断壁垒。这是极其成功的大规模防御：打压了闭源模型的定价权，塑造了开放模型生态的行业标准。</p>
+
+<p>但做生态基建和做高利润的用户入口是两门完全不同的生意。防御不能直接转化为新增长引擎。Meta保住了旧地盘——社交+广告的核心业务没有被AI颠覆。但没有拿到新时代的入场券——不依赖现有社交网络分发的全新AI交互入口。</p>
+
+<p>开源生态的胜利是真实的。产品窗口的错过也是真实的。两者同时为真——在不同的轴上。</p>
+
+<h3>关系层：传导如何断裂</h3>
+
+<p>关系层 = 组织内部的传导媒介——研究→产品的handoff质量、团队之间的信任与权威分布、什么算"intellectually serious"的隐性共识、知识从研究发现传导到产品决策的路径。</p>
+
+<p>Meta的关系层在2022–2024年间有一条关键断裂：<strong>研究prestige与产品执行之间的handoff failure。</strong>但这条断裂不只是文化差异——它的根源在制度层。</p>
+
+<p>FAIR是世界级研究实验室——文化、激励结构、声望体系围绕论文发表、学术影响力和基础研究建立。GenAI团队是后来成立的产品导向团队——目标是把AI能力转化为用户产品。</p>
+
+<p>公开报道显示，Meta需要把研究团队和更偏商业的GenAI团队"拉近"。这说明两个团队之间存在传导断裂——研究成果没有顺畅流向产品决策，产品需求也没有顺畅流向研究优先级。</p>
+
+<p>断裂的深层根源不是文化差异，是制度层的驱动力。当一个组织的商业引擎（广告）过于强大且自给自足时，它会剥夺内部研究机构"被迫将技术产品化以求生存"的演化压力。FAIR的"学术化"是被Meta庞大的广告现金流养出来的特权——FAIR的存在合法性来自招牌效应（招人、维护技术声望），不是直接驱动季度财报。这种特权在正常时期是奢侈投资；在技术换代期，变成结构性阻碍——研究团队没有产品化的生存压力，产品团队没有调动研究资源的权威。</p>
+
+<p>对比：在OpenAI和Anthropic，研究即产品，产品即研究。Ilya和Dario的研究突破直接定义了下一代产品的天花板。研究团队有产品化压力（公司商业存续靠产品收入），产品团队有调动研究的权威（产品需求就是研究方向）。关系层的传导没有断裂——因为两端的生存逻辑是同一个。</p>
+
+<p>在这个结构里，Yann LeCun的角色是prestige anchor（声望锚点），不是"把所有人带偏的单一元凶"。作为图灵奖得主和FAIR灵魂人物，他的学术方向判断（世界模型、自监督学习、对自回归LLM涌现的怀疑）在FAIR的关系层中定义了什么算"intellectually serious"。这不是他的"错"——学术权威锚定方向是研究机构关系层的正常功能。但当声望锚与LLM涌现的市场窗口存在时间差时，关系层的传导就会产生方向性偏差。</p>
+
+<p>世界模型几乎确定是通向超级智能的必经之路——LeCun看到的方向没有错，他只是想一步到位。在没有时间压力的世界里，这个策略是对的。但在2022–2024这个具体的竞赛窗口中，"不完美但能涌现的LLM"比"理论上更优但还没做出来的世界模型"更快地定义了产品品类。</p>
+
+<h3>个体层：强，但被压缩</h3>
+
+<p>Meta不缺顶尖个体能力。FAIR论文产出世界一流。LLaMA团队技术世界一流。AI infra团队全球最好之一。</p>
+
+<p>但个体能力最终在什么状态空间里落地，取决于制度层和关系层提供的结构。Meta的个体层——AI科学家和工程师——的可实现状态空间，被制度层的资源分配（广告优先、Metaverse分心、工具链迟滞）和关系层的传导断裂（研究prestige与产品执行之间的handoff failure）压缩了。</p>
+
+<p>结果：顶尖个体能力没有转化为品类定义权。天赋被转化成了论文、开源模型和平台内嵌功能——都是有价值的产出，但不是定义品类的消费者产品。</p>
+
+<p>这不是个体层的失败。这是个体层的状态空间被上面两层压缩后的必然结果。</p>
+
+<h2>诊断总结</h2>
+
+<p><strong>Meta：</strong>制度层：广告目标函数 + Metaverse并发症 + 工具链迟滞 → 产品空间被压缩。关系层：研究-产品handoff断裂 + LeCun作为声望锚的时间差 + 广告现金流养出的学术特权。个体层：世界一流，但状态空间被压缩 → 论文、开源模型、内嵌功能。</p>
+
+<p><strong>OpenAI：</strong>制度层：围绕usefulness的产品循环 + 订阅制。关系层：研究→产品传导紧密 + Ilya方向对齐窗口。个体层：世界一流，状态空间对齐窗口 → ChatGPT。</p>
+
+<p><strong>Anthropic：</strong>制度层：安全+能力双轨 + 订阅制。关系层：安全方向 + 对scaling开放。个体层：世界一流，状态空间对齐窗口 → Claude。</p>
+
+<h2>这不是Meta一家的困境</h2>
+
+<p>个体层强、制度层锁定方向、关系层传导断裂——这个结构不是Meta独有的。</p>
+
+<p>同样的结构在不同时代、不同组织中反复出现：当一个组织拥有强大的个体能力，但制度层的边界条件锁死了方向、关系层的传导断裂了从能力到产出的路径时，个体的能力就只能强而不成。</p>
+
+<p>方向锁定 + 传导断裂 + 强而不成——这是结构诊断，不是对任何特定公司或特定个人的判决。</p>
+
+<p>诊断已给出。药方见下篇。</p>
+
+      </div><!-- /lang-zh -->
+
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p class="lang-en">Han Qin (秦汉) · <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a> · <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a></p>
+      <p class="lang-zh">秦汉 · <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a> · <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE 理论</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

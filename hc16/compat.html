@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关系分析 — HC-16 · Z-test · Non Dubito</title>
+  <meta name="description" content="选择两种类型，查看你们在四个维度上的关系配置。朋友、恋人、家人、同事。">
+  <meta property="og:title" content="HC-16 关系分析 — Z-test">
+  <meta property="og:description" content="选择两种类型，查看维度对比与关系分析。">
+  <meta property="og:url" content="https://nondubito.net/hc16/compat.html">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0f0f0e; --ink2: #1a1a18;
+  --cream: #f5f0e8; --cream2: #ede8e0;
+  --green: #2d4a3e; --gold: #b8953a; --gold-light: #d4a843;
+  --sans: 'Inter', sans-serif;
+  --serif: 'EB Garamond', Georgia, serif;
+  --cjk: 'Noto Serif SC';
+  --max-w: 680px; --radius: 6px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--ink); color: var(--cream); font-family: var(--sans); }
+body { min-height: 100vh; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 50px;
+  background: rgba(15,15,14,0.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(245,240,232,0.08);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.5rem; z-index: 100;
+}
+.nav-left a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(245,240,232,0.35); text-decoration: none; }
+.nav-left a:hover { color: var(--cream); }
+.nav-center { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); font-weight: 500; }
+.nav-right { display: flex; gap: 1rem; align-items: center; }
+.lang-btn { background: none; border: none; cursor: pointer; font-size: 0.72rem;
+  letter-spacing: 0.08em; color: rgba(245,240,232,0.3); transition: color 0.2s; }
+.lang-btn.active, .lang-btn:hover { color: var(--cream); }
+
+/* MAIN */
+main { max-width: var(--max-w); margin: 0 auto; padding: 90px 1.5rem 4rem; }
+.page-eyebrow { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,240,232,0.25); margin-bottom: 0.6rem; }
+.page-title { font-family: var(--serif); font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 400; color: var(--cream); margin-bottom: 0.4rem; }
+.page-subtitle { font-size: 0.82rem; color: rgba(245,240,232,0.4);
+  line-height: 1.6; margin-bottom: 2.5rem; }
+
+/* SELECTOR */
+.selector-wrap { display: flex; gap: 1.2rem; align-items: flex-end;
+  flex-wrap: wrap; margin-bottom: 2rem; }
+.selector-group { flex: 1; min-width: 120px; }
+.selector-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(245,240,232,0.3); margin-bottom: 0.5rem; }
+.type-select {
+  width: 100%; background: rgba(245,240,232,0.05);
+  border: 1px solid rgba(245,240,232,0.15); color: var(--cream);
+  font-family: var(--sans); font-size: 0.85rem; letter-spacing: 0.08em;
+  padding: 0.65rem 0.9rem; border-radius: var(--radius); cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(245,240,232,0.3)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 0.9rem center;
+  transition: border-color 0.2s;
+}
+.type-select:focus { outline: none; border-color: var(--gold); }
+.type-select option { background: var(--ink2); color: var(--cream); }
+.selector-swap {
+  background: none; border: 1px solid rgba(245,240,232,0.15);
+  color: rgba(245,240,232,0.35); font-size: 1rem; cursor: pointer;
+  padding: 0.55rem 0.8rem; border-radius: var(--radius);
+  transition: all 0.18s; margin-bottom: 0;
+}
+.selector-swap:hover { border-color: rgba(245,240,232,0.35); color: var(--cream); }
+
+/* RESULT AREA */
+#compat-output { margin-top: 0.5rem; }
+.empty-state { text-align: center; padding: 3rem 1rem;
+  color: rgba(245,240,232,0.2); font-size: 0.85rem; line-height: 1.8; }
+.same-type-note { text-align: center; padding: 0.75rem 1.25rem;
+  color: rgba(245,240,232,0.75); font-size: 0.84rem; font-style: italic;
+  background: rgba(245,240,232,0.05);
+  border: 1px solid rgba(245,240,232,0.12); border-radius: var(--radius);
+  margin-bottom: 1rem; }
+
+/* TYPE CARDS row */
+.type-cards { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.type-card {
+  flex: 1; min-width: 140px;
+  background: rgba(184,149,58,0.07); border: 1px solid rgba(184,149,58,0.2);
+  border-radius: var(--radius); padding: 1rem 1.2rem;
+  text-decoration: none; transition: background 0.2s;
+}
+.type-card:hover { background: rgba(184,149,58,0.12); }
+.type-card-code { font-size: 1.2rem; letter-spacing: 0.15em; font-weight: 600;
+  color: var(--gold-light); margin-bottom: 0.2rem; }
+.type-card-zh { font-family: var(--cjk), var(--serif); font-size: 0.95rem;
+  color: var(--cream); margin-bottom: 0.15rem; }
+.type-card-en { font-size: 0.68rem; color: rgba(245,240,232,0.35);
+  letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ── COMPATIBILITY SECTION ── */
+.compat-section {
+  background: rgba(245,240,232,0.03);
+  border: 1px solid rgba(245,240,232,0.07);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.compat-header {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+.compat-type-chip {
+  background: rgba(245,240,232,0.07);
+  border: 1px solid rgba(245,240,232,0.12);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.05em;
+}
+.compat-type-chip.me { background: rgba(184,149,58,0.15); border-color: rgba(184,149,58,0.3); }
+.compat-x { color: rgba(245,240,232,0.3); font-size: 0.9rem; }
+.compat-zh {
+  font-family: var(--cjk), serif;
+  font-size: 0.8rem;
+  color: rgba(245,240,232,0.4);
+}
+
+.compat-grid { display: flex; flex-direction: column; gap: 1rem; }
+.compat-row { }
+.compat-row-label {
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(245,240,232,0.25); margin-bottom: 0.4rem;
+}
+.compat-row-text {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.9rem; line-height: 1.75;
+  color: rgba(245,240,232,0.7);
+}
+.compat-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.4rem; }
+.compat-chip {
+  font-family: var(--cjk), serif;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  border: 1px solid;
+}
+.compat-chip.green { color: rgba(150,200,150,0.8); border-color: rgba(150,200,150,0.3); background: rgba(150,200,150,0.06); }
+.compat-chip.amber { color: rgba(220,160,80,0.8); border-color: rgba(220,160,80,0.3); background: rgba(220,160,80,0.06); }
+.compat-chip.red { color: rgba(200,100,100,0.8); border-color: rgba(200,100,100,0.3); background: rgba(200,100,100,0.06); }
+
+/* ── FEEDBACK ── */
+.feedback-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto 1.5rem;
+  padding: 0 1.5rem;
+}
+.feedback-box {
+  border: 1px solid rgba(245,240,232,0.08);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  text-align: center;
+}
+.feedback-q {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.82rem;
+  color: rgba(245,240,232,0.4);
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+.feedback-btns { display: flex; gap: 0.6rem; justify-content: center; }
+.feedback-btn {
+  background: none;
+  border: 1px solid rgba(245,240,232,0.15);
+  border-radius: var(--radius);
+  color: rgba(245,240,232,0.45);
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.78rem;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.feedback-btn:hover { border-color: rgba(245,240,232,0.3); color: rgba(245,240,232,0.7); }
+.feedback-btn.yes:hover { border-color: rgba(150,200,150,0.4); color: rgba(150,200,150,0.8); }
+.feedback-btn.no:hover  { border-color: rgba(220,160,80,0.4);  color: rgba(220,160,80,0.8); }
+.feedback-detail {
+  margin-top: 1.2rem;
+  text-align: left;
+  display: none;
+}
+.feedback-detail.open { display: block; }
+.feedback-label {
+  font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(245,240,232,0.25); margin-bottom: 0.5rem;
+}
+.feedback-select {
+  width: 100%;
+  background: rgba(245,240,232,0.04);
+  border: 1px solid rgba(245,240,232,0.12);
+  border-radius: var(--radius);
+  color: rgba(245,240,232,0.7);
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.85rem;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.8rem;
+  appearance: none;
+}
+.feedback-select option { background: #1a1a18; }
+.feedback-note {
+  width: 100%;
+  background: rgba(245,240,232,0.04);
+  border: 1px solid rgba(245,240,232,0.12);
+  border-radius: var(--radius);
+  color: rgba(245,240,232,0.7);
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.82rem;
+  padding: 0.6rem 0.8rem;
+  resize: vertical;
+  min-height: 70px;
+  margin-bottom: 0.8rem;
+  box-sizing: border-box;
+}
+.feedback-note::placeholder { color: rgba(245,240,232,0.2); }
+.feedback-submit {
+  width: 100%;
+  background: rgba(245,240,232,0.07);
+  border: 1px solid rgba(245,240,232,0.15);
+  border-radius: var(--radius);
+  color: rgba(245,240,232,0.6);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 0.6rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.feedback-submit:hover { background: rgba(245,240,232,0.12); color: rgba(245,240,232,0.85); }
+.feedback-done {
+  font-family: var(--cjk), var(--serif);
+  font-size: 0.82rem;
+  color: rgba(150,200,150,0.7);
+  text-align: center;
+  display: none;
+  padding: 0.3rem 0;
+}
+
+/* ── CTA ── */
+.cta-area {
+  text-align: center;
+  padding: 0 1.5rem 4rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.btn-invite {
+  display: block; width: 100%;
+  background: var(--cream);
+  color: var(--ink);
+  border: none; border-radius: var(--radius);
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 1rem;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+  transition: background 0.15s;
+}
+.btn-invite:hover { background: var(--cream2); }
+.btn-share {
+  display: block; width: 100%;
+  background: transparent;
+  color: rgba(245,240,232,0.5);
+  border: 1px solid rgba(245,240,232,0.15);
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  padding: 0.8rem;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+  transition: all 0.15s;
+}
+.btn-share:hover { border-color: rgba(245,240,232,0.3); color: rgba(245,240,232,0.7); }
+.btn-retake {
+  display: block; width: 100%;
+  background: transparent;
+  color: rgba(245,240,232,0.25);
+  border: none;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  transition: color 0.15s;
+}
+.btn-retake:hover { color: rgba(245,240,232,0.45); }
+.cta-back {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.18);
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-top: 1rem;
+}
+.cta-back:hover { color: rgba(245,240,232,0.35); }
+
+.toast {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  background: var(--ink2);
+  border: 1px solid rgba(245,240,232,0.12);
+  border-radius: var(--radius);
+  padding: 0.7rem 1.4rem;
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.85rem;
+  color: var(--cream);
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; }
+
+@media (max-width: 400px) {
+  .result-code { letter-spacing: 0.12em; }
+}
+
+/* ── COMPAT REL SELECTOR ── */
+.compat-rel-tabs { display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:1.2rem; }
+.compat-rel-btn {
+  font-family: var(--cjk), var(--sans); font-size:0.72rem;
+  padding:0.3rem 0.85rem; border-radius:20px; border:1px solid rgba(245,240,232,0.2);
+  background:transparent; color:rgba(245,240,232,0.45); cursor:pointer;
+  transition: all 0.18s ease; letter-spacing:0.04em;
+}
+.compat-rel-btn:hover { border-color:rgba(245,240,232,0.45); color:rgba(245,240,232,0.7); }
+.compat-rel-btn.active {
+  background:rgba(184,149,58,0.15); border-color:var(--gold);
+  color:var(--gold-light);
+}
+.compat-placeholder {
+  font-size:0.8rem; color:rgba(245,240,232,0.3); font-style:italic;
+  padding:0.8rem 0; text-align:center;
+}
+
+.compat-chip.blue {
+  background: rgba(100,150,200,0.15); color: rgba(180,210,240,0.85);
+  border-color: rgba(100,150,200,0.3);
+}
+
+/* FOOTER */
+.page-footer { margin-top: 4rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(245,240,232,0.08);
+  font-size: 0.65rem; color: rgba(245,240,232,0.2); text-align: center;
+  line-height: 1.8; }
+.page-footer a { color: rgba(245,240,232,0.3); text-decoration: none; }
+.page-footer a:hover { color: rgba(245,240,232,0.6); }
+</style>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="../index.html">Non Dubito</a>
+    &nbsp;/&nbsp;
+    <a href="index.html">HC-16</a>
+    &nbsp;/&nbsp;
+    <a href="../hc16.html">Z-test</a>
+  </div>
+  <div class="nav-center" id="nav-title">关系分析</div>
+  <div class="nav-right">
+    <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
+    <span style="color:rgba(245,240,232,0.15)">|</span>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<main>
+  <p class="page-eyebrow">HC-16 · 动力测试 · Non Dubito</p>
+  <h1 class="page-title" id="page-title">关系分析</h1>
+  <p class="page-subtitle" id="page-subtitle">选择两种类型，看你们在关键时刻各自怎么做决定。不知道自己的类型？先去<a href="../hc16.html" style="color:var(--gold-light);text-decoration:none;">做测试</a>。</p>
+
+  <div class="selector-wrap">
+    <div class="selector-group">
+      <div class="selector-label" id="label-t1">第一个类型</div>
+      <select class="type-select" id="sel-t1" onchange="onSelChange()"></select>
+    </div>
+    <button class="selector-swap" onclick="swapTypes()" title="互换">⇄</button>
+    <div class="selector-group">
+      <div class="selector-label" id="label-t2">第二个类型</div>
+      <select class="type-select" id="sel-t2" onchange="onSelChange()"></select>
+    </div>
+  </div>
+
+  <div id="compat-output">
+    <div class="empty-state" id="empty-state">
+      选好两个类型之后，分析会出现在这里
+    </div>
+  </div>
+</main>
+
+<footer class="page-footer">
+  <a href="https://doi.org/10.5281/zenodo.18907264" target="_blank">DOI: 10.5281/zenodo.18907264</a>
+  &nbsp;·&nbsp;
+  <a href="../index.html">nondubito.net</a>
+  &nbsp;·&nbsp;
+  Han Qin (秦汉)
+</footer>
+
+<script>
+let currentLang = localStorage.getItem('hc16lang') || 'zh';
+
+const DIM_KEYS = ['drive', 'fierce', 'explore', 'roam'];
+const DIM_EN = ['Drive', 'Fierce', 'Explore', 'Roam'];
+const DIM_ZH = ['驱', '烈', '拓', '游'];
+const TYPES = {
+  'DFER': {
+    zh:'驱烈拓游', en:'Drive · Fierce · Explore · Roam',
+    tagline:'四个频道全开，什么信号都收。',
+    tagline_en:'All four channels open. Receives every signal.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——内在有股持续推着你走的力。',en:'Tilts toward high Drive — something inside keeps pushing you forward.'},
+      {char:'烈',text:'更偏向高边界感——对什么可以、什么不可以有清晰的感知。',en:'Tilts toward Fierce — you sense clearly what\'s acceptable and what isn\'t.'},
+      {char:'拓',text:'更偏向拓展型方向感——喜欢探索更多可能性。',en:'Tilts toward Explore — you prefer to explore possibilities.'},
+      {char:'游',text:'更偏向高流动感——状态好时能在不同情境之间自由切换。',en:'Tilts toward Roam — you move fluidly between situations when at your best.'}
+    ],
+    love:'爱情里的你，往往是最用力的那个。你爱得认真，也爱得费力——对方需要同时理解你的速度、你的边界、你的方向感，还有你不停歇的流动。这不是苛求，这是你的真实。',
+    love_en:'In love, you tend to be the most intense partner. You love seriously — and it asks a lot. Your partner needs to understand your pace, your boundaries, your direction, and your constant motion. That\'s not too much to ask. That\'s who you are.',
+    career:'工作里，你在最理想的状态下像一台四驱全地形的系统——动力、判断、探索、适应同时在线。你需要的不是更努力，而是找到一个能同时激活四个维度的环境。',
+    career_en:'At work, in your ideal state you\'re like an all-terrain four-wheel-drive system — power, judgment, exploration, and adaptability all engaged simultaneously. You don\'t need to work harder. You need an environment that activates all four dimensions at once.',
+    finance:'财务上，你是"有选择性的冒险者"。不是什么都敢，而是在感到有把握、有意义、有退路的时候，你比很多人更敢行动。',
+    finance_en:'Financially, you\'re a selective risk-taker. Not reckless — but when you feel confident, purposeful, and have a fallback, you act more decisively than most.',
+    misread:['别人觉得你「太难搞」→ 你不是难搞，是四个维度同时工作，大多数人只习惯看其中一个面。','别人觉得你「什么都想要」→ 不是贪心，是你的系统真的同时在运转。'],
+    misread_en:['Others think you\'re "too difficult" → Not difficult — all four channels are running. Most people only see one face at a time.','Others think you "want everything" → Not greedy — your whole system is genuinely running at once.'],
+    must:['你不得不往前走——停在原地比失败更难受。','你不得不在意质量——将就不是你能长期维持的状态。'],
+    must_en:['You must keep moving — standing still hurts more than failure.','You must care about quality — settling is not a state you can sustain.'],
+  },
+  'DFEB': {
+    zh:'驱烈拓栖', en:'Drive · Fierce · Explore · Base',
+    tagline:'走遍山河，只为找到真正值得停留的地方。',
+    tagline_en:'Walked far and wide — just to find somewhere worth staying.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——内在有推着你动的能量。',en:'Tilts toward high Drive — energy inside keeps you moving.'},
+      {char:'烈',text:'更偏向高边界感——对什么值得、什么不值得有直觉性判断。',en:'Tilts toward Fierce — you have an instinct for what\'s worth it and what isn\'t.'},
+      {char:'拓',text:'更偏向拓展型方向感——开放新领域、新视角。',en:'Tilts toward Explore — open to new domains and perspectives.'},
+      {char:'栖',text:'更偏向低流动感——一旦找到值得的地方，你想好好停留。',en:'Tilts toward Base — once you find somewhere worth it, you want to stay.'}
+    ],
+    love:'爱情里，你是那种"一旦认定就全情投入"的人。不轻易开始，但开始了就认真对待。你探索过很多，也知道什么是真正让你想停下来的。',
+    love_en:'In love, you\'re the kind who commits fully — once you\'ve chosen. You don\'t start easily, but once you do, you\'re all in. You\'ve explored enough to know what actually makes you want to stay.',
+    career:'工作里，你善于开拓新领域，但你真正想要的是找到一个足够有趣的地方，然后深耕下去。不是漂流，是定点探索——有根基的冒险。',
+    career_en:'At work, you\'re good at opening new territory — but what you actually want is to find somewhere interesting enough, then go deep. Not drifting — anchored exploration. Adventure with a base.',
+    finance:'财务上，你愿意在感兴趣的方向上大胆押注，但底层有一条安全线你不会轻易逾越。你知道怎么探索，也知道怎么守住。',
+    finance_en:'Financially, you\'re willing to bet boldly on directions you believe in — but you keep a baseline you won\'t cross. You know how to explore, and how to hold ground.',
+    misread:['别人觉得你「矛盾」→ 你不矛盾，只是在探索和停留之间有自己的节奏，不需要别人来评判。','别人觉得你「挑剔」→ 不挑剔，是你真的见过不够好的，知道什么值得自己认真。'],
+    misread_en:['Others think you\'re "contradictory" → Not contradictory — you have your own rhythm between exploring and settling, and you don\'t need anyone to judge that.','Others think you\'re "picky" → Not picky — you\'ve seen enough to know what\'s genuinely worth your care.'],
+    must:['你不得不先确认"值不值得"，再放下防备。','你不得不让自己停下来的理由是真实的，不能将就。'],
+    must_en:['You must confirm "is this worth it" before letting your guard down.','The reason you stay must be real — you can\'t force yourself to settle for less.'],
+  },
+  'DFAR': {
+    zh:'驱烈专游', en:'Drive · Fierce · Anchor · Roam',
+    tagline:'专注一件事，但保持自由的权利。',
+    tagline_en:'Focused on one thing — without surrendering the right to move freely.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——你有内在的动力来源，不太需要外部催促。',en:'Tilts toward high Drive — your motivation comes from within. You rarely need prompting.'},
+      {char:'烈',text:'更偏向高边界感——你清楚自己的立场，不容易被说服做不认可的事。',en:'Tilts toward Fierce — you know your position, and you\'re not easily talked into things you don\'t believe in.'},
+      {char:'专',text:'更偏向专注型方向感——倾向于深耕一个领域，而不是四处发散。',en:'Tilts toward Anchor — you prefer to go deep in one area rather than spread thin.'},
+      {char:'游',text:'更偏向高流动感——需要在情境之间保持自由切换的可能。',en:'Tilts toward Roam — you need the possibility of moving freely between contexts.'}
+    ],
+    love:'爱情里，你需要的不是依附，而是"我们各自完整，然后在一起"。你深情且专注，但你需要关系里有空气感——两个人都保有自己的空间。',
+    love_en:'In love, what you need isn\'t to be dependent on someone — it\'s "we\'re both whole, and we choose each other." You\'re deep and focused, but you need airflow in the relationship — space for both of you.',
+    career:'工作里，你往往是某个领域的深度专家，但你不能被困在一个固定的地方或模式里。你需要能自由切换场景、自主控制节奏。',
+    career_en:'At work, you tend to become a deep specialist in your domain — but you can\'t be trapped in one fixed place or pattern. You need freedom to shift contexts and control your own rhythm.',
+    finance:'财务上，你偏向在自己真正擅长理解的一个方向上集中押注，同时保持资产的流动性——不锁死，不漂流。',
+    finance_en:'Financially, you concentrate on one direction you deeply understand — while keeping liquidity in your assets. Not locked in, not adrift.',
+    misread:['别人觉得你「不稳定」→ 你不是不稳定，是你把专注和流动分开在不同维度使用了。','别人觉得你「很难懂」→ 你的逻辑是自洽的，只是它不完全符合别人预期的模式。'],
+    misread_en:['Others think you\'re "unstable" → Not unstable — you operate focus and flow in different dimensions, separately and deliberately.','Others think you\'re "hard to figure out" → Your logic is coherent — it just doesn\'t fit the pattern others expect.'],
+    must:['你不得不保持某种独立性，哪怕只是心理上的自由。','你不得不在自己选定的方向上有真实的深度，表面的专注会让你感到空洞。'],
+    must_en:['You must maintain some form of independence — even if it\'s just psychological freedom.','You must have real depth in your chosen direction — surface-level focus feels hollow.'],
+  },
+  'DFAB': {
+    zh:'驱烈专栖', en:'Drive · Fierce · Anchor · Base',
+    tagline:'把一件事做到极致，然后守住它。',
+    tagline_en:'Take one thing to its limit — then hold it.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——有内在的强劲动力，不容易被外部因素拖走。',en:'Tilts toward high Drive — strong inner momentum, not easily pulled off course.'},
+      {char:'烈',text:'更偏向高边界感——对什么该进、什么该拒有清晰判断。',en:'Tilts toward Fierce — clear sense of what to let in and what to refuse.'},
+      {char:'专',text:'更偏向专注型方向感——倾向于选定一个赛道，然后全力以赴。',en:'Tilts toward Anchor — you choose a lane and go all in.'},
+      {char:'栖',text:'更偏向低流动感——安稳比变动对你更有吸引力。',en:'Tilts toward Base — stability draws you more than constant change.'}
+    ],
+    love:'爱情里，你是非常专一的人——进门很难，出门也很难。你对关系有极高的标准，但一旦认定，你是那种风里雨里都会在的伴侣。',
+    love_en:'In love, you\'re deeply devoted — it takes a lot to get through the door, and even more to walk out. Your standards are high, but once you\'ve decided, you\'re the partner who\'s there through everything.',
+    career:'工作里，你是那种"一个赛道走到底"的人。不轻易换方向，但一旦确定，执行力极强。你的深度是你最大的资产。',
+    career_en:'At work, you\'re the type who stays in one lane all the way. You don\'t pivot easily — but once set, your execution is formidable. Depth is your greatest asset.',
+    finance:'财务上，你倾向于把钱放在你最了解的地方——不追热点，不分散，相信时间和深度的复利。',
+    finance_en:'Financially, you put your money where you have the deepest understanding — no trend-chasing, no spreading thin. You believe in the compounding effect of time and depth.',
+    misread:['别人觉得你「执拗」→ 你不是执拗，你只是不相信什么都试试能比深耕出更好的结果。','别人觉得你「不灵活」→ 灵活不是你的目标，精准才是。'],
+    misread_en:['Others think you\'re "stubborn" → Not stubborn — you simply don\'t believe that trying everything leads to better outcomes than going deep.','Others think you\'re "inflexible" → Flexibility isn\'t your goal. Precision is.'],
+    must:['你不得不在自己选择的事情上做到最好，否则很难有安全感。','你不得不守住自己认为重要的东西，就算别人觉得你该放手。'],
+    must_en:['You must do your best at whatever you\'ve chosen — otherwise it\'s hard to feel secure.','You must hold onto what you believe matters — even when others think you should let go.'],
+  },
+  'DTER': {
+    zh:'驱容拓游', en:'Drive · Tolerant · Explore · Roam',
+    tagline:'走得快，带得动，不拒绝任何可能性。',
+    tagline_en:'Moves fast, brings people along, refuses to close any door.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——有内在的前进动力，不需要太多外部激励。',en:'Tilts toward high Drive — inner forward momentum, doesn\'t need much external push.'},
+      {char:'容',text:'更偏向低边界感（包容）——对不同的人和想法有天然的接纳能力。',en:'Tilts toward Tolerant — natural capacity to accept different people and ideas.'},
+      {char:'拓',text:'更偏向拓展型方向感——倾向于探索更多，而不是收窄聚焦。',en:'Tilts toward Explore — you tend to explore more, not narrow down.'},
+      {char:'游',text:'更偏向高流动感——在不同情境、角色、环境之间切换对你来说是自然的。',en:'Tilts toward Roam — switching between contexts, roles, and environments feels natural.'}
+    ],
+    love:'爱情里，你温暖包容，能接受对方的不完美。但你也需要关系有"空气感"——不窒息，不束缚，能流动，能生长。',
+    love_en:'In love, you\'re warm and accepting — you can hold your partner\'s imperfections without flinching. But you also need airflow in the relationship. No suffocation, no binding. Room to move, room to grow.',
+    career:'工作里，你善于在不同领域之间搭桥，是团队里少有的"哪里都能用"的人。你不是万金油，而是真正具备多领域感知能力的人。',
+    career_en:'At work, you\'re a natural connector across domains — the kind of person the team can use anywhere. Not a generalist by default, but someone who genuinely senses across multiple fields.',
+    finance:'财务上，你倾向于分散布局、多试多看。不把鸡蛋放在一个篮子里，是你天然的风险感知方式。',
+    finance_en:'Financially, you\'re drawn to broad diversification — try a little of many things. Not putting all eggs in one basket is your natural risk instinct.',
+    misread:['别人觉得你「不专注」→ 你的专注只是更宽，不是更浅。','别人觉得你「什么都无所谓」→ 你有所谓，你只是不需要用紧张感来表达在乎。'],
+    misread_en:['Others think you\'re "unfocused" → Your focus is broader, not shallower.','Others think you "don\'t care about anything" → You do care — you just don\'t need tension to express it.'],
+    must:['你不得不保持好奇心，停止探索对你来说比失败更难受。','你不得不感到关系是流动的，而不是固定的——某种形式的自由是你必须守住的东西。'],
+    must_en:['You must stay curious — stopping exploration hurts more than failure.','You must feel that relationships have movement, not just structure — some form of freedom is non-negotiable.'],
+  },
+  'DTEB': {
+    zh:'驱容拓栖', en:'Drive · Tolerant · Explore · Base',
+    tagline:'探索世界，但家是真正的锚点。',
+    tagline_en:'Explores the world — but home is the real anchor.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——有持续推动你行动的内在力量。',en:'Tilts toward high Drive — continuous inner force that keeps you acting.'},
+      {char:'容',text:'更偏向低边界感（包容）——你能理解和接纳不同的立场与行为方式。',en:'Tilts toward Tolerant — you can understand and accept different positions and ways of being.'},
+      {char:'拓',text:'更偏向拓展型方向感——你天然对新事物、新地方、新思路感兴趣。',en:'Tilts toward Explore — naturally drawn to new things, places, and ideas.'},
+      {char:'栖',text:'更偏向低流动感——你需要一个可以回来的地方，探索才有意义。',en:'Tilts toward Base — you need somewhere to return to; that\'s what gives exploration meaning.'}
+    ],
+    love:'爱情里，你是那种"在外面是探索者，在家里是守护者"的人。你能给关系带来新鲜感和宽阔的视野，也能给它一个稳定、真实的底色。',
+    love_en:'In love, you\'re the explorer outside and the guardian inside. You bring freshness and wide perspective to the relationship — and a stable, genuine foundation beneath it all.',
+    career:'工作里，你最适合那种有稳定根基的探索型角色。有"大本营"，也有出发的理由。在某个地方扎根，向外延伸。',
+    career_en:'At work, you thrive in roles that combine a stable base with outward exploration. A headquarters, and reasons to leave it. Rooted somewhere, reaching outward.',
+    finance:'财务上，你喜欢在稳定的底仓上进行有限度的探索性投入——有安全感的边界，有好奇心的出口。',
+    finance_en:'Financially, you like building exploratory positions on top of a stable core — a safety perimeter, with an outlet for curiosity.',
+    misread:['别人觉得你「分裂」→ 你没有分裂，你只是把"家"和"外面"都活得很认真，两者都是你。','别人觉得你「不安分」→ 你的探索不是逃跑，是有根基的飞翔。'],
+    misread_en:['Others think you\'re "split" → Not split — you\'re simply living both "home" and "out there" seriously. Both are you.','Others think you\'re "restless" → Your exploration isn\'t running away — it\'s rooted flight.'],
+    must:['你不得不有一个真正的"基地"，否则探索会变成漂泊。','你不得不动——即使是短暂的出发，也能让你恢复很多。'],
+    must_en:['You must have a real base — without it, exploration becomes drifting.','You must move — even a brief departure restores something in you.'],
+  },
+  'DTAR': {
+    zh:'驱容专游', en:'Drive · Tolerant · Anchor · Roam',
+    tagline:'深耕一件事，但保持自己的节奏。',
+    tagline_en:'Goes deep in one direction — at their own pace.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——你有内在的动力，不需要外部来激活你。',en:'Tilts toward high Drive — you have inner momentum, don\'t need external activation.'},
+      {char:'容',text:'更偏向低边界感（包容）——你对他人的方式有天然的理解和接纳。',en:'Tilts toward Tolerant — natural understanding and acceptance of how others operate.'},
+      {char:'专',text:'更偏向专注型方向感——你倾向于在一个方向上持续深入，而不是广泛发散。',en:'Tilts toward Anchor — you prefer sustained depth in one direction over wide dispersion.'},
+      {char:'游',text:'更偏向高流动感——你需要能自由切换场景和节奏。',en:'Tilts toward Roam — you need freedom to shift scenes and rhythms.'}
+    ],
+    love:'爱情里，你温柔包容，但你也需要对方懂得你的专注。当你沉浸于某件事时，那不是冷落，是你在做自己。懂这个的人，才真正懂你。',
+    love_en:'In love, you\'re gentle and accepting — but you need a partner who understands your focus. When you disappear into something, that\'s not neglect. That\'s you being yourself. Someone who gets that truly gets you.',
+    career:'工作里，你通常是某个领域里稳定而深入的贡献者。但你不喜欢被固定节奏和结构锁住——你需要能掌控自己工作方式的空间。',
+    career_en:'At work, you\'re a steady and deep contributor in your domain. But you dislike being locked into fixed schedules and rigid structure — you need space to control how you work.',
+    finance:'财务上，你往往专注于一到两个你真正理解的品类，同时保持一定的现金灵活性——你要的是深度，也要的是活路。',
+    finance_en:'Financially, you focus on one or two categories you genuinely understand — while keeping some cash flexibility. You want depth, and you want options.',
+    misread:['别人觉得你「没有野心」→ 你的野心只是不那么喧哗，但你对自己领域的深度有执念。','别人觉得你「散漫」→ 你不散漫，你的节奏是你自己的，只是不一定符合别人的期待。'],
+    misread_en:['Others think you "lack ambition" → Your ambition is quieter, not absent. You have a deep obsession with depth in your own domain.','Others think you\'re "scattered" → Not scattered — your rhythm is your own, even if it doesn\'t match what others expect.'],
+    must:['你不得不按自己的节奏工作，被催促或控制会让你比任何人都更快失去状态。','你不得不感到自己在一件真实的事情上有深度，表面的忙碌填不了那个空。'],
+    must_en:['You must work at your own pace — being rushed or controlled throws you off faster than anything.','You must feel genuine depth in something real — surface-level busyness can\'t fill that space.'],
+  },
+  'DTAB': {
+    zh:'驱容专栖', en:'Drive · Tolerant · Anchor · Base',
+    tagline:'一个人，一件事，把它做成一辈子的事。',
+    tagline_en:'One person, one thing — made into a life\'s work.',
+    dims:[
+      {char:'驱',text:'更偏向高驱动感——你有内在的能量来源，不依赖外部刺激维持运转。',en:'Tilts toward high Drive — your energy source is internal, not dependent on external stimulation.'},
+      {char:'容',text:'更偏向低边界感（包容）——你对他人的不完美有天然的包容能力。',en:'Tilts toward Tolerant — natural capacity to hold others\' imperfections without being troubled.'},
+      {char:'专',text:'更偏向专注型方向感——一次聚焦于一件事，并愿意长期坚持。',en:'Tilts toward Anchor — focusing on one thing at a time, willing to persist long-term.'},
+      {char:'栖',text:'更偏向低流动感——稳定和持久对你来说本身就是一种价值。',en:'Tilts toward Base — stability and continuity are values in themselves for you.'}
+    ],
+    love:'爱情里，你是极其可靠的伴侣。你给的不是浪漫轰炸，而是"岁月里还在"。你的爱是长时间的陪伴、稳定的存在、和真实的包容。',
+    love_en:'In love, you\'re an exceptionally reliable partner. You don\'t offer romantic spectacle — you offer presence over time. Your love is long-term companionship, steady presence, and genuine acceptance.',
+    career:'工作里，你是"定海神针"式的存在。深耕一个领域，长期稳定输出，不需要聚光灯，但结果在那里。团队里有你，大家会感到踏实。',
+    career_en:'At work, you\'re the stabilizing force. Deep in one domain, consistently delivering over time. You don\'t need the spotlight — but the results are there. Your presence makes the team feel grounded.',
+    finance:'财务上，你偏好确定性。不喜欢大起大落，更愿意在自己理解的范围内稳健积累。长期持有、复利增长，符合你的底层逻辑。',
+    finance_en:'Financially, you prefer certainty. You dislike big swings, preferring steady accumulation within what you understand. Long-term holding and compounding — that\'s your underlying logic.',
+    misread:['别人觉得你「无趣」→ 你不无趣，你只是把大部分精力都用在了真正重要的事情上，而不是表演趣味。','别人觉得你「不求变」→ 你的"变"发生在深处，不在表面。'],
+    misread_en:['Others think you\'re "boring" → Not boring — you put most of your energy into what genuinely matters, rather than performing interestingness.','Others think you "resist change" → Your change happens in depth, not on the surface.'],
+    must:['你不得不感到"我在做一件真实且有意义的事"，否则再忙也像是虚度。','你不得不被人真正需要，而不只是被使用——你能感受到那种差别。'],
+    must_en:['You must feel "I\'m doing something real and meaningful" — otherwise no matter how busy you are, it feels empty.','You must be genuinely needed, not just used — you can feel the difference.'],
+  },
+  'CFER': {
+    zh:'泰烈拓游', en:'Composed · Fierce · Explore · Roam',
+    tagline:'不急不慌，但四面都开着窗。',
+    tagline_en:'Unhurried. Unbothered. Windows open on all sides.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你有从容的底色，不会轻易被外部节奏带着走。',en:'Tilts toward composed Drive — you have a calm baseline, not easily swept up by external rhythms.'},
+      {char:'烈',text:'更偏向高边界感——你清楚自己的立场，哪些东西是不可谈判的。',en:'Tilts toward Fierce — you know your position, and some things are non-negotiable.'},
+      {char:'拓',text:'更偏向拓展型方向感——你对多个领域和可能性保持开放的好奇。',en:'Tilts toward Explore — you maintain open curiosity across multiple domains.'},
+      {char:'游',text:'更偏向高流动感——你能在不同情境间灵活穿行，不被单一场景定义。',en:'Tilts toward Roam — you move fluidly between contexts, not defined by any single one.'}
+    ],
+    love:'爱情里，你不是那种主动追求的类型，但一旦进入关系，你对它的质量和边界有清晰的判断。你给的是安全感，不是热烈，但一样是真实的在。',
+    love_en:'In love, you\'re not the type to chase — but once in, you have clear judgment about quality and boundaries. What you offer is safety, not fire — but it\'s just as real.',
+    career:'工作里，你是那种"不声不响干大事"的人。不争不抢，但在多个领域都有自己的见解和布局。你的安静里藏着很宽的视野。',
+    career_en:'At work, you\'re the type who does significant things quietly. No jostling, no performance — but you have perspective and plans across multiple domains. Your quiet holds a wide view.',
+    finance:'财务上，你胆子比看起来大——在自己认为值得的地方，你会安静地下注，不需要别人的认可和热闹。你的判断比你的表达更早到。',
+    finance_en:'Financially, you\'re bolder than you appear. You quietly take positions where you believe it\'s worth it — without needing others\' approval or fanfare. Your judgment arrives before your words.',
+    misread:['别人觉得你「冷漠」→ 你不冷漠，你只是不需要通过表现热情来证明自己在意。','别人觉得你「不投入」→ 你投入，只是投入的方式比较安静。'],
+    misread_en:['Others think you\'re "cold" → Not cold — you just don\'t need to perform warmth to prove you care.','Others think you\'re "not engaged" → You are engaged — you just engage quietly.'],
+    must:['你不得不按照自己的判断行事，哪怕别人看不懂你在干什么。','你不得不保留自己的角落——一个不需要解释自己的地方。'],
+    must_en:['You must act on your own judgment — even when others can\'t see what you\'re doing.','You must keep your own corner — somewhere you don\'t have to explain yourself.'],
+  },
+  'CFEB': {
+    zh:'泰烈拓栖', en:'Composed · Fierce · Explore · Base',
+    tagline:'走过很多地方，只在真正懂自己的地方停留。',
+    tagline_en:'Been many places. Only stays where it\'s real.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你不容易被外部的紧迫感带动，有自己稳定的节奏。',en:'Tilts toward composed Drive — you\'re not easily pulled by external urgency; you have your own stable rhythm.'},
+      {char:'烈',text:'更偏向高边界感——你对什么人、什么事值得认真有清晰的感知。',en:'Tilts toward Fierce — you have clear sense of which people and things are worth taking seriously.'},
+      {char:'拓',text:'更偏向拓展型方向感——你有宽阔的视野，愿意了解和探索多个领域。',en:'Tilts toward Explore — you have wide perspective, willing to understand and explore multiple areas.'},
+      {char:'栖',text:'更偏向低流动感——一旦找到值得停留的地方，你愿意好好安住。',en:'Tilts toward Base — once you find somewhere worth staying, you\'re willing to settle in.'}
+    ],
+    love:'爱情里，你不轻易动心，但动心了就是认真的。你对关系的质量要求很高——不是苛刻，是你见过不够好的，知道真正好的是什么感觉。',
+    love_en:'In love, you don\'t fall easily — but when you do, you\'re serious. Your standards are high — not harsh, just informed. You\'ve seen enough to know what real feels like.',
+    career:'工作里，你善于观察和布局，通常会在充分了解一个领域后才选择深入。一旦选定，你会做得很扎实——不轰轰烈烈，但长期可靠。',
+    career_en:'At work, you observe and position carefully — usually only going deep after you\'ve truly understood a domain. Once set, you execute solidly. Not spectacular, but reliably strong over time.',
+    finance:'财务上，你是那种"研究透了再进"的类型。不轻易跟风，但看准了会守得住仓位——你有足够的耐心等到自己真正相信的时机。',
+    finance_en:'Financially, you\'re the type who researches thoroughly before committing. You don\'t follow trends — but when you\'re convinced, you hold your position. You have the patience to wait for what you truly believe in.',
+    misread:['别人觉得你「清高」→ 你不清高，你只是不愿意为了合群降低自己的标准——这是有原则，不是孤傲。','别人觉得你「冷淡」→ 你不冷淡，你只是把热情给了真正值得的地方。'],
+    misread_en:['Others think you\'re "aloof" → Not aloof — you simply won\'t lower your standards just to fit in. That\'s having principles, not arrogance.','Others think you\'re "distant" → Not distant — your warmth just goes to where it\'s genuinely deserved.'],
+    must:['你不得不先弄明白"这是否真的值得"，再决定把自己放进去。','你不得不被当作一个完整的人来对待，而不只是被需要某个功能。'],
+    must_en:['You must first determine "is this genuinely worth it" before committing yourself.','You must be treated as a whole person — not just as someone providing a function.'],
+  },
+  'CFAR': {
+    zh:'泰烈专游', en:'Composed · Fierce · Anchor · Roam',
+    tagline:'专注一个方向，自由地走。',
+    tagline_en:'One direction. Complete freedom of movement.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你不依赖外部压力来维持运转，有内在的稳定。',en:'Tilts toward composed Drive — you don\'t rely on external pressure to function; you have inner stability.'},
+      {char:'烈',text:'更偏向高边界感——你知道自己的立场，不容易被说服做不认可的事。',en:'Tilts toward Fierce — you know your position and aren\'t easily persuaded into things you don\'t endorse.'},
+      {char:'专',text:'更偏向专注型方向感——倾向于在某一个方向上持续深入。',en:'Tilts toward Anchor — you tend to go deep and sustained in one direction.'},
+      {char:'游',text:'更偏向高流动感——你需要能自由切换场景，不被固定在一处。',en:'Tilts toward Roam — you need freedom to shift contexts, not to be fixed in one place.'}
+    ],
+    love:'爱情里，你需要一种"平等且自由"的关系——不是谁依附谁，是两个完整的人选择在一起，各自有空间，共同有方向。',
+    love_en:'In love, you need an equal and free connection — not one person depending on the other, but two complete people choosing each other, each with space, together with direction.',
+    career:'工作里，你往往是某个垂直领域的独立贡献者。不需要团队的热闹，但在自己的方向上异常清醒、持续深入。',
+    career_en:'At work, you\'re often an independent contributor in a vertical domain. You don\'t need the buzz of a team — but in your own direction, you\'re exceptionally clear-eyed and go deep.',
+    finance:'财务上，你集中在自己真正懂的一个领域，同时保持一定的流动性——专注但不锁死，相信自己的判断。',
+    finance_en:'Financially, you concentrate on one domain you truly understand, while maintaining some liquidity — focused but not locked in, trusting your own judgment.',
+    misread:['别人觉得你「独」→ 你不是孤僻，你只是在需要时选择独处，在值得时选择连接，这是主动选择而不是被迫孤独。','别人觉得你「冷漠」→ 你有立场，只是立场不通过温度来展示。'],
+    misread_en:['Others think you\'re "a loner" → Not anti-social — you choose solitude when you need it, and connection when it\'s worth it. Active choice, not forced isolation.','Others think you\'re "indifferent" → You have positions and care — you just don\'t express them through warmth.'],
+    must:['你不得不感到"我是在为自己选择的事情工作"，否则再好的条件也是束缚。','你不得不保持某种不依附于任何人或机构的独立性——这不是骄傲，是你工作的底层条件。'],
+    must_en:['You must feel "I\'m working on something I chose" — otherwise even great conditions feel like chains.','You must maintain independence from any person or institution — not pride, just a baseline condition for you to function.'],
+  },
+  'CFAB': {
+    zh:'泰烈专栖', en:'Composed · Fierce · Anchor · Base',
+    tagline:'安静地把一件事做到极致。',
+    tagline_en:'Quietly taking one thing all the way.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你不依赖激情或外部刺激，有自己稳定的内在来源。',en:'Tilts toward composed Drive — you don\'t rely on passion or external stimulation; you have stable inner resources.'},
+      {char:'烈',text:'更偏向高边界感——对什么该做、什么不该做有非常清晰的内在标准。',en:'Tilts toward Fierce — very clear internal standards for what to do and what not to.'},
+      {char:'专',text:'更偏向专注型方向感——深耕一个领域，长期坚持，不轻易换赛道。',en:'Tilts toward Anchor — deep work in one domain, long-term persistence, not quick to switch.'},
+      {char:'栖',text:'更偏向低流动感——你偏好稳定的环境，变动会消耗你的能量。',en:'Tilts toward Base — you prefer stable environments; change drains your energy.'}
+    ],
+    love:'爱情里，你不轻易说爱，但爱了就是长长久久。你不会花言巧语，但你会用行动和稳定来证明心意——岁月里，你是那个还在的人。',
+    love_en:'In love, you don\'t say "I love you" easily — but when you do, it\'s for the long run. No sweet talk, but you prove your feelings through action and consistency. Years later, you\'re still there.',
+    career:'工作里，你是所有类型里最有可能成为"某领域顶尖人物"的——因为你能在一个赛道上安静地走很久，走到别人以为没人走的深度。',
+    career_en:'At work, you\'re well-suited to becoming a deep specialist or long-horizon expert in your domain — because you can walk quietly in one direction for a very long time, and you rarely need external validation to keep going.',
+    finance:'财务上，你有极强的风险控制意识，只在真正了解的领域投入，且能长期持有而不焦虑。你的优势是耐心，而大多数人最缺的也是耐心。',
+    finance_en:'Financially, you have strong risk awareness, investing only where you truly understand, and holding long-term without anxiety. Your edge is patience — which is precisely what most people lack.',
+    misread:['别人觉得你「太保守」→ 你不保守，你只是对"值得"有自己的定义，而且不打算为了看起来勇敢而冒险。','别人觉得你「不会来事儿」→ 你不是不会，你只是觉得不必要。'],
+    misread_en:['Others think you\'re "too conservative" → Not conservative — you have your own definition of "worth it" and you won\'t risk something just to appear bold.','Others think you\'re "bad at relationships" → You\'re not bad at it — you just don\'t see the point in most of it.'],
+    must:['你不得不以自己的方式、在自己的领域、活出自己的深度——这不是选择，是本能。','你不得不感到稳定，才能持续输出——焦虑的环境会让你比任何人都更早消耗殆尽。'],
+    must_en:['You must live with depth in your own domain, in your own way — not a choice, an instinct.','You must feel stable to sustain output — an anxious environment drains you faster than anyone.'],
+  },
+  'CTER': {
+    zh:'泰容拓游', en:'Composed · Tolerant · Explore · Roam',
+    tagline:'什么都见过，什么都能聊，什么都能放下。',
+    tagline_en:'Seen it all. Can talk about anything. Can let anything go.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你有从容的底色，不容易被外部事件带着情绪走。',en:'Tilts toward composed Drive — you have a calm baseline, not easily swept up in others\' emotional currents.'},
+      {char:'容',text:'更偏向低边界感（包容）——你对不同的人和立场有高度的接纳能力。',en:'Tilts toward Tolerant — high capacity to accept people and positions across a wide range.'},
+      {char:'拓',text:'更偏向拓展型方向感——你天然好奇，对多个领域都有真实的兴趣。',en:'Tilts toward Explore — naturally curious, genuinely interested across multiple domains.'},
+      {char:'游',text:'更偏向高流动感——你在不同情境间穿行是自然的，不需要特别调整。',en:'Tilts toward Roam — moving between very different contexts feels natural, no adjustment needed.'}
+    ],
+    love:'爱情里，你是那种让人感到"和你在一起很轻松"的人。你接纳得了对方的复杂，也不会让关系变得沉重。你的爱是有空间感的——让人喘得过气来的那种。',
+    love_en:'In love, you\'re the kind of person who makes others feel "it\'s easy to be around you." You can hold your partner\'s complexity without making it heavy. Your love has breathing room.',
+    career:'工作里，你是跨界连接者——能在不同圈子、不同领域之间穿行自如，是那种"认识谁都能聊两句、进哪个行业都能摸到门道"的人。',
+    career_en:'At work, you\'re a cross-domain connector — moving fluidly between circles and industries. You can have real conversations with almost anyone, and find your footing in almost any field.',
+    finance:'财务上，你倾向于广泛布局、小额探索，不在一棵树上吊死。你对风险不焦虑——因为你知道你有足够的适应能力。',
+    finance_en:'Financially, you prefer broad, exploratory positioning in small amounts — never hanging everything on one tree. You\'re not anxious about risk because you trust your adaptability.',
+    misread:['别人觉得你「没有立场」→ 你不是没有立场，你只是立场不需要通过对立来定义——你可以理解很多方向而不失去自己的判断。','别人觉得你「不够投入」→ 你的投入很真实，只是不那么显眼。','隐藏的风险 → 你什么都能放下，但也容易什么都抓不住。小心别让「包容」变成一种结构性的冷漠——你的宽容不应该是你不再感受自己的代价。'],
+    misread_en:['Others think you "have no position" → Not positionless — your position just doesn\'t need opposition to define it. You can understand many directions without losing your own judgment.','Others think you "aren\'t committed enough" → Your commitment is real — just not obvious.','Hidden risk → You can let everything go — but that also means you can lose your grip on things. Watch out for "tolerance" becoming structural indifference: your openness shouldn\'t cost you the ability to feel your own edges.'],
+    must:['你不得不保持流动——当所有门都关上时，你的本能是找一扇窗，这不是逃避，是你的生存方式。','你不得不有真实的连接，哪怕是短暂的——泛泛的关系也比孤立更适合你。'],
+    must_en:['You must stay in motion — when all doors close, your instinct is to find a window. Not avoidance — just how you survive.','You must have genuine connection, even briefly — shallow ties still suit you better than isolation.'],
+  },
+  'CTEB': {
+    zh:'泰容拓栖', en:'Composed · Tolerant · Explore · Base',
+    tagline:'见过世界，选择归来。',
+    tagline_en:'Seen the world. Chose to come home.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你的从容不是冷漠，而是真实的内在稳定。',en:'Tilts toward composed Drive — your calm isn\'t indifference; it\'s genuine inner stability.'},
+      {char:'容',text:'更偏向低边界感（包容）——你天然能理解不同立场，不容易陷入对立情绪。',en:'Tilts toward Tolerant — naturally understand different positions, not easily drawn into opposition.'},
+      {char:'拓',text:'更偏向拓展型方向感——你有真实的好奇心，对多个领域感兴趣。',en:'Tilts toward Explore — genuine curiosity, interested in multiple domains.'},
+      {char:'栖',text:'更偏向低流动感——在探索之后，你需要一个真正可以回来的地方。',en:'Tilts toward Base — after exploring, you need a place to genuinely return to.'}
+    ],
+    love:'爱情里，你是那种经历过一些事之后、更懂得珍视稳定的人。你能给伴侣真实的理解，也能给关系真正的"家"的感觉——不只是住所，是安全的地方。',
+    love_en:'In love, you\'re someone who\'s learned to value stability through experience. You offer real understanding to your partner, and the relationship feels like home — not just a place, but somewhere safe.',
+    career:'工作里，你最能在"有基地的探索型"岗位发光。你做过很多，也愿意带着经验回到某个地方深耕——有大本营的开拓者。',
+    career_en:'At work, you shine most in roles that combine a stable base with outward exploration. You\'ve done many things, and you\'re willing to bring that experience back somewhere to go deep — an explorer with headquarters.',
+    finance:'财务上，经历一些波动之后，你会形成稳健的结构——稳定底仓加有限探索。你的财务成熟度往往高于同龄人，因为你有真实的经历做基础。',
+    finance_en:'Financially, after some volatility, you develop a mature structure — stable core plus limited exploration. Your financial maturity often exceeds your peers because it\'s grounded in real experience.',
+    misread:['别人觉得你「变了」→ 你没变，你只是在成长——你依然好奇，只是更清楚什么值得付出。','别人觉得你「安于现状」→ 你不是不想走，是你知道去哪里、为了什么才值得出发。','隐藏的风险 → 你用「见过世界、选择归来」来理解自己，这很对——但也要确认，这是主动选择，而不是你已经太习惯稳定、以至于忘记了出发的能力。'],
+    misread_en:['Others think you "changed" → You didn\'t change — you grew. You\'re still curious; you just know better what\'s worth the effort.','Others think you\'re "content with the status quo" → It\'s not that you don\'t want to move — it\'s that you know where you\'re going and why.','Hidden risk → "Seen the world, chose to come home" is a true story — but verify it\'s an active choice, not just that you\'ve grown so accustomed to stability you\'ve forgotten how to leave.'],
+    must:['你不得不有个"家"——不一定是地理意义上的，但心里要有一个真正属于自己的地方。','你不得不感到"我有经历，也有着落"——只有漂流而没有落地，对你来说不是自由，是失重。'],
+    must_en:['You must have a home — not necessarily geographic, but somewhere in your heart that\'s truly your own.','You must feel "I have experience, and I have ground beneath me" — pure drifting without landing isn\'t freedom for you; it\'s weightlessness.'],
+  },
+  'CTAR': {
+    zh:'泰容专游', en:'Composed · Tolerant · Anchor · Roam',
+    tagline:'专注一件事，温柔地移动。',
+    tagline_en:'Focused on one thing. Moving gently through the world.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你有自己稳定的内在节奏，不容易被外部起伏带走。',en:'Tilts toward composed Drive — you have your own steady inner rhythm, not easily carried by external ups and downs.'},
+      {char:'容',text:'更偏向低边界感（包容）——你对他人的方式有天然的理解和接纳，不轻易评判。',en:'Tilts toward Tolerant — natural understanding and acceptance of others\' ways, slow to judge.'},
+      {char:'专',text:'更偏向专注型方向感——你倾向于在选定的方向上持续深耕。',en:'Tilts toward Anchor — you tend to go deep and sustained in your chosen direction.'},
+      {char:'游',text:'更偏向高流动感——你需要能在不同场景之间自由切换的可能性。',en:'Tilts toward Roam — you need the possibility of moving freely between different scenes.'}
+    ],
+    love:'爱情里，你温柔包容，不会强求对方按你的节奏来。你需要的是互相留有空间的关系——不依附，也不逃避，彼此都是完整的人。',
+    love_en:'In love, you\'re gentle and accepting — you don\'t demand others match your rhythm. What you need is a relationship where both people have space — no dependency, no running away. Both of you, whole.',
+    career:'工作里，你是那种"在自己选定的领域里，安静地成为高手"的人。不争不抢，不需要排行榜来证明自己，但你的作品会说话。',
+    career_en:'At work, you\'re the type who quietly becomes excellent in your chosen field. No competing, no needing rankings to validate yourself — but your work speaks.',
+    finance:'财务上，你在自己理解的领域做出判断，同时保持一定的现金灵活性——不锁死自己，保留选择的余地。',
+    finance_en:'Financially, you make decisions in domains you understand — while keeping enough cash flexibility to preserve your options. Not locked in, not adrift.',
+    misread:['别人觉得你「不上进」→ 你的"进"不是别人眼里的那种快，但你在自己的方向上有真实的积累，时间会说话。','别人觉得你「好说话」→ 你温柔是真的，但这不意味着你没有立场——你只是不需要通过激烈来表达它。','隐藏的风险 → 你的温柔和专注是真正的优势。但如果某天发现自己「专注」的方向其实不是自己选的，要有勇气重新看一看——温柔不等于不需要方向的主权。'],
+    misread_en:['Others think you "lack ambition" → Your progress isn\'t fast by others\' measures, but you\'re building real depth in your direction. Time will speak for you.','Others think you\'re "a pushover" → Your gentleness is real — but that doesn\'t mean you lack positions. You just don\'t need intensity to express them.','Hidden risk → Your gentleness and focus are genuine strengths. But if you find one day that what you\'re "anchored to" wasn\'t actually your own choice, have the courage to look again — gentleness doesn\'t mean you don\'t need sovereignty over your direction.'],
+    must:['你不得不以自己的节奏前行——被强行加速的时候，你会比任何人都更早出问题。','你不得不在关系里保有自己的空间——完全融合对你来说不是亲密，是消耗。'],
+    must_en:['You must proceed at your own pace — when forced to accelerate, you burn out faster than anyone.','You must keep your own space in relationships — complete merger isn\'t intimacy for you; it\'s depletion.'],
+  },
+  'CTAB': {
+    zh:'泰容专栖', en:'Composed · Tolerant · Anchor · Base',
+    tagline:'把平静当作力量，把专一当作礼物。',
+    tagline_en:'Calm as a strength. Devotion as a gift.',
+    dims:[
+      {char:'泰',text:'更偏向低驱动感（泰然）——你有真正稳定的内在，不依赖外部刺激来运转。',en:'Tilts toward composed Drive — genuinely stable inside, not dependent on external stimulation to function.'},
+      {char:'容',text:'更偏向低边界感（包容）——你能接纳大范围的不同，不容易被别人的差异打扰。',en:'Tilts toward Tolerant — you can accept a wide range of differences without being disturbed by them.'},
+      {char:'专',text:'更偏向专注型方向感——你一次只做一件事，而且愿意长时间做同一件事。',en:'Tilts toward Anchor — you do one thing at a time, and you\'re willing to do the same thing for a long time.'},
+      {char:'栖',text:'更偏向低流动感——稳定、持久的环境对你来说本身就是一种能量来源。',en:'Tilts toward Base — stable, enduring environments are themselves an energy source for you.'}
+    ],
+    love:'爱情里，你是最踏实的伴侣之一。不浪漫但可靠，不激烈但持久——你给的是"岁月里还在"的那种爱。少有人能做到你这种程度的稳定。',
+    love_en:'In love, you tend to be experienced as a deeply grounding and steady partner. Not flashy but reliable, not intense but lasting — you offer love that\'s still there years later. This kind of steadiness is a genuine strength.',
+    career:'工作里，你是那种"不需要特别管理"的人——稳定、专注、长期可靠。你的价值往往在时间里显现，而不是在某一个爆发点上。',
+    career_en:'At work, you\'re the type who doesn\'t need managing — stable, focused, reliable over time. Your value shows up across years, not in a single moment of glory.',
+    finance:'财务上，你偏好确定性和低波动：稳健产品、固定收益、长期持有。你的财务不是激进增长，而是安全感的累积——这在大多数人焦虑的时候，是真正的优势。',
+    finance_en:'Financially, you prefer certainty and low volatility: steady instruments, fixed returns, long-term holds. Your goal isn\'t aggressive growth but accumulating security — which becomes a genuine edge when everyone else is anxious.',
+    misread:['别人觉得你「没什么追求」→ 你的追求只是以不同的方式存在——不在光芒里，在日复一日的认真里，在关系里真实的陪伴里。','别人觉得你「不够有趣」→ 你的有趣是深处的那种，不是表面的活跃，需要时间才能被看见。','隐藏的风险 → 你的平静是真实的资产，但也可能是盲区。偶尔需要确认一下：自己是真的觉得还好，还是已经习惯了不去感受某些痛苦。'],
+    misread_en:['Others think you "have no ambitions" → Your ambitions exist differently — not in bright moments, but in daily earnestness, in genuine presence over time.','Others think you\'re "not interesting enough" → Your interestingness is deep, not surface-level. It takes time to be seen.','Hidden risk → Your calm is a real asset — but it can also be a blind spot. Check in occasionally: are you genuinely okay, or have you adapted to not feeling certain things?'],
+    must:['你不得不感到稳定——当周围一切都在晃动时，你需要有一块真正属于自己的地。','你不得不感到自己在做一件持续、真实的事情，而不是在跑一个又一个短期的项目。'],
+    must_en:['You must feel stable — when everything around you is shaking, you need real ground of your own.','You must feel you\'re doing something continuous and real — not running from one short-term project to the next.'],
+  },
+};
+const COMPAT_REL = {
+  zh: {
+    labels: ['朋友', '恋人', '家人', '同事'],
+    keys:   ['friend', 'partner', 'family', 'colleague'],
+    section: { complement: '天然平衡', same_high: '共同强度', same_low: '相似节奏' },
+    placeholder: '选择一种关系，查看具体分析',
+    complement: {
+      friend:    '关键决定面前，你们往往自然分工——不是谁主导谁，而是一个感到了那个时机，另一个掌住了那个分寸。不用商量，默契就已经在了。时间久了，这种差异不会变成距离，会变成你们面对所有困难岔口时最可靠的共同直觉。',
+      partner:   '爱情里最难的不是日常摩擦，是那些改变一切的大决定。你们在这里的差异，恰好是这类时刻的缓冲和支撑——一个往前推的时候，另一个提供那个让你愿意回头的稳。这不是妥协，是完整。很多关系在关键决定面前会裂开，你们这里反而是最牢的地方。',
+      family:    '家里每一次关键决定，都需要有人敢于推进，也需要有人愿意守住。你们在这个维度上的差异，让家庭在面对岔路时有了天然分工——一个代表行动，一个代表稳定。很多家庭要花很长时间学这种平衡，你们生来就有。',
+      colleague: '工作里最难协作的时刻，往往是关键决定的前后——要不要推进，谁来守住边界，如何落地。你们在这里的差异正好覆盖了两端：推的人和接的人都在，这种配合不需要刻意设计，到了关键时刻自然就分好了。'
+    },
+    same_high: {
+      friend:    '你们在这里有相似的强度——面对关键决定时，都能感受到那个「这件事是真实的」的信号，说一半对方就懂了。不用解释为什么这个决定重要，因为对方也感受得到。这样的朋友关系有一种别人插不进来的质地：大事面前，不需要铺垫，不需要说服。',
+      partner:   '你们在这里都有强度。关键决定面前，你们都能感受到决定的重量，都不会假装它不重要。这种共同的清醒是关系里最深的连接之一——你们可能不总是做出同样的选择，但你们都知道对方是认真的。强度可以变成共鸣，这里是关系里最有温度的地方之一。',
+      family:    '家庭里在同一维度上有相似强度，意味着关键时刻不需要互相解释「为什么这件事值得认真对待」。你们都感受得到，都愿意认真处理。这种默契很多家庭终其一生都难以建立——你们是天然的。',
+      colleague: '工作里在这个维度上都有驱动力，意味着关键决定不会卡在「有没有人愿意认真推」这一步。你们都愿意，都感受得到事情的分量。两个都在的时候，能量集中，合作不是表面配合，而是两个人真的投入在推同一件事。'
+    },
+    same_low: {
+      friend:    '你们在这里有相似的节奏——关键决定面前，都不需要逼自己进入某种不是自己的状态。这样的朋友关系里，大决定面前有一种特别的安静：不互相施压，不用解释自己的方式，各自做自己该做的事，在某个时刻自然汇合。有些人要花很多年找这种安静，你们有。',
+      partner:   '你们在这个维度上有相似的底色。关键决定面前，不需要一方说服另一方「为什么要这样处理」——你们本来就是用相近的方式感知这件事的。很多伴侣要花很多年才能找到这种感知上的对齐，你们一开始就有。不需要解释「我需要什么」，对方就已经懂了。',
+      family:    '家庭里这个维度上节奏相近，意味着在这里不会互相产生压力。关键决定面前，大家都懂得对方需要什么——不急着推，不期待对方以不同的方式运作。这种维度上的天然和平，让家里整体的决定环境更安全。',
+      colleague: '工作里这个维度上偏好相近，意味着合作时这里天然顺滑。关键决定上不用互相适应，不用解释各自的节奏——这种省力在复杂项目里是非常实际的优势，让注意力可以放在真正困难的地方。'
+    }
+  },
+  en: {
+    labels: ['Friends', 'Partners', 'Family', 'Colleagues'],
+    keys:   ['friend', 'partner', 'family', 'colleague'],
+    section: { complement: 'Natural Balance', same_high: 'Shared Intensity', same_low: 'Same Rhythm' },
+    placeholder: 'Select a relationship type for a tailored reading',
+    complement: {
+      friend:    'At every real fork, you two naturally divide the work — not because one leads the other, but because one feels the moment and the other holds the measure. Over time, this difference becomes your shared instinct at every hard decision.',
+      partner:   'The hardest thing in love isn\'t the daily friction — it\'s the decisions that change everything. Your difference here is exactly the cushion and support at those moments: when one pushes forward, the other provides something solid to return to. Not compromise. Completeness. Many relationships fracture at critical decisions. This is where you hold.',
+      family:    'Every critical family decision needs someone willing to move and someone willing to hold. Your difference here gives the family natural division when the path splits: one carries action, one carries stability. Many families spend years learning this balance. You start with it.',
+      colleague: 'The hardest moments in collaboration cluster around critical decisions — push or wait, who holds the line, how to land it. Your difference here covers both ends: the one who pushes and the one who catches are both present. The division doesn\'t need to be invented. When it matters, it\'s already there.'
+    },
+    same_high: {
+      friend:    'You both carry intensity here. When critical decisions come, you both feel the signal that says "this is real." Say half of it and the other person already knows. No preamble, no need to explain why it matters — because they feel it too. That creates a texture in this friendship others can\'t enter.',
+      partner:   'You both have intensity here. At critical decisions, you both feel the weight — neither pretends it doesn\'t matter. That shared clarity is one of the deepest connections a relationship can have. You may not always decide the same way, but you each know the other is serious. Intensity becomes resonance. This is one of the warmest parts of the relationship.',
+      family:    'Shared intensity in this family dimension means that at critical moments, you don\'t need to justify to each other why something deserves real attention. You both feel it. That mutual seriousness is something many families spend lifetimes trying to build. You have it naturally.',
+      colleague: 'Both having drive here means critical decisions don\'t stall at "is anyone willing to actually push this." You both are. You both feel the weight. When both people are in, energy concentrates — the collaboration isn\'t surface coordination, it\'s two people genuinely pushing the same thing.'
+    },
+    same_low: {
+      friend:    'You share a similar rhythm here. When critical decisions come, neither of you has to force yourself into a mode that isn\'t yours. There\'s a particular quiet in this friendship around big decisions: no pressure, no need to explain your approach — two people each doing what they need to, and naturally converging. Some people spend years finding this kind of quiet.',
+      partner:   'You have a similar baseline here. At critical decisions, there\'s no need to convince each other "why we handle it this way" — you already read it the same way. The perceptual alignment many partners spend years working toward, you start with. The feeling of "I don\'t even have to explain what I need" — you have that.',
+      family:    'Similar rhythm in this family dimension means no pressure from this direction. At critical decisions, everyone understands what the others need — no pushing, no expectation that someone will operate differently. Natural peace in this dimension makes the whole decision environment safer for everyone.',
+      colleague: 'Aligned preferences here mean collaboration flows naturally in this dimension. No adjustment period around critical decisions, no explaining your rhythm. That efficiency has concrete value in complex projects — it frees attention for the parts that are actually hard.'
+    }
+  }
+};
+
+function typeIsHigh(code, dim) {
+  const idx = DIM_KEYS.indexOf(dim);
+  const letters = ['D','F','E','R'];
+  return code[idx] === letters[idx];
+}
+
+function renderCompat(t1, t2, relKey) {
+  const s  = currentLang === 'en' ? STRINGS.en : STRINGS.zh;
+  const cr = currentLang === 'en' ? COMPAT_REL.en : COMPAT_REL.zh;
+
+  const complement = [], same_high = [], same_low = [];
+  DIM_KEYS.forEach((dim, i) => {
+    const h1 = typeIsHigh(t1, dim);
+    const h2 = typeIsHigh(t2, dim);
+    if      ( h1 &&  h2) same_high.push(i);
+    else if (!h1 && !h2) same_low.push(i);
+    else                  complement.push(i);
+  });
+
+  const dimLabels = currentLang === 'en' ? DIM_EN : DIM_ZH;
+  const chipHtml = (arr, cls) => arr.map(i =>
+    `<span class="compat-chip ${cls}">${dimLabels[i]}</span>`).join('');
+
+  // relationship type tabs
+  const tabsHtml = `<div class="compat-rel-tabs">
+    ${cr.labels.map((lbl, i) => {
+      const k = cr.keys[i];
+      return `<button class="compat-rel-btn${relKey === k ? ' active' : ''}"
+        onclick="selectCompatRel('${k}','${t1}','${t2}')">${lbl}</button>`;
+    }).join('')}
+  </div>`;
+
+  // body: placeholder or typed content
+  let bodyHtml;
+  if (!relKey) {
+    bodyHtml = `<div class="compat-placeholder">${cr.placeholder}</div>`;
+  } else {
+    const mkRow = (pattern, arr, chipCls) => {
+      if (!arr.length) return '';
+      const text = cr[pattern][relKey];
+      const label = cr.section[pattern];
+      return `<div class="compat-row">
+        <div class="compat-row-label">${label}</div>
+        <div class="compat-row-text">${text}</div>
+        <div class="compat-chips">${chipHtml(arr, chipCls)}</div>
+      </div>`;
+    };
+    bodyHtml = `<div class="compat-grid">
+      ${mkRow('complement', complement, 'green')}
+      ${mkRow('same_high',  same_high,  'amber')}
+      ${mkRow('same_low',   same_low,   'blue')}
+    </div>`;
+  }
+
+  return `
+  <div class="compat-section">
+    <div class="compat-header">
+      <div>
+        <div style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,232,0.25);margin-bottom:0.5rem;">${s.compat_title}</div>
+        <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+          <span class="compat-type-chip">${t1}</span>
+          <span class="compat-zh">${TYPES[t1].zh}</span>
+          <span class="compat-x">×</span>
+          <span class="compat-type-chip">${t2}</span>
+          <span class="compat-zh">${TYPES[t2].zh}</span>
+        </div>
+      </div>
+    </div>
+    ${tabsHtml}
+    <div id="compat-body">${bodyHtml}</div>
+  </div>`;
+}
+
+const ALL_TYPES = ['DFER','DFEB','DFAR','DFAB','DTER','DTEB','DTAR','DTAB',
+                   'CFER','CFEB','CFAR','CFAB','CTER','CTEB','CTAR','CTAB'];
+
+const UI = {
+  zh: {
+    nav: '关系分析', title: '关系分析',
+    subtitle: '选择两种类型，看你们在关键时刻各自怎么做决定。不知道自己的类型？先去做测试。',
+    label_t1: '第一个类型', label_t2: '第二个类型',
+    empty: '选好两个类型之后，分析会出现在这里',
+    same_note: '你们是同一种类型 —— 四个维度完全一致，往往不需要解释，自然就懂。',
+    view_profile: '查看完整档案',
+  },
+  en: {
+    nav: 'Compatibility', title: 'Compatibility',
+    subtitle: 'Choose two types to see how your decision dynamics align. Not sure of your type? Take the test first.',
+    label_t1: 'First type', label_t2: 'Second type',
+    empty: 'Select two types above and the analysis will appear here.',
+    same_note: 'You share the same type — all four dimensions align. Some things just don\'t need explaining.',
+    view_profile: 'Full profile',
+  }
+};
+
+function buildOptions(selId, selectedVal) {
+  const sel = document.getElementById(selId);
+  sel.innerHTML = ALL_TYPES.map(code => {
+    const t = TYPES[code];
+    const label = currentLang === 'en'
+      ? code + ' · ' + t.en
+      : code + ' · ' + t.zh;
+    return `<option value="${code}"${code === selectedVal ? ' selected' : ''}>${label}</option>`;
+  }).join('');
+}
+
+function onSelChange() {
+  const t1 = document.getElementById('sel-t1').value;
+  const t2 = document.getElementById('sel-t2').value;
+  const out = document.getElementById('compat-output');
+  const u = currentLang === 'en' ? UI.en : UI.zh;
+
+  // Type cards
+  const cardHtml = (code) => {
+    const t = TYPES[code];
+    const name = currentLang === 'en' ? t.en : t.zh;
+    const sub  = currentLang === 'en' ? t.zh : t.en;
+    return `<a href="${code}.html" class="type-card">
+      <div class="type-card-code">${code}</div>
+      <div class="type-card-zh">${name}</div>
+      <div class="type-card-en">${sub}</div>
+    </a>`;
+  };
+
+  const sameNote = t1 === t2
+    ? `<div class="same-type-note">${u.same_note}</div>`
+    : '';
+  const cards = `<div class="type-cards">${cardHtml(t1)}${cardHtml(t2)}</div>`;
+  out.innerHTML = sameNote + cards + renderCompat(t1, t2, null);
+}
+
+function swapTypes() {
+  const s1 = document.getElementById('sel-t1');
+  const s2 = document.getElementById('sel-t2');
+  const tmp = s1.value;
+  s1.value = s2.value;
+  s2.value = tmp;
+  onSelChange();
+}
+
+function selectCompatRel(relKey, t1, t2) {
+  const out = document.getElementById('compat-output');
+  const t = TYPES[t1]; const t2obj = TYPES[t2];
+  const cardHtml = (code) => {
+    const ty = TYPES[code];
+    const name = currentLang === 'en' ? ty.en : ty.zh;
+    const sub  = currentLang === 'en' ? ty.zh : ty.en;
+    return `<a href="${code}.html" class="type-card">
+      <div class="type-card-code">${code}</div>
+      <div class="type-card-zh">${name}</div>
+      <div class="type-card-en">${sub}</div>
+    </a>`;
+  };
+  const u = currentLang === 'en' ? UI.en : UI.zh;
+  const sameNote = t1 === t2
+    ? `<div class="same-type-note">${u.same_note}</div>`
+    : '';
+  const cards = `<div class="type-cards">${cardHtml(t1)}${cardHtml(t2)}</div>`;
+  out.innerHTML = sameNote + cards + renderCompat(t1, t2, relKey);
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('hc16lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + lang).classList.add('active');
+  updateUI();
+}
+
+function updateUI() {
+  const u = currentLang === 'en' ? UI.en : UI.zh;
+  document.getElementById('nav-title').textContent = u.nav;
+  document.getElementById('page-title').textContent = u.title;
+  document.getElementById('label-t1').textContent = u.label_t1;
+  document.getElementById('label-t2').textContent = u.label_t2;
+  const t1 = document.getElementById('sel-t1').value;
+  const t2 = document.getElementById('sel-t2').value;
+  buildOptions('sel-t1', t1);
+  buildOptions('sel-t2', t2);
+  // re-render if selection active
+  if (t1 !== t2) {
+    onSelChange();
+  } else {
+    document.getElementById('compat-output').innerHTML =
+      `<div class="empty-state">${u.empty}</div>`;
+  }
+}
+
+// Init
+(function() {
+  // check URL params ?t1=DFER&t2=CTAB
+  const params = new URLSearchParams(window.location.search);
+  const p1 = params.get('t1');
+  const p2 = params.get('t2');
+  buildOptions('sel-t1', p1 && ALL_TYPES.includes(p1) ? p1 : 'DFER');
+  buildOptions('sel-t2', p2 && ALL_TYPES.includes(p2) ? p2 : 'CTAB');
+  document.getElementById('btn-' + currentLang).classList.add('active');
+  document.getElementById('btn-' + (currentLang === 'zh' ? 'en' : 'zh')).classList.remove('active');
+  onSelChange();
+})();
+</script>
+</body>
+</html>

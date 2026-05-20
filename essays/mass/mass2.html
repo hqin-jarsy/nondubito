@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>同一把钥匙开三把锁 — Non Dubito</title>
+  <meta name="description" content="13、81、756——三个毫不相关的物理量里同一组数字">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  
+<style>
+  .essay-hero { padding: 3.5rem 2rem 2rem; max-width: 780px; margin: 0 auto; }
+  .essay-eyebrow { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+  .essay-title-zh { font-family: var(--cjk), serif; font-size: 2.1rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-title-en { font-family: var(--serif); font-size: 1.7rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-hook-zh { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-hook-en { font-family: var(--serif); font-size: 1.0rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-doi { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--ink-muted); }
+  .essay-body { max-width: 780px; margin: 0 auto; padding: 0 2rem 4rem; }
+  .essay-section { margin-bottom: 2.5rem; }
+  .section-heading { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 0.9rem; font-weight: 600; }
+  .section-heading.lang-en { font-family: var(--serif); font-size: 0.95rem; letter-spacing: 0.04em; }
+  .essay-body p { font-size: 1.02rem; line-height: 1.85; margin-bottom: 1.0rem; }
+  [data-lang="en"] .essay-body p { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body p { font-family: var(--cjk), serif; }
+  .essay-body table { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body table { font-family: var(--cjk), serif; }
+  .hc16-link { max-width: 780px; margin: 3rem auto 0; padding: 1.5rem 2rem; border-top: 1px solid var(--cream-border); text-align: center; }
+  .hc16-link a { font-family: var(--serif); font-size: 0.85rem; color: var(--gold); text-decoration: none; }
+  [data-lang="zh"] .hc16-link a { font-family: var(--cjk), serif; }
+  .nav-arrows { display: flex; justify-content: space-between; max-width: 780px; margin: 2rem auto 0; padding: 1rem 2rem; }
+  .nav-arrows a { font-family: var(--serif); font-size: 0.82rem; color: var(--ink-muted); text-decoration: none; border: 1px solid var(--cream-border); padding: 0.5rem 1rem; transition: all 0.2s; }
+  .nav-arrows a:hover { color: var(--ink); border-color: var(--ink-muted); }
+  .nav-arrows .placeholder { visibility: hidden; }
+</style>
+
+</head>
+<body>
+
+<!-- ── LANGUAGE TOGGLE ─────────────────────────────────────────────────── -->
+<div style="position:fixed;top:1rem;right:1rem;z-index:100;">
+  <button id="lang-toggle" onclick="toggleLang()" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--cream-border);color:var(--ink-muted);padding:0.4rem 0.8rem;cursor:pointer;transition:all 0.2s;">
+    <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+  </button>
+</div>
+
+<!-- ── SITE NAV ─────────────────────────────────────────────────────────── -->
+<div style="padding:1.2rem 2rem 0; max-width:780px; margin:0 auto;">
+  <a href="../../index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">← 返回主页</span>
+    <span class="lang-en">← Home</span>
+  </a>
+  &nbsp;&nbsp;
+  <a href="index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">质量系列</span>
+    <span class="lang-en">Mass Series</span>
+  </a>
+</div>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+<div class="essay-hero">
+  <div class="essay-eyebrow lang-zh">质量系列 · 篇II</div>
+  <div class="essay-eyebrow lang-en">Mass Series · Paper II</div>
+  <h1 class="essay-title-zh lang-zh">同一把钥匙开三把锁</h1>
+  <h1 class="essay-title-en lang-en">One Key, Three Locks</h1>
+  <p class="essay-hook-zh lang-zh">13、81、756——三个毫不相关的物理量里同一组数字</p>
+  <p class="essay-hook-en lang-en">13, 81, 756 — the same numbers in three unrelated physical quantities</p>
+  <div class="essay-doi lang-zh">DOI 10.5281/zenodo.19480790</div>
+  <div class="essay-doi lang-en">DOI 10.5281/zenodo.19480790</div>
+  <div class="essay-doi lang-zh"><a href="https://self-as-an-end.net/papers/sae-mass-series-II.html" target="_blank" style="color:inherit;text-decoration:none;">↗ self-as-an-end.net</a></div>
+  <div class="essay-doi lang-en"><a href="https://self-as-an-end.net/papers/sae-mass-series-II.html" target="_blank" style="color:inherit;text-decoration:none;">↗ self-as-an-end.net</a></div>
+</div>
+
+<!-- ── BODY ─────────────────────────────────────────────────────────────── -->
+<div class="essay-body">
+  <div class="lang-zh">
+<div class="essay-section">
+<h2 class="section-heading lang-zh">巧合？</h2>
+<p>质量系列篇I建立了μ子/电子质量比R₁的DD表达式，核心数字是13（弱力环路数）、81（DD双线性通道数）、756（晶格结构常数）。</p>
+<p>本文发现了两个新的质量公式：</p>
+<p>中子-质子质量差：(m_n − m_p)/m_e = 81/32 − 1/(3780·(1+3α/2))，精度8.5 ppb。</p>
+<p>质子-电子质量比：m_p·α/m_e = 67/5 − 1/(1053·(1+4α/9))，精度1.3 ppb。</p>
+<p>注意数字：81在R₁的修正分母和Δm的leading分子里各自出现。756在R₁的乘法修正里，3780 = 756×5在Δm的修正分母里。13在R₁的分母，1053 = 13×81在质子公式里。</p>
+<p>三个完全不同的物理量——一个轻子质量比、一个重子质量差、一个强子-轻子比——使用同一组DD数。这是巧合吗？</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">后验涵育先验</h2>
+<p>在先验和后验之间，科学有一个标准流程：先有理论，再用数据验证。但这个框架在处理基础结构时面临困难：如果你还不知道正确的理论是什么，如何产生先验？</p>
+<p>SAE采用另一条路：后验涵育先验（posterior cultivation of prior）。不是从公理推导每个DD数的必然性，而是展示同一组数字在多个独立物理量中的跨扇区复现，以此涵育对DD结构先验地位的认知。</p>
+<p>三个A类公式（误差均在10 ppb以内）共享同一组DD数，这个收敛不容易用随机巧合解释。从13个可能的DD数里随机挑选，在三个独立物理量里都选中同样几个数的概率极低。</p>
+<p>这不是证明。但它是信号。</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">DD Resolvent Object</h2>
+<p>为什么是这些具体的数字？本文构造了一个统一对象的显式原型：DD Resolvent Object。</p>
+<p>这是一个42×81的二值关联矩阵M（公西华/ChatGPT在六轮审核后给出显式构造，并经独立数值验证）：</p>
+<p>— rank(M) = 13（宏观投射通道数 = n_EW）</p>
+<p>— tr(M^T M) = 756（晶格结构常数）</p>
+<p>— 行数 42（1DD基本标记数）× 列数 81（DD双线性维数）= 2688（微观态数）</p>
+<p>R₁和Δm是同一个对象在不同sector参数下的读数。不是三把锁用了相同的钥匙——是同一个对象从三个不同角度看到的三个面。</p>
+<p>在先验和后验之间的相变窗口里，审美是不可替代的认知工具：同一组数字在三个独立物理量里的跨扇区复现，比任何单一推导更有力地提示DD结构的实在性。</p>
+</div>
+</div>
+  <div class="lang-en">
+<div class="essay-section">
+<h2 class="section-heading lang-en">Coincidence?</h2>
+<p>Mass Series Paper I established the DD expression for the muon/electron mass ratio R₁, with core numbers 13 (electroweak loop count), 81 (DD bilinear channel count), and 756 (lattice structure constant).</p>
+<p>This paper finds two new mass formulas:</p>
+<p>Neutron-proton mass difference: (m_n − m_p)/m_e = 81/32 − 1/(3780·(1+3α/2)), accuracy 8.5 ppb.</p>
+<p>Proton-electron mass ratio: m_p·α/m_e = 67/5 − 1/(1053·(1+4α/9)), accuracy 1.3 ppb.</p>
+<p>Note the numbers: 81 appears in both R₁'s correction denominator and Δm's leading numerator. 756 appears in R₁'s multiplicative correction; 3780 = 756×5 in Δm's correction denominator. 13 appears in R₁'s denominator; 1053 = 13×81 appears in the proton formula.</p>
+<p>Three completely different physical quantities — a lepton mass ratio, a baryon mass difference, a hadron-lepton ratio — use the same set of DD numbers. Coincidence?</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">Posterior Cultivation of Prior</h2>
+<p>Between prior and posterior, science has a standard procedure: theory first, then data validation. But this framework faces difficulty with foundational structure: if you don't yet know what the correct theory is, how do you generate a prior?</p>
+<p>SAE takes another path: posterior cultivation of prior. Not deriving the necessity of each DD number from axioms, but demonstrating the cross-sector recurrence of the same set of numbers across multiple independent physical quantities — thereby cultivating recognition of DD structure's prior status.</p>
+<p>Three Class-A formulas (all within 10 ppb) sharing the same DD numbers: this convergence is difficult to explain by random coincidence. The probability of randomly selecting from 13 possible DD numbers and getting the same ones in three independent physical quantities is vanishingly small.</p>
+<p>This is not a proof. But it is a signal.</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">The DD Resolvent Object</h2>
+<p>Why these specific numbers? This paper constructs an explicit prototype of a unified object: the DD Resolvent Object.</p>
+<p>This is a 42×81 binary correlation matrix M (explicitly constructed by GPT-4 after six rounds of review, and independently numerically verified):</p>
+<p>— rank(M) = 13 (macroscopic projection channels = n_EW)</p>
+<p>— tr(M^T M) = 756 (lattice structure constant)</p>
+<p>— 42 rows (1DD primary markers) × 81 columns (DD bilinear dimensions) = 2688 (microscopic state count)</p>
+<p>R₁ and Δm are readings of the same object viewed from different sector parameters. It's not three locks opened by the same key — it's one object seen from three different angles.</p>
+<p>In the transition window between prior and posterior, aesthetics is an irreplaceable cognitive tool: the cross-sector recurrence of the same numbers in three independent physical quantities suggests the reality of DD structure more powerfully than any single derivation.</p>
+</div>
+</div>
+</div>
+
+<!-- ── HC16 LINK ─────────────────────────────────────────────────────────── -->
+<div class="hc16-link">
+  <a href="../xiangjun/index.html">
+    <span class="lang-zh">你是哪种人？→ HC-16 性格测试</span>
+    <span class="lang-en">What kind of person are you? → HC-16 Personality Test</span>
+  </a>
+</div>
+
+<div class="nav-arrows"><a href="mass1.html" class="lang-zh">← 上一篇</a><a href="mass1.html" class="lang-en">← Previous</a><a href="mass3.html" class="lang-zh">下一篇 →</a><a href="mass3.html" class="lang-en">Next →</a></div>
+
+<script>
+  function toggleLang() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-lang');
+    const next = current === 'zh' ? 'en' : 'zh';
+    html.setAttribute('data-lang', next);
+    html.setAttribute('lang', next);
+    localStorage.setItem('nondubito-lang', next);
+  }
+  (function() {
+    const saved = localStorage.getItem('nondubito-lang');
+    if (saved) {
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+    }
+  })();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "your-token"}' ></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>质子为什么不衰变 — Non Dubito</title>
+  <meta name="description" content="Spin(10)是分类群，不是规范群——大统一预测的根本性盲区">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  
+<style>
+  .essay-hero { padding: 3.5rem 2rem 2rem; max-width: 780px; margin: 0 auto; }
+  .essay-eyebrow { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+  .essay-title-zh { font-family: var(--cjk), serif; font-size: 2.1rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-title-en { font-family: var(--serif); font-size: 1.7rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-hook-zh { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-hook-en { font-family: var(--serif); font-size: 1.0rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-doi { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--ink-muted); }
+  .essay-body { max-width: 780px; margin: 0 auto; padding: 0 2rem 4rem; }
+  .essay-section { margin-bottom: 2.5rem; }
+  .section-heading { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 0.9rem; font-weight: 600; }
+  .section-heading.lang-en { font-family: var(--serif); font-size: 0.95rem; letter-spacing: 0.04em; }
+  .essay-body p { font-size: 1.02rem; line-height: 1.85; margin-bottom: 1.0rem; }
+  [data-lang="en"] .essay-body p { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body p { font-family: var(--cjk), serif; }
+  .essay-body table { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body table { font-family: var(--cjk), serif; }
+  .hc16-link { max-width: 780px; margin: 3rem auto 0; padding: 1.5rem 2rem; border-top: 1px solid var(--cream-border); text-align: center; }
+  .hc16-link a { font-family: var(--serif); font-size: 0.85rem; color: var(--gold); text-decoration: none; }
+  [data-lang="zh"] .hc16-link a { font-family: var(--cjk), serif; }
+  .nav-arrows { display: flex; justify-content: space-between; max-width: 780px; margin: 2rem auto 0; padding: 1rem 2rem; }
+  .nav-arrows a { font-family: var(--serif); font-size: 0.82rem; color: var(--ink-muted); text-decoration: none; border: 1px solid var(--cream-border); padding: 0.5rem 1rem; transition: all 0.2s; }
+  .nav-arrows a:hover { color: var(--ink); border-color: var(--ink-muted); }
+  .nav-arrows .placeholder { visibility: hidden; }
+</style>
+
+</head>
+<body>
+<div style="position:fixed;top:1rem;right:1rem;z-index:100;">
+  <button id="lang-toggle" onclick="toggleLang()" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--cream-border);color:var(--ink-muted);padding:0.4rem 0.8rem;cursor:pointer;transition:all 0.2s;">
+    <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+  </button>
+</div>
+<div style="padding:1.2rem 2rem 0; max-width:780px; margin:0 auto;">
+  <a href="../../index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">← 返回主页</span>
+    <span class="lang-en">← Home</span>
+  </a>
+  &nbsp;&nbsp;
+  <a href="index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">四力系列</span>
+    <span class="lang-en">Four Forces Series</span>
+  </a>
+</div>
+<div class="essay-hero">
+  <div class="essay-eyebrow lang-zh">四力系列 · 篇VI</div>
+  <div class="essay-eyebrow lang-en">Four Forces Series · Paper VI</div>
+  <h1 class="essay-title-zh lang-zh">质子为什么不衰变</h1>
+  <h1 class="essay-title-en lang-en">Why the Proton Doesn't Decay</h1>
+  <p class="essay-hook-zh lang-zh">Spin(10)是分类群，不是规范群——大统一预测的根本性盲区</p>
+  <p class="essay-hook-en lang-en">Spin(10) is a classifier, not a gauge group — the fundamental blind spot of GUT predictions</p>
+  <div class="essay-doi lang-zh">DOI 10.5281/zenodo.19426067</div>
+  <div class="essay-doi lang-en">DOI 10.5281/zenodo.19426067</div>
+  <div class="essay-doi lang-zh"><a href="https://self-as-an-end.net/papers/sae-four-forces-VI.html" target="_blank" style="color:inherit;text-decoration:none;">↗ self-as-an-end.net</a></div>
+  <div class="essay-doi lang-en"><a href="https://self-as-an-end.net/papers/sae-four-forces-VI.html" target="_blank" style="color:inherit;text-decoration:none;">↗ self-as-an-end.net</a></div>
+</div>
+<div class="essay-body">
+  <div class="lang-zh">
+<div class="essay-section">
+<h2 class="section-heading lang-zh">大统一的预测与实验的沉默</h2>
+<p>大统一理论（GUT）预测质子会衰变。最简单的SU(5) GUT预测质子寿命约10³¹年，通过p → π⁰ + e⁺通道。Super-K实验观测了超过2万吨水中的质子长达数十年，没有发现这个衰变道的任何信号。</p>
+<p>标准响应是：SU(5) GUT已死，需要更复杂的GUT，比如SO(10)。SO(10) GUT中，一代所有费米子（含右手中微子）恰好填满一个16维旋量表示16。这个数学上的漂亮让很多物理学家相信SO(10)（或其覆叠群Spin(10)）是真正的统一群。</p>
+<p>SAE的问题：Spin(10)的16维表示是真的吗？当然。但Spin(10)是规范群吗？</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">分类群与规范群的区别</h2>
+<p>规范群是局域对称性，产生规范玻色子，交换玻色子实现相互作用。分类群是对态的整体分类工具，不产生动力学。</p>
+<p>四力篇VI从DD Splitting定理出发构造Spin(10)的16维骨架：三对4DD pair轴的大小定向各提供一个Z₂因子，L/R手征提供第四个Z₂因子，四个Z₂的16态经Weyl条件恰好给出Spin(10)的旋量表示16 = (4,2,1) ⊕ (4̄,1,2)。</p>
+<p>这16态与一代费米子完全匹配——不是巧合，而是DD结构的直接输出。</p>
+<p>但这个Spin(10)是分类群：它把一代费米子分类。它不是动力学规范群，因为4DD block的大小定向不是可以随时空连续变化的局域对称参数。</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">五条硬反预测</h2>
+<p>如果Spin(10)只是分类群而非规范群，则GUT依赖Spin(10)规范对称性的一系列预测全部错误：</p>
+<p>1. 质子不通过规范介导通道衰变（实验一致）</p>
+<p>2. 没有精确的单一能标规范耦合统一（SAE anti-GUT）</p>
+<p>3. 规范玻色子数 = 12（来自N_blocks），不是Spin(10)的45</p>
+<p>4. 轻子是Λ³U的体积元，不是第四种颜色（解释了轻子-夸克对称性的来源，又维持了轻子-夸克的不同性质）</p>
+<p>5. L-R对称性在结构上可能破缺（来自L-R canonical配对的桥接假设）</p>
+<p>这些反预测中，最重要的是质子不衰变（通道1）。Super-K继续运行，下一代实验Hyper-K正在建设，更强的约束即将到来。SAE的预测明确：质子寿命通过规范介导通道是无穷大（不是10³⁵年，而是∞）。实验每次没有看到信号，都是对SAE的一次支持。</p>
+</div>
+</div>
+  <div class="lang-en">
+<div class="essay-section">
+<h2 class="section-heading lang-en">Grand Unified Predictions and Experimental Silence</h2>
+<p>Grand Unified Theories (GUTs) predict proton decay. The simplest SU(5) GUT predicts a proton lifetime of roughly 10³¹ years, through the p → π⁰ + e⁺ channel. Super-K has monitored over 20,000 tons of water for decades, finding no signal for this decay mode.</p>
+<p>The standard response: SU(5) GUT is dead; we need a more complex GUT, such as SO(10). In SO(10) GUT, one entire generation of fermions (including the right-handed neutrino) fits perfectly into a single 16-dimensional spinor representation 16. This mathematical elegance has convinced many physicists that SO(10) (or its covering group Spin(10)) is the true unification group.</p>
+<p>SAE's question: Is Spin(10)'s 16-dimensional representation real? Absolutely. But is Spin(10) a gauge group?</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">The Difference Between a Classifier and a Gauge Group</h2>
+<p>A gauge group is a local symmetry that generates gauge bosons; exchanging bosons implements the interaction. A classifier is a global tool for organizing states — it produces no dynamics.</p>
+<p>Four Forces Paper VI constructs the 16-dimensional Spin(10) skeleton from DD Splitting: three pairs of 4DD block axes each contribute one Z₂ factor from their orientation; L/R chirality contributes a fourth Z₂; the 16 states from four Z₂ factors, under the Weyl condition, give exactly Spin(10)'s spinor representation 16 = (4,2,1) ⊕ (4̄,1,2).</p>
+<p>These 16 states perfectly match one fermion generation — not by coincidence, but as direct output of DD structure.</p>
+<p>But this Spin(10) is a classifier: it classifies one fermion generation. It is not a dynamical gauge group, because the orientation of 4DD blocks is not a local symmetry parameter that varies continuously with spacetime.</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">Five Hard Anti-Predictions</h2>
+<p>If Spin(10) is only a classifier and not a gauge group, then a whole series of GUT predictions relying on Spin(10) gauge symmetry are wrong:</p>
+<p>1. The proton does not decay through gauge-mediated channels (consistent with experiment)</p>
+<p>2. No exact single-scale gauge coupling unification (SAE anti-GUT)</p>
+<p>3. The number of gauge bosons = 12 (from N_blocks), not Spin(10)'s 45</p>
+<p>4. Leptons are volume elements Λ³U, not a fourth color (explaining lepton-quark symmetry's origin while preserving lepton-quark distinction)</p>
+<p>5. L-R symmetry may be structurally broken (from the L-R canonical pairing bridge hypothesis)</p>
+<p>Of these anti-predictions, the most important is proton non-decay (channel 1). Super-K continues to run; the next-generation experiment Hyper-K is under construction, bringing stronger constraints. SAE's prediction is explicit: proton lifetime through gauge-mediated channels is infinite — not 10³⁵ years, but ∞. Every null experimental result is a confirmation of SAE.</p>
+</div>
+</div>
+</div>
+<div class="hc16-link">
+  <a href="../xiangjun/index.html">
+    <span class="lang-zh">你是哪种人？→ HC-16 性格测试</span>
+    <span class="lang-en">What kind of person are you? → HC-16 Personality Test</span>
+  </a>
+</div>
+<div class="nav-arrows"><a href="ff-gen.html" class="lang-zh">← 上一篇</a><a href="ff-gen.html" class="lang-en">← Previous</a><a href="ff7.html" class="lang-zh">下一篇 →</a><a href="ff7.html" class="lang-en">Next →</a></div>
+<script>
+  function toggleLang() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-lang') === 'zh' ? 'en' : 'zh';
+    html.setAttribute('data-lang', next);
+    html.setAttribute('lang', next);
+    localStorage.setItem('nondubito-lang', next);
+  }
+  (function() {
+    const saved = localStorage.getItem('nondubito-lang');
+    if (saved) {
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+    }
+  })();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "your-token"}' ></script>
+</body>
+</html>

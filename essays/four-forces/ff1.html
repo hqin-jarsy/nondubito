@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>四种力的几何来源 — Non Dubito</title>
+  <meta name="description" content="为什么是U(1)×SU(2)×SU(3)？因为1DD、2DD、3DD是不同的几何">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  
+<style>
+  .essay-hero { padding: 3.5rem 2rem 2rem; max-width: 780px; margin: 0 auto; }
+  .essay-eyebrow { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+  .essay-title-zh { font-family: var(--cjk), serif; font-size: 2.1rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-title-en { font-family: var(--serif); font-size: 1.7rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.4rem; }
+  .essay-hook-zh { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-hook-en { font-family: var(--serif); font-size: 1.0rem; color: var(--ink-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .essay-doi { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--ink-muted); }
+  .essay-body { max-width: 780px; margin: 0 auto; padding: 0 2rem 4rem; }
+  .essay-section { margin-bottom: 2.5rem; }
+  .section-heading { font-family: var(--cjk), serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 0.9rem; font-weight: 600; }
+  .section-heading.lang-en { font-family: var(--serif); font-size: 0.95rem; letter-spacing: 0.04em; }
+  .essay-body p { font-size: 1.02rem; line-height: 1.85; margin-bottom: 1.0rem; }
+  [data-lang="en"] .essay-body p { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body p { font-family: var(--cjk), serif; }
+  .essay-body table { font-family: var(--serif); }
+  [data-lang="zh"] .essay-body table { font-family: var(--cjk), serif; }
+  .hc16-link { max-width: 780px; margin: 3rem auto 0; padding: 1.5rem 2rem; border-top: 1px solid var(--cream-border); text-align: center; }
+  .hc16-link a { font-family: var(--serif); font-size: 0.85rem; color: var(--gold); text-decoration: none; }
+  [data-lang="zh"] .hc16-link a { font-family: var(--cjk), serif; }
+  .nav-arrows { display: flex; justify-content: space-between; max-width: 780px; margin: 2rem auto 0; padding: 1rem 2rem; }
+  .nav-arrows a { font-family: var(--serif); font-size: 0.82rem; color: var(--ink-muted); text-decoration: none; border: 1px solid var(--cream-border); padding: 0.5rem 1rem; transition: all 0.2s; }
+  .nav-arrows a:hover { color: var(--ink); border-color: var(--ink-muted); }
+  .nav-arrows .placeholder { visibility: hidden; }
+</style>
+
+</head>
+<body>
+<div style="position:fixed;top:1rem;right:1rem;z-index:100;">
+  <button id="lang-toggle" onclick="toggleLang()" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;border:1px solid var(--cream-border);color:var(--ink-muted);padding:0.4rem 0.8rem;cursor:pointer;transition:all 0.2s;">
+    <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+  </button>
+</div>
+<div style="padding:1.2rem 2rem 0; max-width:780px; margin:0 auto;">
+  <a href="../../index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">← 返回主页</span>
+    <span class="lang-en">← Home</span>
+  </a>
+  &nbsp;&nbsp;
+  <a href="index.html" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;">
+    <span class="lang-zh">四力系列</span>
+    <span class="lang-en">Four Forces Series</span>
+  </a>
+</div>
+<div class="essay-hero">
+  <div class="essay-eyebrow lang-zh">四力系列 · 篇I</div>
+  <div class="essay-eyebrow lang-en">Four Forces Series · Paper I</div>
+  <h1 class="essay-title-zh lang-zh">四种力的几何来源</h1>
+  <h1 class="essay-title-en lang-en">The Geometric Origin of Four Forces</h1>
+  <p class="essay-hook-zh lang-zh">为什么是U(1)×SU(2)×SU(3)？因为1DD、2DD、3DD是不同的几何</p>
+  <p class="essay-hook-en lang-en">Why U(1)×SU(2)×SU(3)? Because 1DD, 2DD, 3DD are different geometries</p>
+  <div class="essay-doi lang-zh">DOI 10.5281/zenodo.19342106</div>
+  <div class="essay-doi lang-en">DOI 10.5281/zenodo.19342106</div>
+  <div class="essay-doi lang-zh"><a href="https://self-as-an-end.net/papers/sae-four-forces-I.html" target="_blank" style="color:inherit;text-decoration:none;">↗ self-as-an-end.net</a></div>
+  <div class="essay-doi lang-en"><a href="https://self-as-an-end.net/papers/sae-four-forces-I.html" target="_blank" style="color:inherit;text-decoration:none;">↗ self-as-an-end.net</a></div>
+</div>
+<div class="essay-body">
+  <div class="lang-zh">
+<div class="essay-section">
+<h2 class="section-heading lang-zh">标准模型没有回答的问题</h2>
+<p>标准模型的规范群是U(1)×SU(2)×SU(3)。这是粒子物理最核心的结构之一，描述了电磁力、弱力和强力的对称性。</p>
+<p>但标准模型没有告诉我们：为什么是这三个群？为什么是1、2、3的组合，而不是别的？这三个群从哪里来？</p>
+<p>SAE的核心主张：nDD ↝ SU(n)。每一个DD层对应一个特定的规范对称群，来源是这个DD层的几何结构。</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">为什么nDD产生SU(n)</h2>
+<p>论证分三步。</p>
+<p>第一：如果某DD层的内部自由度以复振幅表示，且物理变换保持厄米范数，那么自然的对称群是U(n)（酉群）。这是建模公设：余项在时空中传播，传播是振荡性的，振荡自然编码为复振幅。</p>
+<p>第二：对n≥2的DD层，"整体相位"不携带新的内部区分，只保留不同方向间的相对混合——因此有效对称群从U(n)收缩为SU(n)（特殊酉群）。</p>
+<p>第三：三个DD层的几何各自不同。1DD是点，最小的区分，对应一个相位自由度。2DD是线，二元极性（两个端点），对应两种内部态。3DD是体，三个空间方向，对应三色结构。</p>
+<p>结果：1DD → U(1)（电磁），2DD → SU(2)（弱力），3DD → SU(3)（强力）。</p>
+<p>箭头是"结构对应"，不是演绎推导的每个细节都无误差。但对称群的阶数模式——1、2、3——有了先验几何解释。</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-zh">为什么没有第四种规范力</h2>
+<p>4DD不是SU(4)。4DD是时空本身——不是内部对称空间，而是整个场的活动背景。4DD的对称是微分同胚不变性，不是Yang-Mills规范对称。</p>
+<p>引力不是规范力的原因不是"我们还没有找到正确的量子化方法"，而是结构上的原因：4DD和1DD-3DD是不同类的东西。前三DD给出局域规范扇区（荷守恒），4DD给出跨dual-4DD的全局记账（E₁+E₂=0）。</p>
+<p>Anti-GUT预言：没有精确的单一能标规范耦合统一，三种规范力在更高能量下不汇聚到同一点，质子不通过规范介导通道衰变。这与Super-K至今没有观测到质子衰变一致。</p>
+</div>
+</div>
+  <div class="lang-en">
+<div class="essay-section">
+<h2 class="section-heading lang-en">The Question the Standard Model Doesn't Answer</h2>
+<p>The Standard Model's gauge group is U(1)×SU(2)×SU(3). This is one of the most central structures in particle physics, describing the symmetries of electromagnetism, the weak force, and the strong force.</p>
+<p>But the Standard Model does not tell us: why these three groups? Why 1, 2, 3 — and not something else? Where do these three groups come from?</p>
+<p>SAE's core claim: nDD ↝ SU(n). Each DD layer corresponds to a specific gauge symmetry group, originating from the geometric structure of that DD layer.</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">Why nDD Gives SU(n)</h2>
+<p>The argument has three steps.</p>
+<p>First: if a DD layer's internal degrees of freedom are represented as complex amplitudes, and physical transformations preserve the Hermitian norm, then the natural symmetry group is U(n) (the unitary group). This is a modeling postulate: remainders propagate through spacetime; propagation is oscillatory; oscillation is naturally encoded as a complex amplitude.</p>
+<p>Second: for n≥2 DD layers, the "global phase" carries no new internal distinction, only preserving relative mixing between different directions — so the effective symmetry group contracts from U(n) to SU(n) (the special unitary group).</p>
+<p>Third: the geometry of the three DD layers is each different. 1DD is a point — the minimal distinction — corresponding to one phase degree of freedom. 2DD is a line, binary polarity (two endpoints), corresponding to two internal states. 3DD is a volume, three spatial directions, corresponding to a three-color structure.</p>
+<p>Result: 1DD → U(1) (electromagnetism), 2DD → SU(2) (weak force), 3DD → SU(3) (strong force).</p>
+<p>The arrows represent "structural correspondence," not an error-free deductive derivation of every detail. But the pattern of gauge group orders — 1, 2, 3 — has an a priori geometric explanation.</p>
+</div>
+
+<div class="essay-section">
+<h2 class="section-heading lang-en">Why There Is No Fourth Gauge Force</h2>
+<p>4DD is not SU(4). 4DD is spacetime itself — not an internal symmetry space, but the background in which all fields operate. 4DD symmetry is diffeomorphism invariance, not Yang-Mills gauge symmetry.</p>
+<p>The reason gravity is not a gauge force is not "we haven't found the right quantization method yet" — it is structural: 4DD and 1DD-3DD are different kinds of things. The first three DDs give local gauge sectors (charge conservation); 4DD gives global accounting across dual-4DD (E₁+E₂=0).</p>
+<p>Anti-GUT predictions: no exact single-scale gauge coupling unification; the three gauge forces do not converge at a single point at higher energies; the proton does not decay through gauge-mediated channels. This is consistent with Super-K's continued non-observation of proton decay.</p>
+</div>
+</div>
+</div>
+<div class="hc16-link">
+  <a href="../xiangjun/index.html">
+    <span class="lang-zh">你是哪种人？→ HC-16 性格测试</span>
+    <span class="lang-en">What kind of person are you? → HC-16 Personality Test</span>
+  </a>
+</div>
+<div class="nav-arrows"><a href="ff-prequel.html" class="lang-zh">← 上一篇</a><a href="ff-prequel.html" class="lang-en">← Previous</a><a href="ff2.html" class="lang-zh">下一篇 →</a><a href="ff2.html" class="lang-en">Next →</a></div>
+<script>
+  function toggleLang() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-lang') === 'zh' ? 'en' : 'zh';
+    html.setAttribute('data-lang', next);
+    html.setAttribute('lang', next);
+    localStorage.setItem('nondubito-lang', next);
+  }
+  (function() {
+    const saved = localStorage.getItem('nondubito-lang');
+    if (saved) {
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+    }
+  })();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "your-token"}' ></script>
+</body>
+</html>

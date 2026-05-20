@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>徐翔 — Non Dubito</title>
+  <meta name="description" content="LTCM是一群最聪明的人用最精密的数学模型撞上了世界的边缘。这一篇回到一个人的故事。一个跟前面所有人都不太一样的人。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/jiaoyi/xuxiang.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="en"] .lang-jp { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-jp { display:none; }
+    [data-lang="jp"] .lang-zh { display:none; }
+    [data-lang="jp"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span>
+        <span class="title-sub lang-en">Essays in the Self-as-an-End Tradition</span>
+        <span class="title-sub lang-zh" style="font-family:var(--cjk),serif;">自我作为目的</span>
+        <span class="title-sub lang-jp" style="font-family:var(--cjk),serif;">自己を目的として</span>
+      </a>
+      <nav class="header-nav">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="jp">日本語</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="essay-container">
+    <a href="../../index.html#jiaoyi" class="back-link">
+      <span class="lang-zh">← 交易的艺术</span>
+      <span class="lang-en">← The Art of Trading</span>
+      <span class="lang-jp">← 取引の芸術</span>
+    </a>
+    <article>
+      <header class="essay-header">
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">交易的艺术（七）</div>
+          <div class="essay-series lang-en">The Art of Trading (7)</div>
+          <div class="essay-series lang-jp">取引の芸術（七）</div>
+          <h1 class="lang-zh">徐翔</h1>
+          <h1 class="lang-en">Xu Xiang</h1>
+          <h1 class="lang-jp">徐翔</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="date">October 2025</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>LTCM是一群最聪明的人用最精密的数学模型撞上了世界的边缘。那个故事冰冷，干净，没有人情味。它告诉你不确定性不是你可以消灭的东西。</p>
+
+        <p>这一篇回到一个人的故事。一个跟前面所有人都不太一样的人。他没有读过大学，没有学过金融理论，没有诺贝尔奖得主做搭档。他15岁进入中国股市的时候，身上只有三万块钱，全部家当。</p>
+
+        <p>他的天赋不是学来的。他的天赋是从市场里长出来的。</p>
+
+        <p>1993年，宁波。一个普通工人家庭的少年，说服了父母让他炒股。父亲从信用社取了三万块钱，用母亲的名字在证券营业部开了户。</p>
+
+        <p>三万块钱在1993年的中国不是一个小数目。对一个工人家庭来说，这可能是他们大半辈子的积蓄。把这些钱交给一个15岁的孩子去"炒股"，需要一种对孩子非比寻常的信任，或者一种对命运的孤注一掷。也许两者都有。</p>
+
+        <p>那三万块钱赔了。</p>
+
+        <p>然后他表哥借给他十万块钱。</p>
+
+        <p>这一次他开始赚了。到17岁，他给父母买了房。他的母亲开始跟亲戚借钱，让他操盘。1996年底，中国股市实行了涨停跌停板制度。他和表哥琢磨出了一种基于涨停板的战法。十万块起家，到1997年底，变成了三百万。</p>
+
+        <p>这个速度不是正常的。能在十几岁的年纪做到这种事的人，身上有一样东西是教不出来的。你可以叫它盘感，可以叫它直觉，可以叫它对价格运动的天然亲和力。Richard Dennis说交易可以教，William Eckhardt说交易是天生的。徐翔的存在似乎站在Eckhardt这一边。</p>
+
+        <p>他很快在宁波出了名。银河证券宁波解放南路营业部，那个时候是整个宁波最活跃的交易大厅。一群年轻的短线交易员聚集在那里，靠着极快的反应速度和对盘面的敏感，在涨停板附近进出。媒体后来给他们起了一个名字：宁波涨停板敢死队。</p>
+
+        <p>徐翔是他们当中最突出的一个。</p>
+
+        <p>2005年，他从宁波搬到了上海。在东方证券的一个营业部里继续做短线，继续积累。经历了一整轮牛市以后，2009年底，他在上海注册成立了泽熙投资管理有限公司。注册资本三千万。</p>
+
+        <p>从散户到私募基金管理人。从三万块到管理几十亿。</p>
+
+        <p>泽熙的业绩非常好。他的基金产品在行业排名里经常名列前茅。他变成了"私募一哥"。但跟很多明星基金经理不同，他几乎不出席任何公开活动，不参加论坛，不接受采访，极少去上市公司调研。他是一个几乎完全隐形的人，只有他的业绩是可见的。</p>
+
+        <p>这种隐形本身就是一种构建。他在市场里的方法依赖于速度和信息敏感度。他需要比别人快，比别人早。出现在公众视野里对这种方法没有任何好处，只有坏处。所以他把自己藏起来了。</p>
+
+        <p>他的世界里只有市场。他看屏幕的方式跟其他人不一样。有人回忆说他操盘的时候反应极快，像是比市场快半拍。他不是在分析，他是在感应。</p>
+
+        <p>一个15岁就进入市场的人，到了30多岁的时候已经有将近二十年的盘面经验。二十年的肌肉记忆。价格的每一次跳动对他来说都有意义，就像母语对一个人的意义一样。你不需要"思考"你的母语，你直接听到意思。他直接看到价格背后的力量。</p>
+
+        <p>这是他的凿。他在市场的微观结构里看见了别人看不见的东西。</p>
+
+        <p>泽熙越做越大。管理的资金从几千万到几亿再到几十亿。他的方法在更大的资金量上需要更多的策略来支撑。他不再只是一个人在屏幕前做短线。他有团队了，有资金链了，有跟上市公司的关系了。整个运作越来越复杂，越来越庞大。</p>
+
+        <p>一个15岁少年凭着天赋和三万块钱发展出来的东西，变成了一个机器。</p>
+
+        <p>这台机器需要喂食。更多的信息，更快的速度，更深的关系网络。它的运转产生了自己的逻辑，那个逻辑不再完全是少年时代那个"看着屏幕感应价格"的逻辑了。机器变得比人大了。</p>
+
+        <p>2015年11月，徐翔被带走了。</p>
+
+        <p>关于他后来经历的法律程序，这里不需要多说。那些是法律问题，有法庭去处理。我们要看的是一条弧线，一条跟管金生和Livermore同样形状的弧线。</p>
+
+        <p>一个人看见了什么（凿），把它变成了一套可以运行的东西（构），那个东西越来越大，越来越成功，然后它大到超过了这个人能完全掌控的范围。不是他变了，是他造的东西变了。机器不再服从造它的那个人，机器开始有了自己的需求，自己的惯性，自己的重量。</p>
+
+        <p>管金生的万国证券是这样。Leeson的88888是这样。LTCM的万亿美元头寸是这样。徐翔的泽熙也是这样。每一个故事的形状都一样，只是填进去的内容不同。</p>
+
+        <p>但徐翔的故事跟前面六个有一个本质的不同。</p>
+
+        <p>管金生走了。Livermore走了。缠中说禅走了。LTCM解散了。他们的故事是完结的。你可以给它们一个总结，一个评价，一声叹息。</p>
+
+        <p>徐翔还在。</p>
+
+        <p>他2021年出来以后，试图参与他曾经持股的上市公司的事务。他发过声，表达过不满，提过议案。他的家族资产至今还在被一步步处理。他的故事是一个进行时。</p>
+
+        <p>这就让这篇文章的调性跟前面几篇都不一样。前面的故事可以回顾，可以定论。这一个不行。一个还活着的人，一个故事还在继续的人，你能做的只是看着他到目前为止走过的弧线，然后注意到一件事。</p>
+
+        <p>他还在。</p>
+
+        <p>这三个字在整个系列里第一次出现。前六篇的结局是死亡，是崩溃，是解散，是遗书。到了第七篇，主人公还活着。</p>
+
+        <p>这不是一个小事。</p>
+
+        <p>一个从15岁开始就在市场里搏杀的人，经历了三万到几百亿的膨胀，经历了系统的反噬，经历了最深的谷底，然后他还在呼吸。他的未来是什么，没有人知道。但"还在"本身就已经是一种东西了。</p>
+
+        <p>Livermore在遗书里写"I am a failure"。他已经不愿意继续了。缠中说禅被疾病带走了，他连选择的机会都没有。管金生出狱以后安静地过了二十多年，做了一些小事，然后安静地离开了。</p>
+
+        <p>徐翔呢？他会成为一个安静下来的管金生，还是一个重新开始的什么人？他还能不能回到那个屏幕前，回到那个他15岁就住进去的世界？那个世界还是他记忆中的那个世界吗？</p>
+
+        <p>这些问题没有答案。一个进行时的故事不需要答案。它需要的是一种注视。不是审判的注视，不是同情的注视，而是一种更安静的注视。</p>
+
+        <p>看一个人。一个曾经站在最高处的人。一个被自己造的东西推过了边界的人。一个还在的人。</p>
+
+        <p>下一篇，我们开始走向光。一个也曾经犯过大错，也曾经巨亏，但始终能从外面看自己的人。他是第一个把"为什么交易员总是被自己的系统困住"这个问题写成理论的人。他的名字叫George Soros，他的理论叫反身性。</p>
+
+        <p>（交易的艺术系列未完）</p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>LTCM was a tale of the brightest minds deployed with the most precise mathematical models colliding with the edge of the world. That story is cold, clean, without sentiment. It teaches us that uncertainty is not something you can eliminate.</p>
+
+        <p>This essay returns to a personal story. A story of someone profoundly different from everyone who came before. He never went to university, never studied financial theory, never had a Nobel laureate as a partner. When he entered the Chinese stock market at 15 with only 30,000 yuan—his entire family fortune—it was with nothing but raw instinct.</p>
+
+        <p>His talent was not learned. It grew from the market itself.</p>
+
+        <p>November 1993, Ningbo. A teenager from an ordinary working-class family convinced his parents to let him trade stocks. His father withdrew 30,000 yuan from a credit union and opened an account in his mother's name at a securities office.</p>
+
+        <p>In 1993 China, 30,000 yuan was substantial. For a working family, it likely represented decades of accumulated savings. To entrust that sum to a fifteen-year-old child to "trade stocks" required an extraordinary faith in the boy, or perhaps a kind of desperate gamble with fate. Perhaps both.</p>
+
+        <p>That 30,000 yuan was lost.</p>
+
+        <p>Then his cousin lent him 100,000 yuan.</p>
+
+        <p>This time he began to profit. By seventeen, he had bought his parents a house. His mother began borrowing from relatives to let him manage their money. When China's stock market implemented daily trading limits in late 1996, he and his cousin discovered a strategy based on these limits. From 100,000 yuan, by the end of 1997, he had turned it into 3 million.</p>
+
+        <p>This pace was not normal. The ability to accomplish such things in one's teens requires something that cannot be taught. Call it intuition, call it market feel, call it natural affinity for price movement. Richard Dennis said trading can be taught; William Eckhardt said it is innate. Xu Xiang's existence seemed to vindicate Eckhardt.</p>
+
+        <p>He quickly became famous in Ningbo. The Galaxy Securities branch on Liberation South Road became the city's most vibrant trading floor. Young day traders gathered there, relying on lightning-quick reflexes and keen sensitivity to price action, entering and exiting near the daily limits. The media gave them a name: the Ningbo Daily Limit Suicide Squad.</p>
+
+        <p>Xu Xiang stood out among them.</p>
+
+        <p>In 2005, he moved to Shanghai. He continued day trading at an Oriental Securities branch, accumulating capital. After completing one full bull market cycle, in late 2009 he registered Zexi Investment Management. Registered capital: 30 million yuan.</p>
+
+        <p>From retail trader to private fund manager. From 30,000 to managing billions.</p>
+
+        <p>Zexi's performance was exceptional. His funds consistently ranked among the industry's best. He became "China's number one private hedge fund manager." Yet unlike many celebrated fund managers, he attended virtually no public events, gave no interviews, conducted almost no company visits. He was almost completely invisible—only his performance was visible.</p>
+
+        <p>This invisibility was itself a constructed strategy. His methods depended on speed and information sensitivity. He needed to be faster, to know things earlier. Appearing in the public eye offered no benefit, only risk. So he made himself invisible.</p>
+
+        <p>His world contained only the market. He watched the screen differently than others. Colleagues recall that during trading, he reacted with extraordinary speed, as if he was always half a beat ahead of the market. He was not analyzing. He was sensing.</p>
+
+        <p>A person who entered the market at fifteen, by his early thirties, had accumulated nearly two decades of direct market experience. Two decades of muscle memory. Every tick of the price conveyed meaning to him, the way a mother tongue conveys meaning to a native speaker. You don't think about your native language—you understand it directly. He saw directly the forces behind the prices.</p>
+
+        <p>This was his chisel—he perceived structures in the market's microarchitecture that others could not see.</p>
+
+        <p>Zexi continued to grow. Assets under management expanded from tens of millions to hundreds of millions to billions. His methods required ever more sophisticated strategy as the capital base grew. He was no longer a lone operator at the screen. He had teams, capital flows, relationships with listed companies. Operations became increasingly complex and vast.</p>
+
+        <p>What a fifteen-year-old boy developed through talent and 30,000 yuan became a machine.</p>
+
+        <p>This machine needed feeding. More information, faster speed, deeper networks. Its operation generated its own logic, no longer purely the logic of that younger self who "sensed prices from the screen." The machine had become larger than the man.</p>
+
+        <p>In November 2015, Xu Xiang was detained.</p>
+
+        <p>Regarding the legal proceedings that followed, there is little to say here. Those are legal matters for courts to address. What we examine is an arc—an arc of the same shape as those of Guan Jinsheng and Livermore.</p>
+
+        <p>A person perceives something (a chisel), builds it into an operational system (a structure). That system grows, succeeds, then exceeds what one person can fully control. The person did not change; what they built did. The machine no longer obeys its creator. It develops its own needs, its own inertia, its own weight.</p>
+
+        <p>Guan Jinsheng's Wanguo Securities followed this pattern. Leeson's 88888 followed it. LTCM's trillion-dollar positions followed it. Zexi followed it. Every story has the same shape, filled with different details.</p>
+
+        <p>But Xu Xiang's story has one essential difference from the first six.</p>
+
+        <p>Guan Jinsheng is gone. Livermore is gone. Chan Zhongshuo is gone. LTCM was disbanded. Their stories are concluded. You can summarize them, evaluate them, mourn them.</p>
+
+        <p>Xu Xiang remains.</p>
+
+        <p>After his release in 2021, he attempted to participate in affairs of listed companies where he once held stakes. He has spoken, expressed dissatisfaction, submitted proposals. His family's assets continue to be gradually disposed of. His story is an ongoing one.</p>
+
+        <p>This changes the tone of this essay from the others. Previous stories could be reviewed, concluded. This one cannot. A living person, a story still unfolding—all you can do is observe the arc he has traced thus far and notice one thing:</p>
+
+        <p>He remains.</p>
+
+        <p>These three characters appear for the first time in this entire series. The conclusions of the first six are death, collapse, dissolution, suicide notes. In essay seven, the protagonist is still breathing.</p>
+
+        <p>This is not insignificant.</p>
+
+        <p>A person who has fought in the markets since age fifteen, who experienced the expansion from 30,000 to hundreds of billions, who experienced the system's retaliation, who touched the deepest abyss, and then continued breathing. What his future holds, no one knows. But the simple fact of still being here is itself something.</p>
+
+        <p>Livermore wrote in his suicide note: "I am a failure." He could not continue. Chan Zhongshuo was taken by illness, denied even the choice. After prison, Guan Jinsheng lived quietly for more than twenty years, did small things, then departed quietly.</p>
+
+        <p>What of Xu Xiang? Will he become a quieted version of Guan, or someone who begins again? Can he return to that screen, to that world he inhabited starting at fifteen? Is that world still as he remembers it?</p>
+
+        <p>These questions have no answers. An unfinished story needs no answers. It needs something else: a kind of witnessing. Not the witnessing of judgment, not the witnessing of sympathy, but a quieter witnessing.</p>
+
+        <p>Look at a person. A person who once stood at the summit. A person pushed beyond the boundary by something he created. A person who remains.</p>
+
+        <p>Next, we move toward the light. A man who also made grave errors, suffered massive losses, yet always maintained the ability to see himself from outside. He was the first to theorize why traders become trapped by their own systems. His name is George Soros, and his theory is called reflexivity.</p>
+
+        <p>(The Art of Trading series continues)</p>
+      </div>
+
+      <div class="essay-body lang-jp" style="font-family:var(--cjk),var(--serif);">
+        <p>LTCM とは、最も優秀な頭脳が最も精密な数学モデルで世界の端に衝突した物語である。その物語は冷たく、清潔で、人情味がない。それは私たちに一つのことを教えた：不確実性とは消滅させることができるものではないということを。</p>
+
+        <p>本稿は一人の人物の物語に戻る。これまで登場した全員と根本的に異なる人物である。大学には進学せず、金融理論を学ばず、ノーベル賞受賞者をパートナーとして持つこともなかった。15 歳で中国株式市場に入った時、彼が持っていたのは 30,000 元だけだった。それが全財産である。</p>
+
+        <p>彼の才能は学んだものではない。市場から生まれたものだ。</p>
+
+        <p>1993 年 11 月、寧波。普通の労働者階級の家庭の少年が、両親を説得して株式取引をさせてもらった。父親は信用金庫から 30,000 元を引き出し、母親名義で証券営業部に口座を開いた。</p>
+
+        <p>1993 年の中国で 30,000 元は小さな額ではなかった。労働者家庭にとって、それは数十年の積立貯金かもしれない。その金を 15 歳の少年に株式取引をさせるために預けるには、その少年に対する並外れた信頼、あるいは運命への大賭けが必要だった。おそらく両方である。</p>
+
+        <p>その 30,000 元は失われた。</p>
+
+        <p>その後、彼の従兄が彼に 100,000 元を貸した。</p>
+
+        <p>今度は彼は利益を生み始めた。17 歳までに、彼は両親のために家を買った。母親は親戚から借金を始め、彼に資金を運用させた。1996 年後半、中国株式市場が日々の値幅制限を導入すると、彼と従兄はこれらの制限に基づく戦略を発見した。100,000 元から始まり、1997 年末までに、それは 300 万に変わった。</p>
+
+        <p>このペースは正常ではなかった。10 代のうちにこのようなことを成し遂げる能力には、教えることのできない何かが必要である。それを直感と呼び、市場感覚と呼び、価格変動への自然な親近感と呼ぶことができる。Richard Dennis は取引は教えられると言った。William Eckhardt は取引は生まれながらのものだと言った。徐翔の存在は Eckhardt の主張を支持するように見えた。</p>
+
+        <p>彼はすぐに寧波で有名になった。銀河証券解放南路営業部は当時、寧波で最も活気に満ちた取引所だった。若い日中取引業者の集団がそこに集まり、極めて素早い反応と板面への敏感さに頼って、日々の値幅制限の近くで売買した。メディアは彼らに「寧波値幅制限敢死隊」という名前をつけた。</p>
+
+        <p>徐翔は彼らの中で最も際立っていた。</p>
+
+        <p>2005 年、彼は上海に引っ越した。東方証券の営業部で日中取引を続け、資金を蓄積した。一つの完全な強気相場サイクルを経験した後、2009 年後半に彼は泽熙投資管理有限公司を上海に登録した。登録資本金：3,000 万元。</p>
+
+        <p>小売トレーダーからプライベート基金マネージャーへ。30,000 から数十億を運用することへ。</p>
+
+        <p>泽熙のパフォーマンスは優れていた。彼の基金は業界ランキングでしばしば上位にランクされた。彼は「プライベート基金界のナンバーワン」になった。しかし多くの有名なファンドマネージャーとは異なり、彼はほぼ公開活動に参加しなかった。論坛に参加しなかった。インタビューを受けなかった。上場企業の実査もほぼしなかった。彼はほぼ完全に見えないような人だった。彼のパフォーマンスだけが見えた。</p>
+
+        <p>この不可視性そのものが構築された戦略だった。彼の方法はスピードと情報への感度に依存していた。彼は他人より速い必要があり、他人より早く知る必要があった。公開の視野に現れることは、この方法に何の利益ももたらさず、害だけをもたらしていた。そのため、彼は自分自身を隠した。</p>
+
+        <p>彼の世界には市場だけが存在した。彼は他の人とは異なる方法で画面を見た。同僚の回想によると、取引中の彼は極めて素早く反応し、市場より半拍先んじているようだった。彼は分析していなかった。彼は感応していた。</p>
+
+        <p>15 歳で市場に入った人物は、30 代初期までに、ほぼ 20 年間の直接的な市場経験を積み重ねていた。20 年間の筋肉の記憶だ。価格の一回の動きは彼にとって意味を持つ、ちょうど母語が人間に意味を持つのと同じように。あなたは母語について考える必要がない。あなたは直接意味を理解する。彼は価格の背後にある力を直接見た。</p>
+
+        <p>これが彼の鑿だった。彼は市場の微観構造の中で他の人が見ることができないものを見た。</p>
+
+        <p>泽熙は成長を続けた。運用資産は数千万から数億、そして数十億へと拡大した。より大きな資本規模では、彼の方法はより多くの戦略に支えられる必要があった。彼はもはや画面の前の単独オペレーターではなかった。彼にはチームがいた。資本流があった。上場企業との関係があった。操業はますます複雑で大規模になった。</p>
+
+        <p>15 歳の少年が才能と 30,000 元で開発したものは機械になった。</p>
+
+        <p>この機械は給餌を必要とした。より多くの情報。より速いスピード。より深いネットワーク。その操業は独自のロジックを生成した。そのロジックはもはや、少年時代の「画面から価格を感応する」というロジックではなかった。機械は人間より大きくなった。</p>
+
+        <p>2015 年 11 月、徐翔は連行された。</p>
+
+        <p>その後彼が経験した法的手続きについて、ここで多くを言う必要はない。それらは法的問題であり、裁判所が処理するためにある。我々が検討するのはアーク——关金生と Livermore と同じ形のアークである。</p>
+
+        <p>一人の人物が何かを知覚し（鑿）、それを運用可能なシステムに構築する（構）。そのシステムは成長し、成功し、その後、一人の人間が完全にコントロールできる範囲を超える。人物は変わらなかった。彼が構築したものが変わった。機械はもはや創造者に従わない。それは独自のニーズ、独自の慣性、独自の重量を開発する。</p>
+
+        <p>关金生の万国証券はこのパターンに従った。Leeson の 88888 はそうだった。LTCM の兆ドルのポジションはそうだった。泽熙もそうだった。すべての物語は同じ形をしており、異なる詳細で満たされている。</p>
+
+        <p>しかし、徐翔の物語は最初の 6 つと 1 つの本質的な違いがある。</p>
+
+        <p>关金生は去った。Livermore は去った。缠中说禅は去った。LTCM は解散した。彼らの物語は完結している。あなたはそれらを要約し、評価し、悼むことができる。</p>
+
+        <p>徐翔は残っている。</p>
+
+        <p>2021 年の釈放後、彼はかつて保有していた上場企業の事務に参加しようと試みた。彼は発言し、不満を表明し、提案を提出した。彼の家族資産は今日まで段階的に処分されている。彼の物語は進行中のものだ。</p>
+
+        <p>これは本稿の調性を他の論文から変える。以前の物語は見直され、結論付けることができた。このものはできない。生きている人物、物語がまだ展開している人物——あなたができることはすべて、彼がこれまでに描いたアークを観察し、1 つのことに気付くことだ：</p>
+
+        <p>彼は残っている。</p>
+
+        <p>これらの 3 文字は、このシリーズ全体で初めて現れる。最初の 6 つの結論は死、崩壊、解散、遺書だ。エッセイ 7 では、主人公はまだ呼吸している。</p>
+
+        <p>これは重要なことだ。</p>
+
+        <p>15 歳から市場で戦った人物が、30,000 から数百億への膨張を経験し、システムの報復を経験し、最も深い深淵に触れ、その後も呼吸を続けた。彼の未来が何かを保有していることは、誰も知らない。しかし、まだここにいるというシンプルな事実は、それ自体が何かだ。</p>
+
+        <p>Livermore は遺書に「I am a failure」と書いた。彼は続けることができなかった。缠中说禅は病気で連れ去られた。選択さえも拒否された。投獄後、关金生は 20 年以上静かに生活し、小さなことをし、その後静かに去った。</p>
+
+        <p>徐翔はどうだ？彼は静かになった关金生になるのか、それとも再び始める誰かになるのか？彼は再びあの画面に戻ることができるのか、彼が 15 歳から住んでいた世界に戻ることができるのか？その世界は彼が覚えている通りなのか？</p>
+
+        <p>これらの質問に答えはない。完成していない物語は答えを必要としない。それは別のものを必要とする：目撃の一種。判断の目撃ではなく、同情の目撃でもなく、より静かな目撃だ。</p>
+
+        <p>一人の人物を見て。かつて頂上に立った人物を。彼が創造したものによって限界を超えて押し出された人物を。残っている人物を。</p>
+
+        <p>次は光に向かう。彼も深刻な過ちを犯し、大きな損失を被ったが、常に自分自身を外部から見る能力を維持した人物。彼は、なぜトレーダーが彼ら自身のシステムに捕らえられるのかを理論化した最初の人物である。彼の名前は George Soros で、彼の理論は反射性と呼ばれている。</p>
+
+        <p>（取引の芸術シリーズは続く）</p>
+      </div>
+
+      <p class="essay-footer-note lang-zh"><em>Han Qin (秦汉) · @hqinjarsy · 交易的艺术</em></p>
+      <p class="essay-footer-note lang-en"><em>Han Qin (秦汉) · @hqinjarsy · The Art of Trading</em></p>
+      <p class="essay-footer-note lang-jp"><em>Han Qin (秦汉) · @hqinjarsy · 取引の芸術</em></p>
+
+      <nav class="xiyou-nav">
+        <a href="ltcm.html" class="xiyou-nav-btn xiyou-nav-prev">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-sub lang-jp">前へ</span>
+            <span class="xiyou-nav-title">LTCM</span>
+          </span>
+        </a>
+        <a href="georgesoros.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-sub lang-jp">次へ</span>
+            <span class="xiyou-nav-title">George Soros</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
