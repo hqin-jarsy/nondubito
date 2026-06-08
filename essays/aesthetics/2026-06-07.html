@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>x86CSS：当样式表里长出了处理器 — Non Dubito</title>
+  <meta name="description" content="Lyra Rebane用纯CSS实现了完整的x86 CPU——不需要JavaScript。样式语言的意外图灵完备性是规范委员会从未设计的余项。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-06-07.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-06-07</div>
+          <h1 class="lang-zh">x86CSS：当样式表里长出了处理器</h1>
+          <h1 class="lang-en">x86CSS: When a Processor Grows Inside a Style Sheet</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Lyra Rebane是爱沙尼亚的安全研究员，在Chrome里发现过九个CVE。2026年2月，她发布了x86CSS——一个完全用CSS实现的x86处理器模拟器。没有JavaScript。没有WebAssembly。没有Canvas。用GCC编译的C程序被翻译成8086机器码，然后在层叠样式表里逐条执行。斐波那契数列在样式规则的级联中展开。帕斯卡三角形在自定义属性的继承中生长。一个Wordle变体在容器查询的嵌套中等待你的输入。</p>
+
+        <p>这件作品的余项结构是三层的。第一层：web的三分体制——HTML管结构，CSS管表现，JavaScript管行为——是过去二十五年前端开发的根本构。x86CSS把这个构凿开了。它让行为发生在表现层里，让计算寄生在声明性规则中。CSS的图灵完备性是没有人设计的东西。<code>@property</code>是为主题化设计的，<code>if()</code>是为条件样式设计的，<code>@function</code>是为代码复用设计的，容器样式查询是为响应式组件设计的，动画关键帧是为视觉过渡设计的。没有任何一项功能的目的是计算。但当它们汇合时，意外地涌现出了通用计算能力。这就是余项——规范委员会十年工作的意外产物，一种从未被设计、从未被命名的能力。</p>
+
+        <p>第二层：x86处理器是硅和晶体管的构，是物理工程的产物——光刻、时钟信号、金属互连。x86CSS把物质性整个凿掉了。每条指令变成了CSS自定义属性求值和样式继承的级联。CPU的时钟变成了一个animation关键帧。内存变成了嵌套容器和样式查询。余项是：一个完全由声明性规则构成的处理器，没有物质，没有晶体管——只有规则之间的层叠关系。第三层更私人：Rebane在x86CSS的致谢里写道"感谢cohosters启发我学习CSS"。Cohost是一个允许用户在帖子里使用CSS的社交平台，它在2024年底关闭了。一个名为"CSS犯罪"的创作社群随之失去了栖息地。x86CSS是用从一个已死社群中获得的技能制作的——社群的构被凿掉了，但技能作为余项存活了下来，继续在别处生长。</p>
+
+        <p>为什么此刻看到它比以后重要？因为CSS的计算性还没有被任何领域完整命名。它不是编程语言（它是CSS）。它不是web开发（它在运行x86机器码）。它不是CPU模拟器（没有模拟器软件——只有声明性规则）。它不是计算机科学研究（它是一个人的爱好项目）。它不是艺术（Rebane不称自己为艺术家）。它不是demo或概念验证（它真的能运行C程序）。Rebane自己给这类实践起的名字是"CSS犯罪"——一个承认违规但不归入任何已有范畴的名字。842颗GitHub星。19个fork。10次commit。GPL-3.0。她即将在CSS Day 2026（阿姆斯特丹，6月11-12日）演讲。逻辑还在生长。还没有人知道该怎么叫它。</p>
+
+        <a href="https://lyra.horse/x86css/" target="_blank" rel="noopener" class="project-link">lyra.horse/x86css ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Lyra Rebane is a security researcher from Estonia who has found nine CVEs in Chrome. In February 2026, she released x86CSS — a fully working x86 CPU emulator implemented entirely in CSS. No JavaScript. No WebAssembly. No Canvas. C programs compiled with GCC into native 8086 machine code execute inside cascading style sheets. The Fibonacci sequence unfolds through cascading style rules. Pascal's triangle grows through custom property inheritance. A Wordle variant waits for your input inside nested container queries.</p>
+
+        <p>The remainder structure here is triple-layered. First: the web's tripartite separation — HTML for structure, CSS for presentation, JavaScript for behavior — is the fundamental construct of front-end development for the past twenty-five years. x86CSS chisels this construct open. It makes behavior happen inside the presentation layer, makes computation parasitize declarative rules. CSS's Turing-completeness is something no one designed. <code>@property</code> was designed for theming. <code>if()</code> was designed for conditional styling. <code>@function</code> was designed for code reuse. Container style queries were designed for responsive components. Animation keyframes were designed for visual transitions. No single feature was meant for computation. But when they converge, universal computing power emerges accidentally. This is the remainder — the unintended product of a decade of specification committee work, a capacity that was never designed, never named.</p>
+
+        <p>Second: an x86 CPU is a construct of silicon and transistors, a product of physical engineering — lithography, clock signals, metal interconnects. x86CSS chisels away all materiality. Each instruction becomes a cascade of CSS custom property evaluations and style inheritance. The CPU's clock becomes an animation keyframe. Memory becomes nested containers with style queries. The remainder: a processor made entirely of declarative rules, with no matter, no transistors — only cascading relationships between rules. Third, more personal: in the x86CSS credits, Rebane writes "thanks to cohosters for inspiring me to learn CSS in the first place." Cohost was a social platform that uniquely allowed users to write CSS inside their posts. It shut down in late 2024. A creative community called "CSS crimes" lost its habitat. x86CSS was built with skills acquired in a dead community — the community's construct was chiseled away, but the skills survived as remainder, continuing to grow elsewhere.</p>
+
+        <p>Why does seeing this now matter more than later? Because CSS's computational nature has not been fully named by any field. It's not a programming language (it's CSS). It's not web development (it's running x86 machine code). It's not a CPU emulator (there's no emulator software — just declarative rules). It's not computer science research (it's one person's hobby project). It's not art (Rebane doesn't call herself an artist). It's not a demo or proof-of-concept (it actually runs C programs). Rebane's own name for this kind of practice is "CSS crimes" — a name that acknowledges transgression without claiming any established category. 842 GitHub stars. 19 forks. 10 commits. GPL-3.0. She's about to speak at CSS Day 2026 (Amsterdam, June 11-12). The logic is still growing. No one yet knows what to call it.</p>
+
+        <a href="https://lyra.horse/x86css/" target="_blank" rel="noopener" class="project-link">lyra.horse/x86css ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
