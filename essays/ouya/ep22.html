@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多构型对峙｜凿构周期律 — Non Dubito</title>
+  <meta name="description" content="1930年代是三种政治构型全面对峙的时刻。这一篇做全球切片，交汇两个系列，并回望凿构周期律框架在人类思想传统里的位置。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/ouya/ep22.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 凿构周期律·欧亚帝王系列</a>
+        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Eurasian Emperors</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">凿构周期律 · 欧亚帝王系列</div>
+          <div class="essay-series lang-en">Chisel-Construct Cycle · Eurasian Emperors</div>
+          <div class="emperor-ep-num lang-zh">第 22 篇 / 共 22 篇</div>
+          <div class="emperor-ep-num lang-en">Essay 22 of 22</div>
+          <h1 class="lang-zh">第二十二篇：1930年代的多构型对峙——全球切片、两个系列的交汇和理论的回望</h1>
+          <h1 class="lang-en">Essay 22: Multi-Construct Confrontation in the 1930s — A Global Cross-Section, Two Series Converge, and a Look Back at the Framework</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<p>第二十一篇收束在法西斯主义的兴起和它对人是目的这个原则最彻底的否定。这是欧亚系列的第二十一篇。这一篇是欧亚系列的最后一篇，也是整个写作计划的收束。</p>
+
+<p>这一篇要同时完成三件事。</p>
+
+<p>第一，做一个1930年代的全球切片。前面的篇章一篇一篇地追踪欧亚大陆从希腊到二十世纪的政治构型演化。到1930年代，世界进入一个多种政治构型全面对峙的时刻。这一篇把这个对峙作为一个全球的横切面来呈现。</p>
+
+<p>第二，把欧亚系列和中华系列在1930年代交汇。这个写作计划有两个系列。中华系列从尧舜禹一直追踪到1930年代的抗战前夜。欧亚系列从希腊一直追踪到二十世纪。这两条线索，一条沿着中国，一条沿着欧亚大陆的其余部分，在1930年代的全球对峙中交汇。这个交汇是整个写作计划的收束点。</p>
+
+<p>第三，回望凿构周期律这个框架本身。前面二十一篇用凿构周期律分析了大量的历史。到最后一篇，可以回过头来，把这个框架本身放在它与人类思想传统的关系里看。这个框架的几个核心概念——余项不可消灭，构不可闭合——以及它们衍生的几个判断，在人类的思想传统里并不孤立，它们与许多深刻的思想有共鸣，也有自己的位置。这一篇做这个回望。</p>
+
+<p>这三件事不是分开的。1930年代的全球对峙是凿构周期律分析的一个对象，两个系列的交汇是这个分析在全球尺度的完成，对框架的回望是这个分析的理论自觉。三件事在这一篇里合在一起，构成整个写作计划的收束。</p>
+
+<p>先把这一篇的一个原则重申清楚，因为它在收束的时刻尤其重要。凿构周期律本身是一个反对宿命论叙事的工具。这一篇做收束，但收束不等于给出一个整齐的结论，不等于把整个历史归结为一个单一的主题或一个必然的方向。任何整齐的主题，任何单一的方向，都是一种轻微的宿命论。这一篇的收束，是把前面展开的复杂性收拢，而不是把它简化。它要呈现的是一个多种构型对峙的、开放的、没有预定结局的世界，而不是一个走向某个终点的历史。</p>
+
+<h3>一、三种构型的全面对峙</h3>
+
+<p>1930年代的世界，首先是三种政治构型的全面对峙。</p>
+
+<p>这三种构型是二十世纪的三股主要意识形态所组织的：自由民主，共产主义，法西斯主义。前面几篇追踪了它们各自的起源。</p>
+
+<p>自由民主的根源是第十五篇展开的启蒙政治哲学和第十六篇展开的美国和法国革命。它的核心是人民主权、代议制、权力的分立和制衡、对个人权利的保护。第十六篇说过美国宪法是一个余项容纳型的构，它假设分歧不可避免，设计制度让分歧相互制衡，不追求消除分歧。这是自由民主作为一种构的核心特征。</p>
+
+<p>共产主义的根源是第十八篇展开的社会主义和第二十篇展开的俄国革命。它的核心是消灭资本主义这个余项，建立一个由先锋队党领导的、按照历史理论改造整个社会的国家。第二十篇说过苏维埃国家是一个追求闭合的极端案例，它试图消灭资本主义这个余项，建立一个没有阶级的社会。</p>
+
+<p>法西斯主义的根源是第二十一篇展开的。它的核心是民族或种族共同体，反对自由主义和共产主义，把暴力美学化为民族再生的仪式。第二十一篇说过纳粹是对人是目的这个原则最彻底的否定，它撤销一部分人作为人的资格。</p>
+
+<p>到1930年代，这三种构型在全球范围内全面对峙。这个对峙不是抽象的意识形态争论，是具体的政治和军事的冲突。</p>
+
+<p>第二十一篇说过的西班牙内战是这个对峙的一个集中的体现。国民派得到德国和意大利两个法西斯国家的援助，共和派得到苏联这个共产主义国家的支持，也吸引了来自各国的国际纵队志愿者，而英法这两个自由民主国家名义上不干涉。三种构型在西班牙的土地上通过代理的方式直接冲突。西班牙内战因此是1930年代多构型对峙的一个缩影，三股意识形态在一场具体的战争里交锋。</p>
+
+<p>这个对峙的性质需要在凿构周期律的框架里说清楚。这三种构型代表了对同一组现代问题的三种不同的回答。现代世界提出了一组问题。工业革命创造了新的阶级和新的社会矛盾。第十八篇说过社会主义是工业资本主义这个新经济构型产生的余项的政治表达。民族主义提出了政治共同体应该如何组织的问题。一战摧毁了旧的王朝帝国秩序，留下了一个需要被重新组织的世界。这些问题是三种构型共同面对的。</p>
+
+<p>三种构型给出了三种不同的回答。自由民主的回答是用代议制和权力制衡来容纳社会的分歧和矛盾，不追求消除它们。共产主义的回答是用先锋队党领导的革命来消灭资本主义，从根本上消除阶级矛盾。法西斯主义的回答是用民族或种族共同体来取代阶级和个人，用强力的国家来压制一切分歧。</p>
+
+<p>这三种回答在凿构周期律的框架里有不同的位置。自由民主是一个容纳余项的构，它承认分歧和矛盾不可消除，设计制度来容纳它们。共产主义和法西斯主义都是追求闭合的构，但它们追求闭合的方式不同。共产主义追求通过消灭一个阶级——资产阶级——来消除阶级矛盾，达到一个没有阶级的社会。法西斯主义追求通过建立一个种族或民族的共同体、否定一部分人，来达到一个纯粹的民族整体。</p>
+
+<p>这是1930年代多构型对峙的结构。它不是善与恶的简单对立，是三种处理现代问题的不同方式的对峙：其中一种容纳余项，两种以不同的方式追求闭合。对峙的核心是容纳余项的构和追求闭合的构之间的对峙，以及两种追求闭合的构之间的对峙。</p>
+
+<h3>二、欧亚东部——中国的现代化与抵抗</h3>
+
+<p>把视野转到欧亚大陆的东部。1930年代的全球对峙不只发生在欧洲，也发生在东亚。</p>
+
+<p>中华系列详细展开过中国从尧舜禹到1930年代抗战前夜的整个历程。这一篇不重复中华系列的内容，只把中国在1930年代的位置放在全球多构型对峙的框架里。</p>
+
+<p>到1930年代，中国正处在一个复杂的历史时刻。第十九篇说过中国是非正式帝国的一个典型案例，它通过鸦片战争、不平等条约、通商口岸被实质地约束，但保持了形式上的主权。中华系列展开过中国在这个屈辱和压力下的现代化和抵抗的历程，从自强运动到戊戌变法到辛亥革命到后来的各种探索。</p>
+
+<p>1930年代的中国，同时面对几个层面的问题。一个是现代化的问题，如何把一个古老的文明国家转化为一个现代国家。一个是抵抗外来侵略的问题，特别是日本的侵略。一个是内部的政治整合问题，不同的政治力量对中国应该走什么道路有不同的主张。</p>
+
+<p>中国在1930年代的位置，恰好处在三种构型对峙的交汇点。自由民主、共产主义、法西斯主义这三种构型，都在中国的现代化探索中有它们的影响。中国的不同政治力量，从这三种构型中吸取不同的资源。这使中国成为1930年代全球多构型对峙的一个重要的场域，三种构型的影响在中国相遇，与中国自己的历史传统和现实处境结合。</p>
+
+<p>这里要点出一个凿构周期律框架下的观察，它把中国的历程和欧亚系列的分析连接起来。中国的现代化是第十四篇说的强制现代化范型和第十三篇说的内生现代化之间的一个复杂的案例。第十四篇展开过彼得大帝的强制现代化，国家作为现代化的主体，用强制力推动社会的改造。第十三篇展开过西欧的内生现代化，社会内部多个过程同时变形逐步生成。中国的现代化既不完全是彼得式的强制现代化，也不完全是西欧式的内生现代化，它是一个古老的文明在外来压力下，试图找到自己的现代化道路的复杂过程。这个过程充满了探索、挫折，和不同道路的竞争。</p>
+
+<p>中国还提供了一个独特的视角，它和这个系列那条半明线有关。中华系列展开过，人是目的这个相变在中国的历史里也有它的涌现和压回。中华系列说过这个相变在中国始于百家争鸣的时代，那是一个思想空前活跃、人作为思考和价值主体空前突出的时代。这个相变在中国后来的历史里反复涌现又反复被压回，和它在欧亚大陆其他部分的命运有相似之处，也有不同之处。中国的历程因此不是欧亚系列的一个外部的补充，是同一个相变在另一个文明里的展开。</p>
+
+<p>把中国放在1930年代的全球对峙里，它显示了这个对峙的真正的全球性。三种构型的对峙不只是欧洲内部的事，它是全球性的，它在东亚、在中国的现代化探索中，同样在展开。中国不是这个对峙的旁观者，是这个对峙的一个重要的参与者和场域。</p>
+
+<h3>三、日本——另一条现代化道路的歧出</h3>
+
+<p>东亚的另一个关键是日本。日本在1930年代走上了军国主义扩张的道路，它是1930年代全球对峙的一个重要的力量。</p>
+
+<p>日本的现代化道路值得放在凿构周期律的框架里看，因为它提供了一个强制现代化范型的东亚案例，以及这个范型如何可能歧出到军国主义扩张。</p>
+
+<p>日本的明治维新是一次成功的强制现代化。它和第十四篇说的彼得大帝的强制现代化有相似之处：国家作为现代化的主体，自上而下地推动社会的全面改造。明治维新让日本在相对短的时间里从一个封建国家转化为一个现代国家，建立了现代的工业、军队、行政、教育。这是非西方世界最成功的现代化案例之一。</p>
+
+<p>但日本的现代化道路在二十世纪走向了军国主义扩张。这个走向有它的具体的历史原因：经济的压力，对资源和市场的需求，国内政治的演变，军方在政治中的影响力上升。到1930年代，日本走上了对外侵略扩张的道路。</p>
+
+<p>1931年的九一八事变，日本占领满洲并建立伪满洲国。第二十一篇说过这是1930年代国际秩序累积性崩塌的一个起点。1933年日本退出国际联盟。后来日本进一步扩大对中国的侵略，并最终走向太平洋战争。</p>
+
+<p>日本的军国主义在凿构周期律的框架里是一个特殊的现象。它把成功的强制现代化和对外的侵略扩张结合在一起。日本用现代化建立的强大的国家能力——工业、军队、组织——被用于对外的侵略。这显示了现代化的国家能力本身是中性的，它可以被用于不同的目的。第二十篇说过总体战争发展出的全面动员能力被留在了所有意识形态国家的治理技术里。日本的军国主义是这种现代国家能力被用于侵略扩张的一个案例。</p>
+
+<p>日本和中国在1930年代的对峙，是1930年代全球多构型对峙的东亚维度。日本作为一个成功现代化但走向军国主义扩张的国家，对中国进行侵略。中国作为一个在屈辱和压力下探索自己现代化道路的国家，进行抵抗。这个对峙是东亚版本的现代构型冲突，它和欧洲的三种构型对峙一起，构成了1930年代全球对峙的完整图景。</p>
+
+<p>把欧洲和东亚放在一起，1930年代的世界是一个全球性的多构型对峙的世界。在欧洲，自由民主、共产主义、法西斯主义三种构型对峙。在东亚，日本的军国主义扩张和中国的现代化抵抗对峙。这些对峙不是孤立的，它们相互关联，共同构成了一个全球性的危机时刻，这个时刻最终走向了第二次世界大战。</p>
+
+<h3>四、两个系列的交汇</h3>
+
+<p>现在到了两个系列交汇的地方。</p>
+
+<p>这个写作计划有两个系列。中华系列从尧舜禹一直追踪到1930年代的抗战前夜。欧亚系列从希腊一直追踪到二十世纪的法西斯主义。这两条线索在1930年代交汇。</p>
+
+<p>这个交汇的意义需要说清楚。它不是两个系列的简单的并置，是同一个分析框架——凿构周期律——在两个不同的文明区域的展开，最终在1930年代的全球对峙中相遇。</p>
+
+<p>两个系列分析的是不同的历史，但用的是同一个框架。中华系列用凿构周期律分析中国从尧舜禹到抗战前夜的政治构型演化。欧亚系列用凿构周期律分析从希腊到二十世纪的欧亚大陆其余部分的政治构型演化。两个系列展示了同一个框架在不同文明的适用性：余项不可消灭，构不可闭合，这些命题在中国的历史里成立，在欧亚大陆其余部分的历史里也成立。</p>
+
+<p>两个系列有很多结构上的呼应。这些呼应是同一个框架在不同文明里发现的相似的结构。</p>
+
+<p>第一个呼应是相变的涌现。欧亚系列第一篇说雅典斯巴达是人是目的这个相变在欧亚大陆物质层面的最早涌现。中华系列说这个相变在中国始于百家争鸣的时代。两个文明都在大约相近的历史时期，经历了人作为思考和价值主体空前突出的时代。这是同一个相变在两个文明里的涌现。</p>
+
+<p>第二个呼应是相变的压回。欧亚系列第六篇说基督教化部分压回了这个相变。中华系列说这个相变在中国后来的历史里也反复被压回。两个文明都经历了相变涌现之后的压回，人作为政治主体的突出被某种更高的权威所取代或压制。</p>
+
+<p>第三个呼应是构追求闭合而失败。欧亚系列分析过很多追求闭合的构，从路易十四废除南特敕令到雅各宾恐怖到苏维埃国家。中华系列也分析过中国历史上追求闭合的尝试。两个文明都显示了同一个命题：构不可闭合，追求闭合的构最终都遇到余项不可消灭的现实。</p>
+
+<p>第四个呼应是强制现代化的范型。欧亚系列第十四篇说彼得大帝建立了强制现代化的范型。这个范型在日本的明治维新、在中国的现代化探索中都有它的回响。两个系列都显示了后发国家如何用国家的力量推动现代化，以及这个过程的特征和代价。</p>
+
+<p>这些呼应不是巧合。它们是同一个框架在不同文明里发现的相似的结构。凿构周期律不是一个只适用于某个特定文明的框架，是一个可以用于分析不同文明的政治构型演化的框架。两个系列的交汇，证明了这个框架的跨文明的适用性。</p>
+
+<p>但要小心，跨文明的适用性不等于历史的同一性。两个文明的历史是不同的，它们的具体的构型、具体的演化路径、具体的结局都不同。凿构周期律发现的是不同文明里相似的结构，不是把不同文明的历史归结为同一个模式。中国的历史是中国的，欧亚大陆其余部分的历史是它自己的。凿构周期律提供的是一个分析的框架，这个框架可以揭示不同文明里相似的结构性问题，但它不抹平不同文明的具体的差异。</p>
+
+<p>到1930年代，两个系列在全球对峙中交汇。中国在三种构型的对峙中探索自己的道路，同时抵抗日本的侵略。欧亚大陆其余部分在三种构型的对峙中走向第二次世界大战。两条线索、两个文明的历程，在这个全球性的危机时刻相遇。这是整个写作计划的收束点：两个用同一个框架分析的不同文明的历程，在1930年代的全球对峙中汇合成一个全球性的图景。</p>
+
+<h3>五、回望框架——余项不可消灭</h3>
+
+<p>到最后一篇的后半部分，可以回过头来，把凿构周期律这个框架本身放在它与人类思想传统的关系里看。</p>
+
+<p>前面二十一篇用凿构周期律分析了大量的历史。这个框架的几个核心概念——余项不可消灭，构不可闭合——在分析中反复出现。这些概念不是凭空产生的，它们与人类思想传统里许多深刻的思想有共鸣。把这些共鸣呈现出来，可以更清楚地看到这个框架的位置。</p>
+
+<p>先看余项不可消灭这个概念。余项不可消灭说的是，任何一个政治社会构型，在它的运作中都会产生它无法完全吸纳的东西，这些东西不会被消灭，它们持续存在，并最终影响构型的演化。</p>
+
+<p>这个概念在西方思想传统里有深刻的共鸣。黑格尔在《法哲学原理》里已经看到，市民社会必然生产贫困和他所说的乌合之众。对黑格尔来说，余项不是外部的残留，是现代自由秩序的内生的副产物。一个现代的市民社会，在它正常的运作中，必然地产生它无法整合的贫困人口。这个洞察和余项不可消灭的概念是相通的：现代秩序把它无法整合者作为内部的结果生产出来。</p>
+
+<p>马克思把这个洞察推进到资本积累的逻辑。马克思在《资本论》里分析，资本积累同时制造相对过剩人口。资本并不消灭余项，而是以剩余人口的形式持续地再生产余项。这是对余项不可消灭的一个更深的论证：余项不是一个可以被解决的问题，是资本主义运作的一个内在的、持续的产物。</p>
+
+<p>阿伦特从另一个角度触及了余项。阿伦特分析极权主义，她指出极权主义的极端形式不是整合人，而是把人做成多余的人。阿伦特意义上的多余的人，是政治世界崩塌后的产物，是被剥夺了一切权利和位置的人。这和余项不可消灭有一个不同的面向，它显示了余项可以被一个极端的构型推到什么地步——被彻底地去权利化，变成多余的人。这正是第二十一篇分析的纳粹的逻辑，把一部分人变成多余的、应该被清除的对象。</p>
+
+<p>后殖民的思想——赛义德、斯皮瓦克、查克拉巴蒂——则揭示了另一种余项。他们指出，东方、底层、非欧洲，这些并不是自然的边缘，是知识和帝国的装置制造的次属的位置。边缘并非经验的事实，是表征的秩序预先安放的位置。这和第十九篇分析的殖民双重标准是相通的：被殖民者被一套知识和权力的装置安放在一个次属的位置上，这个位置是被制造出来的，不是自然的。</p>
+
+<p>把这些放在一起，余项不可消灭这个概念在西方思想传统里有丰富的共鸣。从黑格尔的贫困问题，到马克思的剩余人口，到阿伦特的多余的人，到后殖民理论的次属者，不同的思想家从不同的角度触及了同一个洞察：现代秩序产生它无法整合的余项，这些余项不是偶发的例外，是体制自我维持的代价。</p>
+
+<p>凿构周期律的余项不可消灭这个概念，与这些思想共鸣，但它有自己的特点。它不把余项限定在某一种特定的形式——贫困，阶级，被殖民者。它把余项作为一个普遍的、结构性的概念：任何构型都产生它无法吸纳的余项，无论这个构型是什么，无论这个余项采取什么具体的形式。这个普遍性让它可以用于分析不同时代、不同文明的不同构型，这正是前面二十一篇所做的。</p>
+
+<h3>六、回望框架——构不可闭合</h3>
+
+<p>再看构不可闭合这个概念。构不可闭合说的是，任何一个政治社会构型，都不可能达到一个完全封闭的、没有余项的、完全自洽的状态。追求这种封闭的构型，最终都会遇到余项不可消灭的现实，它的追求闭合最终会失败。</p>
+
+<p>这个概念也在人类思想传统里有深刻的共鸣，特别是在两个方向上。</p>
+
+<p>第一个方向是关于路径锁定和不可逆。诺斯和保罗·大卫分析制度的路径依赖。诺斯说制度是历史的载体，历史经验、预期的协调、组织的惯性，使一个路径一旦成形就难以无成本地回退。这和构不可闭合有一个相关的面向，它显示了构型一旦形成就有它的惯性，有它锁定的路径。制度不是中性的容器，是把过去压进现在的装置。</p>
+
+<p>复杂系统理论从另一个角度触及了这个问题。复杂适应系统由多个主体的互动、反馈、涌现构成。小的事件可以在正反馈中被放大成稳定的轨道。一旦反馈的回路形成，历史就不再像可逆的工程。这显示了构型的演化有它的不可逆性，它不是可以随意回退和重来的。</p>
+
+<p>库恩的科学革命理论提供了一个类比，虽然要谨慎使用。库恩说科学革命改变的不只是答案，是何者算作问题本身。旧的问题会消失，回退并不是简单的复原。这个洞察和构型演化的不可逆性有一个类比的关系：一个构型的变化，改变的不只是具体的安排，是整个问题的框架，所以它不能简单地回到从前。</p>
+
+<p>第二个方向是关于例外和主权，这个方向更直接地触及构不可闭合的核心。施米特分析例外状态。施米特说，例外状态不是法的边角，是显示主权本相的关键时刻。秩序靠对敌友和例外的决断来自我确证。这个洞察触及了一个深刻的问题：一个法律秩序不可能完全自我封闭，它总是依赖于一个例外的时刻，一个不能被法律本身完全规定的决断。这正是构不可闭合的一个深刻的体现：一个构型不可能完全自我封闭，它总是在它的边界处依赖于某种它不能完全吸纳的东西。</p>
+
+<p>阿甘本把施米特的洞察推进了。阿甘本分析他所说的裸命。他指出，西方政治以一种他称为包容性排斥的方式生产裸命。现代政治不是把裸命排除在外，是以排除的方式把它纳入中心。这是一个深刻的洞察：被排除者不是简单地在构型之外，是以一种特殊的方式被纳入构型的核心，成为构型自我定义的一个关键。</p>
+
+<p>这个洞察直接指向凿构周期律的一个重要的概念：余项可以进入核心。前面的篇章反复显示了这个现象。被排除的余项不是简单地消失，它持续存在，并最终影响甚至重写构型的核心规则。第十六篇说美国被排除的群体——奴隶、原住民、女性——持续地用建国原则要求被纳入，最终改变了美国。第十九篇说被殖民者用普遍主义的语言反对帝国，最终瓦解了殖民秩序。这些都是余项进入核心、重写规则的例子。</p>
+
+<p>把这些放在一起，构不可闭合这个概念在人类思想传统里有深刻的共鸣。路径依赖和复杂系统理论显示了构型演化的不可逆性，施米特和阿甘本显示了构型不可能完全自我封闭，它总是在边界处依赖于它不能完全吸纳的东西。这些思想从不同的角度支持了构不可闭合这个命题。</p>
+
+<p>凿构周期律的构不可闭合这个概念，与这些思想共鸣，但它把这些洞察整合到一个动态的框架里。它不只是说构型有路径依赖，或者构型依赖于例外，它把这些整合成一个完整的动态：构型产生余项，余项不可消灭，构型追求闭合而不可得，余项最终影响甚至重写构型。这个动态的整合是凿构周期律的特点。</p>
+
+<h3>七、回望框架——代际衰减和话语实践张力</h3>
+
+<p>凿构周期律在分析中还衍生出几个相关的判断，它们也在思想传统里有共鸣。这一节看其中两个：代际衰减和话语与实践的张力。</p>
+
+<p>先看代际衰减。前面的篇章多次触及一个现象，一个构型的创始的活力，在后来的世代里逐步衰减。第四篇说过屋大维之后的元首制，第十七篇说过革命的激情如何在制度化中改变。这个现象在思想传统里有丰富的讨论。</p>
+
+<p>托克维尔分析民主社会，他看到民主的平等如果不被地方自治和结社所维系，容易滑向多数的压迫和他所说的温和的专制。平等并不自动地生成自由，它也可能耗损公共的德性。这是一个关于民主社会可能的衰减的洞察：民主不是一个一旦建立就自动维持的状态，它需要被持续地维系，否则会衰减。</p>
+
+<p>韦伯分析魅力型的支配。韦伯说，魅力型的支配是革命性的但不稳定的，它终将向传统的或法理官僚的秩序常规化。创始的激情如果要存活，往往需要以制度化为代价。这是对代际衰减的一个经典的分析：创始者的魅力和激情，在后来的世代里必然地被常规化、被制度化，这个过程既是激情的存活，也是激情的衰减。</p>
+
+<p>熊彼特分析资本主义，他提出一个著名的判断：资本主义会因自身的成功而衰朽。企业家的精神被大的组织、专业的经理层，以及反资本主义的知识阶层所侵蚀。制度的胜利，可能恰恰是其精神的衰败。这是对代际衰减的另一个角度的分析：一个构型的成功本身可能孕育它的衰减。</p>
+
+<p>麦金太尔从道德哲学的角度触及了这个问题。麦金太尔说，现代的道德语言脱离了传统和共同的实践之后，沦为情感主义。德性只有在延续的实践共同体中才能传承。当传统断裂，规范仍然在说话，但已经失去了生活形式的支撑。这是对代际衰减的一个深刻的分析，它显示了价值和规范如何在传统的断裂中衰减——规范的形式还在，但它的实质的支撑已经流失。</p>
+
+<p>这些思想共同回答了一个问题：为什么一个构型的第二代、第三代常常不如第一代有锋芒。托克维尔看到民主社会的软化，韦伯看到魅力的常规化，熊彼特看到企业家精神被结构吞没，麦金太尔看到传统断裂导致的德性衰减。这些都和凿构周期律里代际衰减的观察相通。</p>
+
+<p>再看话语与实践的张力。前面的篇章反复显示了一个现象：一个构型用来论证自己的话语，和它实际的运作之间，存在持续的张力甚至错位。第四篇说过屋大维用共和的话语包装实质的君主统治。第十九篇说过殖民用普遍主义的话语掩盖支配的实践。这个现象在思想传统里也有深刻的讨论。</p>
+
+<p>福柯分析话语和权力。福柯指出，话语不是纯粹的语言层面，它与规训、检查、统计和治理的技术共同构造主体。权力不只是压制，它更是生产性的。所谓的说法，总是已经嵌入了制度、身体和微观的技术。这是对话语与实践关系的一个深刻的分析，它显示了话语不是和实践分离的，它本身就是实践的一部分，是权力运作的一个环节。</p>
+
+<p>哈贝马斯从规范的角度触及了这个问题。哈贝马斯分析交往的行动和法治的民主，他指出这些要求程序性的协商，但系统的逻辑会殖民生活世界，使程序的理性和社会的现实脱节。这是对话语与实践张力的一个规范性的处理：它不只是揭露这个张力，是要求把合法性重新连接到可参与、可争辩的制度实践中。</p>
+
+<p>葛兰西分析领导权。葛兰西指出，领导权不是纯粹的观念的说服，是通过知识分子、市民社会和组织的实践，把常识做成统治。真正的领导权，是把观念沉淀为日常的实践和共同的感觉。这是对话语与实践关系的另一个角度的分析，它显示了话语如何通过具体的实践被组织成统治，被接受为常识。</p>
+
+<p>把代际衰减和话语与实践张力放在一起，它们是凿构周期律在分析中衍生的两个判断，它们在思想传统里都有丰富的共鸣。这些共鸣显示了凿构周期律不是一个孤立的框架，它触及的问题是人类思想长期思考的深刻问题。</p>
+
+<h3>八、框架的位置——一个不同的视角</h3>
+
+<p>把前面几节的回望综合起来，可以看到凿构周期律这个框架的位置。</p>
+
+<p>凿构周期律的几个核心概念——余项不可消灭，构不可闭合，以及衍生的代际衰减、话语与实践张力、余项进入核心——在人类的思想传统里都有深刻的共鸣。黑格尔、马克思、阿伦特、后殖民理论触及了余项。诺斯、复杂系统理论、施米特、阿甘本触及了构不可闭合和余项进入核心。托克维尔、韦伯、熊彼特、麦金太尔触及了代际衰减。福柯、哈贝马斯、葛兰西触及了话语与实践的张力。</p>
+
+<p>这说明凿构周期律不是凭空产生的，它触及的是人类思想长期思考的深刻问题。它和这些深刻的思想有共鸣，它处在人类思考政治社会构型的演化这个长期的传统里。</p>
+
+<p>但凿构周期律有它自己的特点和位置，这个特点需要说清楚。</p>
+
+<p>第一个特点是它的整合性。前面提到的那些思想，每一个都深刻地触及了某一个方面。黑格尔和马克思深刻地分析了余项，但他们主要关注的是特定形式的余项——贫困、阶级。施米特和阿甘本深刻地分析了例外和裸命，但他们主要关注的是法律和主权的维度。韦伯和熊彼特深刻地分析了衰减，但他们各自关注特定的领域。凿构周期律的特点是把这些不同的洞察整合到一个动态的框架里。它把余项的产生、构型的追求闭合、闭合的失败、余项的持续存在和进入核心，整合成一个完整的动态。这个动态把那些分散的深刻洞察连接成一个连贯的分析框架。</p>
+
+<p>第二个特点是它的跨文明的适用性。前面提到的那些思想，大多是在西方的思想传统里、分析西方的历史和现实而产生的。凿构周期律的特点是它被用于分析不同的文明。这个写作计划的两个系列，一个分析中国从尧舜禹到抗战前夜，一个分析欧亚大陆其余部分从希腊到二十世纪，用的是同一个框架。这显示了凿构周期律不是一个只适用于某个特定文明的框架，是一个可以用于分析不同文明的政治构型演化的框架。</p>
+
+<p>第三个特点，也是最重要的特点，是它来自一个不同的视角。前面引用的思想家，大多在欧洲或者西方的思想传统里，从西方的历史经验出发，思考政治社会构型的问题。凿构周期律来自一个不同的位置，它来自一个对中国历史和欧亚历史都有深入观察的视角，它试图找到一个能够同时分析中国和欧亚大陆其余部分的框架。这个不同的视角让它能够看到一些从单一文明的视角不容易看到的东西。</p>
+
+<p>具体来说，从一个跨文明的视角看，可以更清楚地看到不同文明里相似的结构。人是目的这个相变在希腊涌现，也在中国的百家争鸣涌现。追求闭合的构在欧洲反复出现，也在中国反复出现。这些跨文明的相似性，从单一文明的视角不容易被看到，从一个同时观察多个文明的视角才能被清楚地把握。凿构周期律正是从这样一个视角产生的。</p>
+
+<p>这是凿构周期律的位置。它处在人类思考政治社会构型演化这个长期的传统里，它和这个传统里许多深刻的思想有共鸣。但它有自己的特点：它整合了那些分散的洞察，它适用于不同的文明，它来自一个跨文明的视角。这个位置让它能够做前面二十一篇所做的：用一个连贯的框架，分析从希腊到二十世纪、从尧舜禹到抗战前夜的不同文明的政治构型演化。</p>
+
+<h3>九、半明线的回望</h3>
+
+<p>在收束整个写作计划之前，要回望这个系列那条半明线，人是目的。</p>
+
+<p>这条半明线贯穿了整个欧亚系列。从第一篇雅典斯巴达的最早涌现，到第六篇基督教的部分压回，到第十三篇文艺复兴的重新激活，到第十五篇康德哲学的最高点，到第十六篇美国和法国革命写进制度，到第十七篇恐怖的扭曲，到第十九篇殖民的双重标准，到第二十篇苏维埃的扭曲，到第二十一篇纳粹的最彻底否定。这条线索贯穿了整个系列。</p>
+
+<p>但要在收束的时刻，再次重申这个系列对这条半明线的一贯的处理，因为这个处理是理解整个系列的关键。</p>
+
+<p>人是目的不是这个系列的主题。这个系列的主题是凿构周期律本身——余项不可消灭，构不可闭合。人是目的是凿构周期律的一个具体的表现，是一种特别强韧的余项。它在历史上反复涌现，又反复被压回，这个反复涌现和压回的过程，正是凿构周期律所描述的：余项不可消灭，但余项的实现不是线性的。</p>
+
+<p>把人是目的理解为一种余项，而不是一个主题，有重要的意义。如果把人是目的理解为这个系列的主题，那么整个历史就会被叙述成一个人是目的逐步实现的故事，一个从黑暗走向光明、从压迫走向解放的故事。这是一种宿命论的叙事，它假设历史有一个预定的方向，朝着人是目的的实现前进。这个系列明确地拒绝这种叙事。</p>
+
+<p>把人是目的理解为一种余项，意味着它的实现没有任何保证。它是一种特别强韧的余项，它反复涌现，但它也反复被压回，被扭曲，甚至被最彻底地否定。第二十一篇的纳粹是它遇到的最彻底的否定。它的历史不是一个不断前进的故事，是一个反复涌现和压回的、没有预定结局的过程。</p>
+
+<p>但是，把人是目的理解为一种余项，也意味着它不可消灭。这是余项不可消灭这个命题应用到这条半明线上的结论。人是目的这个相变，一旦在历史上涌现，就成为一种不可消灭的余项。它可以被压回，被扭曲，被否定，但它不会被消灭。它会持续地涌现，持续地要求被实现。第十六篇说被排除的群体持续地用建国原则要求被纳入。第十九篇说被殖民者持续地用普遍主义反对帝国。第二十一篇说纳粹的失败之后，对纳粹暴行的认识反而成为战后人权观念的推动力。这些都显示了人是目的这个余项的不可消灭：它在每一次被压回和否定之后，都会重新涌现。</p>
+
+<p>这是这个系列对这条半明线的最终的理解。它不是历史的主题，是凿构周期律的一个具体的表现。它的实现没有保证，它反复地被压回和扭曲。但它不可消灭，它持续地涌现。这个理解既不是乐观的宿命论，认为人是目的必然实现，也不是悲观的虚无主义，认为人是目的注定失败。它是一个更复杂的理解：人是目的是一种不可消灭但其实现没有保证的余项，它的命运取决于具体的历史中具体的人的具体的选择和斗争。</p>
+
+<p>这个理解和凿构周期律的整个精神是一致的。凿构周期律是一个反对宿命论的工具。它拒绝把历史叙述成走向任何预定终点的故事。它呈现的是一个开放的、没有预定结局的历史，在这个历史里，构型产生余项，追求闭合而失败，余项持续存在并影响构型的演化。人是目的作为一种余项，正是在这个开放的、没有预定结局的历史里，反复涌现，反复被压回，但不可消灭。</p>
+
+<h3>十、收束</h3>
+
+<p>到了整个写作计划收束的地方。</p>
+
+<p>这个写作计划用凿构周期律这个框架，分析了两个文明的政治构型演化。中华系列从尧舜禹到1930年代的抗战前夜。欧亚系列从希腊到二十世纪的法西斯主义。两个系列在1930年代的全球多构型对峙中交汇。</p>
+
+<p>这个收束，按照这个系列一贯的原则，不是给出一个整齐的结论。任何整齐的结论都是一种轻微的宿命论。这个收束做的是把前面展开的复杂性收拢，呈现一个开放的图景，而不是把复杂性简化为一个单一的主题或方向。</p>
+
+<p>回望整个计划，可以看到几个贯穿的东西。</p>
+
+<p>第一个是凿构周期律的核心命题在不同文明的历史里反复被证实。余项不可消灭，构不可闭合，这两个命题在中国的历史里成立，在欧亚大陆其余部分的历史里也成立。无数的构型，从城邦到帝国，从封建社会到现代国家，从王朝到意识形态国家，都产生它们无法吸纳的余项，都在追求闭合的过程中遇到余项不可消灭的现实。这是这个写作计划最核心的发现：一个跨越文明和时代的结构性的规律。</p>
+
+<p>第二个是这条半明线，人是目的，作为一种特别强韧的余项，贯穿了整个历史。它反复涌现，反复被压回，它的实现没有保证，但它不可消灭。这条半明线显示了凿构周期律的一个具体的、深刻的应用：一种特定的余项如何在漫长的历史里反复涌现和被压回。</p>
+
+<p>第三个是这个框架本身的位置。凿构周期律处在人类思考政治社会构型演化这个长期的传统里，它和这个传统里许多深刻的思想有共鸣。但它有自己的特点：它整合了分散的洞察，它适用于不同的文明，它来自一个跨文明的视角。</p>
+
+<p>最后，要回到这个写作计划最根本的精神。这个计划用凿构周期律分析历史，但它的根本目的不是给出一个关于历史的封闭的理论。它的根本目的是提供一个理解历史的方式，一个反对宿命论的、开放的、承认复杂性的方式。</p>
+
+<p>历史不是一个走向任何预定终点的故事。历史是无数的构型在具体的条件下产生、运作、产生余项、追求闭合而失败、被余项改变的过程。在这个过程里，没有任何东西是预定的，没有任何结局是必然的。每一个构型的命运，都取决于具体的条件、具体的选择、具体的斗争。人是目的这个相变的命运，也是如此：它不可消灭，但它的实现取决于具体的历史中具体的人的具体的选择和斗争。</p>
+
+<p>这是凿构周期律最终要传达的。它不是一个让人对历史感到安心的理论，因为它拒绝给出任何关于历史走向的保证。它也不是一个让人对历史感到绝望的理论，因为它显示了余项的不可消灭，显示了即使最彻底的否定之后，被否定的东西也会重新涌现。它是一个让人清醒地面对历史的工具，它显示历史的开放性，显示构型的局限，显示余项的强韧，显示在一个没有预定结局的世界里，具体的选择和斗争的重要性。</p>
+
+<p>整个写作计划，从尧舜禹到抗战前夜，从希腊到二十世纪，最终收束在这个清醒的、开放的理解上。历史没有终点，构不可闭合，余项不可消灭。在这个开放的历史里，人是目的这条半明线，作为一种特别强韧的余项，将继续涌现，继续被压回，继续要求被实现。它的未来，和整个历史的未来一样，没有被预先写定，它取决于将要到来的具体的历史中，具体的人将要做出的具体的选择。</p>
+
+<p>欧亚帝王系列，到此结束。</p>
+
+<p>但凿构周期律的分析没有结束，因为还有一个构值得用它单独展开。这个系列反复提到一个特别的对象，美国。第十六篇分析过它的建国设计，一个明确地不追求闭合的构，把对人性的悲观写进国家机器，不试图消除分歧而是容纳分歧。第十九篇分析过它最深的余项，未兑现的普遍主义——独立宣言说人人平等，但建国时把奴隶、原住民、女性排除在外。这两篇只是起点。一个把不追求闭合内置进设计的构，它在两个多世纪的实际运行里如何持续地产生余项，被排除的余项如何持续地要求被纳入并真实地重写规则，这是一个值得从头到尾单独追踪的过程。</p>
+
+<p>所以接下来是一个新的系列，美国总统系列。它以总统为切入点，从独立战争一直走到2000年。它要分析的不是总统个人的伟大或失败，是通过总统这个位置看到的，那个余项容纳型构的运行，它的余项的涌现，它的闭合的尝试和失败，以及人是目的这条半明线在一个制度开放的构里得到的最充分也最反复的展开。它和已经完成的中华系列、欧亚系列共享同一个内核：构不可闭合，余项不可消灭，人是目的是一种特别强韧的余项。</p>
+
+<p>那个系列从华盛顿开始，从这个构第一次实际运转、第一次和平地把权力在对立的派系之间交出去开始。</p>
+
+      </div>
+      <div class="essay-body lang-en">
+
+<p>The twenty-first essay closed with the rise of fascism and its most thoroughgoing negation of the "humanity as end" principle. That was the twenty-first essay in the Eurasian series. This essay is the Eurasian series' final installment — and the conclusion of the entire writing project.</p>
+
+<p>This essay must accomplish three things simultaneously.</p>
+
+<p>First, it must produce a global cross-section of the 1930s. The preceding essays have traced, one by one, the evolution of political configurations across Eurasia from Greece to the twentieth century. By the 1930s, the world had entered a moment of total confrontation among multiple political configurations. This essay presents that confrontation as a global cross-section.</p>
+
+<p>Second, it must bring the Eurasian series and the Chinese Emperors series into convergence in the 1930s. The writing project has two series. The Chinese Emperors series traces from Yao, Shun, and Yu through to the eve of the War of Resistance in the 1930s. The Eurasian series traces from Greece to the twentieth century. These two lines of inquiry — one following China, one following the rest of Eurasia — converge in the global confrontation of the 1930s. This convergence is the writing project's concluding point.</p>
+
+<p>Third, it must look back at the chisel-construct cycle framework itself. The preceding twenty-one essays have used the chisel-construct cycle to analyze vast stretches of history. In this final essay, we can step back and situate the framework itself in relation to the human intellectual tradition. The framework's several core concepts — remainders are indestructible, constructs cannot achieve complete closure — and the judgments they generate are not isolated within the human intellectual tradition; they resonate with many profound lines of thought, and they occupy a distinctive position within them. This essay undertakes that retrospective look.</p>
+
+<p>These three tasks are not separate. The global confrontation of the 1930s is a subject of chisel-construct cycle analysis; the convergence of the two series is the completion of that analysis at global scale; the retrospective look at the framework is the analysis's theoretical self-awareness. All three tasks come together in this essay to constitute the writing project's conclusion.</p>
+
+<p>One principle must be restated clearly at the outset, because it is especially important at the moment of closing. The chisel-construct cycle is itself a tool for resisting fatalist narrative. This essay provides a conclusion, but conclusion does not mean delivering a neat summary, does not mean reducing all of history to a single theme or a necessary direction. Any neat theme, any single direction, is a mild form of fatalism. This essay's conclusion gathers the complexity that has been elaborated and holds it together rather than simplifying it. What it presents is a world of multiple configurations in confrontation — open, without a predetermined outcome — rather than a history moving toward some terminal point.</p>
+
+<h3>1. The Full Confrontation of Three Configurations</h3>
+
+<p>The world of the 1930s was, first of all, a world of total confrontation among three political configurations.</p>
+
+<p>These three configurations were organized by the three major ideological currents of the twentieth century: liberal democracy, communism, and fascism. The preceding essays have traced each of their origins.</p>
+
+<p>Liberal democracy's roots lie in the Enlightenment political philosophy developed in Essay 15 and the American and French revolutions analyzed in Essay 16. Its core consists of popular sovereignty, representative government, the separation and balance of powers, and protection of individual rights. Essay 16 described the American Constitution as a remainder-accommodating construct — one that assumes disagreement is inevitable, designs institutions to allow disagreements to check each other, and does not pursue the elimination of disagreement. This is the core characteristic of liberal democracy as a configuration.</p>
+
+<p>Communism's roots lie in the socialism developed in Essay 18 and the Russian Revolution analyzed in Essay 20. Its core was the elimination of capitalism as a remainder and the construction of a state, led by a vanguard party, that would reconstruct the entire society according to a historical theory. Essay 20 described the Soviet state as an extreme case of a construct pursuing closure — one that sought to eliminate capitalism as a remainder and establish a classless society.</p>
+
+<p>Fascism's roots were developed in Essay 21. Its core was the ethnic or racial community, opposition to liberalism and communism, and the aestheticization of violence as a ritual of national regeneration. Essay 21 showed that Nazism was the most thoroughgoing negation of "humanity as end" — it revoked certain persons' standing as human beings.</p>
+
+<p>By the 1930s these three configurations were in total confrontation across the globe. This confrontation was not abstract ideological dispute; it was concrete political and military conflict.</p>
+
+<p>The Spanish Civil War, discussed in Essay 21, was a concentrated expression of this confrontation. The Nationalist forces received aid from fascist Germany and Italy; the Republicans received support from the communist Soviet Union and attracted International Brigade volunteers from many countries; Britain and France, the two liberal democracies, maintained nominal non-intervention. Three configurations clashed directly on Spanish soil through proxies. The Spanish Civil War was thus a microcosm of the 1930s multi-construct confrontation — three ideological currents fighting through a single concrete war.</p>
+
+<p>The nature of this confrontation needs to be clarified within the chisel-construct cycle framework. These three configurations represent three different answers to the same set of modern problems. The modern world posed a set of questions. The Industrial Revolution created new classes and new social contradictions. Essay 18 showed that socialism was the political expression of the remainders produced by industrial capitalism as a new economic configuration. Nationalism raised the question of how political community should be organized. The First World War destroyed the old dynastic imperial order, leaving a world that needed to be reorganized. These were the shared problems the three configurations faced.</p>
+
+<p>The three configurations offered three different answers. Liberal democracy's answer was to use representative government and checks and balances to accommodate social disagreements and contradictions without pursuing their elimination. Communism's answer was to use a vanguard party-led revolution to eliminate capitalism and fundamentally resolve class contradiction. Fascism's answer was to replace class and individual with an ethnic or racial community, using the powerful state to suppress all disagreement.</p>
+
+<p>These three answers occupy different positions in the chisel-construct cycle framework. Liberal democracy is a remainder-accommodating construct — it acknowledges that disagreement and contradiction cannot be eliminated and designs institutions to contain them. Communism and fascism are both closure-pursuing constructs, but they pursue closure differently. Communism pursues the elimination of class contradiction by eliminating a class — the bourgeoisie — to achieve a classless society. Fascism pursues the establishment of a racial or ethnic community, denying certain persons, to achieve a pure national whole.</p>
+
+<p>This is the structure of the 1930s multi-construct confrontation. It is not a simple opposition of good and evil; it is a confrontation among three different ways of addressing modern problems, one of which accommodates remainders while two pursue closure in different ways. The core of the confrontation is the confrontation between the remainder-accommodating construct and the closure-pursuing constructs, and between the two closure-pursuing constructs themselves.</p>
+
+<h3>2. Eastern Eurasia — China's Modernization and Resistance</h3>
+
+<p>Shifting the view to the eastern reaches of Eurasia: the global confrontation of the 1930s did not occur only in Europe but in East Asia as well.</p>
+
+<p>The Chinese Emperors series has traced in detail China's entire trajectory from Yao, Shun, and Yu through to the eve of the War of Resistance in the 1930s. This essay does not repeat that content; it only situates China's position in the 1930s within the framework of global multi-construct confrontation.</p>
+
+<p>By the 1930s China stood at a complex historical moment. Essay 19 described China as a paradigmatic case of informal empire — substantively constrained through the Opium Wars, unequal treaties, and treaty ports while retaining formal sovereignty. The Chinese Emperors series traced China's history of modernization and resistance under this humiliation and pressure, from the Self-Strengthening Movement to the Hundred Days' Reform to the 1911 Revolution and the various explorations that followed.</p>
+
+<p>China in the 1930s simultaneously faced several layers of problems. One was the problem of modernization — how to transform an ancient civilizational state into a modern nation. Another was the problem of resisting external aggression, especially Japanese aggression. A third was the problem of internal political integration, with different political forces holding different visions of which path China should follow.</p>
+
+<p>China's position in the 1930s placed it precisely at the intersection of all three configurations' confrontation. Liberal democracy, communism, and fascism each had their influence in China's explorations of modernization. Different Chinese political forces drew on different resources from these three configurations. This made China a significant arena of the 1930s global multi-construct confrontation, where the influences of all three configurations met and combined with China's own historical tradition and concrete circumstances.</p>
+
+<p>A chisel-construct cycle observation deserves to be noted here, connecting China's trajectory to the Eurasian series' analysis. China's modernization is a complex case lying between the forced modernization paradigm of Essay 14 and the endogenous modernization of Essay 13. Essay 14 traced Peter the Great's forced modernization: the state as the agent of modernization, driving social transformation through coercion from above. Essay 13 traced Western Europe's endogenous modernization: multiple social processes simultaneously deforming and gradually generating transformation from within. China's modernization was neither fully the Petrine forced variety nor fully the Western European endogenous variety; it was the complex process of an ancient civilization under external pressure attempting to find its own path to modernity — a process full of exploration, setback, and competition among different roads.</p>
+
+<p>China also offers a distinctive perspective connected to the series' half-visible thread. The Chinese Emperors series showed that the "humanity as end" phase transition also had its moments of emergence and suppression in Chinese history. That series noted that this phase transition in China began in the era of the Hundred Schools of Thought — a period of unprecedented intellectual vitality, with the human being as thinking and value-generating subject prominently foregrounded. This phase transition repeatedly emerged and was repeatedly suppressed in China's subsequent history, with similarities and differences to its fate in other parts of Eurasia. China's trajectory is therefore not an external supplement to the Eurasian series but the unfolding of the same phase transition in another civilization.</p>
+
+<p>Placing China within the global confrontation of the 1930s reveals the confrontation's true global scope. The three-configuration confrontation was not merely a European affair; it was global, unfolding equally in East Asia and in China's modernization explorations. China was not a spectator to this confrontation but a significant participant and arena.</p>
+
+<h3>3. Japan — The Deviation of Another Path of Modernization</h3>
+
+<p>The other crucial factor in East Asia was Japan. Japan embarked on militarist expansionism in the 1930s, making it a significant force in the global confrontation of that decade.</p>
+
+<p>Japan's path of modernization is worth examining within the chisel-construct cycle framework, because it provides an East Asian case of the forced modernization paradigm and shows how that paradigm might deviate toward militarist expansion.</p>
+
+<p>The Meiji Restoration was a successful forced modernization. It resembled Peter the Great's forced modernization of Essay 14: the state as the agent of modernization, driving comprehensive social transformation top-down. The Meiji Restoration transformed Japan in a relatively short period from a feudal state to a modern nation, establishing modern industry, military, administration, and education. It was one of the most successful cases of modernization in the non-Western world.</p>
+
+<p>But Japan's path of modernization turned toward militarist expansion in the twentieth century. This turn had specific historical causes: economic pressures, the need for resources and markets, the evolution of domestic politics, and the increasing influence of the military in political affairs. By the 1930s Japan had embarked on external aggression and expansion.</p>
+
+<p>The Manchurian Incident of 1931 saw Japan occupy Manchuria and establish the puppet state of Manchukuo. Essay 21 described this as the starting point of the cumulative collapse of the international order in the 1930s. In 1933 Japan withdrew from the League of Nations. Japan subsequently expanded its aggression against China and ultimately moved toward the Pacific War.</p>
+
+<p>Japanese militarism is a distinctive phenomenon in the chisel-construct cycle framework. It combined successful forced modernization with external aggression and expansion. The powerful state capabilities that Japan built through modernization — industry, military, organization — were deployed for external aggression. This demonstrates that modernized state capacity is itself neutral; it can be used for different purposes. Essay 20 noted that the comprehensive mobilization capacity developed through total warfare was retained in the governance technologies of all ideological states. Japanese militarism is a case of such modern state capacity being used for aggressive expansion.</p>
+
+<p>The confrontation between Japan and China in the 1930s constitutes the East Asian dimension of the 1930s global multi-construct confrontation. Japan, as a successfully modernized state that had turned toward militarist expansion, committed aggression against China. China, as a nation exploring its own path of modernization under humiliation and pressure, offered resistance. This confrontation was the East Asian version of modern configuration conflict; together with the three-configuration confrontation in Europe, it constitutes the complete picture of the 1930s global confrontation.</p>
+
+<p>Placing Europe and East Asia together, the world of the 1930s was a world of global multi-construct confrontation. In Europe, liberal democracy, communism, and fascism confronted each other. In East Asia, Japanese militarist expansion confronted Chinese modernization and resistance. These confrontations were not isolated; they were interconnected, together constituting a global moment of crisis that ultimately moved toward the Second World War.</p>
+
+<h3>4. The Convergence of the Two Series</h3>
+
+<p>We arrive now at the point where the two series converge.</p>
+
+<p>The writing project has two series. The Chinese Emperors series traces from Yao, Shun, and Yu through to the eve of the War of Resistance in the 1930s. The Eurasian series traces from Greece to the twentieth century's fascism. These two lines of inquiry converge in the 1930s.</p>
+
+<p>The significance of this convergence needs to be stated precisely. It is not a simple juxtaposition of two series; it is the unfolding of the same analytical framework — the chisel-construct cycle — across two different civilizational domains, ultimately meeting in the global confrontation of the 1930s.</p>
+
+<p>The two series analyze different histories but use the same framework. The Chinese Emperors series uses the chisel-construct cycle to analyze China's political configuration evolution from Yao, Shun, and Yu through to the eve of the War of Resistance. The Eurasian series uses the chisel-construct cycle to analyze the political configuration evolution of the rest of Eurasia from Greece to the twentieth century. The two series demonstrate the same framework's applicability across different civilizations: remainders are indestructible, constructs cannot achieve complete closure — these propositions hold in Chinese history and they hold in the history of the rest of Eurasia.</p>
+
+<p>The two series exhibit many structural resonances — similar structures discovered by the same framework in different civilizations.</p>
+
+<p>The first resonance is the emergence of the phase transition. Essay 1 of the Eurasian series described Athens and Sparta as the earliest material emergence in Eurasia of the "humanity as end" phase transition. The Chinese Emperors series described this phase transition in China as beginning in the era of the Hundred Schools of Thought. Both civilizations, in roughly the same historical period, underwent an era in which the human being as thinking and value-generating subject was unprecedentedly prominent. This is the same phase transition emerging in two civilizations.</p>
+
+<p>The second resonance is the suppression of the phase transition. Essay 6 of the Eurasian series described Christianization as partially suppressing this phase transition. The Chinese Emperors series described this phase transition as being repeatedly suppressed in China's subsequent history. Both civilizations experienced suppression following the phase transition's emergence, with the prominence of the human being as political subject displaced or suppressed by some higher authority.</p>
+
+<p>The third resonance is the failure of constructs pursuing closure. The Eurasian series has analyzed many closure-pursuing constructs, from Louis XIV revoking the Edict of Nantes to Jacobin Terror to the Soviet state. The Chinese Emperors series has also analyzed attempts at closure in Chinese history. Both civilizations demonstrate the same proposition: constructs cannot achieve complete closure; closure-pursuing constructs ultimately encounter the reality that remainders are indestructible.</p>
+
+<p>The fourth resonance is the forced modernization paradigm. Essay 14 of the Eurasian series described Peter the Great as establishing the forced modernization paradigm. This paradigm resonated in Japan's Meiji Restoration and in China's modernization explorations. Both series show how late-developing nations used state power to drive modernization, and the characteristics and costs of this process.</p>
+
+<p>These resonances are not coincidences. They are similar structures discovered by the same framework in different civilizations. The chisel-construct cycle is not a framework applicable only to a specific civilization; it is a framework applicable to analyzing the political configuration evolution of different civilizations. The convergence of the two series proves the framework's cross-civilizational applicability.</p>
+
+<p>But caution is warranted: cross-civilizational applicability does not mean historical identity. The histories of the two civilizations are different; their specific configurations, specific evolutionary paths, and specific outcomes are all different. What the chisel-construct cycle discovers is similar structures in different civilizations, not the reduction of different civilizations' histories to the same pattern. China's history is China's; the rest of Eurasia's history is its own. The chisel-construct cycle provides an analytical framework that can reveal similar structural problems in different civilizations, but it does not erase the specific differences among different civilizations.</p>
+
+<p>By the 1930s the two series converge in global confrontation. China explored its own path amid the three-configuration confrontation, simultaneously resisting Japanese aggression. The rest of Eurasia moved toward the Second World War amid the three-configuration confrontation. Two lines of inquiry, two civilizations' trajectories, met at this global moment of crisis. This is the writing project's concluding point: the trajectories of two different civilizations analyzed by the same framework merge in the 1930s' global confrontation into a single global picture.</p>
+
+<h3>5. Looking Back at the Framework — Remainders Are Indestructible</h3>
+
+<p>In this final essay's second half, we can step back and situate the chisel-construct cycle framework itself in relation to the human intellectual tradition.</p>
+
+<p>The preceding twenty-one essays have used the chisel-construct cycle to analyze vast stretches of history. The framework's several core concepts — remainders are indestructible, constructs cannot achieve complete closure — have recurred throughout the analysis. These concepts did not emerge from nowhere; they resonate with many profound lines of thought in the human intellectual tradition. Presenting these resonances allows us to see the framework's position more clearly.</p>
+
+<p>Consider first the concept of remainders being indestructible. Remainders are indestructible means that any political-social configuration, in its operation, produces things it cannot fully absorb; these things are not eliminated but persist and ultimately influence the configuration's evolution.</p>
+
+<p>This concept has deep resonances in the Western intellectual tradition. Hegel in the <em>Philosophy of Right</em> already saw that civil society necessarily produces poverty and what he called the rabble. For Hegel, the remainder is not an external residue but an endogenous byproduct of the modern liberal order. A modern civil society, in its normal operation, necessarily produces a population it cannot integrate. This insight resonates with the concept of indestructible remainders: the modern order produces what it cannot integrate as an internal product.</p>
+
+<p>Marx pushed this insight into the logic of capital accumulation. In <em>Capital</em>, Marx analyzed how capital accumulation simultaneously produces relative surplus population. Capital does not eliminate remainders; it continuously reproduces them in the form of surplus population. This is a deeper argument for remainders being indestructible: the remainder is not a problem that can be solved but an inherent, continuous product of capitalist operation.</p>
+
+<p>Arendt approached remainders from a different angle. Arendt's analysis of totalitarianism showed that totalitarianism's most extreme form does not integrate people but makes them superfluous. For Arendt, superfluous people are the product of the political world's collapse — people stripped of all rights and position. This touches on a different aspect of remainders being indestructible: it shows how far an extreme configuration can push remainders — entirely stripped of rights, made into superfluous persons. This is precisely the Nazi logic analyzed in Essay 21: converting some persons into superfluous, eliminable objects.</p>
+
+<p>Postcolonial thought — Said, Spivak, Chakrabarty — reveals another kind of remainder. They show that "the Orient," "the subaltern," "the non-European" are not natural peripheries but subordinate positions manufactured by the apparatuses of knowledge and empire. The margin is not an empirical fact; it is a position pre-installed by the order of representation. This resonates with the colonial double standard analyzed in Essay 19: the colonized are installed in a subordinate position by an apparatus of knowledge and power, a position that is constructed, not natural.</p>
+
+<p>Taken together, the concept of remainders being indestructible has rich resonances in the Western intellectual tradition. From Hegel's poverty problem to Marx's surplus population to Arendt's superfluous persons to postcolonial theory's subalterns, different thinkers from different angles have touched on the same insight: the modern order produces remainders it cannot integrate, and these remainders are not incidental exceptions but the price of the system's self-maintenance.</p>
+
+<p>The chisel-construct cycle's concept of indestructible remainders resonates with these thoughts but has its own characteristic. It does not limit remainders to any specific form — poverty, class, the colonized. It treats remainders as a universal, structural concept: any configuration produces remainders it cannot absorb, regardless of what the configuration is or what specific form the remainder takes. This universality enables it to be used for analyzing different configurations across different eras and different civilizations — precisely what the preceding twenty-one essays have done.</p>
+
+<h3>6. Looking Back at the Framework — Constructs Cannot Achieve Complete Closure</h3>
+
+<p>Consider next the concept that constructs cannot achieve complete closure. This means that no political-social configuration can reach a fully closed, remainder-free, fully self-consistent state. Configurations that pursue such closure ultimately encounter the reality that remainders are indestructible; the pursuit of closure ultimately fails.</p>
+
+<p>This concept also has deep resonances in the human intellectual tradition, particularly in two directions.</p>
+
+<p>The first direction concerns path lock-in and irreversibility. Douglass North and Paul David analyzed institutional path dependence. North argued that institutions are vessels of history: historical experience, the coordination of expectations, and organizational inertia make a path, once formed, difficult to reverse without cost. This relates to the notion that constructs cannot achieve complete closure: it shows that once a configuration forms, it has its own momentum, its locked path. Institutions are not neutral containers but apparatuses that press the past into the present.</p>
+
+<p>Complex systems theory approaches this from another angle. Complex adaptive systems consist of interactions, feedback, and emergence among multiple agents. Small events can be amplified through positive feedback into stable trajectories. Once feedback loops form, history is no longer like reversible engineering. This demonstrates that the evolution of configurations has an irreversibility — it cannot be arbitrarily reversed and restarted.</p>
+
+<p>Kuhn's theory of scientific revolutions provides an analogy, though one requiring careful handling. Kuhn showed that scientific revolutions change not only answers but what counts as a question. Old problems disappear; reversal is not simple restoration. This insight bears an analogical relationship to the irreversibility of configuration evolution: a change in configuration changes not only specific arrangements but the entire framework of problems, so it cannot simply return to what came before.</p>
+
+<p>The second direction concerns exception and sovereignty — a direction that more directly touches the core of constructs not achieving complete closure. Schmitt analyzed the state of exception. Schmitt argued that the state of exception is not the fringe of law but the critical moment that reveals the true nature of sovereignty. Order confirms itself through decisions on friend and enemy, on the exception. This insight touches a profound question: a legal order cannot be fully self-enclosed; it always depends on an exceptional moment, a decision that law itself cannot fully determine. This is a profound manifestation of constructs not achieving complete closure: a configuration cannot be fully self-enclosed; it always depends, at its boundary, on something it cannot fully absorb.</p>
+
+<p>Agamben pushed Schmitt's insight further. Agamben analyzed what he called bare life. He showed that Western politics produces bare life through a mode he called inclusive exclusion. Modern politics does not simply exclude bare life; it incorporates it into the center through the very act of excluding it. This is a profound insight: the excluded are not simply outside the configuration; they are incorporated into the configuration's core in a special way, becoming a key element of the configuration's self-definition.</p>
+
+<p>This insight points directly toward an important concept in the chisel-construct cycle: remainders can enter the core. The preceding essays repeatedly demonstrated this phenomenon. Excluded remainders do not simply disappear; they persist and ultimately influence and even rewrite the configuration's core rules. Essay 16 described how America's excluded groups — enslaved persons, indigenous peoples, women — continuously invoked the founding principles to demand inclusion, ultimately changing America. Essay 19 described how the colonized used the language of universalism against empire, ultimately dissolving the colonial order. These are all examples of remainders entering the core and rewriting the rules.</p>
+
+<p>Taken together, the concept that constructs cannot achieve complete closure has deep resonances in the human intellectual tradition. Path dependence and complex systems theory show the irreversibility of configuration evolution; Schmitt and Agamben show that configurations cannot be fully self-enclosed and always depend at their boundaries on something they cannot fully absorb. These thoughts from different angles support the proposition that constructs cannot achieve complete closure.</p>
+
+<p>The chisel-construct cycle's concept resonates with these thoughts but integrates these insights into a dynamic framework. It does not merely say that configurations have path dependence or that they depend on exceptions; it integrates these into a complete dynamic: configurations produce remainders; remainders are indestructible; configurations pursue closure but cannot achieve it; remainders ultimately influence and even rewrite configurations. This dynamic integration is the chisel-construct cycle's distinctive characteristic.</p>
+
+<h3>7. Looking Back at the Framework — Inter-Generational Decay and the Discourse-Practice Tension</h3>
+
+<p>The chisel-construct cycle analysis has also generated several related judgments that resonate with the intellectual tradition. This section examines two: inter-generational decay and the tension between discourse and practice.</p>
+
+<p>Consider first inter-generational decay. Earlier essays repeatedly touched on a phenomenon: the founding vitality of a configuration gradually diminishes in subsequent generations. Essay 4 discussed the principate after Augustus; Essay 17 discussed how revolutionary passion changes in the process of institutionalization. This phenomenon has been richly discussed in the intellectual tradition.</p>
+
+<p>Tocqueville analyzed democratic society and saw that democratic equality, if not sustained by local self-governance and voluntary associations, tends to slide toward the tyranny of the majority and what he called soft despotism. Equality does not automatically generate freedom; it may also erode civic virtue. This is an insight into possible democratic decay: democracy is not a state that, once established, maintains itself automatically; it requires continuous sustenance, or it will decay.</p>
+
+<p>Weber analyzed charismatic domination. Weber showed that charismatic domination is revolutionary but unstable; it will ultimately routinize toward traditional or legal-bureaucratic order. If founding passion is to survive, it usually requires paying the price of institutionalization. This is a classic analysis of inter-generational decay: the charisma and passion of founders is inevitably routinized and institutionalized in subsequent generations; this process is simultaneously the passion's survival and its attenuation.</p>
+
+<p>Schumpeter analyzing capitalism proposed a famous judgment: capitalism will decay from its own success. The entrepreneurial spirit is eroded by large organizations, professional management, and anti-capitalist intellectuals. The triumph of the institution may be precisely the decay of its spirit. This is another angle on inter-generational decay: a configuration's own success may gestate its decline.</p>
+
+<p>MacIntyre approached this from a moral-philosophical angle. MacIntyre argued that modern moral language, separated from tradition and common practices, degenerates into emotivism. Virtue can only be transmitted within continuing communities of practice. When tradition breaks, norms continue to speak, but they have lost the support of forms of life. This is a profound analysis of inter-generational decay, showing how values and norms decay through breaks in tradition — the form of the norm remains, but its substantive support has drained away.</p>
+
+<p>These thoughts together answer a single question: why are a configuration's second and third generations often less incisive than the first. Tocqueville sees democratic society's softening; Weber sees charisma's routinization; Schumpeter sees entrepreneurial spirit swallowed by structure; MacIntyre sees virtue decay from breaks in tradition. All of these resonate with the chisel-construct cycle's observations about inter-generational decay.</p>
+
+<p>Consider now the tension between discourse and practice. Earlier essays repeatedly showed a phenomenon: there is a persistent tension, even a dislocation, between the discourse a configuration uses to justify itself and its actual operation. Essay 4 discussed Augustus using republican discourse to package substantive monarchical rule. Essay 19 discussed colonialism using universalist discourse to mask the practice of domination. This phenomenon also has profound discussions in the intellectual tradition.</p>
+
+<p>Foucault analyzed discourse and power. Foucault showed that discourse is not a purely linguistic phenomenon; it constructs subjects together with disciplinary, examination, statistical, and governance technologies. Power is not merely repressive; it is productive. What is said is always already embedded in institutions, bodies, and micro-techniques. This is a profound analysis of the relationship between discourse and practice: discourse is not separate from practice; it is itself part of practice, a link in the operation of power.</p>
+
+<p>Habermas approached this from a normative angle. Habermas analyzing communicative action and democratic rule of law showed that these require procedural deliberation, but systemic logic colonizes the lifeworld, causing procedural rationality to become disconnected from social reality. This is a normative treatment of the discourse-practice tension: it does not merely expose this tension but demands reconnecting legitimacy to institutional practices that are participable and contestable.</p>
+
+<p>Gramsci analyzed hegemony. Gramsci showed that hegemony is not merely the persuasion of ideas; it makes common sense into domination through intellectuals, civil society, and organizational practices. True hegemony is the sedimentation of ideas into daily practices and shared sensibilities. This is another angle on the relationship between discourse and practice: it shows how discourse, through concrete practices, is organized into domination and accepted as common sense.</p>
+
+<p>Placing inter-generational decay and the discourse-practice tension together, they are two judgments generated by chisel-construct cycle analysis that both have rich resonances in the intellectual tradition. These resonances show that the chisel-construct cycle is not an isolated framework; the problems it touches are deep problems that human thought has long engaged.</p>
+
+<h3>8. The Framework's Position — A Different Vantage Point</h3>
+
+<p>Synthesizing the retrospective look of the preceding sections, we can see the chisel-construct cycle framework's position.</p>
+
+<p>The chisel-construct cycle's several core concepts — remainders are indestructible, constructs cannot achieve complete closure, and the derived notions of inter-generational decay, discourse-practice tension, and remainders entering the core — all have deep resonances in the human intellectual tradition. Hegel, Marx, Arendt, and postcolonial theory touched on remainders. North, complex systems theory, Schmitt, and Agamben touched on constructs not achieving complete closure and remainders entering the core. Tocqueville, Weber, Schumpeter, and MacIntyre touched on inter-generational decay. Foucault, Habermas, and Gramsci touched on the discourse-practice tension.</p>
+
+<p>This shows that the chisel-construct cycle did not emerge from nowhere; it touches on deep problems that human thought has long engaged. It resonates with profound intellectual traditions; it belongs to the long tradition of human thinking about the evolution of political-social configurations.</p>
+
+<p>But the chisel-construct cycle has its own distinctive characteristics and position, which need to be stated clearly.</p>
+
+<p>The first characteristic is its integrative quality. Each of the thoughts mentioned above profoundly touches on one particular aspect. Hegel and Marx profoundly analyzed remainders but focused primarily on specific forms of remainders — poverty, class. Schmitt and Agamben profoundly analyzed exception and bare life but focused primarily on the dimensions of law and sovereignty. Weber and Schumpeter profoundly analyzed decay but each in their specific domains. The chisel-construct cycle's characteristic is integrating these different insights into a single dynamic framework. It integrates the production of remainders, configurations' pursuit of closure, the failure of closure, and the persistence and core-entering of remainders into a complete dynamic. This integration connects those scattered profound insights into a coherent analytical framework.</p>
+
+<p>The second characteristic is its cross-civilizational applicability. The thoughts mentioned above were mostly produced within the Western intellectual tradition, analyzing Western history and reality. The chisel-construct cycle's characteristic is that it is used to analyze different civilizations. The two series in this writing project — one analyzing China from Yao, Shun, and Yu to the eve of the War of Resistance, one analyzing the rest of Eurasia from Greece to the twentieth century — use the same framework. This demonstrates that the chisel-construct cycle is not a framework applicable only to a specific civilization but one applicable to analyzing the political configuration evolution of different civilizations.</p>
+
+<p>The third characteristic, and the most important, is that it comes from a different vantage point. The thinkers cited above were mostly working within the European or Western intellectual tradition, approaching questions of political-social configuration from Western historical experience. The chisel-construct cycle comes from a different position — from a vantage point of deep observation of both Chinese and Eurasian history, attempting to find a framework capable of simultaneously analyzing China and the rest of Eurasia. This different vantage point allows it to see things that are difficult to see from a single civilization's perspective.</p>
+
+<p>Concretely, from a cross-civilizational vantage point, it is possible to see similar structures in different civilizations more clearly. The "humanity as end" phase transition emerged in Greece and also emerged in China's era of the Hundred Schools of Thought. Closure-pursuing constructs repeatedly appeared in Europe and repeatedly appeared in China. These cross-civilizational similarities are difficult to see from a single civilization's perspective; they can only be clearly grasped from a vantage point that simultaneously observes multiple civilizations. The chisel-construct cycle emerged from precisely such a vantage point.</p>
+
+<p>This is the chisel-construct cycle's position. It belongs to the long tradition of human thinking about the evolution of political-social configurations, and it resonates with many profound thoughts in that tradition. But it has its own characteristics: it integrates scattered insights, it applies to different civilizations, and it comes from a cross-civilizational vantage point. This position enables it to do what the preceding twenty-one essays have done: use a coherent framework to analyze the political configuration evolution of different civilizations from Greece to the twentieth century and from Yao, Shun, and Yu to the eve of the War of Resistance.</p>
+
+<h3>9. A Retrospective Look at the Half-Visible Thread</h3>
+
+<p>Before closing the entire writing project, we must look back at the series' half-visible thread: "humanity as end."</p>
+
+<p>This half-visible thread runs throughout the entire Eurasian series. From its earliest emergence in Essay 1's Athens and Sparta, to Christianity's partial suppression in Essay 6, to the Renaissance's reactivation in Essay 13, to the philosophical apex in Kant in Essay 15, to being written into institutions in the American and French revolutions of Essay 16, to the Terror's distortion in Essay 17, to colonialism's double standard in Essay 19, to the Soviet distortion in Essay 20, to Nazism's most thoroughgoing negation in Essay 21. This line of inquiry runs throughout the entire series.</p>
+
+<p>But at this moment of conclusion, the series' consistent treatment of this half-visible thread must be restated, because that treatment is key to understanding the entire series.</p>
+
+<p>"Humanity as end" is not this series' theme. The series' theme is the chisel-construct cycle itself — remainders are indestructible, constructs cannot achieve complete closure. "Humanity as end" is a specific manifestation of the chisel-construct cycle, a particularly resilient remainder. It repeatedly emerged in history and was repeatedly suppressed; this process of repeated emergence and suppression is precisely what the chisel-construct cycle describes: remainders are indestructible, but the realization of remainders is not linear.</p>
+
+<p>Understanding "humanity as end" as a remainder rather than a theme carries important implications. If "humanity as end" were understood as the series' theme, the entire history would be narrated as a story of the progressive realization of "humanity as end" — a story of moving from darkness to light, from oppression to liberation. This is a fatalist narrative, assuming history has a predetermined direction moving toward the realization of "humanity as end." This series explicitly rejects that narrative.</p>
+
+<p>Understanding "humanity as end" as a remainder means its realization carries no guarantee. It is a particularly resilient remainder — it repeatedly emerges, but it is also repeatedly suppressed, distorted, and even most thoroughly denied. Essay 21's Nazism was the most thoroughgoing denial it has encountered. Its history is not a story of continuous advance but a process of repeated emergence and suppression, without a predetermined outcome.</p>
+
+<p>But understanding "humanity as end" as a remainder also means it is indestructible. This is the conclusion of applying "remainders are indestructible" to this half-visible thread. The "humanity as end" phase transition, once it has emerged in history, becomes an indestructible remainder. It can be suppressed, distorted, denied — but it cannot be eliminated. It will continuously emerge, continuously demand realization. Essay 16 described excluded groups continuously invoking founding principles to demand inclusion. Essay 19 described the colonized continuously using universalist language against empire. Essay 21 described how, after the Nazis' defeat, recognition of Nazi atrocities became a driving force of postwar human rights consciousness. All of these demonstrate the indestructibility of "humanity as end" as a remainder: after each suppression and denial, it re-emerges.</p>
+
+<p>This is the series' ultimate understanding of the half-visible thread. It is not history's theme but a specific manifestation of the chisel-construct cycle. Its realization carries no guarantee; it is repeatedly suppressed and distorted. But it is indestructible; it continuously emerges. This understanding is neither an optimistic fatalism holding that "humanity as end" must inevitably be realized, nor a pessimistic nihilism holding that it is destined to fail. It is a more complex understanding: "humanity as end" is an indestructible remainder whose realization carries no guarantee, and its fate depends on the specific choices and struggles of specific people in specific historical circumstances.</p>
+
+<p>This understanding is consistent with the chisel-construct cycle's entire spirit. The chisel-construct cycle is a tool for resisting fatalism. It refuses to narrate history as moving toward any predetermined end. What it presents is an open history without predetermined outcome, in which configurations produce remainders, pursue closure and fail, and remainders persist and influence the evolution of configurations. "Humanity as end" as a remainder is precisely what, in this open history without predetermined outcome, repeatedly emerges, is repeatedly suppressed, yet remains indestructible.</p>
+
+<h3>10. Conclusion</h3>
+
+<p>We have reached the concluding point of the entire writing project.</p>
+
+<p>This writing project has used the chisel-construct cycle framework to analyze the political configuration evolution of two civilizations. The Chinese Emperors series ran from Yao, Shun, and Yu to the 1930s' eve of the War of Resistance. The Eurasian series ran from Greece to the twentieth century's fascism. The two series converge in the 1930s' global multi-construct confrontation.</p>
+
+<p>This conclusion, in keeping with the series' consistent principle, does not deliver a neat summary. Any neat conclusion is a mild form of fatalism. What this conclusion does is gather the complexity that has been elaborated and present an open picture rather than simplifying complexity into a single theme or direction.</p>
+
+<p>Looking back over the entire project, several things run throughout it.</p>
+
+<p>First is the repeated confirmation of the chisel-construct cycle's core propositions across different civilizations' histories. Remainders are indestructible; constructs cannot achieve complete closure — these two propositions hold in Chinese history and they hold in the history of the rest of Eurasia. Countless configurations, from city-states to empires, from feudal societies to modern states, from dynasties to ideological states, all produced remainders they could not absorb; all encountered, in their pursuit of closure, the reality that remainders are indestructible. This is the writing project's most central finding: a structural regularity spanning civilizations and eras.</p>
+
+<p>Second is the half-visible thread — "humanity as end" — which, as a particularly resilient remainder, runs throughout all of history. It repeatedly emerges and is repeatedly suppressed; its realization carries no guarantee, but it is indestructible. This half-visible thread demonstrates a specific, profound application of the chisel-construct cycle: how a specific remainder repeatedly emerges and is suppressed across the long arc of history.</p>
+
+<p>Third is the framework's own position. The chisel-construct cycle belongs to the long tradition of human thinking about the evolution of political-social configurations, and it resonates with many profound thoughts in that tradition. But it has its own characteristics: it integrates scattered insights, it applies to different civilizations, and it comes from a cross-civilizational vantage point.</p>
+
+<p>Finally, we must return to the writing project's most fundamental spirit. This project uses the chisel-construct cycle to analyze history, but its fundamental purpose is not to deliver a closed theory about history. Its fundamental purpose is to provide a way of understanding history — an open, anti-fatalist way that acknowledges complexity.</p>
+
+<p>History is not a story moving toward any predetermined end. History is the process in which countless configurations come into being under specific conditions, operate, produce remainders, pursue closure and fail, and are changed by remainders. In this process nothing is predetermined; no outcome is inevitable. Every configuration's fate depends on specific conditions, specific choices, specific struggles. The fate of the "humanity as end" phase transition is the same: it is indestructible, but its realization depends on the specific choices and struggles of specific people in specific historical circumstances.</p>
+
+<p>This is what the chisel-construct cycle ultimately conveys. It is not a theory that makes people feel reassured about history, because it refuses to give any guarantee about history's direction. Nor is it a theory that makes people despair about history, because it demonstrates the indestructibility of remainders — it shows that even after the most thoroughgoing denial, what has been denied will re-emerge. It is a tool for confronting history with clear eyes: it shows history's openness, the limitations of configurations, the resilience of remainders, and — in a world without a predetermined outcome — the importance of specific choices and struggles.</p>
+
+<p>The entire writing project — from Yao, Shun, and Yu to the eve of the War of Resistance, from Greece to the twentieth century — closes in this clear-eyed, open understanding. History has no terminus. Constructs cannot achieve complete closure. Remainders are indestructible. In this open history, the "humanity as end" half-visible thread, as a particularly resilient remainder, will continue to emerge, continue to be suppressed, continue to demand realization. Its future — like the future of all history — has not been written in advance. It depends on the specific choices that specific people in the specific history yet to come will make.</p>
+
+<p>The Eurasian Emperors series ends here.</p>
+
+<p>But chisel-construct cycle analysis does not end, because there remains one configuration that deserves to be traced separately with this framework from start to finish. Throughout this series, one subject has been repeatedly mentioned: America. Essay 16 analyzed its founding design — a construct explicitly not pursuing closure, writing pessimism about human nature into the state machinery, not trying to eliminate disagreement but to accommodate it. Essay 19 analyzed its deepest remainder — the unfulfilled universalism: the Declaration of Independence says all men are created equal, but at the founding, enslaved persons, indigenous peoples, and women were excluded. Those two essays are only the beginning. A construct with non-closure built into its design — how it continuously produced remainders over two-plus centuries of actual operation, how excluded remainders continuously demanded inclusion and genuinely rewrote the rules — this is a process worth tracing separately from start to finish.</p>
+
+<p>The next series is therefore the American Presidents series. It takes the presidency as its entry point and runs from the Revolutionary War through to the year 2000. What it analyzes is not the personal greatness or failure of individual presidents but — seen through the position of the presidency — the operation of that remainder-accommodating construct: the emergence of its remainders, its attempts and failures to achieve closure, and the fullest and most repeated unfolding that the "humanity as end" half-visible thread has ever received within an institutionally open construct. It shares the same core as the completed Chinese Emperors series and Eurasian series: constructs cannot achieve complete closure, remainders are indestructible, and "humanity as end" is a particularly resilient remainder.</p>
+
+<p>That series begins with Washington — from the moment this construct first actually operated, first peacefully transferred power from one opposing faction to another.</p>
+
+      </div>
+      <p class="essay-footer-note lang-zh">Han Qin (秦汉) · @hqinjarsy · 凿构周期律欧亚帝王系列</p>
+      <p class="essay-footer-note lang-en">Han Qin (秦汉) · @hqinjarsy · Chisel-Construct Cycle: Eurasian Emperors</p>
+      <nav class="xiyou-nav">
+        <a href="ep21.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">法西斯主义的兴起</span>
+            <span class="xiyou-nav-title lang-en">The Rise of Fascism</span>
+          </span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
