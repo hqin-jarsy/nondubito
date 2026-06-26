@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prāsa：泰卢固格律里藏着的那台机器 — Non Dubito</title>
+  <meta name="description" content="Prāsa 是 Koundinya Dhulipalla 设计的编程语言，把泰卢固诗律（chandassu）嵌进代码：格律即内存，余项即语法。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-06-24.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-06-24</div>
+          <h1 class="lang-zh">Prāsa：泰卢固格律里藏着的那台机器</h1>
+          <h1 class="lang-en">Prāsa: The Machine Hidden Inside Telugu Meter</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Prāsa 是 Koundinya Dhulipalla 设计的一门奇特的编程语言，它把真正的计算嵌进了泰卢固古典诗律（chandassu）里。规则非常具体：代码的基本单位是"单元格"（cell），每四个空格的缩进让你向前移动一格，原理类似图灵机的纸带；每一行的"单元格值"等于那行文字的音节数；括号内的音节被乘进单元格的当前值。但真正决定性的规则在这里：整段程序的累计音节重轻模式（U 为重音、I 为轻音）必须完整匹配四种古典泰卢固格律之一——Utpalamāla（UII UIU III UII UII UIU IU，20音节）、Campakamāla（III IUI UII IUI IUI IUI UIU，21音节）、Mattēbham（IIU UII UIU III UUU IUU IU，20音节）或 Śārdūlam（UUU IIU IUI IIU UUI UUI U，19音节）。一段合法的 Prāsa 代码，同时也是一首符合古典格律的泰卢固诗。</p>
+
+        <p>在 SAE 的框架里，这是一次清晰的凿构循环。编程语言的"已构"是西方形式主义的遗产：Algol 的块结构，布尔逻辑的运算符，Lambda 演算的函数嵌套，Python 的缩进作为纯粹的结构标记。这套语法从不询问音节的轻重。文字在代码里是标识符或字符串字面量，它的声调起伏、音节节奏、朗读时在空气里的形状，一律被抛弃。西方计算从数学和形式逻辑中取材，建立了自己的文法——一套对文字的声音性彻底耳聋的机器。</p>
+
+        <p>Prāsa 的凿很精确：它保留了缩进，但把它变成图灵机的磁头移动；它保留了文字，但让音节的重轻成为真正的计算约束。余项浮现了。泰卢固格律 chandassu 从来不只是一套"美丽的文化传统"——它是一套已经存在两千年的形式系统，严格规定音节的类型（laghuvu/guruvu，即轻/重）、排列数量、模式序列。梵文格律（Sanskrit chandas）更早，是一套对诗歌进行形式编码的规则体系，本质上是时间中的模式语言。当二十世纪中叶计算机科学成型，它的形式文法全部来自西方的数学和逻辑，把这套同样形式化、同样精确、同样可以机器验证的非西方文法整个留在了门外。格律成了余项。Prāsa 做的事，是证明这个余项从未消失——它只是从未被编进代码。</p>
+
+        <p>这个余项有两重维度。第一重是字面的：你写下 <em>river flows to the right</em>，解析器会把它分解成音节和重轻模式，验证是否符合其中一种格律。这不是装饰性的约束——它决定你的程序是否合法，决定单元格的值是什么，决定计算能否进行。第二重是结构性的：chandassu 和现代计算的"形式性"本质上是同类的东西（都是对符号序列的规则系统），但它们从来没有相遇过。Prāsa 是一个界面，让两套形式系统在同一行代码里共存，互相约束。</p>
+
+        <p>Dhulipalla 在2025年于 AI &amp; Society 期刊发表的论文开始给这片领域命名——"vernacular computing"（白话计算）作为去殖民代码干预的框架。2026年4月，esoteric.codes 的 EsoNatLangs 文章第一次把 Prāsa 和类似的语言作为一个整体加以讨论。命名正在发生。一旦"去殖民代码艺术"成为一个稳固的艺术世界术语，Prāsa 就会变成历史档案。现在看它，就是在命名尚未固化、格律仍然活着的时刻与它相遇。</p>
+
+        <a href="https://prasa.software/" target="_blank" rel="noopener" class="project-link">prasa.software ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Prāsa is an esoteric programming language by Koundinya Dhulipalla that embeds computation inside Telugu classical meter. The mechanics are precise: code is organized into "cells," each 4-space indent moves one cell forward like a Turing Machine tape, each line's cell value equals its syllable count, and parenthesized syllables multiply into the existing cell value. But the decisive constraint is this: the cumulative syllabic stress pattern of your entire program — U for stressed, I for unstressed — must completely match one of four classical Telugu metrical forms: Utpalamāla (UII UIU III UII UII UIU IU, 20 syllables), Campakamāla (III IUI UII IUI IUI IUI UIU, 21 syllables), Mattēbham (IIU UII UIU III UUU IUU IU, 20 syllables), or Śārdūlam (UUU IIU IUI IIU UUI UUI U, 19 syllables). Valid Prāsa code is simultaneously valid Telugu poetry.</p>
+
+        <p>In SAE terms, this is a clean chisel-construct cycle. The already-construct of programming language design is the inheritance of Western formalism: ALGOL's block structure, Boolean logic's operators, lambda calculus's function nesting, Python's indentation as purely structural marker. This syntax has never asked about syllable stress. Words in code are identifiers or string literals — their tonal contour, their syllabic rhythm, their shape when spoken aloud, are discarded entirely. Western computing drew its formal grammars from mathematics and formal logic and built a machine that is profoundly deaf to the sonic dimension of language.</p>
+
+        <p>Prāsa's chisel is precise: it keeps indentation but makes it tape movement; it keeps text but makes syllabic stress the actual computational constraint. What surfaces as the remainder: Telugu chandassu was never merely a beautiful cultural tradition — it is a two-thousand-year-old formal system, rigorously specifying syllable types (laghuvu/guruvu, light/heavy), arrangement counts, and pattern sequences. Sanskrit chandas, the parent tradition, was a formal system for encoding patterns in time — a rule-governed language for sequences of symbols, which is exactly what a programming language is. When computer science crystallized in the mid-twentieth century, its formal grammars all came from Western mathematics and logic, leaving this equally formal, equally precise, equally machine-verifiable non-Western grammar entirely outside the door. The meter became remainder. What Prāsa demonstrates is that this remainder never disappeared — it simply never got encoded.</p>
+
+        <p>The remainder has two dimensions. The first is literal: you write <em>river flows to the right</em>, the parser breaks it into syllables and stress patterns, and validates whether it fits one of the four meters. This is not decorative constraint — it determines whether your program is valid, what cell values are, whether computation can proceed. The second is structural: chandassu and modern computation are formally the same kind of thing (both are rule systems for symbol sequences), yet they never met. Prāsa is an interface where two formal systems coexist in the same line of code and mutually constrain each other.</p>
+
+        <p>Dhulipalla's 2025 paper in AI &amp; Society began naming this territory — "vernacular computing" as a framework for decolonial code intervention. The esoteric.codes EsoNatLangs article of April 2026 was the first to cluster Prāsa alongside similar languages as a category. The naming is underway. Once "decolonial code art" hardens into a stable institutional term, Prāsa will be archived artifact rather than living remainder. Reading it now is meeting it before that happens — when the logic is still growing and the meter is still alive.</p>
+
+        <a href="https://prasa.software/" target="_blank" rel="noopener" class="project-link">prasa.software ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
