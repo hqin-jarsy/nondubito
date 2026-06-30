@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dither：凿掉基底之后，素描本身剩了下来 — Non Dubito</title>
+  <meta name="description" content="Lingdong Huang 的 Dither 语言凿掉了创意编码的 CPU/GPU 基底分裂，让素描实践本身作为余项留下来。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-06-27.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-06-27</div>
+          <h1 class="lang-zh">Dither：凿掉基底之后，素描本身剩了下来</h1>
+          <h1 class="lang-en">Dither: When You Chisel Away the Substrate, the Sketch Remains</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Lingdong Huang 是 MIT Media Lab Future Sketches 研究组的博士生。2025年8月，他发布了 Dither——一种正在开发中的创意编码语言。用它写的代码，可以被解释执行（用于快速迭代），也可以被编译（用于高性能）；可以跑在 CPU 上，也可以跑在 GPU 上；可以输出到浏览器，也可以生成本地可执行文件——一份代码，所有基底。语言本身自带类型推断，不需要手动声明变量类型；内置向量与矩阵运算；标准库以"把像素放到屏幕上"为核心目标。2026年4月，他发布了 v0.0.3：一个8MB大小的 Mac IDE，把虚拟机、编译器、REPL、调试器、标准库和文档全部打包进去。</p>
+
+        <p>要理解 Dither 的结构性意义，必须先看清它所针对的已构。创意编码实践在过去二十多年里形成了两条平行但互不相通的传统：CPU 传统（Processing、p5.js、openFrameworks——Java/JavaScript、顺序执行、高度可读、渲染慢），与 GPU 传统（GLSL、WGSL——C风格、强制类型声明、并行执行模型、渲染快但认知门槛极高）。这种分裂不是某个人刻意设计的工程选择，而是随着时间自然凝固下来的：两个分开的共同体，两套独立的学习曲线，两种彼此无法对话的思维方式。一张 p5.js 素描想要变成 GLSL shader，需要完全重写。一位 shader 艺术家想要交互式迭代，需要学习另一套框架。这个分裂最终成为了构——被默认，被教授，被继承，成为下一轮工具设计的起点而不再受到追问。</p>
+
+        <p>Dither 的凿构动作，是把这个分裂降格为一个后端细节。同一段 Dither 代码，可以编译到 CPU，也可以编译成着色器；可以跑在浏览器，也可以跑成本地应用。类型推断意味着你不需要写 <code>vec3 color = vec3(1.0, 0.5, 0.2)</code>——你用直觉描述像素，语言推断其余。向量运算内嵌于语法，不是函数调用。凿构之后，基底不再是创作者的问题。余项（remainder）于是浮现：当基底义务被凿掉，剩下来的是什么？是创意编码实践本身——把想法变成图像的那个直觉动作，那个从描述到像素的过程——它从一开始就不需要关心自己跑在哪个芯片上，但二十年来被每一种工具强迫去关心。Dither 是第一种让这个实践不必再承担基底身份的语言。</p>
+
+        <p>这个语言的名字在图像处理里有具体含义：抖动（dithering）是把量化误差——你想要的颜色与硬件能表示的颜色之间的差值——分布到邻近像素里，以此模拟超出硬件能力的色调层次。误差不被丢弃，而被重新分配，使图像看起来比实际色深更丰富。一种名叫"Dither"的创意编码语言，其名字本身就在执行同一个操作：它把跌入 CPU/GPU 分裂缝隙里的那部分创意潜力——因基底选择而流失的余项——重新分配回创意实践里。名字是一个余项运算，不是比喻。现在看这个工作，比等到以后再看更有意义：v0.0.3 于2026年4月发布，仍是预发布（pre-release）状态，GitHub 上只有50个星，issue 追踪器里仍有人在问 GPU 后端究竟是怎么工作的。这些都说明语言的逻辑仍在生长，还没有被命名进任何已有的类别里。一旦有足够多的用户，一旦某篇论文把它放进某个谱系，一旦 Processing 或 p5.js 社区把它接纳，它就会从余项变成构。在那之前，它是一个还在发生的凿构动作的暂留姿态。</p>
+
+        <p>Lingdong Huang 的其他项目——用 lambda 算子构造绘图语言、为视觉素描设计版本控制系统、用手势重新发明计算的姿态——都在追问同一个问题：创意直觉与编码工具之间的缝隙里藏着什么？Dither 是这个追问在编程语言层面的一次落地。那个缝隙，就是它的余项。</p>
+
+        <a href="https://dither-lang.netlify.app" target="_blank" rel="noopener" class="project-link">dither-lang.netlify.app ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Lingdong Huang is a PhD student in the Future Sketches group at MIT Media Lab. In August 2025, he released Dither — a work-in-progress creative coding language. Code written in Dither can be interpreted (for fast iteration) or compiled (for fast execution); it runs on CPU or GPU; it targets the browser or native apps — one codebase, all substrates. The language has type inference, built-in vector and matrix math, and a standard library whose core job is getting pixels onto your screen as fast as possible. In April 2026, Huang released v0.0.3: an 8MB Mac IDE bundling the VM, compiler, REPL, debugger, standard libraries, and documentation in a single binary.</p>
+
+        <p>To see what Dither does structurally, you have to first see the already-construct it acts against. Creative coding practice has hardened, over twenty-odd years, into two parallel but non-communicating traditions: the CPU tradition (Processing, p5.js, openFrameworks — Java/JavaScript, sequential execution, readable, slow on complex rendering) and the GPU tradition (GLSL, WGSL — C-like, mandatory type declarations, parallel execution model, fast, but demanding a fundamentally different way of thinking). This bifurcation is not an incidental engineering choice that anyone made on purpose. It solidified on its own — two separate communities, two separate learning curves, two epistemologies that can't talk to each other. A p5.js sketch cannot become a GLSL shader without a complete rewrite. A shader artist can't iterate interactively without learning a separate framework. The split became construct: inherited, taught, assumed, treated as the starting condition for every new tool built afterward rather than as something to question.</p>
+
+        <p>Dither's chisel-construct move is to demote this split to a backend detail. The same Dither source code compiles to CPU or to shader; runs in the browser or as a native binary. Type inference means you don't write <code>vec3 color = vec3(1.0, 0.5, 0.2)</code> — you describe what you want, and the language infers the types. Vector math is syntax, not a function call. After the chisel, the substrate is no longer the creator's problem. The remainder surfaces: what's left when you chisel away substrate obligation? The creative coding practice itself — the act of moving from intuition to image, from description to pixel — which never needed to know what chip it ran on, but was forced to know, for twenty years, by every tool it had. Dither is the first language to let that practice exist without inheriting substrate identity.</p>
+
+        <p>"Dither" has a specific technical meaning in image processing: dithering takes the quantization error — the gap between the color you want and the color the hardware can actually store — and distributes it spatially across neighboring pixels, simulating tonal depth beyond the hardware's bit limit. The error is not discarded; it's redistributed. The image looks richer than its actual color depth. A creative coding language named Dither performs the same operation: it takes what fell into the gap between CPU and GPU practice — the creative potential lost to substrate bifurcation — and redistributes it as productive creative capacity. The name encodes a remainder-operation, not a metaphor. This matters now more than later: v0.0.3 was released in April 2026 and is still pre-release. Fifty GitHub stars. In the issue tracker, someone is still asking how the GPU backend actually works. The logic is still growing, still unassigned to any existing category. Once there are enough users, once a paper places it in a lineage, once the p5.js or Processing communities absorb it, it will have moved from remainder to construct. Until then, it is the held posture of a chisel-construct move still in progress.</p>
+
+        <p>Lingdong Huang's other projects — a drawing language built from lambda calculus, a version control system for visual sketches, a gestural computation experiment — all circle the same question: what lives in the gap between creative intuition and the tools that mediate it? Dither is that question landing at the level of a programming language. The gap is its remainder.</p>
+
+        <a href="https://dither-lang.netlify.app" target="_blank" rel="noopener" class="project-link">dither-lang.netlify.app ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>

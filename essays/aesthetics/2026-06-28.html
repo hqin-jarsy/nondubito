@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glosso：说不出字的那张嘴 — Non Dubito</title>
+  <meta name="description" content="Jelle Akkerman 的 Glosso 插件：凿去语义控制之后，语音形态本身作为余项留了下来。SAE 判断力与美学。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-06-28.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-06-28</div>
+          <h1 class="lang-zh">Glosso：说不出字的那张嘴</h1>
+          <h1 class="lang-en">Glosso: A Mouth That Cannot Form Words</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Jelle Akkerman 是北意大利的工程师兼艺术家。2026 年 6 月，他推出了 every something 插件系列的头两款：Artikulation 和 Glosso。Glosso 是其中的乐器插件——一个不需要任何输入的声乐发生器。你把它放进 DAW，按下播放键，它就开始说话了。两个声音从共振峰滤波器里冒出来，在元音空间里漂移，跟着一种忽聚忽散的节律摆动。听起来像人声，但不像任何具体的人正在说什么。它用的是语言的形式，却不运载任何语言的内容。</p>
+
+        <p>Glosso 的引擎来自荷兰电路设计师 Rob Hordijk 的 Benjolin 合成器，尤其是 Benjolin 的核心模块：Rungler。Rungler 的原理是让两个振荡器通过一个移位寄存器彼此耦合——第一个振荡器驱动寄存器的时钟，第二个振荡器的输出被寄存器采样并反馈回来，成为第一个振荡器的控制电压。这个闭环产生的行为既不是随机噪音（它有内部结构），也不是稳定的确定性振荡（它逃脱任何单一意图的掌控）——而是伪随机：结构化但不可预测，有逻辑但无法指挥。Hordijk 把 Benjolin 描述为"自我演奏的乐器"：你不演奏它，你只是为它设定条件。Glosso 把这个回路逻辑搬进了人声合成领域，给两个 Rungler 式混沌回路各配一套共振峰滤波器，让它们在元音轮廓里游荡。</p>
+
+        <p>声乐合成的历史是一部关于控制的历史。从 Klatt 的共振峰合成模型（1980 年代）到 Vocaloid 到今天的神经语音合成，整个谱系的驱动力只有一个：让机器越来越精确地发出人类想要它发出的声音。这个历史构建了一个巨大的已构：语音合成 = 对发声行为的精准控制；合成的"声音"是人类意图的工具和代理。无论是电影配乐里的歌声还是语音助手的回答，这个逻辑从未被质疑过，因为"让机器说你想说的"是整件事的出发点。</p>
+
+        <p>Glosso 用 Rungler 的混沌回路凿穿了这个构。它不建立一张可以被指挥的嘴，而是把语义控制的可能性从设计里移除了：两个回路互相喂入，没有任何单一的外部意图可以干预它们说什么。凿去的是"可以说什么"的控制权；留下来的是语音形态本身——元音轮廓、共振腔节律、辅音起伏——在没有说话意图驱动的情况下自由漫步。Glosso 这个名字直接点名了这个结构：Glossolalia，"说方言"，一种宗教现象，说话者产生具有完整语音形态的声音，但不构成任何已知语言。从语言学角度看，它是语义内容被移除后，语言形式的余项：发声的骨架，没有了意义的血肉。</p>
+
+        <p>理解"为什么是现在"需要看 Rungler 逻辑本身的处境。Hordijk 于 2019 年去世，Benjolin 正在经历历史化：现在有商业复刻版、博物馆收藏、大师课、学术论文和"向 Hordijk 致敬"的 Eurorack 模块。Rungler 正在从"一种仍在生长的、组织模拟混沌的结构逻辑"变成"Hordijk 的技法"——被命名、被归因、被固化为一个具体人名下的方法。一旦这个命名完全硬化，Rungler 就从活的余项变成已构的沉淀，它的逻辑不再向外生长，只向内积累。Glosso 在这个固化完成之前，把 Rungler 逻辑搬到了它从未到过的领域——声乐形态空间——让这套逻辑在陌生土地上重新活过来，并在那里产生了它从未产生过的东西。</p>
+
+        <p>Glosso 的命名困境揭示了它的余项位置：它不是声乐合成器（无法指挥它发出任何具体音节），不是噪音发生器（它有元音形态和节律结构），不是共振峰滤波器（它自生声音，不处理外部输入），不是颗粒合成器（时间结构来自回路逻辑而非颗粒切割），也不是随机信号源（它有内部一致性）。every something 网站上的描述只有一句话："your computer speaks in tongues"——名字是体验，不是类别。still coming in July 2026：perp（Risset 节律循环器）和 otophon（心理声学音调发生器）。这个体系的逻辑还没有停止生长。Jelle Akkerman 在艺术界没有任何位置。</p>
+
+        <a href="https://plugins.every-something.com/" target="_blank" rel="noopener" class="project-link">plugins.every-something.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Jelle Akkerman is an engineer and artist based in Northern Italy. In June 2026 he launched the first two plugins in his every something series: Artikulation and Glosso. Glosso is the instrument — a vocal generator that requires no input. You load it into a DAW track, press play, and it begins to speak. Two voices surface from vowel filters, drifting through formant space, following rhythms that gather and dissolve. It sounds like a voice, but not like any particular voice saying anything particular. It has the form of language without the content of language.</p>
+
+        <p>Glosso's engine is the rungler circuit from Rob Hordijk's Benjolin synthesizer. The rungler couples two oscillators through a shift register in a feedback loop: one oscillator clocks the register, the other's output is sampled and fed back as control voltage into the first. The resulting behavior is neither random noise (it has internal structure) nor stable deterministic oscillation (it evades any single directing intention) — it is pseudorandom: organized but unpredictable, logical but not commandable. Hordijk called the Benjolin a "self-playing instrument": you don't play it, you set its conditions. Glosso transplants this circuit logic into vocal synthesis, running two rungler-style chaotic circuits through formant filters and letting them roam through vowel space.</p>
+
+        <p>The entire history of vocal synthesis is a history of control. From the Klatt formant synthesizer of the 1980s through Vocaloid through current neural text-to-speech, the whole lineage is driven by one impulse: make the machine say what you want it to say with increasing precision. This history has built the already-construct: voice synthesis equals directed utterance; a synthetic voice is a tool and proxy for human intention. Whether it's a movie score or a voice assistant, this logic has never been questioned, because "make the machine speak for you" is the entire premise.</p>
+
+        <p>Glosso chisels through this. It does not build a mouth that can be directed. Instead, it removes the possibility of semantic control from the design itself: two circuits feed into each other, and no single external intention can intervene in what they say. What is chiseled away is the command over what gets said; what remains is the phonemic form itself — vowel contours, resonant-cavity rhythms, consonantal pulses — roaming freely without a speaking intention to drive them. The name points directly at this structure: glossolalia, the religious phenomenon of producing sounds that have full phonemic form but constitute no known language. Linguistically, glossolalia is the remainder of language-form after semantic content has been removed — the skeleton of utterance without the flesh of meaning.</p>
+
+        <p>To understand why now, consider the rungler logic's own situation. Hordijk died in 2019, and the Benjolin is entering historicization: commercial clones, museum acquisitions, masterclasses, academic papers, Eurorack "tributes." The rungler is in the process of shifting from "a still-growing structural logic for organizing analog chaos" to "Hordijk's technique" — named, attributed, crystallized as a method under a specific person's name. Once that naming fully hardens, the rungler moves from living remainder to sediment of the already-construct. Glosso, before that hardening completes, carries the rungler logic somewhere it has never been — vocal formant space — and makes the logic live again on unfamiliar ground, producing something it has never produced before.</p>
+
+        <p>Glosso's naming gap reveals its remainder position. It is not a vocal synthesizer (it cannot be directed to any phoneme), not a noise generator (it has phonemic structure and rhythm), not a formant filter (it generates rather than processes), not a granular synthesizer (its temporal structure is circuit-based, not grain-based), and not a random signal source (it has internal consistency). The every something site describes it in one line: "your computer speaks in tongues" — the name is the experience, not a category. Two more plugins are due in July 2026: perp (a Risset rhythm live looper) and otophon (a psychoacoustic tone generator). The logic is still growing. Jelle Akkerman has no art-world position.</p>
+
+        <a href="https://plugins.every-something.com/" target="_blank" rel="noopener" class="project-link">plugins.every-something.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
