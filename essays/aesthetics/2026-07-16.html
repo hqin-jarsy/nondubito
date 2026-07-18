@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>苹果与微软之外：凿去平台之后的音乐制作领地 — Non Dubito</title>
+  <meta name="description" content="shibco的Wine补丁让Ableton Live 12在Linux上运行——凿去平台依赖之后，二十五年积累的基础设施余项浮现。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-07-16.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-07-16</div>
+          <h1 class="lang-zh">苹果与微软之外：凿去平台之后的音乐制作领地</h1>
+          <h1 class="lang-en">shibco / Ableton on Linux: The Territory After the Platform</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>2026年7月，一个叫shibco（Cade）的柏林开发者在GitHub上发布了一套Wine补丁。打上这套补丁，Ableton Live 12、Max for Live、Push 2全部在Linux上运行——不是仿真，不是替代品，而是与macOS和Windows上别无二致的Live本身。没有官方支持，没有公司授权，没有商业模型。只有一个补丁集合，和二十五年的积累。功能清单在增长：WineASIO到JACK/PipeWire的低延迟音频路由，HiDPI显示检测，VST3窗口管理，Push硬件的USB通信，通过XDG portal实现的原生文件对话框，系统字体渲染，可重现的构建流程。Push 3目前还不支持。</p>
+
+        <p>从SAE判断力与美学的角度看，这个项目展示的正是余项之美的典型结构。已构（已完成的凿构循环）在此是三角平台：macOS、Windows、iOS——二十五年的彻底固化。每一个主流DAW、每一个插件厂商、每一块音频硬件，都设计给这个三角。"音乐制作平台"这个词，在2026年的语境里已经等同于"有供应商关系的商业操作系统"。这是一个如此彻底完成的凿构，以至于"Ableton Live在哪里运行？"这个问题，只有一个答案存在了整整二十五年。shibco的凿，是移除平台作为供应商产品的前提。Wine不是仿真器——这个缩写本身就是反定义（Wine Is Not an Emulator）。它是Windows API表面在Linux上的重新实现，让Linux能够运行Windows二进制文件，就像本机程序一样。shibco的补丁在Wine上叠加了Live所需的特定处理。凿动作不是破坏，而是完成：完成了一套已经存在的基础设施，使之服务于一个从未被设计进去的应用程序。</p>
+
+        <p>凿之后剩下的余项是：当平台作为供应商产品的框架消失后，音乐制作领地本身。一个操作系统不属于任何公司的环境，音频路由由JACK/PipeWire这样的社区基础设施控制，商业工具和开源工具平等共存。这片领地没有名字。不是"Linux音乐制作"（那是Ardour、Bitwig等已有名称的类别），不是"Ableton Live"（那是Windows/Mac产品），不是"仿真"（Wine不是仿真器）。更深的余项是这种可能性本身的积累逻辑：二十五年的Linux音频开发——内核音频改进、ALSA、JACK、PipeWire、Wine的持续演进——没有一个是以"让Ableton Live在Linux上运行"为目标建造的。它们作为余项积累在那里，然后一个开发者的一套补丁，让这一切忽然够用了。这是凿构循环的二阶余项：不是某个单一作品的余项，而是一整个基础设施生态系统的累积余项，在被命名为目标之前已经到达。</p>
+
+        <p>为什么现在看这个比以后重要？Peter Kirn在CDM的报道里说得直接：苹果和微软作为音乐制作基础设施的轨迹，在2026年充满不确定性。RAMageddon（内存供应危机）让硬件变贵。AI正通过商业操作系统的专有API进入DAW，平台锁定风险是音乐制作领域的真实焦虑。Kirn注意到，Ableton内部员工可能已经以某种方式参与了这个项目，制度之墙在软化，但尚未倒塌。一旦"Linux音乐制作只意味着使用官方支持Linux的工具"这个等式完全固化，shibco所在的那片领地就会成为历史脚注，而不是正在生长的逻辑。Push 3还不支持——补丁集还在增长。余项仍然是余项。</p>
+
+        <a href="https://github.com/shibco/ableton-linux" target="_blank" rel="noopener" class="project-link">github.com/shibco/ableton-linux ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>In July 2026, a Berlin developer named shibco (Cade) published a set of Wine patches on GitHub. With these applied, Ableton Live 12, Max for Live, and Push 2 run on Linux — not as emulation, not as a substitute, but as Live itself, indistinguishable from its macOS or Windows counterpart. No official support, no corporate authorization, no commercial model. Just a patch set, and twenty-five years of accumulated infrastructure. The feature list is growing: WineASIO bridging to JACK/PipeWire for low-latency audio, HiDPI display auto-detection, VST3 window management, Push hardware USB communication, native file dialogs via the XDG portal, system font rendering, reproducible builds. Push 3 isn't yet supported.</p>
+
+        <p>In the SAE Judgment &amp; Aesthetics framework, this project is a clear case of 余项之美 — the beauty of the structural remainder. The already-construct here is the commercial music production platform triangle: macOS, Windows, iOS — twenty-five years of complete sedimentation. Every major DAW, every plugin vendor, every audio hardware manufacturer designs for this triangle. The phrase "music production platform" has come to mean, in 2026 discourse, nothing more than "a commercial operating system with its vendor relationship intact." This is a construct so thoroughly completed that the question "where does Ableton Live run?" has had only one answer for the entire lifespan of the software. shibco's chisel is the removal of platform-as-vendor-product as a precondition. Wine is not an emulator — the acronym is a definition-by-negation (Wine Is Not an Emulator) — it is a re-implementation of the Windows API surface that allows Linux to run Windows binaries natively. shibco's patches add the specific handling Live requires on top of Wine. The chisel action is not destruction — it is completion: completing an already-existing infrastructure for an application that was never designed into it.</p>
+
+        <p>The remainder that emerges is the territory of music production after the platform-as-vendor-product assumption is removed: an environment where the OS belongs to no corporation, where audio routing is controlled by community infrastructure (JACK, PipeWire), where commercial and open-source tools coexist without hierarchy. This territory has no name. It isn't "Linux music production" (that category already belongs to Ardour, Bitwig, and others), it isn't "Ableton Live" (that's a Windows/Mac product), and it isn't "emulation" (Wine is explicitly not an emulator). A deeper remainder is the accumulation logic of this possibility itself: twenty-five years of Linux audio development — kernel improvements, ALSA, JACK, PipeWire, Wine's continuous evolution — none of it built with the goal of running Ableton Live on Linux, all of it accumulating as remainder. Then one developer's patch set makes it suddenly enough. This is a second-order remainder in the chisel-construct cycle: not the remainder of any single work, but the accumulated remainder of an entire infrastructure ecosystem, arriving before anyone named it as a goal.</p>
+
+        <p>Why does seeing this now matter more than later? Peter Kirn's CDM coverage puts it plainly: the trajectory of Apple and Microsoft as music production infrastructure is uncertain in 2026. RAMageddon has made hardware expensive. AI is entering DAWs through commercial OS-locked proprietary APIs, and platform dependency risk is acute. Kirn notes that some Ableton employees may have been informally involved in the project — the institutional wall is softening without having fallen. Once "Linux music production means only using tools that officially support Linux" fully crystallizes as the only available logic, the territory shibco occupies becomes a historical footnote rather than a growing structure. Push 3 isn't yet supported — the patch set is still growing. The remainder is still a remainder.</p>
+
+        <a href="https://github.com/shibco/ableton-linux" target="_blank" rel="noopener" class="project-link">github.com/shibco/ableton-linux ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>

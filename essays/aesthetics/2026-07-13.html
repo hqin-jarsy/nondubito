@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Splines：凿去中介之后，曲线剩了下来 — Non Dubito</title>
+  <meta name="description" content="Thorn Audio Splines 是第一个把分段多项式样条当做直接电压生成器的 Eurorack 模块——它凿去了样条与它服务的参数之间的那一层，让曲线三十年来第一次成为审美对象本身。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-07-13.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-07-13</div>
+          <h1 class="lang-zh">Splines：凿去中介之后，曲线剩了下来</h1>
+          <h1 class="lang-en">Thorn Audio Splines: When the Curve No Longer Serves</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Thorn Audio Splines 是挪威工程师 Hallvard Kristiansen 于2026年5月推出的 Eurorack 模块。Kristiansen 长年在柏林施奈德斯拉登的维修工台上打磨模块逻辑，他此前唯一的产品是 VCLFO——一款大旋钮、固定波形的调制器。Splines 是另一回事：它的核心是 Kochanek-Bartels 三次 Hermite 样条生成器。你在16个节点之间绘制曲线，调整张力（tension）、连续性（continuity）与偏置（bias），那条曲线就直接输出为电压。电压就是声音——可以是振荡器，可以是 LFO，可以是包络，可以是步进序列器。面板上的 OLED 屏幕实时显示你正在塑造的曲线形状，就像在一台小小的实验室仪器上雕刻。它是把分段多项式当做直接电压生成器的第一个物理 Eurorack 模块。</p>
+
+        <p>要理解这里的余项，必须先看到已构是什么。在过去三十年的所有数字创意工具里，样条曲线扮演的角色始终是基础设施：DAW 里的自动化轨道用样条插值来连接控制点，Adobe Illustrator 的钢笔工具用贝塞尔样条来定义路径，游戏引擎用 Catmull-Rom 样条来制作动画缓动，动态图形工具用样条来定义运动曲线。但在所有这些地方，样条都在为别的东西服务。你塑造样条，是为了塑造滤波器截止频率，或者音量包络，或者三维角色的肘关节位置。样条自身是透明的——它从来不是审美对象，它只是审美对象的支架。这个结构经过三十年的沉淀，已经是彻底的已构：样条 = 工具，不可能 = 作品本身。</p>
+
+        <p>Splines 的凿子简单而精准：去掉样条和它服务的参数之间的那一层中介。在 DAW 里，链条是：演奏者 → 自动化曲线 → 参数 → 声音。在 Splines 里，链条是：演奏者 → 样条曲线 → 电压 → 声音。中间那层参数被取消了。曲线的形状就是电压的形状，电压的形状就是声音的形状，三者同一。这个凿子让隐藏了三十年的东西忽然浮出：Kochanek-Bartels 样条在节点之间的那种特定张力感，高张力（tension）的硬脆与低张力的柔韧，偏置（bias）把切线向节点一侧偏移时的不对称质感，波形折叠时多项式被弯折回自身产生的新纹理——这些一直是所有 DAW 自动化曲线的潜在肌理，但它们从来没有作为声音被倾听，因为它们从来不是声音，它们是产生声音的工具。它们是余项：一直存在于每一条自动化曲线背后，从未被命名为审美内容。</p>
+
+        <p>命名缺口最能说明问题。CDM 的 Peter Kirn 在评测里穷举了 Splines 的用途：振荡器、步进序列器、调制与包络源、量化器、示波器。这不是类别名称，这是功能清单，因为真正的类别——"把用户定义的多项式样条当做直接电压生成器的 Eurorack 模块"——在 Splines 之前根本不存在。最接近的先例是"函数发生器"（如 Make Noise Maths），但函数发生器生成的是预定义函数（ADSR、AR、指数衰减），不是用户定义的多项式曲线。Synth Anatomy 的描述也只好写成"几乎可以做任何事"——这句话本身就是命名失败的承认。为什么现在看比以后看更重要？因为 AI 自动化曲线生成正在成为 DAW 的标准功能，"为滤波器生成一条自动化曲线"很快就是普通的提示词。一旦 AI 接管了自动化曲线的生成，样条作为基础设施的地位就彻底完成，作为余项的窗口就随之关闭。数学博主 Freya Holmér 关于样条数学的视频系列正在被越来越多的创意程序员看到——命名正在接近，但尚未到达。Splines 就在这个接近过程中，在样条成为明确审美类别之前的这一刻。</p>
+
+        <p>这个余项的深度在于，它不仅是 Eurorack 里的新鲜事，它是三十年来所有数字创意工具共同压制的同一个东西。每次你在 DAW 里拉动一个自动化控制点，感受到曲线从平滑变为尖锐的那一瞬间——那个感受就是余项。只是每次你感受到它，它都立刻消失进了它服务的参数。Splines 是第一个让那个感受不再消失的设备。Hallvard Kristiansen 的维修工台上大概塑造了无数别人的曲线，直到他决定把曲线本身变成乐器。</p>
+
+        <a href="https://thorn.audio/splines" target="_blank" rel="noopener" class="project-link">thorn.audio ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Thorn Audio Splines is a 10HP Eurorack module released in May 2026, built by Hallvard Kristiansen — a Norwegian engineer long known at Schneidersladen's repair bench in Berlin, and the maker of Thorn's earlier VCLFO. The VCLFO was all big dials and fixed waveforms. Splines is another kind of thing entirely. Its core is a Kochanek-Bartels cubic Hermite spline generator: you define up to sixteen nodes across a visual display, dial in tension, continuity, and bias, and the resulting curve outputs directly as voltage. That voltage is sound — an oscillator whose waveform you sculpt, or an LFO, envelope, step sequencer, quantizer, or scope, all simultaneously, because the spline underlies each of them. What this module is, in category terms, doesn't quite have a name.</p>
+
+        <p>To understand why this is structurally 余项之美 — beauty of the remainder — you have to see what the spline has always been. For three decades, splines have been infrastructure everywhere in creative computing: the automation lanes of every DAW use spline interpolation between control points; Illustrator's Pen tool traces Bézier splines; game engines use Catmull-Rom splines for animation easing; motion graphics tools define movement curves with splines. But in each of these contexts, the spline is always serving something else. You shape the spline to shape the filter cutoff, the volume envelope, the character's elbow joint position. The spline itself is transparent — it is never the aesthetic object, only the scaffold holding one up. This is the already-construct, fully sedimented over thirty years of DAW automation, vector drawing, and 3D animation workflow. Spline = tool. The possibility of spline = artwork simply does not exist in the construct.</p>
+
+        <p>The chisel here is structural and precise. In a DAW: performer → automation curve → parameter → sound. In Splines: performer → spline curve → voltage → sound. The intermediary parameter has been removed. The curve's shape is the voltage's shape, and the voltage's shape is the sound's shape, directly and simultaneously. This single step exposes what was always latent in the infrastructure: the specific feel of a Kochanek-Bartels curve between two nodes — the brittle precision of high tension, the liquid release of low tension, the asymmetry of bias leaning a tangent to one side of the node; the new textures that appear when wavefolding bends the polynomial back on itself. All of this was always present in every DAW automation lane, in every Illustrator path, in every game-engine easing curve. But it was never heard as sound, because it was never the sound — it was what produced sound. It was the remainder: always present behind every automation curve, never named as aesthetic content in its own right.</p>
+
+        <p>The naming gap is the most telling evidence. Peter Kirn's CDM review exhausts itself listing what Splines can do: oscillator, step sequencer, modulation and envelope source, quantizer, even scope. That is not a category name — it is a function inventory, because the actual category ("a Eurorack module that uses user-defined polynomial splines as a direct voltage generator") does not yet exist. The closest prior category is the "function generator" (Make Noise Maths and its kin), but those generate pre-defined functions — ADSR, AR, exponential decay — not user-defined curves. Synth Anatomy settled for "create almost anything with curves," which is itself an admission that naming has failed. Why does seeing it now matter more than later? Because AI-generated automation curves are becoming a standard DAW feature; "generate an automation curve for this filter" is the coming routine prompt. Once AI takes over automation curve generation, the spline's role as infrastructure is complete, and its window as remainder closes. Freya Holmér's spline mathematics explainers are accumulating views among creative coders — the naming is approaching, not yet arrived. Splines exists in that interval: the moment when the curve can still be a discovery, before it becomes an established aesthetic category.</p>
+
+        <p>The depth of this remainder is that it isn't merely new in Eurorack terms — it is the same thing that thirty years of digital creative tools simultaneously suppressed. Every time you pulled a DAW automation control point and felt the curve shift from smooth to sharp, the thing you felt was the remainder. It vanished immediately into the parameter it was shaping. Splines is the first device that prevents it from vanishing. Kristiansen's repair bench presumably shaped countless other people's curves for years before he decided to make the curve itself into the instrument.</p>
+
+        <a href="https://thorn.audio/splines" target="_blank" rel="noopener" class="project-link">thorn.audio ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
