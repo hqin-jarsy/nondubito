@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>扫描仪始终是台相机 — Non Dubito</title>
+  <meta name="description" content="Yannick Richter 把一台爱普生平板扫描仪的线阵 CCD 从文件复制的使命里剥离出来，装上宾得中画幅镜头，造出一台 32 亿像素相机。这是余项之美的典型：成像能力始终在那里，只有「文件装置」的已构定义曾把它封住。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-07-22.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-07-22</div>
+          <h1 class="lang-zh">扫描仪始终是台相机</h1>
+          <h1 class="lang-en">Project Gigapixel: The Scanner Was Always a Camera</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+        <p>Yannick Richter 在二手市场上买了一台爱普生 V370 平板扫描仪。他没有把它插上电脑，也没有打开随附的扫描软件。他把机器拆开了。</p>
+
+        <p>拆开以后，他发现里面有一颗索尼 ILX561K 线阵 CCD 传感器——十二行像素，总计 122,400 个感光单元，排成一条细线。这颗传感器的任务始终是读光，只不过那光照在文件上，经由机器的玻璃板折射而来。Richter 的问题是：如果那光不是从文件反射过来，而是从镜头汇聚而来呢？他花了将近一年时间逆向工程传感器的时序协议，重新设计信号采集电路，把传感器安装在百毫米精密线性导轨上，用 Raspberry Pi 5 和 RP2350 控制移动，在前面装了一颗宾得中画幅镜头。扫描仪沿玻璃板移动读取文件的那套机制，被他改造成了传感器在焦平面上移动、读取光线的相机快门。这台相机能拍出 80,000 × 40,160 像素的图像——32 亿像素，16 位真彩色。</p>
+
+        <p>这个项目是 余项之美 的典型，但不只因为分辨率。分辨率只是表征，更深的结构是这样的：平板扫描仪诞生于 1980 年代末，作为「文件复制装置」存在了三十五年以上。它的产品定义——把二维平面对象保真转化为像素——早已硬化为一个完整的 已构 (already-construct)。所有传感器规格、驱动软件、校准逻辑，都服务于这一定义。在这个定义里，线阵 CCD 是工程选择，不是摄影命题；曝光时间是校准参数，不是快门；「需要静止」是被忽视的技术前提，不是美学立场。凿子 (chisel) 是 Richter 那次拆卸的动作——把传感器从「文件复制」的使命中剥离出来，让它直接面对镜头后面的光。一旦凿构循环完成，双重余项就显现了。</p>
+
+        <p>余项之一：线阵 CCD 的成像能力。这颗传感器自被造出来那天起，就具备形成光学图像的条件；「文件复制装置」的定义不允许它做相机，但那能力始终在那里，从未消失。余项之二，更奇妙也更深：扫描成像的时间性。线阵传感器必须在焦平面上移动才能完成一次曝光，这需要几秒到几分钟。这意味着这台相机只能拍摄「世界允许被拍的那部分」——移动的物体在扫描途中消失，只有静止的事物才能留下来。这不是缺陷，这是一种摄影命题：相机不问「什么值得拍」，它问「什么愿意等待」。Richter 拍了一张工作台上的电子元器件，裁切放大后，可以读出一颗 0603 封装贴片电阻上的数值标注。</p>
+
+        <p>为什么现在看这个项目比以后看更重要？2026 年，AI 图像生成已经能合成「任何东西的高分辨率照片」。但 Richter 的相机只能拍摄世界中真实存在、真实静止的事物——它是对「世界耐心」的照相。AI 可以模拟任何外观，但无法模拟这种摄影的时间性承诺。这片余项的命名缺口仍然洞开：这不是「扫描摄影」（scanography——那是直接把物体放在扫描玻璃上，没有镜头，是另一种实践）；不是「巨像素拼接摄影」（多张正常照片合并，与此无关）；不是「DIY 相机制作」（这个标签掩盖了命题的结构性）。Richter 在 2026 年 7 月的 Hackaday Europe 上展示了这个项目。那里没有摄影评论家，没有艺术市场，只有工程师和对硬件感兴趣的人。这正是余项的典型处所：没有名字的地方，才是最活的时候。</p>
+
+        <a href="https://hackaday.io/project/202945-project-gigapixel-linear-ccd-camera" target="_blank" rel="noopener" class="project-link">hackaday.io ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+
+        <p>Yannick Richter bought a second-hand Epson V370 flatbed scanner. He didn't plug it into a computer. He didn't open the scanning software. He took it apart.</p>
+
+        <p>Inside he found a Sony ILX561K linear CCD array: twelve rows of pixels, 122,400 light-sensing elements arranged in a fine line. This sensor had been reading light for years — light bounced off documents through a glass plate. Richter's question was different: what if that light came through a lens instead? He spent roughly a year reverse-engineering the sensor's timing protocol, redesigning the signal capture circuit, mounting the sensor on a 100mm precision linear drive controlled by a Raspberry Pi 5 and RP2350, and positioning a Pentax medium-format lens in front. The mechanism that once moved across flat documents to scan them became a shutter that moves the sensor across the focal plane to expose it. The result: images at 80,000 × 40,160 pixels — 3.2 gigapixels, 16-bit true color.</p>
+
+        <p>The 余项之美 of Project Gigapixel isn't primarily the resolution. Resolution is a symptom. The deeper structure is this: the flatbed scanner was born in the late 1980s and has existed as a "document reproduction apparatus" for over 35 years. Its product definition — faithfully convert flat objects to pixels — hardened into a complete already-construct. Every sensor specification, calibration routine, and driver exists to serve this definition. Inside that definition, the linear CCD architecture is an engineering choice, not a photographic proposition; exposure time is a calibration parameter, not a shutter; the requirement for stillness is a suppressed technical precondition, not an aesthetic position. Richter's chisel was a single act of disassembly: removing the sensor from its document-reproduction mission and letting it face a lens. Once that chisel-construct cycle completes, a double remainder becomes visible.</p>
+
+        <p>The first remainder: the imaging capability of the linear CCD, which was present from the moment the chip was made. The construct "document scanner" suppressed it by definition, but it never went away. The second remainder is stranger and deeper: the temporality of scanning as a photographic fact. The linear sensor must traverse the focal plane over several seconds to minutes to complete one exposure. This means the camera can only photograph what doesn't move — subjects in motion disappear mid-scan; only what holds still can be recorded. This is not a limitation. It is a photographic proposition: the camera doesn't ask "what is interesting?" It asks "what is willing to wait?" Richter photographed instruments on a workbench; cropped in, you can read the value printed on a 0603 SMD resistor.</p>
+
+        <p>Why see this now rather than later? In 2026, AI image synthesis can produce "a high-resolution photograph of anything." But Richter's camera can only capture what actually exists and actually holds still — it photographs the world's patience. No AI can simulate that temporal commitment. The naming gap remains wide open: this is not scanography (which places objects directly on flatbed glass without a lens — a completely different practice); not gigapixel stitching (multiple normal shots merged); not DIY camera building (that label hides the structural proposition). Richter presented at Hackaday Europe in July 2026. There were no photography critics, no art market players — only engineers and hardware enthusiasts. That is the characteristic habitat of a remainder: it lives most vividly where it has no name.</p>
+
+        <a href="https://hackaday.io/project/202945-project-gigapixel-linear-ccd-camera" target="_blank" rel="noopener" class="project-link">hackaday.io ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
