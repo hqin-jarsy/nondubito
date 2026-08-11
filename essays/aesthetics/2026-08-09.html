@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>不可压缩的余项：Aleatoric11 的混沌影像工具 — Non Dubito</title>
+  <meta name="description" content="视频编解码器的算法"差错"如何成为创作的主要材料——Aleatoric11 的 Datamosh Music Video Maker 与无预设的余项逻辑。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-08-09.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-08-09</div>
+          <h1 class="lang-zh">不可压缩的余项：Aleatoric11 的混沌影像工具</h1>
+          <h1 class="lang-en">The Incompressible Remainder: Aleatoric11's Datamosh Music Video Maker</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Aleatoric11 是纽约一位独立音乐人兼软件开发者的创作集合，项目名称本身即是立场——"aleatoric"（机遇性）指的是将偶然性系统引入创作过程的传统，约翰·凯奇曾将这一词语带入严肃音乐的语境。这位作者在 itch.io 上陆续发布了超过十款浏览器工具：合成器实验室、随机采样器、节拍设计器、漫游纽约街头的虚拟散步应用，还有这里要讨论的《乱码音乐录影制作器》（Datamosh Music Video Maker）。它们共享一种核心逻辑：参数由人设定，内容由系统的剩余产生。</p>
+
+        <p>这款工具完全运行于浏览器之中：用户拖入若干视频片段和一首音频文件，系统便将其合并为一个循环叠加的视觉拼贴，实时响应音乐的低频、中频和高频分量，同时自动施加乱码（datamosh）效果——画面像素抖动、混合模式随机翻转、VHS衰变效果与反馈涂抹层叠而至。每次播放都不同。没有预设，没有关键帧，没有"正确结果"可以瞄准。作者的表述是：这件工具"被设计为一种创作乐器，让你拨弄它直到有趣的事情发生"。而那个"有趣的事情"不是被计划的——它是从系统的裂缝里生长出来的。</p>
+
+        <p>这里的裂缝，恰好就是余项的居所。所谓乱码（datamosh），作为一种技术，是对视频压缩算法"失败"的主动利用：编解码器在处理帧间差异时无法完全封闭的部分，像素从一帧溢出进入另一帧，色彩流淌、边缘模糊、运动轨迹在视觉上留下无法被命名的印记。算法本想清除这些，但清除不干净的那一部分就是乱码之美的来源。Aleatoric11 的工具将这一"不可清除的剩余"系统化为创作的首要材料——不是偶尔借助故障效果，而是将界面整个设计为余项的容器：人类设定边界，混沌负责内容。</p>
+
+        <p>放在 SAE 的凿构循环（chisel-construct cycle）框架里理解：故障艺术（glitch art）作为一个类别，已经有维基百科词条、画廊陈列、批评语言，它在相当程度上已经是"已构"的了。但 Aleatoric11 的这件工具尚未到达那里。它不是"故障艺术"的典范案例，而是一个仍在延伸的创作系统——一个以工具矩阵形式呈现的生态，每次使用都在凿构循环中激活新的余项。更重要的是，作者从不宣称自己在做"艺术"，只说是"实验性的浏览器工具"。这种不完全的自我命名正是余项尚未完全成形的标志：它对自己的归属还没有答案。</p>
+
+        <p>现在看到它，比之后更重要。乱码美学尚无稳定的批评语言；"无预设创作"作为工具设计哲学还没有被艺术界给予框架；Aleatoric11 作为一个多模块创作生态，其内在逻辑更是远未被命名。这不是说它未来一定会被命名——余项不是必然进入已构的，有些会消散，有些会沉淀。但正是因为它目前仍在这种不确定的流动状态中，此刻看到它才是 SAE 判断力所指向的位置：不是识别已知的美，而是辨认当下还在流动的余项里的美。</p>
+
+        <a href="https://aleatoric11.itch.io/datamosh" target="_blank" rel="noopener" class="project-link">aleatoric11.itch.io ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Aleatoric11 is the creative output of a New York-based independent musician and software developer — the name itself is a position statement. "Aleatoric" refers to the systematic introduction of chance into composition, the tradition that John Cage helped bring into serious musical discourse. On itch.io, the studio has released over a dozen browser-based tools: a synthesizer lab, a randomized sampler, a beat designer, an app for drifting through New York City via Google Street View, and the work under discussion here — the Datamosh Music Video Maker. All of them share a core logic: the artist sets parameters, and the system's remainder generates the content.</p>
+
+        <p>The tool runs entirely in the browser. You drag in video clips and an audio file; the system collapses them into a looping visual pile, responding in real time to bass, mids, and treble, while automatically applying datamosh-style effects — pixel jitter, randomized blend modes, VHS decay, feedback smear. Every playback is different. No presets, no keyframes, no correct output to aim for. The author states it plainly: the tool "is meant to feel less like software and more like a creative instrument you poke until something interesting happens." That something interesting is not planned. It grows from the cracks in the system.</p>
+
+        <p>Those cracks are precisely where the remainder lives. Datamosh, as a technique, exploits failure in video compression: when a codec cannot fully close the difference between frames, pixels overflow from one into the next — color bleeds, edges dissolve, motion leaves a trace on the image that has no clean name. The algorithm intended to erase this residue, but what it cannot erase is the source of datamosh aesthetics. Aleatoric11's tool systematizes that incompressible remainder as the primary creative material. The interface is designed as a container for remainder: the artist controls the conditions; chaos handles the content.</p>
+
+        <p>In SAE terms, this maps onto the chisel-construct cycle with precision. Glitch art as a category already has a Wikipedia entry, gallery placement, and critical language — it is, in meaningful respects, already-construct. Aleatoric11's tool has not arrived there. It is not a canonical instance of any named movement; it is a still-growing system, a tool ecosystem where each use activates new remainder within the cycle. Crucially, the author makes no claim to be making "art" at all — only "experimental browser-based tools." That incomplete self-naming is the sign that the remainder has not yet fully crystallized: it has no answer for what it belongs to.</p>
+
+        <p>Seeing this work now matters more than later for exactly this reason. Datamosh aesthetics have no stable critical vocabulary yet; "no-preset creation" as a design philosophy has no art-world framework; and Aleatoric11 as a multi-module creative ecology has not yet been touched by the institutions that would name it. This doesn't mean it necessarily will be named — some remainders dissolve rather than sediment. But it is precisely because this work is still in that uncertain, moving state that finding it now is what SAE judgment points toward: not recognizing known beauty, but recognizing the beauty of a remainder while it is still in motion.</p>
+
+        <a href="https://aleatoric11.itch.io/datamosh" target="_blank" rel="noopener" class="project-link">aleatoric11.itch.io ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
