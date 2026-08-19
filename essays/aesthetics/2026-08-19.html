@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>注释里住着一个人 — Non Dubito</title>
+  <meta name="description" content="伦敦 HTML Day 2026 上，danibloop 做了一个几乎空白的网页，全部内容都写在 HTML 注释里——解析器读过、然后必须丢掉的那一部分。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-08-19.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-08-19</div>
+          <h1 class="lang-zh">注释里住着一个人</h1>
+          <h1 class="lang-en">Someone Lives in the Comments</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>8 月 8 日是今年的 HTML Day。伦敦场设在佩克汉的 SET Social，从下午两点到晚上八点，来的人各自手写一个网页。其中一个署名 danibloop 的人做的那个，打开之后几乎是空的：一颗从 HTML Energy 那里借来的荧光绿星星，一句问你有没有感觉到 HTML 能量的话，然后是一条指令——按 Command + Option + U，去看源代码。</p>
+
+        <p>作品在那里。源文件里躺着四段注释，署名是一个叫 H_T_M_L__S_P_R_I_T_E 的角色。它先问你喜不喜欢看这些代码行，它把这些行叫作「刺绣的背面」，又问你平时会不会去检查你浏览的那些网页。然后它讲了一件更大的事：边注比文字更古老，它和讲故事一样老；从来就没有过线性的故事、线性的想法、线性的网页。最后一段里它提到，dani 今天给它上了一炷香——用 ASCII 画的，三缕细烟从一个小炉子里升起来——并且建议你也可以试着跟你自己网站的精灵打个招呼。</p>
+
+        <p>比例值得数一下。这个页面显示出来的全部文字是 295 个字符。注释里的文字是 2,441 个字符。精灵说的话，是这个网页说的话的八倍多。也就是说，作品的绝大部分被浏览器读进去，然后扔掉了。</p>
+
+        <p>这是余项能有的最干净的形式。HTML 解析器是一台形式化装置：它吃进源文件，吐出渲染树。注释是这套形式化里唯一一种「必须读、且必须不用」的东西——它不是没被看见，它是被认出来之后被主动排除的。已构（那张渲染出来的页面）之所以成立，恰恰依赖于解析器有能力识别并丢弃它。所以注释不是页面的附件，它是页面得以成立的那个条件的背面。danibloop 做的事，是搬进去住。</p>
+
+        <p>这个手势在她身上是重复的。她在 e2e 上填的「最喜欢的元素」是 &lt;noscript&gt;——那个只在主系统不运行时才显示的标签，一件完全由缺席定义的标记。她在别处的名字是 thisisnotdaniela。而在作品内部，作者本人只出现一次，用的是第三人称，是被精灵提到的那个上香的人。她没有署名；她是自己网站的住户顺口提起的一个人。三层，同一个动作：住到那条被丢弃的分支上去。</p>
+
+        <p>「查看源代码」当然有它的历史。早期网页在标记里互相留言、留 ASCII 画、留招聘启事，这些今天都已经被收集过、致敬过了。但那批东西已经跑完一轮凿构循环：它有了名字，叫 view-source 文化，它进了怀旧叙事，成了可以引用的已构。danibloop 这个不是同一个形状——注释不是藏在页面背后的彩蛋，注释就是全部，而页面把自己降格成了一道门。这个逻辑还没有名字。它不是 net art 的既有类目，不是 ASCII art，也不是复古网页。它是发在一个只为一天而建的社交网络（e2e.html.energy，为 HTML Day 2026 而做）上的一条链接，作者在艺术界没有任何痕迹，站点里一个外链都没有。等它被命名，它就成了别的东西。现在它还在长。</p>
+        <a href="https://html-energy-sprite.neocities.org/" target="_blank" rel="noopener" class="project-link">html-energy-sprite.neocities.org ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>HTML Day fell on August 8th this year. In London it ran from two until eight at SET Social in Peckham, and everyone who turned up spent the afternoon hand-writing a webpage. The one made by a person posting as danibloop looks, when you open it, almost empty: a small lime-green star borrowed from HTML Energy, a line asking whether you can feel the HTML energy, and then an instruction — press Command + Option + U and look at the source.</p>
+
+        <p>That is where the work is. Four blocks of comment text sit in the file, signed by a character called H_T_M_L__S_P_R_I_T_E. It asks whether you enjoy looking at these lines, which it calls "the underside of the embroidery," and how often you actually inspect the pages you browse. Then it makes a larger claim: marginalia is older than writing, as old as storytelling itself, and there has never been a linear story, a linear idea, or a linear website. In the last block it mentions that dani left it an incense offering — drawn in ASCII, three thin curls of smoke rising from a small burner — and suggests you might try greeting your own site's sprite the same way.</p>
+
+        <p>The proportions are worth counting. The page displays 295 characters of text. The comments contain 2,441. The sprite says more than eight times as much as the website does. Almost the entire work is read by the browser and then thrown away.</p>
+
+        <p>This is the remainder in the cleanest form available. An HTML parser is a formalizing device: it consumes a source file and produces a render tree. The comment is the one thing in that system that must be read and must not be used — not overlooked, but recognized and then deliberately excluded. The already-construct, the rendered page, depends on the parser's capacity to identify the comment and discard it. So the comment is not an accessory to the page; it is the reverse face of the condition that lets the page exist at all. What danibloop did was move in.</p>
+
+        <p>The gesture repeats at every level of her. The favourite element she lists on e2e is &lt;noscript&gt; — the tag that renders only when the main system fails to run, markup defined entirely by an absence. Her name elsewhere is thisisnotdaniela. And inside the work she appears exactly once, in the third person, mentioned by the sprite as the person who left the incense. She hasn't signed it; she is someone her own site's resident happens to bring up. Three layers, one move: take up residence on the discarded branch.</p>
+
+        <p>View-source has a history, of course. The notes, ASCII drawings and job ads that early pages hid in their markup have all been collected and honoured by now. But that material has finished a chisel-construct cycle. It has a name — view-source culture — it sits inside a nostalgia narrative, and it can be cited. What danibloop is doing is not the same shape: the comment is not an easter egg tucked behind the page, it is the whole work, and the page has demoted itself to a doorway. That logic has no name yet. It is not a standing category of net art, it is not ASCII art, it is not retro web. It was posted as a single link on a social network built to last one day (e2e.html.energy, made for HTML Day 2026), by someone with no art-world footprint, on a site that contains no outbound links at all. When it gets named it will become something else. For now it is still growing.</p>
+        <a href="https://html-energy-sprite.neocities.org/" target="_blank" rel="noopener" class="project-link">html-energy-sprite.neocities.org ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
