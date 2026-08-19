@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大知道德经解 — Non Dubito</title>
+  <meta name="description" content="大知道德经解：以帛书为底本，八十一章散文讲解。Dazhi Daodejing Commentary: prose essays on all eighty-one chapters, based on the Mawangdui silk text.">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/daodejing/index.html">
+  <style>
+    .series-container { max-width:var(--max-w-prose); margin:0 auto; padding:100px 2.5rem 80px; }
+    @media(max-width:620px) { .series-container { padding:80px 1.5rem 60px; } }
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .series-label { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .series-title { font-family:var(--serif); font-size:2rem; color:var(--ink); margin:0.5rem 0 0.25rem; line-height:1.2; }
+    .series-title-en { font-family:var(--serif); font-size:1.2rem; color:var(--ink-muted); margin-bottom:1.5rem; }
+    .series-desc { font-size:1rem; color:var(--ink); line-height:1.7; margin-bottom:2.5rem; }
+    .series-desc p { margin-bottom:1em; }
+    .series-meta { font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--cream-border); }
+    .entry-list { list-style:none; padding:0; margin:0; }
+    .entry-row { display:block; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); margin-bottom:0.75rem; transition:background 0.15s, border-color 0.15s; }
+    .entry-row:hover { background:rgba(0,0,0,0.02); border-color:var(--ink-muted); }
+    .entry-row.intro-row { border-color:rgba(196,157,97,0.4); background:rgba(196,157,97,0.04); }
+    .entry-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:0.4rem; }
+    .entry-num { font-family:var(--sans); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+    .entry-title-zh { font-family:var(--cjk),var(--serif); font-size:1.05rem; color:var(--ink); }
+    .entry-title-en { font-family:var(--serif); font-size:0.92rem; color:var(--ink-muted); margin-bottom:0.2rem; }
+    .source-note { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--cream-border); font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); }
+    .source-note a { color:var(--ink-muted); text-decoration:none; }
+    .source-note a:hover { color:var(--ink); }
+    .ja-link { display:inline-block; margin-top:1rem; font-family:var(--sans); font-size:0.72rem; letter-spacing:0.1em; color:var(--ink-muted); text-decoration:none; border:1px solid var(--cream-border); padding:0.3rem 0.75rem; border-radius:3px; transition:all 0.15s; }
+    .ja-link:hover { border-color:var(--ink-muted); color:var(--ink); }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+            btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
+          });
+        });
+        var cur = document.documentElement.getAttribute('data-lang');
+        btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-lang') === cur); });
+      });
+    })();
+  </script>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span>
+        <span class="title-sub lang-zh" style="font-family:var(--cjk),serif;">自我作为目的</span>
+        <span class="title-sub lang-en">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="series-container">
+    <a href="../../index.html" class="back-link">← Non Dubito</a>
+
+    <div class="series-label lang-zh">散文讲解系列 · 八十一章全注</div>
+    <div class="series-label lang-en">Prose Commentary · All Eighty-One Chapters</div>
+    <h1 class="series-title lang-zh" style="font-family:var(--cjk),var(--serif);">大知道德经解</h1>
+    <h1 class="series-title lang-en">Dazhi Daodejing Commentary</h1>
+    <div class="series-title-en lang-zh">Dazhi Daodejing Commentary</div>
+    <div class="series-title-en lang-en">大知道德经解</div>
+
+    <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
+      <p>以帛书甲本为底本，逐章散文讲解《道德经》。不走玄学路线，不做辞章训诂——每一章都从帛书字面出发，把老子真正在说的那件结构性的事，用今天能懂的话说清楚。</p>
+      <p>全系列导言一篇，正文八十一章。按九章一组，共分九组。每章配有帛书与通行本的字差考据，以及与《余项经》框架的对照。</p>
+    </div>
+    <div class="series-desc lang-en">
+      <p>A prose commentary on all eighty-one chapters of the <em>Daodejing</em>, based on the Mawangdui silk manuscript. Not metaphysics, not classical exegesis — each chapter is read from the silk text's exact wording, and what Laozi was actually saying, structurally, is put in terms legible today.</p>
+      <p>The series opens with an introduction, followed by eighty-one chapters organized in nine groups of nine. Each chapter includes textual variants between the silk manuscript and the received text, with cross-references to the <em>Yuixiang Jing</em> framework.</p>
+    </div>
+
+    <div class="series-meta">
+      <span>秦汉（字大知）· Han Qin · 2026</span>
+      <span style="margin-left:1.5rem;">
+        <a href="ja/index.html" class="ja-link">日本語版 →</a>
+      </span>
+    </div>
+
+    <ul class="entry-list">
+      <li>
+        <a href="daoyan.html" class="entry-row intro-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">导言</span>
+            <span class="entry-num lang-en">Introduction</span>
+          </div>
+          <div class="entry-title-zh lang-zh">八十一章，其实只讲了几件事</div>
+          <div class="entry-title-en lang-en">Eighty-One Chapters, Really Just a Few Things</div>
+        </a>
+      </li>
+      <li><a href="ch01.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第一章</span><span class="entry-num lang-en">Chapter 1</span></div><div class="entry-title-zh lang-zh">道可道</div><div class="entry-title-en lang-en">The Sayable Dao</div></a></li>
+      <li><a href="ch02.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二章</span><span class="entry-num lang-en">Chapter 2</span></div><div class="entry-title-zh lang-zh">美与丑</div><div class="entry-title-en lang-en">Beautiful and Ugly</div></a></li>
+      <li><a href="ch03.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三章</span><span class="entry-num lang-en">Chapter 3</span></div><div class="entry-title-zh lang-zh">不上贤</div><div class="entry-title-en lang-en">Don't Elevate the Worthy</div></a></li>
+      <li><a href="ch04.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四章</span><span class="entry-num lang-en">Chapter 4</span></div><div class="entry-title-zh lang-zh">道冲</div><div class="entry-title-en lang-en">The Dao Is Empty</div></a></li>
+      <li><a href="ch05.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五章</span><span class="entry-num lang-en">Chapter 5</span></div><div class="entry-title-zh lang-zh">五千字</div><div class="entry-title-en lang-en">Five Thousand Words</div></a></li>
+      <li><a href="ch06.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六章</span><span class="entry-num lang-en">Chapter 6</span></div><div class="entry-title-zh lang-zh">溪谷和母亲</div><div class="entry-title-en lang-en">The Valley and the Mother</div></a></li>
+      <li><a href="ch07.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七章</span><span class="entry-num lang-en">Chapter 7</span></div><div class="entry-title-zh lang-zh">长生</div><div class="entry-title-en lang-en">Long Life</div></a></li>
+      <li><a href="ch08.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第八章</span><span class="entry-num lang-en">Chapter 8</span></div><div class="entry-title-zh lang-zh">似水</div><div class="entry-title-en lang-en">Like Water</div></a></li>
+      <li><a href="ch09.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第九章</span><span class="entry-num lang-en">Chapter 9</span></div><div class="entry-title-zh lang-zh">功遂身退</div><div class="entry-title-en lang-en">Withdraw When the Work Is Done</div></a></li>
+      <li><a href="ch10.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第十章</span><span class="entry-num lang-en">Chapter 10</span></div><div class="entry-title-zh lang-zh">营魄</div><div class="entry-title-en lang-en">Guarding the Soul</div></a></li>
+      <li><a href="ch11.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第十一章</span><span class="entry-num lang-en">Chapter 11</span></div><div class="entry-title-zh lang-zh">留位</div><div class="entry-title-en lang-en">Leaving Room</div></a></li>
+      <li><a href="ch12.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第十二章</span><span class="entry-num lang-en">Chapter 12</span></div><div class="entry-title-zh lang-zh">五色不是太多颜色</div><div class="entry-title-en lang-en">The Five Colors Are Not Too Many</div></a></li>
+      <li><a href="ch13.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第十三章</span><span class="entry-num lang-en">Chapter 13</span></div><div class="entry-title-zh lang-zh">身</div><div class="entry-title-en lang-en">The Body</div></a></li>
+      <li><a href="ch14.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第十四章</span><span class="entry-num lang-en">Chapter 14</span></div><div class="entry-title-zh lang-zh">执今之道</div><div class="entry-title-en lang-en">Grasp the Dao of Now</div></a></li>
+      <li><a href="ch15.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第十五章</span><span class="entry-num lang-en">Chapter 15</span></div><div class="entry-title-zh lang-zh">七张日常照片</div><div class="entry-title-en lang-en">Seven Everyday Photographs</div></a></li>
+      <li><a href="ch16.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第十六章</span><span class="entry-num lang-en">Chapter 16</span></div><div class="entry-title-zh lang-zh">两条路</div><div class="entry-title-en lang-en">Two Roads</div></a></li>
+      <li><a href="ch17.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第十七章</span><span class="entry-num lang-en">Chapter 17</span></div><div class="entry-title-zh lang-zh">四等</div><div class="entry-title-en lang-en">Four Grades of Leadership</div></a></li>
+      <li><a href="ch18.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第十八章</span><span class="entry-num lang-en">Chapter 18</span></div><div class="entry-title-zh lang-zh">招牌</div><div class="entry-title-en lang-en">The Signboard</div></a></li>
+      <li><a href="ch19.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第十九章</span><span class="entry-num lang-en">Chapter 19</span></div><div class="entry-title-zh lang-zh">有而不立</div><div class="entry-title-en lang-en">To Have Without Declaring</div></a></li>
+      <li><a href="ch20.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二十章</span><span class="entry-num lang-en">Chapter 20</span></div><div class="entry-title-zh lang-zh">我，和吾</div><div class="entry-title-en lang-en">"I" and "Me"</div></a></li>
+      <li><a href="ch21.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二十一章</span><span class="entry-num lang-en">Chapter 21</span></div><div class="entry-title-zh lang-zh">母里面有什么</div><div class="entry-title-en lang-en">What's Inside the Mother</div></a></li>
+      <li><a href="ch22.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二十二章</span><span class="entry-num lang-en">Chapter 22</span></div><div class="entry-title-zh lang-zh">不抢</div><div class="entry-title-en lang-en">Don't Seize</div></a></li>
+      <li><a href="ch23.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二十三章</span><span class="entry-num lang-en">Chapter 23</span></div><div class="entry-title-zh lang-zh">希言不是少言</div><div class="entry-title-en lang-en">Rare Words Are Not Few Words</div></a></li>
+      <li><a href="ch24.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二十四章</span><span class="entry-num lang-en">Chapter 24</span></div><div class="entry-title-zh lang-zh">我已经 X 了</div><div class="entry-title-en lang-en">I've Already Done X</div></a></li>
+      <li><a href="ch25.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二十五章</span><span class="entry-num lang-en">Chapter 25</span></div><div class="entry-title-zh lang-zh">道法自然</div><div class="entry-title-en lang-en">The Dao Follows What Is So</div></a></li>
+      <li><a href="ch26.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二十六章</span><span class="entry-num lang-en">Chapter 26</span></div><div class="entry-title-zh lang-zh">一车辎重，半个天下</div><div class="entry-title-en lang-en">A Cartload of Supplies, Half a Kingdom</div></a></li>
+      <li><a href="ch27.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二十七章</span><span class="entry-num lang-en">Chapter 27</span></div><div class="entry-title-zh lang-zh">善不是善良</div><div class="entry-title-en lang-en">"Good At" Is Not "Kind"</div></a></li>
+      <li><a href="ch28.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二十八章</span><span class="entry-num lang-en">Chapter 28</span></div><div class="entry-title-zh lang-zh">君子不器</div><div class="entry-title-en lang-en">The Noble Person Is Not an Instrument</div></a></li>
+      <li><a href="ch29.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第二十九章</span><span class="entry-num lang-en">Chapter 29</span></div><div class="entry-title-zh lang-zh">不取天下，才能不失天下</div><div class="entry-title-en lang-en">Not Grasping the World Means Never Losing It</div></a></li>
+      <li><a href="ch30.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三十章</span><span class="entry-num lang-en">Chapter 30</span></div><div class="entry-title-zh lang-zh">树结果，不是抢果</div><div class="entry-title-en lang-en">Trees Bear Fruit; They Don't Seize It</div></a></li>
+      <li><a href="ch31.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三十一章</span><span class="entry-num lang-en">Chapter 31</span></div><div class="entry-title-zh lang-zh">打赢了，要哭</div><div class="entry-title-en lang-en">When You Win, Weep</div></a></li>
+      <li><a href="ch32.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三十二章</span><span class="entry-num lang-en">Chapter 32</span></div><div class="entry-title-zh lang-zh">知止不是停下来</div><div class="entry-title-en lang-en">Knowing to Stop Is Not Stopping</div></a></li>
+      <li><a href="ch33.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三十三章</span><span class="entry-num lang-en">Chapter 33</span></div><div class="entry-title-zh lang-zh">真正的力量在向内</div><div class="entry-title-en lang-en">Real Strength Turns Inward</div></a></li>
+      <li><a href="ch34.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三十四章</span><span class="entry-num lang-en">Chapter 34</span></div><div class="entry-title-zh lang-zh">不立自己为大</div><div class="entry-title-en lang-en">Don't Declare Yourself Great</div></a></li>
+      <li><a href="ch35.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三十五章</span><span class="entry-num lang-en">Chapter 35</span></div><div class="entry-title-zh lang-zh">乐与饵，留不住天下</div><div class="entry-title-en lang-en">Music and Bait Cannot Hold the World</div></a></li>
+      <li><a href="ch36.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三十六章</span><span class="entry-num lang-en">Chapter 36</span></div><div class="entry-title-zh lang-zh">这一章不是教你权谋</div><div class="entry-title-en lang-en">This Chapter Is Not Teaching You Statecraft</div></a></li>
+      <li><a href="ch37.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三十七章</span><span class="entry-num lang-en">Chapter 37</span></div><div class="entry-title-zh lang-zh">守住不管，事情自己会好</div><div class="entry-title-en lang-en">Hold Still, and Things Will Settle</div></a></li>
+      <li><a href="ch38.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三十八章</span><span class="entry-num lang-en">Chapter 38</span></div><div class="entry-title-zh lang-zh">越强调，越稀薄</div><div class="entry-title-en lang-en">The More You Insist, the Thinner It Gets</div></a></li>
+      <li><a href="ch39.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第三十九章</span><span class="entry-num lang-en">Chapter 39</span></div><div class="entry-title-zh lang-zh">越想抓满，越会失去</div><div class="entry-title-en lang-en">The Tighter You Grip, the More You Lose</div></a></li>
+      <li><a href="ch40.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四十章</span><span class="entry-num lang-en">Chapter 40</span></div><div class="entry-title-zh lang-zh">返不是反，弱不是软</div><div class="entry-title-en lang-en">Return Is Not Reversal; Soft Is Not Weak</div></a></li>
+      <li><a href="ch41.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四十一章</span><span class="entry-num lang-en">Chapter 41</span></div><div class="entry-title-zh lang-zh">不是大器晚成</div><div class="entry-title-en lang-en">Not "Great Vessels Mature Slowly"</div></a></li>
+      <li><a href="ch42.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四十二章</span><span class="entry-num lang-en">Chapter 42</span></div><div class="entry-title-zh lang-zh">又强又硬的人，走不到最后</div><div class="entry-title-en lang-en">Those Who Are Strong and Hard Don't Last</div></a></li>
+      <li><a href="ch43.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四十三章</span><span class="entry-num lang-en">Chapter 43</span></div><div class="entry-title-zh lang-zh">水穿石，不是靠硬</div><div class="entry-title-en lang-en">Water Pierces Stone — Not by Force</div></a></li>
+      <li><a href="ch44.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四十四章</span><span class="entry-num lang-en">Chapter 44</span></div><div class="entry-title-zh lang-zh">拥有越多，越不安</div><div class="entry-title-en lang-en">The More You Own, the Less at Ease</div></a></li>
+      <li><a href="ch45.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四十五章</span><span class="entry-num lang-en">Chapter 45</span></div><div class="entry-title-zh lang-zh">最好的，看上去最不像</div><div class="entry-title-en lang-en">The Best Things Look Least Like Themselves</div></a></li>
+      <li><a href="ch46.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四十六章</span><span class="entry-num lang-en">Chapter 46</span></div><div class="entry-title-zh lang-zh">够了，是一种本事</div><div class="entry-title-en lang-en">Knowing "Enough" Is a Skill</div></a></li>
+      <li><a href="ch47.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四十七章</span><span class="entry-num lang-en">Chapter 47</span></div><div class="entry-title-zh lang-zh">走得越远，知道得越少</div><div class="entry-title-en lang-en">The Further You Go, the Less You Know</div></a></li>
+      <li><a href="ch48.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四十八章</span><span class="entry-num lang-en">Chapter 48</span></div><div class="entry-title-zh lang-zh">做减法，比做加法难</div><div class="entry-title-en lang-en">Subtraction Is Harder Than Addition</div></a></li>
+      <li><a href="ch49.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第四十九章</span><span class="entry-num lang-en">Chapter 49</span></div><div class="entry-title-zh lang-zh">等，是最难的功夫</div><div class="entry-title-en lang-en">Waiting Is the Hardest Practice</div></a></li>
+      <li><a href="ch50.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五十章</span><span class="entry-num lang-en">Chapter 50</span></div><div class="entry-title-zh lang-zh">太想活，反而活不长</div><div class="entry-title-en lang-en">Grasping at Life Shortens It</div></a></li>
+      <li><a href="ch51.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五十一章</span><span class="entry-num lang-en">Chapter 51</span></div><div class="entry-title-zh lang-zh">最高的付出，是不让对方欠你</div><div class="entry-title-en lang-en">The Highest Gift Leaves No Debt</div></a></li>
+      <li><a href="ch52.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五十二章</span><span class="entry-num lang-en">Chapter 52</span></div><div class="entry-title-zh lang-zh">看清了果，别忘了根</div><div class="entry-title-en lang-en">See the Fruit Clearly; Don't Forget the Root</div></a></li>
+      <li><a href="ch53.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五十三章</span><span class="entry-num lang-en">Chapter 53</span></div><div class="entry-title-zh lang-zh">什么才是真正的大盗</div><div class="entry-title-en lang-en">What Is the Real Great Thief</div></a></li>
+      <li><a href="ch54.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五十四章</span><span class="entry-num lang-en">Chapter 54</span></div><div class="entry-title-zh lang-zh">想改变世界，先从自己开始</div><div class="entry-title-en lang-en">To Change the World, Start with Yourself</div></a></li>
+      <li><a href="ch55.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五十五章</span><span class="entry-num lang-en">Chapter 55</span></div><div class="entry-title-zh lang-zh">婴儿的力量</div><div class="entry-title-en lang-en">The Power of the Infant</div></a></li>
+      <li><a href="ch56.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五十六章</span><span class="entry-num lang-en">Chapter 56</span></div><div class="entry-title-zh lang-zh">谁也拿捏不住的人</div><div class="entry-title-en lang-en">The Person Nobody Can Grasp</div></a></li>
+      <li><a href="ch57.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五十七章</span><span class="entry-num lang-en">Chapter 57</span></div><div class="entry-title-zh lang-zh">越管，越乱</div><div class="entry-title-en lang-en">The More You Control, the More Chaos</div></a></li>
+      <li><a href="ch58.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五十八章</span><span class="entry-num lang-en">Chapter 58</span></div><div class="entry-title-zh lang-zh">顺的时候，藏着险</div><div class="entry-title-en lang-en">In Easy Times, Danger Hides</div></a></li>
+      <li><a href="ch59.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第五十九章</span><span class="entry-num lang-en">Chapter 59</span></div><div class="entry-title-zh lang-zh">省着用，才走得远</div><div class="entry-title-en lang-en">Save Something, and Go Far</div></a></li>
+      <li><a href="ch60.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六十章</span><span class="entry-num lang-en">Chapter 60</span></div><div class="entry-title-zh lang-zh">煎小鱼，别老翻</div><div class="entry-title-en lang-en">Fry Small Fish — Don't Keep Flipping Them</div></a></li>
+      <li><a href="ch61.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六十一章</span><span class="entry-num lang-en">Chapter 61</span></div><div class="entry-title-zh lang-zh">越强大，越要往低处走</div><div class="entry-title-en lang-en">The More Powerful, the Lower You Must Go</div></a></li>
+      <li><a href="ch62.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六十二章</span><span class="entry-num lang-en">Chapter 62</span></div><div class="entry-title-zh lang-zh">道，从不因为你的过去拒绝你</div><div class="entry-title-en lang-en">The Dao Never Refuses You for Your Past</div></a></li>
+      <li><a href="ch63.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六十三章</span><span class="entry-num lang-en">Chapter 63</span></div><div class="entry-title-zh lang-zh">把事情看难一点，反而不难</div><div class="entry-title-en lang-en">Treat Things as Hard, and They Get Easier</div></a></li>
+      <li><a href="ch64.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六十四章</span><span class="entry-num lang-en">Chapter 64</span></div><div class="entry-title-zh lang-zh">很多事，都是快成的时候败的</div><div class="entry-title-en lang-en">Many Things Fail Just Before They Succeed</div></a></li>
+      <li><a href="ch65.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六十五章</span><span class="entry-num lang-en">Chapter 65</span></div><div class="entry-title-zh lang-zh">越是"我最懂"，别人越长不起来</div><div class="entry-title-en lang-en">The More You Know Best, the Less Others Can Grow</div></a></li>
+      <li><a href="ch66.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六十六章</span><span class="entry-num lang-en">Chapter 66</span></div><div class="entry-title-zh lang-zh">你越往低处站，人越愿意跟着你</div><div class="entry-title-en lang-en">The Lower You Stand, the More People Follow</div></a></li>
+      <li><a href="ch67.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六十七章</span><span class="entry-num lang-en">Chapter 67</span></div><div class="entry-title-zh lang-zh">真正的勇，是从"在乎"里长出来的</div><div class="entry-title-en lang-en">Real Courage Grows from Caring</div></a></li>
+      <li><a href="ch68.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六十八章</span><span class="entry-num lang-en">Chapter 68</span></div><div class="entry-title-zh lang-zh">真正的高手，赢得很安静</div><div class="entry-title-en lang-en">The True Master Wins Quietly</div></a></li>
+      <li><a href="ch69.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第六十九章</span><span class="entry-num lang-en">Chapter 69</span></div><div class="entry-title-zh lang-zh">最大的祸，是觉得自己"无敌"</div><div class="entry-title-en lang-en">The Greatest Danger Is Thinking Yourself Invincible</div></a></li>
+      <li><a href="ch70.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七十章</span><span class="entry-num lang-en">Chapter 70</span></div><div class="entry-title-zh lang-zh">为什么最简单的道理，最难做到</div><div class="entry-title-en lang-en">Why the Simplest Truths Are Hardest to Live</div></a></li>
+      <li><a href="ch71.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七十一章</span><span class="entry-num lang-en">Chapter 71</span></div><div class="entry-title-zh lang-zh">知道自己"不知道"，才是真本事</div><div class="entry-title-en lang-en">Knowing You "Don't Know" — That's Real Skill</div></a></li>
+      <li><a href="ch72.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七十二章</span><span class="entry-num lang-en">Chapter 72</span></div><div class="entry-title-zh lang-zh">看得起自己，和把自己看得太高，是两回事</div><div class="entry-title-en lang-en">Respecting Yourself and Overestimating Yourself Are Different</div></a></li>
+      <li><a href="ch73.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七十三章</span><span class="entry-num lang-en">Chapter 73</span></div><div class="entry-title-zh lang-zh">还有一种勇，是敢于不做</div><div class="entry-title-en lang-en">There Is Also a Courage to Not Act</div></a></li>
+      <li><a href="ch74.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七十四章</span><span class="entry-num lang-en">Chapter 74</span></div><div class="entry-title-zh lang-zh">替别人抡斧头的，多半会伤到自己的手</div><div class="entry-title-en lang-en">Swinging the Axe for Someone Else Usually Cuts Your Hand</div></a></li>
+      <li><a href="ch75.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七十五章</span><span class="entry-num lang-en">Chapter 75</span></div><div class="entry-title-zh lang-zh">当活着都变得费劲，人就什么都不怕了</div><div class="entry-title-en lang-en">When Life Itself Becomes a Burden, Nothing Is Feared</div></a></li>
+      <li><a href="ch76.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七十六章</span><span class="entry-num lang-en">Chapter 76</span></div><div class="entry-title-zh lang-zh">活着的东西，都是软的</div><div class="entry-title-en lang-en">All Living Things Are Soft</div></a></li>
+      <li><a href="ch77.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七十七章</span><span class="entry-num lang-en">Chapter 77</span></div><div class="entry-title-zh lang-zh">你未必有多余的钱，但你一定有多余的"我"</div><div class="entry-title-en lang-en">You May Not Have Extra Money, but You Have Extra "Self"</div></a></li>
+      <li><a href="ch78.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七十八章</span><span class="entry-num lang-en">Chapter 78</span></div><div class="entry-title-zh lang-zh">接得住脏和难，才当得起家</div><div class="entry-title-en lang-en">Bear the Dirty and the Hard, and You Can Be a Home</div></a></li>
+      <li><a href="ch79.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第七十九章</span><span class="entry-num lang-en">Chapter 79</span></div><div class="entry-title-zh lang-zh">再公道的调解，也一定会剩下点什么</div><div class="entry-title-en lang-en">Even the Fairest Settlement Leaves Something Behind</div></a></li>
+      <li><a href="ch80.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第八十章</span><span class="entry-num lang-en">Chapter 80</span></div><div class="entry-title-zh lang-zh">觉得自己碗里的饭是香的</div><div class="entry-title-en lang-en">Feeling the Food in Your Own Bowl Is Fragrant</div></a></li>
+      <li><a href="ch81.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第八十一章</span><span class="entry-num lang-en">Chapter 81</span></div><div class="entry-title-zh lang-zh">老子最后一句话，不是说给圣人的</div><div class="entry-title-en lang-en">Laozi's Last Words Were Not Meant for Sages</div></a></li>
+    </ul>
+
+    <div class="source-note">
+      <span class="lang-zh">完整笺注及帛书字差考据见 Zenodo 存档（九组，CC BY 4.0）·  作者：<a href="https://hqin.substack.com" target="_blank" rel="noopener">@hqinjarsy</a></span>
+      <span class="lang-en">Full annotations and textual variants archived on Zenodo (nine groups, CC BY 4.0) · Author: <a href="https://hqin.substack.com" target="_blank" rel="noopener">@hqinjarsy</a></span>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
