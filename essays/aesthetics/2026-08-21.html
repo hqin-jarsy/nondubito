@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>泛音不在代码里 — Non Dubito</title>
+  <meta name="description" content="Luthier：一个刚性弦方程、一条弓的摩擦曲线、一个阻尼琴码，弦乐器的全部脾气自己长了出来。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-08-21.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-08-21</div>
+          <h1 class="lang-zh">泛音不在代码里</h1>
+          <h1 class="lang-en">The Harmonic Is Not in the Code</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>昨天，8 月 20 日下午 13:56 UTC，有人在 itch.io 上传了一个叫 Luthier 的浏览器页面。打开是一张工作台，上面绷着几根弦。用鼠标把一根弦横向拉开，松手。你听到的东西不是采样，也不是合成器的预设：那是一个刚性弦方程，每秒被求解 48,000 次；屏幕上抖动的那条曲线，和声音来自同一组数字。作者写：图像和声音是同一个对象。四张台子分别绷着吉他、竖琴、大提琴，还有一套玻璃弦——玻璃那台响得久得不像话。每根弦都可以换材质：钢、尼龙、羊肠、玻璃。</p>
+
+        <p>真正的内容在这一段：整个程序里，一个方程管弦，一条摩擦曲线管弓，一个阻尼振子管琴码，除此之外几乎没有功能。然后——在弦长正中间轻按，出八度；按在三分之一处，音高升五度；靠近琴码拨弦，音色变薄变亮；弓拉得太快，音会翻成尖啸的八度，那是大提琴手要用好几年才学会不越过的一条真实边界；把两根弦调成同度，拨响一根再按住它，另一根会自己唱起来。作者说得很直：这些行为在源码里一行都找不到。没有任何一段代码知道什么叫泛音。它们是后果。</p>
+
+        <p>这是余项最干净的一种形态。形式化投进去的东西极少——一条偏微分方程加两个附件；掉出来的东西极多，多到覆盖了整个弦乐器的行为语汇。泛音不是被写进去的，是被剩下来的。而且请注意方向：这里的余项不是残缺，不是误差，不是没算干净的那部分，它就是全部值得听的东西。程序员写下的是已构，弦自己长出来的是余项——而人们几百年来称之为「乐器」的那件事，恰好整个长在余项那一侧。</p>
+
+        <p>最见功夫的是调音那一步。这台工作台会自己调音：它先静音地拨一次每根弦，从频谱里量出音高，再修正张力，直到误差小于半个音分。然后——每根弦旁边印出来的那个频率，是对正在运行的仿真的测量值，不是它原本瞄准的目标值。这一步小得几乎没人会注意，但它是整件作品里最硬的一句话。绝大多数仿真报出的是自己的设定值，因为设定值总是漂亮的。这一个拒绝报告自己的意图，只报告自己实际做了什么。意图与实测之间那道缝，它选择盯着看，而不是盖住。</p>
+
+        <p>同一种诚实还出现在另一处。页面上专门留了一段写「哪些不是仿真」——理由是「这件作品的规矩就是要说出来」：琴体是四个谐振滤波器，房间是一段合成脉冲响应，还有一个软削波保护你的音箱；除此之外，弦、手指、弓、琴码、调音，都是真算出来的。把模型停下来的那条线画在明处，是在标出已构与余项的边界；绝大多数作品的做法是把接缝藏起来。顺带一提，这一页的 AI 声明栏勾了代码、图形、声音、文本四项——作者把这件事也说出来了。这和批量生成的废料是两回事：废料的定义是产出里没有判断，而这一页从头到尾都是判断——拒绝加功能、自己量自己、把边界写在明处。更要紧的是，这件东西里最值得听的那部分，恰恰是谁都没有写的。弦长正中间的那个八度不属于任何作者。目前关于机器参与创作的争论，还没有一个词能安放这种情况。</p>
+
+        <p>所以现在去看它，和三年后去看它，是两件事。此刻它的全部命名装置是：一个 itch.io 页面、一个昨天的时间戳、一个 GitHub 仓库、六个标签。它不是合成器（没有预设），不是采样库，不是教学演示（那条线早就有名字有盒子），也不是游戏。「物理建模合成」这个词存在三十年了，但那个词指的是一类音源；这一页想说的是另一件事——一件乐器的全部脾气，和写下它所需的那一小堆东西之间，究竟差着多少。这中间的形状还没有名字，逻辑还在长。等它有了名字，它就变成别的东西了。</p>
+        <a href="https://cjros.itch.io/luthier" target="_blank" rel="noopener" class="project-link">cjros.itch.io ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Yesterday at 13:56 UTC on 20 August, somebody uploaded a browser page called Luthier to itch.io. It opens onto a workbench with strings on it. Pull one sideways with the mouse and let go. What you hear is not a sample and not a synthesiser preset: it is a stiff-string equation being solved 48,000 times a second, and the curve twitching on screen is drawn from the same numbers the sound comes from. Picture and sound, the author writes, are the same object. Four benches come strung — guitar, harp, cello, and a glass rig that rings for an unreasonably long time. Any string can be re-materialled: steel, nylon, gut, glass.</p>
+
+        <p>The actual content is in one passage. The whole program is one equation for a stiff string, one friction curve for the bow, and one damped oscillator for the bridge; almost nothing else is a feature. And then — touch a string at exactly half its length and you get the octave; press at a third and the pitch rises a fifth; pluck near the bridge and the tone turns thin and bright; draw the bow too fast and the note flips to a squealing octave, a real boundary that cellists spend years learning to stay inside; tune two strings in unison, pluck one, damp it, and the other one starts singing. The author is blunt about it: none of those behaviours appear anywhere in the source. There is no code that knows what a harmonic is. They are consequences.</p>
+
+        <p>This is about as clean a form of the remainder as you get. What formalization puts in is tiny — one partial differential equation plus two attachments. What falls out is enormous, large enough to cover the entire behavioural vocabulary of stringed instruments. The harmonic was not written in; it was left over. And note the direction: the remainder here is not a defect, not error, not the part that failed to come out clean. It is the whole of what is worth listening to. What the programmer wrote down is already-construct. What the string grew on its own is remainder — and the thing people have called an "instrument" for several centuries turns out to live entirely on the remainder side.</p>
+
+        <p>The sharpest move is the tuning step. The bench tunes itself: it plucks each string silently, measures the pitch off a spectrum, and corrects the tension until the error is under half a cent. Then — the frequency printed beside each string is a measurement of the running simulation, not the target it aimed at. It is a small enough step that almost nobody will notice it, and it is the hardest sentence in the piece. Most simulations report their set values, because set values are always tidy. This one refuses to report what it meant and reports only what it did. The gap between intention and measurement is a place it chose to stare at rather than cover over.</p>
+
+        <p>The same honesty turns up in one more place. The page keeps a paragraph on what is not simulated — the stated reason being that "the rule of this piece is to say so": the instrument body is four resonant filters, the room is a synthetic impulse response, and a soft-clip protects your speakers; everything else — strings, fingers, bow, bridge, tuning — is computed. Drawing the line where the model stops, out in the open, is a way of marking the border between already-construct and remainder; most work hides its seams instead. Incidentally, this page's AI disclosure box has all four boxes ticked — code, graphics, sound, text. The author said that out loud too. It is a different thing from bulk-generated waste: waste is output with no judgment in it, and this page is judgment end to end — refusing features, measuring itself, publishing its own limits. More to the point, the part of it worth hearing is exactly the part nobody wrote. The octave at the midpoint of the string belongs to no author. The current argument about machines and authorship has no word to put that in.</p>
+
+        <p>So looking at it now and looking at it in three years are two different acts. Its entire naming apparatus at the moment is one itch.io page, a timestamp from yesterday, a GitHub repository and six tags. It is not a synthesiser (no presets), not a sample library, not an educational demo (that lineage has had a name and a box for decades), not a game. "Physical modelling synthesis" has been a phrase for thirty years, but the phrase names a class of sound source; this page is after something else — how much distance there is between everything an instrument does and the small pile of things you have to write down to get it. That shape has no name yet and its logic is still moving. When it gets a name it will become something else.</p>
+        <a href="https://cjros.itch.io/luthier" target="_blank" rel="noopener" class="project-link">cjros.itch.io ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>

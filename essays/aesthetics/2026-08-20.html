@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>等待也是一条指令 — Non Dubito</title>
+  <meta name="description" content="mop2 的 Copper Showdown Editor 把 Amiga 上一台只有三条指令的协处理器做成了现场乐器——它的全部工作，是占用电子束行程留下的那段空档。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-08-20.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-08-20</div>
+          <h1 class="lang-zh">等待也是一条指令</h1>
+          <h1 class="lang-en">Waiting Is an Instruction</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>明天到周日，科隆的 AbenteuerHallenKALK 会办 Evoke 2026。开场节目叫 Copper Showdown：四个人上台，半决赛和决赛两轮，每轮 30 分钟，用的工具是一个叫 Copper Showdown Editor 的东西。它是一个桌面 IDE，里面嵌了一台 Amiga 模拟器——你在编辑器里用 Lua 写 copperlist，写下去的东西实时跑在背景上。工具的代码是 mop2 写的，示例由他和 Greippi 一起做，2025 年 1 月 31 日在 Gerp 派对上首发，最新的 0.4.0 是 7 月 26 日推的。存盘格式 .csd 其实就是 .toml，任何文本编辑器都能打开。它还有一个导出选项：把你现场写的东西做成软盘镜像，插进一台 512 KB 内存的 A500，它真的会跑。</p>
+
+        <p>Copper 是 1985 年 Amiga 芯片组里的一个协处理器，一共三条指令：MOVE、WAIT、SKIP。它不做算术。它盯着显像管的电子束。你让它等光束走到某一行，它就等；等到了，你让它往芯片组的某个寄存器里塞一个值，比如换掉背景色。整台 Amiga 最有名的那个画面——一条一条横着滚过屏幕的彩带，copper bars——就是这么来的。没有人在画它。它是机器在等待期间做的那件事留下的痕迹。</p>
+
+        <p>这是余项能有的一个很干净的形状。电子束从左扫到右、从上扫到下，中间有行程，那段行程对 CPU 是空的。芯片组的设计把一台三条指令的小机器塞进了这段空档。换句话说，Copper 的全部存在理由，是占用一个形式化过程排出来的间隙。它做出的图像不是被绘制的，是被等出来的。WAIT 在这里不是「等着去做事」，WAIT 就是那件事本身。</p>
+
+        <p>需要分清楚的是：Amiga 本身早就是已构了。它有完整的名字、完整的怀旧产业、博物馆里的位置，还有正在推进的数字文化遗产申报。Amiga demo 作为一个类目已经跑完了整轮凿构循环，它今天的美是上一轮凿构留下的沉积物。Copper Showdown 不在那条线上。去年 Evoke 第一次办这个比赛，上台的四个人是 canmom、Flopine、Greippi、NuSan，最后 NuSan 赢，Flopine 第二——而组织者说，四个人里有三个此前根本没碰过 Amiga。他们不在追忆任何东西。何况 1985 年也没人这样用过 copper：那时候你改一行要重新汇编、重新跑，看不到即时结果。「在观众面前即兴写 copperlist」这件事，是 2025 年才第一次存在的。</p>
+
+        <p>约束在这里是材料，不是障碍。Copper 横向只能寻址到每 4 个像素；示例里有个叫 scheiss-hydrant 的文件专门演示这条限制，顺带演示怎么从 copper 里驱动 sprite DMA。三条指令、一个光束位置、30 分钟、没有撤销。这个编辑器在设计上参照了 Bonzomatic，也就是 shader 现场编程那一套；但 shader showdown 早就有名字、有观众预期、有一整套成型的评价习惯。Copper showdown 一岁。组织者在页面上写「Copper is for everyone ❤️」，然后专门补了一句：如果你玩 TIC-80，或者只是好奇，也来。</p>
+
+        <p>现在去看它，和三年后去看它，是两件事。此刻它的全部命名装置是：一个 GitLab 仓库、一个版本号 0.4.0、一个 Discord、一段 Twitch 存档里的时间戳，以及 livecode.demozoo.org 上刚开出来的一个分类页。艺术界还没有为它准备任何词。它不是 live coding——那条线有自己的会议和学术史；不是 glitch；也不是复古计算。它是一个刚长出来、还没被命名的形状，逻辑还在生长。等它有了名字，它就变成别的东西了。而这个周末那 30 分钟里发生的事，将来只会以录像的形式存在。</p>
+        <a href="https://gitlab.com/akronyme-analogiker/copper-showdown/copper-showdown-editor" target="_blank" rel="noopener" class="project-link">gitlab.com/akronyme-analogiker ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Tomorrow through Sunday, Evoke 2026 runs at the AbenteuerHallenKALK in Cologne. The party opens with the Copper Showdown: four people on stage, a semi-final and a final, 30 minutes per round, using a thing called the Copper Showdown Editor. It is a desktop IDE with an Amiga emulator built into it — you write copperlists in Lua on the left and what you write runs live behind you. The code is by mop2, the examples by him and Greippi, first released on 31 January 2025 at the Gerp party; the current 0.4.0 shipped on 26 July 2026. The save format, .csd, is just .toml, so any text editor opens it. There is also an export option: turn what you improvised into a floppy image, put it in an A500 with 512 KB of memory, and it actually runs.</p>
+
+        <p>The Copper is a coprocessor from the 1985 Amiga chipset with exactly three instructions: MOVE, WAIT, SKIP. It does no arithmetic. It watches the electron beam of the CRT. You tell it to wait until the beam reaches a given line, and it waits; when it gets there you have it push a value into a chipset register — a new background colour, say. The most famous image the Amiga ever produced, the bands of colour rolling horizontally across the screen, copper bars, is made this way. Nobody is drawing it. It is the trace of what the machine did while it was waiting.</p>
+
+        <p>This is about as clean a shape as the remainder gets. The beam travels left to right and top to bottom, and that transit takes time, and that time is empty as far as the CPU is concerned. The chipset design put a three-instruction machine inside the gap. Which is to say: the Copper's entire reason for existing is to occupy an interval expelled by a formalizing process. The images it makes are not drawn, they are waited into being. WAIT here is not waiting in order to do something. WAIT is the thing.</p>
+
+        <p>Worth separating out: the Amiga itself is long since already-construct. It has a complete name, a complete nostalgia industry, a shelf in the museum, and an ongoing bid for recognition as digital cultural heritage. Amiga demos as a category finished their chisel-construct cycle years ago; the beauty they have now is sediment from that cycle. The Copper Showdown is not on that line. Evoke ran the first one last year with canmom, Flopine, Greippi and NuSan on stage — NuSan won, Flopine came second — and the organizers note that three of the four had never touched an Amiga before. They are not recovering a memory. Nobody used the Copper this way in 1985 either: back then changing a line meant reassembling and rerunning, with no live result to look at. Improvising a copperlist in front of an audience is something that first existed in 2025.</p>
+
+        <p>The constraint here is material, not obstacle. The Copper can only address every 4th pixel horizontally; one of the sample files, scheiss-hydrant, exists mainly to demonstrate that limit, and incidentally to show how to drive sprite DMA from the copper. Three instructions, one beam position, 30 minutes, no undo. The editor's design is loosely modelled on Bonzomatic, the shader live-coding setup — but the shader showdown has had a name, an audience expectation and a settled set of evaluative habits for years. The copper showdown is one year old. The organizers write "Copper is for everyone ❤️" on the page and then add, specifically, that if you are a TIC-80 byte jammer or merely curious, come anyway.</p>
+
+        <p>Looking at this now and looking at it in three years are two different acts. Its entire naming apparatus at the moment is a GitLab repository, a version number of 0.4.0, a Discord, a timestamp inside a Twitch archive, and a freshly opened category page on livecode.demozoo.org. The art world has no word ready for it. It is not live coding — that lineage has its own conferences and academic history; it is not glitch; it is not retrocomputing. It is a shape that has just grown, not yet named, its logic still moving. When it gets a name it will become something else. And whatever happens in those 30 minutes this weekend will afterwards exist only as video.</p>
+        <a href="https://gitlab.com/akronyme-analogiker/copper-showdown/copper-showdown-editor" target="_blank" rel="noopener" class="project-link">gitlab.com/akronyme-analogiker ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
