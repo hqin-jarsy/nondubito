@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>金本位｜凿构周期律·经济系列 — Non Dubito</title>
+  <meta name="description" content="金本位把汇率钉到小数点后好几位，精确得像一门自然科学。可这把尺子最引以为傲的自动调节，恰恰是靠着让某些人失业来完成的。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/economy/ep14.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .essay-entry-point { font-family:var(--sans); font-size:0.72rem; color:var(--ink-muted); font-style:italic; margin-top:0.5rem; margin-bottom:0.25rem; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 凿构周期律·经济系列</a>
+        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Economics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">凿构周期律 · 经济</div>
+          <div class="essay-series lang-en">Chisel-Construct Cycle · Economics</div>
+          <div class="emperor-ep-num lang-zh">第 14 篇，共 23 篇</div>
+          <div class="emperor-ep-num lang-en">Essay 14 of 23</div>
+          <h1 class="lang-zh">第十四篇　金本位:精确到小数点,却在最要紧的地方看不见</h1>
+          <h1 class="lang-en">Essay 14: The Scale and the Remainder — Exact to the Decimal, Blind Where It Mattered</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<h3>一 小数点后七位</h3>
+
+<p>英镑和美元之间曾经有过一个换算率:每一英镑合四点八六六五六三五美元。</p>
+
+<p>小数点后面排了七位。</p>
+
+<p>这个数不是估算出来的,它是被定义出来的。英国把一英镑定义为一定重量和成色的黄金,美国把一美元也定义为一定重量和成色的黄金,两个定义相除,得数就是它。它不需要任何一次成交去支持,也不会因为任何一天的行情而变动。它是两条法律相乘的结果。</p>
+
+<p>两条法律相乘,这个说法值得掂一下。它意味着这个换算率不必去问市场,不必去问任何一位商人,也不必等任何一笔交易发生。它在被写下来的那一刻就已经成立,而且此后每一天都成立,不管那一天有没有人真的拿英镑去换美元。构追求的一直是这样的东西:一个不依赖任何具体事件就能站住的数。</p>
+
+<p>一个换算率能做到这个地步,在人类的账本史上是头一回。前面十三篇里的尺子,都还在跟具体的东西打交道:泥板上的大麦,城里通行而城外碎裂的银币,一张要靠官府认账的纸,一片要靠邻居都看得见才管得住的公地。到这里,尺子第一次不再需要任何一个具体的人认它。它只需要两部法律,和一种金属。</p>
+
+<p>但固定汇率并不是一条线。它是一段带子。</p>
+
+<p>把黄金从伦敦运到纽约要花钱:运费,保险,包装和搬运,路上那些天占压的利息,风险溢价,再加上做这门生意的人应得的一份利润。这些成本加在一起,就在平价的两边各撑出一个点。汇率涨过上面那个点,私人商人就有利可图:买金,装船,运过去,兑成对方的货币,把差价赚下来。跌破下面那个点,反着做一遍。</p>
+
+<p>要留意这段带子的宽窄是由什么决定的。它不由两国的国力决定,也不由谁的信用更好决定,它由船费,保险费和路上那些天的利息决定。也就是说,这套制度里最灵活的那一部分,刻度取自运输业的成本表。世界上最抽象的那把尺子,它的公差是由货轮和保险单定出来的。</p>
+
+<p>于是不需要任何人下命令,汇率会自己回到那条带子里。这套安排看上去几乎完美,而它最漂亮的地方在于:把它拉回来的不是官员,是一批只想赚钱的商人。</p>
+
+<p>不过这里有一件事必须说清楚,而它是后面所有内容的第一颗钉子。</p>
+
+<p>商人之所以肯去做这笔套利,不只是因为金属在那里。还因为他相信:这一头的当局真会按法定价格把黄金卖给他,那一头的当局真会按法定价格把黄金收下来,而且在他的船靠岸之前,不会有哪一国突然宣布管制外汇。</p>
+
+<p>没有这个信念,金点就只是账面上的两个数字。</p>
+
+<p>这句话可以再推一步。整套自动机制的第一环不是金属,是预期。金属只有在人相信它会被按价交出的时候才起作用;人一旦不信,金属还在原地,机制却已经停了。第六篇里那句宋人的话,在这里换了个场合又出现了一次:官无本钱,民何以信。金本位的回答是备足本钱,而 1931年的事情说明,本钱备足了,信仍然可能不够。</p>
+
+<p>一套号称把货币安放在金属上,从而不必再依赖任何人守信的制度,它最精密的那一部分,靠的仍旧是一个信念。这句话在后面每一次危机里都会被重新验证一遍,而且每一次验证都很贵。</p>
+
+<p>思想上的前史可以追到更早。1752年,休谟写过一篇讨论贸易差额的短文,提出货币和商品,劳动,产业之间存在着比例关系,多余的金银不可能永远堆在一个地方。他写下一句被后人引用了两百多年的话:货币总会沿着百条渠道自己流回来。</p>
+
+<p>自己两个字,是这套制度全部魅力的来源。</p>
+
+<h3>二 一次不协调的决策</h3>
+
+<p>后来的人容易把金本位讲成一条必然上升的线:世界越来越发达,交易越来越复杂,于是大家理性地选择了最优的那把尺子。</p>
+
+<p>材料不支持这个讲法。</p>
+
+<p>真正的国际转折发生在 1871年到 1873年之间。德意志帝国统一之后,从各邦原有的银本位转向了金本位。有研究者总结说,这场改革引发了其他国家一连串的步骤,最终结束了全球范围的双金属制。紧接着,法国在 1873年九月停止自由铸造银币,拉丁货币联盟的其他国家陆续跟进,双金属制失去了它最后的稳定器。</p>
+
+<p>但同一位研究者立刻补了一句:德国并不是非走这条路不可。</p>
+
+<p>1860年代,德国内部曾经认真讨论过加入法国主导的双金属体系。后来的结果,更像是德法两国在 1870年代初各自做出的不协调决策叠加在一起的产物。有研究这段历史的人干脆把它称作一次历史的偶然事故。</p>
+
+<p>偶然事故这四个字,在经济史里是很重的判断。它的意思不是说事情本可以不发生,而是说事情本可以发生成另一个样子,而后来所有的推理都建立在它已经是这个样子之上。世界上有多少国家用金,不是从哪一条经济规律里推出来的,它是从 1871年之后的几年里,几个国家先后做出的几次决定里长出来的。</p>
+
+<p>后面的扩散有一张日期表。德国 1871年,丹麦 1872年,瑞典 1873年,荷兰 1875年,法国 1878年;美国在法律意义上完成于 1873年到 1874年,而有效恢复要到 1879年;日本 1897年;印度 1898年走向与英镑挂钩的金汇兑本位。</p>
+
+<p>这张表还有另一种读法。表上每一个年份的背后,都是一次国内的政治过程:议会里的辩论,银矿主的反对,债权人和债务人各自的算盘,以及一个国家想不想被伦敦当作可靠的借款人。日期看上去是技术性的,过程从来不是。美国从法律上完成到有效恢复隔了六年上下,那几年里发生的事情足以另写一部书。</p>
+
+<p>到 1879年,英国,法国,德国,美国这四个核心国家同时处在金本位之内。人们后来所说的国际金本位,从这一年算起,到 1914年为止,一共三十六年。</p>
+
+<p>三十六年在一个人的一生里不算短,在制度史里也不算长。而后来两代人关于金本位的全部想象,基本上都建立在这三十六年上面。说它稳定,指的是这三十六年;说它自动,指的是这三十六年;说它是一种自然秩序,指的还是这三十六年。一段不到四十年的经验,被当成了一件东西的本性。</p>
+
+<p>关于这场扩散为什么发生,史学界有两种讲法,而且都不弱。</p>
+
+<p>一路强调网络效应:一个国家和金本位国家的贸易越多,它加入的动力就越强;一国金融体系的成熟程度也会影响它加入的时点。按这个讲法,扩散是一次合乎逻辑的适配。</p>
+
+<p>另一路强调偶然:德法两国的选择本可以不同,双金属制的崩解不是被算出来的,是被撞出来的。按这个讲法,扩散是一连串本来可能走向别处的政策动作叠加起来的结果。</p>
+
+<p>这里不做裁决。倒是有一件事,把两种讲法放在一起就能看清楚。</p>
+
+<p>一把后来被无数人当作自然,客观,不由人意的尺子,它的诞生日期可以精确到某一个国家某一年的一次立法;而那次立法,当时是可以做成另一个样子的。构最成功的时候,总会让人忘记它是被造出来的。三十六年不算长,已经足够让一代人以为它一直都在。</p>
+
+<p>这是构的常规动作,而且前面出现过。第十篇里,一段前后二十年,互不通气的过程被压成一个年份和三个名字;这里是几个国家先后做出的政策选择,被压成一种叫做金本位的自然状态。构不但要把外面的东西压到自己的尺子上,它还要把自己的来历压平,压成一个没有起点的背景。</p>
+
+<h3>三 规则的游戏</h3>
+
+<p>金本位在书本上的运作,可以讲得非常干净。</p>
+
+<p>一国的中央银行发行票据和存款负债,必须有一定比例的黄金储备去支撑。国际收支出现赤字,就用黄金外流去结算;出现顺差,就用黄金流入去结算。如果货币当局不主动去抵消金流的影响,黄金流出会压缩这个国家的货币和信用,物价随之下跌,出口因此变得便宜,赤字自动收窄;黄金流入的地方反过来。这套东西后来被称作价格与铸币的流动机制。</p>
+
+<p>有研究者总结古典经济学家为什么推崇它,给的理由很朴素:他们相信这套机制会在世界范围内带来长期的价格稳定,并且让各国的价格大致保持一致。</p>
+
+<p>这个设想有它真实的吸引力,不能被轻慢。它承诺的是一件在账本史上从来没有过的事:不必依靠任何一位君主的自制,也不必依靠任何一个议会的克制,一国的货币能发到多少就自动有一个上限,而这个上限由地底下挖出来的东西决定。第二篇里那些不断自增的债,第六篇里越印越多的纸,在这个设想里从原理上被堵死了。</p>
+
+<p>问题出在实际运行上。</p>
+
+<p>一位回顾古典金本位的研究者在一次学术会议的导论里直接写道:会议并没有解决这样一个问题,在固定汇率之下,真正主导国际调整的到底是铸币流动,购买力平价和利率平价,还是短期资本流动。她还指出,十九世纪后期以来的研究者越来越认识到,短期资本流动在调整中起的作用,并不比金属本身小。</p>
+
+<p>她接着列出了英格兰银行实际在做的事,而那份清单一点也不像一台自动机器。</p>
+
+<p>英格兰银行并不只是机械地跟着金流升降贴现率。它还会调节金条和外国金币的买卖价格,使用一套后来被称作金装置的手法,对不同的贷款收取不同的利率,伸缩自己在短期国际贷款上的头寸,并且用公开市场操作,尽量把对外防守的动作与国内经济隔开。</p>
+
+<p>那份清单里没有一件是自动的。每一件都要判断:什么时候动,动多少,先动哪一样,要不要让市场看出来。而且这些动作的目的往往不是让机制运转,恰恰是缓冲机制运转对国内造成的冲击。那台号称自动的机器,一直有人在旁边替它挡着,免得它把自己脚下的地面碾坏。</p>
+
+<p>所谓规则的游戏,从来不是一台不需要人看管的机器。</p>
+
+<p>这一点对构的性质说明得很透。一套制度越是宣称自己自动,它在幕后需要的手就越多,而且那些手必须尽量不出声。因为一旦被看见有人在扳,自动这个说法就没有了,而自动正是它全部说服力的来源。</p>
+
+<p>余项在这一节里第一次露头,而且露在一个奇怪的位置上:它不在被压的那些东西里,它在压的那一头。要让这台机器看上去自动,就得有人不断做出不自动的判断,而这些判断本身没有一栏可以记。规则的游戏这个名字里,规则是写下来的那一部分,游戏是没有写下来的那一部分。</p>
+
+<p>还有一层更硬的东西:能扳的人和扳不动的人,不在同一个位置上。</p>
+
+<p>艾肯格林后来回看这段历史时指出,维持这套体制的合作,主要局限于欧洲的几个核心国家,加上偶尔参与的美国;外围那些较小的国家并没有得到同样的支持,因此在压力面前,它们更容易失守。</p>
+
+<p>同一把尺子,不同的承受力。构的普遍性从来是分层的:它对所有人用同一个标准,而不是所有人都能在同一个标准下活下来。</p>
+
+<p>这句话在前面几篇里已经出现过它的几种变形。第七篇里,同一套通约把责任摊薄到没有人负责;第十二篇里,同一把工资尺子给做得更多的那一方量出更低的价。这里是第三种形态:同一条纪律,核心国家有人扶着,外围国家没有。规则可以写得完全一样,而规则之外那一圈支持结构,从来不写在规则里。</p>
+
+<h3>四 无形项目</h3>
+
+<p>要维持金本位,一个国家至少得知道自己的对外账目大概是什么样子。而这件事,当时办不到。</p>
+
+<p>战前的英国之所以看起来不太需要更多统计,是因为它的账一直很宽裕:有形贸易上的逆差,长期被无形项目上的盈余覆盖过去,覆盖完了还有余力大量对外投资。战前英国每年的对外投资,大约相当于本国国民收入的百分之四,相当于全年储蓄的百分之三十。</p>
+
+<p>无形项目指的是航运,金融服务,利息收入,佣金,海外投资的收益。它们都能结算,可是它们不像一船棉花或者一批钢轨那样,在码头上就能被点清。</p>
+
+<p>无形这个词用得很准,而且是当时的人自己用的。它指的不是不存在,也不是不重要,恰恰相反,它指的是英国当时最赚钱的那一大块生意。一个国家最强的部分同时是它最难点清的部分,这件事本身就该让人对账面的完整性保持警惕。可是在账一直宽裕的年代,没有人有动力去把它点清,因为不点也过得去。</p>
+
+<p>英格兰银行后来自己做过一份回顾,那份回顾几乎是给共同尺度这个神话写的一个反讽的注脚。</p>
+
+<p>它写道,1925年英国恢复金本位之前,当时可以拿到的国际收支统计,几乎没有进入决策讨论;那时候的人谈论英国的对外状况,用的只有最含糊的说法。到 1926年,统计委员会虽然已经懂得国际收支的记账原则,实践中可用的数据仍然十分有限。凯恩斯在 1927年抱怨过一句,那些无形项目在字面意义上依然是无形的。</p>
+
+<p>1927年这个时间点要记住。此时英国已经回到金本位两年,已经为这个决定付了两年的代价,而支撑这个决定的那套对外账目,统计上仍旧是一片模糊。决定是照着一个精确的数字做出来的,而那个数字要衡量的现实,当时无人测得清。</p>
+
+<p>再往后更糟。1930年到 1931年,麦克米伦委员会对英国净短期对外负债做过估计,那个估计后来被证明明显偏低。</p>
+
+<p>而到了 1931年九月,英格兰银行内部的一份备忘录承认:资本移动过于巨大,以至于连最宽泛的数字暗示都无法给出。</p>
+
+<p>把这句话和第一节那七位小数并排放着。</p>
+
+<p>平价可以算到小数点后面第七位,而自己国家的短期外债有多少,明天还会跑掉多少,连一个最宽泛的暗示都给不出来。</p>
+
+<p>这是余项在这一段历史里的形状,而且它和前面几篇都不一样。</p>
+
+<p>前面的余项,有的是没被量到的,有的是量准了不去看的,有的是被划到学科门外的,有的是拿不出凭据的。这里的余项是另一种:尺子极精确,而被量的对象不可知。</p>
+
+<p>这两件事常常被混为一谈,而它们完全不同。精确说的是尺子这一头:刻度分得多细,读数能报到第几位。可知说的是对象那一头:那个东西现在有多大,明天会变成多大。一把尺子可以细到头发丝,而它要量的东西可能根本不肯站着不动。构最容易犯的错误就在这里,它把自己这一头的精确,误当成了对面那一头的清楚。</p>
+
+<p>1931年那场危机的麻烦,从来不是黄金没有定义。黄金定义得清清楚楚。麻烦在于,真实的头寸是多少,以及别人明天会不会接着跑,这两件事没有小数位,也没有单位。</p>
+
+<p>金本位并没有把世界变得可测量。它做的是另一件事:它不断逼着一个又一个国家,去把本来难以放进同一量纲的东西统计化,平衡表化,汇率化。这件工程一直在推进,而在最要紧的那一刻,数字还是给不出来。</p>
+
+<p>而工程本身是有用的,这一点不能反着说。国际收支的记账原则,统计委员会,后来那整套对外账目体系,都是被这套制度逼出来的,而且一直用到今天。构逼出来的东西常常比构本身活得久。只是它们赶不上当初那场急事:等到能算清的时候,要算的那件事已经过去了。</p>
+
+<h3>五 四百金衡盎司</h3>
+
+<p>1925年四月二十八日,丘吉尔在预算演说里宣布,英国恢复金本位。</p>
+
+<p>但他紧接着补了一句限定:这并不意味着要重新发行金币。他说那样做完全没有必要,而且在当时的财力下,会是一种不可原谅的奢侈。他要求公众继续使用纸币,不要改变过去十年里养成的用钞习惯。</p>
+
+<p>这段话里有一个很少被注意的细节。丘吉尔不是在解释一项技术安排,他是在安抚。他要公众放心地继续用纸,不要因为听说恢复了金本位就跑去银行要金子。也就是说,这项制度在宣布的当天就已经默认了一件事:如果人们真的都来兑,这套安排承受不住。</p>
+
+<p>那么恢复的到底是什么。</p>
+
+<p>真正的可兑换形式是这样的:英格兰银行在总部,按固定价格出售金块,而每一次出售的分量不得少于四百金衡盎司。</p>
+
+<p>几天之后,《1925年金本位法》把这个安排写进了法律。条文的意思很明确:英格兰银行不再必须用法定金币兑付纸币,它必须做的是,向提出请求并且以法定货币付款的人,出售大约四百金衡盎司纯金的金块。</p>
+
+<p>四百金衡盎司,合十二公斤多一点。</p>
+
+<p>这个分量不是随手定的。它大到足以把绝大多数持有纸币的人挡在兑换之外,同时又小到不影响银行之间的大额清算。门槛设在这个位置上,兑换就从一项人人可用的权利,变成了一项只有机构才用得上的权利。</p>
+
+<p>一个普通人拿着一张五英镑的纸币走进英格兰银行,他换不到任何东西。可兑换性在法律上完好无缺,在事实上只对极少数人开放。</p>
+
+<p>这里出现了一种很干净的分离。法律条文上,英镑仍然是可以兑成黄金的,这句话完全为真,而且正是这句话支撑着整个制度的信誉。事实上,能行使这项权利的只有银行,大商号和别国的央行。信誉建立在一项权利上,而这项权利对绝大多数持有这笔钱的人并不成立。这不是欺骗,条文写得明明白白,门槛也是公开的。它只是又一次说明,同一条规则对处在不同位置的人是不同的东西。</p>
+
+<p>丘吉尔同时宣布,英国已经积累了一亿五千三百万英镑的黄金储备,必要时会毫不犹豫地动用这笔储备,并配合银行贴现率,来保卫这个新恢复的制度。</p>
+
+<p>这一节的要点不在丘吉尔说了什么,在这个安排本身的方向。</p>
+
+<p>第三篇讲过吕底亚人做的那件事:他们把尺子做成了一个可以随身携带的身体,就是硬币。从那以后两千多年,尺子和使用尺子的人一直保持着某种可以上手的联系:钱是可以摸到的,重量是可以掂的,成色是可以怀疑的。</p>
+
+<p>1925年这一步,方向是反的。</p>
+
+<p>黄金被进一步从日常流通里抽走,变成只在大额结算中才露面的制度后盾。恢复金本位这个动作,恰恰是把黄金从人的手里拿走。制度并没有因此变得更具象,它变得更抽象,更集中,更依赖机构。</p>
+
+<p>匿名这件事被推到了极端。而推到极端的结果是,它离普通人更远了。</p>
+
+<p>顺着这条线可以回头看一眼走过的路。最早的账要靠神庙的位阶去兜,后来的钱要靠币面上的验戳去兜,再后来交子要靠官府认不认去兜。每一步都在往非人格的方向走,而每一步都把最终的兜底往上挪了一层。到金本位这里,兜底挪到了一种金属和几家中央银行身上,普通人连碰都碰不到。走得越远,能够核对的人就越少。</p>
+
+<p>这也是余项的一种去向。它没有被消灭,它被挪到了更少人看得见的地方。一样东西只要还有人核对得了,它就还在可以争议的范围里;一旦核对它需要四百金衡盎司作门票,它就退出了绝大多数人的视野。而退出视野和不存在,在日常里是很难分辨的两件事。</p>
+
+<h3>六 基本调整</h3>
+
+<p>凯恩斯的反对来得很快。1925年七月二十二日到二十四日,他在一份晚报上连登三篇文章,随后把它们扩写成一本小册子,题目叫《丘吉尔先生的经济后果》。</p>
+
+<p>他的算术极其简明。</p>
+
+<p>战后英镑的对外价值,比战前的黄金平价低了大约百分之十。现在要把它抬回战前平价,意味着英国以后向外国卖任何东西,要么外国买家多付百分之十,要么英国这一边少收百分之十。想不失去竞争力,就只有一条路:把煤,钢铁,航运这些以英镑计价的东西,价格压低约百分之十。</p>
+
+<p>这个百分之十不是估计值,它是两个平价之间算出来的差,和第一节那个七位小数出自同一套算法。构在这里做的事情非常干净:把一个国家全部的对外交易折成一个比例,再把这个比例分派下去。至于分派到每一个行业,每一家企业,每一个人身上分别是什么,不属于这道算式要回答的问题。</p>
+
+<p>把价格压低百分之十,这句话写在纸上很干净。</p>
+
+<p>它在现实里只有一种执行办法。这些行业的成本大头是工资,压价格就是压工资,而工资是要一个一个人去接受的。</p>
+
+<p>从算式到工资单,中间要走一段很长的路:董事会开会,工头传话,合同重签,罢工,复工,再罢工。这段路上的事情没有一样出现在那道算式里,而算式的结论要落地,必须靠这段路走完。构算得出结果,算不出到达结果的过程,而人是在过程里过日子的。</p>
+
+<p>凯恩斯写下了那句最刺目的话:这是一项故意加剧失业的政策。</p>
+
+<p>他说得毫不委婉:这样做是为了迫使工资下降。至于代价由谁来出,他也点了名。矿工是那架经济巨轮碾过去的人;财政部和英格兰银行为了把汇率从四点四零美元拉回四点八六美元,安排了一场基本调整,而矿工就是这场基本调整落在人身上的样子。</p>
+
+<p>落在人身上的样子。这半句不需要加注。它不是一个比喻,它是对一项政策实施方式的准确描述:调整没有别的地方可以落,它只能落在具体的某些人身上;而落在谁身上,由那些人所在的行业和他们的议价能力决定。</p>
+
+<p>这里的余项因此有一张具体的脸,而且是当时的人自己指出来的。凯恩斯没有说矿工受了委屈,他说的是矿工就是那笔调整本身。一笔在算式里以百分比形式存在的东西,在现实里以人的形式存在,而这两种存在方式之间没有换算表。</p>
+
+<p>英格兰银行几十年后自己写的回顾,把同样的事情换成了冷静的公文语言,但没有回避。</p>
+
+<p>那份回顾说:1925年恢复之前,决策者几乎没有认真审视过国际收支统计;对当时大多数人来说,不回到 1913年的美元平价几乎是不可接受的;如果这使英镑被高估了,经典的补救办法就是国内强制通缩,国外通胀,逼着价格和成本重新对齐。</p>
+
+<p>可问题在于,当时英国的失业率已经很高,真要往下压工资,政府并不愿意承受进一步的通缩;而 1926年的大罢工也说明,名义工资的下降极难实现。结果是,1925年到 1931年之间,维护外部平衡成了一个没完没了的问题,英国不得不长期把利率维持在高于美国的水平,以防资本外流。</p>
+
+<p>代价是有统计的。</p>
+
+<p>在恢复金本位的那六年里,英国受保工人的失业率平均为百分之十二点九,从来没有低于过百分之八点五;1931年前九个月,平均达到百分之二十一。</p>
+
+<p>四百金衡盎司,和百分之二十一。</p>
+
+<p>这两个数出自同一套制度,而其中只有前一个被写进了法律。后一个是那部法律运行时的伴生量,它每年公布,谁都看得见,却没有任何一条条文以它为准。</p>
+
+<p>只要英格兰银行还在按法定价格把金块交出去,失业的人就一直待在通缩和高实际利率下面。</p>
+
+<h3>七 九十三亿与二十一亿</h3>
+
+<p>关于金本位和大萧条的关系,最有影响的说法来自艾肯格林的《黄金枷锁》,以及他和另一位研究者合写的一系列论文。</p>
+
+<p>这套说法的核心是:金本位从根本上约束了经济政策,并且在很大程度上制造了一个不稳定的环境。他们还提出了一个更难对付的概念,叫金本位心态。它的意思是,那不只是一套制度,还是政治精英和中央银行家共享的一种判断标准:守住黄金等于守住信用,放弃兑换等于失信。</p>
+
+<p>这个概念对框架很要紧。前面十三篇里,构做的事都在外面:压事物,改名字,不去问,收边界,给轨道,要凭据。这里是构第一次住进了执行它的人的脑子里。制度本身其实留了口子,而人不肯用那个口子。</p>
+
+<p>这是构最牢固的一种存在方式。一条规则可以被修改,可以被暂停,可以被投票推翻。而一个判断标准不需要谁去执行,它已经在做决定的人心里,成了他衡量自己是否负责任的依据。到那一步,不必有人强迫任何人,守规则的人会自己把口子焊上。</p>
+
+<p>有几条跨国比较的事实,把这套说法压实了。</p>
+
+<p>第一,战间期的金本位非常短命。古典时期四个核心国家同时在内,持续了三十六年;两次大战之间,同样的状态只维持了四到六年。</p>
+
+<p>第二,这套体制在技术上比战前更紧。两位研究者给出过一个惊人的数字:1929年,四十一个国家一共持有九十三亿七千八百万美元的黄金储备,但其中真正多余,可以用来应付临时国际失衡的部分,只有二十一亿七千八百万美元。其余大多被法定的覆盖率锁死在资产负债表上。</p>
+
+<p>九十三亿里,能动的只有二十一亿。</p>
+
+<p>这一条值得单独想一想。储备的作用本来是在困难的时候拿出来用,而这套制度要求它必须一直躺在那里,好让所有人看见它躺在那里。准备金的功能变成了被看见,而不是被使用。等到真正需要用的那一天,能动的部分恰恰是最小的那一块。</p>
+
+<p>这一条可以并进前面的一条线里看。构为了让人相信它有底,必须把底摆出来给人看;而摆出来给人看的东西,一旦动用就等于承认底不够。于是储备越是被当成信誉,它就越不能被动用。到最后,一样东西的用处变成了不用。</p>
+
+<p>第三,金本位会把紧缩跨国传播。美国的联邦储备在 1928年到 1929年为了抑制股市投机而收紧信贷,而由于国际金本位的存在,别国央行被迫跟着提高利率,紧缩的货币政策把许多经济体推进了衰退。有研究者把 1930年代初的全球通缩概括成一句话:那是一次经由国际金本位传导的货币收缩。</p>
+
+<p>第四,谁更早离开,谁往往更早缓过来。从未恢复金本位而让汇率浮动的西班牙,避开了欧洲多数国家所遭受的价格和产出下跌;1931年跟着英国一起离开金本位的斯堪的纳维亚国家,恢复的速度明显快过留在里面的欧洲国家。在一个二十四国的样本上,1932年到 1935年间,不在金本位上的国家,工业生产的增速平均比留在金本位上的国家高出约七个百分点。英格兰银行自己的历史文章也承认,英国真正的经济恢复要到 1932年初才出现,而前提正是 1931年晚些时候暂停了金本位,降息和英镑贬值终于成为可能。</p>
+
+<p>第五,有两个国家把黄金吸了进去又不放出来。有研究者把法国称作黄金黑洞:法国在世界黄金储备中所占的份额,从 1927年的百分之七升到 1932年的百分之二十七,而且把大部分新增的黄金以更高的覆盖率锁住。他的反事实模拟认为,如果 1929年到 1933年间黄金储备和物价之间的历史关系照常运行,世界价格本来会略有上升,而不是灾难性地下跌。他还估计,美法两国在 1929年持有的过量黄金相当于世界黄金存量的百分之六,到 1930年至 1932年达到百分之十二;到 1932年,单是法国一国,就等于把世界黄金存量的百分之十三从有效流通中抽走。</p>
+
+<p>英国在这中间被两头夹住:一边是被高估的英镑,一边是法国改用黄金而不再用英镑美元持有储备所带来的压力。1931年七月到九月,英国当局动用了大约二亿英镑的黄金和外国信贷去支持英镑,外流仍然没有止住,九月被迫停止兑换。英镑随即贬到十月的三点八九美元,十二月的三点三七美元。</p>
+
+<h3>八 良好家政印章</h3>
+
+<p>另一侧的说法必须原样摆足,否则前面七节都会变成一份判词。</p>
+
+<p>有一派研究把古典金本位称作良好家政印章。他们的论证是这样的:在 1870年到 1914年之间,一个外围国家加入金本位,等于向伦敦市场发出一个信号,说明自己财政端正,愿意守约;于是它更容易借到钱,也借得更便宜。有量化研究把这个好处算了出来:在 1914年之前,遵守金本位能把一国的借款利差压低大约四十到六十个基点。</p>
+
+<p>这一派还提出过一个更精细的说法,叫有逃脱条款的规则。意思是,古典金本位不是一条死规矩:平时守住兑换,遇到战争或者大危机可以暂停,但市场预期这个国家事后会回到原来的平价。按这个讲法,古典金本位并不是没有人性的,它是把裁量权收进了一个更可信的框架里。</p>
+
+<p>这一派通常也不否认战间期的失败,只是把重点放在别处:失败的是大战之后重建出来的那套金汇兑本位,不是古典金本位本身。后来还有辩护者说得更直接,认为许多灾难该怪中央银行违背了金本位的规则,不该怪这个制度的概念。</p>
+
+<p>两侧都拿得出证据,而这里不做裁决,理由需要说清楚。</p>
+
+<p>三方盯着的不是同一件事。一方主要问的是,古典时期它为什么能维持相对的稳定;另一方主要问的是,战间期它为什么会把一场衰退放大成大萧条;还有人追问的是,各国在明知代价的情况下为什么还要守到最后,以及为什么有些国家先走了一步。这三个问题各有各的时段,各有各的国家,各有各的证据。把它们揉成一句金本位到底好不好,得到的不会是答案,只会是一次磨平。</p>
+
+<p>这里可以顺手记一笔方法上的事。一场争论要能收口,前提是各方在争同一个命题;而经济史上很多长年不收口的争论,并不是因为证据不够,是因为大家其实在回答不同的提问,只是共用了同一个题目。题目是同一个,这件事本身很容易被误认成争的是同一件事。</p>
+
+<p>不过有一项研究把问题往政治上推了一步,而它的结论值得慢读。</p>
+
+<p>在一个二十四国的面板里,人均收入更高,债权国地位更强,经历过恶性通胀的国家,更可能长期留在金本位上;而民主制度,失业和银行危机,会缩短它的存续。</p>
+
+<p>把这句话翻成日常的话:决定一个国家能在金本位上待多久的,不只是它有多少黄金,还有它能把痛苦压多久。而痛苦能被压多久,取决于承受痛苦的那些人有没有办法把它顶回去。</p>
+
+<p>最后还剩一件事没有交代,而它是这一整套安排最深的反讽。</p>
+
+<p>为了节约黄金,战间期重建出来的并不是一个更纯的黄金体系,而是一个更抽象的金汇兑本位。许多国家在战后停止了金币流通,改行金块本位;更多的国家干脆用可以兑换黄金的外汇作为储备,而那些外汇实际上主要就是英镑和美元。欧洲各国央行持有的外汇储备,战前十年大致在二亿五千万到四亿美元之间浮动;到 1924年底已经增至八亿四千四百万美元;到 1928年底达到二十五亿一千三百万美元。战间期的四个核心国家里,只有美国仍是金币本位,英国和法国是金块本位,多数其他国家是金汇兑本位。</p>
+
+<p>也就是说,这个号称以黄金为基础的世界,实际上越来越坐在别人答应兑金的纸上。</p>
+
+<p>第六篇讲过交子:把金属从钱上剥掉,等于把全部重量压到人格上。金本位想做的正是相反的事,把重量从人格移回金属。而它做到最后,造出来的是一层新的信任,而且这层信任比它取代掉的那些更远,更集中,更少有人能够核对。想要彻底摆脱信任的努力,结果是把信任挪到了一个更看不见的地方。</p>
+
+<p>那条依赖国家信用,市场名声,央行合作和社会服从的线,从来没有被拔掉过。1870年代的制度转轨,1914年的战争财政,1925年的高估复归,1931年的资本外逃,1933年前后的全球银行恐慌,每一次真正的压力测试都把它照出来一次。</p>
+
+<p>回到最初那两个数。</p>
+
+<p>小数点后第七位,和那句连最宽泛的暗示都给不出来,出自同一套制度,相隔不到十年。</p>
+
+<p>它们其实并不矛盾。一把尺子可以做得极准,准到让人以为凡是准的都已经被量过了。而它量的始终只是它量得了的那些。量不到的那些照旧在动,并且恰恰在最要紧的时候动得最凶。</p>
+
+<p>账还没有算平,它仍旧在记。</p>
+
+      </div>
+
+      <div class="essay-body lang-en">
+
+<h3>1. Seven Places Past the Decimal</h3>
+
+<p>There was once a rate of exchange between the pound sterling and the American dollar, and it read: one pound equaled 4.8665635 dollars.</p>
+
+<p>Seven places after the decimal point.</p>
+
+<p>That number was not estimated. It was defined. Britain had fixed the pound as a certain weight and fineness of gold; the United States had fixed the dollar as a certain weight and fineness of gold; divide one definition by the other and this is the figure that comes out. It required no transaction to hold it up, and no single day's trading could move it. It was the product of two statutes.</p>
+
+<p>The product of two statutes is a phrase worth sitting with. It means the rate never had to consult a market, never had to ask a single merchant's opinion, never had to wait for a trade to actually occur. It became true the moment it was written down, and it stayed true every day afterward, whether or not anyone that day actually carried pounds across the water to become dollars. This is the thing the construct has always been reaching for: a number that holds without needing any particular event to hold it up.</p>
+
+<p>For an exchange rate to arrive at that condition was, in the whole history of the ledger, a first. The scales examined across the preceding thirteen essays were all still dealing with something concrete — barley recorded on a clay tablet, silver coin that passed current inside a city wall and shattered into scrap the moment it crossed one, paper that needed a magistrate's office to stand behind it, a common field that could only be kept honest if every neighbor could see it. Here, for the first time, a scale no longer needed any particular person to vouch for it. It needed only two statute books and a metal.</p>
+
+<p>But a fixed exchange rate is not a line. It is a band.</p>
+
+<p>Shipping gold from London to New York cost money: freight, insurance, packing and handling, the interest lost on the days it sat in transit, a premium for risk, and a margin of profit for whoever was doing the shipping. Add all of this together and it opens a gap on either side of parity. Push the exchange rate above the upper edge of that gap and a private trader has an incentive — buy gold, load it, ship it across, convert it into the other currency, and pocket the spread. Push the rate below the lower edge and the same trade runs in reverse.</p>
+
+<p>It is worth pausing on what actually set the width of that band. It was not decided by which country was stronger, and it was not decided by whose credit stood higher. It was decided by freight charges, insurance premiums, and the interest accrued over however many days a shipment spent at sea. The most flexible part of the whole arrangement, in other words, took its calibration from a shipping company's rate card. The tolerance built into the most abstract scale the world had yet produced was set, in practice, by cargo vessels and insurance policies.</p>
+
+<p>So the exchange rate returned to its band without anyone issuing an order. The arrangement looked close to perfect, and its most elegant feature was this: the hand that pulled it back into line belonged not to any official, but to a class of merchants who wanted nothing more than a profit.</p>
+
+<p>There is one thing, though, that has to be said plainly here, because it is the first nail driven into everything that follows.</p>
+
+<p>A merchant was only willing to run that arbitrage because he believed something: that the authority on this end would truly sell him gold at the legal price, that the authority on the far end would truly take gold off his hands at the legal price, and that no government would suddenly clamp on exchange controls before his ship made port.</p>
+
+<p>Strip out that belief, and the gold points are nothing but two numbers on a page.</p>
+
+<p>Push the thought one step further. The first link in this whole self-acting mechanism was never the metal. It was expectation. The metal only does its work once people believe it will be handed over at the stated price; the instant that belief fails, the metal is still sitting exactly where it was, and the mechanism has already stopped. A Song-dynasty line, quoted already in Essay 6, applies here in a new setting: with the government holding no capital, how could the people be expected to trust it? The gold standard's answer was to stockpile the capital. What 1931 would show is that even with the capital stockpiled, the trust could still run short.</p>
+
+<p>A system that advertised itself as anchoring currency to a metal, and thereby freeing itself from any need to depend on anyone's word, turns out, at its most finely engineered point, to still be running on a belief. That sentence would be re-tested in every crisis that followed, and every re-test came at a steep price.</p>
+
+<p>The intellectual prehistory of the idea reaches back further still. In 1752, David Hume wrote a short essay on the balance of trade — Of the Balance of Trade — arguing that money stood in a certain proportion to goods, labor, and industry, and that a surplus of gold and silver could never permanently pile up in any one place. He left behind a line that later generations would quote for more than two centuries: that the money always finds its way back again, by a hundred canals, of which we have no notion or suspicion.</p>
+
+<p>Finds its way back again, by itself — that phrase, on its own, is the whole source of the system's charm.</p>
+
+<h3>2. An Accident Dressed as Destiny</h3>
+
+<p>It is tempting, looking back, to tell the story of the gold standard as a rising line that had to happen: the world grew more developed, trade grew more complicated, and so, rationally, everyone settled on the best available scale.</p>
+
+<p>The record does not support that story.</p>
+
+<p>The real international turning point fell between 1871 and 1873. After unification, the German Empire moved away from the silver standards its constituent states had used and onto gold. One historian of the period has summarized it this way: that reform set off a chain of steps in other countries that eventually brought the worldwide system of bimetallism to an end. France followed almost immediately, halting the free coinage of silver in September 1873; the other members of the Latin Monetary Union fell in behind France one by one, and bimetallism lost the last thing that had kept it steady.</p>
+
+<p>But the same historian adds, without missing a beat, that Germany did not have to take this road.</p>
+
+<p>In the 1860s, Germany had seriously debated joining the bimetallic system led by France. What actually happened later looks much more like two uncoordinated decisions, made separately by Germany and France in the early 1870s, that simply happened to stack on top of each other. One historian who has studied the episode calls it, flatly, a historical accident.</p>
+
+<p>Accident is a heavy word to use in economic history. It does not mean the thing might not have happened at all; it means the thing might have turned out differently, and that every piece of reasoning built afterward simply takes the shape it did happen to take as its starting point. How many countries in the world ended up using gold was never deduced from any economic law. It grew out of a handful of decisions that a handful of countries happened to make in the years after 1871.</p>
+
+<p>The spread that followed has a timetable. Germany in 1871. Denmark in 1872. Sweden in 1873. The Netherlands in 1875. France in 1878. The United States completed the move in law in 1873 and 1874, though effective restoration did not arrive until 1879. Japan followed in 1897. India moved in 1898 to a gold-exchange standard pegged to sterling.</p>
+
+<p>That timetable can be read a second way. Behind every year on it sits a domestic political fight: debates on the floor of a parliament, silver-mine owners lobbying against it, creditors and debtors each running their own arithmetic, and the question of whether a given country wanted London to regard it as a borrower worth trusting. The dates look like a technical matter. The processes behind them never were. Between the United States' legal completion of the move and its effective restoration lay something like six years — years eventful enough to fill a book of their own.</p>
+
+<p>By 1879, Britain, France, Germany, and the United States, the four core economies, were all on gold at the same time. What later generations would call the international gold standard is dated from that year to 1914: thirty-six years in total.</p>
+
+<p>Thirty-six years is not a short stretch of a human life, but it is not a long stretch of institutional history either. And yet the entire inherited image of the gold standard, across two generations, rests on those thirty-six years. When people call it stable, they mean those thirty-six years. When they call it automatic, they mean those thirty-six years. When they call it a natural order, they still mean those same thirty-six years. An experience of under forty years got mistaken for the nature of the thing itself.</p>
+
+<p>On why this diffusion happened at all, the historical literature offers two accounts, and neither one is weak.</p>
+
+<p>One emphasizes network effects: the more trade a country did with countries already on gold, the stronger its incentive to join, and the maturity of its financial system shaped exactly when it did so. On this account, the spread was a logical adaptation.</p>
+
+<p>The other emphasizes contingency: Germany and France could have chosen differently, the collapse of bimetallism was not calculated in advance, it was stumbled into. On this account, the spread was the sum of a string of policy moves that could easily have gone somewhere else entirely.</p>
+
+<p>No verdict will be rendered here. But setting the two accounts side by side makes something visible that neither one shows on its own.</p>
+
+<p>A scale that countless people afterward would treat as natural, objective, beyond anyone's will, has a birth certificate that can be dated to a specific piece of legislation, in a specific country, in a specific year — legislation that, at the time, could easily have been written otherwise. The construct is most successful exactly when it makes people forget it was ever made. Thirty-six years is not long, but it was long enough for a whole generation to assume the thing had simply always been there.</p>
+
+<p>This is a standard maneuver of the construct, and it has appeared before. In Essay 10, a process spanning some twenty years, disconnected and pulling in different directions, got compressed into a single year and three names set side by side. Here, a sequence of separate policy choices made by several different countries gets compressed into a natural condition called the gold standard. The construct does not only press down on things outside itself. It also presses down on its own origins, flattening its own history into a backdrop with no starting point at all.</p>
+
+<h3>3. A Machine With Hands Inside It</h3>
+
+<p>On paper, the workings of the gold standard can be described with total cleanliness.</p>
+
+<p>A country's central bank issues notes and deposit liabilities, and must back them with a certain proportion of gold reserves. A deficit in the balance of payments gets settled by an outflow of gold; a surplus gets settled by an inflow. If the monetary authority does nothing to offset the effect of these flows, an outflow of gold compresses the country's money supply and credit, prices fall in turn, exports grow cheaper, and the deficit narrows on its own; an inflow works the same way in reverse. This came to be known, later, as the price-specie-flow mechanism.</p>
+
+<p>One historian, summarizing why the classical economists prized it, gives a reason simple enough to state plainly: they believed this mechanism would deliver long-run price stability across the whole world, and keep national price levels roughly in line with one another.</p>
+
+<p>That vision has a genuine pull to it, and it should not be dismissed lightly. It promised something the history of the ledger had never delivered before: without depending on any monarch's self-restraint, and without depending on any parliament's discipline, a country's money supply would carry an automatic ceiling, set by whatever happened to be dug out of the ground. The debts of Essay 2 that never stopped compounding on their own, and the paper of Essay 6 that never stopped multiplying — this vision, in principle, sealed off both.</p>
+
+<p>The trouble showed up in the actual operation.</p>
+
+<p>One historian reviewing the classical gold standard wrote, in the introduction to an academic conference on the subject, that the conference had failed to settle a basic question: under fixed exchange rates, what really drove international adjustment — specie flows, purchasing-power parity and interest-rate parity, or short-term capital movements? She noted as well that scholars since the late nineteenth century have increasingly come to see short-term capital flows as playing a role in adjustment no smaller than the metal itself.</p>
+
+<p>She then listed what the Bank of England actually did, and the list looks nothing like an automatic machine.</p>
+
+<p>The Bank of England did not simply raise and lower its discount rate in mechanical response to gold flows. It also adjusted the buying and selling prices of gold bars and foreign coin, used a set of techniques later termed gold devices, charged different rates on different classes of loan, expanded and contracted its own position in short-term international lending, and used open-market operations to try to keep its defensive moves abroad as separate as possible from the domestic economy.</p>
+
+<p>Nothing on that list was automatic. Every item required a judgment call: when to move, by how much, which lever first, and whether to let the market see it happening. And the point of these moves was, more often than not, not to keep the mechanism running at all, but precisely to cushion the domestic economy from the shock of the mechanism running. The machine advertised as automatic always had someone standing beside it, quietly keeping it from grinding up the ground it stood on.</p>
+
+<p>The rules of the game, whatever else the phrase means, never described a machine that could be left unattended.</p>
+
+<p>This tells us something sharp about the nature of the construct. The more insistently a system proclaims itself automatic, the more hands it requires working behind the scenes, and those hands have to work as quietly as possible. The instant anyone is caught turning the dial, the claim of automaticity collapses, and automaticity was the entire source of the system's persuasive power.</p>
+
+<p>The remainder shows its face for the first time in this essay here, and in an odd location: not among the things being compressed, but on the side doing the compressing. Keeping the machine looking automatic required someone to keep making non-automatic judgment calls, and those judgment calls had no column of their own to be entered into. In the phrase the rules of the game, the rules are the part that got written down. The game is the part that never was.</p>
+
+<p>There is a harder fact underneath this one: those who could turn the dial and those who could not were never standing in the same place.</p>
+
+<p>Looking back on this period, Barry Eichengreen has pointed out that the cooperation sustaining the system was largely confined to a handful of core European countries, with the United States joining in only intermittently; the smaller countries on the periphery received no comparable support, and were correspondingly quicker to buckle under pressure.</p>
+
+<p>One scale, unevenly distributed capacity to bear its weight. The construct's universality is always stratified: it applies a single standard to everyone, but not everyone can go on living under that same standard.</p>
+
+<p>This sentence has already appeared, in variant form, in earlier essays. In Essay 7, one act of commensuration spread responsibility so thin that no one bore it. In Essay 12, one wage-scale priced the labor of whichever side worked harder at a lower rate. Here is a third variation: one discipline, with core countries propped up by unseen hands and peripheral countries left to stand on their own. The rule itself can be written down identically for everyone; the ring of support surrounding the rule never gets written down at all.</p>
+
+<h3>4. The Invisible Column</h3>
+
+<p>To sustain a gold standard, a country needs, at minimum, some rough sense of what its external accounts look like. At the time, that was simply not available.</p>
+
+<p>Prewar Britain did not seem to need much in the way of statistics, because its accounts were comfortable enough to spare it the trouble: a deficit in visible trade was covered, over the long run, by a surplus on invisible items, and once that was covered there was still capacity left over for a great deal of investment abroad. In the years before the war, Britain's overseas investment ran to roughly four percent of national income annually, or about thirty percent of annual savings.</p>
+
+<p>Invisible items meant shipping, financial services, interest income, commissions, and the returns on overseas investments. All of it was settleable, but none of it could be counted on a dock the way a shipload of cotton or a consignment of steel rails could be.</p>
+
+<p>The word invisible was well chosen, and it was the word people at the time used themselves. It did not mean nonexistent, and it did not mean unimportant — quite the opposite: it named the single most profitable line of business Britain had. That a country's strongest sector should also be its hardest to count is, on its own, reason enough to be wary of how complete the books really were. But in years when the accounts came out comfortable regardless, no one had much incentive to count it precisely, because things worked out fine without the counting.</p>
+
+<p>The Bank of England later produced its own retrospective account of this period, and that account reads almost like an ironic footnote to the whole myth of the common measure.</p>
+
+<p>It records that before Britain's return to gold in 1925, whatever balance-of-payments statistics could be had barely entered into policy discussions at all; people at the time spoke of Britain's external position only in the vaguest terms. By 1926, the relevant statistics committee understood the accounting principles of the balance of payments well enough, but the data actually usable in practice remained extremely limited. Keynes complained in 1927 that those invisible items remained, in the most literal sense, invisible.</p>
+
+<p>That date, 1927, is worth holding onto. By then Britain had already been back on gold for two years, had already paid two years' worth of the cost of that decision, and the external accounts meant to justify the decision were, statistically speaking, still a blur. The decision had been made against a number precise to several decimal places; the reality that number was supposed to capture, no one at the time could actually measure.</p>
+
+<p>It got worse from there. Between 1930 and 1931, the Macmillan Committee produced an estimate of Britain's net short-term external liabilities, an estimate later shown to have been badly too low.</p>
+
+<p>And by September 1931, an internal Bank of England memorandum admitted outright that capital movements had grown so large that not even the roughest numerical hint could be offered.</p>
+
+<p>Set that sentence beside the seven decimal digits from the opening of this essay.</p>
+
+<p>Parity could be carried out to the seventh place after the decimal point, and yet how much short-term external debt the country itself was carrying, and how much more of it might flee the following morning, could not be given so much as the loosest approximation.</p>
+
+<p>This is the shape the remainder takes at this point in the story, and it is different from the shapes it has taken in earlier essays.</p>
+
+<p>Some earlier remainders went unmeasured. Some were measured accurately and then left unexamined. Some were classified out of bounds for the discipline in question. Some simply lacked evidence. Here the remainder takes a different form again: the scale itself was extremely precise, and the object it was measuring was unknowable.</p>
+
+<p>These two things are routinely confused with each other, and they are not the same thing at all. Precision belongs to the scale's side of the transaction — how fine its gradations are, how many digits its reading can report. Knowability belongs to the object's side — how large the thing is right now, and how large it might become tomorrow. A scale can be graduated as fine as a hair, while the thing it is meant to measure may simply refuse to hold still. This is exactly where the construct makes its easiest mistake: it mistakes the precision on its own side for clarity on the other.</p>
+
+<p>The trouble in the 1931 crisis was never that gold lacked a definition. Gold was defined with total clarity. The trouble was that nobody could say what the real position actually was, or whether tomorrow would bring another wave of flight — and neither of those questions comes with decimal places, or with units.</p>
+
+<p>The gold standard did not make the world measurable. What it did was something else: it kept forcing country after country to turn things that resisted a common dimension into statistics, into balance sheets, into exchange rates. That project kept advancing the whole time, and at the one moment it mattered most, the numbers still could not be produced.</p>
+
+<p>And the project itself was genuinely useful — this cannot be said in reverse. Balance-of-payments accounting principles, statistics committees, the entire apparatus of external accounts that came afterward: all of it was forced into being by this system, and all of it is still in use today. What the construct forces into existence often outlives the construct itself. It simply could not keep pace with that particular emergency: by the time the reckoning could finally be made, the thing it needed to reckon with had already passed.</p>
+
+<h3>5. Four Hundred Ounces, Out of Reach</h3>
+
+<p>On April 28, 1925, Winston Churchill announced in his budget speech that Britain was returning to the gold standard.</p>
+
+<p>But he immediately attached a qualification: this did not mean reissuing gold coin for circulation. That, he said, would be entirely unnecessary, and given the state of the nation's finances at the time, it would be, in his own words, "an unwarrantable extravagance which our present financial stringency by no means allows us to indulge in." He appealed, he said, "to all classes in the public interest to continue to use notes and to make no change in the habits and practices they have become used to for the last ten years."</p>
+
+<p>There is a detail in this passage that rarely gets noticed. Churchill was not explaining a technical arrangement; he was offering reassurance. He wanted the public to feel comfortable continuing to use paper, rather than rushing to the Bank to demand gold the moment they heard the standard had been restored. Which is to say: on the very day of the announcement, the system had already conceded something — that if people really did all come to redeem their notes, the arrangement could not withstand it.</p>
+
+<p>So what, exactly, had been restored?</p>
+
+<p>The actual form convertibility took was this: the Bank of England, at its head office, would sell gold bars at a fixed price, and no single sale could come to less than four hundred fine ounces.</p>
+
+<p>A few days later, the Gold Standard Act 1925 wrote the arrangement into law. Its meaning was unambiguous: the Bank of England was no longer obliged to redeem its notes in legal gold coin; what it was obliged to do was sell, to anyone who asked and paid in legal tender, a bar of approximately four hundred fine ounces of gold.</p>
+
+<p>Four hundred fine ounces comes to a little over twelve kilograms.</p>
+
+<p>That figure was not chosen carelessly. It was large enough to keep the overwhelming majority of banknote holders out of the redemption business, while staying small enough not to interfere with large-scale settlement between banks. Set at that threshold, convertibility stopped being a right anyone could exercise and became a right only institutions could afford to.</p>
+
+<p>An ordinary person walking into the Bank of England with a five-pound note would come away with nothing. Convertibility remained, in law, perfectly intact — and remained, in practice, open to almost no one.</p>
+
+<p>A very clean split appears here. As a matter of law, the pound could still be converted into gold; that statement is entirely true, and it is precisely that statement that held up the credibility of the whole system. As a matter of fact, the only parties who could exercise the right were banks, large merchant houses, and the central banks of other countries. Credibility rested on a right that, for the vast majority of people holding the currency, did not actually apply to them. There was no deception in this — the statute said so plainly, and the threshold was public knowledge. It only demonstrates, once again, that the same rule is a different thing depending on where a person stands in relation to it.</p>
+
+<p>Churchill also announced that Britain had accumulated a gold reserve of one hundred fifty-three million pounds, and declared that this reserve would be used, in his words, "without hesitation, if necessary with the Bank Rate, in order to defend and sustain" the newly restored system.</p>
+
+<p>The point of this section is not what Churchill said. It is the direction of the arrangement itself.</p>
+
+<p>Essay 3 told the story of what the Lydians did: they gave the scale a body it could carry — the coin. For more than two thousand years afterward, the scale and the people using it kept some kind of hands-on relationship: money could be touched, weight could be hefted, purity could be doubted with a person's own two hands.</p>
+
+<p>The step taken in 1925 runs in the opposite direction.</p>
+
+<p>Gold was pulled further out of everyday circulation, becoming an institutional backstop that only ever surfaced in large settlements. The very act of restoring the gold standard was, in effect, the act of taking gold out of ordinary hands. The system did not become more concrete as a result. It became more abstract, more concentrated, more dependent on institutions.</p>
+
+<p>Anonymity was pushed to its limit. And the result of pushing it that far was that it moved further away from ordinary people.</p>
+
+<p>Following this thread back, one can look again at the road already traveled. The earliest accounts had to rely on a temple hierarchy to back them up; later, coined money relied on the stamp verifying its face; later still, jiaozi relied on whether the government's office recognized it. Every step moved further in an impersonal direction, and every step pushed the ultimate backstop up one more level. By the time of the gold standard, the backstop had moved to a metal and a handful of central banks, somewhere an ordinary person could not even touch it. The further this process went, the fewer people remained who were in any position to check it.</p>
+
+<p>This, too, is one destination available to the remainder. It was not eliminated; it was relocated somewhere fewer people could see. So long as anyone at all can still check a thing, that thing stays within the range of what can be disputed. Once checking it requires four hundred fine ounces as the price of admission, it exits the field of vision of almost everyone. And exiting the field of vision, in day-to-day life, is very hard to tell apart from not existing at all.</p>
+
+<h3>6. Ten Percent, Made Flesh</h3>
+
+<p>Keynes's opposition arrived quickly. On July 22 through 24, 1925, he ran three consecutive articles in an evening newspaper, and shortly afterward expanded them into a pamphlet titled The Economic Consequences of Mr. Churchill.</p>
+
+<p>His arithmetic was about as simple as arithmetic gets.</p>
+
+<p>Sterling's external value after the war stood roughly ten percent below its prewar gold parity. Pulling it back up to that prewar parity meant that, from then on, whenever Britain sold anything abroad, either the foreign buyer would have to pay ten percent more, or Britain would have to accept ten percent less. There was only one way to avoid losing competitiveness: cut the sterling prices of things like coal, steel, and shipping by roughly ten percent.</p>
+
+<p>That ten percent was not an estimate. It was the difference calculated between two parities, produced by the same arithmetic that had produced the seven-digit decimal in the opening section of this essay. What the construct does here is remarkably clean: it converts a country's entire external trade into a single ratio, and then hands that ratio down the line. Exactly how it gets distributed among individual industries, individual firms, individual people, is not a question this equation is obliged to answer.</p>
+
+<p>Cut prices by ten percent reads cleanly enough on paper.</p>
+
+<p>In the real world it has exactly one way of being carried out. The largest cost in those industries is wages; cutting prices means cutting wages; and wages have to be accepted one person at a time.</p>
+
+<p>Between the equation and the pay packet lies a long road: board meetings, foremen passing the word down the line, contracts renegotiated, strikes, a return to work, then strikes again. None of what happens on that road shows up anywhere in the equation, and yet the equation's conclusion cannot land without that road being walked to its end. The construct can calculate the result. It cannot calculate the process of arriving at the result, and people live their lives inside the process, not the result.</p>
+
+<p>Keynes wrote the sharpest line of all: "The policy of deliberately intensifying unemployment with a view to forcing wage reductions is already partly in force."</p>
+
+<p>He did not soften it: the point of the policy, he said outright, was to force wages down. And he named exactly who would be paying for it — the miners, he wrote, "are the victims of the economic Juggernaut. They represent in the flesh the 'fundamental adjustments' engineered by the Treasury and the Bank of England to satisfy the impatience of the City fathers to bridge the 'moderate gap' between $4.40 and $4.86. They (and others to follow) are the 'moderate sacrifice' still necessary to ensure the stability of the gold standard."</p>
+
+<p>Represented in the flesh — that phrase needs no footnote. It is not a figure of speech. It is an exact description of how a policy actually gets carried out: the adjustment has nowhere else to land, it can only land on specific, particular people, and which people it lands on is decided by what industry they happen to be in and how much bargaining power they happen to hold.</p>
+
+<p>So the remainder in this case has a specific face, and it was the people of the time themselves who pointed to it. Keynes did not say the miners had been treated unfairly. He said the miners were the adjustment itself. A thing that exists, in the equation, as a percentage, exists, in reality, as a human being, and there is no conversion table between those two modes of existing.</p>
+
+<p>The Bank of England's own retrospective account, written decades later, renders the same episode in the flattest official language, but does not dodge it.</p>
+
+<p>That account states that before the 1925 restoration, policymakers had barely scrutinized the balance-of-payments statistics with any seriousness; for most people at the time, not returning to the 1913 dollar parity was almost unthinkable; and if this meant sterling ended up overvalued, the classic remedy was forced deflation at home and inflation abroad, driving prices and costs back into alignment.</p>
+
+<p>The trouble was that British unemployment was already high, and the government had no appetite for bearing further deflation on top of it; and the General Strike of 1926 demonstrated just how nearly impossible an actual cut in nominal wages was to achieve. The result was that from 1925 to 1931, keeping the external balance in order became an unending problem, and Britain had to hold interest rates above American levels for years on end simply to keep capital from fleeing.</p>
+
+<p>The cost was measured.</p>
+
+<p>Across the six years the restored gold standard lasted, the unemployment rate among Britain's insured workers averaged 12.9 percent, and never once fell below 8.5 percent. In the first nine months of 1931 alone, it averaged 21 percent.</p>
+
+<p>Four hundred fine ounces, and twenty-one percent.</p>
+
+<p>Both figures came out of the same system, and only one of them was ever written into law. The other was that law's byproduct: published every year, visible to anyone who cared to look, and answerable to no clause of the statute at all.</p>
+
+<p>For as long as the Bank of England kept handing over gold bars at the legal price, the unemployed stayed exactly where they were, underneath deflation, and underneath high real interest rates.</p>
+
+<h3>7. Nine Billion Locked, Two Billion Free</h3>
+
+<p>The most influential account of the relationship between the gold standard and the Great Depression comes from Barry Eichengreen's Golden Fetters, together with a series of papers he co-wrote with another researcher.</p>
+
+<p>The core of this account is that the gold standard placed a fundamental constraint on economic policy, and did a great deal to manufacture an unstable environment in its own right. Eichengreen and his co-author also proposed a harder concept to argue with, which they called the gold-standard mentality: the idea that this was not merely an institutional arrangement but a standard of judgment shared by political elites and central bankers alike, in which holding onto gold meant holding onto credibility, and abandoning convertibility meant forfeiting it.</p>
+
+<p>This concept matters a great deal for the framework of this essay series. Across the preceding thirteen essays, the construct has always operated from the outside: compressing things, renaming things, refusing to ask certain questions, drawing boundaries, laying down tracks, demanding evidence. Here, for the first time, the construct has taken up residence inside the heads of the very people enforcing it. The system itself had, in fact, left a way out. The people running it simply refused to use it.</p>
+
+<p>This is the construct's most durable mode of existing. A rule can be amended, suspended, voted down. A standard of judgment needs no one to enforce it at all: it has already lodged itself inside the mind of the person making the decision, as the measure by which he judges his own sense of responsibility. At that point, nobody has to force anyone to do anything. The people keeping the rule will weld the exit shut themselves.</p>
+
+<p>Several cross-country comparisons lend this account real weight.</p>
+
+<p>First, the interwar gold standard was remarkably short-lived. In the classical period, the four core countries were on gold together for thirty-six years; between the wars, that same configuration held for only four to six years.</p>
+
+<p>Second, the system was technically tighter than it had been before the war. Two researchers produced a striking figure: in 1929, forty-one countries together held 9.378 billion dollars in gold reserves, but of that total, only 2.178 billion dollars was genuinely surplus, available to meet a temporary international imbalance. The rest sat locked onto balance sheets by statutory cover requirements.</p>
+
+<p>Out of 9.3 billion, only 2.1 billion could actually move.</p>
+
+<p>This is worth sitting with on its own. A reserve is supposed to exist so that it can be drawn on in hard times, and yet this system required it to sit in place permanently, precisely so that everyone could see it sitting there. The function of a reserve turned into being seen rather than being used. And on the one day it was actually needed, the portion that could move turned out to be the smallest slice of all.</p>
+
+<p>This point sits alongside a thread already running through this essay. To make people believe it had a floor beneath it, the construct had to display that floor for everyone to see, and the very thing put on display, the moment it was actually drawn on, would amount to admitting the floor was not enough. So the more a reserve gets treated as a guarantee of credibility, the less it can ever actually be used. In the end, a thing's usefulness turned into its staying unused.</p>
+
+<p>Third, the gold standard transmitted contraction across borders. Between 1928 and 1929, the United States Federal Reserve tightened credit to rein in stock-market speculation, and because the international gold standard bound every central bank to every other, the rest were forced to raise their own rates in step; the resulting contractionary monetary policy pushed a great many economies into recession. One researcher summed up the global deflation of the early 1930s in a single sentence: it was a monetary contraction transmitted through the international gold standard.</p>
+
+<p>Fourth, whoever left earlier tended to recover earlier. Spain, which never restored the gold standard and let its exchange rate float, escaped the fall in prices and output that hit most of Europe. The Scandinavian countries, which left the gold standard alongside Britain in 1931, recovered markedly faster than the European countries that stayed on it. Across a sample of twenty-four countries, industrial production between 1932 and 1935 grew, on average, about seven percentage points faster in the countries off gold than in the countries still on it. The Bank of England's own historical writing concedes that Britain's real economic recovery did not arrive until early 1932, and that it depended entirely on the suspension of the gold standard late in 1931, which finally made interest-rate cuts and a devalued pound possible.</p>
+
+<p>Fifth, two countries drew gold in and would not let it back out. One researcher has called France a gold sink: France's share of the world's gold reserves rose from seven percent in 1927 to twenty-seven percent in 1932, and it locked most of that new gold away under an even higher cover ratio than before. His counterfactual simulation suggests that had the historical relationship between gold reserves and prices from 1929 to 1933 simply continued to operate as usual, world prices would have risen slightly rather than collapsed catastrophically. He further estimates that the excess gold held by the United States and France in 1929 amounted to about six percent of the world's gold stock, rising to twelve percent by 1930 through 1932; by 1932, France alone had withdrawn something like thirteen percent of the world's gold stock from effective circulation.</p>
+
+<p>Britain, in the middle of all this, was squeezed from both sides: an overvalued pound on one side, and, on the other, the pressure created by France's decision to hold its reserves in gold rather than in sterling or dollars. Between July and September 1931, British authorities spent roughly two hundred million pounds in gold and foreign credit trying to support the pound; the outflow did not stop, and in September Britain was forced to suspend convertibility. Sterling fell to $3.89 by October and to $3.37 by December.</p>
+
+<h3>8. The Good Housekeeping Seal of Approval</h3>
+
+<p>The other side of this argument has to be laid out in full, or the preceding seven sections will read as a verdict rather than an account.</p>
+
+<p>One school of research calls the classical gold standard a good housekeeping seal of approval. The reasoning runs like this: between 1870 and 1914, a peripheral country joining the gold standard sent a signal to the London market that its finances were in order and that it intended to honor its commitments; as a result, it could borrow more easily, and more cheaply. One quantitative study has put a number on the benefit: before 1914, adherence to the gold standard could lower a country's borrowing spread by something like forty to sixty basis points.</p>
+
+<p>This same school has also advanced a more refined version of the argument, describing the classical gold standard as a rule with an escape clause. The idea is that it was never a dead letter: convertibility held in normal times, could be suspended during a war or a major crisis, and the market expected the country to return afterward to its original parity. On this account, the classical gold standard was not without a human dimension at all. It simply folded discretion into a more credible framework.</p>
+
+<p>This school generally does not deny that the interwar years were a failure. It simply places the failure elsewhere: what failed was the gold-exchange standard rebuilt after the war, not the classical gold standard itself. Some of its defenders go further still, arguing that many of the era's disasters should be blamed on central banks that violated the rules of the gold standard, not on the underlying idea.</p>
+
+<p>Both sides can produce evidence, and no verdict will be rendered here, but the reason needs to be stated clearly.</p>
+
+<p>The two camps are not actually looking at the same thing. One is mainly asking why the classical period achieved relative stability. The other is mainly asking why the interwar years turned an ordinary recession into the Great Depression. A third question, pursued by others still, asks why countries kept holding on even once the costs were plain to see, and why some left earlier than others. Each of these three questions has its own time frame, its own set of countries, its own body of evidence. Mash them together into a single question, was the gold standard good or bad, and what comes out will not be an answer. It will be a flattening.</p>
+
+<p>There is a point about method worth recording in passing here. A debate can only reach a close when every side is arguing about the same proposition, and a great many disputes in economic history that never seem to close are not stuck because the evidence is lacking. They are stuck because the participants are answering different questions while sharing a single title. Sharing a title is easily mistaken for arguing over the same thing.</p>
+
+<p>One study, though, pushes the question further, into the realm of politics, and its conclusion rewards a slow reading.</p>
+
+<p>Across a panel of twenty-four countries, higher per-capita income, a stronger position as a creditor nation, and a history of hyperinflation all made a country more likely to stay on the gold standard for the long haul; democratic institutions, unemployment, and banking crises all shortened how long it lasted.</p>
+
+<p>Translate that into plain language: what determined how long a country could stay on the gold standard was never just how much gold it held, but how long it could go on compressing the pain. And how long the pain could be compressed depended on whether the people bearing it had any way to push back.</p>
+
+<p>One thing remains unaccounted for, and it is the deepest irony in the whole arrangement.</p>
+
+<p>In the name of conserving gold, what got rebuilt after the war was not a purer gold system but a more abstract gold-exchange standard. Many countries stopped gold coin from circulating after the war and switched to a gold bullion standard; still more simply held gold-convertible foreign exchange as their reserves, and that foreign exchange was, in practice, mostly sterling and dollars. The foreign-exchange reserves held by European central banks, which had fluctuated in the decade before the war somewhere between 250 and 400 million dollars, had risen to 844 million dollars by the end of 1924, and to 2.513 billion dollars by the end of 1928. Of the four core interwar economies, only the United States remained on a gold coin standard; Britain and France were on a gold bullion standard; most of the rest were on a gold-exchange standard.</p>
+
+<p>Which is to say: this world, which advertised itself as resting on gold, was increasingly sitting on paper that other people had merely promised to redeem in gold.</p>
+
+<p>Essay 6 told the story of jiaozi: strip the metal out of money, and precisely that much weight comes to rest on trust instead. What the gold standard tried to do was the reverse — move the weight off trust and back onto metal. What it produced, in the end, was a new layer of trust, one more distant, more concentrated, and harder for anyone to verify than the layers it had replaced. The effort to escape trust altogether ended by relocating trust somewhere even less visible.</p>
+
+<p>That thread, the one running through national credit, market reputation, central-bank cooperation, and social compliance, was never actually cut. The institutional shift of the 1870s, the war finance of 1914, the overvalued restoration of 1925, the capital flight of 1931, the global banking panic of 1933: every real stress test lit that thread up again.</p>
+
+<p>Return to the two figures this essay opened with.</p>
+
+<p>The seventh decimal place, and the sentence about not being able to offer even the roughest hint, both came out of the same system, less than a decade apart.</p>
+
+<p>They are not, in fact, contradictory. A scale can be made extremely precise, precise enough that people come to assume everything precise has already been measured. But what it measures is always only what it is capable of measuring. What it cannot measure keeps moving regardless, and moves most violently exactly at the moment it matters most.</p>
+
+<p>The ledger has not yet balanced. It is still being kept.</p>
+
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="ep13.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">公地及其圈占:没有名字的东西,被留在了篱笆外面</span>
+            <span class="xiyou-nav-title lang-en">The Commons and Its Enclosure</span>
+          </span>
+        </a>
+        <a href="ep15.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">大萧条与凯恩斯:出清,从来不会自己发生</span>
+            <span class="xiyou-nav-title lang-en">Effective Demand and the Column Marked Voluntary</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

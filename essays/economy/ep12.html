@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>无偿劳动｜凿构周期律·经济系列 — Non Dubito</title>
+  <meta name="description" content="家务,照护,养育——GDP从不把它们算作生产。这不是统计的失误，是这套构从一开始就靠这样东西撑着：一样必须存在，却永远不许上账的劳动。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/economy/ep12.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .essay-entry-point { font-family:var(--sans); font-size:0.72rem; color:var(--ink-muted); font-style:italic; margin-top:0.5rem; margin-bottom:0.25rem; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 凿构周期律·经济系列</a>
+        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Economics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">凿构周期律 · 经济</div>
+          <div class="essay-series lang-en">Chisel-Construct Cycle · Economics</div>
+          <div class="emperor-ep-num lang-zh">第 12 篇，共 23 篇</div>
+          <div class="emperor-ep-num lang-en">Essay 12 of 23</div>
+          <h1 class="lang-zh">第十二篇　无偿劳动:从未被记上账,才是它的运转方式</h1>
+          <h1 class="lang-en">Essay 12: Love and Unwaged Work — Never Entering Was the Point</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<h3>一 规模无疑十分庞大</h3>
+
+<p>1907年,澳大利亚的一个法庭要给工资定一条底线。判决书说,一个不熟练的男工,他的工资应当足以养活妻子和三个孩子。</p>
+
+<p>这条底线后来被称作家庭工资。它承认一件事:一份工资要撑的不止一个人。它同时默认另一件事:妻子和三个孩子那一头的活,家里会自己想办法。判决里没有给那部分活定价,因为在判决的眼里,那部分活不需要定价,它会自动发生。</p>
+
+<p>这个默认在当时不算特别。十九世纪到二十世纪上半叶,许多工业社会都在往同一个方向走:男人进厂领工资,女人被固定在家务和照护的位置上。要紧的是,那套安排不是自己长出来的。它是被法律条文,工会章程,企业规章和社会政策一层一层加固起来的,那份判决就是其中一块砖。一件被制度反复砌起来的事情,过上两代人,就会被当成天性来讲。</p>
+
+<p>一个数被写下来了。这个数之所以成立,是因为另一批没有被写下来的事情正在同时进行。</p>
+
+<p>这一句可以当作后面所有内容的引子。一份工资,一条贫困线,一个增长率,一份国民收入的总数,凡是这一类数字,都是在某个范围之内算出来的,而那个范围之外从来不是真空。范围之外有事情在发生,而且正因为那些事情在发生,范围之内的数字才对得上。</p>
+
+<p>二十七年后,1934年,美国参议院要一份关于国民收入的估算。承担这件事的是库兹涅茨,他后来被公认为现代国民核算的奠基人之一。他要回答的问题很实在:这个国家一年到底生产了多少。</p>
+
+<p>他在那份文本里遇到了同一个东西,而且他没有回避。他写道,家庭主妇和家中其他成员所提供的服务,其规模无疑十分庞大。他知道那是一大块,他甚至用了一个带感叹的词去形容它的分量。</p>
+
+<p>然后他写下,最好还是省略。</p>
+
+<p>理由他也写了:那类服务更多属于家庭生活,而不属于一个国家具体的商业生活。他把自己那份估计定义为主要涵盖那些结果出现在市场上的努力。</p>
+
+<p>到这里为止,这仍然只是一次普通的取舍。真正让这一页与众不同的,是他接着写下的第三句话。他承认,这个遗漏会降低国民收入作为生产力指标的价值,尤其是在市场经济收缩而家庭内部活动扩张的时候。</p>
+
+<p>也就是说,他不但知道自己漏掉了什么,还预先写下了这个漏掉将在什么条件下出问题。他把自己的失效条件登记在了同一页上。</p>
+
+<p>这一句后面会一直有用,所以先记住它的形状。他没有说那些活动不是生产,他说的是它们不进这本账;他也没有说这个决定没有代价,他说了代价是什么,还说了代价会在什么时候变大。一个人把话说到这个份上,后面的人再要争论,争的就不是他看没看见,而是这本账该不该改。</p>
+
+<p>同一年,还有一本书出版。玛格丽特·里德写了一本关于家庭生产的经济学著作,把家庭当成一个生产场所来处理。她给出的判据后来被叫做第三者标准:如果一项活动原则上可以委托给别人有偿完成,或者可以用市场上的商品和付费服务替代,那么它就是生产活动,不只是自然而然的家庭职责。</p>
+
+<p>1934年因此是一个很好看的年份。同一年里,一个人写下最好还是省略,另一个人写出了把它算进来所需要的那把尺子。前者进了国家的账,后者进了图书馆。</p>
+
+<p>这两条路后来一直分着走。一条路是国家每年公布的数字,有预算,有机构,有法定的发布日期,进政府文件,进新闻,进选举辩论。另一条路是学术著作,是判据,是方法上的讨论,读的人少,引用的人更少。九十年过去,第二条路上的东西大部分仍在第二条路上。</p>
+
+<p>第十一篇结尾说,那本账底下有一栏是空的。接下来要讲的,是那一栏为什么空着,是谁在哪一年决定它空着,以及九十年里有人为它做过些什么。</p>
+
+<h3>二 边界画在哪里</h3>
+
+<p>战后的国民账户体系把这条取舍制度化了,而且写得很清楚。</p>
+
+<p>到 1993年版和 2008年版,文本里有一句几乎一字不差地重复着:家庭成员为本户最终消费所进行的家务与个人服务,传统上被排除在已测量的生产之外。后面还跟着一份清单:住房的清洁与维护,家用耐用品的清洁与修理,备餐与上菜,照料和教育儿童,照顾病人老人体弱者,运送家庭成员和家庭物品。</p>
+
+<p>那份清单值得慢读一遍,因为它列的正是一天里最占时间的那些事。</p>
+
+<p>一个人从早上睁眼到晚上闭眼,做的多半就是这几样。买菜,做饭,洗碗,擦地,修一把松了的椅子,给孩子讲一遍功课,把老人送去看病,再把人接回来。这些事排满一天,排满一年,排满很多人的一生。而按照那句话,它们从一开始就不在被测量的那一侧。</p>
+
+<p>但排除从来不是一刀切的。同一套文本又把三类家庭活动划进了生产边界之内。第一类是自给性的商品生产,比如自家种粮自家吃。第二类是业主自住房屋所提供的住房服务。第三类是雇佣有酬家政工所提供的家务服务。</p>
+
+<p>把两份清单并排看,边界的走向立刻显出来了。</p>
+
+<p>自己做饭不算,雇一个厨师来做饭算。自己看孩子不算,雇一个保姆来看孩子算。同一间厨房,同一个灶,同一份饭,做的人换一个身份,这件事的统计身份就跟着换了。</p>
+
+<p>边界不是画在活动之间的。边界是画在组织形式之间的。</p>
+
+<p>这一句得停一下。前面几篇里的余项,形态各不相同,有的是没被量到的,有的是量准了不细看的,有的是被宣布不归本学科管的。这里的余项不是一类活动,是一类关系。同一份劳动,同一个人做,只要它发生在有工资的那一侧,它就在账里;发生在没有工资的那一侧,它就在账外。构量的从来不是事情本身,是事情被组织起来的方式。</p>
+
+<p>第二类更值得看一眼。业主自住房屋的住房服务,意思是一个人住在自己的房子里,统计机构要替他算一笔他没有付给任何人的房租,把这笔钱记进总账。这里既没有交易,也没有价格,统计机构照样算了出来,方法是找一间条件相近的出租房,看它的租金是多少。</p>
+
+<p>这一条很要紧,因为它说明没有市场价格这个理由并没有被一致地执行。凡是被认为该算的,没有价格也能造出一个价格来;凡是被认为不该算的,能造价格也不造。</p>
+
+<p>造价格的办法其实是现成的,各国统计机构天天在用。找一间条件相近的出租房,取它的租金,这叫替代;换到家务上,就是找一个在市场上做同样活的人,取他的工钱。技术上并没有障碍。障碍在别的地方。</p>
+
+<p>那么给出的理由是什么。文本里大致有三条,而且三条都不荒谬。</p>
+
+<p>第一条,家庭为自己提供的服务被看作一种自我封闭的活动,对经济的其余部分影响有限;而商品不同,商品可以先被生产出来,再决定是自用,储存还是出售。第二条,家庭服务大多不为市场而生产,因此通常缺少合适的市场价格,硬加进一本以货币交易为基础的账里,会让账的含义变得含糊。第三条,国民账户从来不是一个福利指标,它要服务于许多种分析和政策用途,不能把凡是有助于生活的东西都往里塞。</p>
+
+<p>这三条各有各的道理,把它们说成偏见是不老实的。</p>
+
+<p>麻烦不在理由本身,在理由被制度化以后长出来的那个副产品。一套账目日复一日地公布,被引用,被拿去做决定,做久了会生出一种很强的错觉:好像只有在市场上显影的劳动才是真正的生产,边界之外是空的。</p>
+
+<p>美国的统计机构今天仍然在自己的网页上写着,烹饪,清洁,看孩子这类无酬的家庭劳动不包括在国内生产总值之内,但对它作补充核算能够提供重要的补充。这句话说明,连造账的人自己也承认,那张图是被有意裁剪过的。</p>
+
+<h3>三 牛的奶和人的奶</h3>
+
+<p>有一个例子把这条边界的走向照得最亮,而它不是抽象的账法,是一样具体的东西。</p>
+
+<p>经济学家南希·福尔布指出,现行的国民账户把自家生产的谷物,蔬菜,牛奶和柴火都算进了边界之内。自家养的牛挤出来的奶,记账。</p>
+
+<p>母乳几乎被普遍地忽略。</p>
+
+<p>忽略这个词用得还算客气。真正的情形是,它从来没有走到候选名单上。谷物,蔬菜,牛奶,柴火之所以能进边界,靠的是它们在市场上已经有对应物,一斗谷值多少,一捆柴值多少,查得到。母乳没有这样一张价目表,于是它不是被算成了零,是压根没有走到需要算的那一步。</p>
+
+<p>而如果一个家庭去买配方奶粉,那笔支出会让国内生产总值上升,哪怕它替代掉的东西在营养上更好。</p>
+
+<p>同一种液体,同一种用途,牛的那一份入账,人的那一份不入账,而用瓶装的替代品把人的那一份换掉,账面上还会显示经济增长了。</p>
+
+<p>顺着这条逻辑再走一步会更清楚。如果一个国家的母亲们全部改喂配方奶,总产值会上升,上升的幅度等于奶粉的销售额加上运输和零售的加价。如果她们全部改回母乳,总产值会下降。而两种情形下,被喂养的婴儿数目一模一样。账面上的增减,和这件事本来要办成的那件事之间,没有关系。</p>
+
+<p>这不是谁犯了错误。它精确地展示了生产边界真正的运作方式:不是有用就算,而是要看它通过什么渠道被组织成了价格和交易。</p>
+
+<p>有一件旧事可以顺手对一下。当年吕底亚人把尺子做成硬币,尺子做出来以后,原先看不出高低的东西开始显出高低。那时候的问题是尺子照出来的东西太多。这里的问题反过来,是尺子照出来的东西太齐整:凡在它照射范围里的,都清清楚楚,有单位,有数值,可以逐年比较;而照射范围之外,没有半点影子,连一个模糊的轮廓也没有。</p>
+
+<p>1988年,玛丽莲·沃林出版了一本追问这件事的书。她做的不是泛泛地说总产值有问题,她是逐条去问:为什么母职不算,家务不算,照护不算,自然环境不算,母乳不算,而军备算,污染清理算,配方奶的销售算。</p>
+
+<p>后来评述她的人常用一个词形容她做的事,说她把国民账户去神秘化了。原本看上去技术中立的一条条假定,被她一条一条拆开摆在桌面上,让人看见每一条背后都有人在某一年做过一次选择。</p>
+
+<p>她列出来的那份名单,并排读起来有一种很奇怪的效果。生一个孩子,带大一个孩子,照顾一个走不动的老人,这些不算;一片林子长在那里不算,砍倒了卖木材才算;一场泄漏发生的时候不算,花钱去清理它的时候算,而且清理花得越多,账上的数字越好看。名单的两边并不是重要和不重要,是入账和不入账,而这两件事在日常语言里已经被当成同一件事很久了。</p>
+
+<p>有研究者的概括更直接:她显示了这套战后建立起来的账目,如何被当时占主导地位的价值取向浸透。</p>
+
+<p>第三篇里说过,尺子不制造余项,它照亮余项。到这里要补上另一半。</p>
+
+<p>尺子照不到的地方,人会以为那里什么也没有。</p>
+
+<p>这才是构最深的一层成功。它不需要把余项压平,也不需要论证余项不重要。它只要把账做得足够完整,足够权威,足够频繁地公布,边界之外就会自动看上去像是一片空地。空地上其实站满了人,只是账上没有他们的行。</p>
+
+<p>更彻底的一层是,连站在空地上的人自己也会这样看。一个人一天做十几个钟头的活,如果没有一份工资单,没有一个职称,没有一栏数字,她在被问到做什么的时候,很可能答一句没做什么。构的说服力最强的时候,不是它说服了旁人,是它说服了余项自己。</p>
+
+<h3>四 他们说这是爱</h3>
+
+<p>1972年三月,在曼彻斯特的一次妇女解放会议上,塞尔玛·詹姆斯第一次明确提出家务应当有酬。</p>
+
+<p>同一年,她和达拉·科斯塔合写的一本小书出版,把家庭主妇放到了分析的正中央。书里有一句相当挑衅的话:所有女人都是家庭主妇。这句话的意思不是所有女人都不出去工作,而是即便有一份外面的职业,回到家里仍旧要接着做那一份活。她们还用了社会工厂这个说法,意思是对劳动能力的组织和再生产不只发生在厂房里,也发生在社区,住房,交通,医疗,学校和家庭里。</p>
+
+<p>她们做的事,说穿了很简单:把女人在家里这件事,从一个道德角色改写成了一个生产位置。</p>
+
+<p>改写的方向和第十一篇是同一个。那里是把劳动改写成劳动力,好让一件被当成天经地义的事显出它的结构;这里是把家务改写成再生产劳动,目的一样。两次都是先给一样东西换一个称呼,换完之后,原先问不出口的问题就问得出口了:这件事谁做,做多久,凭什么由这个人做,不做会怎么样。</p>
+
+<p>1975年四月,西尔维娅·费代里奇在布里斯托尔印了一本小册子。英国售价二十便士,美国邮寄价七十美分。定价这种细节值得留一句,因为它提醒人,那不是一场学术讨论,那是要发到人手里去的东西。</p>
+
+<p>小册子里最广为流传的一句是:他们说这是爱,我们说这是无偿劳动。</p>
+
+<p>但真正把这场运动的逻辑说清楚的,是另一句。她写道,说我们要为家务拿钱,是走向拒绝做这种家务的第一步。</p>
+
+<p>这句话把一个常见的误解挡了回去。要工资并不等于要把女人永久钉在那个位置上,恰恰相反,先要把一件被说成天性和爱的事情揭露成劳动,然后才谈得上拒绝它,重新分配它,或者交给别的人和别的制度去做。她还有一句说得更直白:家务本来就已经是资本的钱。</p>
+
+<p>所以这场运动同时做了两件互相矛盾又互相依赖的事。一件是把家务做成可以计价的对象,让它在工资,福利,收入分配这些语言里显影。另一件是坚持说,这样做不是为了让家务彻底变成商品,而是为了拆掉那个幻觉。</p>
+
+<p>命名先于议价。要谈一件东西值多少,总得先承认它是一件东西。</p>
+
+<p>这句话反过来也成立,而且更冷。一样东西只要一直不被承认是一样东西,就永远不会进入议价。不进入议价,就不会有价格;没有价格,在账上就是零。而零是最省事的一个数,它不需要预算,不需要谈判,不需要有人负责。</p>
+
+<p>批评来得很快,而且不是从一个方向来的。</p>
+
+<p>有人指责它不过是简单地要钱,把复杂的处境化约成一张支票;有人认为它片面,只盯住工资这一个杠杆;有人说它是改良主义的,甚至说它是反动的,因为一旦真的按家务发钱,反倒可能把原有的分工固定下来。1979年,有研究者从理论上提出更冷静的质疑:把家务自动理解成压低劳动力价值的一笔免费补贴,并不能解决随之而来的一连串理论难题。到 1980年代初,不少原本参与讨论的人已经决定走出这场家务劳动争论,理由是它留下了太多概念上的含混和绕圈子的论证。</p>
+
+<p>这些批评都不轻,而且提出批评的人和运动本身站在同一边。</p>
+
+<p>把这些照原样摆出来是必要的。那不是一边有理另一边无理的争执,是同一群人在同一个问题上分了岔:承认了以后要不要计价,计了价以后钱从哪里来,钱来了以后会不会反而把人钉在原处。三个问题一个比一个难答,到今天也没有一个统一的答案。</p>
+
+<p>但那场运动留下了一样持久的东西,和第十一篇接得上。它改变了工资在人们眼里的样子。工资不再像一张付清了账单的票据,而更像一种安排:把一部分维持生命所必需的成本,压到家庭内部,由不领工资的人消化掉。</p>
+
+<p>于是问题也就换了形状。它不再只是家庭主妇该不该发钱,而是维持生命的那一整套供给,究竟应当由家庭内部无偿承担,还是由社会化的制度,公共服务和共同资源来分担。</p>
+
+<h3>五 卫星</h3>
+
+<p>从政治口号回到账本,要走很长的路,而这条路走了三十年。</p>
+
+<p>1995年,北京的那份行动纲领第一次在政府间文件的层面上要求各国充分衡量男女所做的工作,包括有酬的和无酬的,并且在适当的时候使用卫星账户或者其他官方账户来记录无酬工作。</p>
+
+<p>卫星账户这个名字取得很准。它绕着主账户转,轨道稳定,数据齐整,永远靠近,永远不落地。</p>
+
+<p>要留意这个安排的分寸。它不是拒绝,拒绝会引起争论。它是接纳,而且是相当认真的接纳:有方法说明,有指南,有国际会议,有各国的试算。它只是把接纳这件事安排在了主账户之外的一圈轨道上。被接纳的东西因此得到了很多,唯独没有得到那一栏。</p>
+
+<p>技术上,现在最成熟的工具是时间利用调查。它把一天二十四小时在不同人群里的分布记下来,谁做了什么,做了多久。时间账户的好处是完整,而且能看出谁被压得最重;它的限制是它只给小时,不给钱。</p>
+
+<p>要给钱,就要估值,而估值一开口就分岔。</p>
+
+<p>一条路叫投入法,从劳动投入,资本耗费和中间投入去算,它依赖质量较好的时间调查,好处是能把各类无偿家庭服务比较完整地捕捉住,而且保得住家里谁做得多谁做得少的分布。另一条路叫产出法,从生产出来并被消费掉的服务单位出发,再拿市场上的等价价格去乘,它和核心账目更可比,却会把日常分布的信息丢掉一大半。联合国的方法说明建议,条件允许时两条路应该互相校验。</p>
+
+<p>再往下一层,是用哪一种工资去估。这里通常有三种。</p>
+
+<p>第一种叫机会成本法,用做这件事的人如果去市场上工作本来能挣到的工资来计。第二种叫替代成本法,算的是雇人来替你做这些事要花多少钱。第三种是替代成本法内部的细分,一头是通用工资,拿住家家政工那一类的工钱去估整包活;另一头是分职业工资,做饭按厨师算,清洁按保洁算,接送按司机算,看孩子按托育人员算。有指南建议优先用分职业的工资,但也提醒别去套用资历过高的专业工资。</p>
+
+<p>这些差别听上去像技术细节,结果却差得极远。</p>
+
+<p>经合组织对若干成员国 2018年数据的估算显示,用替代成本法算,无偿家务大约是国内生产总值的百分之十五;用机会成本法算,大约是百分之二十七。</p>
+
+<p>同一批活动,同一年,同一批人做的,换一把算法,差了将近一倍。</p>
+
+<p>这个差距不是谁算错了。两种算法各自问的问题不同。机会成本法问的是这个人放弃了什么,替代成本法问的是这件事请人来做要花多少。两个问题都合理,而且都不是那件事本身。那件事本身没有价格,价格是从旁边借来的,借哪一边,数就跟着变。</p>
+
+<p>同一份文件还留了一句提醒:这些数字都建立在很强的假设上,可能高估了无偿家务的经济价值,因为家庭自己做和拿到市场上外包之间,并不存在完全的可替代性。</p>
+
+<p>这句话应该被读慢一点。它是一个统计机构在自己的文件里承认:要把这件事放上那把共同的尺子,就必须先为可替代这件事下一注,而下注的人知道这一注不牢。</p>
+
+<p>各国的实际尝试已经不少。瑞士的统计机构估算,2020年全国无偿劳动的总量是九十八亿小时,货币价值约四千三百四十二亿瑞郎。格鲁吉亚估算 2021年无偿家庭服务工作的增加值,在国内生产总值里占到百分之二十三点三,其中女性承担了百分之八十一点七。加拿大的统计机构给 2019年的估算是一个区间,五千一百六十九亿到八千六百零二亿加元,折合那个总值的百分之二十五点二到三十七点二。美国的统计机构则把家庭生产作为一个专门的补充账户持续更新。</p>
+
+<p>加拿大那个区间已经是答案的形状。同一个国家,同一年,同一批调查数据,给出的结果相差一半以上,而每一种算法都合规。</p>
+
+<p>2025年三月,联合国统计委员会通过了新一轮的国民账户体系更新。它一方面继续把无偿家庭服务留在核心边界之外,另一方面又给了它比过去显著得多的位置,要求发展扩展性或者专题性的账户。</p>
+
+<p>边界没有移动。边界外面开始长出附属结构。</p>
+
+<h3>六 尺子带着自己的刻度</h3>
+
+<p>要给无偿劳动定价,还有一层更难堪的事,而且是统计机构自己提出来的。</p>
+
+<p>加拿大的统计机构专门写了一条提醒。如果采用机会成本法,劳动力市场上现存的工资差距会被原样带进估值。也就是说,即便一个人做的无偿劳动更多,只要她在市场上的平均工资更低,她做的那些活折成钱以后,反而可能显得价值更低。</p>
+
+<p>这不是一次统计事故,也不是哪个环节算错了。它是共同的货币尺子在做它本来就会做的事:量一样东西的时候,把已经存在的等级秩序一并量了进去。</p>
+
+<p>换个说法也许更清楚。市场上的工资本来就已经是一次排序的结果,它记录着上一轮谁被安排在什么位置上,谁的时间被认为更值钱。拿这套工资去给账外的劳动定价,等于用上一轮的结果给这一轮打分。做得多的那个人如果在上一轮排得靠后,这一轮还是靠后,而且这一次的靠后有了一个数字,看上去像是算出来的。</p>
+
+<p>同一把尺子还在做另一件事,而这件事很少被算进它的功劳里。</p>
+
+<p>把余项拿进尺子的那一刻,尺子会把自己身上的刻度一并印上去。</p>
+
+<p>这件事在别处也发生过,只是没有这样赤裸。第七篇里,矿上的人被折成一个征调比例和一个具体人数,折算用的是当时的行政等级;种植园里,人被和土地写在同一行,用的是当时的地价体系。每一次把一样东西搬进账里,用的都是账里现成的换算表,而换算表是上一轮秩序留下来的。搬进来的东西因此不会带来新的次序,它先领到的是一个旧的位置。</p>
+
+<p>承认从来不是一次中立的搬运。一样东西被接纳进账本的那一刻,它就按这本账已有的次序被排了位,而这本账的次序里,早就写着谁值多少。构接纳余项是有条件的,条件是余项接受构的度量衡。</p>
+
+<p>于是出现了一个很难跳出去的圈。要争取资源,就得先有数;要有数,就得进那把尺子;进了那把尺子,数就会按已有的高低排出来;而排出来的数又会被拿去决定资源怎么分。争取的人不是不知道这个圈,他们通常也说不出更好的办法,因为不进这个圈,那一栏就一直是零,而零连争的资格都没有。</p>
+
+<p>规模有多大,现在是有数的。国际劳工组织的全球估算说,世界上无偿照护劳动的百分之七十六点二由女性承担;平均下来,女性每天四小时二十五分钟,男性一小时二十三分钟。到 2023年,全球有七亿四千八百万人因为照护责任而不在劳动力市场里,其中七亿零八百万是女性。</p>
+
+<p>光是这几个数就说明,那不是账簿边角上的一点零头,那是整个劳动市场,工资收入和就业统计站立其上的地基。</p>
+
+<p>一个数字要说明问题,通常得先有一个对照。每天四小时二十五分钟对一小时二十三分钟,中间差着三个多钟头。三个多钟头是一份半工的长度,是一段可以拿来读书,休息,走动,或者去挣另一份钱的时间。它每天都在发生,一年三百多天,一生几十年。把它折成钱是一种算法,把它折成没有过成的那些日子是另一种,而后一种账没有科目。</p>
+
+<p>这些数字还有另一层用处。它们让一件常被说成个人选择的事情露出了规模。一个家庭里谁去接孩子,看上去是两个人商量出来的结果;放到七亿这个数目上,商量就不像是全部的解释了。个别的安排可以有一千种理由,而一千种理由加起来全指向同一个方向的时候,就得另外去找解释。</p>
+
+<p>也正因如此,不测量并不等于中立。福尔布的判断在这里是清楚的:不去测量无偿劳动,会夸大市场经济的效率,也会扭曲人们对增长和生活水平的理解。零也是一个数,而且是最容易被引用的那个数。</p>
+
+<p>零的好处是它不需要维护。一个有数的项目要每年更新,要解释口径,要面对质疑;一个是零的项目什么都不需要,它安安静静地待在那里,不会有人问它今年为什么变了。构最省力的状态,不是把余项压得很小,是让余项的位置上根本没有数。</p>
+
+<h3>七 两个世界</h3>
+
+<p>那么把它全部算进来,是不是就好了。这里出现了真正的分歧,而且分歧的每一方都拿得出理由。</p>
+
+<p>主张更强地计价和纳入的一方说得很实际。如果连数都没有,托育,养老,医疗和社会保护的预算就很难去争;不进入核算就继续被当成零;不进入预算就继续由家庭内部自然吸收;不进入收入与福利的设计,就继续由最没有议价能力的那一部分人承担。1995年的行动纲领,后来一系列国际机构的方法说明,以及承认,减少,再分配无偿照护劳动加上奖励和代表有酬照护劳动这条政策线,走的都是这个方向。</p>
+
+<p>谨慎的一方说的也不是空话。一旦一切都被折成钱,照护里那些关系性的,信任性的,情感投入的和道德义务的部分,很容易在统一的货币尺度下被压扁;更麻烦的是,被压扁之后它可能以另一种形式重新组织起来,变成低工资,绩效考核和廉价外包。福尔布自己在这一点上写得毫不含糊:照护永远不能被化约为纯粹的经济术语。她还给过一个技术性的说明:在一项非市场劳动里,个人性和情感性的照护占比越大,用市场价格去估它的价值时,低估就越严重。</p>
+
+<p>第五篇里说过一句话,量得到,量得准,量完却没有触到。这里的情形要更绕一层:量得到,量出来的数还会反过来改变被量的那件事。</p>
+
+<p>还有第三条路,来自社会学的一支。它同时反对两种流行说法。一种说法认为金钱和亲密关系是两个互相污染的敌对世界,钱一进来,情分就脏了;另一种说法认为亲密关系归根到底不过是利益交换,温情只是包装。这一支主张两种说法都不对,真正该看的是在具体的安排里,钱和关系是怎样被摆放的,哪一种搭配是妥当的,哪一种不妥当。</p>
+
+<p>按这条路走,问题就不再是付钱会不会毁掉爱,而是在什么样的制度安排下,钱,责任,信任和照护可以共处,并且不把风险全部压给某一方。</p>
+
+<p>最后半句才是关键。前面几篇里那些看上去不相干的例子,拆到底都落在同一处:第五篇里账簿上留下的漏口,风险落在没有资格发问的人身上;第十一篇里工人先干活后拿钱,风险落在没有别的抵押品的那一边。爱和钱能不能同处一室,是一个说不清的问题;风险压在谁身上,是一个每次都数得出来的问题。</p>
+
+<p>前面几篇里反复出现的那一条,在这里终于有人用最直接的话说出来了。匿名的价格和人格化的关系从来不是替代关系。它们一直在同一件事里同时运转,只是每一次的配比不同,而配比由制度决定,不由本性决定。</p>
+
+<p>照这样看,把某件事从家里挪到市场上,并不会让人格化的那一半消失。请一个人来照顾老人,合同里写得清清楚楚的是钟点和工钱;而这个人晚上会不会多待十分钟,会不会记得老人不爱吃什么,会不会在情况不对的时候先打一个电话,这些没有一条写在合同里,却决定了这件事办得好不好。付钱买到的是到场,买不到的是上心。</p>
+
+<p>照护经济学里有一个说法叫照护菱形,把提供照护的一方分成四个角:家庭,政府,市场,志愿组织。这个说法的好处是它把问题从有没有换成了各占多少。一件事从家庭那一角移到市场那一角,不等于它被解决了,只等于它换了一个承担者,换了一套定价方式,也换了一批会出问题的地方。</p>
+
+<p>福尔布在批评估值的同时,始终没有反对估值。她的位置大致是这样的:货币估值确有风险,但它确实能把一件事揭出来,就是市场交易只是我们赖以活着的那些东西的一个子集。</p>
+
+<p>两边都对,而且是在不同的层面上对。这大概就是这场争论五十年没有收口的原因。</p>
+
+<h3>八 空着的那一栏</h3>
+
+<p>回到 1934年那一页。</p>
+
+<p>库兹涅茨写下最好还是省略的时候,同时写下了这个省略会在什么条件下出问题:当市场经济收缩,而家庭内部的活动扩张的时候,那本账作为生产力指标的价值会下降。</p>
+
+<p>九十年后,联合国自己的方法说明确认了同一件事,只是方向反着说:如果不核算无偿家庭服务,经济增长率就可能被高估,因为原本在家里做的事被移到市场上去做,账面上就多出了一笔,而实际上维持生命的活动总量并没有增加。</p>
+
+<p>一个构,在开工的那一年,把自己会在什么条件下出错写在了同一页上,然后照常运行了九十年。</p>
+
+<p>这一点值得和第九篇对着看。那里是构把自己删掉的东西完好留在了自己的档案里,删的人和被删的东西同在一个封面下。这里还要更进一层:留在档案里的不只是被删的东西,还有一份说明书,写着这次删除会在什么情况下让整台机器报出错数。说明书一直在,机器一直转。</p>
+
+<p>这不是隐瞒。隐瞒还需要费点力气。这里没有人费力气,那一页一直印在那里,谁都可以翻到。构的稳固不来自遮蔽,来自惯性:每年公布,每年被引用,每年被拿去分配资源,一年一年下来,那条边界就不再像一个决定,而像一件事实。</p>
+
+<p>九十年里,替那一栏说话的人做过很多事。有人给出了判据,有人把它变成了口号印在二十便士的小册子上,有人逐条拆解了那些假定,有人写进了政府间的文件,有人建起了时间账户和卫星账户,有人算出了小时数和货币值。</p>
+
+<p>到 2025年,边界仍在原处。</p>
+
+<p>九十年不算短。一条边界能在九十年里被这样多的人从这样多的方向推,推完之后仍在原处,这件事需要一个解释,而解释多半不在这条边界的对错上。一本每年都要出数,出的数又要被拿去做重大决定的账,最怕的不是漏,是变。漏了还能补一张附表,口径一变,前面几十年的数就没法比了。稳定是这一类构最硬的需求,硬过准确。</p>
+
+<p>而边界外面,已经不是一片空地了。它挤满了小字:时间账户,卫星账户,扩展账户,专题账户,每一份都在说同一句话,那一栏应该有数。每一份都摆在栏外。</p>
+
+<p>这就是构对付余项的第六种办法。不消化,不否认,不改名,也不再往里收边界,而是给余项一条轨道,让它绕着账本转,数据齐整,引用方便,永远靠近,永远不进去。</p>
+
+<p>而它进不去的理由,前面已经由官方文件自己说过一遍:自家做的那一份,和花钱请人做的那一份,并不是同一样可以互换的东西。</p>
+
+<p>可替代,是进账的前提。一件事只有当它可以由另一个人照样做一遍,并且做出来的东西被认为是同一样东西时,它才能被定价,被结算,被写进那一栏。而这件事恰好不完全可替代。</p>
+
+<p>于是它只能留在账外。</p>
+
+<p>一个人在夜里起来,给发烧的孩子换一块毛巾。这件事在任何一种算法下都能得出一个数:按替代成本算,是雇一个夜班照护者的钟点费;按机会成本算,是她第二天因为没睡好而少挣的那一部分。两个数都算得出来,两个数都合规,两个数都不一样,而且按后一种算法,她挣得越少,这件事就越不值钱。</p>
+
+<p>而她起来换那块毛巾的时候,做的不是这两个数里的任何一个。她做的是那件事本身。价钱是后来的人从旁边借来贴上去的,借的是别人的价钱,贴的是她的夜。</p>
+
+<p>账会一直做下去,而且会做得一年比一年细。口径要调,附表要加,轨道上那些数字会越来越准。那一栏则空在原处,四周绕满了算得极准的数,像在等一份始终没有下来的批准。</p>
+
+<p>而那些活照旧每天在做。做的人不等批准。</p>
+
+<p>账还没有算平,它仍旧在记。</p>
+
+      </div>
+
+      <div class="essay-body lang-en">
+
+<h3>1. Imposing Indeed</h3>
+
+<p>In 1907 an Australian court set out to fix a floor under wages. The ruling held that an unskilled male laborer's pay should be enough to support a wife and three children.</p>
+
+<p>That floor came to be known as the family wage. It conceded one thing: a single paycheck had to stretch over more than one person. It assumed another, just as quietly: whatever work fell to the wife and the three children's end of the household would sort itself out. The judgment set no price on that other work, because in the judgment's own eyes that work needed no price. It would simply happen.</p>
+
+<p>There was nothing unusual about this assumption at the time. Through the nineteenth century and into the first half of the twentieth, one industrial society after another was moving in the same direction: men went into the factory to draw a wage, women were fixed in place at the work of the household and the work of care. What mattered was that none of this arrangement grew there on its own. It was built up, layer by layer, out of statutes, union rules, company regulations, and social policy, and that one ruling was a single brick in the wall. Anything that institutions keep laying down brick by brick will, within two generations, come to be spoken of as simple nature.</p>
+
+<p>A number got written down. That number balanced only because another set of things — things that never got written down — was happening at the very same time.</p>
+
+<p>Everything that follows can be read as a gloss on that one sentence. A wage, a poverty line, a growth rate, the grand total of a nation's income — every figure of this kind is calculated within some boundary, and outside that boundary has never been a vacuum. Things are happening out there, and it is precisely because they are happening that the figures inside the boundary come out even.</p>
+
+<p>Twenty-seven years later, in 1934, the United States Senate commissioned an estimate of the nation's income. The man given the task was Simon Kuznets, who would later be recognized as one of the founders of modern national accounting. The question he had to answer was concrete enough: how much, in a single year, had this country actually produced.</p>
+
+<p>In the course of that work he ran into the same thing the Australian court had run into, and he did not look away from it. "The volume of services rendered by housewives and other members of the household toward the satisfaction of wants must be imposing indeed," he wrote, "when totaled for the 30 million families comprising the population of this country; and the item is thus large enough to affect materially any estimate of national income." He knew it was a great mass of activity, and he had reached for a word with real force in it to say so.</p>
+
+<p>And then he wrote that it was best to omit them.</p>
+
+<p>He gave his reasons too: that kind of service, he wrote, was "an integral part of family life at large, rather than of the specifically business life of the nation"; his own estimate was meant to cover chiefly those efforts whose results appeared on the market.</p>
+
+<p>Up to this point it was still an ordinary act of triage. What sets that page apart is the third sentence he went on to write. This omission, he acknowledged, unavoidable as it was, would lower the value of national income measurements as an index of the nation's productivity — and it would do so especially "when the contraction of the market economy was accompanied by an expansion of activity within the family."</p>
+
+<p>Which is to say, he did not only know what he was leaving out. He wrote down, in advance, the exact conditions under which that omission would fail. He filed his own error term on the very page where he made the cut.</p>
+
+<p>That sentence would go on doing work for the rest of this story, so it is worth fixing its shape now. He never said that housework and childcare were not production. He said they would not enter this particular ledger. He never said the decision was free of cost. He said what the cost was, and under what conditions the cost would grow. Once someone has gone that far on the record, anyone arguing with him afterward is no longer arguing about whether he saw the problem. They are arguing about whether the ledger should be changed.</p>
+
+<p>The same year saw another book appear. Margaret Reid published Economics of Household Production, a study that treated the household itself as a site of production. The criterion she offered later became known as the third-party test: if an activity could, in principle, be delegated to someone else for pay, or replaced with a good or a paid service bought on the market, then it counted as productive activity — not simply as a family duty that happened by nature.</p>
+
+<p>1934, then, was a remarkable year to look back on. In the same twelve months, one man wrote that it was best to omit, and another built the very instrument that would have been needed to include it. The first went into the nation's accounts. The second went into the library.</p>
+
+<p>The two roads have run apart ever since. One is the government's number, published every year, with a budget behind it, agencies behind it, a statutory release date, a place in the newspapers and the parliamentary debates and the election season. The other is the scholarly literature — criteria, methodological argument, read by few and cited by fewer. Ninety years on, most of what set out on the second road is still on the second road.</p>
+
+<p>Essay 11 closed by noting that somewhere at the bottom of that ledger sits a column left blank. What follows here is why it is blank, who decided in which year that it should stay blank, and what, across ninety years, anyone has managed to do about it.</p>
+
+<h3>2. A Line Between Two Kitchens</h3>
+
+<p>The System of National Accounts, built in the postwar years, turned that piece of triage into an institution, and it wrote the institution down in plain language.</p>
+
+<p>By the 1993 and the 2008 editions, the text repeats one sentence almost word for word: domestic and personal services produced by household members for their own final consumption are traditionally excluded from measured production. A list follows: cleaning and maintenance of the dwelling; cleaning and repair of household durables; the preparation and serving of meals; the care and instruction of children; the care of the sick, the elderly, and the disabled; the transport of household members and their belongings.</p>
+
+<p>That list rewards a slow reading, because it names exactly the things that fill most of a day.</p>
+
+<p>From the moment a person opens her eyes in the morning to the moment she closes them at night, this is mostly what she does. Buy the groceries, cook the meal, wash the dishes, mop the floor, fix the chair with the loose leg, go over a child's homework one more time, take an elderly parent to the doctor and bring him home again. These things fill a day, fill a year, fill the greater part of many lives. And according to that one sentence, they were excluded from what gets measured before anyone even began counting.</p>
+
+<p>But the exclusion was never a clean cut. The very same texts draw three categories of household activity back inside the production boundary. The first is subsistence production of goods — growing your own grain and eating it. The second is the housing service that an owner-occupied dwelling is deemed to provide. The third is the domestic service supplied by a paid household worker.</p>
+
+<p>Set the two lists side by side and the direction of the line becomes obvious at once.</p>
+
+<p>Cook your own dinner and it does not count. Hire a cook to make the same dinner and it does. Watch your own children and it does not count. Hire a nanny to watch them and it does. The same kitchen, the same stove, the same meal — change only the standing of the person at the stove, and the statistical standing of the act changes with her.</p>
+
+<p>The boundary is not drawn between activities.</p>
+
+<p>It is drawn between forms of organization. This is worth pausing over. In the essays before this one, the remainder has taken different shapes — sometimes something never measured at all, sometimes something measured accurately but never examined, sometimes something a discipline simply declared outside its jurisdiction. Here the remainder is not a category of activity. It is a category of relationship. The identical labor, done by the identical person, sits inside the ledger the moment it happens on the waged side of a line, and outside it the moment it happens on the unwaged side. What the construct has been counting, all along, was never the task. It was the way the task got organized.</p>
+
+<p>The second of the three included categories rewards a closer look. The housing service of an owner-occupied dwelling means this: a person lives in a house she owns, and the statistical agency calculates, on her behalf, a rent she has never paid to anyone, and enters that sum into the national total. There is no transaction here, and no price. The statistical agency produces a number anyway, by locating a comparable rental property and reading off what it charges.</p>
+
+<p>This detail matters, because it shows that the excuse of "no market price" was never applied consistently. Whatever is judged worth counting gets a price manufactured for it even where none exists. Whatever is judged not worth counting gets no such price, even where one could just as easily be built.</p>
+
+<p>The method for manufacturing a price is entirely ready to hand; statistical offices use it every day. Take a comparable rental and read off its rent — that operation has a name, imputation. Applied to housework, the same operation would mean finding someone who does the identical work for pay on the open market and reading off her wage. There is no technical obstacle here. The obstacle lies elsewhere.</p>
+
+<p>So what reasons are actually given? The texts offer roughly three, and none of the three is absurd.</p>
+
+<p>The first: a household's services to itself are treated as a self-contained activity with limited spillover into the rest of the economy, whereas a good is different — a good can be produced first and only afterward assigned to use, storage, or sale. The second: household services are mostly not produced for a market, and therefore usually lack a suitable market price, and forcing them into an account built on monetary transactions would blur the account's meaning. The third: the national accounts were never designed as a welfare index in the first place; they serve many kinds of analysis and policy, and cannot absorb everything that happens to make life better.</p>
+
+<p>Each of these three has its own internal logic. Calling them prejudice would not be honest.</p>
+
+<p>The trouble is not in the reasons themselves. It is in the byproduct that grew up once the reasons were institutionalized. An account published year after year, cited, used to make decisions, will, simply by being used so long and so often, breed a powerful illusion: that only labor which shows up on the market is truly production, and that everything outside the boundary is empty.</p>
+
+<p>The United States' own statistical agency still writes, on its own website today, that unpaid household labor such as cooking, cleaning, and childcare is not included in gross domestic product, though supplementary accounting for it can provide valuable additional information. That single sentence is an admission, from the people who build the ledger, that the picture has been deliberately cropped.</p>
+
+<h3>3. The Milk That Counts</h3>
+
+<p>One example lights up the direction of this boundary more clearly than any other, and it is not an abstraction of accounting method. It is something entirely concrete.</p>
+
+<p>The economist Nancy Folbre points out that the current national accounts count home-grown grain, home-grown vegetables, home-produced milk, and gathered firewood inside the boundary. Milk drawn from a family's own cow gets entered in the books.</p>
+
+<p>Milk drawn from a mother's own body is almost universally ignored.</p>
+
+<p>"Ignored" is, if anything, too polite a word. The truer picture is that it never even made it onto the list of candidates. Grain, vegetables, cow's milk, and firewood get inside the boundary because each of them already has a market equivalent — you can look up what a bushel is worth, what a bundle of firewood costs. Breast milk has no such price sheet, so it is not that it gets entered as a zero. It never even reaches the stage of needing to be entered at all.</p>
+
+<p>And if a household buys formula instead, that purchase raises gross domestic product, even where what it replaces was nutritionally the better choice.</p>
+
+<p>The same liquid, serving the same purpose — the cow's share goes into the books and the mother's does not, and swapping a bottled substitute in for the mother's share will, on the page, look like economic growth.</p>
+
+<p>Follow the logic one step further and it comes into sharper focus. If every mother in a country switched to formula tomorrow, total output would rise, by an amount equal to the sales of formula plus the markup taken by transport and retail. If every one of them switched back to breastfeeding, total output would fall. In both cases, the number of infants being fed is exactly the same. Whatever the ledger gains or loses has no relationship at all to the thing this activity was actually meant to accomplish.</p>
+
+<p>No one made an error here. What this shows, with total precision, is how the production boundary actually works: not usefulness that earns an entry, but whatever channel something happens to be organized into prices and transactions through.</p>
+
+<p>There is an old episode from earlier in this series worth setting alongside this one. Once the Lydians beat their scale into coin, things that had shown no difference in rank before suddenly began to show one. The trouble then was that the scale revealed too much that had gone unseen. The trouble here runs the other way: the scale reveals what falls inside its beam too neatly. Everything within its light is crisp, carries a unit, carries a value, can be compared year against year — and everything outside that light casts not even a shadow, not even a blurred outline.</p>
+
+<p>In 1988, Marilyn Waring published If Women Counted: A New Feminist Economics, a book that pressed on exactly this question. She did not simply argue, in general terms, that gross domestic product had a problem. She went item by item and asked: why does motherhood not count, why does housework not count, why does care not count, why does the natural environment not count, why does breast milk not count — while armaments count, cleaning up pollution counts, and the sale of infant formula counts.</p>
+
+<p>Commentators writing about her later reached, again and again, for the same word: she had demystified the national accounts. Assumptions that had looked like neutral technique she took apart one at a time and laid out on the table, so that behind each one a reader could see a person who, in some particular year, had made a choice.</p>
+
+<p>Read side by side, the list she assembled has a strange effect. Bearing a child, raising a child, tending an elderly person who can no longer walk — none of it counts. A forest left standing counts for nothing, but cut it down and sell the timber and it counts. A spill happening counts for nothing, but spend money cleaning it up and it counts, and the more the cleanup costs, the better the figures look. The two sides of her list are not divided into what matters and what does not. They are divided into what enters the books and what does not — two things that everyday language has, for a very long time, treated as one and the same.</p>
+
+<p>One scholar summed it up more bluntly still: what Waring had shown was how thoroughly this postwar system of accounts had been saturated with the dominant values of the age that built it.</p>
+
+<p>Essay 3 made a claim worth recalling here: a scale does not manufacture the remainder, it only illuminates it. What needs adding now is the other half of that claim.</p>
+
+<p>Wherever the scale cannot reach, people assume there is nothing there.</p>
+
+<p>This is the deepest layer of the construct's success. It does not need to flatten the remainder. It does not even need to argue that the remainder is unimportant. It only has to make its own account complete enough, authoritative enough, and frequent enough in its publication, and everything outside the boundary will start to look, on its own, like empty ground. That ground is in fact standing full of people. The account simply has no row with their names on it.</p>
+
+<p>The deeper layer still is that even the people standing on that ground come to see it the same way. A woman who works a dozen-plus hours a day, if she has no pay stub, no title, no line of figures to her name, will very often answer, when asked what she does, that she doesn't really do anything. The construct's power of persuasion reaches its peak not when it has convinced everyone around the remainder, but when it has convinced the remainder itself.</p>
+
+<h3>4. They Call It Love</h3>
+
+<p>In March of 1972, at a Women's Liberation conference in Manchester, Selma James was the first to state plainly that housework should be paid.</p>
+
+<p>That same year, she and Mariarosa Dalla Costa published a short book together, The Power of Women and the Subversion of the Community, that put the housewife at the very center of the analysis. It contains one deliberately provocative line: "All women are housewives." The point was not that no woman held a job outside the home, but that even a woman with an outside job still had to come home and go on doing that other work. They also introduced the phrase "the social factory," meaning that the organizing and the reproducing of labor power happens not only on the factory floor but in the neighborhood, in housing, in transport, in health care, in schools, and in the family.</p>
+
+<p>Stripped to its essentials, what they did was simple: they rewrote a woman's place in the home from a moral role into a productive position.</p>
+
+<p>The direction of that rewriting matches the one traced in Essay 11. There, labor was rewritten as labor power, so that something treated as simply the way things are could be made to show its structure. Here, housework is rewritten as reproductive labor, toward the same end. In both cases, something is given a new name first, and only after the renaming do questions become askable that had no way of being asked before: who does this, for how long, why this person and not another, and what happens if it goes undone.</p>
+
+<p>In April of 1975, Silvia Federici had a pamphlet printed in Bristol. It sold for twenty pence in Britain and seventy cents by mail in the United States. That detail of pricing is worth a sentence of its own, because it is a reminder that this was not an academic exercise. It was something meant to be put directly into people's hands.</p>
+
+<p>The pamphlet's most widely quoted line reads: "They say it is love. We say it is unwaged work."</p>
+
+<p>But the sentence that actually lays bare the logic of the whole movement is another one. "To say that we want money for housework," she wrote, "is the first step towards refusing to do it."</p>
+
+<p>That line closes off a common misreading. Demanding a wage was never about nailing women permanently into that position. It was the opposite: something had first to be exposed as labor, after being spoken of for so long as nature and as love, before anyone could seriously talk about refusing it, redistributing it, or handing it to other people and other institutions. Federici put the point even more bluntly elsewhere: housework, she wrote, "is already money for capital."</p>
+
+<p>So the movement was doing two things at once, contradictory and mutually dependent. One was turning housework into something that could be priced, so that it could show up in the language of wages, of benefits, of the distribution of income. The other was insisting, at the very same time, that none of this was meant to turn housework fully into a commodity. It was meant to dismantle an illusion.</p>
+
+<p>Naming comes before bargaining. Before anyone can ask what a thing is worth, someone first has to concede that it is a thing at all.</p>
+
+<p>The reverse is also true, and colder. Something that is never recognized as a thing never enters bargaining. What never enters bargaining acquires no price. What has no price sits at zero in the books. And zero is the most convenient number there is — it needs no budget, no negotiation, no one to answer for it.</p>
+
+<p>Criticism arrived quickly, and from more than one direction.</p>
+
+<p>Some accused the movement of reducing a complicated situation to a simple demand for a check. Others found it one-dimensional, fixated on the single lever of wages. Others called it reformist, or worse, reactionary — because paying for housework in earnest might only fix the existing division of labor more firmly in place. In 1979 one theorist raised a cooler objection: treating housework automatically as a free subsidy that depresses the value of labor power did not, on its own, resolve the string of theoretical problems that followed from that claim. By the early 1980s, a number of people who had taken part in the debate had decided to step back from it altogether, on the grounds that it had left behind more conceptual murk and circular argument than it had cleared away.</p>
+
+<p>None of these objections was light, and the people making them stood on the same side as the movement itself.</p>
+
+<p>It matters to set them out exactly as they were. This was never a dispute with one side simply right and the other simply wrong. It was the same group of people splitting over the same set of questions: once housework is recognized, should it be priced; once it is priced, where does the money come from; once the money arrives, might it not fix people into place all over again. Each question is harder than the last, and none has a settled answer even now.</p>
+
+<p>But that movement left behind something durable, something that connects back to Essay 11. It changed the way a wage looks to the people receiving it. A wage stopped resembling a receipt for a bill already settled and started to look more like an arrangement — a way of pushing part of the cost of keeping a life going down into the household, to be absorbed there by someone who draws no pay for it.</p>
+
+<p>And so the question itself changed shape. It was no longer only whether a housewife should be paid. It became whether the entire apparatus of sustaining life should be carried, unpaid, inside the household, or shared out instead across socialized institutions, public services, and resources held in common.</p>
+
+<h3>5. An Orbit That Never Lands</h3>
+
+<p>The road from a political slogan back to a page in the ledger is a long one, and it took thirty years to travel.</p>
+
+<p>In 1995, the Beijing Platform for Action became the first intergovernmental document to call on all countries to measure fully the work done by men and women, paid and unpaid alike, and to use, where appropriate, satellite accounts or other official accounts to record unpaid work.</p>
+
+<p>The name "satellite account" was well chosen. It circles the main account. Its orbit is stable, its data are tidy, and it stays forever close and forever off the ground.</p>
+
+<p>The precise calibration of this arrangement deserves attention. It is not a refusal — a refusal would provoke a fight. It is an acceptance, and by no means a token one: there are methodological guides, there are international conferences, there are trial calculations run by one country after another. It simply places that acceptance on a ring outside the main account. What gets accepted this way receives a great deal. The one thing it does not receive is that column.</p>
+
+<p>The most developed technical tool available today is the time-use survey. It records how twenty-four hours are distributed across different groups of people — who did what, and for how long. The advantage of a time account is that it is complete, and it shows plainly who carries the heaviest load. Its limitation is that it hands you hours, not money.</p>
+
+<p>To get money, you need a valuation. And the moment valuation opens its mouth, it forks.</p>
+
+<p>One path is called the input method: it works from labor input, capital consumed, and intermediate inputs, and it depends on good time-use data. Its strength is that it can capture the full range of unpaid household services fairly completely, and it preserves the distribution within a household of who does more and who does less. The other path is the output method: it starts from the units of service actually produced and consumed, then multiplies by an equivalent market price. It is easier to compare against the core accounts, but it throws away most of the information about how the burden is actually distributed day to day. The United Nations' own methodological guidance recommends that, wherever conditions allow, the two paths should be used to check each other.</p>
+
+<p>One layer further down, the question becomes which wage to use for the estimate. There are generally three choices.</p>
+
+<p>The first is the opportunity-cost method: use the wage the person could have earned had she gone to work in the market instead. The second is the replacement-cost method: calculate what it would cost to hire someone to do these tasks in her place. The third is a refinement inside the replacement-cost method itself — on one side, a generalized wage, using the pay of a live-in domestic worker to price the whole bundle of tasks; on the other, a specialized wage, pricing cooking at a chef's rate, cleaning at a cleaner's rate, driving children around at a driver's rate, and childcare at a childcare worker's rate. Guidance generally favors the specialized wages, while warning against reaching for the pay scale of an over-qualified profession.</p>
+
+<p>These sound like technical fine print. The results they produce are anything but fine.</p>
+
+<p>The OECD's estimate for a number of member countries using 2018 data found that unpaid housework, calculated by the replacement-cost method, came to roughly fifteen percent of gross domestic product. Calculated by the opportunity-cost method, the same activity came to roughly twenty-seven percent.</p>
+
+<p>The same set of activities. The same year. The same people doing them. Change the method and the number nearly doubles.</p>
+
+<p>This is not anyone's arithmetic mistake. The two methods are simply asking different questions. Opportunity cost asks what this person gave up. Replacement cost asks what it would cost to have the task done by someone else. Both questions are reasonable, and neither one is the activity itself. The activity carries no price of its own; the price is borrowed from somewhere nearby, and the figure changes depending on which side it is borrowed from.</p>
+
+<p>The same OECD document adds a warning of its own: these figures rest on strong assumptions, and may well overstate the economic value of unpaid housework, because doing something yourself at home and buying the same thing on the market are never fully interchangeable.</p>
+
+<p>That sentence deserves a slow reading. It is a statistical agency admitting, in its own document, that putting this activity on the common scale requires first placing a bet on substitutability — and admitting, in the same breath, that the people placing the bet know it is not a safe one.</p>
+
+<p>The individual attempts by particular countries are already numerous. Switzerland's statistical office estimated that in 2020 the country's total unpaid labor came to 9.8 billion hours, worth roughly 434.2 billion Swiss francs. Georgia estimated that in 2021 the value added by unpaid household service work came to 23.3 percent of gross domestic product, with women carrying 81.7 percent of it. Statistics Canada put its 2019 estimate at a range — between 516.9 billion and 860.2 billion Canadian dollars, equivalent to between 25.2 and 37.2 percent of that year's total output. The United States' statistical agency maintains household production as a dedicated satellite account, updated on an ongoing basis.</p>
+
+<p>Canada's range is itself already the shape of the answer. Same country, same year, the same underlying survey data — and the results differ by more than half, with every method fully compliant with the standard.</p>
+
+<p>In March of 2025, the United Nations Statistical Commission adopted a new round of updates to the System of National Accounts. It leaves unpaid household services outside the core boundary, as before, while giving the subject a far more prominent place than it has ever had, calling for the development of expanded and thematic accounts around it.</p>
+
+<p>The boundary has not moved. What has grown up outside it is a set of structures attached to it.</p>
+
+<h3>6. The Scale Remembers</h3>
+
+<p>Putting a price on unpaid labor carries one more layer of difficulty, and an uglier one — and it is the statistical agencies themselves who have pointed it out.</p>
+
+<p>Statistics Canada wrote a caution of its own on this point. If the opportunity-cost method is used, whatever wage gap already exists in the labor market gets carried straight into the valuation, unchanged. Which means: even if a woman performs more unpaid labor than anyone else, so long as her average market wage is lower, the labor she performs, once converted into money, can end up looking like it is worth less.</p>
+
+<p>This is not a statistical accident, and no step in the calculation went wrong. It is the shared monetary scale doing exactly what it has always done: in the act of measuring one thing, it measures the existing order of rank right along with it.</p>
+
+<p>Put differently, it may come clearer. A market wage is already the outcome of one earlier round of sorting; it records who was placed where in that round, and whose time was judged more valuable. Taking that same set of wages and using it to price labor that sits outside the accounts is like scoring this round using last round's results. Someone who does more of this work, if she was ranked lower in that earlier round, is ranked lower again in this one — except that now her lower rank comes with a number attached, and the number looks as though it had been calculated.</p>
+
+<p>The same scale is doing something else at the same time, and this part rarely gets counted among its accomplishments.</p>
+
+<p>The instant the remainder is drawn onto the scale, the scale stamps its own graduations onto the remainder along with it.</p>
+
+<p>This has happened elsewhere in this series, only never quite so nakedly. Essay 7 showed miners converted into a conscription quota and a headcount, the conversion run through the administrative rank of the day; it showed plantations where people were entered on the very same line as land, priced by the land tables of the day. Every time something is brought into a ledger, it is converted using whatever conversion table the ledger already has on hand, and that table is exactly what the previous order left behind. What gets brought in this way is never handed a new order of its own. It is handed an old position first.</p>
+
+<p>Recognition is never a neutral act of transfer. The moment something is admitted into a ledger, it is ranked according to the order the ledger already keeps, and that order has, long before this moment, already written down who is worth how much. The construct's acceptance of the remainder always comes with a condition attached: that the remainder accept the construct's own units of measure.</p>
+
+<p>And so a loop appears that is very hard to step outside of. To claim resources, you first need a number. To have a number, you have to enter that scale. Once inside that scale, your number comes out ranked by whatever hierarchy already existed. And that ranked number then gets used to decide how resources are divided up. The people fighting for recognition are not unaware of this loop — most of them cannot name a better way through it either, because outside the loop that column stays at zero forever, and zero does not even have standing to argue.</p>
+
+<p>The scale of all this is, by now, a matter of record. The International Labour Organization's global estimate holds that 76.2 percent of the world's unpaid care work is carried by women; on average, women spend four hours and twenty-five minutes a day on it, men one hour and twenty-three minutes. As of 2023, 748 million people worldwide were outside the labor force because of care responsibilities, and of them, 708 million were women.</p>
+
+<p>These figures alone are enough to show that this is not some rounding error in the margin of the ledger. This is the ground that the entire labor market, the whole structure of wage income and employment statistics, is standing on.</p>
+
+<p>A figure usually needs something to sit beside before it can make its point. Four hours and twenty-five minutes against one hour and twenty-three minutes — a gap of more than three hours. Three hours and more is the length of half a working day, time that could otherwise go to reading, to rest, to simply moving through the world, or to earning a second wage. It happens every day, more than three hundred days a year, across decades of a life. Converting that time into money is one kind of accounting. Converting it into all the days that were never lived because of it is another kind, and that second kind of account has no line item to hold it.</p>
+
+<p>These figures serve one more purpose. They pull the rug out from under something usually described as a private choice. Who in a household goes to pick up the children looks, on its face, like something two people worked out between themselves. Set against a figure of seven hundred million, "we worked it out between us" stops looking like the whole explanation. Any single arrangement can have a thousand reasons behind it — but once a thousand different reasons all point the same direction, some other explanation has to be found.</p>
+
+<p>Precisely because of this, failing to measure is not the same as being neutral. Folbre's own judgment on this point is unambiguous: not measuring unpaid labor inflates the apparent efficiency of the market economy, and distorts how people understand growth and standards of living. Zero is a number too, and it is the number most easily cited of all.</p>
+
+<p>The advantage of zero is that it needs no upkeep. A line item with a real number has to be updated every year, has to have its methodology explained, has to face challenges. A line item that is zero needs nothing at all. It sits there quietly, and no one ever asks why it changed this year. The most effortless state a construct can achieve is not squeezing the remainder down small. It is making sure that no number stands at all where the remainder should be.</p>
+
+<h3>7. Presence, Not Devotion</h3>
+
+<p>So would counting all of it solve the problem? Here a genuine disagreement opens up, and every side in it can point to real reasons.</p>
+
+<p>The case for stronger valuation and fuller inclusion is a practical one. Without a number to point to, it is hard to fight for a budget for childcare, elder care, health, or social protection; stay out of the accounts and you go on being treated as zero; stay out of the budget and you go on being absorbed, as a matter of course, inside the household; stay out of the design of income and welfare policy and you go on being carried by whichever group has the least bargaining power to begin with. The 1995 Platform for Action, the methodological guidance that international agencies have issued since, and the policy line that calls for recognizing, reducing, and redistributing unpaid care work while rewarding and giving representation to paid care work all move in this one direction.</p>
+
+<p>The cautious side is not arguing from thin air either. Once everything is converted into money, the relational, trust-based, emotionally invested, morally obligated parts of care are all too easily flattened under one unified monetary scale — and worse, once flattened, that care can reassemble itself in another shape entirely: low wages, performance targets, cut-rate outsourcing. Folbre herself is entirely unambiguous on this point: care, she has written, can never be reduced to purely economic terms. She has also made a more technical observation: the larger the share of the personal and the emotional within a piece of non-market labor, the more that labor gets underestimated once it is priced using market prices.</p>
+
+<p>Essay 5 offered a phrase worth recalling here: something can be measured, measured accurately, and the measuring still never touches it. What is happening here is one turn more tangled than that: something can be measured, and the resulting number can then turn around and change the very thing it measured.</p>
+
+<p>There is a third path as well, coming out of a branch of sociology. It rejects two popular claims at once. One holds that money and intimate relationships are two mutually contaminating, hostile worlds — that the moment money enters, feeling is dirtied. The other holds that intimate relationships are, underneath it all, nothing but an exchange of interests, with warmth serving only as packaging. This school argues that both claims are wrong, and that what should actually be examined is how, in any specific arrangement, money and relationship are positioned together — which pairings are fitting, and which are not.</p>
+
+<p>Followed this way, the question is no longer whether paying for something destroys love. It becomes: under what institutional arrangement can money, responsibility, trust, and care coexist, without the entire risk being pushed onto one side alone.</p>
+
+<p>That last clause is the crux of it. The examples in the essays before this one, which looked unrelated at the time, all come down, in the end, to the same place. Essay 5 showed a gap left open in the ledger, with the risk falling on whoever had no standing to even ask the question. Essay 11 showed workers laboring first and being paid only afterward, with the risk falling on the side that held no other collateral. Whether love and money can occupy the same room is a question no one can settle cleanly. Who ends up carrying the risk is a question that can be counted, every single time.</p>
+
+<p>A thread that has run through the essays before this one finally gets stated here in the plainest words available. An anonymous price and a personal relationship were never substitutes for one another. They have always operated together, inside the same act, only in different proportions each time — and the proportion is set by institutions, not by nature.</p>
+
+<p>Seen this way, moving something out of the home and into the market does not make its personal half disappear. Hire someone to look after an elderly parent, and the contract will spell out the hours and the wage with perfect clarity. Whether that person stays ten minutes longer in the evening, remembers what the old man refuses to eat, or picks up the phone the moment something seems wrong — none of that is written anywhere in the contract, and all of it determines whether the job is actually done well. What money buys is presence. What it cannot buy is devotion.</p>
+
+<p>Care economics has a term for this, "the care diamond," which divides the provision of care among four corners: the family, the state, the market, and voluntary organizations. Its usefulness lies in reframing the question, from whether care is provided at all to how much of it falls to each corner. Moving something from the family's corner to the market's corner does not mean the problem has been solved. It only means the task has changed hands, changed its method of pricing, and changed which set of things is now liable to go wrong.</p>
+
+<p>Even while criticizing the practice of valuation, Folbre has never opposed valuation as such. Her position comes down to roughly this: putting a monetary value on something does carry real risk, but doing so does expose one true thing — that market transactions are only a subset of everything we actually depend on to stay alive.</p>
+
+<p>Both sides are right, each at its own level. This is probably why the argument has run for fifty years without ever quite closing.</p>
+
+<h3>8. The Column That Waits</h3>
+
+<p>Back, then, to that page from 1934.</p>
+
+<p>When Kuznets wrote that it was best to omit, he wrote, on the very same page, the exact conditions under which that omission would fail: when the market economy contracts while activity inside the household expands, the ledger's value as an index of productivity would fall.</p>
+
+<p>Ninety years later, the United Nations' own methodological guidance confirms the identical point, only from the other direction. If unpaid household services go uncounted, it warns, the growth rate can be overstated, because work once done inside the home moves onto the market and shows up as a new entry on the page, even though the actual total of life-sustaining activity has not grown at all.</p>
+
+<p>A construct, in the very year it opened for business, wrote down on that same page the conditions under which it would err — and then ran, on schedule, for ninety years.</p>
+
+<p>This is worth reading against Essay 9. There, the construct kept, whole and intact, inside its own archive, the very thing it had deleted — the one who did the deleting and the thing deleted, filed under the same cover. Here matters go a layer further still. What sits in the archive is not only the deleted thing. It is an instruction manual as well, spelling out exactly the conditions under which this particular deletion will cause the whole machine to report a wrong number. The manual has been there the entire time. The machine has kept running the entire time.</p>
+
+<p>This is not concealment. Concealment takes effort. No one here has bothered to make any: that page has sat in print the whole time, and anyone at all is free to turn to it. What holds the construct steady is not cover-up. It is inertia — published every year, cited every year, used every year to decide how resources are divided, until, year after year, that boundary stops looking like a decision and starts looking like a fact of nature.</p>
+
+<p>Across ninety years, the people speaking up for that blank column have done a great deal. Someone supplied a criterion. Someone turned it into a slogan and had it printed on a twenty-pence pamphlet. Someone took the underlying assumptions apart one at a time. Someone got it written into an intergovernmental document. Someone built time-use accounts and satellite accounts. Someone worked out the hours, and worked out the money.</p>
+
+<p>By 2025, the boundary sits exactly where it always sat.</p>
+
+<p>Ninety years is not a short span. A boundary that this many people, coming from this many directions, have pushed against for ninety years, and that still has not moved, calls for some explanation — and the explanation, for the most part, is not to be found in whether the boundary was right or wrong to begin with. A ledger that has to publish a number every single year, a number that then gets used for decisions of real consequence, fears nothing more than being changed; it fears that far more than it fears a gap. A gap can be patched with a supplementary table. Change the method itself, and decades of prior numbers stop being comparable to one another. Stability is the hardest need this kind of construct has — harder, even, than accuracy.</p>
+
+<p>And the ground outside the boundary is no longer empty. It is crowded now with fine print: time accounts, satellite accounts, expanded accounts, thematic accounts, each one saying the identical sentence, that this column ought to hold a number. Each one of them standing just outside the column.</p>
+
+<p>This is the construct's sixth method for handling a remainder. Not digesting it, not denying it, not renaming it, and not drawing the boundary back inward to take it in either — instead, giving the remainder an orbit of its own, letting it circle the main ledger forever: tidy data, easy to cite, always close at hand, and never once let inside.</p>
+
+<p>And the reason it cannot get inside has already been stated once, by the official documents themselves. What gets done inside a household and what gets done by someone paid to do it are not, in the end, one fully interchangeable thing.</p>
+
+<p>Substitutability is the precondition for entering the ledger. A thing can be priced, settled, and written into that column only once it can be redone, identically, by someone else, with the result counted as the same thing. And this is exactly the one condition that housework and care do not fully meet.</p>
+
+<p>So it can only remain outside the books.</p>
+
+<p>A woman rises in the night to lay a cool cloth on a feverish child's forehead. Under any method at all, this act can be reduced to a number. By replacement cost, it is the hourly rate of a night-shift caregiver. By opportunity cost, it is whatever portion of her earnings she loses the next day for having slept too little. Both numbers can be calculated. Both are fully compliant with the method. Neither is the same as the other. And by the second method, the less she earns to begin with, the less this act turns out to be worth.</p>
+
+<p>But when she gets up to lay that cloth down, she is not performing either of those two numbers. She is doing the thing itself. The price is something borrowed afterward, by somebody else, and stuck onto the act after the fact — borrowed from somewhere else entirely, and stuck onto her night.</p>
+
+<p>The ledger will go on being kept, and it will grow more detailed with every passing year. Definitions will be adjusted, supplementary tables will be added, the figures riding that orbit will grow more and more precise. That one column will go on sitting empty exactly where it has always sat, ringed on every side by numbers calculated with total precision, as if it were waiting for an approval that has never once come down.</p>
+
+<p>And the work goes on getting done every day regardless. The people doing it are not waiting for approval.</p>
+
+<p>The ledger has not yet balanced. It is still being kept.</p>
+
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="ep11.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">马克思与劳动价值:余项的记账人,自己的账也平不了</span>
+            <span class="xiyou-nav-title lang-en">The Accountant of the Remainder</span>
+          </span>
+        </a>
+        <a href="ep13.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">公地及其圈占:没有名字的东西,被留在了篱笆外面</span>
+            <span class="xiyou-nav-title lang-en">The Commons and Its Enclosure</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

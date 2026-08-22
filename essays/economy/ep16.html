@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分配性饥荒｜凿构周期律·经济系列 — Non Dubito</title>
+  <meta name="description" content="孟加拉,爱尔兰,大跃进——三场被讲成天灾的饥荒，粮食其实从未真正从世界上消失。真正决定谁饿死的，是一份把谁算进去、谁排除在外的名册。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/economy/ep16.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .essay-entry-point { font-family:var(--sans); font-size:0.72rem; color:var(--ink-muted); font-style:italic; margin-top:0.5rem; margin-bottom:0.25rem; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 凿构周期律·经济系列</a>
+        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Economics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">凿构周期律 · 经济</div>
+          <div class="essay-series lang-en">Chisel-Construct Cycle · Economics</div>
+          <div class="emperor-ep-num lang-zh">第 16 篇，共 23 篇</div>
+          <div class="emperor-ep-num lang-en">Essay 16 of 23</div>
+          <h1 class="lang-zh">第十六篇　分配性饥荒:粮食还在,名册决定谁能吃到</h1>
+          <h1 class="lang-en">Essay 16: The Grain and the Roll — Someone Decided Who Counted</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<h3>一 有粮的世界里</h3>
+
+<p>1945年,一个官方调查委员会在关于孟加拉的结论部分写下这样一句话:大加尔各答的人口中,没有一个人死于饥饿,而农村却有数百万人挨饿受难。</p>
+
+<p>这不是控诉者的话。这是负责调查那场饥荒的机构自己的结论。</p>
+
+<p>同一份调查里还有一句更冷的:1943年只有一个阶层遭受饥饿,就是农村中较贫穷的那一层;富裕者和大加尔各答的产业工人并没有挨饿。</p>
+
+<p>两句话之间隔着的不是修辞,是一条线。线的这一边有粮吃,那一边没有。而这条线不是地理的,不是气候的,也不是运输能力划出来的。它是被规定出来的。</p>
+
+<p>把三场通常分开讲的灾难摆在一起,是因为它们共有一个动作。</p>
+
+<p>爱尔兰大饥荒发生在十九世纪一个信奉自由贸易的帝国里。孟加拉饥荒发生在二十世纪一个殖民地的战时经济里。大跃进饥荒发生在一个计划经济和人民公社的体制之内。三套制度截然不同,彼此还互相敌视。</p>
+
+<p>而在这三场灾难里,粮食都没有在物理意义上从世界上消失。</p>
+
+<p>价格机器在转,征购机器在转,配给机器在转,有的还转得非常有力。发生的事情是:一部分人被取消了通过价格,工资,法定配给或者政治身份进入这部机器的资格,于是他们在有粮的世界里饿死。</p>
+
+<p>这句话要读得慢一点,因为它和通常的饥荒印象是反的。通常的印象是天灾:雨不下,虫来了,地里长不出东西,于是大家一起挨饿。而这三场灾难的形状不是这样。它们更像一次分配:同一批粮食摆在同一个国家里,一部分人照常吃到,另一部分人吃不到,中间隔着的是一套规则。</p>
+
+<p>前面十五篇里,构对付余项的办法已经出现过八种:靠一个更大的构从外面松开,改一个名字接着做,量得准却不去问,改写成一笔可以摊进成本的数目,把学科的边界往里收一格,给它一条绕着账本转的轨道,要求它出示凭据,以及把它重新分类成它自己的选择。</p>
+
+<p>这里是第九种。</p>
+
+<p>不让它上账。不是没有量到,不是量到了不看,而是这个人不具备被算进来的身份。</p>
+
+<p>余项在这里的形态因此是最赤裸的一种。前面几篇里,余项是没被量到的东西,是量准了不看的一栏,是被划到学科门外的问题,是长在关系里记不下来的知识。这些都还是东西。到这里,余项是人,是活着的,正在饿的,名字可以一个一个念出来的人。构没有把他们变小,也没有把他们改写成别的什么。构只是没有把他们编进册子。</p>
+
+<p>有一件事要在正文开始之前先讲清楚。</p>
+
+<p>前面十五篇一路走下来有一条规矩:做结构性的分析,不下道德判词;竞争性的解读并排摆出来,不替读者裁决。第八篇里,那条规矩被明确宣告过一次失效。这里是第二次。</p>
+
+<p>但失效的范围必须划清楚,否则它会变成一件很省事的东西。</p>
+
+<p>失效的只有一处:明明有粮,明明有别的路,明明已经有人在饿死并且被人看见了,而机器照转。这一点不需要等任何一场学术争论收口,就可以直说,而且不加缓冲。</p>
+
+<p>没有失效的地方仍然很多。出口截下来到底够不够,供给究竟下降了多少,哪一条因果链最粗,死了多少人,某一个人的名字该不该被单独点出来。这些至今没有定论,后面会一处一处摆出来,而且不会替它们定。</p>
+
+<p>这两件事并不冲突。道德命名之所以立得住,恰恰因为它不靠那些还没有定论的东西。</p>
+
+<p>还有一层理由。一个判断如果必须等所有争论收口才敢说出口,那么它永远说不出口,因为这一类争论从来不收口。而在等着的这些年里,能被拿去用的只有沉默。</p>
+
+<h3>二 以对市场的最小扰动</h3>
+
+<p>1845年秋天,马铃薯晚疫病第一次重击爱尔兰。1846年疫病更重。同一年,皮尔政府那套有限的干预结束,新上台的辉格政府转向更坚决的市场路线。</p>
+
+<p>灾难的物质起点当然是病害,战前大约三分之一的人口高度依赖马铃薯为主食。但到 1846年和 1847年,真正决定谁能活下来的,已经不只是土豆烂了多少,而是别的食物如何继续作为商品离开,怎样定价,谁手上有现金,谁有资格领到救济。</p>
+
+<p>财政部主管救济事务的官员叫特里维廉。他后来写过一本关于这场危机的书,其中回忆政府最初从美国订购玉米时的目标,用的是他自己的措辞:要以对私人贸易和市场价格的最小扰动,来填补那个空缺。</p>
+
+<p>这句话不是后来的批评者替他概括的。是他自己写下来的,而且当作一条值得记录的原则写下来的。</p>
+
+<p>要看清这句话的分量,得注意它把两样东西摆在了同一个天平上:一边是几百万人的口粮,一边是私人贸易和市场价格不受扰动。摆在同一个天平上,就意味着两边可以互相折算,可以互相让步,可以商量谁多一点谁少一点。而一旦可以折算,后面发生什么就都不奇怪了。</p>
+
+<p>1846年十二月,斯基伯林的惨状传到伦敦。特里维廉在这个时候坚持,政府不得出海下单购粮,因为那样会同商人竞争,打乱他们全部的计算。他还说过一句:像爱尔兰人这样众多的人口,靠外国来喂养,是闻所未闻的事。</p>
+
+<p>这两句话背后的机制非常具体。要活下去,穷人不能先被直接喂养,他必须先被转化成一个有货币购买力的人;而一旦国家自己去买粮,就会把商人挤出市场。</p>
+
+<p>这套推理在它自己的逻辑里是完整的,而且不难找到支持它的理由:政府一旦成了大买家,私商就不敢进货;私商不进货,来年的供应更没有着落;短期救了人,长期饿死更多人。这个论证在当时是被认真相信的,今天也仍然有人认真相信它的某些版本。问题不在这个论证成不成立,而在于它被拿来回答的那个问题是:此刻要不要给这些人饭吃。</p>
+
+<p>于是救济被尽可能改写成一个工资问题。</p>
+
+<p>1846年到 1847年,大规模的公共工程把几十万人赶到道路,石墙,堤坝和桥梁的工地上。到 1847年三月,在工地上领工资的超过七十万人,连家属一起算,这套系统支撑着三百万人以上。</p>
+
+<p>从账面上看,这是一次相当可观的动员。</p>
+
+<p>问题不在有没有发工资,在于工资是按现金发的,不是按一家人的口粮发的;工资的水平和粮价之间没有锁定;而且支付经常拖延。</p>
+
+<p>特里维廉自己在书里写下了结果。他承认,那份工资虽然高于爱尔兰农业劳动者以往所得,但按当时的粮价计算,不足以供养一个家庭;他还写下,公共工程的现场周围,每天都发生着与救济工程并行的饥饿死亡。</p>
+
+<p>这一句是这一节的重心,而且它的分量不在于它揭露了什么。它的分量在于它没有揭露任何东西。</p>
+
+<p>人已经被纳入了货币和工资这把共同的尺子。数目都在,工地在册,人数在册,工钱在册。而那把尺子本身不足以让他们活下来,这件事同样在册,是主管这件事的人自己写下的。</p>
+
+<p>于是出现了一种很特别的失败。这不是没有看见,不是算错了,也不是消息传得太慢。看见了,算清了,写下来了,而事情照旧那样办。构在这里遇到的不是信息问题,是它自己不肯改的问题。</p>
+
+<p>1846年十月,特里维廉在给一位勋爵的私信里写道,爱尔兰社会之恶的治疗,已由全知天意的直接一击施于其上。</p>
+
+<p>这句话不必加形容词。只需要看它做了什么。</p>
+
+<p>它把一个正在发生的死亡过程,重新描述成一个正在完成的目的。一件正在发生的事,只要被安上一个目的,它就从需要被阻止的东西,变成了需要被完成的东西。</p>
+
+<h3>三 四千条船</h3>
+
+<p>关于爱尔兰在饥荒期间还在往外运食物这件事,争论持续了一百多年,而争论的形状本身值得看一眼。</p>
+
+<p>一位专门研究这段历史的史家反复强调,讨论长期被压缩成一个太窄的问题:谷物到底是净出口还是净进口。这个问题一旦被这样提出来,别的食物也在外流这件事就被遮住了。</p>
+
+<p>她用港口记录给出的数字是这样的。仅 1847年一年,就有将近四千条船把食物从爱尔兰运往布里斯托,格拉斯哥,利物浦和伦敦等英国主要港口。1846年到 1850年之间,出口的活牲畜超过三百万头。仅 1847年,向英国输出的小牛就有九千九百九十二头。同一年的头九个月里,大量黄油,鱼,蛋,威士忌和谷物制的酒精继续出口。</p>
+
+<p>她要说的不是把这些全部截下来就一定能救所有人。她要说的是,在饥荒期间,爱尔兰并没有停止作为一个商业农业与食品出口地来运作。</p>
+
+<p>这个区分要抓住,因为它决定了争论在哪一层进行。如果问题被提成能不能靠截留救活所有人,答案很可能是不能,而这个不能会顺带把别的问题一起关掉。如果问题被提成饥荒期间这个地方是不是照常在履行它作为出口地的功能,答案是照常在履行,而且有港口记录。</p>
+
+<p>至于截下来够不够,史学界长期分裂,而且到今天也没有合拢。</p>
+
+<p>她本人认为,1846年到 1847年运出去的数量足以喂饱两百万人十六个月。另一路研究则认为,即便把外运的谷物全部截留,也填不平马铃薯崩溃留下的那个巨大缺口,而且 1847年之后谷物的净流向已经转为流入爱尔兰。</p>
+
+<p>近年的史学综述给了一个相当准确的概括:今天的主流位置更接近后一路;但意识形态支配了政府的反应这一点,则几乎无人否认。</p>
+
+<p>这两句要分开记。数量够不够,有争论。放任主义的信条压过了救命优先,分歧较小。</p>
+
+<p>而在救济这一侧,还有一条规定值得单独摆出来。</p>
+
+<p>按当时的四分之一英亩条款,持有四分之一英亩以上土地的人,如果不放弃土地,便很难获得救济。</p>
+
+<p>翻成直白的话就是:你必须先把自己从一个小农变成一个一无所有的人,才配进入救济体系。</p>
+
+<p>这一条把两套东西缝在了一起。地是身份,救济是钱粮;而条款要求你先交出前者,才能领到后者。一个人为了活过今年冬天,得先放弃明年春天种地的可能。这不是疏忽,条款写得清清楚楚,用意也不隐晦:救济不应当变成一种让小块持有继续存在下去的补贴。第十三篇讲过圈占,那里是把地一块一块划走;这里是让人自己交出来,理由是他饿。</p>
+
+<p>匿名的货币和价格,并没有真的取代人格化的地位秩序。它们是叠在一起运作的:先按身份把你分类,再按现金决定你能买多少。</p>
+
+<p>另一条路并不是从来不存在。</p>
+
+<p>1847年春夏,公共工程被停掉之后,临时的施粥制度建立起来,高峰时每天供食约三百万人,死亡似乎也随之下降。</p>
+
+<p>但这套制度从设计的第一天起,就是短期的,例外的,可以随时撤销的。它后来确实被撤销了。</p>
+
+<p>真正绕开市场和地产这一整套逻辑,直接把食物送到人嘴里的,常常是私人慈善和关系网络。</p>
+
+<p>贵格会在科克等地架起大锅,每天煮汤。英国赈济协会长期为大批儿童供给免费口粮。相关研究显示,从 1846年末到 1848年,民间网络在很多地方比国家更快地识别灾情,更快地开设粥厂,也更愿意把食物直接当成应急的活命物,而不是等待市场恢复正常。</p>
+
+<p>在价格机器失灵,或者被刻意维持在不受干扰的状态时,真正把人重新算进去的,往往是非匿名的,带署名的,依靠信用和声誉的那一条链子。</p>
+
+<h3>四 只有一个阶层遭受饥饿</h3>
+
+<p>1942年,对孟加拉来说,几种冲击连着叠在一起。</p>
+
+<p>缅甸沦陷,切断了稻米的输入。十月,西南孟加拉遭遇飓风,海潮,洪水和稻瘟病。省际之间的贸易壁垒在加强。同时,出于防止日军登陆的考虑,殖民当局实行了所谓的拒止政策,限制或者毁弃沿海和内河的船只,并在部分地区限制稻米存量。</p>
+
+<p>调查委员会后来记下,在实行拒止的地区,大量大船被征用或者销毁;而且承认,直到 1943年夏天之前,船只管制一直在妨碍粮食的流动。</p>
+
+<p>这里发生的事情不是市场完全不在场。是一个战争状态的国家一边拆毁原有的运输网络,一边又要求市场继续承担分配的功能。</p>
+
+<p>这个组合值得单独看一眼。国家动手的地方是运输,是船,是可以被征用和销毁的实物;国家不动手的地方是价格和分配,那些留给市场。于是同一个权力,在一件事上是能做主的,在另一件事上是不介入的。而它选择介入的那一件,恰好是把粮食送到人嘴边的那一段。</p>
+
+<p>1943年三月,官方改行放开管制。五月自由贸易恢复之后,加尔各答的市场重新成为全省价格的发动机。到那年年中,米价涨到 1942年初的五到六倍。</p>
+
+<p>委员会有一段分析写得非常关键。</p>
+
+<p>到达加尔各答的大量稻米仍然由私人商人支配,他们可以囤积待价;而在缺乏政府控制的情况下,加尔各答的购买力为整个孟加拉设定了价格的节奏。这座城市繁荣,有较大的购买力;战争工业,铁路,军政机构以及被称作优先阶层的那些人,得到补贴或者优先供给,因此加尔各答能够支付农村穷人根本跟不上的米价。</p>
+
+<p>价格机器并没有停转。恰恰相反,它异常有力。</p>
+
+<p>只是它服务的,是那些已经被国家和战争认定为优先的购买者。</p>
+
+<p>优先这个词在这里是行政用语,不是修辞。它指的是一份具体的名单,上面写着哪些行业,哪些机构,哪些人群可以按补贴价或者优先次序拿到粮。名单是被人写出来的,写的时候有理由,而且理由在当时听起来相当充分:仗要打,工厂要开,铁路要通,城市不能乱。每一条都成立。而名单一旦成立,名单之外的人就有了一个共同的身份,叫做不在名单上。</p>
+
+<p>不在名单上不是一句描述,它是一种身份,而且是有实际效力的身份。它决定你按什么价买粮,决定你买不买得到,决定你排在谁后面。一个人可以完全不知道有这么一份名单,而那份名单已经在替他决定今年冬天怎么过。</p>
+
+<p>于是就有了开头引的那两句话。同一个省内,粮食不是平均地稀缺,而是按身份,职业,空间和政治的优先次序被重新分了层。</p>
+
+<p>官方对市场的操作一直在摆动:先限价,再默许黑市;一度打算控制采购,1943年三月又放弃;直到 1944年一月三十一日,加尔各答的配给才真正实施。而最坏的死亡高峰,已经在 1943年下半年展开过了。</p>
+
+<p>把这两个日期放在一起看:配给从 1944年一月三十一日开始,死亡高峰在 1943年下半年。相隔大约半年。一套后来被证明管用的办法,晚到了半年。而这半年不是被别的事情耽误的,是在限价,放开,再限价的来回摆动里耗掉的。</p>
+
+<p>委员会自己的结论是:如果政府更早接管加尔各答的供应并推行配给,价格不会以那样的方式席卷全省。</p>
+
+<p>它还说了一句在今天读来仍然刺人的话。当时宣传粮食充足是极不明智的;比较明智的做法是告诉民众:是的,存在短缺。</p>
+
+<p>这一句添了一条前面没有出现过的东西。</p>
+
+<p>计量,统计和公告并不是中性的。当局公开宣称什么,直接影响囤积,恐慌和价格的走向。构的公告是一个投入品,它进入被它描述的那件事,并且改变那件事。</p>
+
+<h3>五 谁的名字被点</h3>
+
+<p>关于孟加拉,有两组争论至今没有收口,而把它们摆出来比替它们收口更有用。</p>
+
+<p>第一组关于责任该记在谁头上。</p>
+
+<p>官方电报显示,1944年四月,丘吉尔本人在致罗斯福的电文里承认,至少七十万人在去年死于孟加拉的严重饥荒,并且继续为印度的粮食问题求援。</p>
+
+<p>史学界围绕他的责任并不一致。一路研究更强调伦敦的战时优先次序,航运的分配,金融和价格政策,以及帝国内部的种族等级。另一路研究主张把自然灾害,行政失序,伦敦的决定和市场失灵放进同一张嫌疑人网格里看,指出战时征购和作物失败同样重要,把一切归到一个人身上过于简化。</p>
+
+<p>也就是说,他该不该被单独点名为主因,这件事恰恰是争论的一部分。这里不裁决。</p>
+
+<p>不裁决不是回避。一个人的名字要不要被单独点出来,和这件事有没有人负责,是两个不同的问题。前一个没有定论,后一个有:委员会自己写下了更早配给本可以阻止价格扩散,这句话里已经包含了负责的主体。</p>
+
+<p>第二组争论是理论上的,而且它是后面所有内容的方法论背景。</p>
+
+<p>阿马蒂亚·森在 1981年提出了一个后来被反复使用的判断:饥荒常常发生在食物可得量中等甚至良好的情况下,关键不在总量,而在于人能不能通过法律和社会认可的方式去支配食物。他把这种能力叫做应得权,尤其看重其中的交换应得权,也就是你手里的劳力,土地,牲畜,货币和物品,在既定的价格和规则下能换回多少粮食。农村雇工的工资追不上米价,就是这种应得权的崩塌。</p>
+
+<p>反对来得又快又硬。</p>
+
+<p>有批评者在 1986年直接写道,这套理论会导致错误的诊断和错误的补救,而关于孟加拉的那部分分析尤其建立在不可靠且不准确的统计之上,甚至森自己使用的数据也与他的论点相矛盾。森同年回击,说对方的文章充满概念混乱,经验误述和系统性的歪曲。就这一组交锋本身而言,双方谁也没有说服谁,后来也不曾真正和解。</p>
+
+<p>另一位研究者主张,1942年的作物失败被严重低估了,供给面仍然是中心。森的答辩则坚持,委员会修正后的数据表明,1943年的人均可得供应并不低于 1941年,真正解释饥荒的是战争需求,价格飙升和不平等的购买力。还有一位研究者的写法介于两端之间:作物失败,战时征购,行政失序和市场失灵要一起看。</p>
+
+<p>有人在 1993年做过一个很有用的区分。应得权这套方法有两种读法。一种把它当成对粮食可得量下降的直接否定;另一种则认为,可得量下降当然仍可能造成饥荒,只是它往往通过恶化价格,就业,工资和交换条件来发挥作用。按第二种读法,应得权更像一个组织分析的框架,而不是宣布总量不重要。</p>
+
+<p>批评也不只来自供给那一侧。有研究非洲饥荒的学者指出两件事:人在饥荒中有时宁愿少吃甚至挨饿,也不愿卖掉赖以维生的资产,这种主动少吃很难放进一个简单的函数里;而且很多饥荒中的主要死因并不是纯粹的饥饿,而是疾病的暴发。后来有人把这些质疑整理成四类:自愿忍饥,疾病主导死亡,权利的边界含混,以及大量超出法律规则的非正式转移。</p>
+
+<p>把这些放在一起,可以给出一个不偏袒的概括:那套框架擅长解释为什么买不到粮,未必足以穷尽为什么最终会死。</p>
+
+<p>而这场四十年不收口的争论,它自己的形状也值得看一眼。</p>
+
+<p>一边在问总量,一边在问分配。而两边都同意的那件事,恰恰不是争论的焦点。没有一位参与者主张过:世界上有粮的时候,不可能有人系统地拿不到。这一点两边都承认,只是各自往下追的方向不同。</p>
+
+<p>而两边都承认的那一层,恰好是这里要落的那一层。学术争论有一个特点:它总是往分歧的地方走,因为那里才有文章可做。走得久了,共识的那一层反而没有人再提,像是不需要提。可对于站在册子外面的人来说,要紧的从来是那一层。</p>
+
+<h3>六 死得更多的是产得更多的地方</h3>
+
+<p>1958年,大跃进和人民公社化同时启动。公共食堂,浮夸的产量数字,集中征购,以及城乡之间的分配偏向,是一起展开的。</p>
+
+<p>这场饥荒最不容易被安放的地方在于,它发生在一个自称已经大规模摆脱了市场的体系之内。</p>
+
+<p>但价格和计算并没有因此消失。相反,它们换了形式,更深地嵌进了社会:计划指标,征购比例,城市口粮,出口任务,行政目标。</p>
+
+<p>一组研究者对生产,征购和人口做了重估,得出两个发现。</p>
+
+<p>第一,1959年农村平均的食物可获得量,仍然接近避免高死亡率所需下限的三倍。</p>
+
+<p>第二,在饥荒的那几年里,死亡率竟然与人均粮食产量正相关。</p>
+
+<p>第二条要慢读。它的意思是:产量较高的地区不但没有更安全,反而往往死得更多。</p>
+
+<p>原因在征购的算法里。任务是按既定目标和以往的产量基准派下来的,产得多的地方,基准就高,被征走的比例也高。他们据此估算,这一套征购机制解释了总饥荒死亡的百分之三十二到四十三。</p>
+
+<p>这是构的一条可以推广的机制,而且它在别的地方也见过:凡是按历史表现派任务的构,都会惩罚做得好的那一方。差别只在于,惩罚通常表现为多干活,多交钱,多背指标。在这里,惩罚的形式是死亡。</p>
+
+<p>还有一层更难受的推论。如果征购的基准来自往年的产量,那么虚报过产量的地方基准会更高,被征得更多。而虚报在当时是普遍的,是被鼓励的,有时候是被要求的。于是浮夸的数字先进了账本,再从账本里变成实实在在被拉走的粮食。账上的数字和地里的粮食本来是两样东西,而征购把前者当成了后者的凭据。</p>
+
+<p>制度与身份的绑定在这里也最直接。</p>
+
+<p>有研究把中国的这场饥荒写成两种解释的联合案例:城市的配给系统赋予城市居民法定的粮食取得权,而农村必须在国家征购之后才获得剩余的粮食。后来关于城乡分割的研究说得更直白:城市居民有最低口粮的保证,农村居民只对征购之后的残余拥有权利。</p>
+
+<p>所以在这个案例里,人不是被价格排除的,是被法定身份和行政上的口粮顺序排除的。</p>
+
+<p>出口是另一条不能绕开的线。有研究者用县级数据估算,1957年到 1959年之间,中国的粮食出口从一百九十万吨增到四百一十万吨;整个大跃进时期的出口约为九百六十万吨。作者认为,出口冲击解释了约百分之十五的超额死亡;并且提醒,出口征购一旦形成,比为国内城市消费而征购更难回流到灾区,因为粮食已经离境。</p>
+
+<p>这一条与爱尔兰形成了一种阴冷的呼应。饥荒之中的外运,从来不只是一个运输问题。它是优先次序的硬编码。</p>
+
+<p>这并不意味着学界对这场饥荒只剩下一条解释。</p>
+
+<p>另一条著名的路线认为,人民公社的公共食堂造成了消费效率的问题:产权界定被取消,食物免费供给,浪费和过度消费发生在严重短缺之前,把本来勉强够用的供给推进了灾难。还有研究者批评把责任直接而单线地全归于最高层,强调地方执行的差异,天气,以及省与省之间的巨大不同,在四川等地仍然相当重要。</p>
+
+<p>死亡人数的估计,研究者之间从一千六百五十万到四千五百万不等。这个区间本身要原样摆出来,不选其中任何一个数。</p>
+
+<p>但从原始的话语看,顶层并不是完全不知道基层正在发生什么。</p>
+
+<p>据档案研究,1958年晚秋,毛泽东已经严厉批评过大跃进中让农民过度劳动,不给足食宿,造成疫病和饿死的那些极端做法。1959年七月的庐山会议上,彭德怀私下呈信,批评浮夸风和极端做法;会议之后,反右的压力反而加重了。同一次会议的讲话里,毛泽东又承认一些干部从生产队拿走肥猪和大白菜是错误的,并把这种行为描述为违反了等价交换的原则。</p>
+
+<p>这些材料合起来说明的是一件很具体的事。领导层并不是不知道粮食被上层抽走,不知道基层食堂难以糊口,不知道干部在侵吞生产队的财物。被看见的异常没有被及时变成制度上的止损。</p>
+
+<p>到 1961年,让饥荒结束的办法非常朴素:中央开始大规模向农村回拨粮食,动用了约三千万吨库存,并使中国从粮食净出口国转为净进口国。</p>
+
+<p>机器不是不能停,也不是不能倒转。它后来确实倒转了。</p>
+
+<p>问题只在于,倒转来得太晚,而在此之前的三年里,机器已经先把很多人从有资格活命的那份名单里划了出去。</p>
+
+<h3>七 关系救人</h3>
+
+<p>把三个案例并读,第二个共同点比第一个更少被人提起。</p>
+
+<p>任何看上去纯粹匿名的分配机制,最后都要靠人格化的,关系性的通道去修补;而这种修补从来不是平等的。</p>
+
+<p>爱尔兰这一侧,贵格会,英国赈济协会,地方委员会和可靠的见证网络,救了很多本来不在国家优先次序内的人。他们的办法很简单:不问你有没有地,不问你能不能付钱,架起锅,煮上汤,谁来了给谁。</p>
+
+<p>这几个不问,正是那套官方办法里最讲究的几项。有没有地决定你能不能领救济,能不能付钱决定你能不能买粮。把这两样一起放下,救人的效率立刻上去了。这不是说慈善比制度高明,慈善的覆盖面小得多,也不稳定,给完就没有了。这里能看清的只有一件事:那两道题之所以要问,不是为了救人,是为了别的。</p>
+
+<p>孟加拉这一侧,优先阶层这个身份是一种政治化的关系,而不是抽象的市场主体资格。得到补贴和优先供给的是战争工业,铁路,军政机构。谁被算作优先,是被人决定的,不是被价格决定的。</p>
+
+<p>也就是说,即便在一个看上去由价格说了算的地方,价格背后仍旧站着一份名单。市场在按购买力分配,而购买力是被补贴和优先供给分配的。往上追一层,匿名的机制底下总有一个不匿名的决定。</p>
+
+<p>中国这一侧最耐人寻味。有研究发现,本乡本土出身的地方官,比外来的地方官更可能在征购上留有余地,更多投入赈济,因而显著降低了辖区内的死亡率。</p>
+
+<p>三处的形式完全不同,而指向同一件事:关系没有被货币,价格,征购或者计划消灭。它们在这些体系最冷的时候重新冒出来,而且直接关系到谁活谁死。</p>
+
+<p>但这句话还有另一半,而这另一半必须一起写。</p>
+
+<p>靠关系活下来,是一种不平等的活。</p>
+
+<p>你得认识某个人,或者恰好住在某个本乡本土的官管的地方,或者恰好在一口粥锅走得到的距离之内。这些条件都是随机的,而且都与你有多需要它无关。</p>
+
+<p>更要紧的是,当一个人只能靠这些活下来的时候,那套号称对所有人一视同仁的东西已经不管用了。关系冒出来的时候,不是制度在补漏,是制度已经不在了。</p>
+
+<p>前面十五篇里那条线在这里合拢。匿名的尺子和人格化的信任从来不是谁替代谁,它们一直缠在一起。而在最冷的那几年,能起作用的只剩下后者,而后者的覆盖面很小,小到只能救到它够得着的那些人。</p>
+
+<p>这一句要说得再准一点。人格化的那一侧不是备用方案,它一直在运转,只是平时被匿名的那一侧盖住,看不见。灾年发生的事情不是它被启动了,是盖在它上面的那一层塌了,于是它露了出来。露出来以后,它救人,也挑人,因为它从来只认得它认得的那些人。</p>
+
+<p>所以第一篇里讲过的那个更早的世界,不应当被读成一个更好的世界。那里也挑人,只是挑的规矩不一样。这里要说的只有一件事:在最冷的那几年,把人重新算进去的,常常不是那把号称对谁都一样的尺子,而是几个具体的人,认得另外几个具体的人。</p>
+
+<p>还有一件事必须在这里写下来,因为它是全部材料里最硬的一块。</p>
+
+<p>三个案例里,另一条路都在眼前。</p>
+
+<p>1847年爱尔兰的施粥网络,高峰时每天喂三百万人。孟加拉的调查委员会事后明确写下,更早控制加尔各答的供给并推行配给,本可以阻止价格向全省扩散。中国到 1961年,一旦回拨库存并转为进口,饥荒就结束了。</p>
+
+<p>三处的替代路线不是后人设想出来的。它们是当时就存在的,有的还被实际用过一段时间,然后被撤回。</p>
+
+<p>所以这里最不该说的一句话是:在当时的条件下别无选择。</p>
+
+<p>而机器可以停这件事,正是道德命名能够成立的技术前提。一台停不下来的机器碾过去,那是灾难;一台能停而没有停的机器碾过去,是别的东西。</p>
+
+<h3>八 册子外面</h3>
+
+<p>现在可以把话说完整了。</p>
+
+<p>三场饥荒里,有粮,有别的路,有人已经在饿死而且被看见了,而机器照转。</p>
+
+<p>这三条不是推论,是记录。</p>
+
+<p>爱尔兰的官员自己写下,那份工钱照当时的粮价养不活一家人;他还写下,工地四周天天有人饿死。孟加拉的官方委员会自己写下,大加尔各答没有一个人死于饥饿,而农村有数百万人挨饿受难;它还写下更早配给本可以阻止价格席卷全省。中国的最高层自己在会上说过基层正在发生什么,说过干部从生产队拿走了什么。</p>
+
+<p>三处都有人看见了。三处都有人写下来了。三处的机器都照转了。</p>
+
+<p>要说清楚照转是什么意思。它不是指没有人做任何事。爱尔兰办了公共工程,后来还办了施粥站;孟加拉最后实行了配给;中国最后回拨了库存。事情一直在做。照转指的是另一件事:在这些事被做的同时,收粮照收,出口照出,优先次序照排,而这三样恰恰是把人挡在外面的那三样。做了很多,而始终没有停下那个正在挡人的动作。</p>
+
+<p>把人当成一个可以被算进来也可以被算出去的单位,算出去之后照常收粮,照常出口,照常按优先次序供应,这件事应当被直接说出来,不加缓冲词,也不必等哪一场争论收口。</p>
+
+<p>而那些争论仍旧不收口,这里也不替它们收。前面几节里摆出来的那几组分歧,到今天一组也没有合拢。把它们和上面那段话放在一起而不裁决,不是把命名冲淡了。恰恰相反:一个只有在某一派赢了之后才成立的判断,是站不住的判断。命名要立得住,就得建在两边都不否认的那一层上。</p>
+
+<p>回到框架上还有最后一件事。</p>
+
+<p>三场饥荒排除人的技术形式完全不同。一个靠市场购买力,一个靠政治优先次序,一个靠法定身份和行政口粮顺序。一个在自由贸易帝国里,一个在殖民地战时经济里,一个在计划经济里。</p>
+
+<p>而效果完全相同。</p>
+
+<p>这说明排除不是某一种制度独有的毛病。它是把人做成可结算单位这个动作本身的伴生物。只要立起一把尺子,尺子上就会有一格是零;而在零那一格里站着的,是活人。</p>
+
+<p>这句话不是要反对立尺子。前面十五篇已经说过很多次,尺子做成了很多事,而且做成的那些事没有别的办法可以替代。要说的只有一点:立尺子的人有义务一直盯着零那一格,因为那一格不会自己出声。它在账面上表现为空白,而空白是账上最不引人注意的东西。余项在别的篇里至少还留下过痕迹,一笔算不清的旧账,一把暗处的尺子,一份拿不出的凭据;在这里,余项连痕迹也不留,它留下的是空。</p>
+
+<p>第九种办法是这九种里最省力的一种。前面八种都要动手:要松开,要改名,要不问,要折算,要收边界,要给轨道,要索取凭据,要重新分类。第九种什么也不用做。只要在编册子的时候不把这个人编进去,后面所有的事情都会自己发生。</p>
+
+<p>一本账要平,最快的办法不是把每一项都算清,是先决定哪些项目要算。</p>
+
+<p>这句话对所有的账都成立,对救灾的账尤其成立。因为救灾的账是一次性的,是要在几个月里定下来的,没有时间慢慢补。它一旦被编成什么样子,就照那个样子执行下去,而执行的结果不可逆。</p>
+
+<p>爱尔兰的救济册子上,有四分之一英亩地的人进不去。孟加拉的优先名单上,乡下的雇工不在其中。中国的口粮表上,农村只领征购之后剩下的。三本册子的编法完全不同,而三本册子的册外都站着人。</p>
+
+<p>册外的人不会因为不在册上就不再需要吃饭。他们只是死在了册子外面。</p>
+
+<p>而每一次饥荒过去之后,册子都会被重新编一遍,加上几栏。加完之后,册子更完备了,覆盖更广了,统计更细了。</p>
+
+<p>册外仍旧站着人。</p>
+
+<p>账还没有算平,它仍旧在记。</p>
+
+      </div>
+
+      <div class="essay-body lang-en">
+
+<h3>1. A World That Had Grain</h3>
+
+<p>In 1945, an official commission of inquiry into the Bengal famine set down, in its concluding pages, a single sentence: not one person in greater Calcutta had died of starvation, while millions in the countryside had suffered and starved.</p>
+
+<p>These are not the words of an accuser. They are the conclusion reached by the very body charged with investigating the famine.</p>
+
+<p>The same report contains a colder line still: in 1943, only one class suffered hunger — the poorer stratum of the rural population; the wealthy, and the industrial workers of greater Calcutta, went hungry not at all.</p>
+
+<p>What separates these two sentences is not rhetoric. It is a line. On one side of it, people had food; on the other, they did not. And that line was not drawn by geography, nor by climate, nor by the limits of transport. It was drawn by decree.</p>
+
+<p>Three catastrophes usually told as separate stories belong together here, because they share a single motion.</p>
+
+<p>The Irish famine took place in a nineteenth-century empire that believed in free trade. The Bengal famine took place in a twentieth-century colony's wartime economy. The Great Leap famine took place inside a planned economy built on people's communes. Three systems, utterly unlike one another, and in some cases openly hostile to one another.</p>
+
+<p>And in all three catastrophes, the grain never physically vanished from the world.</p>
+
+<p>The price machine kept turning, the procurement machine kept turning, the ration machine kept turning — some of them turning with tremendous force. What happened was this: a portion of the population was stripped of the standing needed to enter that machine, whether through price, through wages, through statutory rations, or through political status, and so they starved to death in a world that had grain.</p>
+
+<p>This sentence needs to be read slowly, because it runs against the usual picture of famine. The usual picture is natural catastrophe: the rain fails, the locusts come, nothing grows, and everyone starves together. These three catastrophes were not shaped that way. They looked more like a distribution problem: the same stock of grain, sitting inside the same country, reaching some people as it always had and failing to reach others, with a set of rules standing between the two.</p>
+
+<p>Across the previous fifteen episodes, the construct has already shown eight ways of dealing with a remainder: being loosened from outside by some larger construct; taking a new name and carrying on; measuring precisely and then declining to ask; rewriting the thing as a figure that can be folded into cost; drawing a discipline's boundary a notch tighter; giving it an orbit that circles the ledger without ever touching it; demanding that it produce a voucher; and reclassifying it as its own choice.</p>
+
+<p>Here is the ninth.</p>
+
+<p>Simply keep it off the books. Not because it went unmeasured. Not because it was measured and then ignored. But because this person does not hold the standing required to be counted in at all.</p>
+
+<p>The remainder therefore takes its most naked form here. In earlier episodes the remainder was something unmeasured, a column measured and then unread, a question sorted outside a discipline's door, knowledge that lives only inside relationships and cannot be written down. All of those, at bottom, were still things. Here the remainder is people — living people, starving people, people whose names could be read out one by one. The construct did not shrink them, and it did not rewrite them as something else. It simply never entered them into the register.</p>
+
+<p>One thing needs to be said plainly before the essay proper begins.</p>
+
+<p>For fifteen episodes there has been a rule: structural analysis, no moral verdicts; competing readings set side by side, with no adjudication handed to the reader. Episode 8 declared that rule suspended once. This is the second time.</p>
+
+<p>But the scope of the suspension has to be drawn carefully, or it turns into something far too convenient.</p>
+
+<p>Only one thing is suspended here: that grain plainly existed, that another road plainly existed, that people were already dying and had already been seen dying, and that the machine kept turning regardless. This does not need to wait for any scholarly dispute to close before it can be said, and it can be said without softening.</p>
+
+<p>A great deal remains open. Whether cutting off exports would have been enough, how far supply actually fell, which causal chain carries the most weight, how many people died, whether any one person's name deserves to be singled out — none of this is settled, all of it will be laid out piece by piece in what follows, and none of it will be settled here either.</p>
+
+<p>The two things do not conflict. The moral naming holds up precisely because it does not depend on any of what remains unsettled.</p>
+
+<p>There is a further reason. A judgment that can only be spoken once every dispute has closed will never be spoken, because disputes of this kind never close. And in all the years spent waiting, the only thing anyone can make use of is silence.</p>
+
+<h3>2. The Smallest Possible Disturbance</h3>
+
+<p>In the autumn of 1845, potato blight struck Ireland hard for the first time. In 1846 the blight struck harder. That same year, the limited intervention of Peel's government came to an end, and the incoming Whig government turned toward a firmer commitment to the market.</p>
+
+<p>The material origin of the disaster was, of course, disease — before the famine, roughly a third of the population depended on the potato as its staple food. But by 1846 and 1847, what truly decided who lived was no longer simply how many potatoes had rotted in the ground. It was how the rest of the food supply kept leaving as merchandise, how it was priced, who held cash, and who qualified for relief.</p>
+
+<p>The Treasury official in charge of relief was Charles Trevelyan. He later wrote a book about the crisis, in which he recalled the government's original aim in ordering corn from America, and he put it in his own words: to fill that gap with the least possible disturbance to private trade and market prices.</p>
+
+<p>This is not a phrase later critics coined on his behalf. He wrote it himself, and he wrote it down as a principle worth recording.</p>
+
+<p>To feel the full weight of that sentence, notice what it places on the same scale: on one side, the food of several million people; on the other, the undisturbed continuation of private trade and market prices. To put both on the same scale is to say they can be converted into each other, that one can give way to the other, that the two can be haggled over — a little more here, a little less there. And once that conversion is possible, nothing that follows is surprising.</p>
+
+<p>In December 1846, word of the horror at Skibbereen reached London. Trevelyan insisted, even then, that the government must not sail abroad to place its own orders for grain, because doing so would compete with merchants and throw off the whole of their calculations. He also said that a population as numerous as Ireland's being fed from abroad was a thing unheard of.</p>
+
+<p>The mechanism behind both statements is entirely concrete. To survive, the poor could not simply be fed; they first had to be converted into people with money to spend. And if the state itself went out and bought grain, it would crowd the merchants out of the market.</p>
+
+<p>This reasoning is complete on its own terms, and it is not hard to find grounds for it: once government becomes a major buyer, private traders stop laying in stock; once traders stop laying in stock, next year's supply has even less behind it; a rescue in the short run kills more people in the long run. The argument was taken seriously at the time, and some version of it is still taken seriously today. The trouble is not whether the argument holds up. The trouble is what question it was used to answer: whether these people should be fed right now.</p>
+
+<p>And so relief was rewritten, as far as it could be, into a question of wages.</p>
+
+<p>Between 1846 and 1847, enormous public works drove hundreds of thousands of people onto roads, stone walls, embankments, and bridge sites. By March 1847, more than seven hundred thousand people were drawing wages at these sites, and counting their families, the system was supporting upward of three million.</p>
+
+<p>On paper, this looks like a mobilization of considerable scale.</p>
+
+<p>The trouble was never whether wages were paid. It was that the wage came in cash, not in a household's worth of food; that the wage was never pegged to the price of grain; and that payment was frequently delayed.</p>
+
+<p>Trevelyan set down the outcome himself, in his own book. He acknowledged that the wage, though higher than what Irish agricultural laborers had earned before, was not enough to support a family at the grain prices then prevailing. He also wrote that, around the public works, deaths from starvation were occurring daily, alongside the very relief works meant to prevent them.</p>
+
+<p>This is the center of gravity of the whole section, and its weight has nothing to do with what it exposes. Its weight lies in the fact that it exposes nothing at all.</p>
+
+<p>People had already been folded into the common scale of money and wages. The figures were all there: the worksites on record, the headcount on record, the pay on record. And the fact that this scale was not enough to keep them alive was on record too, set down by the very official responsible for running it.</p>
+
+<p>What appeared here was a very particular kind of failure. It was not a failure to see. It was not a miscalculation. It was not that word traveled too slowly. It had been seen, it had been reckoned up, it had been written down, and the business went on exactly as before. What the construct met here was not a problem of information. It was its own refusal to change.</p>
+
+<p>In October 1846, Trevelyan wrote in a private letter to a lord that the cure of Ireland's social evils had been effected by the direct stroke of an all-wise Providence.</p>
+
+<p>The sentence needs no adjective attached to it. It is enough to see what it does.</p>
+
+<p>It takes a death already under way and redescribes it as a purpose already being fulfilled. Once an ongoing event has been given a purpose, it stops being something that must be stopped, and becomes something that must be completed.</p>
+
+<h3>3. Four Thousand Ships</h3>
+
+<p>The argument over whether Ireland kept exporting food throughout the famine has run for more than a century, and the shape the argument has taken is itself worth examining.</p>
+
+<p>A historian who has made this period her specialty keeps returning to one point: that the discussion has long been compressed into too narrow a question — was grain, on net, exported or imported. Once the question is framed that way, the fact that other foods kept flowing outward gets obscured.</p>
+
+<p>The figures she draws from port records run as follows. In 1847 alone, nearly four thousand ships carried food out of Ireland to Bristol, Glasgow, Liverpool, London, and other major British ports. Between 1846 and 1850, more than three million head of livestock were exported. In 1847 alone, 9,992 calves were shipped to England. In the first nine months of that same year, large quantities of butter, fish, eggs, whiskey, and grain-based spirits kept leaving the country.</p>
+
+<p>Her point is not that cutting all of this off would necessarily have saved everyone. Her point is that throughout the famine, Ireland never stopped functioning as a commercial-agriculture economy and a food-exporting region.</p>
+
+<p>This distinction has to be held onto, because it determines the level at which the argument actually proceeds. Frame the question as whether cutting off exports could have saved everyone, and the answer is very likely no, and that no would quietly shut down every other question along with it. Frame the question instead as whether this place, during the famine, kept performing its usual function as an export economy, and the answer is yes, with the port records to prove it.</p>
+
+<p>As for whether a cutoff would have been enough, historians have long been divided, and the divide has not closed even now.</p>
+
+<p>She herself holds that the volume exported between 1846 and 1847 would have fed two million people for sixteen months. Another line of research holds that even a complete retention of exported grain would not have closed the enormous gap left by the collapse of the potato, and that after 1847 the net flow of grain had already reversed and was moving into Ireland.</p>
+
+<p>A recent survey of the historiography offers a fairly precise summary: the mainstream position today leans closer to the second view, but that ideology overrode the priority of saving lives in shaping the government's response is very nearly undisputed.</p>
+
+<p>These two findings need to be filed separately. Whether the quantity would have sufficed remains contested. That laissez-faire conviction outweighed the priority of keeping people alive is barely contested at all.</p>
+
+<p>On the relief side, one more regulation deserves to be set out on its own.</p>
+
+<p>Under the quarter-acre clause then in force, anyone holding more than a quarter acre of land could scarcely obtain relief unless he first gave the land up.</p>
+
+<p>Put plainly: a person had to turn himself from a smallholder into someone who owned nothing at all before he qualified to enter the relief system.</p>
+
+<p>The clause stitched two things together. Land was status; relief was food and money. And the clause demanded that a person surrender the first before he could receive the second. To live through this winter, a man had to give up any chance of planting come spring. This was no oversight. The clause was written in plain language, and its intent was undisguised: relief was not meant to become a subsidy that let small holdings go on existing. Episode 13 described enclosure, where land was carved away parcel by parcel. Here, people handed it over themselves, and the reason given was that they were hungry.</p>
+
+<p>Anonymous money and anonymous price never actually replaced the older, personal hierarchy of standing. The two operated stacked on top of each other: status sorted you first, and then cash decided how much you could buy.</p>
+
+<p>A different road did exist, at least for a while.</p>
+
+<p>In the spring and summer of 1847, once the public works had been shut down, a temporary system of soup kitchens was set up, feeding as many as three million people a day at its peak, and deaths appear to have fallen accordingly.</p>
+
+<p>But from the first day it was designed, this system was temporary, exceptional, and revocable at any moment. It was, in the end, revoked.</p>
+
+<p>What truly bypassed the entire logic of market and landholding, and put food directly into people's mouths, was more often private charity and networks of personal relationship.</p>
+
+<p>The Quakers set up cauldrons in Cork and elsewhere, boiling soup day after day. The British Relief Association supplied free rations to great numbers of children for an extended period. Related research shows that from late 1846 through 1848, civilian networks in many localities identified the disaster faster than the state did, opened soup kitchens faster, and were readier to treat food as an immediate means of keeping people alive rather than waiting for the market to right itself.</p>
+
+<p>When the price machine failed, or was deliberately held in a state of undisturbed operation, what actually recounted people back into the world of the living was, more often than not, the non-anonymous chain — the one that bore a signature, and ran on credit and reputation.</p>
+
+<h3>4. Only One Class Went Hungry</h3>
+
+<p>For Bengal, 1942 brought a string of shocks arriving one on top of another.</p>
+
+<p>Burma fell, cutting off the flow of imported rice. In October, a cyclone struck southwestern Bengal, bringing storm surge, flooding, and rice blast disease. Barriers to trade between provinces tightened. At the same time, out of concern that Japanese forces might land on the coast, the colonial authorities put in place what was called the denial policy, restricting or destroying boats along the coast and the rivers, and in some districts restricting the amount of rice that could be held in stock.</p>
+
+<p>The commission of inquiry later recorded that in the areas where denial was carried out, large numbers of boats were requisitioned or destroyed, and it acknowledged that boat controls continued to obstruct the movement of grain right up until the summer of 1943.</p>
+
+<p>What happened here was not the market's total absence. It was a state at war, dismantling the existing transport network with one hand while demanding, with the other, that the market keep carrying out the work of distribution.</p>
+
+<p>This combination deserves a close look on its own. Where the state took direct action was transport — boats, physical objects that could be requisitioned and destroyed. Where the state declined to act was price and distribution, which it left to the market. So the very same power was decisive in one domain and hands-off in another. And the domain it chose to act in happened to be exactly the stretch of road that carries grain to people's mouths.</p>
+
+<p>In March 1943, officials reversed course and relaxed controls. After free trade resumed in May, Calcutta's market once again became the engine that set prices for the whole province. By the middle of that year, the price of rice had risen to five or six times what it had been at the start of 1942.</p>
+
+<p>The commission's analysis contains one passage that matters more than the rest.</p>
+
+<p>A great deal of the rice arriving in Calcutta remained in the hands of private merchants, who could hold it back for a better price; and in the absence of government control, Calcutta's purchasing power set the rhythm of prices for the whole of Bengal. The city was prosperous and commanded greater purchasing power; its war industries, its railways, its military and civil administration, and the groups officially designated as priority classes received subsidies or priority supply, and so Calcutta could afford rice prices that the rural poor could never keep pace with.</p>
+
+<p>The price machine had not stopped turning. Quite the opposite — it was turning with unusual force.</p>
+
+<p>It simply happened to be serving buyers whom the state and the war had already marked as a priority.</p>
+
+<p>Priority here is an administrative term, not a figure of speech. It refers to an actual list, specifying which industries, which institutions, and which populations could obtain grain at a subsidized price or ahead of others in line. The list was drawn up by people, and drawn up for reasons, reasons that sounded, at the time, entirely sufficient. The war had to be fought. The factories had to run. The railways had to keep moving. The cities could not be allowed to fall into disorder. Every one of these held up on its own. And once the list held up, everyone left off it acquired a shared identity: not on the list.</p>
+
+<p>Not on the list is not merely a description. It is a status, and one with real force behind it. It decided what price you paid for grain, whether you could obtain any at all, and whose place in line you stood behind. A person could remain entirely unaware that such a list existed, while the list itself had already decided how he would get through that winter.</p>
+
+<p>Which brings us back to the two sentences quoted at the opening. Within a single province, grain was not scarce in some even, uniform way. It had been re-sorted, layer by layer, according to status, occupation, geography, and political priority.</p>
+
+<p>The government's handling of the market kept swinging back and forth: price ceilings first, then a tacit tolerance of the black market; a plan, at one point, to take control of procurement, abandoned again in March 1943; and it was not until the thirty-first of January, 1944, that rationing was actually put into effect in Calcutta. By then the worst peak of death had already run its course, in the second half of 1943.</p>
+
+<p>Set the two dates side by side: rationing beginning on the thirty-first of January, 1944; the peak of death in the second half of 1943. Roughly half a year apart. A method that would later prove to work arrived half a year too late. And that half year was not lost to some outside delay. It was spent in the back-and-forth of capping prices, releasing them, and capping them again.</p>
+
+<p>The commission's own conclusion was this: had the government taken over Calcutta's supply and introduced rationing earlier, prices would not have swept across the whole province the way they did.</p>
+
+<p>It said one more thing, and it still stings to read today. To have propagated, at the time, the idea that food was plentiful had been extremely unwise; the wiser course would have been to tell the public plainly that yes, a shortage existed.</p>
+
+<p>This sentence adds something that has not appeared until now.</p>
+
+<p>Measurement, statistics, and official announcement are not neutral acts. What the authorities choose to declare publicly bears directly on hoarding, on panic, and on the direction prices move. An announcement from the construct is itself an input. It enters the very situation it claims only to describe, and it changes that situation.</p>
+
+<h3>5. A Name to Point To</h3>
+
+<p>Two disputes about Bengal remain unresolved to this day, and setting them out plainly does more good than trying to settle them.</p>
+
+<p>The first concerns whom responsibility should be recorded against.</p>
+
+<p>Official telegrams show that in April 1944, Churchill himself, writing to Roosevelt, acknowledged that at least seven hundred thousand people had died the previous year in Bengal's severe famine, and went on appealing for aid to India's food crisis.</p>
+
+<p>Historians do not agree about where his responsibility lies. One line of research places the weight on London's wartime priorities, on the allocation of shipping, on financial and price policy, and on the racial hierarchy running through the empire. Another line insists that natural disaster, administrative breakdown, decisions made in London, and market failure all belong on the same grid of suspects, pointing out that wartime procurement and crop failure mattered just as much, and that pinning everything on a single man is too simple.</p>
+
+<p>In other words, whether he ought to be singled out as the primary cause is itself part of what is being argued. No verdict will be offered here.</p>
+
+<p>Declining to render a verdict is not the same as avoidance. Whether one person's name deserves to be singled out, and whether anyone at all bears responsibility, are two separate questions. The first has no settled answer. The second does: the commission itself wrote that earlier rationing could have stopped the price from spreading, and that sentence already names a responsible party.</p>
+
+<p>The second dispute is theoretical, and it forms the methodological backdrop to everything that follows.</p>
+
+<p>In 1981, Amartya Sen advanced a judgment that has been used and reused ever since: famines often occur when the food supply is moderate, even good, and what matters is not the total quantity but whether people can command food through means that law and society recognize as legitimate. He called this capacity entitlement, and he gave particular weight to what he called exchange entitlement within it — how much grain the labor, land, livestock, money, and goods a person holds can be converted into, given the prevailing prices and rules. When a rural laborer's wage falls behind the price of rice, that is exactly this collapse of entitlement.</p>
+
+<p>The objections arrived quickly, and they arrived hard.</p>
+
+<p>One critic wrote, in 1986, that the theory would lead to wrong diagnoses and wrong remedies, and that the portion of the analysis dealing with Bengal in particular rested on statistics that were unreliable and inaccurate, that even the data Sen himself used contradicted his own argument. Sen struck back the same year, saying his opponent's article was riddled with conceptual confusion, factual misstatement, and systematic distortion. On this particular exchange, neither side persuaded the other, and no real reconciliation ever followed.</p>
+
+<p>Another researcher argued that the crop failure of 1942 had been badly underestimated, and that the supply side remained the central issue. Sen's answer held firm: the commission's own revised figures showed that per-capita available supply in 1943 was no lower than it had been in 1941, and that what truly explains the famine is wartime demand, the spike in prices, and unequal purchasing power. Still another researcher took a position somewhere between the two: crop failure, wartime procurement, administrative breakdown, and market failure all had to be considered together.</p>
+
+<p>In 1993, someone drew a useful distinction. The entitlement approach admits of two readings. One takes it as an outright denial that food availability had fallen at all. The other holds that a decline in availability can certainly still cause famine, only that it tends to act through the deterioration of prices, employment, wages, and the terms of exchange. Under the second reading, entitlement functions as a framework for organizing analysis, not as a claim that totals do not matter.</p>
+
+<p>The criticism did not come only from the supply side. Scholars who study African famines point to two further facts: that people caught in famine sometimes choose to eat less, even to go hungry, rather than sell off the assets on which their survival depends, a form of chosen under-eating that resists being fit into any simple function, and that in many famines the leading cause of death is not starvation as such but outbreaks of disease. These doubts were later organized into four categories: voluntary hunger, mortality driven mainly by disease, ambiguous boundaries around what counts as entitlement, and large-scale informal transfers that fall outside the reach of legal rules.</p>
+
+<p>Taken together, these strands allow for one summary that favors no side: the framework is good at explaining why people could not buy grain, but it does not, by itself, exhaust the reasons they ultimately died.</p>
+
+<p>And the shape of this forty-year, unresolved argument is itself worth a look.</p>
+
+<p>One side keeps asking about totals; the other keeps asking about distribution. And the one thing both sides agree on is precisely what the argument does not turn on. No participant has ever claimed that when the world holds grain, it is impossible for people to be systematically shut out of it. Both sides grant this. They simply pursue different lines from that shared point.</p>
+
+<p>And it is exactly that shared layer, the one both sides concede, that this essay comes to rest on. Scholarly argument has a habit of always moving toward whatever remains in dispute, because that is where there is still something to write. Walk that road long enough, and the layer of agreement stops getting mentioned at all, as though it needed no mention. But for the person standing outside the roll, that layer was always the one that mattered.</p>
+
+<h3>6. The Harvest That Was Punished</h3>
+
+<p>In 1958, the Great Leap Forward and the communization of the countryside launched together. Public canteens, inflated production figures, concentrated procurement, and a distributive bias favoring the cities over the countryside all unfolded as a single motion.</p>
+
+<p>What makes this famine hardest to place is that it occurred inside a system that claimed to have already broken, on a massive scale, with the market.</p>
+
+<p>But price and calculation did not disappear because of that claim. They changed form instead, burrowing more deeply into the fabric of society: planning quotas, procurement ratios, urban rations, export targets, administrative goals.</p>
+
+<p>A group of researchers re-estimated production, procurement, and population, and arrived at two findings.</p>
+
+<p>First, in 1959 the average food available in the countryside still stood at close to three times the threshold needed to avoid a high death rate.</p>
+
+<p>Second, during the years of the famine, the death rate was positively correlated with grain output per person.</p>
+
+<p>The second finding deserves a slow reading. It means that regions producing more were not safer for it. They often died in greater numbers.</p>
+
+<p>The reason lies in the arithmetic of procurement. Quotas were assigned according to fixed targets and a baseline drawn from past output; wherever output had been higher, the baseline was higher too, and so was the share taken away. By their estimate, this procurement mechanism alone accounts for somewhere between thirty-two and forty-three percent of all famine deaths.</p>
+
+<p>This is a mechanism of the construct that generalizes, and one that has appeared elsewhere as well: any construct that assigns its burdens according to past performance ends up punishing whoever performed well. The usual form the punishment takes is more labor, more payments, heavier quotas. Here, the form the punishment took was death.</p>
+
+<p>There is a harder implication still. If the procurement baseline is drawn from the previous year's output, then places that had inflated their output would carry a higher baseline, and would have more taken from them. And inflating output was common at the time, encouraged, and at times demanded. The exaggerated numbers went into the books first, and then turned, out of the books, into grain that was actually hauled away. The figure on the page and the grain in the field had always been two different things, and procurement treated the first as proof of the second.</p>
+
+<p>The binding of system to status is also at its most direct here.</p>
+
+<p>Some research frames this famine as a case where two explanations reinforce each other: the urban rationing system granted city residents a statutory right to obtain food, while the countryside received only what remained after state procurement had taken its share. Later work on the urban-rural divide put it even more bluntly: urban residents were guaranteed a minimum ration; rural residents held a claim only on the residue left over after procurement.</p>
+
+<p>So in this case, people were excluded not by price but by statutory status and by administrative order of rationing.</p>
+
+<p>Export is another line that cannot be set aside. Using county-level data, researchers estimate that between 1957 and 1959, China's grain exports rose from 1.9 million tons to 4.1 million tons, and that total exports across the whole of the Great Leap period came to roughly 9.6 million tons. The author holds that the shock from exports accounts for about fifteen percent of excess deaths, and cautions that once grain has been committed to export procurement, it is far harder to redirect back to a stricken region than grain procured for domestic urban consumption, simply because it has already left the country.</p>
+
+<p>This forms a bleak echo of Ireland. Food shipped abroad during a famine is never merely a question of transport. It is priority written into the machinery itself.</p>
+
+<p>None of this means the field has settled on a single explanation for the famine.</p>
+
+<p>Another well-known line of argument holds that the commune canteens created a problem of consumption efficiency: with property rights abolished and food supplied free, waste and over-consumption occurred before the shortage turned severe, driving a supply that had already been barely adequate into catastrophe. Other researchers object to laying responsibility directly and singly at the feet of the very top, stressing instead the differences in local implementation, the weather, and the enormous variation between provinces — Sichuan among them remains a significant case.</p>
+
+<p>Estimates of the death toll among researchers range from sixteen and a half million to forty-five million. That range should be presented as it stands, without picking any single figure out of it.</p>
+
+<p>But the record itself shows that the leadership at the very top was not wholly unaware of what was happening below.</p>
+
+<p>According to archival research, in the late autumn of 1958 Mao Zedong had already sharply criticized the more extreme practices of the Great Leap — working peasants past their limits, failing to provide adequate food and rest, and thereby causing disease and starvation deaths. At the Lushan Conference in July 1959, Peng Dehuai privately submitted a letter criticizing the spirit of exaggeration and its extreme practices; after the conference, the pressure of the campaign against the right only intensified. In a speech at that same conference, Mao also admitted that certain cadres had done wrong in taking fattened pigs and cabbage from production teams, describing the act as a violation of the principle of equivalent exchange.</p>
+
+<p>Together, these materials point to something quite specific. The leadership was not unaware that grain was being drawn off from above, that the canteens below could barely feed people, that cadres were helping themselves to the property of production teams. What had been seen and recognized as abnormal was never converted, in time, into an institutional stop.</p>
+
+<p>By 1961, the method that brought the famine to an end was strikingly plain: the central government began shipping grain back to the countryside on a large scale, drawing down some thirty million tons of reserves, and turned China from a net exporter of grain into a net importer.</p>
+
+<p>The machine, then, was not incapable of stopping, nor incapable of reversing itself. It did, eventually, reverse.</p>
+
+<p>The only trouble is that the reversal came far too late, and in the three years before it arrived, the machine had already struck a great many people off the list of those entitled to live.</p>
+
+<h3>7. Who You Happened to Know</h3>
+
+<p>Read the three cases side by side, and a second point they share turns out to be mentioned far less often than the first.</p>
+
+<p>Any distributive mechanism that looks purely anonymous ends up needing a personal, relational channel to patch its gaps, and that patching is never distributed equally.</p>
+
+<p>On the Irish side, the Quakers, the British Relief Association, local committees, and networks of trustworthy witnesses saved a great many people who stood outside the state's order of priority. Their method was simple: never ask whether you held land, never ask whether you could pay. Set up the pot, boil the soup, and feed whoever came.</p>
+
+<p>These few refusals to ask are exactly the questions the official system cared most about. Whether you held land decided whether you could get relief. Whether you could pay decided whether you could buy grain. Set both of those questions down at once, and the efficiency of saving lives rose immediately. This is not to say that charity is wiser than institutions — its reach was far smaller, far less stable, gone the moment the pot ran dry. What becomes visible here is only this: those two questions were never asked in order to save anyone. They were asked for something else.</p>
+
+<p>On the Bengal side, priority-class status was a politicized relationship, not some abstract qualification of belonging to the market. The recipients of subsidy and priority supply were war industries, railways, the military and civil administration. Who counted as a priority was decided by people, not set by price.</p>
+
+<p>Which is to say that even in a place that looked, on its face, entirely governed by price, a list still stood behind the price. The market distributed according to purchasing power, and purchasing power was itself distributed by subsidy and priority supply. Trace it one level further up, and beneath every anonymous mechanism there is always a decision that is not anonymous at all.</p>
+
+<p>The Chinese case is the most striking of the three. Research has found that local officials of native origin, compared with officials posted in from outside, were more likely to leave slack in procurement and to invest more heavily in relief, and thereby brought a significantly lower death rate to the areas under their charge.</p>
+
+<p>The three cases take entirely different forms, and yet they point to the same thing: relationships were never extinguished by money, by price, by procurement, or by planning. They resurfaced exactly when these systems ran coldest, and they bore directly on who lived and who died.</p>
+
+<p>But that sentence has another half, and the other half has to be written alongside it.</p>
+
+<p>Surviving by relationship is a form of unequal survival.</p>
+
+<p>A person had to know someone, or happen to live under a native-born official, or happen to stand within walking distance of a pot of soup. Every one of these conditions was a matter of chance, and none of them had anything to do with how badly a person needed to be saved.</p>
+
+<p>More to the point, the moment a person can only survive by such means, whatever system claimed to treat everyone alike has already stopped functioning. When relationship resurfaces, it is not the institution patching a hole. It is the institution already gone.</p>
+
+<p>The thread running through the previous fifteen episodes closes here. The anonymous scale and personal trust were never a matter of one replacing the other. They have always been tangled together. And in the coldest years, only the latter kept working at all, and its reach was small, small enough to save only those it happened to touch.</p>
+
+<p>This needs to be stated even more precisely. The personal side is not a fallback plan. It runs continuously, and is simply covered over, in ordinary times, by the anonymous side, and so goes unseen. What happens in a disaster year is not that it switches on. It is that the layer covering it collapses, and it shows through. Once it shows through, it saves people, and it also picks and chooses among them, because it has never recognized anyone beyond the people it already recognizes.</p>
+
+<p>So the earlier world described in Episode 1 should not be read as a better world. It too picked and chose, only by different rules. What can be said here is only this: in the coldest years, what recounted people back into the ranks of the living was often not the scale that claimed to treat everyone the same, but a handful of particular people who happened to know a handful of other particular people.</p>
+
+<p>One more thing has to be set down here, because it is the hardest piece of material in this entire essay.</p>
+
+<p>In all three cases, another road stood in plain view the whole time.</p>
+
+<p>Ireland's soup-kitchen network in 1847 fed roughly three million people a day at its peak. Bengal's commission of inquiry stated afterward, in so many words, that controlling Calcutta's supply earlier and introducing rationing sooner could have stopped prices from spreading across the whole province. China's famine ended by 1961, the moment reserves were shipped back and the country turned to imports.</p>
+
+<p>The alternatives in all three places were not dreamed up after the fact by later observers. They existed at the time. Some of them were even put into practice for a period, and then withdrawn.</p>
+
+<p>Which means the one sentence that must not be said here is that there was no other choice, given the conditions of the time.</p>
+
+<p>And the fact that the machine could stop is exactly the technical precondition that makes moral naming possible at all. A machine that cannot stop, running people down as it goes, is a disaster. A machine that could have stopped, and did not, running people down as it goes, is something else.</p>
+
+<h3>8. Outside the Roll</h3>
+
+<p>The statement can now be completed in full.</p>
+
+<p>In three famines, grain existed, another road existed, people were already dying and had already been seen dying, and the machine kept turning.</p>
+
+<p>These three facts are not an inference. They are a record.</p>
+
+<p>Ireland's own official wrote that the wage, at the grain prices of the time, could not support a family; he also wrote that around the worksites, people were dying of starvation every day. Bengal's own official commission wrote that not one person in greater Calcutta died of starvation while millions in the countryside suffered and starved; it also wrote that earlier rationing could have stopped the price from sweeping across the province. China's own leadership said, in its own meetings, what was happening at the base, and said what cadres had taken from the production teams.</p>
+
+<p>In three places, someone saw it. In three places, someone wrote it down. In three places, the machine kept turning.</p>
+
+<p>It is worth being precise about what kept turning means. It does not mean that no one did anything. Ireland ran its public works, and later its soup kitchens. Bengal eventually introduced rationing. China eventually shipped its reserves back. Action was being taken the whole time. What kept turning refers to something else: that while all this was being done, grain collection went on as before, exports went on as before, priority order went on as before, and these three, precisely, were the things holding people outside. A great deal was done, and the one motion that was shutting people out was never once stopped.</p>
+
+<p>That a person could be treated as a unit either counted in or counted out, and that once counted out, grain collection went on as usual, exports went on as usual, supply by priority order went on as usual, this deserves to be stated outright, without any softening, and without waiting for any dispute to close.</p>
+
+<p>And those disputes remain open, and this essay will not close them either. The several disagreements laid out earlier have not converged, not one of them, to this day. Setting them alongside the statement above without adjudicating them does not dilute the naming. It does the opposite. A judgment that only holds up once one side has won is no judgment at all. For naming to stand, it has to be built on the ground neither side denies.</p>
+
+<p>Back to the framework, one last point remains.</p>
+
+<p>The technical form each famine used to exclude people was entirely different. One ran through market purchasing power, one through political priority order, one through statutory status and the administrative sequence of rationing. One occurred inside a free-trade empire, one inside a colony's wartime economy, one inside a planned economy.</p>
+
+<p>And the effect was exactly the same.</p>
+
+<p>What this shows is that exclusion is not a defect belonging to any one system. It is what accompanies the very act of turning people into units that can be settled. The moment a scale is erected, one notch on it will read zero, and standing in that zero notch are living people.</p>
+
+<p>None of this argues against erecting scales. The previous fifteen episodes have said, more than once, that scales have accomplished a great deal, and that nothing else could have accomplished it in their place. There is only one point to insist on: whoever erects the scale carries an obligation to keep watching that zero notch, because the notch will never speak up for itself. On the books it shows up as blank space, and blank space is the least noticeable thing any ledger contains. The remainder, in other episodes, at least left traces behind — an old account no one could ever fully settle, a scale kept somewhere in the dark, a voucher that could never be produced. Here, the remainder leaves not even a trace. What it leaves behind is emptiness.</p>
+
+<p>The ninth method is the least demanding of the nine. Each of the previous eight required some action: loosening something, renaming something, declining to ask, converting one thing into another, drawing a boundary inward, providing an orbit, demanding a voucher, reclassifying. The ninth requires nothing at all. Simply leave this person off the list when the list is being drawn up, and everything that follows will take care of itself.</p>
+
+<p>The fastest way to balance a ledger is not to clear every item on it. It is to decide, first, which items get to count at all.</p>
+
+<p>This holds true of every ledger, and it holds with particular force for the ledger of famine relief. The ledger of famine relief is a one-time affair, one that has to be fixed within a matter of months, with no time left over to patch it slowly. Once it has been drawn up a certain way, it gets carried out that way, and the results of carrying it out cannot be undone.</p>
+
+<p>On Ireland's relief roll, those who held a quarter acre of land could not get in. On Bengal's priority list, rural laborers were nowhere among the names. On China's ration table, the countryside held a claim only to what was left after procurement. The three rolls were drawn up by entirely different methods, and outside all three of them stood people.</p>
+
+<p>People outside the roll do not stop needing food simply because they are not on it. They only die outside the roll.</p>
+
+<p>And every time a famine passes, the roll gets drawn up again, with a few more columns added. Once those columns are added, the roll looks more complete, its coverage wider, its statistics finer.</p>
+
+<p>Outside the roll, people are still standing.</p>
+
+<p>The ledger has not yet balanced. It is still being kept.</p>
+
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="ep15.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">大萧条与凯恩斯:出清,从来不会自己发生</span>
+            <span class="xiyou-nav-title lang-en">Effective Demand and the Column Marked Voluntary</span>
+          </span>
+        </a>
+        <a href="ep17.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">布雷顿森林与一九七一:信用,其实一直都在</span>
+            <span class="xiyou-nav-title lang-en">The Chain and the Cover</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

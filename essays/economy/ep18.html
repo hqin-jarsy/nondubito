@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>金融化｜凿构周期律·经济系列 — Non Dubito</title>
+  <meta name="description" content="标准化的合约,可计算的价格,被拆成好几段的链条——金融化把整个世界的风险都变成了可以打包转让的证券。这一次,账本第一次开始记录起了别的账本。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/economy/ep18.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .essay-entry-point { font-family:var(--sans); font-size:0.72rem; color:var(--ink-muted); font-style:italic; margin-top:0.5rem; margin-bottom:0.25rem; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 凿构周期律·经济系列</a>
+        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Economics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">凿构周期律 · 经济</div>
+          <div class="essay-series lang-en">Chisel-Construct Cycle · Economics</div>
+          <div class="emperor-ep-num lang-zh">第 18 篇，共 23 篇</div>
+          <div class="emperor-ep-num lang-en">Essay 18 of 23</div>
+          <h1 class="lang-zh">第十八篇　金融化:账本,开始记录别的账本</h1>
+          <h1 class="lang-en">Essay 18: Contracts and Correlations — The Ledger Begins to Record Itself</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<h3>一 九百一十一份</h3>
+
+<p>1973年四月,芝加哥开出一家新的交易所,专做股票期权。</p>
+
+<p>开市第一天,成交九百一十一份合约,挂牌的股票只有十六只。</p>
+
+<p>在此之前,美国的股票期权多半在场外谈成。买卖双方直接配对,条款一份一份地谈,期限,行权价,交割方式,各家不一样。一份期权是一笔具体的约定,由两个具体的人商量出来,谁跟谁做,做什么条件,别人不知道也不必知道。</p>
+
+<p>这种做法有它的道理。一份期权是一个赌约,赌的是将来某一天某样东西值多少;而愿不愿意跟你打这个赌,取决于对方觉得你可不可靠,取决于他手上有没有相反的头寸,取决于他和你以前有没有打过交道。条款一份一份地谈,谈的其实不只是条款。</p>
+
+<p>新交易所做的事情是把它标准化。行权价按格子排,到期日按月份排,合约的单位统一,清算集中办理,报价公开挂出。</p>
+
+<p>一种原本高度关系化的交易,被改造成了可比,可算,可以连续定价的市场对象。</p>
+
+<p>标准化的代价是所有的合约必须长得一样。你要的那个到期日不在格子上,就只能选最近的一格;你要的行权价差半块钱,也只能就近取。合约不再贴着你的需要长,而是你的需要要迁就合约。换来的东西是流动性:一份标准合约今天买进来,明天可以卖给任何一个不认识你的人。</p>
+
+<p>同一年,两位学者发表了一篇关于期权定价的论文。它给出的不只是一个公式,更是一个想法:只要能用标的资产和无风险资产组合出一个动态对冲的头寸,那么那份期权就有一个可以计算的,理论上一致的价格。</p>
+
+<p>标准化的合约和可计算的价格,是同一件事的两半。前者让期权成为可比的东西,后者让它成为可算的东西。</p>
+
+<p>九百一十一份合约,是接下来那台机器的第一声。</p>
+
+<p>这个数目值得记住,因为它小得很好对照。三十几年后,全球场外衍生品未平仓的名义本金,会以百万亿美元计。中间没有任何一年发生过突变,每一年都只是比上一年多做了一点点。</p>
+
+<p>这一点在后面每一节都会重现。构的扩张几乎从不靠某一次跳跃,它靠的是每一年都比上一年多做一点,而每一次多做的那一点,单独看都很合理。等到有人回头去找那个该踩刹车的年份,会发现找不到,因为每一年的增量都在当年的合理范围之内。</p>
+
+<p>前面十七篇一路看下来,构一直在做同一件事:把塞不进同一把尺子的东西压进去,好让账做平。而它压的对象,始终是外面的世界,一片地,一批人,一段时间,一种金属,一个国家的对外账目。</p>
+
+<p>接下来这几十年发生的事情不一样。</p>
+
+<p>账本开始越来越少地指向外面。它开始记录别的账本。</p>
+
+<p>这句话不是比喻。后面会看到具体的数字:一批产品的中间层,近八成被同类产品的管理人买走,再装进下一轮包装。构做到这一步,它要通约的东西已经不是外面的世界,是它自己上一轮的产物。</p>
+
+<h3>二 几乎不可能估值</h3>
+
+<p>1975年五月一日,美国证券市场取消了固定的经纪佣金。这一天后来被称作五一日。</p>
+
+<p>在此之前,佣金是固定的,而且是一笔总数。一位监管官员当年说得很直白:在固定佣金的制度下,执行交易和研究服务被打包在一笔历史形成的总佣金里,而这两者几乎不可能估值。</p>
+
+<p>几乎不可能估值这句话,值得抄下来。</p>
+
+<p>它承认的是一件很朴素的事情。一家经纪商替客户做的事,不只是把一笔单子送到交易所去成交。它还给你看研究,给你打电话讲市场,给你介绍人,替你留意机会,在你需要的时候给你一点方便。这些东西混在一起,构成一段关系,而这段关系值多少钱,谁也说不清。</p>
+
+<p>说不清的时候,办法是给它一个约定俗成的总价。</p>
+
+<p>要注意这个办法不是糊涂。它是一种成本很低的处理方式:与其把每一项都拆出来算清楚,不如给整包一个价,大家都省事。第一篇里说过,在账本出现之前的世界里,人和人之间的往来靠的就是这一类整包的安排。它不精确,而它维持得住。</p>
+
+<p>取消固定佣金不只是降费。它做的是把这一揽子东西拆开,逼着每一项分别报价:执行多少钱,研究多少钱,建议多少钱,关系多少钱。</p>
+
+<p>这个动作在前面几篇里已经出现过很多次。第五篇讲复式记账,第十篇讲边际革命,第十二篇讲家务劳动,每一次都是同一个问题的不同版本:一样混在关系里的东西,要不要被拆开单独计价。</p>
+
+<p>而这一次的答案是拆。</p>
+
+<p>而这一次的拆有一个前面几次没有的特点:它不是由一个想要更清楚的人发起的,是由竞争压出来的。固定佣金一旦被取消,谁先把执行这一项的价报低,谁就先拿到单子。于是拆开这个动作,一旦开了头就停不下来,因为不拆的那一家会输给拆的那一家。</p>
+
+<p>拆开之后立刻发生了一件事。凡是能单独报价的,价格开始往下走,因为它现在要面对竞争。凡是不能单独报价的,处境就变得尴尬:它没有价签,又不能白给,于是它要么被折算进某一项的价里,要么慢慢消失。</p>
+
+<p>一样东西一旦被要求单独定价,它就必须证明自己值这个价。而有些东西的价值恰恰在于它不被单独计算。</p>
+
+<p>这不是感叹。一个经纪人肯在你亏钱的那个月给你打个电话,一位分析师肯把一份还没写完的判断先讲给你听,这些事之所以会发生,一部分原因正是它们没有被计价,因此不必核算投入产出。一旦每一件都标上价,它们就都要接受一个问题的考验:这一项单独看,值不值。</p>
+
+<p>同一个方向上的动作在接下来几年里连着发生。1980年的一部法律放松了对存款机构的约束。1981年,世界银行和一家计算机公司做成了后来被反复引用的第一笔正式货币互换,不同币种,不同期限,不同融资成本的债务,可以通过一份衍生合约被重新切开,重组,再重新标价。</p>
+
+<p>从这一笔开始,债务不再只是债务。它成了可以和别的现金流重新拼装的原材料。</p>
+
+<p>重新拼装这四个字,是接下来几十年的关键动作。一笔债务原本是一个人欠另一个人的钱,期限,币种,利率,都长在这段关系上。互换做的事情是把这几样拆开:你要的期限归你,我要的币种归我,利息按另一个尺度重算。拆完之后,债还是那笔债,而它已经不再属于原来那段关系了。</p>
+
+<h3>三 引擎,不是照相机</h3>
+
+<p>八十年代被一位研究者称作交易的十年。</p>
+
+<p>她用美国的数据发现了一件事:非金融企业的证券收入相对于现金流,在七十年代开始明显抬升;金融与非金融利润之比,在五十年代和六十年代相对稳定,七十年代上升,到八十年代陡升,样本末端的水平大约是五六十年代典型值的三到五倍。</p>
+
+<p>更要紧的是构成。非金融企业那部分上冲的证券收入,主要不是靠股市上的资本利得,而是靠利息收入。</p>
+
+<p>也就是说,制造业,工业,零售业这些名义上属于实体的公司,越来越深地卷进了债权债务关系。工厂还在开,货还在卖,而利润表上有一块越来越大的东西,来自钱本身。</p>
+
+<p>这件事对企业内部的影响是具体的。当一家制造企业发现,把现金放出去收利息比多开一条生产线更稳,更快,更容易在季报上看出来,那么下一次决定要不要开那条生产线的时候,它心里已经有了一个对照物。生产不必被禁止,它只要在同一张表上和别的用钱方式比一比就够了。</p>
+
+<p>与此同时,价格模型开始做一件超出描述的事。</p>
+
+<p>一位社会学家后来把这类模型称作引擎,不是照相机。它不只是在旁边把市场拍下来,它进到市场里去,改变市场。</p>
+
+<p>标准化的期权先被造出来,然后有了对冲,然后有了做市,然后有了隐含波动率这条曲线,然后波动率本身成了可以交易的东西。每一个新的价格公式都会生出新的交易对象,而新的交易对象又需要新的公式。</p>
+
+<p>1987年十月的股灾把这件事的另一面照了出来。</p>
+
+<p>当时流行一种叫组合保险的做法。它的逻辑很干净:市场跌的时候卖出股指期货,把损失对冲掉。一份保险,一套模型,一条自动执行的规则。</p>
+
+<p>而当很多人同时按同一套模型行事,跌市里就出现了这样的情形:模型要求继续卖,卖出压低价格,价格下跌又触发模型要求卖得更多。</p>
+
+<p>一套为了避险而设计的机制,在下跌中变成了加速下跌的机制。</p>
+
+<p>后来的官方回顾和相关研究都指出了这种动态对冲在跌市里强化顺周期卖压的作用。这里出现的是一个后来反复重演的模式:模型不是站在市场旁边描述它,模型在市场里面推动交易。</p>
+
+<p>这一点对构的性质说明得很透。前面几篇里,尺子照亮余项,尺子重估一个人的一小时,尺子把一段区间压成一个点,而尺子做的事情始终是量。到这里,尺子开始动手了:它量出一个数,这个数触发一笔交易,这笔交易改变被量的那样东西,于是它下一次量出另一个数。</p>
+
+<p>被量的对象不再站着不动。它按尺子给出的读数移动。</p>
+
+<p>这是构在这一路上最重要的一次形态变化。前面十七篇里,构和它要量的东西之间总还隔着一点距离:账本记的是已经发生的事,尺子量的是本来就在那里的东西,哪怕量得不准,被量的那一头也不因为被量而改变。到这里,这个距离没有了。价格进入了它所描述的那件事,成了那件事的一部分。</p>
+
+<p>到九十年代,这套语言全面扩张。1999年,美国中央银行的主席在一次演讲里说,过去十年金融领域最重要的事件,就是金融衍生品的非凡发展。第二年他在国会作证时又说,场外衍生品让人们得以把风险拆开,并分配给最愿意也最有能力承担它的投资者。</p>
+
+<p>这是一种非常典型的效率论表述,而且它有它的道理。风险没有消失,它被重新分配到了更适合承担它的地方。一个农场主可以把收成的价格风险转给愿意承担它的人;一家公司可以把汇率风险转出去,专心做自己的生意。</p>
+
+<p>这些好处是真的,而且不是小事。一个能把价格风险转出去的农场主,可以安心种他更擅长种的东西,不必把一半心思花在猜行情上;一家不必每天盯着汇率的公司,可以把力气放在把货做好上。分工能够深化,正是因为有人愿意接过别人不想拿的那一部分不确定。</p>
+
+<p>这套说法把金融创新表述成一种分工的深化:风险像零件一样被拆解,重组,卖给最合适的持有人。</p>
+
+<p>它成立的前提是,拆下来的那些零件加起来,还是原来那样东西。</p>
+
+<p>这个前提在很长时间里没有被认真检验过,原因很简单:它在平常的日子里是成立的。一份风险被拆成三块卖给三个人,平常那三个人各自处理各自的那一块,互不相干。要到某一天他们三个同时想脱手的时候,才会发现那三块其实一直连在一起。</p>
+
+<h3>四 首要目标</h3>
+
+<p>金融化不只发生在华尔街。它进了公司内部。</p>
+
+<p>1997年,美国商业圆桌会议的一份公司治理声明写得非常直白:企业的首要目标,是为所有者创造经济回报。</p>
+
+<p>同一份文件还说,管理层和董事会的最高义务是对股东负责,其他利益相关者的利益只是这种股东义务的派生物。</p>
+
+<p>翻成日常的话:企业首要不是就业,不是技术积累,不是这座城市的兴衰,是给股东创造回报。</p>
+
+<p>这套语言要做的事情很清楚。一家公司内部本来有一堆彼此不可通约的目标:工人的饭碗要保,长期的研发要投,供应商的关系要养,地方上的名声要顾,技术的家底要攒。这些东西没有共同单位,谁多一点谁少一点,只能靠人去权衡。</p>
+
+<p>靠人去权衡这件事有它的毛病。它慢,它不透明,它取决于坐在那个位置上的是谁,它给了管理层很大的余地去自说自话。股东价值这套语言之所以有力量,正是因为它对着这些毛病来:有了一个共同的数,谁做得好谁做得坏,不必再听解释。</p>
+
+<p>而股东价值给了它们一个共同单位。</p>
+
+<p>有一位学者在 2001年把这套想法写得更系统。他说,在一切商品都被定价的条件下,社会福利的最大化可以通过企业最大化其全部长期市场价值来实现;而这个总价值,等于股权,债务,优先股,认股权证等所有金融索取权的市场价值之和。</p>
+
+<p>这套说法的力量正在这里:它把一个极其复杂的组织问题,变成了一个似乎可以由市场价格统一表示的目标函数。</p>
+
+<p>而溢出物在同一份文件里就能看见。</p>
+
+<p>那一份高唱股东价值的治理声明,一面把公司目标导向股东回报,一面承认:治理里真正关键的那些因素,董事的质量,首席执行官和董事的性格,有没有人敢于顶住首席执行官,是软的,主观的,难以列表比较的。</p>
+
+<p>一份最热衷于把企业目标还原成一个数的文本,自己承认公司运转离不开无法度量的人格特质和关系性判断。</p>
+
+<p>法律和财务实践也往同一个方向推。1982年的一条规则给了发行人在公开市场回购自己股票的安全港,此后美国企业分配现金的方式明显转向回购。对标准普尔五百的公司来说,股票回购的规模在 1980年大约只有股息的十分之一,到 1997年和 1998年已经超过了股息。</p>
+
+<p>再往后,有研究者统计了 2003年到 2012年持续留在那个指数里的四百四十九家公司,发现它们把利润的百分之五十四用于回购股票,另有百分之三十七用于分红。</p>
+
+<p>有研究者对这段历史的叙述很鲜明:美国大企业的战略重心,在七十年代以前更偏向保留盈余和再投资,八十年代以后则越来越围绕裁减,分配和所谓股东价值来运转。</p>
+
+<p>最关键的变化不是高管更贪婪了。是企业内部可见的尺度变了。</p>
+
+<p>长期研发和工人技能的积累很难即时折现,而股价,每股收益,回购,并购溢价,各部门的回报率,每天都可以被排名,被问责,被激励。</p>
+
+<p>于是生产并没有消失,它只是越来越需要用金融的语言为自己辩护。工厂,零售网络,专利,品牌,客户关系都还在,只是它们要先经过折现现金流,资本成本,股东回报,市场倍数这几道换算,才拿得到正当性。</p>
+
+<p>那些不容易被这套共同尺度吸收的东西,在企业内部被当作成本中心,在资本市场上被当作折价因素,然后被外包,裁剪,证券化或者卖掉。</p>
+
+<p>这里的顺序值得留意。不是先有人决定要削减这些东西,而是先有了一把尺子,这些东西在尺子上量出来的读数很难看,然后削减才成为一个显而易见的决定。做决定的人并不觉得自己在牺牲什么,他觉得自己在改善一个数。第十三篇里说过一句相近的话:每一个零件被单独处理的时候,处理得都很讲道理,而所有讲道理的处理加在一起,那个位置就没有了。</p>
+
+<h3>五 七个环节</h3>
+
+<p>同一套拆分的逻辑,在住房贷款这条线上做到了极致。</p>
+
+<p>一笔按揭贷款在传统银行里是一件整事。银行审你的收入,决定借不借;银行拿自己的钱借给你;银行盯着你还不还;你还不上的时候银行去处理房子。这些事情从头到尾在同一张资产负债表里纠缠着。</p>
+
+<p>纠缠有它的用处。因为钱是自己的,银行才有理由把你审仔细;因为要一直拿到到期,它才有理由盯着你;因为房子砸在自己手里,它才有理由在你还不上的时候先跟你商量,而不是立刻收走。这几件事之所以连在一起,不是因为没人想到要拆开,是因为连在一起的时候,做这些事的人有做好它们的理由。</p>
+
+<p>证券化把它拆成了一条流水线。</p>
+
+<p>有研究者详细拆解过次贷证券化的链条,数出至少七类关键的信息摩擦,分布在抵押人,贷款发起人,安排人,仓储融资方,评级机构,服务商,资产管理人,投资者之间。理论上的解决办法各有一套:尽职调查,回购承诺,仓储贷款折扣,评级,增信,服务协议。</p>
+
+<p>这一整套办法要做的事情,可以概括成一句话:用可以写下来的东西,去替代原先那个不必写下来的理由。原先银行盯着你,是因为钱是它的;现在服务商盯着你,是因为合同里写着他该盯着。前一种理由长在利害关系上,后一种理由长在纸上。纸也管用,只是纸要靠人去执行,而执行的人有他自己的算盘。</p>
+
+<p>影子银行整体也是这个形状。有研究者把它的信用中介分成七步:贷款发起,贷款仓储,证券发行,证券仓储,再包装产品的发行,证券中介,批发融资。</p>
+
+<p>传统银行把存款,贷款,期限转换,流动性支持和资本缓冲放在一个屋檐下。影子银行把这些功能垂直切开,交给按揭公司,特殊目的实体,券商,货币市场基金,回购市场等不同的节点。</p>
+
+<p>规模不小。到 2007年六月,按一种流量口径估算,影子银行的总负债接近二十二万亿美元,而同期传统银行的总负债约为十四万亿美元。同一时期,美国回购市场的规模大约在十二万亿美元上下,和美国银行体系总资产的十万亿美元大体相当。</p>
+
+<p>也就是说,最关键的那些信用活动,已经有很大一部分不再发生在普通人熟悉的吸收存款和发放贷款里,而发生在以高评级证券作抵押,靠隔夜或者超短期融资滚动续命的批发市场上。</p>
+
+<p>热钱也往这条链子上走。2006年,美国非机构按揭的发起额达到一万四千八百亿美元,比机构按揭高出四成半以上;非机构的住房抵押贷款证券发行额一万零三百三十亿美元,也高于机构发行的九千零五十亿美元。</p>
+
+<p>最热的住房融资,正在从那些带有较统一承保标准的机构体系,外溢到更倚赖证券化链条,评级,承销,仓储融资和回购融资的私人机器上去。</p>
+
+<p>这套体系表面上极其匿名。</p>
+
+<p>储蓄者持有的是货币市场基金的份额,不是银行存款。资金通过商业票据或者回购进入体系,不经过柜台。抵押品是有评级的证券。风险通过信用违约互换,保险和流动性支持条款被管理。对手方之间靠标准的主协议和抵押品管理说话,不靠交情。</p>
+
+<p>第六篇讲交子时说过,把金属从钱上剥掉,等于把全部重量压到人格上。这里做的是相反的努力:把人格从每一个环节上剥掉,换成文件,评级,折扣率和标准条款。</p>
+
+<p>而剥不掉。</p>
+
+<p>安排人仍然要向上游的仓储融资方证明自己,仍然要用自己的声誉向评级机构和投资者兜底,仍然要签署陈述与保证。服务商仍然要被相信会按激励兼容的方式去处置逾期的资产。</p>
+
+<p>匿名价格之下,关系并没有消失。它只是被拆散了,藏进了链条的各个接头处。</p>
+
+<p>藏起来和消失的差别,在平时看不出来。一条链子上有七个接头,每个接头处都有一点点必须靠信任才能通过的地方,而这七点点在平常的日子里各自都很小,小到不值一提。它们只有在同一天一起被追问的时候,才会显出总量。</p>
+
+<h3>六 账本记录账本</h3>
+
+<p>到这里,可以看那个最要紧的现象了。</p>
+
+<p>一笔按揭贷款被证券化之后,并不是一份完整的证券,而是被切成不同层级:最高一级的分层最先拿到还款,最后承担损失;往下一级承担得多一些;最底下那几层最先亏。每一层有自己的评级,自己的利差,自己的价格。</p>
+
+<p>这套切法本身有它的道理。不同的投资者对风险的偏好不同,把一笔贷款切开,让保守的人买上面,让愿意冒险的人买下面,这正是把风险分配给最愿意承担它的人。</p>
+
+<p>而且这套切法解决了一个真实的困难。一笔按揭贷款的期限是三十年,金额是几十万,借款人是一个具体的人,这样东西几乎没有办法拿到市场上去卖。把几千笔这样的贷款打成一包,再按承受损失的先后切成几层,原先卖不动的东西就有了买家,资金就能从愿意长期持有的人那里,流到需要买房子的人那里。这是通约真正做成的事。</p>
+
+<p>问题出在中间那几层的去向。</p>
+
+<p>调查危机的委员会对 2006年和 2007年再包装产品市场的调查,给出过非常刺眼的细节:在一些样本里,接近百分之八十甚至百分之八十八的夹层,被其他同类产品的管理人买走,用来塞进新的一轮包装;在极端的个案里,某些产品的购买者全部是其他同类产品的管理人。</p>
+
+<p>这句话要慢读。</p>
+
+<p>一台本来应该把住房贷款的风险分散出去的机器,越来越多是在自己的产品之间互相吞食,互相增殖。</p>
+
+<p>第一轮包装的中间层卖不掉,于是被装进第二轮包装;在第二轮里,它又被切成上中下三段,上面那一段重新获得最高的评级。同样的风险绕了一圈,换了一个名字,评级更高了。</p>
+
+<p>这里没有人作假。每一步都有模型支撑,每一步的评级都是按当时的方法算出来的,每一步都写在文件里。之所以能得出更高的评级,依据是一个具体的假设:装进同一包的那些东西不会同时出问题。假设写在方法说明里,谁都可以去看。只是没有多少人去看。</p>
+
+<p>账本不再只是记录房贷的现金流。它开始记录别的账本。</p>
+
+<p>前面十七篇里,构做的事情都有一个外部的对象:一片土地,一批人,一段劳动,一种金属,一个国家的收支。构和那个对象之间有紧张,有溢出,有算不平的部分,而那个对象始终在外面站着。</p>
+
+<p>到这里,构第一次开始以自己为对象。它给自己的产品定价,再给那个价格定价,再给这个定价的合约定价。每一层都算得清清楚楚,每一层都有市场报价,而整条链子的下端,是几十万份具体的按揭合同,以及几十万个每月要还款的人。</p>
+
+<p>那些人和这条链子之间隔着多少层,链条上端的人已经算不出来了。</p>
+
+<p>而算不出来这件事,在繁荣的时候不是问题。因为有价格。</p>
+
+<p>这句话是全篇的骨头。算不出来和不知道是两回事:算不出来的时候,只要有一个价,人就可以停止追问。价格替代了追问,而且替代得非常彻底,因为价格看上去比追问更客观,更即时,也更容易向别人交代。</p>
+
+<p>2006年一月,一个盯着一篮子次贷证券的指数开始交易。它用一组信用违约互换的价格,给此前极不透明的次贷风险,提供了一个可以连续观察的温度计。</p>
+
+<p>从此,成千上万笔抵押贷款的未来,不再只体现为逾期率或者止赎率,它被即时折叠进一个指数的点位里。</p>
+
+<p>这是通约的又一次胜利,而且是一次真的胜利。原先谁也说不清那一大堆贷款到底值多少,现在每天有一个数。</p>
+
+<p>价格越透明,就越容易让人以为可见的价格已经等于可知的价值。</p>
+
+<p>而在这套统一计量的体系外面,有一些东西一直没有被算进来。</p>
+
+<p>借款人是否理解自己签的合同。房屋会不会被维护。服务商的激励是不是扭曲的。一个地区的房价会不会一起跌。借新还旧能不能持续。做市商在难看的日子里还愿不愿意接货。</p>
+
+<p>这些都不是无法察觉的东西。它们只是没有栏目。</p>
+
+<p>没有栏目的东西有一个共同的处境:它们不会以零的形式出现在表上,它们根本不出现。一个人看着报表,不会觉得这里少了一项,因为报表上没有一个空格在提醒他。第十二篇里说过,尺子照不到的地方,人会以为那里什么也没有。这里的情形还要再进一层:尺子照得非常亮,亮到照不到的地方连阴影都看不见。</p>
+
+<p>其中最要紧的那一样,叫相关性。</p>
+
+<p>每一笔贷款单独看,违约的概率可以估;每一层分券单独看,损失的分布可以算;每一个价格单独看,都对得上市场。而它们会不会同时出事这件事,不在任何一笔资产的属性里。</p>
+
+<p>它在资产之间。</p>
+
+<p>后来的研究者总结得很干脆:危机之前,评级机构,风控经理,投资者和监管者普遍低估了结构化证券在极端情形下的价格相关性。</p>
+
+<p>余项在这里换了一个位置。前面几篇里,余项在被排除的那一侧,在册子外面,在关系里,在央行的金库里。这一次,余项不在任何一个单项里。它在项目与项目之间的那些连线上,而账本恰恰是按项目来记的。</p>
+
+<p>一本按行记账的册子,没有办法给行与行之间的关系留一栏。</p>
+
+<p>这是复式记账留下来的一个结构性的限制,而它已经五百多年没有变过。第五篇里说过那本自证的账:每一笔都要有对应的一笔,借方贷方相等,账就闭合了。这套办法的力量在于它把每一项都锚住;它办不到的事情是,给两项之间的连线也开一个科目。而在这几十年里,真正的风险恰恰长在那些连线上。</p>
+
+<h3>七 九十七美分</h3>
+
+<p>2007年到 2008年,这台机器停了下来,而它停下来的方式很说明问题。</p>
+
+<p>有研究者把那两年的恐慌概括成一次对回购市场的挤兑。</p>
+
+<p>这种挤兑和传统的挤兑不一样。投资者不去银行柜台排队。他们做的是:提高抵押品的折扣率,拒绝续作,要求更多高质量的抵押品,缩短期限,抬高利差。</p>
+
+<p>表面上看是证券价格在波动。实质上是对交易对手,对做市商的库存,对评级的可靠性,对抵押品的质地,对谁能最后接盘的全面怀疑。</p>
+
+<p>换一个说法就更清楚:平常的日子里,这些问题不必问,因为有价格,有评级,有标准合同。挤兑的意思不是大家突然缺钱,是大家突然又开始问这些问题了。而一旦开始问,这些问题一个也答不出来,因为整套体系当初建起来的目的,正是让人不必去问它们。</p>
+
+<p>在这之前有一次预演,而且预演得相当完整。1998年,一家对冲基金几乎崩溃。后来的调查写得很直白:它在四十八亿美元的资本上,堆出了名义本金超过一万亿美元的场外衍生品头寸,以及一千二百五十亿美元的证券头寸;而主要的交易对手和监管者,事前都不知道它的实际规模。</p>
+
+<p>那不是十年后那场危机的直接原因。但它已经把整套问题演示过一遍:高杠杆,场外的合约网络,对手方不透明,以及市场能够自我约束的信念。</p>
+
+<p>演示过一次,而后来的十年里,那套东西长大了几十倍。</p>
+
+<p>这件事值得单独记一笔,因为它对构的性质说明了一层。构不是不会学。那次之后确实有过检讨,有过调查,有过关于对手方透明度的讨论。而检讨得出的结论通常是技术性的:该多报几项数据,该多留一点保证金。检讨很少会得出这样的结论:这一整套做法本身在放大同一种脆弱。因为那个结论一旦被接受,靠这套做法赚钱的人就得改行。</p>
+
+<p>2008年九月十六日,一家货币市场基金宣布净值跌到九十七美分,跌破了面值。</p>
+
+<p>货币市场基金的份额此前一直被当作接近现金的东西。人们把钱放进去,当它是存款,随时可取,不会亏。</p>
+
+<p>跌破面值这四个字之所以引起恐慌,是因为它打破的不是一个价格,是一个假定。</p>
+
+<p>而那个假定从来没有被谁正式许诺过。基金的说明书里写着净值会波动,写着不保本,写着投资有风险。所有人都读过,所有人都当它是套话。真正让人们把钱放进去的,是二十多年里它从来没有跌破过面值这个事实。一个从未被写下来的承诺,一旦破了一次,就再也回不去了。</p>
+
+<p>几天之后,美国财政部推出了货币市场基金的临时担保计划,为九月十九日持有的合资格基金余额提供担保。</p>
+
+<p>最像现金替代物的东西,最去人格化的份额,最后还是要国家出面兜底。</p>
+
+<p>这是金融化最反讽的地方。</p>
+
+<p>它一开始似乎代表着彻底的去人格化:不靠地方银行经理认不认识你,不靠长期的关系,而靠统一的定价,统一的评级,统一的抵押品和标准的合同。</p>
+
+<p>而到了危机时刻,市场最先追问的仍然是人格性的问题:谁还愿意给你融资。谁还敢给你的证券打包票。谁愿意做最后的报价。谁能证明你那个最高评级不是一层薄壳。谁最终能出面兜底。</p>
+
+<p>匿名的交换手段从来没有杀死人格性的信用。</p>
+
+<p>它只是把人格性的信用藏到了上游,藏到少数几个关键机构里,最后藏到国家身后。</p>
+
+<p>第十七篇的结尾说,1971年剪开的是那层遮盖,那些一直在起作用的东西第一次被摆到了正面。这里是同一句话的续篇:遮盖被剪开之后,人格性的东西并没有回到每个人面前,它被集中到了更少的几个节点上。</p>
+
+<p>越想摆脱人格,越要把某些人格性的保证集中到更少数,权力更大的地方。</p>
+
+<h3>八 太大还是太贵</h3>
+
+<p>关于这几十年到底发生了什么,研究者之间的分歧很深,而且不是口味之争。</p>
+
+<p>一类可以叫效率论。它不否认八十年代以后金融部门膨胀得很厉害,但强调其中相当一部分是对真实经济需求的回应。衍生品把风险拆开并重新配置给最合适的持有者;较发达的金融系统有助于信息的生成,风险的分担和资本的配置;关于金融与增长的文献指出,股票市场和银行的发展总体上与增长正相关。有学者在 2013年干脆把问题改写成功能而不是规模:判断金融是不是太大,本身并不是最有用的问题,要紧的是金融的功能运转得好不好。</p>
+
+<p>另一类可以叫抽取论。它抓住的是利润结构:利润越来越经由金融渠道获得,非金融企业也越来越依赖利息和证券收入。有学者给了一个更宽的定义,把金融化理解为金融的动机,市场,机构和行为者对整个经济运行方式的加压。还有研究从公司治理的角度指出,股东价值并不是什么古老的常识,而是八十年代以后才真正上升为统治性原则的东西。按这一组看法,金融的扩张不是中性的中介深化,而是社会剩余的分配和公司控制权,重新向金融债权人,机构投资者,高管激励和资产管理者倾斜。</p>
+
+<p>夹在两者之间,有一条特别要紧的经验性争论:金融膨胀究竟是因为可中介的资产变多了,所以中介自然变大;还是同样甚至更少的服务,被收费更高地做了出来。</p>
+
+<p>有一位学者的研究之所以经常被双方同时引用,就是因为他给出的答案是复杂的。他承认金融业的产值占比在二十年代高,六十年代低,八十年代以后再次升高,并估算美国金融中介的长期成本大致维持在中介资产的百分之一点五到百分之二之间;而他同时发现,按他的口径,金融中介的单位成本在过去三十年反而上升了。</p>
+
+<p>效率派抓住前半句,批判派抓住后半句。而这个发现真正的分量在于:即便完全不采纳最激烈的说法,单是信息技术让金融越来越便宜这一条常识,也并不轻易成立。</p>
+
+<p>还有一类可以叫不稳定论。1992年,一位经济学家把金融系统里的融资关系分成三种:对冲型,投机型,和庞氏型。他明确写道,如果对冲型的融资占主导,经济可能趋于自我约束;而投机型和庞氏型占的比重越大,经济就越可能成为一个偏离会自我放大的系统。</p>
+
+<p>他还有一句话说得很直接:银行家和金融中介是债务的商人,而且创新保证利润。</p>
+
+<p>这一路与效率论的分歧,不在于金融能不能做风险转移。在于另一件事:繁荣时期的成功,恰恰会诱使整个系统把安全边际越压越薄,直到看上去最流动,最安全,最可计量的资产也变得最脆弱。</p>
+
+<p>对起源的理解也有分歧。有研究者后来提出,美国的金融化并不是决策者一开始有意追求的目标,而更像是国家在六十年代末和七十年代增长放缓之后,为了回避分配冲突,财政压力和合法性压力,做出的一连串政治上便宜,经济上后果深远的应急反应。</p>
+
+<p>按这个讲法,金融化既不等于阴谋,也不等于天才的设计。它是一条在争议,试探,拖延和替代方案失败之中形成的路。</p>
+
+<p>连那份官方的危机调查自己都没有形成单线的叙述。多数意见强调监管的失败,杠杆,影子银行,证券化和衍生品;而异议则把全球信用泡沫,发展中国家的资本顺差,风险的低估和利差的收窄放在更核心的位置。</p>
+
+<p>这里不裁决。</p>
+
+<p>但把这些放在一起,能看出它们争的其实是三件很具体的事:价格是不是真的更接近价值;金融的债权是不是真的更贴近底层的资产;匿名的市场是不是真的比关系性的信用更可靠。</p>
+
+<p>三个问题,三条不同的证据线,没有一条给出了整齐的答案。</p>
+
+<p>不裁决在这里尤其要紧,因为这三个问题的答案很可能不是一致的。金融的债权离底层资产更远了,这一点材料上比较清楚;而价格是不是更接近价值,取决于你说的是哪一段时间里的哪一类资产;至于匿名市场和关系性信用哪一个更可靠,这几十年给出的答案是两边都会失灵,只是失灵的样子不一样。</p>
+
+<p>而在这三个问题的底下,还压着一件更朴素的事。</p>
+
+<p>一笔按揭贷款的最下面,是一个每月要还钱的人。他有一份工作,或者曾经有过。他签了一份自己未必读得懂的合同。他住在一栋房子里,那栋房子会不会被维护,取决于他还剩多少心力。</p>
+
+<p>这些事情没有一样进得了那台机器。机器需要的是他的信用评分,他的贷款成数,他的月供和收入之比。这几个数字确实和他还不还得上有关系,而它们不是他。构做的从来不是无中生有,它是从一个人身上取几个能报出数的部分,然后拿这几个部分去代表他。平常这样也够用了。</p>
+
+<p>从他到那台机器的顶端,中间隔着七个环节,若干层分券,几轮再包装,一个指数,一堆模型,和一份份主协议。</p>
+
+<p>每一层都在给下一层定价,而每一层看到的,都只是下一层的价格,不是下一层的下一层。</p>
+
+<p>繁荣的时候这不是问题,因为每一层的价格都对得上。危机来的时候,所有人同时想起来要往下看,而往下看的路已经被拆成七段,每一段归不同的人管。</p>
+
+<p>那台机器最后被停下来,靠的是国家出面。而国家能做的事情,也只是宣布一句话:这些份额,我认。</p>
+
+<p>认这个字,是这一路走下来最古老的一个动作。第二篇里泥板上的债要靠神庙的位阶去认,第六篇里的交子要靠官府认,第十七篇里的美元要靠一群人愿不愿意继续认账。绕了这么多层,拆了这么多环节,写了这么多份标准合同,到最后,还是要有一个人出来说我认。</p>
+
+<p>一本账可以把世界拆得非常细。细到每一片都有价,每一片的价都算得出来,每一片都能被单独买卖。</p>
+
+<p>它拆不开的是那些片与片之间的东西。而在平静的日子里,那些东西看上去不存在,因为它们没有价格,也没有栏目;等到所有的片同时往下掉的时候,人们才发现它们一直都在。</p>
+
+<p>账还没有算平,它仍旧在记。</p>
+
+      </div>
+
+      <div class="essay-body lang-en">
+
+<h3>1. Nine Hundred and Eleven Contracts</h3>
+
+<p>In April of 1973, a new exchange opened in Chicago, built for one purpose: the trading of stock options.</p>
+
+<p>On its first day, nine hundred and eleven contracts changed hands, on a roster of only sixteen listed stocks.</p>
+
+<p>Before that exchange existed, American stock options were mostly struck over the counter. Buyer and seller found each other directly and negotiated the terms one contract at a time — the expiration, the strike price, the manner of settlement, no two deals quite alike. An option was a specific arrangement between two specific people, worked out between them, and what they agreed to was theirs to know; no one else needed to.</p>
+
+<p>There was a logic to doing it that way. An option is a wager on what something will be worth on some future day, and whether anyone will take that wager with you depends on whether they trust you, on whether they are already holding the opposite position, on whether the two of you have done business before. Negotiating the terms contract by contract meant negotiating more than the terms.</p>
+
+<p>What the new exchange did was standardize all of it. Strike prices were set out on a fixed grid; expiration dates fell on fixed months; the contract unit was made uniform; clearing was handled centrally; quotes were posted for anyone to see.</p>
+
+<p>A transaction that had been intensely relational was remade into something comparable, calculable, and continuously priced — a market object.</p>
+
+<p>Standardization came at a price: every contract now had to look like every other contract. If the expiration date you wanted fell between the lines of the grid, you took the nearest one; if the strike you wanted was half a dollar off, you took whatever was closest. The contract no longer bent to fit your needs — your needs had to bend to fit the contract. What you got in return was liquidity: a standard contract bought today could be sold tomorrow to a total stranger.</p>
+
+<p>That same year, two scholars published a paper on the pricing of options. What it offered was not merely a formula but an idea: if a dynamic hedge could be built out of the underlying asset and a risk-free asset, then the option had a price that could be calculated — a single, theoretically consistent price.</p>
+
+<p>The standardized contract and the calculable price were two halves of the same thing. One made the option comparable; the other made it computable.</p>
+
+<p>Nine hundred and eleven contracts was the first sound the machine made.</p>
+
+<p>The number is worth keeping in mind precisely because it is so small, so easy to set beside what came later. Within a few decades, the notional principal outstanding on derivatives traded over the counter worldwide would be counted in the hundreds of trillions of dollars. No single year saw a sudden leap. Each year simply did a little more than the year before.</p>
+
+<p>This pattern will recur in every section that follows. The construct's expansion almost never proceeds by a single jump; it proceeds because each year does a bit more than the last, and each additional bit looks perfectly reasonable taken on its own. Look back afterward for the year someone should have hit the brakes, and there is none to find — because every year's increment sat comfortably inside what counted as reasonable that year.</p>
+
+<p>The seventeen essays before this one have followed the construct doing one thing again and again: forcing what will not fit on a single scale into that scale anyway, so that the books can be made to balance. And what it has pressed into shape has always, until now, been something out in the world — a piece of land, a population, a stretch of time, a metal, a country's external accounts.</p>
+
+<p>What happens across the decades that follow is different.</p>
+
+<p>The ledger begins pointing outward less and less. It starts recording other ledgers.</p>
+
+<p>That is not a figure of speech. Later in this essay there are exact numbers: in one market for repackaged products, close to eighty percent of a certain middle layer was bought up by the managers of comparable products, then folded back into the next round of packaging. By the time the construct reaches that point, what it is trying to bring under a common measure is no longer the outside world. It is its own output, one cycle back.</p>
+
+<h3>2. Almost Impossible to Value</h3>
+
+<p>On May 1, 1975, the American securities markets abolished fixed brokerage commissions. The date came to be called May Day.</p>
+
+<p>Before that, commissions were fixed, and paid as a single lump sum. A regulator at the time put the reasoning plainly: under a system of fixed commissions, trade execution and research services were bundled together into one historically settled total fee, and the two were almost impossible to value separately.</p>
+
+<p>Almost impossible to value — that phrase is worth writing down.</p>
+
+<p>What it concedes is something quite ordinary. What a brokerage does for a client is not only route an order to the exchange for execution. It also shows you research, calls you with a read on the market, introduces you to people, keeps an eye out for opportunities on your behalf, does you a small favor when you need one. All of this mixed together makes up a relationship, and no one can really say what a relationship like that is worth.</p>
+
+<p>When something cannot be said, the workaround is to give it one customary, agreed-upon price for the whole.</p>
+
+<p>This workaround should not be mistaken for muddled thinking. It is a low-cost way of handling things: rather than itemizing and pricing every component, you quote one price for the whole bundle, and everyone saves the trouble. Essay 1 described a world before ledgers in which people's dealings with one another ran on exactly this kind of bundled, unitemized arrangement. It was imprecise, and it held up.</p>
+
+<p>Abolishing the fixed commission did not simply lower fees. It pried the bundle apart and forced every component to be quoted on its own: so much for execution, so much for research, so much for advice, so much for the relationship itself.</p>
+
+<p>This same move has appeared several times already in this series. Essay 5, on double-entry bookkeeping. Essay 10, on the marginal revolution. Essay 12, on housework. Each time it was a different version of the same question: should something that has always lived mixed into a relationship be pulled out and priced on its own.</p>
+
+<p>This time, the answer was: pull it apart.</p>
+
+<p>And this time the pulling-apart had a feature the earlier instances lacked. It was not started by someone who wanted more clarity. It was squeezed out by competition. Once the fixed commission was gone, whoever quoted the lowest price for execution got the order first. Which meant that once unbundling began, it could not stop, because any firm that refused to unbundle would lose business to the firm that did.</p>
+
+<p>The unbundling had an immediate effect. Whatever could be priced on its own began to fall in price, because it now had to face competition. Whatever could not be priced on its own found itself in an awkward spot: it had no price tag, and it could not simply be given away free, so it was either folded back into the price of something else or it slowly vanished.</p>
+
+<p>Once a thing is required to carry its own price, it must prove that it is worth that price. And there are things whose value lies precisely in never being priced on their own.</p>
+
+<p>This is not nostalgia. A broker who is willing to call you the month you lost money, an analyst willing to share a judgment before it is even finished — these things happen partly because they were never priced, and so never had to answer for their return on investment. Once everything carries a price tag, everything has to survive the same question: on its own, is this one thing worth what it costs.</p>
+
+<p>Moves in the same direction followed one after another in the years that came next. A law passed in 1980 loosened the constraints on depository institutions. In 1981, the World Bank and a computer manufacturer completed what would become the often-cited first formal currency swap: debts in different currencies, on different terms, carrying different funding costs, could now be recut, reassembled, and repriced through a single derivative contract.</p>
+
+<p>From that transaction on, a debt was no longer only a debt. It became raw material that could be reassembled with other cash flows.</p>
+
+<p>Reassembly is the key move of the decades that follow. A debt had originally been money one person owed another, and its term, its currency, its interest rate all grew out of that relationship. What a swap does is pull those elements apart: the maturity you want is yours to keep, the currency I want is mine, the interest recalculated on a different footing entirely. Once taken apart, the debt is still that same debt — but it no longer belongs to the relationship it was born in.</p>
+
+<h3>3. An Engine, Not a Camera</h3>
+
+<p>One researcher called the 1980s the decade of trading.</p>
+
+<p>Working from American data, she found something specific: non-financial corporations' income from securities, measured against their cash flow, began climbing noticeably in the 1970s. The ratio of financial to non-financial profits, which had held fairly steady through the 1950s and 1960s, rose through the 1970s and then rose sharply through the 1980s, ending up, by the close of her sample, at roughly three to five times the typical levels of those earlier two decades.</p>
+
+<p>What mattered more was the composition of that rise. The jump in securities income at non-financial firms was driven mainly not by capital gains from the stock market but by interest income.</p>
+
+<p>In other words, manufacturers, industrial firms, retailers — companies that were, in name, part of the real economy — were becoming steadily more entangled in relationships of credit and debt. The factories kept running, the goods kept selling, and yet a growing share of the line at the bottom of the income statement was coming from money itself.</p>
+
+<p>The effect inside a firm was concrete. Once a manufacturer discovers that putting idle cash out to earn interest is steadier, faster, and easier to show off in a quarterly report than opening another production line, the next time it weighs whether to open that line, it already has something to measure it against. Production does not have to be forbidden; it only has to sit on the same page as other uses of the same money and be found wanting.</p>
+
+<p>Meanwhile, pricing models had begun doing something that went beyond description.</p>
+
+<p>A sociologist later called models of this kind engines, not cameras. A model does not merely stand off to the side and photograph the market. It enters the market and changes it.</p>
+
+<p>First the standardized option was created. Then came hedging. Then market-making. Then the curve of implied volatility. Then volatility itself became something that could be traded in its own right. Every new pricing formula gives birth to a new object of trade, and every new object of trade calls for a new formula.</p>
+
+<p>The stock market crash of October 1987 showed the other face of this same fact.</p>
+
+<p>A strategy called portfolio insurance was fashionable at the time. Its logic was clean: when the market falls, sell stock-index futures to hedge the loss away. One insurance policy, one model, one rule that executed itself automatically.</p>
+
+<p>But when a great many people are acting on the same model at the same time, a falling market produces this sequence: the model calls for more selling; the selling pushes the price down further; the falling price triggers the model to call for still more selling.</p>
+
+<p>A mechanism built to guard against decline became, in the middle of a decline, a mechanism that accelerated it.</p>
+
+<p>The official reviews that followed, along with the research that came after them, pointed to exactly this dynamic hedging as a force that reinforced the downward, pro-cyclical selling pressure in a falling market. What shows up here is a pattern that would repeat again and again afterward: the model does not stand beside the market describing it. The model stands inside the market, driving the trading.</p>
+
+<p>This tells us something important about the nature of the construct. In the essays before this one, the scale illuminates the remainder, the scale revalues an hour of someone's labor, the scale compresses a whole stretch of time into a single point — but what the scale does is always, in the end, to measure. Here, for the first time, the scale starts acting on its own. It reads out a number; that number sets off a trade; that trade changes the very thing that was being measured; so the next reading comes out different again.</p>
+
+<p>The thing being measured no longer holds still. It moves according to the reading the scale hands it.</p>
+
+<p>This is the single most important change in the construct's shape across this whole trajectory. In the previous seventeen essays, there was always still some distance between the construct and the thing it measured: the ledger recorded what had already happened; the scale measured something that was already sitting there, and however badly it was measured, the thing being measured did not change simply because it had been measured. Here, that distance closes. The price enters the very event it describes and becomes part of that event.</p>
+
+<p>By the 1990s, this whole way of speaking had spread everywhere. In 1999, the chairman of the American central bank said in a speech that the single most important financial development of the preceding decade had been the extraordinary growth of financial derivatives. The following year, testifying before Congress, he said that over-the-counter derivatives let people break risk apart and hand it to whichever investors were most willing, and most able, to bear it.</p>
+
+<p>This is a very characteristic statement of what might be called efficiency theory, and it is not wrong. Risk does not disappear; it is reallocated to wherever it can be better carried. A farmer can pass off the price risk on his harvest to someone willing to take it on; a company can pass off its currency risk and put its full attention into the business it actually runs.</p>
+
+<p>These benefits are real, and not minor. A farmer who can transfer away his price risk can put his mind fully into growing what he grows best, instead of spending half his attention guessing at prices; a company that does not have to watch the exchange rate every day can put its energy into making a better product. The division of labor can deepen only because someone, somewhere, is willing to pick up the piece of uncertainty that someone else does not want to carry.</p>
+
+<p>This account frames financial innovation as a deepening of the division of labor: risk gets taken apart like a machine into its components, reassembled, and sold on to whoever is best suited to hold each piece.</p>
+
+<p>It rests on one premise: that the components, added back together, still amount to the original thing.</p>
+
+<p>For a long time, that premise went untested, for a simple reason — it held true on ordinary days. A risk split three ways and sold to three parties will, on an ordinary day, be handled by each of those three separately, with no bearing on one another. It is only on the day all three want out at once that anyone discovers the three pieces had been connected the whole time.</p>
+
+<h3>4. The First Duty</h3>
+
+<p>Financialization did not happen only on Wall Street. It moved inside the company as well.</p>
+
+<p>In 1997, a statement on corporate governance from the Business Roundtable put it about as plainly as such a thing can be put: the paramount duty of the corporation is to generate economic returns for its owners.</p>
+
+<p>The same document went further: the highest obligation of management and the board is owed to shareholders, and the interests of every other stakeholder are merely derivative of that obligation.</p>
+
+<p>Translated into plainer language: a company's first duty is not employment, not the accumulation of technical capability, not the fortunes of the city it sits in. It is returns to shareholders.</p>
+
+<p>What this way of talking was doing is easy enough to see. Inside any company there had always been a pile of goals with no common unit between them: jobs to protect, long-term research to fund, supplier relationships to maintain, a local reputation to look after, technical know-how to keep building. None of these share a common denominator; how much weight to give one over another can only be decided by a person's judgment.</p>
+
+<p>Leaving it to a person's judgment has its own defects. It is slow, it is opaque, it depends entirely on who happens to occupy the seat, and it leaves management wide latitude to talk itself into whatever it likes. The language of shareholder value drew its force precisely from targeting these defects: with one shared number in hand, who was doing well and who was doing badly no longer required listening to anyone's explanation.</p>
+
+<p>Shareholder value gave all those goals a single common unit.</p>
+
+<p>In 2001, a scholar wrote the idea out more systematically. He argued that once every good has a price, social welfare is maximized when a firm maximizes the entire long-run market value of the firm — and that this total value is simply the sum of the market values of every financial claim on it: equity, debt, preferred shares, warrants, all of it.</p>
+
+<p>The power of this formulation lies exactly here: it turns an enormously complicated organizational problem into something that looks like a single objective function, expressible in a market price.</p>
+
+<p>And the overflow can be found inside that very same document.</p>
+
+<p>The same governance statement that sang the praises of shareholder value, even as it pointed the corporation's whole purpose toward shareholder returns, also conceded that the truly decisive factors in governance — the caliber of the directors, the character of the chief executive and the board, whether anyone in the room is willing to stand up to the chief executive — are soft, subjective, and resistant to any tidy comparison.</p>
+
+<p>A text more devoted than almost any other to reducing the corporation's purpose to a single number was, in its own words, admitting that the corporation cannot run without personal qualities and relational judgments that cannot be measured at all.</p>
+
+<p>Law and financial practice pushed in the same direction. A rule adopted in 1982 gave issuers a safe harbor for repurchasing their own shares on the open market, and after that American companies' way of distributing cash shifted visibly toward buybacks. Among the companies in the S&amp;P 500, the scale of share buybacks in 1980 came to roughly a tenth of what was paid out in dividends; by 1997 and 1998, buybacks had overtaken dividends.</p>
+
+<p>Later still, researchers examined the four hundred and forty-nine companies that stayed continuously in that index from 2003 through 2012, and found they had put fifty-four percent of their profits into buying back their own stock, and another thirty-seven percent into dividends.</p>
+
+<p>One researcher's account of this history is unsparing: before the 1970s, the strategic center of gravity at large American corporations leaned toward retaining earnings and reinvesting them; after the 1980s, it revolved increasingly around downsizing, distributing cash, and what came to be called shareholder value.</p>
+
+<p>The decisive change was not that executives had simply grown greedier. It was that the visible scale inside the company had changed.</p>
+
+<p>Long-term research and the slow accumulation of a workforce's skills are hard to discount into a present value on demand, while share price, earnings per share, buybacks, acquisition premiums, and the rate of return of every division can be ranked, held accountable, and rewarded every single day.</p>
+
+<p>Production did not vanish; it simply came to need financial language to justify itself. The factories, the retail networks, the patents, the brands, the customer relationships were all still there — they just had to pass through discounted cash flow, cost of capital, shareholder return, and market multiples before they were granted legitimacy.</p>
+
+<p>Whatever did not absorb easily into this common scale was treated, inside the company, as a cost center, and, in the capital markets, as a reason to discount the share price — and was then outsourced, trimmed, securitized, or sold off.</p>
+
+<p>The sequence here is worth noticing. It was not that someone first decided to cut these things away. A scale appeared first; these things produced an ugly reading on it; and only then did cutting them become an obvious decision. The person making that decision did not feel he was sacrificing anything — he felt he was improving a number. Essay 13 made a related point: when every single part is handled on its own, each act of handling looks perfectly reasonable, and yet add up all those reasonable acts and the position itself has ceased to exist.</p>
+
+<h3>5. Seven Links in a Broken Chain</h3>
+
+<p>The same logic of taking things apart reached its furthest extreme along one particular line: the home mortgage.</p>
+
+<p>In a traditional bank, a mortgage loan was one continuous affair. The bank examined your income and decided whether to lend. The bank lent you its own money. The bank kept watch on whether you were repaying it. And if you fell behind, the bank was the one that had to deal with the house. All of these things stayed tangled together, start to finish, on a single balance sheet.</p>
+
+<p>That tangle served a purpose. Because the money was the bank's own, it had reason to scrutinize you closely; because it meant to hold the loan to maturity, it had reason to keep watching you; because the house would land back in its own hands, it had reason to work something out with you before simply taking it away. These things stayed bound together not because no one had thought to separate them, but because bound together, the people doing each of these jobs had a reason to do them well.</p>
+
+<p>Securitization took that single affair and cut it into an assembly line.</p>
+
+<p>Researchers who have taken the subprime securitization chain apart in detail count at least seven distinct categories of critical information friction, spread across eight roles strung along the chain: the mortgagor, the loan originator, the arranger, the warehouse lender, the rating agency, the servicer, the asset manager, and the investor. Theoretical remedies existed for these: due diligence, repurchase guarantees, haircuts on warehouse lending, credit ratings, credit enhancement, servicing agreements.</p>
+
+<p>The whole apparatus of remedies can be summed up in a single sentence: replace a reason that never needed to be written down with something that can be written down instead. The bank used to watch you because the money was its own; now the servicer watches you because a contract says it must. The old reason grew directly out of a stake in the outcome. The new reason lives on paper. Paper works too — but paper needs a person to carry it out, and that person has calculations of his own.</p>
+
+<p>Shadow banking as a whole took the same shape. Researchers have broken its credit intermediation down into seven steps: loan origination, loan warehousing, the issuance of asset-backed securities, the warehousing of those securities, the issuance of re-packaged products built out of them, securities intermediation, and wholesale funding.</p>
+
+<p>A traditional bank kept deposits, lending, maturity transformation, liquidity support, and capital buffers all under one roof. Shadow banking sliced these functions apart vertically and handed them out to different nodes: mortgage companies, special-purpose entities, broker-dealers, money-market funds, the repurchase market.</p>
+
+<p>The scale involved was not small. By June of 2007, on one flow-based estimate, the total liabilities of the shadow banking system stood at close to twenty-two trillion dollars, against roughly fourteen trillion dollars for the traditional banking system over the same period. In that same stretch, the American repurchase market ran to somewhere around twelve trillion dollars — on the same order as the ten trillion dollars in total assets held by the American banking system.</p>
+
+<p>In other words, a very large share of the most critical credit activity in the economy was no longer taking place in the deposit-taking and lending that ordinary people recognize. It was taking place in wholesale markets, collateralized by highly rated securities, kept alive by funding rolled over every night or every few days.</p>
+
+<p>Hot money flowed toward this same chain. In 2006, the origination of non-agency mortgages in the United States reached one point four eight trillion dollars, more than forty-five percent above the volume of agency mortgages; issuance of non-agency mortgage-backed securities came to one point zero three three trillion dollars, likewise ahead of the nine hundred and five billion dollars issued through agency channels.</p>
+
+<p>The hottest money in housing finance was spilling out of the system built around more uniform underwriting standards and into the private machinery that depended instead on the securitization chain, on ratings, on underwriting, on warehouse funding and repo funding.</p>
+
+<p>On its surface, this whole system was intensely anonymous.</p>
+
+<p>Savers held shares in a money-market fund, not deposits in a bank. Money entered the system through commercial paper or repurchase agreements, never crossing a teller's counter. Collateral took the form of rated securities. Risk was managed through credit default swaps, insurance, and liquidity-support clauses. Counterparties spoke to one another through standardized master agreements and collateral schedules, not through personal acquaintance.</p>
+
+<p>Essay 6, on the paper currency called jiaozi, observed that stripping the metal out of money is the same as pressing its entire weight onto personhood. What happens here is the opposite effort: stripping personhood out of every link in the chain, and replacing it with documents, ratings, haircuts, and standard terms.</p>
+
+<p>And it cannot be stripped out.</p>
+
+<p>The arranger still has to prove itself to the warehouse lender upstream, still has to stake its own reputation with the rating agencies and the investors, still has to sign representations and warranties. The servicer still has to be trusted to handle delinquent loans in a way that lines up with its own incentives.</p>
+
+<p>Beneath the anonymous prices, the relationships had not disappeared. They had only been broken apart and tucked into every joint of the chain.</p>
+
+<p>The difference between hidden and gone does not show up on an ordinary day. A chain with seven joints has, at every joint, a small amount that can only be carried across on trust, and on an ordinary day each of those small amounts is too small to notice. Only on the day all seven are questioned at once does their sum become visible.</p>
+
+<h3>6. The Books Begin Reading Each Other</h3>
+
+<p>This is the point at which the single most important phenomenon in this whole story can be seen clearly.</p>
+
+<p>Once a mortgage loan has been securitized, what results is not one complete security but something sliced into tiers: the senior tier is paid first and absorbs losses last; the next tier down absorbs more; the tiers at the very bottom absorb losses first of all. Each tier carries its own rating, its own spread, its own price.</p>
+
+<p>There is a logic to this slicing in itself. Different investors have different appetites for risk, and cutting a loan into tiers lets the cautious buy the top and the risk-tolerant buy the bottom — which is exactly the work of allocating risk to whoever is most willing to hold it.</p>
+
+<p>And this slicing solved a genuine problem. A single mortgage loan, thirty years long, worth some hundreds of thousands of dollars, owed by one specific person, is almost impossible to sell on any market. Bundle several thousand such loans together, then slice the bundle into tiers ranked by who absorbs losses first, and what could not be sold before now finds buyers; capital can flow from those willing to hold it for the long run to those who need money to buy a house. This is what commensuration, at its best, actually achieves.</p>
+
+<p>The trouble lay in where the middle tiers ended up.</p>
+
+<p>The commission that investigated the crisis, looking into the market for re-packaged products in 2006 and 2007, turned up a detail that is hard to look away from: in some of the samples it examined, close to eighty percent — in some cases as much as eighty-eight percent — of the mezzanine tier was bought up by the managers of other, similar products, to be stuffed into yet another round of packaging. In the most extreme individual cases, every single buyer of a given product was itself a manager of some other, similar product.</p>
+
+<p>That sentence deserves to be read slowly.</p>
+
+<p>A machine that was supposed to disperse the risk of home mortgages out into the wider world was, increasingly, devouring and multiplying itself among its own products.</p>
+
+<p>The middle tier from the first round of packaging could not be sold, so it was folded into a second round. In that second round it was sliced again into upper, middle, and lower segments, and the upper segment of that second slicing won back the highest possible rating. The same risk had gone in a circle, changed its name, and come out rated higher than before.</p>
+
+<p>No one, in any of this, was committing fraud. Every step had a model behind it; every rating at every step was calculated by the methods accepted at the time; every step was set down in a document somewhere. The reason a higher rating could be reached at all rested on one specific assumption: that the things stuffed into the same package would not run into trouble at the same time. The assumption was written into the methodology, available for anyone to read. Not many people read it.</p>
+
+<p>The ledger was no longer recording only the cash flows from home mortgages. It had begun recording other ledgers.</p>
+
+<p>In the seventeen essays before this one, whatever the construct was doing always had an object outside itself: a piece of land, a population, a stretch of labor, a metal, a country's balance of payments. There was tension between the construct and that object, there was overflow, there was a portion that would not balance — and that object always stood apart from the construct, out in the world.</p>
+
+<p>Here, for the first time, the construct begins to take itself as its own object. It prices its own product, then prices that price, then prices the contract written on top of that pricing. Every layer is calculated with perfect clarity, every layer carries a market quote — and at the very bottom of the whole chain sit hundreds of thousands of individual mortgage contracts, and hundreds of thousands of people who owe a payment every month.</p>
+
+<p>How many layers separate those people from the top of that chain is something the people at the top can no longer work out.</p>
+
+<p>And not being able to work it out is no problem at all, in good times. Because there is a price.</p>
+
+<p>This sentence is the spine of the whole essay. Not being able to calculate something and not knowing it are two different conditions. When you cannot calculate something, all you need is a price, and you can stop asking. Price stands in for the asking, and stands in for it thoroughly, because a price looks more objective than a question, more immediate, and much easier to justify to somebody else.</p>
+
+<p>In January of 2006, an index tracking a basket of subprime securities began trading. Built on a set of credit-default-swap prices, it gave what had previously been an extremely opaque pocket of risk a thermometer that could be watched continuously.</p>
+
+<p>From that point on, the future of tens of thousands of individual mortgage loans no longer showed up only as a delinquency rate or a foreclosure rate. It was folded, instantly, into the level of an index.</p>
+
+<p>This was another victory for commensuration, and a genuine one. What that enormous pile of loans was actually worth had been anyone's guess; now there was a number every single day.</p>
+
+<p>The more transparent a price becomes, the easier it is to mistake a visible price for a knowable value.</p>
+
+<p>And outside this whole apparatus of unified measurement, certain things had never been counted at all.</p>
+
+<p>Whether the borrower understood the contract he had signed. Whether the house would be kept up. Whether the servicer's incentives had been bent out of shape. Whether an entire region's home prices might fall together, all at once. Whether borrowing anew to pay off the old could go on indefinitely. Whether a market maker would still be willing to take on inventory on an ugly day.</p>
+
+<p>None of this was imperceptible. It simply had no column of its own on the ledger.</p>
+
+<p>Things with no column of their own share the same fate: they do not show up on the sheet as a zero, they do not show up at all. A person looking at a report does not feel that anything is missing, because there is no blank space on the page to remind him. Essay 12 observed that where the scale casts no light, people assume there is nothing there. Here the situation goes one step further: the scale shines so brightly that where it fails to reach, not even a shadow can be made out.</p>
+
+<p>The single most important thing left in the dark had a name: correlation.</p>
+
+<p>Looked at on its own, every loan's probability of default could be estimated. Looked at on its own, every tier's distribution of losses could be calculated. Looked at on its own, every price matched the market. But whether they would all default at once was not a property that belonged to any single asset.</p>
+
+<p>It lived between the assets.</p>
+
+<p>Researchers looking back summed it up bluntly: in the years before the crisis, rating agencies, risk managers, investors, and regulators alike badly underestimated how correlated the prices of structured securities would become under extreme conditions.</p>
+
+<p>The remainder had changed its address. In earlier essays, the remainder sat on the excluded side of things — outside the register, inside a relationship, in a central bank's vault. This time, the remainder was not lodged in any single line item at all. It lived on the connections between line items, and a ledger, by its very nature, is kept item by item.</p>
+
+<p>A book that records the world row by row has no way to open a column for the relationship between one row and another.</p>
+
+<p>This is a structural limit left behind by double-entry bookkeeping, and it has not changed in over five hundred years. Essay 5 described that self-verifying ledger: every entry must have its matching entry, debit equal to credit, and the book closes. The power of that method lies in anchoring every single item in place. What it cannot do is open an account for the line connecting two items to each other. And in these particular decades, the real risk was growing precisely along those connecting lines.</p>
+
+<h3>7. Ninety-Seven Cents on the Dollar</h3>
+
+<p>Between 2007 and 2008, this machine ground to a halt, and the manner of its stopping tells you most of what you need to know.</p>
+
+<p>Researchers have summarized the panic of those two years as a run on the repurchase market.</p>
+
+<p>This kind of run looks nothing like a traditional bank run. Investors did not line up at a teller's window. What they did instead was raise the haircuts demanded on collateral, refuse to roll over financing, demand more high-quality collateral, shorten the terms on offer, and widen the spreads they charged.</p>
+
+<p>On the surface, it looked like securities prices simply moving around. Underneath, it was a wholesale collapse of confidence — in counterparties, in market-makers' willingness to hold inventory, in the reliability of ratings, in the quality of collateral, in who, in the end, would be left holding the position.</p>
+
+<p>Put another way, and it becomes clearer: on an ordinary day none of these questions need to be asked, because there is a price, a rating, a standard contract. A run simply means that people have suddenly started asking these questions again. And once they start, not one of the questions can be answered, because the entire system had been built for the specific purpose of letting people go without asking them.</p>
+
+<p>There had already been a rehearsal for this, and a remarkably thorough one. In 1998, a hedge fund came close to collapse. The investigation that followed described it without any softening: on four point eight billion dollars of capital, the fund had built positions in over-the-counter derivatives with a notional principal exceeding one trillion dollars, plus a further hundred and twenty-five billion dollars in securities positions — and its principal counterparties and its regulators had not known, beforehand, the true scale of what it was carrying.</p>
+
+<p>That episode was not the direct cause of the crisis that came a decade later. But it had already staged the whole problem once: high leverage, a web of over-the-counter contracts, opaque counterparties, and a faith that markets would discipline themselves.</p>
+
+<p>Staged once — and over the following decade, the very same thing grew several dozen times larger.</p>
+
+<p>This deserves to be recorded on its own, because it reveals another layer of what the construct is. The construct is not incapable of learning. There really were reviews after that episode, investigations, discussions about counterparty transparency. But the conclusions those reviews reached were, almost without exception, technical: report a few more data points, hold a little more margin. Rarely did a review conclude that the whole approach was itself amplifying the very same fragility — because once that conclusion is accepted, the people making money from the approach have to go find another line of work.</p>
+
+<p>On September 16, 2008, a money-market fund announced that its net asset value had fallen to ninety-seven cents, breaking below par.</p>
+
+<p>Shares in money-market funds had always, up to that point, been treated as something close to cash. People put money into them and treated the money as a deposit — available at any moment, never at risk of loss.</p>
+
+<p>What made breaking the buck so alarming was not that it broke a price. It broke an assumption.</p>
+
+<p>And that assumption had never been formally promised by anyone at all. The fund's prospectus stated that net asset value would fluctuate, stated that principal was not guaranteed, stated that investing carried risk. Everyone had read those words, and everyone had treated them as boilerplate. What actually persuaded people to put their money in was a simple fact: for more than twenty years, the fund had never once broken the buck. A promise that was never written down, once it breaks a single time, can never be made whole again.</p>
+
+<p>Within days, the United States Treasury introduced a temporary guarantee program for money-market funds, covering the balances that qualifying funds held as of September 19.</p>
+
+<p>The instrument that looked most like a substitute for cash, the share that had been stripped of personhood most thoroughly of all, still needed the state, in the end, to step in and stand behind it.</p>
+
+<p>This is the most ironic thing about financialization.</p>
+
+<p>At the outset it seemed to stand for a thorough depersonalization: no longer dependent on whether the branch manager knew your face, no longer resting on a long relationship, but built instead on uniform pricing, uniform ratings, uniform collateral, and a standard contract.</p>
+
+<p>And yet, at the moment of crisis, the questions the market rushes to ask are exactly the personal ones: who is still willing to finance you. Who still dares to underwrite your securities. Who is willing to make a final quote. Who can prove that your top rating is not just a thin shell. Who, in the end, can step forward and stand behind the whole thing.</p>
+
+<p>Anonymous instruments of exchange never actually killed off personal, relationship-based credit.</p>
+
+<p>They only pushed that personal credit upstream, concentrated it into a handful of key institutions, and finally tucked it behind the state.</p>
+
+<p>The end of Essay 17 observed that what was cut open in 1971 was a covering — that the forces that had been operating all along were, for the first time, brought out into full view. What happens here is the sequel to that same line: once the covering was cut open, the personal element did not return to everyone equally. It was concentrated into a smaller number of nodes.</p>
+
+<p>The harder anyone tries to escape personhood, the more certain personal guarantees have to be concentrated into fewer hands, and more powerful ones.</p>
+
+<h3>8. Too Big, or Too Dear</h3>
+
+<p>About what actually happened across these decades, researchers disagree sharply, and the disagreement is not a matter of taste.</p>
+
+<p>One camp might be called efficiency theory. It does not deny that the financial sector swelled enormously after the 1980s, but it stresses that a great deal of that growth answered real needs in the economy. Derivatives break risk apart and reallocate it to whoever is best suited to hold it; a more developed financial system helps generate information, share risk, and allocate capital; the literature on finance and growth generally finds that the development of stock markets and banking correlates positively with growth. One scholar, in 2013, simply rewrote the whole question in terms of function rather than size: whether finance is too big is not, in itself, the most useful question to ask; what matters is whether finance's function is being performed well.</p>
+
+<p>A second camp might be called extraction theory. It fastens on the structure of profit: profit was increasingly captured through financial channels, and even non-financial firms grew steadily more dependent on interest and securities income. One scholar offered a broader definition, describing financialization as the pressure that financial motives, financial markets, financial institutions, and financial actors exert on how the whole economy is run. Other research, approaching from the angle of corporate governance, points out that shareholder value is nothing like an old, self-evident common sense — it only rose to the status of a governing principle after the 1980s. On this reading, the expansion of finance was not a neutral deepening of intermediation but a redistribution of the social surplus and of corporate control, tilting steadily toward financial creditors, institutional investors, executive incentive schemes, and asset managers.</p>
+
+<p>Wedged between the two camps is one especially consequential empirical dispute: did the financial sector balloon because there was simply more that could be intermediated, so that intermediation naturally grew larger — or was roughly the same service, or even less, being delivered at a steadily higher cost.</p>
+
+<p>One scholar's research is cited by both sides at once, and precisely because his answer is complicated. He acknowledges that the financial industry's share of output was high in the 1920s, low in the 1960s, and rose again after the 1980s, and he estimates that the long-run unit cost of financial intermediation in the United States has held roughly between one and a half and two percent of the assets being intermediated — and yet, by his own measure, he also finds that this unit cost has actually risen over the past thirty years.</p>
+
+<p>The efficiency camp seizes on the first half of that finding; the critics seize on the second half. But the real weight of the finding lies elsewhere: even without accepting any of the more radical claims at all, the simple, common-sense notion that information technology has made finance steadily cheaper does not hold up as easily as it sounds.</p>
+
+<p>There is also a camp that might be called instability theory. In 1992, an economist divided the financing relationships found inside the financial system into three kinds: hedge finance, speculative finance, and Ponzi finance. He wrote, without hedging the point, that where hedge finance predominates, an economy may tend toward self-restraint, and that the greater the share taken up by speculative and Ponzi finance, the more likely the economy is to become a system whose deviations amplify themselves.</p>
+
+<p>He put it even more bluntly elsewhere: bankers and financial intermediaries are merchants of debt, and innovation guarantees profit.</p>
+
+<p>What separates this camp from efficiency theory is not whether finance can transfer risk. It is something else entirely: success during a boom is precisely what tempts the whole system into shaving its margin of safety thinner and thinner, until even the assets that look most liquid, safest, and most easily measured turn out to be the most fragile of all.</p>
+
+<p>There is disagreement, too, about where all this came from. Some researchers have argued that American financialization was never a goal policymakers set out to pursue from the start. It looks more like a string of emergency responses — politically convenient at the time, economically consequential for decades afterward — that the state improvised once growth slowed in the late 1960s and the 1970s, in order to sidestep conflicts over distribution, fiscal pressure, and pressure on its own legitimacy.</p>
+
+<p>On this account, financialization is neither a conspiracy nor the execution of some genius's design. It is a path that took shape amid argument, trial and error, delay, and the failure of one alternative after another.</p>
+
+<p>Even the official commission that investigated the crisis could not settle on a single narrative. The majority report emphasized regulatory failure, leverage, shadow banking, securitization, and derivatives; the dissent placed the global credit bubble, capital surpluses flowing out of developing countries, the underpricing of risk, and narrowing spreads closer to the center of the story.</p>
+
+<p>No verdict will be rendered here.</p>
+
+<p>But put these accounts side by side, and what they are really arguing about turns out to be three quite specific questions: whether price really does move closer to value; whether financial claims really do stay close to the underlying assets beneath them; whether an anonymous market is really more reliable than credit based on relationships.</p>
+
+<p>Three questions, three separate lines of evidence, and not one of them yields a tidy answer.</p>
+
+<p>Withholding a verdict matters especially here, because the answers to these three questions may well not agree with one another. That financial claims drifted farther from the underlying assets is, on the evidence, reasonably clear. Whether price moved closer to value depends entirely on which period and which class of asset you mean. And as for which is more reliable, the anonymous market or relationship-based credit, the answer these decades give is that both fail — just not in the same way.</p>
+
+<p>And underneath all three of these questions sits something even more elementary.</p>
+
+<p>At the very bottom of a mortgage loan is a person who owes a payment every month. He has a job, or once had one. He signed a contract he may not fully understand. He lives in a house, and whether that house gets taken care of depends on how much of himself he has left to give it.</p>
+
+<p>None of this can enter the machine. What the machine needs is his credit score, his loan-to-value ratio, the ratio of his monthly payment to his income. These numbers genuinely do relate to whether he will be able to keep paying — and they are not him. What the construct does was never conjuring something from nothing; it takes a handful of parts from a person that can be reported as numbers, and then lets those parts stand in for him. Ordinarily, that is enough.</p>
+
+<p>Between that man and the top of the machine lie seven links, several layers of tiering, several rounds of repackaging, an index, a great pile of models, and a stack of master agreements.</p>
+
+<p>Every layer prices the layer below it, and what every layer sees is only the price of the layer just beneath — never the layer beneath that one.</p>
+
+<p>In good times this is no problem, because every layer's price lines up with the next. When the crisis comes, everyone remembers, all at once, to look downward — and the road downward has already been cut into seven segments, each one managed by a different party.</p>
+
+<p>In the end, the machine was stopped only because the state stepped in. And all the state could actually do was announce one sentence: these shares — I will honor them.</p>
+
+<p>To honor a claim is the oldest move on this entire road. In Essay 2, the debts written on clay tablets had to be honored through the hierarchy of the temple. In Essay 6, the paper currency called jiaozi had to be honored by the government. In Essay 17, the dollar depended on whether a group of people remained willing to go on honoring it. After all these layers, after all these links cut apart, after all these standard contracts written up, someone still, in the end, has to step forward and say: I honor this.</p>
+
+<p>A ledger can cut the world into extremely fine pieces — fine enough that every sliver carries a price, every sliver's price can be calculated, every sliver can be bought and sold on its own.</p>
+
+<p>What it cannot cut apart is whatever lies between the slivers. On calm days, those things look as though they do not exist at all, because they carry no price and occupy no column. Only when every sliver falls at once do people discover that they had been there the whole time.</p>
+
+<p>The ledger has not yet balanced. It is still being kept.</p>
+
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="ep17.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">布雷顿森林与一九七一:信用,其实一直都在</span>
+            <span class="xiyou-nav-title lang-en">The Chain and the Cover</span>
+          </span>
+        </a>
+        <a href="ep19.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">二〇〇八:接得住的,只是连得紧的那些</span>
+            <span class="xiyou-nav-title lang-en">Systemic Risk and the Remainder</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

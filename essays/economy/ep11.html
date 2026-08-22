@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>马克思与劳动价值｜凿构周期律·经济系列 — Non Dubito</title>
+  <meta name="description" content="马克思是第一个把余项本身当成研究对象的人：商品拜物教，剩余价值，工厂法背后没写明的那道量表。可他留下的转形问题，证明连给余项记账的人，账也做不平。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/economy/ep11.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .essay-entry-point { font-family:var(--sans); font-size:0.72rem; color:var(--ink-muted); font-style:italic; margin-top:0.5rem; margin-bottom:0.25rem; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 凿构周期律·经济系列</a>
+        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Economics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">凿构周期律 · 经济</div>
+          <div class="essay-series lang-en">Chisel-Construct Cycle · Economics</div>
+          <div class="emperor-ep-num lang-zh">第 11 篇，共 23 篇</div>
+          <div class="emperor-ep-num lang-en">Essay 11 of 23</div>
+          <h1 class="lang-zh">第十一篇　马克思与劳动价值:余项的记账人,自己的账也平不了</h1>
+          <h1 class="lang-en">Essay 11: The Accountant of the Remainder — Even His Ledger Does Not Balance</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<h3>一 四个人和四千家工厂</h3>
+
+<p>1833年,英国议会通过一部工厂法。它规定,九岁以下的儿童不得进厂做工;九岁到十三岁的,每天最多八小时,每周最多四十八小时;十三岁到十八岁的,每天最多十二小时。</p>
+
+<p>这些数字是往下压的。压之前是什么样,法条不必写,读法条的人自己会算。</p>
+
+<p>一部法律要去规定九岁以下不许进厂,前提是九岁以下的确在厂里。一部法律要去规定九岁到十三岁的孩子每天做工不得超过八小时,前提是他们此前做得更久。法条永远只写它想拦住的那一段,拦不住的和已经过去的,都留在法条的沉默里。</p>
+
+<p>为了让这些数字落地,议会同时设立了工厂监察制度。监察员一共四人。当时需要监管的工厂大约四千家。后来的议会记录承认了一件不必掩饰的事:这部法被广泛地规避。</p>
+
+<p>四对四千,这个比例自己就是一份判决。它说明立法者知道要管的是什么,也说明这套管法在设计的时候就没打算真管住。一天的长度被写成了一个数,而这个数能不能落地,取决于有没有人去看,有几个人去看,看得过来看不过来。数目一旦离开纸面,就要重新交回人的手上。</p>
+
+<p>这件事在前面几篇里出现过不止一次。第三篇里币面上的重量要靠验戳的人,第五篇里账簿上的栏目要靠肯细看的人,第六篇里交子上的字要靠还认它的官府。规则可以写得很硬,规则自己不会走路。</p>
+
+<p>十一年后,1844年的法令把女工和十三岁到十八岁青年工的工作日压到十二小时,并且写进了最早的几条健康与安全条款,其中一条是要求给机器加围栏。1847年的十小时法,把纺织厂里女工和青年工的法定工时进一步压到十小时。</p>
+
+<p>三次立法隔着十四年,方向一致,力度一格一格地加。每一次都不是从原则出发的,是从一场一场的争执里挤出来的:厂主说再压下去就开不成工,医生说孩子的骨头长不直,教士说没有时间去做礼拜,而工人自己站在门口不肯进去。最后落在纸上的,是几个整数。</p>
+
+<p>整数是构最喜欢的形状。一段童年,一副还在长的身体,一个人在机器旁边站到什么时候会开始出错,这些都不是整数,也不该是整数。可是要立法,要监察,要在法庭上判谁违规,就必须有一个整数。八小时和十二小时之间那道线,画在任何一处都能找出理由,而画完之后,线的两边就成了合法与违法。构一旦要动手,就只能拿整数动手。</p>
+
+<p>每一次立法,争的都是同一件事:一天可以被拉到多长。而每一次争完,结果都必须落成一个数,写进法条,交给人去核。</p>
+
+<p>有一个人在伦敦读监察员写下的记录,读了很多年,把它们大段大段抄进自己正在写的书里。那本书 1867年出版,叫资本论第一卷。</p>
+
+<p>他抄那些记录,不是为了取材做点缀。他要证的一件事需要这些数字:一天究竟能被拉到多长,不由技术决定,也不由道德决定,由力气决定,而力气会变。工时那条线画在哪里,是每一代人重新争出来的位置,争完写成法条,法条再交给人去核。</p>
+
+<p>前面十篇里,构一直在做账,余项一直在溢出。构对付余项的办法换过好几种,靠更大的构去松开,改名,不问,摊进成本,把边界往里收。这一次不一样。这一次有人替余项做账。</p>
+
+<p>他给那块溢出的东西起了名字,指出了它在什么位置产生,还给了它一个可以计算的量。这是这个方向上第一次有人不替构做账,而替余项做账,做得极其认真,认真到今天还有人在核他的算式。</p>
+
+<p>而替余项做的账,仍然是账。</p>
+
+<h3>二 半小时</h3>
+
+<p>资本论第一卷开篇做的第一件事,是把彼此毫不相干的东西拉到同一把尺子上:麻布,上衣,金,铁,面包。</p>
+
+<p>马克思说,它们之所以能交换,不是因为物理性质上有什么相似,而是因为它们都能被还原成同一种社会性的东西,抽象的人类劳动。于是价值不取决于物的天然属性,而取决于社会必要劳动时间。这个词他自己定义得很清楚:在正常的生产条件下,以当时社会平均的熟练程度和劳动强度,生产某样东西所需要的时间。</p>
+
+<p>关键在社会平均这四个字上,而他给的例子把这四个字的分量全部压了出来。</p>
+
+<p>假定英国的动力织机把一定数量的纱线织成布所需的时间减了一半。那么一个仍在用手工织布的织工,即便他照旧花同样长的时间,他的一小时也只算半小时的社会劳动,他织出来的布,价值随之跌掉一半。</p>
+
+<p>这个织工没有变懒,没有变笨,没有改变任何一个动作。他一天照样是十二个钟头,照样弯着腰,照样在同一间屋子里。改变的是别处的一台机器。一把在他之外的尺子,把他的一小时重估成了半小时,而他连申辩的位置都没有,因为那把尺子不问个人。</p>
+
+<p>这里面还有一层更不容易看见的意思。织工损失的不是别人欠他的钱,他没有被谁克扣,也没有被谁毁约。他损失的是他这一小时的社会承认额度,而这个额度从来不由他自己保管。他以为自己拥有的是一门手艺和一双手,实际上他拥有的是一个随时会被外面重估的比值。</p>
+
+<p>这一下把事情露得很干净。尺子不在做工的人手里,尺子在社会那一侧,它随时可以重新写一个人的时间值多少,而重写的理由和这个人无关。</p>
+
+<p>马克思接着说明,这把尺子最后要有一个统一的表达方式,那就是货币。价格不过是价值的货币表现,货币把商品的价值变成一个独立的,同质的形式。他用过一个奇特的说法,说商品成了社会的象形文字:人先用价值形式把它们写成一套可以交换的符号,然后又不得不回过头来追问,这套符号究竟在说什么。</p>
+
+<p>有研究者提醒,如果只把这套理论读成一份关于劳动小时的物量清单,会漏掉一大半,因为它同时是一套货币理论,也是一套关于社会关系的理论。</p>
+
+<p>这一点和第三篇接得上。当年吕底亚的硬币把尺子做成了可以随身携带的形状,而尺子造出来之后,它并没有制造出新的差别,它只是让原先无处摆放的差别有了位置。抽象劳动这把尺子做的是同一件事,只是它照的对象换成了活人的时间:同样是一天十二个钟头,有的算十二小时,有的算六小时,而这种比较在有尺子之前根本无法成立。构每添一把尺子,世界上并不多出什么,只是又有一批东西被摆到了可以相比的位置上。</p>
+
+<p>而溢出这把尺子的东西,在同一页上就已经写明了。进入计算的,从来不是某个具体工人这一小时里生命耗损的厚度,而是某一类劳动被社会承认的平均可比时间。一切慢于平均的,快于平均的,更伤身的,靠多年经验才做得成的,靠家里有人兜底才做得下去的,都要先被压平,才进得了那把尺子。压平不等于消失,它们会在别处以别的形式回来。</p>
+
+<p>回来的地方通常不在账上。它可能回到一个人下工之后的沉默里,可能回到他四十岁那年直不起来的腰上,可能回到家里另一个人多做的那几个钟头上。这些都真实发生,都有代价,都可以被描述,只是没有一样折得进社会必要劳动时间这个词里,因为那个词按定义算的就是平均。</p>
+
+<p>马克思给这件事起的名字是商品拜物教。他写道,人与人之间一种确定的社会关系,在他们面前取得了物与物之间关系的那种幻影形式。</p>
+
+<p>这句话常被读成人看见了幻觉,那样读就轻了。他的意思要重得多:市场确实成功地把社会关系写进了价格,货币和商品形式里,于是人和人之间的支配,依赖,平均化,竞争,真的在表面上以物与物的关系在运作。匿名的交换不是假的。它只是把人的关系改写成了物的语法。</p>
+
+<h3>三 卖的是什么</h3>
+
+<p>马克思对前人那套劳动价值论做的最要紧的改动,不是把价值来自劳动这句话再说一遍,而是把劳动和劳动力分开。</p>
+
+<p>分开是被逼出来的。如果工人在市场上卖的是劳动本身,那就很难解释,在人人按等价交换行事的前提下,资本家怎么可能持续获利。若说资本家少付了,那是欺诈,是违约,是个别人的品行问题,和制度无关。而马克思要解释的恰恰是没有欺诈的那种情形。</p>
+
+<p>这是一个很硬的自我限制。他不去写那些克扣工钱的厂主,不去写在秤上做手脚的,不去写偷工减料和暴力驱赶。那些事都存在,而且到处都是。可只要论证靠它们撑着,结论就只能是有些人坏。他要的结论是,即便所有人都规规矩矩,结果仍旧是这样。</p>
+
+<p>于是他把商品换了一个:工人卖的不是劳动,是劳动力,也就是在一段时间内做工的能力。这项商品有两个价。它的价值,由维持和再生产这种能力所需要的生活必需品决定。它的使用价值,却能在被使用的过程中创造出比它自身价值更大的新价值。剩余价值就产生在这两者的缝里。</p>
+
+<p>他自己举的例子很好跟。假定一个工人一天的必需品值三先令,而生产这些必需品平均需要六小时劳动。那么这个工人的劳动力,当天的价值就是三先令。资本家按三先令买下他这一天的劳动力,并没有少付,一分钱也没有少付。</p>
+
+<p>问题在于,买下的不是六小时,是一整天使用这项能力的权利。工人干满六小时,已经把自己那三先令的价值重新做了出来。可他还得接着干后面六小时。那六小时创造的价值,不归他。</p>
+
+<p>马克思把这件事叫做资本家在等价交换的规则之内完成的一个把戏。要注意的是这个把戏的形式:合同没有被破坏,法律没有被违反,账在纸面上是平的。不平的地方不在纸上。</p>
+
+<p>1865年他在一次工人组织的演讲里,把这个区分讲得更直白,而且顺手划了一条界。他说,工人出卖的不直接是他的劳动,而是他的劳动力;紧接着他说,如果一个人被允许无限期地出卖这种能力,奴隶制就会立即恢复。</p>
+
+<p>这句话不只是技术命题。第八篇里那条线是被整个穿透的,一个人被从头到脚压进价格平面,写进保险单,算进吨位。而在工资关系里,马克思指出隔在两者之间的东西是期限:卖出去的是一段有时间界限的支配权,不是把自己整个人卖断。使工资关系不等于那件事的,不是善意,不是道德水准,是那个期限。期限一旦被取消,边界立刻就没有了。</p>
+
+<p>这条界线站得住,也很单薄。它把两件事分开,靠的是一个时间参数,而时间参数是可以往长里调的:一天十六小时,一周七天,一笔还不完的债,一纸走不掉的契约,一处不许离开的住地。每往长里调一格,那条界线就薄一分。那句话的意思不是说那件事已经过去了,是说它和眼前这件事之间,隔着的只是一个可以被调整的量。</p>
+
+<p>正因为如此,劳动力这项商品,天生就和完整的人对不齐。合同上转让的是一项能力的使用权,而能力的载体是一个会疲劳,会生病,会生育,会拒绝,会罢工,会死的人。</p>
+
+<p>马克思有一句写得极冷:劳动力的使用价值,也就是劳动本身,并不比卖给油商的油的使用价值更属于卖方。合同转让的是使用价值,而痛,累,衰老,屈辱,全都发生在这个使用价值被实际消耗的过程里。</p>
+
+<p>计价的动作还在往细里做。时间工资把一天拆成小时,计件工资把劳动按件数结算。马克思后来干脆说,计件工资不过是时间工资的转化形式,而时间工资本身又是劳动力价值或价格的转化形式。要做成的事很清楚:把人的工作能力,变成一个能和油,棉花,煤,机器一样计价,结算,比较,监督的项目。</p>
+
+<h3>四 历史的和道德的因素</h3>
+
+<p>推到这一步,有一件事必须回答:劳动力的价值到底怎么定。</p>
+
+<p>按体系的走法,答案应该是这样的:算出维持和再生产这项能力所需要的生活必需品,把这些生活必需品的价值加起来,就是劳动力的价值。整本书前面的推导都是这么走下来的,从商品推到价值,从价值推到货币,从货币推到劳动力。</p>
+
+<p>到这一步,他推不下去了。</p>
+
+<p>推不下去的原因不难说明。生活必需品这个篮子里该放什么,取决于一个社会认为一个人过日子最起码需要些什么。面包放几个,肉多久吃一次,住处要不要有窗,孩子要不要念书,病了有没有躺下的余地。这些没有一样是从生产条件里推得出来的。它们是一群人吵出来的结果,不同的国家吵出来的不一样,同一个国家在不同年代吵出来的也不一样。</p>
+
+<p>于是他在论劳动力价值的那一章里写下一句很奇怪的话。他说,这个价值不仅包含维持工人体力所需的生理最低品,而且包含一个历史的和道德的因素。</p>
+
+<p>历史的和道德的因素,是一个不能从体系里推出来的项。它的意思是,什么算活得下去,不是生物学能算出来的。它夹着习俗,斗争,社会标准,教育程度,家庭里有多少人在无偿地兜底,以及这个国家的人普遍认为什么样的日子才算日子。这些东西每一样都在变,而且是靠人和人吵出来的,不是靠计算得出来的。</p>
+
+<p>马克思没有绕开它,也没有假装能推出它。他把它写进定义,承认它在里面,然后接着往下走。</p>
+
+<p>这个动作和掩饰要分开看。他没有把那一项塞进脚注,也没有给它套一个技术性的名字让它看上去像是推出来的。他用的是历史和道德这两个词,这两个词摆在一本要做成科学的书里是刺眼的,他明知刺眼还是写了。</p>
+
+<p>这就是余项在马克思自己那本账上的位置。不是他没看见。他看见了,给了名字,放在那里,没有把它并进方程。</p>
+
+<p>有意思的是,在同一件事上,他的对手做过一个方向完全相反却形状一样的动作。第十篇里说过,门格尔把人会判断错误这件事写进了价值的定义,写完就绕过去了,后面的人处理那条缝的办法通常是假定判断正确。马克思这边则是把人对生活的集体判断写进了劳动力价值的定义,写完也绕过去了,后面的人处理那一项的办法通常是给它一个固定的篮子。两个从相反方向出发的体系,都在自己最要紧的那一处地基上留下了一个推不出来又拿不掉的项。</p>
+
+<p>尊严因此不是从正门进来的。它是作为价值决定里清不掉的历史道德余量,从后门被塞回了理论。</p>
+
+<p>从后门进来的东西有一个特点:进得来,拿不到座位。它在定义里,不在推导里;它影响结果,却不参与计算。凡是要往下算的地方,那一项都被当成给定的常数处理,而它偏偏是全书里最不常的一项。构推到这里遇上了自己推不出来的东西,处理办法是承认它,命名它,然后把它固定住,好让后面的步骤能够继续。</p>
+
+<p>这不是马克思的疏忽,也不是他的胜利,把它算成任何一方的分数都不对。那一项必须在,原因很实在:工资从来不是只跟一个人的生理打交道,它跟一群人认为什么样的日子算日子打交道。而后面这件事,只能由习俗,斗争和时代来定,定完了下一代还会再定一次。</p>
+
+<p>也正因为如此,工资这个数目的性质和它看上去的样子不一样。它看上去是一个价格,和棉花的价格,煤的价格,机器的价格排在同一张表上。可它底下压着一样别的东西:一个社会当下愿意承认的最低限度的人的生活。价格表上其余的数目没有这一层。棉花不会因为大家觉得它该过得好一点而涨价。</p>
+
+<p>还可以留意那一项里被点到,却始终没有单独一栏的东西:家庭里那些从来不入账的劳作。它在这本书里出现过,是作为劳动力得以被再生产出来的条件出现的,不是作为劳动出现的。</p>
+
+<h3>五 到处都是工人给资本家赊账</h3>
+
+<p>工资关系看上去是所有交换里最匿名的一种。它有合同,有工时表,有结算日,有单价,双方不必认识,不必有交情,不必彼此信任。第六篇里那种非要靠人肯认才立得住的凭据,在这里似乎完全用不上了。</p>
+
+<p>合同的全部好处正在这里。它让两个互不相识的人做成一笔事,不必打听对方的来历,不必找中间人担保,不必等到彼此有了交情才开始。这是一次真正的解放,对那些原本被出身挡在门外的人尤其如此。第十篇里说过,全市场同一比率那句话砸掉的是按门第开价那一套;工资合同做的是同一件事,它把一个人从他的来历里拆出来,只留下他能做多少活。</p>
+
+<p>马克思在讨论工资支付时,顺手拆掉了这个印象。</p>
+
+<p>他指出,在资本主义国家里,劳动力往往是在它已经起过作用之后才拿到报酬。工人先干活,月底或者周末才结钱。也就是说,工人事实上是先把劳动力的使用价值赊给了资本家。他把这句话写得毫不含糊:到处都是工人给资本家提供信用。</p>
+
+<p>这一句把工资关系翻了个面。它表面上最现金化,最标准合同化,最不需要人品和交情;而它实际运作里,永远存在一段先干后付的空当,空当里有延期,有拖欠,有资本家破产,有工人拿不到钱。最非人格化的那种关系,内部埋着一段必须相信对方会履约的时间。</p>
+
+<p>而这段时间里的风险不是对称的。资本家赊到的是已经干完的活,那些活已经变成了货,摆在仓库里。工人赊出去的是已经花掉的力气,力气花完就没了,追不回来。厂子倒了,货可以清算,工人那几天的力气不在清算表上。所以这不只是一段互相等待的时间,它是一段只有一边押着东西的时间。</p>
+
+<p>所以工人一边被算成一项按小时结算的能力,一边又必须以一个持续存在的人的身份,承担这段时间里的全部不确定。合同上写的是能力,押在里面的是人。这两样东西在纸面上被写成了一个东西,在现实里从来不是。</p>
+
+<p>第六篇讲交子时说过,把金属从钱上剥掉,等于把全部重量压到人格上。这里的方向是反的:工资关系拼命要把人格从交易里赶出去,换成时数,件数,单价和结算日。可是赶不干净。信任没有被消灭,它退到了结算日之前的那段空当里,退到了那份合同没有写的地方。</p>
+
+<p>两条介质从来不是谁替代谁。哪一次都不是。</p>
+
+<p>往回数,这条线一直都在。第一篇里没有账本的年代,一笔人情要靠两边都还记得去兜;第二篇里泥板上的债要靠神庙的位阶去兜;这里的工资要靠一份合同和一个还开着门的厂子去兜。形式一次比一次冷,冷到看不出人格的痕迹,可是每一次,冷的那一头都还连着一段必须有人守信才走得通的路。构可以把这段路修得越来越短,修不掉它。</p>
+
+<p>而且这段空当是由工人的人身垫上的。他必须一直在,身体一直撑得住,才等得到发薪日;他没有别的抵押品可以放进这段空当里。他既被还原成一项按小时结算的能力,又被迫用自己作为一个持续存在的人,给那份合同兜底。</p>
+
+<p>把这一节的两头合起来看:工资关系一边是所有交换里最像纯价格的一种,一边又是所有交换里最离不开一个人持续在场的一种。它没有在这两件事之间挑一边,它把两件事同时做到了极致。</p>
+
+<h3>六 异化去了哪里</h3>
+
+<p>1844年,二十六岁的马克思在巴黎写了一批笔记。其中有一段后来被引用得最多:工人只有在劳动之外才觉得自己属于自己,在劳动之中反而在自己之外;不劳动的时候才像在家里。</p>
+
+<p>同一批笔记里还有一句更贴近工资关系。他说,工人拿到的只是维持自己存在绝对不可缺少的那一部分,而这一部分给他的身份,不是作为人,是作为工人。再往后他写得更硬:如果资本不再需要他,他就没有作为人的存在,只有作为工人的存在。</p>
+
+<p>这批笔记通常被概括成四重分离:人与自己的产品分离,人与劳动这项活动分离,人与自己的类存在分离,人与他人分离。工人越是生产,自己越是贫穷;产品作为一种异己的力量反过来支配他;劳动从自由的活动降成谋生的手段;而人和人的关系,在产品和活动都被异化之后,被改写成了支配与从属。</p>
+
+<p>这批笔记写于 1844年的四月到八月。它第一次出版,是 1932年。</p>
+
+<p>中间发生了很多事。马克思写完资本论第一卷,去世了;恩格斯整理出第二卷和第三卷,也去世了;以他的名义建立的政党在好几个国家成了大党,有一个国家按他的名义改掉了整个制度。这一切发生的时候,那批笔记还在箱子里。</p>
+
+<p>算下来隔了八十八年。也就是说,在马克思去世之后将近五十年里,读到马克思的人,读的是一个没有说过这些话的马克思。1932年以后,青年时期那个满口异化和类存在的马克思突然出现在所有人面前,于是一个问题才第一次成为系统的问题:早期和成熟期之间,究竟是断裂还是延续。</p>
+
+<p>一派把断裂推到了极致。法国哲学家阿尔都塞提出认识论断裂的说法,认为 1845年之前的马克思还停在意识形态的层面,之后才转入科学的政治经济学批判;而异化这个概念预设了某种统一的人的本质,属于尚未清理干净的残留。</p>
+
+<p>另一派主张延续。近年有整理这条线索的研究者认为,异化并没有被丢掉,它是被改写了,从伦理和哲学的语汇,转写成商品拜物教,抽象劳动,工资形式,资本对劳动力的消耗这一类更冷,更制度化的分析。一部权威的哲学百科在这个条目下也指出,认为马克思只在早期谈异化的看法,已经很难被文本证据支持。</p>
+
+<p>材料两边都摆得出来,而且都不弱。延续这一侧可以逐句对上:1844年说劳动是外在的,被迫的;资本论说工资形式制造了一种假象,明明只有一部分劳动被支付,整体劳动却看上去都被支付了。1844年说工人越生产越贫穷;资本论把这句话翻译成劳动力的价值由再生产它所需的东西决定,而它的使用价值可以在更长的工作日里生产出额外的价值。1844年说人与人的关系在异化中变形;资本论把这种变形写成人的关系以物的关系的形式出现。语汇换了,骨架看得出是同一副。</p>
+
+<p>断裂这一侧也不是无中生有。后期文本里,人的本质这个概念确实不再承担论证的重量,推导靠的是价值形式,劳动力商品,积累规律,而不是靠对人应该是什么样子的判断。</p>
+
+<p>这里不必替他们裁决。倒是这场争论本身,值得当成一个事件来看。一批纸在箱子里躺了八十八年,出来以后,一门学问不得不回头重新划分自己的作者,重新决定哪一段算数,哪一段是尚未成熟。删得掉一代人的书目,删不掉纸。</p>
+
+<p>这件事对读法的影响是实打实的。凡是在 1932年之前成形的解释,不管多严密,都是在材料不全的条件下做出来的,而其中有一些已经变成了制度,写进了教材,建成了组织。文本后到,解释先到,这个顺序一旦发生,后到的文本就不再是补充,它是麻烦。</p>
+
+<h3>七 平不了的那一栏</h3>
+
+<p>马克思自己那本账,也有平不了的地方,而且不止一处。至少有三组争论,常常被搅在一起。</p>
+
+<p>第一组关于价值和价格。资本论第三卷第九章的标题就写着,平均利润率的形成,以及商品价值向生产价格的转化。马克思在这一章里承认,具体部门的商品不必按照它自己那份价值出售,一部分商品高于价值卖出,同一比例地另一部分低于价值卖出,而正是这种偏离,才使平均的利润率得以形成。偏离不是例外,是常态。</p>
+
+<p>这一卷是身后整理本。恩格斯根据 1863年到 1883年的手稿整理,1894年才出版。争论从一开始就带着一层文本史的阴影:谁也不能完全确定,哪一步是马克思写定的,哪一步是编者理顺的。</p>
+
+<p>最早的重炮来自一位奥地利经济学家庞巴维克。1890年代他断言,第三卷关于平均利润和生产价格的讲法,和第一卷的价值理论不能调和。二十世纪的标准批评则通常追到 1906年到 1907年间的一位学者:马克思把产出转成了生产价格,却没有一致地把投入也转成生产价格,方程组因此在同时决定的条件下合不拢。这个读法后来几乎成了入门教科书的版本。</p>
+
+<p>反击至少有三路。一路主张不必要求每一种商品都有从劳动价值到货币价格的一一对应,只要总利润和未被支付的劳动时间之间的比例关系保得住,剥削的论证就还立得住。一路主张马克思处理的从来不是两个并行的体系,一个价值体系一个价格体系,而是一个以货币预付资本为前提的总社会资本分析,所谓转形问题很大程度上是被后人的读法制造出来的。还有一路主张价格和价值是在历史时间里相互决定的,不是在同一个时点上同步求解,那个逻辑矛盾是静态模型强加给马克思的。</p>
+
+<p>哪一路对,不在这里裁。但这场争论久拖不决的原因值得说清楚,它不只是算式对不对。它暴露的是马克思要同时说两件很难同时说的事:那个剩余是真的,它来自活劳动而不是买卖的手法;而这个剩余在表面上的分布方式,又会系统性地扭曲它自己的来源。也就是说,他要的是一个既真实存在,又必然被遮蔽起来的量。</p>
+
+<p>一个必然被遮蔽的量,在账面上永远找不到与它对应的那一栏。</p>
+
+<p>这句话也可以倒过来说:凡是能在账面上找到对应栏目的量,都不会有这个麻烦。转形之争缠了一百多年,恰恰因为马克思要处理的那个量,按他自己的说法就是不能直接显示的。他要为一样按定义看不见的东西造一套算法,而检验算法的方式,是看它算出来的结果和看得见的价格对不对得上。</p>
+
+<p>第二组争论是和边际主义的。第十篇说过 1871年前后那三个人做的事。把两边并排放,会看到一件比谁对谁错更有意思的事:他们问的不是同一个问题。</p>
+
+<p>马克思要问的是,在一个普遍以商品交换来组织的社会里,为什么彼此完全不同的劳动能够被化约到同一把社会尺子上,以及为什么利润不可能来自单纯的低买高卖。边际主义要问的是,在稀缺的条件下,一个人如何在边际上比较自己的主观满足,从而形成需求,交换比率和均衡价格。有后来的读者干脆说,两边有时候像在回答不同的问题。</p>
+
+<p>第十篇里那道边界,因此可以换一个说法。被划到门外的不只是正义,制度和时间,还有一个更靠底下的问题:可比是从哪里来的。边际主义从可比出发,它假定不同的东西已经可以放在同一根轴上比大小,然后研究怎么比。马克思问的恰好是前一步:这种可比性是怎样被造出来的,靠什么被维持,代价落在谁身上。</p>
+
+<p>第三组争论在马克思主义内部,而且最靠里。价值究竟是在生产中就已经存在的抽象劳动,还是只有经过市场交换的社会承认才成立。一派认为抽象劳动和价值不是现成放在产品里等着被表现出来的,它必须在交换中获得真实的社会承认才算数,因此价值不是物的自然属性,而是一种历史性的社会关系。另一派坚持第一章讲的就是生产中已经支出的抽象人类劳动,交换只是把它表现成货币价格,而不是把原本不存在的东西造出来。</p>
+
+<p>这一组表面上最学院,后果却最直接。它决定了拜物教到底该怎么读:是一层遮蔽,底下压着已经存在的劳动内容;还是说价值本来就只能以这种社会形式存在,揭开之后底下并没有另一个更真实的量在等着。</p>
+
+<h3>八 两支笔</h3>
+
+<p>还剩最后一件事没有交代:那个被找出来的剩余,后来被接到哪里去了。</p>
+
+<p>最容易被拿来举证的是 1859年那篇序言。里面有一句被引用了无数遍:任何一个社会形态,在它所能容纳的全部生产力发挥出来以前,是决不会灭亡的。紧接着,亚细亚的,古代的,封建的和现代资产阶级的生产方式,被列成若干个时代。</p>
+
+<p>只读这两段,很容易读出一条强烈的阶段路线:每个社会形态各有它的历史任务,生产力撑满之后才让位给更高的形态。二十世纪有一派研究正是沿着这个方向,用生产力发展的倾向作核心重建了整套历史唯物主义。</p>
+
+<p>另一派立刻指出了麻烦。这样的解释里藏着一种功能主义:某种制度因为促进生产力而被保留下来,可是没有人说得清这个保留是通过什么机制发生的。于是历史看上去有目的,而这个目的又不是任何一个人的目的。若拿生物演化来打比方,理论会变得更有偶然性,可是长程的预测力也随之削弱;若要保住强预测,目的论的嫌疑就更浓。</p>
+
+<p>反对那条直线的材料,同样出自马克思本人,而且分量不轻。</p>
+
+<p>1877年,他给俄国一家杂志的编辑部写信,抗议有人把他关于西欧资本主义起源的历史素描,改写成一切民族都必须服从的普遍行军路线。他写得几乎没留余地:把西欧那段发生史说成每个民族都被命运强加的普遍道路,这既是给他过多的荣誉,也是对他的误解。他还举了罗马平民被剥夺土地的例子,说相似的事件放进不同的历史环境里,会导向完全不同的结果,所以永远不可能靠一把超历史的万能钥匙把它们一起打开。</p>
+
+<p>1881年,他给俄国革命者查苏利奇写信,连同几份没有寄出的草稿,把这件事说得更明白:俄国的乡村公社并不注定必须先经历一遍西欧式资本主义的折磨,才能走向别的社会形式;那种所谓历史必然性,他明确地把它限制在西欧诸国之内。</p>
+
+<p>一路研究抓住这组晚期材料,主张晚年的马克思已经离开了单线的发展图式,从一条以欧洲为中心的路线,走向了更全球,更多线的视野。另一些研究者不同意把这说成一次彻底反转,他们的分歧通常不在于晚期文本有没有开放性,而在于这种开放究竟是对旧框架的修正和深化,还是根本上的断裂。</p>
+
+<p>把这些放在一起,最贴近材料的说法恐怕是:马克思手里有两支笔。一支喜欢画大箭头,写出来的句子有方向,有阶段,有终点。另一支不断被具体材料逼回去改箭头,遇到俄国的公社,遇到殖民地,遇到非西欧的路径,就把画好的线掰弯,甚至掰断。两支笔都是他的,都留下了字迹,谁也没有把谁擦掉。</p>
+
+<p>而箭头这样东西,值得单独看一眼。</p>
+
+<p>它是账的另一种平法。当下这本账怎么算都对不上,那就把它接到一个将来去:现在不平,是因为还没有到那一天;到了那一天,所有对不上的项目会一次结清。终点是让不平变得可以忍受的办法,也是让不平看上去暂时的办法。</p>
+
+<p>替余项做的账,做到这一步,就又变成了一个想要闭合的构。它对付自己那块余项的办法,是把结清的日子往后挪。</p>
+
+<p>而马克思本人,两次亲手把那支箭掰弯。</p>
+
+<p>两次都是在具体材料面前掰的。一次是有人拿他的书去解释别的国家,一次是有人来问俄国的村社该怎么办。他没有为了保住图式而修剪材料,他修改的是图式。这一点在他身后被沿用得并不多。</p>
+
+<p>他最立得住的那一半,恰恰不需要箭头。工资合同看上去把交易结清了,可它只给一项能力定了价,它没有给这个人的全部生命活动,体力耗损,家里那些无人计价的照料,以及被当成一项开支来对待的那种滋味结过账。这种结不清,不是某个坏雇主造成的,不靠加薪能取消,也不等哪一天自动消失。它是把人当成可结算项目来处理时,必然剩下的那一部分。</p>
+
+<p>他自己在定义里给这一部分留了名字。它叫历史的和道德的因素:一群人对什么样的日子才算日子的共同判断。这个判断没有单位,不能相加,每一代重议一次,议完还会再变。它进不了方程,又不能从方程里拿掉,于是它就一直待在那本账的边上。</p>
+
+<p>一本账可以把工时折成小时,把小时折成先令,把先令折成利润率,一层一层折得非常干净。它折不动的,是坐在机器前面那个人。那个人不是一栏,也不肯变成一栏。他会累,会病,会走开,会不来,会跟别人商量,会一起停下手。每一次这样的事发生,账上的数目就得重新调一遍,而调完了以后,底下那一栏仍旧是空的。</p>
+
+<p>账还没有算平,它仍旧在记。</p>
+
+      </div>
+
+      <div class="essay-body lang-en">
+
+<h3>1. Four Inspectors, Four Thousand Mills</h3>
+
+<p>In 1833 the British Parliament passed a Factory Act. It provided that no child under nine could be put to work in a mill; that children between nine and thirteen could work no more than eight hours a day and forty-eight hours a week; and that young persons between thirteen and eighteen could work no more than twelve hours a day.</p>
+
+<p>These numbers are compressions. What conditions looked like before the compression is something the statute never had to spell out — anyone reading it could work that out for themselves.</p>
+
+<p>A law that sets out to forbid children under nine from entering a mill presupposes that children under nine were, in fact, already inside the mills. A law that limits children between nine and thirteen to eight hours a day presupposes that they had previously been working longer. A statute only ever writes down the stretch it means to stop; whatever it cannot stop, and whatever has already happened, is left inside the statute's silence.</p>
+
+<p>To make these numbers stick, Parliament simultaneously established a system of factory inspection. There were four inspectors in all. The mills that needed watching at the time numbered roughly four thousand. Later parliamentary records would concede a fact that needed no dressing up: the Act was widely evaded.</p>
+
+<p>Four against four thousand — the ratio alone is a verdict. It shows that the lawmakers knew exactly what needed regulating, and that the arrangement, as designed, was never meant to actually enforce it. The length of a day had been written down as a number, and whether that number could be made real depended on whether anyone went to look, how many went to look, and whether they could keep up with what there was to see. The moment a figure leaves the page, it has to be handed back into human hands.</p>
+
+<p>This has happened more than once in the essays before this one. In Essay 3, the weight stamped on the face of a coin depended on someone willing to check the stamp. In Essay 5, the columns in a ledger depended on someone willing to look closely. In Essay 6, the characters printed on a note of jiaozi depended on a government still willing to honor them. A rule can be written as hard as you like. A rule cannot walk on its own.</p>
+
+<p>Eleven years later, the Act of 1844 compressed the working day for women and for young workers between thirteen and eighteen to twelve hours, and wrote in some of the earliest health and safety provisions on the books, one of which required that machinery be fenced. The Ten Hours Act of 1847 compressed the statutory hours of women and young workers in textile mills still further, down to ten hours.</p>
+
+<p>Three acts of legislation spanning fourteen years, all moving in the same direction, tightening notch by notch. None of them started from a principle. Each was squeezed out of a running argument: the millowners said that any further compression would shut the mills down; the doctors said that children's bones would not grow straight; the clergy said there was no time left to attend church; and the workers themselves stood at the gate and would not go in. What finally landed on the page, each time, was a handful of whole numbers.</p>
+
+<p>The whole number is the shape the construct likes best. A childhood, a body still growing, the exact point at which a person standing beside a machine begins to make mistakes — none of these are whole numbers, and none of them ought to be. But legislating, inspecting, ruling in a courtroom on who has broken the law, all of that requires a whole number. The line between eight hours and twelve hours can be drawn anywhere at all and a reason can be found for drawing it there, and once it is drawn, the two sides of it become legal and illegal. Once the construct moves to act, it can only act with whole numbers.</p>
+
+<p>Every round of legislation was a fight over the same thing: how long a day could be stretched. And every time the fight ended, the outcome had to come down as a number, written into a statute, and handed to someone to check.</p>
+
+<p>Someone in London spent years reading the records the inspectors had written down, and copied long passages of them, wholesale, into a book he was writing. That book was published in 1867, under the title Capital, Volume One.</p>
+
+<p>He was not copying those records as decoration. What he needed to prove required exactly those figures: how far a day can actually be stretched is not decided by technology, and it is not decided by morality — it is decided by force, and force shifts. Wherever the line of the working day gets drawn is a position each generation fights out anew; once fought out, it becomes a statute, and the statute is handed to someone to check.</p>
+
+<p>In the ten essays before this one, the construct has always been the one keeping the books, and the remainder has always been the thing spilling over the edge. The construct's ways of dealing with that remainder have taken several forms — being absorbed into a larger construct, being renamed, being ignored, being folded into cost, having the boundary drawn in tighter around it. This time is different. This time, someone kept the books for the remainder instead.</p>
+
+<p>He gave that spillover a name, pointed to exactly where it was produced, and gave it a quantity that could be calculated. This is the first time, in this whole line of essays, that someone did the accounting not for the construct but for the remainder, and did it with such rigor that people are still checking his arithmetic today.</p>
+
+<p>And an account kept for the remainder is still an account.</p>
+
+<h3>2. The Hour That Wasn't His</h3>
+
+<p>The first thing Capital, Volume One does, in its opening pages, is drag a set of utterly unrelated things onto a single scale: linen, coats, gold, iron, bread.</p>
+
+<p>Marx's claim is that these things can be exchanged not because of any physical resemblance between them, but because all of them can be reduced to the same social substance — abstract human labor. Value, on this account, does not depend on the natural properties of a thing; it depends on socially necessary labor time. He defines the phrase with some care: the time required to produce something under normal conditions of production, given the average degree of skill and intensity of labor prevailing in that society at that moment.</p>
+
+<p>The weight of the definition sits on the word average, and the example he chooses squeezes out every ounce of that weight.</p>
+
+<p>Suppose an English power loom cuts in half the time needed to weave a given length of yarn into cloth. A weaver still working by hand, even if he spends exactly as long at his loom as he always has, now has his hour counted as only half an hour of social labor, and the cloth he weaves has its value cut in half along with it.</p>
+
+<p>This weaver has not grown lazy. He has not grown clumsy. He has not changed a single motion of his hands. His day is still twelve hours long, his back still bends the same way, he is still in the same room he has always worked in. What changed was a machine somewhere else. A scale standing outside him has revalued his hour as half an hour, and he has no standing even to object, because that scale does not ask after individuals.</p>
+
+<p>There is a harder thing to see buried underneath this. What the weaver has lost is not money someone owes him — no one has shorted him, no one has broken a contract with him. What he has lost is his hour's allotment of social recognition, and that allotment was never his to hold onto in the first place. He believed he possessed a trade and a pair of hands. What he actually possessed was a ratio that could be revalued from outside at any time.</p>
+
+<p>This lays the matter bare with great cleanness. The scale is not in the hands of the person doing the work. The scale sits on society's side of the ledger, and it can rewrite, at any moment, what a person's time is worth, for reasons that have nothing to do with that person.</p>
+
+<p>Marx goes on to explain that this scale must eventually find a single, unified expression, and that expression is money. Price is nothing but the monetary expression of value; money converts a commodity's value into an independent, homogeneous form. He used a striking phrase for this: commodities become, in effect, social hieroglyphics — people first write them, through the value-form, into a set of exchangeable symbols, and are then forced to turn back and ask what those symbols are actually saying.</p>
+
+<p>Scholars who study this closely have warned that reading the theory purely as an inventory of labor-hours misses more than half of it, because it is simultaneously a theory of money and a theory of social relations.</p>
+
+<p>This connects directly to Essay 3. The coinage of Lydia, back then, gave the scale a portable shape, and once the scale existed, it did not manufacture any new differences in the world — it simply gave a place to differences that had previously had nowhere to stand. Abstract labor, as a scale, does exactly the same thing, except now its target is a living person's time: the same twelve hours in a day can be counted as twelve hours in one case and six in another, and that comparison could not even be formed before the scale existed. Every scale the construct adds does not add anything new to the world; it only puts another set of things into positions where they can be measured against each other.</p>
+
+<p>And whatever overflows this scale is already written on the very same page. What enters the calculation is never the specific thickness of wear that a particular worker's life absorbs in that hour — it is the average, socially recognized, comparable time that a given kind of labor is supposed to take. Everything slower than the average, everything faster than the average, everything more damaging to the body, everything that takes years of accumulated skill to manage, everything that only holds together because someone else at home is quietly covering the gap, all of it has to be flattened before it can enter that scale at all. Flattened does not mean it disappears. It comes back somewhere else, in some other form.</p>
+
+<p>Where it comes back is usually not on the books. It might come back in the silence a person carries after work. It might come back in a back that will not straighten out by the time he is forty. It might come back in the extra hours someone else in the household has to put in. All of this genuinely happens, all of it carries a cost, all of it can be described — none of it, however, folds into the phrase socially necessary labor time, because by definition that phrase is already computing an average.</p>
+
+<p>The name Marx gave to this whole arrangement is commodity fetishism. He wrote that a definite social relation between men themselves assumes, in their eyes, the fantastic form of a relation between things.</p>
+
+<p>That sentence is often read as saying that people are seeing an illusion, and read that way it comes out far too light. What he means is much heavier than that: the market has genuinely succeeded in writing social relations into price, into money, into the commodity-form, so that domination between people, dependence between people, the averaging-out of people, competition between people, really do operate on the surface as relations between things. Anonymous exchange is not fake. It has simply rewritten human relations into the grammar of objects.</p>
+
+<h3>3. What Is Actually Sold</h3>
+
+<p>The most decisive change Marx made to the labor theory of value he inherited was not to repeat, once more, that value comes from labor. It was to split labor from labor-power.</p>
+
+<p>The split was forced on him. If what a worker sells on the market is labor itself, then it becomes very hard to explain how a capitalist could go on profiting, continuously, in a world where everyone trades at equivalent value. If the answer is that the capitalist simply pays less than he owes, that is fraud, that is breach of contract, that is a question of one person's character, and it has nothing to do with the system as such. What Marx wanted to explain was precisely the case in which there was no fraud at all.</p>
+
+<p>This is a very severe form of self-restriction. He does not write about the millowners who shortchange wages, or the ones who tamper with the scale, or the corner-cutting and the violent evictions. All of that existed, and existed everywhere. But if an argument leans on any of it, the only conclusion it can reach is that some people are bad. The conclusion Marx wanted was that even if everyone behaved with perfect propriety, the outcome would still come out the same.</p>
+
+<p>So he swapped the commodity. What the worker sells is not labor, it is labor-power, the capacity to work over a given stretch of time. This commodity carries two separate prices. Its value is fixed by whatever necessities of life are needed to maintain and reproduce that capacity. Its use-value, however, is capable of creating, in the very process of being used, a new value greater than its own. Surplus value is produced exactly in the gap between these two.</p>
+
+<p>His own example is easy to follow. Suppose a worker's daily necessities are worth three shillings, and producing those necessities takes, on average, six hours of labor. Then this worker's labor-power, for that day, has a value of three shillings. The capitalist buys a day of his labor-power for three shillings, and has not underpaid him by a single coin.</p>
+
+<p>The trouble is that what has been bought is not six hours, it is the right to use that capacity for an entire day. Once the worker has put in six hours, he has already reproduced the value of his own three shillings. But he still has another six hours ahead of him. Whatever value those six hours create does not belong to him.</p>
+
+<p>Marx calls this a trick the capitalist carries out entirely inside the rules of equivalent exchange. What matters is the form the trick takes: no contract is broken, no law is violated, and on paper, the books balance perfectly. Wherever the imbalance actually lies, it is not on the paper.</p>
+
+<p>In an 1865 address to a workers' organization, he laid this distinction out even more bluntly, and in passing drew a line that mattered. What the worker sells, he said, is not directly his labor but his labor-power. And immediately afterward: if a person were allowed to sell that capacity for any indefinite period whatever, slavery would be immediately restored.</p>
+
+<p>That sentence is not merely a technical proposition. In Essay 8, the line ran clean through a person, someone pressed head to foot into the plane of price, entered onto an insurance policy, counted off in tonnage. In the wage relation, Marx points out, what stands between the two is a term: what is sold is a time-bounded right of command, not the sale of the whole person outright. What keeps the wage relation from becoming that other thing is not goodwill, and it is not a moral standard, it is that limit on time. Take the limit away, and the boundary disappears immediately.</p>
+
+<p>This line holds, but it is thin. It separates two things using nothing but a single time parameter, and a time parameter can always be stretched: sixteen hours a day, seven days a week, a debt that never gets paid off, a contract nobody can walk away from, a place of residence nobody is allowed to leave. Every notch it gets stretched, the line grows a little thinner. The point of that sentence is not that the other thing is safely in the past, it is that what separates it from the present case is only a quantity, and a quantity can be adjusted.</p>
+
+<p>Precisely because of this, labor-power as a commodity can never, by its nature, line up cleanly with the whole person. What the contract transfers is the right to use a capacity, and the capacity happens to live inside a person who grows tired, falls ill, gives birth, refuses, goes on strike, and dies.</p>
+
+<p>Marx has a line of quite extraordinary coldness: the use-value of labor-power, that is, labor itself, belongs no more to its seller than the use-value of oil, once sold, still belongs to the merchant who sold it. What the contract transfers is the use-value; the pain, the exhaustion, the aging, the humiliation, all happen in the process by which that use-value is actually consumed.</p>
+
+<p>The work of pricing keeps subdividing further. Time-wages cut a day into hours; piece-wages settle labor by the piece. Marx eventually puts it bluntly: piece-wages are nothing but a converted form of time-wages, and time-wages are themselves nothing but a converted form of the value or price of labor-power. What all of this accomplishes is plain enough: it turns a person's working capacity into an item that can be priced, settled, compared, and supervised exactly the way oil, cotton, coal, and machinery are priced, settled, compared, and supervised.</p>
+
+<h3>4. The Historical and Moral Element</h3>
+
+<p>Pushed this far, one question has to be answered: how, exactly, is the value of labor-power determined?</p>
+
+<p>Following the logic of the system, the answer ought to run like this: calculate the necessities of life required to maintain and reproduce this capacity, add up the value of those necessities, and that sum is the value of labor-power. Everything in the book up to this point has been derived this same way, from commodity to value, from value to money, from money to labor-power.</p>
+
+<p>At this point, he cannot push the derivation any further.</p>
+
+<p>The reason is not hard to state. What belongs in the basket called necessities of life depends on what a given society believes a person minimally needs in order to live. How many loaves of bread. How often meat is eaten. Whether the dwelling needs a window. Whether the children need schooling. Whether there is room to lie down when someone falls ill. None of this can be derived from the conditions of production. All of it is the outcome of a group of people arguing it out, and different countries argue it out differently, and the same country argues it out differently in different eras.</p>
+
+<p>So, in the chapter dealing with the value of labor-power, he sets down a genuinely strange sentence. This value, he writes, contains not only the physiological minimum required to sustain a worker's body, but also a historical and moral element.</p>
+
+<p>The historical and moral element is a term that cannot be derived from the system at all. What it means is that what counts as a livable life is not something biology can compute. It is bound up with custom, with struggle, with social standards, with levels of education, with how many family members are quietly backstopping the household without pay, and with what kind of life the people of that country generally regard as a life worth living. Every one of these things shifts over time, and every one of them is arrived at through people arguing, not through calculation.</p>
+
+<p>Marx did not sidestep it, and he did not pretend he could derive it after all. He wrote it into the definition, admitted that it belonged there, and kept going.</p>
+
+<p>This move needs to be kept separate from concealment. He did not bury that term in a footnote, and he did not dress it up with a technical-sounding name to make it look as though it had been derived. He used the words historical and moral, words that sit uncomfortably in a book aiming to be a work of science, and knowing exactly how uncomfortable they were, he wrote them down anyway.</p>
+
+<p>This is where the remainder sits on Marx's own books. It is not that he failed to see it. He saw it, named it, set it down in plain sight, and did not fold it into the equation.</p>
+
+<p>What is interesting is that, on this very point, his opponent had made a move heading in the exact opposite direction but shaped exactly the same way. Essay 10 described how Menger wrote the possibility of human misjudgment directly into his definition of value, and then wrote straight past it, the thinkers who came after him usually handled that gap by simply assuming judgment was correct. Marx, for his part, wrote a whole society's collective judgment about what makes a livable life directly into his definition of the value of labor-power, and then also wrote straight past it, the thinkers who came after him usually handled that term by giving it a fixed basket. Two systems, launched from opposite directions, each left behind, at the single most load-bearing point in its foundation, a term that could neither be derived nor removed.</p>
+
+<p>Dignity, then, does not come in through the front door. It is smuggled back into the theory through the back, as the historical and moral remainder that cannot be cleared out of the determination of value.</p>
+
+<p>Whatever comes in through the back door shares one feature: it gets in, but it never gets a seat. It lives in the definition, not in the derivation; it shapes the outcome without ever taking part in the calculation. Wherever the calculation actually proceeds, that term is simply treated as a given constant, even though it happens to be the least constant term in the entire book. When the construct's own derivation runs up against something it cannot derive, its solution is to acknowledge the thing, name it, and then fix it in place, so that the steps that follow can keep moving.</p>
+
+<p>This is neither an oversight on Marx's part nor a triumph, scoring it as a point for either side misses what it is. That term has to be there, and the reason is entirely real: a wage is never a transaction with just one person's physiology. It is a transaction with what an entire group of people believes counts as a livable day. And that second matter can only be settled by custom, by struggle, and by the age one happens to live in, settled once, and then settled again by the next generation.</p>
+
+<p>Precisely because of this, the wage figure is not what it looks like. It looks like a price, sitting on the same table as the price of cotton, the price of coal, the price of machinery. But underneath it presses something else entirely: the minimum standard of human life a society is currently willing to recognize. None of the other figures on that price table carry this extra layer. Cotton does not rise in price because people have decided it deserves a better life.</p>
+
+<p>One more thing is worth noticing inside that term, something pointed to but never given a column of its own: the labor performed inside the household that never enters the books at all. It appears in this book only as a condition for labor-power to be reproduced, never as labor in its own right.</p>
+
+<h3>5. The Credit the Worker Extends</h3>
+
+<p>The wage relation looks like the most anonymous of all exchanges. It has a contract, a timesheet, a settlement day, a unit price; the two sides need not know each other, need not have any history together, need not trust one another at all. The kind of token that, in Essay 6, absolutely required mutual recognition in order to hold its value seems to have become entirely unnecessary here.</p>
+
+<p>The whole benefit of a contract lies exactly here. It lets two strangers complete a transaction without either one investigating the other's background, without needing a guarantor to vouch for them, without waiting until some relationship has had time to form. This is a genuine liberation, and especially so for anyone previously shut out by their origins. Essay 10 showed how the phrase one ratio across the whole market smashed the old practice of pricing by pedigree; the wage contract does the same work, it strips a person out of their background and leaves only how much work they can do.</p>
+
+<p>But in discussing how wages actually get paid, Marx quietly dismantles this whole impression.</p>
+
+<p>He points out that in capitalist countries, labor-power is typically paid for only after it has already done its work. The worker works first; only at the end of the month or the end of the week does he see any money. Which is to say: the worker has, in effect, already extended the use-value of his labor-power to the capitalist on credit. He states this without any ambiguity at all: everywhere, it is the worker who extends credit to the capitalist.</p>
+
+<p>This single line turns the wage relation completely over. On its surface it is the most purely cash-based, the most standardized-by-contract, the least dependent on anyone's character or connections of all exchanges. Yet in how it actually operates, there is always a gap between working and being paid, and inside that gap there is delay, there is default, there is the capitalist going bankrupt, there is the worker who never sees his money. The most impersonal-looking relation of all has, buried inside it, a stretch of time that depends entirely on trusting the other side to make good.</p>
+
+<p>And the risk across that stretch of time is not shared equally. What the capitalist takes on credit is work already completed, work that has already become goods sitting in a warehouse. What the worker extends on credit is strength already spent, and once spent, it is gone, and there is no getting it back. If the mill fails, the goods can still be sold off to settle its debts; the worker's exertion from those days settles nothing, and appears on no such sheet. So this is not simply a stretch of mutual waiting. It is a stretch of time in which only one side has put up any collateral at all.</p>
+
+<p>The worker, then, is calculated on one side as a capacity to be settled by the hour, while on the other side he is forced to bear, as a continuously existing person, the entire uncertainty of that stretch of time. What the contract records is a capacity. What is actually staked is a person. On paper these two things are written as though they were one and the same. In reality they never have been.</p>
+
+<p>Essay 6, in discussing jiaozi, observed that stripping the metal away from money is the same thing as pressing its entire weight onto personhood instead. Here the direction runs the opposite way: the wage relation is straining with everything it has to drive personhood out of the transaction, replacing it with hours, piece-counts, unit prices, and settlement days. But it cannot be driven out completely. Trust has not been eliminated. It has simply withdrawn into the gap before settlement, into the part of the arrangement the contract never writes down.</p>
+
+<p>Neither of these two media has ever simply replaced the other. Not once, not anywhere.</p>
+
+<p>Counting back through the series, this same line has always been there. In Essay 1, in the age before ledgers, a debt of gratitude had to be backstopped by both sides remembering it. In Essay 2, a debt recorded on a clay tablet had to be backstopped by the temple's own hierarchy. Here, a wage has to be backstopped by a contract and by a mill that is still open for business the following week. Each time, the medium grows colder, cold enough, eventually, to erase every visible trace of personhood, and yet every single time, the cold end of it still connects to a stretch of road that only gets walked because somebody keeps faith. The construct can shorten that stretch of road again and again. It cannot remove it.</p>
+
+<p>And that gap is bridged by the worker's own body. He has to keep showing up, his body has to keep holding out, simply to make it to settlement day; he has no other collateral to put up against that stretch of time. He is reduced, on one hand, to a capacity settled by the hour, and forced, on the other hand, to use himself, a continuously existing person, as the guarantee that backs the whole contract.</p>
+
+<p>Put the two ends of this together and something becomes clear: the wage relation is, on one side, the closest thing to pure price among all forms of exchange, and on the other side, the form of exchange most dependent of all on a person's continuous, bodily presence. It does not choose between these two things. It pushes both of them to their absolute limit at once.</p>
+
+<h3>6. Where the Young Marx Went</h3>
+
+<p>In 1844, a twenty-six-year-old Marx wrote a set of notebooks in Paris. One passage from them has since been quoted more than any other: the worker, therefore, only feels himself outside his work, and in his work feels outside himself. He feels at home when he is not working, and when he is working he does not feel at home.</p>
+
+<p>The same notebooks contain a line that sits even closer to the wage relation itself. What the worker receives, he writes, is only the portion absolutely indispensable to keep him in existence, and that portion gives him an identity not as a human being but as a worker. Further on he puts it more starkly still: if capital no longer needs him, he has no existence as a human being at all, only as a worker.</p>
+
+<p>These notebooks are usually summarized as a fourfold separation: the separation of a person from his own product, the separation of a person from the activity of laboring itself, the separation of a person from his own species-being, and the separation of person from person. The more the worker produces, the poorer he himself becomes; the product turns back on him as an alien power and dominates him; labor collapses from a free activity into a bare means of staying alive; and once both the product and the activity have been alienated, the relation between one person and another is rewritten as domination and subordination.</p>
+
+<p>These notebooks were written between April and August of 1844. They were first published in 1932.</p>
+
+<p>A great deal happened in between. Marx finished Capital, Volume One, and died. Engels put together Volumes Two and Three from his papers, and died as well. The party built in Marx's name became a major party in several countries, and in one country his name was used to remake the entire system. All of this happened while those notebooks were still sitting in a box.</p>
+
+<p>Add it up and the gap comes to eighty-eight years. Which means that for nearly fifty years after Marx's own death, everyone who read Marx was reading a Marx who had never said any of these things. Once 1932 arrived, the young Marx, full of talk of alienation and species-being, suddenly stood in front of everyone at once, and only then did a question become, for the first time, a genuinely systematic one: is there rupture or continuity between the early Marx and the mature Marx?</p>
+
+<p>One school pushed rupture as far as it would go. The French philosopher Louis Althusser proposed what he called an epistemological break, arguing that the Marx writing before 1845 still remained at the level of ideology, and only afterward turned to a scientific critique of political economy, and that the concept of alienation presupposes some unified human essence, a residue that had not yet been cleared away.</p>
+
+<p>Another school argued for continuity. Researchers who have worked through this thread in recent years hold that alienation was never abandoned, it was rewritten, carried over from the vocabulary of ethics and philosophy into commodity fetishism, abstract labor, the wage form, and capital's consumption of labor-power: a colder, more institutional kind of analysis. A major encyclopedia of philosophy notes, under this very heading, that the view holding Marx spoke of alienation only in his early years is by now very hard to square with the textual evidence.</p>
+
+<p>Material can be marshaled on both sides, and neither side's case is weak. The continuity camp can match the texts line for line: in 1844, labor is said to be external, coerced; in Capital, the wage-form is said to produce an illusion in which, although only part of the labor is actually paid, the whole of it appears to have been paid. In 1844, the worker grows poorer the more he produces; Capital translates this into the claim that the value of labor-power is fixed by what is needed to reproduce it, while its use-value can, over a longer working day, go on producing additional value beyond that. In 1844, human relations are said to become deformed within alienation; Capital renders this same deformation as human relations appearing in the form of relations between things. The vocabulary has changed. The skeleton underneath is visibly the same one.</p>
+
+<p>The rupture camp is not arguing from nothing either. In the later texts, the concept of human essence genuinely no longer carries any weight in the argument; the derivation now runs on the value-form, on labor-power as a commodity, on the laws of accumulation, not on any judgment about what a human being ought to be.</p>
+
+<p>There is no need to settle this dispute here. What is worth treating as an event in its own right is the controversy itself. A stack of papers sat inside a box for eighty-eight years, and once it came out, an entire field of study had no choice but to go back and redraw the boundaries of its own author, deciding all over again which parts counted and which parts were to be treated as not yet mature. A generation's reading list can be struck from the record. The paper itself cannot be.</p>
+
+<p>The effect of this on how the work gets read is entirely real. Every interpretation formed before 1932, no matter how rigorous, was built on incomplete material, and some of those interpretations had, by then, already hardened into institutions, been written into textbooks, been built into organizations. The text arrived late; the interpretation had arrived early. Once that order is set, the late-arriving text stops being a supplement. It becomes a problem.</p>
+
+<h3>7. The Column That Never Balances</h3>
+
+<p>Marx's own book has places that will not balance either, and more than one of them. There are at least three separate disputes, and they are often tangled together.</p>
+
+<p>The first concerns value and price. The very title of Chapter 9 of Capital, Volume Three, announces it: The Formation of a General Rate of Profit (Average Rate of Profit) and the Transformation of the Values of Commodities into Prices of Production. In this chapter Marx concedes that commodities in any specific branch of production need not sell at their own individual value, some sell above their value, and by the same proportion, others sell below it, and it is precisely this deviation that allows a general rate of profit to form in the first place. The deviation is not the exception. It is the norm.</p>
+
+<p>This volume is a posthumous compilation. Engels assembled it from manuscripts written between 1863 and 1883, and it did not appear until 1894. The controversy, from the very start, has carried the shadow of textual history: no one can be entirely sure which steps Marx himself had finalized and which steps his editor smoothed over.</p>
+
+<p>The heaviest early artillery came from the Austrian economist Eugen von Böhm-Bawerk. In the 1890s he declared that Volume Three's account of average profit and prices of production could not be reconciled with the theory of value laid out in Volume One. The standard twentieth-century version of the critique is usually traced back to a scholar writing around 1906 and 1907: Marx converted outputs into prices of production but failed to convert inputs into prices of production with the same consistency, so that the resulting system of equations, solved under conditions of simultaneous determination, simply fails to close. This reading eventually became close to the textbook-standard account.</p>
+
+<p>The counterattacks run at least three lines deep. One holds that there is no need to demand a one-to-one correspondence, for every single commodity, between labor value and money price, so long as the proportional relationship between total profit and unpaid labor time still holds, the argument for exploitation stands regardless. A second holds that Marx was never working with two parallel systems, a value-system running alongside a price-system, but with a single analysis of total social capital that presupposes capital advanced in money form from the outset, and that the so-called transformation problem is, to a considerable degree, an artifact manufactured by later readings of him. A third holds that price and value determine each other across historical time rather than being solved simultaneously at a single instant, and that the logical contradiction is something a static model has imposed on Marx from the outside.</p>
+
+<p>Which of these is correct is not for this essay to decide. But the reason this controversy has dragged on for so long is worth stating plainly: it is not only a matter of whether the equations check out. What it exposes is that Marx needed to say two things at once that are extremely difficult to say at once: that the surplus is real, that it comes from living labor and not from any trick of buying and selling; and that the surface arrangement by which this surplus gets distributed will systematically distort its own origin. In other words, what he wanted was a quantity that is simultaneously real and necessarily obscured.</p>
+
+<p>A quantity that is necessarily obscured will never find, anywhere on the books, the column that corresponds to it.</p>
+
+<p>The same point can be turned around: any quantity that can find its own corresponding column on the books will never run into this particular problem. The transformation dispute has dragged on for more than a century precisely because the quantity Marx was dealing with is, by his own account, one that cannot be shown directly. He had to build an algorithm for something that is, by definition, invisible, and the only way to test that algorithm is to see whether the results it produces line up with the prices that actually are visible.</p>
+
+<p>The second dispute is with marginalism. Essay 10 described what those three men did around 1871. Set the two approaches side by side and something more interesting than who was right comes into view: they were not asking the same question.</p>
+
+<p>What Marx wants to ask is why, in a society generally organized around commodity exchange, utterly dissimilar kinds of labor can be reduced to a single social scale at all, and why profit can never come from simple buying low and selling high. What marginalism wants to ask is how, under conditions of scarcity, a single person compares his own subjective satisfaction at the margin, and how that comparison gives rise to demand, exchange ratios, and equilibrium prices. Some later readers have simply concluded that the two sides were, at times, answering different questions entirely.</p>
+
+<p>The boundary drawn in Essay 10 can therefore be restated. What gets shut outside that boundary is not only justice, institutions, and time, it is a still deeper question underneath all of those: where commensurability itself comes from. Marginalism starts from commensurability already in hand; it assumes that different things can already be placed on the same axis and compared, and then studies how the comparing is done. What Marx is asking is exactly the step before that one: how that commensurability got built in the first place, what keeps it standing, and on whom its cost falls.</p>
+
+<p>The third dispute sits inside Marxism itself, and runs deepest of all. Is value the abstract labor that already exists at the moment of production, or does it only become real once it has passed through the social recognition of market exchange? One school holds that abstract labor and value are not already sitting, ready-made, inside the product, simply waiting to be expressed, value has to win genuine social recognition through exchange before it counts as value at all, and is therefore not a natural property of things but a historically specific social relation. The other school insists that the opening chapter is describing abstract human labor already expended in production, and that exchange does nothing more than express that labor as a money price; it does not create something that did not exist before.</p>
+
+<p>This last dispute looks, on the surface, the most academic of the three, but its consequences are the most immediate. It determines exactly how fetishism ought to be read: as a veil, with an already-existing labor-content sitting pressed underneath it, or as the claim that value can only ever exist in this social form to begin with, so that lifting the veil reveals no other, more real quantity waiting there beneath it.</p>
+
+<h3>8. Two Pens</h3>
+
+<p>One last matter remains unaccounted for: where did that discovered surplus eventually get connected to.</p>
+
+<p>The passage most often reached for as evidence is the preface Marx wrote in 1859. It contains a line quoted more times than almost any other he wrote: no social order ever perishes before all the productive forces for which there is room in it have been developed. Immediately afterward, the Asiatic, ancient, feudal, and modern bourgeois modes of production are laid out as a sequence of epochs.</p>
+
+<p>Read only these two passages and it is very easy to come away with a strongly staged, linear reading: every social formation has its own historical task, and only once its productive forces are fully developed does it give way to a higher one. One school of twentieth-century scholarship built precisely in this direction, reconstructing the whole of historical materialism with the development of the productive forces as its core.</p>
+
+<p>Another school immediately pointed to the trouble hiding inside that reading. Buried within it is a kind of functionalism: some institution survives because it promotes the productive forces, and yet no one can specify the actual mechanism by which that survival occurs. History ends up looking as though it has a purpose, even though that purpose belongs to no one in particular. Reach for an analogy with biological evolution and the theory becomes more contingent, but its long-range predictive power weakens accordingly; insist on keeping that predictive power strong, and the suspicion of teleology only thickens.</p>
+
+<p>The material that pushes back against that straight line comes from Marx himself, and it is not light material.</p>
+
+<p>In 1877, he wrote to the editorial board of a Russian journal to protest that someone had taken his historical sketch of how capitalism arose in Western Europe and rewritten it into a universal marching order that every nation was bound to follow. He left almost no room for misreading: turning that account of what happened in Western Europe into a universal path imposed by fate on every people, he wrote, would be doing him too much honor while at the same time entirely misunderstanding him. He pointed, too, to the example of the Roman plebeians who were stripped of their land, noting that similar events, dropped into different historical settings, lead to entirely different outcomes, which meant that no master key taken from outside history could ever unlock every one of them at once.</p>
+
+<p>In 1881, he wrote to the Russian revolutionary Vera Zasulich, along with several drafts he never sent, and put the matter even more plainly: the Russian rural commune was not fated to pass through some Western-European ordeal of capitalism before it could move toward any other social form; whatever historical necessity might mean, he restricted it explicitly to the countries of Western Europe alone.</p>
+
+<p>One line of research seizes on this body of late material and argues that the later Marx had already moved beyond the single-track developmental scheme, away from a Eurocentric road and toward a more global, more multi-linear view of history. Other researchers resist calling this a full reversal; their disagreement usually is not about whether the late texts show this kind of openness, but about whether that openness amounts to a revision and deepening of the old framework or a rupture at its root.</p>
+
+<p>Put all of this together, and the reading that stays closest to the material is probably this: Marx worked with two pens. One liked to draw great arrows, sentences with direction, with stages, with an endpoint. The other kept getting forced back by concrete material into bending the arrow, running into the Russian commune, into the colonies, into paths that were not Western at all, it would bend the line already drawn, and sometimes break it outright. Both pens were his. Both left their marks. Neither one ever crossed the other out.</p>
+
+<p>The arrow itself is worth pausing over on its own terms.</p>
+
+<p>It is simply another way of balancing a ledger. If an account cannot be made to add up no matter how it is calculated in the present, then connect it to a future instead: it does not balance now only because the day has not yet come; once that day arrives, every item that failed to add up will be settled all at once. An endpoint is a way of making an imbalance bearable, and, at the same time, a way of making that imbalance look merely temporary.</p>
+
+<p>Taken this far, the account kept for the remainder turns, once again, into a construct that wants to close. Its way of handling its own remainder is to push the day of settlement further into the future.</p>
+
+<p>And Marx himself, twice, bent that arrow back with his own hand.</p>
+
+<p>Both times, he bent it in the face of concrete material. Once when someone tried to use his book to explain a different country. Once when someone came to ask what should be done about the Russian village commune. He did not trim the material to protect his scheme. He revised the scheme instead. This is not a habit that has been carried forward very often by those who came after him.</p>
+
+<p>His most solidly standing achievement, in fact, needs no arrow at all. A wage contract looks as though it settles the transaction, but it only ever prices a single capacity, it never settles accounts for a person's entire life activity, for the wearing-down of a body, for the uncompensated care given at home, for the particular taste of being treated as a line-item expense. This failure to settle is not the fault of some especially bad employer, cannot be canceled by a raise, and will not vanish on its own on some future day. It is simply what is left over, necessarily, whenever a person is treated as an item that can be settled at all.</p>
+
+<p>He himself, in his own definition, left a name for this leftover part. He called it the historical and moral element: a group of people's shared judgment about what kind of day counts as a life worth living. That judgment carries no unit, cannot be added up, gets renegotiated by every generation, and will change again once it has been renegotiated. It cannot enter the equation, and it cannot be removed from it either, so it simply stays there, at the edge of the ledger.</p>
+
+<p>A ledger can fold hours of work into hours, fold hours into shillings, fold shillings into a rate of profit, folding cleanly, layer after layer. What it cannot fold away is the person sitting in front of the machine. That person is not a column, and will not become one. He grows tired, falls ill, walks off, fails to show up, talks it over with the others, stops work together with them. Every time something like this happens, the figures on the books have to be adjusted all over again, and once they have been adjusted, that column underneath is still empty.</p>
+
+<p>The ledger has not yet balanced. It is still being kept.</p>
+
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="ep10.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">边际革命:价值走进意识,出来时已经是一个数</span>
+            <span class="xiyou-nav-title lang-en">Consciousness and the Ledger</span>
+          </span>
+        </a>
+        <a href="ep12.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">无偿劳动:从未被记上账,才是它的运转方式</span>
+            <span class="xiyou-nav-title lang-en">Love and Unwaged Work</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>平台与数据经济｜凿构周期律·经济系列 — Non Dubito</title>
+  <meta name="description" content="平台不卖商品,卖的是对你下一步的预测。当一个人的注意力,情绪,乃至下一次心动都被折算成数据,余项这次被逼到了一个前所未有的地方:一个人的内心。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/economy/ep20.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .essay-entry-point { font-family:var(--sans); font-size:0.72rem; color:var(--ink-muted); font-style:italic; margin-top:0.5rem; margin-bottom:0.25rem; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 凿构周期律·经济系列</a>
+        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Economics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">凿构周期律 · 经济</div>
+          <div class="essay-series lang-en">Chisel-Construct Cycle · Economics</div>
+          <div class="emperor-ep-num lang-zh">第 20 篇，共 23 篇</div>
+          <div class="emperor-ep-num lang-en">Essay 20 of 23</div>
+          <h1 class="lang-zh">第二十篇　平台与数据经济:可预测,本身就是产品</h1>
+          <h1 class="lang-en">Essay 20: Platforms and the Data Economy — Predictability Became the Product</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<h3>一 信息一旦过剩</h3>
+
+<p>1971年,一位研究组织的学者写下了一句后来被反复引用的话:信息一旦过剩,就会制造注意力的贫困。</p>
+
+<p>他接着说,在一个信息丰富的世界里,信息真正消耗掉的是接受者的注意力;而信息的大部分成本,其实由接受者承担。</p>
+
+<p>这句话在当时是一个诊断。而更值得留意的是他紧接着做的事:他开始问,能不能为这种稀缺资源找到一个衡量的单位,能不能把它配置好。</p>
+
+<p>从被看见的那一刻起,注意力就是一样准备被算的东西。</p>
+
+<p>这一点和前面十九篇的起手式很不一样。那些篇里,构要通约的东西都已经在世界上摆着:一片地在那里,一船货在那里,一天的工时在那里,只是没有共同的单位。注意力不是。它不占地方,不能被搬动,不能被存起来留到明天,而且它在被使用的同时就消失了。要给这样东西造一把尺子,得先造出它的痕迹。</p>
+
+<p>造痕迹这件事在后面每一节都会出现,而且形式越来越细。先是有没有看见,然后是有没有点,然后是停了多久,滚到了哪里,从哪里来,接下来去了哪里,和谁有关系,以及这一切加起来能推出什么。每加一样,尺子就更细一分;而每细一分,原先算不出来的东西就多进来一批。</p>
+
+<p>二十三年后,1994年十月,一个网站上线了横幅广告,通常被视为网络横幅广告的开端。那则广告后来被记住,是因为它的点击率据说达到了四成四。</p>
+
+<p>而当时的从业者回顾这件事,强调的不是终于可以在网上放广告。他们强调的是另一件:广告主第一次能够知道,有多少人看见了这则广告,有多少人和它发生了互动。</p>
+
+<p>这个差别决定了此后三十年。报纸和电视也卖广告,而它们能报出的只是发行量和收视率,是一个估出来的总数。一则电视广告播出去,谁看了,谁走开去倒水了,谁看了却毫无反应,没有人知道。广告主付的钱里,有一半是买了一个自己永远无法核对的数。</p>
+
+<p>这才是分界线。</p>
+
+<p>从这一刻起,受众不再是一团模糊的人群。它被拆成了一件一件可以计数的事:一次展示,一次点击,一次互动。</p>
+
+<p>而一样东西一旦可以计数,它就可以被结算;可以被结算,就可以被竞价;可以被竞价,就会有人去想办法让这个数变大。这条路前面几篇已经走过好几遍,只是这一次,路的尽头站着的不是一片地或者一批货。</p>
+
+<p>前面十九篇里,余项一直是从账本里溢出来的东西。它是那笔算不清的旧账,那块量得准却不细看的栏目,那份拿不出的凭据,那些没有栏目的连线,那个在系统性风险上读数为零的人。</p>
+
+<p>构对付它的办法换过九种,而九种都是防守:松开,改名,不问,折算,收边界,给轨道,要凭据,重新分类,不让它上账。</p>
+
+<p>接下来这三十年发生的事情是反过来的。</p>
+
+<p>构不再等余项溢出。它主动去拿。</p>
+
+<p>要说清楚,主动去拿这件事并不等于抢。它做的是另一件更根本的事:把原先没有形状的东西造出形状来。一个人今天心不在焉,昨天多待了三分钟,上个月忽然想买点什么,这些事情从来都在发生,只是从来不成其为一个可以记下来的事件。构要做的第一步,是先让它们变成事件。</p>
+
+<h3>二 在内在上会偏向广告主</h3>
+
+<p>1998年,两位研究生发表了一篇关于大规模超文本网络搜索引擎的论文。那是后来那家公司的技术起点。</p>
+
+<p>论文完整版本的附录里,有一段对广告资助的搜索表示明确怀疑。那句要害是:广告资助的搜索引擎,在内在上会偏向广告主。</p>
+
+<p>这不是后来的批评者替他们发明的悖论。这是他们自己在创业之初写下的判断。</p>
+
+<p>这一句的位置,和第九篇里那半个被删掉的斯密,第十七篇里那条几乎从不使用的条款,是同一类东西。构在自己的档案里留下了一份对自己的警告,而那份警告完好地保存着,谁都翻得到。它没有被销毁,它只是没有被采纳。</p>
+
+<p>正因为如此,后来的转向才更值得看清楚。它不是技术必然如此。它是在商业压力和一种可以规模化的盈利模式之间,走上了自己曾经警惕过的那条路。</p>
+
+<p>这一点对反对宿命论很要紧。整套后来的机制常常被讲成技术自己长成的样子:有了网络就会有广告,有了广告就会有追踪,有了追踪就会有画像。而这两个人当初写下的那句话说明,当时至少有人看得见另一条路,而且看得见走上这条路会付出什么。路是被选的,不是被推着走的。</p>
+
+<p>那条路的形状,在同一段时间里由另一家公司先跑出来。</p>
+
+<p>1998年到 2001年之间,一家搜索公司把按点击付费的搜索广告做成了明确的市场。2001年,它公开说自己是绩效付费搜索的市场创造者。仅那一年的第二季度,它就促成了三亿二千三百万次付费的定向引荐,并让大约四万五千家广告主,对搜索结果的排序位置竞价。</p>
+
+<p>只有在有人点击的时候才收费。</p>
+
+<p>这一步的分量很容易被略过,所以要说明白。</p>
+
+<p>在此之前,广告是按版面和时段定价的。一个整版多少钱,黄金时段三十秒多少钱,发行量多少,收视率多少。买的是位置,是曝光的机会,是一段时间里可能被多少人看见。</p>
+
+<p>按点击付费改掉的是计价的对象。广告主买的不再是位置,是一次动作。</p>
+
+<p>这次改动看上去只是让计价更公道:你的广告没人理,你就不必付钱。听上去是广告主占了便宜。而它真正的后果在另一头。既然只有动作才算数,那么整台机器就会朝着让动作发生的方向长,而不是朝着让内容变好的方向长。第十三篇里说过,构一旦选定一个计量单位,后面所有的力气都会往那个单位上使。</p>
+
+<p>而那个动作,由一个具体的人在某一个具体的时刻做出。</p>
+
+<p>于是广告主和这个人之间,第一次有了一条可以核对的线。从前那笔糊涂账里,广告主付钱买一个估出来的总数;现在他付的每一分钱,背后都对应着某一个人真的抬了一下手。这在广告业内部被当成一次彻底的进步,而且它确实是。</p>
+
+<p>2000年第四季度,那家搜索公司推出了自助式的文字广告,起初按展示收费;到 2002年第一季度,它把整套广告完全改成了按点击收费。</p>
+
+<p>从这里开始,一台机器有了它的基本单位。这个单位不是一寸版面,不是一秒钟,不是一千次曝光。</p>
+
+<p>是一个人抬手点了一下。</p>
+
+<p>这个单位有一个前面所有尺子都不具备的性质:它必须由被量的那个人亲自完成。一亩地不必同意被丈量,一船货不必配合过秤,而这个单位不行。没有人点,这个数就不存在。整台机器的原料,只能由几十亿个人每天亲手生产,而他们做这件事的时候,不认为自己在生产任何东西。</p>
+
+<h3>三 一次搜索触发一次拍卖</h3>
+
+<p>2004年,那家公司准备上市,提交的文件里把自己的机器讲得非常清楚。</p>
+
+<p>广告主只在有人点击的时候付钱。而每一次搜索查询,都会触发一次自动的拍卖。</p>
+
+<p>广告的排序不只取决于出价。它还取决于点击率这一类被用来代表兴趣的指标。更相关,更有针对性的广告,会因为被更频繁地点击而自动上升。</p>
+
+<p>文件里给了一个定价的例子。甲出价一美元,实际只需支付六角一分;乙出价六角,实际支付五角一分;丙出价五角,却按五分钱的最低价成交。</p>
+
+<p>这个例子值得停一下,因为它显示的是一套很精巧的东西:出价高的人不一定按自己的出价付钱,付多少取决于排在他后面的人出了多少,以及他自己的广告被点击的可能性有多大。</p>
+
+<p>一个人的出价,和他实际付出的价格之间,隔着一层预测。</p>
+
+<p>这层预测是这台机器最要紧的零件。它意味着广告主付的钱不只取决于他愿意出多少,还取决于平台认为他的广告有多大可能被点。也就是说,平台既是拍卖的组织者,又是估价的人,而它估的那个数直接决定了它自己收多少。这个位置在从前的市场里是不存在的:拍卖行不参与定价,交易所不猜哪只股票会涨。</p>
+
+<p>这是这台机器和从前所有市场的分别所在。</p>
+
+<p>在从前的市场里,价格是在两个人之间形成的。买家出价,卖家还价,或者拍卖师喊到没有人再加。价格是一次谈判或者一次竞价的结果,而参与的是买卖双方。</p>
+
+<p>在这里,参与形成价格的还有第三方,而这个第三方并不在场,也不知道自己参与了。</p>
+
+<p>他就是那个正在搜索的人。</p>
+
+<p>他的搜索词进入了这次拍卖,他过去的点击习惯进入了这次拍卖,他被估计出来的兴趣进入了这次拍卖。他决定了谁排在前面,也决定了排在前面的人要付多少钱。</p>
+
+<p>而他自己不知道这场拍卖发生过。整个过程从他按下回车到页面出现,不到一秒钟。</p>
+
+<p>不到一秒这件事不是技术细节,它是这套安排能够成立的条件。任何需要人反应的环节,都会把速度拖慢到无法进行几十亿次;而任何快到人来不及察觉的东西,也就无从被质疑。构过去要靠遮盖来减少追问,第十七篇里说过那层遮盖的作用是省力。这里连遮盖都不必了,因为整件事在被察觉之前已经结束。</p>
+
+<p>2003年第一季度,同一家公司把这套逻辑推出了搜索的范围。加入网络的网站可以在自己的页面上放置这套广告,广告主仍然按点击付费。</p>
+
+<p>于是不只是搜索的那一刻,而是浏览的很多时刻,都被接进了同一套结算系统。</p>
+
+<p>网页内容,广告位,广告主的投放,看的人的动作,被拴在了一起。</p>
+
+<p>2007年,一家联邦机构允许那家公司以三十一亿美元收购一家广告技术公司,并明确说明不会以隐私为理由阻止这笔交易,因为那超出它反垄断的权限;同时它也承认,整个在线广告市场都存在隐私问题。</p>
+
+<p>回头看,这笔收购的意义在于:搜索广告的拍卖逻辑,和展示广告的投送,追踪与第三方投放的基础设施,被更深地缝在了一起。</p>
+
+<p>缝在一起之后,一个人在网上的行踪就不再是许多段互不相干的片段。他在这个网站看的东西,会影响他在另一个网站看到什么;他昨天搜过的词,会跟着他到今天。第十八篇里说过,那台机器最后开始记录别的账本;这里的方向不同,它记录的仍然是外面的世界,只是它把外面那个世界连缀成了一条线。</p>
+
+<h3>四 即使消费者从未点击任何广告</h3>
+
+<p>要把行为连成轨迹,需要一样东西:能够认出这是同一个人。</p>
+
+<p>1999年到 2000年前后,一种存放在浏览器里的识别标记,和广告网络一起,把一个人在这个网站上看了什么,推进成了他跨很多网站都做了什么。</p>
+
+<p>2000年,那家联邦机构向国会提交了一份关于网络画像的文件。</p>
+
+<p>里面说,广告网络收集到的信息,往往和它自己那个识别号相关联,而不是直接对应某一个真实姓名。</p>
+
+<p>然后它写下了一句更要紧的话:这类信息,即使消费者从未点击任何广告,也会被收集。</p>
+
+<p>这句话给出了一种此前没有出现过的处境。</p>
+
+<p>前面十九篇里,一个人要进入账本,总要先做点什么。他要借一笔钱,签一份契,交一次租,进一次厂,买一件东西,或者至少要在某一份名册上被登记一次。账本记的是发生过的交易。</p>
+
+<p>而在这里,不需要交易。不需要点击。不需要同意。不需要知道。</p>
+
+<p>只要经过。</p>
+
+<p>这三个字标出了一条界线。前面十九篇里,一个人和构之间总要有一次接触:他签了字,他交了钱,他被登记,他领了工,他被判过一次。有接触,就有一个时点可以指认,可以争论,也可以在事后追究。而经过不留下这样的时点。</p>
+
+<p>这件事对余项的性质也说明了一层。前面几篇里,余项要现形,通常得等到某个时刻:清算的那一天,裁定的那一场,资源不够分的那几个星期。而这里的记录是连续的,没有那种时刻。一样东西如果一直在被记,却从来没有一个需要对账的日子,那么它究竟被记了些什么,就永远没有被摆上桌面的机会。</p>
+
+<p>那份文件里的几组数字值得原样摆出来。在当时的抽样里,五成七的繁忙网站允许第三方放置识别标记,而其中只有二成二在隐私政策里提到过第三方的标记或者数据收集。在最大的一百家网站里,七成八允许第三方标记,只有五成一披露。</p>
+
+<p>还有一个数字更说明处境:当时只有四成的电脑使用者听说过这种识别标记。</p>
+
+<p>它还记下了当时的一种担忧:这类画像可能被用来决定商品和服务的价格与条件,甚至用于人寿保险。评论者给这种做法起了个名字,借用的是过去银行在地图上画线圈出不放贷区域的说法,叫作在网络上画线。</p>
+
+<p>这一点要说清楚,因为它把整件事从温和的更懂你,推到了另一个地方。</p>
+
+<p>被画像不只意味着看到更贴合的广告。它可能意味着同样一件商品对你报出另一个价格,意味着某一份保险对你另有条件,意味着某些机会根本不会出现在你眼前,而你不会知道它们本来存在。</p>
+
+<p>第十九篇里说过,救助的那把尺子照得到机构照不到个人。这里的方向相反:这把尺子照得极细,细到一个人自己都没有察觉的地步。</p>
+
+<p>而两件事的共同点是,被照的那一方都不在场。</p>
+
+<p>不在场这三个字,是前面几篇一直在打转的那个问题的又一种形态。第十三篇里,那些说不出凭据的人不在裁定的现场;第十六篇里,册子外面的人不在编册子的现场;第十九篇里,失去房子的人不在决定救谁的现场。而这一次更彻底:他不但不在现场,他连自己被算过这件事都不知道。</p>
+
+<h3>五 朋友的背书</h3>
+
+<p>2012年,另一家公司准备上市,它的文件里写着另一种东西。</p>
+
+<p>当一个人点了赞,或者对一条帖子留了言,这个动作会通过信息流分享给他的朋友。而品牌可以购买一种产品,来显著提高这种社交行为的到达率,分发频率和显著性。</p>
+
+<p>翻成日常的话:你觉得某样东西不错,这件事本身成了可以被购买的库存。</p>
+
+<p>这里要留一句公道话。一个人告诉朋友某样东西好用,这件事本来就一直在发生,而且是市场里最古老的东西之一。第一篇里那些互相记着人情的往来,靠的正是这个。平台没有发明它,平台做的是给它接上了一个价目表。</p>
+
+<p>这一步走得比按点击付费更远。</p>
+
+<p>按点击付费买的是你的动作。这里买的是你的动作在别人那里的分量。</p>
+
+<p>而这个分量之所以值钱,恰恰因为它不是广告。</p>
+
+<p>一则广告出现在页面上,人是有防备的:知道这是买来的位置,知道说话的人拿了钱。而朋友点的那个赞不带这层提示。它出现在同一条信息流里,长得和别的东西一样,而它已经被付过费了。你的朋友对一则广告将信将疑,对你点过赞这件事却不会。人格性的信任在这里没有被绕开,它被当成了原料。</p>
+
+<p>这一步之所以能做成,靠的是一个很小的技术差别:社交平台知道谁和谁是朋友。前面那些广告机器知道一个人看过什么,而这台机器还知道他认识谁,谁会看见他做的事,谁的话他更容易听。关系这样东西原本只存在于当事人的记忆里,没有名册,没有编号,也没有强弱之分。被记下来之后,它有了这三样。</p>
+
+<p>前面几篇里说过很多次:匿名的价格和人格化的信任从来不是谁替代谁。</p>
+
+<p>第六篇里,交子要靠人肯认才立得住。第十七篇里,那把共同的尺子最后要靠一群人愿不愿意继续认账。第十八篇里,标准合同和评级之下,每一个接头处仍然埋着一点必须相信对方的地方。</p>
+
+<p>那些都是人格性从底下顶上来,把匿名机器撑住。</p>
+
+<p>这一次不一样。</p>
+
+<p>这一次是匿名机器主动伸手去取人格性,把它折算成可以定价的分发能力。</p>
+
+<p>信任没有撑住机器。信任成了机器的进料。</p>
+
+<p>两者的分别可以这样看。撑住机器的东西,是机器坏掉时才被想起来的;当成进料的东西,是机器每天正常运转时就在消耗的。前者在危机里现形,后者在平常日子里一点一点变少,而且没有哪一天会有人注意到它少了。</p>
+
+<p>而进料是会被消耗的。一个人如果发现朋友的推荐里掺着买来的分发,他下一次看到朋友点赞时就会多想一层。这层多想不会立刻显现在任何一个数字上,它慢慢积累,而积累到某一天,那样被当成原料的东西就不如从前值钱了。构在这里遇到的是一个它很难处理的对象:越是用力开采,矿脉越薄。</p>
+
+<h3>六 估计行动率</h3>
+
+<p>到这里可以看那个最要紧的地方了。</p>
+
+<p>在展示广告这一侧,2009年前后出现了实时竞价。一份产业回顾提到,某个广告交易平台上通过实时竞价成交的库存占比,从 2010年一月的百分之八,跳到 2011年五月的百分之六十八。</p>
+
+<p>一年多的时间里,从不到一成变成近七成。</p>
+
+<p>这条曲线的形状在前面几篇里出现过。第十八篇里的名义本金,第十四篇里的储备与负债,涨起来的时候都是这样:没有哪一年发生过突变,每一年都只是比上一年多做了一点,而回头看已经换了一个世界。</p>
+
+<p>到这个阶段,广告不再是在页面边角上被卖一次。每一次展示,都可能触发一次自动的,瞬时的,跨平台的竞价。</p>
+
+<p>而这些竞价的排序公式里,有一项东西值得单独拿出来。</p>
+
+<p>按那家社交平台向广告主的说明,拍卖看的是总价值,由三部分构成:出价,估计行动率,以及广告质量。</p>
+
+<p>估计行动率。</p>
+
+<p>这四个字要慢读。</p>
+
+<p>它的意思是:平台估计,眼前这个具体的人,看到这则广告之后,会采取那个动作的概率有多大。会不会点。会不会安装。会不会填表。会不会买。</p>
+
+<p>而这个估计,直接进入价格。</p>
+
+<p>要说明白的是,这个估计并不需要准。它只需要比对手的估计更准一点点,而且是在大数上更准一点点。单看某一个人,平台可能完全猜错;而在几亿次展示上平均下来,那一点点优势就是钱。这也是这套机器和从前那些尺子的又一处分别:它从不打算把任何一个具体的人量准,它只需要把一大群人量得比别人略准。</p>
+
+<p>前面十九篇里,构定价的对象都是已经存在或者已经发生的东西。一片土地有面积,一天劳动有时长,一笔债有本金,一份合约有名义本金,一栋房子有成交价。哪怕是最抽象的那些,期权,互换,合成产品,它们定价的对象也是一件已经存在的标的物在将来的表现。</p>
+
+<p>在这里,被定价的是一件还没有发生的事,而且很可能永远不会发生。</p>
+
+<p>你没有点。你可能永远不会点。而你会不会点这件事,已经在几十毫秒之前被估了一个数,这个数已经决定了哪一家广告主赢得了这次展示,以及它要为这次展示付多少钱。</p>
+
+<p>一个人的可能性被结算了,而这个可能性并没有兑现,也不需要兑现。</p>
+
+<p>这里可以顺手回头看一眼。第十一篇里,劳动力这项商品之所以特别,是因为卖的不是已经做完的活,是一段时间内做工的能力。那已经是往前挪了一步:被交易的东西还没有发生。而这里又往前挪了一大步。劳动力至少还要被实际使用,雇主付了钱就要把人叫来上工。这里不必。你的可能性被卖掉了,而你可以什么都不做。</p>
+
+<p>工业时代的共同尺度是工时,件数,运费,价格,利率。这些东西都指向已经完成的事。</p>
+
+<p>这个时代新增的共同尺度是点击率,单次点击成本,相关性分数,质量排名,估计行动率,单条广告的平均价格,一个人的终身价值。</p>
+
+<p>这些东西指向的是尚未发生的事,以及一个人有多容易被预料。</p>
+
+<p>严格地说,这并不是对一个人的内心的占有。谁也没有拿到你的想法。</p>
+
+<p>它占有和交易的,是内心留下的外部痕迹,以及从这些痕迹里推算出来的可预测性。</p>
+
+<p>这个区分要守住,不能夸大。谁也没有读到你的想法,谁也没有拿走你的意志。可预测性不是内心,它是内心在外面留下的规律。一个人仍然可以随时不按规律来,而这件事恰恰是后面要讲的。</p>
+
+<p>而这里出现了这一整段历史里最要紧的一个转折。</p>
+
+<p>一旦可预测性本身成了商品,那么提高可预测性就成了生意。</p>
+
+<p>一位研究这套机制的学者把这句话说到了底:预测行为最稳妥的方式,就是在行为源头介入并塑造它。</p>
+
+<p>第十八篇里说过,模型不是站在市场旁边描述市场,它进到市场里去改变市场;被量的对象不再站着不动,它按尺子给出的读数移动。</p>
+
+<p>这里再进一层。</p>
+
+<p>尺子不再只是等着被量的东西移动。它开始动手把被量的东西修成更好量的样子。</p>
+
+<p>一个更容易被预测的人,在这套账本上读数更高。于是那些让人变得更容易被预测的做法,就都有了经济上的理由:固定的提示,恰好在你要走的时候出现的推荐,把你的一天切成许多个相同长度的片段。</p>
+
+<p>不是因为有人恶意。是因为在这本账上,可预测就是价值。</p>
+
+<p>这是构最难对付的一种形态。前面九种办法都是它对付余项的手段,而这里出现的是第十种,而且是唯一一种朝外用力的:它不再处理已经溢出的东西,它去改造那个会溢出的源头,让它少溢出一点。一样东西如果本来就不会跑出尺子,构就不必再费心去收拾它。</p>
+
+<h3>七 说得太新还是说得不够</h3>
+
+<p>上面那一整套讲法,来自一位学者提出的命题,而这个命题争议很大,值得把两边都摆出来。</p>
+
+<p>她的核心叙述是这样的。那家搜索公司在互联网早期发现,人的行为留下的痕迹不只是改善服务的副产品,它可以被抽取,加工,出售。她给这种被抽走的东西起了个名字,叫行为剩余。行为剩余被加工成预测产品,卖进一种关于人的未来行为的市场;而到了后期,平台不只预测行为,还通过一整套设计去调校和诱导行为。</p>
+
+<p>她还给了一个数字:那家公司的收入从 2001年的八千六百万美元,增到 2004年的三十二亿美元,涨了三十五倍多。她认为正是这个增速,把原先藏着的那项发明暴露了出来。</p>
+
+<p>支持她的人看重的是这套命名的能力。免费服务,个性化,小红点,推荐流,智能家居,黑箱拍卖,这些零碎的经验被放进了一条连续的历史线索里。有评论者说这本书既是描述上的力作,也是理论上的胜利,并同意它确实描写出了一种新的商业模式,一种新的提取方式,和一种新的控制方式。</p>
+
+<p>而批评有四类,而且它们彼此不同。</p>
+
+<p>把这四类原样摆出来是必要的,因为它们不是同一种反对。有的说它把新东西说得太新,有的说它把旧东西说得太少,有的说它的话讲得太重,有的说这件事早就有人讲过而且讲得更接近根子。四类里的每一类,都可以在承认前面六节所有事实的前提下成立。</p>
+
+<p>第一类说她把这件事说得太新了。同一位评论者指出,更早的研究传统没有被充分处理;而把这套东西描述成对一片无法之地的占据,是不够的,因为它和法律的关系要复杂得多,也生产性得多。批评者并不否认新东西存在,只是认为它建立在一段更长的法制,基础设施与治理史之上。</p>
+
+<p>第二类说,监控太多,资本主义太少。一位批评者写下过一句很锋利的话:监控资本主义,不出所料地,更多是监控,而不是资本主义。他的意思不是替平台开脱,而是说:如果只盯着行为剩余,就会把更深的资本积累逻辑当成背景噪音,而那里有长期盈利,竞争压力,成本外部化,国家支持,全球不平等。</p>
+
+<p>第三类来自法律与政策的分析者。有一篇长评承认她抓住了真实的危险,却认为论证常被过度的夸张覆盖;他们更愿意使用监控经济这个说法,而不是监控资本主义,并明确表示要质疑那种与前身存在激进断裂的判断。这里的分歧不是有没有问题,而是这些问题够不够格被命名为一个新的资本主义阶段。</p>
+
+<p>第四类来自更早的劳动研究传统。有研究者把社交媒体描述成玩耍即劳动的场域,强调闲暇时间和劳动时间的边界被打散;另有研究者把平台化描述为把大量报酬过低或者根本无酬的任务分配给使用者,并通过标准化,碎片化和任务化去协调这些贡献。对这一派来说,重点不是一种全新的资本主义逻辑,而是数字资本主义把劳动,消费,游戏和社交重新组织进了价值增殖。</p>
+
+<p>还有一类强调全球不平等,把数据关系理解成一种数据殖民:不是说今天简单重复旧殖民主义,而是说人类生活本身被不断征用为积累的原料。</p>
+
+<p>而在这一点上,有一位同样研究数字劳动的学者提出过一条提醒,它值得原样记下来。他说,直接把当代的数据机制类比为奴隶制,帝国主义或者殖民,可能会错过这套新安排在历史上的独特性。</p>
+
+<p>这条提醒对怎么写这一段历史很要紧。</p>
+
+<p>第八篇里写过一次把人整个压进价格平面的事,那里有法权上的占有和买卖,有暴力,有把人写进保险单的记录。这里没有那些。</p>
+
+<p>分别不只在有没有暴力。更要紧的分别在于交易的对象。那里被压进价格平面的是一个人的整个人身,而且这件事在法律上被写明,可以被抵押,被继承,被写进保险单。这里没有任何一份文件写着谁属于谁,而且写不出来,因为被交易的东西根本不是一个可以归属的实体。</p>
+
+<p>这里发生的是另一件事:没有人在法律上占有你,而你的注意力和行为,被努力维持在随时可价,可算,可卖的状态。</p>
+
+<p>把两者混成一种,既冤枉了历史,也放过了眼前这一种的独特之处。</p>
+
+<p>这条纪律在前面已经用过一次。第十六篇里把三场饥荒并读,那里也要求把三种排除人的技术分清楚,而不是笼统地说它们都是一回事。分清楚不是为了减轻分量,恰恰相反:只有把一样东西的具体形状说准了,才谈得上知道它到底做了什么。</p>
+
+<h3>八 逃出去的东西</h3>
+
+<p>最后一组争论是关于该怎么办的,而它同样没有收口。</p>
+
+<p>一派主张把数据当作劳动。有几位研究者在 2018年提出,应当至少在一定程度上把数据视为劳动,而不是视为企业凭观察自然生成的资本。他们的论点是:平台是数据的主导买方,接近于一种买方独占的力量;把数据当成免费的,会低估使用者的贡献,加剧分配的不平等,也让主导平台长期从这个零价格里得益。</p>
+
+<p>这一派的长处是它把免费这个说法拆掉了。</p>
+
+<p>免费这两个字在前面几篇里已经露过面。第十二篇里,家务之所以在账上是零,一半原因是它从来没有被要求报价。这里的情形相似而不相同:那里是没有人去算,这里是算得极细,只是算出来的收益归了另一边。使用平台的人并不是毫无贡献地白用服务,平台的价值确实部分依赖他们持续产生的信号,偏好,文本,图像,点击,标注和反馈。</p>
+
+<p>而异议有好几种。</p>
+
+<p>一种是概念上的。有学者在 2024年直接问:数据贡献真的是劳动吗。他的回答是,按日常关于工作的观念看,数据贡献通常并不满足人们对重要性,努力程度和人际承认的直觉要求。他不是说不该监管,是说把所有数据贡献都称作劳动,概念上可能延伸过头。</p>
+
+<p>一种是政治经济上的。有研究者认为更合适的说法不是数据即劳动,而是数据即资本;关心的重点不该是给使用者补发工资,而是数据如何进入无止境的积累运动。</p>
+
+<p>还有一种更根本。有研究者不愿意把重点放在报酬上,他们认为如果把问题说成给数据发工资,很可能过快接受了平台设定的那把共同尺度,仿佛一切都可以靠补偿解决。而他们要指出的是,平台并不是只少付了你一笔钱,它在重做生活世界的边界,让更多本来不该被持续征收的东西变成随时可提取的投入。</p>
+
+<p>把两派压成两句话:</p>
+
+<p>一派问,既然使用它的人创造了价值,为什么不付钱。</p>
+
+<p>另一派问,为什么要先接受把生活切成可结算输入这个前提。</p>
+
+<p>前者要把这些人重新拉进合同与分配。后者怀疑合同这套语言已经晚了一步,因为边界在此之前就被改写了。</p>
+
+<p>两边其实都承认同一件事实,只是往下走的方向不同。承认的是:有一样属于人的东西正在被持续地取走,而取走它的过程没有经过一次真正的商量。分歧在于,要不要用商量的语言去追回它。</p>
+
+<p>这里不裁决。</p>
+
+<p>而无论站在哪一边,有一件事在材料上是清楚的:这把尺子从来没有量全过。</p>
+
+<p>2000年那份文件已经记下,当时只有四成人听说过那种识别标记,而画像本身对被画的人不可见。识别标记可以被删掉,浏览器设置可以被改动,而不知情本身就让画像不稳定。</p>
+
+<p>后来的事情更直接。有研究发现,某地区的隐私规则引入之后,展示广告改变购买意向的效果大约下降了六成五。</p>
+
+<p>这个数字要两面读。</p>
+
+<p>一面是,定向广告的价值不是想象出来的,它是真的,而且相当大。</p>
+
+<p>另一面是,这套给内部定价的机器高度依赖追踪能力,而追踪能力不是不可逆的。它可以被法律削掉一块,被浏览器削掉一块,被操作系统削掉一块。</p>
+
+<p>这一点值得记住,因为前面十九篇里很少出现。构的量程一路是往外扩的:从泥板扩到硬币,从硬币扩到纸,从纸扩到方程,从方程扩到几百万亿的合约面值。而这一次,量程被人为地推回去了一截,并且推它的不是危机,是规则和设备。构的边界第一次被从外面往回收,而且收得动。</p>
+
+<p>那家社交平台在 2024年的年报里,仍然向投资者承认:监管环境,第三方的移动系统和浏览器的变化,已经限制了它获取信号,进行定向和测量的能力,并对广告收入产生了不利影响。</p>
+
+<p>一家把可预测性做成主营业务的公司,在自己的正式文件里写下这句话,等于承认了一件事:那把尺子的量程,不是由被量的世界决定的,是由允许它伸到哪里决定的。</p>
+
+<p>现在可以回到那句流传很广的话了:你不是顾客,你是被卖的东西。</p>
+
+<p>这句话粗,而且不准。</p>
+
+<p>平台很少给一整个人贴一个价。它给的是一串更碎的,不断波动的影子价格:你下一次点击值多少,你多停留三秒会让这条广告的相关性提高多少,你朋友的一个赞能给一个品牌带来多少杠杆,你被判断为高意向会让广告主多出多少钱,你的画像会不会让你在某个市场上被归为高风险,因而付出更高的价格。</p>
+
+<p>被做成市场对象的,不是法理意义上的那个人。</p>
+
+<p>是那个人的可预测的外观。</p>
+
+<p>这个说法听上去像是一种缓和,其实不是。一样东西被当成你来交易,和你本人被交易,在法权上完全不同;而在日常的经历里,两者的距离没有那么远。你申请一份保险,对面看的是那个外观;你打开一个页面,给你的价是照着那个外观算的;你想找一份工,先被读到的也是那个外观。你本人始终在场,而在场的你不参与那些计算。</p>
+
+<p>一个人身上最难被预测的部分,恰恰是他最像他自己的那部分:改主意,不按提示走,把手机扣过去,今天不想买,明天忽然想买,说不清为什么。</p>
+
+<p>这些在这本账上不是价值。它们是噪音。</p>
+
+<p>前面十九篇里,余项是被账本漏在外面的东西。这里的余项是被账本认定为噪音的东西:它没有被漏掉,它被量到了,而且被扣掉了,因为它降低了预测的准确度。</p>
+
+<p>而它降低预测准确度这件事,恰好是它还在的证据。</p>
+
+<p>账还没有算平,它仍旧在记。</p>
+
+      </div>
+
+      <div class="essay-body lang-en">
+
+<h3>1. The Poverty of Attention</h3>
+
+<p>In 1971 a scholar who studied organizations wrote a sentence that would be quoted for decades afterward: that once information becomes abundant, it manufactures a poverty of attention. In a world rich with information, he went on, what information truly consumes is the attention of whoever receives it, and so most of the real cost of information is paid not by the party producing it but by the party forced to take it in.</p>
+
+<p>At the time this was meant only as a diagnosis. What deserves more attention is what he did immediately afterward: he began asking whether this newly scarce resource could be given a unit of measure, and whether, once measured, it could be efficiently allocated. From the moment attention was named as scarce, it became something waiting to be counted.</p>
+
+<p>This starting point breaks from the pattern set by the nineteen essays before this one. In each of those, the thing the construct needed to render commensurable already sat in the world, plain and physical: a field of land, a hold full of cargo, a day's labor. All that was missing was a shared unit. Attention has no such prior existence. It occupies no space, cannot be moved, cannot be banked for tomorrow, and disappears in the very instant it is spent. To build a scale for a thing like that, one first has to manufacture its footprints.</p>
+
+<p>Manufacturing footprints is the thread running through every section that follows, and it grows finer each time. First: was it seen at all. Then: was it clicked. Then: how long did the person linger, where did they scroll to, where did they arrive from, where did they go next, whom are they connected to, and what can all of this, added together, be made to predict. Each added variable sharpens the scale by one more degree, and every sharpening pulls in a fresh population of things that had never been countable before.</p>
+
+<p>Twenty-three years later, in October of 1994, a website ran what is generally credited as the first banner advertisement on the web. It is remembered today chiefly for one statistic: its click-through rate is said to have reached forty-four percent.</p>
+
+<p>People who worked in the industry at the time, looking back on it, did not dwell on the fact that advertising had finally arrived online. What they dwelled on was something else entirely: for the first time, an advertiser could know how many people had actually seen an advertisement, and how many had done something in response.</p>
+
+<p>That distinction set the terms for the next thirty years. Newspapers and television also sold advertising, but the only figures they could ever report were circulation and ratings — estimated totals, guesses dressed up as numbers. A television commercial airs, and no one can say who watched it, who got up to refill a glass of water halfway through, who watched with total indifference. Half of what an advertiser paid was, in effect, payment for a number it could never actually verify.</p>
+
+<p>This was the dividing line.</p>
+
+<p>From this point forward, the audience stopped being a formless mass of people. It broke apart into discrete, countable events: an impression, a click, an interaction.</p>
+
+<p>And once a thing can be counted, it can be settled; once it can be settled, it can be bid on; and once it can be bid on, someone will always find a way to make the number larger. This road has already been walked several times over the course of this series, except that this time, what waits at the far end of it is neither a plot of land nor a shipment of goods.</p>
+
+<p>In the nineteen essays before this one, the remainder was always what spilled out of the ledger: the old debt no one could ever quite settle, the column measured with precision but never actually examined, the proof that could not be produced, the connections with no column to sit in, the person whose reading on systemic risk came back as zero.</p>
+
+<p>The construct had tried nine different ways of handling it, and every one of the nine was defensive: loosening the requirement, taking a new name, measuring precisely and declining to ask further, converting it into a figure that could be folded into cost, drawing the boundary a notch tighter, giving it an orbit that circled the ledger without ever touching it, demanding a voucher it could not produce, reclassifying it, or simply keeping it off the books.</p>
+
+<p>What happens across the next thirty years runs in the opposite direction.</p>
+
+<p>The construct stops waiting for the remainder to spill over. It goes out and takes it.</p>
+
+<p>To be precise, going out and taking it is not the same as seizing it by force. What actually happens is more fundamental: shape gets manufactured for things that never had any. A mind wandering today, three extra minutes spent somewhere yesterday, a sudden urge to buy something last month — these things had always been happening; they had simply never become events that could be written down. The construct's first move is to turn them into events.</p>
+
+<h3>2. The Warning They Filed Away</h3>
+
+<p>In 1998, two graduate students published a paper on a large-scale hypertextual web search engine. That paper marked the technical origin of the company that would grow out of it.</p>
+
+<p>In the appendix of the paper's full version, buried in a section on advertising, the two of them expressed open doubt about search funded by advertisers. The sentence that matters reads: advertising-funded search engines will be inherently biased toward the advertisers and away from the needs of the consumers.</p>
+
+<p>This is not a paradox that critics invented for them after the fact. It is a judgment the two of them wrote down themselves, at the very start of their venture.</p>
+
+<p>The place this sentence occupies is the same kind of place occupied by the half-deleted Smith of Essay 9, or the clause in Essay 17 that almost never gets invoked. The construct left a warning against itself inside its own archive, and that warning survives intact, available to anyone willing to look. It was never destroyed. It was simply never followed.</p>
+
+<p>Precisely because the warning survives, the turn that came later deserves closer scrutiny. It was not technological necessity working itself out. It was a choice, made under commercial pressure and within reach of a scalable business model, to walk the very road its founders had once flagged as dangerous.</p>
+
+<p>This matters as an argument against fatalism. The whole subsequent machinery tends to get told as a story of technology growing on its own: give it a network and it will grow advertising; give it advertising and it will grow tracking; give it tracking and it will grow profiles. But what these two wrote down proves that someone, at the time, could see another road, and could see in advance what the chosen road would cost. The road was chosen. No one was simply swept along by it.</p>
+
+<p>The shape of that road was worked out, during these very same years, by an entirely different company.</p>
+
+<p>Between 1998 and 2001, a search company turned pay-per-click search advertising into an organized market. In 2001 it announced publicly that it was the creator of the market for pay-for-performance search. In the second quarter of that year alone, it brokered three hundred and twenty-three million paid, targeted referrals, with roughly forty-five thousand advertisers bidding against one another for position in the search results.</p>
+
+<p>It charged nothing unless someone clicked.</p>
+
+<p>The weight of that one design choice is easy to pass over, so it is worth spelling out.</p>
+
+<p>Before this, advertising had always been priced by space and by time: so much for a full page, so much for thirty seconds in prime time, priced off a circulation figure, off a ratings estimate. What was being bought was position — a chance at exposure, the possibility of being seen by some estimated number of people over some stretch of time.</p>
+
+<p>Pay-per-click changed what was actually being priced. The advertiser was no longer buying a position. It was buying an action.</p>
+
+<p>On its face this looked like nothing more than a fairer way to charge: if nobody paid attention to your ad, you owed nothing. It sounds, if anything, like a concession to the advertiser. But the real consequence lies elsewhere. Once only the action counts, the entire machine grows in whatever direction produces more actions, not in whatever direction makes the content itself better. Essay 13 already made this point: once the construct settles on a unit of measure, all subsequent effort bends toward that unit.</p>
+
+<p>And that action is performed by one specific person, at one specific moment.</p>
+
+<p>For the first time, then, a verifiable line ran between the advertiser and that person. In the old, murky account, an advertiser paid for an estimated total; now every cent it spent corresponded to an actual person actually lifting a finger. Inside the advertising industry this was treated as a thorough and unambiguous advance. It was.</p>
+
+<p>In the fourth quarter of 2000, the same search company launched self-serve text ads, at first charged by impression; by the first quarter of 2002 it had converted its entire advertising system to pay-per-click.</p>
+
+<p>From this point, a machine had its basic unit. That unit was not an inch of page, not a second of airtime, not a thousand impressions.</p>
+
+<p>It was a person lifting a finger to click.</p>
+
+<p>This unit had a property no scale before it had ever possessed: it could only be completed by the very person being measured. An acre of land does not have to consent to being surveyed. A hold of cargo does not have to cooperate with being weighed. This unit does. If no one clicks, the number simply does not exist. The raw material for the entire machine could only be manufactured, by hand, by billions of people every day — people who, in manufacturing it, did not believe they were producing anything at all.</p>
+
+<h3>3. The Auction No One Attends</h3>
+
+<p>In 2004, that company prepared to go public, and the filing it submitted described its machine with unusual clarity.</p>
+
+<p>Advertisers paid only when someone clicked, and every single search query triggered an automatic auction.</p>
+
+<p>An ad's position depended on more than its bid. It also depended on measures like click-through rate, used as a stand-in for interest: an ad that was more relevant, more precisely targeted, would rise automatically simply by being clicked more often.</p>
+
+<p>The filing offered a worked example of the pricing. Bidder A bid one dollar but paid only sixty-one cents; bidder B bid sixty cents but paid fifty-one; bidder C bid fifty cents and was charged the minimum, five cents.</p>
+
+<p>This example is worth pausing over, because it reveals something quite refined: the highest bidder does not necessarily pay its own bid. What it pays depends on how much the bidder ranked below it offered, and on how likely the platform judges its own ad to be clicked.</p>
+
+<p>Between what a person bids and what that person actually pays lies a layer of prediction.</p>
+
+<p>That layer of prediction is the single most important part of the whole machine. It means what an advertiser pays depends not only on what it is willing to offer, but on how likely the platform thinks its ad is to be clicked — which is to say the platform is simultaneously running the auction and appraising the goods, and the number it appraises determines directly how much the platform itself collects. No earlier market had ever occupied this position. An auction house does not set the price of the lot it sells. An exchange does not wager on which stock is about to rise.</p>
+
+<p>This is precisely where this machine parts ways with every market that came before it.</p>
+
+<p>In earlier markets, price took shape between two people. A buyer names a figure, a seller counters, or an auctioneer calls a number until no one raises it further. Price is the outcome of a negotiation or a bidding contest, and the parties to it are the buyer and the seller.</p>
+
+<p>Here, a third party takes part in setting the price — and that third party is not present, and does not know it took part at all.</p>
+
+<p>It is the person doing the searching.</p>
+
+<p>His search terms entered the auction. His past clicking habits entered the auction. His estimated interests entered the auction. He decided who would rank first, and he decided how much the advertiser ranked first would owe.</p>
+
+<p>And he himself never knew the auction had taken place. The entire sequence, from the moment he pressed enter to the moment the page appeared, took under a second.</p>
+
+<p>That fraction of a second is not a technical footnote. It is the condition that makes the whole arrangement possible at all. Any step requiring a human reaction would slow the system down past the point where billions of repetitions could run; and anything too fast for a person to notice is, by the same stroke, too fast to be questioned. The construct once relied on concealment to keep questions from being asked — Essay 17 already described concealment's function as a way of saving effort. Here concealment is not even necessary, because the whole transaction is finished before anyone could notice it happening.</p>
+
+<p>In the first quarter of 2003, the same company extended this logic beyond the search page itself. Websites that joined its network could carry these ads on their own pages, with advertisers still paying strictly by the click.</p>
+
+<p>It was no longer only the moment of searching. Many of the moments spent simply browsing were now wired into the same settlement system.</p>
+
+<p>Web content, ad space, an advertiser's spending, and a viewer's actions had all been tied together into one apparatus.</p>
+
+<p>In 2007 a federal agency approved that company's acquisition of an advertising-technology firm for three point one billion dollars, stating explicitly that it would not block the deal on privacy grounds, since privacy fell outside its antitrust authority — while at the same time acknowledging that the entire online advertising market had privacy problems of its own.</p>
+
+<p>Looking back, the significance of that acquisition is this: the auction logic built for search advertising, the delivery mechanics of display advertising, and the infrastructure of tracking and third-party ad-serving were stitched together at a far deeper level than before.</p>
+
+<p>Once stitched together, a single person's path across the internet stopped being a scatter of unrelated fragments. What he looked at on one site began shaping what he was shown on another; the words he searched yesterday followed him into today. Essay 18 described a machine that eventually began keeping other ledgers besides its own; here the direction runs differently — what is being recorded is still the outside world, except that world has now been strung into a single continuous line.</p>
+
+<h3>4. Counted Without a Click</h3>
+
+<p>Turning behavior into a trajectory requires one specific capability: the ability to recognize that this is the same person as before.</p>
+
+<p>Around 1999 and 2000, an identifying marker stored inside the browser, working together with advertising networks, advanced what a person had looked at on one site into a record of what he had done across a great many sites.</p>
+
+<p>In 2000, that same federal agency submitted a report on online profiling to Congress.</p>
+
+<p>The report noted that the information gathered by ad networks was usually linked to the network's own identifying number rather than tied directly to any real name.</p>
+
+<p>Then it wrote down a sentence that mattered more than the rest: this kind of information was collected, in its own words, even if the consumer never clicks on any advertisement.</p>
+
+<p>That sentence describes a situation that had never existed before.</p>
+
+<p>In the previous nineteen essays, for a person to enter the ledger at all, he first had to do something. He had to borrow money, sign a contract, pay rent, walk into a factory, buy an item, or at the very least be entered once onto some roster somewhere. The ledger recorded transactions that had actually taken place.</p>
+
+<p>Here, no transaction is required. No click is required. No consent is required. No awareness is required.</p>
+
+<p>Merely passing by is enough.</p>
+
+<p>Those three words mark a boundary. In the nineteen essays before this one, a person and the construct always shared at least one point of contact: he signed something, he paid something, he was entered on a list, he drew a wage, he stood before a judgment once. Contact leaves behind a point in time — something that can be pointed to, argued over, revisited after the fact. Passing by leaves no such point behind.</p>
+
+<p>This also reveals something about the remainder's nature. In earlier essays, the remainder usually needed some specific moment to show itself: the day of settlement, the day of judgment, the weeks when resources ran short. Here the recording never stops, and no such moment exists. A thing recorded continuously, with no day ever set aside for reconciling the account, is a thing that never gets the chance to be laid out on the table for anyone to examine.</p>
+
+<p>A few figures from that report are worth setting down exactly as given. In the sample surveyed at the time, fifty-seven percent of the busiest websites allowed third parties to place identifying markers, and of those, only twenty-two percent mentioned third-party markers or data collection anywhere in their privacy policy. Among the hundred largest websites, seventy-eight percent allowed third-party markers; only fifty-one percent disclosed it.</p>
+
+<p>One more figure says even more about the situation: at the time, only forty percent of computer users had ever heard of this kind of identifying marker at all.</p>
+
+<p>The report also recorded a worry current at the time: that this sort of profiling might be used to set the price and terms of goods and services, even life insurance. Commentators gave the practice a name, borrowed from an older banking habit of drawing lines on a map to exclude certain neighborhoods from lending — they called it drawing lines online.</p>
+
+<p>This distinction is worth making precisely, because it moves the whole matter from the mild territory of getting to know you better to somewhere else entirely.</p>
+
+<p>Being profiled does not only mean seeing advertisements that fit you more closely. It can mean the very same item is quoted to you at a different price. It can mean some insurance policy carries different terms for you. It can mean certain opportunities simply never appear in front of you at all — and you would never know they had existed.</p>
+
+<p>Essay 19 observed that the scale built for rescue could illuminate institutions but not individuals. Here the direction runs the other way: this scale resolves down to a level so fine that even the person being measured does not notice it happening.</p>
+
+<p>What the two cases share is this: in both, the party being illuminated is not there.</p>
+
+<p>Being absent is one more form of a question the previous essays have kept circling back to. In Essay 13, the people who could not produce documentation were not present at their own judgment. In Essay 16, the people left outside the register were not present when the register was compiled. In Essay 19, the people who lost their homes were not present when it was decided who would be rescued. This time it goes further still: he is not only absent from the room — he does not even know he has been counted at all.</p>
+
+<h3>5. A Friend's Endorsement, For Sale</h3>
+
+<p>In 2012, another company preparing to go public disclosed, in its own filing, a different sort of thing entirely.</p>
+
+<p>When a person clicks like, or leaves a comment on a post, that action gets pushed out to his friends through the news feed — and a brand, the filing explained, could purchase a product that would significantly increase the reach, the frequency, and the prominence of that social action.</p>
+
+<p>Translated into plain speech: the fact that you think something is worthwhile had just become purchasable inventory.</p>
+
+<p>A word of fairness belongs here. A person telling a friend that something works well is one of the oldest transactions in any market, and it was happening long before any of this — the economy of remembered favors in Essay 1 ran on exactly this fuel. The platform did not invent word of mouth. What it did was attach a price list to it.</p>
+
+<p>This step reaches further than pay-per-click ever did.</p>
+
+<p>Pay-per-click bought your action. This bought the weight your action carried with someone else.</p>
+
+<p>And that weight was valuable precisely because it was not advertising.</p>
+
+<p>An advertisement on a page puts people on guard: they know the position was bought, they know whoever is speaking got paid for it. A like from a friend carries no such warning. It appears in the same feed, looks exactly like everything around it, and has already been paid for. A person doubts an advertisement; that same person does not doubt the fact that a friend clicked like. Personal trust was not routed around here. It was taken as raw material.</p>
+
+<p>This step succeeded because of one small technical difference: a social platform knows who is friends with whom. The advertising machines that came before it knew what a person had looked at; this machine also knows who he knows, who will see what he does, whose word he is more likely to take. A relationship — a thing that had only ever existed inside the memories of the people involved, with no roster, no identifying number, no measure of its own strength — acquired, the moment it was recorded, all three.</p>
+
+<p>Earlier essays have said, more than once, that anonymous pricing and personal, face-to-face trust have never simply replaced one another.</p>
+
+<p>In Essay 6, paper money needed people willing to vouch for it before it could stand on its own. In Essay 17, the common scale ultimately depended on a group of people willing to keep honoring the account. In Essay 18, beneath every standard contract and every rating, some irreducible requirement to trust the other party remained buried at each joint.</p>
+
+<p>In each of those cases, the personal was propping the anonymous machine up from underneath.</p>
+
+<p>This time is different.</p>
+
+<p>This time the anonymous machine reaches out on its own and takes hold of the personal, converting it into a distribution capacity with a price attached.</p>
+
+<p>Trust did not prop up the machine. Trust became the machine's feedstock.</p>
+
+<p>The difference between the two can be put this way: whatever props a machine up is remembered only once the machine breaks down; whatever serves as feedstock gets used up every single day the machine runs normally. The first reveals itself in a crisis. The second thins out, day by day, in ordinary time, without there ever being a single day when anyone notices it has grown thinner.</p>
+
+<p>And feedstock gets consumed. If a person discovers that a friend's recommendation was mixed in with paid distribution, the next time he sees that friend click like he will think about it one degree more than before. That extra degree of thought will not show up immediately in any number anywhere; it accumulates slowly, and once it has accumulated far enough, the thing being treated as raw material is simply worth less than it used to be. Here the construct runs into an object it finds very hard to manage: the harder the vein is mined, the thinner it runs.</p>
+
+<h3>6. The Price of a Possibility</h3>
+
+<p>This is the point where the single most important part of the whole story comes into view.</p>
+
+<p>On the display-advertising side, real-time bidding emerged around 2009. One industry retrospective notes that on a particular ad exchange, the share of inventory sold through real-time bidding jumped from eight percent in January of 2010 to sixty-eight percent by May of 2011.</p>
+
+<p>In a little over a year, it went from under one-tenth to nearly seven-tenths.</p>
+
+<p>This curve's shape has appeared before in this series. Essay 18's notional principal, Essay 14's reserves and liabilities — whenever they climbed, they climbed this same way: no single year produced a dramatic break; each year simply did a little more than the year before it; and only in hindsight had the world already changed into something else.</p>
+
+<p>By this stage, an advertisement was no longer something sold once, in a fixed corner of a page. Every single impression could now trigger an automatic, instantaneous, cross-platform auction.</p>
+
+<p>And inside the formula these auctions used to rank their results, one component deserves to be pulled out and examined on its own.</p>
+
+<p>According to that social platform's own explanation to advertisers, the auction ranked bids by total value, built out of three components: the bid itself, an estimated action rate, and ad quality.</p>
+
+<p>An estimated action rate.</p>
+
+<p>Those three words deserve to be read slowly.</p>
+
+<p>What they mean is this: the platform estimates, for this one specific person, right now, how likely he is, having seen this particular advertisement, to take the action in question. Will he click. Will he install the app. Will he fill out the form. Will he buy.</p>
+
+<p>And that estimate feeds directly into the price.</p>
+
+<p>To be clear, this estimate does not need to be accurate. It only needs to be slightly more accurate than a competitor's estimate, and only on average, across enormous numbers. Looking at any single person, the platform can be entirely wrong; averaged across hundreds of millions of impressions, that small edge is money. This is one more way this machine differs from every scale that came before it: it never sets out to measure any one specific person correctly. It only needs to measure a very large population slightly more correctly than everyone else does.</p>
+
+<p>In the nineteen essays before this one, whatever the construct priced was always something that already existed, or had already happened. A piece of land has an area. A day of labor has a duration. A debt has a principal. A contract has a notional value. A house has a sale price. Even the most abstract instruments — options, swaps, synthetic products — price some already-existing underlying asset's future performance.</p>
+
+<p>Here, what gets priced is something that has not happened yet, and quite possibly never will.</p>
+
+<p>You did not click. You may never click. But whether you will click has already, tens of milliseconds earlier, been reduced to a number, and that number has already decided which advertiser won this particular impression, and how much that advertiser owes for it.</p>
+
+<p>A person's possibility has been settled — and that possibility neither needs to come true, nor does.</p>
+
+<p>It is worth glancing back at this point. Essay 11 explained that labor power is a peculiar commodity because what gets sold is not work already finished but a capacity to work over some future stretch of time — already one step ahead of what is being traded, since the thing traded had not happened yet. Here the step goes further still. Labor power still eventually has to be used: an employer who pays still has to call the worker in. Here, that final step is not even required. Your possibility gets sold, and you are free to do nothing at all.</p>
+
+<p>The common measures of the industrial age were hours worked, units produced, freight charged, prices, interest rates — all of them pointing at something already completed.</p>
+
+<p>This era's newly added common measures are click-through rate, cost per click, relevance score, quality ranking, estimated action rate, average price per ad, a person's lifetime value.</p>
+
+<p>All of them point at something that has not happened yet, and at how easily a person can be anticipated.</p>
+
+<p>Strictly speaking, this is not a seizure of anyone's inner life. Nobody has taken hold of your thoughts.</p>
+
+<p>What gets possessed and traded is the outward trace an inner life leaves behind, and the predictability that can be calculated from those traces.</p>
+
+<p>This distinction has to be held onto, not overstated. Nobody reads your thoughts. Nobody takes your will away from you. Predictability is not an inner life; it is the regularity an inner life leaves on the outside. A person remains free, at any moment, to break the pattern — and that fact turns out to matter a great deal for what comes next.</p>
+
+<p>And here comes the single most important turn in this entire history.</p>
+
+<p>Once predictability itself becomes a commodity, increasing predictability becomes a business.</p>
+
+<p>A scholar who studies this mechanism carried the thought all the way to its conclusion: the surest way to predict behavior, she wrote, is to intervene at its source and shape it.</p>
+
+<p>Essay 18 observed that a model does not stand beside the market describing it; it enters the market and changes it, so that the thing being measured no longer holds still — it moves according to whatever reading the scale gives it.</p>
+
+<p>Here it goes one level further.</p>
+
+<p>The scale is no longer merely waiting for the thing it measures to move on its own. It has begun reaching in and reshaping the thing it measures into something easier to measure.</p>
+
+<p>A person who is easier to predict reads higher on this particular ledger. And so every practice that makes people more predictable now carries an economic rationale of its own: a fixed prompt, a recommendation that surfaces exactly when you are about to leave, a day sliced into many identically sized segments.</p>
+
+<p>Not because anyone involved is malicious. Because on this ledger, being predictable simply is the value.</p>
+
+<p>This is the form the construct finds hardest of all to handle. The nine methods described earlier were all ways of handling a remainder after it had already appeared, and here a tenth emerges — the only one that pushes outward rather than inward. It no longer processes whatever has already overflowed. It goes and remakes the very source the overflow comes from, so that it overflows a little less. A thing that was never going to run past the edge of the scale in the first place is a thing the construct never has to trouble itself with cleaning up.</p>
+
+<h3>7. Too New, or Not New Enough</h3>
+
+<p>Everything laid out above traces back to a thesis proposed by one particular scholar — a thesis that has proven highly controversial, and both sides of the controversy deserve to be laid out.</p>
+
+<p>Her central account runs as follows. That search company discovered, in the internet's early years, that the traces left behind by human behavior were not merely a byproduct of improving its service — they could be extracted, refined, and sold. She gave the extracted material a name: behavioral surplus. Behavioral surplus, in her account, gets manufactured into prediction products and sold into a market that trades in people's future behavior; and in a later phase, platforms stop merely predicting behavior and start, through an entire architecture of design, tuning and inducing it.</p>
+
+<p>She also supplied a figure: that company's revenue grew from eighty-six million dollars in 2001 to three point two billion dollars in 2004, a rise of more than thirty-five times over. It was precisely this rate of growth, she argues, that exposed an invention that had until then stayed hidden.</p>
+
+<p>Her supporters value, above all, her capacity for naming. Free services, personalization, the small red notification dot, the recommendation feed, the smart-home device, the black-box auction — scattered experiences like these get gathered into a single continuous historical thread. One reviewer called the resulting book both a descriptive tour de force and a theoretical triumph, agreeing that it had genuinely captured a new business model, a new mode of extraction, and a new mode of control.</p>
+
+<p>The criticism, meanwhile, comes in four distinct varieties, and they do not resemble one another.</p>
+
+<p>Laying out all four exactly as they stand matters, because they are not the same objection wearing different clothes. Some say she made the new thing sound newer than it is. Some say she accounted for too little of the old. Some say her language is pitched too strongly. Some say all this was said before, and said closer to the root of the matter. Every one of the four can hold up while still granting every fact laid out in the six sections above.</p>
+
+<p>The first kind says she made it sound too new. The same reviewer quoted above points out that earlier research traditions were never adequately reckoned with, and that describing all this as the occupation of a lawless frontier will not do, because its relationship to law is far more complicated, and far more generative, than that image allows. The critics do not deny that something new exists. They simply think it stands atop a much longer history of law, infrastructure, and governance.</p>
+
+<p>The second kind says: too much surveillance, too little capitalism. One critic put it in a single sharp line: surveillance capitalism, unsurprisingly, turns out to be more surveillance than capitalism. His point is not to let the platforms off the hook. It is that fixating only on behavioral surplus risks treating the deeper logic of capital accumulation as background noise — and that is exactly where long-run profitability, competitive pressure, the externalizing of costs, state support, and global inequality all actually live.</p>
+
+<p>The third kind comes from analysts working in law and policy. One long review concedes that she has identified a genuine danger, but argues the case is repeatedly buried under overstatement; these critics prefer the term surveillance economy to surveillance capitalism, and explicitly want to challenge the claim of a radical break from what came before. The disagreement here is not over whether a problem exists, but over whether these problems earn the right to be named a new stage of capitalism.</p>
+
+<p>The fourth kind comes out of an older tradition of labor scholarship. Some researchers describe social media as a site of what they call playbor, stressing how the line between leisure time and labor time has worn away; others describe platformization as the practice of parceling out a vast quantity of severely underpaid or entirely unpaid tasks to users, coordinated through standardization, fragmentation, and the breaking of work into micro-tasks. For this camp, the point is not some wholly new capitalist logic but that digital capitalism has reorganized labor, consumption, play, and sociality into a single mechanism of value accumulation.</p>
+
+<p>A further strand emphasizes global inequality, framing the data relationship as a form of data colonialism — not a claim that today simply repeats old colonialism, but that human life itself is now continuously appropriated as raw material for accumulation.</p>
+
+<p>On this point, a scholar who also studies digital labor offered a warning worth recording exactly as he gave it. Reaching straight for analogies between today's data arrangements and slavery, imperialism, or colonialism, he wrote, risks missing what is historically distinctive about this new arrangement.</p>
+
+<p>That warning matters a great deal for how this piece of history ought to be written.</p>
+
+<p>Essay 8 described an episode in which an entire person was pressed flat into a price plane — one that involved legal ownership and sale, involved violence, involved a person's name being entered into an insurance company's records. None of that is present here.</p>
+
+<p>The distinction is not only about the presence or absence of violence. The more crucial distinction concerns the object of the transaction. In that earlier episode, what got pressed into the price plane was a person's entire body, and the law said so explicitly: it could be mortgaged, it could be inherited, it could be entered into an insurance policy. Here, no document anywhere states who belongs to whom, and none could, because the thing being traded is not an entity that could belong to anyone in the first place.</p>
+
+<p>What happens here is something else entirely: no one owns you under the law, while your attention and your behavior are strenuously kept in a state of being priceable, calculable, and sellable at every moment.</p>
+
+<p>Collapsing the two into a single story does an injustice to history, and lets slip past whatever is actually distinctive about the one happening now.</p>
+
+<p>This discipline has already been applied once in this series. Essay 16 read three famines side by side, and it too required keeping three different technologies of exclusion carefully distinct rather than folding them into one undifferentiated story. Distinguishing them was never meant to lessen their weight — quite the opposite: only once a thing's exact shape has been stated precisely does it become possible to say what it actually did.</p>
+
+<h3>8. The Thing That Got Away</h3>
+
+<p>The final set of debates concerns what ought to be done about all this, and it does not resolve either.</p>
+
+<p>One camp argues that data should be treated as labor. Several researchers proposed, in 2018, that data should be regarded, at least to some degree, as labor — rather than as capital that firms simply generate by observing what people naturally do. Their argument: platforms function as the dominant buyer of data, approaching something close to monopsony power; treating data as free underestimates what users actually contribute, deepens distributional inequality, and lets dominant platforms go on profiting indefinitely from a price of zero.</p>
+
+<p>This camp's strength lies in how thoroughly it dismantles the word free.</p>
+
+<p>The word free has already surfaced earlier in this series. In Essay 12, housework registered as zero on the books partly because no one had ever been required to put a price on it. The situation here is similar but not identical: there, no one was doing the counting at all; here, the counting is extraordinarily precise, except the proceeds of that counting land on the other side of the table. The people using these platforms are not contributing nothing in exchange for a free service — a platform's value genuinely depends, in part, on the signals, preferences, text, images, clicks, tags, and feedback its users go on producing.</p>
+
+<p>The objections to this camp come in several forms.</p>
+
+<p>One is conceptual. A scholar asked directly, in 2024: is data contribution really labor? His answer was that, measured against everyday intuitions about what work is, data contribution usually fails to meet people's instinctive standards for significance, effort, and interpersonal recognition. His point was not that nothing should be regulated, only that calling every act of data contribution labor may be stretching the concept past where it can hold.</p>
+
+<p>A second is political-economic. Some researchers argue that the more accurate phrase is not data as labor but data as capital; what should matter, on this view, is not issuing users back pay but how data feeds into an accumulation process with no natural endpoint.</p>
+
+<p>A third runs deeper still. Some researchers resist putting the emphasis on compensation at all, arguing that framing the problem as one of paying wages for data risks conceding, too quickly, the very common measure the platform itself has already set — as though everything could be resolved through compensation. What they want to point out instead is that the platform is not simply underpaying you by some fixed amount; it is remaking the boundaries of the lived world itself, turning more and more things that should never have been subject to continuous extraction into inputs available for harvesting at any moment.</p>
+
+<p>Compressed to two sentences, the two camps read like this.</p>
+
+<p>One asks: since the people using the platform are the ones creating the value, why shouldn't they be paid for it.</p>
+
+<p>The other asks: why accept, in the first place, the premise that a life can be sliced into settleable inputs at all.</p>
+
+<p>The first camp wants to pull these people back into contract and distribution. The second suspects the language of contract has already arrived one step too late, because the boundary in question had already been redrawn before contract ever got there.</p>
+
+<p>Both sides, in fact, agree on the same underlying fact, and differ only on which direction to take it from there. What they agree on is this: something belonging to a person is being continuously taken, and the taking of it has never gone through anything resembling real negotiation. Where they part is on whether the language of negotiation is still the right tool for getting it back.</p>
+
+<p>No verdict will be offered here.</p>
+
+<p>But whichever side one takes, one thing is clear from the record itself: this scale has never once measured everything there was to measure.</p>
+
+<p>The 2000 report already noted that only forty percent of people had heard of that kind of identifying marker at the time, and that the profile itself remains invisible to the person it describes. Identifying markers can be deleted, browser settings can be changed, and the simple fact of not knowing is itself enough to destabilize a profile.</p>
+
+<p>What has happened since is more direct still. Research found that after one region introduced privacy rules, the effectiveness of display advertising at shifting purchase intent fell by roughly sixty-five percent.</p>
+
+<p>That figure deserves to be read two ways at once.</p>
+
+<p>On one side: targeted advertising's value is not an invention of the imagination. It is real, and it is considerable.</p>
+
+<p>On the other side: the machine that sets internal prices for all of this depends heavily on its capacity to track people, and that capacity is not irreversible. It can be cut away by law, cut away by browsers, cut away by operating systems.</p>
+
+<p>This point is worth holding onto, because it appears only rarely in the nineteen essays before this one. The construct's measuring range has, all along, expanded outward: from clay tablets to coins, from coins to paper, from paper to equations, from equations to contracts worth hundreds of trillions in notional value. This time, for once, the range was deliberately pushed back a notch — and what pushed it back was not a crisis. It was rules, and it was devices. For the first time, the construct's boundary was pulled inward from the outside, and the pulling actually worked.</p>
+
+<p>In its 2024 annual report, that same social platform still had to concede to its investors that regulatory conditions, along with changes to third-party mobile operating systems and browsers, had limited its ability to gather signals, target advertising, and measure results, and had hurt its advertising revenue as a consequence.</p>
+
+<p>A company that had made predictability its core business, writing that sentence into its own official filing, amounts to an admission: the range of that scale was never set by the world it was measuring. It was set by how far it was permitted to reach.</p>
+
+<p>Now it is possible to return to that widely repeated line: you are not the customer, you are the product being sold.</p>
+
+<p>That line is crude, and it is not quite right.</p>
+
+<p>A platform rarely puts a single price tag on an entire person. What it produces instead is a string of far more fragmented, constantly shifting shadow prices: what your next click is worth, how much three extra seconds of your attention raises an ad's relevance score, how much leverage one like from your friend hands a brand, how much more an advertiser will pay because you have been judged high-intent, whether your profile gets you sorted into a high-risk category in some market and charged accordingly.</p>
+
+<p>What gets turned into an object in this market is not the person in any legal sense.</p>
+
+<p>It is that person's predictable likeness.</p>
+
+<p>This might sound like a softening of the claim. It is not. Something being traded as a stand-in for you, and you yourself being traded, are entirely different matters under the law; but in the texture of daily life, the distance between the two is not nearly so wide. You apply for insurance, and what the other side examines is that likeness. You open a page, and the price you are shown is calculated off that likeness. You go looking for a job, and that likeness is what gets read first. You yourself are always there in the room, and the you that is there takes no part in any of these calculations.</p>
+
+<p>The part of a person hardest to predict is exactly the part most essentially their own: changing your mind, ignoring the prompt, turning the phone face down, not wanting to buy today, suddenly wanting to buy tomorrow, unable to say why.</p>
+
+<p>On this particular ledger, none of that counts as value. It counts as noise.</p>
+
+<p>In the nineteen essays before this one, the remainder was whatever the ledger let slip past its edges. Here the remainder is whatever the ledger classifies as noise: it was not missed. It was measured, and then it was subtracted, because it lowered the accuracy of the prediction.</p>
+
+<p>And the very fact that it lowers the accuracy of the prediction is exactly the proof that it is still there.</p>
+
+<p>The ledger has not yet balanced. It is still being kept.</p>
+
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="ep19.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">二〇〇八:接得住的,只是连得紧的那些</span>
+            <span class="xiyou-nav-title lang-en">Systemic Risk and the Remainder</span>
+          </span>
+        </a>
+        <a href="ep21.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">评分社会:声誉,也想把账合上</span>
+            <span class="xiyou-nav-title lang-en">The Scored Society</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

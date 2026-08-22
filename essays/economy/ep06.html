@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>宋代交子｜凿构周期律·经济系列 — Non Dubito</title>
+  <meta name="description" content="交子是世界上最早的政府纸币，它让货币第一次和金属脱钩。可一张纸要被当真，靠的不是印在纸上的字，是印在纸背后那个不肯写明的信用。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/economy/ep06.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .essay-entry-point { font-family:var(--sans); font-size:0.72rem; color:var(--ink-muted); font-style:italic; margin-top:0.5rem; margin-bottom:0.25rem; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 凿构周期律·经济系列</a>
+        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Economics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">凿构周期律 · 经济</div>
+          <div class="essay-series lang-en">Chisel-Construct Cycle · Economics</div>
+          <div class="emperor-ep-num lang-zh">第 06 篇，共 23 篇</div>
+          <div class="emperor-ep-num lang-en">Essay 06 of 23</div>
+          <h1 class="lang-zh">第六篇　宋代交子:金属退场之后,总要有人认账</h1>
+          <h1 class="lang-en">Essay 6: Paper and Promise — When the Metal Left, Someone Still Had to Answer for It</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<h3>一 铁钱</h3>
+
+<p>要弄明白世界上第一张纸币为什么出在四川,得先掂一掂那时四川人手里的钱有多重。</p>
+
+<p>北宋统一蜀地之后,长期允许那里继续用铁钱,又曾禁止铜钱进入两川;后来放开了一部分,铁钱仍旧不许出境。铁不值钱,所以同样买一样东西,铁钱要用得多,分量也就沉。商人把铜钱带进川界,一枚铜钱能换十四枚铁钱。买一匹布要背多少铁钱,走一趟山路要雇几个人挑,都是实打实的事。</p>
+
+<p>铁钱之所以这么沉,道理很简单:钱要值多少,一半靠它是什么料做的。铜比铁值钱,同样的价,用铁就得多用,而多用就意味着重。史书上留下过一些叫人吃惊的分量,说买一匹绢要背上百斤的铁钱。买一匹绢是寻常人家过日子的事,不是什么大宗买卖,而这件寻常事,先得解决怎么把钱搬到店里去。</p>
+
+<p>更麻烦的是税。官府一度要求百姓在纳租和缴纳专卖利钱时,按铁钱十枚折铜钱一枚的比率来算。而铜钱在四川本来就少,史书直说铜钱已经枯竭,百姓深以为苦。</p>
+
+<p>《宋史》还留下了几行很刺目的记载。在要求多用铜钱纳税的那些年,地方上的官员和差役趁机取利,折算的比例一层层加码,百姓越发受苦;有人去挖开古墓,砸毁佛像和器物,才凑出四五枚铜钱,结果因此获罪的人很多。</p>
+
+<p>这几行字值得慢慢看。所谓货币制度不合适,落到具体的人身上,是他得去掘别人的坟,得砸掉家里供着的佛像,只为了凑齐几枚形制合乎官府要求的铜片,而且很可能因此被判刑。</p>
+
+<p>在这个地方,共同的尺子并没有消失。它还在,只是它太重了,重到要人背着走,重到为了合乎它的规格,人得去做一些他本来绝不会做的事。</p>
+
+<p>这里有一件事,后面还会一再出现。一把尺子好不好用,不只看它准不准,还看它沉不沉,带不带得动,认不认得出。前面几篇里,通约的难处一直在能不能算清楚;到了四川,难处换了一副样子,它是能算清楚,可算清楚之后那笔钱搬不动。而一样搬不动的东西,再准也没用。</p>
+
+<p>而这里已经埋着一个余项。铁钱能把一匹绢的价算得清清楚楚,算不清的是背着它翻山那半天力气,是路上雇人的工钱,是被抢的风险。这些东西不进任何一本账,却决定着这笔买卖做不做得成。交子要解决的,正是这一块账外的东西。</p>
+
+<p>于是有人想出了一张纸。</p>
+
+<h3>二 十六户</h3>
+
+<p>《宋史》记这件事,只有一句话:起初,蜀地的百姓因为铁钱太重,私下里做出券契来,叫作交子,用来便利交易,由十六户富民主持。</p>
+
+<p>后来李攸的《宋朝事实》记得更细。益州十几户豪民联保做交子,用统一的纸张印造,票面上印着屋宇,树木,人物的图案,各家铺子押上自己的字号和秘密的题号,朱笔墨笔错杂,作为私下的记认。面额是当场填写的,填多少贯不限。要把交子换回现钱,每贯要扣三十文作手续费。</p>
+
+<p>值得留意的是那张纸上都有些什么。统一的纸,固定的图案,各家的押字,秘密的题号,红黑错杂的私记。这些没有一样是为了说明它值多少,它们全都是为了说明它是谁出的,以及别人能不能仿得出来。</p>
+
+<p>换个说法,这张纸上大部分的心思,都花在防伪和落款上,而不是花在标价上。标价那一栏反倒最省事,当场填上就是了,填多少贯都行。真正难做的是让人相信这一张是真的,是那几家出的。金属钱不必操这个心,一枚铜钱是真是假,拿在手里掂一掂,咬一口,看看断面,总能看出来;纸不行,纸的真假不在纸里,在别处。</p>
+
+<p>一张纸凭什么能让素不相识的人肯收?不是凭纸。是凭那十六个名字。</p>
+
+<p>这就是这件事最要紧的地方。铁钱之所以能用,一半是因为官府认它,一半是因为它自己就是一块铁,不管谁拿着,那块铁总在那里。纸不是。纸自己什么都不是,它值多少,全看背后那些人肯不肯认账,认得起认不起。</p>
+
+<p>把金属从钱里抽掉,并没有让钱变得更不需要信任。恰恰相反,金属抽掉多少,压在信任上的分量就重多少。</p>
+
+<p>前面几篇里,匿名的尺子总是靠人格化的东西托着:泥板要靠印章和见证人,硬币要靠发行者的名声和后手的验戳,账本要靠一柜子的信件和担保人。到交子这里,这个关系被推到了尽头,因为除了那几个名字,这张纸真的什么都没有。它是纯粹的承诺,没有任何金属替它兜底。</p>
+
+<p>麻烦也就跟着来了。那些富商收进来的铁钱并没有老实躺在库里,他们拿去收买囤积,广置店铺,屋宇,园田和宝货。于是伪造出现了,官司出现了,挤兑也出现了,最后闹到聚众争吵。官府出面调停的时候,往往每贯只能兑回七八百文,亏的那两三百文,落在拿着券的人身上。</p>
+
+<p>这套教训,后来几百年会以更大的规模重演许多遍:发行的人手里握着别人的信任,而信任是可以先花掉的。</p>
+
+<p>这件事的诱惑之大,不难体会。库里躺着一堆铁钱,来兑的人却总是零零星星,今天来几个,明天来几个,几乎不会所有人同一天全来。既然如此,何不先拿一部分去置产,置了产就有收益,收益又能再置产。这个算盘每一步都讲得通,唯一的漏洞在于那句几乎不会。只要有一天所有人真的一起来了,前面每一步的道理就同时作废。</p>
+
+<p>关于这张纸的根子究竟在哪儿,研究者的看法分成两路,分歧还不小。</p>
+
+<p>一路强调信任的网络。何平特意反对把早期交子直接讲成现代意义上的信用货币,在他看来,关键不在抽象的信用,而在四川那个相对封闭的区域,在茶商集团的名望和偿付能力,在十六户富民的联保,以及地方社会的熟人关系。这张纸能从一家铺子流到陌生人手里,不是因为人们忽然不看人了,而是因为这一圈人的名声,暂时给它提供了公共的可信度。</p>
+
+<p>另一路更看重票据和债权。按这一路的旧说,交子可以理解为类似柜房开出的存款凭证,发行者是债务人,持券的人是债权人,券在市面上转手久了,就近似货币。在这个版本里,交子的起点是存款与兑付这层关系,不是笼统的社会信任。</p>
+
+<p>两种说法看的是同一张纸,看到的根却不一样。一边说它长在关系里,一边说它长在债里。</p>
+
+<p>这个分歧不只是学者的讲究。若说它长在关系里,那么这张纸的根就在一个具体的地方,一群具体的人,出了四川就不灵;若说它长在债里,那么它的根是一种可以到处复制的形式,谁开出可兑的凭证,谁那里就能长出来。前一种说法解释得了交子为什么偏偏出在四川,后一种说法解释得了它后来为什么能被官府接手,还能变成别的东西。两种说法各自抓住了一头。</p>
+
+<p>顺带一提,连这张纸是谁弄成形的,也有争论。许多地方性的叙述和后出的通俗史书,把张咏说成交子之父,把他整顿交子铺,指定十六户富商联保这些事系在具体的年份上;可另一些近年的研究反过来质疑这个说法,理由是张咏家人留下的行状和墓志,并没有强调他发明过交子。更稳妥的说法也许只是:张咏正好身处民间交子定型的那个时段。</p>
+
+<p>连是谁做成的都说不准,这本身很能说明问题。这类东西往往不是某个人某天想出来的,而是许多人各自应付眼前的麻烦,应付着应付着就长成了。</p>
+
+<h3>三 官印</h3>
+
+<p>民间交子的毛病,史料写得很直白:那些富民家产渐渐衰败,还不上欠账,官司打个不停。</p>
+
+<p>天圣元年,也就是1023年的十一月,朝廷下诏,设立益州交子务。第二年,官交子正式发行,头一界定额一百二十五万六千三百四十缗。</p>
+
+<p>那个精确到个位的数字,本身就说明了变化的性质。</p>
+
+<p>民间那张纸是当场填的,填多少贯不限;官府这一界是事先定死的,定到个位数。前者的额度由每一桩买卖的需要来定,后者的额度由一纸公文来定。同一张纸,从一件随行就市的东西,变成了一件先由上面算好总数,再往下发的东西。定额这两个字,是整套官办办法的骨头。</p>
+
+<p>《宋朝事实》记下了这套新办法的细节:专设衙署,铸交子务的铜印,造簿册,收现钱入库,按合同的字号发交子,每贯仍旧扣三十文的工墨费。</p>
+
+<p>从这里起,那张纸背后站着的不再是十六个商人的名声,而是一整套官府的装置。</p>
+
+<p>而这套装置做的事,可以一样样列出来。面额被标准化,起初从一贯到十贯,后来改成五贯,十贯,再后来又改成一贯和五百文。周期被标准化,定期印造,定期换界。数量被标准化,每一界有明确的上限。手续被标准化,每贯三十文。发放和收回都要登记。连伪造和破损,也都被纳入一套按印记辨认,按期限回收的程序。</p>
+
+<p>钱到这一步,越来越不像一块金属,越来越像一套行政和会计的操作。</p>
+
+<p>这句话值得多想一层。铜钱银子那种钱,是先有那块金属,制度再来管它;交子这种钱,是先有制度,那张纸才成其为钱。抽掉官府的印,簿册,定额,界期和兑换的承诺,剩下的只是一张印花的纸。所以到了这里,钱第一次成了一种彻底由制度造出来的东西,它的存在方式,就是一套可以被写下来,被执行,也可以被更改的规矩。</p>
+
+<p>准备金也有了。《宋史》说,大凡旧年造一界,要备本钱三十六万缗,新旧相因。何平又引李纲的文献,给出另一组说法:常预留本钱一百万贯,用来支撑三百万贯交子。</p>
+
+<p>两组数字对不上。这本身提示我们,后人所理解的准备金率,并不是一条铁板一块的制度常数,而会因时期,文献来源和记述的口径而不同。但至少有一件事可以确定:宋人自己非常清楚,纸币要行得通,不能完全悬空。</p>
+
+<p>这一点,宋人说得比后人还透。吕中评论天圣年间设交子务时写道:这是纸币的开端;然而它有钱来推行纸,有纸来调剂钱,子与母彼此流通而没有偏重的毛病,所以百姓看钱像看纸,看纸像看钱。</p>
+
+<p>子母均通这四个字,几乎是对这件事最早也最准的一个说法。</p>
+
+<p>纸并没有独自起飞。它得有母。</p>
+
+<p>子母这个比方用得很妙,因为它没有把纸和钱说成谁替代谁。母不会因为有了子就不见,子也不会因为有母就不算数;它们要一起在,彼此照应,谁也离不了谁。一个十一世纪的人,已经看出这件事的关键不在纸本身有多方便,而在纸和钱之间那个来回的关系有没有立住。后面几百年一次次出的事,都出在这个关系上。</p>
+
+<h3>四 界</h3>
+
+<p>在整套办法里,最见巧思的是界。</p>
+
+<p>所谓界,就是每隔几年印一批新的,同时把旧的一批收回作废,换成新的。一批就叫一界。</p>
+
+<p>这个设计很聪明。纸币最大的隐患是印得没完没了,越印越不值钱;而有了界,每过几年就要清一次场,旧的收回来销掉,新的按定额发出去,流通中的总量便被拴在一个可控的节奏上。发行,流通,回收,再发行,这是一个能自己闭合的圈。</p>
+
+<p>这套设计的心思,和前面几篇里那些想把账算平的努力是一脉的,只是换了个方向。账本要在空间上算平,把所有的项凑成两边相等;界要在时间上算平,让发出去的东西按期回来,回来了再发新的。前者管的是一本账合不合得上,后者管的是一轮钱收不收得回。而两者都指着同一个念头:这件事应该有一个可以彻底了结的样子。</p>
+
+<p>可越是这样设计,余项显形的地方就越准。一本账合不上,你一眼能看出差多少;一界钱收不回来,你也一眼能看出欠多少。刻度越细,漏出去的东西越是无处藏身。展界这个动作之所以那么刺眼,正因为它把原本该合上的圈明明白白地敞在那里,而所有人都看得见。</p>
+
+<p>但这个圈能不能合上,取决于一件事:到期真的换。</p>
+
+<p>而到期真的换,又取决于另一件事:那时候国家有没有别的更急的用处。这就是这套聪明设计里最软的一处。它把总量的控制,系在一个只有发行者自己才能做的动作上;而发行者一旦缺钱,最省事的办法恰恰就是不做这个动作。规矩定得再细,执行规矩的人和最想破坏规矩的人是同一个,这个圈就不牢靠。</p>
+
+<p>先是有人想把它推广出去。熙宁初年,朝廷试着把交子法搬到河东和陕西,很快就遇到地方官员的反对。文彦博和张景宪都说,这套办法可行于蜀,不可行于陕西,不久就罢了。</p>
+
+<p>道理很实在。在四川,纸和铁钱是为了山路,重赍和区域流通的障碍才配到一起的;换到别的财政结构,别的商品结构,别的区域条件上,这个组合就未必成立。交子的成功,从一开始就不是一套能无摩擦复制的万能模板。</p>
+
+<p>这一点值得记住,因为后世常有一种顺口的说法,说好办法自然会传开。史料给的是另一幅样子:同一套办法,在这里管用,搬到那里就不管用,而反对的理由并不是守旧,是当地的条件不同。制度不是脱离土壤的图纸,它长在具体的地形,具体的货币,具体的税制上。移栽是有可能的,但从来不是自动的。</p>
+
+<p>真正把这个圈压坏的,是军费。</p>
+
+<p>熙宁五年,第二十二界快要换的时候,后面一界已经用掉太多,不得不多印第二十五界来填第二十三界的窟窿,于是出现了两界并行。《宋史》接着说得很狠:当时交子发得多而现钱不足,以致价钱太贱,后来竟然没有实钱,这个办法行不下去了。</p>
+
+<p>到大观元年回头总结,又说自从用兵取湟,廓,西宁以后,交子被用来贴补边费,比起天圣年间的一界超出二十倍,而价钱越发亏损;到新旧交子换界的时候,新交子只能按一比四换旧交子。</p>
+
+<p>一比四是什么意思?就是你手里那张纸,拿去换新的,只值原来的四分之一。</p>
+
+<p>这个数字背后是一件很具体的事。一个人辛苦一年攒下几贯交子,想着来年换成新的照样能用,到了换界的时候,四贯旧的才换一贯新的。他没有做错任何事,没有赌,没有借,没有投机,他只是收下了官府发的钱,并且相信了它。损失就这么落在了他身上。</p>
+
+<p>这里能看得很清楚:纸币并没有摆脱本钱的问题,只是当财政急着要花钱的时候,国家会越来越愿意把那层本往后挪一挪。</p>
+
+<p>近些年的研究常把这一段理解成财政国家的推进。有研究指出,到北宋后期,国家收入已有相当大的部分来自非农业,来自货币化的间接税;到南宋前后,可兑付的信用工具数量甚至一度超过年度税收的规模,国家财政从依靠税基,转向依靠信用。也有研究把宋代纸币的运行机制归纳成本位,回赎,战争与通胀四件事:前期因为本位与回赎都严,运行良好;后期因为战争融资打断了这套机制,最高时实际发行额可以达到严格本位下可发行额的三十五点四倍。</p>
+
+<p>还有一种解释更鲜明。高聪明不把真正革命性的东西放在私交子,而放在官交子转化为国家信用货币的那一刻。在他的叙述里,关键不是私商如何联保,而是财政支出如何越来越多地用交子完成;一旦官府拿交子去付粮草,付青苗本,付常平籴本,而又不再有对应的铁钱准备,这张纸的信用就不再主要来自能换到铁钱,而来自国家承诺自己会收它,认它,让它可以拿来纳税。</p>
+
+<p>也正因如此,他反倒把官交子看得比私交子更现代。</p>
+
+<h3>五 官无本钱, 民何以信</h3>
+
+<p>南宋把这场试验推得更远,而留下的犹豫也更明显。</p>
+
+<p>绍兴元年,因为婺州屯兵,道路走不了船,现钱太重难运,官府先造了关子来调度军费。可很快就有了抱怨:州县拿关子充作籴本,带着摊派的性质,主管专卖的官署又每天只按三分之一偿付,人人嗟怨。</p>
+
+<p>绍兴六年,朝廷一度设了行在交子务,马上遭到批评,而那句批评是整段历史里最要紧的一句:</p>
+
+<p>朝廷措置见钱关子,有司渐渐失了本意,改成交子。官无本钱,民何以信?</p>
+
+<p>翻成白话就一句:你官府手里没有本钱,老百姓凭什么相信这张纸。</p>
+
+<p>随后交子务就罢了,改令专卖官署储备现钱来印造关子。</p>
+
+<p>这句话点破的东西,比它自己看上去要大。它说的是:哪怕纸币越来越依靠国家的权威,准备金和能不能兑现这件事,并没有从讨论里消失。匿名的交换媒介确实在扩张,可背后那个谁负责,拿什么负责的问题,一步也没有退场。它在私人发行者身上出现过一次,如今又在国家身上,以更大的规模重演一次。</p>
+
+<p>换个说法:从十六户富民换成一个王朝,发行者的块头大了不知多少倍,可那个根本的问题一个字没变。谁在背后担保,他拿什么担保,他会不会先把担保的东西花掉。块头大反而有一处更险:富民破了产,官司还打得起来,家产还能拿去抵;一个王朝若不认账,持券的人连个可以告的地方都没有。</p>
+
+<p>真正成熟的会子,是绍兴三十年以后的事。朝廷命钱端礼造会子,储备现钱,在城内外流转;第二年会子务归属都茶场;绍兴三十二年定下了伪造的法条。</p>
+
+<p>最初会子只行于两浙,后来扩展到淮南,浙江,湖北,京西。在不少地区,上供的钱可以全部用会子交纳,沿江的州军则钱和会子各半;民间典卖田宅,马牛,舟车,也可以全用会子。</p>
+
+<p>这一步走得很深。会子不再只是一件财政工具,它进了土地,牲畜,运输工具这些大宗资产的交易。价值被更彻底地折算到统一书写的纸面上。</p>
+
+<p>孝宗一朝,制度化的程度更高。新增了二百文,三百文,五百文这些面额;乾道四年定下三年为一界,每界以一千万贯为额,随界造新换旧;旧会子破损了,只要贯百的字样还在,印文还能验,就可以兑换;每一道收二十文的靡费钱。此外,州县各色纲钱改为七分收钱,三分收会。</p>
+
+<p>界期,定额,验印,手续费,税收混纳的比例,全都被放进一套统一的刻度里。这是一场把模糊的信誉,变成账册上可处理对象的努力。</p>
+
+<p>七分收钱三分收会这一条,尤其能看出用心。它等于官府自己规定了每收一笔税,要接下多少张自家发的纸。这一手很聪明:纸币最大的支撑,不是库里有多少现钱,而是官府自己肯不肯收。只要缴税时它算数,人们就得留着它,它就还是钱。可这一手同时也是一个把柄,因为收多少的比例是官府自己定的,想少收的时候,把三分改成两分就行了。</p>
+
+<p>然后,这套刻度自己拆了自己的台。</p>
+
+<p>淳熙三年,第三界和第四界各展期三年;绍熙元年,第七界和第八界又各展三年。臣僚立刻质问:会子的界以三年为限,如今展了又展,就成了九年,拿什么给人看信?</p>
+
+<p>这句话极准。纸币的信,在这里不是一句抽象的道德,它就是那个很具体的问题:先前说好的期限,到底算不算数。</p>
+
+<p>界期本来是为了回收旧钞,把货币总量重新锁回制度的节奏里;一旦因为财政需要而反复延期,原先那套计量的秩序,就自己把自己拆了。</p>
+
+<p>后果落在数字上。庆元元年,每界的会子额已经涨到三千万。嘉定二年,第十一界在回收之后还剩一千三百六十万余贯;第十二界还有四千七百余万贯,第十三界还有五千七百余万贯。于是朝廷只好从封桩库拨出金子,又发度牒,也就是官府发给僧人的凭证,这种凭证可以买卖,还动用盐课,试着把会子的价钱撑住。</p>
+
+<p>这个画面很值得看一眼。当初立起来的是一套整整齐齐的刻度:三年一界,一界千万,到期换新。刻度撑不住了,国家便拿出金子,拿出僧人的度牒,拿出盐的专卖收入,来给这张纸垫底。</p>
+
+<p>从统一刻度里跑出去的东西,又从别的地方冒了出来。</p>
+
+<p>而且垫底的这几样东西,一样比一样离钱更远。金子还算是钱的老本行;盐课是把一门专卖的将来收入拿来抵押;度牒就更奇特了,那是官府发给僧人的身份凭证,本来跟买卖毫不相干,只因为它能卖钱,就被拿来给纸币撑腰。构撑不住的时候,会去抓一切抓得着的东西,而它抓的东西越杂,越说明原来那套刻度已经不管用了。</p>
+
+<p>围绕会子的争论,比交子更复杂。传统的说法把它的兴起解释成钱荒,铜钱不足;也有研究反对这么讲,认为总的货币量未必不够,问题更像是区域分布失衡,税制要求钱与会子并纳,以及战争融资的刚性需求。也有研究认为,会子和交子相比最大的差别是可兑现性更弱,更接近不可兑现的纸币;而它还能继续运转,主要靠税收接受,靠官府出钱收买,靠界期回赎这些制度。</p>
+
+<p>所以从交子到会子,并不是纸币越来越现代的单向演进。更准确的说法是:匿名化,标准化,财政化的比重不断上升,而准备金,兑界,税收接受,官场收受与市场折价这些老问题,始终缠在上面。</p>
+
+<p>纸币脱离的不是所有的人格关系。它脱离的只是某一个商号,某一个熟人网络的人格;紧接着,它又被绑回到一个更大的人格上:国家会不会认账。</p>
+
+<h3>六 桑皮纸</h3>
+
+<p>元代把这场试验推到了更激进的位置。</p>
+
+<p>中统元年,也就是1260年,忽必烈开始造交钞,以丝为本;同年又造中统元宝钞,面额从十文到二贯,共十等,每一贯等同交钞一两,两贯等同白银一两。</p>
+
+<p>也就是说,元初的新钞一开始就明确以银为锚:两贯钞换一两银。到1271年,元朝进一步宣布中统钞为唯一的法定通货,别的金属货币名义上被废除。</p>
+
+<p>这一步和宋人的试验差别很大。国家不再只是与金属并行地管理纸币,而是试图让纸钞占住最中心的位置。</p>
+
+<p>马可波罗见到的,正是这个体制最令人目眩的一面。他写道,忽必烈用桑皮纸造币,加盖官员的签押和红色的印记,凭这种纸币,人们在帝国各处都能买到自己想买的东西。他还惊叹这些纸极轻,说面值十个金币的纸钞,还不如一枚金币重;而商人把黄金,白银,珠宝卖给皇帝之后,皇帝就用纸来付账。</p>
+
+<p>对一个十三世纪的威尼斯人来说,这当然像某种炼金术。用一张纸,换走别人手里的金子。</p>
+
+<p>他的惊讶里其实有一层他自己未必说得清的东西。在他的家乡,钱是金银,金银自己就值钱;而在这里,钱是一张纸,它值钱是因为有一个大到不可想象的权力说它值钱,并且这个权力真的能在从大都到江南的每一处让人认它。所以他看见的与其说是一种货币,不如说是一种统治的规模:能让一张纸在几千里之内都算数,这件事自己就是国力的一种展示。</p>
+
+<p>不过近年的研究提醒,不能让马可波罗的惊叹替代制度史本身。有研究者明确质疑,西方关于中国纸币的印象,常常被马可波罗过分正面的叙述所塑造,以致忽略了中国前近代不兑现纸币的试验同样有大量的失败,崩溃和撤退。马可波罗看到的是帝国中心最壮观,最有效率的那一面;财政的透支,区域的折价,白银悄悄的回归,以及元末最终的崩坏,都不在他的惊叹句式里。</p>
+
+<p>而白银确实一直都在。</p>
+
+<p>元朝虽然禁止白银在私人交易中流通,可大额交易,尤其是地产买卖,仍旧大量用银结算。更直观的是官方的兑换比率:1260年还是两贯换一两银,到1309年已经变成二十五贯换一两。据此估算,单是这段时期,年均贬值率约在百分之五左右。</p>
+
+<p>这件事值得停下来想一想。</p>
+
+<p>名义上,纸钞是唯一的法定货币,别的都被废了。可实际上,人们在做真正要紧的大宗买卖时,心里另有一把尺子,那把尺子是银。国家可以宣布只有一把尺子,却没法让另一把尺子从人心里消失。</p>
+
+<p>而且注意人们是在什么场合动用另一把尺子的:买地。日常的零碎买卖,用纸钞就用纸钞,反正很快就花出去了;可一笔要传给子孙的大宗财产,人就要想得更远,想到十年二十年之后这东西还值不值。越是要长久存住的价值,越是不肯托付给那张纸。这个分别很说明问题:纸钞可以当交易的媒介,却难当存放价值的容器,而后一件事恰恰是人最在意的。</p>
+
+<p>有研究把元代的纸钞史分成三个阶段:1260年到1276年是完全可兑银的时期,1277年到1309年是名义上可兑银的时期,1310年到元末则是法定不兑现的纸币时期。在第一阶段,多余的纸钞可以用银回收;到后两个阶段,这个锚越来越弱,最后转成法律强制的纯纸币。</p>
+
+<p>纸币并不是一下子就脱离金属成功的。它是经历了从银本位,到弱银本位,再到法定纸币的层层后退。</p>
+
+<h3>七 印在钱上的换算表</h3>
+
+<p>明代把纸币带到了另一个极端。</p>
+
+<p>洪武八年,也就是1375年,明朝发行大明通行宝钞。留存的实物告诉我们它有多大:约长三十四厘米,宽二十余厘米,用楮皮纸印制。上部大字写着大明通行宝钞,中部写面额,比如壹贯,配着十组钱串的图案;下方印着一长串法律文字,核心意思是:经朝廷批准印造,与铜钱并行使用;伪造者斩;告发的人赏银二百五十两,并没收犯人的财产。</p>
+
+<p>而按《明会典》的记载,每钞一贯,折钱一千文,折银一两;四贯准黄金一两。</p>
+
+<p>这几乎是把一整套换算表,直接印在了钱上。</p>
+
+<p>把换算表印在钱上,是一个意味深长的动作。它等于宣告:这张纸不但是钱,它还是一切东西之间彼此折算的总则。一贯是一千文,是一两银,四贯是一两金,全写在那儿,不必再问市面。这是通约这条路上,少有的一次把答案直接印出来的尝试。可市面上的比价从来不听纸面的话,印出来的比价越硬,和实际比价的距离就越显眼。</p>
+
+<p>明初的野心比宋元都更直接。宝钞制度成形之后,金银交易和以物易物都被禁止,铜钱也被抽离流通,甚至一度禁用,目标是让宝钞成为唯一正当的货币之一。</p>
+
+<p>这是一次比前面几次都更彻底的通约尝试。国家试图把金,银,铜钱和一切商品交换,统统折进印好的票面和法令里面。纸币在这里不只是市场的媒介,还是国家把一切支付手段压进单一计价框架的工具。</p>
+
+<p>而明代的问题,恰恰也在这里炸开。</p>
+
+<p>有研究概括说,明代财政管理失当,尤其是没能像宋代那样有效地用纸币征税,把纸币回收,导致宝钞严重贬损;到十五世纪初,明钞已大体失效,此后中国市场转向银锭本位,明朝的财政核算和税收也逐渐改以银为基础。也有研究把明代看作前近代中国不兑现纸币试验最终并不比早期近代欧洲更成功的鲜明案例;到1430年前后,国家已经被迫放弃再把纸币当作有效流通的核心。</p>
+
+<p>拆开来看,对明钞失败的解释至少有三种并行的说法。</p>
+
+<p>一种强调财政宪制的变化:宋元时期支撑纸币的,是高度货币化,依赖商业税和间接税的财政结构;而明初的财政更依赖实物,徭役和强制动员,国家发钞很积极,回收和税收吸纳却很弱,于是钞有出无收。</p>
+
+<p>一种强调设计上的缺陷:宝钞制度从一开始就是为缓解财政压力服务的,货币被财政化,超发几乎是制度内生的结果。</p>
+
+<p>还有一种更通俗,却并非全错:强制禁银,禁铜,禁以物易物,并不能取消市场对更可靠储值物的偏好,结果只是让名义上的法币和实际的结算分裂得更快。</p>
+
+<p>三种说法各有各的道理,合起来看反而更清楚:发得太多是一头,收不回来是另一头,而禁得太死是第三头。发,收,禁,三样都出了问题,任何一样单拿出来都未必致命,凑在一起就撑不住了。要给它派一个单独的罪魁,恐怕不容易;能确定的是,这套制度对自己的要求,比它自己能做到的多得多。</p>
+
+<p>明代的崩坏,再一次说明了同一件事。</p>
+
+<p>把价值从金属剥离出来,并不等于它从此脱离了声誉。恰恰相反,剥离之后,价值更集中地压在发行者的声誉,财政的能力和执法的可信上。一旦国家不能持续让这张纸在纳税,兑付,官收,官支里形成闭环,市场就会把价值重新挪回银子,铜钱,或者别的更可信的东西身上。</p>
+
+<p>明代后来转向银本位,也不是什么更先进的自然胜利。那是一场大规模纸币试验失败之后,社会在现实中退回另一套更能自保的计价和储值体系。</p>
+
+<h3>八 剥掉金属之后</h3>
+
+<p>把这一千年放在一起看,最好的总结不在后世的理论里,而在当时人说过的三句话。</p>
+
+<p>第一句是吕中的:有钱以行楮,有楮以榷钱,子母均通。纸和钱不是替换,是配比。</p>
+
+<p>第二句是绍兴六年那句质问:官无本钱,民何以信。没有本钱,信从哪里来。</p>
+
+<p>第三句意思相反,却同样真:官司收受无难,自然民心不疑。国家肯收,民间才肯信。</p>
+
+<p>三句合起来,把这件事的全部难处都说尽了。纸币要立得住,一头得有本钱,一头得有人肯收;而这两头,一头是物,一头是信。</p>
+
+<p>有意思的是,这三句话彼此之间还有点张力。第二句说没有本钱就没有信,第三句说只要官府肯收人就会信,一个把根扎在库房里,一个把根扎在衙门的态度上。而第一句摆在中间,说两者要配比着来,谁也不能偏重。宋人吵这件事吵了两百年,吵出来的三种意见,恰好就是后来所有货币理论要处理的三个位置。</p>
+
+<p>这一路走下来,发生的事情其实可以说得很干脆。</p>
+
+<p>前面讲复式记账时,尺子为了记账的方便,主动脱掉了身体,变成一个不流通的纯粹数目。到了交子,是流通的钱脱掉了金属。</p>
+
+<p>而脱掉金属之后,发生的不是钱变得更不需要人,而是钱变得更需要人。一枚铜钱,不管谁拿着,它自己就是一块铜,它的价值有一半躺在它自己身上;一张纸不是,一张纸的价值百分之百押在别人身上:发行的人认不认,官府收不收,明年还兑不兑。</p>
+
+<p>所以纸币这件事,是两个方向同时发生的。它在流通上更匿名了,一张纸谁都能拿,不问来历;它在根基上却更人格化了,因为除了那个承诺,它一无所有。</p>
+
+<p>金属抽走多少,压在声誉上的分量就重多少。这一头轻了,那一头就沉。</p>
+
+<p>所以说纸币是货币史上人格性退场的开端,恐怕说反了。它更像是人格性第一次被推到台前:从前那份对发行者的信赖,还有金属替它分担一半;从纸币起,它必须一个人扛住全部。而扛得住扛不住,不再取决于地下埋着多少矿,而取决于一个政权肯不肯在最缺钱的年份里,守住自己几年前许下的话。</p>
+
+<p>至于余项,到了这里露出一副新面孔。</p>
+
+<p>前面几篇里,那些溢出账本的东西,或者是量不到的,或者是不该量的,或者是量了却什么也没触到的。这一次不一样。这一次溢出来的,是另一把尺子。</p>
+
+<p>元朝宣布纸钞是唯一的法定货币,别的一概作废,可人们做地产这类真正要紧的买卖,心里另用银子来算;明朝禁金银,禁铜钱,禁以物易物,把换算表直接印在钞面上,结果银子在十五世纪反倒重新成了整个社会真正的衡量器。</p>
+
+<p>构可以宣布自己是唯一的尺子。它没法让人们心里那把备用的尺子消失。</p>
+
+<p>而那把备用的尺子平时不出声,只在构自己开始不可信的时候浮上来。它不是从外面来打倒构的,它一直就在,是构自己的失信把它请回了台面。</p>
+
+<p>这也解释了那些禁令为什么总是收效不佳。它们做的都是同一件事:不让人们用别的尺子。可人们之所以要用别的尺子,并不是因为有别的尺子可用,而是因为手上这把已经开始不准了。禁令能拿掉替代品,拿不掉那个让人想找替代品的理由;而只要理由还在,替代品迟早会以别的形式回来。</p>
+
+<p>至于代价落在谁身上,前面几节里其实都写着。私交子挤兑的时候,一贯只兑回七八百文,亏的是拿着券的人;交子一比四换新的时候,亏的是手里攥着旧交子的人;会子展界又展界的时候,亏的是那些相信三年之约的人;明钞贬损的时候,亏的是那些老老实实收了钞的人。</p>
+
+<p>发行的人可以先花掉别人的信任,而承担后果的,总是那个最后一手拿着纸的人。</p>
+
+<p>那张纸上,从来没有一栏是记这件事的。</p>
+
+<p>一张交子上写着面额,写着界数,写着字号,写着伪造者的罚则,写着每贯要扣多少工墨费。什么都写了,唯独没有一栏写:若到期不能兑,损失由谁承担。这一栏之所以没有,不是因为忘了,是因为它没法写。写下来就等于承认这张纸可能不算数,而一张承认自己可能不算数的纸,当天就不再是钱了。于是这件唯一要紧的事,只能留在纸的外面,留给那个最后一手拿着它的人。</p>
+
+<p>账还没有算平,它仍旧在记。</p>
+
+      </div>
+
+      <div class="essay-body lang-en">
+
+<h3>1. Too Heavy to Carry</h3>
+
+<p>To understand why the world's first paper money appeared in Sichuan, you first have to weigh what money actually weighed in an eleventh-century Sichuanese hand.</p>
+
+<p>After the Northern Song unified the Shu region, it let the local population go on using iron coin, and for a long stretch forbade copper coin from entering the two Chuan circuits at all; later the ban was partly lifted, but iron coin itself was still not allowed to leave the region. Iron is worth little, so buying the same object took more of it, and more iron meant more weight. Merchants who carried copper coin across the border found that a single copper coin bought fourteen iron ones. How many iron coins it took to buy a bolt of cloth, how many porters had to be hired to carry them over a mountain road — these were not abstractions. They were arithmetic you felt in your shoulders.</p>
+
+<p>The reason iron coin was so heavy is simple enough: what a coin is worth depends partly on what it is made of. Copper is worth more than iron, so the same price in iron takes more metal, and more metal means more weight. The histories preserve some startling figures — that buying a single bolt of silk could require hauling in a hundred catties of iron coin. Buying a bolt of silk was an ordinary household transaction, not a great commercial undertaking, and yet this ordinary errand first required solving the separate problem of how to get the money to the shop at all.</p>
+
+<p>Taxes made it worse. At one point the government required that rent payments and monopoly fees be reckoned at a rate of ten iron coins to one copper coin. And copper coin was already scarce in Sichuan — the histories say outright that copper had run dry, and that the people suffered bitterly for it.</p>
+
+<p>The History of Song preserves a few lines that are hard to read past. In the years when the government pushed hardest for tax payment in copper, local officials and clerks seized the opening, layering the conversion rate higher with each pass, so that the people suffered more and more; some dug open ancient graves and smashed Buddhist statues and ritual vessels just to scrape together four or five copper coins, and a great many of them were convicted for it.</p>
+
+<p>These lines deserve a slow reading. An unsuitable currency system, translated down to one actual person, meant that person had to rob someone else's grave, had to smash the Buddha his own household kept, only to assemble a few pieces of copper in the shape the government demanded — and quite possibly be sentenced to punishment for the trouble.</p>
+
+<p>The common scale had not disappeared here. It was still there. It was simply too heavy — heavy enough that a man had to carry it on his back, heavy enough that meeting its specifications could force him into acts he would never otherwise have committed.</p>
+
+<p>Something surfaces here that will keep recurring. Whether a scale is good depends not only on whether it reads true, but on whether it is light enough to carry and easy enough to recognize. In the earlier essays, the difficulty of commensuration always came down to whether a thing could be reckoned clearly at all. In Sichuan the difficulty took a different shape: the reckoning could be done perfectly clearly, and then the money that resulted from it could not be moved. A thing that cannot be moved is no use to anyone, however accurate it is.</p>
+
+<p>A remainder is already buried here. Iron coin could price a bolt of silk down to the last coin; what it could not price was the half-day's labor of hauling that price over a mountain, the wages of the men hired to carry it, the risk of being robbed on the road. None of that entered any ledger, and yet all of it decided whether the transaction could happen at all. This — precisely this piece of unaccounted cost — is what jiaozi (交子) was built to solve.</p>
+
+<p>And so someone thought of a piece of paper.</p>
+
+<h3>2. Sixteen Names You Could Trust</h3>
+
+<p>The History of Song records the invention in a single sentence: at first, because iron coin was too heavy, the people of Shu privately produced vouchers they called jiaozi — the name means little more than "exchange notes" — to ease trade, run by a consortium of sixteen wealthy households.</p>
+
+<p>Li You's later Facts of the Song Dynasty gives a fuller picture. More than a dozen powerful households in Yizhou jointly guaranteed the notes, printed on uniform paper stock, the face carrying images of houses, trees, and human figures; each shop stamped its own trademark and a secret code number, red ink and black ink crossing in private marks of authenticity. The amount was filled in by hand on the spot, with no ceiling on how many strings of cash — guan — could be written in. Redeeming a note back into cash cost thirty wen per guan in handling fees.</p>
+
+<p>It is worth pausing on what actually appeared on that paper. Uniform stock, fixed images, each house's stamp, a secret code, red and black marks crossing in private patterns — not one of these existed to state what the note was worth. All of them existed to state who had issued it, and whether anyone else could counterfeit it.</p>
+
+<p>Put differently: nearly all the craft that went into that sheet of paper was spent on authentication and signature, not on price. The line for the amount was, if anything, the easiest part — filled in on the spot, any figure would do. What was genuinely hard was making a stranger believe that this particular note was real, and that it truly came from those specific households. Metal coinage never had to work this hard: whether a copper coin is genuine can be checked by weighing it, biting it, looking at its cross-section. Paper cannot be checked that way. A paper note's truth does not live in the paper itself.</p>
+
+<p>Why would a sheet of paper make a total stranger willing to accept it? Not because of the paper. Because of those sixteen names.</p>
+
+<p>This is the crux of the whole matter. Iron coin worked partly because the government recognized it and partly because a coin is, in itself, a lump of iron — whoever holds it, that lump of iron is still there. Paper is not like that. Paper by itself is nothing at all. What it is worth depends entirely on whether the people standing behind it are willing to make good on the account, and able to.</p>
+
+<p>Stripping the metal out of money did not make money need trust any less. Quite the opposite: however much metal was removed, exactly that much weight came to rest on trust.</p>
+
+<p>In the earlier essays, the anonymous scale was always propped up by something personal: clay tablets leaned on seals and witnesses, coinage leaned on an issuer's reputation and a later owner's test-mark, ledgers leaned on a cabinet full of letters and guarantors. With jiaozi this relationship was pushed all the way to its limit, because beyond those few names, the paper itself held nothing whatsoever. It was a pure promise, with no metal underwriting it at all.</p>
+
+<p>Trouble followed close behind. The wealthy merchants who took in iron coin deposits did not leave the coin sitting obediently in a vault; they used it to buy up stock and hoard goods, to acquire shops, houses, gardens, land, and valuables. Forgery appeared. Lawsuits appeared. Runs on the note-issuers appeared, and eventually crowds gathered to fight over the matter. When officials stepped in to mediate, the going rate of redemption was often only seven or eight hundred wen on the guan — and the two or three hundred wen of loss fell on whoever was holding the note.</p>
+
+<p>This lesson would repeat itself, at a far larger scale, many times over the following centuries: the issuer holds someone else's trust in hand, and trust can be spent before it is earned.</p>
+
+<p>The temptation here is not hard to grasp. A pile of iron coin sits in the vault, but the people coming to redeem their notes trickle in a few at a time — a handful today, a handful tomorrow — almost never all on the same day. Given that, why not take part of the reserve and put it into property, since property earns a return, and the return can buy still more property? Every step in this reasoning holds up. The only flaw sits in the word "almost." The one day everyone actually does show up together, every earlier step of the logic fails at once.</p>
+
+<p>On the question of where this paper's roots really lay, researchers split into two camps, and the disagreement runs deep.</p>
+
+<p>One camp stresses networks of trust. He Ping specifically resists reading early jiaozi as credit money in the modern sense; in his account, the crucial thing was not some abstract notion of credit but the relatively closed geography of Sichuan itself, the standing and solvency of the tea-merchant guild, the joint guarantee of the sixteen wealthy households, and the web of local acquaintance. A note could travel from one shop into a stranger's hand not because people had suddenly stopped caring who stood behind it, but because the reputation of that particular circle temporarily supplied a public credibility broad enough to carry it.</p>
+
+<p>The other camp puts more weight on the instrument itself — on debt and claim. On this older reading, jiaozi is best understood as something like a deposit receipt issued by a private vault house: the issuer is the debtor, the holder is the creditor, and once the note has changed hands long enough in the market, it comes to function as money in its own right. In this version, jiaozi's origin lies in the relationship of deposit and redemption, not in some diffuse social trust.</p>
+
+<p>Both accounts are looking at the same piece of paper, and finding different roots. One says it grew out of relationships. The other says it grew out of debt.</p>
+
+<p>The disagreement is not merely scholarly fastidiousness. If the note grew out of relationships, its roots belong to one particular place and one particular circle of people, and it would not work outside Sichuan. If it grew out of debt, its roots belong to a form that can be reproduced anywhere — wherever someone issues a redeemable claim, the same thing can take root. The first account explains why jiaozi happened to appear precisely in Sichuan; the second explains why it could later be taken over by the state and turned into something else. Each theory has hold of one true end of the rope.</p>
+
+<p>There is even dispute, incidentally, about who actually shaped the thing. Many local accounts and later popular histories cast Zhang Yong as the father of jiaozi, pinning his reorganization of the jiaozi shops and his designation of the sixteen guaranteeing households to specific years. Some more recent research pushes back, pointing out that the family records and epitaphs Zhang Yong's own descendants left behind never claim that he invented jiaozi. The safer statement may simply be that Zhang Yong happened to be in office during the period when the folk practice of jiaozi was taking its final shape.</p>
+
+<p>That not even the authorship can be pinned down is itself telling. A thing like this is rarely dreamed up whole by one person on one day. More often, many people are each solving the trouble directly in front of them, and solving it, and solving it again, until it has quietly grown into an institution.</p>
+
+<h3>3. The Bronze Seal</h3>
+
+<p>The trouble with private jiaozi is stated plainly in the sources: the fortunes of those wealthy households gradually declined, debts went unpaid, and litigation never let up.</p>
+
+<p>In the eleventh month of the first year of Tiansheng — 1023 — the court issued an edict establishing the Yizhou Jiaozi Bureau. The following year, official jiaozi went into circulation, with the first issue fixed at a quota of 1,256,340 strings of cash.</p>
+
+<p>That figure, precise to the last digit, tells you everything about the nature of the change.</p>
+
+<p>The private note had been filled in on the spot, with no ceiling on the amount; this official issue was fixed in advance, down to the unit. The old amount was set by the needs of each individual transaction; the new amount was set by a single administrative document. The same piece of paper went from something that followed the market wherever it needed to go, to something whose total was calculated from above first and handed down afterward. Those two words — fixed quota — are the backbone of the entire official apparatus.</p>
+
+<p>The Facts of the Song Dynasty records the details of the new system: a dedicated office was established, a bronze seal was cast for the Jiaozi Bureau, ledgers were kept, cash was taken in and stored, notes were issued against contract code numbers, and the same thirty wen per guan was still deducted as an ink-and-paper fee.</p>
+
+<p>From this point on, what stood behind the paper was no longer the reputation of sixteen merchants. It was an entire government apparatus.</p>
+
+<p>And that apparatus can be itemized point by point. Denominations were standardized — starting at one to ten guan, later changed to five and ten guan, and later again to one guan and five hundred wen. The cycle was standardized, with printing and exchange happening on fixed schedules. Quantity was standardized, each issue carrying an explicit ceiling. Procedure was standardized, thirty wen on every guan. Issuance and recall were both logged. Even forgery and physical wear were folded into a single procedure of verification by seal-mark and recall by deadline.</p>
+
+<p>Money, at this stage, looked less and less like a piece of metal and more and more like a set of administrative and accounting operations.</p>
+
+<p>This is worth turning over. Coined money — copper, silver — begins with the metal, and institutions arrive afterward to manage it. Jiaozi-type money begins with the institution, and only then does the paper become money at all. Strip away the government's seal, its ledgers, its fixed quota, its exchange schedule, its promise of redemption, and what is left is a printed sheet of paper and nothing more. So it is here, for the first time, that money becomes something wholly manufactured by institutions — its very mode of existing is a set of rules that can be written down, enforced, and also changed.</p>
+
+<p>Reserves appeared too. The History of Song states that, as a rule, producing one issue in the old years required a reserve of 360,000 strings, old funds carried forward to support the new. He Ping, citing Li Gang's writings, offers a different figure: a standing reserve of 1,000,000 guan supporting 3,000,000 guan of jiaozi in circulation.</p>
+
+<p>The two figures do not agree. That mismatch is itself instructive: what later generations think of as "the reserve ratio" was never a single fixed institutional constant, but something that varied by period, by source, and by how the record was kept. What can be said with confidence is this: the Song themselves understood perfectly well that paper money, to function, could not be left entirely unsupported.</p>
+
+<p>On this point the Song said it more clearly than anyone since. Commenting on the founding of the Jiaozi Bureau in the Tiansheng years, Lü Zhong wrote: this was the beginning of paper currency; and yet it had money to put the paper into motion, and paper to regulate the money, mother and child circulating together without either side being favored, so that the people looked on cash as paper and looked on paper as cash.</p>
+
+<p>Mother and child in balanced circulation — four characters that remain, to this day, close to the earliest and most exact description anyone gave of the whole affair.</p>
+
+<p>Paper did not take flight on its own. It needed a mother.</p>
+
+<p>The mother-and-child figure is well chosen, because it does not describe either metal or paper as replacing the other. The mother does not vanish for having a child, and the child is not thereby invalidated for having a mother; the two must exist together, answering to each other, neither able to do without the other. An eleventh-century observer had already grasped that the crux of the matter was never how convenient the paper itself might be, but whether that back-and-forth relationship between paper and coin could hold its footing. Every crisis of the next several centuries would break out precisely along this line.</p>
+
+<h3>4. The Loop That Wouldn't Close</h3>
+
+<p>Of the whole system, the most ingenious device was what the sources call an issue.</p>
+
+<p>Here is how it worked: every few years a new batch of notes was printed, and at the same time the entire previous batch was called in and invalidated, exchanged one-for-one for the new. Each such batch was called an issue.</p>
+
+<p>The design was genuinely clever. Paper money's greatest hazard is endless printing — the more that gets printed, the less it is worth — but with this system, the field was cleared every few years: the old notes came back and were destroyed, the new ones went out against a fixed quota, and the total in circulation stayed tethered to a controllable rhythm. Issue, circulate, recall, reissue: a loop that could close on itself.</p>
+
+<p>The thinking behind this design runs in the same vein as the efforts, described in the earlier essays, to make a ledger balance — only turned in a different direction. A ledger has to balance in space, its two sides forced into equality. An issue had to balance in time: what went out was required to come back on schedule, and only once it was back could new notes go out again. The former governs whether one set of books adds up; the latter governs whether one round of currency can be called home. But both point at the same underlying wish — that this business ought to have a form that can be brought to a full and final close.</p>
+
+<p>But the more precisely a thing is designed this way, the more precisely the remainder shows its face. When a ledger fails to balance, you can see at a glance how much is missing; when an issue's currency fails to come home, you can see at a glance how much is owed. The finer the graduation, the less anywhere there is for what leaks out to hide. The reason that postponing an issue's exchange reads as so glaring is exactly this: it leaves a loop that was supposed to close standing nakedly open, in plain view of everyone.</p>
+
+<p>But whether the loop actually closes depends on one thing: whether the exchange genuinely happens when it is due.</p>
+
+<p>And whether the exchange genuinely happens when it is due depends on another thing entirely: whether the state, at that moment, has some more urgent use for its money. This is the softest point in the whole clever design. It ties control of the total supply to an action that only the issuer itself can perform, and the moment the issuer is short of funds, the cheapest way out is precisely to decline to perform it. However finely the rule is drawn, if the party enforcing it is the very party most tempted to break it, the loop cannot be relied on.</p>
+
+<p>Someone first tried to export the system. In the early Xining years, the court attempted to transplant the jiaozi law to Hedong and Shaanxi, and ran quickly into opposition from local officials. Wen Yanbo and Zhang Jingxian both argued that the method could work in Shu but not in Shaanxi, and it was soon abandoned.</p>
+
+<p>The reasoning holds up well. In Sichuan, paper and iron coin had been paired together specifically to solve the problems of mountain roads, of heavy loads, of obstacles to regional circulation; move the pairing to a different fiscal structure, a different structure of goods, different regional conditions, and the combination need not hold at all. From the very start, jiaozi's success was never a frictionless template that could simply be copied elsewhere.</p>
+
+<p>This is worth remembering, because later ages like to repeat the glib line that a good method spreads on its own. The record shows something else: the same method worked here and failed there once transplanted, and the objection was not conservatism but the plain fact that local conditions differed. An institution is not a blueprint detached from its soil; it grows in a particular terrain, on a particular currency, within a particular tax system. Transplanting it is possible. It is never automatic.</p>
+
+<p>What actually crushed the loop was military spending.</p>
+
+<p>In the fifth year of Xining, as the twenty-second issue was about to turn over, the following issue had already been overspent, and the government was forced to over-print a twenty-fifth issue to fill the hole left by the twenty-third — so that two issues now circulated side by side. The History of Song does not soften what came next: at that time jiaozi was issued in such quantity, and hard cash was so short, that prices collapsed, and eventually there was no real money behind the notes at all, and the whole method could no longer be carried on.</p>
+
+<p>Looking back from the first year of Daguan, the assessment was blunter still: since the campaigns to take Huang, Kuo, and Xining had begun, jiaozi had been used to subsidize the frontier's expenses, running to twenty times the volume of a single Tiansheng-era issue, and its value had sunk further with every step; by the time old notes came due for exchange, four old guan bought only one new guan.</p>
+
+<p>What does a ratio of four to one actually mean? It means that the paper in your hand, brought in for exchange, is worth exactly one quarter of what it was.</p>
+
+<p>Behind that number is one very specific kind of person. Someone works a hard year and saves a few guan of jiaozi, expecting that next year it will exchange for new notes just as it always has, and when the exchange finally comes, four old guan buys one new one. He did nothing wrong. He did not gamble, did not borrow, did not speculate. He simply accepted the money the government issued, and trusted it. The loss landed on him regardless.</p>
+
+<p>The lesson is easy to see from here: paper money never actually escaped the problem of backing. It is only that once the treasury is desperate to spend, the state grows steadily more willing to push that backing a little further down the road.</p>
+
+<p>Recent scholarship often frames this period as the advance of the fiscal state. Some research finds that by the late Northern Song a substantial share of state revenue already came from non-agricultural, monetized indirect taxation; by around the Southern Song, the volume of redeemable credit instruments in circulation is said to have at times exceeded the scale of annual tax revenue itself, with state finance shifting from a base in taxation to a base in credit. Other work sorts the whole Song paper-money mechanism under four headings — backing, redemption, war, and inflation: in the early period, with both backing and redemption held strict, the system ran well; later, once war finance broke the mechanism, actual issuance at its peak is estimated to have reached 35.4 times what a strict reserve standard would have allowed.</p>
+
+<p>A sharper account still comes from Gao Congming, who locates the truly revolutionary moment not in private jiaozi but in the instant official jiaozi turned into state credit money. In his telling, the key fact is not how private merchants guaranteed each other, but how fiscal spending came increasingly to be settled in jiaozi: once the government began paying for army rations, for the capital behind the Green Sprouts loans, for the ever-normal granary's purchase fund, all in jiaozi, without holding a matching reserve of iron coin, the paper's credit no longer rested mainly on its being exchangeable for iron coin. It rested instead on the state's own promise that it would accept the note, honor it, and let it be used to pay taxes.</p>
+
+<p>It is exactly for this reason that Gao regards official jiaozi as, in a sense, more modern than the private version it replaced.</p>
+
+<h3>5. No Capital, No Trust</h3>
+
+<p>The Southern Song pushed the experiment further, and the hesitation behind it shows more openly.</p>
+
+<p>In the first year of Shaoxing, with troops garrisoned at Wuzhou and the roads impassable to boats, cash being too heavy to move, the government first issued guanzi — a certificate for moving military funds — to manage the problem. Complaints followed almost immediately: prefectures and counties were using guanzi as a form of grain-purchase capital, effectively as a forced levy, and the monopoly offices in charge of repayment were making good on only a third of it each day, leaving everyone aggrieved.</p>
+
+<p>In the sixth year of Shaoxing, the court briefly established a Jiaozi Bureau at the temporary capital, and it was immediately met with a criticism that stands as the single most important sentence in this entire history. The court, it ran, had set out to manage cash guanzi; the officials in charge had gradually lost sight of the original intent and turned the scheme into jiaozi instead. With the government holding no capital, how could the people be expected to trust it?</p>
+
+<p>Rendered plainly: you, the government, have no reserve in hand — why should ordinary people believe in this paper?</p>
+
+<p>The Jiaozi Bureau was abolished soon after, and the monopoly offices were ordered instead to hold cash reserves against which to print guanzi.</p>
+
+<p>What that sentence exposes runs deeper than it looks. It says that even as paper money grew ever more dependent on the authority of the state, the question of reserves — of whether the thing could actually be redeemed — never left the conversation. The anonymous medium of exchange was expanding, certainly, but the question lurking behind it, of who answers for the paper and with what, had not retreated a single step. It had already surfaced once, on private issuers; now it surfaced again, on the state itself, at a far larger scale.</p>
+
+<p>Put another way: the issuer had grown from sixteen wealthy households into an entire dynasty, larger by some incalculable factor, and yet the underlying question had not changed by one word. Who stands behind the note, with what do they stand behind it, and will they spend what stands behind it before the bill comes due? A larger issuer is, if anything, more dangerous in one respect: when a wealthy household goes bankrupt, there is still a court to sue, still property that can be seized. When a dynasty declines to make good on the account, the note-holder has nowhere left to take his complaint at all.</p>
+
+<p>The mature form of this instrument, huizi, dates only from after the thirtieth year of Shaoxing. The court ordered Qian Duanli to produce huizi and to hold cash reserves against it, circulating both inside and outside the capital; the following year the Huizi Bureau was placed under the Tea Market Administration; and in the thirty-second year of Shaoxing a law against forgery was fixed in place.</p>
+
+<p>Huizi at first circulated only in Liangzhe, later expanding to Huainan, Zhejiang, Hubei, and Jingxi. In many regions tribute payments to the court could be made entirely in huizi; garrison prefectures along the river paid half in cash and half in huizi; and private sales of land, houses, horses, cattle, boats, and carts could likewise be settled entirely in huizi.</p>
+
+<p>This step went deep. Huizi was no longer simply a fiscal instrument; it had entered the trade in major assets — land, livestock, transport. Value was being converted, more thoroughly than ever, onto a uniformly printed sheet of paper.</p>
+
+<p>Under Emperor Xiaozong, institutionalization went further still. New denominations of two hundred, three hundred, and five hundred wen were added; in the fourth year of Qiandao, three years was fixed as the length of one issue, each issue capped at ten million guan, old notes exchanged for new on schedule; a damaged note could still be redeemed as long as the string-and-hundred figures on it remained legible and the seal could be verified; each exchange carried a wear-and-tear fee of twenty wen. In addition, the various tax levies collected by prefectures and counties were reset to seventy percent cash and thirty percent huizi.</p>
+
+<p>Issue period, fixed quota, seal verification, handling fee, the ratio for mixed tax payment — all of it folded into one unified scale of graduated measurement. This was an effort to take something as vague as reputation and turn it into an object the ledgers could actually process.</p>
+
+<p>The seventy-thirty rule is especially telling of the intent behind it. It amounted to the government stipulating, for every tax payment collected, exactly how much of its own paper it would accept in return. The move was shrewd: the real support behind paper money is not how much cash sits in the vault but whether the government itself is willing to take the paper back. As long as it counted at tax time, people had to keep holding it, and it remained money. But the same move was also a lever the government could pull against itself, since the acceptance ratio was set by the government alone — and when it wanted to accept less, changing thirty percent to twenty was simple enough.</p>
+
+<p>And then the whole graduated scale tore down its own scaffolding.</p>
+
+<p>In the third year of Chunxi, the third and fourth issues were each extended by three years; in the first year of Shaoxi, the seventh and eighth issues were extended again, by three years apiece. Officials objected immediately: huizi's issue was supposed to run three years, they said, and now, extended and extended again, it had become nine — on what basis could anyone still be shown that the promise meant something?</p>
+
+<p>The objection lands with precision. The trust behind paper money was never, here, some abstract moral quality. It was this exact and concrete question: did the deadline agreed upon earlier still count for anything?</p>
+
+<p>The issue period had existed to recall old notes and lock the money supply back into an institutional rhythm; once fiscal need forced it to be postponed again and again, that same measuring order tore itself apart with its own hands.</p>
+
+<p>The consequences show up in the numbers. By the first year of Qingyuan, each issue's huizi quota had already risen to thirty million. By the second year of Jiading, the eleventh issue, even after recall, still had more than 13,600,000 guan outstanding; the twelfth issue still had more than 47,000,000 guan outstanding; the thirteenth still had more than 57,000,000. The court was reduced to drawing gold from the sealed treasury, issuing ordination certificates — the documents the government sold to monks, which could themselves be bought and sold — and even drawing on salt-tax revenue, all in an attempt to prop up the price of huizi.</p>
+
+<p>The picture is worth sitting with. What had been set up was a tidy, orderly scale: three years to an issue, ten million to an issue, old exchanged for new on schedule. When the scale could no longer bear its own weight, the state reached for gold, for monks' ordination papers, for the proceeds of the salt monopoly, to prop the paper up from beneath.</p>
+
+<p>Whatever had escaped the unified scale simply resurfaced somewhere else.</p>
+
+<p>And each thing reached for as backing sat a little further from money than the last. Gold, at least, was money's own old trade. Salt revenue meant mortgaging a monopoly's future income. Ordination certificates were stranger still — an identity document the government issued to monks, originally having nothing whatsoever to do with commerce, pressed into service only because it could be sold for cash. When a construct cannot hold itself up, it reaches for whatever it can grab, and the more varied the things it grabs, the more plainly it shows that the original scale no longer works.</p>
+
+<p>The debate around huizi runs more complicated than the one around jiaozi. The traditional account explains its rise as a "coin famine," a shortage of copper cash; other research pushes back, arguing that the total money supply was not necessarily insufficient at all, and that the real trouble looked more like an imbalance in regional distribution, a tax system requiring cash and huizi to be paid together, and the rigid demands of financing war. Other scholars hold that huizi's biggest difference from jiaozi was weaker redeemability — closer, in practice, to a non-convertible paper currency — and that it kept functioning mainly because tax offices accepted it, the government bought it back, and the issue system kept redeeming it on schedule.</p>
+
+<p>So the move from jiaozi to huizi was not a one-way march toward greater modernity for paper money. The more accurate description is that the share of the system given over to anonymity, standardization, and fiscal purpose kept rising, while the old problems — reserves, redemption at the issue date, tax acceptance, official malpractice, market discounting — stayed tangled up in it the whole time. Paper money did not escape personal relationships altogether. It escaped only the personal character of one particular firm, one particular circle of acquaintance — and was immediately tied back to a larger personal character still: whether the state itself would make good on the account.</p>
+
+<h3>6. Marco Polo's Alchemy</h3>
+
+<p>The Yuan dynasty pushed the experiment to a more radical extreme still.</p>
+
+<p>In the first year of Zhongtong — 1260 — Kublai Khan began issuing jiaochao, backed nominally by silk; the same year saw the Zhongtong Yuanbao banknote, in denominations running from ten wen to two guan across ten grades, each guan equal in value to one liang of the silk-backed jiaochao, and two guan equal to one liang of silver.</p>
+
+<p>In other words, the new Yuan note was anchored to silver from the very start: two guan of paper to one liang of silver. By 1271 the Yuan went further, declaring the Zhongtong note the sole legal currency in the empire, with other metal currencies nominally abolished.</p>
+
+<p>This step differed sharply from the Song experiment. The state was no longer merely managing paper alongside metal; it was trying to make paper occupy the very center of the system.</p>
+
+<p>What Marco Polo witnessed was precisely the most dazzling face of that system. He wrote that Kublai Khan struck currency from the bark of the mulberry tree, stamped with officials' signatures and a red seal, and that with this paper money people anywhere in the empire could buy whatever they wanted. He marveled, too, at how light the paper was — a note with a face value of ten gold coins, he noted, weighed less than a single gold coin — and observed that merchants who sold gold, silver, and pearls to the emperor were then paid back in paper.</p>
+
+<p>To a thirteenth-century Venetian, this naturally looked like a species of alchemy: a sheet of paper, and someone else's gold changes hands.</p>
+
+<p>There is a layer to his astonishment that he himself could probably not have named. In his own homeland, money was gold and silver, and gold and silver were valuable in themselves; here, money was a sheet of paper, valuable because a power almost beyond imagining said it was valuable, and because that power could genuinely make the claim stick for everyone from Dadu to the south of the Yangtze. What he was really watching, then, was less a currency than a demonstration of the reach of government: the fact that a piece of paper could be made to count across thousands of li was itself a display of state power.</p>
+
+<p>More recent scholarship, though, warns against letting Marco Polo's wonder stand in for institutional history itself. Some researchers argue explicitly that Western impressions of Chinese paper money have too often been shaped by Marco Polo's excessively favorable account, obscuring the fact that premodern China's experiments with non-redeemable paper currency also produced plenty of failure, collapse, and retreat. What Marco Polo saw was the most spectacular, most efficient face of empire at its center. The fiscal overreach, the regional discounting, the quiet return of silver, and the eventual collapse at the end of the Yuan — none of that appears anywhere in his exclamations.</p>
+
+<p>And silver, in fact, never really left.</p>
+
+<p>The Yuan banned silver from circulating in private transactions, yet large transactions — especially in real estate — continued to be settled overwhelmingly in silver. The official exchange rate makes the trend plain enough on its own: in 1260 it still stood at two guan to one liang of silver; by 1309 it had moved to twenty-five guan to one liang. On this basis, the average annual depreciation over the period works out to roughly five percent.</p>
+
+<p>This is worth stopping over.</p>
+
+<p>Officially there was only one legal currency, and everything else had been abolished. In practice, when people conducted the transactions that actually mattered, they kept a second scale in mind, and that scale was silver. The state could declare that there was only one scale in existence. It could not make the other one disappear from people's minds.</p>
+
+<p>Notice, too, the occasion on which people reached for the second scale: buying land. For the small daily transaction, paper would do, since it would be spent again soon enough; but for a major holding meant to pass down to one's children, a person had to think further ahead, had to ask whether the thing would still be worth anything in ten or twenty years. The more durably a person wanted to store value, the less willing they were to entrust it to paper. The distinction is telling: paper notes could serve as a medium of exchange, but made a poor container for storing value — and storing value is exactly the thing people care about most.</p>
+
+<p>Some scholarship divides the history of Yuan paper money into three phases: 1260 to 1276, a period of full convertibility into silver; 1277 to 1309, a period of merely nominal convertibility; and 1310 to the end of the dynasty, a period of legally mandated non-convertible paper. In the first phase, excess notes could be recalled with silver; across the latter two, that anchor grew steadily weaker, until it finally became a purely legal fiction backing pure paper.</p>
+
+<p>Paper money did not break free of metal in a single step. It went through a slow retreat — from a silver standard, to a weak silver standard, to fiat paper pure and simple.</p>
+
+<h3>7. The Price of Everything, Printed in Advance</h3>
+
+<p>The Ming took paper money to another extreme altogether.</p>
+
+<p>In the eighth year of Hongwu — 1375 — the Ming issued the Da Ming Baochao, the Great Ming Circulating Treasure Note. Surviving specimens tell us how large it was: roughly thirty-four centimeters long and just over twenty centimeters wide, printed on paper made from mulberry bark. Across the top, in large characters, ran the words Da Ming Tongxing Baochao; the middle carried the denomination — one guan, say — alongside an image of ten strings of cash; and below ran a long block of legal text whose substance was this: printed with the court's authorization, to circulate alongside copper coin; counterfeiters to be beheaded; informants to be rewarded two hundred and fifty liang of silver, with the criminal's property confiscated.</p>
+
+<p>According to the Collected Statutes of the Ming, one guan of this paper converted to one thousand wen of cash, or to one liang of silver; four guan equaled one liang of gold.</p>
+
+<p>This amounts to printing an entire conversion table directly onto the money.</p>
+
+<p>Printing the conversion table on the note is a gesture heavy with meaning. It announces that this paper is not merely money but the master rule for converting everything into everything else: one guan is a thousand wen is a liang of silver, four guan is a liang of gold, all written right there, no need to consult the market at all. This is, on the long road toward commensuration, one of the rare attempts to print the answer directly onto the instrument. But market prices have never listened to what is printed on paper, and the more rigidly a printed price is fixed, the more conspicuous the gap between it and the real one becomes.</p>
+
+<p>The Ming's early ambition was more direct than either the Song's or the Yuan's. Once the baochao system had taken its final shape, transactions in gold and silver were banned outright, along with barter; copper coin was withdrawn from circulation and at one point banned as well, all in pursuit of a single goal — making the baochao the sole legitimate currency.</p>
+
+<p>This was a more thorough attempt at commensuration than any that came before it. The state tried to fold gold, silver, copper coin, and the whole range of commodity exchange into a single printed note and a single body of law. Paper money here was not merely a medium for the market; it was the state's instrument for compressing every means of payment into one pricing frame.</p>
+
+<p>And it is exactly here that the Ming's problem exploded into view.</p>
+
+<p>One line of scholarship holds that Ming fiscal administration was simply mismanaged — that, unlike the Song, it failed to use paper money effectively for tax collection or to recall it from circulation, and that the baochao depreciated severely as a result; by the early fifteenth century Ming notes had largely stopped functioning, after which the Chinese market shifted to a silver-ingot standard, and Ming fiscal accounting and taxation gradually moved onto a silver basis as well. Other scholarship treats the Ming as a stark case demonstrating that premodern China's experiment with non-convertible paper was, in the end, no more successful than early modern Europe's; by around 1430 the state had already been forced to abandon paper money as the effective core of circulation.</p>
+
+<p>Taken apart, there are at least three parallel explanations for why Ming paper failed.</p>
+
+<p>One stresses a change in fiscal constitution: what had supported paper money under the Song and Yuan was a highly monetized fiscal structure resting on commercial and indirect taxes; the early Ming, by contrast, relied far more on payment in kind, on corvée labor, on forced mobilization. The state issued notes eagerly but recalled and absorbed them through taxation only weakly, so paper flowed out with almost nothing flowing back in.</p>
+
+<p>A second stresses a design flaw built in from the start: the baochao system had been designed from the outset to relieve fiscal pressure, so that money itself was fiscalized, and overissue was practically built into the design.</p>
+
+<p>A third, more commonsensical explanation is not entirely wrong either: forcibly banning silver, banning copper, banning barter cannot cancel out a market's preference for a more reliable store of value — the ban only widens, and widens faster, the gap between the nominal legal currency and what people actually settled their accounts in.</p>
+
+<p>Each of the three explanations has its own logic, and together they come into sharper focus: overissuing money is one problem, failing to recall it is a second, and banning the alternatives too harshly is a third. Issuance, recall, prohibition — all three went wrong, and any one alone might not have been fatal, but together they proved impossible to sustain. Assigning a single culprit is probably not possible. What can be said with confidence is that the system demanded of itself far more than it was ever capable of delivering.</p>
+
+<p>The Ming collapse tells, once more, the same underlying story.</p>
+
+<p>Stripping value away from metal does not mean it thereby escapes reputation. Quite the opposite: once stripped, value presses down more concentratedly on the issuer's reputation, on fiscal capacity, on the credibility of enforcement. The moment a state can no longer sustain a closed loop for its paper across tax payment, redemption, government purchase, and government disbursement, the market moves value back onto silver, onto copper coin, onto whatever else can still be trusted.</p>
+
+<p>The Ming's later turn to a silver standard was not some more advanced, natural victory either. It was a society retreating, after one great paper-money experiment had failed, into another system of pricing and storing value that could better protect itself in practice.</p>
+
+<h3>8. What Was Left After the Metal</h3>
+
+<p>Taken across the full millennium, the best summary is not to be found in any later theory, but in three sentences that people actually said at the time.</p>
+
+<p>The first belongs to Lü Zhong: having money to put paper into motion, and paper to regulate money, mother and child circulating in balance. Paper and coin, in his account, were never a replacement of one by the other. They were a pairing.</p>
+
+<p>The second is that question from the sixth year of Shaoxing: with the government holding no capital, how could the people be expected to trust it? Without capital, where is trust supposed to come from?</p>
+
+<p>The third runs in the opposite direction, and is no less true: if the government accepts its own paper without difficulty, the people's confidence will naturally follow. If the state is willing to take the paper, the people will be willing to believe in it.</p>
+
+<p>Put the three together and the whole difficulty of the matter is laid out in full. For paper money to stand, one end needs capital and the other needs someone willing to accept it — and of those two ends, one is a thing, and the other is trust.</p>
+
+<p>What is interesting is that there is real tension among the three. The second says that without capital there is no trust; the third says that as long as the government accepts the paper, people will trust it regardless — one plants its root in the vault, the other in the attitude of the magistrate's office. The first sentence sits between them, insisting the two must be held in balance, with neither side allowed to dominate. The Song argued this question for two hundred years, and the three positions that argument produced turn out to be exactly the three positions every later monetary theory would eventually have to reckon with.</p>
+
+<p>Followed all the way through, what actually happened here can be stated quite plainly.</p>
+
+<p>In the earlier essay on double-entry bookkeeping, the scale, for the sake of convenience in record-keeping, actively shed its own body and became a pure, non-circulating number. With jiaozi, it is the circulating currency itself that sheds its metal.</p>
+
+<p>And once the metal is shed, what happens is not that money comes to need people less. It comes to need people more. A copper coin, whoever is holding it, remains a lump of copper — half its value resting in the object itself. A paper note is nothing like that: its value rests one hundred percent on other people — on whether the issuer honors it, whether the government accepts it, whether it will still be redeemable next year.</p>
+
+<p>So the whole business of paper money runs in two directions at once. In circulation it becomes more anonymous — anyone at all can hold a sheet of paper, no questions asked about where it came from. At its foundation, though, it becomes more personal than ever, because beyond that one promise, it has nothing else to stand on.</p>
+
+<p>However much metal is withdrawn, exactly that much weight comes to rest on reputation. One side grows lighter; the other grows heavier.</p>
+
+<p>So the claim that paper money marks the moment personal character exits monetary history has the direction backward. It is closer to the truth to say that personal character was, for the first time, pushed onto the main stage: in the past, the trust placed in an issuer always had metal to share half the weight; from paper money onward, it has to carry the whole weight by itself. And whether it can bear that weight no longer depends on how much ore lies buried in the ground. It depends on whether a regime, in the very years it is most desperate for money, is willing to keep a promise it made years before.</p>
+
+<p>As for the remainder, here it shows a new face.</p>
+
+<p>In the earlier essays, whatever spilled out past the edge of the ledger was either something that could not be measured, or something that should not have been measured, or something measured that ended up touching nothing at all. This time is different. This time what spills out is another scale entirely.</p>
+
+<p>The Yuan declared paper the sole legal currency and abolished everything else, and yet people conducting the transactions that truly mattered — buying land — kept reckoning in silver all the while. The Ming banned gold, banned silver, banned barter, printed its conversion table directly onto the face of the note — and the outcome was that silver, by the fifteenth century, had become once again the true measuring instrument of the entire society.</p>
+
+<p>A construct can declare itself the sole scale. It cannot make the backup scale in people's hearts disappear.</p>
+
+<p>And that backup scale stays silent in ordinary times, surfacing only once the construct itself begins to lose credibility. It does not arrive from outside to topple the construct. It was there the whole time, and it is the construct's own broken faith that calls it back onto the stage.</p>
+
+<p>This is also why such prohibitions always did so little good. They all attempted the same thing: stopping people from using another scale. But people do not turn to another scale because an alternative happens to exist. They turn to it because the scale already in their hands has started reading false. A ban can take away the substitute; it cannot take away the reason people go looking for one — and as long as that reason remains, some substitute will eventually come back, in whatever form it can find.</p>
+
+<p>As for who ends up paying, it is written plainly enough in the sections above. When private jiaozi suffered a run, a guan redeemed for only seven or eight hundred wen, and the loss fell on whoever was holding the note. When jiaozi exchanged four-to-one for new issue, the loss fell on whoever was still holding the old. When huizi's issue was extended again and again, the loss fell on those who had believed in the three-year promise. When Ming notes depreciated, the loss fell on those who had honestly accepted them in the first place.</p>
+
+<p>The issuer can spend someone else's trust in advance. Whoever bears the consequence is always whoever happens to be holding the paper last.</p>
+
+<p>That paper never once carried a column for this.</p>
+
+<p>A jiaozi note carried its face value, its issue number, its code number, the penalty prescribed for forgers, the fee deducted from every guan. Everything was written down — except for one column: if the note cannot be redeemed on schedule, who bears the loss. That column is missing not because anyone forgot it, but because it could not be written. To write it would be to admit that the paper might not be honored, and a paper that admits it might not be honored stops being money the same day. So the one truly essential fact of the whole arrangement had to stay off the page entirely, left to whoever happened to be holding it last.</p>
+
+<p>The ledger has not yet balanced. It is still being kept.</p>
+
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="ep05.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">复式记账的发明:不问,账才做得平</span>
+            <span class="xiyou-nav-title lang-en">Debit and Credit</span>
+          </span>
+        </a>
+        <a href="ep07.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">大航海与重商主义:先清点,后定价</span>
+            <span class="xiyou-nav-title lang-en">The Ledger and the Mountain</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

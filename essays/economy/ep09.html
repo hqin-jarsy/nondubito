@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>斯密与看不见的手｜凿构周期律·经济系列 — Non Dubito</title>
+  <meta name="description" content="看不见的手常被读成一句只讲自利的口号。斯密自己写的另一本书里，早就留着一个不肯被利己心收编的判断者。那个判断者，才是这篇真正要谈的余项。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/economy/ep09.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .essay-entry-point { font-family:var(--sans); font-size:0.72rem; color:var(--ink-muted); font-style:italic; margin-top:0.5rem; margin-bottom:0.25rem; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 凿构周期律·经济系列</a>
+        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Economics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">凿构周期律 · 经济</div>
+          <div class="essay-series lang-en">Chisel-Construct Cycle · Economics</div>
+          <div class="emperor-ep-num lang-zh">第 09 篇，共 23 篇</div>
+          <div class="emperor-ep-num lang-en">Essay 09 of 23</div>
+          <h1 class="lang-zh">第九篇　斯密与看不见的手:余项,从未被真正请下柜台</h1>
+          <h1 class="lang-en">Essay 9: To Be Praised, and to Be Praiseworthy — The Remainder Never Left the Shelf</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<h3>一 最后那一版</h3>
+
+<p>1790年,亚当·斯密去世的那一年,他做完了一件事。</p>
+
+<p>他把《道德情操论》又改了一遍。</p>
+
+<p>这是这本书在他生前的第六版。他原本写信告诉出版商,说只打算对其中两部分做点增补;可写着写着,题目越写越长,最后他干脆新添了一整个部分,专讲德性,良知,自制,以及道德感如何被腐蚀。这是他一生最后一项大规模的写作工程。</p>
+
+<p>他那时身体已经很差,清楚自己时间不多。一个人在这种时候动笔,写的多半是他认为最要紧,也最放心不下的东西。他选择去写的,是德性怎样养成,良知怎样运作,以及人心怎样被腐蚀。</p>
+
+<p>而在那一版新添的部分里,他花了很大篇幅谈自制。这个题目挑得意味深长。自制说的是一个人怎样管住自己,而它之所以必要,恰恰因为人不是一部只按利害行事的机器;一部那样的机器不需要自制,它只需要算得准。要谈自制,先得承认人身上有些东西是算不出来的。</p>
+
+<p>这件事之所以要紧,是因为时间的次序。</p>
+
+<p>《道德情操论》出版于1759年。《国富论》出版于1776年。而这次大规模的增补,发生在《国富论》之后十四年。</p>
+
+<p>流传最广的那个故事说:斯密年轻时讲同情,讲道德,后来去了法国,见了世面,想通了,于是写下《国富论》,发现人其实只靠自利就能把社会运转起来。前一本书是他的青涩,后一本才是他的成熟。</p>
+
+<p>可要是这样,他晚年最该做的事,不是回过头去把那本讲同情的书加厚。</p>
+
+<p>尤其不该在里面新添一整章讲德性和良知。</p>
+
+<p>这件事本身不是一锤定音的证据,但它是后世任何一种解释都绕不过去的硬材料:那个据说抛弃了道德哲学的人,在生命的最后几个月里,正在替道德哲学写补充。</p>
+
+<p>换个说法:如果《国富论》真是一次告别,那么这次告别之后十四年,告别的人还在往被告别的那一边添砖加瓦。而且添的不是零星修补,是一整个新部分。这件事解释不了两本书之间的一切张力,但它至少堵死了一条最省事的解释。</p>
+
+<p>这里要处理的,不是一个人是不是自相矛盾。是另一件事。</p>
+
+<p>前面八篇里,构压缩的是世界:债务,价格,货物,航次,人。到了斯密这里,构压缩的是一个人的思想。</p>
+
+<p>而被压掉的那一半,后来一次次回来。</p>
+
+<p>要弄清楚这件事,得先知道斯密是干什么的。</p>
+
+<p>1752年,他就任格拉斯哥大学的道德哲学教授。</p>
+
+<p>不是经济学教授。当时还没有这门学科。</p>
+
+<p>按后来的回忆,他那门道德哲学课分成四大块:自然神学,伦理学,关于正义的法学,以及被称作合宜性或者政治经济学的那一部分。</p>
+
+<p>请把这个次序看清楚。</p>
+
+<p>后来被人拿去当作伦理学著作的《道德情操论》,和被人拿去当作经济学著作的《国富论》,在斯密自己的教学结构里,本来就是同一门课的相邻部分。</p>
+
+<p>它们不是两个人格。它们是一份讲义的第二块和第四块。</p>
+
+<p>这个次序还透露出另一件事。政治经济学在斯密那门课里排在最后,是压轴,不是根基。前面三块讲的是:世界大体是什么样的秩序,人凭什么判断对错,以及什么样的规则可以被强制执行。第四块讲的是,在这些都立住了之后,一个社会怎样才能变得富裕。富裕这件事,在他那里是一门更大的学问的最后一段,而不是全部。</p>
+
+<p>时间上的证据也在。1762年到1763年的学生笔记保存下了他的法学讲义;这些笔记表明,关于分工,货币,价格,财富的许多核心论点,在他去法国之前就已经成形。这批讲义1896年才公之于世,而它一出来,那个法国之行改变了他的说法,就立刻被削弱了。</p>
+
+<p>顺带看看这件事的形状:一种流行了近百年的说法,被一叠学生的课堂笔记推翻了。不是靠新的论证,是靠一批本来就存在,只是没人见过的纸。这在后面还会重演,而且不止一次。</p>
+
+<p>他不是先讲道德,后来改行讲经济。他一直在讲同一门课,而经济是那门课的最后一部分。</p>
+
+<p>顺带说,两本书都不是一次定稿的碑文。《道德情操论》在他生前出了六版,《国富论》出了五版。它们是他改了一辈子的工作文本。</p>
+
+<p>一个人可以在两本书里写不同的题目,这很平常。真正需要解释的是另一件事:为什么后世偏偏只留下其中一本,而且只留下那一本里的几句话。</p>
+
+<p>而且被留下的那几句,还都被拧过。屠夫面包师那一段被摘掉了后半句,看不见的手被从一段具体的分析里抽出来当成通则,分工被当成纯粹的好消息。删改不是简单地丢掉,它常常是把留下的那部分也重新裁一遍,好让它们彼此严丝合缝,看上去像一套完整的东西。</p>
+
+<h3>二 不管人被设想得多么自私</h3>
+
+<p>《道德情操论》的第一句,几乎就是给后来那个经济学版的斯密准备的预防针。</p>
+
+<p>他写:不管人被设想得多么自私。</p>
+
+<p>这句话后面接的不是所以社会秩序只能靠利益算计。接的是:人身上显然有一些原则,使他关心别人的命运,使别人的幸福成为他自己所需要的东西,哪怕他从中得到的只是看见别人幸福时的那点愉快。</p>
+
+<p>紧接着,他给同情下了个定义。他说的同情,不限于怜悯,而是我们对他人任何一种情感的共同感受。</p>
+
+<p>这个区别很要紧,因为中文里的同情这个词,后来窄了很多,几乎只剩下可怜别人的意思。斯密说的不是这个。他说的是一种更基础的东西:一个人能不能感到别人正在感到的东西。</p>
+
+<p>而这个能力是中性的。它既可以让你为一个受苦的人难过,也可以让你替一个得意的人高兴,还可以让你在别人发怒时跟着火起来。斯密要的正是这种中性,因为他要用它来做判断,而不是用它来劝善。一样只在好事上起作用的机制,做不成判断的地基。</p>
+
+<p>而这个机制,他讲得一点也不玄。</p>
+
+<p>他反复说,我们没有直接进入别人感受的通道。我们只能靠想象,把自己放到对方的处境里去,估计如果换成我,我会怎样。</p>
+
+<p>于是道德判断不是从天上降下来的。它是在当事人和旁观者之间形成的:当事人表达情感,旁观者试着跟上;如果跟得上,我们就觉得这情感是合宜的;如果跟不上,就觉得过分了,失当了。</p>
+
+<p>要紧的不是我现在真实地感到什么,而是一个了解情况,又没有偏向的旁观者,会不会跟得上我。</p>
+
+<p>这一步很妙,因为它把道德判断从我觉得挪到了一个可以互相商量的位置上。我觉得委屈,这话没法争;换成一个知情而不偏心的人会不会觉得我委屈,这话就可以谈了。两个人吵架,吵到某一刻总有人会说,你换成别人来看看这事;那一刻用的正是斯密这套东西。</p>
+
+<p>后来他把这个旁观者搬进了人的心里。他把良知叫作胸中之人,又叫作我们行为的伟大裁判者。</p>
+
+<p>这不是理性的另一个名字。它是一个人在长年的社会生活里,把外面的目光内化之后,形成的自我审判装置。</p>
+
+<p>而它的作用是纠偏。</p>
+
+<p>纠偏这件事,靠的不是压住自己,而是换一个位置看自己。斯密的说法很朴素:一个人独自待着的时候,自己的那点得失会占满整个视野;一旦想到还有别人在看,那点得失就退回到它该有的比例上去。他甚至说过,人之所以能在自己吃亏和别人受害之间做出选择,不是因为爱别人胜过爱自己,而是因为他心里那个旁观者不肯站到他这一边。斯密写,自爱总想把自己那一点点利益看得过重;而胸中之人会逼我们承认,在别人眼里,我们不过是众人当中的一个,并不天然比别人重要。</p>
+
+<p>所以斯密并不认为自爱是邪恶的。他认为它天然存在,但需要经过旁观者的视角修剪一遍,才能变成可以和别人共处的东西。</p>
+
+<p>这已经离那个只会算计的斯密很远了。</p>
+
+<p>而且要留意,这套机制打底就是一种关系性的东西。它要求一个人始终把别人放在心里当作参照,不是出于好心,而是因为不这样他就没法判断自己。一个真正只会算计自己的人,在斯密这里连道德判断的能力都不会有,因为他没有那个可以借来看自己的位置。</p>
+
+<h3>三 被赞美, 和配得赞美</h3>
+
+<p>而《道德情操论》里最不能被删掉的,是一个区分。</p>
+
+<p>斯密说,人并不只是想被爱,被夸,被称颂。人还想要自己配得上那些爱和赞许。</p>
+
+<p>他的原话很短:不仅要被赞美,而且要配得赞美。</p>
+
+<p>这句话把两样东西拆开了。</p>
+
+<p>被赞美是别人给的。它在人与人之间,由外面的人说了算,可以争取,可以经营,也可以伪造。</p>
+
+<p>配得赞美不是。它在一个人自己心里,由他自己那个胸中的裁判者说了算。别人怎么看,不改变这一样。</p>
+
+<p>而这两样东西经常不重合。</p>
+
+<p>一个受尽称颂的人可能心里明白自己配不上;一个被众人轻视的人可能心里明白自己没有做错。前一种情形叫心虚,后一种情形叫委屈。这两种感受之所以存在,正因为人身上同时装着这两把尺子。</p>
+
+<p>而这两把尺子的量法完全不同。被赞美要靠打听:别人怎么说的,有多少人这么说,说得响不响。配得赞美不用打听,一个人心里清楚。也正因为不用打听,它没法作假——一个人可以骗过所有人,骗不过那个在他心里做裁判的东西;骗得过的话,那个东西就已经不在了。</p>
+
+<p>斯密看得很清楚:市场社会,宫廷社会,社交场,都能提供大量被赞美的机会。可它们提供不了另一样。</p>
+
+<p>钱能买到别人的劳务,买不到配得上的赞许。</p>
+
+<p>这一句可以再推一步。钱买得到很多看上去像敬重的东西:排场,座次,别人的客气,报纸上的版面。这些都是真的,都能量得出来,也都能出价。可它们全在朝外那一边。买不到的那一样,不在别人手上,所以谁也卖不了它给你。</p>
+
+<p>这一句是斯密自己的分界,不是后人替他画的。而这个分界要紧的地方在于:它把一样东西留在了价格够不到的地方。</p>
+
+<p>价格是朝外的,它要有两个人才成立,是在人与人之间比出来的一个数。配得赞美是朝里的,它一个人就有,不必等谁来标价。</p>
+
+<p>而人偏偏会不断把这两样混起来。</p>
+
+<p>斯密对这一点极为敏感。他写,人们几乎像膜拜一样去崇拜富人和有权势的人,同时轻视或者忽视穷人;而这是我们道德情感败坏的最大也最普遍的原因。</p>
+
+<p>这句话应该被当作整部《道德情操论》对商业社会泼的一盆冷水。</p>
+
+<p>它说的是:商业社会并不会自动把人的目光从身份转向价值。相反,它可能把财富本身变成一台新的可见性机器,让值得敬重和看起来值得羡慕,变得更难分开。</p>
+
+<p>一个人有多少钱,是量得出来的。一个人配不配得上敬重,量不出来。而当量得出来的那一样越来越显眼,人就越容易拿它去替代量不出来的那一样。</p>
+
+<p>这不是后世强加给斯密的批评。这是他自己写的。</p>
+
+<h3>四 正义与恩惠</h3>
+
+<p>还有一处不能省略,因为它给整座建筑定了地基。</p>
+
+<p>斯密把正义和恩惠严格分开。</p>
+
+<p>恩惠,慷慨,友爱这一类,他说,永远是自由的。它们不能被强迫。一个人不做这些事,会让人失望,会招来厌恶和责备,但一般不该动用强制。</p>
+
+<p>正义不同。违反正义,会给某个具体的人造成真实而确定的伤害。因此它可以被强制执行,可以被惩罚。</p>
+
+<p>他把后果说得很具体:没有恩惠,社会会比较不愉快;没有正义,社会根本维持不住。</p>
+
+<p>这两句话的分量不一样,而斯密故意让它们不一样。不愉快是程度问题,维持不住是有无问题。他并不打算把一切好事都做成义务,因为那样做的结果往往是把善心也变成一种可以被要求,可以被考核,可以被交差的东西。他要守住的只有那条底线,而底线之上的那一大片,他愿意留给劝说,舆论,赞许和羞耻去调节。</p>
+
+<p>这个区分对理解《国富论》至关重要。</p>
+
+<p>它意味着:社会并不要求所有的日常来往都由善心驱动。你买面包不必爱着面包师,他卖你面包也不必可怜你。</p>
+
+<p>但它要求这来往不伤人,不侵害,不欺诈。</p>
+
+<p>所以斯密既不是那种要求人人仁慈的道德立法者,也不是那种只要各顾各就万事大吉的冷面算计论者。他划的是一条别的线:善可以不做,伤不能做。</p>
+
+<p>而这条线,恰恰是前一篇里被彻底穿透的那一条。</p>
+
+<p>把两件事摆在一起看,分寸就清楚了。一个卖面包的人不必可怜你,这没有越线;一个把人装上船运去卖掉的人,越了线。前者是善可以不做,后者是伤不能做。斯密这条线之所以要紧,正因为它没有把要求提得很高,所以它一旦被穿透,就没有任何余地可以辩解。</p>
+
+<h3>五 别针厂</h3>
+
+<p>现在来看《国富论》。</p>
+
+<p>它最有名的开头是分工。</p>
+
+<p>斯密写,一个小针厂里,十个人把工作拆成大约十八道工序,一天能做出四万八千枚以上的针;而如果每个人都单干,又没受过这行的训练,那么一天别说二十枚,也许连一枚都做不出来。</p>
+
+<p>这个例子经久不衰,不只因为数字惊人,而是因为它把一种新的社会技术写得极明确:复杂的产出不靠个人全能,而靠把动作,时间,技能和工具做成可拆分,可重复,可衔接的序列。</p>
+
+<p>可斯密紧接着说了一句常被跳过的话。</p>
+
+<p>他说,分工不是任何人类智慧预见到并且打算用来达成普遍富裕的结果。</p>
+
+<p>它是某种人性倾向的缓慢后果,而这个倾向,就是交换,交易,互通有无。</p>
+
+<p>也就是说,分工不是先有蓝图再有执行。它是从无数次具体的交换里慢慢长出来的。</p>
+
+<p>这句话在这个系列里有它的分量。它意味着分工不是谁的方案,没有蓝图,也没有一个坐在上面统筹全局的人;它是一堆各自打算盘的人,在无数次讨价还价里,把一件事慢慢拆成了十八道工序。后来有人拿这个当作理由,说凡是自己长出来的东西就一定好;而斯密自己没有这么说,他在同一本书的后面写下了这套东西的代价。</p>
+
+<p>这里也有一处值得留意的次序。斯密先说分工不是谁设计的,再说它带来了惊人的产出,最后说它把人磨钝了。三句话摆在一起,得出的不是分工好或者分工坏,而是另一种东西:一样没有人设计的东西,可以同时带来巨大的好处和巨大的损害,而且这两样是同一个过程生出来的,分不开,也不能只要一头。</p>
+
+<p>然后是那段所有教科书都要单独摘出来的话。</p>
+
+<p>屠夫,酿酒师,面包师。</p>
+
+<p>原句的意思是:我们指望的不是他们的仁慈,而是他们的自爱;我们跟他们谈的不是自己的需要,而是他们的好处。</p>
+
+<p>后半句才是关键,而它经常被丢掉。</p>
+
+<p>这段话真正说的机制,不是别指望好心。是说服。</p>
+
+<p>一桩交换要做成,你得先弄明白对方要什么,再把自己的需求翻译成对方的好处。这个动作里包含着对另一个人的判断:他图什么,他在乎什么,怎样说他才肯。</p>
+
+<p>也就是说,市场行为在斯密这里并不是把别人抽掉。它恰恰是把别人当成一个有自己目的,需要被说服的对象。</p>
+
+<p>匿名的价格在这里还没有取代人格化的交涉。它只是把交涉的语言,从请可怜我,换成了这对你也有利。</p>
+
+<p>这个换法有它的好处,而且好处不小。请可怜我,是把自己交到对方的善心里,对方给不给,全看他愿不愿意;这对你也有利,是把话摆在两个人都能验的东西上,他不必喜欢你,也不必可怜你,只要他算得清。一个人可以靠这句话,从一个不认识他,也不在乎他的人手里换来他要的东西。这是市场真正让人松一口气的地方:你不必先讨人喜欢,才配活下去。</p>
+
+<p>而那份松快是有代价的,斯密也没有回避。同一个机制,一面让你不必讨好任何人就能换到面包,一面也让别人不必在乎你就能跟你做成买卖。你从依附里被放了出来,也从牵挂里被放了出来。前面几篇里已经说过这件事,只是到了斯密这儿,它第一次被一个人同时看见了两头,还写进了同一套学问里。</p>
+
+<p>接下来斯密引入货币。货币解决的是直接以物易物里那个恼人的麻烦:你要找到一个既恰好有你要的东西,又恰好要你手里东西的人。有了钱,屠夫不必每次都去找一个正想吃牛肉又正好有面包的人。</p>
+
+<p>于是钱把杂乱的需要和供给拉到了一把共同的尺子上。</p>
+
+<p>可斯密同时坚持另一件事:就理论而言,劳动而不是货币,才是更深层,跨时空的价值尺度。钱只是共同的商业工具,是流通的大轮子,它不是社会的收入本身。</p>
+
+<p>他甚至说得很明白:在同一时间同一地点,钱是交换价值的精确尺度;可跨了时代,跨了地方,它就不稳了。</p>
+
+<p>这句话值得记住。这个后来被当成通约之父的人,自己知道通约会漏。</p>
+
+<p>而他找的那把更深的尺子,也不是没有麻烦。劳动这把尺子听着更实在,可一个人一天的劳动,和另一个人一天的劳动,怎么比;轻活和重活,熟练和生手,危险的和安全的,又怎么折。这些问题斯密自己就在书里绕来绕去,后来更成了一整代人吵不完的题目。要紧的不是他有没有解决,而是他为什么非要去找:因为他知道,只用钱算,有些东西对不上。</p>
+
+<p>他知道共同的尺子是必要的,也知道共同的尺子总有对不上的地方,所以他才要在钱之外,再找一把更深的尺子。</p>
+
+<h3>六 那只罕见的手</h3>
+
+<p>现在说那只手。</p>
+
+<p>看不见的手这个说法,在《国富论》里只出现过一次。在《道德情操论》里也只出现过一次。</p>
+
+<p>一次。</p>
+
+<p>它出现在讨论商人为什么偏好把资本投在国内的那一段里。而它的机制非常具体。</p>
+
+<p>斯密说,商人出于安全感,更愿意把钱投在自己看得见,管得着,比较熟悉的国内行业;又因为他会把资本投向产值最大的用法,所以在追求自己的安全和收益时,他像是被一只看不见的手引着,推进了整个社会的产出。</p>
+
+<p>请注意触发这只手的是什么。</p>
+
+<p>不是什么抽象的普遍利他,也不是价格机制的最优配置。是对风险,可见性,可监督性的偏好。</p>
+
+<p>说白了,是因为他信不过看不见的地方。</p>
+
+<p>这一点很值得玩味。那只后来被说成让市场自动最优的手,在原文里的动力,恰恰是一种不信任。商人不敢把钱投到远处,因为远处的事他管不着,看不见,出了岔子他也拦不住。于是他把钱留在了本地。社会因此得了好处,而这好处的来源不是市场的完美,是一个人对不确定的畏惧。</p>
+
+<p>而斯密紧接着就加了限定。他说这种结果在许多别的场合也会发生;他没有说总会发生。</p>
+
+<p>他还补了一句非常尖刻的话:那些自称为了公共利益做买卖的人,我从没见他们做成过多少好事。</p>
+
+<p>这句话今天常被当成一句漂亮的反讽引用,而引用的人往往只用它的前半个意思。斯密要说的不是公共利益不值得追求,而是别轻信那些把公共利益挂在嘴上的商人。他对商人的怀疑,在书里到处都是:他写过同行业的人一凑到一块儿,谈话就往合谋抬价上去;他也警告过,凡是商人提出来的法律建议,都该格外小心地审查。那个据说主张放手让商人干的人,对商人的评价其实相当低。</p>
+
+<p>这句话通常被读成对伪善商人的嘲讽。它确实是。可它同时也说明,他反对的不是公共目标本身,而是那些嘴上说着公共善,实际上未必更懂也未必更可靠的人。</p>
+
+<p>再往后,他直接把那种打算指导私人该怎么用自己资本的政治家,写成了危险人物。</p>
+
+<p>这一点和《道德情操论》里那个著名的说法遥相呼应。斯密在那里嘲讽过一种他叫作体系中人的人:这种人把社会看成一张棋盘,以为可以按自己心里的图样,把棋子一个一个重新摆好。</p>
+
+<p>而棋盘上的每一枚棋子,自己都有自己的运动原理。</p>
+
+<p>这句话几乎可以当作整个系列的一句注脚。构最想要的,就是棋盘那种状态:每一枚棋子的位置,价值和走法,都由摆棋的人说了算。而斯密提醒的是,棋子自己会动。它有自己的打算,自己的判断,自己不肯让渡的东西;你按你的图样把它摆好,它转头就走到别处去了。</p>
+
+<p>所以斯密反对的不是政府做事,这一点常被弄拧。他主张国家办教育,修路,办司法,管一些私人办不了的事;他反对的是另一种姿态,就是有人以为自己已经看清了全局,可以替每一枚棋子决定它该往哪里走。这两件事在今天常被混为一谈,而在他那里分得很清楚。</p>
+
+<p>所以斯密警惕的不是抽象。他自己就是造抽象的人。他警惕的是另一件事:以为抽象已经把现实吃干净了。</p>
+
+<h3>七 变钝</h3>
+
+<p>现在要说《国富论》里最少被引用的那一段。</p>
+
+<p>它在第五卷。</p>
+
+<p>斯密写,一个人如果终身只做那么几个极其简单的动作,他会变得像一个人所能变成的那样愚钝和无知。</p>
+
+<p>他接着说,这样的人不但没法参加理性的谈话,也难以形成慷慨,高贵或者温柔的情感判断。</p>
+
+<p>请把这段话和别针厂那一段放在一起看。</p>
+
+<p>同一个人,在同一本书里,先用四万八千枚针证明了分工的威力,然后又在后面写下:这套东西会把干活的人变钝。</p>
+
+<p>而且不是变穷。是变钝。</p>
+
+<p>这个区别很关键。变穷是账上的事,可以用工资,产量,物价去衡量,也可以指望着靠增长去补;变钝不是。一个人的判断力,好奇心,对复杂事情的耐心,以及为别人设身处地的能力,一旦在几十年的重复动作里磨没了,没有任何一笔收入能把它买回来。斯密写的是一种不在账上的损耗,而这种损耗恰恰是被账上的那份增长换来的。</p>
+
+<p>更麻烦的是,这笔账没法在同一个平面上对冲。你不能说产量涨了三成,所以判断力钝掉两成还算划算;这两样东西压根不在一把尺子上。而凡是不在一把尺子上的东西,一旦被摆到一起比较,吃亏的总是那个量不出来的。斯密知道这一点,所以他没有去比,他直接说:这件事国家得管。</p>
+
+<p>他记录的不是分工的经济代价,是它的精神代价。</p>
+
+<p>一个人的产出上去了,他身上另一样东西下来了,而这另一样东西不出现在任何一份产量统计里。</p>
+
+<p>它没有价格,不进账,也不会让任何一本账不平。</p>
+
+<p>前面讲复式记账时说过,没有购买力的需要不会让任何一本账出错,所以任何一本账都不必理会它。这里是同一件事的另一种形态:一个人变钝了,产量没有下降,工资照发,账目照样平。账本对此没有意见,因为账本根本没有为这件事设过一栏。斯密的了不起,在于他自己造着这套账,同时看得见账外的那一栏。</p>
+
+<p>斯密还就此提出了对策:国家在这件事上必须费些力气,尤其是在教育上。也就是说,他认为这个损耗不会自己好起来,得有人专门去管。</p>
+
+<p>把这一段和前面那句道德情感败坏的话放在一起,一个和教科书里很不一样的斯密就出来了。</p>
+
+<p>他确实写了一部关于财富怎样增长的书。而在同一部书里,他也写下了增长的两笔代价:一笔落在人的判断力上,一笔落在人的道德目光上。</p>
+
+<p>商业社会擅长把东西放进共同的尺度,擅长提高产出,擅长用价格把陌生人连起来。</p>
+
+<p>它同时会腐蚀判断,制造对富贵的膜拜,让穷人走过来走过去而没有人看见,让干活的人在单调的工序里变得迟钝。</p>
+
+<p>这不是后人替斯密加的良心附录。这是他自己对商业社会做的解剖。</p>
+
+<h3>八 谁删掉了那一半</h3>
+
+<p>现在可以问那个问题了:这一半是怎么没的。</p>
+
+<p>这个问题有个正式的名字,叫亚当·斯密问题。它是十九世纪德国学界系统提出来的,后来才有了这个名号。</p>
+
+<p>争论大致经过了几个阶段。</p>
+
+<p>第一阶段是转向说:《国富论》被解释成斯密从道德哲学滑向物质主义的证据,好像他去了法国,接触了那边的经济学家,就改信了另一套人性论。</p>
+
+<p>这一说在1896年受到重创。那一年,他1762年到1763年的讲义笔记公之于世,而笔记表明,政治经济学的许多核心想法,在他去法国之前就已经明白存在。</p>
+
+<p>第二阶段是桥接说:不否认两本书侧重不同,但主张它们讲的是人的不同侧面。有的把自利当作动力,把同情当作规制;有的指出同情不是仁慈,而是一种更基础的判断机制,因此和自利并不冲突;还有的把两本书放进一部更大的文明史里,说前者讲人的道德发展,后者讲人的物质发展。</p>
+
+<p>第三阶段是不相容说的复活。1927年有一篇著名的文章重新强调两书的差异,认为即便斯密在1790年重修了《道德情操论》,也没有消除这个冲突。这个说法影响很大,所以到二十世纪中叶,一致论虽然一直在,却没有彻底压倒不一致论。</p>
+
+<p>第四阶段是1976年。那一年,两本书的格拉斯哥校勘版问世。新版导论基本上把亚当·斯密问题当成一个由无知和误读造出来的伪问题;同一时期另一位研究者也把它归结为对同情和自利这两个词的误解。</p>
+
+<p>今天学界总体上更倾向于统一的解释。可这不等于争论结束了。梳理这段学术史的人自己就提醒,当前的辩论里仍有一部分人认为问题只是部分解决。</p>
+
+<p>真正变了的,是问题的形式:从他是不是两个人,变成了怎样理解一个统一体系内部的层次差异,文本时差和概念转义。</p>
+
+<p>而这个转变本身也说明了点什么。一个问题被解决,有时不是因为有人给出了答案,而是因为提问的方式被换掉了。原来的问法预设了两本书要么一致要么矛盾;换过之后,问的是一个人在三十年里,针对不同的题目,用不同的层次说话,这中间会有怎样的张力。后一种问法当然更啰嗦,可它更像那个人真实的样子。</p>
+
+<p>而在学界慢慢缝合的同时,外面那个删节本却越传越广。</p>
+
+<p>这里有两个特别有力的放大器。</p>
+
+<p>一个是教科书里的行为假设。有经济学家在著名的论文里,把自己那套人主要由自利支配的理论,说成是沿着斯密的路线走的。有位后来的学者对此说了一句带刺的话:亚当·斯密被强加了太多渺小。</p>
+
+<p>另一个是那只手的现代化。有研究指出,1948年一部影响极大的经济学教科书,把斯密的看不见的手接到了完全竞争上,后来又进一步说它预示了一般均衡和福利定理;于是一个原本具体,受限,修辞性极强的比喻,被改造成了整门学科的总图腾。那位研究者的概括很直白:它被读成了个人的自私会导致所有人的最好结果。</p>
+
+<p>值得指出的是,这个改造并不需要任何人存心作伪。教科书要教学生,教学生就需要一个能记住的说法;一个反复出现的比喻,比一段带着七八条限定的分析好教得多。于是限定被省掉,场合被省掉,那句尖刻的补充被省掉,剩下一只手。省的每一步都有它当下的道理,而省完之后,那个人已经不是那个人了。</p>
+
+<p>于是发生了两层删改。</p>
+
+<p>第一层,是把一个在两本书里各出现一次的比喻,改写成斯密思想的总钥匙。</p>
+
+<p>第二层,是把自利从人天然先照料自己,扩写成人只会算自己的利益。</p>
+
+<p>而斯密自己两样都没写。在交换那一段里,他关心的是怎样让对方看见他自己的好处;在《道德情操论》里,他关心的是人如何被良知,羞耻,旁观者的目光,以及被赞美和配得赞美的差别所驱动;在《国富论》第五卷里,他担心分工会让干活的人心智迟钝,以至于国家必须在教育上费力气。</p>
+
+<p>这些和那个被简化成自利即可自动最优的斯密,差得太远了。</p>
+
+<p>所以后来的回到斯密,常常不是回到市场原教旨主义。它回到的是一幅更麻烦,也更不容易被喊成口号的图景:市场秩序需要价格,分工,货币和制度,可它同时倚赖着正义,自制,习俗,还会不会脸红的能力,对别人处境的想象,以及一种不把穷人彻底看没了的公共眼光。这些东西没有一样能被写进模型,而缺了它们,模型里那套东西也转不起来。</p>
+
+<p>到这里,可以说清楚这一折在整个系列里的位置了。</p>
+
+<p>前面八篇里,构压缩的是世界。它把亏欠压成泥板上的数,把价值压成一枚硬币,把生意压成借贷两栏,把国家压成一个年度余额,把人压成货单上的一行。</p>
+
+<p>而在斯密这里,构压缩的是一个人写下的东西。</p>
+
+<p>一个用一生讲了四部分课的人,被留下了第四部分;一个写了两本书,晚年还回头把第一本加厚的人,被留下了第二本;而在第二本里,只留下了别针厂,屠夫面包师,和那只出现过一次的手。</p>
+
+<p>压缩的道理和前面几篇一模一样:能进模型的就留下,进不了模型的就绕开。自利可以被写成假设,可以被形式化,可以被算;同情,羞耻,配得赞美,胸中之人,分工造成的精神损耗,这些进不了方程,于是它们就成了别的什么东西,成了前史,成了附录,成了年轻时的错误。</p>
+
+<p>这个处理办法在前面几篇里已经见过。禁高利贷的时代,人们把利息改叫赔偿,好让它出了禁令的射程;这里是反过来,人们把一整套判断机制改叫附录,好让它出了理论的射程。都是改名,只不过一个是为了让某样东西进来,一个是为了让某样东西出去。</p>
+
+<p>而这一次的余项有一个前面几篇没有的性质。</p>
+
+<p>在波托西,构算不进去的东西留在了姓氏的分布里,要靠四百年后的统计才看得见;在中间航道,构算不进去的东西留在起义的次数和逃奴的山寨里,要靠零碎的记载去拼。</p>
+
+<p>而在这里,构删掉的那一半,一直好好地待在书架上。</p>
+
+<p>这是余项的一种很特别的存在方式,前面几篇都没有出现过。它既不像波托西那样只剩下人口的空缺,也不像中间航道那样要从零碎的记载里去拼。它是完好的,成册的,印了一版又一版的,随时可以被翻开的。删改它的人并没有权力销毁它,他们只有权力不读它,以及教别人不读它。</p>
+
+<p>它没有被烧掉,没有被禁掉,甚至没有被反驳。它只是不被读。任何人只要翻开那本书的第一页,就能读到不管人被设想得多么自私;翻到后面,就能读到不仅要被赞美,而且要配得赞美。</p>
+
+<p>正因如此,它可以一次次回来,而且每次回来都不需要新的发现,只需要有人重新去读。</p>
+
+<p>顺带说,这也是文字这样东西的一个古怪的性质。前面几篇里,构留下的账本总是比余项活得久:泥板还在,货单还在,保单还在,而那些被算进去的人只剩下姓氏里的空缺。到了这里反过来了。构留下的是一套教科书上的说法,而那说法所依据的原书,把它删掉的那一半也一并保存着。删的人和被删的东西,装在同一个封面里。</p>
+
+<p>而这也解释了它为什么回来得这么有规律。一样被烧掉的东西,回不回得来要看运气;一样还在架子上的东西,回来只是时间问题,因为每一代人里总有人会去把原书翻开。构可以决定一个时代读什么,决定不了永远。</p>
+
+<p>1896年,讲义笔记公开,转向说塌了一半。1976年,校勘版问世,伪问题的判断被立了起来。后来又有人写文章,提醒人们那本被全面忽视的书。</p>
+
+<p>每一次,回来的都是同一样东西:那个人写过,而人们决定不读的那一半。</p>
+
+<p>至于那一半到底说了什么,他自己那句话说得最省事。</p>
+
+<p>人不只想被赞美,还想配得上赞美。</p>
+
+<p>前一样,市场给得了,价格量得出,别人的目光算得清。</p>
+
+<p>后一样,给不了,量不出,算不清。</p>
+
+<p>它只属于那个人自己,而且不管有没有人看见,它都在那儿。</p>
+
+<p>斯密一辈子在写两件事:一件是怎样把世界放进共同的尺度,一件是有什么东西放不进去。后世取走了前一件,还给它加了个他没说过的保证,说只要放得够彻底,剩下的自己会好。而他自己从没这样保证过。他在最后那一版里添的那一整个部分,写的正是放不进去的那些东西。</p>
+
+<p>账还没有算平,它仍旧在记。</p>
+
+      </div>
+
+      <div class="essay-body lang-en">
+
+<h3>1. The Book He Went Back To</h3>
+
+<p>In 1790, the year Adam Smith died, he finished one more piece of work.</p>
+
+<p>He revised The Theory of Moral Sentiments once again.</p>
+
+<p>This would be the sixth edition of the book to appear in his lifetime. He had written to his publisher to say he meant only to add a little to two of its sections; but as he kept writing, the subject kept expanding, until he finally added an entirely new part, given over to virtue, to conscience, to self-command, and to how the moral sense gets corrupted. It was the last large undertaking of his writing life.</p>
+
+<p>By then his health had failed badly, and he knew he did not have much time left. A person writing under those circumstances is usually setting down whatever he considers most essential, whatever he is least able to leave unresolved. What Smith chose to write about was how virtue is formed, how conscience operates, and how the human heart is corrupted.</p>
+
+<p>In the new material he added that year, he gave a great deal of space to self-command. The choice of subject is telling. Self-command concerns how a person governs himself, and it is necessary for exactly one reason: a human being is not a machine that runs on the calculation of advantage alone. A machine of that kind would have no need of self-command — it would only need to calculate correctly. To speak of self-command at all, one first has to admit that something in a person cannot be calculated.</p>
+
+<p>This matters because of when it happened.</p>
+
+<p>The Theory of Moral Sentiments was published in 1759. The Wealth of Nations in 1776. And this major round of revision took place fourteen years after The Wealth of Nations.</p>
+
+<p>The most familiar version of the story runs like this: the young Smith talked of sympathy and morality; then he went to France, saw the world, and came to his senses, and out of that came The Wealth of Nations, in which he discovered that self-interest alone is enough to keep a society running. The first book was his immaturity. The second was his maturity.</p>
+
+<p>But if that story were true, the last thing a dying Smith should have wanted to do was turn back and thicken the very book about sympathy.</p>
+
+<p>Certainly not add to it an entire new chapter on virtue and conscience.</p>
+
+<p>This fact alone does not settle anything by itself, but it is a piece of hard evidence that no later interpretation can simply walk around: the man who supposedly renounced moral philosophy spent the last months of his life writing a supplement to moral philosophy.</p>
+
+<p>Put another way: if The Wealth of Nations really was a farewell, then fourteen years after that farewell, the man who had supposedly said goodbye was still adding to the side of the house he was said to have left. And what he added was not some stray patch here or there. It was an entire new wing. This does not dissolve every tension between the two books, but it does close off the easiest explanation.</p>
+
+<p>What is at stake here is not whether one man contradicted himself. It is something else.</p>
+
+<p>In the first eight essays of this series, what the construct compressed was the world itself — debt, price, cargo, the length of a voyage, a human being. With Smith, what the construct compresses is one man's thought.</p>
+
+<p>And the half that got compressed away kept returning, again and again, ever after.</p>
+
+<p>To see how, one first has to know what Smith actually did for a living.</p>
+
+<p>In 1752 he was appointed Professor of Moral Philosophy at the University of Glasgow.</p>
+
+<p>Not professor of economics. No such discipline existed yet.</p>
+
+<p>By the accounts left behind by those who knew him, his course in moral philosophy fell into four parts: natural theology, ethics, the jurisprudence that concerns justice, and a fourth part, called either propriety or political economy.</p>
+
+<p>Look closely at that order.</p>
+
+<p>The Theory of Moral Sentiments, later filed away as a work of ethics, and The Wealth of Nations, later filed away as a work of economics, were, within Smith's own teaching structure, simply neighboring parts of the same course.</p>
+
+<p>They are not two different personalities. They are the second and fourth quarters of one set of lectures.</p>
+
+<p>The order reveals something further. Political economy came last in Smith's course — it was the closing movement, not the foundation. The first three parts asked what kind of order the world is, on what grounds people judge right from wrong, and what rules may rightly be enforced. The fourth asked how, once all of that is settled, a society can also become wealthy. Prosperity, in his scheme, was the final chapter of a larger inquiry, not the whole of it.</p>
+
+<p>There is evidence of timing as well. Notes taken by his students in 1762 and 1763 preserved his lectures on jurisprudence, and they show that many of the central arguments about the division of labor, money, price, and wealth had already taken shape before he ever set foot in France. Those notes were not made public until 1896, and as soon as they were, the claim that his trip to France had changed his mind was immediately weakened.</p>
+
+<p>Notice the shape of this. A story that had circulated for nearly a hundred years was overturned not by a new argument but by a stack of student notes that had existed the whole time, unseen by anyone. The pattern will repeat later in this account, more than once.</p>
+
+<p>He did not begin as a moralist and then change careers into economics. He taught one course, start to finish, and economics was simply its last part.</p>
+
+<p>It is worth adding that neither book was ever a single, final inscription. The Theory of Moral Sentiments went through six editions in his lifetime; The Wealth of Nations, five. Both were working manuscripts he kept revising for as long as he lived.</p>
+
+<p>There is nothing strange about one man writing on two different subjects in two different books. What actually needs explaining is something else: why posterity kept only one of the two books — and only a handful of lines from that one.</p>
+
+<p>And even the lines that were kept did not survive intact. The passage about the butcher and the baker had its second half quietly amputated. The invisible hand was lifted out of one narrow, specific argument and promoted into a general law. The division of labor was treated as nothing but good news. Editing, here, was never simply a matter of throwing things away — it also meant re-cutting whatever was kept, trimming the surviving pieces until they fit together seamlessly, so that the result looked like one finished, coherent thing.</p>
+
+<h3>2. How Selfish Soever</h3>
+
+<p>The very first sentence of The Theory of Moral Sentiments reads almost like an inoculation against the economist that later ages would make of its author.</p>
+
+<p>He wrote: how selfish soever man may be supposed.</p>
+
+<p>What follows that clause is not the conclusion that social order can rest on the calculation of interest alone. What follows is this: there are evidently some principles in his nature which interest him in the fortune of others, and render their happiness necessary to him, though he derives nothing from it except the pleasure of seeing it.</p>
+
+<p>Right after that, he defines sympathy. What he means by the word is not limited to pity; it is, in his own phrase, our fellow-feeling with any passion whatever.</p>
+
+<p>The distinction matters, because the corresponding word narrowed over time in ordinary use, until it came to mean little more than feeling sorry for someone. That is not what Smith meant. He meant something more basic: whether a person can feel what another person is feeling.</p>
+
+<p>And this capacity, for Smith, is neutral. It can make you grieve for someone in pain, and it can just as easily make you glad for someone in triumph, or make your own anger rise when you watch someone else grow angry. That neutrality is exactly what Smith needs, because he intends to build judgment out of it, not moral exhortation. A mechanism that only ever fired in the presence of good outcomes could never serve as the foundation for judgment.</p>
+
+<p>And the mechanism itself, as he describes it, is not mysterious at all.</p>
+
+<p>He says, repeatedly, that we have no direct channel into anyone else's feelings. All we can do is imagine ourselves into another person's situation and guess how we would feel if we stood where they stand.</p>
+
+<p>Moral judgment, on this account, does not descend from heaven. It forms between the person acting and the person watching: the one who acts expresses a feeling, and the onlooker tries to keep pace with it; if the onlooker can keep pace, the feeling counts as proper, fitting; if not, it counts as excessive, or out of proportion.</p>
+
+<p>What matters is not what I actually feel in this moment, but whether a spectator who knows the situation and has no stake in it would be able to keep pace with me.</p>
+
+<p>This move is a clever one, because it shifts moral judgment out of the register of I feel this way and into a register that two people can actually discuss. I feel wronged is not a claim anyone can argue with. Would an informed, impartial person also feel that I had been wronged is a claim that can be talked through. Two people quarreling will, at some point, reach the moment when one of them says, put yourself in someone else's shoes and look at this — and that moment is Smith's whole apparatus, deployed without anyone naming it.</p>
+
+<p>Later, Smith moves this spectator inside the person. He calls conscience the man within the breast, and also the great judge and arbiter of our conduct.</p>
+
+<p>This is not simply another name for reason. It is a mechanism a person builds up over years of living among others, formed by internalizing the gaze from outside until it becomes an apparatus for judging oneself.</p>
+
+<p>And its function is to correct.</p>
+
+<p>That correction does not work by suppressing oneself; it works by shifting to a different vantage point from which to view oneself. Smith's account is plain enough: alone, a person's own stake in things fills the entire field of view; the moment he remembers that others are watching, that stake shrinks back down to its proper proportion. He even says that a person's capacity to choose his own loss over harm to another does not come from loving others more than himself, but from the fact that the judge inside his own chest refuses to take his side. Self-love, Smith writes, will always try to weigh its own small interest too heavily; the man within the breast forces us to recognize that, in the eyes of others, we are but one of the multitude, in no respect better than any other in it.</p>
+
+<p>So Smith does not regard self-love as wicked. He takes it to be a natural, permanent fact about human beings — but one that has to pass through the spectator's lens before it becomes something a person can carry around other people.</p>
+
+<p>This is already a long way from the calculating Smith of legend.</p>
+
+<p>And it is worth noting that this whole apparatus is, from the ground up, relational. It requires a person to keep someone else in mind at all times, as a point of reference — not out of kindness, but because without that reference point he has no way to judge himself at all. A person who genuinely calculated only for himself would not, on Smith's account, even possess the capacity for moral judgment, because he would have no borrowed vantage point from which to see himself.</p>
+
+<h3>3. Praised, and Praiseworthy</h3>
+
+<p>Smith says people do not merely want to be loved, praised, celebrated. They also want to deserve that love and that approval.</p>
+
+<p>His own phrase for it is short: not only to be praised, but to be praiseworthy.</p>
+
+<p>That sentence splits one thing into two.</p>
+
+<p>Being praised is something others hand you. It exists between people, decided by whoever stands outside you; it can be pursued, cultivated, even faked.</p>
+
+<p>Being praiseworthy is not like that. It exists inside a single person, decided by the judge seated in his own chest. What others think does not change it.</p>
+
+<p>And the two very often fail to line up.</p>
+
+<p>A man showered with praise may know in his own heart that he does not deserve it; a man held in general contempt may know in his own heart that he did nothing wrong. The first feeling has a name — a guilty conscience. The second also has a name — a sense of grievance. Both feelings exist only because a person carries both scales inside him at once.</p>
+
+<p>And the two scales are read in entirely different ways. Being praised can be checked by inquiry: what people are saying, how many of them are saying it, how loudly. Being praiseworthy requires no inquiry at all; a person simply knows, within himself. And precisely because it requires no inquiry, it cannot be faked — a man can deceive everyone else alive, but he cannot deceive the thing sitting in judgment inside him; if he could deceive it, that thing would already be gone.</p>
+
+<p>Smith saw this with total clarity: a market society, a royal court, fashionable society, can all generate enormous quantities of the first thing, being praised.</p>
+
+<p>What none of them can supply is the second.</p>
+
+<p>Money can buy other people's labor. It cannot buy praise that is deserved.</p>
+
+<p>The point can be pushed further. Money buys a great many things that resemble esteem: display, precedence, other people's deference, column inches in a newspaper. All of these are real, all of them can be measured, all of them can be purchased. But every one of them faces outward. The one thing money cannot buy does not sit in anyone else's hands, which is exactly why no one else is in a position to sell it to you.</p>
+
+<p>This is Smith's own dividing line, not one later readers drew on his behalf. And what makes the line matter is what it does: it places one thing permanently beyond the reach of price.</p>
+
+<p>Price faces outward. It takes two people to establish it; it is a number produced by comparison between persons. Being praiseworthy faces inward. One person alone is enough to possess it; it needs no one to set a price on it.</p>
+
+<p>And yet people persistently confuse the two.</p>
+
+<p>Smith is acutely alert to this. He writes that this disposition to admire, and almost to worship, the rich and the powerful, and to despise, or at least to neglect, persons of poor and mean condition, is the great and most universal cause of the corruption of our moral sentiments.</p>
+
+<p>That sentence deserves to be read as the coldest bucket of water The Theory of Moral Sentiments throws over commercial society.</p>
+
+<p>What it says is this: commercial society does not, on its own, turn people's attention away from rank and toward genuine worth. If anything, it risks turning wealth itself into a new machine for visibility, one that makes it harder than ever to tell the deserving from the merely enviable-looking.</p>
+
+<p>How much money a person has can be measured. Whether a person deserves esteem cannot. And the more conspicuous the measurable quantity becomes, the more readily people substitute it for the one that cannot be measured at all.</p>
+
+<p>This is not a criticism later generations imposed on Smith from outside. He wrote it himself.</p>
+
+<h3>4. The Line That Must Hold</h3>
+
+<p>Smith draws a hard line between justice and beneficence.</p>
+
+<p>Beneficence — generosity, kindness, friendship, and everything in that family — is, he says, always free. It cannot be compelled. Failing to practice it will disappoint people, will draw dislike and reproach, but it should not, as a rule, be forced by anyone.</p>
+
+<p>Justice is different. To violate justice is to do real, definite harm to some particular person. For that reason it may be compelled, and it may be punished.</p>
+
+<p>He states the consequences with precision: society may subsist, though not in the most comfortable state, without beneficence; but the prevalence of injustice must utterly destroy it.</p>
+
+<p>The two halves of that sentence do not carry equal weight, and Smith means for them not to. An uncomfortable state is a matter of degree; utter destruction is a matter of existence or non-existence. He has no intention of converting every good act into an obligation, because doing so tends to turn kindness itself into something that can be demanded, audited, and checked off a list. The only line he insists on holding is the bottom one; everything above that line he is content to leave to persuasion, to public opinion, to praise, and to shame.</p>
+
+<p>This distinction is essential to understanding The Wealth of Nations.</p>
+
+<p>It means that society does not require every ordinary transaction to be driven by kindness. You need not love the baker in order to buy his bread, and he need not pity you in order to sell it.</p>
+
+<p>But the transaction must not injure you, must not violate you, must not defraud you.</p>
+
+<p>So Smith is neither the kind of moral legislator who demands universal benevolence, nor the kind of cold calculator content to let everyone simply look after himself. He draws a different line altogether: good may be left undone; harm must never be done.</p>
+
+<p>And that line is precisely the one that was breached completely in Essay 8.</p>
+
+<p>Set the two cases side by side and the proportions become clear. A baker who feels no pity for you has not crossed the line. A trader who loads human beings onto a ship to sell them has. The first is a case of good left undone; the second is harm done. What makes Smith's line matter is precisely that it asks so little — which means that once it is breached, there is no room left for excuse.</p>
+
+<h3>5. Forty-Eight Thousand Pins a Day</h3>
+
+<p>Turn now to The Wealth of Nations.</p>
+
+<p>Its most famous opening move is the division of labor.</p>
+
+<p>In a small pin factory, Smith writes, ten workers divide the work into about eighteen distinct operations, and among them produce upwards of forty-eight thousand pins in a day; whereas if each worked alone, untrained in the trade, none of them could make twenty pins in a day — perhaps not even one.</p>
+
+<p>The example has never gone out of circulation, and not simply because the numbers are startling. It states, with total clarity, a new kind of social technology: complex output does not depend on any single person's mastery of everything, but on breaking motion, time, skill, and tools into a sequence that can be divided, repeated, and linked together.</p>
+
+<p>But Smith immediately adds a sentence that gets skipped almost every time.</p>
+
+<p>The division of labor, he says, is not originally the effect of any human wisdom which foresees and intends the general opulence to which it gives occasion.</p>
+
+<p>It is the slow consequence of a certain propensity in human nature — the propensity to truck, barter, and exchange one thing for another.</p>
+
+<p>In other words, the division of labor did not begin with a blueprint that was then carried out. It grew, slowly, out of countless individual acts of exchange.</p>
+
+<p>This sentence carries real weight within this series. It means the division of labor was nobody's design — there was no blueprint, and no one sitting above it all coordinating the whole. It was a crowd of people, each keeping his own accounts, who gradually, through endless haggling, broke one task into eighteen separate steps. Later readers would take this as proof that whatever grows up on its own must be good; Smith himself never said any such thing, and later in the very same book he sets down the price this arrangement exacts.</p>
+
+<p>There is also an order worth noticing here. Smith first says the division of labor was designed by no one, then says it produces astonishing output, and finally says that it dulls the people who perform it. Read together, the three claims do not add up to division of labor is good or division of labor is bad. They add up to something else: a thing designed by no one can produce enormous benefit and enormous harm at once, out of the very same process, inseparably, so that one cannot be had without the other.</p>
+
+<p>Then comes the passage every textbook lifts out on its own.</p>
+
+<p>The butcher, the brewer, the baker.</p>
+
+<p>The original runs: it is not from the benevolence of the butcher, the brewer, or the baker that we expect our dinner, but from their regard to their own interest. We address ourselves, not to their humanity, but to their self-love, and never talk to them of our own necessities, but of their advantages.</p>
+
+<p>It is the second sentence that carries the real argument, and it is the one almost always dropped.</p>
+
+<p>What this passage actually describes is not the absence of goodwill. It is persuasion.</p>
+
+<p>To close any exchange, you first have to work out what the other person wants, and then translate your own need into terms that serve his advantage. Built into that act is a judgment about another human being: what he is after, what he cares about, what argument will actually move him.</p>
+
+<p>Which means that market behavior, in Smith's account, does not erase the other person. It does the opposite — it treats the other person as someone with purposes of his own, someone who has to be persuaded.</p>
+
+<p>The anonymous price has not yet displaced personal negotiation here. It has only changed the language of that negotiation, from please have pity on me to this will benefit you too.</p>
+
+<p>That change carries real benefits, and not small ones. Please have pity on me places you entirely at the mercy of someone else's goodwill, which he may or may not choose to extend. This will benefit you too rests the claim on something both parties can check for themselves; he need not like you, need not pity you, only needs to do the arithmetic. A person can use that one sentence to obtain what he needs from someone who has never met him and does not care about him at all. This is the real relief the market offers: you do not have to be liked before you are allowed to live.</p>
+
+<p>That relief comes at a cost, and Smith does not look away from it. The very same mechanism that lets you get your bread without flattering anyone also lets someone else deal with you without caring about you at all. You are released from dependence, but you are also released from anyone's concern. Earlier essays in this series have already made this point; what is new with Smith is that, for the first time, one person sees both sides of it at once, and writes them both into the same body of thought.</p>
+
+<p>Smith then brings in money. What money solves is the maddening problem built into direct barter: you have to find someone who happens to have exactly what you want and happens to want exactly what you have. With money, the butcher no longer has to go looking for someone who both craves beef and happens to be holding bread.</p>
+
+<p>Money, in other words, pulls a chaos of separate wants and supplies onto a single common scale.</p>
+
+<p>But Smith insists, in the same breath, on something else: in strict theory, labor, not money, is the deeper measure of value, the one that holds across time and place. Money, he says, is only the common instrument of commerce, the great wheel of circulation — it is not itself the revenue of society.</p>
+
+<p>He is explicit about the limit: at the same time and in the same place, money is an exact measure of exchangeable value; but carried across eras, across regions, it stops holding steady.</p>
+
+<p>That sentence is worth remembering. The man later crowned the father of commensuration knew, in his own words, that commensuration leaks.</p>
+
+<p>And the deeper scale he went looking for is not free of trouble either. Labor sounds like a sturdier measure, but how does one day of one man's labor compare with one day of another's; how does light work weigh against heavy work, skilled against unskilled, dangerous against safe? Smith circles these questions in his own text without resolving them, and they went on to occupy an entire generation of argument after him. What matters is not whether he solved the problem, but why he felt compelled to go looking for it in the first place: because he knew that measured in money alone, some things simply do not add up.</p>
+
+<p>He knew a common scale was necessary. He also knew a common scale always leaves something unaccounted for. That is exactly why, beyond money, he went looking for a deeper one.</p>
+
+<h3>6. Once, and Only Once</h3>
+
+<p>Now for the hand itself.</p>
+
+<p>The phrase the invisible hand appears exactly once in The Wealth of Nations. It appears exactly once in The Theory of Moral Sentiments too.</p>
+
+<p>Once.</p>
+
+<p>It appears in a passage discussing why merchants prefer to invest their capital at home. And the mechanism behind it is entirely specific.</p>
+
+<p>A merchant, Smith says, prefers, for the sake of his own security, to keep his money in industries he can see, oversee, and understand — industries close to home; and because he will direct his capital toward whatever use yields the greatest value, in pursuing his own security and his own gain he is led, as if by an invisible hand, to advance an end that was no part of his intention, one that benefits the whole of society.</p>
+
+<p>Notice what actually triggers this hand.</p>
+
+<p>Not some abstract universal benevolence. Not the optimal allocation supposedly performed by the price mechanism. A preference for lower risk, for what can be seen, for what can be supervised.</p>
+
+<p>Put plainly: it happens because the merchant does not trust what he cannot see.</p>
+
+<p>This is worth sitting with. The hand later credited with making markets automatically optimal is driven, in the original passage, by nothing more than distrust. The merchant is afraid to send his money somewhere distant, because at a distance he cannot manage it, cannot see it, and cannot stop things from going wrong. So he keeps his money close. Society benefits as a result — but the source of that benefit is not the perfection of markets. It is one man's fear of uncertainty.</p>
+
+<p>And Smith immediately qualifies it. This same outcome, he says, occurs on many other occasions too; he does not say it always occurs.</p>
+
+<p>He adds one more line, and a rather cutting one: I have never known much good done by those who affected to trade for the public good.</p>
+
+<p>That sentence gets quoted today as a piece of elegant irony, and usually only half its meaning survives the quoting. Smith is not saying the public good is not worth pursuing. He is saying: do not casually trust merchants who put the public good in their own mouths. His suspicion of merchants runs throughout the book. He notes that people of the same trade seldom meet, even for merriment, without the conversation ending in a conspiracy against the public or some contrivance to raise prices. He warns that any proposed law or regulation of commerce coming from that quarter ought to be examined only after long and careful scrutiny, with the most suspicious attention, since it comes from an order of men whose interest is never exactly the same as that of the public. The man supposedly arguing that merchants should simply be left alone held, in fact, a rather low opinion of them.</p>
+
+<p>The line is usually read as mockery of hypocritical merchants. It is that. But it also shows that what Smith opposes is not the public good as an aim — it is people who talk about the public good while being neither more expert nor more trustworthy than anyone else.</p>
+
+<p>Further on, he goes further still, describing the statesman who presumes to direct how private people ought to employ their own capital as a dangerous character.</p>
+
+<p>This echoes a famous passage from The Theory of Moral Sentiments, where Smith mocks a figure he calls the man of system, someone who looks at society as though it were a chessboard, imagining that he can rearrange its pieces, one by one, according to a design in his own head.</p>
+
+<p>But every piece on that board, Smith points out, has a principle of motion of its own.</p>
+
+<p>This line could almost stand as a footnote to the whole series. What the construct wants, above all, is exactly that chessboard condition, in which the position, the value, and the permitted moves of every single piece are decided by whoever is arranging the board. And what Smith is warning us of is that the pieces move on their own. Each one has its own designs, its own judgment, things it will not surrender; arrange it however your design calls for, and the moment you turn away, it walks off somewhere else.</p>
+
+<p>So what Smith objects to is not government action as such — a point that gets muddled constantly. He argues that the state should run education, build roads, administer justice, and handle whatever private individuals cannot manage on their own; what he objects to is a different posture altogether, the posture of someone who believes he already sees the whole picture clearly enough to decide, for every single piece, where it ought to go. The two get treated as the same thing today; for Smith they were entirely distinct.</p>
+
+<p>So what Smith is wary of is not abstraction as such — he spent his life building abstractions himself. What he is wary of is something else: the belief that an abstraction has already swallowed the whole of reality.</p>
+
+<h3>7. As Stupid as It Is Possible to Become</h3>
+
+<p>Now for the least-quoted passage in the whole of The Wealth of Nations.</p>
+
+<p>It sits in Book Five.</p>
+
+<p>The man whose whole life is spent performing a few simple operations, Smith writes, generally becomes as stupid and ignorant as it is possible for a human creature to become.</p>
+
+<p>He continues: such a man is incapable not only of relishing or bearing a part in any rational conversation, but of conceiving any generous, noble, or tender sentiment.</p>
+
+<p>Set this passage beside the pin factory.</p>
+
+<p>The same man, in the same book, first uses forty-eight thousand pins to demonstrate the power of the division of labor, and then, later, writes down that the same arrangement will dull the very people who carry it out.</p>
+
+<p>Not impoverish them. Dull them.</p>
+
+<p>The distinction matters enormously. Growing poor is a matter for the ledger — it can be measured in wages, in output, in prices, and one can always hope that growth will eventually make up for it. Growing dull is not. A person's judgment, curiosity, patience with complicated things, and capacity to imagine another person's situation, once worn away by decades of repeating the same motion, cannot be bought back by any amount of income. What Smith recorded is a loss that never appears on the ledger at all, a loss that is, in fact, precisely the price paid for the growth that does appear there.</p>
+
+<p>Worse still, the two cannot be netted against each other on the same plane. You cannot say output rose thirty percent, so a twenty percent dulling of judgment counts as a good trade; the two do not share a scale to begin with. And whenever two things that share no scale are set against each other anyway, the one that cannot be measured is always the one that loses. Smith knew this, which is why he refused to run that comparison at all, and said instead, flatly, that this is something the state has to attend to.</p>
+
+<p>What he recorded here is not the economic cost of the division of labor. It is its cost to the spirit.</p>
+
+<p>A man's output rises; something else in him falls — and that something else appears in no output statistics anywhere.</p>
+
+<p>It carries no price. It enters no ledger. It unbalances no set of books.</p>
+
+<p>Essay 5, on double-entry bookkeeping, already made this point: a need backed by no purchasing power can never throw a ledger out of balance, and so no ledger has any reason to take notice of it. Here the same fact wears a different shape: a man grows dull, output does not fall, wages are paid as always, and the books balance exactly as they did before. The ledger raises no objection, because the ledger was never ruled with a column for this to begin with. What makes Smith remarkable is that he was constructing this very system of accounts and, at the very same time, could see the column sitting just outside it.</p>
+
+<p>And Smith proposes a remedy: the state, he writes, must take some pains here, and above all in education. Which is to say, he believed this loss would not repair itself, and that someone had to be charged with managing it.</p>
+
+<p>Set this passage beside the earlier line about the corruption of moral sentiments, and a very different Smith emerges from the one handed down in textbooks.</p>
+
+<p>He did write a book about how wealth grows. And in that same book, he set down two separate costs of that growth: one charged against human judgment, the other against the human capacity for moral sight.</p>
+
+<p>Commercial society is good at bringing things onto a common scale, good at raising output, good at using price to connect strangers to one another.</p>
+
+<p>It is, at the very same time, capable of corroding judgment, of manufacturing the worship of wealth, of letting the poor walk past unseen, and of making the people who do the actual work dull through the monotony of their tasks.</p>
+
+<p>This is not a conscience later readers appended to Smith out of charity. It is his own autopsy of commercial society.</p>
+
+<h3>8. The Half That Stayed on the Shelf</h3>
+
+<p>Now the real question can be asked: how did that other half disappear?</p>
+
+<p>The question has an official name, the Adam Smith Problem. Nineteenth-century German scholarship first raised it systematically, and only afterward did it acquire that label.</p>
+
+<p>The argument that followed passed through several stages, roughly speaking.</p>
+
+<p>The first stage was the conversion thesis: The Wealth of Nations was read as proof that Smith had slid from moral philosophy toward materialism, as though a trip to France, and contact with French economists there, had converted him to a different theory of human nature altogether.</p>
+
+<p>That thesis took a heavy blow in 1896. That was the year his lecture notes from 1762 and 1763 were finally made public, and they showed that many of the central ideas of political economy were already fully in place before he ever went to France.</p>
+
+<p>The second stage was the bridging thesis: without denying that the two books differ in emphasis, it argued that they address different sides of the same human being. Some treated self-interest as the engine and sympathy as its regulator; others pointed out that sympathy, in Smith's own definition, is not benevolence but a more basic mechanism of judgment, and so does not actually conflict with self-interest; still others folded both books into one larger history of civilization, with the first tracing humanity's moral development and the second its material development.</p>
+
+<p>The third stage was a revival of the incompatibility thesis. A widely read essay in 1927 reasserted the differences between the two books, arguing that even Smith's 1790 revision of The Theory of Moral Sentiments had not resolved the underlying conflict. That argument carried real weight, so that by the middle of the twentieth century the unity thesis, though it never disappeared, had not managed to fully overturn the incompatibility thesis either.</p>
+
+<p>The fourth stage arrived in 1976, the year the Glasgow critical editions of both books were published. Their new introductions treated the Adam Smith Problem essentially as a pseudo-problem manufactured out of ignorance and misreading; another scholar working around the same time traced it to a simple confusion over what the words sympathy and self-interest actually meant in Smith's own usage.</p>
+
+<p>Today the field leans, on the whole, toward the unified reading. That does not mean the argument has ended. Historians who have traced this whole debate note that a portion of scholars still consider the problem only partly resolved even now.</p>
+
+<p>What has genuinely changed is the shape of the question itself — from is this one man or two into how should one understand the layered differences, the gap in composition dates, and the shifting meanings of terms within a single, unified body of thought.</p>
+
+<p>And that shift itself says something. A question sometimes gets resolved not because someone produced an answer, but because the way of asking it was replaced. The old framing assumed the two books had to be either consistent or contradictory. The new framing asks instead how much tension there can be when one man, across thirty years, addresses different subjects at different levels. The second framing is, admittedly, more long-winded — but it looks far more like the actual shape of a real human being.</p>
+
+<p>And even as scholars were slowly stitching the two books back together, the abridged version out in the world kept spreading further.</p>
+
+<p>Two amplifiers did most of that work.</p>
+
+<p>One was the behavioral assumption built into economics textbooks. One economist, in a celebrated paper, described his own theory — that people are governed chiefly by self-interest — as simply following Smith's own line of thought. A later scholar put the resulting damage sharply: Adam Smith, he said, has been saddled with far more smallness than the man himself ever had.</p>
+
+<p>The other amplifier was the modernization of the hand itself. Scholarship has traced how an enormously influential economics textbook, published in 1948, wired Smith's invisible hand directly into the theory of perfect competition, and later editions went further still, presenting it as an anticipation of general equilibrium and the welfare theorems; a specific, hedged, heavily rhetorical image was, in this way, converted into the totem of an entire discipline. One researcher's summary of the result is blunt: it came to be read as individual selfishness produces the best possible outcome for everyone.</p>
+
+<p>It is worth pointing out that none of this required anyone to act in bad faith. A textbook exists to teach students, and teaching requires something memorable; one recurring image is far easier to teach than an analysis hedged by seven or eight qualifications. So the qualifications were dropped, the specific occasion was dropped, the cutting aside about merchants was dropped, and what remained was a single hand. Every individual cut made perfect sense in the moment it was made — and by the time all the cuts were finished, the man who remained was no longer the man who had written it.</p>
+
+<p>Two layers of editing happened, in effect.</p>
+
+<p>The first took a metaphor that appears exactly once in each of two books and rewrote it as the master key to Smith's entire system of thought.</p>
+
+<p>The second took self-interest — originally, for Smith, the natural fact that a person looks after himself first — and expanded it into the claim that a person is capable of calculating nothing but his own advantage.</p>
+
+<p>Smith himself wrote neither of these things. In the passage on exchange, what concerns him is how to make another person see his own advantage in the deal. In The Theory of Moral Sentiments, what concerns him is how a person is driven by conscience, by shame, by the gaze of the spectator, and by the gap between being praised and being praiseworthy. In Book Five of The Wealth of Nations, what concerns him is his fear that the division of labor will leave working people mentally dulled, to the point that the state must take real trouble over their education.</p>
+
+<p>All of this sits at a considerable distance from the Smith reduced to self-interest alone, automatically yielding the best of all outcomes.</p>
+
+<p>So the later return to Smith, when it happens honestly, is rarely a return to market fundamentalism. It is a return to a far messier picture, one much harder to compress into a slogan: a market order needs prices, division of labor, money, and institutions, yes — but it also leans, all the while, on justice, on self-command, on custom, on the capacity to feel shame, on the imagination needed to picture another person's situation, and on a public gaze that refuses to erase the poor from view entirely. None of this can be written into a model, and without it, nothing inside the model actually runs.</p>
+
+<p>At this point it becomes possible to state plainly where this turn belongs within the series as a whole.</p>
+
+<p>In the first eight essays, the construct compressed the world. It pressed debt down into figures on a clay tablet, value down into a single coin, business down into two columns of credit and debt, the state down into an annual balance, a human being down into a single line on a cargo manifest.</p>
+
+<p>With Smith, the construct compresses something a man actually wrote down.</p>
+
+<p>A man who spent his career teaching one course in four parts was reduced to the fourth part alone. A man who wrote two books, and in his final years went back to make the first one thicker, was reduced to the second book alone. And of that second book, what survived was the pin factory, the butcher and the baker, and a hand that appears exactly once.</p>
+
+<p>The logic of the compression is identical to what came before: whatever fits into a model stays; whatever does not gets routed around. Self-interest can be written as an assumption, formalized, calculated. Sympathy, shame, being praiseworthy, the man within the breast, the psychological toll of the division of labor — none of these fits into an equation, and so each of them became something else instead: prehistory, an appendix, a youthful mistake.</p>
+
+<p>This same maneuver has appeared earlier in this series. In the age when charging interest was forbidden, people renamed interest compensation, so that it could slip outside the range of the ban. Here the maneuver runs in reverse: an entire apparatus of judgment gets renamed an appendix, so that it can slip outside the range of the theory. Both cases are renaming — one to let something in, the other to put something out.</p>
+
+<p>But the remainder in this case has a property none of the earlier essays' remainders had.</p>
+
+<p>In Potosí, what the construct could not compute survived in the distribution of surnames, visible only through statistics compiled four centuries later. Along the Middle Passage, what the construct could not compute survived in the number of uprisings and in the maroon settlements of escaped slaves, recoverable only by piecing together scattered records.</p>
+
+<p>Here, the half the construct deleted has been sitting, perfectly intact, on a shelf the entire time.</p>
+
+<p>This is a strange way for a remainder to exist, one that has not appeared anywhere earlier in this series. It is not, like Potosí, reduced to a mere gap in a population, and it does not, like the Middle Passage, have to be reconstructed from fragments. It is whole. It has been bound, printed edition after edition, and it can be opened at any moment by anyone. The people who edited it down never had the power to destroy it. All they ever had was the power not to read it, and to teach others not to read it either.</p>
+
+<p>It was never burned, never banned, never even refuted. It was simply not read. Anyone who opens the first page of that book can read, for himself, however selfish man may be supposed. Anyone who turns further in can read, for himself, not only to be praised, but to be praiseworthy.</p>
+
+<p>And precisely because of that, it can return again and again, and every return requires no new discovery at all — only someone willing to open the book and read it again.</p>
+
+<p>It is worth noting, in passing, that this is one of the odder properties of writing itself. In the earlier essays of this series, the ledger the construct left behind always outlived the remainder: the clay tablets survived, the cargo manifests survived, the insurance policies survived, while the people who had been reduced to entries in them survived only as gaps in a record of surnames. Here it runs the other way. What the construct left behind is a textbook formula, while the original book that formula claims to summarize preserves, bound into the very same covers, the half that formula cut away. The editor and the edited sit inside the same binding.</p>
+
+<p>This also explains why its return follows such a regular pattern. Something that has been burned may or may not come back, depending on luck. Something still sitting on a shelf is only ever a matter of time, because in every generation someone will eventually take the original down and open it. The construct can decide what an age reads. It cannot decide that forever.</p>
+
+<p>In 1896, the lecture notes were made public, and the conversion thesis collapsed by half. In 1976, the critical editions appeared, and the case for calling it a pseudo-problem was formally established. Later still, other scholars wrote essays reminding readers of the book that had been almost entirely set aside.</p>
+
+<p>Each time, what comes back is the same thing: the half that the man wrote, and that people had simply decided not to read.</p>
+
+<p>As for what that half actually says, Smith's own sentence puts it most economically.</p>
+
+<p>A person wants not only to be praised, but to deserve praise.</p>
+
+<p>The market can supply the first. Price can measure it. Other people's opinion can be tallied up.</p>
+
+<p>It cannot supply the second. That cannot be measured. It cannot be tallied.</p>
+
+<p>It belongs to that person alone, and it is there whether or not anyone else is watching.</p>
+
+<p>Smith spent his whole life writing about two things: how to bring the world onto a common scale, and what refuses to fit onto one. Posterity took the first and attached to it a guarantee he never made — that if the compression only goes far enough, everything left over will take care of itself. He never once promised any such thing. The entire new part he added in that final edition was devoted to exactly the things that do not fit.</p>
+
+<p>The ledger has not yet balanced. It is still being kept.</p>
+
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="ep08.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">大西洋奴隶贸易:越是做成了,越是一份供状</span>
+            <span class="xiyou-nav-title lang-en">A Price for Every Inch</span>
+          </span>
+        </a>
+        <a href="ep10.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">边际革命:价值走进意识,出来时已经是一个数</span>
+            <span class="xiyou-nav-title lang-en">Consciousness and the Ledger</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

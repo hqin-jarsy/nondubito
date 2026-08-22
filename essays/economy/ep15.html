@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大萧条与凯恩斯｜凿构周期律·经济系列 — Non Dubito</title>
+  <meta name="description" content="古典经济学相信市场会自动出清，失业只可能是自愿的。大萧条用千百万人的失业证明了一件事：那道自动清零的机制，从来就没有存在过。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/economy/ep15.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+    .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .essay-entry-point { font-family:var(--sans); font-size:0.72rem; color:var(--ink-muted); font-style:italic; margin-top:0.5rem; margin-bottom:0.25rem; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 凿构周期律·经济系列</a>
+        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Economics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">凿构周期律 · 经济</div>
+          <div class="essay-series lang-en">Chisel-Construct Cycle · Economics</div>
+          <div class="emperor-ep-num lang-zh">第 15 篇，共 23 篇</div>
+          <div class="emperor-ep-num lang-en">Essay 15 of 23</div>
+          <h1 class="lang-zh">第十五篇　大萧条与凯恩斯:出清,从来不会自己发生</h1>
+          <h1 class="lang-en">Essay 15: Effective Demand and the Column Marked Voluntary — Clearing Was Never Automatic</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+
+<h3>一 十五个月</h3>
+
+<p>到 1930年秋天,美国经济看上去已经准备好要缓过来了。</p>
+
+<p>这个判断不是后人的乐观回望,而是当时可以拿数据支撑的想法。此前几次经济收缩,平均持续十五个月;从 1929年八月的顶点算起,到那年秋天,这一次也刚好走到十五个月。曲线该拐了。</p>
+
+<p>这个细节值得记住,因为它决定了后来所有争论的形状。假如 1930年秋天那条线真的拐了上去,今天的经济学教科书会是另一副样子,凯恩斯很可能只是一位写过几本聪明小册子的英国官员。一场持续十五个月的收缩,在当时的记忆里已经算长的;而当时没有任何一个人手上有工具可以判断,眼前这一次和前几次到底是不是同一种东西。</p>
+
+<p>十一月,银行恐慌开始。</p>
+
+<p>先是纳什维尔一家金融集团连同它的附属机构相继倒闭。十二月十一日,纽约第四大的一家银行关门。挤兑从一个城镇蔓延到下一个城镇。几个星期之内,数百家银行停业。</p>
+
+<p>这几行字念起来很快。落到地面上,每一家停业的银行都意味着一个镇子的存折在同一天变成废纸,意味着一批已经谈好的贷款不再发放,意味着一批下个月要付的工资付不出来。银行不是一种把钱存起来的设施,它是一个地方全部支付关系的接头处。接头处坏掉的时候,坏的不是储蓄,是这个地方的人彼此之间还能不能做成事。</p>
+
+<p>那条本该往上拐的线,一路往下走了三年半。</p>
+
+<p>按后来的商业周期编年,这场收缩的谷底落在 1933年三月。从 1929年到 1933年,美国的实际产出大约下跌了百分之二十九,消费价格大约下跌了四分之一,失业率在 1933年达到约四分之一。</p>
+
+<p>这三个数要放在一起看。产出跌了近三成,价格也跌了近四分之一,而失业到了四分之一。按古典那套讲法,价格跌下来以后,东西应该重新变得买得起,生意应该重新变得做得成,人应该重新被雇回去。价格确实跌了,而且跌得非常彻底。人没有回去。</p>
+
+<p>而所谓恢复,并不等于把人重新吸纳进来。</p>
+
+<p>这一句是后面所有内容的题眼。曲线可以回到原来的高度,而站在曲线下面的人不会跟着自动回来。产量是一个可以复原的量,一个人失去的那八年不是。</p>
+
+<p>1933年的失业率约为百分之二十四点九,失业人数约一千二百八十三万。到 1935年,仍然约有五分之一的劳动力无工可做。到 1937年,工业生产已经超过了 1929年的水平,而失业的人还有七百七十万。同一年政策转向收紧,1937年到 1938年又来了一次衰退,把失业推回到近两成。</p>
+
+<p>这些数字里,产量,价格,货币量都可以复原,而人不能。</p>
+
+<p>这句话不是感慨,它有一个很技术的含义。产量掉下去又涨回来,账面上是一进一出,净额为零;而一个四十岁的机床工失业四年之后再回到车间,他丢掉的手艺,断掉的工龄,花光的积蓄,以及这四年里家里发生的事情,没有任何一栏会因为产量回到原位而被冲销。总量的复原和个体的复原,在账上是同一件事,在世界上不是。</p>
+
+<p>前面十四篇里,构一次次遇到塞不进去的东西,办法换过七种:靠一个更大的构从外面松开,改一个名字接着做,量得准却不去问,改写成一笔可以摊进成本的数目,把学科的边界往里收一格,给它一条绕着账本转的轨道,以及要求它出示凭据。</p>
+
+<p>这一次不一样。</p>
+
+<p>这一次塞不进去的是人,而且是几百万个,站在街上,排在救济站门口,住在城郊的棚屋区里,谁都看得见。构没有地方可以把他们挪。</p>
+
+<h3>二 你是自愿的</h3>
+
+<p>要看清凯恩斯打掉的是什么,得先看清那套被打掉的东西自己是怎么讲的。</p>
+
+<p>古典传统内部并不是铁板一块,但它大体共享一个核心信念:一般意义上的需求不足,在理论上不构成根本问题。因为生产的过程本身会创造出足够买下这些产品的收入;价格调,工资调,利率调,资源最终会被重新配置到卖得出去也雇得起人的地方。这个思路有一句被反复引用的口号:需求由供给创造。</p>
+
+<p>米尔还留下过一句更硬的话,后来被凯恩斯拿来当靶子:对商品的需求并不等于对劳动的需求。</p>
+
+<p>这句话在它自己的语境里并不荒谬。米尔要说的是,你去买一件成衣,那笔钱付给的是成衣的存货,而真正雇人做工的是投进生产环节的那笔资本。这个区分是有道理的,讨论某些问题时至今有用。麻烦在于它被推广的方式:一旦被读成买东西不能创造工作,整套关于需求和就业之间关系的追问,就在起点上被关掉了。</p>
+
+<p>在这个框架里,大规模而且持久的失业,在理论上是不可能的。</p>
+
+<p>那么 1932年站在街上的那一千多万人是什么。</p>
+
+<p>这不是一个修辞性的提问。这是一个分类问题,而分类问题在前面出现过不止一次。第八篇里说过,分类先于推理:一样东西被放进哪一栏,决定了后面所有的推导。街上这些人被放进哪一栏,决定了政府该做什么,决定了学界该研究什么,也决定了他们自己该怎么看自己。</p>
+
+<p>古典那一侧有现成的答案,而且答得很完整。除去摩擦性的暂时错配,除去工会的限制,一个人之所以没有工作,归根到底是因为他不肯接受与自己边际生产率相称的报酬。也就是说:他要价太高。</p>
+
+<p>这里出现的是构对付余项的第八种办法,而且是最省力的一种。</p>
+
+<p>它不否认这些人存在。它不说他们没有被量到,也不把他们划到门外去。它做的是重新分类:把余项归到余项自己的选择里。你没有工作,不是账算不平,是你自己选了不干。</p>
+
+<p>这一手比前面七种都更难对付,原因有两个。第一,它在逻辑上是完备的,你没有办法从内部驳倒它,因为再往下降一点点工资的可能性永远存在,而这个可能性永远可以被拿来解释为什么还没有成交。第二,它把举证的负担全部转到了余项自己身上:要证明自己不是自愿的,得由没有工作的那个人来证明。而一个没有工作的人,手上什么工具也没有。</p>
+
+<p>凯恩斯对这一手的回击很凶,而且是从方法上回击的。</p>
+
+<p>他先说了一句公道话:古典理论在自己的前提里是逻辑自洽的,古典派并不蠢。问题在于,那套理论只适用于一种特殊情形,而把它直接套到大规模失业的年代,是方法上的错位。</p>
+
+<p>然后他用了一个几何学的比喻。欧几里得几何在一个非欧的空间里失效的时候,不能反过来责怪那些直线不够直。</p>
+
+<p>这个比喻值得记住,因为它说的正是构的一个惯常动作。当模型和对象对不上的时候,模型可以修改,也可以宣布对象不合格。修改模型要重建整套推导,宣布对象不合格只要加一个形容词。</p>
+
+<p>而且这个形容词还很体面。自愿这个词听上去是在尊重人的选择,甚至带着一点自由的味道。第十三篇里那句请出示凭据也是这样,听上去只是程序上的严谨。构在这个位置上从来不需要说狠话,它只需要用一个听起来很讲道理的词,把一件事从待解决改写成已解决。</p>
+
+<p>而被这样改写的人,处境会变得很奇怪。他每天出门找活,回来时两手空空,这件事在他自己那里是清清楚楚的一次失败;而在那本账上,它被登记成他做了一个选择。两种记法之间没有申辩的通道,因为账本不接受当事人的陈述,账本只接受能够进入模型的变量。</p>
+
+<h3>三 如果人们就是</h3>
+
+<p>凯恩斯没有去和古典派争论那些人到底愿不愿意工作。</p>
+
+<p>他做的是另一件事:他造了一个定义,一个古典模型装不下的定义。</p>
+
+<p>这个做法本身就值得看一眼。要驳一套理论,通常的办法是找出它推错的地方。而凯恩斯挑的是另一个位置:他去找那套理论的分类表上没有的那一格。</p>
+
+<p>《就业,利息和货币通论》里,非自愿失业是这样界定的。看现在这个货币工资水平。如果工资品的价格稍微涨一点,也就是实际工资稍微低一点,而愿意出来做工的人和企业愿意雇的人都比现在多,那么现在这些没有工作的人,就是非自愿失业。</p>
+
+<p>这个定义写得很绕,读一遍不容易看出它的分量。关键在两边都变多这五个字。</p>
+
+<p>按古典的讲法,如果卡住的真是工人要价太高,那么实际工资往下走一点,愿意做工的人应该变少,企业愿意雇的人应该变多,两边朝相反的方向动,最后碰在一起,市场就出清了。</p>
+
+<p>而凯恩斯要的那种情形,是两边同时往上走。</p>
+
+<p>愿意做工的人更多了,企业愿意雇的人也更多了,而这些人现在都没有工作。这说明卡住的地方根本不在他们两个之间。价格不是谈不拢,是压根没到谈的那一步。</p>
+
+<p>可以换一个更贴地的说法。一个镇上的工厂关了,一千个人出来找活。这时候来一个新老板,说我可以少付两成的工钱。按古典那张图,应该有一部分人嫌低不来,另一部分人接受,厂子重新开起来。而真实发生的往往是:一千个人全都愿意来,而这个老板并不打算开厂,因为他不知道东西做出来卖给谁。愿意干活的人排到街口,愿意雇人的人一个也不在场。这时候再往下压工资,压的是排队的那一千个人,而不在场的那一个不会因此出现。</p>
+
+<p>这是一个可以检验的条件,不是一句抱怨。它把一件可以观察的事情写成了定义,而这个条件一旦成立,古典那套解释就用不了了。</p>
+
+<p>这一步值得单独记一笔。</p>
+
+<p>前面几篇里的余项,是被指出来的,被描述的,被史家一笔一笔折算出来的。它们真实,但它们的真实要靠讲述来支撑。这里第一次有人把余项写成了一个判据:满足这几条,它就在;不满足,它就不在。余项第一次有了自己的检验条件。</p>
+
+<p>给余项一个判据,和替余项说话不是一回事。替余项说话,别人可以说你把同情心用错了地方;给出判据以后,反对的人必须去说这个条件在经验上不成立,而那是一件要拿数据来做的事。凯恩斯把一场关于人心的争论,搬到了一张可以被检验的桌子上。这不是他心软,这是他知道在哪一张桌子上说话才算数。</p>
+
+<p>跟着被翻转的是因果方向。</p>
+
+<p>古典那一侧的顺序是:真实工资决定就业量。工资定在哪里,就雇到哪里。</p>
+
+<p>凯恩斯的顺序反过来:在给定的消费倾向和投资诱因之下,就业量由有效需求决定,而真实工资只是与这个就业量相对应的那个结果。</p>
+
+<p>翻成日常的话就是:不是先有一个能让劳动市场出清的工资,然后才有雇佣;而是先有企业对能卖出多少的预期,然后才决定肯雇多少人。</p>
+
+<p>工资不是入口。销售预期才是入口。而一个人再怎么降价,也没有办法替别人生出对商品的需求来。</p>
+
+<p>这句话反过来还有一层。企业的销售预期,是关于别人会不会花钱的判断;而别人会不会花钱,又取决于别人有没有工作。于是每一个企业都在等别的企业先动。谁都没有做错什么,谁都在按自己的处境做最合理的判断,而所有合理的判断加起来,是一个谁也不想要的结果。第十三篇里那句所有讲道理的处理加在一起那个位置就没有了,在这里换了个场合又出现了一次。</p>
+
+<h3>四 特殊情形</h3>
+
+<p>《通论》不是一本主张政府多花钱的口号书。它更像一台重新排过因果顺序的机器,而这台机器最关键的零件在第三章。</p>
+
+<p>凯恩斯先把两样东西分开:总供给价格和总需求价格。前者是企业提供某个就业量所必须收回的钱,后者是企业预期在这个就业量上能收到的钱。企业的决定就是这两个数的比较:多雇一批人以后,预期收入超过必须收回的数,就扩张;反过来就收缩。</p>
+
+<p>于是就业不再由劳动市场单独决定,它取决于企业面对销售前景时觉得值不值得雇人。这个位置上的关键词,叫有效需求。</p>
+
+<p>有效这两个字在这里有专门的用处,不是修饰语。它指的是那种真正会变成订单的需求,而不是那种想要却拿不出钱的需要。第五篇里有过一句相关的话:没有购买力的需要不会让账不平。在那里,那句话是账房的自我辩护;到了这里,同一件事成了整台机器的核心零件。一群人饿着,而账仍然可以平,原因就在这里。</p>
+
+<p>接下来是消费的那条性质。</p>
+
+<p>凯恩斯的意思不是消费不重要,而是消费有一个系统性的特点:收入增加的时候,消费也会增加,但通常增加得没有收入那么多。于是随着就业扩张,总产出和消费支出之间会拉开一个口子。这个口子要靠投资来填。如果投资不够,企业就不会愿意持续提供更高的就业。</p>
+
+<p>推到这里,那句最要紧的话出来了。</p>
+
+<p>在既定的消费倾向下,均衡的就业水平取决于当前的投资量;而对应着充分就业的那个有效需求,只是一个特殊情形。</p>
+
+<p>这句话要慢读。</p>
+
+<p>充分就业不是市场经济的自然常态。它是某一组参数恰好凑齐的时候偶然出现的结果。</p>
+
+<p>走到这里,第一次有人从构的内部,用构自己的语言,把不闭合写成了默认状态。前面十四篇里,构总是把塞不进去的东西当成例外,当成误差,当成尚未处理干净的部分。而这里,关系被整个倒了过来:塞得进去才是例外。</p>
+
+<p>要留意这个倒转是在什么位置上完成的。它不是由外面的批评者完成的,不是由受害者完成的,也不是由一场革命完成的。它是由一个在剑桥教书,给财政部当过顾问,替英格兰银行辩护过又反对过的人,用这门学问自己的推导方式完成的。构最难对付的挑战,往往来自最懂它的那批人里的一个。第九篇里的斯密在构的内部,第十一篇里的马克思在构的外部;凯恩斯在内部,而且一直在内部。</p>
+
+<p>有一件事必须同时说清楚,否则这一节会被读成一次宣判。</p>
+
+<p>这个结论不是一个哲学命题。它是从一组关于消费倾向和投资诱因的假设里推出来的技术结论,而那组假设从它被写下来的那一天起就一直有人质疑,直到今天。凯恩斯自己也没有说市场永远不会出清,他说的是出清不是自动的,不是可以默认的。</p>
+
+<p>通俗一点讲,他的突破可以压成一句话:不是每一个愿意干活的人,都能通过降价把自己卖出去。</p>
+
+<p>因为劳动力不是土豆,工资也不是贴在货上的一个孤立标签。降工资会改变价格,会改变债务的实际负担,会改变预期,会改变消费,会改变企业的现金流,会改变银行的资产负债表,最后又绕回来改变企业对雇这个人到底卖不卖得出去的判断。</p>
+
+<p>所以劳动市场不能被拿出来单独算。它必须放回整个货币经济里去看。</p>
+
+<p>这句话对构是一记重击,因为构最惯常的手法正是切分。把一个复杂的东西切成一块一块,每一块单独有它的价,单独可以清算,加起来就是总账。切分是通约得以可能的前提。而凯恩斯说的是,在这一件事情上,切下来的那一块单独算出的结果,和它在整体里的实际表现不是同一回事,有时候方向还相反。</p>
+
+<h3>五 跟着银行一起消失的东西</h3>
+
+<p>1930年十一月开始的那一轮恐慌,值得看清它的机械结构,因为它不是简单的坏银行被淘汰。</p>
+
+<p>当时美国有八千多家联邦储备体系的会员银行,另外还有将近一万六千家非会员银行。后面这一大批,高度依赖代理行的网络来保存自己的准备金。</p>
+
+<p>支票在清算途中的那笔钱,会同时被记在两家银行的账上,两边都算作准备金。这就是所谓的虚构准备。平时它转得开,因为不会所有人同时来要现金;挤兑的时候它就不够。</p>
+
+<p>于是乡村的银行向代理行要现金,代理行自己也正在被挤兑,整条链上的现金,票据和存款之间的转换同时抽筋。</p>
+
+<p>这个结构值得停一下。虚构准备并不是有人作假,它是清算需要时间这件事的自然结果。只要钱还在路上,它就同时不在两头,而记账要求它必须在某一头。制度选的办法是让它在两头都算数。这在平时是效率,在挤兑时是缺口。构为了让账每天都能合上,允许了一小块重复;而那一小块重复,恰好在最需要它是真的那一天,被发现是空的。</p>
+
+<p>到这里为止,损失还是可以计量的:多少家银行停业,货币存量掉了多少,存款损失多少。</p>
+
+<p>真正难计量的是另外一样东西。</p>
+
+<p>银行倒闭抹掉的不只是账上的数字,还有一整套地方性的信用知识。这个镇上哪些商号靠得住,哪些农户今年还得上,哪些仓单可以押,哪一家表面风光实际上已经在借新还旧。这些判断不写在任何一张价目表上,它们储存在人和人长年打交道积下来的关系里,而这些关系的载体就是那家银行。</p>
+
+<p>银行一关,这套知识跟着一起没了。</p>
+
+<p>后来有一位研究者把这件事写成了更技术的表述:银行失败降低了整个信贷配置过程的效率,抬高了信用的成本,压缩了信用的可得性,因而进一步打击了总需求。</p>
+
+<p>这是余项的又一种形态,而且它和前面几篇都不同。</p>
+
+<p>那套知识从来就不在任何一张资产负债表上,所以它的消失也不出现在任何一张表上。货币量的减少可以逐月统计,而一个镇子忽然不知道该借钱给谁这件事,没有单位可用。它在账上表现为一个数目,在现实里表现为一整条街上的人互相不敢开口。</p>
+
+<p>还可以再往前推一步。那套知识之所以不在表上,不是因为没有人想记,是因为它记不下来。谁靠得住这件事,不是一个可以填进格子的属性,它是很多年里许多件小事累积出来的判断,而且它随时在变。要把它写下来,就得先把它变成几条可以打分的指标;而一旦变成指标,它就不再是原来那样东西了。</p>
+
+<p>第十四篇的结论是,一套制度越是把自己搭在非人格的东西上,它就越依赖信任。这里是同一件事的另外半边:那种信任不只是一种态度,它同时是一批具体的知识,长在具体的人身上,而且可以被物理地销毁。</p>
+
+<p>1933年三月十二日,罗斯福在广播里对全国人讲了一次银行的资产负债表。</p>
+
+<p>他说,银行并不是把大家的钱放在保险柜里,而是把它投进了债券,商业票据和抵押贷款。恐慌来的时候,哪怕一家资产健全的银行,也没有办法在一夜之间把这些东西变成现金,除非按远低于真实价值的恐慌价格甩卖出去。</p>
+
+<p>然后他说了两句被记住了很久的话。第一句是,把钱放在重新营业的银行里,比塞在床垫底下更安全。第二句是,比货币更重要,比黄金更重要的,是公众的信心。</p>
+
+<p>三月九日紧急银行法签署,三月十三日起,先让联邦储备城市里的健全银行重开,再逐步推广到其他城市和小镇。</p>
+
+<p>到三月底,公众已经把三月八日之前那四个星期里取走的现金,重新存回去了大约三分之二。</p>
+
+<p>一位国家元首在广播里对全国人解释银行的资产结构,然后请他们把钱送回来。而这件事居然管用。</p>
+
+<h3>六 二十点六七变成三十五</h3>
+
+<p>美国长期维持着一个法定金价:每盎司二十点六七美元。</p>
+
+<p>1933年四月五日,一道行政命令禁止私人囤积金币,金条和金证,要求个人和机构把它们交上来。</p>
+
+<p>1934年,金价被改定为每盎司三十五美元。美元的含金量因此被压到原先的约百分之五十九。</p>
+
+<p>这个百分之五十九是算出来的:一盎司黄金原本值二十点六七美元,此后值三十五美元,同样一美元能换到的金子少了四成多。</p>
+
+<p>把顺序摆在一起看就够了:先按旧价把私人手里的金收上来,再把价改了。</p>
+
+<p>这里不加评价。要说明的只有一件事:这一系列动作在法律上完全成立。行政命令有授权,收兑有补偿,改价有法案。第十三篇里那句话在这里可以直接搬过来用,而且是第四次出现:整个过程可以完全合法,而结果仍然是一次极不对称的转移。</p>
+
+<p>第十四篇说过,构最成功的时候会让人忘记它是被造出来的。这里是那句话的反面,而且反得非常干脆。</p>
+
+<p>一把被当成自然,客观,超乎政治的尺子,被一纸命令重写了。重写它的,正是同一个国家的同一届政府里的同一批人。而在此之前的六十年里,这把尺子的全部权威,恰恰建立在它不能被任何人随意改动这一点上。</p>
+
+<p>这一点值得再摆一遍,因为它是这一节全部分量的来源。金本位说服人的方式,不是它更方便,也不是它更精确。它说服人的方式是:这不是谁定的,这是黄金的重量,而黄金在地底下,不听任何一个政府的话。正因为如此,它能让借钱的人相信将来还回来的是同样的东西,能让隔着大洋的两家商号在一张纸上成交。它的全部信誉都押在不由人改这五个字上。</p>
+
+<p>尺子可以被重写这件事,一旦被做过一次,就再也收不回去了。此后所有关于共同尺度的说法,都要面对一个新问题:这把尺子是谁定的,他什么时候会改。</p>
+
+<p>而追问不会停在这一句上。后面几篇里要讲的每一样东西,从战后重新搭起来的那套国际安排,到它在几十年后被一句话解除,再到那些干脆不认任何官方尺子的尝试,追的都是同一个问题。构可以造一把尺子,也可以宣布这把尺子不再作数;而一旦人们看见过后一件事,前一件事就永远带上了一条尾巴。</p>
+
+<p>顺带说一句黄金后来的去向。它没有消失,它退到了别的位置上:各国央行的金库,私人手里的保值品,危机时的避风港。它不再是那把尺子,它变成了被量的东西之一。一样东西从量别人变成被别人量,这个转变在前面已经发生过几次,而每一次都不是被驳倒的,是被绕过去的。</p>
+
+<p>至于离开黄金的效果,经验上的证据相当一致,而解释上的分歧仍然存在。</p>
+
+<p>一致的部分是:越早离开金本位的国家,通常恢复得越快。英国在 1931年九月停止兑金之后,英镑贬值,货币政策有了空间;后来更多的跨国研究也发现,离金能够抬升通胀预期,压低真实利率,促成复苏。</p>
+
+<p>分歧的部分是:究竟是离金本身在起作用,还是离金之后随之而来的货币扩张,出口改善,真实工资变化和政策预期转向在起作用。这几条机制之间,学界并没有统一的口径。</p>
+
+<p>不过有一点必须点明,免得这一节被读成一个简单的教训。离开金本位之所以有用,并不是因为黄金本身有什么不好。它有用,是因为在那几年里,守住平价所要求的代价,已经全部落在了国内的就业上。放弃平价,等于把那笔代价从失业者身上挪走一部分。尺子没有错,错在有人必须一直站在尺子底下不许动。</p>
+
+<h3>七 谁把它推深</h3>
+
+<p>大萧条为什么会这样深,这样久,争论到今天也没有合流。而把这些争论摆出来,比给出一个答案有用得多。</p>
+
+<p>一条主线是货币这一侧。它的核心命题很清楚:1929年到 1933年的这场大收缩之所以大,首先是因为货币存量掉了三分之一以上;大量商业银行停业,货币乘数崩塌,而联邦储备没有履行最后贷款人的职责。按这条线索,1931年英国离金之后,美国在十月为了捍卫黄金储备而提高贴现率,是一个特别关键的政策错误:对外它保住了金,对内它进一步压缩了货币和信贷。</p>
+
+<p>这条线索内部也有质疑。有研究者指出,货币解释长期有一个缺口:货币收缩究竟通过什么机制打到实体经济上,前几十年说得并不充分。因为名义利率在三十年代初并不是一路大幅上行,单靠利率高所以萧条是不够的。他们后来补上的是通缩预期这条链:货币收缩引出通缩预期,通缩预期抬高真实利率,真实利率压低支出和就业。</p>
+
+<p>另一条主线把重点放在支出的崩塌上。有研究者主张,萧条的开端很难主要归到紧缩的货币上:股灾之后,纽约的储备银行一度买进大量政府债,名义利率和真实利率在 1929年底到 1930年初都明显下降。真正的问题是,股灾以及此后持续的价格剧烈波动,制造了对未来收入的巨大不确定性,耐用品的消费首先塌了下去。按这条线索,货币因素当然重要,但更像是后来把局面推得更深的放大器,不是最初那一脚。</p>
+
+<p>第三条主线是金本位,第十四篇已经走过一遍。它把大萧条放回战间期的国际货币制度里去看:收缩起于美国和法国,再沿着汇率承诺,黄金流动和各国央行的保金义务向全球传播。而这一派内部同样有分歧。</p>
+
+<p>第四条主线关心的是信用中介。它并不否认货币崩塌的重要性,只是强调银行失败还有另一层作用,就是把信贷配置的效率打坏了,而这一层不能被货币量的变化涵盖。</p>
+
+<p>连银行为什么倒闭这个较窄的问题,也没有一边倒的结论。一派研究强调许多银行的失败更多反映了基本面恶化和资不抵债,而不是无端的恐慌;另一派重新整理了原始数据之后认为,流动性危机和资不抵债都是真实的来源,而且在最初几轮恐慌里,代理行网络和挤兑的传染作用非常明显;等到萧条更深,资产价格更差以后,资不抵债才越来越成为主要威胁。也就是说,恐慌和基本面不是非此即彼,它们分时段,分地区,分机构交错着起作用。</p>
+
+<p>工资这一项也一样。传统的教科书常把大萧条讲成工资降不下来,所以劳动力市场出清失败。后来的经验研究把这个故事弄复杂了:跨国来看,名义工资相对于价格的调整确实相当缓慢,真实工资上升,这确实压低了产出;可是对英国战间期的新测算又发现,减薪在当时并不少见,仅 1931年一年就有三百多万工人被减了薪。</p>
+
+<p>于是争论真正的焦点就不在工资到底能不能降。焦点在于,工资,价格,预期,债务和需求之间的联动,会不会在整体的层面上自动把失业吸收掉。</p>
+
+<p>大萧条给出的经验答案是:没有自动做到。</p>
+
+<p>这些解释各有各的证据,这里不做裁决。但把它们并排放着,能看出一个共同点:它们争的是哪一条链条最粗,而没有任何一条链条能够把那批人重新装回账里。</p>
+
+<p>这一点比裁决出一个胜者更要紧。假设有一天证明了货币那一条最粗,该做的事情是货币政策;假设证明了金本位那一条最粗,该做的事情是汇率安排。而无论哪一条被证明最粗,都改变不了当年的那个事实:在长达十年的时间里,有一大批人愿意工作而没有位置,而那些用来解释萧条的机制,每一条都在解释他们为什么在外面,没有一条是在把他们弄进来。</p>
+
+<p>还有一件事必须写进来,因为它是反对宿命论最硬的一个例子。</p>
+
+<p>同样在这场危机里,亚特兰大的储备银行比较积极地向会员银行贴现,还鼓励会员银行去支援非会员银行;圣路易斯的储备银行则更狭义地理解自己的职责,拒绝为了支援非会员银行而再贴现。</p>
+
+<p>事后的结果差得很明显。前一个辖区的收缩放缓,并且开始恢复;后一个辖区有数百家银行失败,贷款萎缩,失业上升。</p>
+
+<p>同一个国家,同一套制度,同一年,两种决策风格,两种结果。这不是宏大历史的必然,是同一套规则底下不同的判断造成的分叉。</p>
+
+<h3>八 找不到价位的那一边</h3>
+
+<p>1932年夏天,一批第一次世界大战的退伍军人开始向华盛顿走。</p>
+
+<p>他们手里有一种奖金券,要到 1945年才能兑现。而他们已经穷到等不了十三年。</p>
+
+<p>六月一日,大约一千五百人抵达首都。后来陆续到达的总人数在一万到两万之间。他们在城边搭起棚屋区住下来,等国会和总统给一个答复。</p>
+
+<p>七月二十八日,政府动用军警清场。使用了催泪瓦斯,刺刀和火把。街上出现了五辆配着机枪的坦克。一名老兵死于警察开火。</p>
+
+<p>这里没有任何市场出清的优雅图形。这里只有国家对一群找不到价格的人所做的物理清除。</p>
+
+<p>有几点要说准。他们不是暴民,他们是这个国家不久前送出去打仗又接回来的人;他们要的不是新的东西,是一张政府已经写下欠条的兑现;他们没有攻击谁,他们搭起棚子住下来等一个答复。而当答复是催泪瓦斯的时候,这件事说明的不是治安。它说明的是,当一批人在市场上找不到位置,在预算里也找不到位置的时候,还有第三个地方可以安置他们,而那个地方不需要任何账目。</p>
+
+<p>同一批年份里,还有更分散的移动和跌落。许多人往加州去找工作,到了之后发现岗位比广告上说的少得多,工资和居住条件都坏得多,那里的大公司农场和他们想象中的小农世界完全是两回事。</p>
+
+<p>劳动力并不是抽象地从低价的地方流向高价的地方就得救了。他们进入的往往是另一个同样过剩的市场,而且带着比出发时更弱的议价地位。</p>
+
+<p>连那个百分之二十五本身也是有边的。后来解释这个数字的机构专门提醒过:它不包含那些宁愿做全职却只能做兼职的人,也不包含技能被迫降级的人。一个原本的机床工去做夜间看门人,他在统计上算有工作。</p>
+
+<p>这两个位置之间隔着十几年的手艺,隔着一整套只有在车间里才用得上的判断力,也隔着一个人对自己是干哪一行的认识。这些差别在失业率这个指标上完全不显影,因为那个指标只问有没有,不问是什么。第十二篇里说过,构量的从来不是事情本身,是事情被组织起来的方式;这里更简单一层,构量的是有没有一份工,而不是那份工把一个人放在了哪里。</p>
+
+<p>也就是说,连最核心的那个指标,外面都还围着一整圈没有被计进去的余项。</p>
+
+<p>未走过的路同样要记下来。1932年春夏那次约十亿美元的公开市场购买,一度让银行的失败潮止住了,但它很快结束了。国会在那年一月创设了一家给银行和铁路提供紧急融资的公司,可是向它借钱有污名,因为借款名单会公开,借这笔钱本身就会被市场当成软弱的信号,于是很多银行宁可不借。英国 1931年就离开了黄金,美国拖到 1933年。而 1937年,在失业远远没有吸尽的时候,政策又转向收紧,于是有了那次再衰退。</p>
+
+<p>走向后来那套宏观管理的路,不是一条直线,也不是一次性的胜利。它是在一轮一轮的犹豫,保守回摆,制度分裂和政治争执里被推出来的。</p>
+
+<p>它被推出来的原因,不是理论说服了所有人。是有太多人已经站在市场找不到价位的那一边。</p>
+
+<p>这句话里有一个不舒服的含义,而它必须被说出来。让这套东西被采纳的,不是它对,是它对的时候人足够多。换个岔口想一想:要是那一轮银行恐慌没有发生,收缩在第十五个月上停住了,同样的推导写在同样的书里,大概不会有多少人去读。构被改写,通常不是因为有人把它驳倒了,是因为它漏在外面的东西多到没法再当成例外。</p>
+
+<p>古典那本账的算法其实很朴素:每一样东西都有一个价,只要价对了,它就会被买走;卖不掉的,是因为它要价太高。这套算法用在土豆上是成立的。</p>
+
+<p>它用在人身上不成立的地方在于,人降到什么价都可能卖不掉,而且降价这个动作本身,会让愿意买的人变得更买不起。</p>
+
+<p>1932年夏天住在华盛顿城边棚屋区里的那些人,每一个都愿意用任何价钱把自己卖出去。账上没有他们的位置,不是因为他们要价太高。</p>
+
+<p>凯恩斯做的事,说到底只有一件。他把一栏原本被记成自愿的东西,改记成了未结。</p>
+
+<p>改完之后,那本账更难看了,也更接近真的。</p>
+
+<p>账还没有算平,它仍旧在记。</p>
+
+      </div>
+
+      <div class="essay-body lang-en">
+
+<h3>1. Fifteen Months</h3>
+
+<p>By the autumn of 1930, the American economy looked ready to turn a corner.</p>
+
+<p>That was not a hindsight illusion, some rosy story later generations told themselves — it was a judgment the data of the moment actually supported. The contractions before this one had lasted fifteen months on average, and counting from the peak in August 1929, this one had, by that autumn, reached exactly fifteen months too. The curve was due to bend.</p>
+
+<p>This detail is worth holding onto, because it shaped the form every argument that followed would take. Had that line actually turned upward in the autumn of 1930, today's economics textbooks would read very differently, and Keynes would likely be remembered as a British official who had written a few clever pamphlets. A contraction lasting fifteen months already counted as long by the standards of the day, and at the time nobody had any instrument that could tell them whether what they were living through was the same kind of thing as what had come before, or something else entirely.</p>
+
+<p>In November, the bank panics began.</p>
+
+<p>First a financial group in Nashville failed, taking its affiliated institutions down with it. On December 11, the fourth-largest bank in New York closed its doors. The runs spread from one town to the next. Within a few weeks, hundreds of banks had shut down.</p>
+
+<p>These sentences read quickly. On the ground, every bank that closed meant a town's worth of passbooks turned to waste paper on the same afternoon, meant a round of already-negotiated loans that would never be disbursed, meant a payroll due the following month that would not be met. A bank is not a facility for storing money; it is the junction point for every payment relationship in a place. When the junction breaks, what breaks is not the savings — it is whether the people of that place can still get anything done with one another.</p>
+
+<p>The line that should have turned upward instead went down for three and a half years.</p>
+
+<p>By the business-cycle chronology drawn up later, the trough of this contraction fell in March 1933. From 1929 to 1933, real output in the United States fell by roughly twenty-nine percent, consumer prices fell by roughly a quarter, and unemployment reached roughly a quarter of the labor force in 1933.</p>
+
+<p>These three figures need to be read together. Output fell by nearly thirty percent, prices fell by nearly a quarter, and joblessness reached a quarter. By the classical account, once prices come down, things should become affordable again, business should become viable again, people should be hired back. Prices did fall, and fell thoroughly. People did not go back.</p>
+
+<p>And so-called recovery does not mean people get reabsorbed.</p>
+
+<p>That sentence is the key to everything that follows. A curve can climb back to its old height while the people standing beneath it do not automatically climb back with it. Output is a quantity that can be restored. The eight years a person lost are not.</p>
+
+<p>The 1933 unemployment rate stood at about 24.9 percent, with roughly 12.83 million people out of work. By 1935, about a fifth of the labor force still had no job. By 1937, industrial production had already surpassed its 1929 level, and 7.7 million people were still unemployed. That same year policy turned toward tightening, and 1937 to 1938 brought another recession, pushing unemployment back up toward twenty percent.</p>
+
+<p>Among these figures, output, prices, and the money supply could all be restored. People could not.</p>
+
+<p>This is not a lament — it carries a very technical meaning. Output falls and then climbs back, and on the books that is one entry out and one entry in, netting to zero; but a forty-year-old machinist who returns to the shop floor after four years of unemployment brings with him the skill he lost, the seniority that was broken, the savings that were spent, and everything that happened to his family across those four years — and none of that gets written off simply because output has returned to where it stood before. The restoration of the aggregate and the restoration of the individual are the same event on the ledger. In the world, they are not.</p>
+
+<p>Across the fourteen essays before this one, the construct kept running into things it could not fit inside itself, and the remedies changed seven times over: loosened from outside by a larger construct, carried on under a new name, measured to the decimal without the question ever being asked, rewritten into a sum that could be amortized into cost, its discipline's boundary pulled in by one notch, given an orbit that circled the ledger, and required to produce proof.</p>
+
+<p>This time was different.</p>
+
+<p>This time what would not fit was people — several million of them, standing in the street, lined up outside relief stations, living in shantytowns on the edge of town, visible to anyone who looked. The construct had nowhere left to move them.</p>
+
+<h3>2. You Chose This</h3>
+
+<p>To see clearly what Keynes broke, you first have to see clearly how the thing he broke had described itself.</p>
+
+<p>The classical tradition was never a single monolith, but it broadly shared one core conviction: a general deficiency of demand did not, in theory, amount to a fundamental problem. The very process of production generates income sufficient to buy back what has been produced; prices adjust, wages adjust, interest rates adjust, and resources eventually get reallocated to wherever they can be sold and wherever labor can be hired. The doctrine left behind one endlessly quoted slogan: supply creates its own demand.</p>
+
+<p>Mill left behind an even harder line, one Keynes would later take dead aim at: demand for commodities is not demand for labour.</p>
+
+<p>In its own context, the sentence is not absurd. Mill's point was that when you buy a finished coat, the money you hand over pays for existing stock, and it is the capital committed to the process of production that actually hires the labor. The distinction has its logic, and it remains useful for certain questions even now. The trouble lies in how it got generalized: once read as buying things cannot create jobs, the entire line of inquiry into the relationship between demand and employment was shut off at the starting gate.</p>
+
+<p>Within this framework, unemployment on a large and persistent scale is, in theory, impossible.</p>
+
+<p>So what, then, were the more than ten million people standing in the streets in 1932?</p>
+
+<p>This is not a rhetorical question. It is a classification problem, and classification problems have come up before in this series more than once. Essay 8 made the point that classification precedes reasoning: which column a thing gets placed in decides every inference that follows. Which column the people in the street got placed in would decide what government was supposed to do, what the discipline was supposed to study, and how those people were supposed to see themselves.</p>
+
+<p>The classical side had a ready answer, and a fully worked-out one at that. Set aside frictional, temporary mismatches, set aside union restrictions, and a person is out of work, in the end, because he will not accept pay commensurate with his own marginal productivity. In other words: he is asking too much.</p>
+
+<p>What appears here is the construct's eighth method for handling the remainder, and it is the least effortful of them all.</p>
+
+<p>It does not deny that these people exist. It does not say they went unmeasured, and it does not sort them outside the gate. What it does is reclassify: it files the remainder under the remainder's own choice. You are not out of work because the books fail to balance. You are out of work because you chose not to work.</p>
+
+<p>This move is harder to counter than any of the previous seven, for two reasons. First, it is logically airtight — there is no way to refute it from inside, because the possibility of some slightly lower wage always exists, and that possibility can always be invoked to explain why no deal has yet been struck. Second, it shifts the entire burden of proof onto the remainder itself: to prove that he did not choose this, the man without a job has to be the one to prove it. And a man without a job has no instrument in hand with which to do so.</p>
+
+<p>Keynes's counterattack against this move was fierce, and it was methodological.</p>
+
+<p>He began by conceding a fair point: classical theory is logically self-consistent within its own premises, and classical economists were not fools. The problem is that the theory applies only to one special case, and applying it directly to an age of mass unemployment is a category error, a mismatch of method.</p>
+
+<p>Then he reached for a geometric analogy. When Euclidean geometry fails inside a non-Euclidean space, you cannot turn around and blame the straight lines for not being straight enough.</p>
+
+<p>This analogy is worth remembering, because it names one of the construct's standing habits. When the model and the object stop matching, the model can be revised, or the object can be declared disqualified. Revising the model means rebuilding an entire chain of derivation. Disqualifying the object takes only one adjective.</p>
+
+<p>And this particular adjective is a very respectable one. Voluntary sounds like it is honoring a person's choice, even carries a faint scent of freedom about it. Essay 13's produce your proof worked the same way — it too sounded like nothing more than procedural rigor. At this point the construct never needs to say anything harsh. It only needs one word that sounds reasonable enough to rewrite a matter from unresolved to resolved.</p>
+
+<p>And the person rewritten this way ends up in a strange position. He goes out every day looking for work and comes home with nothing, and to himself this is a plain, unambiguous failure; but on the books, it gets entered as a choice he made. There is no channel of appeal between the two ways of recording it, because the ledger does not accept testimony from the person concerned — the ledger accepts only variables that fit into the model.</p>
+
+<h3>3. When Both Sides Want More</h3>
+
+<p>Keynes did not go and argue with the classical economists over whether those people actually wanted to work.</p>
+
+<p>He did something else: he built a definition, one the classical model had no slot for.</p>
+
+<p>The move itself is worth pausing on. The usual way to refute a theory is to find the point where its reasoning goes wrong. Keynes picked a different target: he went looking for the box missing from that theory's own table of classifications.</p>
+
+<p>In The General Theory of Employment, Interest and Money, he defined involuntary unemployment this way. Take the current level of money wages. Men are involuntarily unemployed, he wrote, if, in the event of a small rise in the price of wage-goods relative to the money wage — that is, a small fall in the real wage — both the aggregate supply of labor willing to work at the current money wage and the aggregate demand for labor at that wage would be greater than the existing volume of employment. Those currently without work are, on this definition, involuntarily unemployed.</p>
+
+<p>The definition is written in a roundabout way, and its weight is not obvious on a first pass. The whole of it turns on five words: both sides increase.</p>
+
+<p>On the classical account, if what was truly jamming the gears was workers demanding too much, then a slight fall in the real wage should mean fewer people willing to work and more employers willing to hire — the two moving in opposite directions until they meet, and the market clears.</p>
+
+<p>What Keynes wants is the scenario in which both sides move upward at the same time.</p>
+
+<p>More people are willing to work, more employers are willing to hire, and these very people currently have no job. That tells you the jam is not located between the two of them at all. It is not that the price could not be agreed upon — it is that things never got as far as a negotiation.</p>
+
+<p>Put it in more concrete terms. A factory in a town shuts down, and a thousand people go out looking for work. A new owner shows up and says he can pay twenty percent less. On the classical picture, some of the thousand should refuse the low offer while others accept it, and the factory should reopen with a smaller, cheaper workforce. What actually tends to happen is this: all thousand of them are willing to come, and the owner has no intention of opening the factory at all, because he does not know who he would sell the output to. The willing workers line up around the corner; the willing employer is nowhere in the room. Pressing wages down further only presses on the thousand people standing in line — it does nothing to summon the absent employer into existence.</p>
+
+<p>This is a testable condition, not a complaint. It takes something observable and writes it into a definition, and once that condition holds, the classical explanation simply stops working.</p>
+
+<p>This step deserves a note of its own.</p>
+
+<p>In the essays before this one, the remainder was something pointed to, described, tallied up figure by figure by historians. It was real, but its reality depended on being narrated. Here, for the first time, someone wrote the remainder as a criterion: meet these conditions and it exists, fail to meet them and it does not. For the first time the remainder had a test of its own.</p>
+
+<p>Giving the remainder a criterion is not the same thing as speaking on its behalf. Speak on its behalf, and someone can always say you have misapplied your sympathy. Once you have a criterion, anyone who disagrees has to show that the condition fails to hold empirically — and that is a matter to be settled with data. Keynes moved an argument about the human heart onto a table where things could be tested. That was not softheartedness. That was knowing which table you had to argue at for the argument to count.</p>
+
+<p>What flipped next was the direction of causation.</p>
+
+<p>On the classical side, the order runs: the real wage determines the volume of employment. Wherever the wage is set, that is where hiring stops.</p>
+
+<p>Keynes's order reverses it: given the propensity to consume and the inducement to invest, the volume of employment is determined by effective demand, and the real wage is merely the outcome that corresponds to that volume of employment.</p>
+
+<p>Translated into everyday terms: it is not that a wage capable of clearing the labor market comes first and hiring follows from it; it is that a firm's expectation of how much it can sell comes first, and only then does it decide how many people to hire.</p>
+
+<p>The wage is not the entry point. Sales expectations are the entry point. And no matter how far down a man prices himself, there is nothing he can do, on his own, to conjure someone else's demand for what he makes.</p>
+
+<p>There is another layer folded into this reversal. A firm's expectation of sales is a judgment about whether other people are going to spend money, and whether other people spend money depends on whether those other people have jobs. So every firm ends up waiting for every other firm to move first. Nobody has done anything wrong; everybody is making the most reasonable judgment available given his own position; and the sum of all those reasonable judgments is an outcome that nobody wanted. The place Essay 13 described — where all the reasonable dealings get added up and the party who should answer for the result simply disappears — turns up again here, in a different setting.</p>
+
+<h3>4. The Exception That Ate the Rule</h3>
+
+<p>The General Theory is not a pamphlet arguing that governments should spend more. It is closer to a machine that has had its causal order rebuilt, and the most important part of that machine sits in chapter three.</p>
+
+<p>Keynes begins by separating two things: the aggregate supply price and the aggregate demand price. The first is the proceeds a firm must recover to make a given level of employment worth its while; the second is the proceeds a firm expects to receive at that level of employment. The firm's decision is simply a comparison of the two figures: if hiring one more batch of workers means expected revenue exceeds the required proceeds, the firm expands; otherwise it contracts.</p>
+
+<p>Employment, then, is no longer determined by the labor market alone — it depends on whether firms, facing their sales prospects, judge it worthwhile to hire. The key term at this point is effective demand.</p>
+
+<p>The word effective is doing specialized work here, not decoration. It refers to the kind of demand that actually turns into an order, not the kind of want that has no money behind it. Essay 5 carried a related line: a want with no purchasing power behind it will not throw the books out of balance. There, that line was the ledger-keeper's own excuse. Here, the same fact becomes the central working part of the whole machine. A crowd can be starving and the books can still balance — this is why.</p>
+
+<p>Next comes the character of consumption.</p>
+
+<p>Keynes does not mean that consumption is unimportant, only that it has one systematic feature: when income rises, consumption rises too, but typically by less than income does. So as employment expands, a gap opens up between total output and consumer spending. That gap has to be filled by investment. If investment falls short, firms will not go on offering higher levels of employment.</p>
+
+<p>Pushed this far, the single most important sentence in the whole argument arrives.</p>
+
+<p>Given the propensity to consume, the equilibrium level of employment depends on the current volume of investment; and the effective demand that corresponds to full employment turns out to be nothing more than a special case.</p>
+
+<p>That sentence should be read slowly.</p>
+
+<p>Full employment is not the natural resting state of a market economy. It is the accidental result that appears only when one particular set of parameters happens to line up.</p>
+
+<p>At this point, for the first time, someone working from inside the construct, using the construct's own language, wrote non-closure as the default state. In the fourteen essays before this one, the construct always treated whatever would not fit as an exception, as error, as a piece not yet fully processed. Here the relationship is inverted entirely: fitting is the exception.</p>
+
+<p>It is worth noting exactly where this inversion was carried out. It was not carried out by a critic standing outside, not by a victim, not by a revolution. It was carried out by a man who taught at Cambridge, who advised the Treasury, who defended the Bank of England and then opposed it, using this discipline's own methods of derivation. The hardest challenge a construct faces often comes from one of the very people who understand it best. Essay 9's Smith stood inside the construct; Essay 11's Marx stood outside it. Keynes is inside — and stays inside.</p>
+
+<p>One thing has to be said at the same time, or this section will be read as a verdict.</p>
+
+<p>This conclusion is not a philosophical proposition. It is a technical result derived from a set of assumptions about the propensity to consume and the inducement to invest, assumptions that have been disputed from the day they were written down right up to today. Keynes himself never said the market would never clear — what he said was that clearing is not automatic, is not something you get to assume by default.</p>
+
+<p>Put plainly, his breakthrough compresses into one sentence: not every person willing to work can sell himself by cutting his price.</p>
+
+<p>Because labor is not potatoes, and a wage is not an isolated price tag stuck onto goods. Cutting wages changes prices, changes the real weight of debt, changes expectations, changes consumption, changes firms' cash flow, changes banks' balance sheets — and loops back around to change whether a firm judges that hiring this particular person can even be sold at a profit.</p>
+
+<p>So the labor market cannot be calculated in isolation. It has to be put back inside the whole monetary economy.</p>
+
+<p>That sentence lands as a heavy blow against the construct, because the construct's most habitual technique is exactly partition: cut a complicated thing into pieces, price each piece on its own, settle each piece on its own, and add them up into a grand total. Partition is the precondition that makes commensuration possible at all. What Keynes is saying is that, in this particular case, the result you calculate for a piece cut off on its own and that same piece's actual behavior within the whole are not the same thing — sometimes they even point in opposite directions.</p>
+
+<h3>5. What the Banks Took Down With Them</h3>
+
+<p>The panic that began in November 1930 is worth examining for its mechanics, because it was not simply a matter of bad banks being weeded out.</p>
+
+<p>At the time, the United States had more than eight thousand banks belonging to the Federal Reserve System, and close to sixteen thousand more that did not. That second, much larger group depended heavily on networks of correspondent banks to hold their reserves for them.</p>
+
+<p>Money in transit through the check-clearing process would be entered on the books of two banks at once, counted as reserves by both. This was the so-called fictitious reserve. In ordinary times it worked, because not everyone demanded cash at the same moment; in a run, it fell short.</p>
+
+<p>So country banks asked their correspondent banks for cash, and those correspondent banks were themselves being run on, and the whole chain — cash, notes, deposits, and the conversions between them — seized up all at once.</p>
+
+<p>This structure is worth pausing over. Fictitious reserves were not the product of anyone's fraud; they were the natural consequence of the fact that clearing takes time. As long as the money is still in transit, it is not, strictly speaking, in either place at once, and bookkeeping requires that it be counted somewhere. The system's solution was to let it count in both places. In ordinary times that was efficiency. In a run, it was a hole. The construct allowed a small duplication so the books would balance every single day, and that small duplication turned out to be empty on precisely the day it most needed to be real.</p>
+
+<p>Up to this point, the losses can still be measured: how many banks closed, how much the money stock fell, how much was lost in deposits.</p>
+
+<p>What genuinely resists measurement is something else.</p>
+
+<p>What bank failures erased was not only the figures on the books but an entire body of local credit knowledge — which merchants in this town could be trusted, which farmers would be able to repay this year, which warehouse receipts were good collateral, which businesses that looked prosperous on the surface were actually rolling old debt into new. None of these judgments was written on any price list; they were stored in relationships built up over years of dealing between people, and the vessel that carried those relationships was the bank.</p>
+
+<p>When the bank closed, that body of knowledge disappeared along with it.</p>
+
+<p>A researcher later put this into more technical language: bank failures reduced the efficiency of the entire process of credit allocation, raised the cost of credit, compressed the availability of credit, and in doing so did further damage to aggregate demand.</p>
+
+<p>This is another shape the remainder takes, and it differs from every one in the essays before this.</p>
+
+<p>That body of knowledge never sat on any balance sheet to begin with, so its disappearance shows up on no balance sheet either. A decline in the money supply can be tallied month by month; a town suddenly not knowing whom to lend to has no unit that can measure it. On the books it registers as a number. In reality it registers as an entire street of people who no longer dare speak frankly to one another.</p>
+
+<p>Push the point one step further. That knowledge was never on the books not because nobody wanted to record it, but because it could not be recorded. Whether someone can be trusted is not an attribute you can fill into a box — it is a judgment built up from countless small events over many years, and it is always shifting. To write it down, you would first have to convert it into a handful of scoreable indicators, and the moment it becomes an indicator, it stops being the thing it was.</p>
+
+<p>Essay 14 concluded that the more a system builds itself upon impersonal footing, the more it depends on trust. Here is the other half of the same fact: that trust is not merely an attitude. It is, at the same time, a body of specific knowledge, living inside specific people, and it can be physically destroyed.</p>
+
+<p>On March 12, 1933, Roosevelt spoke to the country over the radio about the balance sheets of its banks.</p>
+
+<p>He explained that a bank does not keep everyone's money sitting in a safe; it puts that money to work in bonds, commercial paper, and mortgage loans. When a panic arrives, even a bank whose assets are entirely sound has no way to turn those assets into cash overnight, short of dumping them at panic prices far below their real worth.</p>
+
+<p>Then he said two lines that would be remembered for a long time. The first: it is safer to keep your money in a reopened bank than under the mattress. The second: there is an element in the readjustment of the financial system more important than currency, more important than gold, and that is the confidence of the people themselves.</p>
+
+<p>The Emergency Banking Act was signed on March 9. Starting March 13, sound banks in Federal Reserve cities reopened first, with the reopening extended gradually to other cities and towns after that.</p>
+
+<p>By the end of March, the public had already redeposited roughly two-thirds of the cash it had withdrawn in the four weeks before March 8.</p>
+
+<p>A head of state explained the asset structure of banks to the nation over the radio, and then asked people to send their money back. And it worked.</p>
+
+<h3>6. From $20.67 to $35</h3>
+
+<p>For a long stretch, the United States maintained a statutory gold price: twenty dollars and sixty-seven cents per ounce.</p>
+
+<p>On April 5, 1933, an executive order banned the private hoarding of gold coin, gold bullion, and gold certificates, and required individuals and institutions to hand them over.</p>
+
+<p>In 1934, the price of gold was reset at thirty-five dollars an ounce. The gold content of the dollar was thereby compressed to about fifty-nine percent of what it had been.</p>
+
+<p>That fifty-nine percent is simple arithmetic: an ounce of gold once worth $20.67 was now worth $35, which means the same dollar now bought more than forty percent less gold than before.</p>
+
+<p>Lay the sequence out and it says enough on its own: first the government collected private gold at the old price, and only then did it change the price.</p>
+
+<p>No judgment is being passed here. There is only one thing to establish: this entire sequence was fully legal. The executive order had statutory authority behind it, the surrender came with compensation, and the repricing was backed by legislation. Essay 13's line can be lifted directly into service here, and this is its fourth appearance: the whole process can be entirely legal, and the result can still be an extremely asymmetric transfer.</p>
+
+<p>Essay 14 observed that the construct is most successful exactly when it makes people forget it was ever made. Here is the reverse of that observation, and reversed with total cleanness.</p>
+
+<p>A scale treated as natural, objective, above politics, was rewritten by a single decree. And who rewrote it? The very same people, in the very same administration, of the very same country. In the sixty years before this moment, the entire authority of that scale had rested precisely on the fact that it could not be casually altered by anyone at all.</p>
+
+<p>This point is worth restating, because it is the source of everything this section carries. The gold standard did not persuade people because it was more convenient, or because it was more precise. It persuaded people because it said: nobody decided this, this is simply the weight of gold, and gold sitting in the ground answers to no government. Precisely because of that, it let a borrower believe that what he paid back later would be the same thing he had borrowed; it let two trading houses on opposite sides of an ocean strike a deal on a piece of paper. Its entire credibility was staked on five words: not alterable by anyone.</p>
+
+<p>Once the fact that a scale can be rewritten has happened a single time, it can never be taken back. From here on, every claim about a common measure has to face a new question: who set this scale, and when will they change it.</p>
+
+<p>And the questioning will not stop at this one sentence. Everything the essays after this one have to cover — the international arrangement rebuilt after the war, its dissolution decades later by a single announcement, and the attempts that refuse to recognize any official scale at all — is chasing the same question. A construct can build a scale, and a construct can also announce that the scale no longer counts; and once people have watched the second thing happen, the first thing carries a tail behind it forever.</p>
+
+<p>A word, in passing, about where the gold went afterward. It did not disappear. It withdrew to a different position: the vaults of central banks, a store of value in private hands, a haven in times of crisis. It stopped being the scale and became one more thing that gets measured. Something moving from measuring other things to being measured by others has happened more than once already in this series, and each time it was not refuted — it was routed around.</p>
+
+<p>As for the effects of leaving gold, the empirical evidence is fairly consistent, though the interpretation remains contested.</p>
+
+<p>The consistent part: countries that left the gold standard earlier generally recovered faster. After Britain suspended gold convertibility in September 1931, the pound devalued and monetary policy gained room to move; later cross-country studies have also found that leaving gold could lift inflation expectations, lower real interest rates, and help bring on recovery.</p>
+
+<p>The contested part: whether it was leaving gold itself doing the work, or the monetary expansion, the improvement in exports, the shift in real wages, and the change in policy expectations that followed from leaving gold. On these mechanisms scholarship has never settled on a single account.</p>
+
+<p>One point still has to be made clear, or this section will be read as a simple moral. Leaving the gold standard helped not because there was anything wrong with gold itself. It helped because, in those years, the cost of defending parity had come to fall entirely on domestic employment. Giving up parity meant moving part of that cost off the backs of the unemployed. The scale was not at fault. What was at fault was that someone had to keep standing under it, forbidden to move.</p>
+
+<h3>7. Who Pushed It Deeper</h3>
+
+<p>Why the Depression went so deep and lasted so long is a debate that has never converged, even now. Laying the arguments out side by side is more useful than handing down a verdict.</p>
+
+<p>One main line of argument centers on money. Its core claim is straightforward: the great contraction of 1929 to 1933 was as large as it was chiefly because the money stock fell by more than a third; a mass of commercial banks failed, the money multiplier collapsed, and the Federal Reserve did not perform its function as lender of last resort. Along this line, the decision in October 1931 — after Britain left gold — to raise the discount rate in order to defend America's gold reserves counts as an especially critical policy error: it protected gold abroad while further compressing money and credit at home.</p>
+
+<p>This line of argument has its internal critics too. Some researchers point out that the monetary explanation has long had a gap in it: exactly what mechanism carried a monetary contraction into the real economy was never adequately spelled out for decades, since nominal interest rates in the early 1930s were not on any steady, sharp climb, and high interest rates alone cannot carry the weight of explaining the Depression. What later filled the gap was a chain running through deflationary expectations: monetary contraction produces expectations of deflation, expectations of deflation raise the real interest rate, and the real interest rate suppresses spending and employment.</p>
+
+<p>Another main line puts the emphasis on a collapse in spending. Researchers along this line argue that the onset of the Depression is hard to pin mainly on tight money: after the crash, the New York Federal Reserve Bank at one point bought large quantities of government securities, and both nominal and real interest rates fell noticeably from late 1929 into early 1930. The real problem, on this account, is that the crash and the extreme price volatility that followed it generated enormous uncertainty about future income, and spending on durable goods collapsed first. Along this line, monetary factors certainly mattered, but functioned more as an amplifier that later drove the downturn deeper, not as the initial blow.</p>
+
+<p>The third main line is the gold standard, already covered in Essay 14. It situates the Depression within the interwar international monetary order: the contraction began in the United States and France, then spread worldwide along the channels of exchange-rate commitments, gold flows, and the obligation of central banks to defend their gold parities. This school, too, has disagreements within its own ranks.</p>
+
+<p>A fourth main line is concerned with credit intermediation. It does not deny the importance of the monetary collapse; it only insists that bank failures did further damage on another level — degrading the efficiency of credit allocation — a level that changes in the quantity of money alone cannot capture.</p>
+
+<p>Even the narrower question of why the banks failed has no consensus answer. One school emphasizes that most bank failures reflected deteriorating fundamentals and genuine insolvency rather than baseless panic; another school, after reorganizing the original data, holds that both liquidity crises and insolvency were real sources, and that in the earliest rounds of panic the contagion running through correspondent-bank networks and bank runs was very much in evidence; only once the Depression deepened further and asset prices worsened did insolvency increasingly become the dominant threat. In other words, panic and fundamentals are not an either-or matter — they operated together, interwoven across different periods, different regions, and different institutions.</p>
+
+<p>Wages tell the same kind of story. The traditional textbook account often tells the Depression as a case of wages that would not fall, and so the labor market failed to clear. Later empirical research complicated that story: viewed across countries, nominal wages really did adjust quite slowly relative to prices, real wages rose, and this did depress output; yet fresh estimates for interwar Britain found that pay cuts were in fact not uncommon at the time — in 1931 alone, more than three million workers had their wages cut.</p>
+
+<p>So the real point of contention is not whether wages could fall.</p>
+
+<p>The point of contention is whether the interplay among wages, prices, expectations, debt, and demand would, at the aggregate level, automatically absorb unemployment on its own. The empirical answer the Depression gives is: it did not happen automatically.</p>
+
+<p>Each of these explanations has its own evidence, and no verdict will be rendered here. But laid side by side, they share one thing in common: they are arguing over which chain pulled hardest, and not one of those chains was capable of putting those people back into the ledger.</p>
+
+<p>This point matters more than settling on a winner. Suppose it were proven one day that the monetary chain pulled hardest — the thing to do would be monetary policy. Suppose it were proven that the gold-standard chain pulled hardest — the thing to do would be exchange-rate arrangements. And whichever chain is proven to have pulled hardest, none of it changes the fact of that decade: for ten straight years, a great many people were willing to work and had no place to stand, and every mechanism ever used to explain the Depression explains why they were left outside — not one of them explains how to bring them in.</p>
+
+<p>One more thing has to be entered into the record here, because it is the strongest case against fatalism.</p>
+
+<p>In this same crisis, the Federal Reserve Bank of Atlanta discounted fairly freely for its member banks, and even encouraged its member banks to help support non-member banks; the Federal Reserve Bank of St. Louis read its own mandate more narrowly, and refused to rediscount for the purpose of supporting non-member banks.</p>
+
+<p>The aftermath diverged sharply. The Atlanta district's contraction slowed and began to recover. The St. Louis district saw hundreds of bank failures, shrinking loans, and rising unemployment.</p>
+
+<p>Same country, same system, same year, two different styles of judgment, two different outcomes. This was not grand historical necessity. It was a fork produced by different decisions made under the very same set of rules.</p>
+
+<h3>8. The Side That Couldn't Find a Price</h3>
+
+<p>In the summer of 1932, a body of veterans of the First World War began marching on Washington.</p>
+
+<p>They held a kind of bonus certificate that would not come due until 1945. And they were already too poor to wait thirteen years.</p>
+
+<p>On June 1, about fifteen hundred of them reached the capital. Later arrivals brought the total to somewhere between ten and twenty thousand. They built a shantytown on the edge of the city and settled in to wait for an answer from Congress and the President.</p>
+
+<p>On July 28, the government sent in troops and police to clear the camp. They used tear gas, bayonets, and torches. Five tanks mounted with machine guns appeared in the streets. One veteran died from police gunfire.</p>
+
+<p>There is no elegant diagram of market clearing here. There is only a state physically removing a group of people who could not find a price.</p>
+
+<p>A few things need to be said precisely. They were not a mob; they were men this country had sent off to fight a war and brought back not long before. What they wanted was not something new — it was the cashing of an IOU the government itself had already written. They attacked no one; they built shacks and settled in to wait for an answer. And when the answer turned out to be tear gas, that fact does not describe a matter of public order. It describes something else: when a group of people can find no place in the market and no place in the budget either, there is a third place available to put them, and that place requires no ledger at all.</p>
+
+<p>In those same years there was more scattered movement, and more scattered falling. Many people went to California looking for work, and once they arrived found jobs far scarcer than the advertisements had promised, wages and living conditions far worse, and the big corporate farms nothing at all like the small-farm world they had pictured in their heads.</p>
+
+<p>Labor does not simply flow, in the abstract, from a place where it is cheap to a place where it is dear and get saved by the move. What these people entered was very often just another equally oversupplied market, and they entered it with a weaker bargaining position than the one they had left behind.</p>
+
+<p>Even that twenty-five percent figure has edges of its own. The agency that later explained the number specifically cautioned that it did not include people who would rather have worked full-time but could only find part-time work, nor people whose skills had been forced downward. A machinist reduced to working nights as a watchman counted, in the statistics, as employed.</p>
+
+<p>Between those two positions lie more than a decade of craft, an entire body of judgment usable only on a shop floor, and a man's own sense of what trade he belongs to. None of these differences show up anywhere in the unemployment rate, because that indicator only asks whether, never what. Essay 12 made the point that what the construct measures was never the thing itself but the way the thing had been organized; here the point is even simpler — the construct measures whether a job exists, not where that job leaves the person holding it.</p>
+
+<p>Which is to say: even the single most central indicator still had, ringed around its edges, a whole remainder that never got counted at all.</p>
+
+<p>The road not taken deserves to be recorded too. The roughly one-billion-dollar round of open-market purchases in the spring and summer of 1932 halted the wave of bank failures for a while, but it ended quickly. That January, Congress had created a corporation to extend emergency financing to banks and railroads, but borrowing from it carried a stigma, because the list of borrowers was made public, and the mere act of borrowing was read by the market as a signal of weakness, so many banks preferred to do without. Britain had already left gold in 1931; the United States dragged its feet until 1933. And in 1937, with unemployment nowhere close to absorbed, policy tightened again, bringing on that second recession.</p>
+
+<p>The road toward the later apparatus of macroeconomic management was not a straight line, and it was not a single decisive victory. It was forced into being through round after round of hesitation, conservative retreat, institutional fracture, and political combat.</p>
+
+<p>What forced it into being was not that the theory had persuaded everyone. It was that too many people were already standing on the side of the market where no price could be found.</p>
+
+<p>There is an uncomfortable implication here, and it has to be spoken plainly. What got this framework adopted was not that it was correct — it was that it was correct at a moment when enough people needed it to be. Consider the alternate turn: had that wave of bank panics never happened, had the contraction simply stopped at month fifteen, the same reasoning, set down in the same book, would probably not have found many readers. A construct gets rewritten, as a rule, not because someone has refuted it, but because what leaks outside it has piled up too high to keep calling it an exception.</p>
+
+<p>The classical ledger's arithmetic was, in truth, a simple one: everything has a price, and if the price is right, it will be bought; whatever does not sell is asking too much. This arithmetic holds for potatoes.</p>
+
+<p>Where it fails to hold for people is this: a person can lower his price to nothing and still fail to sell, and the very act of lowering his price can make the people who might buy him even less able to afford him.</p>
+
+<p>Every single person living in that shantytown on the edge of Washington in the summer of 1932 was willing to sell himself at any price at all. There was no place for them on the ledger — and it was not because they had asked too much.</p>
+
+<p>What Keynes did, in the end, comes down to one thing. He took a column that had been recorded as voluntary and re-recorded it as unsettled.</p>
+
+<p>After the rewrite, that ledger looked uglier. It also came closer to being true.</p>
+
+<p>The ledger has not yet balanced. It is still being kept.</p>
+
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="ep14.html" class="xiyou-nav-btn">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">金本位:精确到小数点,却在最要紧的地方看不见</span>
+            <span class="xiyou-nav-title lang-en">The Scale and the Remainder</span>
+          </span>
+        </a>
+        <a href="ep16.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇</span>
+            <span class="xiyou-nav-sub lang-en">Next</span>
+            <span class="xiyou-nav-title lang-zh">分配性饥荒:粮食还在,名册决定谁能吃到</span>
+            <span class="xiyou-nav-title lang-en">The Grain and the Roll</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
