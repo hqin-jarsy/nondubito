@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>相転移は一点ではなく窓である · SAE経済学シリーズ — Non Dubito</title>
+<meta name="description" content="15DDの濃度指数χが市場の鍵となる位置で高まる過程を、萌芽・反転・確立の三段階として示し、ρ保存と透明性ηの役割を論じる。"><meta name="author" content="Han Qin (秦汉)">
+<meta property="og:title" content="相転移は一点ではなく窓である · SAE経済学シリーズ — Non Dubito"><meta property="og:description" content="15DDの濃度指数χが市場の鍵となる位置で高まる過程を、萌芽・反転・確立の三段階として示し、ρ保存と透明性ηの役割を論じる。">
+<link rel="stylesheet" href="../../../style.css"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="canonical" href="https://nondubito.net/essays/econ/ja/econ5.html"><style>
+.lang-toggle{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin-bottom:1.8rem;font-family:var(--sans);font-size:.68rem;letter-spacing:.06em}.lang-toggle a,.lang-toggle span.lang-btn{color:var(--ink-muted);text-decoration:none}.lang-toggle a:hover,.lang-toggle .active{color:var(--gold)}.lang-sep{color:var(--cream-border)}
+.back-link{display:block;font-family:var(--sans);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;margin-bottom:1.5rem}.back-link:hover{color:var(--ink)}
+.essay-series,.series-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}.essay-number{font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:.45rem}.essay-entry-point{font-family:var(--sans);font-size:.82rem;color:var(--ink-muted);line-height:1.7;margin-top:.7rem}.essay-subtitle{font-family:var(--serif);font-size:1.05rem;color:var(--ink-muted);font-style:italic;line-height:1.55;margin:.55rem 0 0}.source-note{font-family:var(--sans);font-size:.78rem;line-height:1.65;color:var(--ink-muted);margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--cream-border)}.source-note a{color:var(--ink-muted)}
+.paper-links{font-family:var(--sans);font-size:.7rem;color:var(--ink-muted);margin-top:.9rem}.paper-links a{color:var(--ink-muted)}
+.series-nav{display:flex;gap:1rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--cream-border)}.series-nav a{flex:1;display:flex;align-items:center;gap:1rem;padding:1.15rem 1.3rem;border:1px solid var(--cream-border);border-radius:6px;text-decoration:none;color:var(--ink);transition:background .15s,border-color .15s}.series-nav a:hover{background:rgba(0,0,0,.03);border-color:var(--ink-muted)}.series-nav .next{justify-content:flex-end;text-align:right}.nav-icon{font-size:1.35rem;color:var(--ink-muted)}.nav-copy{display:flex;flex-direction:column;gap:.15rem}.nav-kicker{font-family:var(--sans);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}.nav-title{font-family:var(--serif);font-size:.93rem}
+.series-container{max-width:var(--max-w-prose);margin:0 auto;padding:100px 2.5rem 80px}.series-title{font-family:var(--serif);font-size:2.25rem;line-height:1.15;color:var(--ink);margin:.4rem 0 .55rem}.series-subtitle{font-family:var(--serif);font-size:1.08rem;color:var(--ink-muted);margin-bottom:1.6rem}.series-desc{font-size:1rem;line-height:1.75;margin-bottom:2.4rem}.series-desc p{margin-bottom:1em}.series-meta{font-family:var(--sans);font-size:.76rem;color:var(--ink-muted);padding-bottom:2rem;margin-bottom:2.4rem;border-bottom:1px solid var(--cream-border)}.entry-list{list-style:none;padding:0;margin:0}.entry-row{display:block;padding:1.25rem 1.4rem;border:1px solid var(--cream-border);border-radius:6px;text-decoration:none;color:var(--ink);margin-bottom:.8rem;transition:background .15s,border-color .15s}.entry-row:hover{background:rgba(0,0,0,.025);border-color:var(--ink-muted)}.entry-num{font-family:var(--sans);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}.entry-title{font-family:var(--serif);font-size:1.13rem;margin-bottom:.4rem}.entry-desc{font-size:.86rem;color:var(--ink-muted);line-height:1.55}
+.essay-body table{width:100%;border-collapse:collapse;margin:1.4rem 0;font-family:var(--sans);font-size:.82rem}.essay-body th{background:var(--cream-dark);padding:.55rem .65rem;text-align:left;border-bottom:2px solid var(--gold)}.essay-body td{padding:.5rem .65rem;border-bottom:1px solid var(--cream-border);vertical-align:top}.essay-body blockquote{border-left:3px solid var(--gold);margin:1.6rem 0;padding:.75rem 1.1rem;background:var(--cream-dark);font-style:italic}.essay-body h2{margin-top:2.25rem}
+@media(max-width:620px){.series-container{padding:80px 1.5rem 60px}.series-nav{flex-direction:column}.series-nav .next{justify-content:flex-start;text-align:left}.essay-body table{display:block;overflow-x:auto}}
+</style><!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics --></head>
+<body><header><div class="header-inner"><a href="../../../index.html" class="site-title"><span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../index.html#essays">エッセイ</a><a href="../../../credesivis.html">Crede si vis</a><a href="../../../about.html">紹介</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a></nav></div></header><main class="essay-main"><article>
+<div class="lang-toggle">
+<a class="lang-btn" href="../econ5.html" onclick="localStorage.setItem('nd_lang','en')">EN</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="../econ5.html" onclick="localStorage.setItem('nd_lang','zh')">中文</a>
+<span class="lang-sep">|</span>
+<span class="lang-btn active">日本語</span>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="../fr/econ5.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="../de/econ5.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="../es/econ5.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="../ko/econ5.html">한국어</a>
+</div><a href="index.html" class="back-link">シリーズ一覧へ</a>
+<header class="essay-header"><div class="essay-series">SAE経済学シリーズ</div><div class="essay-number">第5篇・全6篇</div><h1>相転移は一点ではなく窓である</h1><p class="essay-subtitle">市場変容の三段階と、その数理的な骨格</p><p class="essay-entry-point">15DDの濃度指数χが市場の鍵となる位置で高まる過程を、萌芽・反転・確立の三段階として示し、ρ保存と透明性ηの役割を論じる。</p><div class="essay-meta"><span class="author">Han Qin (秦汉)</span><span class="sep">·</span><span>2026</span></div><p class="paper-links">DOI: <a href="https://doi.org/10.5281/zenodo.19393913" target="_blank" rel="noopener">10.5281/zenodo.19393913</a> · <a href="https://self-as-an-end.net/papers/sae-economics-4.html" target="_blank" rel="noopener">SAE paper ↗</a></p></header>
+<div class="essay-body"><p>12DDが支配する手段の国型市場から、15DDが厚く参加する目的の国型市場への移行は、一夜の反転ではない。旧い秩序と新しい秩序が併存し、局所では変化が進んでも全体は戻りうる期間がある。本篇の主張は、この市場変容が、数学におけるρ保存原理のもとでの算術的相転移と同じ型の骨格をもつ、ということである。</p>
+
+<h2>なぜ「点」ではなく「窓」なのか</h2>
+
+<p>水の凝固や磁性の消失は、日常語では突然起こるように見える。だが実際の相転移には、新旧の相が同時に存在し、微小な擾乱が全体の挙動を大きく変える範囲がある。市場も同様で、15DDの小集団が生まれただけでは新秩序にならない。評判と協働の回路が局所から市場基盤へ変わるまでに、入口と出口をもつ窓を通る。</p>
+
+<p>ここで<strong>χ</strong>は、市場における真の15DDの濃度指数である。単なる人数比ではない。価格形成、情報発見、評判判断、資源配分といった鍵となる節点で、15DDがどれほど重みをもつかを表す。原則を自称する人が多くても、それが戦略的擬態ならχは低い。人数が少なくても情報の結節点を占めればχは高くなりうる。</p>
+
+<h2>三つの段階</h2>
+
+<p><strong>萌芽段階（χ &lt; 2.75）</strong>では、15DDの集積は局所に見えるが、評判機構は赤字で動く。相手の構造を読み、genuine C を維持する認知費用が、協働による便益をまだ上回る。互いを見つけられても密度が足りず、手段の国型組織の優位がχを窓の下に押しとどめる。</p>
+
+<p><strong>反転段階（2.75 ≤ χ ≤ 4.01）</strong>が相転移の窓である。評判機構は赤字から黒字へ移り、genuine C の余剰が維持費用を上回り始める。局所的な集積が周囲へ波及し、高い透明性のもとで、目的の国を装う12DD中心の組織も識別される。ただし二つの秩序が併存するため不安定で、小さな変化が前進にも後退にも増幅される。</p>
+
+<p><strong>確立段階（χ &gt; 4.01）</strong>では、15DD型の協働評判が例外的な美談ではなく、市場のインフラになる。相手の線を読むことが標準的な取引能力となり、手段の国型組織が低χの環境で享受してきた優位は順に失われる。相転移はここで完了する。</p>
+
+<h2>ρ保存が示す同型性</h2>
+
+<p>ZFCρにおける<strong>ρ保存原理</strong>は、階層構造の変換を通じても、ある保存量ρが保たれるとする。市場相転移との同型性は、萌芽・反転・確立という三段階、四周期の内在的な対応、完了後の不可逆性に現れる。経済学的前提、SAEの哲学、ZFCρの数学という独立した三経路が、同じ形へ収束する。</p>
+
+<blockquote>市場変容の形は、歴史の偶然でも、善行への褒賞でもない。ρ保存のもとで現れる構造上の必然である。</blockquote>
+
+<h2>閾値と不可逆性をどう読むか</h2>
+
+<p>2.75と4.01は、人口調査でそのまま数えられる人数比ではない。χが鍵となる節点の重みを含む以上、同じ参加者数でもネットワーク配置によって段階は変わる。この数値は理論内部で窓の境界を示す座標であり、「原則をもつ人が何パーセントなら社会が変わる」という単純な世論比率へ置き換えてはならない。</p>
+
+<p>不可逆性も、人間が二度と12DDへ戻らないという心理的予言ではない。評判が共有インフラになり、genuine C を生む協働網が価格・採用・情報発見へ組み込まれると、それをすべて解体して低透明性の秩序へ戻す費用が急増する、という経路依存である。局所的な後退はあっても、市場全体の標準を巻き戻す条件は以前と同じではない。</p>
+
+<h2>変えられない形、変えられる速度</h2>
+
+<p>三段階と窓をもつという形は、十分な反復と衝突があるかぎり構造的に要請される。だが、そこを通過する速度は人間の選択に左右される。教育が測定可能な目標だけを与えて12DDを量産するのか、それとも14DDの線と15DDの知覚が育つ余地を残すのか。制度が多チャンネルの擬態を保護するのか、情報透明性<strong>η</strong>を高めるのか。14DDがAIを操作の武器にするのか、15DDがAIを知覚の増幅器として使うのかによって時間軸は変わる。</p>
+
+<p>したがって「必ず起こる」ことは、何もしなくてもすぐ起こるという意味ではない。窓の手前に長く固定される市場もあり、窓のなかで逆戻りする市場もある。変化の形は必然だが、その速度は自由である。</p>
+
+<p>ηはχそのものではないが、両者を結ぶ条件である。透明性が上がれば真の線と擬態を照合しやすくなり、評判の誤配分が減る。ただし監視量だけを増やして文脈を失えば雑音も増えるため、必要なのは情報の総量ではなく、異なる関係を検証可能に接続する透明性である。</p></div>
+<div class="source-note"><p>中国語版を論旨の底本とし、日本語の経済思想・哲学読者に向けて独立に再構成した版です。 <a href="../econ5.html">中文・English</a></p></div><nav class="series-nav"><a href="econ4.html"><span class="nav-icon">←</span><span class="nav-copy"><span class="nav-kicker">← 前篇</span><span class="nav-title">三つの型が混在する市場</span></span></a><a href="econ6.html" class="next"><span class="nav-copy"><span class="nav-kicker">次篇 →</span><span class="nav-title">なぜ手段の国は勝ち続けたのか――そして、なぜ敗れるのか</span></span><span class="nav-icon">→</span></a></nav>
+</article></main></body></html>

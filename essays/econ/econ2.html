@@ -46,6 +46,13 @@
   .layer-table td{padding:.35rem .6rem;border-bottom:1px solid #e0e4d0}
   .layer-table tr:last-child td{border-bottom:none}
   .callout{background:var(--light);border-left:4px solid var(--accent);padding:.8rem 1rem;margin:1.4rem 0;border-radius:0 4px 4px 0}
+
+  /* seven-language SAE Economics navigation */
+  .lang-toggle{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:.38rem}
+  .lang-toggle .lang-btn{margin-left:0;background:none;border:0;border-radius:0;padding:.15rem .12rem;cursor:pointer;font:inherit;font-size:.72rem;color:var(--mid);text-decoration:none}
+  .lang-toggle .lang-btn:hover,.lang-toggle .lang-btn.active{background:none;color:var(--accent);text-decoration:underline}
+  .lang-toggle .lang-sep{color:#bbc3ad;font-size:.7rem}
+
 </style>
 </head>
 <body>
@@ -58,7 +65,21 @@
     <span class="lang-zh">经济学系列</span>
     <span class="lang-en">Economics Series</span>
   </a>
-  <button class="lang-btn" onclick="toggleLang()">EN / 中</button>
+  <div class="lang-toggle">
+<button class="lang-btn" data-lang="en">EN</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh">中文</button>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ja/econ2.html">日本語</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="fr/econ2.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="de/econ2.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="es/econ2.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ko/econ2.html">한국어</a>
+</div>
 </nav>
 
 <header class="essay-header">
@@ -178,23 +199,33 @@
 </nav>
 
 <p class="hc-link">
-  <span class="lang-zh">秦汉 · <a href="../../xiangjun/index.html">相君 HC-16</a></span>
-  <span class="lang-en">Han Qin · <a href="../../xiangjun/index.html">Xiangjun HC-16</a></span>
+  <span class="lang-zh">秦汉 · <a href="../xiangjun/index.html">相君 HC-16</a></span>
+  <span class="lang-en">Han Qin · <a href="../xiangjun/index.html">Xiangjun HC-16</a></span>
 </p>
 
 </div>
 
 <script>
-function toggleLang(){
-  const html=document.documentElement;
-  const cur=html.getAttribute('data-lang')||'zh';
-  const nxt=cur==='zh'?'en':'zh';
-  html.setAttribute('data-lang',nxt);
-  localStorage.setItem('nondubito-lang',nxt);
-}
 (function(){
-  const saved=localStorage.getItem('nondubito-lang');
-  if(saved) document.documentElement.setAttribute('data-lang',saved);
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){
+      var cur=document.documentElement.getAttribute('data-lang')||'zh';
+      btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});
+    }
+    btns.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var lang=this.getAttribute('data-lang');
+        document.documentElement.setAttribute('data-lang',lang);
+        localStorage.setItem('nd_lang',lang);
+        localStorage.setItem('nondubito-lang',lang);
+        update();
+      });
+    });
+    update();
+  });
 })();
 </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"0eb3b3dc16a54d9fa97b0a0a04b30c24"}'></script>

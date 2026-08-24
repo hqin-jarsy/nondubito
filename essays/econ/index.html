@@ -28,6 +28,13 @@
   .card p{font-size:.88rem;color:#555;line-height:1.55}
   .hc-link{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--light);font-size:.82rem;color:#888;text-align:center}
   .hc-link a{color:var(--mid)}
+
+  /* seven-language SAE Economics navigation */
+  .lang-toggle{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:.38rem}
+  .lang-toggle .lang-btn{margin-left:0;background:none;border:0;border-radius:0;padding:.15rem .12rem;cursor:pointer;font:inherit;font-size:.72rem;color:var(--mid);text-decoration:none}
+  .lang-toggle .lang-btn:hover,.lang-toggle .lang-btn.active{background:none;color:var(--accent);text-decoration:underline}
+  .lang-toggle .lang-sep{color:#bbc3ad;font-size:.7rem}
+
 </style>
 </head>
 <body>
@@ -35,7 +42,21 @@
 
 <nav class="site">
   <a href="../../index.html">nondubito</a>
-  <button class="lang-btn" onclick="toggleLang()">EN / 中</button>
+  <div class="lang-toggle">
+<button class="lang-btn" data-lang="en">EN</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh">中文</button>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ja/index.html">日本語</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="fr/index.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="de/index.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="es/index.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ko/index.html">한국어</a>
+</div>
 </nav>
 
 <header class="series-header">
@@ -57,6 +78,9 @@
     equally rational, just beyond what economics' language can hold.
     Six essays, from diagnosis through micro-mechanism, collective dynamics, phase-transition mathematics, and AI-era competitive analysis.
   </p>
+<!-- sae-econ-seven-languages -->
+<p class="series-desc lang-zh" style="margin-top:.8rem;">全系列现有中、英、日、法、德、西、韩七种语言版本；五种新增语言均按各自读者的思想与论说习惯独立重写。</p>
+<p class="series-desc lang-en" style="margin-top:.8rem;">The complete series is available in Chinese, English, Japanese, French, German, Spanish, and Korean; each new edition is independently rewritten for its readers.</p>
 </header>
 
 <div class="grid lang-zh">
@@ -113,22 +137,32 @@
 </div>
 
 <p class="hc-link">
-  <span class="lang-zh">秦汉 · <a href="../../xiangjun/index.html">相君 HC-16</a></span>
-  <span class="lang-en">Han Qin · <a href="../../xiangjun/index.html">Xiangjun HC-16</a></span>
+  <span class="lang-zh">秦汉 · <a href="../xiangjun/index.html">相君 HC-16</a></span>
+  <span class="lang-en">Han Qin · <a href="../xiangjun/index.html">Xiangjun HC-16</a></span>
 </p>
 
 </div>
 <script>
-function toggleLang(){
-  const html=document.documentElement;
-  const cur=html.getAttribute('data-lang')||'zh';
-  const nxt=cur==='zh'?'en':'zh';
-  html.setAttribute('data-lang',nxt);
-  localStorage.setItem('nondubito-lang',nxt);
-}
 (function(){
-  const saved=localStorage.getItem('nondubito-lang');
-  if(saved) document.documentElement.setAttribute('data-lang',saved);
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){
+      var cur=document.documentElement.getAttribute('data-lang')||'zh';
+      btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});
+    }
+    btns.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var lang=this.getAttribute('data-lang');
+        document.documentElement.setAttribute('data-lang',lang);
+        localStorage.setItem('nd_lang',lang);
+        localStorage.setItem('nondubito-lang',lang);
+        update();
+      });
+    });
+    update();
+  });
 })();
 </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"0eb3b3dc16a54d9fa97b0a0a04b30c24"}'></script>
