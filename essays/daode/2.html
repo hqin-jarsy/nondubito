@@ -40,7 +40,7 @@
       var saved = localStorage.getItem('nd_lang') || 'zh';
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
+        var btns = document.querySelectorAll('.lang-btn[data-lang]');
         btns.forEach(function(btn) {
           btn.addEventListener('click', function() {
             var lang = this.getAttribute('data-lang');
@@ -66,10 +66,20 @@
       </a>
       <nav class="header-nav">
         <div class="lang-toggle">
-          <button class="lang-btn" data-lang="en">EN</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="zh">中文</button>
-        </div>
+<button class="lang-btn" data-lang="en">EN</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh">中文</button>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ja/2.html">日本語</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="fr/2.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="de/2.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="es/2.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ko/2.html">한국어</a>
+</div>
       </nav>
     </div>
   </header>
