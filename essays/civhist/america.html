@@ -37,24 +37,28 @@
     [data-lang="zh"] .lang-en { display:none; }
   </style>
   <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            localStorage.setItem('nd_lang', lang);
-            btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
-          });
-        });
-        var cur = document.documentElement.getAttribute('data-lang');
-        btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-lang') === cur); });
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){
+      var cur=document.documentElement.getAttribute('data-lang')||'zh';
+      btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});
+    }
+    btns.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var lang=this.getAttribute('data-lang');
+        document.documentElement.setAttribute('data-lang',lang);
+        localStorage.setItem('nd_lang',lang);
+        localStorage.setItem('nondubito-lang',lang);
+        update();
       });
-    })();
-  </script>
+    });
+    update();
+  });
+})();
+</script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}' ></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
@@ -79,6 +83,22 @@
   </header>
 
   <main class="essay-container">
+    <!-- civhist-seven-languages -->
+    <div class="lang-toggle" style="margin-bottom:1.5rem;">
+<button class="lang-btn" data-lang="en">EN</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh">中文</button>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ja/america.html">日本語</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="fr/america.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="de/america.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="es/america.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ko/america.html">한국어</a>
+</div>
     <a href="index.html" class="back-link lang-zh">← 文明史系列</a>
     <a href="index.html" class="back-link lang-en">← Civilization History Series</a>
 
