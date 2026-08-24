@@ -33,7 +33,7 @@
       var saved = localStorage.getItem('nd_lang') || 'zh';
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
+        var btns = document.querySelectorAll('.lang-btn[data-lang]');
         btns.forEach(function(btn) {
           btn.addEventListener('click', function() {
             var lang = this.getAttribute('data-lang');
@@ -76,10 +76,20 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle">
-          <button class="lang-btn" data-lang="zh">中文</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
+<button class="lang-btn" data-lang="en">EN</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh">中文</button>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ja/ep08.html">日本語</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="fr/ep08.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="de/ep08.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="es/ep08.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ko/ep08.html">한국어</a>
+</div>
         <a href="index.html" class="back-link lang-zh">← 凿构周期律·经济系列</a>
         <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: Economics</a>
         <div class="essay-titles">

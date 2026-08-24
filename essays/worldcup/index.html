@@ -36,7 +36,7 @@
       var saved = localStorage.getItem('nd_lang') || 'zh';
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
+        var btns = document.querySelectorAll('.lang-btn[data-lang]');
         btns.forEach(function(btn) {
           btn.addEventListener('click', function() {
             var lang = this.getAttribute('data-lang');
@@ -62,16 +62,20 @@
       </a>
       <nav class="header-nav">
         <div class="lang-toggle">
-          <button class="lang-btn" data-lang="en">EN</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="zh">中文</button>
-          <span class="lang-sep">|</span>
-          <a class="lang-btn" href="ja/index.html">日本語</a>
-          <span class="lang-sep">|</span>
-          <a class="lang-btn" href="fr/index.html">Français</a>
-          <span class="lang-sep">|</span>
-          <a class="lang-btn" href="de/index.html">Deutsch</a>
-        </div>
+<button class="lang-btn" data-lang="en">EN</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh">中文</button>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ja/index.html">日本語</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="fr/index.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="de/index.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="es/index.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ko/index.html">한국어</a>
+</div>
       </nav>
     </div>
   </header>
@@ -82,24 +86,24 @@
     <div class="series-label lang-en">Chisel-Construct Cycle · World Football</div>
     <h1 class="series-title lang-zh" style="font-family:var(--cjk),var(--serif);">世界足球系列</h1>
     <h1 class="series-title lang-en">World Football</h1>
-    <div class="series-title-en lang-zh">Chisel-Construct Cycle: World Football · 22 Essays · Bilingual</div>
-    <div class="series-title-en lang-en">凿构周期律 · 世界足球 · 二十二篇 · 双语</div>
+    <div class="series-title-en lang-zh">Chisel-Construct Cycle: World Football · 22 Essays · Seven Languages</div>
+    <div class="series-title-en lang-en">凿构周期律 · 世界足球 · 二十二篇 · 七种语言</div>
 
     <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
       <p>这个系列用凿构周期律重读世界杯九十六年的历史，从1930年乌拉圭的立基，一路追到2026年美加墨的东卢瑟福决赛。</p>
       <p>凿构周期律的核心命题：任何秩序都是对某种凿（旧秩序的破裂）的应答构。构有它能做的，也有它做不到的。构做不到的，是它的余项。余项不消灭，只转移，只累积，最终引发下一次凿。</p>
       <p>世界足球这套构，从第一天起就想把自己定格：定格规则，定格业余的纯洁，定格谁是中心。可它每一次想定格，都被自己盖不住的余项顶开——被排除的职业球员，被低估的南美，看不清的误判，进不来的球迷，压不住的偶然。二十二篇，追着这套构在九十六年里，一次次想关上，又一次次被顶开的历史。</p>
-      <p>每篇都有独立的英文版，不是翻译，是用英文直接重写的平行文章。</p>
+      <p>全系列现有中、英、日、法、德、西、韩七种语言版本；各语言均按自身读者的表达习惯独立成篇。</p>
     </div>
     <div class="series-desc lang-en">
       <p>This series re-reads ninety-six years of World Cup history through the chisel-construct cycle — from Uruguay's founding moment in 1930 to the East Rutherford final of the 2026 tournament across the United States, Canada, and Mexico.</p>
       <p>The framework's core claim: every order is a construct built in response to a chisel — the fracture of an earlier order. Constructs have what they can do and what they cannot. What they cannot do generates remainders. Remainders do not disappear; they shift, accumulate, and eventually force the next chisel.</p>
       <p>World football, as a construct, wanted to freeze itself from its very first day — to fix its rules, to fix the purity of amateurism, to fix who stood at its center. And every time it tried to freeze, its own unabsorbable remainder pried it back open: the professional player it tried to exclude, the South America it underestimated, the calls no one could see clearly, the fans who couldn't get through the gate, the contingency that no amount of calculation could suppress. These twenty-two essays follow that construct across ninety-six years, closing again and again, and pried open again and again.</p>
-      <p>Each essay has an independent English version — not a translation, but a parallel essay written directly in English.</p>
+      <p>The full series is available in Chinese, English, Japanese, French, German, Spanish, and Korean; each edition is independently written for its readers.</p>
     </div>
 
     <div class="series-meta">
-      <span>Han Qin (秦汉) · 2026 · 二十二篇 · 22 Essays · Bilingual</span>
+      <span>Han Qin (秦汉) · 2026 · 二十二篇 · 22 Essays · Seven Languages</span>
     </div>
 
     <ul class="entry-list">
