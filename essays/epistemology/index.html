@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SAE认知论系列 / SAE Epistemology Series — nondubito</title>
+<meta name="author" content="Han Qin (秦汉)">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="canonical" href="https://nondubito.net/essays/epistemology/">
 <style>
   :root{--ink:#1a1a1a;--paper:#fafaf8;--accent:#1a3a5c;--mid:#3d6080;--light:#e2eaf2;--serif:'Georgia',serif}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -29,13 +32,35 @@
   .hc-link{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--light);font-size:.82rem;color:#888;text-align:center}
   .hc-link a{color:var(--mid)}
 </style>
+
+<style id="sae-mind-seven-language-style">
+  .lang-switcher{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:.34rem}
+  .lang-switcher .edition-link,.lang-switcher .edition-btn{background:none;border:0;border-radius:0;padding:.15rem .1rem;cursor:pointer;font:inherit;font-size:.72rem;color:var(--ink-muted,#52606b);text-decoration:none}
+  .lang-switcher .edition-link:hover,.lang-switcher .edition-btn:hover{color:var(--gold,#a77a37);text-decoration:underline}
+  .lang-switcher .edition-sep{color:var(--cream-border,#cdd6dc);font-size:.68rem}
+  .seven-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted,#52606b);margin-top:1rem}
+</style>
 </head>
 <body>
 <div class="wrap">
 
 <nav class="site">
   <a href="../../index.html">nondubito</a>
-  <button class="lang-btn" onclick="toggleLang()">EN / 中</button>
+  <div class="lang-switcher">
+<button class="edition-btn" onclick="setEpistLang('en')">EN</button>
+<span class="edition-sep">|</span>
+<button class="edition-btn" onclick="setEpistLang('zh')">中文</button>
+<span class="edition-sep">|</span>
+<a class="edition-link" href="ja/index.html">日本語</a>
+<span class="edition-sep">|</span>
+<a class="edition-link" href="fr/index.html">Français</a>
+<span class="edition-sep">|</span>
+<a class="edition-link" href="de/index.html">Deutsch</a>
+<span class="edition-sep">|</span>
+<a class="edition-link" href="es/index.html">Español</a>
+<span class="edition-sep">|</span>
+<a class="edition-link" href="ko/index.html">한국어</a>
+</div>
 </nav>
 
 <header class="series-header">
@@ -47,6 +72,10 @@
   </h1>
   <p class="series-desc lang-zh">认知不是能力，是主体的存在条件。本系列四篇展开四条先验：不得不认知，不得不认知更多，不得不有认知方向，不得不被追问。每一条都是前一条的结构性后果。四条先验构成一个不可删减的推导链，最后那扇门既是终点，也是起点。</p>
   <p class="series-desc lang-en">Cognition is not a capability — it is the subject's condition of existence. Four essays, four a priori conditions: must-cognize, must-cognize-more, must-have-cognitive-direction, must-be-questioned. Each is the structural consequence of the one before. The chain is irreducible; the final door is both endpoint and starting point.</p>
+
+  <!-- sae-epistemology-seven-language-note -->
+  <p class="seven-language-note lang-zh">全系列现有中、英、日、法、德、西、韩七种语言版本；五种新增语言均按各自读者的思想与论说习惯独立重写。</p>
+  <p class="seven-language-note lang-en">The complete series is available in seven languages; each new edition is an independent rewrite for its readers.</p>
 </header>
 
 <div class="grid lang-zh">
@@ -87,22 +116,20 @@
 </div>
 
 <p class="hc-link">
-  <span class="lang-zh">秦汉 · <a href="../../xiangjun/index.html">相君 HC-16</a></span>
-  <span class="lang-en">Han Qin · <a href="../../xiangjun/index.html">Xiangjun HC-16</a></span>
+  <span class="lang-zh">秦汉 · <a href="../xiangjun/index.html">相君 HC-16</a></span>
+  <span class="lang-en">Han Qin · <a href="../xiangjun/index.html">Xiangjun HC-16</a></span>
 </p>
 
 </div>
-<script>
-function toggleLang(){
-  const html=document.documentElement;
-  const cur=html.getAttribute('data-lang')||'zh';
-  const nxt=cur==='zh'?'en':'zh';
-  html.setAttribute('data-lang',nxt);
-  localStorage.setItem('nondubito-lang',nxt);
+<script id="sae-epistemology-language-script">
+function setEpistLang(lang){
+  document.documentElement.setAttribute('data-lang',lang);
+  localStorage.setItem('nondubito-lang',lang);
+  localStorage.setItem('nd_lang',lang);
 }
 (function(){
-  const saved=localStorage.getItem('nondubito-lang');
-  if(saved) document.documentElement.setAttribute('data-lang',saved);
+  var saved=localStorage.getItem('nondubito-lang')||localStorage.getItem('nd_lang')||'zh';
+  if(saved==='zh'||saved==='en') document.documentElement.setAttribute('data-lang',saved);
 })();
 </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"0eb3b3dc16a54d9fa97b0a0a04b30c24"}'></script>

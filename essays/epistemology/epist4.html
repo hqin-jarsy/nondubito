@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>只有一扇门 / There Is Only One Door — nondubito</title>
+<meta name="author" content="Han Qin (秦汉)">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="canonical" href="https://nondubito.net/essays/epistemology/epist4.html">
 <style>
   :root{--ink:#1a1a1a;--paper:#fafaf8;--accent:#1a3a5c;--mid:#3d6080;--light:#e2eaf2;--serif:'Georgia',serif}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -40,6 +43,14 @@
   .dd-table tr:last-child td{border-bottom:none}
   .callout{background:var(--light);border-left:4px solid var(--accent);padding:.8rem 1rem;margin:1.4rem 0;border-radius:0 4px 4px 0}
 </style>
+
+<style id="sae-mind-seven-language-style">
+  .lang-switcher{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:.34rem}
+  .lang-switcher .edition-link,.lang-switcher .edition-btn{background:none;border:0;border-radius:0;padding:.15rem .1rem;cursor:pointer;font:inherit;font-size:.72rem;color:var(--ink-muted,#52606b);text-decoration:none}
+  .lang-switcher .edition-link:hover,.lang-switcher .edition-btn:hover{color:var(--gold,#a77a37);text-decoration:underline}
+  .lang-switcher .edition-sep{color:var(--cream-border,#cdd6dc);font-size:.68rem}
+  .seven-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted,#52606b);margin-top:1rem}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -51,7 +62,21 @@
     <span class="lang-zh">认知论系列</span>
     <span class="lang-en">Epistemology Series</span>
   </a>
-  <button class="lang-btn" onclick="toggleLang()">EN / 中</button>
+  <div class="lang-switcher">
+<button class="edition-btn" onclick="setEpistLang('en')">EN</button>
+<span class="edition-sep">|</span>
+<button class="edition-btn" onclick="setEpistLang('zh')">中文</button>
+<span class="edition-sep">|</span>
+<a class="edition-link" href="ja/epist4.html">日本語</a>
+<span class="edition-sep">|</span>
+<a class="edition-link" href="fr/epist4.html">Français</a>
+<span class="edition-sep">|</span>
+<a class="edition-link" href="de/epist4.html">Deutsch</a>
+<span class="edition-sep">|</span>
+<a class="edition-link" href="es/epist4.html">Español</a>
+<span class="edition-sep">|</span>
+<a class="edition-link" href="ko/epist4.html">한국어</a>
+</div>
 </nav>
 
 <header class="essay-header">
@@ -208,22 +233,20 @@
 </nav>
 
 <p class="hc-link">
-  <span class="lang-zh">秦汉 · <a href="../../xiangjun/index.html">相君 HC-16</a></span>
-  <span class="lang-en">Han Qin · <a href="../../xiangjun/index.html">Xiangjun HC-16</a></span>
+  <span class="lang-zh">秦汉 · <a href="../xiangjun/index.html">相君 HC-16</a></span>
+  <span class="lang-en">Han Qin · <a href="../xiangjun/index.html">Xiangjun HC-16</a></span>
 </p>
 
 </div>
-<script>
-function toggleLang(){
-  const html=document.documentElement;
-  const cur=html.getAttribute('data-lang')||'zh';
-  const nxt=cur==='zh'?'en':'zh';
-  html.setAttribute('data-lang',nxt);
-  localStorage.setItem('nondubito-lang',nxt);
+<script id="sae-epistemology-language-script">
+function setEpistLang(lang){
+  document.documentElement.setAttribute('data-lang',lang);
+  localStorage.setItem('nondubito-lang',lang);
+  localStorage.setItem('nd_lang',lang);
 }
 (function(){
-  const saved=localStorage.getItem('nondubito-lang');
-  if(saved) document.documentElement.setAttribute('data-lang',saved);
+  var saved=localStorage.getItem('nondubito-lang')||localStorage.getItem('nd_lang')||'zh';
+  if(saved==='zh'||saved==='en') document.documentElement.setAttribute('data-lang',saved);
 })();
 </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"0eb3b3dc16a54d9fa97b0a0a04b30c24"}'></script>
