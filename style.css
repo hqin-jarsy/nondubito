@@ -25,6 +25,7 @@
   --serif:  'EB Garamond', Georgia, 'Times New Roman', serif;
   --sans:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --cjk:    'Noto Serif SC', 'Source Han Serif CN', 'STSong', 'SimSun', serif;
+  --tc:     'Noto Serif TC', 'Source Han Serif TW', 'Songti TC', 'PMingLiU', serif;
   --jp:     'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   --kr:     'Noto Serif KR', 'Batang', serif;
 
@@ -53,8 +54,12 @@ body {
 /* ── Language switching (existing essays) ─────────────────────────────────── */
 [data-lang="en"] .lang-zh { display: none; }
 [data-lang="zh"] .lang-en { display: none; }
+[data-lang="zh-hant"] .lang-en { display: none; }
+[data-lang="zh-hant"] .lang-zh { font-family: var(--tc) !important; }
 [data-lang="zh"] .essay-body.lang-zh { display: block; }
 [data-lang="zh"] .essay-body.lang-en { display: none; }
+[data-lang="zh-hant"] .essay-body.lang-zh { display: block; }
+[data-lang="zh-hant"] .essay-body.lang-en { display: none; }
 [data-lang="en"] .essay-body.lang-en { display: block; }
 [data-lang="en"] .essay-body.lang-zh { display: none; }
 

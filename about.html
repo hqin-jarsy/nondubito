@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="style.css">
   <link rel="canonical" href="https://nondubito.net/about.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     .about-page {
       flex: 1;
@@ -158,6 +161,7 @@
 
     [data-lang="en"] .lang-zh { display: none; }
     [data-lang="zh"] .lang-en { display: none; }
+    [data-lang="zh-hant"] .lang-en { display: none; }
 
     @media (max-width: 600px) {
       .about-hero { padding: 60px 1.25rem 50px; }
@@ -168,6 +172,7 @@
   <script>
     (function() {
       var saved = localStorage.getItem('nd_lang') || 'en';
+      if (['en', 'zh', 'zh-hant'].indexOf(saved) === -1) saved = 'en';
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -191,6 +196,7 @@
       });
     })();
   </script>
+  <script defer src="zh-hant.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
@@ -219,6 +225,8 @@
         <button class="lang-btn" data-lang="en">EN</button>
         <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="zh">中文</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh-hant">繁體</button>
       </div>
       <p class="about-eyebrow">Han Qin · 秦汉</p>
       <h1 class="lang-en">About</h1>

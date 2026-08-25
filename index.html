@@ -14,11 +14,12 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Serif+JP:wght@400;500&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&family=Noto+Serif+JP:wght@400;500&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>
     (function() {
       var saved = localStorage.getItem('nd_lang') || 'en';
+      if (['en', 'zh', 'zh-hant'].indexOf(saved) === -1) saved = 'en';
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn[data-lang]');
@@ -37,9 +38,14 @@
           });
         }
         updateActive();
+        new MutationObserver(updateActive).observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['data-lang']
+        });
       });
     })();
   </script>
+  <script defer src="zh-hant.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
   <style>
     .name-roster { display:flex; flex-wrap:wrap; gap:0.5rem 0.6rem; margin:1.5rem 0 1rem; }
@@ -84,7 +90,7 @@
   <div class="lang-portal-inner">
     <p class="portal-label">Available in</p>
     <h2 class="portal-title">Choose your language</h2>
-    <p class="portal-desc">Each language carries different philosophical traditions. Current essays are published in English, Chinese, Japanese, French, German, Spanish, and Korean.</p>
+    <p class="portal-desc">Each language carries different philosophical traditions. Essays are published across seven languages; Chinese is now available in Simplified and Traditional reading modes, with Traditional editions expanding series by series.</p>
     <div class="lang-grid">
       <a href="index.html#essays" class="lang-card" onclick="document.documentElement.setAttribute('data-lang','en'); localStorage.setItem('nd_lang','en');">
         <span class="lang-arrow">↗</span>
@@ -99,6 +105,13 @@
         <div class="lang-en-name">Chinese</div>
         <div class="lang-phrase">"我不怀疑，故我思。"</div>
         <div class="lang-status">Essays available</div>
+      </a>
+      <a href="essays/zh-hant/index.html" class="lang-card" onclick="localStorage.setItem('nd_lang','zh-hant');">
+        <span class="lang-arrow">↗</span>
+        <div class="lang-native zh">繁體中文</div>
+        <div class="lang-en-name">Chinese · Traditional</div>
+        <div class="lang-phrase">「我不懷疑，故我思。」</div>
+        <div class="lang-status">Homepage and channel available</div>
       </a>
       <a href="essays/ja/index.html" class="lang-card" onclick="document.documentElement.setAttribute('data-lang','ja'); localStorage.setItem('nd_lang','ja');">
         <span class="lang-arrow">↗</span>
@@ -260,6 +273,8 @@
         <button class="lang-btn" data-lang="en">EN</button>
         <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="zh">中文</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh-hant">繁體</button>
       </div>
     </div>
   </div>
@@ -540,6 +555,8 @@
         <button class="lang-btn" data-lang="en">EN</button>
         <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="zh">中文</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh-hant">繁體</button>
       </div>
     </div>
   </div>
@@ -601,6 +618,8 @@
         <button class="lang-btn" data-lang="en">EN</button>
         <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="zh">中文</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh-hant">繁體</button>
       </div>
     </div>
   </div>
@@ -670,6 +689,8 @@
         <button class="lang-btn" data-lang="en">EN</button>
         <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="zh">中文</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh-hant">繁體</button>
       </div>
     </div>
   </div>
@@ -2596,6 +2617,8 @@
         <button class="lang-btn" data-lang="en">EN</button>
         <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="zh">中文</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh-hant">繁體</button>
       </div>
     </div>
   </div>
@@ -3003,8 +3026,9 @@
       <div class="footer-tagline">A mind in many languages</div>
     </div>
     <div class="footer-langs">
-      <a href="#languages" class="footer-lang">English</a>
-      <a href="#languages" class="footer-lang">中文</a>
+      <a href="#languages" class="footer-lang" onclick="document.documentElement.setAttribute('data-lang','en'); localStorage.setItem('nd_lang','en');">English</a>
+      <a href="#languages" class="footer-lang" onclick="document.documentElement.setAttribute('data-lang','zh'); localStorage.setItem('nd_lang','zh');">中文</a>
+      <a href="essays/zh-hant/index.html" class="footer-lang" onclick="localStorage.setItem('nd_lang','zh-hant');">繁體中文</a>
       <a href="essays/ja/index.html" class="footer-lang">日本語</a>
       <a href="essays/fr/index.html" class="footer-lang">Français</a>
       <a href="essays/de/index.html" class="footer-lang">Deutsch</a>
