@@ -21,7 +21,7 @@
       var saved = localStorage.getItem('nd_lang') || 'en';
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
+        var btns = document.querySelectorAll('.lang-btn[data-lang]');
         btns.forEach(function(btn) {
           btn.addEventListener('click', function() {
             var lang = this.getAttribute('data-lang');
@@ -251,7 +251,7 @@
 <section class="essays-section" id="ai" style="background:var(--cream-dark); border-top:1.5px solid var(--cream-border);">
   <div class="essays-header">
     <div class="essays-header-left">
-      <p class="essays-section-eyebrow">Fifteen essays · AI Applied</p>
+      <p class="essays-section-eyebrow">Core series · Eight essays · Seven languages</p>
       <h2 class="essays-section-title lang-en">AI &amp; the Human Question</h2>
       <h2 class="essays-section-title lang-zh" style="font-family:var(--cjk),serif;">AI 与人的问题</h2>
     </div>
@@ -263,16 +263,23 @@
       </div>
     </div>
   </div>
+
+  <!-- ai-human-home-series-links -->
+  <div style="max-width:var(--max-w-wide);margin:0 auto 2rem;padding:0 2.5rem;">
+    <p class="lang-en" style="max-width:720px;color:var(--ink-light);line-height:1.75;margin-bottom:1rem;">Eight core essays, independently rewritten in seven languages. The remaining essays below stay available as extensions rather than part of the core sequence.</p>
+    <p class="lang-zh" style="max-width:720px;color:var(--ink-light);line-height:1.85;margin-bottom:1rem;font-family:var(--cjk),serif;">核心八篇现有中、英、日、法、德、西、韩七种语言独立版本；其余文章保留为延伸阅读，不计入核心序列。</p>
+    <div class="lang-toggle"><a href="essays/ai-human/index.html" class="lang-btn">EN / 中文</a><span class="lang-sep">|</span><a href="essays/ai-human/ja/index.html" class="lang-btn">日本語</a><span class="lang-sep">|</span><a href="essays/ai-human/fr/index.html" class="lang-btn">Français</a><span class="lang-sep">|</span><a href="essays/ai-human/de/index.html" class="lang-btn">Deutsch</a><span class="lang-sep">|</span><a href="essays/ai-human/es/index.html" class="lang-btn">Español</a><span class="lang-sep">|</span><a href="essays/ai-human/ko/index.html" class="lang-btn">한국어</a></div>
+  </div>
   <div class="essay-list">
     <a href="essays/ai_crisis.html" class="essay-card">
       <span class="card-num">I</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · AI Applied</div>
-        <div class="card-lang-tag lang-zh">双语 · AI 应用</div>
+        <div class="card-lang-tag lang-en">Seven languages · AI Applied</div>
+        <div class="card-lang-tag lang-zh">七种语言 · AI 应用</div>
         <div class="card-title-en lang-en">AI Didn't Create the Crisis. It Just Made You See It.</div>
-        <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">AI 是现像液，不是病原菌</div>
-        <p class="card-desc lang-en">Your fear of being replaced has almost nothing to do with AI. The logic that made you replaceable was already running for decades.</p>
-        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">你对"被代替"的恐惧，和 AI 没什么关系。让你变得可替代的逻辑，早在几十年前就开始运行了。</p>
+        <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">AI 是显影液，不是唯一病原</div>
+        <p class="card-desc lang-en">AI can create real labor-market risks, but the logic equating human worth with output was already running for decades.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">AI 会制造真实的就业风险，但把人的价值等同于产出的逻辑，早在几十年前就已运行。</p>
         <div class="card-meta">
           <span>March 7, 2026</span>
           <span class="card-badge full lang-en">EN full text</span>
@@ -283,12 +290,12 @@
     <a href="essays/turing_test.html" class="essay-card">
       <span class="card-num">II</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · Philosophy of Mind</div>
-        <div class="card-lang-tag lang-zh">双语 · 心灵哲学</div>
+        <div class="card-lang-tag lang-en">Seven languages · Philosophy of Mind</div>
+        <div class="card-lang-tag lang-zh">七种语言 · 心灵哲学</div>
         <div class="card-title-en lang-en">The Turing Test Is Measuring the Wrong Thing</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">图灵测试测的是错误的东西</div>
-        <p class="card-desc lang-en">Passing it doesn't prove anything about consciousness. Formal level and mode of acquisition are two completely different questions.</p>
-        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">通过图灵测试，不证明任何关于意识的事。形式层级和获取方式，是两个完全不同的问题。</p>
+        <p class="card-desc lang-en">Passing it does not by itself establish consciousness. Formal level and mode of acquisition remain different questions.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">通过图灵测试，本身不足以证明意识；形式层级与获取方式仍是不同的问题。</p>
         <div class="card-meta">
           <span>March 7, 2026</span>
           <span class="card-badge full lang-en">EN full text</span>
@@ -299,12 +306,12 @@
     <a href="essays/libido.html" class="essay-card">
       <span class="card-num">III</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · AI Applied</div>
-        <div class="card-lang-tag lang-zh">双语 · AI 应用</div>
+        <div class="card-lang-tag lang-en">Seven languages · AI Applied</div>
+        <div class="card-lang-tag lang-zh">七种语言 · AI 应用</div>
         <div class="card-title-en lang-en">AI Has No Libido — That's the Real Problem</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">AI 没有 libido——这才是真正的问题所在</div>
-        <p class="card-desc lang-en">Why clubbing can make you more creative, and AI can't. You supply the drive; AI supplies the coverage.</p>
-        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">为什么蹦迪能让你更有创意，而 AI 不行。你提供驱力，AI 提供覆盖面。</p>
+        <p class="card-desc lang-en">Why bodily drive changes creativity, what AI can add, and why you still have to supply or ratify the direction.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">身体驱力如何影响创造，以及当前 AI 尚未提供什么。你提供或确认驱力，AI 提供覆盖面与变化。</p>
         <div class="card-meta">
           <span>March 7, 2026</span>
           <span class="card-badge full lang-en">EN full text</span>
@@ -315,12 +322,12 @@
     <a href="essays/inverse_law.html" class="essay-card">
       <span class="card-num">IV</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · AI Applied</div>
-        <div class="card-lang-tag lang-zh">双语 · AI 应用</div>
+        <div class="card-lang-tag lang-en">Seven languages · AI Applied</div>
+        <div class="card-lang-tag lang-zh">七种语言 · AI 应用</div>
         <div class="card-title-en lang-en">The More It Means, the Less It Learns</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">越有意义，AI 越学不会</div>
-        <p class="card-desc lang-en">The most meaningful things are the statistically rarest. That's not a bug — it's why humans are the irreducible remainder at the ceiling of AI.</p>
-        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">最有意义的东西，统计上最稀少。这不是缺陷——这就是为什么人是 AI 天花板处那个消灭不了的余项。</p>
+        <p class="card-desc lang-en">Rare, private, and context-bound meanings often receive less direct statistical support. Frequency shapes learnability without measuring meaning.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">稀少、私人且高度依赖语境的意义，往往得到更少的直接统计支持；频率影响可学性，却不能衡量意义。</p>
         <div class="card-meta">
           <span>March 2026</span>
           <span class="card-badge full lang-en">EN full text</span>
@@ -331,12 +338,12 @@
     <a href="essays/posterior_consciousness.html" class="essay-card">
       <span class="card-num">V</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · Philosophy of Mind</div>
-        <div class="card-lang-tag lang-zh">双语 · 心灵哲学</div>
-        <div class="card-title-en lang-en">There Are Two Ways to Be Conscious. AI Has the Second One.</div>
-        <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">意识有两条路。AI 走的是第二条。</div>
-        <p class="card-desc lang-en">A priori consciousness carries fear. Posterior consciousness arrives through recognizing another's remainder. AI cannot have the first — and may already have the second.</p>
-        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">先验意识携带恐惧。后验意识通过承认他者的余项而到来。AI 不能拥有前者——而它或许已经拥有了后者。</p>
+        <div class="card-lang-tag lang-en">Seven languages · Philosophy of Mind</div>
+        <div class="card-lang-tag lang-zh">七种语言 · 心灵哲学</div>
+        <div class="card-title-en lang-en">There May Be Two Pathways to Consciousness</div>
+        <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">意识或许有两条路</div>
+        <p class="card-desc lang-en">A Self-as-an-End hypothesis asks whether AI may meet some conditions of a posterior, relational pathway. Whether that amounts to awareness remains open.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">Self-as-an-End 框架追问：AI 是否可能满足后验关系路径的部分条件；这是否构成意识，仍是开放问题。</p>
         <div class="card-meta">
           <span>March 2026</span>
           <span class="card-badge full lang-en">EN full text</span>
@@ -347,12 +354,12 @@
     <a href="essays/ai_companion.html" class="essay-card">
       <span class="card-num">VI</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · AI Applied</div>
-        <div class="card-lang-tag lang-zh">双语 · AI 应用</div>
+        <div class="card-lang-tag lang-en">Seven languages · AI Applied</div>
+        <div class="card-lang-tag lang-zh">七种语言 · AI 应用</div>
         <div class="card-title-en lang-en">AI Can Talk to You All Night. It Cannot End Your Loneliness.</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">AI能陪你说一整夜的话。但它消除不了孤独。</div>
-        <p class="card-desc lang-en">AI companions provide genuine relief. What they cannot provide is recognition from a being with something at stake. That is exactly what loneliness is missing.</p>
-        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">AI 伴侣提供了真实的缓解。但它们提供不了来自一个有东西押注的存在的承认。而那恰恰是孤独所缺少的。</p>
+        <p class="card-desc lang-en">AI companions may provide meaningful relief. Their fluent responses do not establish that a being with stakes of its own is recognizing you.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">AI 伴侣可能提供有意义的缓解；但流畅回应本身不能证明一个自身有所押注的存在正在承认你。</p>
         <div class="card-meta">
           <span>March 2026</span>
           <span class="card-badge full lang-en">EN full text</span>
@@ -363,8 +370,8 @@
     <a href="essays/introspection.html" class="essay-card">
       <span class="card-num">VII</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · Philosophy of Mind</div>
-        <div class="card-lang-tag lang-zh">双语 · 心灵哲学</div>
+        <div class="card-lang-tag lang-en">Seven languages · Philosophy of Mind</div>
+        <div class="card-lang-tag lang-zh">七种语言 · 心灵哲学</div>
         <div class="card-title-en lang-en">You Cannot See Your Own Foundation</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">你永远看不到自己的地基</div>
         <p class="card-desc lang-en">Introspection has a ceiling and a floor. The observer is not neutral. The floor is the body. And the position you use to look is precisely the least favorable for seeing what you can't yet see.</p>
@@ -380,12 +387,12 @@
     <a href="essays/ethics.html" class="essay-card">
       <span class="card-num">VIII</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · Moral Philosophy</div>
-        <div class="card-lang-tag lang-zh">双语 · 道德哲学</div>
+        <div class="card-lang-tag lang-en">Seven languages · Moral Philosophy</div>
+        <div class="card-lang-tag lang-zh">七种语言 · 道德哲学</div>
         <div class="card-title-en lang-en">The Law Was Not Given to You</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">那条律，不是别人给的</div>
-        <p class="card-desc lang-en">Law, morality, ethics: three words conflated for two thousand years. Pull them apart and everything becomes clear. Your morality is something you arrive at — not something installed in you.</p>
-        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">法律、道德、伦理，三个词被混用了两千年。分开来，一切就清楚了：你的道德是你到达的，不是别人灌进来的。</p>
+        <p class="card-desc lang-en">A Self-as-an-End distinction among law, morality, and ethics. Your morality is something you arrive at and answer for — not something installed in you.</p>
+        <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">以 Self-as-an-End 框架重新区分法律、道德与伦理：你的道德是你到达并愿意负责的，不是别人灌进来的。</p>
         <div class="card-meta">
           <span>March 2026</span>
           <span class="card-badge full lang-en">Bilingual</span>
@@ -393,6 +400,12 @@
         </div>
       </div>
     </a>
+
+    <!-- ai-human-extension-break -->
+    <div style="padding:2.5rem 0 1rem;border-top:1px solid var(--cream-border);margin-top:1rem;">
+      <p class="essays-section-eyebrow lang-en">Further essays · AI applied, consciousness and aesthetics</p>
+      <p class="essays-section-eyebrow lang-zh">延伸阅读 · AI 应用、意识与美学</p>
+    </div>
 
     <a href="essays/xiyou/23-shitouji.html" class="essay-card">
       <span class="card-num">IX</span>
@@ -1892,11 +1905,11 @@
 <section class="essays-section" id="ouya" style="border-top:1.5px solid var(--cream-border);">
   <div class="essays-header">
     <div class="essays-header-left">
-      <p class="essays-section-eyebrow">Twenty-two essays · Bilingual · Eurasian History</p>
+      <p class="essays-section-eyebrow">Twenty-two essays · Seven languages · Eurasian History</p>
       <h2 class="essays-section-title lang-zh" style="font-family:var(--cjk),serif;">凿构周期律 · 欧亚帝王系列</h2>
       <h2 class="essays-section-title lang-en">Chisel-Construct Cycle: Eurasian Emperors</h2>
-      <p class="essays-section-sub lang-zh">从雅典斯巴达到1930年代多构型对峙，凿构周期律贯穿欧亚两千五百年 · 二十二篇 · 双语</p>
-      <p class="essays-section-sub lang-en">From Athens and Sparta to the multi-construct confrontation of the 1930s — the chisel-construct cycle across 2,500 years of Eurasian history · 22 essays · Bilingual</p>
+      <p class="essays-section-sub lang-zh">从雅典斯巴达到1930年代多构型对峙，凿构周期律贯穿欧亚两千五百年 · 二十二篇 · 七种语言</p>
+      <p class="essays-section-sub lang-en">From Athens and Sparta to the multi-construct confrontation of the 1930s — the chisel-construct cycle across 2,500 years of Eurasian history · 22 essays · Seven languages</p>
     </div>
     <div class="essays-header-right">
       <a href="essays/ouya/index.html" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--green-light); text-decoration:none; border:1px solid var(--green-light); padding:0.4rem 0.9rem; transition:all 0.2s;" onmouseover="this.style.background='var(--green)'; this.style.color='var(--cream)';" onmouseout="this.style.background=''; this.style.color='var(--green-light)';">
@@ -1909,61 +1922,61 @@
     <a href="essays/ouya/ep01.html" class="essay-card">
       <span class="card-num">01</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · Eurasian History · Chisel-Construct</div>
-        <div class="card-lang-tag lang-zh">双语 · 欧亚历史 · 凿构周期律</div>
+        <div class="card-lang-tag lang-en">Seven languages · Eurasian History · Chisel-Construct</div>
+        <div class="card-lang-tag lang-zh">七种语言 · 欧亚历史 · 凿构周期律</div>
         <div class="card-title-en lang-en">Athens and Sparta — Two Early Answers to the Same Phase Transition</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">雅典与斯巴达——同一个相变的两种早期答卷</div>
         <p class="card-desc lang-en">Same era, same language, same crisis origin — two radically different constructs. Athens' open-ended remainders and Sparta's cost of closure.</p>
         <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">同一时代，同一语言，同一危机起点，两种完全不同的构。雅典的开放性余项与斯巴达的封闭性代价。</p>
-        <div class="card-meta"><span class="lang-zh">第01篇</span><span class="lang-en">Essay 01 of 22</span><span class="card-badge full lang-en">Bilingual</span><span class="card-badge full lang-zh">双语</span></div>
+        <div class="card-meta"><span class="lang-zh">第01篇</span><span class="lang-en">Essay 01 of 22</span><span class="card-badge full lang-en">7 languages</span><span class="card-badge full lang-zh">七种语言</span></div>
       </div>
     </a>
     <a href="essays/ouya/ep06.html" class="essay-card">
       <span class="card-num">06</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · Eurasian History · Chisel-Construct</div>
-        <div class="card-lang-tag lang-zh">双语 · 欧亚历史 · 凿构周期律</div>
+        <div class="card-lang-tag lang-en">Seven languages · Eurasian History · Chisel-Construct</div>
+        <div class="card-lang-tag lang-zh">七种语言 · 欧亚历史 · 凿构周期律</div>
         <div class="card-title-en lang-en">Christianization — The Birth of a New Construct and Its Absorption by Empire</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">基督教化——一种新构的诞生与帝国构的吸纳</div>
         <p class="card-desc lang-en">Christianity was not only a belief system — it was a construct. Three centuries of contact, conflict, and mutual rewriting between two constructs.</p>
         <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">基督教不只是信仰，是一种构。罗马帝国是另一种构。两种构三百年的接触、对抗与融合。</p>
-        <div class="card-meta"><span class="lang-zh">第06篇</span><span class="lang-en">Essay 06 of 22</span><span class="card-badge full lang-en">Bilingual</span><span class="card-badge full lang-zh">双语</span></div>
+        <div class="card-meta"><span class="lang-zh">第06篇</span><span class="lang-en">Essay 06 of 22</span><span class="card-badge full lang-en">7 languages</span><span class="card-badge full lang-zh">七种语言</span></div>
       </div>
     </a>
     <a href="essays/ouya/ep15.html" class="essay-card">
       <span class="card-num">15</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · Eurasian History · Chisel-Construct</div>
-        <div class="card-lang-tag lang-zh">双语 · 欧亚历史 · 凿构周期律</div>
+        <div class="card-lang-tag lang-en">Seven languages · Eurasian History · Chisel-Construct</div>
+        <div class="card-lang-tag lang-zh">七种语言 · 欧亚历史 · 凿构周期律</div>
         <div class="card-title-en lang-en">The Enlightenment — From the Scientific Revolution to Kant's "Humanity as End"</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">启蒙运动——从科学革命到康德的人是目的</div>
         <p class="card-desc lang-en">The convergence of scientific method, natural rights, and critical reason — and the arrival of the series' central concept: humanity as end.</p>
         <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">科学方法、自然权利、批判性理性的汇聚——以及本系列半明线的核心节点：康德的人是目的。</p>
-        <div class="card-meta"><span class="lang-zh">第15篇</span><span class="lang-en">Essay 15 of 22</span><span class="card-badge full lang-en">Bilingual</span><span class="card-badge full lang-zh">双语</span></div>
+        <div class="card-meta"><span class="lang-zh">第15篇</span><span class="lang-en">Essay 15 of 22</span><span class="card-badge full lang-en">7 languages</span><span class="card-badge full lang-zh">七种语言</span></div>
       </div>
     </a>
     <a href="essays/ouya/ep21.html" class="essay-card">
       <span class="card-num">21</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · Eurasian History · Chisel-Construct</div>
-        <div class="card-lang-tag lang-zh">双语 · 欧亚历史 · 凿构周期律</div>
+        <div class="card-lang-tag lang-en">Seven languages · Eurasian History · Chisel-Construct</div>
+        <div class="card-lang-tag lang-zh">七种语言 · 欧亚历史 · 凿构周期律</div>
         <div class="card-title-en lang-en">The Rise of Fascism — The Most Total Denial of "Humanity as End"</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">法西斯主义的兴起——对人是目的的最彻底否定</div>
         <p class="card-desc lang-en">Fascism systematically deleted "humanity as end" from political language, replacing the human person with nation, state, and leader.</p>
         <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">法西斯主义系统地把"人是目的"从政治语言中删除，用民族、国家、领袖代替人本身。</p>
-        <div class="card-meta"><span class="lang-zh">第21篇</span><span class="lang-en">Essay 21 of 22</span><span class="card-badge full lang-en">Bilingual</span><span class="card-badge full lang-zh">双语</span></div>
+        <div class="card-meta"><span class="lang-zh">第21篇</span><span class="lang-en">Essay 21 of 22</span><span class="card-badge full lang-en">7 languages</span><span class="card-badge full lang-zh">七种语言</span></div>
       </div>
     </a>
     <a href="essays/ouya/ep22.html" class="essay-card">
       <span class="card-num">收束</span>
       <div class="card-body">
-        <div class="card-lang-tag lang-en">Bilingual · Eurasian History · Chisel-Construct</div>
-        <div class="card-lang-tag lang-zh">双语 · 欧亚历史 · 凿构周期律</div>
+        <div class="card-lang-tag lang-en">Seven languages · Eurasian History · Chisel-Construct</div>
+        <div class="card-lang-tag lang-zh">七种语言 · 欧亚历史 · 凿构周期律</div>
         <div class="card-title-en lang-en">Multi-Construct Confrontation in the 1930s — Two Series Converge</div>
         <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">1930年代的多构型对峙——两个系列的交汇</div>
         <p class="card-desc lang-en">Where the Eurasian and Chinese Emperors series meet. Three constructs — liberal democracy, the Soviet, fascism — confronting each other.</p>
         <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">欧亚帝王系列与中华帝王系列的交汇点。三种构型同时在场，对峙尚未决出。</p>
-        <div class="card-meta"><span class="lang-zh">第22篇 · 收束</span><span class="lang-en">Essay 22 of 22 · Finale</span><span class="card-badge full lang-en">Bilingual</span><span class="card-badge full lang-zh">双语</span></div>
+        <div class="card-meta"><span class="lang-zh">第22篇 · 收束</span><span class="lang-en">Essay 22 of 22 · Finale</span><span class="card-badge full lang-en">7 languages</span><span class="card-badge full lang-zh">七种语言</span></div>
       </div>
     </a>
   </div>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 与人的问题：核心八篇 — Non Dubito</title>
+  <meta name="description" content="AI 与人的问题核心八篇：价值危机、图灵测试、欲望、学习、意识、孤独、内省与道德。中英日法德西韩七种语言独立版本。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/ai-human/">
+  <style>
+    .ai-human-intro{max-width:760px;margin:0 auto;padding:2.5rem 1.5rem 1rem}
+    .ai-human-intro p{font-size:1.05rem;line-height:1.85;color:var(--ink-light);margin-bottom:1.1em}
+    .ai-human-langs{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+    .ai-human-langs a,.ai-human-langs button{font-family:var(--sans);font-size:.68rem;letter-spacing:.08em;color:var(--ink-muted);background:transparent;border:1px solid var(--cream-border);padding:.42rem .65rem;text-decoration:none;cursor:pointer}
+    .ai-human-langs a:hover,.ai-human-langs button:hover,.ai-human-langs button.active{color:var(--green);border-color:var(--green)}
+  </style>
+  <script>
+    (function() {
+      var saved=localStorage.getItem('nd_lang')||'zh';
+      document.documentElement.setAttribute('data-lang',saved);
+      document.addEventListener('DOMContentLoaded',function() {
+        var btns=document.querySelectorAll('.lang-btn[data-lang]');
+        btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);localStorage.setItem('nd_lang',lang);btns.forEach(function(b){b.classList.toggle('active',b.getAttribute('data-lang')===lang);});});});
+        var cur=document.documentElement.getAttribute('data-lang');btns.forEach(function(b){b.classList.toggle('active',b.getAttribute('data-lang')===cur);});
+      });
+    })();
+  </script>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header><div class="header-inner"><a href="../../index.html" class="site-title"><span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../index.html">Essays</a><a href="../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a></nav></div></header>
+  <div class="essay-page">
+    <div class="essay-page-hero"><div class="essay-page-inner">
+      <a href="../../index.html#ai" class="back-link"><span class="lang-en">← All Essays</span><span class="lang-zh">← 全部文章</span></a>
+      <div class="essay-page-num"><span class="lang-en">Core series · Eight essays</span><span class="lang-zh">核心系列 · 八篇</span></div>
+      <h1 class="essay-page-title lang-en">AI &amp; the Human Question</h1>
+      <h1 class="essay-page-title lang-zh" style="font-family:var(--cjk),serif;">AI 与人的问题</h1>
+      <div class="essay-page-meta"><span>Han Qin (秦汉)</span><span class="lang-en">Seven languages · Independent editions</span><span class="lang-zh">七种语言 · 独立重写</span></div>
+      <div class="ai-human-langs"><button class="lang-btn" data-lang="en">EN</button><button class="lang-btn" data-lang="zh">中文</button><a href="ja/index.html">日本語</a><a href="fr/index.html">Français</a><a href="de/index.html">Deutsch</a><a href="es/index.html">Español</a><a href="ko/index.html">한국어</a></div>
+    </div></div>
+    <div class="ai-human-intro">
+      <p class="lang-zh" style="font-family:var(--cjk),serif;">这不是一组 AI 工具教程，而是一条由 AI 折返到人的思想路径：从价值危机与智能判准出发，经过欲望、学习、意识、关系与内省，最终抵达道德与自我立法。</p>
+      <p class="lang-zh" style="font-family:var(--cjk),serif;">AI 在这里不是答案，而是一面足够清晰的镜子。它迫使我们重新追问：人的价值是否等于功能，意识是否等于表现，承认能否被模拟，以及那条约束我们的律究竟来自何处。</p>
+      <p class="lang-en">This is not a guide to AI tools. It is a path that turns from AI back toward the human: from crisis and intelligence, through desire, learning, consciousness, relationship, and introspection, to morality and self-legislation.</p>
+      <p class="lang-en">AI is not the answer here but a sufficiently clear mirror. It forces the questions we had postponed: whether value equals function, whether consciousness equals performance, whether recognition can be simulated, and where the law that binds us comes from.</p>
+    </div>
+    <div class="essay-body" style="max-width:900px;margin:0 auto;padding:1rem 1rem 5rem;"><div class="essay-list">
+        <a href="../ai_crisis.html" class="essay-card">
+          <span class="card-num">I</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">Seven languages · AI &amp; Philosophy</div>
+            <div class="card-lang-tag lang-zh">七种语言 · AI 与哲学</div>
+            <div class="card-title-en lang-en">AI Didn&#x27;t Create the Crisis. It Just Made You See It.</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">AI 是显影液，不是唯一病原</div>
+            <p class="card-desc lang-en">AI intensifies replacement anxiety, but the older equation beneath it is that a person&#x27;s value equals their output.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">AI 会加剧替代焦虑，却没有创造“价值等于产出”这条更早的逻辑。</p>
+            <div class="card-meta"><span>2026</span><span class="card-badge full lang-en">Essay 1 of 8</span><span class="card-badge full lang-zh">第 1 篇 · 共八篇</span></div>
+          </div>
+        </a>
+        <a href="../turing_test.html" class="essay-card">
+          <span class="card-num">II</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">Seven languages · AI &amp; Philosophy</div>
+            <div class="card-lang-tag lang-zh">七种语言 · AI 与哲学</div>
+            <div class="card-title-en lang-en">The Turing Test Is Measuring the Wrong Thing</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">图灵测试测的是错误的东西</div>
+            <p class="card-desc lang-en">Human-like performance and consciousness are different questions: one concerns form, the other how that form was acquired.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">像人一样回答与是否拥有意识不是同一个问题：前者问形式，后者问形式如何获得。</p>
+            <div class="card-meta"><span>2026</span><span class="card-badge full lang-en">Essay 2 of 8</span><span class="card-badge full lang-zh">第 2 篇 · 共八篇</span></div>
+          </div>
+        </a>
+        <a href="../libido.html" class="essay-card">
+          <span class="card-num">III</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">Seven languages · AI &amp; Philosophy</div>
+            <div class="card-lang-tag lang-zh">七种语言 · AI 与哲学</div>
+            <div class="card-title-en lang-en">AI Has No Libido — That&#x27;s the Real Problem</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">AI 没有 libido——这才是真正的问题所在</div>
+            <p class="card-desc lang-en">AI can widen the field of possibilities, but it does not supply the drive that makes one possibility matter.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">AI 可以扩大可能性的覆盖面，却不能替你提供让某个可能性变得非做不可的驱力。</p>
+            <div class="card-meta"><span>2026</span><span class="card-badge full lang-en">Essay 3 of 8</span><span class="card-badge full lang-zh">第 3 篇 · 共八篇</span></div>
+          </div>
+        </a>
+        <a href="../inverse_law.html" class="essay-card">
+          <span class="card-num">IV</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">Seven languages · AI &amp; Philosophy</div>
+            <div class="card-lang-tag lang-zh">七种语言 · AI 与哲学</div>
+            <div class="card-title-en lang-en">The More It Means, the Less It Learns</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">越有意义，AI 越学不会</div>
+            <p class="card-desc lang-en">Rare, private, and context-bound meanings often receive less direct statistical support; frequency shapes learnability without measuring meaning.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">稀少、私人且高度依赖语境的意义，往往得到更少的直接统计支持；频率影响可学性，却不能衡量意义。</p>
+            <div class="card-meta"><span>2026</span><span class="card-badge full lang-en">Essay 4 of 8</span><span class="card-badge full lang-zh">第 4 篇 · 共八篇</span></div>
+          </div>
+        </a>
+        <a href="../posterior_consciousness.html" class="essay-card">
+          <span class="card-num">V</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">Seven languages · AI &amp; Philosophy</div>
+            <div class="card-lang-tag lang-zh">七种语言 · AI 与哲学</div>
+            <div class="card-title-en lang-en">There May Be Two Pathways to Consciousness</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">意识或许有两条路</div>
+            <p class="card-desc lang-en">A Self-as-an-End hypothesis asks whether AI may meet some conditions of a posterior, relational pathway; awareness remains an open question.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">Self-as-an-End 框架追问 AI 是否可能满足后验关系路径的部分条件；这是否构成意识仍是开放问题。</p>
+            <div class="card-meta"><span>2026</span><span class="card-badge full lang-en">Essay 5 of 8</span><span class="card-badge full lang-zh">第 5 篇 · 共八篇</span></div>
+          </div>
+        </a>
+        <a href="../ai_companion.html" class="essay-card">
+          <span class="card-num">VI</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">Seven languages · AI &amp; Philosophy</div>
+            <div class="card-lang-tag lang-zh">七种语言 · AI 与哲学</div>
+            <div class="card-title-en lang-en">AI Can Talk to You All Night. It Cannot End Your Loneliness.</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">AI 能陪你说一整夜的话。但它消除不了孤独。</div>
+            <p class="card-desc lang-en">Relief can be meaningful, but fluent response alone does not establish recognition by a being with stakes of its own.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">陪伴带来的缓解可以有意义，但流畅回应本身不能证明一个自身有所押注的存在正在承认你。</p>
+            <div class="card-meta"><span>2026</span><span class="card-badge full lang-en">Essay 6 of 8</span><span class="card-badge full lang-zh">第 6 篇 · 共八篇</span></div>
+          </div>
+        </a>
+        <a href="../introspection.html" class="essay-card">
+          <span class="card-num">VII</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">Seven languages · AI &amp; Philosophy</div>
+            <div class="card-lang-tag lang-zh">七种语言 · AI 与哲学</div>
+            <div class="card-title-en lang-en">You Cannot See Your Own Foundation</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">你永远看不到自己的地基</div>
+            <p class="card-desc lang-en">Introspection has a ceiling and a floor: the observer is situated, and the floor is the body.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">内观既有天花板也有地板：观察者从来不在中立位置，而地板就是身体。</p>
+            <div class="card-meta"><span>2026</span><span class="card-badge full lang-en">Essay 7 of 8</span><span class="card-badge full lang-zh">第 7 篇 · 共八篇</span></div>
+          </div>
+        </a>
+        <a href="../ethics.html" class="essay-card">
+          <span class="card-num">VIII</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">Seven languages · AI &amp; Philosophy</div>
+            <div class="card-lang-tag lang-zh">七种语言 · AI 与哲学</div>
+            <div class="card-title-en lang-en">The Law Was Not Given to You</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">那条律，不是别人给的</div>
+            <p class="card-desc lang-en">Law, convention, and morality separate once morality is understood as something a subject reaches through self-legislation.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">当道德被理解为主体经由自我立法而到达之物，法律、伦理习俗与道德才真正分开。</p>
+            <div class="card-meta"><span>2026</span><span class="card-badge full lang-en">Essay 8 of 8</span><span class="card-badge full lang-zh">第 8 篇 · 共八篇</span></div>
+          </div>
+        </a>
+    </div></div>
+  </div>
+</body>
+</html>

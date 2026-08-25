@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>那条律，不是别人给的 — Non Dubito</title>
-  <meta name="description" content="法律、道德、伦理，三个词被混用了两千年。分开来，一切就清楚了：你的道德是你到达的，不是别人灌进来的。">
+  <meta name="description" content="本文用 Self-as-an-End 框架重新区分法律、道德与伦理：你的道德是你到达并愿意负责的，不是别人灌进来的。">
   <meta name="author" content="Han Qin (秦汉)">
   <meta property="og:title" content="那条律，不是别人给的 — The Law Was Not Given to You">
   <meta property="og:description" content="你脑子里那个说"你应该"的声音，是谁的？法律、道德、伦理——三个词不是同义词，不是近义词，甚至不属于同一个范畴。">
@@ -17,7 +17,7 @@
       var saved = localStorage.getItem('nd_lang') || 'zh';
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
+        var btns = document.querySelectorAll('.lang-btn[data-lang]');
         btns.forEach(function(btn) {
           btn.addEventListener('click', function() {
             var lang = this.getAttribute('data-lang');
@@ -39,6 +39,18 @@
     })();
   </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+
+<style id="ai-human-seven-language-style">
+  .ai-human-source-back{display:block;max-width:var(--max-w);margin:2rem auto 0;padding:0 2.5rem;font-family:var(--sans);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none}
+  .ai-human-source-back:hover{color:var(--gold)}
+  .essay-series-kicker{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-bottom:.9rem}
+  .ai-human-series-nav{max-width:var(--max-w);margin:0 auto 5rem;padding:2rem 2.5rem 0;border-top:1px solid var(--cream-border);display:flex;justify-content:space-between;align-items:center;gap:1rem;font-family:var(--sans);font-size:.72rem;letter-spacing:.06em}
+  .ai-human-series-nav a{color:var(--ink-muted);text-decoration:none}
+  .ai-human-series-nav a:hover{color:var(--gold)}
+  .ai-human-series-nav .series-index{text-align:center}
+  .essay-header .lang-toggle a.lang-btn{text-decoration:none}
+  @media(max-width:620px){.ai-human-source-back{padding:0 1.5rem}.ai-human-series-nav{padding:1.5rem 1.5rem 0;align-items:flex-start}.ai-human-series-nav a{max-width:32%}}
+</style>
 </head>
 <body>
 
@@ -63,9 +75,19 @@
 
       <header class="essay-header">
         <div class="lang-toggle">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
           <button class="lang-btn" data-lang="zh">中文</button>
           <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
+          <a class="lang-btn" href="ai-human/ja/ethics.html">日本語</a>
+          <span class="lang-sep">|</span>
+          <a class="lang-btn" href="ai-human/fr/ethics.html">Français</a>
+          <span class="lang-sep">|</span>
+          <a class="lang-btn" href="ai-human/de/ethics.html">Deutsch</a>
+          <span class="lang-sep">|</span>
+          <a class="lang-btn" href="ai-human/es/ethics.html">Español</a>
+          <span class="lang-sep">|</span>
+          <a class="lang-btn" href="ai-human/ko/ethics.html">한국어</a>
         </div>
         <div class="essay-titles">
           <h1 class="lang-zh">那条律，不是别人给的</h1>
@@ -89,39 +111,41 @@
 
 <p>问题不是那些"应该"对不对。问题是：哪些是你的，哪些不是你的？</p>
 
-<p>大多数人从来没问过这个问题。他们把所有"应该"混在一起，总体上感觉压抑，总体上感觉焦虑，但说不清楚哪里出了问题。出问题的地方，是三个词被混用了两千年。</p>
+<p>大多数人从来没问过这个问题。他们把所有"应该"混在一起，总体上感觉压抑，总体上感觉焦虑，却说不清楚不同要求究竟从哪里来。本文的分析从拆开三个经常重叠的词开始。</p>
+
+<p>先说明术语：下文对“法律、道德、伦理”的三分，是 Self-as-an-End 框架为了分析而作的专门定义，不是汉语、英语或哲学史上唯一的标准用法。现实语言里，morality 与 ethics 经常互换，伦理学也包含许多并不符合本文批评对象的传统。</p>
 
 <h2>三个词，三件不同的事</h2>
 
-<p><strong>法律</strong>是外部构造。它不声称自己来自道德，只说：这是规则，违反了有后果。法律是诚实的——它知道自己是人造的，是某个时代某个地方的共识固化，可以修改，可以废除。没有哪部法律宣称自己来自存在本身。</p>
+<p><strong>法律</strong>在本文中指可由公共权威执行的外部规则：违反之后有制度性后果。许多现代实定法承认自己由人制定、可以修改或废除；但自然法、神法以及各种宗教法传统确实声称法律根源超出人类约定。因此，这里区分的不是法律在历史上如何为自己辩护，而是外部可执行性与主体内部立法这两种结构。</p>
 
-<p><strong>道德</strong>是内在律。是你在自己发展的某个阶段，自然生长出来的那条律。主体和自己的律对齐，就是道德；偏离，就是不道德。关键在"自然生长"这四个字——不是被装进来的，是到了那里就有了，就像水烧到一百度会沸腾，不是水学会了沸腾，是温度到了那里水就是那个状态。</p>
+<p><strong>道德</strong>在本文中指主体能够认作自己的内在律：它不是因为惩罚而被执行，而是主体愿意为它负责。主体和自己的律对齐，就是道德；偏离，就是不道德。所谓“自然生长”不是说道德与教育、关系和历史无关，而是说外部影响最终必须经过主体的审视与自我立法。它更像水在给定压力下到达沸点后的相变；沸点并不永远固定在一百度，条件也属于结构的一部分。</p>
 
-<p><strong>伦理</strong>是伪装成道德的法律。它试图把一个人内在的律，外推成对所有人的要求。它的操作是：不等你自己长到那里，先把结论塞给你。"你应该这样"，"好人都这样做"，"这才是正确的"——这些话的共同结构，是有人替你到达了某个地方，然后把那里的风景描述给你，要求你表现得好像你也到了那里一样。</p>
+<p><strong>伦理</strong>在本文的专门用法中，指伪装成主体内在道德的外部要求。它把一个人或共同体的律外推成人人都必须承认的结论：“你应该这样”，“好人都这样做”，“这才是正确的”。这不是对伦理学全部传统的词典定义，而是本文要批评的一种殖民性操作。</p>
 
-<p>中文里有一个词叫"伦理道德"，四个字连用。这个连用本身就是两千年最成功的一次偷换。"伦"是人与人之间的位置关系，天然是向外的。把它和道德绑在一起，就暗示道德天然是关于人际规范的。但道德不是关于你和别人之间的，是关于你和你自己的律之间的。</p>
+<p>汉语常把“伦理”与“道德”连用；本文把这种重叠当作分析入口，而不是声称它是一场持续两千年的有意偷换。“伦”带有关系与次序的意味，容易把注意力引向人际规范；本文则把“道德”专门定义为主体与其能够认作自身之律的关系。</p>
 
 <h2>每个哲学家都以为自己站在所有层级之外</h2>
 
-<p>两千年来，伦理学作为一个学科，做的事情是：把某个人在某个发展阶段上看到的道德风景，声称是所有人、所有时代、所有层级的普遍真理。</p>
+<p>两千年来，伦理学中的许多体系都尝试把某个位置上看到的道德风景，论证为适用于所有人、所有时代的普遍真理。也有怀疑普遍主义、强调情境、关系、德性或差异的传统；本文的批评针对的是把自身位置隐藏成无位置的那一种伦理论证。</p>
 
-<p>这不是某个哲学家的傲慢。这是这个学科的结构性错觉——它成立的条件，就是相信存在一个层级无关的位置，可以从那里对所有道德现象做统一描述。这个位置不存在。每一个人说话时，都从自己的位置说话。你能看到你下面的风景，但你看不到你还没到的地方。</p>
+<p>这不必被归结为某个哲学家的傲慢。本文所批评的普遍化伦理隐含假定：存在一个层级无关的位置，可以从那里对所有道德现象做统一描述。本文拒绝这个假定。每一个人说话时，都从自己的位置说话；你能看到已经经过的风景，却无法直接看见尚未到达的位置。</p>
 
-<p>康德的义务论，是从一个特定发展高度上的真实体验——到了那里，"不得不"就是这样的感觉。但他把这个第一人称的"不得不"，翻译成了对所有人的第二人称要求。他的道德体验是真实的。他的伦理学是虚假的。</p>
+<p>从本文框架看，康德的义务论可以被理解为一种特定高度上的真实体验——到了那里，“不得不”就是这样的感觉。问题出现在第一人称的“不得不”被翻译成对所有理性存在者的普遍要求时。本文不需要宣布康德全部伦理学“虚假”；它质疑的是这一步普遍化是否隐藏了自己的发展位置。</p>
 
-<p>功利主义说最大多数人的最大幸福——这是从一个群体性视野出发的真实道德直觉。但它以为自己在做客观计算，以为这个标准层级无关。它不是。</p>
+<p>从本文框架看，功利主义关于最大多数人之最大幸福的主张，可以被理解为从群体性视野出发的真实道德直觉；问题在于把计算结果视为层级无关的唯一标准。</p>
 
-<p>德性伦理学问的是"什么样的人是好人"，描述的是某个特定发展阶段的人格图景，却把它当成所有人的人性标准。</p>
+<p>从本文框架看，德性伦理学关于“什么样的人是好人”的追问，描绘了某种人格图景；本文质疑的是把其中任何单一图景未经进一步论证地当成所有人的人性标准。</p>
 
-<p>三种传统都是真实的——在它们自己的层级上。都是虚假的——当它们声称普遍性时。</p>
+<p>本文愿意保留三种传统在各自位置上的洞见，同时拒绝把任何一种洞见未经论证地提升为层级无关的唯一标准。</p>
 
 <h2>尼采看到了一半</h2>
 
-<p>尼采是第一个真正看穿伦理学本质的人。他看到了：把自己的道德外推成对别人的要求，这个操作本身就是权力行为。弱者做不到强者做的事，于是发明一套"伦理"说强者这样做是不道德的——这个诊断精准，击中要害。</p>
+<p>尼采是最尖锐地揭示道德谱系与权力关系的思想家之一，但并不是历史上第一个怀疑普遍道德的人。他看到：把自己的道德外推成对别人的要求，可能同时是一种权力行为。他对怨恨与价值制造的诊断打开了要害，也因“强者／弱者”的框架而留下自己的盲点。</p>
 
-<p>但他把方向搞错了。他以为问题出在道德本身，所以要"超越道德"，要权力意志，要超人。</p>
+<p>从本文框架看，尼采把批判的方向推进得过远：他把问题放在道德本身，并以“超越道德”、权力意志与超人的语言回应。</p>
 
-<p>不对。问题不在道德，在伦理。道德是内在的，是真实的，是你在你的发展阶段上自己的律。伦理是把道德外推去殖民别人——这才是虚假的。尼采把两个一起扔了，把孩子和洗澡水一起倒掉了。</p>
+<p>本文提出另一种切分：问题不在主体能够认作自身之律的“道德”，而在把某种道德外推为对他人的强制要求。按这一专门定义，尼采的批判把两者一并处理了，因而错过了本文想保留的差异。</p>
 
 <p>他看到了殖民的本质，却没有看到道德和伦理不是同一件事。</p>
 
@@ -129,7 +153,7 @@
 
 <p>拆掉了伦理学，不是进入虚无。恰恰相反——拆掉的是别人给你立的法，露出来的是你自己存在的律。</p>
 
-<p>道德不是从外面加进来的模块。它是你的发展到了某个地方，自然呈现的状态。水烧到一百度会沸腾，沸腾不是水的"额外特性"，是温度到了那里水就是那个状态。当你真的到了某个地方，你会"不得不"——不是因为有人告诉你，是因为你看到了，看到了就没有不的选项。</p>
+<p>道德不是从外面加进来后原封不动执行的模块。它是外部经验、关系与教育经过主体审视后，成为主体愿意承担的律。仍借相变作比喻：水在给定压力下到达沸点会改变状态，压力变化时沸点也变化；同样，主体的“到达”从不脱离条件，却也不能被条件替主体完成。</p>
 
 <p>这就是为什么你能感受到某些道德标准是真实的，而另一些不是。真实的那些，你是到达的；不真实的那些，是被装进来的。装进来的那些，你在执行它们时，会有一种隐隐的异物感——你在执行一条律，但你不是那条律。</p>
 
@@ -169,7 +193,7 @@
 
 <p>殖民不是最大的恶。以爱的名义殖民才是。赤裸的"我要你这样"，至少还保留了对方识别压制的机会——你知道自己被要求了，你可以拒绝。但包装过的版本——"我这样说是为你好"，"你这样做才是真的对自己负责"——连这个机会都剥夺了。你被要求了，但你以为那是关怀；你的空间被压缩了，但你以为那是爱。</p>
 
-<p>这个要求低到几乎每个人都能做到。但事实上，几乎没有人做到。</p>
+<p>这个要求听起来低到多数人都能做到，实践中却经常被利益、恐惧与自我美化破坏。</p>
 
 <p>知道自己在做什么，然后诚实地说出来——这本身就是最基本的道德状态。</p>
 
@@ -183,39 +207,41 @@
 
 <p>The question isn't whether those shoulds are right or wrong. The question is: which ones are yours, and which ones aren't?</p>
 
-<p>Most people never ask this question. They mix all the shoulds together, feel generally oppressed, generally anxious, but can't say where the problem is. The problem is that three words have been conflated for two thousand years.</p>
+<p>Most people never ask this question. They mix all the shoulds together, feel generally oppressed or anxious, but cannot say where the different demands come from. This analysis begins by separating three terms that often overlap.</p>
+
+<p>A terminological note: the three-way distinction below is a stipulation within the Self-as-an-End framework, not the only standard usage in English or in the history of philosophy. In ordinary and academic language, <em>morality</em> and <em>ethics</em> often overlap, and ethical traditions include much more than the target criticized here.</p>
 
 <h2>Three Words, Three Different Things</h2>
 
-<p><strong>Law</strong> is external construct. It doesn't claim to be morality — it just says: these are the rules, and violating them has consequences. Law is honest. It knows itself to be human-made, time-bound, and revisable. No body of law claims to originate from being itself.</p>
+<p><strong>Law</strong>, in this essay, means an external rule enforceable by public authority: violation carries institutional consequences. Many modern systems of positive law recognize that their rules are human-made and revisable. Natural-law, divine-law, and religious legal traditions, however, have explicitly claimed an origin beyond human convention. The structural distinction here is therefore not how every law justifies itself, but external enforceability versus a subject's internal legislation.</p>
 
-<p><strong>Morality</strong> is internal law. The law that naturally grows in you at a certain stage of your development. When you are aligned with your own law, that is moral; when you deviate, immoral. The key phrase is "naturally grows" — not installed from outside, but what arrives when you get there. Like water boiling at 100 degrees: the boiling is not an extra property water learned. It's simply the state water is in when the temperature gets there.</p>
+<p><strong>Morality</strong>, in this essay, means an internal law a subject can recognize as their own: it is not followed merely because punishment threatens, but owned as something for which the subject is answerable. "Grows" does not mean untouched by education, relationships, or history. It means that outside influence must pass through scrutiny and self-legislation. The process is more like water reaching a phase transition under specified pressure; the boiling point is not always 100°C, because conditions belong to the structure too.</p>
 
-<p><strong>Ethics</strong> is law disguised as morality. It tries to take one person's internal law and extrapolate it into a demand on everyone else. Its mechanism is: don't wait for you to grow there on your own — stuff the conclusion in first. "You should be like this," "Good people do this," "This is the right way" — all these share the same structure: someone arrived somewhere, described what they saw there, and is now requiring you to behave as if you'd arrived there too.</p>
+<p><strong>Ethics</strong>, in this essay's technical usage, means an external demand disguised as the subject's own morality. It extrapolates one person's or community's law into a conclusion everyone must already own: "You should be like this," "Good people do this," "This is the right way." This is not a dictionary definition of the whole discipline of ethics; it names the colonizing operation criticized here.</p>
 
-<p>In Chinese, the four characters "伦理道德" (ethics-morality) are habitually joined as a compound. That compound is itself two thousand years of sleight of hand. "伦" means relational order between people — inherently outward-facing. Binding it to morality implies that morality is naturally about interpersonal norms. But morality is not about you and others. It is about you and your own law.</p>
+<p>Chinese often compounds ethics and morality as “伦理道德.” This essay treats that overlap as an analytic entry point, not as evidence of a deliberate two-thousand-year sleight of hand. The character “伦” carries senses of relationship and order, which can direct attention toward interpersonal norms; here, “morality” is stipulated more narrowly as the relation between a subject and a law they can recognize as their own.</p>
 
 <h2>Every Philosopher Thought They Stood Outside All Levels</h2>
 
-<p>For two thousand years, ethics as a discipline has done one thing: it has taken the moral landscape visible from someone's particular stage of development and declared it the universal truth for all people, all times, all levels.</p>
+<p>For two thousand years, many ethical systems have tried to argue that a moral landscape visible from one position is universally binding across people and times. Other traditions have doubted universalism or emphasized situation, relationship, virtue, and difference. The target here is the argument that hides its own position by presenting itself as a view from nowhere.</p>
 
-<p>This is not the arrogance of individual philosophers. It's the structural illusion of the discipline. Ethics can only exist on the condition that there is a level-independent position from which all moral phenomena can be described. That position does not exist. Everyone speaks from their own position. You can see the landscape below you; you cannot see the places you haven't reached.</p>
+<p>This need not be reduced to the arrogance of individual philosophers. The universalizing ethics criticized here implicitly assumes a level-independent position from which all moral phenomena can be described. This essay rejects that assumption. Everyone speaks from a position: you can see landscapes you have traversed, but you cannot directly see positions you have not reached.</p>
 
-<p>Kant's deontology is a genuine experience from a particular stage of development — when you get there, "cannot not" really is what it feels like. But he translated this first-person "cannot not" into a second-person demand on everyone. His moral experience was real. His ethics was false.</p>
+<p>Within this framework, Kant's deontology can be read as a genuine experience from a particular developmental height — "cannot not" is what obligation can feel like there. The question begins when this first-person necessity becomes a universal demand on every rational being. The essay need not declare all Kantian ethics false; it asks whether that universalizing step conceals its own position.</p>
 
-<p>Utilitarianism says: the greatest happiness of the greatest number — a genuine moral intuition from a group-oriented vantage point. But it believes itself to be doing objective calculation, as though this standard is level-independent. It is not.</p>
+<p>Within this framework, utilitarianism's appeal to the greatest happiness of the greatest number can be read as a genuine moral intuition from a group-oriented vantage point. The problem begins when its calculation is presented as the single level-independent standard.</p>
 
-<p>Virtue ethics asks "what kind of person is good" and describes a complete picture of character at one particular stage of development — then presents it as the human standard for all people and all times.</p>
+<p>Within this framework, virtue ethics asks what kind of person is good and develops a picture of character. This essay questions the promotion of any one such picture, without further argument, into the human standard for all people and times.</p>
 
-<p>All three traditions are true — at their own level. All three are false — when they claim universality.</p>
+<p>This essay preserves insights from all three traditions at their respective positions while refusing to promote any one of them, without further argument, into the only level-independent standard.</p>
 
 <h2>Nietzsche Saw Half of It</h2>
 
-<p>Nietzsche was the first to genuinely see through ethics. He saw that extrapolating your morality into demands on others is itself an act of power. The weak, unable to do what the strong do, invent "ethics" to declare the strong immoral — this diagnosis is precise, and hits the target.</p>
+<p>Nietzsche was among the sharpest thinkers to expose the relation between moral genealogy and power, though hardly the first person in history to doubt universal morality. He saw that extrapolating one's morality into demands on others can also be an act of power. His diagnosis of ressentiment and value-creation opens the target while retaining blind spots of its own in the opposition between strong and weak.</p>
 
-<p>But he got the direction wrong. He thought the problem was morality itself, so he wanted to "overcome morality," will to power, the Übermensch.</p>
+<p>Within this framework, Nietzsche pushed the direction of critique too far: he located the problem in morality itself and responded through the language of overcoming morality, will to power, and the Übermensch.</p>
 
-<p>No. The problem is not morality — it's ethics. Morality is internal, genuine, your own law at your own level. Ethics is the extrapolation of morality to colonize others — that is what is false. Nietzsche threw out both at once. He threw the baby out with the bathwater.</p>
+<p>This essay proposes a different cut. The problem is not the “morality” a subject can recognize as their own law, but the extrapolation of one morality into compulsory demands on others. Under that technical distinction, Nietzsche treated both together and therefore missed the difference this essay wants to preserve.</p>
 
 <p>He saw the colonizing structure of ethics. He just didn't see that morality and ethics are not the same thing.</p>
 
@@ -223,7 +249,7 @@
 
 <p>Dismantling ethics is not entering nihilism. Quite the opposite — what is dismantled is the law others made for you; what is revealed is the law of your own existence.</p>
 
-<p>Morality is not a module installed from outside. It is the state that naturally manifests when your development reaches a certain level. Water boils at 100 degrees — the boiling is not an extra property water acquired. It is simply the state water is in when the temperature gets there. When you genuinely arrive somewhere, you "cannot not" — not because someone told you to, but because you see it, and once you see it there is no option of not seeing it.</p>
+<p>Morality is not a module installed from outside and then executed unchanged. It is what outside experience, relationship, and education become after a subject scrutinizes them and accepts answerability for a law. Keep the phase-transition metaphor, but keep its conditions too: water changes state at a boiling point set partly by pressure. Likewise, a subject never "arrives" outside conditions, yet conditions cannot perform self-legislation on the subject's behalf.</p>
 
 <p>This is why you can feel that some moral standards are real while others are not. The real ones: you arrived there. The unreal ones: they were installed. The installed ones carry a faint sense of foreignness when you execute them — you are carrying out a law, but you are not that law.</p>
 
@@ -263,7 +289,7 @@
 
 <p>Colonization is not the greatest evil. Colonization in the name of love is. Naked "I want you to be this way" at least preserves the other person's chance to recognize the pressure — you know you're being required, you can refuse. But the packaged version — "I say this for your own good," "doing it this way is really taking responsibility for yourself" — takes even that away. You were required, but you thought it was care; your space was compressed, but you thought it was love.</p>
 
-<p>This minimum is low enough that nearly everyone could meet it. In practice, almost no one does.</p>
+<p>This minimum sounds low enough that most people could meet it. In practice, interest, fear, and self-flattery violate it often.</p>
 
 <p>Knowing what you're doing, and then saying so honestly — that is the most basic moral condition there is.</p>
 
@@ -271,6 +297,13 @@
 
       </div>
 
+
+      <!-- ai-human-series-navigation -->
+      <nav class="ai-human-series-nav" aria-label="AI &amp; the Human Question series">
+        <a href="introspection.html">← <span class="lang-en">Previous</span><span class="lang-zh">上一篇</span></a>
+        <a class="series-index" href="ai-human/index.html"><span class="lang-en">AI &amp; the Human Question · 8</span><span class="lang-zh">AI 与人的问题 · 八篇</span></a>
+        <a href="ai-human/index.html"><span class="lang-en">Series</span><span class="lang-zh">系列首页</span> →</a>
+      </nav>
     </article>
   </main>
 
