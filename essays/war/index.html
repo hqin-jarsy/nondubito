@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>战争论 / War Theory — Non Dubito</title>
+  <meta name="description" content="战争论 / War Theory：七篇散文，从判准的地基写到四条定理、三种结束形态，最后让位给涵育本身。谈战争，为的是和平。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/war/index.html">
+  <style>
+    .series-container { max-width:var(--max-w-prose); margin:0 auto; padding:100px 2.5rem 80px; }
+    @media(max-width:620px) { .series-container { padding:80px 1.5rem 60px; } }
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .series-label { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .series-title { font-family:var(--serif); font-size:2rem; color:var(--ink); margin:0.5rem 0 0.25rem; line-height:1.2; }
+    .series-title-en { font-family:var(--serif); font-size:1.2rem; color:var(--ink-muted); margin-bottom:1.5rem; }
+    .series-desc { font-size:1rem; color:var(--ink); line-height:1.7; margin-bottom:2.5rem; }
+    .series-desc p { margin-bottom:1em; }
+    .series-meta { font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--cream-border); }
+    .entry-list { list-style:none; padding:0; margin:0; }
+    .entry-row { display:block; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); margin-bottom:0.75rem; transition:background 0.15s, border-color 0.15s; }
+    .entry-row:hover { background:rgba(0,0,0,0.02); border-color:var(--ink-muted); }
+    .entry-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:0.4rem; }
+    .entry-num { font-family:var(--sans); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+    .entry-title-zh { font-family:var(--serif); font-size:1.1rem; color:var(--ink); }
+    .entry-title-en { font-family:var(--serif); font-size:0.95rem; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .entry-desc { font-size:0.85rem; color:var(--ink-muted); line-height:1.5; }
+    .source-note { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--cream-border); font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); }
+    .source-note a { color:var(--ink-muted); text-decoration:none; }
+    .source-note a:hover { color:var(--ink); }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="series-container">
+    <div class="lang-toggle" style="margin-bottom:1.5rem;">
+      <button class="lang-btn" data-lang="zh">中文</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <a href="../../index.html" class="back-link lang-zh">← Non Dubito</a>
+    <a href="../../index.html" class="back-link lang-en">← Non Dubito</a>
+
+    <div class="series-label lang-zh">SAE 战争论 · 散文版</div>
+    <div class="series-label lang-en">SAE War Theory · Essays</div>
+    <h1 class="series-title lang-zh">战争论</h1>
+    <h1 class="series-title lang-en">War Theory</h1>
+    <div class="series-title-en lang-zh">War Theory · SAE</div>
+    <div class="series-title-en lang-en">战争论 · SAE</div>
+
+    <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
+      <p>战争是目的王国必须处理、却最不希望发生的那件事。对它保持沉默，等于把这个场域整个让给别的话语去主宰。而一旦要说，就得先说清楚一件事：这个系列真正的主角不是战争，是涵育——主体性在时间中持续深化、互相生长的那个过程。战争在这张地图上位置很低，它是涵育被打断时不得不启用的兜底。</p>
+      <p>七篇散文改写自《SAE战争论：涵育如何不被战争本身吞噬》。从判准的地基开始（不是正义，是结构），经过"上兵伐谋"之上还有四级的那条序列、"不打赢、不打输"的目标函数、谋与诡的四级分流，到四条以"不得不"起头的定理，再到胜利、失败、均势三种结束形态与反玉碎的硬核立场，最后让位给涵育本身——并顺带回答一个看上去毫不相干的问题：宇宙为什么是安静的。</p>
+      <p>学术原文有一条纪律：正文不触碰任何具体的人类战争事件。散文是教育层，会用时间距离足够远的历史实例，但只用来让抽象结构变得可以看见，不用来判断谁对谁错。</p>
+      <p>谈战争，为的是和平。</p>
+    </div>
+    <div class="series-desc lang-en">
+      <p>War is the thing the Kingdom of Ends must handle and least wants to happen. Staying silent about it hands the whole field over to other discourses. And once you do speak, one thing has to be settled first: the protagonist of this series is not war but cultivation — the process by which subjectivity deepens and grows into other subjectivity over time. War sits very low on that map. It is the backstop invoked only when cultivation has been broken.</p>
+      <p>These seven essays rewrite <em>SAE War Treatise: How Cultivation Is Not Swallowed by War Itself</em>. They begin with the ground the standards rest on — structure, not justice — then move through the sequence with four levels above "the highest use of arms attacks strategy," the objective function of not losing rather than winning, and the four-way split between strategy and deceit; then the four theorems that all begin with "cannot not"; then victory, defeat, and stalemate, and the refusal of collective self-annihilation. The last essay yields the ground back to cultivation — and answers, in passing, a question that looks entirely unrelated: why the universe is quiet.</p>
+      <p>The academic original holds a hard line: no specific human war event appears in its main text. These essays are the educational layer. They use historical examples far enough away in time, but only to make an abstract structure visible, never to rule on who was right.</p>
+      <p>About war, for the sake of peace.</p>
+    </div>
+
+    <div class="series-meta">
+      <span>Han Qin (秦汉) · 2026</span>
+    </div>
+
+    <ul class="entry-list">
+      <li>
+        <a href="ep01.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第一篇 · 引</span>
+            <span class="entry-num lang-en">Essay 1 · Prologue</span>
+          </div>
+          <div class="entry-title-zh lang-zh">不情愿的一篇</div>
+          <div class="entry-title-en lang-en">The Reluctant Treatise</div>
+          <div class="entry-desc lang-zh">写给不得不进入战争、却仍希望自己不滑离"人是目的"的那个人。真正的主角是涵育；判准的地基不是正义，是结构；判准向内用是反思，向外用就滑向了它要反对的东西。</div>
+          <div class="entry-desc lang-en">Written for the person who cannot avoid a war and still hopes not to drift from persons-as-ends. The protagonist is cultivation; the ground is structure, not justice; a standard pointed inward is reflection, pointed outward it becomes what it opposed.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep02.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第二篇</span>
+            <span class="entry-num lang-en">Essay 2</span>
+          </div>
+          <div class="entry-title-zh lang-zh">上兵伐谋之上</div>
+          <div class="entry-title-en lang-en">Above the Highest Use of Arms</div>
+          <div class="entry-desc lang-zh">伐谋之上还有伐辩、伐思、不伐、不兵四级，每上一级涵育占的空间就更大。而战争根本不在这条序列里——它是五级全部失效后的兜底。</div>
+          <div class="entry-desc lang-en">Above attacking strategy lie disputation, self-thought, non-attack, and no-arms — each giving cultivation more room. And war is not on the sequence at all: it is the backstop when all five fail.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep03.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第三篇</span>
+            <span class="entry-num lang-en">Essay 3</span>
+          </div>
+          <div class="entry-title-zh lang-zh">不打赢，不打输</div>
+          <div class="entry-title-en lang-en">Not to Win, But Not to Lose</div>
+          <div class="entry-desc lang-zh">战争的完成永远在战争之外。真正的输是在过程中打断自己文明的涵育——所以一场战争可以军事上全胜而结构上早已输掉。不战也是备战：平时深化涵育才是最好的准备。</div>
+          <div class="entry-desc lang-en">A war completes outside itself. Real losing is breaking your own civilization's cultivation along the way — so a war can be won militarily and lost structurally. Not fighting is also preparing: deepening cultivation in peacetime is the best preparation there is.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep04.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第四篇</span>
+            <span class="entry-num lang-en">Essay 4</span>
+          </div>
+          <div class="entry-title-zh lang-zh">谋、阴谋、阳谋、诡</div>
+          <div class="entry-title-en lang-en">Strategy, Scheme, Open Play, and Deceit</div>
+          <div class="entry-desc lang-zh">阳谋的力量来自结构位势差而不是信息差，所以时间站在它这一边。诡的要害不在骗对方——在于它必须对己方隐瞒，而这锁死了整条上行序列。</div>
+          <div class="entry-desc lang-en">Open play draws its force from structural position rather than an information gap, so time is on its side. Deceit's crux is not fooling the enemy but concealing from one's own — and that locks down the entire upward sequence.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep05.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第五篇 · 核心</span>
+            <span class="entry-num lang-en">Essay 5 · Core</span>
+          </div>
+          <div class="entry-title-zh lang-zh">四个"不得不"</div>
+          <div class="entry-title-en lang-en">Four Cannot-Nots</div>
+          <div class="entry-desc lang-zh">不得不开战、不得不扩大、不得不以结束为方向、不得不被追问。四条同心圆式的约束，从动作的启动一路穿透到战争方作为主体存在的形态本身。</div>
+          <div class="entry-desc lang-en">Cannot not start, cannot not expand, cannot not be directed toward ending, cannot not be open to questioning. Four concentric constraints, penetrating from the initiation of an act down to the very form in which a warring party exists as a subject.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep06.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第六篇</span>
+            <span class="entry-num lang-en">Essay 6</span>
+          </div>
+          <div class="entry-title-zh lang-zh">胜利、失败、均势</div>
+          <div class="entry-title-en lang-en">Victory, Defeat, Stalemate</div>
+          <div class="entry-desc lang-zh">胜利方的两条义务与代替解放的防火墙；失败不等于输，以及为什么玉碎在结构上永远不合格；均势里最隐蔽的毒性叫镜像同化——你没在战场上输，却在对峙中变成了对面的镜像。</div>
+          <div class="entry-desc lang-en">A victor's two obligations and the firewall against liberating on someone's behalf; why defeat is not losing and self-annihilation is never structurally adequate; and the hidden toxicity of stalemate — you never lost on the battlefield, but across the standoff you became their mirror.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep07.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第七篇 · 压轴</span>
+            <span class="entry-num lang-en">Essay 7 · Capstone</span>
+          </div>
+          <div class="entry-title-zh lang-zh">它们在那里等着</div>
+          <div class="entry-title-en lang-en">They Are Waiting</div>
+          <div class="entry-desc lang-zh">写完就让开，把注意力交还给涵育。真正走完序列的文明不会更显眼，会更隐——所以宇宙安静这件事，问的不是"他们在哪里"，是"我们在哪里"。</div>
+          <div class="entry-desc lang-en">Finish, then step aside, and hand attention back to cultivation. A civilization that walks the sequence to its end grows quieter, not louder — so the silence of the universe asks not where they are, but where we are.</div>
+        </a>
+      </li>
+    </ul>
+
+    <div class="source-note">
+      <span class="lang-zh">学术原文：<a href="https://self-as-an-end.net/papers/sae-war-treatise.html" target="_blank" rel="noopener">SAE War Treatise 战争论 ↗</a>　·　DOI: <a href="https://doi.org/10.5281/zenodo.19656618" target="_blank" rel="noopener">10.5281/zenodo.19656618</a>　·　存档于 <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo</a>，CC BY 4.0</span>
+      <span class="lang-en">Academic original: <a href="https://self-as-an-end.net/papers/sae-war-treatise.html" target="_blank" rel="noopener">SAE War Treatise ↗</a> · DOI: <a href="https://doi.org/10.5281/zenodo.19656618" target="_blank" rel="noopener">10.5281/zenodo.19656618</a> · Archived on <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo</a>, CC BY 4.0</span>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
