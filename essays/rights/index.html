@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>权利论 — Non Dubito</title>
-  <meta name="description" content="权利论系列：七篇散文，从清理误认到起源、谱系、权利为何不预设义务、权利与权力的接口、限度与生长，最后回到权益与正在形成中的主体。">
+  <title>权利论 / Rights Theory — Non Dubito</title>
+  <meta name="description" content="权利论 / Rights Theory：七篇散文，从权利的根据、主体资格与制度承认，写到权利和权力、义务、限度及生长。">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
@@ -36,14 +36,17 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
       document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
         btns.forEach(function(btn) {
           btn.addEventListener('click', function() {
             var lang = this.getAttribute('data-lang');
             document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
             localStorage.setItem('nd_lang', lang);
           });
         });
@@ -97,11 +100,11 @@
 
     <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
       <p>"权利"常常被裹挟在恩赐、许可、律法条文，或者"权力愿意留给你的余地"这些说法里，很少有人问：权利本身究竟是什么。这个系列从清理这些误认开始，逐步搭建一套结构性的权利理论——权利来自一个以自身为目的的主体如何为自己立法，从最基础的生命与身体层面的权利，一路展开成一整条通向承认性权利的谱系。</p>
-      <p>这七篇散文改写自SAE权利论学术系列（Prequel至Special Study），保留原有论证的结构骨架，以散文的方式重新展开：从五种误认的清理，到起源与谱系，到权利为何不预设义务，到两条脊柱各自的厚度与边界，到权利与权力如何在同一道结构性缝隙的两侧相遇，到限度、侵犯与生长，最后回到一个悬而未决的问题——一个尚在形成中的主体，究竟从什么时候开始真正持有权利。</p>
+      <p>这七篇散文改写自SAE权利论学术系列（Prequel至Special Study），保留原有论证的结构骨架并作出必要修订：从五种误认的清理，到起源与谱系，到权利为何不以义务为本源，到两条脊柱各自的厚度与边界，再到权利与权力、制度有效性与道德正当性的接口，最后讨论限制、侵犯、给益，以及正在形成中的主体如何逐步行使已经拥有的权利。</p>
     </div>
     <div class="series-desc lang-en">
       <p>Rights are usually wrapped in language borrowed from gift-giving, permission, statute, or "whatever space power is willing to leave you" — rarely does anyone ask what a right actually is. This series begins by clearing away those misidentifications, then builds a structural theory from the ground up: rights arise from how a being that is an end in itself legislates for itself, unfolding from the most basic rights of life and body into a full spectrum reaching toward recognition-based rights.</p>
-      <p>These seven essays are prose rewrites of the SAE Rights Theory academic series (Prequel through the Special Study), preserving the structure of the original arguments while unfolding them in essay form: from clearing five misidentifications, to origin and spectrum, to why rights presuppose no duty, to the thickness and boundaries of the two spines, to where rights and power meet on either side of the same structural gap, to limits, violations, and growth, and finally back to a question left open from the start — at what point a subject still in formation actually comes to hold rights.</p>
+      <p>These seven essays rewrite the SAE Rights Theory academic series (Prequel through the Special Study), preserving its architecture while refining several claims: from five common misidentifications, to the source and spectrum of rights, to why rights are not grounded in duty, to the thickness of the two spines, the interfaces among rights, power, institutional validity, and moral legitimacy, and finally to limits, violations, beneficence, and the progressive exercise of rights already held by a developing subject.</p>
     </div>
 
     <div class="series-meta">
@@ -118,7 +121,7 @@
           <div class="entry-title-zh lang-zh">权利不是什么</div>
           <div class="entry-title-en lang-en">What Rights Are Not</div>
           <div class="entry-desc lang-zh">在建立任何正面的权利理论之前，先做清场。恩赐、许可、权力、律法、利益——五种常见的错位指认，逐一排除；再问自由不是免于什么，而是不得不。</div>
-          <div class="entry-desc lang-en">Before building a positive theory, clear the ground. Five common mis-identifications of rights — gift, permission, power, law, interest — ruled out one by one; then freedom redefined as not freedom-from, but cannot-not.</div>
+          <div class="entry-desc lang-en">Before building a positive theory, clear the ground. Gift, permission, power, law, and interest are disentangled; freedom is then recast as action governed by reasons that remain one's own.</div>
         </a>
       </li>
       <li>
@@ -129,8 +132,8 @@
           </div>
           <div class="entry-title-zh lang-zh">权利的源与谱</div>
           <div class="entry-title-en lang-en">The Source and Spectrum of Rights</div>
-          <div class="entry-desc lang-zh">权利来自一个以自身为目的的主体如何为自己立法。从这一个不能不然的起点，展开出两条脊柱——基础权利与承认性权利——以及谱系顶端一项不能被追问的权利。</div>
-          <div class="entry-desc lang-en">Rights arise from how a being that is an end in itself legislates for itself. From that single unavoidable starting point, two spines unfold — basic rights and recognition-based rights — reaching a right at the top of the spectrum that cannot itself be questioned.</div>
+          <div class="entry-desc lang-zh">权利从不能被化约成物的主体站位展开，形成基础权利与承认性权利两条脊柱；顶端的保证不是强迫主体回答，而是不允许制度把主体永久消音。</div>
+          <div class="entry-desc lang-en">Rights unfold from a subject who cannot be reduced to an object, forming basic and recognition-based spines and culminating in a guarantee against being permanently silenced by others or institutions.</div>
         </a>
       </li>
       <li>
@@ -139,10 +142,10 @@
             <span class="entry-num lang-zh">第三篇</span>
             <span class="entry-num lang-en">Essay 3</span>
           </div>
-          <div class="entry-title-zh lang-zh">权利为何不预设义务</div>
-          <div class="entry-title-en lang-en">Why Rights Presuppose No Duty</div>
-          <div class="entry-desc lang-zh">权利是否必然对应一份义务？这一篇挑战这条几乎被当作公理的假设：真正彻底的自我立法，推到底就没法在不自相矛盾的情况下践踏他人——这不是被要求的，是被推导出来的。</div>
-          <div class="entry-desc lang-en">Does every right necessarily correspond to a duty? This essay challenges an assumption treated as near-axiomatic: a truly consistent self-legislation, followed all the way through, cannot trample others without contradicting itself — not because it is required to, but because it is derived.</div>
+          <div class="entry-title-zh lang-zh">权利为何不以义务为本源</div>
+          <div class="entry-title-en lang-en">Why Rights Are Not Grounded in Duty</div>
+          <div class="entry-desc lang-zh">权利的基础根据不来自某个先在的义务人；但一旦具体化为请求权，就会产生或对应朝向他人的派生义务。</div>
+          <div class="entry-desc lang-en">A right's foundational ground does not come from a prior duty-bearer, yet a right specified as a claim generates or correlates with duties to others.</div>
         </a>
       </li>
       <li>
@@ -153,8 +156,8 @@
           </div>
           <div class="entry-title-zh lang-zh">两条脊柱细说</div>
           <div class="entry-title-en lang-en">Two Spines in Detail</div>
-          <div class="entry-desc lang-zh">走进两条脊柱各自的内部：基础权利有多厚，边界画在哪里；承认性权利怎样真正立起来，又会以哪五种方式垮掉。</div>
-          <div class="entry-desc lang-en">Inside the two spines: how thick a basic right runs and where its boundary sits; how a recognition-based right actually gets established, and the five ways it can fail.</div>
+          <div class="entry-desc lang-zh">基础权利保护完整站位及其不可替代条件；承认性权利则必须区分制度有效、现实可执行与道德正当。</div>
+          <div class="entry-desc lang-en">Basic rights protect complete standing and its irreplaceable conditions; recognition-based rights require separate tests of validity, enforceability, and legitimacy.</div>
         </a>
       </li>
       <li>
@@ -165,8 +168,8 @@
           </div>
           <div class="entry-title-zh lang-zh">承认性权利与权力的接口</div>
           <div class="entry-title-en lang-en">Where Rights Meet Power</div>
-          <div class="entry-desc lang-zh">承认性权利与社会权力之间是什么关系？同一道结构性的缝，从持有者一端看是权利，从受影响者一端看是权力——外加易位权、退出权，以及横跨整条光谱的财产权。</div>
-          <div class="entry-desc lang-en">What is the relation between a recognition-based right and social power? The same structural gap read two ways — a right from the holder's side, an exercise of power from the affected party's side — plus transfer-rights, exit-rights, and property rights spanning the whole spectrum.</div>
+          <div class="entry-desc lang-zh">权利在改变他人行动空间时显出权力的一面；权力则必须经过制度构成与正当性检验，才可能成为正当权利——外加重新定向权、退出权与财产权。</div>
+          <div class="entry-desc lang-en">Rights display a power dimension when they alter others' options; power becomes a legitimate right only through institutional construction and justification — plus rights of reorientation, exit, and property.</div>
         </a>
       </li>
       <li>
@@ -177,8 +180,8 @@
           </div>
           <div class="entry-title-zh lang-zh">权利的限、侵与生长</div>
           <div class="entry-title-en lang-en">The Limits, Violations, and Growth of Rights</div>
-          <div class="entry-desc lang-zh">一项基础权利能承受多深的压力而不垮掉？侵犯可以按三条互不通约的轴分类，边界标准从不看动机；而整条谱系在历史中持续生长，培育与殖民之间只有一条很容易被误认的线。</div>
-          <div class="entry-desc lang-en">How much pressure can a basic right absorb before it fails? Violations sort along three incommensurable axes, and the boundary standard never looks at motive; the spectrum keeps growing across history, with cultivation and colonization separated by a line that is easy to mistake.</div>
+          <div class="entry-desc lang-zh">限制与侵犯首先由结构效果区分，动机、明知与可避免性影响责任；权利谱系保持开放，却没有自动进步的保证。</div>
+          <div class="entry-desc lang-en">Limits and violations are distinguished first by structural effect, while motive, knowledge, and avoidability shape responsibility; the spectrum remains open without guaranteeing progress.</div>
         </a>
       </li>
       <li>
@@ -187,17 +190,17 @@
             <span class="entry-num lang-zh">第七篇 · 压轴</span>
             <span class="entry-num lang-en">Essay 7 · Capstone</span>
           </div>
-          <div class="entry-title-zh lang-zh">权利与权益</div>
-          <div class="entry-title-en lang-en">Rights and Entitlements</div>
-          <div class="entry-desc lang-zh">还清系列开篇悬置的两笔债：权益——被给予却不因此持有任何东西的位置——如何运作；以及一个尚在形成中的主体，究竟从什么时候开始真正持有权利。</div>
-          <div class="entry-desc lang-en">Repaying two debts left open since the series began: how an entitlement works — a position that is given something without thereby holding anything — and at what point a subject still in formation actually comes to hold rights.</div>
+          <div class="entry-title-zh lang-zh">权利与给益</div>
+          <div class="entry-title-en lang-en">Rights and Beneficence</div>
+          <div class="entry-desc lang-zh">给益不会自动生成持续请求权，也不会抹去接受者已有的权利；正在形成中的主体已经拥有完整站位，变化的是行使方式。</div>
+          <div class="entry-desc lang-en">Beneficence does not automatically create a continuing claim or erase existing rights; a developing subject already has complete standing while modes of exercise evolve.</div>
         </a>
       </li>
     </ul>
 
     <div class="source-note">
       <span class="lang-zh">学术原文：<a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a>　·　全系列论文存档于 <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo</a>，CC BY 4.0</span>
-      <span class="lang-en">Academic originals: <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a>　·　Full series archived on <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo</a>, CC BY 4.0</span>
+      <span class="lang-en">Academic originals: <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a> · Full series archived on <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo</a>, CC BY 4.0</span>
     </div>
   </main>
   <footer class="site-footer">
