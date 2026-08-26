@@ -137,6 +137,33 @@ header nav a {
 header nav a:hover,
 header nav a.active { color: var(--green); }
 
+/* Moral Law source pages keep all eight language choices on one header row.
+   At narrow widths the row scrolls inside the header instead of wrapping and
+   increasing the fixed header's height. */
+header nav.moral-header-nav { min-width: 0; }
+.moral-header-languages { flex-wrap: nowrap; flex-shrink: 0; }
+.moral-header-languages .lang-btn,
+.moral-header-languages .lang-sep { flex: 0 0 auto; white-space: nowrap; }
+
+@media (max-width: 1180px) {
+  .moral-header-languages { gap: 0.25rem; padding: 0.2rem 0.35rem; }
+  .moral-header-languages .lang-btn { font-size: 0.6rem; padding: 0.1rem 0.2rem; }
+  .moral-header-languages .lang-sep { font-size: 0.7rem; }
+}
+
+@media (max-width: 900px) {
+  header nav.moral-header-nav { flex: 1; justify-content: flex-end; overflow: hidden; }
+  .moral-header-languages {
+    max-width: 100%;
+    min-width: 0;
+    flex-shrink: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .moral-header-languages::-webkit-scrollbar { display: none; }
+}
+
 /* ── HERO ─────────────────────────────────────────────────────────────────── */
 .hero {
   min-height: 100vh;

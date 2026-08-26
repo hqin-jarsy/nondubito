@@ -33,8 +33,29 @@
     .source-note a:hover { color:var(--ink); }
     .ja-link { display:inline-block; margin-top:1rem; font-family:var(--sans); font-size:0.72rem; letter-spacing:0.1em; color:var(--ink-muted); text-decoration:none; border:1px solid var(--cream-border); padding:0.3rem 0.75rem; border-radius:3px; transition:all 0.15s; }
     .ja-link:hover { border-color:var(--ink-muted); color:var(--ink); }
+    .ddj-header-nav { min-width:0; }
+    .ddj-header-nav > a,
+    .ddj-header-languages .lang-btn,
+    .ddj-header-languages .lang-sep { flex:0 0 auto; white-space:nowrap; }
+    .ddj-header-languages { flex-wrap:nowrap; flex-shrink:0; }
     [data-lang="en"] .lang-zh { display:none; }
     [data-lang="zh"] .lang-en { display:none; }
+    @media(max-width:1180px) {
+      body > header .header-inner { padding:0 1.25rem; gap:1rem; }
+      body > header .site-title { flex:0 0 auto; }
+      body > header .title-latin { white-space:nowrap; }
+      body > header .title-sub { display:none; }
+      .ddj-header-nav { gap:1rem; }
+      .ddj-header-languages { gap:0.25rem; padding:0.2rem 0.35rem; }
+      .ddj-header-languages .lang-btn { font-size:0.6rem; padding:0.1rem 0.2rem; }
+      .ddj-header-languages .lang-sep { font-size:0.7rem; }
+    }
+    @media(max-width:900px) {
+      .ddj-header-nav { flex:1; justify-content:flex-end; overflow:hidden; }
+      .ddj-header-nav > a { display:none; }
+      .ddj-header-languages { max-width:100%; min-width:0; flex-shrink:1; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+      .ddj-header-languages::-webkit-scrollbar { display:none; }
+    }
   </style>
   <script>
     (function() {
@@ -66,8 +87,8 @@
         <span class="title-sub lang-zh" style="font-family:var(--cjk),serif;">自我作为目的</span>
         <span class="title-sub lang-en">Essays in the Self-as-an-End Tradition</span>
       </a>
-      <nav>
-        <div class="lang-toggle">
+      <nav class="ddj-header-nav">
+        <div class="lang-toggle ddj-header-languages">
 <button class="lang-btn" data-lang="en">EN</button>
 <span class="lang-sep">|</span>
 <button class="lang-btn" data-lang="zh">中文</button>
