@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人类学系列 / Anthropology Series — Non Dubito</title>
+  <meta name="description" content="人类学系列 / Anthropology Series：从宇宙背景到地球文明 Self 的涌现，前置篇加四篇。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/anthro/index.html">
+  <style>
+    .series-container { max-width:var(--max-w-prose); margin:0 auto; padding:100px 2.5rem 80px; }
+    @media(max-width:620px) { .series-container { padding:80px 1.5rem 60px; } }
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .series-label { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .series-title { font-family:var(--serif); font-size:2rem; color:var(--ink); margin:0.5rem 0 0.25rem; line-height:1.2; }
+    .series-title-en { font-family:var(--serif); font-size:1.2rem; color:var(--ink-muted); margin-bottom:1.5rem; }
+    .series-desc { font-size:1rem; color:var(--ink); line-height:1.7; margin-bottom:2.5rem; }
+    .series-desc p { margin-bottom:1em; }
+    .series-meta { font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--cream-border); }
+    .entry-list { list-style:none; padding:0; margin:0; }
+    .entry-row { display:block; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); margin-bottom:0.75rem; transition:background 0.15s, border-color 0.15s; }
+    .entry-row:hover { background:rgba(0,0,0,0.02); border-color:var(--ink-muted); }
+    .entry-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:0.4rem; }
+    .entry-num { font-family:var(--sans); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+    .entry-title-zh { font-family:var(--serif); font-size:1.1rem; color:var(--ink); }
+    .entry-title-en { font-family:var(--serif); font-size:0.95rem; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .entry-desc { font-size:0.85rem; color:var(--ink-muted); line-height:1.5; }
+    .source-note { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--cream-border); font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); }
+    .source-note a { color:var(--ink-muted); text-decoration:none; }
+    .source-note a:hover { color:var(--ink); }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../library.html">Library</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="series-container">
+    <div class="lang-toggle" style="margin-bottom:1.5rem;">
+      <button class="lang-btn" data-lang="zh">中文</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <a href="../../library.html" class="back-link lang-zh">← 书架</a>
+    <a href="../../library.html" class="back-link lang-en">← Library</a>
+
+    <div class="series-label lang-zh">Non Dubito · 系列</div>
+    <div class="series-label lang-en">Non Dubito · Series</div>
+    <h1 class="series-title lang-zh">人类学系列</h1>
+    <h1 class="series-title lang-en">Anthropology Series</h1>
+    <div class="series-title-en lang-zh">Anthropology Series</div>
+    <div class="series-title-en lang-en">人类学系列</div>
+
+    <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
+      <p>从宇宙背景到地球文明 Self 的涌现——为什么太阳系内只能长出一个行星级文明，以及这个结论如何分形地推广到物种竞争。前置篇 + 四篇 · 双语。</p>
+    </div>
+    <div class="series-desc lang-en">
+      <p>From cosmic background to the emergence of Earth civilization's self — why only one planet-scale civilization can arise within a solar system, and how that conclusion generalizes fractally to competition among species. Prequel plus four essays · Bilingual.</p>
+    </div>
+
+    <div class="series-meta">
+      <span>Han Qin (秦汉) · Non Dubito</span>
+    </div>
+
+    <ul class="entry-list">
+      <li>
+        <a href="prequel.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">前置篇</span>
+            <span class="entry-num lang-en">Prequel</span>
+          </div>
+          <div class="entry-title-zh lang-zh">人类学的宇宙背景</div>
+          <div class="entry-title-en lang-en">The Cosmic Background of Anthropology</div>
+          <div class="entry-desc lang-zh">本文论证：太阳系内只能产生一个独立涌现的行星级文明（13DD，自意识层级），并且这一结论可分形地推广到行星表面的物种竞争。论证从G型恒星的宜居带几何出发，经由五个相互独立的先验约束，推出</div>
+        </a>
+      </li>
+      <li>
+        <a href="1.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 01 篇</span>
+            <span class="entry-num lang-en">Essay 01 of 4</span>
+          </div>
+          <div class="entry-title-zh lang-zh">13DD的涌现：人之所以为人的相变结构</div>
+          <div class="entry-title-en lang-en">The Emergence of 13DD: A Phase-Transition Structure of What Makes Us Human</div>
+          <div class="entry-desc lang-zh">人之所以为人，标准答案通常有三个：群居，工具，语言。这三个答案都不够。</div>
+        </a>
+      </li>
+      <li>
+        <a href="2.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 02 篇</span>
+            <span class="entry-num lang-en">Essay 02 of 4</span>
+          </div>
+          <div class="entry-title-zh lang-zh">14DD的涌现：从个体目的到共享目的的相变结构</div>
+          <div class="entry-title-en lang-en">The Emergence of 14DD: Phase-Transition Structure from Individual Purpose to Shared Purpose</div>
+          <div class="entry-desc lang-zh">Paper 1回答了</div>
+        </a>
+      </li>
+      <li>
+        <a href="3.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 03 篇</span>
+            <span class="entry-num lang-en">Essay 03 of 4</span>
+          </div>
+          <div class="entry-title-zh lang-zh">15DD：人是目的的涌现</div>
+          <div class="entry-title-en lang-en">15DD: The Emergence of &quot;Humanity as an End&quot;</div>
+          <div class="entry-desc lang-zh">本文是Self-as-an-End人类学系列的第三篇。系列前两篇分别处理了13DD（语言与自我意识的涌现，Paper I）和14DD（共享目的与制度的涌现，Paper II）。本篇处理15DD：人是目的的涌现。</div>
+        </a>
+      </li>
+      <li>
+        <a href="4.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 04 篇</span>
+            <span class="entry-num lang-en">Essay 04 of 4</span>
+          </div>
+          <div class="entry-title-zh lang-zh">地球文明Self的涌现</div>
+          <div class="entry-title-en lang-en">The Emergence of Earth Civilization&#x27;s Self</div>
+          <div class="entry-desc lang-zh">本篇是SAE人类学系列的第四篇（Paper IV），也是收束篇。系列前三篇分别处理了13DD（人之所以为人的相变结构 [SAE-A1]），14DD（从个体目的到共享目的的相变结构 [SAE-A2]），15DD（人是目的的涌现 [SAE-A3</div>
+        </a>
+      </li>
+    </ul>
+    <div class="source-note">
+      <span class="lang-zh">全部系列见 <a href="../../library.html">书架 ↗</a>　·　学术原文：<a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
+      <span class="lang-en">All series on the <a href="../../library.html">Library ↗</a> · Academic originals: <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

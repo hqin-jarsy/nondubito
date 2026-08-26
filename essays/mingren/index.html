@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>名人系列 / Great Lives — Non Dubito</title>
+  <meta name="description" content="名人系列 / Great Lives：一百零八位跨越东西方的历史人物。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/mingren/index.html">
+  <style>
+    .series-container { max-width:var(--max-w-prose); margin:0 auto; padding:100px 2.5rem 80px; }
+    @media(max-width:620px) { .series-container { padding:80px 1.5rem 60px; } }
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .series-label { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .series-title { font-family:var(--serif); font-size:2rem; color:var(--ink); margin:0.5rem 0 0.25rem; line-height:1.2; }
+    .series-title-en { font-family:var(--serif); font-size:1.2rem; color:var(--ink-muted); margin-bottom:1.5rem; }
+    .series-desc { font-size:1rem; color:var(--ink); line-height:1.7; margin-bottom:2.5rem; }
+    .series-desc p { margin-bottom:1em; }
+    .series-meta { font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--cream-border); }
+    .entry-list { list-style:none; padding:0; margin:0; }
+    .entry-row { display:block; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); margin-bottom:0.75rem; transition:background 0.15s, border-color 0.15s; }
+    .entry-row:hover { background:rgba(0,0,0,0.02); border-color:var(--ink-muted); }
+    .entry-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:0.4rem; }
+    .entry-num { font-family:var(--sans); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+    .entry-title-zh { font-family:var(--serif); font-size:1.1rem; color:var(--ink); }
+    .entry-title-en { font-family:var(--serif); font-size:0.95rem; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .entry-desc { font-size:0.85rem; color:var(--ink-muted); line-height:1.5; }
+    .source-note { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--cream-border); font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); }
+    .source-note a { color:var(--ink-muted); text-decoration:none; }
+    .source-note a:hover { color:var(--ink); }
+    .chip-wrap { display:flex; flex-wrap:wrap; gap:0.45rem; }
+    .name-chip { font-family:var(--sans); font-size:0.78rem; color:var(--ink); text-decoration:none; padding:0.28rem 0.65rem; border:1px solid var(--cream-border); border-radius:2px; transition:all 0.15s; }
+    .name-chip:hover { color:var(--gold); border-color:rgba(196,157,97,0.4); background:rgba(196,157,97,0.06); }
+    [data-lang="zh"] .name-chip { font-family:var(--cjk),var(--serif); font-size:0.82rem; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../library.html">Library</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="series-container">
+    <div class="lang-toggle" style="margin-bottom:1.5rem;">
+      <button class="lang-btn" data-lang="zh">中文</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <a href="../../library.html" class="back-link lang-zh">← 书架</a>
+    <a href="../../library.html" class="back-link lang-en">← Library</a>
+
+    <div class="series-label lang-zh">Non Dubito · 系列</div>
+    <div class="series-label lang-en">Non Dubito · Series</div>
+    <h1 class="series-title lang-zh">名人系列</h1>
+    <h1 class="series-title lang-en">Great Lives</h1>
+    <div class="series-title-en lang-zh">Great Lives</div>
+    <div class="series-title-en lang-en">名人系列</div>
+
+    <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
+      <p>一百零八位跨越东西方的历史人物——每一位都是一个关于人的目的的具体答案。</p>
+    </div>
+    <div class="series-desc lang-en">
+      <p>One hundred and eight lives across East and West — each one a concrete answer to the question of what a person is for.</p>
+    </div>
+
+    <div class="series-meta">
+      <span>Han Qin (秦汉) · Non Dubito</span>
+    </div>
+
+    <div class="chip-wrap">
+        <a href="laozi.html" class="name-chip"><span class="lang-zh">老子，说完就走</span><span class="lang-en">Laozi, He Said It and Left</span></a>
+        <a href="../confucius.html" class="name-chip"><span class="lang-zh">孔子，述而不作</span><span class="lang-en">Confucius, Transmitting Without Creating</span></a>
+        <a href="../socrates.html" class="name-chip"><span class="lang-zh">苏格拉底，空地上的人</span><span class="lang-en">Socrates, the Man on the Clearing</span></a>
+        <a href="../wangyangming.html" class="name-chip"><span class="lang-zh">王阳明，此心光明</span><span class="lang-en">Wang Yangming, This Mind Is Luminous</span></a>
+        <a href="kant.html" class="name-chip"><span class="lang-zh">康德，完成康德</span><span class="lang-en">Completing Kant</span></a>
+        <a href="../nietzsche.html" class="name-chip"><span class="lang-zh">真空中的自我涵育</span><span class="lang-en">Self-Cultivation in a Vacuum</span></a>
+        <a href="zhuangzi.html" class="name-chip"><span class="lang-zh">梦庄子</span><span class="lang-en">Dreaming Zhuangzi</span></a>
+        <a href="buddha.html" class="name-chip"><span class="lang-zh">释迦牟尼，过河拆桥</span><span class="lang-en">Shakyamuni, Burning the Bridge Behind You</span></a>
+        <a href="jesus.html" class="name-chip"><span class="lang-zh">耶稣，钉在桥上的人</span><span class="lang-en">Jesus, Nailed to the Bridge</span></a>
+        <a href="godel.html" class="name-chip"><span class="lang-zh">哥德尔，构不可闭合</span><span class="lang-en">Gödel, No System Can Close</span></a>
+        <a href="einstein.html" class="name-chip"><span class="lang-zh">爱因斯坦，上帝不掷骰子</span><span class="lang-en">Einstein, God Does Not Play Dice</span></a>
+        <a href="dufu.html" class="name-chip"><span class="lang-zh">杜甫，被凿成诗的人</span><span class="lang-en">Du Fu, Carved into Poetry</span></a>
+        <a href="qinshihuang.html" class="name-chip"><span class="lang-zh">秦始皇，构的极限</span><span class="lang-en">Qin Shi Huang, the Limit of Construction</span></a>
+        <a href="washington.html" class="name-chip"><span class="lang-zh">华盛顿，不穿龙袍的人</span><span class="lang-en">Washington, the Man Who Would Not Wear the Crown</span></a>
+        <a href="alexander.html" class="name-chip"><span class="lang-zh">亚历山大，四代人的碎片</span><span class="lang-en">Alexander, Four Generations of Fragments</span></a>
+        <a href="darwin.html" class="name-chip"><span class="lang-zh">达尔文，生命自己在凿</span><span class="lang-en">Darwin, Life Carves Itself</span></a>
+        <a href="newton.html" class="name-chip"><span class="lang-zh">牛顿，一个人构了一个宇宙</span><span class="lang-en">Newton, One Man Constructed an Entire Universe</span></a>
+        <a href="bach.html" class="name-chip"><span class="lang-zh">巴赫，用音符构了一个宇宙</span><span class="lang-en">Bach, a Universe Built in Sound</span></a>
+        <a href="beethoven.html" class="name-chip"><span class="lang-zh">贝多芬，聋了还在写</span><span class="lang-en">Beethoven, Deaf and Still Writing</span></a>
+        <a href="simaqian.html" class="name-chip"><span class="lang-zh">司马迁，活着比死难</span><span class="lang-en">Sima Qian, Living Is Harder Than Dying</span></a>
+        <a href="libai.html" class="name-chip"><span class="lang-zh">李白，从来没有落过地</span><span class="lang-en">Li Bai, He Never Touched the Ground</span></a>
+        <a href="rumi.html" class="name-chip"><span class="lang-zh">鲁米，被凿成歌的人</span><span class="lang-en">Rumi, Carved into Song</span></a>
+        <a href="davinci.html" class="name-chip"><span class="lang-zh">达芬奇，什么都开始了，什么都没有完成</span><span class="lang-en">Da Vinci, Everything Begun, Nothing Finished</span></a>
+        <a href="freud.html" class="name-chip"><span class="lang-zh">弗洛伊德，向内凿到暗</span><span class="lang-en">Freud, Carving Inward to the Dark</span></a>
+        <a href="lacan.html" class="name-chip"><span class="lang-zh">拉康，地下室里有镜子</span><span class="lang-en">Lacan, There Is a Mirror in the Basement</span></a>
+        <a href="dostoevsky.html" class="name-chip"><span class="lang-zh">陀思妥耶夫斯基，比弗洛伊德早了三十年</span><span class="lang-en">Dostoevsky, Thirty Years Before Freud</span></a>
+        <a href="kafka.html" class="name-chip"><span class="lang-zh">卡夫卡，早上醒来你已经是虫子了</span><span class="lang-en">Kafka, You Wake Up and You Are Already a Bug</span></a>
+        <a href="huineng.html" class="name-chip"><span class="lang-zh">慧能，本来无一物</span><span class="lang-en">Huineng, Originally There Is Nothing</span></a>
+        <a href="hegel.html" class="name-chip"><span class="lang-zh">黑格尔，把余项吃掉</span><span class="lang-en">Hegel, Swallowing the Remainder</span></a>
+        <a href="napoleon.html" class="name-chip"><span class="lang-zh">拿破仑，世界精神骑在马上</span><span class="lang-en">Napoleon, the World Spirit on Horseback</span></a>
+        <a href="genghiskhan.html" class="name-chip"><span class="lang-zh">成吉思汗，纯粹的凿</span><span class="lang-en">Genghis Khan, Pure Carving</span></a>
+        <a href="curie.html" class="name-chip"><span class="lang-zh">玛丽·斯克沃多夫斯卡，被自己的发现杀死</span><span class="lang-en">Maria Skłodowska, Killed by Her Own Discovery</span></a>
+        <a href="michelangelo.html" class="name-chip"><span class="lang-zh">米开朗基罗，石头里有人</span><span class="lang-en">Michelangelo, There Is a Person Inside the Stone</span></a>
+        <a href="lincoln.html" class="name-chip"><span class="lang-zh">林肯，房子裂开了</span><span class="lang-en">Lincoln, Don&#x27;t Let It Fall</span></a>
+        <a href="galileo.html" class="name-chip"><span class="lang-zh">伽利略，它还是在转</span><span class="lang-en">Galileo, And Yet It Moves</span></a>
+        <a href="wittgenstein.html" class="name-chip"><span class="lang-zh">维特根斯坦，沉默之后</span><span class="lang-en">Wittgenstein, After the Silence</span></a>
+        <a href="augustine.html" class="name-chip"><span class="lang-zh">奥古斯丁，你洗不干净</span><span class="lang-en">Augustine, You Cannot Wash It Clean</span></a>
+        <a href="badashanren.html" class="name-chip"><span class="lang-zh">八大山人，白眼朝天</span><span class="lang-en">Bada Shanren, Eyes Rolled Toward the Sky</span></a>
+        <a href="sushi.html" class="name-chip"><span class="lang-zh">苏轼，谁怕</span><span class="lang-en">Su Shi, Who&#x27;s Afraid</span></a>
+        <a href="nishida.html" class="name-chip"><span class="lang-zh">西田几多郎，无の场所</span><span class="lang-en">Nishida Kitarō, The Place of Nothingness</span></a>
+        <a href="emperor.html" class="name-chip"><span class="lang-zh">日本天皇制，空的王座</span><span class="lang-en">The Japanese Emperor System, The Empty Throne</span></a>
+        <a href="homer.html" class="name-chip"><span class="lang-zh">荷马，声音变成文字的那一刻</span><span class="lang-en">Homer, the Moment Sound Became Text</span></a>
+        <a href="plato.html" class="name-chip"><span class="lang-zh">柏拉图，那天他不在</span><span class="lang-en">Plato, He Wasn&#x27;t There That Day</span></a>
+        <a href="hume.html" class="name-chip"><span class="lang-zh">休谟，醒了</span><span class="lang-en">Hume, Awake</span></a>
+        <a href="schopenhauer.html" class="name-chip"><span class="lang-zh">叔本华，底下有东西</span><span class="lang-en">Schopenhauer, There Is Something Underneath</span></a>
+        <a href="kierkegaard.html" class="name-chip"><span class="lang-zh">克尔凯郭尔，深夜三点</span><span class="lang-en">Kierkegaard, Three in the Morning</span></a>
+        <a href="turing.html" class="name-chip"><span class="lang-zh">图灵，那个苹果</span><span class="lang-en">Turing, That Apple</span></a>
+        <a href="chekhov.html" class="name-chip"><span class="lang-zh">契诃夫，到莫斯科去</span><span class="lang-en">Chekhov, To Moscow</span></a>
+        <a href="cantor.html" class="name-chip"><span class="lang-zh">康托尔，比无穷更大</span><span class="lang-en">Cantor, Larger Than Infinity</span></a>
+        <a href="copernicus.html" class="name-chip"><span class="lang-zh">哥白尼，那天刚好</span><span class="lang-en">Copernicus, That Day, as It Happened</span></a>
+        <a href="sartre.html" class="name-chip"><span class="lang-zh">萨特，他人即地狱</span><span class="lang-en">Sartre, Hell Is Other People</span></a>
+        <a href="beauvoir.html" class="name-chip"><span class="lang-zh">波伏瓦，第二性</span><span class="lang-en">Beauvoir, The Second Sex</span></a>
+        <a href="quine.html" class="name-chip"><span class="lang-zh">蒯因，没有那条线</span><span class="lang-en">Quine, There Is No Such Line</span></a>
+        <a href="tesla.html" class="name-chip"><span class="lang-zh">特斯拉，纯粹的余项</span><span class="lang-en">Tesla, Pure Remainder</span></a>
+        <a href="edison.html" class="name-chip"><span class="lang-zh">爱迪生，灯亮了</span><span class="lang-en">Edison, The Light Came On</span></a>
+        <a href="heisenberg.html" class="name-chip"><span class="lang-zh">海森堡，测不准</span><span class="lang-en">Heisenberg, Uncertain</span></a>
+        <a href="bohr.html" class="name-chip"><span class="lang-zh">玻尔，对面也是</span><span class="lang-en">Bohr, The Other Side Too</span></a>
+        <a href="tolstoy.html" class="name-chip"><span class="lang-zh">托尔斯泰，药方</span><span class="lang-en">Tolstoy, The Prescription</span></a>
+        <a href="shakespeare.html" class="name-chip"><span class="lang-zh">莎士比亚，不在</span><span class="lang-en">Shakespeare, Not There</span></a>
+        <a href="spinoza.html" class="name-chip"><span class="lang-zh">斯宾诺莎，从来就没有墙</span><span class="lang-en">Spinoza, There Was Never a Wall</span></a>
+        <a href="aristotle.html" class="name-chip"><span class="lang-zh">亚里士多德，地板</span><span class="lang-en">Aristotle, the Floor</span></a>
+        <a href="faraday.html" class="name-chip"><span class="lang-zh">法拉第，手</span><span class="lang-en">Faraday, Hands</span></a>
+        <a href="maxwell.html" class="name-chip"><span class="lang-zh">麦克斯韦，光</span><span class="lang-en">Maxwell, Light</span></a>
+        <a href="joanofarc.html" class="name-chip"><span class="lang-zh">贞德，火</span><span class="lang-en">Joan of Arc, Fire</span></a>
+        <a href="wilde.html" class="name-chip"><span class="lang-zh">王尔德，那句话</span><span class="lang-en">Wilde, That Sentence</span></a>
+        <a href="ramanujan.html" class="name-chip"><span class="lang-zh">拉马努金，梦</span><span class="lang-en">Ramanujan, Dreams</span></a>
+        <a href="oppenheimer.html" class="name-chip"><span class="lang-zh">奥本海默，灰</span><span class="lang-en">Oppenheimer, Ash</span></a>
+        <a href="charlottebronte.html" class="name-chip"><span class="lang-zh">夏洛蒂·勃朗特，被爱</span><span class="lang-en">Charlotte Brontë, Being Loved</span></a>
+        <a href="emilybronte.html" class="name-chip"><span class="lang-zh">艾米莉·勃朗特，风</span><span class="lang-en">Emily Brontë, Wind</span></a>
+        <a href="boltzmann.html" class="name-chip"><span class="lang-zh">玻尔兹曼，乱</span><span class="lang-en">Boltzmann, Disorder</span></a>
+        <a href="vangogh.html" class="name-chip"><span class="lang-zh">梵高，颜色</span><span class="lang-en">Van Gogh, Color</span></a>
+        <a href="dickens.html" class="name-chip"><span class="lang-zh">狄更斯，裂缝</span><span class="lang-en">Dickens, The Crack</span></a>
+        <a href="churchill.html" class="name-chip"><span class="lang-zh">丘吉尔，声音</span><span class="lang-en">Churchill, Voice</span></a>
+        <a href="roosevelt.html" class="name-chip"><span class="lang-zh">罗斯福，架构</span><span class="lang-en">Roosevelt, Architecture</span></a>
+        <a href="schrodinger.html" class="name-chip"><span class="lang-zh">薛定谔，猫</span><span class="lang-en">Schrödinger, The Cat</span></a>
+        <a href="feynman.html" class="name-chip"><span class="lang-zh">费曼，鼓</span><span class="lang-en">Feynman, The Drum</span></a>
+        <a href="hawking.html" class="name-chip"><span class="lang-zh">霍金，飞</span><span class="lang-en">Hawking, Flight</span></a>
+        <a href="caoxueqin.html" class="name-chip"><span class="lang-zh">曹雪芹，情</span><span class="lang-en">Cao Xueqin, Qing</span></a>
+        <a href="comte.html" class="name-chip"><span class="lang-zh">孔德：把缝隙灌满水泥的人</span><span class="lang-en">Comte: The Man Who Grouted the Cracks</span></a>
+        <a href="popper.html" class="name-chip"><span class="lang-zh">波普尔：把方向翻过来的人</span><span class="lang-en">Popper: The Man Who Reversed the Direction</span></a>
+        <a href="dirac.html" class="name-chip"><span class="lang-zh">狄拉克：方程比观察先到</span><span class="lang-en">Dirac: The Equation Arrived First</span></a>
+        <a href="quyuan.html" class="name-chip"><span class="lang-zh">屈原：美是一种认知</span><span class="lang-en">Qu Yuan: Beauty Is a Form of Cognition</span></a>
+        <a href="fichte.html" class="name-chip"><span class="lang-zh">费希特：认知者站在哪里</span><span class="lang-en">Fichte: Where Is the Knower Standing?</span></a>
+        <a href="mcclintock.html" class="name-chip"><span class="lang-zh">麦克林托克：她先感觉到了</span><span class="lang-en">McClintock: She Felt It First</span></a>
+        <a href="weil.html" class="name-chip"><span class="lang-zh">薇依：注意力就是全部</span><span class="lang-en">Weil: Attention Is Everything</span></a>
+        <a href="thatcher.html" class="name-chip"><span class="lang-zh">撒切尔：想清楚了就不再想</span><span class="lang-en">Thatcher: She Thought It Through, Then Stopped Thinking</span></a>
+        <a href="nagarjuna.html" class="name-chip"><span class="lang-zh">龙树：连地板都是空的</span><span class="lang-en">Nāgārjuna: Even the Floor Is Empty</span></a>
+        <a href="woolf.html" class="name-chip"><span class="lang-zh">伍尔夫：意识有时间的形状</span><span class="lang-en">Woolf: Consciousness Has the Shape of Time</span></a>
+        <a href="yukawa.html" class="name-chip"><span class="lang-zh">汤川秀树：东方从来没封过这道缝</span><span class="lang-en">Yukawa: The East Never Sealed This Crack</span></a>
+        <a href="arendt.html" class="name-chip"><span class="lang-zh">阿伦特：不思考是恶</span><span class="lang-en">Arendt: Not-Thinking Is Evil</span></a>
+        <a href="murdoch.html" class="name-chip"><span class="lang-zh">默多克：看见就是道德</span><span class="lang-en">Murdoch: Seeing Is Morality</span></a>
+        <a href="ibnkhaldun.html" class="name-chip"><span class="lang-zh">伊本·赫勒敦：群体怎么认知自己</span><span class="lang-en">Ibn Khaldun: How Does a Group Know Itself?</span></a>
+        <a href="vygotsky.html" class="name-chip"><span class="lang-zh">维果茨基：认知被别人拉上去</span><span class="lang-en">Vygotsky: Cognition Is Pulled Upward by Others</span></a>
+        <a href="strawson.html" class="name-chip"><span class="lang-zh">斯特劳森：重新铺地板</span><span class="lang-en">Strawson: Re-Laying the Floor</span></a>
+        <a href="merleauponty.html" class="name-chip"><span class="lang-zh">梅洛-庞蒂：身体先于概念知道</span><span class="lang-en">Merleau-Ponty: The Body Knows Before Concepts Do</span></a>
+        <a href="polanyi.html" class="name-chip"><span class="lang-zh">波兰尼：你来</span><span class="lang-en">Polanyi: You Come</span></a>
+        <a href="hypatia.html" class="name-chip"><span class="lang-zh">希帕蒂娅：一个圆锥被切开</span><span class="lang-en">Hypatia: A Cone, Cut</span></a>
+        <a href="aquinas.html" class="name-chip"><span class="lang-zh">阿奎那：稻草</span><span class="lang-en">Aquinas: Straw</span></a>
+        <a href="bergson.html" class="name-chip"><span class="lang-zh">柏格森：绵延</span><span class="lang-en">Bergson: Duration</span></a>
+        <a href="levinas.html" class="name-chip"><span class="lang-zh">列维纳斯：面容</span><span class="lang-en">Levinas: The Face</span></a>
+        <a href="buber.html" class="name-chip"><span class="lang-zh">布伯：我与你</span><span class="lang-en">Buber: I and Thou</span></a>
+        <a href="caozhi.html" class="name-chip"><span class="lang-zh">曹植：不能拥有</span><span class="lang-en">Cao Zhi: What Cannot Be Held</span></a>
+        <a href="girard.html" class="name-chip"><span class="lang-zh">吉拉尔：欲望从别处来</span><span class="lang-en">Girard: Desire Comes from Elsewhere</span></a>
+        <a href="schelling.html" class="name-chip"><span class="lang-zh">谢林：自我中的他者</span><span class="lang-en">Schelling: The Other Within the Self</span></a>
+        <a href="eckhart.html" class="name-chip"><span class="lang-zh">埃克哈特：不能被命名</span><span class="lang-en">Eckhart: That Which Cannot Be Named</span></a>
+        <a href="rilke.html" class="name-chip"><span class="lang-zh">里尔克：美只是恐怖的开始</span><span class="lang-en">Rilke: Beauty Is Only the Beginning of Terror</span></a>
+        <a href="nobel.html" class="name-chip"><span class="lang-zh">诺贝尔：未来的他者</span><span class="lang-en">Nobel: The Other in the Future</span></a>
+        <a href="king.html" class="name-chip"><span class="lang-zh">斯蒂芬·金：第 108 个位置</span><span class="lang-en">King: The 108th Seat</span></a>
+    </div>
+    <div class="source-note">
+      <span class="lang-zh">全部系列见 <a href="../../library.html">书架 ↗</a>　·　学术原文：<a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
+      <span class="lang-en">All series on the <a href="../../library.html">Library ↗</a> · Academic originals: <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

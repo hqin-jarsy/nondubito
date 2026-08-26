@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>方法论系列 / Methodology Series — Non Dubito</title>
+  <meta name="description" content="方法论系列 / Methodology Series：凿构循环的操作手册，八篇双语。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/method/index.html">
+  <style>
+    .series-container { max-width:var(--max-w-prose); margin:0 auto; padding:100px 2.5rem 80px; }
+    @media(max-width:620px) { .series-container { padding:80px 1.5rem 60px; } }
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .series-label { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .series-title { font-family:var(--serif); font-size:2rem; color:var(--ink); margin:0.5rem 0 0.25rem; line-height:1.2; }
+    .series-title-en { font-family:var(--serif); font-size:1.2rem; color:var(--ink-muted); margin-bottom:1.5rem; }
+    .series-desc { font-size:1rem; color:var(--ink); line-height:1.7; margin-bottom:2.5rem; }
+    .series-desc p { margin-bottom:1em; }
+    .series-meta { font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--cream-border); }
+    .entry-list { list-style:none; padding:0; margin:0; }
+    .entry-row { display:block; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); margin-bottom:0.75rem; transition:background 0.15s, border-color 0.15s; }
+    .entry-row:hover { background:rgba(0,0,0,0.02); border-color:var(--ink-muted); }
+    .entry-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:0.4rem; }
+    .entry-num { font-family:var(--sans); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+    .entry-title-zh { font-family:var(--serif); font-size:1.1rem; color:var(--ink); }
+    .entry-title-en { font-family:var(--serif); font-size:0.95rem; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .entry-desc { font-size:0.85rem; color:var(--ink-muted); line-height:1.5; }
+    .source-note { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--cream-border); font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); }
+    .source-note a { color:var(--ink-muted); text-decoration:none; }
+    .source-note a:hover { color:var(--ink); }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../library.html">Library</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="series-container">
+    <div class="lang-toggle" style="margin-bottom:1.5rem;">
+      <button class="lang-btn" data-lang="zh">中文</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <a href="../../library.html" class="back-link lang-zh">← 书架</a>
+    <a href="../../library.html" class="back-link lang-en">← Library</a>
+
+    <div class="series-label lang-zh">Non Dubito · 系列</div>
+    <div class="series-label lang-en">Non Dubito · Series</div>
+    <h1 class="series-title lang-zh">方法论系列</h1>
+    <h1 class="series-title lang-en">Methodology Series</h1>
+    <div class="series-title-en lang-zh">Methodology Series</div>
+    <div class="series-title-en lang-en">方法论系列</div>
+
+    <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
+      <p>凿构循环的操作手册——把整个 Self-as-an-End 框架压缩成一套可执行的逻辑操作系统。八篇 · 双语。</p>
+    </div>
+    <div class="series-desc lang-en">
+      <p>The operational manual of the chisel-construct cycle — the whole Self-as-an-End framework compressed into an executable logical operating system. Eight papers · Bilingual.</p>
+    </div>
+
+    <div class="series-meta">
+      <span>Han Qin (秦汉) · Non Dubito</span>
+    </div>
+
+    <ul class="entry-list">
+      <li>
+        <a href="0.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 0 篇</span>
+            <span class="entry-num lang-en">Paper 0</span>
+          </div>
+          <div class="entry-title-zh lang-zh">非 · Negativa：论否定先于存在</div>
+          <div class="entry-title-en lang-en">非 · Negativa: On Negation Prior to Being</div>
+          <div class="entry-desc lang-zh">本文论证</div>
+        </a>
+      </li>
+      <li>
+        <a href="i.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 I 篇</span>
+            <span class="entry-num lang-en">Paper I</span>
+          </div>
+          <div class="entry-title-zh lang-zh">凿构循环：推导、方法、应用与AI接口</div>
+          <div class="entry-title-en lang-en">The Chisel-Construct Cycle: Derivation, Method, Application, and AI Interface</div>
+          <div class="entry-desc lang-zh">本文是Self-as-an-End框架的方法论总论——把整个框架压缩成一套可执行的逻辑操作系统。</div>
+        </a>
+      </li>
+      <li>
+        <a href="ii.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 II 篇</span>
+            <span class="entry-num lang-en">Paper II</span>
+          </div>
+          <div class="entry-title-zh lang-zh">用绝对律令问到双向不知道</div>
+          <div class="entry-title-en lang-en">The Epistemological Map of Chisel-Construct</div>
+        </a>
+      </li>
+      <li>
+        <a href="iii.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 III 篇</span>
+            <span class="entry-num lang-en">Paper III</span>
+          </div>
+          <div class="entry-title-zh lang-zh">怎么用AI找余项</div>
+          <div class="entry-title-en lang-en">How to Find Remainders with AI</div>
+          <div class="entry-desc lang-zh">方法论总论（</div>
+        </a>
+      </li>
+      <li>
+        <a href="iv.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 IV 篇</span>
+            <span class="entry-num lang-en">Paper IV</span>
+          </div>
+          <div class="entry-title-zh lang-zh">知识演化的十二态传导模型</div>
+          <div class="entry-title-en lang-en">The Twelve-State Transmission Model of Knowledge Evolution</div>
+          <div class="entry-desc lang-zh">SAE方法论前三篇分别建立了凿构循环的操作系统（第一篇）、认识论地图（第二篇）和余项发现工具（第三篇）。但三篇共同留下了一个未解决的问题：找到余项之后，余项如何变成知识？尤其是在进入一个全新领域时，先验框架、后验证据和定理之间的关系是什么？</div>
+        </a>
+      </li>
+      <li>
+        <a href="v.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 V 篇</span>
+            <span class="entry-num lang-en">Paper V</span>
+          </div>
+          <div class="entry-title-zh lang-zh">主体作为方法论的结构性条件</div>
+          <div class="entry-title-en lang-en">The Subject as Structural Condition of Methodology</div>
+          <div class="entry-desc lang-zh">SAE方法论第四篇建立了十二态传导模型（先验/后验/定理三个节点，六条双向路径，涵育/殖民两个相位）。但十二态描述的是知识怎么动，没有回答谁让知识动。本文用六个领域的实时过程数据（ZFCρ数论、非平衡热力学、宇宙常数推导、暗物质论文、宇宙物</div>
+        </a>
+      </li>
+      <li>
+        <a href="vi.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 VI 篇</span>
+            <span class="entry-num lang-en">Paper VI</span>
+          </div>
+          <div class="entry-title-zh lang-zh">相变窗口与实验设计</div>
+          <div class="entry-title-en lang-en">Phase-Transition Windows and Experimental Design</div>
+          <div class="entry-desc lang-zh">一个干预有效但试验看不到效果，原因可能不在干预本身，而在试验设计与现象结构的不匹配。</div>
+        </a>
+      </li>
+      <li>
+        <a href="vii.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第 VII 篇</span>
+            <span class="entry-num lang-en">Paper VII</span>
+          </div>
+          <div class="entry-title-zh lang-zh">否定方法论：Via Negativa与排除律的形式结构</div>
+          <div class="entry-title-en lang-en">Negative Methodology: Via Negativa and the Formal Structure of Exclusion Principles</div>
+          <div class="entry-desc lang-zh">本文建立以否定为基元操作的方法论。在缺乏决定性正向见证的开放归因问题中，肯定性收敛无法在纯形式层面完成：ZFCρ第一定律证明任何形式化必然产生非空余项（ρ≠∅），纯形式肯定性闭合等价于ρ=∅，因此不可能。本文定义排除律（Exclusion</div>
+        </a>
+      </li>
+    </ul>
+    <div class="source-note">
+      <span class="lang-zh">全部系列见 <a href="../../library.html">书架 ↗</a>　·　学术原文：<a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
+      <span class="lang-en">All series on the <a href="../../library.html">Library ↗</a> · Academic originals: <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

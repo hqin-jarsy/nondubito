@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>交易的艺术 / The Art of Trading — Non Dubito</title>
+  <meta name="description" content="交易的艺术 / The Art of Trading：十一个人物加一个实验，交易作为一种认识论处境。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/jiaoyi/index.html">
+  <style>
+    .series-container { max-width:var(--max-w-prose); margin:0 auto; padding:100px 2.5rem 80px; }
+    @media(max-width:620px) { .series-container { padding:80px 1.5rem 60px; } }
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .series-label { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .series-title { font-family:var(--serif); font-size:2rem; color:var(--ink); margin:0.5rem 0 0.25rem; line-height:1.2; }
+    .series-title-en { font-family:var(--serif); font-size:1.2rem; color:var(--ink-muted); margin-bottom:1.5rem; }
+    .series-desc { font-size:1rem; color:var(--ink); line-height:1.7; margin-bottom:2.5rem; }
+    .series-desc p { margin-bottom:1em; }
+    .series-meta { font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--cream-border); }
+    .entry-list { list-style:none; padding:0; margin:0; }
+    .entry-row { display:block; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); margin-bottom:0.75rem; transition:background 0.15s, border-color 0.15s; }
+    .entry-row:hover { background:rgba(0,0,0,0.02); border-color:var(--ink-muted); }
+    .entry-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:0.4rem; }
+    .entry-num { font-family:var(--sans); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+    .entry-title-zh { font-family:var(--serif); font-size:1.1rem; color:var(--ink); }
+    .entry-title-en { font-family:var(--serif); font-size:0.95rem; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .entry-desc { font-size:0.85rem; color:var(--ink-muted); line-height:1.5; }
+    .source-note { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--cream-border); font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); }
+    .source-note a { color:var(--ink-muted); text-decoration:none; }
+    .source-note a:hover { color:var(--ink); }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../library.html">Library</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="series-container">
+    <div class="lang-toggle" style="margin-bottom:1.5rem;">
+      <button class="lang-btn" data-lang="zh">中文</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <a href="../../library.html" class="back-link lang-zh">← 书架</a>
+    <a href="../../library.html" class="back-link lang-en">← Library</a>
+
+    <div class="series-label lang-zh">Non Dubito · 系列</div>
+    <div class="series-label lang-en">Non Dubito · Series</div>
+    <h1 class="series-title lang-zh">交易的艺术</h1>
+    <h1 class="series-title lang-en">The Art of Trading</h1>
+    <div class="series-title-en lang-zh">The Art of Trading</div>
+    <div class="series-title-en lang-en">交易的艺术</div>
+
+    <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
+      <p>十一个人物加一个实验——交易作为一种认识论处境：人如何在不确定里下注，又如何被自己的下注改变。</p>
+    </div>
+    <div class="series-desc lang-en">
+      <p>Eleven lives and one experiment — trading as an epistemic predicament: how a person bets under uncertainty, and how the bet changes the person.</p>
+    </div>
+
+    <div class="series-meta">
+      <span>Han Qin (秦汉) · Non Dubito</span>
+    </div>
+
+    <ul class="entry-list">
+      <li>
+        <a href="guanjinsheng.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">管金生</div>
+          <div class="entry-title-en lang-en">Guan Jinsheng</div>
+          <div class="entry-desc lang-zh">On October 7, 2025, Guan Jinsheng died.</div>
+        </a>
+      </li>
+      <li>
+        <a href="jesselivermore.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">Jesse Livermore</div>
+          <div class="entry-title-en lang-en">Jesse Livermore</div>
+          <div class="entry-desc lang-zh">Chan Zhong transformed himself into theory, then departed. His departure was quiet. Disease knows no logic, offers no choices.</div>
+        </a>
+      </li>
+      <li>
+        <a href="georgesoros.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">George Soros</div>
+          <div class="entry-title-en lang-en">George Soros</div>
+          <div class="entry-desc lang-zh">前七个故事，不管结局是死亡还是崩溃还是</div>
+        </a>
+      </li>
+      <li>
+        <a href="worthy.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">为什么你值得被好好对待</div>
+          <div class="entry-title-en lang-en">Why You Deserve to Be Treated Well</div>
+          <div class="entry-desc lang-zh">你在认真理解他，他只在算计你。这种不对称的累，不是你的问题。那是一个真实的结构——而且在AI时代，这个结构正在逆转。</div>
+        </a>
+      </li>
+      <li>
+        <a href="chanzhongshuo.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">缠中说禅</div>
+          <div class="entry-title-en lang-en">Chan Zhong Shuo Chan</div>
+          <div class="entry-desc lang-zh">Richard Dennis proved that systems could be taught. The turtles learned the rules and made $175 million.</div>
+        </a>
+      </li>
+      <li>
+        <a href="jimsimons.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">Jim Simons</div>
+          <div class="entry-title-en lang-en">Jim Simons</div>
+          <div class="entry-desc lang-zh">Soros的逃逸方式是</div>
+        </a>
+      </li>
+      <li>
+        <a href="ltcm.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">LTCM</div>
+          <div class="entry-title-en lang-en">LTCM</div>
+          <div class="entry-desc lang-zh">The first five stories were all about one person. What they saw, what they built, what trapped them.</div>
+        </a>
+      </li>
+      <li>
+        <a href="nickleeson.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">Nick Leeson</div>
+          <div class="entry-title-en lang-en">Nick Leeson</div>
+          <div class="entry-desc lang-zh">Guan Jinsheng&#x27;s eight minutes was a cry.</div>
+        </a>
+      </li>
+      <li>
+        <a href="richarddennis.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">Richard Dennis</div>
+          <div class="entry-title-en lang-en">Richard Dennis</div>
+          <div class="entry-desc lang-zh">Guan Jinsheng was trapped by his own judgment. Nick Leeson was trapped by his own lie.</div>
+        </a>
+      </li>
+      <li>
+        <a href="warrenbuffett.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">Warren Buffett</div>
+          <div class="entry-title-en lang-en">Warren Buffett</div>
+          <div class="entry-desc lang-zh">Soros从哲学里找到了逃逸的方式：承认自己永远可能是错的。Simons从数学里找到了逃逸的方式：把人从决策中移除。</div>
+        </a>
+      </li>
+      <li>
+        <a href="xuxiang.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">人物</span>
+            <span class="entry-num lang-en">Profile</span>
+          </div>
+          <div class="entry-title-zh lang-zh">徐翔</div>
+          <div class="entry-title-en lang-en">Xu Xiang</div>
+          <div class="entry-desc lang-zh">LTCM是一群最聪明的人用最精密的数学模型撞上了世界的边缘。这一篇回到一个人的故事。一个跟前面所有人都不太一样的人。</div>
+        </a>
+      </li>
+      <li>
+        <a href="shiyan-00.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">实验</span>
+            <span class="entry-num lang-en">Experiment</span>
+          </div>
+          <div class="entry-title-zh lang-zh">规则声明 Rule Declaration ルール宣言</div>
+          <div class="entry-title-en lang-en">规则声明 Rule Declaration ルール宣言</div>
+        </a>
+      </li>
+    </ul>
+    <div class="source-note">
+      <span class="lang-zh">全部系列见 <a href="../../library.html">书架 ↗</a>　·　学术原文：<a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
+      <span class="lang-en">All series on the <a href="../../library.html">Library ↗</a> · Academic originals: <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
