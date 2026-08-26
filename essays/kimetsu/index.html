@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>《鬼灭之刃》解读系列 — Non Dubito</title>
-  <meta name="description" content="从鬼舞辻无惨的恐惧，到上弦之鬼的坠落、柱与产屋敷的关系、炭治郎背上的重量，以及缘一与珠世留下的火种：五篇重读《鬼灭之刃》。">
+  <title>Demon Slayer: Five Readings · 《鬼灭之刃》解读 — Non Dubito</title>
+  <meta name="description" content="Five essays on Demon Slayer: fear, broken bonds, mortal accompaniment, the weight of an exception, and the inheritance that outlives its makers. 从鬼舞辻无惨的恐惧，到上弦之鬼的坠落、柱与产屋敷的关系、炭治郎背上的重量，以及缘一与珠世留下的火种：五篇重读《鬼灭之刃》。">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500&amp;family=Noto+Serif+SC:wght@400;500;600&amp;display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <style>
-    .kimetsu-spoiler { margin: 1.8rem 0 2.4rem; padding: .9rem 1.1rem; border-left: 3px solid var(--gold); background: var(--cream-dark); color: var(--ink-light); font-family: var(--cjk), serif; font-size: .9rem; line-height: 1.75; }
+    .kimetsu-spoiler { margin: 1.8rem 0 2.4rem; padding: .9rem 1.1rem; border-left: 3px solid var(--gold); background: var(--cream-dark); color: var(--ink-light); font-family: inherit; font-size: .9rem; line-height: 1.75; }
     .kimetsu-series-nav { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--cream-border); font-family: var(--sans); font-size: .72rem; letter-spacing: .04em; }
     .kimetsu-series-nav a { color: var(--green-light); text-decoration: none; }
     .kimetsu-series-nav a:last-child { text-align: right; }
@@ -21,9 +21,37 @@
   </style>
   <link rel="canonical" href="https://nondubito.net/essays/kimetsu/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="《鬼灭之刃》解读系列">
-  <meta property="og:description" content="从鬼舞辻无惨的恐惧，到上弦之鬼的坠落、柱与产屋敷的关系、炭治郎背上的重量，以及缘一与珠世留下的火种：五篇重读《鬼灭之刃》。">
+  <meta property="og:title" content="Demon Slayer: Five Readings · 《鬼灭之刃》解读">
+  <meta property="og:description" content="Five essays on Demon Slayer: fear, broken bonds, mortal accompaniment, the weight of an exception, and the inheritance that outlives its makers.">
   <meta property="og:url" content="https://nondubito.net/essays/kimetsu/">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      if (['en', 'zh', 'zh-hant'].indexOf(saved) === -1) saved = 'en';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.lang = saved === 'zh-hant' ? 'zh-Hant' : (saved === 'zh' ? 'zh-Hans' : 'en');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn[data-lang]');
+        function updateActive() {
+          var current = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === current);
+          });
+        }
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.lang = lang === 'zh-hant' ? 'zh-Hant' : (lang === 'zh' ? 'zh-Hans' : 'en');
+            localStorage.setItem('nd_lang', lang);
+            updateActive();
+          });
+        });
+        updateActive();
+      });
+    })();
+  </script>
+  <script defer src="zh-hant-data/index.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
@@ -46,22 +74,145 @@
   <main class="essay-page">
     <div class="essay-page-hero">
       <div class="essay-page-inner">
-        <a href="../../index.html#culture" class="back-link">← 文学与文化</a>
-        <div class="essay-page-num">Series · 五篇解读 · 漫画 / 文化</div>
-        <h1 class="essay-page-title zh" style="font-family:var(--cjk),serif;">《鬼灭之刃》解读</h1>
+        <div class="lang-toggle" style="margin-bottom:0.8rem;">
+<button class="lang-btn" data-lang="en">EN</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh">中文</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh-hant">繁體</button>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ja/index.html">日本語</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="fr/index.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="de/index.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="es/index.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ko/index.html">한국어</a>
+</div>
+        <a href="../../index.html#culture" class="back-link">
+          <span class="lang-en">← Literature &amp; Culture</span>
+          <span class="lang-zh">← 文学与文化</span>
+        </a>
+        <div class="essay-page-num">
+          <span class="lang-en">Series · Five Essays · Manga / Culture</span>
+          <span class="lang-zh">系列 · 五篇解读 · 漫画 / 文化</span>
+        </div>
+        <h1 class="essay-page-title lang-en">Demon Slayer: Five Readings</h1>
+        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">《鬼灭之刃》解读</h1>
         <div class="essay-page-meta">
           <span>Aug 2026</span>
           <span>Han Qin (秦汉)</span>
-          <span>中文 · 吾峠呼世晴</span>
+          <span class="lang-en">English · Koyoharu Gotouge</span>
+          <span class="lang-zh">中文 · 简 / 繁 · 吾峠呼世晴</span>
         </div>
+        <!-- kimetsu-eight-languages --><p class="lang-en" style="color:var(--ink-muted);margin-top:1rem;">Complete editions in eight languages; every added language is independently rewritten.</p><p class="lang-zh" style="color:var(--ink-muted);margin-top:1rem;">全系列现有英、简、繁、日、法、德、西、韩八种语言版本；新增语言均为独立重写。</p>
       </div>
     </div>
 
-    <div class="essay-body">
-      <p style="font-size:1.2rem; color:var(--ink); font-family:var(--cjk),serif; line-height:1.9; margin-bottom:2em;">
+    <div class="essay-body lang-en">
+      <p style="font-size:1.2rem; color:var(--ink); line-height:1.9; margin-bottom:2em;">
+        <em>Demon Slayer</em> is not only a coming-of-age story or a contest between good and evil. It asks how people continue to treat one another as irreplaceable under fear, grief, and the pressure of systems that turn lives into instruments.
+      </p>
+      <p>
+        The five essays move from Muzan and the Upper Ranks to Ubuyashiki and the Hashira, Tanjiro and his companions, then Yoriichi and Tamayo. One question runs through them: when a system keeps converting persons into tools, what allows someone to remain human?
+      </p>
+      <div class="kimetsu-spoiler"><strong>Spoiler warning:</strong> The series discusses all twenty-three volumes of the completed manga, including character histories, major battles, and the ending.</div>
+
+      <div class="essay-list" style="margin-top:3rem;">
+        <a href="1-fear.html" class="essay-card">
+          <span class="card-num">I</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">English · Manga / Cultural Analysis</div>
+            <div class="card-lang-tag lang-zh">中文 · 漫画 / 文化解读</div>
+            <div class="card-title-en lang-en">A Thousand Years of Fear</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">一千年的恐惧</div>
+            <p class="card-desc lang-en">Muzan begins not with strength but with fear. Once every life becomes a tool for escaping death, a thousand-year system of domination takes shape.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">鬼舞辻无惨不是从强大开始，而是从恐惧开始。当一个存在为了逃避死亡，把所有生命都变成工具，千年的支配体系就此成形。</p>
+            <div class="card-meta">
+              <span>Aug 25, 2026</span>
+              <span class="card-badge full lang-en">English</span>
+              <span class="card-badge full lang-zh">简体 / 繁體</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="2-falls.html" class="essay-card">
+          <span class="card-num">II</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">English · Manga / Cultural Analysis</div>
+            <div class="card-lang-tag lang-zh">中文 · 漫画 / 文化解读</div>
+            <div class="card-title-en lang-en">Different Ways of Falling</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">不同的坠落</div>
+            <p class="card-desc lang-en">Akaza, Gyutaro and Daki, Kokushibo, Doma: demons are not monsters born from nothing, but ruins left when human bonds collapse.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">猗窝座、妓夫太郎与堕姬、黑死牟、童磨：鬼不是凭空诞生的怪物，而是关系崩塌以后留下的废墟。</p>
+            <div class="card-meta">
+              <span>Aug 25, 2026</span>
+              <span class="card-badge full lang-en">English</span>
+              <span class="card-badge full lang-zh">简体 / 繁體</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="3-accompany.html" class="essay-card">
+          <span class="card-num">III</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">English · Manga / Cultural Analysis</div>
+            <div class="card-lang-tag lang-zh">中文 · 漫画 / 文化解读</div>
+            <div class="card-title-en lang-en">To Accompany Them with One&#x27;s Life</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">以命相陪</div>
+            <p class="card-desc lang-en">Ubuyashiki, Rengoku, Shinobu, and Sanemi each answer the same question: why give one&#x27;s life to others when one may never see the end?</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">产屋敷、炼狱、胡蝶忍与不死川实弥，以各自的方式回答：明知看不到终点，为什么仍愿意把生命交给别人。</p>
+            <div class="card-meta">
+              <span>Aug 25, 2026</span>
+              <span class="card-badge full lang-en">English</span>
+              <span class="card-badge full lang-zh">简体 / 繁體</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="4-weight.html" class="essay-card">
+          <span class="card-num">IV</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">English · Manga / Cultural Analysis</div>
+            <div class="card-lang-tag lang-zh">中文 · 漫画 / 文化解读</div>
+            <div class="card-title-en lang-en">The Weight on His Back</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">背上的重量</div>
+            <p class="card-desc lang-en">Tanjiro carries Nezuko—and an exception the system cannot contain. His strength lies not only in his sword, but in refusing to reduce anyone to a tool.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">炭治郎背着祢豆子，也背着一个系统无法容纳的例外。他的强大不只在刀，而在于始终拒绝把任何人简化成工具。</p>
+            <div class="card-meta">
+              <span>Aug 25, 2026</span>
+              <span class="card-badge full lang-en">English</span>
+              <span class="card-badge full lang-zh">简体 / 繁體</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="5-firefly-moon.html" class="essay-card">
+          <span class="card-num">V</span>
+          <div class="card-body">
+            <div class="card-lang-tag lang-en">English · Manga / Cultural Analysis</div>
+            <div class="card-lang-tag lang-zh">中文 · 漫画 / 文化解读</div>
+            <div class="card-title-en lang-en">Fireflies and the Bright Moon</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">萤火与皓月</div>
+            <p class="card-desc lang-en">Yoriichi and Tamayo never lived to see Muzan fall, yet they left sparks for others to carry. History changes through fireflies in succession, not one bright moon alone.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">缘一与珠世都没有活到看见无惨败亡，却留下了后来者能够接住的火种。真正改变历史的，不只是皓月一瞬，更是萤火相继。</p>
+            <div class="card-meta">
+              <span>Aug 25, 2026</span>
+              <span class="card-badge full lang-en">English</span>
+              <span class="card-badge full lang-zh">简体 / 繁體</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
+      <p style="font-size:1.2rem; color:var(--ink); line-height:1.9; margin-bottom:2em;">
         《鬼灭之刃》真正讨论的，不只是少年成长与善恶对决，而是人在恐惧、失去和体系压力之下，如何仍然把彼此当作不可替代的存在。
       </p>
-      <p style="font-family:var(--cjk),serif;">
+      <p>
         五篇从无惨、上弦之鬼、产屋敷与柱、炭治郎与伙伴，写到继国缘一和珠世。贯穿其中的是同一个问题：当一个体系不断把人变成工具，是什么让人仍然保持为人？
       </p>
       <div class="kimetsu-spoiler"><strong>剧透提示</strong>：本系列以已完结的原作漫画全23卷为讨论范围，五篇均涉及关键人物身世、战斗结果与最终结局。</div>
@@ -70,12 +221,16 @@
         <a href="1-fear.html" class="essay-card">
           <span class="card-num">I</span>
           <div class="card-body">
-            <div class="card-lang-tag">中文 · 漫画 / 文化解读</div>
-            <div class="card-title-zh" style="font-family:var(--cjk),serif;">一千年的恐惧</div>
-            <p class="card-desc" style="font-family:var(--cjk),serif;">鬼舞辻无惨不是从强大开始，而是从恐惧开始。当一个存在为了逃避死亡，把所有生命都变成工具，千年的支配体系就此成形。</p>
+            <div class="card-lang-tag lang-en">English · Manga / Cultural Analysis</div>
+            <div class="card-lang-tag lang-zh">中文 · 漫画 / 文化解读</div>
+            <div class="card-title-en lang-en">A Thousand Years of Fear</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">一千年的恐惧</div>
+            <p class="card-desc lang-en">Muzan begins not with strength but with fear. Once every life becomes a tool for escaping death, a thousand-year system of domination takes shape.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">鬼舞辻无惨不是从强大开始，而是从恐惧开始。当一个存在为了逃避死亡，把所有生命都变成工具，千年的支配体系就此成形。</p>
             <div class="card-meta">
               <span>Aug 25, 2026</span>
-              <span class="card-badge full">中文全文</span>
+              <span class="card-badge full lang-en">English</span>
+              <span class="card-badge full lang-zh">简体 / 繁體</span>
             </div>
           </div>
         </a>
@@ -83,12 +238,16 @@
         <a href="2-falls.html" class="essay-card">
           <span class="card-num">II</span>
           <div class="card-body">
-            <div class="card-lang-tag">中文 · 漫画 / 文化解读</div>
-            <div class="card-title-zh" style="font-family:var(--cjk),serif;">不同的坠落</div>
-            <p class="card-desc" style="font-family:var(--cjk),serif;">猗窝座、妓夫太郎与堕姬、黑死牟、童磨：鬼不是凭空诞生的怪物，而是关系崩塌以后留下的废墟。</p>
+            <div class="card-lang-tag lang-en">English · Manga / Cultural Analysis</div>
+            <div class="card-lang-tag lang-zh">中文 · 漫画 / 文化解读</div>
+            <div class="card-title-en lang-en">Different Ways of Falling</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">不同的坠落</div>
+            <p class="card-desc lang-en">Akaza, Gyutaro and Daki, Kokushibo, Doma: demons are not monsters born from nothing, but ruins left when human bonds collapse.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">猗窝座、妓夫太郎与堕姬、黑死牟、童磨：鬼不是凭空诞生的怪物，而是关系崩塌以后留下的废墟。</p>
             <div class="card-meta">
               <span>Aug 25, 2026</span>
-              <span class="card-badge full">中文全文</span>
+              <span class="card-badge full lang-en">English</span>
+              <span class="card-badge full lang-zh">简体 / 繁體</span>
             </div>
           </div>
         </a>
@@ -96,12 +255,16 @@
         <a href="3-accompany.html" class="essay-card">
           <span class="card-num">III</span>
           <div class="card-body">
-            <div class="card-lang-tag">中文 · 漫画 / 文化解读</div>
-            <div class="card-title-zh" style="font-family:var(--cjk),serif;">以命相陪</div>
-            <p class="card-desc" style="font-family:var(--cjk),serif;">产屋敷、炼狱、胡蝶忍与不死川实弥，以各自的方式回答：明知看不到终点，为什么仍愿意把生命交给别人。</p>
+            <div class="card-lang-tag lang-en">English · Manga / Cultural Analysis</div>
+            <div class="card-lang-tag lang-zh">中文 · 漫画 / 文化解读</div>
+            <div class="card-title-en lang-en">To Accompany Them with One&#x27;s Life</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">以命相陪</div>
+            <p class="card-desc lang-en">Ubuyashiki, Rengoku, Shinobu, and Sanemi each answer the same question: why give one&#x27;s life to others when one may never see the end?</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">产屋敷、炼狱、胡蝶忍与不死川实弥，以各自的方式回答：明知看不到终点，为什么仍愿意把生命交给别人。</p>
             <div class="card-meta">
               <span>Aug 25, 2026</span>
-              <span class="card-badge full">中文全文</span>
+              <span class="card-badge full lang-en">English</span>
+              <span class="card-badge full lang-zh">简体 / 繁體</span>
             </div>
           </div>
         </a>
@@ -109,12 +272,16 @@
         <a href="4-weight.html" class="essay-card">
           <span class="card-num">IV</span>
           <div class="card-body">
-            <div class="card-lang-tag">中文 · 漫画 / 文化解读</div>
-            <div class="card-title-zh" style="font-family:var(--cjk),serif;">背上的重量</div>
-            <p class="card-desc" style="font-family:var(--cjk),serif;">炭治郎背着祢豆子，也背着一个系统无法容纳的例外。他的强大不只在刀，而在于始终拒绝把任何人简化成工具。</p>
+            <div class="card-lang-tag lang-en">English · Manga / Cultural Analysis</div>
+            <div class="card-lang-tag lang-zh">中文 · 漫画 / 文化解读</div>
+            <div class="card-title-en lang-en">The Weight on His Back</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">背上的重量</div>
+            <p class="card-desc lang-en">Tanjiro carries Nezuko—and an exception the system cannot contain. His strength lies not only in his sword, but in refusing to reduce anyone to a tool.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">炭治郎背着祢豆子，也背着一个系统无法容纳的例外。他的强大不只在刀，而在于始终拒绝把任何人简化成工具。</p>
             <div class="card-meta">
               <span>Aug 25, 2026</span>
-              <span class="card-badge full">中文全文</span>
+              <span class="card-badge full lang-en">English</span>
+              <span class="card-badge full lang-zh">简体 / 繁體</span>
             </div>
           </div>
         </a>
@@ -122,12 +289,16 @@
         <a href="5-firefly-moon.html" class="essay-card">
           <span class="card-num">V</span>
           <div class="card-body">
-            <div class="card-lang-tag">中文 · 漫画 / 文化解读</div>
-            <div class="card-title-zh" style="font-family:var(--cjk),serif;">萤火与皓月</div>
-            <p class="card-desc" style="font-family:var(--cjk),serif;">缘一与珠世都没有活到看见无惨败亡，却留下了后来者能够接住的火种。真正改变历史的，不只是皓月一瞬，更是萤火相继。</p>
+            <div class="card-lang-tag lang-en">English · Manga / Cultural Analysis</div>
+            <div class="card-lang-tag lang-zh">中文 · 漫画 / 文化解读</div>
+            <div class="card-title-en lang-en">Fireflies and the Bright Moon</div>
+            <div class="card-title-zh lang-zh" style="font-family:var(--cjk),serif;">萤火与皓月</div>
+            <p class="card-desc lang-en">Yoriichi and Tamayo never lived to see Muzan fall, yet they left sparks for others to carry. History changes through fireflies in succession, not one bright moon alone.</p>
+            <p class="card-desc lang-zh" style="font-family:var(--cjk),serif;">缘一与珠世都没有活到看见无惨败亡，却留下了后来者能够接住的火种。真正改变历史的，不只是皓月一瞬，更是萤火相继。</p>
             <div class="card-meta">
               <span>Aug 25, 2026</span>
-              <span class="card-badge full">中文全文</span>
+              <span class="card-badge full lang-en">English</span>
+              <span class="card-badge full lang-zh">简体 / 繁體</span>
             </div>
           </div>
         </a>

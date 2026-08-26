@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>以命相陪｜《鬼灭之刃》解读 — Non Dubito</title>
-  <meta name="description" content="产屋敷、炼狱、胡蝶忍与不死川实弥，以各自的方式回答：明知看不到终点，为什么仍愿意把生命交给别人。">
+  <title>To Accompany Them with One&#x27;s Life · 以命相陪 — Non Dubito</title>
+  <meta name="description" content="Ubuyashiki, Rengoku, Shinobu, and Sanemi each answer the same question: why give one&#x27;s life to others when one may never see the end? 产屋敷、炼狱、胡蝶忍与不死川实弥，以各自的方式回答：明知看不到终点，为什么仍愿意把生命交给别人。">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500&amp;family=Noto+Serif+SC:wght@400;500;600&amp;display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <style>
-    .kimetsu-spoiler { margin: 1.8rem 0 2.4rem; padding: .9rem 1.1rem; border-left: 3px solid var(--gold); background: var(--cream-dark); color: var(--ink-light); font-family: var(--cjk), serif; font-size: .9rem; line-height: 1.75; }
+    .kimetsu-spoiler { margin: 1.8rem 0 2.4rem; padding: .9rem 1.1rem; border-left: 3px solid var(--gold); background: var(--cream-dark); color: var(--ink-light); font-family: inherit; font-size: .9rem; line-height: 1.75; }
     .kimetsu-series-nav { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--cream-border); font-family: var(--sans); font-size: .72rem; letter-spacing: .04em; }
     .kimetsu-series-nav a { color: var(--green-light); text-decoration: none; }
     .kimetsu-series-nav a:last-child { text-align: right; }
@@ -21,9 +21,37 @@
   </style>
   <link rel="canonical" href="https://nondubito.net/essays/kimetsu/3-accompany.html">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="以命相陪｜《鬼灭之刃》解读">
-  <meta property="og:description" content="产屋敷、炼狱、胡蝶忍与不死川实弥，以各自的方式回答：明知看不到终点，为什么仍愿意把生命交给别人。">
+  <meta property="og:title" content="To Accompany Them with One&#x27;s Life · 以命相陪">
+  <meta property="og:description" content="Ubuyashiki, Rengoku, Shinobu, and Sanemi each answer the same question: why give one&#x27;s life to others when one may never see the end?">
   <meta property="og:url" content="https://nondubito.net/essays/kimetsu/3-accompany.html">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      if (['en', 'zh', 'zh-hant'].indexOf(saved) === -1) saved = 'en';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.lang = saved === 'zh-hant' ? 'zh-Hant' : (saved === 'zh' ? 'zh-Hans' : 'en');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn[data-lang]');
+        function updateActive() {
+          var current = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === current);
+          });
+        }
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.lang = lang === 'zh-hant' ? 'zh-Hant' : (lang === 'zh' ? 'zh-Hans' : 'en');
+            localStorage.setItem('nd_lang', lang);
+            updateActive();
+          });
+        });
+        updateActive();
+      });
+    })();
+  </script>
+  <script defer src="zh-hant-data/3-accompany.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
@@ -46,18 +74,104 @@
   <main class="essay-page">
     <div class="essay-page-hero">
       <div class="essay-page-inner">
-        <a href="index.html" class="back-link">← 《鬼灭之刃》解读系列</a>
-        <div class="essay-page-num">Series III of V · 漫画 / 文化解读</div>
-        <h1 class="essay-page-title zh" style="font-family:var(--cjk),serif;">以命相陪</h1>
+        <div class="lang-toggle" style="margin-bottom:0.8rem;">
+<button class="lang-btn" data-lang="en">EN</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh">中文</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh-hant">繁體</button>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ja/3-accompany.html">日本語</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="fr/3-accompany.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="de/3-accompany.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="es/3-accompany.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ko/3-accompany.html">한국어</a>
+</div>
+        <a href="index.html" class="back-link">
+          <span class="lang-en">← Demon Slayer: Five Readings</span>
+          <span class="lang-zh">← 《鬼灭之刃》解读系列</span>
+        </a>
+        <div class="essay-page-num">
+          <span class="lang-en">Series III of V · Manga / Cultural Analysis</span>
+          <span class="lang-zh">系列 III / V · 漫画 / 文化解读</span>
+        </div>
+        <h1 class="essay-page-title lang-en">To Accompany Them with One&#x27;s Life</h1>
+        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">以命相陪</h1>
         <div class="essay-page-meta">
           <span>Aug 25, 2026</span>
           <span>Han Qin (秦汉)</span>
-          <span>中文</span>
+          <span class="lang-en">English</span>
+          <span class="lang-zh">中文 · 简 / 繁</span>
         </div>
       </div>
     </div>
 
-    <article class="essay-body" style="font-family:var(--cjk),serif;">
+    <article class="essay-body lang-en">
+      <div class="kimetsu-spoiler"><strong>Spoiler warning:</strong> This essay discusses the complete manga, including character histories, major battles, and the ending.</div>
+<p>When Kagaya Ubuyashiki first meets Kyojuro Rengoku as a young swordsman, Rengoku's family has already begun to collapse.</p>
+<p>His mother is dead. His father Shinjuro, once the Flame Hashira, has abandoned both the Corps and the training of his sons. Kyojuro continues largely through the Flame Hashira records left in the family home. He has a younger brother to care for and no guarantee that talent, effort, or virtue will protect anyone he loves.</p>
+<p>Kagaya cannot teach him swordsmanship. He cannot fight at all. The inherited illness of the Ubuyashiki family is destroying his body, and he knows he will die before thirty. The Demon Slayer Corps is not recognized by the government; its members enter battles with an appallingly short life expectancy; its enemy has survived for a millennium.</p>
+<p>Why would the strongest swordsmen in Japan follow a leader who cannot fight, cannot promise victory, and cannot keep them alive?</p>
+<p>Because Kagaya does not stand outside the danger and order others into it. <strong>He accompanies them with his own life.</strong></p>
+<h2>Leadership Without the Usual Instruments</h2>
+<p>Most leadership rests on some combination of force, money, status, and control over information. Kagaya possesses little of the first and refuses to make the others the center of his authority.</p>
+<p>What he offers is attention and shared exposure.</p>
+<p>He remembers the names of Demon Slayers who die, including ordinary members who never become Hashira. The dead are not anonymous inputs consumed by an institution. Their families receive care. Their graves remain inside the memory of the house that sent them to battle.</p>
+<p>This does not cancel the moral difficulty. Kagaya still leads young people into lethal work. Calling them “my children” does not magically make every order benign. But the phrase carries weight because he does not use intimacy as a substitute for responsibility. He knows what each death costs, and he allows that cost to reach him.</p>
+<p>That creates a form of authority different from Muzan's.</p>
+<p>Muzan's subordinates obey because they know he can kill them. The Hashira listen to Kagaya because they know their lives are not interchangeable to him. Muzan secures obedience by making every demon afraid of losing itself. Kagaya creates solidarity by demonstrating that no death will be treated as if no one in particular has been lost.</p>
+<p>The distinction is not softness. It is whether the leader's own person is implicated in the command.</p>
+<h2>Rengoku: A Death That Does Not Become Defeat</h2>
+<p>Rengoku is the first Hashira whose death the main group experiences directly. The Mugen Train story therefore changes the emotional scale of the series. Until then, the heroes have survived by reaching the next stage. Rengoku reveals that a complete life may still end before the story is ready to release it.</p>
+<p>His mother, Ruka, taught him that unusual strength creates an obligation to protect those who are more vulnerable. The teaching could easily have become a demand that erases the child beneath the role. Instead, Rengoku takes it into himself. It becomes not merely something his mother told him to do, but a principle he actively endorses.</p>
+<p>That difference matters when Akaza offers him demonhood.</p>
+<p>Akaza's argument is rational on its own terms. Human bodies age and break. Skill disappears with death. Become a demon, and Rengoku can train for centuries. If strength is the highest value, accepting is obvious.</p>
+<p>Rengoku refuses because strength is not his highest value. Strength has a purpose: to protect lives that are finite precisely because they cannot be replaced. Immortality purchased by consuming the people he exists to protect would not preserve his mission. It would reverse it.</p>
+<p>He dies from the battle, but every passenger survives. Tanjiro, Nezuko, Zenitsu, and Inosuke survive. His body fails while his principle succeeds.</p>
+<p>This is why his death does not feel like simple loss in combat. Rengoku is not trying to prove that he is the strongest. He knows who he is, what his power is for, and what cannot be traded to preserve it. In a story crowded with people whose wounds have divided them from themselves, he dies integrated.</p>
+<p>His final instruction to Tanjiro—set your heart ablaze—is not a command to imitate him. It is permission for the younger swordsman to carry the work in his own form.</p>
+<h2>Shinobu: The Smile and the Poison</h2>
+<p>Shinobu Kocho embodies a more difficult kind of fidelity.</p>
+<p>Her older sister Kanae, the former Flower Hashira, is killed by Doma. Kanae had hoped that human beings and demons might one day coexist. Shinobu inherits the hope but cannot inhabit it honestly. Her grief is too angry. The serene smile she adopts resembles her sister's expression, yet beneath it lives an unresolved hatred.</p>
+<p>The story does not punish her for this contradiction. Nor does it romanticize it away.</p>
+<p>Unable to decapitate demons through physical strength, Shinobu develops poisons from wisteria. For years she absorbs enormous quantities into her own body. Her plan is to let Doma eat her, turning the body he treats as food into the means of his destruction.</p>
+<p>The strategy is brilliant and disturbing. Shinobu deliberately makes herself an instrument. She decides the form of her death long before it arrives and organizes years of living around that weaponization.</p>
+<p>If the principle “a person is an end” means anything, we cannot simply praise this as noble sacrifice and stop thinking. Self-instrumentalization remains instrumentalization, even when chosen. The fact that Shinobu consents does not erase the tragedy of a world in which her most effective weapon is her own consumable body.</p>
+<p>Yet she is not only a weapon. She trains Kanao, cares for Aoi and the younger girls at the Butterfly Mansion, treats wounded Corps members, researches medicine, and maintains relationships that exceed revenge. A woman who has planned her death continues to do the ordinary work of sustaining life.</p>
+<p>Her sacrifice also depends on trust. Poison alone cannot kill Doma. Kanao and Inosuke must understand the opening and act after Shinobu is gone. The plan is not solitary self-destruction; it is one movement in a sequence held by several people.</p>
+<p>The contradiction remains. That is what gives her story its seriousness.</p>
+<h2>Sanemi and Genya: Love Disguised as Rejection</h2>
+<p>Sanemi Shinazugawa appears to be the Hashira least capable of tenderness. He is violent, suspicious, scarred, and immediately hostile to Nezuko. At the Hashira meeting, he stabs her and exposes her to his rare blood in an attempt to prove that every demon will eventually attack a human.</p>
+<p>His cruelty has a history.</p>
+<p>Sanemi's mother became a demon and attacked her own children. He killed her to protect his siblings. When dawn revealed what had happened, the young Genya saw bodies, blood, and his brother standing over them. He called Sanemi a murderer.</p>
+<p>Sanemi never explains himself. Instead, he tries to drive Genya out of the Corps. He insults him, denies their bond, and makes himself unbearable.</p>
+<p>The intention is protective: if Genya hates him, perhaps Genya will leave and live. But love delivered only as rejection cannot be received as love. Sanemi chooses for his brother, denies him the truth, and turns protection into another form of control.</p>
+<p>This makes the brothers a revealing counterpart to Gyutaro and Daki. Gyutaro holds his sister so tightly that neither can become separate. Sanemi pushes his brother so far away that neither can be reconciled until death removes the remaining time.</p>
+<p>Genya joins the Corps anyway. He dies fighting Kokushibo. Only as his body disintegrates can the brothers say what the protective strategy prevented them from saying in life.</p>
+<p>Sanemi's love is real. Its form is catastrophic.</p>
+<h2>To Put Your Life Beside Another's</h2>
+<p>Kagaya, Rengoku, Shinobu, and Sanemi do not provide one clean theory of sacrifice.</p>
+<p>Kagaya turns his death into an opening for the Corps. Rengoku accepts death without designing it in advance. Shinobu designs her body as a weapon but also builds the relationships required to carry the plan beyond her. Sanemi tries to save his brother by severing the very bond he wants to protect.</p>
+<p>Some of these choices are admirable. Some are morally compromised. Most are both.</p>
+<p>What connects them is that none treats death as a purely private event. A life is placed beside other lives: remembered by them, continued through them, or sometimes damaged in the attempt to protect them.</p>
+<p>This is the opposite of Muzan's immortality. Muzan imagines that to survive, he must make every other being disposable. The Demon Slayer Corps survives because people refuse to let the dead become disposable. Names, techniques, promises, poisons, letters, and unfinished tasks move from one person to another.</p>
+<p>Kagaya's authority comes from standing inside that circulation. He does not promise the Hashira that they will live. He promises, through the form of his attention, that their lives and deaths will remain part of a human relation.</p>
+<p>To accompany someone with your life does not mean dying for them at every opportunity. Often it means the harder thing: remaining present, accepting that their purposes are not yours to command, and allowing their risk to place a claim on you.</p>
+<p>The next essay returns to the beginning of the story: a boy carrying his demon sister on his back, bearing the full weight of an exception the system does not know how to classify.</p>
+<hr />
+<p><em>Demon Slayer: Kimetsu no Yaiba, by Koyoharu Gotouge, is complete in twenty-three manga volumes. The anime adaptation is produced by ufotable.</em></p>
+      <nav class="kimetsu-series-nav" aria-label="Series navigation">
+        <a href="2-falls.html">← II · Different Ways of Falling</a>
+        <a class="overview" href="index.html">Series overview</a>
+        <a href="4-weight.html">IV · The Weight on His Back →</a>
+      </nav>
+    </article>
+
+    <article class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
       <div class="kimetsu-spoiler"><strong>剧透提示</strong>：本文按原作漫画全篇展开，涉及人物身世、关键战斗与结局。</div>
 <p>鬼杀队的领袖产屋敷耀哉第一次见到炼狱杏寿郎的时候，炼狱还是个少年。</p>
 <p>那时候炼狱的父亲——前任炎柱槙寿郎——因妻子早逝和对呼吸法传承的绝望而长期酗酒、消沉，终日不理世事。母亲早逝，弟弟年幼，而炼狱在父亲停止教导后，主要靠家中留下的炎柱指南书继续自学剑术。</p>
@@ -112,7 +226,7 @@
 <p>不死川兄弟的故事和妓夫太郎兄妹的故事形成了一个有意思的对照：同样是为了保护对方而采取了极端的方式，同样是最后才说出真话，同样是在失去的那一刻才完成了真正的和解。区别在于——妓夫太郎把妹妹留在了身边，绑得死死的，两个人一起变成了鬼；实弥把弟弟推开，用愤怒和暴力伪装了爱，独自承受。</p>
 <p><strong>一个把关系抓得太紧，一个把关系推得太远。两种方式，同一种恐惧：害怕失去。</strong></p>
 <h2>产屋敷的最后一步</h2>
-<p>无限城决战前，产屋敷做了一个决定：在自己的宅邸里等无惨上门，然后引爆预先埋好的炸药，和妻子一起与无惨同归于尽。</p>
+<p>无限城决战前，产屋敷做了一个决定：在自己的宅邸里等无惨上门，然后引爆预先埋好的炸药，和妻子、两个女儿一起重创无惨。</p>
 <p>他的妻子天音知道这个计划，而且同意了。两个年幼的女儿也在现场。</p>
 <p>爆炸发生的时候，柱们不在场——他们事先被安排到了其他位置。产屋敷没有让任何一个柱来"保护"他，因为他知道如果柱们知道他的计划，他们一定会阻止他，一定会要求代替他去死。</p>
 <p><strong>他用最后一次决策保护了他的柱——不是保护他们的生命，而是保护他们不必承受"没有保护好主公"的愧疚。</strong></p>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>让屏幕当一根跳线 — Non Dubito</title>
+  <meta name="description" content="图库曼的 Los Aparatos：网页闪屏驱动光敏传感器，铅笔线的电阻成为音高，被设计规范扔在边界外的那一堆，正是这批乐器的取信号点。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-08-26.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-08-26</div>
+          <h1 class="lang-zh">让屏幕当一根跳线</h1>
+          <h1 class="lang-en">The Screen as a Patch Cable</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Los Aparatos 是阿根廷图库曼（Tucumán）的一个人和一间工作台。Mateo Carabajal，电子工程师、教师、乐手，2008 年起用 Arduino 做硬件改装和自制合成器。CDM 在 2026 年 8 月 17 日报道了他，起因是 Auduina MK2 开始接受国际订单——在此之前这些东西基本只在阿根廷国内流通。器物有三件。Auduina MK2 是一台桌面颗粒合成器，乳白亚克力配深橡木色激光切割 MDF，旋钮是自己打印的 PLA，带光敏传感器、触摸传感器和 CV 输入。CoyuyoC 是一台以 555 定时器为核心的模拟 drone 合成器，两个三角波振荡器持续互相干扰，产生"有机的持续音和不稳定的泛音"，外壳做成一只虫，两片翅膀就是电位器的旋钮。Drawdio 是一支笔，用石墨、硬币、植物、手，或几乎任何导电物接通电路发声。另外还有一个免费网页应用，叫 <em>secuenciador de luz</em>——光的音序器。</p>
+
+        <p>这个网页做的事简单到容易走过去：你在浏览器里编一段步进序列，网页就按这个序列闪你的屏幕；你把仪器的光敏传感器对着屏幕，仪器就被这串闪光驱动了。显示器在这个配置里不是显示器。它作为工程物的一切——色域、伽马、刷新率、PWM 调光——都是为了让人眼收到稳定图像而存在的，而"它在发射光子"这个赤裸的物理事实，被那整套工程当作手段，从不当作内容。闪烁尤其如此：面板工业花了几十年和巨额成本消除闪烁，因为闪烁正是"显示"这个构造溢出来、必须被推走的那一项。Carabajal 把这一项直接接进了乐器。屏幕成了一根跳线。这不是修辞，是电路真的闭合了：没有驱动，没有协议，没有 API，只有光。</p>
+
+        <p>同一个动作在这批东西里反复出现。Drawdio 从石墨线的电阻里取信号：你画一条线，笔尖沿着自己画的线滑过去，音高跟着走。可是在任何制图训练里，一条铅笔线都被要求均匀——压力要稳，颗粒要匀，不能有斑。所谓"画得好"，很大一部分就是把材料的不均匀压到看不见为止。Drawdio 把这个被压掉的项当成了全部音乐内容：按得重的地方音高塌下去，蹭花的地方音高发抖。皮肤同理——人体电阻在电子设计里是干扰项，是要被屏蔽掉的东西，在这里它是弦。CoyuyoC 的说明书把"不稳定的泛音"写成卖点，指的是两块 555 之间的拍频和互调，而这在任何一份 555 应用手册里都属于要用去耦和缓冲杀掉的缺陷。这批乐器的取信号点，无一例外落在设计规范划完边界之后被扫到界外的那一堆里。</p>
+
+        <p>还有一层余项不在电路上，在关税表上。CDM 的原话很直白：这些东西在阿根廷制造是要紧的，因为在这个市场里进口是惩罚性的。于是电路必须围绕图库曼真的买得到的元件来设计——555、Arduino、激光切 MDF、自己打印的 PLA。这些不是复古趣味的选择，是一份海关制度的化石。北半球的 DIY 合成器世界（柏林、波特兰、布尔诺）早已被艺术界完整消化：它有节展，有收藏，有一整套现成的美学词汇。图库曼这一支没有。它的形制从一条别人不必面对的约束里长出来，而这条约束在既有叙述里根本不算审美范畴，所以无处安放。有一点必须说清楚：Drawdio 不是他发明的——那是 Jay Silver 在 MIT 媒体实验室的东西，再往前还有 PAiA 的 John Simonton 在做电阻发声电路。Carabajal 做的不是首创，是重新落地：把这个想法在另一套物质经济里重做一遍，并且给每一件都加上模拟 I/O，让它们能互相接。这个区分不能糊，糊掉就是把已构冒充成余项。</p>
+
+        <p>最难命名的其实是站点上那一栏 Academia。整套西班牙语教程从 Atari Punk Console 开始，教人自己把这些东西做出来，Drawdio 的教程还单占一页。也就是说，这个实践的首要产出不是器物，是别人做出器物的能力。艺术界对此没有格子：它有"DIY 电子"，有"改装"，有"批判性制作"，有"创客文化"，有"去殖民技术"，有"拉美声音艺术"——每一个都擦得到边，没有一个装得下一件同时是店铺、是学校、又是署名作品的东西。它还麻烦地在卖钱：Tindie 上六十八美元一台。艺术界处理商品的办法是把它读成作品的副本，可这里顺序是反的——器物是教程的样例。这个命名缺口不是冷门造成的，是因为它的产出以一种艺术界不计量的单位结算。</p>
+
+        <p>值得现在看，因为余项正在被它自己的成功花掉。两件事同时在发生。"全球南方 DIY"和"去殖民技术"作为策展范畴这几年硬化得极快，词汇已经备好，位置已经腾出；这批东西一旦被归进去，剩下的会是一件非常讨人喜欢的已构：可展、可申请、可复述。第二件更具体也更迫近——国际发货刚刚打开。而国际发货恰恰是那道让这些设计成为必然的墙开始失效的信号。墙一松，围绕稀缺长出来的形制就从结构性必然退化成风格：粉色旋钮、虫形外壳、激光切 MDF，会被读成"可爱的 lo-fi 手作感"，而不是一份被迫的元件清单留下的压痕。凿构循环在这里比平常跑得快，因为这一次把它推向已构的不是评论，是物流。那只吵得人午睡不成的图库曼大蝉现在还趴在外壳上；等它进了博物馆的橱窗，它就只是一个造型了。</p>
+
+        <a href="https://losaparatos.com.ar/" target="_blank" rel="noopener" class="project-link">losaparatos.com.ar ↗</a>
+        <a href="https://cdm.link/los-aparatos/" target="_blank" rel="noopener" class="project-link">cdm.link ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Los Aparatos is one person and a workbench in Tucumán, Argentina. Mateo Carabajal — electronic engineer, teacher, musician — has been doing hardware hacking and building homemade synthesizers with Arduino since 2008. CDM covered him on 17 August 2026, prompted by the Auduina MK2 opening up international shipping; before that these things mostly circulated inside Argentina. There are three instruments. Auduina MK2 is a small desktop granular synth in opal white acrylic over laser-cut MDF with a dark oak finish, its knobs printed in PLA, with an optical sensor, a touch sensor and CV in. CoyuyoC is an analog drone synth built around the 555 timer: two triangle-wave oscillators interacting continuously to produce "organic drones and unstable harmonics," in a housing shaped like an insect whose two wings <em>are</em> the potentiometer knobs. Drawdio is a pen that makes sound when graphite, a coin, a plant, your hand, or almost anything conductive completes the circuit. And there is a free web app called <em>secuenciador de luz</em> — a sequencer made of light.</p>
+
+        <p>What that web app does is simple enough to walk straight past. You program a step sequence in the browser and the page flashes your screen in that pattern; you point the instrument's optical sensor at the screen, and the instrument is now being driven by it. The display, in this arrangement, is not a display. Everything about it as an engineered object — gamut, gamma, refresh rate, PWM dimming — exists so that a human eye receives a stable image, and the bare physical fact that it emits photons is treated throughout as a means and never as content. Flicker above all: panel engineering has spent decades and enormous money suppressing flicker, because flicker is precisely what the construct called "display" overflows and must push out. Carabajal wires that discarded term straight into an instrument. The screen becomes a patch cable. Not as a figure of speech — the circuit actually closes: no driver, no protocol, no API, just light.</p>
+
+        <p>The same move recurs across all of it. Drawdio takes its signal from the resistance of a graphite line: you draw, you slide the tip along what you drew, the pitch follows. But a pencil line, in any drafting training, is supposed to be even — steady pressure, uniform deposit, no blotches. A large part of what "drawing well" means is suppressing the material unevenness of the medium until it stops being visible. Drawdio makes that suppressed term the entire musical content: where you bore down the pitch drops, where you smudged it wobbles. Skin does the same work — body resistance is an interference term in electronic design, the thing you shield against, and here it is the string. CoyuyoC advertises "unstable harmonics" as a feature, meaning the beating and intermodulation between two 555s, which in any 555 application note is a defect to be killed with decoupling and buffering. Every one of these instruments takes its signal from the pile swept outside the boundary once the design spec has drawn one.</p>
+
+        <p>There is a second remainder that lives not in the circuit but in the tariff schedule. CDM puts it plainly: it is vital that these are made in Argentina, because importing into that market is punishing. So the circuits have to be designed around what can actually be bought in Tucumán — 555s, Arduino, laser-cut MDF, self-printed PLA. These are not retro-flavored choices; they are the fossil of a customs regime. The northern DIY synth world — Berlin, Portland, Brno — has long since been fully digested by the art world: it has festivals, acquisitions, a complete ready-made aesthetic vocabulary. The Tucumán branch has none of that. Its forms grew out of a constraint other people never had to face, and in the existing account that constraint is not an aesthetic category at all, so there is nowhere to file it. One thing must be said cleanly: Drawdio is not his invention — it is Jay Silver's, out of the MIT Media Lab, and before that PAiA's John Simonton was already making resistive sound circuits. What Carabajal did is not first authorship but re-grounding: rebuilding the idea inside a different material economy, and giving every unit analog I/O so the pieces patch into each other. Blur that distinction and you are passing off an already-construct as a remainder.</p>
+
+        <p>The hardest thing here to name is the Academia tab. The site carries a run of Spanish-language tutorials, starting from the Atari Punk Console, teaching you to build these things yourself; the Drawdio tutorial gets its own page. Which means the primary output of the practice is not objects but other people's capacity to make objects. The art world has no slot for that. It has "DIY electronics," "circuit bending," "critical making," "maker culture," "decolonial technology," "Latin American sound art" — every one of them adjacent, not one of them large enough to hold something that is simultaneously a shop, a school, and a signed body of work. It is also, awkwardly, for sale: sixty-eight dollars on Tindie. The art world's way of handling a commodity is to read it as a copy of the work, but here the order is reversed — the object is a worked example of the tutorial. This naming gap is not obscurity. It is that the output settles in a currency the art world does not count.</p>
+
+        <p>Why look now: the remainder is being spent by its own success. Two things are happening at once. "Global South DIY" and "decolonial technology" have hardened very fast as curatorial categories these last few years — the vocabulary is stocked, the slot is cleared, and once this work is filed there, what remains will be a thoroughly likeable already-construct: exhibitable, fundable, restateable. The second is more specific and closer at hand: international shipping just opened. International shipping is exactly the signal that the wall which made these design decisions necessary has begun to fail. Loosen the wall and the forms that grew around scarcity degrade from structural necessity into style — pink knobs, insect housings, laser-cut MDF will read as charming lo-fi handmade-ness rather than as the imprint left by a forced bill of materials. The chisel-construct cycle is running faster here than usual, because what is pushing this toward construct is not criticism but logistics. The giant cicada that wrecks the siesta in Tucumán is still sitting on the enclosure. Once it is behind museum glass it will just be a shape.</p>
+
+        <a href="https://losaparatos.com.ar/" target="_blank" rel="noopener" class="project-link">losaparatos.com.ar ↗</a>
+        <a href="https://cdm.link/los-aparatos/" target="_blank" rel="noopener" class="project-link">cdm.link ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>

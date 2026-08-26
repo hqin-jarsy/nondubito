@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>不同的坠落｜《鬼灭之刃》解读 — Non Dubito</title>
-  <meta name="description" content="猗窝座、妓夫太郎与堕姬、黑死牟、童磨：鬼不是凭空诞生的怪物，而是关系崩塌以后留下的废墟。">
+  <title>Different Ways of Falling · 不同的坠落 — Non Dubito</title>
+  <meta name="description" content="Akaza, Gyutaro and Daki, Kokushibo, Doma: demons are not monsters born from nothing, but ruins left when human bonds collapse. 猗窝座、妓夫太郎与堕姬、黑死牟、童磨：鬼不是凭空诞生的怪物，而是关系崩塌以后留下的废墟。">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500&amp;family=Noto+Serif+SC:wght@400;500;600&amp;display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <style>
-    .kimetsu-spoiler { margin: 1.8rem 0 2.4rem; padding: .9rem 1.1rem; border-left: 3px solid var(--gold); background: var(--cream-dark); color: var(--ink-light); font-family: var(--cjk), serif; font-size: .9rem; line-height: 1.75; }
+    .kimetsu-spoiler { margin: 1.8rem 0 2.4rem; padding: .9rem 1.1rem; border-left: 3px solid var(--gold); background: var(--cream-dark); color: var(--ink-light); font-family: inherit; font-size: .9rem; line-height: 1.75; }
     .kimetsu-series-nav { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--cream-border); font-family: var(--sans); font-size: .72rem; letter-spacing: .04em; }
     .kimetsu-series-nav a { color: var(--green-light); text-decoration: none; }
     .kimetsu-series-nav a:last-child { text-align: right; }
@@ -21,9 +21,37 @@
   </style>
   <link rel="canonical" href="https://nondubito.net/essays/kimetsu/2-falls.html">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="不同的坠落｜《鬼灭之刃》解读">
-  <meta property="og:description" content="猗窝座、妓夫太郎与堕姬、黑死牟、童磨：鬼不是凭空诞生的怪物，而是关系崩塌以后留下的废墟。">
+  <meta property="og:title" content="Different Ways of Falling · 不同的坠落">
+  <meta property="og:description" content="Akaza, Gyutaro and Daki, Kokushibo, Doma: demons are not monsters born from nothing, but ruins left when human bonds collapse.">
   <meta property="og:url" content="https://nondubito.net/essays/kimetsu/2-falls.html">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      if (['en', 'zh', 'zh-hant'].indexOf(saved) === -1) saved = 'en';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.lang = saved === 'zh-hant' ? 'zh-Hant' : (saved === 'zh' ? 'zh-Hans' : 'en');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn[data-lang]');
+        function updateActive() {
+          var current = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === current);
+          });
+        }
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.lang = lang === 'zh-hant' ? 'zh-Hant' : (lang === 'zh' ? 'zh-Hans' : 'en');
+            localStorage.setItem('nd_lang', lang);
+            updateActive();
+          });
+        });
+        updateActive();
+      });
+    })();
+  </script>
+  <script defer src="zh-hant-data/2-falls.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
@@ -46,18 +74,99 @@
   <main class="essay-page">
     <div class="essay-page-hero">
       <div class="essay-page-inner">
-        <a href="index.html" class="back-link">← 《鬼灭之刃》解读系列</a>
-        <div class="essay-page-num">Series II of V · 漫画 / 文化解读</div>
-        <h1 class="essay-page-title zh" style="font-family:var(--cjk),serif;">不同的坠落</h1>
+        <div class="lang-toggle" style="margin-bottom:0.8rem;">
+<button class="lang-btn" data-lang="en">EN</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh">中文</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh-hant">繁體</button>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ja/2-falls.html">日本語</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="fr/2-falls.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="de/2-falls.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="es/2-falls.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ko/2-falls.html">한국어</a>
+</div>
+        <a href="index.html" class="back-link">
+          <span class="lang-en">← Demon Slayer: Five Readings</span>
+          <span class="lang-zh">← 《鬼灭之刃》解读系列</span>
+        </a>
+        <div class="essay-page-num">
+          <span class="lang-en">Series II of V · Manga / Cultural Analysis</span>
+          <span class="lang-zh">系列 II / V · 漫画 / 文化解读</span>
+        </div>
+        <h1 class="essay-page-title lang-en">Different Ways of Falling</h1>
+        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">不同的坠落</h1>
         <div class="essay-page-meta">
           <span>Aug 25, 2026</span>
           <span>Han Qin (秦汉)</span>
-          <span>中文</span>
+          <span class="lang-en">English</span>
+          <span class="lang-zh">中文 · 简 / 繁</span>
         </div>
       </div>
     </div>
 
-    <article class="essay-body" style="font-family:var(--cjk),serif;">
+    <article class="essay-body lang-en">
+      <div class="kimetsu-spoiler"><strong>Spoiler warning:</strong> This essay discusses the complete manga, including character histories, major battles, and the ending.</div>
+<p>A young man stands inside a martial-arts school surrounded by bodies. With his bare hands, he has killed nearly everyone connected to the poisoning of his teacher and fiancée.</p>
+<p>His name is Hakuji.</p>
+<p>As a child, he stole to buy medicine for his dying father. Each arrest brought another beating and another criminal mark on his arms. When his father learned what the boy was doing, he killed himself rather than remain the reason his son was punished. Hakuji was expelled from Edo and survived through violence until Keizo, master of a small dojo, took him in.</p>
+<p>Keizo gave him work, discipline, and trust. Hakuji cared for Keizo's sick daughter Koyuki. The three of them became a family. In time, Hakuji was promised both the dojo and Koyuki's hand.</p>
+<p>Then, while he was away visiting his father's grave, members of a rival school poisoned the well. Keizo and Koyuki died. Hakuji returned to the same lesson he had already learned once: the person he loved could disappear precisely while he was trying to honor someone else he had lost.</p>
+<p>He destroyed the rival dojo. Muzan found him after the slaughter and forced his blood into him. Hakuji became Akaza, Upper Three of the Twelve Kizuki.</p>
+<p>This is more than a tragic backstory added to make a villain sympathetic. <em>Demon Slayer</em> repeatedly treats demonhood as the final shape of a human collapse. The demons remain responsible for what they do, but their evil does not appear from nowhere. <strong>A relationship breaks, a world becomes uninhabitable, and Muzan arrives to offer power where meaning used to be.</strong></p>
+<h2>Akaza: Strength After Its Purpose Is Gone</h2>
+<p>Hakuji's human life is organized around protection.</p>
+<p>He steals because he wants to protect his father. He trains because he wants to protect Keizo and Koyuki. He becomes formidable enough to defeat almost anyone who confronts him. Yet neither loss is caused by an opponent standing directly in front of him. His father dies through self-sacrifice; Keizo and Koyuki die through poison while Hakuji is absent.</p>
+<p>The lesson he receives is unbearable: strength cannot guarantee presence. You can become powerful enough to win every fight and still fail to be where love needs you.</p>
+<p>When Muzan turns him into a demon, Hakuji loses his human memories. Koyuki, Keizo, and the reasons he trained disappear. Only the command remains: become stronger.</p>
+<p>That is what makes Akaza tragic. He is not simply obsessed with strength. He is a protective impulse severed from every person it once meant to protect. For centuries he seeks worthy opponents, praises combat, and despises weakness without knowing that his original desire for power was relational. Strength was once a means. Demonhood turns it into an end without content.</p>
+<p>At his defeat, memory returns. The contradiction becomes visible all at once: the boy who wanted to protect the vulnerable has spent centuries killing them. Akaza ultimately refuses Muzan's demand that he regenerate. Hakuji's last act is not victory over Tanjiro and Giyu, but refusal of the system that preserved him after every purpose for preservation was gone.</p>
+<h2>Gyutaro and Daki: When the Only Bond Becomes a Cage</h2>
+<p>Gyutaro and his younger sister Ume are born at the bottom of the Entertainment District. He is mocked for his appearance, starved, beaten, and treated as refuse. Ume's beauty becomes the first thing in his life that the world appears to value.</p>
+<p>That creates a complicated love. She is his sister, but she is also his evidence that he does not possess nothing. All tenderness, pride, envy, and identity converge on one person.</p>
+<p>After Ume blinds a samurai who insults her brother, she is burned and left near death. Gyutaro finds her, and the two are later transformed by Doma. Ume becomes Daki. As demons, brother and sister share a body and a condition of death: both must be beheaded at the same time.</p>
+<p>The battle mechanism is also a portrait of their relationship. They cannot survive separately. Gyutaro appears through Daki when she is endangered; Daki relies on a brother whose protection never allowed either of them to become independent. The only bond that saved them from a hostile world becomes total.</p>
+<p>It is easy, from safety, to diagnose the relationship as unhealthy. The diagnosis is not wrong. But the story asks a harder question: what kind of independence could two abandoned children have learned from a world that offered them no safe relation except each other?</p>
+<p>After their defeat, Gyutaro tries to send Daki away from him. He imagines that with a different brother she might have had a different life. She refuses. She climbs onto his back as she did when they were children, and they go into darkness together.</p>
+<p>Their bond is distorted, possessive, and still real. <em>Demon Slayer</em> does not demand that dignity arrive in a psychologically perfect form. Sometimes the last human thing left is the imperfect way two people refuse to abandon one another.</p>
+<h2>Kokushibo: A Brother Turned into a Measure</h2>
+<p>Before he is Kokushibo, Upper One, he is Michikatsu Tsugikuni: elder twin of Yoriichi.</p>
+<p>Michikatsu is born into the role of heir. He trains, acquires status, and understands himself as the gifted son. Yoriichi is the strange, silent child expected to be sent away. Then Yoriichi touches a sword and reveals a talent so vast that comparison becomes almost meaningless.</p>
+<p>But comparison is exactly what Michikatsu cannot stop doing.</p>
+<p>He joins the Demon Slayer Corps, develops Moon Breathing, and becomes an extraordinary swordsman. None of it is enough, because “extraordinary” still exists below Yoriichi. His brother becomes the standard against which every achievement turns into failure.</p>
+<p>This is the poison of a relationship governed entirely by rank. The question is no longer “What can I become?” It is “Have I become more than him?” As long as the answer is no, Michikatsu cannot possess his own accomplishment. Even love and admiration become injuries, because the person admired is also the evidence of his inferiority.</p>
+<p>Fear of the early death associated with the Demon Slayer Mark intensifies the trap. Muzan offers a demon body, centuries of training, and freedom from human limits. Michikatsu accepts and becomes Kokushibo.</p>
+<p>He gains almost everything he sought. He lives for centuries. He rises above every demon except Muzan. He perfects a terrifying art. Yet at the end, when his transformed body becomes monstrous, he finally sees the contradiction: in trying to become like Yoriichi, he has made himself the thing Yoriichi devoted his life to opposing.</p>
+<p>The tragedy is not insufficient talent. It is the loss of a self outside comparison.</p>
+<h2>Doma: The Demon Without a Bond to Lose</h2>
+<p>Doma differs from the others because there is no original human relationship whose destruction explains him.</p>
+<p>From childhood, he is displayed as a sacred child. Adults kneel, cry, confess, and ask him for salvation because of his beautiful appearance and rainbow-colored eyes. He learns the performance of compassion before he experiences compassion itself. People approach him not as a child, but as a function: listen, console, redeem.</p>
+<p>He reports feeling almost nothing. When his mother kills his unfaithful father and then herself, the young Doma is disturbed mainly by the mess and smell. Later, as a demon and cult leader, he continues “saving” followers by consuming them. In his logic, ending their individual lives and incorporating them into himself is mercy.</p>
+<p>Doma is not the ruin left after a bond collapses. He is the vacancy produced when no bond becomes real in the first place.</p>
+<p>That makes his confrontation with Shinobu Kocho fitting. Shinobu has spent years saturating her body with wisteria poison so Doma will ingest a lethal dose when he eats her. Her plan depends on a relationship—her love for Kanae and her trust that Kanao and Inosuke will finish what she begins. Doma consumes the body but cannot understand the structure of commitment inside it.</p>
+<p>Only as he disappears does he interpret an unfamiliar response as something like love. Shinobu does not grant him a late redemption. She leaves him to hell.</p>
+<h2>The Same Entrance, Different Doors</h2>
+<p>Akaza loses everyone he loves. Gyutaro and Daki are never admitted into the human world except through each other. Kokushibo lets comparison consume the relationship that defines him. Doma never forms the emotional connection the others lose.</p>
+<p>Their histories are different. Their entrance into Muzan's system has one common feature: the line connecting them to a human world is absent, severed, or poisoned.</p>
+<p>Muzan does not need to build a beautiful alternative. He needs only to wait at the edge of the ruins. The world does the breaking; he offers the broken a form that can continue moving.</p>
+<p>This is why systems based on human consumption so often recruit from isolation. They do not necessarily search for “bad people.” They search for people whose previous relations have failed, whose pain has no witness, whose identity has nowhere else to stand. Power becomes persuasive when belonging has already disappeared.</p>
+<p>The demons remain accountable. Tragedy is not innocence. But accountability without structural understanding teaches us very little. If we want to understand how monsters are made, it is not enough to ask what evil they chose. We must also ask what relations vanished before the choice became thinkable.</p>
+<p>The next essay turns to the opposite structure: Kagaya Ubuyashiki and the Hashira, people who walk toward death not because every bond has broken, but because they believe their lives are being held by others even as they spend them.</p>
+<hr />
+<p><em>Demon Slayer: Kimetsu no Yaiba, by Koyoharu Gotouge, is complete in twenty-three manga volumes. The anime adaptation is produced by ufotable.</em></p>
+      <nav class="kimetsu-series-nav" aria-label="Series navigation">
+        <a href="1-fear.html">← I · A Thousand Years of Fear</a>
+        <a class="overview" href="index.html">Series overview</a>
+        <a href="3-accompany.html">III · To Accompany Them with One&#x27;s Life →</a>
+      </nav>
+    </article>
+
+    <article class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
       <div class="kimetsu-spoiler"><strong>剧透提示</strong>：本文按原作漫画全篇展开，涉及人物身世、关键战斗与结局。</div>
 <p>一个男人站在武馆里，四周全是尸体——害死他师父和未婚妻的人，几乎都被他徒手杀死了。</p>
 <p>他自幼和重病的父亲相依为命。为了给父亲买药，他反复偷窃，遭受杖刑，手臂上也被刺下罪犯的印记。父亲得知以后，为了不再拖累儿子而自尽。失去父亲的少年被逐出江户，靠打架活着，直到武馆主人庆藏收留了他。</p>
@@ -94,15 +203,15 @@
 <p>这段关系有没有问题？有。妓夫太郎把妹妹当作自己存在的意义，堕姬在哥哥的庇护下从未学会独立面对世界。但在一个从未给过他们任何其他东西的世界里，<strong>你没有资格批评一个溺水的人抓救生圈的姿势不够标准。</strong> 他们用仅有的东西——彼此——在一个完全敌意的环境中存活了下来，这件事本身就包含着某种尊严。</p>
 <h2>黑死牟：被天才碾碎的哥哥</h2>
 <p>上弦之壹黑死牟，本名继国岩胜的故事，也许是整部作品中最安静也最可怕的悲剧。</p>
-<p>他是继国缘一的哥哥。在战国时代，继国家是武士世家，严胜是长子，被寄予厚望。弟弟缘一从小被认为是废物——沉默寡言，被父亲厌弃，甚至被关在柴房里。</p>
-<p>然后有一天，严胜发现弟弟在练剑。缘一随手一挥，剑术已经超过了严胜苦练多年的水平。不是超过一点点，是完全不在一个维度上。</p>
-<p>从那一刻起，严胜的世界崩塌了。<strong>他的全部自我认知——"我是家族的希望""我是最优秀的那一个"——一夜之间变成了谎言。</strong>而且这个谎言的揭穿者不是一个外人，是他的亲弟弟，一个他从小看不起的人。</p>
-<p>后来缘一离开了家，创造了"日之呼吸"，成为鬼杀队历史上最强的剑士。严胜也加入了鬼杀队，成为实力顶尖的"月之呼吸"使用者。但"顶尖"不是"最强"。<strong>无论严胜怎么努力，他和弟弟之间的差距不是在缩小，而是在扩大。</strong></p>
+<p>他是继国缘一的哥哥。在战国时代，继国家是武士世家，岩胜是长子，被寄予厚望。弟弟缘一从小被认为是废物——沉默寡言，被父亲厌弃，只能住在狭小的房间里。</p>
+<p>然后有一天，岩胜发现弟弟在练剑。缘一随手一挥，剑术已经超过了岩胜苦练多年的水平。不是超过一点点，是完全不在一个维度上。</p>
+<p>从那一刻起，岩胜的世界崩塌了。<strong>他的全部自我认知——"我是家族的希望""我是最优秀的那一个"——一夜之间变成了谎言。</strong>而且这个谎言的揭穿者不是一个外人，是他的亲弟弟，一个他从小看不起的人。</p>
+<p>后来缘一离开了家，创造了"日之呼吸"，成为鬼杀队历史上最强的剑士。岩胜也加入了鬼杀队，成为实力顶尖的"月之呼吸"使用者。但"顶尖"不是"最强"。<strong>无论岩胜怎么努力，他和弟弟之间的差距不是在缩小，而是在扩大。</strong></p>
 <p>这种体验的毁灭性在于它的永恒性。如果你输给了一个陌生人，你可以告诉自己"他只是运气好"或者"下次我会赢"。但如果你输给的是你的双胞胎弟弟——一个和你共享了基因、共享了成长环境的人——那么你没有任何借口。差距不在于努力，不在于机会，就在于你们本身。这是对一个人最根本的否定：你就是不行。不是因为你不够努力，就是因为你不够好。</p>
-<p>严胜最终选择变成鬼，名为黑死牟。原因只有一个：鬼的身体可以不断变强，没有人类肉体的极限。他用了几百年的时间修炼，成为了上弦之壹——仅次于无惨的最强之鬼。</p>
+<p>岩胜最终选择变成鬼，名为黑死牟。原因只有一个：鬼的身体可以不断变强，没有人类肉体的极限。他用了几百年的时间修炼，成为了上弦之壹——仅次于无惨的最强之鬼。</p>
 <p>但到最后，在被鬼杀队击败，身体即将消散的时刻，他在自己溶解的肉身中看到了自己的脸——一张变得和无惨一样丑陋的脸。他突然想起了自己最初的愿望：我只是想成为像弟弟那样的人。</p>
 <p><strong>为了成为弟弟那样的人，他变成了和弟弟最不一样的东西。</strong></p>
-<p>他追求的是力量，但弟弟的力量从来不来自于"追求力量"。缘一之所以强，是因为他的剑术中没有执念、没有自我、没有要证明什么的冲动——他只是在做他该做的事。而严胜的每一次挥剑都带着"我要超过弟弟"的执念，这个执念本身就是他永远到不了弟弟那个境界的原因。</p>
+<p>他追求的是力量，但弟弟的力量从来不来自于"追求力量"。缘一之所以强，是因为他的剑术中没有执念、没有自我、没有要证明什么的冲动——他只是在做他该做的事。而岩胜的每一次挥剑都带着"我要超过弟弟"的执念，这个执念本身就是他永远到不了弟弟那个境界的原因。</p>
 <p>黑死牟的悲剧不是"天赋不够"的悲剧。它是一种更深的东西：<strong>当你和另一个人的关系被"比较"所定义，当你只能通过超越对方来确认自己的价值时，那段关系就从源头上被毒化了。</strong>你爱对方还是恨对方已经不重要了，因为对方的存在本身就是你的伤口。</p>
 <h2>童磨：无关系的鬼</h2>
 <p>上弦之贰童磨是所有上弦中最特殊的一个——不是因为他最强，而是因为他最空。</p>

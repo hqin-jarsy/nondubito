@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>一千年的恐惧｜《鬼灭之刃》解读 — Non Dubito</title>
-  <meta name="description" content="鬼舞辻无惨不是从强大开始，而是从恐惧开始。当一个存在为了逃避死亡，把所有生命都变成工具，千年的支配体系就此成形。">
+  <title>A Thousand Years of Fear · 一千年的恐惧 — Non Dubito</title>
+  <meta name="description" content="Muzan begins not with strength but with fear. Once every life becomes a tool for escaping death, a thousand-year system of domination takes shape. 鬼舞辻无惨不是从强大开始，而是从恐惧开始。当一个存在为了逃避死亡，把所有生命都变成工具，千年的支配体系就此成形。">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500&amp;family=Noto+Serif+SC:wght@400;500;600&amp;display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <style>
-    .kimetsu-spoiler { margin: 1.8rem 0 2.4rem; padding: .9rem 1.1rem; border-left: 3px solid var(--gold); background: var(--cream-dark); color: var(--ink-light); font-family: var(--cjk), serif; font-size: .9rem; line-height: 1.75; }
+    .kimetsu-spoiler { margin: 1.8rem 0 2.4rem; padding: .9rem 1.1rem; border-left: 3px solid var(--gold); background: var(--cream-dark); color: var(--ink-light); font-family: inherit; font-size: .9rem; line-height: 1.75; }
     .kimetsu-series-nav { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--cream-border); font-family: var(--sans); font-size: .72rem; letter-spacing: .04em; }
     .kimetsu-series-nav a { color: var(--green-light); text-decoration: none; }
     .kimetsu-series-nav a:last-child { text-align: right; }
@@ -21,9 +21,37 @@
   </style>
   <link rel="canonical" href="https://nondubito.net/essays/kimetsu/1-fear.html">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="一千年的恐惧｜《鬼灭之刃》解读">
-  <meta property="og:description" content="鬼舞辻无惨不是从强大开始，而是从恐惧开始。当一个存在为了逃避死亡，把所有生命都变成工具，千年的支配体系就此成形。">
+  <meta property="og:title" content="A Thousand Years of Fear · 一千年的恐惧">
+  <meta property="og:description" content="Muzan begins not with strength but with fear. Once every life becomes a tool for escaping death, a thousand-year system of domination takes shape.">
   <meta property="og:url" content="https://nondubito.net/essays/kimetsu/1-fear.html">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      if (['en', 'zh', 'zh-hant'].indexOf(saved) === -1) saved = 'en';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.lang = saved === 'zh-hant' ? 'zh-Hant' : (saved === 'zh' ? 'zh-Hans' : 'en');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn[data-lang]');
+        function updateActive() {
+          var current = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === current);
+          });
+        }
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.lang = lang === 'zh-hant' ? 'zh-Hant' : (lang === 'zh' ? 'zh-Hans' : 'en');
+            localStorage.setItem('nd_lang', lang);
+            updateActive();
+          });
+        });
+        updateActive();
+      });
+    })();
+  </script>
+  <script defer src="zh-hant-data/1-fear.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
@@ -46,18 +74,97 @@
   <main class="essay-page">
     <div class="essay-page-hero">
       <div class="essay-page-inner">
-        <a href="index.html" class="back-link">← 《鬼灭之刃》解读系列</a>
-        <div class="essay-page-num">Series I of V · 漫画 / 文化解读</div>
-        <h1 class="essay-page-title zh" style="font-family:var(--cjk),serif;">一千年的恐惧</h1>
+        <div class="lang-toggle" style="margin-bottom:0.8rem;">
+<button class="lang-btn" data-lang="en">EN</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh">中文</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang="zh-hant">繁體</button>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ja/1-fear.html">日本語</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="fr/1-fear.html">Français</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="de/1-fear.html">Deutsch</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="es/1-fear.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn" href="ko/1-fear.html">한국어</a>
+</div>
+        <a href="index.html" class="back-link">
+          <span class="lang-en">← Demon Slayer: Five Readings</span>
+          <span class="lang-zh">← 《鬼灭之刃》解读系列</span>
+        </a>
+        <div class="essay-page-num">
+          <span class="lang-en">Series I of V · Manga / Cultural Analysis</span>
+          <span class="lang-zh">系列 I / V · 漫画 / 文化解读</span>
+        </div>
+        <h1 class="essay-page-title lang-en">A Thousand Years of Fear</h1>
+        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">一千年的恐惧</h1>
         <div class="essay-page-meta">
           <span>Aug 25, 2026</span>
           <span>Han Qin (秦汉)</span>
-          <span>中文</span>
+          <span class="lang-en">English</span>
+          <span class="lang-zh">中文 · 简 / 繁</span>
         </div>
       </div>
     </div>
 
-    <article class="essay-body" style="font-family:var(--cjk),serif;">
+    <article class="essay-body lang-en">
+      <div class="kimetsu-spoiler"><strong>Spoiler warning:</strong> This essay discusses the complete manga, including character histories, major battles, and the ending.</div>
+<p>A dying young man kills the doctor who is trying to save him.</p>
+<p>The doctor has not betrayed him. The treatment has already begun to work. But recovery is slow, the patient cannot see the change, and terror turns into rage. Only after the murder does he discover that the unfinished medicine has transformed his body. The disease will no longer kill him. The price is that sunlight now can.</p>
+<p>The patient is Muzan Kibutsuji. He will become the source of every demon in <em>Demon Slayer: Kimetsu no Yaiba</em>, the shadow hanging over its human world for a thousand years.</p>
+<p>But before he is the final villain, he is a frightened patient: <strong>a man so afraid of death that he destroys the relationship on which his survival depends.</strong></p>
+<h2>Fear as an Operating System</h2>
+<p><em>Demon Slayer</em> is easy to describe as a battle between good and evil. Tanjiro Kamado returns home to find his family murdered and his sister Nezuko transformed into a demon. He joins the Demon Slayer Corps, searches for a way to restore her humanity, and fights the creatures made by Muzan. The structure is classical: loss, training, companions, ordeals, final confrontation.</p>
+<p>Yet the story's global force comes from something deeper than its battle system. It asks what happens when fear ceases to be one emotion among others and becomes the operating system of an entire existence.</p>
+<p>Ordinary fear of death can sharpen life. It can make time precious. It can push a person toward love, memory, work, or reconciliation. Muzan's fear does the opposite. It expands until nothing else is allowed to matter. He does not want to live <em>for</em> anything. He wants only not to die.</p>
+<p>That difference creates the whole structure around him.</p>
+<p>To escape death, he must conquer sunlight and recover the missing ingredient in his doctor's medicine: the Blue Spider Lily. So he turns human beings into demons and scatters them across the country as experiments, hunters, and search instruments. Perhaps one will become immune to the sun. Perhaps one will find the flower. Their lives, appetites, and suffering have no independent significance. Each demon is valuable only as a possible extension of Muzan's survival.</p>
+<p>His blood also carries control. He can reach into the memories and thoughts of the demons bound to him, and the curse in that blood allows him to kill them from afar. He creates powerful beings, then makes sure their power never becomes autonomy.</p>
+<p>This is not merely how a tyrant rules. It is how a terrified person tries to abolish every source of uncertainty.</p>
+<h2>A System Without Horizontal Bonds</h2>
+<p>Muzan's order has a peculiar shape. Every demon is connected upward to him, but almost none are connected sideways to one another.</p>
+<p>The Upper Ranks share no project beyond obedience. They do not form a genuine council, a brotherhood, or even a stable team. They compete, mock one another, and guard their positions. The Lower Ranks are still more disposable. What looks like an organization is really a set of isolated nodes, each attached to the same center by fear.</p>
+<p>Why build a system this way?</p>
+<p>Because horizontal relationships create alternative loyalties. Friendship, love, gratitude, and solidarity give a person reasons to disobey. If two subordinates begin to care about each other, each now possesses something Muzan does not fully control. One may risk punishment to protect the other. From his point of view, that bond is a security failure.</p>
+<p>So Muzan does not merely demand obedience. He destroys the conditions under which trust could grow.</p>
+<p>The massacre of the Lower Ranks makes this logic visible. Muzan summons them after repeated failure and kills almost all of them within minutes. Explanation does not help. Silence does not help. Flight does not help. Submission does not create safety. The point is not to enforce a clear standard; the point is to demonstrate that there is no standard outside his present will.</p>
+<p>Arbitrariness is useful to domination because it prevents the dominated from predicting enough to cooperate. Trust needs some stable relationship between action and consequence. Under Muzan, the only predictable fact is that nothing is predictable.</p>
+<p>Fear isolates before it commands.</p>
+<h2>Muzan and Ubuyashiki: Two Kinds of Eternity</h2>
+<p>Kagaya Ubuyashiki, leader of the Demon Slayer Corps, is Muzan's structural opposite.</p>
+<p>Their families share a bloodline. Muzan's transformation brought a curse upon the Ubuyashiki family, whose male heirs die young. Kagaya knows that he will not reach thirty. In that sense, both men begin under the same horizon: death is approaching, and neither can bargain it away.</p>
+<p>They answer that fact in opposite ways.</p>
+<p>Muzan concludes that every other life may be spent to extend his own. Kagaya concludes that because his life will be short, it must be placed inside a work larger than himself. He leads a struggle he knows may not end in his generation. He remembers the dead, cultivates successors, and makes his own authority transferable.</p>
+<p>At the final stage, Kagaya turns his estate into a trap and detonates it with himself, his wife, and two of their daughters inside. The act is terrible; the story does not make its human cost disappear. But structurally it reveals the exact opposite of Muzan's position. Muzan sacrifices everyone so that he might remain. Kagaya sacrifices himself so that others might continue.</p>
+<p>Muzan lives for a thousand years and builds nothing capable of surviving his control. Kagaya lives less than three decades and leaves behind people who can complete what he cannot.</p>
+<p>One man mistakes duration for eternity. The other discovers that continuity can exist between persons.</p>
+<p><strong>A system without relationships has no future. It can persist, but it cannot inherit.</strong></p>
+<h2>Why Kill the Doctor?</h2>
+<p>Return to the first murder.</p>
+<p>At the surface, Muzan kills the doctor because he is impatient and enraged. At a deeper level, the doctor represents a condition Muzan cannot tolerate: dependence.</p>
+<p>To accept treatment is to admit vulnerability. The patient must place part of his future in another person's hands. He cannot command the body to heal on schedule. He must trust someone who knows what he does not know, wait through uncertainty, and endure the humiliating fact that survival is not entirely self-produced.</p>
+<p>Muzan would rather destroy the relationship than inhabit that vulnerability.</p>
+<p>The murder becomes a pattern. He will never again allow another person to stand beside him as someone whose judgment, freedom, or care he genuinely needs. He creates demons, but not companions. He permits service, never reciprocity. He seeks absolute security by eliminating every bond that could expose him to disappointment or loss.</p>
+<p>For a thousand years, this strategy seems to work. No demon can safely betray him. No rival can approach his power. He stands at the center of a world designed to prevent surprise.</p>
+<p>Then dawn comes.</p>
+<p>Tanjiro has Nezuko, Zenitsu, Inosuke, Giyu, and the accumulated help of people met along the way. Kagaya has the Hashira, his family, and a Corps able to act after his death. Even the most solitary Demon Slayers enter the final battle beside others.</p>
+<p>Muzan has no one who will stand between him and the sun.</p>
+<p>He is not alone because he was too great to find an equal. He is alone because he spent a millennium destroying every condition under which equality, loyalty, and love might have appeared.</p>
+<p>The first essay therefore begins not with Muzan's strength, but with his fear. His body becomes almost impossible to kill. His world becomes impossible to live in.</p>
+<p>The next essay turns to the demons absorbed into that world: not monsters born from nothing, but human ruins gathered at the moment when their last bonds had broken.</p>
+<hr />
+<p><em>Demon Slayer: Kimetsu no Yaiba, by Koyoharu Gotouge, is complete in twenty-three manga volumes. The anime adaptation is produced by ufotable.</em></p>
+      <nav class="kimetsu-series-nav" aria-label="Series navigation">
+        <span></span>
+        <a class="overview" href="index.html">Series overview</a>
+        <a href="2-falls.html">II · Different Ways of Falling →</a>
+      </nav>
+    </article>
+
+    <article class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
       <div class="kimetsu-spoiler"><strong>剧透提示</strong>：本文按原作漫画全篇展开，涉及人物身世、关键战斗与结局。</div>
 <p>一个快要病死的年轻人，杀了正在给他治病的医生。</p>
 <p>不是因为医生害他，恰恰相反——医生的药已经开始起效了。但疗程还没结束，病人看不到好转的迹象，暴怒之下将医生杀死。直到后来他才发现，那副未完成的药确实在改变他的身体：他不会再死于疾病了。代价是他再也无法站在阳光下。</p>
