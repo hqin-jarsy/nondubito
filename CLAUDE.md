@@ -66,6 +66,20 @@ git apply --cached /tmp/mine.patch
 
 - Never translate "Self-as-an-End" into any other language, anywhere on the
   site.
+- Section headings inside `.essay-body` must be `<h2>`, never `<h3>`.
+  `style.css` defines `.essay-body h2` and has **no** `h3` rule at all, so an
+  `<h3>` silently falls back to the browser default and looks wrong. (The
+  older rights-series files used `h3`; they were converted in Aug 2026.)
+- The language-toggle script in essay and series-index pages should use the
+  hardened form — reject any stored value that isn't `zh`/`en`, and set both
+  the `data-lang` and `lang` attributes on `<html>`:
+
+  ```
+  var saved = localStorage.getItem('nd_lang');
+  if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+  document.documentElement.setAttribute('data-lang', saved);
+  document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+  ```
 - Each essay series follows the same three-piece pattern: `essays/<name>/
   ep0N.html` per episode, `essays/<name>/index.html` as the series landing
   page, and a `<section class="essays-section" id="<name>">` block in the
