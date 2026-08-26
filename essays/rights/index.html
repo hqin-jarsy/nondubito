@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>权利论 — Non Dubito</title>
+  <meta name="description" content="权利论系列：七篇散文，从清理误认到起源、谱系、权利为何不预设义务、权利与权力的接口、限度与生长，最后回到权益与正在形成中的主体。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/rights/index.html">
+  <style>
+    .series-container { max-width:var(--max-w-prose); margin:0 auto; padding:100px 2.5rem 80px; }
+    @media(max-width:620px) { .series-container { padding:80px 1.5rem 60px; } }
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .series-label { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .series-title { font-family:var(--serif); font-size:2rem; color:var(--ink); margin:0.5rem 0 0.25rem; line-height:1.2; }
+    .series-title-en { font-family:var(--serif); font-size:1.2rem; color:var(--ink-muted); margin-bottom:1.5rem; }
+    .series-desc { font-size:1rem; color:var(--ink); line-height:1.7; margin-bottom:2.5rem; }
+    .series-desc p { margin-bottom:1em; }
+    .series-meta { font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--cream-border); }
+    .entry-list { list-style:none; padding:0; margin:0; }
+    .entry-row { display:block; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); margin-bottom:0.75rem; transition:background 0.15s, border-color 0.15s; }
+    .entry-row:hover { background:rgba(0,0,0,0.02); border-color:var(--ink-muted); }
+    .entry-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:0.4rem; }
+    .entry-num { font-family:var(--sans); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+    .entry-title-zh { font-family:var(--serif); font-size:1.1rem; color:var(--ink); }
+    .entry-title-en { font-family:var(--serif); font-size:0.95rem; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .entry-desc { font-size:0.85rem; color:var(--ink-muted); line-height:1.5; }
+    .source-note { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--cream-border); font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); }
+    .source-note a { color:var(--ink-muted); text-decoration:none; }
+    .source-note a:hover { color:var(--ink); }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="../../index.html" class="active">Essays</a>
+        <a href="../../credesivis.html">Crede si vis</a>
+        <a href="../../about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+  <main class="series-container">
+    <div class="lang-toggle" style="margin-bottom:1.5rem;">
+      <button class="lang-btn" data-lang="zh">中文</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <a href="../../index.html" class="back-link lang-zh">← Non Dubito</a>
+    <a href="../../index.html" class="back-link lang-en">← Non Dubito</a>
+
+    <div class="series-label lang-zh">SAE 权利论系列 · 散文版</div>
+    <div class="series-label lang-en">SAE Rights Theory · Essays</div>
+    <h1 class="series-title lang-zh">权利论</h1>
+    <h1 class="series-title lang-en">Rights Theory</h1>
+    <div class="series-title-en lang-zh">Rights Theory · SAE</div>
+    <div class="series-title-en lang-en">权利论 · SAE</div>
+
+    <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
+      <p>"权利"常常被裹挟在恩赐、许可、律法条文，或者"权力愿意留给你的余地"这些说法里，很少有人问：权利本身究竟是什么。这个系列从清理这些误认开始，逐步搭建一套结构性的权利理论——权利来自一个以自身为目的的主体如何为自己立法，从最基础的生命与身体层面的权利，一路展开成一整条通向承认性权利的谱系。</p>
+      <p>这七篇散文改写自SAE权利论学术系列（Prequel至Special Study），保留原有论证的结构骨架，以散文的方式重新展开：从五种误认的清理，到起源与谱系，到权利为何不预设义务，到两条脊柱各自的厚度与边界，到权利与权力如何在同一道结构性缝隙的两侧相遇，到限度、侵犯与生长，最后回到一个悬而未决的问题——一个尚在形成中的主体，究竟从什么时候开始真正持有权利。</p>
+    </div>
+    <div class="series-desc lang-en">
+      <p>Rights are usually wrapped in language borrowed from gift-giving, permission, statute, or "whatever space power is willing to leave you" — rarely does anyone ask what a right actually is. This series begins by clearing away those misidentifications, then builds a structural theory from the ground up: rights arise from how a being that is an end in itself legislates for itself, unfolding from the most basic rights of life and body into a full spectrum reaching toward recognition-based rights.</p>
+      <p>These seven essays are prose rewrites of the SAE Rights Theory academic series (Prequel through the Special Study), preserving the structure of the original arguments while unfolding them in essay form: from clearing five misidentifications, to origin and spectrum, to why rights presuppose no duty, to the thickness and boundaries of the two spines, to where rights and power meet on either side of the same structural gap, to limits, violations, and growth, and finally back to a question left open from the start — at what point a subject still in formation actually comes to hold rights.</p>
+    </div>
+
+    <div class="series-meta">
+      <span>Han Qin (秦汉) · 2026</span>
+    </div>
+
+    <ul class="entry-list">
+      <li>
+        <a href="ep01.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第一篇 · 前置</span>
+            <span class="entry-num lang-en">Essay 1 · Prequel</span>
+          </div>
+          <div class="entry-title-zh lang-zh">权利不是什么</div>
+          <div class="entry-title-en lang-en">What Rights Are Not</div>
+          <div class="entry-desc lang-zh">在建立任何正面的权利理论之前，先做清场。恩赐、许可、权力、律法、利益——五种常见的错位指认，逐一排除；再问自由不是免于什么，而是不得不。</div>
+          <div class="entry-desc lang-en">Before building a positive theory, clear the ground. Five common mis-identifications of rights — gift, permission, power, law, interest — ruled out one by one; then freedom redefined as not freedom-from, but cannot-not.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep02.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第二篇</span>
+            <span class="entry-num lang-en">Essay 2</span>
+          </div>
+          <div class="entry-title-zh lang-zh">权利的源与谱</div>
+          <div class="entry-title-en lang-en">The Source and Spectrum of Rights</div>
+          <div class="entry-desc lang-zh">权利来自一个以自身为目的的主体如何为自己立法。从这一个不能不然的起点，展开出两条脊柱——基础权利与承认性权利——以及谱系顶端一项不能被追问的权利。</div>
+          <div class="entry-desc lang-en">Rights arise from how a being that is an end in itself legislates for itself. From that single unavoidable starting point, two spines unfold — basic rights and recognition-based rights — reaching a right at the top of the spectrum that cannot itself be questioned.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep03.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第三篇</span>
+            <span class="entry-num lang-en">Essay 3</span>
+          </div>
+          <div class="entry-title-zh lang-zh">权利为何不预设义务</div>
+          <div class="entry-title-en lang-en">Why Rights Presuppose No Duty</div>
+          <div class="entry-desc lang-zh">权利是否必然对应一份义务？这一篇挑战这条几乎被当作公理的假设：真正彻底的自我立法，推到底就没法在不自相矛盾的情况下践踏他人——这不是被要求的，是被推导出来的。</div>
+          <div class="entry-desc lang-en">Does every right necessarily correspond to a duty? This essay challenges an assumption treated as near-axiomatic: a truly consistent self-legislation, followed all the way through, cannot trample others without contradicting itself — not because it is required to, but because it is derived.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep04.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第四篇</span>
+            <span class="entry-num lang-en">Essay 4</span>
+          </div>
+          <div class="entry-title-zh lang-zh">两条脊柱细说</div>
+          <div class="entry-title-en lang-en">Two Spines in Detail</div>
+          <div class="entry-desc lang-zh">走进两条脊柱各自的内部：基础权利有多厚，边界画在哪里；承认性权利怎样真正立起来，又会以哪五种方式垮掉。</div>
+          <div class="entry-desc lang-en">Inside the two spines: how thick a basic right runs and where its boundary sits; how a recognition-based right actually gets established, and the five ways it can fail.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep05.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第五篇</span>
+            <span class="entry-num lang-en">Essay 5</span>
+          </div>
+          <div class="entry-title-zh lang-zh">承认性权利与权力的接口</div>
+          <div class="entry-title-en lang-en">Where Rights Meet Power</div>
+          <div class="entry-desc lang-zh">承认性权利与社会权力之间是什么关系？同一道结构性的缝，从持有者一端看是权利，从受影响者一端看是权力——外加易位权、退出权，以及横跨整条光谱的财产权。</div>
+          <div class="entry-desc lang-en">What is the relation between a recognition-based right and social power? The same structural gap read two ways — a right from the holder's side, an exercise of power from the affected party's side — plus transfer-rights, exit-rights, and property rights spanning the whole spectrum.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep06.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第六篇</span>
+            <span class="entry-num lang-en">Essay 6</span>
+          </div>
+          <div class="entry-title-zh lang-zh">权利的限、侵与生长</div>
+          <div class="entry-title-en lang-en">The Limits, Violations, and Growth of Rights</div>
+          <div class="entry-desc lang-zh">一项基础权利能承受多深的压力而不垮掉？侵犯可以按三条互不通约的轴分类，边界标准从不看动机；而整条谱系在历史中持续生长，培育与殖民之间只有一条很容易被误认的线。</div>
+          <div class="entry-desc lang-en">How much pressure can a basic right absorb before it fails? Violations sort along three incommensurable axes, and the boundary standard never looks at motive; the spectrum keeps growing across history, with cultivation and colonization separated by a line that is easy to mistake.</div>
+        </a>
+      </li>
+      <li>
+        <a href="ep07.html" class="entry-row">
+          <div class="entry-header">
+            <span class="entry-num lang-zh">第七篇 · 压轴</span>
+            <span class="entry-num lang-en">Essay 7 · Capstone</span>
+          </div>
+          <div class="entry-title-zh lang-zh">权利与权益</div>
+          <div class="entry-title-en lang-en">Rights and Entitlements</div>
+          <div class="entry-desc lang-zh">还清系列开篇悬置的两笔债：权益——被给予却不因此持有任何东西的位置——如何运作；以及一个尚在形成中的主体，究竟从什么时候开始真正持有权利。</div>
+          <div class="entry-desc lang-en">Repaying two debts left open since the series began: how an entitlement works — a position that is given something without thereby holding anything — and at what point a subject still in formation actually comes to hold rights.</div>
+        </a>
+      </li>
+    </ul>
+
+    <div class="source-note">
+      <span class="lang-zh">学术原文：<a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a>　·　全系列论文存档于 <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo</a>，CC BY 4.0</span>
+      <span class="lang-en">Academic originals: <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a>　·　Full series archived on <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo</a>, CC BY 4.0</span>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
