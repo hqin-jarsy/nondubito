@@ -23,24 +23,25 @@
   .series-nav{display:flex;gap:1rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--cream-border)}
   .series-nav-btn{flex:1;display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;border:1px solid var(--cream-border);border-radius:6px;text-decoration:none;color:var(--ink);transition:background .15s,border-color .15s}.series-nav-btn:hover{background:rgba(0,0,0,.03);border-color:var(--ink-muted)}
   .series-nav-next{justify-content:flex-end;text-align:right}.series-nav-icon{font-size:1.4rem;color:var(--ink-muted);flex-shrink:0;line-height:1}.series-nav-label{display:flex;flex-direction:column;gap:.2rem}.series-nav-sub{font-family:var(--sans);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}.series-nav-title{font-family:var(--serif);font-size:.95rem;color:var(--ink)}
-  [data-lang="en"] .lang-zh{display:none}[data-lang="zh"] .lang-en{display:none}
+  [data-lang="en"] .lang-zh{display:none}[data-lang="zh"] .lang-en,[data-lang="zh-hant"] .lang-en{display:none}
   @media(max-width:600px){.series-tail{padding:0 1.25rem 60px}.series-nav{flex-direction:column}.series-nav-next{justify-content:flex-start;text-align:left}}
 </style>
   <script>
 (function(){
   var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
-  if(saved!=='zh'&&saved!=='en') saved='zh';
+  if(['zh','zh-hant','en'].indexOf(saved)===-1) saved='zh';
   document.documentElement.setAttribute('data-lang',saved);
-  document.documentElement.lang=saved==='en'?'en':'zh-Hans';
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='en'?'en':'zh-Hans');
   document.addEventListener('DOMContentLoaded',function(){
     var btns=document.querySelectorAll('.lang-btn[data-lang]');
     function update(){var cur=document.documentElement.getAttribute('data-lang');btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});}
-    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='en'?'en':'zh-Hans';localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='en'?'en':'zh-Hans');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
     update();
   });
 })();
 </script>
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+  <script defer src="zh-hant-data/ep01.js"></script>
 </head>
 <body>
   <header>
@@ -60,7 +61,7 @@
   </header>
   <main class="essay-main"><article>
     <header class="essay-header">
-      <div class="lang-toggle"><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="en">EN</button></div>
+      <div class="lang-toggle"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><span class="lang-sep">|</span><a class="lang-btn" href="ja/ep01.html">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/ep01.html">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="de/ep01.html">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="es/ep01.html">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/ep01.html">한국어</a></div>
       <a href="index.html" class="back-link lang-zh">← SAE理想国</a><a href="index.html" class="back-link lang-en">← SAE's Republic</a>
       <div class="essay-titles">
         <div class="essay-series lang-zh">SAE 与西方哲学</div><div class="essay-series lang-en">SAE in Dialogue with Western Philosophy</div>
