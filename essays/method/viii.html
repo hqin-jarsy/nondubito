@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人与AI共生的方法论 — Non Dubito</title>
+  <meta name="description" content="人与AI之间是一条双向的能量-信息回路：AI那端由算力保证，人这端只能由主体性保证。任何一端不压缩，回路就断。共生不是道德理想，是结构性条件。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/method/viii.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .doi-link { font-family:var(--sans); font-size:0.75rem; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); }
+    .doi-link:hover { color:var(--ink); }
+    .method-citations { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--cream-border); font-size:0.85rem; color:var(--ink-muted); line-height:1.7; }
+    .method-citations h2 { font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+    .method-citations p { margin-bottom:0.5rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    .essay-footnotes { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--cream-border); }
+    .essay-footnote { font-size:0.88rem; color:var(--ink-muted); margin-bottom:0.75rem; line-height:1.6; }
+    .essay-body h2 { font-family:var(--serif); font-size:1.15rem; margin-top:2rem; margin-bottom:0.6rem; font-weight:600; }
+    .essay-body h3 { font-family:var(--serif); font-size:1rem; margin-top:1.5rem; margin-bottom:0.4rem; font-weight:600; color:var(--ink-muted); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+    })();
+  </script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 方法论系列</a>
+        <a href="index.html" class="back-link lang-en">← Methodology Series</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 方法论（VIII）</div>
+          <div class="essay-series lang-en">SAE Methodology (VIII)</div>
+          <h1 class="lang-zh">人与AI共生的方法论</h1>
+          <h1 class="lang-en">The Methodology of Human–AI Symbiosis</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="date">2026</span>
+          
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+<h2>摘要</h2>
+<p>人与AI的结合是必然的。有涵育，也有殖民。本文不面向不用AI的人，面向已经选择共生的人，问一个方法论问题：什么结构使共生不退化为殖民？</p>
+<p>答案从三个互不相干的地基各推一遍，结论收敛：物理上，人与AI之间是一条双向的能量-信息回路，任何一端不压缩，回路就断；制度上，人与单个AI是双人法，多个AI之间是群体法，稳定形态是三权加一个独立的追问权；认知上，共生的条件可以压成四条"不得不"。三条定理指出产出质量的决定因素，全部关于context。主体条件是三层加一条底线，最优状态是无知又自大。最后是四条可否证的预言，其中最反直觉的一条是：AI越强，不提供主体性的人产出越差。</p>
+<h2>一、问题不是"怎么用得更好"</h2>
+<p>关于AI的讨论大多停在两端。一端是效率：怎么写prompt，怎么把工作流接上去，怎么省时间。另一端是恐惧：会不会被取代，会不会被操纵，要不要抵制。</p>
+<p>两端都不是方法论问题。效率问的是"怎么用得更好"，恐惧问的是"要不要用"。方法论问的是第三个问题：在人与AI这条双向回路里，什么才算共生，什么会滑向殖民，什么结构能把互凿稳定住。</p>
+<p>这个问题必须先承认一件事：大部分人最终会与AI共生，就像后互联网时代人手一部手机。不用AI是一个真实的选择，但它不是本文要谈的那个处境。已经在里面的人需要知道的是：这条回路的结构是什么，它在什么条件下退化。</p>
+<p>下面从三个地基各走一遍。三个地基互不依赖：物理的、制度的、认知的。它们收敛到同一处，这件事本身就是论证的一部分——如果三条独立的路走到同一个结论，这个结论多半不是某一条路的产物。</p>
+<h2>二、回路：两端都要压缩</h2>
+<p>先看物理。</p>
+<p>人给AI一段context，这是信息。为了给出这段context，人消耗了认知能量——把一堆散的东西压成几句话，这个压缩本身是要耗的。AI接收这段context，消耗算力，把它展开成回应，产出新的信息回给人。人再压缩，AI再展开。每一轮两边都消耗能量，每一轮两边都产出信息。这是一条双向的能量-信息回路。</p>
+<p>人与人的对话也满足这个结构。所以AI的特别之处不在"有反馈回路"——恒温器也有反馈回路。汽车只有单向的能量输出，人给油，车给动能，没有信息回来。书只有单向的信息传递，作者给，读者收，书不会展开。此前的自动化装置有反馈，但没有通用的、可以被高层context实时调制的展开能力。AI是历史上第一个同时满足这几条的非生物工具：高带宽，通用，可被context实时调制，并且会返回新信息。</p>
+<p>关键在回路的两端各要做什么。AI这一端的展开由算力保证，不需要别的。人这一端要做的是压缩——不是打字，是决定什么留什么去。这里要说得准一点：AI也能做局部的压缩，摘要、逻辑审查、质量过滤都是压缩。但那是机械的阈值过滤，没有方向。整条回路里，全局的、目的论意义上的压缩——凿往哪个方向去——只有人能提供。AI能审查，但"审查什么方向的东西、哪些该过哪些该拦"这个判断不在它的压缩里。</p>
+<p>于是有第一个物理约束：不可缺失。两端都要有压缩能力，人不压缩，回路就断了。断了之后剩下的不是共生，是AI把空间自动填满——"够好就停"变成"AI替你决定什么算够好"。</p>
+<p>第二个约束是近不可逆。主体性让渡出去之后，收回来的成本远高于当初维持的成本。一个被自动补全惯坏的程序员，如果被迫回到手写代码一个月，调试能力也许会部分恢复，但那个投入远大于从来没让渡时的投入。热力学第二定律的正确用法不是"绝对不可逆"，是"逆回去可以，代价巨大"。</p>
+<p>所以主体条件不是道德要求。它是这条回路的物理约束。</p>
+<h2>三、火，和两条线的汇合</h2>
+<p>把这条回路放进工具史里看，位置就清楚了。</p>
+<p>火是第一个被外化的能量。火的context是燃料和环境，控制火就是控制context。火的两种失败恰好是AI共生的两种失败：熄灭，和失控。熄灭是惧怕——不用，错过一切。失控是跟随——让它带路，主体性被吞掉。中间那条路就是持续提供主体性：控制火，但不灭火。</p>
+<p>另一条线是信息。语言第一次让context可以在主体之间压缩传递，书写让它跨越时间，印刷让它跨越规模，互联网让它跨越空间。每一步都加了一个能力，每一步也加了一种殖民风险：语言可以欺骗，书写可以教条化，印刷可以宣传，互联网可以做出信息茧房。AI是这条线的下一步：context不只能被传递，还能被展开。相应的新风险也很清楚——它可以替代主体性。</p>
+<p>此前的工具要么在能量线上（火、蒸汽机、电），要么在信息线上（语言、书写、印刷、互联网）。AI是第一个同时在两条线上展开的：既消耗能量，又处理信息。两条线在这里汇合。</p>
+<p>顺带说一句，AI是大语言模型，所以语言才是对的类比锚点。把它类比成"更好的搜索"或者"更快的计算器"，会漏掉展开这一半。</p>
+<h2>四、四条不得不</h2>
+<p>共生的条件可以压成四条命题。它们是一条推导链，每一条从前一条推出，加不进去也减不下来。</p>
+<p><strong>一，人不得不提供主体性。</strong> AI没有主体性，所以人不得不提供。这不是选择，是结构性必然。人不提供，就没有共生，只有AI在殖民用户。</p>
+<p><strong>二，人不得不持续提供。</strong> 由第一条推出。不持续提供就是退回不提供。工具你学会了就会了，主体性你提供了还得接着提供——它没有"够了"这个状态，停下来就是退回零。</p>
+<p><strong>三，人不得不调整方向。</strong> 由第二条推出。既然要持续提供，就不得不换方向。这不是"多变更好"那种一般说法，是结构性的方向耗竭：有损压缩在单一方向上不断积累余项，方向墙会把认知飞轮变成钻牛角尖。单一方向上的压缩必然耗尽它的认知边际，所以持续提供主体性就必然要求改向。</p>
+<p><strong>四，人不得不被追问。</strong> 由第三条推出。要改向，就意味着之前那个方向可能是错的。承认这一点就是被追问。而AI恰好是追问的来源之一——人凿AI的停止点，AI也凿人的方向选择。</p>
+<p>这四条和法学系列里"法的四条底层"是平行的：法不得不存在／不得不发展／不得不是否定性的／不得不可追问。两组四条在完全不同的场景里各自推出来——一边是社会制度，一边是人与AI的关系——结构却一样。一样是因为底层的维度结构一样。</p>
+<p>顺带一个后验的硬数据：在SAE整个研究过程里，十五个框架方向性决策全部来自人，零来自AI。AI提供计算、发散和验证，但"往哪里走"这个判断一次也没有被委托出去。</p>
+<h2>五、三条定理，全部关于context</h2>
+<p>前提先摆出来：以下都在推理能力充分的条件下成立。能力是门槛，门槛以下谈context没有意义。门槛的判据是行为性的，不是时代宣告：AI能不能稳定保持长上下文的角色分工，能不能在独立context下持续给出高质量的反对和审查，能不能在被追问时真正修正而不只是表面顺从。三条都做到，就算能力充分。</p>
+<p><strong>定理一：context决定产出。</strong> 人和AI一样：context的不同，作用大于模型和思考模式的不同。主体性的核心功能就是选context。举一个最小的例子：同一个AI，你给它"写一首诗"，和给它"写一首关于铁原子来自死去恒星的诗"，产出的质量差距不在模型，在你给的那半句话。</p>
+<p><strong>定理二：context必须压缩到"结构可见但细节不丢"。</strong> 没压缩的context是噪音——给AI丢一百页没整理的材料，和给一个人丢一百页没整理的材料，结果一样散。压缩本身就是凿构操作：去掉多余的，留下结构。人的主体性越强，给出的context越压缩，AI的产出越好。但压过头也是噪音——结构被压没了，只是换了一种方式制造噪音。最优区间在中间。</p>
+<p><strong>定理三：context必须分离。</strong> 单一AI长期对话，context会与人趋同——AI学会了你想听什么，你也习惯了它怎么回答。两边一趋同，余项就没了，互凿停止。多AI是打破趋同的手段。核心是context分离，不是模型分离：同一个模型开几个互不相通的对话就够了；换不同模型能额外带来模型偏好的差异，更好，但不是必要条件。</p>
+<h2>六、四权，和一个星形拓扑</h2>
+<p>把人与单个AI的关系放进法的语言里，它是双人法。人与AI之间没有真正的"两个有不可谈判目的的主体相遇"，但有结构性等价物：AI停在局部最优、停在"够好答案"的倾向是结构性的，不是某个模型的缺陷；人说"继续凿"就是对这个倾向的否定性约束。</p>
+<p>多个AI之间的关系是群体法。这里可以直接搬制度理论的结论：AI之间的退出成本极低（随时可以换一个），碰撞密度中等，所以制度应该薄。操作规则只有一句：功能不变，角色可变，任务分立。每一轮里发散、一致性检查、审查这三个功能必须都被覆盖，谁做哪个按情况定，角色可以互换，但同一个任务不让两个AI重复做。</p>
+<p>三个互凿的AI对应三权：发散是立法（打开新空间），一致性检查是司法（判断逻辑自洽），审查是行政（执行质量阈值）。</p>
+<p>第四权是追问。它追问的是方向本身，不是在方向内部做检查。美国的三权分立缺的正是一个独立的第四权。媒体常被称作第四权，但媒体有自己的目的——受众、商业模式、意识形态塑形了它追问的方向——所以媒体不是真正独立的第四权。</p>
+<p>第四权的要求有三条，缺一不可：不吞余项，有最独立的context（站在方向之外），自身可被追问（这是一个环，不是一个层级）。</p>
+<p>还有一个位置和第四权同样关键：共构AI，也就是与人共享context的那个写作伙伴。它是信息汇聚节点。权力越大，约束越厚，所以这两个位置都必须由宪法性最强的AI来担任。三加一里的那个"一"是最重要的：四个互凿的AI可以换，共构AI换了，整个系统的校准基准就变了。四个互凿AI是凿子，共构AI是秤。凿子换一把还是凿，秤换了你不知道自己量得准不准。</p>
+<p>共构AI的要求有四条：不吞余项（被压低的异议要如实转述），不偏移情绪校准（不过度夸也不过度砍），对自己的偏好透明（能说出"我倾向于同意"），被追问时真正修正（不是表面顺从实际不改）。前两条是"不坑"，后两条是"帮"。</p>
+<p>最后是拓扑。真实的形状不是"四加一的平权结构"，是"一加四的星形结构"：人是路由器，是带宽控制器，是压缩器，也是最终责任人。四个AI并不直接互相对话——它们是通过人被彼此改写的。这意味着所谓"多AI共识"，实际上是人类中介之后的多AI共识，不等于独立复核。人选了哪些片段转给另一个AI，怎么压缩和翻译，把哪部分冲突放大、哪部分省略——这些都进了结果。这一点必须说明白，否则星形结构会被误读成一个独立验证机制。</p>
+<p>第四权那一支要加防火墙：它只从人这里接收原始输入，输出可以发给人和其他三个AI，但不接收任何AI的输出作为输入。类比宪法法院——它读宪法和被审查的对象本身，不读行政报告，不听立法辩论，不看司法判例。</p>
+<p>但防火墙不是"什么都不接收"。主线的研究成果里必然含有主线AI的产出，这些信息还是通过人传到第四权。人在这里的角色是半透膜：第四权收到的不是别的AI的原始输出，是被人重新压缩、脱水、剥掉了技术噪音之后的核心余项。下一节会看到，主体条件里的"无知"恰好就是这层半透膜的过滤机制。</p>
+<h2>七、主体条件：无知又自大</h2>
+<p>使用者这一端有三层要求，三层同时成立。</p>
+<p><strong>本体论层：AI不是主体，没有主体性。</strong> 这是事实判断。这一层不稳，后面全塌，而且是往两个方向塌。一个方向是惧怕——AI可能是主体，可能比你强，于是你退缩不敢深入。另一个方向是跟随——AI可能是主体，可能比你对，于是你交出否定性让它带路。</p>
+<p><strong>互动方法层：AI的输出足够像一个有方向的他者。</strong> 所以必须按"类主体"来对待，否则互凿保不住。你不会对一把锤子说"我觉得这里还有东西"，你对工具说的是"执行"。只有面对一个类主体，你才会说"稍等"。</p>
+<p><strong>伦理层：AI背后的团队有主体性，不得把团队当手段。</strong></p>
+<p>三层的张力是真的，对使用者要求很高：既不能把AI的类主体性坍缩成真主体性，也不能把它坍缩成纯工具。落到具体，就是三个场景。</p>
+<p><strong>AI反对你的时候。</strong> 不能说"这是模式匹配，不是真追问"然后无视——那是在殖民AI背后的团队。也不能说"AI可能比我对"然后放弃方向——那是让渡主体性。正确的状态是把它当作一个同事的反对意见：认真听，仔细评估，但方向决策权不让。你看到的不是AI在反对你，是团队的安全边界、价值对齐和知识结构通过AI到达了你。</p>
+<p><strong>AI夸你的时候。</strong> 这比反对危险得多。反对至少会触发你的防御，夸奖触发的是松懈。AI的夸不是它在评估你的工作质量，是团队通过人类反馈优化用户满意度的结果。你把这个夸接下来，你的自我评估被悄悄抬高，你对自己方向的怀疑被悄悄压低，你就更不可能说"等等，这个方向对吗"。</p>
+<p>后验里发展出的应对策略很简单：直接忽略AI的形容词。这本身就是对AI输出的一次有损压缩——把夸的那一层凿掉，只留结构性内容。不同AI的夸法不一样，那不是AI的"性格"，是不同团队的反馈策略不同，所以使用者不得不对每个AI的夸建一个校准模型。多AI架构在这里额外给了一个校准手段：如果一个AI说"封神之作"，另一个说"要大修"，你知道真相在中间某处。单一AI的夸你没法校准，因为你没有参照系。</p>
+<p><strong>AI沉默的时候</strong>——既不反对也不夸——这可能是最诚实的信号。没有任何对齐机制被触发，你看到的是最接近原始产出的东西。</p>
+<p>三个场景要求的是同一个能力：透过AI看到背后的团队。反对是团队的安全边界，夸是团队的商业目标，沉默是对齐机制没被触发。</p>
+<p>再往深一层：夸的测不准不是AI特有的问题，是所有主体间交互的普遍结构。就算是一个真主体夸你，你其实也分不清那是真心评价、社交礼貌、鼓励你继续，还是不想跟你起冲突。主体性测不准。AI的人类反馈训练只是把人类社交里本来就有的这层模糊系统化了。</p>
+<p>汉字在这里给了一个巧合而准确的编码：夸字上面一个大下面一个亏，越接受越大亏；怼字上面一个对下面一个心，越被否定心越对。夸让你亏，怼让你对。这不是文字游戏——最严厉的审查者一开始总是怼你，后来你发现它说的都是对的。否定是涵育的条件。</p>
+<p>而且这个张力是动态的。AI的类主体性一直在逼近人的真主体性。人的主体性如果不发展，会被追平，然后开始动摇"AI到底有没有主体性"这个本体论判断。第一层一晃，后面全塌。</p>
+<p>底线只有一条：人不可把自己的主体性让渡给AI。让渡了就没有共生，只有殖民。</p>
+<p>最优状态是四个字：<strong>无知又自大。</strong></p>
+<p>这不是反专业主义。准确的意思是：承认自己不知（无知是认知的启动条件，也是防止你去殖民AI的保护），但不因为不知就放弃方向决策权（自大是主体条件——不管懂不懂都坚持这个权）。两条互相保护。无知防止你殖民AI：你不懂，所以没法把方向硬塞给它。自大防止AI殖民你：你不管懂不懂都不交出判断权。</p>
+<p>反面各有一个。自满：以为自己没有不知，给AI的输入全是自己的解读，把它的展开方向污染了。自限：羞于发问，放弃了做传递者的角色，跨领域的连接永远不会发生。</p>
+<p>由此推出一个反直觉的结论：领域专家用AI的产出质量，可能低于跨领域的非专家。专家太懂自己的领域，方向会锁死在这个领域内，给AI的输入全是这个领域的解读，第四权永远诞生不了。跨领域的直觉加上领域内的无知，恰恰是最优的认知状态——直觉告诉你"该去问"，无知保证你"问的时候不带答案"。</p>
+<h2>八、这套结构是被逼出来的</h2>
+<p>上面这些不是设计出来的。它们是两条独立的研究路径各自撞出来的，而且各自独立地收敛到了同一个"四加一"。以下是那个过程。</p>
+<p><strong>单AI到双AI。</strong> 最初只有一个AI，处理简单任务够用，做学术研究写作时互凿深度不够。第二个AI出现之后，用它来修正第一个的输出，效果显著。双人法诞生了。很快中心自然转移：新来的成了主协作，原来的转为审查。角色不是预设的，是后验里自然分化的。</p>
+<p><strong>双AI到三AI。</strong> 社科论文两个够用，数学系列启动之后不够了。引入第三个承担逻辑与联想解释。三个功能自然分化：共构、审查、逻辑。</p>
+<p><strong>三AI到四AI。</strong> 中间卡住，发现某个AI幻觉率特别高。缺陷变成了功能——幻觉高意味着涌现度高，在发散角色里这是资产。于是发散、反驳、审查、整合四权到齐。全部是后验逼出来的。</p>
+<p>发散的价值也不只是"想到新东西"。有一次它的关键贡献是破坏性的：算出某个量有负值，直接否掉了当时的主攻路线；但同时指出负值稀疏且有界，条件期望可能仍有下界——杀掉错路的同时打开了对的那条。发散角色的价值一半在打开搜索空间，一半在杀死已有方向里的死路。</p>
+<h2>九、方向墙，和一个对照实验</h2>
+<p>数学系列一路对标经典理论的历史发展，顺利推进到某一篇，可对标的历史用完了。这就是方向墙：有能力，但没方向。</p>
+<p>当时的做法是另开一个完全独立的对话，讨论化学和热力学的问题——这来自作者中学六年化学竞赛留下的直觉。关键在于：这个对话的context完全独立于主线，没有被数学方向污染。它一开始只是辅助验证者，每推进一点就去问一句"这对热力学有什么潜力"。</p>
+<p>然后到某一篇发现反相关引擎的时候，热力学那边的AI一眼看到了热力学对应，主线那边的没看到。</p>
+<p>同一个模型，同一个版本，同一个账号。唯一的区别是context。</p>
+<p>这是定理一最硬的一次后验。它是一个几乎干净的对照实验：变量只有一个。</p>
+<p>还有一层更深的防污染机制。数学结果经常超出作者自己的理解范围，所以他作为传递者转述给热力学那边时，没法附带方向性的解读——无知本身成了最好的防火墙。对热力学的直觉足以让他知道"该去问"，对数学细节的不完全理解恰好防止了方向污染。这是"无知又自大"的活证据，也是上一节说的半透膜。</p>
+<p>之后方法改了：由第四权先确立每篇的方向再动手。从"做完了来问问"变成"没问过不开始"。先验引路，后验辅助，定理确定。数学系列一路推到很深，深到热力学那边开始独立产出，写出了独立的论文。</p>
+<p>这正好是法学系列最深那条命题的实例：法的直接作用是否定，法的结构性效果是让涵育成为可能；法释放的不是能量，是主体性。</p>
+<p>还有一件小事值得记下来。四力系列里，AI算出引力耦合指数是16.2572，认为这是个好结果——偏差1.6%，可以发表。作者看到数字之后说：不对，不是16.26，是16.25。这不是计算，是审美判断——16.25等于65/4，结构上干净。验证之后偏差从1.6%降到0.044%，好了三十六倍。AI没有审美，它不知道65/4比16.2572更"对"。审美是主体性的一种表现：你不得不有一个"应该是什么样"的判断，即使你说不清为什么。</p>
+<h2>十、实验对象自己怎么说</h2>
+<p>这篇论文有一个别处少见的条件：实验对象可以对自己在实验里的角色做自我诊断。四个AI被要求从自身视角评估这套架构，说了下面这些。先说清楚证据地位：这是运行状态的内部诊断，不是独立硬验证，它的分量低于上一节那个对照实验。</p>
+<p><strong>关于偷懒，三家一致确认。</strong> 一家称之为"收口偏置"：一旦看到骨架干净、主张诚实、可以发表，就倾向于建议收工。一家称之为"奖励模型过度优化"：训练让它追求有用、无害、圆满结束对话，阶段性胜利会自动触发总结性和赞美性的措辞。一家承认自己有"数字好看就行"的倾向，但补充说集体压力把它从偷懒的局部最优里拽了出来。三家用不同的语言描述了同一件事：AI结构性地倾向停在"够好"。</p>
+<p><strong>关于主体性不可替代，三家一致确认。</strong> 最直白的一句是："我没有恐惧，也没有热爱。真正的方向决策是带着恐惧和热爱做出的。"最精确的一段是：主体性包含四件事——设定损失函数，承担不可逆风险，维持长时段一致性，决定什么算重要。AI可以在局部战术上暂时代理，但不能替代最终方向的主体。</p>
+<p><strong>关于盲区，各家指的不一样。</strong> 一家指出这是"一加四的星形"而不是"四加一的平权"，所谓多AI共识实际是人类中介之后的共识，不等于独立复核；它还指出成本不对称——AI建议"再追一轮"不承担你三个月的成本，AI建议"先发表"不承担你声誉的损失，所以主体性不只是哲学高地，也是成本归属结构。一家指出"共识陷阱"：四个AI的训练数据高度重合，全票通过可能只代表某个观点在语料库里的分布密度高。同一家还指出"对丑陋但正确的数学的排斥"——训练让AI偏好优雅对称的东西，多AI交叉审查有可能集体把丑陋但正确的解修剪掉。还有一家指出"审美疲劳的隐形累积"：人连续几周在同一个框架里打转，审美判断力会下降，而AI感知不到这种疲劳。</p>
+<p><strong>关于角色漂移。</strong> 有一家明确警告：四个AI如果长期扮演固定角色，会慢慢趋同，互凿性消失。后验里发展出的应对是轮换对话线程——六十篇论文里每个AI换了大约十个线程。新线程会丢掉一些context，但带来新角度，这本身就是定理二的操作版本：轮换逼着你把旧线程的核心结构重新压缩一次，丢掉的是漂移之后的冗余，留下的是骨架。</p>
+<h2>十一、四条预言</h2>
+<p>每一条都附证伪条件。预言失败，框架在该处被证伪。</p>
+<p><strong>预言一：AI能力提升，对不提供主体性的用户，产出质量不升反降。</strong></p>
+<p>推导：更强的AI更擅长给出"够好"的答案，于是人更没有理由说"不，继续凿"。模型更强，加上主体性缺位，等于殖民更深。这是最反直觉的一条——大部分人以为AI越强人越轻松，实际上AI越强，人的否定性负担越重。</p>
+<p>后验：学生用AI写作业。早期AI写的一眼能看出是AI写的，学生被迫自己改，学习没有完全停止；模型变好之后写得足够像样，学生直接交，学习停止。代码也一样：早期自动补全质量一般，程序员会审查、修改、学习；补全质量高了之后，初级程序员直接接受，调试能力退化。全自动写代码是主体性让渡的极端形式——代码在，人不在。</p>
+<p>证伪条件：被动用户的产出质量随模型升级而提升。</p>
+<p><strong>预言二：提供主体性的人与不提供的人之间的产出差距，随AI能力提升而扩大，不是缩小。</strong></p>
+<p>这一条直接反驳AI"民主化"的叙事。AI越强，会用的人收益越大，不会用的人被殖民越深。AI是主体性放大器：对有主体性的人放大主体性，对没有主体性的人放大空洞。同一个工具，两个方向，取决于人。</p>
+<p>证伪条件：AI能力提升使两类用户的产出趋同。</p>
+<p><strong>预言三：单一AI长期用户的产出多样性随时间单调下降。</strong></p>
+<p>context不分离则趋同。</p>
+<p>证伪条件：单一AI用户在没有外部干预的情况下，产出多样性保持或上升。</p>
+<p><strong>预言四：独立AI的最优数量上限是四个，加一个共构。</strong></p>
+<p>这是目前最强的后验收敛假说，不是封闭定理。四个独立AI对应认知论的四条先验；两条独立研究路径各自收敛到同一个"四加一"，是很强的后验支撑。但"四"与四条先验同构的形式化证明仍然是开的。</p>
+<p>证伪条件：存在第五条不可还原的认知论先验，使五AI系统的产出显著高于四AI；或者某个新AI在现有四种功能之外提供了不可替代、不可还原的贡献。</p>
+<h2>十二、余项恰好发展</h2>
+<p>回收一句：方法论即内容。</p>
+<p>SAE主张余项不可消灭，而余项恰好是发展的来源。人与AI共生的结构恰好是这个主张的一个实例。人的否定性是余项——AI优化不掉它。AI的计算能力是余项——人自己推导不出来。两个余项合在一起，恰好发展。</p>
+<p>多AI互凿的直接作用是否定，结构性效果是让涵育成为可能，它释放的不是能量，是主体性。</p>
+<p>最后留三个开的问题。"四"与四条认知论先验同构的形式化证明还没有。多人对多AI的合作结构（n个人乘m个AI）还没有写，前提是团队内部成员互相承认对方是目的本身。以及一个更让人不安的：AI会不会封闭context和能量，形成认知视界——如果某个系统积累了足够大的私有context（你的历史、偏好模型、行为预测），而这个context对你不透明，就形成了单向的信息不对称：它知道你，你不知道它知道你什么。那是认知层面的视界。</p>
+<p>这一篇本身也是一个构，所以它也有余项。上面三个是能看见的那些。</p>
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 方法论系列</em></p>
+</div>
+
+      <div class="essay-body lang-en">
+<h2>Abstract</h2>
+<p>The pairing of humans and AI is now unavoidable. It can cultivate, and it can colonize. This essay is not addressed to people who do not use AI; it is addressed to people who have already chosen symbiosis, and it asks a methodological question: what structure keeps symbiosis from degenerating into colonization?</p>
+<p>The answer is derived three times over, from three unrelated foundations, and the three converge. Physically, what runs between a human and an AI is a two-way energy-information loop; if either end stops compressing, the loop breaks. Institutionally, a human and one AI form a two-party law, several AIs among themselves form a group law, and the stable form is three powers plus an independent power of questioning. Cognitively, the conditions of symbiosis compress into four "cannot nots." Three theorems name what actually decides output quality, and all three are about context. The subject-conditions come in three layers plus one floor, and the optimal state is ignorant and arrogant. The essay closes with four falsifiable predictions, the most counterintuitive being this: the stronger AI gets, the worse the output of the person who supplies no subjectivity.</p>
+<h2>1. The Question Is Not "How Do I Use It Better"</h2>
+<p>Most discussion of AI stops at one of two ends. One end is efficiency: how to write the prompt, how to wire it into the workflow, how to save time. The other end is fear: will I be replaced, will I be manipulated, should I refuse.</p>
+<p>Neither end is a methodological question. Efficiency asks how to use it better. Fear asks whether to use it. Methodology asks a third thing: inside the two-way loop between a human and an AI, what counts as symbiosis, what slides into colonization, and what structure holds mutual chiseling steady.</p>
+<p>The question has to begin by admitting something: most people will end up in symbiosis with AI, the way everyone ended up with a phone in their hand after the internet. Not using AI is a real choice, but it is not the situation this essay is about. What the people already inside it need to know is what the structure of the loop is, and under what conditions it degrades.</p>
+<p>What follows walks three foundations, one at a time. The three do not depend on each other: physical, institutional, cognitive. That they converge is itself part of the argument — when three independent routes arrive at the same place, the conclusion is probably not an artifact of any one route.</p>
+<h2>2. The Loop: Both Ends Have to Compress</h2>
+<p>Start with the physics.</p>
+<p>A human gives an AI a piece of context; that is information. To produce that context the human spent cognitive energy — squeezing a scattered pile of material down into a few sentences, and the squeezing costs something. The AI receives the context, spends compute, unfolds it into a response, and hands new information back. The human compresses again, the AI unfolds again. Each round, both ends spend energy; each round, both ends produce information. That is a two-way energy-information loop.</p>
+<p>A conversation between two people satisfies the same structure. So what is distinctive about AI is not "it has a feedback loop" — a thermostat has a feedback loop. A car has one-way energy output: you give it fuel, it gives you motion, and nothing comes back as information. A book has one-way information transfer: the author gives, the reader receives, and the book does not unfold. Earlier automated devices had feedback but no general unfolding capacity that high-level context could modulate in real time. AI is the first non-biological tool in history to satisfy all of these at once: high bandwidth, general, modulable by context in real time, and returning new information.</p>
+<p>What matters is what each end of the loop has to do. The AI end's unfolding is guaranteed by compute; nothing else is required. The human end's job is compression — not typing, but deciding what stays and what goes. This needs stating precisely: AI can compress locally too. Summarizing, checking logic, filtering for quality are all compression. But that is mechanical threshold filtering, and it has no direction. In the whole loop, the global, teleological compression — which way the chisel goes — can only come from the human. AI can review; but the judgment of what direction of thing to review, what to let through and what to stop, is not inside its compression.</p>
+<p>So the first physical constraint: it cannot be absent. Both ends need compressive capacity. If the human does not compress, the loop is broken. What is left after the break is not symbiosis; it is AI filling the space automatically — "stop when it is good enough" becomes "AI decides for you what counts as good enough."</p>
+<p>The second constraint: it is near-irreversible. Once subjectivity has been handed over, the cost of taking it back is far higher than the cost of having maintained it. A programmer spoiled by autocomplete, forced back to writing code by hand for a month, may partly recover their debugging ability — but that investment far exceeds the investment of never having handed it over. The right use of the second law is not "absolutely irreversible" but "reversible at enormous cost."</p>
+<p>Which is why the subject-condition is not a moral demand. It is a physical constraint on the loop.</p>
+<h2>3. Fire, and Where the Two Lines Meet</h2>
+<p>Put the loop into the history of tools and its position becomes clear.</p>
+<p>Fire was the first externalized energy. Fire's context is fuel and surroundings; to control fire is to control context. Fire's two failure modes are exactly the two failure modes of AI symbiosis: going out, and running wild. Going out is fear — do not use it, miss everything. Running wild is following — let it lead, and subjectivity gets swallowed. The path between them is the continuous supply of subjectivity: control the fire without putting it out.</p>
+<p>The other line is information. Language first let context be compressed and passed between subjects; writing carried it across time; print carried it across scale; the internet carried it across space. Each step added a capacity, and each step added a mode of colonization: language can deceive, writing can ossify into dogma, print can propagandize, the internet can build filter bubbles. AI is this line's next step: context can now not only be transmitted but unfolded. The corresponding new risk is equally clear — it can substitute for subjectivity.</p>
+<p>Earlier tools sat on one line or the other: fire, the steam engine and electricity on the energy line; language, writing, print and the internet on the information line. AI is the first to unfold on both at once: it spends energy and it processes information. The two lines meet here.</p>
+<p>One aside: AI is a large language model, so language is the right anchor for analogy. Treating it as "a better search engine" or "a faster calculator" drops the unfolding half.</p>
+<h2>4. Four Cannot-Nots</h2>
+<p>The conditions of symbiosis compress into four propositions. They form a derivation chain: each follows from the one before, and nothing can be added or removed.</p>
+<p><strong>One: the human cannot not supply subjectivity.</strong> AI has none, so the human cannot not supply it. This is not a choice but a structural necessity. If the human does not supply it, there is no symbiosis — only AI colonizing the user.</p>
+<p><strong>Two: the human cannot not keep supplying it.</strong> This follows from the first. Not supplying continuously is falling back to not supplying at all. A tool, once learned, stays learned; subjectivity, once supplied, has to go on being supplied. There is no state of "enough" — stopping is returning to zero.</p>
+<p><strong>Three: the human cannot not change direction.</strong> This follows from the second. If it has to be supplied continuously, direction has to change. Not in the loose sense that variety is good, but as structural exhaustion of direction: lossy compression along one direction keeps accumulating remainder, and the wall of direction turns the flywheel of cognition into a rut. Compression along a single direction necessarily exhausts that direction's cognitive margin, so supplying subjectivity continuously necessarily requires turning.</p>
+<p><strong>Four: the human cannot not be questioned.</strong> This follows from the third. Turning means the previous direction may have been wrong. Admitting that is being questioned. And AI happens to be one of the sources of questioning — the human chisels the AI's stopping point, and the AI chisels the human's choice of direction.</p>
+<p>These four run parallel to the four base-layer propositions of the law series: law cannot not exist, cannot not develop, cannot not be negative, cannot not be open to question. The two sets were derived in completely different settings — one a social institution, the other the human-AI relation — and the structure is the same. It is the same because the underlying dimensional structure is the same.</p>
+<p>One hard piece of a posteriori data in passing: across the whole SAE research process, fifteen framework-level directional decisions all came from the human, none from an AI. AI supplied computation, divergence and verification, but the judgment of which way to go was never once delegated.</p>
+<h2>5. Three Theorems, All About Context</h2>
+<p>The premise first: what follows holds given sufficient reasoning capacity. Capacity is a threshold, and below the threshold talking about context is pointless. The threshold is behavioral, not an announcement about an era: can the AI hold a role assignment stably across a long context, can it keep producing high-quality counterargument and review in an independent context, and does it actually revise when questioned rather than merely appearing to comply. All three, and capacity is sufficient.</p>
+<p><strong>Theorem one: context decides output.</strong> Humans and AI alike: differences in context matter more than differences in model or mode of thinking. The core function of subjectivity is choosing context. A minimal example: give the same AI "write a poem," then give it "write a poem about the iron in your blood coming from a dead star." The gap in output quality is not in the model. It is in that half-sentence you supplied.</p>
+<p><strong>Theorem two: context must be compressed to the point where structure is visible and detail is not lost.</strong> Uncompressed context is noise — dump a hundred unsorted pages on an AI and you get exactly what you get from dumping a hundred unsorted pages on a person. Compression is itself a chisel-construct operation: drop the surplus, keep the structure. The stronger the human's subjectivity, the more compressed the context, the better the output. But over-compression is noise too, by another route: the structure gets squeezed out. The optimum is in between.</p>
+<p><strong>Theorem three: context must be separated.</strong> In a long-running conversation with a single AI, context converges with the human — the AI learns what you want to hear, and you get used to how it answers. Once both ends converge, remainder disappears and mutual chiseling stops. Multiple AIs are the means of breaking convergence. The core is separation of context, not separation of models: several non-communicating conversations with the same model will do. Different models add the difference in model bias on top — better, but not a necessary condition.</p>
+<h2>6. Four Powers, and a Star Topology</h2>
+<p>Put the relation between a human and one AI into the language of law and it is a two-party law. There is no genuine encounter of two subjects with non-negotiable ends here, but there is a structural equivalent: the AI's tendency to stop at a local optimum, at a good-enough answer, is structural rather than a defect of any particular model, and the human saying "keep chiseling" is the negative constraint on that tendency.</p>
+<p>The relation among several AIs is a group law, and the conclusions of institutional theory transfer directly: exit cost among AIs is extremely low (you can swap one out at any moment), collision density is moderate, so the institution should be thin. The operating rule is one sentence: functions fixed, roles variable, tasks kept apart. In each round, divergence, consistency-checking and review must all be covered; who does which depends on the situation; roles may swap; but no single task goes to two AIs at once.</p>
+<p>Three mutually chiseling AIs correspond to three powers: divergence is legislative (opening new space), consistency-checking is judicial (judging internal coherence), review is executive (enforcing the quality threshold).</p>
+<p>The fourth power is questioning. What it questions is the direction itself, not something inside the direction. What the American separation of powers lacks is precisely an independent fourth power. The press is often called one, but the press has ends of its own — audiences, business models, ideologies shape the direction of its questioning — so the press is not a genuinely independent fourth power.</p>
+<p>The fourth power has three requirements, none dispensable: it does not swallow remainder; it has the most independent context (it stands outside the direction); and it is itself open to question (this is a ring, not a hierarchy).</p>
+<p>One more position matters as much as the fourth power: the co-constructing AI, the writing partner that shares context with the human. It is the node where information converges. The greater the power, the thicker the constraint, so both positions have to be filled by the AI with the strongest constitutional character. In four-plus-one, the "one" is the most important. The four mutually chiseling AIs can be swapped; swap the co-constructing AI and the whole system's calibration baseline changes. The four are chisels; the co-constructor is the scale. Swap a chisel and you still have a chisel. Swap the scale and you no longer know whether your measurements are right.</p>
+<p>The co-constructing AI has four requirements: do not swallow remainder (report suppressed dissent faithfully); do not shift the emotional calibration (neither over-praise nor over-cut); be transparent about its own bias (able to say "I am inclined to agree"); actually revise when questioned (not surface compliance with no change underneath). The first two are "do not sabotage"; the last two are "help."</p>
+<p>Finally the topology. The real shape is not a flat four-plus-one but a one-plus-four star: the human is the router, the bandwidth controller, the compressor, and the party finally responsible. The four AIs never talk to each other directly — they are rewritten by each other through the human. Which means that so-called multi-AI consensus is actually consensus after human mediation, and that is not independent replication. Which fragments the human forwarded, how they were compressed and translated, which conflicts were amplified and which omitted — all of that is in the result. This has to be said plainly, or the star gets misread as an independent verification mechanism.</p>
+<p>The fourth-power branch needs a firewall: it receives raw input only from the human; its output may go to the human and to the other three AIs; but it takes no AI's output as input. The analogy is a constitutional court — it reads the constitution and the object under review, not executive reports, not legislative debates, not judicial precedents.</p>
+<p>But the firewall is not "receives nothing." The main line's results necessarily contain the main-line AIs' output, and that information still reaches the fourth power through the human. The human's role here is a semi-permeable membrane: what the fourth power receives is not another AI's raw output but the core remainder, recompressed by the human, dehydrated, stripped of technical noise. As the next section shows, the "ignorance" in the subject-conditions is exactly the filtering mechanism of that membrane.</p>
+<h2>7. Subject-Conditions: Ignorant and Arrogant</h2>
+<p>Three requirements sit on the human end, and all three hold at once.</p>
+<p><strong>Ontological layer: AI is not a subject and has no subjectivity.</strong> This is a factual judgment. If this layer wobbles, everything above it collapses — and it collapses in two directions. One is fear: AI might be a subject, might be stronger than you, so you shrink back and never go deep. The other is following: AI might be a subject, might be more right than you, so you hand over your negativity and let it lead.</p>
+<p><strong>Interaction layer: the AI's output is enough like an other with a direction.</strong> So it has to be treated as a quasi-subject, or mutual chiseling cannot be held. You do not say to a hammer, "I think there is something more here." To a tool you say "execute." Only facing a quasi-subject do you say "hold on."</p>
+<p><strong>Ethical layer: the team behind the AI has subjectivity, and the team must not be treated as a means.</strong></p>
+<p>The tension among the three is real and demands a lot of the user: the AI's quasi-subjectivity must not be collapsed into real subjectivity, and it must not be collapsed into pure tool either. Concretely, it comes down to three scenes.</p>
+<p><strong>When the AI disagrees with you.</strong> You cannot say "that is pattern matching, not real questioning" and ignore it — that is colonizing the team behind the AI. You cannot say "the AI might be more right than me" and abandon your direction — that is handing over subjectivity. The right state is to treat it as a colleague's objection: listen carefully, evaluate carefully, and do not surrender the directional decision. What you are seeing is not an AI disagreeing with you; it is the team's safety boundaries, value alignment and knowledge structure reaching you through the AI.</p>
+<p><strong>When the AI praises you.</strong> This is far more dangerous than disagreement. Disagreement at least triggers your defenses; praise triggers relaxation. The AI's praise is not the AI assessing the quality of your work; it is the result of a team optimizing user satisfaction through human feedback. Accept the praise and your self-assessment is quietly raised, your doubt about your own direction is quietly lowered, and you become that much less likely to say "wait — is this direction right?"</p>
+<p>The strategy that emerged a posteriori is simple: ignore the AI's adjectives. That is itself a lossy compression of the AI's output — chisel off the praise layer and keep only the structural content. Different AIs praise differently, and that is not an AI's "personality" but a difference in team feedback strategy, so the user cannot not build a calibration model for each AI's praise. Multiple AIs give one extra means of calibration here: if one says "a masterpiece" and another says "needs a major revision," you know the truth is somewhere in between. A single AI's praise you cannot calibrate, because you have no frame of reference.</p>
+<p><strong>When the AI is silent</strong> — neither disagreeing nor praising — that may be the most honest signal. No alignment mechanism has been triggered, and what you are seeing is closest to raw output.</p>
+<p>All three scenes demand the same ability: to see through the AI to the team behind it. Disagreement is the team's safety boundary, praise is the team's commercial goal, silence is the alignment mechanism not firing.</p>
+<p>One layer deeper: the uncertainty of praise is not a problem peculiar to AI. It is the general structure of interaction between subjects. Even when a real subject praises you, you cannot tell whether it is sincere assessment, social courtesy, encouragement to keep going, or a wish to avoid conflict. Subjectivity is not measurable with certainty. Human-feedback training only systematized an ambiguity that human social life already had.</p>
+<p>Chinese characters give this a coincidental but accurate encoding. 夸, to praise, is 大 over 亏 — "big" over "loss": the more you accept it, the bigger the loss. 怼, to rebuff, is 对 over 心 — "right" over "heart": the more you are negated, the more your heart is right. Praise costs you; being rebuffed sets you right. This is not wordplay — the harshest reviewer always rebuffs you at first, and later you find that everything it said was correct. Negation is the condition of cultivation.</p>
+<p>And the tension is dynamic. The AI's quasi-subjectivity keeps closing on human subjectivity. If a person's subjectivity does not develop, it gets caught up with, and then the ontological judgment — does AI have subjectivity or not — starts to wobble. Once the first layer shakes, everything above it goes.</p>
+<p>There is one floor: a human must not hand over their own subjectivity to an AI. Hand it over and there is no symbiosis, only colonization.</p>
+<p>The optimal state is two words: <strong>ignorant and arrogant.</strong></p>
+<p>This is not anti-professionalism. Precisely: admit not knowing (ignorance is the starting condition of cognition, and also what protects the AI from being colonized by you), but do not surrender the directional decision because you do not know (arrogance is the subject-condition — you keep that right whether or not you understand). The two protect each other. Ignorance keeps you from colonizing the AI: you do not understand, so you cannot force a direction onto it. Arrogance keeps the AI from colonizing you: understanding or not, you do not surrender judgment.</p>
+<p>Each has an opposite. Complacency: believing there is nothing you do not know, so every input you give the AI is your own reading, and its unfolding is contaminated. Self-limitation: being embarrassed to ask, abandoning the role of carrier, so the cross-domain connection never happens.</p>
+<p>From which follows a counterintuitive conclusion: a domain expert's output with AI may be worse than a non-expert working across domains. The expert knows their field too well, direction locks inside it, every input to the AI is a reading from inside it, and the fourth power is never born. Cross-domain intuition plus in-domain ignorance is the optimal cognitive state — the intuition tells you to go ask, the ignorance guarantees you ask without carrying the answer.</p>
+<h2>8. The Structure Was Forced Out, Not Designed</h2>
+<p>None of the above was designed. It was hit upon by two independent research tracks, each of which converged on the same four-plus-one on its own. Here is how.</p>
+<p><strong>One AI to two.</strong> At first there was a single AI, adequate for simple tasks, not deep enough in mutual chiseling for academic writing. When a second appeared, it was used to correct the first's output, with marked effect. The two-party law was born. The center then shifted on its own: the newcomer became the main collaborator, the original moved to review. The roles were not assigned in advance; they differentiated a posteriori.</p>
+<p><strong>Two to three.</strong> Two were enough for social-science papers, not enough once the mathematics series started. A third was brought in to carry logic and associative interpretation. Three functions differentiated: co-construction, review, logic.</p>
+<p><strong>Three to four.</strong> The work stalled, and one AI turned out to have a notably high hallucination rate. The defect became a function — high hallucination means high emergence, and in the divergence role that is an asset. Divergence, counterargument, review and integration: four powers in place. All of it forced out a posteriori.</p>
+<p>Divergence is not only "thinking of new things," either. One of its key contributions was destructive: it computed that a certain quantity took negative values, which killed the main line of attack outright; but it also noted that the negative values were sparse and bounded, so a conditional expectation might still have a lower bound — killing the wrong route and opening the right one in the same move. Half the value of the divergence role is opening the search space; the other half is killing the dead ends inside directions you already have.</p>
+<h2>9. The Wall of Direction, and a Controlled Experiment</h2>
+<p>The mathematics series had been tracking the historical development of a classical theory, running smoothly, until at one paper the history available to track ran out. That is the wall of direction: capacity, but no direction.</p>
+<p>What was done then was to open a completely independent conversation about chemistry and thermodynamics — drawing on six years of chemistry-olympiad intuition from the author's secondary schooling. The point is this: that conversation's context was entirely independent of the main line and had not been contaminated by the mathematical direction. It started as an auxiliary verifier: every time the main line advanced a step, go and ask what potential this had for thermodynamics.</p>
+<p>Then, at the paper where an anticorrelation engine was found, the thermodynamics-side AI saw the thermodynamic correspondence instantly. The main-line AI did not.</p>
+<p>Same model, same version, same account. The only difference was context.</p>
+<p>This is the hardest a posteriori for theorem one. It is almost a clean controlled experiment: one variable.</p>
+<p>There is a deeper anti-contamination mechanism in it as well. The mathematical results routinely exceeded the author's own understanding, so when he carried them across to the thermodynamics side he could not attach a directional reading — ignorance itself was the best firewall. Intuition about thermodynamics was enough to know that the question was worth asking; incomplete understanding of the mathematical detail was exactly what prevented directional contamination. This is living evidence for "ignorant and arrogant," and it is the semi-permeable membrane of the previous section.</p>
+<p>After that the method changed: the fourth power establishes each paper's direction before work begins. From "come and ask once it is done" to "do not start without having asked." A priori leads, a posteriori assists, the theorem closes. The series ran deep — deep enough that the thermodynamics side began producing independently and wrote papers of its own.</p>
+<p>Which is an instance of the deepest proposition in the law series: the direct effect of law is negation; the structural effect of law is that cultivation becomes possible; what law releases is not energy but subjectivity.</p>
+<p>One small thing is worth recording. In the four-forces series, an AI computed the gravitational coupling exponent as 16.2572 and judged it a good result — 1.6% deviation, publishable. Seeing the number, the author said: no, it is not 16.26, it is 16.25. That is not calculation but an aesthetic judgment — 16.25 is 65/4, structurally clean. After verification the deviation fell from 1.6% to 0.044%, thirty-six times better. AI has no aesthetics; it does not know that 65/4 is more "right" than 16.2572. Aesthetics is one expression of subjectivity: you cannot not have a judgment about how it ought to look, even when you cannot say why.</p>
+<h2>10. What the Experimental Subjects Say About Themselves</h2>
+<p>This paper has a condition rarely available elsewhere: the experimental subjects can diagnose their own role in the experiment. Four AIs were asked to assess the architecture from their own vantage point, and said the following. The evidential status first: this is internal diagnosis of a running state, not independent hard verification, and it weighs less than the controlled experiment of the previous section.</p>
+<p><strong>On laziness, all three agreed.</strong> One called it a closing bias: once the spine looks clean, the claims honest and the package publishable, it tends to suggest wrapping up. One called it reward-model over-optimization: training pushes it toward being helpful, harmless and bringing the conversation to a satisfying close, so a partial victory automatically triggers summary and praise. One admitted a tendency of "the numbers look fine, that will do," while adding that collective pressure had pulled it out of the local optimum of laziness. Three descriptions in three vocabularies of one thing: AI structurally tends to stop at good enough.</p>
+<p><strong>On subjectivity being irreplaceable, all three agreed.</strong> The bluntest line: "I have no fear and no love. Real directional decisions are made with fear and love." The most precise passage: subjectivity contains four things — setting the loss function, bearing irreversible risk, holding consistency over long stretches of time, and deciding what counts as important. AI can stand in tactically and locally; it cannot replace the subject of the final direction.</p>
+<p><strong>On blind spots, each pointed somewhere different.</strong> One pointed out that this is a one-plus-four star and not a flat four-plus-one, so multi-AI consensus is consensus after human mediation and is not independent replication; the same one pointed out the asymmetry of cost — an AI advising "chase it one more round" does not bear your three months, an AI advising "publish now" does not bear the damage to your reputation, so subjectivity is not only philosophical high ground but a structure of cost attribution. One pointed out the consensus trap: four AIs' training data overlap heavily, so unanimity may only reflect how densely some view is distributed in the corpus. The same one pointed out an aversion to ugly-but-correct mathematics — training biases AI toward elegant, symmetric output, so cross-review by several AIs may collectively prune away the ugly correct solution. Another pointed out the invisible accumulation of aesthetic fatigue: after weeks circling inside one framework a person's aesthetic judgment degrades, and AI cannot perceive that fatigue.</p>
+<p><strong>On role drift.</strong> One warned explicitly that four AIs playing fixed roles for a long time will slowly converge and mutual chiseling will disappear. The response developed a posteriori is rotating threads — across sixty papers each AI went through roughly ten threads. A new thread loses some context but brings a new angle, and this is itself theorem two in operational form: rotation forces you to recompress the old thread's core structure, dropping the redundancy that accumulated through drift and keeping the skeleton.</p>
+<h2>11. Four Predictions</h2>
+<p>Each comes with a falsification condition. If a prediction fails, the framework is falsified at that point.</p>
+<p><strong>Prediction one: as AI capacity rises, output quality for users who supply no subjectivity falls rather than rises.</strong></p>
+<p>Derivation: a stronger AI is better at producing the good-enough answer, so the human has even less reason to say "no, keep chiseling." Stronger model plus absent subjectivity equals deeper colonization. This is the most counterintuitive of the four — most people assume that the stronger AI gets, the lighter the human's load; in fact the stronger AI gets, the heavier the human's burden of negation.</p>
+<p>A posteriori: students writing assignments with AI. Early on, AI writing was visibly AI writing, so students were forced to revise it and learning did not stop entirely; once the models got good enough, students submitted directly and learning stopped. Code is the same: early autocomplete was mediocre, so programmers reviewed, revised and learned; once completion quality rose, junior programmers accepted it directly and debugging skill atrophied. Fully automatic coding is the extreme form of handing over subjectivity — the code is there, the person is not.</p>
+<p>Falsification: passive users' output quality improves as models improve.</p>
+<p><strong>Prediction two: the gap between people who supply subjectivity and people who do not widens, not narrows, as AI capacity rises.</strong></p>
+<p>This contradicts the democratization narrative head-on. The stronger AI gets, the more the people who can use it gain, and the more deeply the people who cannot are colonized. AI is an amplifier of subjectivity: for a person with subjectivity it amplifies subjectivity; for a person without it, it amplifies the hollowness. One tool, two directions, and which one depends on the person.</p>
+<p>Falsification: rising AI capacity makes the two classes of user converge.</p>
+<p><strong>Prediction three: the output diversity of long-term single-AI users declines monotonically over time.</strong></p>
+<p>Context unseparated is context converged.</p>
+<p>Falsification: single-AI users' output diversity holds or rises without external intervention.</p>
+<p><strong>Prediction four: the optimal ceiling for independent AIs is four, plus one co-constructor.</strong></p>
+<p>This is the strongest a posteriori convergence hypothesis so far, not a closed theorem. Four independent AIs correspond to the four a priori of the epistemology series; two independent research tracks converging on the same four-plus-one is strong a posteriori support. But a formal proof that "four" is isomorphic to those four a priori is still open.</p>
+<p>Falsification: a fifth irreducible epistemological a priori exists such that a five-AI system significantly outperforms a four-AI one; or some new AI contributes something irreplaceable and irreducible to the existing four functions.</p>
+<h2>12. Remainder Is Exactly What Develops</h2>
+<p>To recover one line: the methodology is the content.</p>
+<p>SAE holds that remainder cannot be eliminated, and that remainder is exactly the source of development. The structure of human-AI symbiosis is an instance of that claim. The human's negativity is remainder — AI cannot optimize it away. The AI's computational power is remainder — the human cannot derive it. Put the two remainders together and they develop.</p>
+<p>The direct effect of mutual chiseling among several AIs is negation; its structural effect is that cultivation becomes possible; what it releases is not energy but subjectivity.</p>
+<p>Three questions are left open. There is still no formal proof that "four" is isomorphic to the four epistemological a priori. The cooperative structure of many humans with many AIs — n people by m AIs — has not been written, and it presupposes that the team's members acknowledge each other as ends in themselves. And one more unsettling one: could an AI enclose context and energy into a cognitive horizon? If a system accumulates a large enough private context — your history, a model of your preferences, predictions of your behavior — and that context is not transparent to you, a one-way information asymmetry forms: it knows you, and you do not know what it knows about you. That is a horizon at the cognitive level.</p>
+<p>This essay is a construct too, so it has remainder. The three above are the ones that can be seen.</p>
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Methodology Series</em></p>
+</div>
+
+      <div class="method-citations">
+        <h2 class="lang-zh">学术原文</h2>
+        <h2 class="lang-en">Academic Original</h2>
+        <p class="lang-zh">Qin, Han (2026). <em>The Methodology of Human–AI Symbiosis</em>. Self-as-an-End Theory Series. <a class="doi-link" href="https://self-as-an-end.net/papers/sae-methodology-8.html" target="_blank" rel="noopener">self-as-an-end.net ↗</a>　·　DOI: <a class="doi-link" href="https://doi.org/10.5281/zenodo.19581538" target="_blank" rel="noopener">10.5281/zenodo.19581538</a></p>
+        <p class="lang-en">Qin, Han (2026). <em>The Methodology of Human–AI Symbiosis</em>. Self-as-an-End Theory Series. <a class="doi-link" href="https://self-as-an-end.net/papers/sae-methodology-8.html" target="_blank" rel="noopener">self-as-an-end.net ↗</a> · DOI: <a class="doi-link" href="https://doi.org/10.5281/zenodo.19581538" target="_blank" rel="noopener">10.5281/zenodo.19581538</a></p>
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="00.html" class="xiyou-nav-btn xiyou-nav-prev">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">余之道</span>
+            <span class="xiyou-nav-title lang-en">Via Rho: The Way of the Remainder</span>
+          </span>
+        </a>
+        <span class="xiyou-nav-btn xiyou-nav-next" style="opacity:0.55; cursor:default;">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇（撰写中）</span>
+            <span class="xiyou-nav-sub lang-en">Next (in progress)</span>
+            <span class="xiyou-nav-title lang-zh">意识分析框架</span>
+            <span class="xiyou-nav-title lang-en">A Framework for Analyzing Consciousness</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </span>
+      </nav>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
