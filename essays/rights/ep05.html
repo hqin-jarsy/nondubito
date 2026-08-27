@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,18 +29,19 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang');
-      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      var saved = localStorage.getItem('nd_lang') || localStorage.getItem('nondubito-lang') || 'zh';
+      if (['en', 'zh', 'zh-hant'].indexOf(saved) === -1) saved = 'zh';
       document.documentElement.setAttribute('data-lang', saved);
-      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.documentElement.setAttribute('lang', saved === 'zh-hant' ? 'zh-Hant' : (saved === 'zh' ? 'zh-Hans' : 'en'));
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
         btns.forEach(function(btn) {
           btn.addEventListener('click', function() {
             var lang = this.getAttribute('data-lang');
             document.documentElement.setAttribute('data-lang', lang);
-            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            document.documentElement.setAttribute('lang', lang === 'zh-hant' ? 'zh-Hant' : (lang === 'zh' ? 'zh-Hans' : 'en'));
             localStorage.setItem('nd_lang', lang);
+            localStorage.setItem('nondubito-lang', lang);
           });
         });
         updateActive();
@@ -57,6 +58,7 @@
     })();
   </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+  <script defer src="zh-hant-data/ep05.js"></script>
 </head>
 <body>
   <header>
@@ -78,10 +80,22 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle">
-          <button class="lang-btn" data-lang="zh">中文</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh">中文</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh-hant">繁體</button>
+        <span class="lang-sep">|</span>
+        <a class="lang-btn" href="ja/ep05.html">日本語</a>
+        <span class="lang-sep">|</span>
+        <a class="lang-btn" href="fr/ep05.html">Français</a>
+        <span class="lang-sep">|</span>
+        <a class="lang-btn" href="de/ep05.html">Deutsch</a>
+        <span class="lang-sep">|</span>
+        <a class="lang-btn" href="es/ep05.html">Español</a>
+        <span class="lang-sep">|</span>
+        <a class="lang-btn" href="ko/ep05.html">한국어</a>
+      </div>
         <a href="index.html" class="back-link lang-zh">← 权利论</a>
         <a href="index.html" class="back-link lang-en">← Rights Theory</a>
         <div class="essay-titles">
