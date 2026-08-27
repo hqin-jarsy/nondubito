@@ -36,6 +36,20 @@ mv .git/index.lock "_to_delete/index.lock.$(date +%s).$$" 2>/dev/null
 mv .git/HEAD.lock "_to_delete/HEAD.lock.$(date +%s).$$" 2>/dev/null
 ```
 
+Those two are not the only ones. Background auto-gc / auto-maintenance
+also leaves `.git/packed-refs.lock`, `.git/objects/maintenance.lock`, and
+a `.lock` beside every ref under `.git/refs/` — and a commit fails with
+`cannot lock ref 'HEAD'` naming whichever one it hit, so clearing only
+index.lock and HEAD.lock is not enough. Sweep all of them, then run the
+git command with auto-gc off so it does not immediately make more:
+
+```
+find .git -name "*.lock" -print0 | while IFS= read -r -d '' f; do
+  mv "$f" "_to_delete/$(echo "$f" | tr '/' '_').$(date +%s%N)" 2>/dev/null
+done
+git -c gc.auto=0 -c maintenance.auto=false commit -m "..."
+```
+
 Occasionally this also leaves duplicate loose-object files with a literal
 " 2" suffix (e.g. `.git/objects/3f/9868b...700` and `...700 2`, identical
 content) — cosmetic `git fsck` noise, not corruption. Same `mv`-to-
