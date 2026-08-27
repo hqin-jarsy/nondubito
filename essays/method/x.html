@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>四分形 — Non Dubito</title>
+  <meta name="description" content="标而不构，加法给方向，乘法给记忆，闭合给构与余项。一个在 SAE 多个领域反复出现的四步图案，以及为什么恰好是四。大曰逝，逝曰远，远曰反。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/method/x.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .doi-link { font-family:var(--sans); font-size:0.75rem; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); }
+    .doi-link:hover { color:var(--ink); }
+    .method-citations { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--cream-border); font-size:0.85rem; color:var(--ink-muted); line-height:1.7; }
+    .method-citations h2 { font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+    .method-citations p { margin-bottom:0.5rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    .essay-footnotes { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--cream-border); }
+    .essay-footnote { font-size:0.88rem; color:var(--ink-muted); margin-bottom:0.75rem; line-height:1.6; }
+    .essay-body h2 { font-family:var(--serif); font-size:1.15rem; margin-top:2rem; margin-bottom:0.6rem; font-weight:600; }
+    .q-table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-family:var(--sans); font-size:0.8rem; }
+    .q-table th, .q-table td { padding:0.5rem 0.6rem; border:1px solid var(--cream-border); text-align:left; vertical-align:top; }
+    .q-table thead th { font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted); font-weight:600; }
+    .q-table td:first-child { font-weight:600; }
+    .table-scroll { overflow-x:auto; margin:1.5rem 0; }
+    .table-scroll .q-table { margin:0; min-width:34rem; }
+    @media (max-width:600px) { .q-table { font-size:0.72rem; } .q-table th, .q-table td { padding:0.35rem 0.4rem; } }
+    .essay-body h3 { font-family:var(--serif); font-size:1rem; margin-top:1.5rem; margin-bottom:0.4rem; font-weight:600; color:var(--ink-muted); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+    })();
+  </script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 方法论系列</a>
+        <a href="index.html" class="back-link lang-en">← Methodology Series</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 方法论（X）</div>
+          <div class="essay-series lang-en">SAE Methodology (X)</div>
+          <h1 class="lang-zh">四分形</h1>
+          <h1 class="lang-en">The Four-fold Pattern</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="date">2026</span>
+          
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+<h2>摘要</h2>
+<p>四分形是一个在SAE多个领域里反复出现的结构图案：标而不构，加法给方向，乘法给记忆，闭合给构与余项。它不是这一篇发现的——它早就以七种不同的语言出现在凿构循环、相变窗口、生物周期表、SAE数学、星际文明这些地方。这一篇做的事不是发现，是命名与登记。</p>
+<p>四步的来源是"非"追问自身穷尽产生的四相。四相在律层转译成四种最低操作条件，取得律名形态：同一律、矛盾律、间隔律、构建律。所以"为什么恰好是四"不是数字神秘主义，是一个逻辑穷尽性的结果。</p>
+<p>四分形可以向下递归，也可以向上递归，两个方向都没有终止判据；观察到的多是弱自相似——形式守恒，内容随尺度变化。最后一节是登记纪律：来源机制已经登记，不等于实例免检；"看起来有四步"不算数。</p>
+<h2>一、大曰逝，逝曰远，远曰反</h2>
+<p>《道德经》第二十五章的前几句，是SAE之外对这个结构最早的一次表述。</p>
+<p>"有物混成，先天地生……吾未知其名，字之曰道，强为之名曰大。大曰逝，逝曰远，远曰反。"</p>
+<p>"强为之名曰大"——标了一个把手，但标的人自己说这是勉强的。这就是第一步：标而不构。位置有了，它是什么还没构出来。</p>
+<p>"大曰逝"。逝是往，是发展，是单向的延展。这是第二步：加法给方向。</p>
+<p>"逝曰远"。远在逝之上多了一层——不只是往，是往得深，是路径累积起来了。这是第三步：乘法给记忆。</p>
+<p>"远曰反"。反既是返回，又是碰到边界。这是第四步：闭合。</p>
+<p>老子没有显式说余项。但他说"独立而不改，可以为天地母"——道在公理上不被改变，在操作上却是万物的来源。这恰好是非与余项之间那种不对称的互因。他也没有显式说余项存续，但他说"反"之后道仍贯穿天地母——反不是终止，是返回，成为下一次"逝"的起点。</p>
+<p>老子用的是凿的自由度最高的那条路径：一段话说完。SAE用的是凿的自由度最低的那条：绕过十六层的推导，回头才追到同一个结构。两条路径在这里交汇。</p>
+<h2>二、四步</h2>
+<p>把它写清楚。</p>
+<p><strong>第一步，标而不构。</strong> 标了一个把手，但没有把它构出来。把手只是位置，还没有操作。</p>
+<p><strong>第二步，加法给方向。</strong> 把手开始迭代延展，产生方向性。延展沿一维的极性方向展开，可以来回遍历，有边界标记。</p>
+<p><strong>第三步，乘法给记忆。</strong> 路径累积成绑定结构。这一步不是第二步改个名字——它在迭代之上多了一层非局部的累积关系，相当于"记忆"，或者说"绑定"。三乘五不是五加五加五的另一种写法，它把"三次"这件事本身封装成了一个把手。</p>
+<p><strong>第四步，闭合给构与余项。</strong> 自指折回闭合，同时产生两样东西：构，也就是沉淀物；余项，那部分无法被吸收、迫使下一次开始的东西。</p>
+<p>四步走完一次是一个完整的四分形。第四步的余项不是终点——它是下一个四分形第一步的那个把手。所以四分形天然衔接到下一轮，余项存续驱动这个衔接。</p>
+<p>这里有一个必须先说清楚的区分。四分形一旦成立，内部四步不可随意增减——四步穷尽是这个图式内部的性质。但一个具体对象上四分形是否成立，不能靠"看起来有四步"直接判定。三步、五步、二元这些结构在图式之外的领域照样成立；四分形不排斥它们，只是不命名它们。</p>
+<p>图式内部穷尽，图式外部不唯一。</p>
+<h2>三、为什么恰好是四</h2>
+<p>"四"不是被选定的数字。</p>
+<p>方法论0论证"非"是SAE的唯一公理，其他都是定理。"非"追问自身——非非是什么——穷尽产生四相：有、无、非有也非无、非"非有也非无"。</p>
+<p>为什么恰好四相？因为"非"追问自身只能产生两对。有／无是一对，从"非非不是有也不是无"里生出来；再加上对这一对的否定，得到另外两相。两对穷尽了"非"对自身可以运作的全部层级。第四相否定了否定本身，自指闭合，没有第五相的对象可供否定。</p>
+<p>任何宣称"第五相"的尝试，都会落进"非"已经覆盖过的维度。想入非非，然后崩塌。</p>
+<p>四分形继承四相的全部性质：四步穷尽，不可增减，自指闭合。所以四步性来自逻辑穷尽性，不是数字神秘主义。</p>
+<p>不过四相不是按名字逐一对应四步的。四相是否定在0D内部的穷尽结构；到了先验律这一层，它转译成四种最低操作条件。这一步转译是关键，值得单独说。</p>
+<h2>四、四律：标、向、隔、合</h2>
+<p>方法论总论推出共享区的四个先验层：同一律、矛盾律、时空、因果律。把它们抽象出来，就是四分形的四步取得的律名形态。</p>
+<p><strong>同一律给出第一步的最低可标记性。</strong> 标记要成立，被标记者必须保持自身。A=A是"只有位置、没有操作"的全部前提——一个不与自身同一的把手，根本标不住。标而不构，就是同一律的纯粹运作：位置成立，别的什么都还没发生。</p>
+<p><strong>矛盾律给出第二步的最低方向性。</strong> 方向生于排斥。A与非A给出"离开"与"返回"两个极。没有矛盾律就没有"往哪儿"，加法路径无从展开。要注意这一步的方向是极性意义上的方向：可以沿两极展开，可以来回遍历。不可逆不在这一步。</p>
+<p><strong>间隔律给出第三步的最低可绑定性。</strong> 记忆是跨间隔的绑定。要把"三次"封装成一个把手，迭代与迭代之间必须有可分辨、可定序的间隔。乘法封装的正是跨间隔的计数——没有间隔律，非局部的绑定没有可绑之物。至于时间箭头式的不可逆，那是间隔律在本宇宙里的沉淀形态，不是抽象层先行承诺的东西。</p>
+<p><strong>构建律给出第四步的最低统一性。</strong> 前三律各给一个要素：标、向、隔。三个要素单独都构不出一个能自持的统一结构。构建律把三者合成为一个闭合的构，并且在合成中承认余项——闭合与余项是构建律的一体两面。</p>
+<p>这里顺带解开一个此前没被点破的不对称：为什么总论前两层"看起来已经抽象"，后两层"具体到了本宇宙"？因为前两层的抽象名与沉淀名重合——同一律就叫同一律，矛盾律就叫矛盾律。后两层不重合：3DD的抽象律是间隔律，时空是它在本宇宙的沉淀（空间是不重合的间隔，时间是不可逆的间隔）；4DD的抽象律是构建律，因果律是它在本宇宙的产出。</p>
+<p>而且总论自己的文字里已经写着这件事，只是没被读出声。总论给2DD的余项原文就是"间隔"——"有了排斥就有了间隔，但间隔的性质还没被否定过"，而3DD凿的就是这个间隔。总论给因果律的定义是"前序约束＋时间方向＋光锥局部性"，逐项对回去：前序约束是绑定，时间方向继承矛盾律，光锥局部性继承间隔律——因果律的定义本身就写着它是前三律的合成。</p>
+<h2>五、同一张图案的七种说法</h2>
+<p>同一个结构在SAE不同的论文里用过不同的语言。下面是已经登记的对应：</p>
+<div class="table-scroll"><table class="q-table">
+<thead><tr><th>领域</th><th>第一步</th><th>第二步</th><th>第三步</th><th>第四步</th></tr></thead>
+<tbody>
+<tr><td>方法论0 的四相</td><td>无</td><td>有</td><td>非有也非无</td><td>非"非有也非无"</td></tr>
+<tr><td>先验四律</td><td>同一律</td><td>矛盾律</td><td>间隔律</td><td>构建律</td></tr>
+<tr><td>SAE 数学 paper 1</td><td>标而不构</td><td>加法路径</td><td>乘法＋记忆</td><td>闭合＋余项</td></tr>
+<tr><td>方法论六 相变窗口</td><td>萌芽</td><td>谱翻转</td><td>翻转</td><td>确立</td></tr>
+<tr><td>生物周期表每一轮</td><td>选／生</td><td>定／我</td><td>扩／他</td><td>固／死</td></tr>
+<tr><td>13DD 内部精细化</td><td>标记</td><td>加法</td><td>乘法</td><td>AND 闭合</td></tr>
+<tr><td>星际文明的群体四拍</td><td>散</td><td>方向涌现</td><td>单向不疑</td><td>双向不疑</td></tr>
+</tbody>
+</table></div>
+<p>七套语言指向同一个结构。这张表还会继续加。</p>
+<p>有一处对位需要额外说明。四相的生成顺序是"有／无／非有也非无／非'非有也非无'"，那是从"非"出发追问的逻辑顺序。表里按第一步到第四步排，第一步取的是"无"位——"无"承担"标而不构"的那个未构状态——第二步取"有"位。两个顺序各自正确：生成是逻辑顺序，识别是四分形的拓扑顺序，标到加到乘到闭合。</p>
+<h2>六、闭合给的是两样东西</h2>
+<p>第四步的"给"字，承担的是一种不对称的互因关系，值得单独拆开看。</p>
+<p>方法论00提出的非对称互因是这样的："非"在存在论方向给余项以存在条件——余项是"非"运作的产物；余项在运动学方向给"非"以继续运作的条件——余项为下一次运作留下着落。两个方向都成立，但成立的模态不同。</p>
+<p>写成流程：每一次运作作用在"非"上，产生一个构和一个余项。构是沉淀物，余项是不能被吸收的那个钩子。为下一次运作留下着落的是余项，不是构。</p>
+<p>这就是第四步的结构原型。"闭合给构与余项"里的"给"，说的就是这件事——闭合在一个动作中同时产生构和余项，两者结构上不可分，但模态不对称。</p>
+<p>这一点必须写明，免得后人把第四步的"构与余项"误读成两个并列的产物。它们不是并列的，是同一件事的两面。</p>
+<p>还有一条边界要划清楚：构建律不是余项的本体来源。余项不是到第四步才出现的——在逐刀的那条路径上，每一刀都留余项。第四步只是构与余项在四分形内部一并显形的地方。构建律给的是四分形闭合处的结构语法，不越这条界。</p>
+<h2>七、撑开与收口</h2>
+<p>四分形不是均匀的四等分。</p>
+<p>方法论六从ZFCρ相变窗口的数值结果里读出了四个阶段，它们之间的距离极不平均。萌芽到翻转的距离是1.04，翻转到确立的距离是0.22，比值大约是五。</p>
+<p>这个不对称在方法论六里是以时间形式呈现的：前三个阶段漫长积累，第四阶段迅速收口。但在这一层看，它不只是时间上的不对称，是拓扑结构上的比例——第一步加第二步加第三步撑开四分形的大部分结构空间，第四步在这个空间上做收口。时间不对称是这个拓扑不对称在动力学情景下的投影。</p>
+<p>静态结构里也一样。实数的Cauchy闭合中，加法路径加乘法路径撑开了那一层的大部分展开空间，闭合加上余项 i 只是收口。</p>
+<p>要注意数值的地位。那几个具体的数字是ZFCρ系统内的统计实例，不是四分形的普适参数；比值约五也是那个系统内的先验值，不能直接外推。不对称比在其他领域是多少，是一个经验问题。</p>
+<h2>八、四分形套四分形</h2>
+<p>四分形是递归生成的结构，两个方向都可以展开。</p>
+<p><strong>向下。</strong> 每一步内部可以是一个更细粒度的四分形。13DD在整条序列里是第四轮的第一步，它内部又精细化成四个细层：标记、说不、怕死、渐近完备的自我。而其中最后那一层自己又有四个子功能。4DD那里已经有两级向下递归的已发表登记。</p>
+<p><strong>向上。</strong> 一次四分形可以作为更大四分形的一步。1DD到4DD是先验层的四分形，整体作为1DD到16DD这个大四分形的第一步；1DD到16DD整条个体序列，作为17DD到20DD群体四分形的输入单位；那个群体四拍又在四个文明级别上重复，四个级别本身还构成一个四分形。</p>
+<p>两个方向都没有终止判据。向下的边界是当前研究的分辨率瓶颈，不是结构的终点——分辨率提高了，下一层就会显现。向上的边界是当前宇宙的物理条件，那是物理约束，不是结构边界。</p>
+<p>两个边界都不是"四分形到此为止"，是"我们目前只能识别到此"。</p>
+<p>递归还有一条原则表述：每个维度层原则上可以细分为四个子层，那么每一层的构，在子层粒度上就读为该层内部四分形的闭合产物。以1DD为例：同一律这个构，在子层粒度上是1DD内部四分形的闭合产物——总论说"同一律是否定的沉淀物"，沉淀即闭合。</p>
+<p>这条原则要配三道边界。第一，登记的是原则上的可分性，不是宣称各层的四个子层都已经被命名——完整的细分表不在本篇范围。第二，子层读法不排他：同一个构，在逐刀路径上读为凿上一层余项的沉淀，在嵌套路径上读为子层四分形的闭合。这是"两种粒度"这个句式在SAE里第三次出现，不是竞争解释。第三，不作无限递归的承诺——细分在哪里停，是不是处处可再分，留待具体做细分表时登记。</p>
+<h2>九、守恒的是位格，变的是内容</h2>
+<p>数学上有强自相似和弱自相似的区分：前者是每一层完全相同的结构，后者是结构形式守恒但具体内容随层级变化。</p>
+<p>SAE里观察到的四分形递归多是弱自相似。1DD的同一律和5DD的复制律都是各自那一轮的第一步，结构位置相同——都是标而不构——但具体内容完全不同。</p>
+<p>把来源机制登记下来之后，弱自相似的守恒项有了名字：守恒的是四律的位格，变化的是各尺度填充的内容。每一轮四分形都是四律在新尺度上的重演。</p>
+<p>总论文本里有两处现成的跨轮印证。第二轮第一步是复制律，5DD说"模式不消失"——那就是同一律在生命尺度上的形态，模式的跨时间自身同一。第三轮第三步在总论里字面就叫记忆律，11DD说"不遗忘"——四分形第三步"乘法给记忆"里的"记忆"二字，在认知尺度上以原名出现。</p>
+<p>强自相似在SAE中是否某处成立，目前未知。</p>
+<h2>十、四分形不是什么</h2>
+<p>为免误读，做几条排除。</p>
+<p><strong>不是凿构循环本身。</strong> 凿构循环是更普遍的运动，描述否定、构、余项、桥、物自体之间的一般关系。四分形是凿构循环反复产生的一种特定结构形态。凿构循环可以产出别的形态。四分形不是它唯一的产物，是它在某些位置上稳定呈现的图案。</p>
+<p><strong>不是唯一的结构形态。</strong> 三步、五步、二元结构在SAE里都出现过——凿构循环自己的五个切面就是五元结构。四分形作为工具说的是"这里是四分形"，不是"所有结构都是四分形"。</p>
+<p><strong>不替代内容。</strong> 它是一个识别工具，说"这里有一个四步结构"，不说每一步具体是什么。具体内容由各学科自己填——物理给物理的，生物给生物的，数学给数学的。四分形给的是脚手架。哲学给方向，科学给内容。</p>
+<p><strong>不是预测工具。</strong> 它是回溯识别的工具。它说"在已观察到的现象里可以识别出四步结构"，不说"未来必然会出现第四步"。</p>
+<p><strong>来源机制已登记，不等于实例免检。</strong> 这条最要紧。来源那条链现在是完整的：否定 → 四相 → 四分形 → 应用到本宇宙 → 逐轮重演。但链条完整不豁免实例登记。每一个具体实例是否是四律在那个尺度上的重演，仍然要逐例判定。弱自相似只保证形式，不保证每一处的内容都能逐步对回四律。</p>
+<h2>十一、看起来有四步不算数</h2>
+<p>这是一份活文档，后续版本会继续加新实例。所以必须先立标准，否则任何"看起来有四步"的现象都可能被塞进登记表，四分形会膨胀成一个松散的类比库。</p>
+<p>一个候选实例要被登记，需满足五条：</p>
+<p>一，能明确标出四步——标、加、乘、闭合，每一步在对象里有具体可指的位置。</p>
+<p>二，第二步与第三步不能只是同一过程的强弱版本。第三步必须引入非局部的绑定、记忆或累积，不能是第二步改个名字。</p>
+<p>三，第四步必须同时产生构与余项，而且余项能驱动下一轮。</p>
+<p>四，必须能说明这个对象为什么不是三步、不是五步、不是普通的凿构循环——即在排除了其他形态之后判定为四分形。</p>
+<p>五，如果只是类比性的相似而满足不了前四条，不得登记为强实例，只能列为候选。</p>
+<p>还有一条辅助判据可以用来升级：这个实例的第k步，能不能指认为第k律在该尺度上的形态？能，登记升级为来源实例；不能，仍按结构同构登记。</p>
+<p>凡见四步即称四律重演，正是这份纪律所禁的。</p>
+<h2>十二、还开着的口子</h2>
+<p>列几个。</p>
+<p>不对称比远大于一，在所有四分形里都成立吗？方法论六给出的比值约五是ZFCρ系统内的值，跨领域的分布是什么？</p>
+<p>强自相似在SAE中某处成立吗，还是观察到的全是弱自相似？</p>
+<p>SAE之外的其他思想传统——道家的对位见本文开头，佛教暂未确认，其他传统留待研究——是否独立命中同一个图案？</p>
+<p>加法路径折叠成乘法绑定的通用动力学机制是什么？数学层上由"迭代次数的把手化"讲清楚了，但在相变、生物、文明这些领域，第二步到第三步的跃迁是不是有统一的刻画？是什么样的系统压力，逼着一条单向延展的加法路径"不得不"折叠封装成非局部的绑定？</p>
+<p>四分形向上递归时，那个远大于一的不对称比会不会在多层嵌套中累积，构成一种结构性的熵代价？也就是说，向上递归的瓶颈不只是物理边界，更是高层完成前三步所需的拓扑撑开代价？</p>
+<p>还有一个和3D分叉有关的。抽象层的间隔律被收窄为可分辨、可定序，不含不可逆——所以抽象的间隔留有两个遍历方向。总论在3D处分叉出熵增与熵减两条路径。分叉是不是就是本宇宙对两个遍历方向的选边？如果是，第三步的绑定是不是总要选定一个累积方向，留白另一半？这一问关系到四分形是不是天然携带一个"半边留白"的结构。</p>
+<p>最后一个：四相到四律的抽象是唯一的吗？本文的主张范围只到"在SAE已发表的总论与本宇宙的维度序列内，四律是四相进入四分形的准确抽象"。是否存在别的合法抽象语言同样保存四相的功能签名，不在主张范围内。</p>
+<h2>十三、两条路径在这里交汇</h2>
+<p>本篇是识别层的文章，不是公理层的。它不给SAE增加新基础，只给已经出现的跨论文图案一个统一的名称、统一的识别语言、统一的登记规则。</p>
+<p>这件事本身值得说一句。一个跨领域反复出现的图案，如果一直没有名字，每一次出现都会被当成那个领域的局部现象；把它命名下来，它就变成可以被追踪、被检验、被推翻的东西。命名不是发现，但命名之后，发现才有可以落脚的地方。</p>
+<p>而这也正是四分形自己的第一步：标而不构。标了一个把手，把手是什么还没构出来。这一篇做的就是这个动作。</p>
+<p>最后回到老子。他用凿的自由度最高的路径，一段话完成了四分形的表述。SAE用凿的自由度最低的路径，从浑沌起连续十六次否定，逐刀推出整条序列，绕了一大圈，回头才追到同一个结构。</p>
+<p>两条路径在四分形上交汇。这与四个传统在"非"处的同构，是同一个现象在不同层级上的重演。</p>
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 方法论系列</em></p>
+</div>
+
+      <div class="essay-body lang-en">
+<h2>Abstract</h2>
+<p>The four-fold pattern is a structural figure that recurs across several SAE domains: mark without constructing, addition gives direction, multiplication gives memory, closure gives construct and remainder. This essay did not discover it — it has already appeared, in seven different vocabularies, in the chisel-construct cycle, the phase-transition window, the biological periodic table, SAE mathematics, and the interstellar-civilization work. What this essay does is not discovery but naming and registration.</p>
+<p>The four steps come from the four phases produced when Negativa interrogates itself to exhaustion. At the layer of a priori law those four phases translate into four minimal operating conditions and take on the form of laws: identity, non-contradiction, interval, construction. So "why exactly four" is not numerological mysticism; it is a result about logical exhaustion.</p>
+<p>The pattern recurses downward and upward, with no termination criterion in either direction; what is observed is mostly weak self-similarity — form conserved, content varying with scale. The last section is the discipline of registration: having registered the origin mechanism does not exempt any instance from inspection. "It looks like it has four steps" does not count.</p>
+<h2>1. The Great Passes On, Passing On It Goes Far, Going Far It Returns</h2>
+<p>The opening lines of chapter twenty-five of the Daodejing are the earliest statement of this structure outside SAE.</p>
+<p>"There is a thing formed in confusion, born before heaven and earth… I do not know its name; I style it the Way, and forcing a name upon it, call it Great. Great, it passes on; passing on, it goes far; going far, it returns."</p>
+<p>"Forcing a name upon it, call it Great" — a handle is marked, and the one marking it says outright that the marking is forced. That is step one: mark without constructing. The position exists; what it is has not been constructed.</p>
+<p>"Great, it passes on." Passing on is going, developing, a one-way extension. That is step two: addition gives direction.</p>
+<p>"Passing on, it goes far." Far adds a layer to passing on — not merely going, but going deep; the path has accumulated. That is step three: multiplication gives memory.</p>
+<p>"Going far, it returns." Returning is both coming back and hitting a boundary. That is step four: closure.</p>
+<p>Laozi does not say remainder explicitly. But he says "it stands alone and does not change; it may be the mother of heaven and earth" — the Way is axiomatically unchanged and operationally the source of everything. That is exactly the asymmetric mutual causation between Negativa and remainder. Nor does he say remainder persistence explicitly. But after "it returns," the Way still runs through the mother of heaven and earth — returning is not termination; it is coming back to become the starting point of the next passing-on.</p>
+<p>Laozi takes the route with the highest degrees of chiseling freedom: one passage and it is said. SAE takes the route with the lowest: sixteen layers of derivation, and only in looking back does it arrive at the same structure. The two routes meet here.</p>
+<h2>2. The Four Steps</h2>
+<p>Set them out plainly.</p>
+<p><strong>Step one: mark without constructing.</strong> A handle is marked, but it has not been constructed. The handle is only a position; there is no operation yet.</p>
+<p><strong>Step two: addition gives direction.</strong> The handle begins to iterate and extend, producing directionality. The extension unfolds along a one-dimensional polar axis, is traversable both ways, and carries boundary markers.</p>
+<p><strong>Step three: multiplication gives memory.</strong> The path accumulates into a binding structure. This is not step two renamed — it adds a non-local layer of accumulation on top of iteration, something like "memory," or "binding." Three times five is not another way of writing five plus five plus five; it packages the fact of "three times" into a handle of its own.</p>
+<p><strong>Step four: closure gives construct and remainder.</strong> Self-reference folds back and closes, producing two things at once: the construct, the sediment; and the remainder, the part that cannot be absorbed and that makes a next beginning available.</p>
+<p>One complete pass through the four steps is one four-fold pattern. The remainder at step four is not an endpoint — it is the handle for step one of the next four-fold pattern. So the pattern joins naturally to the next round, and remainder persistence drives the joint.</p>
+<p>One distinction has to be settled first. Once a four-fold pattern holds, its four internal steps cannot be added to or subtracted from at will — the exhaustiveness of the four is a property inside the schema. But whether the pattern holds of some particular object cannot be settled by its "looking like it has four steps." Three-step, five-step and binary structures hold perfectly well in domains outside the schema; the four-fold pattern does not exclude them, it simply does not name them.</p>
+<p>Exhaustive inside the schema; not unique outside it.</p>
+<h2>3. Why Exactly Four</h2>
+<p>"Four" is not a chosen number.</p>
+<p>Methodology 0 argues that Negativa is SAE's sole axiom and everything else is theorem. Negativa interrogating itself — what is not-Negativa? — exhaustively produces four phases: being, nothing, neither-being-nor-nothing, and not-(neither-being-nor-nothing).</p>
+<p>Why exactly four? Because Negativa interrogating itself can produce only two pairs. Being and nothing are one pair, generated from "not-Negativa is neither being nor nothing"; the negation of that pair gives the other two. Two pairs exhaust every level at which Negativa can operate on itself. The fourth phase negates negation itself, closes self-referentially, and leaves no object for a fifth.</p>
+<p>Any attempt to declare a fifth phase falls back into a dimension Negativa has already covered. It goes into the not-not, and it collapses.</p>
+<p>The four-fold pattern inherits all of this: four steps, exhaustive, unalterable, self-referentially closed. So the four-ness comes from logical exhaustion, not from numerology.</p>
+<p>The four phases do not, however, map onto the four steps one name at a time. The four phases are the exhaustive structure of negation inside 0D; at the layer of a priori law they translate into four minimal operating conditions. That translation is the crux, and it deserves its own section.</p>
+<h2>4. Four Laws: Mark, Direction, Interval, Union</h2>
+<p>The methodological overview derives the four a priori layers of the shared region: identity, non-contradiction, spacetime, causality. Abstract them and you have the four steps of the pattern in the form of laws.</p>
+<p><strong>Identity gives step one its minimal markability.</strong> For a mark to hold, what is marked must remain itself. A=A is the entire precondition for "position only, no operation" — a handle not identical with itself cannot be marked at all. Mark without constructing is the pure operation of identity: the position holds and nothing else has happened yet.</p>
+<p><strong>Non-contradiction gives step two its minimal directionality.</strong> Direction is born of exclusion. A and not-A give two poles, leaving and returning. Without non-contradiction there is no "which way," and the additive path has nothing to unfold along. Note that direction here is polar: unfoldable along two poles, traversable both ways. Irreversibility is not in this step.</p>
+<p><strong>Interval gives step three its minimal bindability.</strong> Memory is binding across an interval. To package "three times" as a handle, there must be a distinguishable, orderable interval between iterations. What multiplication packages is precisely counting across intervals — without the law of interval, non-local binding has nothing to bind. As for the irreversibility of the arrow of time, that is the sedimented form of the law of interval in this universe, not something the abstract layer commits to in advance.</p>
+<p><strong>Construction gives step four its minimal unity.</strong> The first three laws each give one element: mark, direction, interval. None of the three alone constructs a unity that can sustain itself. Construction synthesizes the three into a closed construct, and in the synthesis acknowledges remainder — closure and remainder are the two faces of the law of construction.</p>
+<p>This also unties a puzzle that had not been named: why do the first two layers of the overview look "already abstract" while the latter two look "specific to this universe"? Because for the first two the abstract name and the sedimented name coincide — identity is called identity, non-contradiction is called non-contradiction. For the latter two they do not: 3DD's abstract law is interval, and spacetime is its sediment here (space is the non-coinciding interval, time the irreversible one); 4DD's abstract law is construction, and causality is its product here.</p>
+<p>The overview's own text already says this; it had simply not been read aloud. The overview's remainder for 2DD is literally "interval" — "exclusion produces intervals, but the nature of intervals has not yet been negated" — and what 3DD chisels is that interval. The overview defines causality as "prior constraint plus temporal direction plus light-cone locality"; item by item, prior constraint is binding, temporal direction inherits non-contradiction, light-cone locality inherits interval. The definition of causality already states that it is the synthesis of the first three.</p>
+<h2>5. Seven Vocabularies for One Figure</h2>
+<p>The same structure has appeared in different SAE papers in different languages. Here is the registered correspondence:</p>
+<div class="table-scroll"><table class="q-table">
+<thead><tr><th>Domain</th><th>Step 1</th><th>Step 2</th><th>Step 3</th><th>Step 4</th></tr></thead>
+<tbody>
+<tr><td>Four phases (Methodology 0)</td><td>Nothing</td><td>Being</td><td>Neither-being-nor-nothing</td><td>Not-(neither-being-nor-nothing)</td></tr>
+<tr><td>The four a priori laws</td><td>Identity</td><td>Non-contradiction</td><td>Interval</td><td>Construction</td></tr>
+<tr><td>SAE Mathematics Paper 1</td><td>Marked handle</td><td>Additive path</td><td>Multiplicative + memory</td><td>Closure + remainder</td></tr>
+<tr><td>Phase-transition window</td><td>Germination</td><td>Spectral flip</td><td>Flip</td><td>Establishment</td></tr>
+<tr><td>Each round of the biological table</td><td>Select / birth</td><td>Fix / I</td><td>Extend / other</td><td>Settle / death</td></tr>
+<tr><td>Inside 13DD</td><td>Marking</td><td>Addition</td><td>Multiplication</td><td>AND closure</td></tr>
+<tr><td>The collective four-beat</td><td>Dispersal</td><td>Direction emerges</td><td>One-sided non dubito</td><td>Mutual non dubito</td></tr>
+</tbody>
+</table></div>
+<p>Seven vocabularies pointing at one structure. The table will keep growing.</p>
+<p>One correspondence needs a note. The generative order of the four phases is being, nothing, neither, not-neither — the logical order of interrogating from Negativa outward. The table runs step one to step four, and step one takes the "nothing" position, since nothing carries the unconstructed state of "mark without constructing," while step two takes "being." Both orders are correct: generation is a logical order, recognition is the topological order of the pattern — mark, add, multiply, close.</p>
+<h2>6. Closure Gives Two Things</h2>
+<p>The word "gives" in step four carries an asymmetric mutual causation, and it is worth taking apart.</p>
+<p>Methodology 00 puts it this way: in the ontological direction Negativa gives the remainder its condition of existence — the remainder is a product of Negativa operating; in the kinematic direction the remainder gives Negativa its condition for operating again — the remainder leaves a landing for the next operation. Both directions hold, and they hold in different modalities.</p>
+<p>As a process: each operation acts on Negativa and produces a construct and a remainder. The construct is the sediment; the remainder is the hook that cannot be absorbed. What leaves a landing for the next operation is the remainder, not the construct.</p>
+<p>That is the structural prototype of step four. The "gives" in "closure gives construct and remainder" says exactly this — closure produces both in a single act, structurally inseparable, modally asymmetric.</p>
+<p>It has to be written down, or a later reader will take "construct and remainder" for two products standing side by side. They do not stand side by side. They are two faces of one thing.</p>
+<p>One boundary also has to be drawn: the law of construction is not the ontological source of remainder. Remainder does not first appear at step four — on the cut-by-cut route every cut leaves remainder. Step four is only where construct and remainder both become visible inside the pattern. What construction supplies is the structural grammar at the pattern's point of closure, and it does not cross that line.</p>
+<h2>7. Opening Out, Closing In</h2>
+<p>The four-fold pattern is not four equal quarters.</p>
+<p>Methodology VI read four stages out of the numerical results of the ZFCρ phase-transition window, and the distances between them are highly unequal. From germination to flip is 1.04; from flip to establishment is 0.22. A ratio of roughly five.</p>
+<p>In Methodology VI the asymmetry appears in temporal form: three long stages of accumulation, then a fast close in the fourth. At this level it is not only temporal but a proportion in the topology — steps one, two and three open out most of the pattern's structural space, and step four closes over that space. The temporal asymmetry is that topological asymmetry projected into a dynamical setting.</p>
+<p>Static structures show it too. In the Cauchy closure of the reals, the additive path plus the multiplicative path open out most of that layer's articulative space, and closure plus the remainder <em>i</em> is only the closing in.</p>
+<p>Note the status of the numbers. Those particular values are statistical instances inside the ZFCρ system, not universal parameters of the pattern; the ratio of roughly five is an a priori value inside that system and does not extrapolate on its own. What the asymmetry ratio is in other domains is an empirical question.</p>
+<h2>8. Patterns Inside Patterns</h2>
+<p>The four-fold pattern is recursively generated, and it opens in both directions.</p>
+<p><strong>Downward.</strong> Each step can internally be a finer-grained four-fold pattern. In the whole sequence 13DD is step one of the fourth round, and internally it refines into four fine layers: event-marking, saying no, fear of death, the asymptotically complete self. And the last of those has four sub-functions of its own. At 4DD there is already published registration of two levels of downward recursion.</p>
+<p><strong>Upward.</strong> One four-fold pattern can serve as a single step of a larger one. 1DD through 4DD is the a priori layer's pattern, and as a whole it is step one of the larger 1DD-to-16DD pattern; the entire individual sequence 1DD to 16DD is the input unit of the collective pattern 17DD to 20DD; that collective four-beat then repeats at four civilizational scales, and those four scales themselves form a four-fold pattern.</p>
+<p>Neither direction has a termination criterion. The downward boundary is the resolution bottleneck of current research, not the end of the structure — raise the resolution and the next layer appears. The upward boundary is the physical condition of this universe, which is a physical constraint, not a structural one.</p>
+<p>Neither boundary says "the pattern stops here." Both say "this is as far as we can currently recognize."</p>
+<p>There is a principle for the recursion as well: each dimensional layer can in principle be subdivided into four sub-layers, and then each layer's construct reads, at sub-layer grain, as the closure product of that layer's internal four-fold pattern. Take 1DD: the law of identity, as a construct, is at sub-layer grain the closure product of 1DD's internal pattern. The overview says "the law of identity is the sediment of negation" — and sediment is closure.</p>
+<p>Three boundaries go with the principle. First, what is registered is divisibility in principle, not a claim that every layer's four sub-layers have been named — the complete subdivision table is out of scope here. Second, the sub-layer reading is not exclusive: the same construct reads on the cut-by-cut route as the sediment of chiseling the previous layer's remainder, and on the nesting route as the closure of a sub-layer pattern. This is the third appearance of the "two grains" formula in SAE, not a competing explanation. Third, no promise of infinite recursion — where subdivision stops, and whether everything is further divisible, waits on the actual work of the subdivision table.</p>
+<h2>9. What Is Conserved Is the Position, What Varies Is the Content</h2>
+<p>Mathematics distinguishes strong from weak self-similarity: the former is an identical structure at every level, the latter conserves structural form while content varies with level.</p>
+<p>What is observed in SAE is mostly weak. The law of identity at 1DD and the law of replication at 5DD are both step one of their respective rounds, structurally in the same position — mark without constructing — and completely different in content.</p>
+<p>Once the origin mechanism is registered, the conserved quantity in weak self-similarity has a name: what is conserved is the position of the four laws; what varies is the content each scale fills in. Every round is those four laws performed again at a new scale.</p>
+<p>The overview's own text supplies two cross-round confirmations. Step one of the second round is the law of replication, and 5DD says "patterns do not vanish" — that is identity in the form it takes at the scale of life, a pattern's self-identity across time. Step three of the third round is called, in the overview and in so many words, the law of memory: 11DD says "not forgotten." The word "memory" in step three's "multiplication gives memory" turns up under its own name at the cognitive scale.</p>
+<p>Whether strong self-similarity holds anywhere in SAE is currently unknown.</p>
+<h2>10. What the Four-Fold Pattern Is Not</h2>
+<p>To forestall misreadings, a few exclusions.</p>
+<p><strong>Not the chisel-construct cycle itself.</strong> The cycle is the more general movement, describing the relations among negation, construct, remainder, bridge and thing-in-itself. The four-fold pattern is one particular structural form the cycle repeatedly produces. The cycle can produce others. The pattern is not its only product; it is the figure the cycle stably shows at certain positions.</p>
+<p><strong>Not the only structural form.</strong> Three-step, five-step and binary structures all appear in SAE — the cycle's own five cross-sections are a five-part structure. As a tool the pattern says "this here is a four-fold pattern," not "every structure is one."</p>
+<p><strong>Not a substitute for content.</strong> It is a tool of articulative recognition: it says "there is a four-step structure here," not what each step contains. Content is filled in by each discipline — physics fills in physics, biology biology, mathematics mathematics. The pattern supplies scaffolding. Philosophy gives direction; science gives content.</p>
+<p><strong>Not a predictive tool.</strong> It is a tool of retrospective recognition. It says "in phenomena already observed, a four-step structure can be identified," not "a fourth step will necessarily appear."</p>
+<p><strong>Registered origin does not exempt instances from inspection.</strong> This is the one that matters most. The chain of origin is now complete: negation → four phases → four-fold pattern → applied to this universe → performed again round by round. But a complete chain does not exempt any instance from registration. Whether a particular instance is the four laws performed at that scale is still decided case by case. Weak self-similarity guarantees form only; it does not guarantee that every instance's content maps back step by step onto the four laws.</p>
+<h2>11. "It Looks Like It Has Four Steps" Does Not Count</h2>
+<p>This is a living document; later versions will keep adding instances. So the standard has to be set first, or any phenomenon that "looks like it has four steps" could be stuffed into the register and the pattern would swell into a loose library of analogies.</p>
+<p>A candidate instance has to satisfy five conditions to be registered:</p>
+<p>One: the four steps can be pointed at explicitly — mark, add, multiply, close — each with a specific locatable position in the object.</p>
+<p>Two: steps two and three cannot be merely a weaker and a stronger version of one process. Step three must introduce non-local binding, memory or accumulation, and cannot be step two under a new name.</p>
+<p>Three: step four must produce both construct and remainder, and the remainder must be able to drive the next round.</p>
+<p>Four: it must be possible to say why this object is not three-step, not five-step, and not an ordinary chisel-construct cycle — the verdict comes after other forms have been excluded.</p>
+<p>Five: if the resemblance is merely analogical and the first four cannot be met, it is not registered as a strong instance, only listed as a candidate.</p>
+<p>One auxiliary criterion can upgrade a registration: can this instance's step k be identified as the k-th law in the form it takes at that scale? If yes, the entry is upgraded to a source instance; if no, it stays registered as a structural isomorphism.</p>
+<p>Calling every four steps a performance of the four laws is precisely what this discipline forbids.</p>
+<h2>12. What Is Still Open</h2>
+<p>A few of them.</p>
+<p>Does the asymmetry ratio, much greater than one, hold in every four-fold pattern? The ratio of roughly five is a value inside the ZFCρ system; what is the distribution across domains?</p>
+<p>Does strong self-similarity hold anywhere in SAE, or is everything observed weak?</p>
+<p>Do other traditions of thought — the Daoist correspondence opens this essay; Buddhism is unconfirmed; the rest await study — independently hit the same figure?</p>
+<p>What is the general dynamical mechanism by which an additive path folds into a multiplicative binding? At the mathematical layer it is clear enough, through packaging the count of iterations into a handle. But in phase transitions, in biology, in civilizations, is there a unified account of the jump from step two to step three? What kind of systemic pressure forces a one-way additive path to fold itself into a non-local binding?</p>
+<p>When the pattern recurses upward, does that ratio much greater than one accumulate through the layers into a kind of structural entropy cost? That is: is the bottleneck on upward recursion not only a physical boundary but the topological cost of opening out the first three steps at a higher level?</p>
+<p>And one tied to the 3D bifurcation. At the abstract layer the law of interval has been narrowed to distinguishable and orderable, without irreversibility — so the abstract interval leaves two directions of traversal. The overview bifurcates at 3D into an entropy-increasing and an entropy-decreasing path. Is the bifurcation simply this universe taking a side between the two traversal directions? If so, does step three's binding always have to choose one direction of accumulation and leave the other blank? This bears on whether the pattern natively carries a "half left blank" structure.</p>
+<p>Last: is the abstraction from four phases to four laws unique? The claim here reaches only as far as "within the published overview and this universe's dimensional sequence, the four laws are the accurate abstraction by which the four phases enter the pattern." Whether some other legitimate abstract language preserves the same functional signature is outside the claim.</p>
+<h2>13. Where the Two Routes Meet</h2>
+<p>This is a paper at the layer of recognition, not at the layer of axioms. It adds no new foundation to SAE. It gives an already recurring cross-paper figure a single name, a single language of recognition, and a single rule of registration.</p>
+<p>That is worth a sentence of its own. A figure that recurs across domains and never gets a name will be taken, each time it appears, for a local phenomenon of that domain. Name it and it becomes something that can be tracked, tested, and refuted. Naming is not discovery — but after naming, discovery has somewhere to stand.</p>
+<p>Which is also the pattern's own first step: mark without constructing. A handle is marked; what it is has not been constructed. That is the move this essay makes.</p>
+<p>And back to Laozi. He took the route with the highest degrees of chiseling freedom and finished the statement in one passage. SAE took the route with the lowest: sixteen consecutive negations from hundun, the whole sequence derived cut by cut, a long way around, and only in looking back does it reach the same structure.</p>
+<p>The two routes meet at the four-fold pattern. Which, alongside the isomorphism of four traditions at Negativa, is one phenomenon performed again at a different level.</p>
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Methodology Series</em></p>
+</div>
+
+      <div class="method-citations">
+        <h2 class="lang-zh">学术原文</h2>
+        <h2 class="lang-en">Academic Original</h2>
+        <p class="lang-zh">Qin, Han (2026). <em>Methodology Ten: The Four-fold Pattern (V2)</em>. Self-as-an-End Theory Series. <a class="doi-link" href="https://self-as-an-end.net/papers/sae-methodology-10.html" target="_blank" rel="noopener">self-as-an-end.net ↗</a>　·　DOI: <a class="doi-link" href="https://doi.org/10.5281/zenodo.20187591" target="_blank" rel="noopener">10.5281/zenodo.20187591</a></p>
+        <p class="lang-en">Qin, Han (2026). <em>Methodology Ten: The Four-fold Pattern (V2)</em>. Self-as-an-End Theory Series. <a class="doi-link" href="https://self-as-an-end.net/papers/sae-methodology-10.html" target="_blank" rel="noopener">self-as-an-end.net ↗</a> · DOI: <a class="doi-link" href="https://doi.org/10.5281/zenodo.20187591" target="_blank" rel="noopener">10.5281/zenodo.20187591</a></p>
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="ix.html" class="xiyou-nav-btn xiyou-nav-prev">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">意识分析框架</span>
+            <span class="xiyou-nav-title lang-en">A Framework for Analyzing Consciousness</span>
+          </span>
+        </a>
+        <a href="index.html" class="xiyou-nav-btn xiyou-nav-next">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">回到</span>
+            <span class="xiyou-nav-sub lang-en">Back to</span>
+            <span class="xiyou-nav-title lang-zh">方法论系列</span>
+            <span class="xiyou-nav-title lang-en">Methodology Series</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </a>
+      </nav>
+    </article>
+  </main>
+
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
