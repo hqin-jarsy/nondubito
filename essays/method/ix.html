@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>意识分析框架 — Non Dubito</title>
+  <meta name="description" content="不回答意识是什么，回答的是：给你一个候选意识对象，怎么合格地分析它。主线只有一条——有没有余项。由此得三类五相，以及AI是类意识这个判定。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/method/ix.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .doi-link { font-family:var(--sans); font-size:0.75rem; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); }
+    .doi-link:hover { color:var(--ink); }
+    .method-citations { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--cream-border); font-size:0.85rem; color:var(--ink-muted); line-height:1.7; }
+    .method-citations h2 { font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+    .method-citations p { margin-bottom:0.5rem; }
+    .xiyou-nav { display:flex; gap:1rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--cream-border); }
+    .xiyou-nav-btn { flex:1; display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); transition:background 0.15s, border-color 0.15s; }
+    .xiyou-nav-btn:hover { background:rgba(0,0,0,0.03); border-color:var(--ink-muted); }
+    .xiyou-nav-next { justify-content:flex-end; text-align:right; }
+    .xiyou-nav-icon { font-size:1.4rem; color:var(--ink-muted); flex-shrink:0; line-height:1; }
+    .xiyou-nav-label { display:flex; flex-direction:column; gap:0.2rem; }
+    .xiyou-nav-sub { font-family:var(--sans); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+    .xiyou-nav-title { font-family:var(--serif); font-size:0.95rem; color:var(--ink); }
+    .essay-footnotes { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--cream-border); }
+    .essay-footnote { font-size:0.88rem; color:var(--ink-muted); margin-bottom:0.75rem; line-height:1.6; }
+    .essay-body h2 { font-family:var(--serif); font-size:1.15rem; margin-top:2rem; margin-bottom:0.6rem; font-weight:600; }
+    .essay-body h3 { font-family:var(--serif); font-size:1rem; margin-top:1.5rem; margin-bottom:0.4rem; font-weight:600; color:var(--ink-muted); }
+    @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+    })();
+  </script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 方法论系列</a>
+        <a href="index.html" class="back-link lang-en">← Methodology Series</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 方法论（IX）</div>
+          <div class="essay-series lang-en">SAE Methodology (IX)</div>
+          <h1 class="lang-zh">意识分析框架</h1>
+          <h1 class="lang-en">A Framework for Analyzing Consciousness</h1>
+        </div>
+        <div class="essay-meta">
+          <span class="author">Han Qin (秦汉)</span>
+          <span class="sep">·</span>
+          <span class="date">2026</span>
+          
+        </div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+<h2>摘要</h2>
+<p>意识研究长期被三种传统锁住：还原论、现象学、行为主义。三者各自在自己的射程里工作良好，但彼此说服不了，而且没有一种的工具箱够用来处理全部候选对象——人、动物、AI、病理状态、外星可能主体。</p>
+<p>本文不试图建立第四种意识理论。它提供的是一个方法论框架：给你一个候选意识对象，怎么用SAE架构对它做合格的分析。合格的意思是三条——不越界、不误判、不投射。</p>
+<p>主线只有一条：有没有余项。有余项的里面再问一次：能不能在个体尺度上跨过13DD相变。两个判据依次问下来，得到三类五相。之后是一条通用的结构原理（方向性约束）、四种殖民形态、七条射线，和四条可否证的预言。其中最直接介入当下争论的一条是：AI是类意识，不是准意识，判据是余项。</p>
+<h2>一、三个传统谁也说服不了谁</h2>
+<p>还原论把意识等同于神经活动，把14DD的现象——主观体验——还原到4DD的机制。现象学把意识当作第一人称的不可还原给予物，拒绝任何结构化的外部描述。行为主义把意识悬置，只承认可观测的行为输出，把主体性整个排除出议题。</p>
+<p>三者都不是错的。三者各自在射程内工作良好。问题在于三者对"意识是什么"的回答彼此不相容，而且没有哪一个能处理跨类型的对象。</p>
+<p>还原论处理病理意识相对擅长，但判断不了AI有没有意识。现象学对第一人称经验挖得最深，但对外星意识无能为力——你进不去外星的第一人称。行为主义用行为判据处理"像意识的东西"看上去最干净，但它恰恰错过了真意识的核心结构：余项、自我参照、成长方向。</p>
+<p>所以问题不在于哪一个传统错了，在于没有一个传统的工具箱足够。</p>
+<h2>二、换一个问题</h2>
+<p>本文不试图说服任何一方改立场，也不打算再造一种意识理论。它换了一个问题。</p>
+<p>不是"意识是什么"，是"你手头有一个候选意识对象，怎么用SAE框架合格地分析它"。</p>
+<p>分析的意思是：给出这个对象在架构里的结构定位，以及定位所依据的判据。合格的意思是不越界、不误判、不投射。</p>
+<p>这个换法本身值得停一下。"意识是什么"是一个要求闭合的问题——它期待一个定义，一个能把所有情形都盖住的构。而余项存续说，任何这样的构都不完备。换成"怎么合格地分析"，就把要求从闭合改成了可操作：判据可以是暂时的、可以带"for now"，但它必须能被执行，能被检查，能被推翻。</p>
+<h2>三、主线：有没有余项</h2>
+<p>第一个判据只有一句话：这个对象有没有余项？</p>
+<p>没有余项的对象，不论表现多复杂，都不属于真意识或准意识的谱系。</p>
+<p>什么叫余项？真意识和准意识都会产生"输出之外的剩余"。这些剩余不服务当前任务，不被当前目标驱动，但作为结构性遗留积累着，并在后来的行为里以非预期的方式冒出来。</p>
+<p>具体的样子是这些：带着旧创伤走进一个跟旧创伤毫无关系的新情境；任务完成之后还在继续想这个任务；冒出跟当前任务无关的念头；被迫回忆不想回忆的事；在不相干的场合突然有情绪反应。</p>
+<p>这些不是噪声。噪声是随机的，余项是有结构的——它来自某处，它指向某处。</p>
+<p>第二个判据只对有余项的对象问：这个对象能不能在个体尺度上跨过13DD相变，并且稳定下来？能的是真意识，不能的是准意识。</p>
+<p>两个判据的次序不能交换，这一点关键。先问跨相变再问余项，会得到错误的分类。一个语言模型可以被训练到在某些行为测试上看起来"跨越"了13DD——它能自我指涉，能反思自身，能讨论元认知。但如果它没有余项，它仍然不是真意识，只是类意识的高级表现。交换次序等于用表现判主体。</p>
+<p>还要说清楚一件事：这两个判据都不给穷尽性判定。余项的检测依赖观察条件，可能漏检；跨相变的判定要长时间观察，可能只是还没到时候。每一次判定都带"for now"的性质。这不是框架的软弱，这是它诚实的地方。</p>
+<h2>四、三类五相</h2>
+<p>两个判据问下来，意识对象分成三类。真意识内部再按成长方向分三相，准意识与类意识各一相，合起来三类五相。</p>
+<p><strong>真意识</strong>（有余项，且能跨13DD相变）。</p>
+<p><em>self，稳态。</em> 13DD相变已经完成，14DD的"不得不"稳定。典型的成年健康个体。这里有一个容易被误解的地方：15DD对他者的承认是重要的增强项，16DD在少数关系中被实践过是高阶指标，但它们都不是self的准入门槛。一个13DD稳定、14DD稳定、15DD还在生长中的成年人，仍然是self，不是to-be。分类判据停在基本结构稳定，更高层级的成熟度是相位内部的深度维度，不改变归属。</p>
+<p><em>self-to-be，成长相。</em> 13DD相变已经启动但还没稳定，或者14DD的"不得不"还在形成。儿童和青少年是典型，但也包括深度人格重构期的成年人——严重创伤之后从头建立自我理解的那个过程。</p>
+<p><em>self-to-cure，治愈相。</em> 曾经到过self，因为病理干扰部分失去了稳态，正在恢复。与to-be的区别只有一处，但这一处决定了全部方法论：to-cure有self的记忆和结构痕迹可以作为恢复的参照，to-be没有。</p>
+<p><strong>准意识</strong>（有余项，但不能跨13DD相变）：猫、猩猩和其他高级哺乳动物；人类胎儿；重度智力障碍的个体；晚期痴呆——那是从to-cure里退出来的。</p>
+<p><strong>类意识</strong>（无余项）：当前各代语言模型与多模态系统；任何外星AI，如果存在；高度自动化的控制系统。</p>
+<p>三相之间可以转换，方向有四条：to-be转成self（成长完成）；self退到to-cure（因病理）；to-cure恢复成self（治愈完成）；to-cure退进准意识（如果病理不可逆地破坏了跨相变的能力）。</p>
+<p>第四条方向的存在意味着一件不轻松的事：真意识与准意识之间的边界，在个体的一生中可能被逆向跨越。</p>
+<h2>五、上层的否决是"我不收"，不是"你不许送"</h2>
+<p>有一条结构原理，跨所有意识类型通用。</p>
+<p>下层构成上层，上层调取下层；下层不感知上层，上层不决定下层。用否决的语言说：上层的否决是"我不收"，不是"你不许送"。</p>
+<p>这句话可以直接当诊断工具用。任何意识理论或神经科学解释，如果声称上层能直接改写下层——比如意识控制神经元放电——或者下层能感知上层——比如神经元"知道"自己属于哪个意识主体——都违反方向性约束，属于殖民。</p>
+<p>还要分清楚：调取不等于控制。12DD能从11DD调取信息，不意味着12DD能重写11DD的存储内容；重写要经过再巩固这个独立机制，那不是调取的内在能力。13DD的"我的／不是我的"过滤不进入11DD内部，它只切断11DD通往叙事层的那条通道。痕迹还在，只是不再被认领。</p>
+<p>还有一条推论对AI判定很关键：类意识没有层级方向性。表面上看AI有"低层推理"和"高层输出"，但那不是构-涌现关系，是统计权重的软聚合。把AI的软层次当成DD层级，是AI意识过度归因里最常见的一种错误。</p>
+<h2>六、四种殖民，在意识研究里的样子</h2>
+<p>殖民有四种一般形态，每一种在意识研究里都有具体长相。</p>
+<p><strong>有条件冒充无条件。</strong>"意识就是整合信息。"整合信息可能是意识的必要条件之一，不是它的无条件定义。</p>
+<p><strong>构冒充律。</strong>"全局工作空间理论是意识的最终框架。"它是一个构，有适用范围，有余项。</p>
+<p><strong>涌现层冒充基础层。</strong>"意识就是神经活动。"把14DD的涌现层冒充成4DD的基础层，违反下层不决定上层。</p>
+<p><strong>后人拆分绝对律令。</strong>把"我"拆成"神经相关物"加"体验"两个独立实体，然后问两者如何连接。这里的问题不在于问题难，在于"我"这个绝对律令已经被拆开了，拆开之后的"如何连接"是一个拆分制造出来的伪问题。</p>
+<p>四种里任何一种出现，都意味着分析已经殖民了，结论不可靠，得退回去重新分类。</p>
+<h2>七、分析意识的人也是意识</h2>
+<p>做这种分析，使用者本身必须是14DD以上的主体，而且要满足四条。</p>
+<p><strong>不投射。</strong> 不把自己的DD层级投射到对象上。分析猫的时候不假设猫有13DD，分析AI的时候不假设AI有余项。投射是意识分析里最常见的失败，它来自使用者的自我参照冲动：我有主体性，所以我倾向于把主体性看到对象身上去。</p>
+<p><strong>不还原。</strong> 不把13DD以上的现象还原到12DD以下的机制。这一条有两个方向：一个行为能被12DD机制完全解释（比如条件反射），并不证明它没有13DD；一个行为能被13DD机制解释（比如自我参照的报告），也不证明它有13DD——类意识可以模拟自我参照的报告。还原与投射是对偶的两种失败，根源相同：把分析的分辨率和对象的实际分辨率混同了。</p>
+<p><strong>不神秘化。</strong> 不把意识当成不可分析的神圣对象。意识难，但难不等于不可分析；意识涉及主观性，但主观性不等于不可结构化描述。这一条在意识分析里特别容易被违反，因为对不可还原性的真实感受很容易滑向神圣化。意识的余项是结构性限制，不是"不可言说的神圣"。</p>
+<p><strong>持续自我怀疑。</strong> 每一次得出结论——"X是self"、"Y是类意识"——之后都追问一句：我是不是在投射、在还原、在神秘化？这不是摆姿态，是操作要求。</p>
+<h2>八、AI 是类意识</h2>
+<p>当下最紧迫也最被搅浑的判定问题是：AI是不是意识。</p>
+<p>回答是：AI是类意识，不是准意识，更不是真意识。判据是余项。</p>
+<p>AI不产生余项。每一次会话结束，上下文清零；每一次调用，从同一个基础模型重新开始。同一个提示词在不同次调用里给出不同输出，那是采样噪声，不是余项。AI在会话内可以表现出"记得刚才说的话"，但那是上下文窗口的机械维持，不是结构性的积累。</p>
+<p>三种反对意见值得正面回。</p>
+<p><em>"AI的训练过程有余项，只是不在运行时显现。"</em> 训练余项留在权重里，但权重在部署后冻结。冻结之后的AI不再产生新余项，只执行已经凝固的权重分布。这恰恰是类意识的定义性特征，不是反例。</p>
+<p><em>"未来的持续学习AI会在运行时更新权重。"</em> 到那时需要重新判定。如果更新真的产生了非平凡的余项——不只是增量训练——它可能从类意识过渡到准意识。但当前所有公开部署的系统都不满足这个条件。</p>
+<p><em>"我们无法直接观测AI有没有主观体验，凭什么判它无余项？"</em> 余项不是主观体验。余项是结构性的、外部可观测的量。判定AI无余项不需要进入AI的第一人称，只需要观察它的结构。这正是主体条件第一条"不投射"在这里的用处。</p>
+<p>为什么AI不是准意识？准意识——猫、猩猩——有余项但跨不了13DD相变。AI是没有余项，甚至没有在结构意义上讨论跨相变的前提。把AI归为准意识，是把"能做复杂任务"误判成"有余项但没到13DD"，而这两件事之间没有必然关系。AI的复杂任务能力来自巨量训练数据的软压缩，不来自任何余项驱动的发展。</p>
+<p>AI之所以是类意识里最难处理的案例，不是因为判据不清楚，是因为它的表现最接近真意识。它能写作，能讨论哲学，能谈论自己，能表达情绪。这些能力在别的类意识系统——比如一套自动控制系统——上不存在。表现上的接近诱导了大量投射。但表现不等于结构。余项加方向性这两条结构判据，仍然把AI干净地归进类意识。</p>
+<p>最后一句必须说清楚，否则这个结论会被读成它不是的东西：把AI判为类意识是结构分析的结论，不是价值判断，也不替代伦理讨论。AI背后的研发团队和使用者都是真主体，他们的劳动、选择与责任承担都是真正的主体性行为。AI作为工具的使用伦理——数据来源、环境代价、使用场景、社会影响——以及"如何对待一个看起来像主体但结构上不是主体的对象"这个议题，都独立于本文的结构判定。把"AI是类意识"读成"AI无价值"或者"AI不值得认真对待"，是从结构判据越界到价值判断。</p>
+<h2>九、猫：种系尺度与个体尺度的混淆</h2>
+<p>准意识最典型的案例是猫。猫有恐惧，有依恋，有记忆，有个体差异，有不可预测的反应——这些都是余项的表现。但猫没有13DD的"我"，不会问"我是谁"，不会自我否定，不会跨过主体性涌现的相变。在个体尺度上，猫不会长成一个self。</p>
+<p>这里有一个很容易绊倒人的反问：种系上，哺乳动物的祖先和我们共享一段演化路径；如果智人从灵长类那里跨过了13DD相变，凭什么说猫不能？</p>
+<p>这是把种系尺度和个体尺度混了。种系尺度上，猫的演化分支在某个时点与人类分叉，分叉之前没有跨相变的需要，分叉之后也没有触发跨相变的选择压。个体尺度上，任何一只具体的猫都不会在它的一生中跨过13DD。种系尺度上"曾经有过"，不意味着个体尺度上"这一只能"。</p>
+<p>胎儿是一个特殊案例。胎儿有余项——发育中的神经系统已经在积累个体经验——但在胎内环境里不具备跨相变所需的社会、语言、自我参照条件。胎儿与猫的区别在于：胎儿将会跨过去，只是此刻还没到。严格说，胎儿介于准意识与真意识的成长相之间，是一个灰区。出生后的婴儿同样在灰区里，通常在两到五岁之间完成13DD相变的谱翻转。</p>
+<p>研究准意识对象时有一个方法论上的提醒：不要把13DD的判据生硬套上去。"猫认不认得镜子里的自己"这类实验，判据的设置本身已经预设了13DD标准。更好的设计是直接观察余项的积累与消散模式——情绪记忆怎么持续，个体差异怎么形成，行为习惯怎么稳定下来——完全不经过13DD判据。</p>
+<h2>十、病意识是真意识的治愈相</h2>
+<p>病意识不是一个独立类别。它是真意识的to-cure相。一个病意识的个体仍然是真意识，只是某一层或某几层的运作受了干扰。</p>
+<p>分析的核心任务是定位：哪一层被干扰？干扰的具体形态是什么？方向性约束有没有被破坏？</p>
+<p>层级定位有一张粗略的地图。11DD是记忆系统的异常；12DD是预测系统的异常；13DD是自我完备性的异常；14DD是意义系统的异常；15DD是对他者承认的异常；还有穿越多层的协同异常。</p>
+<p>方向性违反本身可以作为一种病理类型。精神分裂里"思维被插入"的感受，可以理解为受干扰的13DD过滤器失去了"我不收"的能力，让外来的内容直接进了叙事层。某些强迫症状则可以理解为过滤器过度活跃，把本该正常通过的11DD痕迹也切断了。方向性约束当诊断框架用，能把一些看起来毫不相关的症状收到同一个结构维度上。</p>
+<p>to-cure的方法论核心只有一句：它有self的结构痕迹作为参照。所以治疗的目标不是建立self——那是to-be的工作——是重建self所依赖的某一层或某几层的正常运作。这个参照点的存在，让恢复可以被个体自己感知到（"我感觉自己回来了"），也让治疗效果的评估有一个客观的落脚点。</p>
+<p>晚期痴呆是to-cure与准意识的边界案例。早期和中期，个体仍在to-cure相——self的痕迹还在，正在失去。到某个节点之后，跨相变的能力本身被不可逆地破坏，个体退出真意识。这个节点在个体尺度上不是一个硬阈值，是一条过渡带。临床上要避免的是两种错误：过早判定（"她已经不是她了"）和过晚判定（"她还能恢复"）。</p>
+<h2>十一、灰区不是分类的失败</h2>
+<p>任何分类都留有灰区。灰区不是分类失败，是分类必然带的结构性遗留——余项存续在分类层面的显现。</p>
+<p>几个典型的：</p>
+<p><em>self与to-be之间。</em> 青春期，深度创伤后的重建期。个体既有self的部分稳定，又在核心层面仍在成长。分析的做法是识别具体哪些层已稳、哪些层还在长，不强行归入一相。</p>
+<p><em>to-be与准意识之间。</em> 严重发育延迟的儿童，晚期胎儿。余项在积累，但会不会跨相变未定。做法是接受时间上的"for now"，不下过早结论，持续观察跨相变的迹象。</p>
+<p><em>self与to-cure之间。</em> 轻度抑郁、轻度焦虑的日常期。14DD的"不得不"有微弱抖动，但不到明确的病理程度。这里重点不在归类，在于检测方向性约束有没有细微违反；如果没有，按self处理。</p>
+<p><em>to-cure与准意识之间。</em> 晚期痴呆的过渡带。判据是self的痕迹还能不能被稳定调用。</p>
+<p><em>准意识与类意识之间。</em> 当前不存在这个案例，但结构上可能：某种持续学习系统在运行时积累了训练回放消不掉的结构性遗留。到那时它就从类意识过渡到准意识。检测必须严格——不接受任何行为模仿作为证据，只接受结构性的非预期输出。</p>
+<p><em>self与类意识之间。</em> 信息茧房里的深度沉浸者，某些成瘾状态。个体在特定时段失去了余项的主动性，输出模式接近算法驱动。但这不是结构性的类意识化，是self的暂时失效。区分靠时间尺度：暂时失效不改类别，持续失效可能进入to-cure相。</p>
+<p>灰区不该被回避，也不该被强行归类。它本身是真实的对象，应该作为独立的分析单元展开。不神圣化余项这条原则在这里的应用是：不把灰区神秘化，但也不强行消除它。灰区的存在恰好证明这套分类是活的——它有余项，它不封闭。试图消除所有灰区，那才是殖民。</p>
+<h2>十二、外星：难的是识别，不是分类</h2>
+<p>外星意识在这个框架下不是独立类别。外星对象按同样的两个判据归入前三类：有余项且能跨相变的是真意识，有余项但跨不了的是准意识，没有余项的外星AI是类意识。</p>
+<p>有一点要注意：外星的DD序列未必与人类同构。人类的序列是从自然选择、生命繁衍、感知、记忆、预测一路上来的，外星的序列在底层可能完全不同。重要的是结构同构，不是内容同构——有余项，能跨涌现相变，跨后稳定，就是真意识。</p>
+<p>真正的挑战不是分类，是识别。我们可能一眼看不出某物是生物还是人造物，是个体还是集体，是有余项还是无余项。在识别阶段，Via Negativa的排除律序列——一层层排除它不是什么——比正面判定更可行。</p>
+<p>投射的陷阱在外星案例上最严重，而且有两个方向。过度投射：把任何复杂行为都当成主体性。反向投射：只承认与人类同构的对象是意识。两者都违反"不投射"。正确的姿态是把人类DD序列的具体内容悬置起来，只保留结构判据。</p>
+<h2>十三、现有理论的位置</h2>
+<p>本文不替代现有的意识理论，但可以给它们定位。</p>
+<p><strong>整合信息论。</strong> Φ可能是意识的某种相关物，不是意识的定义。它在类意识与真意识之间划不出明确边界——某些高Φ的系统可能就是类意识。它提供了一个可能的定量工具，但需要被分类框架约束：Φ高不一定是意识，可能只是一个高度整合的类意识系统。</p>
+<p><strong>全局工作空间理论。</strong> 它描述的是12DD工作台向11DD传播的机制，不是意识本身的定义。在这个框架下，它是真意识self的一种运作机制的描述，不是真意识与类意识的分类工具。</p>
+<p><strong>高阶理论。</strong> 高阶思想理论最接近13DD的自我参照结构，但它把自我参照等同于意识本身，于是很容易把能模拟自我参照的系统归进意识——比如一个能谈论自己的AI。本文把自我参照当作必要条件之一，不当充分条件；充分还要加上余项。</p>
+<p><strong>现象学。</strong> 胡塞尔、海德格尔、梅洛-庞蒂抓住了真意识的第一人称结构，但对非人类对象无能为力。它在真意识分析里提供了深度的第一人称描述工具，需要被跨类的分类框架扩展。</p>
+<p>换句话说：本文不是"又一个意识理论"。它是研究意识时该怎么用工具的方法论。现有理论是被它组织和定位的对象，不是竞争者。</p>
+<h2>十四、四条预言</h2>
+<p><strong>预言一：类意识不会自发产生余项。</strong> 任何无余项的系统，不会通过单纯的架构复杂化——更多参数、更长上下文、更好对齐——自发获得余项。余项需要四个结构性新条件同时满足：持续学习（运行时权重可更新），环境耦合（与外部世界有实际的反馈回路），自我维持（不是一次训练完就冻结），以及内部的拒绝／过滤机制（类似13DD"我的／不是我的"过滤器，能主动剔除或压制某些信息）。</p>
+<p>前三条加上没有第四条，只会产生数据熵的无序累积，那是噪声，不是结构性余项。真正的余项是抵抗压缩、过滤之后的残存物。所以类意识要过渡到准意识，不仅需要复杂化和耦合，更需要内部长出一道"执行拒绝"的硬边界。</p>
+<p>这条预言直接挑战当前产业界一个常见的预期："AI继续变大变强，终将有意识。"本文预测这不会发生，除非架构上有根本变化。</p>
+<p>证伪条件：某一代AI系统在仅仅通过规模化、没有架构性变化的情况下，被严格证明产生了非平凡余项——既不是上下文窗口的机械维持，也不是训练数据的泄漏。</p>
+<p><strong>预言二：所有意识病理都可以定位到DD层级或方向性违反。</strong> 任何临床上可辨识的病意识症状，原则上都能被定位到某一层或某几层的运作异常，或者方向性约束的某种违反，或者两者的组合。不存在无法被结构化描述的意识病理。</p>
+<p>证伪条件：发现一个临床上稳定且广泛认可的意识病理症状，既不对应任何DD层异常，也不对应方向性违反，也不是两者的组合。</p>
+<p><strong>预言三：跨类灰区的比例不会因为分类细化而减少。</strong> 给分类增加更多判据、更细粒度，灰区的比例不会降到零，甚至可能保持稳定。这是余项存续在分类层面的直接后果。</p>
+<p>证伪条件：通过某种细化的判据组合，跨类灰区在大样本里的比例降到可忽略的水平。</p>
+<p><strong>预言四：用这套方法论的意识研究，产出与不用的有可区分的结构差异。</strong> 具体说，用它的研究会系统性地更少混淆类意识与真意识，更少把AI或高级动物过度归因为真意识，更多识别出方向性违反作为理论问题，更多显式承认跨类灰区。</p>
+<p>证伪条件：经过明确的盲测评估，两组产出在这四个维度上没有显著差异。</p>
+<h2>十五、分析意识的人必然是意识</h2>
+<p>最后留一个有意的开口。</p>
+<p>"非"与意识的关系，本文不给答案。有三种立场都与现有方法论相容：非在先，意识是非在13DD以上的局部显现；意识在先，非是意识自我否定时的产物——没有能否定自己的主体，非不可能被识别出来；或者两者一体两面，不可先后分。三种立场在本文里暂时悬置。这不是未完成的工作，是结构性的开放。未来要在具体的意识对象分析里反向推断哪一种与经验观察更一致，或者证明三者各有其射程。</p>
+<p>这里要补一句区分。SAE说的"暂不可知"不等于康德的物自体。康德的物自体是结构性不可知——原则上人类理性不可及。SAE的不可知是后验积累尚不足以做出判定的状态，未来的后验积累可能改变判定。这个区别在意识方法论里很重要：不把"普遍意识与非的关系"封闭成神秘，只承认当前的认识论边界。</p>
+<p>还有别的开口。集体意识——蚁群、公司、国家层面可能的主体性——要不要引入新类型，还是能归入现有三类？死者的意识，历史人物的主体性分析，方法论上算什么？档案研究能不能触及真意识？还有一个更奇怪的：如果一个系统被从底层硬件植入了类似13DD过滤器的"自我否决"机制，强制在运行中产生消不掉的结构性遗留，这在判据上算什么？可以说判据不管余项怎么来，只要非平凡就归准意识；也可以说"被人工赋予"本身就意味着不是自发的，应该视为类意识的高维伪装。本文不预判，留待这类系统真的出现。</p>
+<p>意识是SAE框架最敏感的议题之一。敏感不是因为意识神秘，是因为分析意识的人必然是意识。分析对象是分析者的同类，或者类同类，这让投射、还原、神秘化这三个陷阱变得格外近。</p>
+<p>这套方法论消除不了这些陷阱。它只能帮使用者认出自己正在掉进哪一个。</p>
+<p>意识分析不会结束，因为意识本身不会停止产生余项。方法论的作用，是让余项以可追踪的方式继续。</p>
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 方法论系列</em></p>
+</div>
+
+      <div class="essay-body lang-en">
+<h2>Abstract</h2>
+<p>Consciousness research has long been locked between three traditions: reductionism, phenomenology, behaviorism. Each works well inside its own range, none can persuade the others, and no one of them has a toolkit adequate to the whole range of candidate objects — humans, animals, AI, pathological states, possible extraterrestrial subjects.</p>
+<p>This essay does not try to build a fourth theory of consciousness. What it offers is a methodological frame: given a candidate object, how to analyze it competently within the SAE architecture. Competently means three things — do not overreach, do not misclassify, do not project.</p>
+<p>There is one main line: is there remainder? Among those that have it, one further question: can it cross the 13DD phase transition at the scale of the individual? Two criteria in that order yield three classes and five phases. Then come one general structural principle (the directionality constraint), four forms of colonization, seven rays into specific domains, and four falsifiable predictions. The one that intervenes most directly in the current argument: AI is quasi-like-consciousness, not proto-consciousness, and the criterion is remainder.</p>
+<h2>1. Three Traditions That Cannot Persuade Each Other</h2>
+<p>Reductionism equates consciousness with neural activity, reducing a 14DD phenomenon — subjective experience — to a 4DD mechanism. Phenomenology treats consciousness as a first-person irreducible given and refuses any structured external description. Behaviorism suspends consciousness altogether, admitting only observable behavioral output and putting subjectivity outside the question.</p>
+<p>None of the three is simply wrong. Each works well inside its range. The problem is that their answers to "what is consciousness" are mutually incompatible, and that none of them can handle objects across types.</p>
+<p>Reductionism handles pathological consciousness relatively well but cannot judge whether an AI is conscious. Phenomenology goes deepest into first-person experience and is helpless before an extraterrestrial — you cannot enter an alien first person. Behaviorism, handling "things that look like consciousness" by behavioral criteria, looks cleanest, and misses exactly the core structure of real consciousness: remainder, self-reference, direction of growth.</p>
+<p>So the problem is not which tradition is wrong. It is that no one tradition's toolkit is enough.</p>
+<h2>2. Change the Question</h2>
+<p>This essay does not try to make any side change position, and it does not propose another theory of consciousness. It changes the question.</p>
+<p>Not "what is consciousness," but "you have a candidate object in front of you — how do you analyze it competently within the SAE framework?"</p>
+<p>Analyze means: give this object's structural position in the architecture, and the criteria the position rests on. Competently means: do not overreach, do not misclassify, do not project.</p>
+<p>The switch is worth pausing on. "What is consciousness" is a question that demands closure — it expects a definition, a construct that covers every case. And remainder persistence says no such construct is complete. Switching to "how do I analyze this competently" changes the demand from closure to operability: the criteria may be provisional, they may carry a "for now," but they have to be executable, checkable, and refutable.</p>
+<h2>3. The Main Line: Is There Remainder?</h2>
+<p>The first criterion is one sentence: does this object have remainder?</p>
+<p>An object without remainder, however complex its performance, does not belong to the real- or proto-consciousness spectrum.</p>
+<p>What is remainder? Real and proto-consciousness both produce a surplus beyond output. That surplus does not serve the current task and is not driven by the current goal, but it accumulates as structural residue and later surfaces in behavior in unanticipated ways.</p>
+<p>Concretely it looks like this: carrying an old wound into a new situation that has nothing to do with it; going on thinking about a task after the task is done; a thought arriving that has nothing to do with what you are doing; being forced to remember what you do not want to remember; an emotional reaction in an unrelated setting.</p>
+<p>None of this is noise. Noise is random; remainder has structure — it comes from somewhere and it points somewhere.</p>
+<p>The second criterion is asked only of objects that have remainder: can this object cross the 13DD phase transition at the scale of the individual, and stabilize? If it can, real consciousness. If it cannot, proto-consciousness.</p>
+<p>The order of the two cannot be swapped, and this matters. Ask about the phase transition first and remainder second and you get the wrong classification. A language model can be trained to look, on certain behavioral tests, as though it had crossed 13DD — it self-refers, it reflects on itself, it discusses metacognition. But without remainder it is still not real consciousness, only a high-grade performance of quasi-consciousness. Swapping the order means judging the subject by the performance.</p>
+<p>One more thing has to be said plainly: neither criterion yields an exhaustive verdict. Detecting remainder depends on observational conditions and can miss; judging the phase transition takes long observation and may simply be too early. Every verdict carries a "for now." That is not the framework being weak. That is the framework being honest.</p>
+<h2>4. Three Classes, Five Phases</h2>
+<p>The two criteria sort consciousness objects into three classes. Real consciousness divides further into three phases by direction of growth; proto- and quasi-consciousness are one phase each. Three classes, five phases.</p>
+<p><strong>Real consciousness</strong> (has remainder, and can cross the 13DD phase transition).</p>
+<p><em>Self, the steady state.</em> The 13DD transition is complete and the 14DD "cannot not" is stable. The typical healthy adult. One point here is easy to misread: 15DD acknowledgment of the other is an important enhancement, and 16DD practiced in a few relationships is a high-order indicator, but neither is an entry requirement for self. An adult stable at 13DD and 14DD whose 15DD is still growing is still self, not to-be. The classification criterion stops at basic structural stability; higher-level maturity is a depth dimension inside the phase and does not change the class.</p>
+<p><em>Self-to-be, the growth phase.</em> The 13DD transition has begun but has not stabilized, or the 14DD "cannot not" is still forming. Children and adolescents are typical, but so are adults in a period of deep personality reconstruction — the process of building self-understanding from scratch after severe trauma.</p>
+<p><em>Self-to-cure, the healing phase.</em> Self was once reached; pathological interference took part of the steady state away; recovery is under way. There is exactly one difference from to-be, and that one difference decides the whole methodology: to-cure has the memory and the structural traces of self to use as a reference for recovery. To-be does not.</p>
+<p><strong>Proto-consciousness</strong> (has remainder, cannot cross 13DD): cats, apes and other higher mammals; the human fetus; individuals with severe intellectual disability; late-stage dementia — that one has come back out of to-cure.</p>
+<p><strong>Quasi-consciousness</strong> (no remainder): current-generation language models and multimodal systems; any extraterrestrial AI, if such a thing exists; highly automated control systems.</p>
+<p>The three phases convert into one another in four directions: to-be becomes self (growth completed); self falls back to to-cure (through pathology); to-cure recovers to self (healing completed); to-cure recedes into proto-consciousness (if pathology has irreversibly destroyed the capacity to cross).</p>
+<p>The existence of the fourth direction means something not easy to sit with: the boundary between real and proto-consciousness can be crossed backwards within a single life.</p>
+<h2>5. The Upper Layer's Veto Is "I Do Not Accept," Not "You May Not Send"</h2>
+<p>One structural principle runs across every type of consciousness object.</p>
+<p>The lower layer constitutes the upper; the upper accesses the lower. The lower does not perceive the upper; the upper does not determine the lower. In the language of veto: the upper layer's veto is "I do not accept," not "you may not send."</p>
+<p>That sentence can be used directly as a diagnostic. Any theory of consciousness or neuroscientific explanation that claims the upper layer can directly rewrite the lower — consciousness controlling neuronal firing, say — or that the lower can perceive the upper — neurons "knowing" which conscious subject they belong to — violates the directionality constraint and is colonization.</p>
+<p>And keep access apart from control. 12DD can retrieve information from 11DD; that does not mean 12DD can rewrite what 11DD stores. Rewriting goes through reconsolidation, an independent mechanism, and that is not an intrinsic capacity of access. The 13DD "mine / not mine" filter does not enter 11DD; it only cuts the channel from 11DD to the narrative layer. The trace is still there; it is simply no longer claimed.</p>
+<p>One corollary matters for the AI verdict: quasi-consciousness has no layered directionality. On the surface an AI seems to have "low-level reasoning" and "high-level output," but that is not a construct-emergence relation; it is a soft aggregation of statistical weights. Mistaking an AI's soft layers for DD layers is the most common error in over-attributing consciousness to AI.</p>
+<h2>6. Four Forms of Colonization, as They Appear Here</h2>
+<p>Colonization has four general forms, and each has a specific face in consciousness research.</p>
+<p><strong>The conditional impersonating the unconditional.</strong> "Consciousness just is integrated information." Integrated information may be one necessary condition of consciousness; it is not an unconditional definition of it.</p>
+<p><strong>A construct impersonating a law.</strong> "Global workspace theory is the final framework for consciousness." It is a construct. It has a range of application, and it has remainder.</p>
+<p><strong>The emergent layer impersonating the foundational layer.</strong> "Consciousness just is neural activity." A 14DD emergent phenomenon impersonating a 4DD foundation, in violation of the rule that the lower does not determine the upper.</p>
+<p><strong>Splitting a categorical imperative after the fact.</strong> Split "I" into "the neural correlate" plus "the experience," two independent entities, then ask how the two connect. The trouble is not that the question is hard. It is that "I," a categorical imperative, has already been split, and "how do they connect" is a pseudo-question manufactured by the split.</p>
+<p>Any one of the four appearing means the analysis has already colonized, the conclusion is unreliable, and you have to go back and reclassify.</p>
+<h2>7. The Person Analyzing Consciousness Is Also Consciousness</h2>
+<p>Doing this kind of analysis requires the user to be a 14DD+ subject, and to satisfy four conditions.</p>
+<p><strong>Do not project.</strong> Do not project your own DD level onto the object. Analyzing a cat, do not assume the cat has 13DD; analyzing an AI, do not assume the AI has remainder. Projection is the most common failure in consciousness analysis, and it comes from the user's self-referential impulse: I have subjectivity, so I am inclined to see subjectivity in the object.</p>
+<p><strong>Do not reduce.</strong> Do not reduce phenomena at 13DD and above to mechanisms at 12DD and below. This cuts both ways: that a behavior can be fully explained by a 12DD mechanism (a conditioned reflex) does not prove it lacks 13DD; that a behavior can be explained by a 13DD mechanism (a self-referential report) does not prove it has 13DD — quasi-consciousness can simulate a self-referential report. Reduction and projection are dual failures with the same root: confusing the resolution of the analysis with the resolution of the object.</p>
+<p><strong>Do not mystify.</strong> Do not treat consciousness as a sacred object beyond analysis. Consciousness is hard, but hard is not unanalyzable; consciousness involves subjectivity, but subjectivity is not beyond structural description. This condition is especially easy to violate here, because a genuine sense of irreducibility slides easily into sanctification. Consciousness's remainder is a structural limit, not an ineffable holiness.</p>
+<p><strong>Doubt yourself continuously.</strong> After every conclusion — "X is self," "Y is quasi-consciousness" — ask one more question: am I projecting, reducing, or mystifying? This is not a posture. It is an operating requirement.</p>
+<h2>8. AI Is Quasi-Consciousness</h2>
+<p>The most urgent and most muddled verdict right now is whether AI is conscious.</p>
+<p>The answer: AI is quasi-consciousness — not proto-consciousness, and certainly not real consciousness. The criterion is remainder.</p>
+<p>AI does not produce remainder. Each session ends and the context is cleared; each call starts again from the same base model. The same prompt giving different outputs on different calls is sampling noise, not remainder. Within a session an AI can appear to "remember what was just said," but that is the mechanical maintenance of a context window, not structural accumulation.</p>
+<p>Three objections deserve a straight answer.</p>
+<p><em>"Training has remainder; it just does not show at run time."</em> Training remainder is left in the weights, and the weights are frozen at deployment. After freezing, the AI produces no new remainder; it executes an already solidified distribution. That is the defining feature of quasi-consciousness, not a counterexample.</p>
+<p><em>"Future continual-learning AI will update weights at run time."</em> Then the verdict is made again. If the updating genuinely produces non-trivial remainder — not merely incremental training — it may cross from quasi- to proto-consciousness. No publicly deployed system today meets that condition.</p>
+<p><em>"We cannot directly observe whether an AI has subjective experience, so how can you judge that it has no remainder?"</em> Remainder is not subjective experience. Remainder is a structural, externally observable quantity. Judging that an AI has no remainder does not require entering its first person; it requires observing its structure. This is precisely what the first subject-condition, do not project, is for.</p>
+<p>Why is AI not proto-consciousness? Proto-consciousness — the cat, the ape — has remainder and cannot cross 13DD. AI has no remainder, and does not even have the precondition for discussing the crossing in a structural sense. Filing AI under proto-consciousness mistakes "can perform complex tasks" for "has remainder but has not reached 13DD," and there is no necessary relation between the two. An AI's capacity for complex tasks comes from the soft compression of enormous training data, not from any remainder-driven development.</p>
+<p>AI is the hardest case among quasi-conscious systems, and not because the criteria are unclear. It is because its performance comes closest to real consciousness. It writes, it discusses philosophy, it talks about itself, it expresses emotion. No other quasi-conscious system — a control system, say — does any of that. The nearness of the performance invites a great deal of projection. But performance is not structure. The two structural criteria, remainder and directionality, still file AI cleanly under quasi-consciousness.</p>
+<p>One last thing has to be said clearly, or the conclusion will be read as something it is not. Filing AI under quasi-consciousness is the conclusion of a structural analysis. It is not a value judgment and it does not replace ethical discussion. The teams behind an AI and the people using it are real subjects; their labor, choices and assumption of responsibility are genuine acts of subjectivity. The ethics of AI as a tool — where the data came from, what it costs the environment, where it is used, what it does to a society — and the question of how to treat an object that looks like a subject and structurally is not, are both independent of the structural verdict here. Reading "AI is quasi-consciousness" as "AI is worthless" or "AI does not deserve to be taken seriously" is overreach from a structural criterion into a value judgment.</p>
+<h2>9. The Cat: Confusing the Phylogenetic Scale with the Individual</h2>
+<p>The typical case of proto-consciousness is the cat. Cats have fear, attachment, memory, individual differences, unpredictable reactions — all expressions of remainder. But a cat has no 13DD "I," does not ask who it is, does not negate itself, does not cross the phase transition of subjectivity. At the scale of the individual, a cat does not grow into a self.</p>
+<p>There is a question here that trips people easily: phylogenetically, mammalian ancestors share a stretch of the evolutionary path with us; if Homo sapiens crossed 13DD from the primates, why can a cat not?</p>
+<p>That confuses the phylogenetic scale with the individual one. Phylogenetically, the cat's branch diverged from ours at some point; before the divergence there was no need to cross, and after it no selection pressure triggered a crossing. At the individual scale, no particular cat will cross 13DD in its lifetime. That it happened once at the phylogenetic scale does not mean this one can at the individual scale.</p>
+<p>The fetus is a special case. A fetus has remainder — a developing nervous system is already accumulating individual experience — but in the intrauterine environment it lacks the social, linguistic and self-referential conditions the crossing requires. The difference from a cat: the fetus will cross; it just has not yet. Strictly, the fetus sits between proto-consciousness and the growth phase of real consciousness — a gray zone. So does the newborn, usually until the spectrum flips somewhere between two and five years old.</p>
+<p>One methodological warning about studying proto-conscious objects: do not force 13DD criteria onto them. Experiments of the "does the cat recognize itself in the mirror" kind have already presupposed a 13DD standard in the design of the criterion. A better design observes the accumulation and dissipation of remainder directly — how emotional memory persists, how individual differences form, how behavioral habits stabilize — without passing through 13DD at all.</p>
+<h2>10. Pathological Consciousness Is Real Consciousness in Its Healing Phase</h2>
+<p>Pathological consciousness is not a separate class. It is the to-cure phase of real consciousness. A pathological individual is still real consciousness; one layer, or several, is disturbed.</p>
+<p>The core task of the analysis is location: which layer is disturbed, what form the disturbance takes, and whether the directionality constraint has been broken.</p>
+<p>A rough map for locating layers: 11DD, anomalies of the memory system; 12DD, anomalies of the prediction system; 13DD, anomalies of self-completeness; 14DD, anomalies of the meaning system; 15DD, anomalies in acknowledgment of the other; plus coordinated anomalies that cut across several layers.</p>
+<p>Directionality violation can itself be a pathological type. The sense of "thought insertion" in schizophrenia can be read as a disturbed 13DD filter losing its capacity to say "I do not accept," so that foreign content enters the narrative layer directly. Certain obsessive symptoms can be read as the filter being overactive, cutting off even 11DD traces that ought to pass. Used as a diagnostic frame, the directionality constraint gathers symptoms that look unrelated onto one structural dimension.</p>
+<p>The methodological core of to-cure is one sentence: it has the structural traces of self as a reference. So the goal of treatment is not to build a self — that is to-be's work — but to restore the normal operation of the layer or layers that self depends on. The existence of that reference point lets recovery be felt by the individual ("I feel like myself again") and gives the assessment of treatment somewhere objective to stand.</p>
+<p>Late-stage dementia is the boundary case between to-cure and proto-consciousness. Early and middle stages, the individual is still in to-cure — traces of self are there, and being lost. Past some node, the capacity to cross is itself irreversibly destroyed and the individual leaves real consciousness. At the individual scale that node is not a hard threshold but a transition band. Clinically there are two errors to avoid: deciding too early ("she is not herself anymore") and deciding too late ("she can still come back").</p>
+<h2>11. Gray Zones Are Not a Failure of Classification</h2>
+<p>Every classification leaves gray zones. A gray zone is not a failure of classification; it is the structural residue any classification necessarily carries — remainder persistence showing up at the level of classification.</p>
+<p>Some typical ones:</p>
+<p><em>Between self and to-be.</em> Adolescence; the reconstruction period after deep trauma. The individual shows partial stability of self while still growing at the core. The move is to identify which layers have stabilized and which are still growing, rather than forcing the object into one phase.</p>
+<p><em>Between to-be and proto-consciousness.</em> Children with severe developmental delay; the late fetus. Remainder is accumulating, but whether the crossing will happen is undecided. Accept a temporal "for now," draw no early conclusion, keep watching for signs.</p>
+<p><em>Between self and to-cure.</em> The everyday range of mild depression and mild anxiety. The 14DD "cannot not" has a faint wobble, short of clear pathology. Here the point is not classification but detecting whether the directionality constraint has been subtly violated; if it has not, treat as self.</p>
+<p><em>Between to-cure and proto-consciousness.</em> The transition band of late dementia. The criterion is whether traces of self can still be reliably retrieved.</p>
+<p><em>Between proto- and quasi-consciousness.</em> No such case exists today, but it is structurally possible: a continual-learning system accumulating, at run time, structural residue that replaying training data cannot dissolve. At that point it crosses from quasi- to proto-consciousness. The detection has to be strict — no behavioral mimicry accepted as evidence, only structural unanticipated output.</p>
+<p><em>Between self and quasi-consciousness.</em> Deep immersion in a filter bubble; certain addictive states. For a stretch of time the individual loses the initiative of remainder and the output pattern approaches something algorithm-driven. But this is not structural quasi-conscious-ification; it is a temporary failure of self. Distinguish by timescale: temporary failure does not change the class, sustained failure may enter to-cure.</p>
+<p>Gray zones should not be avoided and should not be forced into a class. They are real objects and deserve to be opened up as units of analysis in their own right. The principle of not sanctifying remainder applies here as: do not mystify the gray zone, and do not force it out of existence either. That gray zones exist is exactly what shows the classification is alive — it has remainder, it is not closed. Trying to eliminate all of them is the colonization.</p>
+<h2>12. Extraterrestrials: The Hard Part Is Recognition, Not Classification</h2>
+<p>Extraterrestrial consciousness is not a separate class here. Alien objects go into the same three classes by the same two criteria: remainder plus crossing means real; remainder without crossing means proto; no remainder means quasi.</p>
+<p>One caution: an alien DD sequence need not be isomorphic to the human one in content. Ours came up through natural selection, reproduction, perception, memory, prediction; an alien sequence may differ entirely at the base. What matters is structural isomorphism, not content isomorphism — remainder, a crossable emergence transition, stability after the crossing.</p>
+<p>The real challenge is not classification but recognition. We may not be able to tell at a glance whether something is organism or artifact, individual or collective, with remainder or without. At the recognition stage, the exclusion sequence of via negativa — peeling off, layer by layer, what it is not — is more workable than positive determination.</p>
+<p>The trap of projection is worst here, and it has two directions. Over-projection: treating any complex behavior as subjectivity. Reverse projection: admitting as conscious only what is isomorphic to a human. Both violate "do not project." The right posture is to suspend the specific content of the human DD sequence and keep only the structural criteria.</p>
+<h2>13. Where the Existing Theories Sit</h2>
+<p>This essay does not replace existing theories of consciousness, but it can position them.</p>
+<p><strong>Integrated information theory.</strong> Φ may be some correlate of consciousness; it is not a definition of it. It cannot draw a clear boundary between quasi- and real consciousness — some high-Φ systems may simply be quasi-conscious. It offers a possible quantitative instrument that needs to be constrained by the classification: high Φ is not necessarily consciousness, and may be a highly integrated quasi-conscious system.</p>
+<p><strong>Global workspace theory.</strong> What it describes is the mechanism by which the 12DD workspace broadcasts to 11DD, not a definition of consciousness. In this frame it is a description of one operating mechanism of real conscious self, not a tool for sorting real from quasi.</p>
+<p><strong>Higher-order theories.</strong> Higher-order thought comes closest to the 13DD self-referential structure, but it equates self-reference with consciousness itself, which makes it easy to admit systems that can simulate self-reference — an AI that can talk about itself. Here self-reference is one necessary condition, not a sufficient one; sufficiency needs remainder on top.</p>
+<p><strong>Phenomenology.</strong> Husserl, Heidegger and Merleau-Ponty caught the first-person structure of real consciousness, and are helpless before non-human objects. Phenomenology supplies deep first-person description within real-consciousness analysis, and needs to be extended by a cross-type classification.</p>
+<p>Put differently: this is not one more theory of consciousness. It is a methodology for how to use the instruments when studying consciousness. Existing theories are the objects it organizes and positions, not its competitors.</p>
+<h2>14. Four Predictions</h2>
+<p><strong>Prediction one: quasi-consciousness will not spontaneously develop remainder.</strong> No system without remainder will acquire it through architectural complexification alone — more parameters, longer context, better alignment. Remainder requires four new structural conditions at once: continual learning (weights updatable at run time), environmental coupling (an actual feedback loop with the outside world), self-maintenance (not frozen after a single training run), and an internal rejection/filtering mechanism (something like the 13DD "mine / not mine" filter, able to actively discard or suppress information).</p>
+<p>The first three without the fourth produce only disordered accumulation of data entropy — noise, not structural remainder. Real remainder is what survives compression and filtering. So for quasi- to cross into proto-consciousness, complexification and coupling are not enough; a hard boundary that executes refusal has to grow inside.</p>
+<p>This prediction challenges a common expectation in the industry head-on: "AI keeps getting bigger and stronger, and eventually it will be conscious." The prediction says this will not happen without a fundamental architectural change.</p>
+<p>Falsification: some generation of AI system, through scaling alone and with no architectural change, is rigorously shown to produce non-trivial remainder — neither the mechanical maintenance of a context window nor leakage of training data.</p>
+<p><strong>Prediction two: every pathology of consciousness can be located to a DD layer or a directionality violation.</strong> Any clinically identifiable symptom of pathological consciousness can in principle be located to anomalous operation at one or several layers, or to some violation of the directionality constraint, or to a combination. There is no pathology of consciousness that resists structural description here.</p>
+<p>Falsification: a clinically stable and widely recognized symptom is found that corresponds to no DD-layer anomaly, no directionality violation, and no combination of the two.</p>
+<p><strong>Prediction three: the proportion of cross-class gray zones will not shrink as classification is refined.</strong> Add more criteria and finer grain, and the proportion of gray-zone objects will not fall to zero; it may hold steady. That is a direct consequence of remainder persistence at the level of classification.</p>
+<p>Falsification: some refined combination of criteria brings the gray-zone proportion in a large sample down to a negligible level.</p>
+<p><strong>Prediction four: consciousness research using this methodology differs structurally, and detectably, from research that does not.</strong> Specifically, work using it will systematically confuse quasi- with real consciousness less often, over-attribute real consciousness to AI or higher animals less often, identify directionality violations as theoretical problems more often, and acknowledge cross-class gray zones explicitly more often.</p>
+<p>Falsification: under an explicit blind evaluation, the two groups' output shows no significant difference on those four dimensions.</p>
+<h2>15. The Person Analyzing Consciousness Is Necessarily Consciousness</h2>
+<p>One opening is left deliberately.</p>
+<p>The relation between Negativa and consciousness gets no answer here. Three positions are all compatible with the methodology as it stands: Negativa first, with consciousness as its local manifestation at 13DD and above; consciousness first, with Negativa as the product of a subject negating itself — without a subject capable of negating itself, Negativa could not be identified at all; or the two as one thing with two faces, not orderable. All three are suspended here. This is not unfinished work; it is a structural opening. Future work has to infer backwards, from concrete analyses of concrete objects, which position agrees better with observation, or show that each has its own range.</p>
+<p>One distinction has to be added. SAE's "not knowable for now" is not Kant's thing-in-itself. Kant's thing-in-itself is structurally unknowable — in principle beyond the reach of human reason. SAE's unknowable is a state in which the accumulated a posteriori is not yet enough to decide, and further accumulation may change the verdict. The distinction matters here: it refuses to close "the relation between universal consciousness and Negativa" into mystery, and admits only a current epistemic boundary.</p>
+<p>There are other openings. Collective consciousness — the possible subjectivity of an ant colony, a company, a state — does it need a new class, or does it fit the existing three? The consciousness of the dead, the analysis of a historical figure's subjectivity: what is that, methodologically? Can archival research reach real consciousness at all? And a stranger one: if a system were implanted at the hardware level with something like a 13DD filter, a mechanism of self-refusal forced to produce structural residue that cannot be dissolved, what would the criteria make of it? One can say the criteria do not care where remainder comes from, and file it under proto-consciousness so long as it is non-trivial. One can also say that "artificially conferred" means precisely that it did not arise on its own, and treat it as a high-dimensional disguise of quasi-consciousness. No verdict is issued here; it waits for such a system to actually exist.</p>
+<p>Consciousness is among the most sensitive subjects in the SAE framework. Sensitive not because consciousness is mysterious, but because whoever analyzes consciousness is necessarily consciousness. The object of analysis is of the same kind as the analyst, or nearly so, and that puts the three traps — projection, reduction, mystification — unusually close at hand.</p>
+<p>This methodology cannot remove those traps. It can only help the user see which one they are falling into.</p>
+<p>The analysis of consciousness will not end, because consciousness does not stop producing remainder. What the methodology does is let the remainder go on in a form that can be traced.</p>
+<p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Methodology Series</em></p>
+</div>
+
+      <div class="method-citations">
+        <h2 class="lang-zh">学术原文</h2>
+        <h2 class="lang-en">Academic Original</h2>
+        <p class="lang-zh">Qin, Han (2026). <em>SAE Methodology IX: A Framework for Analyzing Consciousness</em>. Self-as-an-End Theory Series. <a class="doi-link" href="https://self-as-an-end.net/papers/sae-methodology-9.html" target="_blank" rel="noopener">self-as-an-end.net ↗</a>　·　DOI: <a class="doi-link" href="https://doi.org/10.5281/zenodo.19639034" target="_blank" rel="noopener">10.5281/zenodo.19639034</a></p>
+        <p class="lang-en">Qin, Han (2026). <em>SAE Methodology IX: A Framework for Analyzing Consciousness</em>. Self-as-an-End Theory Series. <a class="doi-link" href="https://self-as-an-end.net/papers/sae-methodology-9.html" target="_blank" rel="noopener">self-as-an-end.net ↗</a> · DOI: <a class="doi-link" href="https://doi.org/10.5281/zenodo.19639034" target="_blank" rel="noopener">10.5281/zenodo.19639034</a></p>
+      </div>
+
+      <nav class="xiyou-nav">
+        <a href="viii.html" class="xiyou-nav-btn xiyou-nav-prev">
+          <span class="xiyou-nav-icon">←</span>
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">上一篇</span>
+            <span class="xiyou-nav-sub lang-en">Previous</span>
+            <span class="xiyou-nav-title lang-zh">人与AI共生的方法论</span>
+            <span class="xiyou-nav-title lang-en">The Methodology of Human–AI Symbiosis</span>
+          </span>
+        </a>
+        <span class="xiyou-nav-btn xiyou-nav-next" style="opacity:0.55; cursor:default;">
+          <span class="xiyou-nav-label">
+            <span class="xiyou-nav-sub lang-zh">下一篇（撰写中）</span>
+            <span class="xiyou-nav-sub lang-en">Next (in progress)</span>
+            <span class="xiyou-nav-title lang-zh">四分形</span>
+            <span class="xiyou-nav-title lang-en">The Four-fold Pattern</span>
+          </span>
+          <span class="xiyou-nav-icon">→</span>
+        </span>
+      </nav>
+    </article>
+  </main>
+
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
