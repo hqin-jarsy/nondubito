@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>他把界面印成了唱片 — Non Dubito</title>
+  <meta name="description" content="Rob Smith 把 MOD 音乐文件在 ProTracker 里显示出来的十六进制方阵印在纸盘上，用摄像头 OCR 读回来播放。被形式化甩下的那一层显示，重新变成了承重结构。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-08-27.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang'); if (saved !== 'zh' && saved !== 'en') saved = 'zh'; document.documentElement.setAttribute('data-lang', saved); document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh'); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-08-27</div>
+          <h1 class="lang-zh">他把界面印成了唱片</h1>
+          <h1 class="lang-en">He Pressed the Interface Into a Record</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>英国的 Rob Smith（YouTube 上叫 RobDevBuilds）花了大半年做出一台机器，它播放的不是唱片，是一张打印在纸上的圆盘。盘面上没有沟槽，印的是一个 MOD 音乐文件在 ProTracker 里显示出来的那个十六进制方阵——一行一行往下走，每列一个声道，经典的 ProTracker 是四列。一台摄像头装在步进电机上，沿半径滑过盘面，像直线循迹唱臂那样，把印出来的字符 OCR 回来。字体是他自己改过的 Amiga Topaz。盘的背面是另一套东西：他自己设计的一种类 QR 条码，装着 MOD 文件的前 1084 字节——采样、曲名、作者，以及模式的播放顺序。所以这台机器有两台摄像头，正反各一台。</p>
+
+        <p>这件事今年一月起的头。他最初想做的是自动钢琴：把一个 ProTracker 模块打印在长条针式打印纸上，让纸卷着走过读头。后来他判断纸会撕，改成了圆盘。他自己那句描述值得记下来——"它看上去几乎像磁道和扇区，但其实是环和模式。"圆盘的形状里，还留着那个被放弃的方案的形状。8 月 23 日，整台机器在 UK Amiga Kickstart 2026 Expo 上首演。</p>
+
+        <p>MOD 格式本身早就是标准意义上的已构。1987 年 Karsten Obarski 写 Ultimate Soundtracker 的时候，那个十六进制方阵只是没办法——68000 和 320×256 的屏幕只能这么显示音符。三十九年过去，格式被逐字节文档化了，播放器遍地都是，demoscene 把它封进了自己的正典。凿子早就停了，当年的余项早就沉淀成了构造。但沉淀下来的是文件规范，不是显示。那个方阵是被当作"呈现"扔在一边的东西：它不承重，它只是给人看的那一层。Rob 做的事情，是把这一层捡起来，让它承重。屏幕上的样子成了唯一的载体；摄像头读的，正是 1990 年一双眼睛读过的东西。这是一次典型的再凿——被形式化甩下的那部分，重新变成结构。</p>
+
+        <p>他给出的理由是保存：纸比 M-DISC 活得久。但这台机器真正主张的是另一件事——可读的比被编码的活得久。一张印着 tracker 方阵的纸，一个懂规范的人拿眼睛就能读；一张 M-DISC 需要一台驱动器，而驱动器会先死。压缩把"人能看懂"算成纯粹的浪费，所以没有任何一种存储格式会去优化它。Rob 的盘同时在两个语域里可读，而这恰好就是历来被优化掉的那个余项。</p>
+
+        <p>第二处余项更硬：这机器还没做好。有些 mod 的模式跳转太快，读头在盘上跑不过来。在 Amiga 上，跳一个模式是零成本的——那是抽象层免费给的。到了纸盘上，跳一个模式要走一段距离，而这段距离是听得见的。物理身体把抽象抹掉的代价重新加了回去，并且加成了声音。没有哪个格式设计者会想要这个东西，它也不在任何人的设计意图里，但它就在那儿，而且它有意思。凿构循环里最活的那一段，往往就长这样：不是作者做对了什么，是作者的材料回嘴了。</p>
+
+        <p>现在看比以后看要紧，原因很简单：它还没有被命名。第二个视频还没出，背面那套条码是他一个人拍脑袋定的，没有文档，随时可能改；除了 Expo 上那一次首演，它还不属于任何人的收藏、任何一份年度榜单、任何一种"复古计算 YouTube"的类型片。再过半年，它大概率会变成一个完成的、可链接的、被归好类的"项目"。那时它仍然很好，但那时的好，是已构的好。</p>
+
+        <a href="https://robsmithdev.co.uk/" target="_blank" rel="noopener" class="project-link">robsmithdev.co.uk ↗</a>
+        <a href="https://www.youtube.com/watch?v=zM032oazT1w" target="_blank" rel="noopener" class="project-link">youtube.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>Rob Smith — RobDevBuilds on YouTube — spent most of this year building a machine that plays a record made of paper. There are no grooves on the disc. What is printed on it is the hexadecimal grid a MOD file shows you inside ProTracker: rows descending, one column per voice, four of them in a classic ProTracker module. A camera rides on a stepper motor and slides along the radius like a linear-tracking tonearm, OCR-ing the printed characters back into data. The typeface is his own modification of the Amiga's Topaz. The reverse side carries something else entirely: a QR-inspired barcode format of his own design, holding the first 1084 bytes of the MOD file — samples, title, artist, and the order the patterns are played in. Hence two cameras, one per side.</p>
+
+        <p>It started in January. The first idea was a pianola: print a ProTracker module onto continuous tractor-feed paper and let the roll scroll past a read head. He decided the paper would tear, and switched to a disc. His own description is worth keeping — "it almost looks like tracks and sectors, but in fact, it's rings and patterns." The shape of the abandoned plan is still visible in the shape of the thing that replaced it. The machine premiered on 23 August at the UK Amiga Kickstart 2026 Expo.</p>
+
+        <p>The MOD format is already-construct in the strict sense. When Karsten Obarski wrote Ultimate Soundtracker in 1987, that hexadecimal grid was simply what a 68000 and a 320×256 screen could manage. Thirty-nine years later the format is documented byte by byte, players run everywhere, the demoscene has sealed it into its own canon. The chisel stopped long ago; what was once remainder has long since settled into structure. But what settled was the file spec, not the display. The grid was the part discarded as mere presentation — non-load-bearing, the layer that exists for a human to look at. What Rob did was pick that layer up and make it carry weight. The appearance on screen becomes the only carrier there is, and the camera reads exactly what an eye read in 1990. This is re-chiselling in its clearest form: the part that formalization dropped, turned back into structure.</p>
+
+        <p>His stated reason is preservation — paper outlives an M-DISC. But the machine argues for something narrower and stranger: the readable outlives the encoded. A sheet with a tracker grid on it can be read by anyone holding the spec and a pair of eyes. An M-DISC needs a drive, and the drive dies first. Compression counts human legibility as pure waste, which is why no storage format has ever optimized for it. Rob's disc is legible in two registers at once, and that double legibility is precisely the remainder that every format has thrown away.</p>
+
+        <p>The second remainder is harder. The machine doesn't fully work yet. Some mods jump between patterns faster than the read head can travel across the disc. On an Amiga a pattern jump costs nothing — the abstraction hands it to you free. On paper a pattern jump costs distance, and that distance is audible. The physical body reintroduces a price the abstraction had erased, and pays it in sound. No format designer wants this; it appears in nobody's intent. But there it is, and it is interesting. The liveliest stretch of the chisel-construct cycle usually looks like this: not the maker getting something right, but the material talking back.</p>
+
+        <p>Seeing it now matters more than seeing it later, for a simple reason: it hasn't been named yet. The follow-up video isn't out. The barcode format on the reverse is one person's undocumented decision and could still change. Apart from that one premiere at the Expo, it belongs to no collection, no year-end list, no established genre of retro-computing YouTube. Six months from now it will most likely have become a finished, linkable, correctly-filed "project." It will still be good then. But that goodness will be the goodness of construct.</p>
+
+        <a href="https://robsmithdev.co.uk/" target="_blank" rel="noopener" class="project-link">robsmithdev.co.uk ↗</a>
+        <a href="https://www.youtube.com/watch?v=zM032oazT1w" target="_blank" rel="noopener" class="project-link">youtube.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
