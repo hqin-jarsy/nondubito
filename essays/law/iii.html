@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>国家法——艾泽拉斯 — Non Dubito</title>
+  <title>国家法——艾泽拉斯 — Non Dubito</title><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/law/iii.html"><link rel="alternate" hreflang="en" href="https://nondubito.net/essays/law/iii.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/law/iii.html"><link rel="alternate" hreflang="zh-Hant" href="https://nondubito.net/essays/law/iii.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/law/ja/iii.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/law/fr/iii.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/law/de/iii.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/law/es/iii.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/law/ko/iii.html">
   <meta name="description" content="第二篇建立了群体法的涌现条件：地基从情转为共同身份，身份定义权成为结构性危险，counter法作为第四条的制度化涌现。但群体法留下一个余项：当群体规模继续扩大，共同身份薄到极致，退出成本升到最高时，内部counter法的追问代表递归可能在代">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
@@ -26,27 +26,31 @@
     .essay-footnote { font-size:0.88rem; color:var(--ink-muted); margin-bottom:0.75rem; line-height:1.6; }
     @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
     [data-lang="en"] .lang-zh { display:none; }
-    [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-en, [data-lang="zh-hant"] .lang-en { display:none; }
   </style>
   <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-    })();
-  </script>
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='en'?'en':'zh-Hans');
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){var cur=document.documentElement.getAttribute('data-lang');btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});}
+    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='en'?'en':'zh-Hans');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+    update();
+  });
+})();
+</script>
 </head>
 <body>
   <main class="essay-main">
     <article>
 
       <header class="essay-header">
-        <div class="lang-toggle">
-          <button class="lang-btn" data-lang="zh">中文</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-        <a href="../../index.html#law" class="back-link lang-zh">← 法学系列</a>
-        <a href="../../index.html#law" class="back-link lang-en">← Law Series</a>
+        <div class="lang-toggle" style="margin-bottom:1.5rem;"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><span class="lang-sep">|</span><a class="lang-btn" href="ja/iii.html">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/iii.html">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="de/iii.html">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="es/iii.html">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/iii.html">한국어</a></div>
+        <a href="index.html" class="back-link lang-zh">← 法学系列</a>
+        <a href="index.html" class="back-link lang-en">← Law Series</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">SAE 法学系列（Paper III）</div>
           <div class="essay-series lang-en">SAE Law Series (Paper III)</div>
@@ -89,7 +93,7 @@
 <p>这不是萨尔选错了继任者（虽然他确实选错了）。是制衡本身的结构性缺陷：它依赖于一个人的持续在场。法不依赖于任何人的在场——法是结构，不是人。萨尔时期的部落证明了一件事：制衡消耗主体性（Paper I），而且制衡不可持续。</p>
 <h3>3.2 加尔鲁什：制衡崩塌后的无限对赌</h3>
 <p>加尔鲁什·地狱咆哮（Garrosh Hellscream）上台后，部落的共同身份从"被压迫者的联盟"被重写为"兽人至上"。这是身份定义权的僭越（Paper II）的极端形态——身份定义者直接把自己的14DD（兽人种族优越）写进共同身份里。</p>
-<p>没有法约束身份定义权，这次重写没有遇到任何结构性阻力。非兽人种族被驱逐出奥格瑞玛核心区域。赛拉摩（Theramore）——联盟在卡利姆多的和平据点——被法力炸弹摧毁。这是14DD压制的极端形态：用12DD工具（法力炸弹）执行14DD意志（消灭对方存在的权利），突破了13DD的底线。</p>
+<p>没有法约束身份定义权，这次重写没有遇到任何结构性阻力。非兽人种族被驱逐出奥格瑞玛核心区域。塞拉摩（Theramore）——联盟在卡利姆多的岛城与军事据点——被法力炸弹摧毁。这是14DD压制的极端形态：用12DD工具（法力炸弹）执行14DD意志（消灭对方存在的权利），突破了13DD的底线。</p>
 <p>没有法可以追问加尔鲁什的行为。第四条（法不得不可被追问）在部落内部不存在——大酋长制度没有追问结构。唯一的"追问"方式是武力：暗矛反叛军联合联盟围攻奥格瑞玛。</p>
 <p>围攻奥格瑞玛不是法的运作。是对赌——只不过这次对赌方是所有反对者联合起来，用武力推翻了加尔鲁什。这和法的区别是：法是结构性约束，在压制发生之前就画好了线。武力推翻是事后的，付出了巨大代价的，而且不提供任何结构保证不会再发生。</p>
 <h3>3.3 加尔鲁什受审：法的缺位暴露</h3>
@@ -98,8 +102,8 @@
 <p>但这个审判缺乏执行力。加尔鲁什最终越狱，逃往德拉诺的平行时间线，引发了新的战争。</p>
 <p>这个结果不是偶然的。是法的缺位的必然产物。审判需要三样东西：管辖权（谁有权审），判决标准（依据什么审），执行力（判了怎么执行）。三样艾泽拉斯一样都没有制度化。审判变成了一次临时安排，没有结构性基础。</p>
 <h3>3.4 部落议会：从制衡到法的第一步</h3>
-<p>加尔鲁什倒台后，部落做了一件艾泽拉斯历史上前所未有的事：废除大酋长制度，改为部落议会（Horde Council）。各种族领袖共同治理，没有单一的最高权力者。</p>
-<p>这是从制衡到法的第一步。不再依赖一个人的在场来维持平衡，而是用结构来分散权力。沃金（Vol'jin）死后由议会而非新大酋长接管，就是这个结构性转变的体现。</p>
+<p>加尔鲁什倒台后，部落并未立即废除大酋长制度：沃金（Vol'jin）与希尔瓦娜斯（Sylvanas Windrunner）仍先后担任大酋长。直到第四次战争结束、希尔瓦娜斯离任后，部落才废除单一大酋长制，改由部落议会（Horde Council）共同治理。</p>
+<p>这才是从个人制衡走向结构性分权的明确一步。它不再把秩序完全押在一个人的在场与品格上，而是让各种族领袖在共同结构内互相限制；这并不等于完成了法，却纠正了把部落议会提前到沃金去世时的时间线错误。</p>
 <p>但部落议会仍然不是完整的法。它是分权的第一步，但它没有独立的追问机制（议会成员之间如何互相追问？），没有明确的否定性边界（议会的权力边界在哪？），没有制度化的执行和裁判分离。它是从对赌走向法的路上的一个驿站，不是终点。</p>
 <hr />
 <h2>4. 国家法的存在条件</h2>
@@ -229,7 +233,7 @@
 <p>This was not because Thrall chose the wrong successor (though he did). It was the structural defect of the standoff itself: it depends on the continued presence of one person. Law does not depend on anyone's presence — law is structure, not a person. The Horde under Thrall proved one thing: a standoff consumes subjecthood (Paper I), and a standoff is not sustainable.</p>
 <h3>3.2 Garrosh: Unbounded Showdown After Standoff Collapse</h3>
 <p>After Garrosh Hellscream assumed power, the Horde's shared identity was rewritten from "an alliance of the oppressed" to "orc supremacy." This was the extreme form of identity-definition usurpation (Paper II): the identity-definer directly inscribed his own 14DD (orc racial superiority) into the shared identity.</p>
-<p>Without law to constrain identity-definition power, this rewriting met no structural resistance. Non-orc races were expelled from the core of Orgrimmar. Theramore — the Alliance's peaceful outpost on Kalimdor — was destroyed by a mana bomb. This was the extreme form of 14DD suppression: a 12DD tool (the mana bomb) executing 14DD will (annihilating the other's right to exist), breaching the 13DD floor.</p>
+<p>Without law to constrain identity-definition power, this rewriting met no structural resistance. Non-orc races were expelled from the core of Orgrimmar. Theramore — the Alliance's island city and military foothold on Kalimdor — was destroyed by a mana bomb. This was the extreme form of 14DD suppression: a 12DD tool (the mana bomb) executing 14DD will (annihilating the other's right to exist), breaching the 13DD floor.</p>
 <p>No law existed to question Garrosh's actions. BL4 (law cannot not be questionable) did not exist within the Horde — the Warchief system had no questioning structure. The only form of "questioning" was force: the Darkspear Rebellion joined with the Alliance to lay siege to Orgrimmar.</p>
 <p>The Siege of Orgrimmar was not the operation of law. It was a showdown — except this time the showdown was waged by all opponents united, using force to topple Garrosh. The difference from law: law is a structural constraint, a line drawn before suppression occurs. Overthrow by force is after the fact, purchased at enormous cost, and provides no structural guarantee against recurrence.</p>
 <h3>3.3 The Trial of Garrosh: The Absence of Law Exposed</h3>
@@ -238,8 +242,8 @@
 <p>But the trial lacked enforcement power. Garrosh eventually escaped, fled to an alternate timeline on Draenor, and triggered a new war.</p>
 <p>This outcome was not accidental. It was the necessary product of the absence of law. A trial requires three things: jurisdiction (who has the authority to try), standards of judgment (on what basis), and enforcement power (what happens after the verdict). Azeroth had none of these three institutionalized. The trial was an ad hoc arrangement without structural foundation.</p>
 <h3>3.4 The Horde Council: First Step from Standoff to Law</h3>
-<p>After Garrosh's fall, the Horde did something unprecedented in Azeroth's history: it abolished the Warchief system and established the Horde Council. Racial leaders governed collectively, with no single supreme authority.</p>
-<p>This was the first step from standoff to law. Rather than depending on one person's presence to maintain balance, structure was used to distribute power. When Vol'jin died, the Council rather than a new Warchief took charge — a concrete manifestation of this structural shift.</p>
+<p>After Garrosh's fall, the Horde did not immediately abolish the Warchief system: Vol'jin and Sylvanas Windrunner still served successively as Warchief. Only after the Fourth War ended and Sylvanas departed did the Horde replace the single Warchief with the Horde Council.</p>
+<p>That later change marks the clearer step from personal standoff toward structural distribution of power. Order no longer rests entirely on one leader's presence and character; racial leaders constrain one another within a common structure. This does not complete law, but it corrects the timeline that had placed the Council immediately after Vol'jin's death.</p>
 <p>But the Horde Council is not yet complete law. It is the first step toward separation of powers, but it lacks an independent questioning mechanism (how do council members question each other?), lacks explicit negative boundaries (where are the limits of the Council's power?), and lacks institutionalized separation of enforcement and adjudication. It is a waypoint on the road from showdown to law, not a destination.</p>
 <hr />
 <h2>4. Existence Conditions of National Law</h2>
@@ -362,32 +366,8 @@
       </nav>
     </article>
   </main>
-  <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          document.querySelectorAll('.lang-btn').forEach(function(b) {
-            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
-          });
-        }
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-      });
-    })();
-  </script>
+
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+<script defer src="zh-hant-data/iii.js"></script>
 </body>
 </html>

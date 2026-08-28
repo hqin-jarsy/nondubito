@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>星际法与总收束——Coercive Law的退场 — Non Dubito</title>
+  <title>星际法与总收束——Coercive Law的退场 — Non Dubito</title><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/law/iv.html"><link rel="alternate" hreflang="en" href="https://nondubito.net/essays/law/iv.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/law/iv.html"><link rel="alternate" hreflang="zh-Hant" href="https://nondubito.net/essays/law/iv.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/law/ja/iv.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/law/fr/iv.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/law/de/iv.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/law/es/iv.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/law/ko/iv.html">
   <meta name="description" content="第三篇用艾泽拉斯作为反面思想实验，展示了国家尺度上没有法的后果：周期性的对赌，制衡的不可持续，身份定义权的僭越。国家法在退出成本最高，碰撞密度最大，共同身份最薄时达到厚度峰值。但国家法留下一个余项：当距离恢复退出权，执行成本上升，各方的on">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
@@ -26,27 +26,31 @@
     .essay-footnote { font-size:0.88rem; color:var(--ink-muted); margin-bottom:0.75rem; line-height:1.6; }
     @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
     [data-lang="en"] .lang-zh { display:none; }
-    [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-en, [data-lang="zh-hant"] .lang-en { display:none; }
   </style>
   <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-    })();
-  </script>
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='en'?'en':'zh-Hans');
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){var cur=document.documentElement.getAttribute('data-lang');btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});}
+    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='en'?'en':'zh-Hans');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+    update();
+  });
+})();
+</script>
 </head>
 <body>
   <main class="essay-main">
     <article>
 
       <header class="essay-header">
-        <div class="lang-toggle">
-          <button class="lang-btn" data-lang="zh">中文</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-        <a href="../../index.html#law" class="back-link lang-zh">← 法学系列</a>
-        <a href="../../index.html#law" class="back-link lang-en">← Law Series</a>
+        <div class="lang-toggle" style="margin-bottom:1.5rem;"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><span class="lang-sep">|</span><a class="lang-btn" href="ja/iv.html">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/iv.html">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="de/iv.html">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="es/iv.html">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/iv.html">한국어</a></div>
+        <a href="index.html" class="back-link lang-zh">← 法学系列</a>
+        <a href="index.html" class="back-link lang-en">← Law Series</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">SAE 法学系列（Paper IV）</div>
           <div class="essay-series lang-en">SAE Law Series (Paper IV)</div>
@@ -89,7 +93,7 @@
 <p><strong>抛物线的变量是退出权，不是时代。</strong> "星际时代法变薄"是一个宏观陈述。微观上，任何退出权为零的容器里，法的厚度不变。法不跟随文明的"进步"自动变薄——法跟随退出权变化。这防止了一种常见的幻觉：认为法律变少就是文明进步。法律变少只是退出权恢复的信号，和文明进步无关。</p>
 <hr />
 <h2>4. 拓扑回归：法的厚度曲线是一个圆</h2>
-<p>法的厚度曲线不是线性进化。是一个圆。</p>
+<p>这里要区分两个模型。"厚度抛物线"描述法的厚度怎样随退出成本与关系密度变化；"圆"描述两人、群体、国家、星际四个尺度的结构序列如何回到高退出、薄法的拓扑形态。前者是函数关系，后者是尺度序列的拓扑回归，不是同一个几何对象。法的尺度演化不是直线，而在结构上闭合为圆。</p>
 <p>两人法：高退出权，共识为基，对称追问。法薄。</p>
 <p>群体法：退出权降低，共同身份为基，追问代表涌现。法变厚。</p>
 <p>国家法：退出权最低，疆域与制度为基，多权分立。法最厚。</p>
@@ -202,8 +206,8 @@
 <p>法的手段是限制。法的目的是涵育。法释放的是主体性。</p>
 <h3>系列总贡献</h3>
 <p>一，从14DD对赌推出法的四条base layer，不借用任何外部法学概念。</p>
-<p>二，定位法为13DD到14DD区间的base layer约束，区分于自然法则（5DD到12DD）和自己的法（15DD）。</p>
-<p>三，建立法的厚度抛物线模型：退出成本为主变量，关系密度为调制项。厚度曲线是圆不是线。</p>
+<p>二，定位法为13DD到14DD区间的base layer约束，区分于自然法则（4DD到12DD）和自己的法（15DD）。</p>
+<p>三，建立法的厚度函数模型：退出成本为主变量，关系密度为调制项；并指出尺度序列从两人到星际形成拓扑闭环。抛物线描述厚度函数，圆描述尺度回归。</p>
 <p>四，从射程两端推出法的两种形态（13DD公权力发起，14DD私人发起）。</p>
 <p>五，建立法的三条结构性边界（脚，心，手的折扣）加群体法的第四条边界（嵌入式立法的不可完全追问性）。</p>
 <p>六，建立身份定义权的结构性分析和counter法的涌现理论。</p>
@@ -264,7 +268,7 @@
 <p><strong>The variable of the parabola is exit, not era.</strong> "Law thins in the interstellar age" is a macro-level statement. At the micro level, in any container where exit is zero, the thickness of law does not diminish. Law does not automatically thin as civilization "progresses" — law follows changes in exit. This prevents a common illusion: the belief that fewer laws means civilizational progress. Fewer laws is merely a signal that exit has been restored, unrelated to progress.</p>
 <hr />
 <h2>4. Topological Return: The Thickness Curve of Law Is a Circle</h2>
-<p>The thickness curve of law is not linear evolution. It is a circle.</p>
+<p>Two models must be distinguished. The "thickness parabola" describes how legal thickness varies with exit cost and relational density; the "circle" describes how the sequence of dyadic, group, national, and interstellar scales returns topologically to high exit and thin law. The former is a functional relation, the latter a topological return across scales, not the same geometric object. The scale-sequence of law is therefore not a line but closes structurally as a circle.</p>
 <p>Dyadic law: high exit, consensus as foundation, symmetric questioning. Law is thin.</p>
 <p>Group law: exit decreasing, shared identity as foundation, questioning delegates emerge. Law thickens.</p>
 <p>National law: exit at minimum, territory and institution as foundation, multi-branch separation of powers. Law is thickest.</p>
@@ -377,8 +381,8 @@
 <p>The instrument of law is constraint. The purpose of law is cultivation. What law releases is subjecthood.</p>
 <h3>Series Contributions</h3>
 <p>First, four base layers of law are derived from the 14DD showdown without borrowing any external legal concept.</p>
-<p>Second, law is positioned as the base-layer constraint of the 13DD to 14DD interval, distinguished from natural law (5DD through 12DD) and one's own law (15DD).</p>
-<p>Third, a parabolic thickness model of law is established: exit cost as primary variable, relational density as modulator. The thickness curve is a circle, not a line.</p>
+<p>Second, law is positioned as the base-layer constraint of the 13DD to 14DD interval, distinguished from natural law (4DD through 12DD) and one's own law (15DD).</p>
+<p>Third, a thickness-function model is established with exit cost as the primary variable and relational density as modulator, while the sequence from dyad to interstellar scale forms a topological loop. The parabola describes the thickness function; the circle describes the return across scales.</p>
 <p>Fourth, two structural forms of law are derived from the two ends of the range (13DD-protection initiated by public authority, 14DD-limitation initiated by private parties).</p>
 <p>Fifth, three structural boundaries of law are established (feet, heart, enforcement discount) plus a fourth boundary in group law (incomplete questionability of embedded legislation).</p>
 <p>Sixth, a structural analysis of identity-definition power and a theory of counter-law emergence are established.</p>
@@ -432,32 +436,8 @@
       </nav>
     </article>
   </main>
-  <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          document.querySelectorAll('.lang-btn').forEach(function(b) {
-            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
-          });
-        }
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-      });
-    })();
-  </script>
+
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+<script defer src="zh-hant-data/iv.js"></script>
 </body>
 </html>

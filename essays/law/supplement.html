@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>与西方法理学的后验对照 — Non Dubito</title>
+  <title>与西方法理学的后验对照 — Non Dubito</title><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/law/supplement.html"><link rel="alternate" hreflang="en" href="https://nondubito.net/essays/law/supplement.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/law/supplement.html"><link rel="alternate" hreflang="zh-Hant" href="https://nondubito.net/essays/law/supplement.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/law/ja/supplement.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/law/fr/supplement.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/law/de/supplement.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/law/es/supplement.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/law/ko/supplement.html">
   <meta name="description" content="SAE法学系列四篇（DOI: 10.5281/zenodo.19548237, .19548318, .19548596, .19549018）从14DD对赌出发，不借用任何外部法学概念，推出法的四条base layer，射程，厚度抛物线，">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
@@ -26,27 +26,31 @@
     .essay-footnote { font-size:0.88rem; color:var(--ink-muted); margin-bottom:0.75rem; line-height:1.6; }
     @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
     [data-lang="en"] .lang-zh { display:none; }
-    [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-en, [data-lang="zh-hant"] .lang-en { display:none; }
   </style>
   <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-    })();
-  </script>
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='en'?'en':'zh-Hans');
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){var cur=document.documentElement.getAttribute('data-lang');btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});}
+    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='en'?'en':'zh-Hans');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+    update();
+  });
+})();
+</script>
 </head>
 <body>
   <main class="essay-main">
     <article>
 
       <header class="essay-header">
-        <div class="lang-toggle">
-          <button class="lang-btn" data-lang="zh">中文</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-        <a href="../../index.html#law" class="back-link lang-zh">← 法学系列</a>
-        <a href="../../index.html#law" class="back-link lang-en">← Law Series</a>
+        <div class="lang-toggle" style="margin-bottom:1.5rem;"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><span class="lang-sep">|</span><a class="lang-btn" href="ja/supplement.html">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/supplement.html">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="de/supplement.html">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="es/supplement.html">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/supplement.html">한국어</a></div>
+        <a href="index.html" class="back-link lang-zh">← 法学系列</a>
+        <a href="index.html" class="back-link lang-en">← Law Series</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">SAE 法学系列（后续篇 · Supplement）</div>
           <div class="essay-series lang-en">SAE Law Series (后续篇 · Supplement)</div>
@@ -83,7 +87,7 @@
 <p>两者在起点上高度收敛。"所有人对所有人的战争"和"对赌"描述的是同一个结构性事实：没有法的14DD之间，默认状态是冲突而非合作。这个收敛说明问题是真的——不管你从17世纪英国内战出发还是从14DD碰撞出发，你都会撞上同一堵墙。</p>
 <h3>2.3 分叉</h3>
 <p>分叉在解决方案。</p>
-<p>霍布斯的解决方案是利维坦——一个拥有绝对权力的主权者。所有人把自然权利让渡给主权者，主权者用权力维持秩序。</p>
+<p>霍布斯的解决方案是利维坦——一个拥有最高权威的主权者。个人将大部分自然权利让渡或授权给主权者，由主权者维持秩序；但自我保存权并不能被彻底放弃。</p>
 <p>SAE不走这条路。原因在Paper III（国家法）里已经论证：所有权力合一于一个人（阿尔萨斯模型），第四条（法不得不可被追问）就名存实亡。利维坦是制衡的极端形式——把制衡从多人之间收束到一个人身上。但制衡不可持续（Paper I），而且制衡消耗主体性。萨尔时期的部落就是利维坦的缩影：一个人扛住所有平衡，他一走就崩。</p>
 <p>霍布斯为什么走向利维坦？因为他面对的是英国内战——一个国家级的对赌场景。在那个环境里，止战是第一优先级。利维坦确实能止战。但止战不等于法。法的目的是涵育，不只是止战。利维坦止了战，但把主体性锁在了主权者的阴影里。SAE的四条base layer要求法不只止战，还要可追问（BL4），还要是否定性的（BL3）——利维坦两条都不满足。</p>
 <p>理解霍布斯的选择：在内战的灰烬里，一个不可追问的主权者比无限对赌好。这个判断在他的环境里是理性的。SAE不批判这个判断。SAE只是指出：从更长的时间尺度看，利维坦是驿站，不是终点。</p>
@@ -162,7 +166,7 @@
 <p>SAE的回答：法不是契约的产物。法是结构性必然——14DD碰撞加上不退出，余项不得不被处理，处理的结构不得不存在（BL1）。</p>
 <h3>7.2 分叉</h3>
 <p>这里的分叉是根本性的。</p>
-<p>社会契约论预设了一个"签约时刻"——在法之前有一个理性协商的阶段，人们同意被治理。SAE不承认这个时刻的存在。没有人在对赌之前坐下来签过合同。法不是同意的产物，是碰撞的产物。</p>
+<p>社会契约论在逻辑上诉诸一种先于政治义务的假设性同意：人们仿佛从法外的位置同意进入共同秩序。SAE质疑的不是历史上是否真有一个签约时刻，而是这种同意是否构成法的必要起点。碰撞先留下必须处理的余项，法因此可以先于充分同意而出现；契约是法的一种可能构，不是唯一发生条件。</p>
 <p>但分叉不意味着契约论没有触碰到真的东西。</p>
 <p>洛克说自然状态"不便"——缺乏裁判者和执行力。这对应SAE的边界三（执行折扣）和Paper III（审判需要制度基础）。洛克更接近SAE对13DD保护的关切：主体的基本权利需要保护，但自然状态缺乏保护的执行力。洛克的问题和SAE的问题在13DD端相遇。</p>
 <p>卢梭说共同意志——这对应SAE的共同身份（Paper II）。但SAE立刻追问：谁定义了共同意志？定义者的14DD有没有混进去？卢梭没有处理身份定义权的危险，而这恰恰是Paper II的核心发现。卢梭的问题和SAE的问题在14DD端相遇，但SAE比卢梭多走了一步：追问共同意志的定义者。</p>
@@ -282,7 +286,7 @@
 <p>The two converge strongly at the starting point. "War of all against all" and "showdown" describe the same structural fact: between 14DDs without law, the default is conflict, not cooperation. This convergence demonstrates that the problem is real — whether you start from the seventeenth-century English Civil War or from 14DD collision, you strike the same wall.</p>
 <h3>2.3 Divergence</h3>
 <p>The divergence is in the solution.</p>
-<p>Hobbes's solution is the Leviathan: a sovereign with absolute power. All persons surrender their natural rights to the sovereign, who uses power to maintain order.</p>
+<p>Hobbes's solution is the Leviathan: a sovereign with supreme authority. Individuals surrender or authorize most natural rights to the sovereign, who maintains order, while the right of self-preservation cannot be wholly renounced.</p>
 <p>SAE does not take this path. The reason was already demonstrated in Paper III (national law): when all powers are unified in a single person (the Arthas model), BL4 (law cannot not be questionable) becomes nominal. The Leviathan is an extreme form of standoff — concentrating the standoff from many parties into one. But the standoff is not sustainable (Paper I), and the standoff consumes subjecthood. Thrall's Horde was a miniature Leviathan: one person bore all the balance; when he left, it collapsed.</p>
 <p>Why did Hobbes arrive at the Leviathan? Because he faced the English Civil War — a national-scale showdown scenario. In that environment, stopping the war was the first priority. The Leviathan can stop a war. But stopping a war is not the same as law. The purpose of law is cultivation, not merely cessation of war. The Leviathan stops war but locks subjecthood in the shadow of the sovereign. SAE's four base layers require that law not only stop war but be questionable (BL4) and negative (BL3) — the Leviathan satisfies neither.</p>
 <p>Understanding Hobbes's choice: in the ashes of civil war, an unquestionable sovereign is better than an unbounded showdown. This judgment was rational in his environment. SAE does not critique this judgment. SAE only observes: over a longer time horizon, the Leviathan is a waypoint, not a destination.</p>
@@ -361,7 +365,7 @@
 <p>SAE's answer: law is not the product of contract. Law is structural necessity — 14DD collision plus non-exit produces remainder that cannot not be processed, and the structure for processing cannot not exist (BL1).</p>
 <h3>7.2 Divergence</h3>
 <p>The divergence here is fundamental.</p>
-<p>Social contract theory presupposes a "signing moment" — a stage of rational deliberation before law, in which people agree to be governed. SAE does not accept the existence of this moment. No one sat down and signed an agreement before the showdown began. Law is not the product of consent; it is the product of collision.</p>
+<p>Social-contract theory appeals, at the logical level, to a hypothetical consent prior to political obligation: people are treated as if they could agree from outside law to enter a common order. SAE does not rest its objection on whether a historical signing moment actually occurred; it questions whether such consent is law's necessary starting point. Collision already leaves a remainder that must be processed, so law may arise before full consent. Contract is one possible construct of law, not its sole condition of genesis.</p>
 <p>But divergence does not mean contract theory touched nothing real.</p>
 <p>Locke says the state of nature is "inconvenient" — lacking an arbiter and enforcement power. This corresponds to SAE's Boundary Three (enforcement discount) and Paper III (trials require institutional foundation). Locke is closer to SAE's concern for 13DD protection: the basic rights of subjects need protection, but the state of nature lacks the enforcement power to provide it. Locke's problem and SAE's problem meet at the 13DD end.</p>
 <p>Rousseau speaks of the general will — this corresponds to SAE's shared identity (Paper II). But SAE immediately asks: who defined the general will? Has the definer's 14DD infiltrated it? Rousseau does not address the danger of identity-definition power, which is precisely the core finding of Paper II. Rousseau's problem and SAE's problem meet at the 14DD end, but SAE goes one step further than Rousseau: questioning the definer of the general will.</p>
@@ -471,32 +475,8 @@
       </nav>
     </article>
   </main>
-  <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          document.querySelectorAll('.lang-btn').forEach(function(b) {
-            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
-          });
-        }
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-      });
-    })();
-  </script>
+
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+<script defer src="zh-hant-data/supplement.js"></script>
 </body>
 </html>

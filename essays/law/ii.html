@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>群体法——从情到共同身份 — Non Dubito</title>
+  <title>群体法——从情到共同身份 — Non Dubito</title><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/law/ii.html"><link rel="alternate" hreflang="en" href="https://nondubito.net/essays/law/ii.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/law/ii.html"><link rel="alternate" hreflang="zh-Hant" href="https://nondubito.net/essays/law/ii.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/law/ja/ii.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/law/fr/ii.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/law/de/ii.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/law/es/ii.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/law/ko/ii.html">
   <meta name="description" content="第一篇建立了两人法的发生学：从14DD对赌到制衡到法，推出四条base layer。但两人法有三个余项无法处理：第三方被碰撞波及但不在共识里，新成员出现但未参与共识，碰撞一方撤回共识但不走。本文从这三个余项出发，推导群体法的涌现。群体法的核">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
@@ -26,27 +26,31 @@
     .essay-footnote { font-size:0.88rem; color:var(--ink-muted); margin-bottom:0.75rem; line-height:1.6; }
     @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
     [data-lang="en"] .lang-zh { display:none; }
-    [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-en, [data-lang="zh-hant"] .lang-en { display:none; }
   </style>
   <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-    })();
-  </script>
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='en'?'en':'zh-Hans');
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){var cur=document.documentElement.getAttribute('data-lang');btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});}
+    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='en'?'en':'zh-Hans');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+    update();
+  });
+})();
+</script>
 </head>
 <body>
   <main class="essay-main">
     <article>
 
       <header class="essay-header">
-        <div class="lang-toggle">
-          <button class="lang-btn" data-lang="zh">中文</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-        <a href="../../index.html#law" class="back-link lang-zh">← 法学系列</a>
-        <a href="../../index.html#law" class="back-link lang-en">← Law Series</a>
+        <div class="lang-toggle" style="margin-bottom:1.5rem;"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><span class="lang-sep">|</span><a class="lang-btn" href="ja/ii.html">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/ii.html">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="de/ii.html">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="es/ii.html">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/ii.html">한국어</a></div>
+        <a href="index.html" class="back-link lang-zh">← 法学系列</a>
+        <a href="index.html" class="back-link lang-en">← Law Series</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">SAE 法学系列（Paper II）</div>
           <div class="essay-series lang-en">SAE Law Series (Paper II)</div>
@@ -332,32 +336,8 @@
       </nav>
     </article>
   </main>
-  <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          document.querySelectorAll('.lang-btn').forEach(function(b) {
-            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
-          });
-        }
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-      });
-    })();
-  </script>
+
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+<script defer src="zh-hant-data/ii.js"></script>
 </body>
 </html>

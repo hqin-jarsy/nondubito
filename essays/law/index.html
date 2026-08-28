@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>法学系列 / Law Series — Non Dubito</title>
-  <meta name="description" content="法学系列 / Law Series：从 14DD 对赌到星际收束，法的先验推导。">
+  <title>法学系列 / Law Series — Non Dubito</title><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/law/index.html"><link rel="alternate" hreflang="en" href="https://nondubito.net/essays/law/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/law/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://nondubito.net/essays/law/index.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/law/ja/index.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/law/fr/index.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/law/de/index.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/law/es/index.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/law/ko/index.html">
+  <meta name="description" content="法学系列 / Law Series：从 14DD 对赌到星际收束，五篇完整论证，八种语言。">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
@@ -32,37 +32,22 @@
     .source-note a { color:var(--ink-muted); text-decoration:none; }
     .source-note a:hover { color:var(--ink); }
     [data-lang="en"] .lang-zh { display:none; }
-    [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-en, [data-lang="zh-hant"] .lang-en { display:none; }
   </style>
   <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang');
-      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          btns.forEach(function(btn) {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
-          });
-        }
-      });
-    })();
-  </script>
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='en'?'en':'zh-Hans');
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){var cur=document.documentElement.getAttribute('data-lang');btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});}
+    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='en'?'en':'zh-Hans');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+    update();
+  });
+})();
+</script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
@@ -83,11 +68,7 @@
     </div>
   </header>
   <main class="series-container">
-    <div class="lang-toggle" style="margin-bottom:1.5rem;">
-      <button class="lang-btn" data-lang="zh">中文</button>
-      <span class="lang-sep">|</span>
-      <button class="lang-btn" data-lang="en">EN</button>
-    </div>
+    <div class="lang-toggle" style="margin-bottom:1.5rem;"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><span class="lang-sep">|</span><a class="lang-btn" href="ja/index.html">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/index.html">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="de/index.html">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="es/index.html">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/index.html">한국어</a></div>
 
     <a href="../../library.html" class="back-link lang-zh">← 书架</a>
     <a href="../../library.html" class="back-link lang-en">← Library</a>
@@ -100,72 +81,20 @@
     <div class="series-title-en lang-en">法学系列</div>
 
     <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
-      <p>从 14DD 对赌到星际收束：法的先验推导。两个 14DD 相遇，自然状态是对赌——法就是从这里长出来的。四篇 + 后续篇 · 双语。</p>
+      <p>从 14DD 对赌到星际收束：法的先验推导。两个 14DD 相遇，自然状态是对赌——法就是从这里长出来的。四篇正传 + 一篇后续篇 · 八种语言。</p>
     </div>
     <div class="series-desc lang-en">
-      <p>From the 14DD showdown to interstellar closure: an a priori derivation of law. Where two 14DDs meet, the state of nature is a wager — and law grows out of exactly that. Four papers plus a supplement · Bilingual.</p>
+      <p>From the 14DD showdown to interstellar closure: an a priori derivation of law. Where two 14DDs meet, the state of nature is a wager — and law grows out of exactly that. Four papers plus a supplement · Eight languages.</p>
     </div>
 
-    <div class="series-meta">
-      <span>Han Qin (秦汉) · Non Dubito</span>
-    </div>
+    <div class="series-meta"><span class="lang-zh">Han Qin (秦汉) · 五篇 · 八种语言</span><span class="lang-en">Han Qin (秦汉) · Five essays · Eight languages</span></div>
 
     <ul class="entry-list">
-      <li>
-        <a href="i.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 I 篇</span>
-            <span class="entry-num lang-en">Paper I</span>
-          </div>
-          <div class="entry-title-zh lang-zh">One&#x27;s Law Meets One&#x27;s Law</div>
-          <div class="entry-title-en lang-en">One&#x27;s Law Meets One&#x27;s Law</div>
-          <div class="entry-desc lang-zh">本文从14DD（不可让渡的主体目的）的碰撞出发，推导法律的结构性起源。两个14DD相遇，自然状态是对赌：谁的法硬谁赢。对赌如果势均力敌则进入制衡（不稳定平衡），但制衡吞噬主体性——14DD全部投入盯防，不再有余力做自己不得不做的事。法的诞生</div>
-        </a>
-      </li>
-      <li>
-        <a href="ii.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 II 篇</span>
-            <span class="entry-num lang-en">Paper II</span>
-          </div>
-          <div class="entry-title-zh lang-zh">群体法——从情到共同身份</div>
-          <div class="entry-title-en lang-en">Group Law — From Emotion to Shared Identity</div>
-          <div class="entry-desc lang-zh">第一篇建立了两人法的发生学：从14DD对赌到制衡到法，推出四条base layer。但两人法有三个余项无法处理：第三方被碰撞波及但不在共识里，新成员出现但未参与共识，碰撞一方撤回共识但不走。本文从这三个余项出发，推导群体法的涌现。群体法的核</div>
-        </a>
-      </li>
-      <li>
-        <a href="iii.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 III 篇</span>
-            <span class="entry-num lang-en">Paper III</span>
-          </div>
-          <div class="entry-title-zh lang-zh">国家法——艾泽拉斯</div>
-          <div class="entry-title-en lang-en">National Law — Azeroth</div>
-          <div class="entry-desc lang-zh">第二篇建立了群体法的涌现条件：地基从情转为共同身份，身份定义权成为结构性危险，counter法作为第四条的制度化涌现。但群体法留下一个余项：当群体规模继续扩大，共同身份薄到极致，退出成本升到最高时，内部counter法的追问代表递归可能在代</div>
-        </a>
-      </li>
-      <li>
-        <a href="iv.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 IV 篇</span>
-            <span class="entry-num lang-en">Paper IV</span>
-          </div>
-          <div class="entry-title-zh lang-zh">星际法与总收束——Coercive Law的退场</div>
-          <div class="entry-title-en lang-en">Interstellar Law and Grand Closure — The Recession of Coercive Law</div>
-          <div class="entry-desc lang-zh">第三篇用艾泽拉斯作为反面思想实验，展示了国家尺度上没有法的后果：周期性的对赌，制衡的不可持续，身份定义权的僭越。国家法在退出成本最高，碰撞密度最大，共同身份最薄时达到厚度峰值。但国家法留下一个余项：当距离恢复退出权，执行成本上升，各方的on</div>
-        </a>
-      </li>
-      <li>
-        <a href="supplement.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">后续篇</span>
-            <span class="entry-num lang-en">Supplement</span>
-          </div>
-          <div class="entry-title-zh lang-zh">与西方法理学的后验对照</div>
-          <div class="entry-title-en lang-en">A Posterior Dialogue with Western Jurisprudence</div>
-          <div class="entry-desc lang-zh">SAE法学系列四篇（DOI: 10.5281/zenodo.19548237, .19548318, .19548596, .19549018）从14DD对赌出发，不借用任何外部法学概念，推出法的四条base layer，射程，厚度抛物线，</div>
-        </a>
-      </li>
+      <li><a href="i.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 I 篇</span><span class="entry-num lang-en">Paper I</span></div><div class="entry-title-zh lang-zh">One's Law Meets One's Law</div><div class="entry-title-en lang-en">One's Law Meets One's Law</div><div class="entry-desc lang-zh">从两个 14DD 的对赌推出法的四条 base layer、13DD–14DD 射程、两种法形态、三条结构边界与穿透原则。</div><div class="entry-desc lang-en">The 14DD showdown yields four base layers, the 13DD–14DD range, two legal forms, three structural boundaries, and the penetration principle.</div></a></li>
+      <li><a href="ii.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 II 篇</span><span class="entry-num lang-en">Paper II</span></div><div class="entry-title-zh lang-zh">群体法——从情到共同身份</div><div class="entry-title-en lang-en">Group Law — From Emotion to Shared Identity</div><div class="entry-desc lang-zh">两人法的三个余项推动地基从情转为共同身份，并使身份定义权、counter法、追问代表、透明度与递归出现。</div><div class="entry-desc lang-en">Three remainders shift law's foundation from emotion to shared identity, producing identity-definition power, counter-law, delegates, transparency, and recursion.</div></a></li>
+      <li><a href="iii.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 III 篇</span><span class="entry-num lang-en">Paper III</span></div><div class="entry-title-zh lang-zh">国家法——艾泽拉斯</div><div class="entry-title-en lang-en">National Law — Azeroth</div><div class="entry-desc lang-zh">以艾泽拉斯作反面思想实验，说明国家尺度的退出成本、法的厚度，以及多权分立作为 BL4 的最小闭环。</div><div class="entry-desc lang-en">Azeroth serves as a negative thought experiment for exit cost, legal thickness, and separated powers as the minimum national realization of BL4.</div></a></li>
+      <li><a href="iv.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 IV 篇</span><span class="entry-num lang-en">Paper IV</span></div><div class="entry-title-zh lang-zh">星际法与总收束——Coercive Law的退场</div><div class="entry-title-en lang-en">Interstellar Law and Grand Closure</div><div class="entry-desc lang-zh">当距离恢复退出权，强制法退场而薄协议留下；法的厚度从两人、群体、国家到星际完成拓扑回归。</div><div class="entry-desc lang-en">When distance restores exit, coercive law recedes while thin agreements remain; legal thickness closes a circle from dyad through group and nation to interstellar scale.</div></a></li>
+      <li><a href="supplement.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">后续篇</span><span class="entry-num lang-en">Supplement</span></div><div class="entry-title-zh lang-zh">与西方法理学的后验对照</div><div class="entry-title-en lang-en">A Posterior Dialogue with Western Jurisprudence</div><div class="entry-desc lang-zh">在内部推导完成后，与霍布斯、哈特、富勒、拉兹、霍菲尔德及社会契约论逐一对接，标出收敛与分叉。</div><div class="entry-desc lang-en">After the internal derivation, SAE is placed in dialogue with Hobbes, Hart, Fuller, Raz, Hohfeld, and social-contract theory, mapping convergences and divergences.</div></a></li>
     </ul>
     <div class="source-note">
       <span class="lang-zh">全部系列见 <a href="../../library.html">书架 ↗</a>　·　学术原文：<a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
@@ -177,5 +106,6 @@
       <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
     </div>
   </footer>
+<script defer src="zh-hant-data/index.js"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>One's Law Meets One's Law — Non Dubito</title>
+  <title>One's Law Meets One's Law — Non Dubito</title><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/law/i.html"><link rel="alternate" hreflang="en" href="https://nondubito.net/essays/law/i.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/law/i.html"><link rel="alternate" hreflang="zh-Hant" href="https://nondubito.net/essays/law/i.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/law/ja/i.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/law/fr/i.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/law/de/i.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/law/es/i.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/law/ko/i.html">
   <meta name="description" content="本文从14DD（不可让渡的主体目的）的碰撞出发，推导法律的结构性起源。两个14DD相遇，自然状态是对赌：谁的法硬谁赢。对赌如果势均力敌则进入制衡（不稳定平衡），但制衡吞噬主体性——14DD全部投入盯防，不再有余力做自己不得不做的事。法的诞生">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
@@ -26,27 +26,31 @@
     .essay-footnote { font-size:0.88rem; color:var(--ink-muted); margin-bottom:0.75rem; line-height:1.6; }
     @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
     [data-lang="en"] .lang-zh { display:none; }
-    [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-en, [data-lang="zh-hant"] .lang-en { display:none; }
   </style>
   <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-    })();
-  </script>
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='en'?'en':'zh-Hans');
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){var cur=document.documentElement.getAttribute('data-lang');btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});}
+    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='en'?'en':'zh-Hans');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+    update();
+  });
+})();
+</script>
 </head>
 <body>
   <main class="essay-main">
     <article>
 
       <header class="essay-header">
-        <div class="lang-toggle">
-          <button class="lang-btn" data-lang="zh">中文</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-        <a href="../../index.html#law" class="back-link lang-zh">← 法学系列</a>
-        <a href="../../index.html#law" class="back-link lang-en">← Law Series</a>
+        <div class="lang-toggle" style="margin-bottom:1.5rem;"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><span class="lang-sep">|</span><a class="lang-btn" href="ja/i.html">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/i.html">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="de/i.html">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="es/i.html">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/i.html">한국어</a></div>
+        <a href="index.html" class="back-link lang-zh">← 法学系列</a>
+        <a href="index.html" class="back-link lang-en">← Law Series</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">SAE 法学系列（Paper I）</div>
           <div class="essay-series lang-en">SAE Law Series (Paper I)</div>
@@ -79,7 +83,7 @@
 <h2>2. 法在DD序列中的位置</h2>
 <p>在继续推导之前，需要先确定法在DD序列中的位置。</p>
 <p>DD序列中有三层"法"（Qin, 2025, DOI: 10.5281/zenodo.18727327）：</p>
-<p>5DD到12DD（因果律到预测律）是自然法则。生命的base layer约束。弱肉强食就是这层。</p>
+<p>4DD到12DD（因果律到预测律）是自然法则。生命的base layer约束。弱肉强食就是这层。</p>
 <p>13DD到14DD（自意识律到目的律）是法律。本系列的主题。主体之间碰撞的base layer约束。否定性的，结构性的——"你不可以碾碎对方"。法不替你选择，法提供选择发生的约束条件。在这条线之内你怎么选是你的事。</p>
 <p>15DD（不疑律）是自己的法（A16）。主体对自己的约束。道德和内在法则。15DD还包括对他人主体性的承认——到了15DD，外部法不再必要。</p>
 <p>法律卡在自然法则和道德之间。比自然法则高（认识到了主体性的存在），比道德低（不进入主体的内部）。法律是13DD到14DD区间的base layer约束，所以它薄——只管因果层面的行为。法律不创造主体性的生长，但没有法律的稳定约束，生长无从发生。如同物理定律不创造生命，但没有物理定律的稳定约束，生命无从生长。</p>
@@ -116,7 +120,7 @@
 <h3>4.2 顶线：14DD</h3>
 <p>法对14DD的限制，顶线是目的。你不可以用你的cannot-not碾碎另一个人的cannot-not。法不管你有什么目的，只管你不能用目的去压制。</p>
 <h3>4.3 射程内外</h3>
-<p>法的全部领地在这两条线之间：从保护"你不可以杀"到限制"你不可以用目的碾压"。下面是自然法则的事（5DD到12DD），上面是自己的法的事（15DD）。</p>
+<p>法的全部领地在这两条线之间：从保护"你不可以杀"到限制"你不可以用目的碾压"。下面是自然法则的事（4DD到12DD），上面是自己的法的事（15DD）。</p>
 <p>法约束14DD。14DD有了自己的cannot-not，有了力量，但看不见对方的cannot-not跟自己的一样不可让渡。14DD的结构性盲区：我的法对我来说是绝对的，但我没有结构性的理由承认你的也是。只有14DD会主动压制他人主体性。</p>
 <p>法保护13DD。13DD开始有自意识，能被14DD压制，需要保护。13DD自己还在找自己是谁，不会主动压制，但可能被压制。</p>
 <p>12DD以下不进入法的射程。12DD没有主体性可约束。弱肉强食，自然法则。但12DD行为可能波及13DD以上的主体（如过失或危险作业），此时法的保护效果及于被波及的主体，约束对象仍是造成波及的行为，不是12DD本身的主体性。</p>
@@ -126,7 +130,7 @@
 <h2>5. 从射程两端推出法的两种形态</h2>
 <p>底线端和顶线端的性质不同，直接推出法的两种结构性形态。</p>
 <h3>5.1 13DD保护法（底线端）：由公权力发起</h3>
-<p>13DD的底线是死亡。消灭一个自意识存在不只是伤害个人，是对"主体可以存在"这个前提的否定，威胁所有主体。因此保护13DD不能靠个人发起，必须由公权力代表所有主体来追诉。底线被突破不是个人可以原谅的事，所以受害者不能撤诉。证明标准最高（底线级别的事，不能判错）。</p>
+<p>13DD的底线是死亡。消灭一个自意识存在不只是伤害个人，是对"主体可以存在"这个前提的否定，威胁所有主体。因此在SAE的规范性推导中，保护13DD应由公权力代表所有主体追诉，不因私人原谅而当然终止，并适用最高证明标准。这里推出的是SAE的制度方向，不是在声称所有现行法域的公诉启动、撤回与证明规则都完全相同。</p>
 <h3>5.2 14DD限制法（顶线端）：由其他14DD发起</h3>
 <p>14DD的顶线是目的碰撞。你的cannot-not碰了我的cannot-not，是我们两个之间的事。被侵犯的14DD自己知道被碰了，有能力发起追问，不需要公权力替他出头。双方可以自行和解，因为那是两个14DD之间的边界问题。证明标准较低（边界碰撞，不涉及底线）。</p>
 <h3>5.3 结构性差异</h3>
@@ -202,7 +206,7 @@
 <p>法律的核心命题可以用三句话表述。法的射程是13DD到14DD。法的手段是限制（正当性核心是否定性）。法的目的是涵育（释放被对赌吞噬的主体性，为生长腾出空间）。</p>
 <h3>贡献</h3>
 <p>一，从14DD对赌推出法的四条base layer，不借用任何外部法学概念。</p>
-<p>二，定位法为13DD到14DD区间的base layer约束，区分于自然法则（5DD到12DD）和自己的法（15DD）。</p>
+<p>二，定位法为13DD到14DD区间的base layer约束，区分于自然法则（4DD到12DD）和自己的法（15DD）。</p>
 <p>三，从射程两端推出法的两种形态（13DD保护法由公权力发起，14DD限制法由私人发起）。</p>
 <p>四，建立法的三条结构性边界（脚，心，手的折扣）。</p>
 <p>五，建立法的最小形态区分（法 vs 共识 vs 约定 vs 道德）。</p>
@@ -250,7 +254,7 @@
 <h2>2. The Position of Law in the DD Sequence</h2>
 <p>Before continuing the derivation, the position of law in the DD sequence must be established.</p>
 <p>There are three layers of "law" in the DD sequence (Qin, 2025, DOI: 10.5281/zenodo.18727327):</p>
-<p>5DD through 12DD (from the law of causality to the law of prediction) constitute natural law. These are base-layer constraints on life. The rule of the strong over the weak belongs here.</p>
+<p>4DD through 12DD (from the law of causality to the law of prediction) constitute natural law. These are base-layer constraints on life. The rule of the strong over the weak belongs here.</p>
 <p>13DD through 14DD (from the law of self-awareness to the law of purpose) constitute law proper. This is the subject of the present series. Law is the base-layer constraint on collisions between subjects. It is negative and structural: "you may not crush the other." Law does not make choices for you. It provides the constraint conditions under which choices can occur. Within that boundary, what you choose is your own affair.</p>
 <p>15DD (the law of non-doubt) constitutes one's own law (A16). This is the subject's constraint on itself: morality and inner law. 15DD also includes acknowledgment of the other's subjecthood. At 15DD, external law is no longer necessary.</p>
 <p>Law sits between natural law and morality. It stands above natural law (it recognizes the existence of subjecthood) and below morality (it does not enter the subject's interior). Law is the base-layer constraint of the 13DD to 14DD interval, and therefore it is thin: it governs only the causal layer of behavior. Law does not create the growth of subjecthood, but without the stable constraint of law, growth cannot occur. Just as the laws of physics do not create life, but without the stable constraints of physics, life cannot arise.</p>
@@ -287,7 +291,7 @@
 <h3>4.2 Ceiling: 14DD</h3>
 <p>Law constrains 14DD at the ceiling: purpose. You may not use your cannot-not to crush another's cannot-not. Law does not concern itself with what your purpose is, only with whether you use your purpose to suppress.</p>
 <h3>4.3 Inside and Outside the Range</h3>
-<p>The entire territory of law lies between these two lines: from "you may not kill" to "you may not crush with purpose." Below is the domain of natural law (5DD through 12DD). Above is the domain of one's own law (15DD).</p>
+<p>The entire territory of law lies between these two lines: from "you may not kill" to "you may not crush with purpose." Below is the domain of natural law (4DD through 12DD). Above is the domain of one's own law (15DD).</p>
 <p>Law constrains 14DD. A 14DD has its own cannot-not, has power, but cannot see that the other's cannot-not is equally non-negotiable. The structural blind spot of 14DD: my law is absolute to me, but I have no structural reason to acknowledge that yours is equally so. Only 14DD actively suppresses the subjecthood of others.</p>
 <p>Law protects 13DD. A 13DD has begun to be self-aware, can be suppressed by 14DD, and needs protection. A 13DD is still searching for who it is; it does not actively suppress but can be suppressed.</p>
 <p>Below 12DD, the range of law does not apply. 12DD has no subjecthood to be constrained. The rule of the strong over the weak is natural law. However, 12DD actions may impact subjects at 13DD and above (negligence, hazardous operations). In such cases, the protective effect of law extends to the impacted subjects, but the object of constraint remains the action that caused the impact, not the subjecthood of the 12DD itself.</p>
@@ -373,7 +377,7 @@
 <p>The core propositions of law can be stated in three sentences. The range of law is 13DD to 14DD. The instrument of law is constraint (the justificatory core is negative). The purpose of law is cultivation (releasing the subjecthood devoured by the showdown, opening space for growth).</p>
 <h3>Contributions</h3>
 <p>First, four base layers of law are derived from the 14DD showdown without borrowing any external legal concept.</p>
-<p>Second, law is positioned as the base-layer constraint of the 13DD to 14DD interval, distinguished from natural law (5DD through 12DD) and one's own law (15DD).</p>
+<p>Second, law is positioned as the base-layer constraint of the 13DD to 14DD interval, distinguished from natural law (4DD through 12DD) and one's own law (15DD).</p>
 <p>Third, two structural forms of law are derived from the two ends of the range (13DD-protection law initiated by public authority, 14DD-limitation law initiated by private parties).</p>
 <p>Fourth, three structural boundaries of law are established (feet, heart, enforcement discount).</p>
 <p>Fifth, the minimal form of law is distinguished from consensus, agreement, and morality.</p>
@@ -415,32 +419,8 @@
       </nav>
     </article>
   </main>
-  <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          document.querySelectorAll('.lang-btn').forEach(function(b) {
-            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
-          });
-        }
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-      });
-    })();
-  </script>
+
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+<script defer src="zh-hant-data/i.js"></script>
 </body>
 </html>
