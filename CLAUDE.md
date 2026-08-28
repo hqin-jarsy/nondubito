@@ -26,9 +26,9 @@ confirm with Han first if a request seems to imply pushing to remote.
 and/or `.git/HEAD.lock` (0 bytes), sometimes with a harmless
 `unable to unlink .git/objects/XX/tmp_obj_YYYYYY: Operation not permitted`
 warning during the operation itself — the object still gets written
-correctly. `device_bash` cannot delete files (`rm`/`unlink` fails with
-"Operation not permitted"), so clear locks by moving them aside instead,
-before AND after each git operation:
+correctly. By default `device_bash` cannot delete files (`rm`/`unlink`
+fails with "Operation not permitted"), so clear locks by moving them
+aside instead, before AND after each git operation:
 
 ```
 mkdir -p _to_delete
@@ -55,6 +55,13 @@ Occasionally this also leaves duplicate loose-object files with a literal
 content) — cosmetic `git fsck` noise, not corruption. Same `mv`-to-
 `_to_delete` treatment if it comes up again; the non-suffixed object is
 always the real one.
+
+Deleting for real. `device_request_delete_permission` on the connected
+folder root (`/Users/hanqin/Documents/GitHub` — the whole connected
+folder, not a subfolder) turns `rm` on for the rest of the session, and
+then locks can just be deleted and `_to_delete/` emptied. It costs one
+permission prompt, so ask once, when there is actually something to
+delete — not for routine lock clearing mid-task.
 
 Never use `git revert` or `git checkout <ref> -- <existing-path>` on this
 mount — both reliably fail here. To restore a file from history instead:
