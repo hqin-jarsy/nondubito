@@ -137,6 +137,50 @@ header nav a {
 header nav a:hover,
 header nav a.active { color: var(--green); }
 
+/* The header row stays a single line at every width. The wordmark never
+   breaks or shrinks; nav items never break mid-phrase; and where the row still
+   does not fit, the nav scrolls horizontally inside the fixed 54px header
+   instead of wrapping, spilling off-screen, or riding over the wordmark — the
+   same approach as .moral-header-nav below. Measured against the widest nav on
+   the site (7 items) at the 1180px content cap. */
+.site-title { flex-shrink: 0; }
+.title-latin, .title-sub { white-space: nowrap; }
+
+header nav {
+  min-width: 0;
+  flex: 0 1 auto;
+  gap: 1.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+header nav::-webkit-scrollbar { display: none; }
+header nav a { white-space: nowrap; flex: 0 0 auto; }
+
+/* The tagline is the first thing to go — it frees ~285px for the nav, which
+   is what keeps the row intact through the laptop widths. */
+@media (max-width: 1100px) {
+  .title-sub { display: none; }
+  .header-inner { gap: 1rem; }
+  header nav { gap: 1.2rem; }
+  header nav a { font-size: 0.66rem; letter-spacing: 0.07em; }
+}
+
+@media (max-width: 800px) {
+  header nav { gap: 1rem; }
+  header nav a { font-size: 0.63rem; letter-spacing: 0.05em; }
+}
+
+/* Narrower than this the row genuinely cannot fit. Fade its right edge so the
+   cut reads as "there is more, scroll" rather than as a broken layout. */
+@media (max-width: 620px) {
+  header nav {
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 22px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 22px), transparent);
+  }
+}
+
 /* Moral Law source pages keep all eight language choices on one header row.
    At narrow widths the row scrolls inside the header instead of wrapping and
    increasing the fixed header's height. */

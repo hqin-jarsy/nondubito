@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Here 入门 — Non Dubito</title>
+  <meta name="description" content="凿、构、余项、人是目的——这个网站用的几个词是什么意思。几分钟读完，再回到任何一篇文章。A short primer on the vocabulary used across Non Dubito.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://nondubito.net/start.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .start-page {
+      flex: 1;
+      padding-top: 54px;
+      background: var(--cream);
+    }
+
+    /* ── HERO ── */
+    .start-hero {
+      background: var(--green);
+      padding: 80px 2.5rem 70px;
+      color: var(--cream);
+      text-align: center;
+    }
+    .start-hero .lang-toggle {
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 2rem;
+      background: transparent;
+      border: 1px solid rgba(245,240,232,0.25);
+      padding: 0.35rem 0.9rem;
+      border-radius: 2px;
+    }
+    .start-hero .lang-btn {
+      background: none;
+      border: none;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.15s;
+    }
+    .start-hero .lang-btn.active,
+    .start-hero .lang-btn:hover { color: var(--cream); }
+    .start-hero .lang-sep { color: rgba(245,240,232,0.25); font-size: 0.8rem; }
+    .start-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(196,157,97,0.85);
+      margin-bottom: 1rem;
+    }
+    .start-hero h1 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      margin: 0;
+    }
+    .start-hero h1.lang-zh {
+      font-family: var(--cjk), serif;
+      font-style: normal;
+    }
+
+    /* ── BODY TEXT ── */
+    .start-body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 2.5rem 100px;
+    }
+    .start-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--ink);
+      margin-bottom: 1.4em;
+    }
+    .start-body p:last-child { margin-bottom: 0; }
+    .start-body .lang-zh p {
+      font-family: var(--cjk), serif;
+    }
+    .start-body a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .start-body a:hover {
+      color: var(--gold);
+      border-color: rgba(196,157,97,0.5);
+    }
+    .start-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--cream-border);
+    }
+    .start-ext-link {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted) !important;
+      text-decoration: none;
+      border: 1px solid var(--cream-border) !important;
+      padding: 0.4rem 0.9rem;
+      transition: all 0.15s;
+    }
+    .start-ext-link:hover {
+      color: var(--gold) !important;
+      border-color: rgba(196,157,97,0.4) !important;
+    }
+    .start-divider {
+      max-width: 800px;
+      margin: 56px auto 0;
+      padding: 0 2.5rem;
+      border: none;
+      border-top: 1px solid var(--cream-border);
+    }
+
+
+    /* ── PRIMER ── */
+    .start-body h2 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 2.8em 0 0.7em;
+      color: var(--ink);
+    }
+    .start-body h2:first-child { margin-top: 0; }
+    .start-body .lang-zh h2, .lang-zh .start-body h2 { font-family: var(--cjk), var(--serif); }
+    .start-lede {
+      font-size: 1.15rem !important;
+      color: var(--ink-muted) !important;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.2rem;
+      margin-bottom: 2.4em !important;
+    }
+    .start-tldr {
+      background: rgba(196,157,97,0.07);
+      border: 1px solid var(--cream-border);
+      padding: 1.6rem 1.8rem 1.2rem;
+      margin-bottom: 3em;
+    }
+    .start-tldr p { font-size: 1rem !important; margin-bottom: 0.7em !important; }
+    .start-tldr p:last-child { margin-bottom: 0 !important; }
+    .start-tldr-label {
+      font-family: var(--sans) !important;
+      font-size: 0.62rem !important;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold) !important;
+      margin-bottom: 1em !important;
+    }
+    .start-cycle {
+      font-family: var(--sans) !important;
+      font-size: 0.9rem !important;
+      line-height: 2 !important;
+      background: var(--cream-alt, rgba(0,0,0,0.025));
+      border: 1px solid var(--cream-border);
+      padding: 1.1rem 1.3rem;
+      color: var(--ink) !important;
+    }
+    .start-glossary {
+      margin: 1.5em 0 0;
+      border-top: 1px solid var(--cream-border);
+    }
+    .start-glossary dt {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+      color: var(--gold);
+      margin-top: 1.4em;
+    }
+    .lang-zh .start-glossary dt { font-family: var(--cjk), var(--sans); font-size: 0.95rem; letter-spacing: 0.02em; }
+    .start-glossary dd {
+      margin: 0.35em 0 0;
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: var(--ink);
+    }
+    .lang-zh .start-glossary dd { font-family: var(--cjk), serif; }
+
+    [data-lang="en"] .lang-zh { display: none; }
+    [data-lang="zh"] .lang-en { display: none; }
+    [data-lang="zh-hant"] .lang-en { display: none; }
+
+    @media (max-width: 600px) {
+      .start-hero { padding: 60px 1.25rem 50px; }
+      .calligraphy-block { padding: 50px 1.25rem 0; }
+      .start-body { padding: 44px 1.25rem 70px; }
+    }
+  </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'en';
+      if (['en', 'zh', 'zh-hant'].indexOf(saved) === -1) saved = 'en';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        updateActive();
+        document.addEventListener('click', function(e) {
+          if (e.target.classList.contains('lang-btn')) updateActive();
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          btns.forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
+          });
+        }
+      });
+    })();
+  </script>
+  <script defer src="zh-hant-data/start.js"></script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="site-title">
+        <span class="title-latin">Non Dubito</span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+      <nav>
+        <a href="index.html">Essays</a>
+        <a href="start.html" class="active">Start Here</a>
+        <a href="library.html">Library</a>
+        <a href="credesivis.html">Crede si vis</a>
+        <a href="about.html">About</a>
+        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="start-page">
+
+    <div class="start-hero">
+      <div class="lang-toggle">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh">中文</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="zh-hant">繁體</button>
+      </div>
+      <p class="start-eyebrow">Non Dubito</p>
+      <h1 class="lang-en">Start Here</h1>
+      <h1 class="lang-zh">入门</h1>
+    </div>
+
+    <div class="start-body">
+
+      <div class="lang-en">
+
+        <p class="start-lede">The essays on this site use a vocabulary of their own: chisel, construct, remainder, cultivation, colonization, 13DD. The words are not there to impress anyone. They are there to say some things that are otherwise hard to say. This page walks through them in a few minutes, so that you can open any essay afterwards and not get stuck on a word.</p>
+
+        <div class="start-tldr">
+          <p class="start-tldr-label">The three-sentence version</p>
+          <p>Every judgment you make about the world is what was left after a cut.</p>
+          <p>The cut is never clean; something always goes unhandled — and that leftover is where the next step points.</p>
+          <p>The same holds for people: there is always something in another person you cannot hold down, which is why you cannot use them purely as a means.</p>
+        </div>
+
+        <h2>1. Start by Recognizing a Chair</h2>
+
+        <p>There is a chair in front of you. You recognize it as a chair.</p>
+
+        <p>Doing that performed an action: you cut it out from everything else. It is not a table, not a bed, not a step. <strong>That cut is the chisel</strong> — chiseling is negation, saying "this is not that."</p>
+
+        <p>After the cut something is left behind: the category "chair." <strong>What is left behind is the construct.</strong></p>
+
+        <p>A construct is not a truth. It is sediment — the trace the cut left when it passed through. Everything this site calls a construct means this: a concept, a rule, a theory, an institution, a person's understanding of themselves. All traces left by some act of negation.</p>
+
+        <p>And then the trouble starts. Is a tree stump a chair? A beanbag? A stone step you sat on all afternoon?</p>
+
+        <p><strong>Those uncut edges are the remainder.</strong></p>
+
+        <h2>2. The Remainder Is Not a Mistake</h2>
+
+        <p>This is the most important sentence in the whole framework, and the one most often read backwards.</p>
+
+        <p>The remainder is not you failing to think it through. Polish the definition of "chair" as finely as you like and something will still spill over the edge — because cutting cleanly is not a thing that can be done. Incompleteness is not this cut's error; it is the nature of every cut.</p>
+
+        <p>So the remainder cannot be eliminated, only moved. Refine the definition and the old remainder goes; a new one surfaces somewhere else.</p>
+
+        <p>Which also means: <strong>the remainder has a direction.</strong> It points at where the next cut should fall. The reason you reconsider what a chair is at all is precisely that the tree stump was never settled.</p>
+
+        <p>Incompleteness is not a defect. It is the condition of going on. That sentence gets applied all over this site — to a theory, a person, a relationship, a country.</p>
+
+        <h2>3. The Chisel-Construct Cycle</h2>
+
+        <p>String those steps together and you have this site's central machine:</p>
+
+        <p class="start-cycle">Chisel (make a cut) → construct (a trace is left) → remainder (what the cut missed) → chisel again at the remainder → a new construct → a new remainder → …</p>
+
+        <p>It does not stop. Because the remainder cannot be eliminated, there is always somewhere for a next cut to land.</p>
+
+        <p>One detail is worth care: the remainder <em>supplies</em> a landing for the next cut, but does not <em>guarantee</em> the cut happens. Having a remainder is not the same as someone going and chiseling it. Being able to cut and actually cutting are two things. That step in between — the cut that actually falls — is called the bridge. A bridge can only be experienced, not copied: someone can take your construct wholesale, but not the moment you saw it.</p>
+
+        <p>Does the cycle ever meet something it cannot cut? Yes. <strong>That uncuttable thing is the thing-in-itself.</strong> It differs from the remainder: the remainder is what has not been handled yet; the thing-in-itself is what structurally cannot be. And it has no fixed location — approach from different directions and you hit it in different places.</p>
+
+        <h2>4. Why Everything Is Phrased as "Cannot Not"</h2>
+
+        <p>Conclusions on this site are rarely written as "you should." Almost all of them are written as "you cannot not."</p>
+
+        <p>That is not stylistic awkwardness. It is deliberate.</p>
+
+        <p>"You should be honest" is a rule. A rule needs someone to lay it down, and you can ask by what authority. "You cannot not be honest" says something else: try building a set of rules that permits lying universally and you will find it collapses on its own — for a lie to work, someone has to believe it; if everyone lies, no one believes; if no one believes, the lie no longer works.</p>
+
+        <p>So "cannot not" is not a command but an observation: the schemes that try to get around it dissolve by themselves. This double-negative form is what the essays call the <strong>categorical imperative</strong>.</p>
+
+        <h2>5. The Person Is an End</h2>
+
+        <p>The phrase is Kant's. This site uses it, and the usage needs stating clearly.</p>
+
+        <p>People usually hear "a person is an end, not a means" as a moral slogan. Here it is not. Here it is a structural claim.</p>
+
+        <p>There is always remainder in a person — their own direction, the part of them you do not know, the place you cannot hold down. They keep growing on their own. This does not depend on whether you approve.</p>
+
+        <p>So you cannot actually use them purely as a tool. You think you are handling an instrument; in fact you are dealing with something that moves by itself, and whatever you press down surfaces somewhere else. <strong>"The person is an end" is a factual judgment first and an ethical conclusion second.</strong></p>
+
+        <p>In passing: the name of this framework, Self-as-an-End, says exactly this. The name is never translated, in any language, anywhere on this site.</p>
+
+        <h2>6. Cultivation and Colonization</h2>
+
+        <p>These two words appear more than two thousand times across the site and are worth memorizing on their own. They name the two directions your intervention in another can take.</p>
+
+        <p><strong>Cultivation:</strong> your intervention widens the other's space of possibility.</p>
+
+        <p><strong>Colonization:</strong> your intervention narrows it.</p>
+
+        <p>Teaching a child to tie their shoes is cultivation — once they can, they can, and they can take the technique to other knots. Tying the laces for them forever is colonization — they never learn, and you get to feel you gave a great deal.</p>
+
+        <p>Note that colonization is often not malicious. It is usually well meant. That is what makes it hard to spot. The criterion ignores motive and looks at the result: did the other's possibilities increase or decrease?</p>
+
+        <p>The word has a more technical use in the essays too: one thing occupying a position it cannot reach. A conditional judgment impersonating unconditional truth; one particular theory impersonating the only framework; a layer of phenomena forced back down into a lower-level mechanism for its explanation. All of it is colonization, and what these share is a construct holding a place it cannot hold.</p>
+
+        <h2>7. What 13DD Means</h2>
+
+        <p>The essays are full of numbers like 13DD and 16DD. They are not a code. They are floor numbers.</p>
+
+        <p>SAE arranges the world in a sequence from simplest to most complex and numbers each level: 0D is hundun (prior to all structure), 1DD the law of identity, and so on upward — 13DD is self-awareness (not merely running, but "I" running), 16DD is mutual non dubito (two subjects each acknowledging the other as an end in itself).</p>
+
+        <p>You do not need to memorize any of it. Two things are enough:</p>
+
+        <p>First, higher numbers depend on lower ones. Life depends on physics, cognition on life, ethics on cognition.</p>
+
+        <p>Second, <strong>no layer can explain its own foundation.</strong> Mathematics cannot prove the law of identity; physics cannot explain why mathematics works. Reach the foundation and you have to go up a layer for tools. That move is used constantly in the essays.</p>
+
+        <p>One more word you will meet: <strong>non dubito</strong>, Latin for "I do not doubt," which is also the name of this site. It does not mean certainty about the world. It means no longer being shaken about oneself — a subject who has internalized their own baseline deeply enough that outside questioning cannot rock it.</p>
+
+        <h2>8. Where to Start Reading</h2>
+
+        <p>There is no required order. Pick whatever you were already curious about:</p>
+
+        <p><a href="essays/mingren/index.html">The Famous People series</a> — the framework applied to more than a hundred historical figures: Socrates, Wang Yangming, Nietzsche, Beethoven. The fastest way in if you want to see the framework land on actual people.</p>
+
+        <p><a href="essays/daodejing/index.html">The Daodejing, reread</a> — all eighty-one chapters, in six languages. If the text is already familiar to you, this is where the difference between the old and the new reading shows most clearly.</p>
+
+        <p><a href="essays/method/i.html">The Methodological Overview</a> — the manual for the whole machine. Start here if you want the full derivation. This one is dense.</p>
+
+        <p><a href="library.html">The Library</a> — all thirty-seven series, grouped by theme. Come here when you want to browse.</p>
+
+        <p>A last note: this page is a construct too, so it has remainder. To be clear, it dropped a great many qualifications. When you read the essays you will find things more complicated than what is said here — that is not an error on this page. That is the remainder doing its work.</p>
+
+        <h2>Glossary</h2>
+
+        <dl class="start-glossary">
+          <dt>Chisel</dt><dd>Negation. The act of saying "this is not that."</dd>
+          <dt>Construct</dt><dd>The sediment negation leaves. A concept, a rule, a theory, an institution, a person's understanding of themselves. Not truth — trace.</dd>
+          <dt>Remainder</dt><dd>What the cut did not get. It cannot be eliminated, only moved. It points to the next direction.</dd>
+          <dt>Remainder persistence</dt><dd>The account never zeroes out. No construct is complete. (Earlier essays call this remainder conservation.)</dd>
+          <dt>Chisel-construct cycle</dt><dd>Chisel → construct → remainder → chisel again. It does not terminate.</dd>
+          <dt>Bridge</dt><dd>The cut that actually falls at the remainder. The remainder supplies the landing, not the happening. A bridge can be experienced, not copied.</dd>
+          <dt>Thing-in-itself</dt><dd>What cannot be cut. Not "not yet known" but "structurally unreachable." It has no fixed location.</dd>
+          <dt>Cannot not / categorical imperative</dt><dd>A conclusion in double-negative form. Not "you should," but "any scheme that tries to avoid this dissolves on its own."</dd>
+          <dt>The person is an end / Self-as-an-End</dt><dd>A subject carries remainder you cannot hold down and grows on their own, so they cannot be made purely into a means. A fact first, an ethics second.</dd>
+          <dt>Cultivation</dt><dd>Your intervention widens the other's space of possibility.</dd>
+          <dt>Colonization</dt><dd>Your intervention narrows it; or a construct occupying a position it cannot reach. Usually well meant.</dd>
+          <dt>DD / the dimensional sequence</dt><dd>Floor numbers from simple to complex. 0D hundun, 1DD identity, 13DD self-awareness, 16DD mutual non dubito. No layer explains its own foundation.</dd>
+          <dt>Non dubito</dt><dd>Not certainty about the world, but no longer being shaken about oneself. The name of this site.</dd>
+          <dt>Negativa</dt><dd>A deeper layer: negativity itself, prior to any being. Advanced material — safe to skip on a first read.</dd>
+        </dl>
+
+      </div>
+
+      <div class="lang-zh">
+
+        <p class="start-lede">这个网站上的文章用一套自己的词：凿、构、余项、涵育、殖民、13DD。这些词不是为了唬人，是为了把一些平常说不清的事说清楚。这一页用几分钟把它们讲一遍，读完你可以回到任何一篇文章，不再被词卡住。</p>
+
+        <div class="start-tldr">
+          <p class="start-tldr-label">三句话版</p>
+          <p>你对世界的每一个判断，都是切了一刀之后剩下的东西。</p>
+          <p>那一刀永远切不干净，总有剩下的没被处理——剩下的那部分才是下一步的方向。</p>
+          <p>对人也一样：一个人身上永远有你按不住的剩余，所以你不能只把他当工具用。</p>
+        </div>
+
+        <h2>一、从认出一把椅子开始</h2>
+
+        <p>你面前有一把椅子。你认出它是椅子。</p>
+
+        <p>这件事其实做了一个动作：你把它从别的东西里切出来了。它不是桌子，不是床，不是台阶。<strong>这一刀就是「凿」</strong>——凿就是否定，就是说「这不是那」。</p>
+
+        <p>切完之后留下了一个东西：「椅子」这个类别。<strong>这个留下来的东西就是「构」。</strong></p>
+
+        <p>构不是真理，是沉淀物。它是那一刀切过去之后留在那里的痕迹。这个网站上说的一切构——一个概念、一条规矩、一套理论、一个制度、一个人对自己的理解——都是这个意思：某一次否定留下的痕迹。</p>
+
+        <p>然后麻烦来了。树桩算不算椅子？豆袋沙发算不算？石头台阶你坐了一下午，它算不算？</p>
+
+        <p><strong>这些切不干净的边角，就是「余项」。</strong></p>
+
+        <h2>二、余项不是错误</h2>
+
+        <p>这是整个框架最要紧的一句话，也是最容易被读反的一句。</p>
+
+        <p>余项不是你没想周到。你把「椅子」这个定义打磨得再精细，边界上永远还有东西漏出来——因为切干净这件事本身做不到。不彻底不是这一刀的失误，是所有刀的性质。</p>
+
+        <p>所以余项消不掉，只能转移。你把定义改精细一点，旧的余项没了，新的余项在别处冒出来。</p>
+
+        <p>这也意味着：<strong>余项是有方向的。</strong>它指着下一步该往哪里凿。你之所以会重新想「椅子到底是什么」，恰恰是因为树桩那件事没解决。</p>
+
+        <p>不完整不是缺陷，是继续的条件。这句话在这个网站上会被反复用到各种地方——用到一个理论，一个人，一段关系，一个国家。</p>
+
+        <h2>三、凿构循环</h2>
+
+        <p>把上面这几步连起来，就是这个网站的核心机器：</p>
+
+        <p class="start-cycle">凿（切一刀）→ 构（留下痕迹）→ 余项（切不干净的部分）→ 在余项处再凿一刀 → 新的构 → 新的余项 → ……</p>
+
+        <p>它不停。因为余项消不掉，所以永远有下一刀可以落的地方。</p>
+
+        <p>要注意一个细节：余项<em>提供</em>下一刀落脚的地方，但不<em>保证</em>下一刀会发生。有余项，不等于有人会去凿它。可以凿，和实际去凿，是两件事。这中间那一步——真的落下去的那一刀——叫「桥」。桥只能被经历，不能被复制：别人可以把你的构原样抄走，但那个想通的瞬间抄不走。</p>
+
+        <p>凿构循环碰到过凿不动的东西吗？会。<strong>那个凿不动的东西叫「物自体」。</strong>它和余项不一样：余项是「还没被处理的」，物自体是「结构上处理不了的」。而且它没有固定位置——你从不同方向走过去，会在不同的地方碰到它。</p>
+
+        <h2>四、为什么满篇都是「不得不」</h2>
+
+        <p>这个网站上的结论很少写成「你应该怎样」，几乎都写成「不能不怎样」。</p>
+
+        <p>这不是文风上的别扭，是有意的。</p>
+
+        <p>「你应该诚实」是一条规定，它需要一个立规定的人，你可以问凭什么。「不能不诚实」说的是另一件事：你可以试试建一套允许普遍撒谎的规矩，你会发现它自己塌掉——撒谎要成立，得先有人信；人人撒谎，就没人信了；没人信，撒谎也就不成立了。</p>
+
+        <p>所以「不能不」不是命令，是一个观察结果：想绕过它的那些方案，自己会瓦解。这种双重否定的形式，在文章里叫<strong>绝对律令</strong>。</p>
+
+        <h2>五、人是目的</h2>
+
+        <p>这句话是康德的。这个网站在用它，但用法要说清楚。</p>
+
+        <p>通常人们把「人是目的，不是手段」听成一条道德口号。这里不是。这里是一个结构上的说法。</p>
+
+        <p>一个人身上永远有余项——他有自己的方向，有你不知道的那部分，有你按不住的地方。他会自己往前长。这件事跟你同不同意无关。</p>
+
+        <p>所以你不可能真的把他完全当工具用。你以为你在用一个工具，实际上你是在跟一个会自己动的东西打交道；你按下去的那部分，会从别的地方冒出来。<strong>「人是目的」首先是一个事实判断，然后才是一个伦理结论。</strong></p>
+
+        <p>顺带说一句：这个框架的名字 Self-as-an-End，说的就是这件事。这个名字在网站上任何语言的页面里都不翻译。</p>
+
+        <h2>六、涵育与殖民</h2>
+
+        <p>这两个词在网站上出现两千多次，值得单独记住。它们说的是你介入别人时的两个方向。</p>
+
+        <p><strong>涵育</strong>：你的介入扩大了对方的可能性空间。</p>
+
+        <p><strong>殖民</strong>：你的介入压缩了对方的可能性空间。</p>
+
+        <p>教孩子系鞋带是涵育——教会了，他自己就能系了，而且他还能拿这个手法去系别的东西。替他系一辈子是殖民——他一辈子不会系，而且你还会觉得自己付出了很多。</p>
+
+        <p>注意殖民不一定出于恶意，常常出于好意。这正是它难认的地方。判据不看动机，看结果：对方的可能性变多了还是变少了。</p>
+
+        <p>「殖民」这个词在文章里还有一个更技术的用法：一个东西冒充另一个东西的位置。一条有条件的判断冒充无条件的真理，一个特定理论冒充唯一的框架，一层现象被硬塞回更底层的机制去解释——这些都叫殖民。共同点是：一个构，占了它够不着的位置。</p>
+
+        <h2>七、13DD 是什么意思</h2>
+
+        <p>文章里满地都是 13DD、16DD 这种编号。它不是密码，是门牌号。</p>
+
+        <p>SAE 把世界从最简单到最复杂排成一条序列，每一层给一个号：0D 是浑沌（一切结构之前），1DD 是同一律，一路往上，13DD 是自意识（不只是在运转，是「我」在运转），16DD 是双向不疑（两个主体互相承认对方是目的本身）。</p>
+
+        <p>你完全不需要背下来。只要知道两件事：</p>
+
+        <p>一，数字大的层依赖数字小的层。生命依赖物理，认知依赖生命，伦理依赖认知。</p>
+
+        <p>二，<strong>每一层解释不了自己的地基。</strong>数学证明不了同一律，物理解释不了数学为什么有效。碰到地基就得往上一层去找工具——这条在文章里用得很频繁。</p>
+
+        <p>还有一个词你会碰到：<strong>不疑</strong>，拉丁文 non dubito，也就是这个网站的名字。它不是「对世界很确定」，是「对自己不再动摇」——一个主体把自己的基准线内化得足够深，外面怎么问都晃不动它。</p>
+
+        <h2>八、从哪里开始读</h2>
+
+        <p>不必按顺序。挑一个你本来就好奇的：</p>
+
+        <p><a href="essays/mingren/index.html">名人系列</a>——用这套框架看一百多个历史人物，苏格拉底、王阳明、尼采、贝多芬。想看框架怎么落到具体人身上，从这里进最快。</p>
+
+        <p><a href="essays/daodejing/index.html">大知道德经解</a>——八十一章逐章重读，六种语言。你如果本来就熟悉这个文本，这里最容易看出新旧读法的差别。</p>
+
+        <p><a href="essays/method/i.html">方法论总论</a>——整台机器的说明书。想要完整推导的话，从这里进。这一篇偏硬。</p>
+
+        <p><a href="library.html">书架</a>——全部三十七个系列，按主题分组。想找什么就来这里翻。</p>
+
+        <p>最后一句：这一页本身也是一个构，所以它也有余项。它为了讲清楚，把很多分寸拿掉了。你读文章的时候会发现比这里说的复杂——那不是这一页写错了，那正是余项在起作用。</p>
+
+        <h2>术语速查</h2>
+
+        <dl class="start-glossary">
+          <dt>凿</dt><dd>否定。说「这不是那」的那个动作。</dd>
+          <dt>构</dt><dd>否定留下的沉淀物。概念、规矩、理论、制度、一个人对自己的理解，都是构。不是真理，是痕迹。</dd>
+          <dt>余项</dt><dd>没被切干净的部分。消不掉，只能转移。它指出下一步的方向。</dd>
+          <dt>余项存续</dt><dd>余项这笔账永远不清零。没有哪个构是完备的。（早期文章里写作「余项守恒」。）</dd>
+          <dt>凿构循环</dt><dd>凿 → 构 → 余项 → 再凿。不终止。</dd>
+          <dt>桥</dt><dd>在余项处真的落下去的那一刀。余项提供着落，不提供发生。桥只能被经历，不能被复制。</dd>
+          <dt>物自体</dt><dd>凿不动的东西。不是「还没知道」，是「结构上碰壁」。没有固定位置。</dd>
+          <dt>不得不 / 绝对律令</dt><dd>双重否定形式的结论。不说「你应该」，只说「试图不这样做的方案会自己瓦解」。</dd>
+          <dt>人是目的 / Self-as-an-End</dt><dd>一个主体有你按不住的余项，会自己往前长，所以不可能被完全当作手段。先是事实，然后才是伦理。</dd>
+          <dt>涵育</dt><dd>你的介入扩大了对方的可能性空间。</dd>
+          <dt>殖民</dt><dd>你的介入压缩了对方的可能性空间；或者一个构占了它够不着的位置。常常出于好意。</dd>
+          <dt>DD / 维度序列</dt><dd>从简单到复杂的层级门牌号。0D 浑沌，1DD 同一律，13DD 自意识，16DD 双向不疑。每一层解释不了自己的地基。</dd>
+          <dt>不疑 / non dubito</dt><dd>不是对世界确定，是对自己不再动摇。这个网站的名字。</dd>
+          <dt>非 / Negativa</dt><dd>更深一层的说法：否定性本身，先于任何存在。属于进阶内容，第一次读可以先放过。</dd>
+        </dl>
+
+      </div>
+
+      <div class="start-links-row">
+        <a class="start-ext-link" href="library.html">Library 书架</a>
+        <a class="start-ext-link" href="about.html">About 关于</a>
+        <a class="start-ext-link" href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Han Qin (秦汉) · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span>
+      <div class="footer-links">
+        <a href="https://self-as-an-end.net" target="_blank">SAE Theory</a>
+        <a href="https://hqin.substack.com" target="_blank">Substack</a>
+        <a href="https://x.com/hqinjarsy" target="_blank">X</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
