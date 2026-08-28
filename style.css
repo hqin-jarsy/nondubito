@@ -252,6 +252,54 @@ header nav.moral-header-nav { min-width: 0; }
   margin-bottom: 3.5rem;
 }
 
+/* A quiet way in for a first-time reader: sits inside the hero so it is on
+   screen before any scrolling, without competing with the headline. */
+.hero-start {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.75rem;
+  max-width: 52ch;
+  margin-bottom: 3rem;
+  padding: 0.8rem 1.15rem;
+  border: 1px solid rgba(196, 157, 97, 0.4);
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--ink-light);
+  transition: background 0.2s, border-color 0.2s;
+}
+.hero-start:hover {
+  background: rgba(196, 157, 97, 0.08);
+  border-color: var(--gold);
+}
+.hero-start .hs-label {
+  flex: 0 0 100%;
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.hero-start .hs-text { font-family: var(--serif); font-size: 0.98rem; line-height: 1.5; }
+.hero-start em { font-style: italic; color: var(--green); }
+
+/* CJK: the label needs real size at two glyphs, and Chinese typography does not
+   italicise — the synthesised oblique looks like a rendering fault, so emphasis
+   is carried by colour and weight instead. */
+.hero-start .hs-label.lang-zh {
+  font-family: var(--cjk), var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+}
+.hero-start .hs-text.lang-zh { font-family: var(--cjk), var(--serif); }
+.hero-start .hs-text.lang-zh em { font-style: normal; font-weight: 600; }
+
+@media (max-width: 600px) {
+  .hero-start { padding: 0.7rem 0.9rem; margin-bottom: 2.25rem; }
+  .hero-start .hs-text { font-size: 0.92rem; }
+}
+
 .hero-scroll {
   font-family: var(--sans);
   font-size: 0.65rem;
