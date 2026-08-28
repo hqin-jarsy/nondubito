@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>主体作为方法论的结构性条件 — Non Dubito</title>
+  <title>主体作为方法论的结构性条件 — Non Dubito</title><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/method/v.html"><link rel="alternate" hreflang="en" href="https://nondubito.net/essays/method/v.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/method/v.html"><link rel="alternate" hreflang="zh-Hant" href="https://nondubito.net/essays/method/v.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/method/ja/v.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/method/fr/v.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/method/de/v.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/method/es/v.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/method/ko/v.html">
   <meta name="description" content="SAE方法论第四篇建立了十二态传导模型（先验/后验/定理三个节点，六条双向路径，涵育/殖民两个相位）。但十二态描述的是知识怎么动，没有回答谁让知识动。本文用六个领域的实时过程数据（ZFCρ数论、非平衡热力学、宇宙常数推导、暗物质论文、宇宙物">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
@@ -33,25 +33,29 @@
     .essay-body h3 { font-family:var(--serif); font-size:1rem; margin-top:1.5rem; margin-bottom:0.4rem; font-weight:600; color:var(--ink-muted); }
     @media (max-width:600px) { .xiyou-nav { flex-direction:column; } .xiyou-nav-next { justify-content:flex-start; text-align:left; } }
     [data-lang="en"] .lang-zh { display:none; }
-    [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-en, [data-lang="zh-hant"] .lang-en { display:none; }
   </style>
   <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-    })();
-  </script>
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='en'?'en':'zh-Hans');
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){var cur=document.documentElement.getAttribute('data-lang');btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});}
+    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='en'?'en':'zh-Hans');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+    update();
+  });
+})();
+</script>
 </head>
 <body>
   <main class="essay-main">
     <article>
 
       <header class="essay-header">
-        <div class="lang-toggle">
-          <button class="lang-btn" data-lang="zh">中文</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
+        <div class="lang-toggle" style="margin-bottom:1.5rem;"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><span class="lang-sep">|</span><a class="lang-btn" href="ja/v.html">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/v.html">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="de/v.html">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="es/v.html">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/v.html">한국어</a></div>
         <a href="index.html" class="back-link lang-zh">← 方法论系列</a>
         <a href="index.html" class="back-link lang-en">← Methodology Series</a>
         <div class="essay-titles">
@@ -370,32 +374,8 @@ han.qin.research@gmail.com</p>
       </nav>
     </article>
   </main>
-  <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          document.querySelectorAll('.lang-btn').forEach(function(b) {
-            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
-          });
-        }
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-      });
-    })();
-  </script>
+
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+<script defer src="zh-hant-data/v.js"></script>
 </body>
 </html>

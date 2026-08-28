@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>方法论系列 / Methodology Series — Non Dubito</title>
-  <meta name="description" content="方法论系列 / Methodology Series：凿构循环的操作手册，八篇正传加上余之道、人与AI共生、意识分析框架与四分形 · 双语。">
+  <title>方法论系列 / Methodology Series — Non Dubito</title><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/method/index.html"><link rel="alternate" hreflang="en" href="https://nondubito.net/essays/method/index.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/method/index.html"><link rel="alternate" hreflang="zh-Hant" href="https://nondubito.net/essays/method/index.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/method/ja/index.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/method/fr/index.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/method/de/index.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/method/es/index.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/method/ko/index.html">
+  <meta name="description" content="方法论系列 / Methodology Series：凿构循环的操作手册：从非与余项到知识传导、主体条件、人机共生、意识分析与四分形 · 全十二篇 · 八种语言。">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
@@ -32,37 +32,22 @@
     .source-note a { color:var(--ink-muted); text-decoration:none; }
     .source-note a:hover { color:var(--ink); }
     [data-lang="en"] .lang-zh { display:none; }
-    [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-en, [data-lang="zh-hant"] .lang-en { display:none; }
   </style>
   <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang');
-      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          btns.forEach(function(btn) {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
-          });
-        }
-      });
-    })();
-  </script>
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='en'?'en':'zh-Hans');
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){var cur=document.documentElement.getAttribute('data-lang');btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});}
+    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='en'?'en':'zh-Hans');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+    update();
+  });
+})();
+</script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
@@ -83,11 +68,7 @@
     </div>
   </header>
   <main class="series-container">
-    <div class="lang-toggle" style="margin-bottom:1.5rem;">
-      <button class="lang-btn" data-lang="zh">中文</button>
-      <span class="lang-sep">|</span>
-      <button class="lang-btn" data-lang="en">EN</button>
-    </div>
+    <div class="lang-toggle" style="margin-bottom:1.5rem;"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><span class="lang-sep">|</span><a class="lang-btn" href="ja/index.html">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/index.html">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="de/index.html">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="es/index.html">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/index.html">한국어</a></div>
 
     <a href="../../library.html" class="back-link lang-zh">← 书架</a>
     <a href="../../library.html" class="back-link lang-en">← Library</a>
@@ -100,145 +81,27 @@
     <div class="series-title-en lang-en">方法论系列</div>
 
     <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
-      <p>凿构循环的操作手册——把整个 Self-as-an-End 框架压缩成一套可执行的逻辑操作系统。八篇正传，加上余之道、人与AI共生、意识分析框架与四分形 · 双语。</p>
+      <p>凿构循环的操作手册——把整个 Self-as-an-End 框架展开成一套可执行的逻辑操作系统。从非与余项到知识传导、主体条件、人机共生、意识分析与四分形 · 全十二篇 · 八种语言。</p>
     </div>
     <div class="series-desc lang-en">
-      <p>The operational manual of the chisel-construct cycle — the whole Self-as-an-End framework compressed into an executable logical operating system. Eight papers, plus Via Rho, human–AI symbiosis, a framework for analyzing consciousness, and the four-fold pattern · Bilingual.</p>
+      <p>The operational manual of the chisel-construct cycle — the Self-as-an-End framework developed as an executable logical operating system, from negativa and remainder to knowledge transmission, subject-conditions, human–AI symbiosis, consciousness analysis, and the four-fold pattern · Twelve papers · Eight languages.</p>
     </div>
 
-    <div class="series-meta">
-      <span>Han Qin (秦汉) · Non Dubito</span>
-    </div>
+    <div class="series-meta"><span class="lang-zh">Han Qin (秦汉) · 全十二篇 · 八种语言</span><span class="lang-en">Han Qin (秦汉) · Twelve papers · Eight languages</span></div>
 
     <ul class="entry-list">
-      <li>
-        <a href="0.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 0 篇</span>
-            <span class="entry-num lang-en">Paper 0</span>
-          </div>
-          <div class="entry-title-zh lang-zh">非 · Negativa：论否定先于存在</div>
-          <div class="entry-title-en lang-en">非 · Negativa: On Negation Prior to Being</div>
-          <div class="entry-desc lang-zh">本文论证</div>
-        </a>
-      </li>
-      <li>
-        <a href="i.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 I 篇</span>
-            <span class="entry-num lang-en">Paper I</span>
-          </div>
-          <div class="entry-title-zh lang-zh">凿构循环：推导、方法、应用与AI接口</div>
-          <div class="entry-title-en lang-en">The Chisel-Construct Cycle: Derivation, Method, Application, and AI Interface</div>
-          <div class="entry-desc lang-zh">本文是Self-as-an-End框架的方法论总论——把整个框架压缩成一套可执行的逻辑操作系统。</div>
-        </a>
-      </li>
-      <li>
-        <a href="ii.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 II 篇</span>
-            <span class="entry-num lang-en">Paper II</span>
-          </div>
-          <div class="entry-title-zh lang-zh">凿构的认识论地图</div>
-          <div class="entry-title-en lang-en">The Epistemological Map of Chisel-Construct</div>
-        </a>
-      </li>
-      <li>
-        <a href="iii.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 III 篇</span>
-            <span class="entry-num lang-en">Paper III</span>
-          </div>
-          <div class="entry-title-zh lang-zh">怎么用AI找余项</div>
-          <div class="entry-title-en lang-en">How to Find Remainders with AI</div>
-          <div class="entry-desc lang-zh">方法论总论（</div>
-        </a>
-      </li>
-      <li>
-        <a href="iv.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 IV 篇</span>
-            <span class="entry-num lang-en">Paper IV</span>
-          </div>
-          <div class="entry-title-zh lang-zh">知识演化的十二态传导模型</div>
-          <div class="entry-title-en lang-en">The Twelve-State Transmission Model of Knowledge Evolution</div>
-          <div class="entry-desc lang-zh">SAE方法论前三篇分别建立了凿构循环的操作系统（第一篇）、认识论地图（第二篇）和余项发现工具（第三篇）。但三篇共同留下了一个未解决的问题：找到余项之后，余项如何变成知识？尤其是在进入一个全新领域时，先验框架、后验证据和定理之间的关系是什么？</div>
-        </a>
-      </li>
-      <li>
-        <a href="v.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 V 篇</span>
-            <span class="entry-num lang-en">Paper V</span>
-          </div>
-          <div class="entry-title-zh lang-zh">主体作为方法论的结构性条件</div>
-          <div class="entry-title-en lang-en">The Subject as Structural Condition of Methodology</div>
-          <div class="entry-desc lang-zh">SAE方法论第四篇建立了十二态传导模型（先验/后验/定理三个节点，六条双向路径，涵育/殖民两个相位）。但十二态描述的是知识怎么动，没有回答谁让知识动。本文用六个领域的实时过程数据（ZFCρ数论、非平衡热力学、宇宙常数推导、暗物质论文、宇宙物</div>
-        </a>
-      </li>
-      <li>
-        <a href="vi.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 VI 篇</span>
-            <span class="entry-num lang-en">Paper VI</span>
-          </div>
-          <div class="entry-title-zh lang-zh">相变窗口与实验设计</div>
-          <div class="entry-title-en lang-en">Phase-Transition Windows and Experimental Design</div>
-          <div class="entry-desc lang-zh">一个干预有效但试验看不到效果，原因可能不在干预本身，而在试验设计与现象结构的不匹配。</div>
-        </a>
-      </li>
-      <li>
-        <a href="vii.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 VII 篇</span>
-            <span class="entry-num lang-en">Paper VII</span>
-          </div>
-          <div class="entry-title-zh lang-zh">否定方法论：Via Negativa与排除律的形式结构</div>
-          <div class="entry-title-en lang-en">Negative Methodology: Via Negativa and the Formal Structure of Exclusion Principles</div>
-          <div class="entry-desc lang-zh">本文建立以否定为基元操作的方法论。在缺乏决定性正向见证的开放归因问题中，肯定性收敛无法在纯形式层面完成：ZFCρ第一定律证明任何形式化必然产生非空余项（ρ≠∅），纯形式肯定性闭合等价于ρ=∅，因此不可能。本文定义排除律（Exclusion</div>
-        </a>
-      </li>
-      <li>
-        <a href="00.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 00 篇</span>
-            <span class="entry-num lang-en">Paper 00</span>
-          </div>
-          <div class="entry-title-zh lang-zh">余之道</div>
-          <div class="entry-title-en lang-en">Via Rho: The Way of the Remainder</div>
-          <div class="entry-desc lang-zh">非每运作一次都留下余。于是可以不从非那端进入，改从余这端进入——追踪痕迹回到非。余之道是 Via Negativa 的方法对偶，它走出去看到的是非对称互因：公理层上非独一，操作层上非与余成对。</div>
-        </a>
-      </li>
-      <li>
-        <a href="viii.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 VIII 篇</span>
-            <span class="entry-num lang-en">Paper VIII</span>
-          </div>
-          <div class="entry-title-zh lang-zh">人与AI共生的方法论</div>
-          <div class="entry-title-en lang-en">The Methodology of Human–AI Symbiosis</div>
-        </a>
-      </li>
-      <li>
-        <a href="ix.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 IX 篇</span>
-            <span class="entry-num lang-en">Paper IX</span>
-          </div>
-          <div class="entry-title-zh lang-zh">意识分析框架</div>
-          <div class="entry-title-en lang-en">A Framework for Analyzing Consciousness</div>
-        </a>
-      </li>
-      <li>
-        <a href="x.html" class="entry-row">
-          <div class="entry-header">
-            <span class="entry-num lang-zh">第 X 篇</span>
-            <span class="entry-num lang-en">Paper X</span>
-          </div>
-          <div class="entry-title-zh lang-zh">四分形</div>
-          <div class="entry-title-en lang-en">The Four-fold Pattern</div>
-        </a>
-      </li>
+      <li><a href="0.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 0 篇</span><span class="entry-num lang-en">Paper 0</span></div><div class="entry-title-zh lang-zh">非 · Negativa：论否定先于存在</div><div class="entry-title-en lang-en">非 · Negativa: On Negation Prior to Being</div><div class="entry-desc lang-zh">“非”不是五个切面之一，而是切面得以分化的条件；0DD 是它的第一个自指肖像。</div><div class="entry-desc lang-en">Negativa is not one cross-section among five but the condition of their differentiation; 0DD is its first self-referential portrait.</div></a></li>
+      <li><a href="i.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 I 篇</span><span class="entry-num lang-en">Paper I</span></div><div class="entry-title-zh lang-zh">凿构循环：推导、方法、应用与AI接口</div><div class="entry-title-en lang-en">The Chisel-Construct Cycle</div><div class="entry-desc lang-zh">以凿、构、余项、桥与物自体五个切面，把 SAE 压缩成可执行的方法系统。</div><div class="entry-desc lang-en">Five cross-sections—chisel, construct, remainder, bridge, and thing-in-itself—turn SAE into an executable method.</div></a></li>
+      <li><a href="ii.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 II 篇</span><span class="entry-num lang-en">Paper II</span></div><div class="entry-title-zh lang-zh">凿构的认识论地图</div><div class="entry-title-en lang-en">The Epistemological Map of Chisel-Construct</div><div class="entry-desc lang-zh">演绎、归纳、还原与溯因构成 2×2 地图；每个象限都带着迫使主体离开的结构性余项。</div><div class="entry-desc lang-en">Deduction, induction, reduction, and abduction form a 2×2 map; each quadrant carries a remainder that compels departure.</div></a></li>
+      <li><a href="iii.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 III 篇</span><span class="entry-num lang-en">Paper III</span></div><div class="entry-title-zh lang-zh">怎么用AI找余项</div><div class="entry-title-en lang-en">How to Find Remainders with AI</div><div class="entry-desc lang-zh">人提供方向，AI扩展构；问题的句式、退出时机与主体的自向不疑共同决定余项质量。</div><div class="entry-desc lang-en">The person supplies direction while AI expands constructs; question form, exit timing, and self-directed non-doubt shape remainder quality.</div></a></li>
+      <li><a href="iv.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 IV 篇</span><span class="entry-num lang-en">Paper IV</span></div><div class="entry-title-zh lang-zh">知识演化的十二态传导模型</div><div class="entry-title-en lang-en">The Twelve-State Transmission Model of Knowledge Evolution</div><div class="entry-desc lang-zh">先验、后验与定理三个节点，六条双向路径，在涵育与殖民两种相位中组成十二态。</div><div class="entry-desc lang-en">Three nodes—a priori, a posteriori, and theorem—form six directed routes in cultivation and colonization phases: twelve states.</div></a></li>
+      <li><a href="v.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 V 篇</span><span class="entry-num lang-en">Paper V</span></div><div class="entry-title-zh lang-zh">主体作为方法论的结构性条件</div><div class="entry-title-en lang-en">The Subject as Structural Condition of Methodology</div><div class="entry-desc lang-zh">十二态不会自行运转；节点归属、墙的诊断与冲突裁决都需要承担后果的主体。</div><div class="entry-desc lang-en">The twelve states do not execute themselves; node attribution, wall diagnosis, and conflict adjudication require a subject who bears consequences.</div></a></li>
+      <li><a href="vi.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 VI 篇</span><span class="entry-num lang-en">Paper VI</span></div><div class="entry-title-zh lang-zh">相变窗口与实验设计</div><div class="entry-title-en lang-en">Phase-Transition Windows and Experimental Design</div><div class="entry-desc lang-zh">若响应有阈值且暴露高度异质，二元分组与二元分析会系统性稀释真正跨过阈值者的信号。</div><div class="entry-desc lang-en">When response is thresholded and exposure heterogeneous, binary assignment plus binary analysis systematically dilutes the signal of threshold crossers.</div></a></li>
+      <li><a href="vii.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 VII 篇</span><span class="entry-num lang-en">Paper VII</span></div><div class="entry-title-zh lang-zh">否定方法论：Via Negativa与排除律的形式结构</div><div class="entry-title-en lang-en">Negative Methodology</div><div class="entry-desc lang-zh">在缺少决定性正向见证的开放归因问题中，以可审计的排除律缩小候选集，同时拒绝伪造终局。</div><div class="entry-desc lang-en">For open attribution problems without decisive positive witness, auditable exclusion laws narrow the field without fabricating closure.</div></a></li>
+      <li><a href="00.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 00 篇</span><span class="entry-num lang-en">Paper 00</span></div><div class="entry-title-zh lang-zh">余之道</div><div class="entry-title-en lang-en">Via Rho: The Way of the Remainder</div><div class="entry-desc lang-zh">从每次操作留下的余项反向追踪“非”；Via Rho 是 Via Negativa 的方法对偶。</div><div class="entry-desc lang-en">Trace backward from the remainder left by every operation toward Negativa; Via Rho is the methodological dual of Via Negativa.</div></a></li>
+      <li><a href="viii.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 VIII 篇</span><span class="entry-num lang-en">Paper VIII</span></div><div class="entry-title-zh lang-zh">人与AI共生的方法论</div><div class="entry-title-en lang-en">The Methodology of Human–AI Symbiosis</div><div class="entry-desc lang-zh">人以主体性完成全局而有目的的压缩，AI以算力展开；分离的语境与一加四星形架构保护方向。</div><div class="entry-desc lang-en">The human supplies global, purposive compression and AI unfolds it with compute; separated contexts and a one-plus-four star architecture protect direction.</div></a></li>
+      <li><a href="ix.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 IX 篇</span><span class="entry-num lang-en">Paper IX</span></div><div class="entry-title-zh lang-zh">意识分析框架</div><div class="entry-title-en lang-en">A Framework for Analyzing Consciousness</div><div class="entry-desc lang-zh">先问有无余项，再问能否跨过13DD相变；两个顺序判据给出三类五相，并将当下AI归入类意识。</div><div class="entry-desc lang-en">Ask first whether remainder exists, then whether 13DD can be crossed: two ordered criteria yield three classes and five phases, placing current AI in quasi-consciousness.</div></a></li>
+      <li><a href="x.html" class="entry-row"><div class="entry-header"><span class="entry-num lang-zh">第 X 篇</span><span class="entry-num lang-en">Paper X</span></div><div class="entry-title-zh lang-zh">四分形</div><div class="entry-title-en lang-en">The Four-Fold Pattern</div><div class="entry-desc lang-zh">标、向、隔、合：标而不构，加法给方向，乘法给记忆，闭合同时给构与余项。</div><div class="entry-desc lang-en">Mark, direction, interval, union: mark without constructing, add direction, bind memory, then close into construct and remainder together.</div></a></li>
     </ul>
     <div class="source-note">
       <span class="lang-zh">全部系列见 <a href="../../library.html">书架 ↗</a>　·　学术原文：<a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
@@ -250,5 +113,6 @@
       <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
     </div>
   </footer>
+<script defer src="zh-hant-data/index.js"></script>
 </body>
 </html>
