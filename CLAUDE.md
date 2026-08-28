@@ -87,6 +87,16 @@ git apply --cached /tmp/mine.patch
 
 - Never translate "Self-as-an-End" into any other language, anywhere on the
   site.
+- SAE's Chinese term for *cultivation* is **涵育**, never 培育. The pair is
+  涵育 / 殖民 (cultivation / colonization), and in the power series 涵育 / 凿削
+  (cultivation / severing). A whole translation batch — the 权力论 series, 道德律
+  5 and 6, 权利论 ep06–07, and the homepage's power-theory section — had 培育
+  throughout; corrected Aug 2026. Ordinary uses of 培育 that are *not* the term
+  (turf being grown, clones being bred, "the peace restraint cultivated") stay
+  as they are, so never sweep this term blind — read each hit in context.
+  When a term like this changes, the per-page `zh-hant-data/*.js` dictionaries
+  key on whole text nodes, so every affected key AND value has to be rewritten
+  or 繁體 silently falls back to simplified for those sentences.
 - Section headings inside `.essay-body` must be `<h2>`, never `<h3>`.
   `style.css` defines `.essay-body h2` and has **no** `h3` rule at all, so an
   `<h3>` silently falls back to the browser default and looks wrong. (The
