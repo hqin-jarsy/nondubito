@@ -264,6 +264,34 @@
     [data-lang="zh"] .lang-en,
     [data-lang="zh-hant"] .lang-en { display: none; }
 
+    /* English mode uses English as the sole title hierarchy. Chinese and
+       Traditional modes keep the Chinese title with English as a subtitle. */
+    [data-lang="en"] .library-hero-title .zh,
+    [data-lang="en"] .lib-section-name .zh,
+    [data-lang="en"] .series-card-title-zh {
+      display: none;
+    }
+    [data-lang="en"] .library-hero-title .en {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-style: normal;
+      font-weight: 500;
+      color: var(--ink);
+      margin-top: 0;
+    }
+    [data-lang="en"] .lib-section-name .en {
+      font-size: 1.4rem;
+      font-style: normal;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    [data-lang="en"] .series-card-title-en {
+      font-size: 1.05rem;
+      font-style: normal;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
     /* ── DIVIDER ─────────────────────────────────────────────────────── */
     .lib-divider {
       border: none;
