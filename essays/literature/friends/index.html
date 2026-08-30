@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,38 +32,34 @@
     .source-note a { color:var(--ink-muted); text-decoration:none; }
     .source-note a:hover { color:var(--ink); }
     [data-lang="en"] .lang-zh { display:none; }
-    [data-lang="zh"] .lang-en { display:none; }
+    [data-lang="zh"] .lang-en, [data-lang="zh-hant"] .lang-en { display:none; }
   </style>
   <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang');
-      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          btns.forEach(function(btn) {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
-          });
-        }
-      });
-    })();
-  </script>
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='zh'?'zh-Hans':'en');
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){
+      var cur=document.documentElement.getAttribute('data-lang')||'zh';
+      btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});
+    }
+    btns.forEach(function(btn){btn.addEventListener('click',function(){
+      var lang=this.getAttribute('data-lang');
+      document.documentElement.setAttribute('data-lang',lang);
+      document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='zh'?'zh-Hans':'en');
+      localStorage.setItem('nd_lang',lang);
+      localStorage.setItem('nondubito-lang',lang);
+      update();
+    });});
+    update();
+  });
+})();
+</script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+  <script defer src="zh-hant-data/index.js"></script>
 </head>
 <body>
   <header>
@@ -84,9 +80,21 @@
   </header>
   <main class="series-container">
     <div class="lang-toggle" style="margin-bottom:1.5rem;">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <span class="lang-sep">|</span>
       <button class="lang-btn" data-lang="zh">中文</button>
       <span class="lang-sep">|</span>
-      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="zh-hant">繁體</button>
+      <span class="lang-sep">|</span>
+      <a class="lang-btn" href="ja/index.html">日本語</a>
+      <span class="lang-sep">|</span>
+      <a class="lang-btn" href="fr/index.html">Français</a>
+      <span class="lang-sep">|</span>
+      <a class="lang-btn" href="de/index.html">Deutsch</a>
+      <span class="lang-sep">|</span>
+      <a class="lang-btn" href="es/index.html">Español</a>
+      <span class="lang-sep">|</span>
+      <a class="lang-btn" href="ko/index.html">한국어</a>
     </div>
 
     <a href="../../../library.html" class="back-link lang-zh">← 书架</a>
@@ -97,7 +105,6 @@
     <h1 class="series-title lang-zh">Friends：为什么我们看了三十年还在看</h1>
     <h1 class="series-title lang-en">Friends: Why We&#x27;re Still Watching After Thirty Years</h1>
     <div class="series-title-en lang-zh">Friends: Why We&#x27;re Still Watching After Thirty Years</div>
-    <div class="series-title-en lang-en">Friends：为什么我们看了三十年还在看</div>
 
     <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
       <p>一部情景喜剧为什么能被看三十年——十二章，一章一个人物。</p>
@@ -107,7 +114,8 @@
     </div>
 
     <div class="series-meta">
-      <span>Han Qin (秦汉) · Non Dubito</span>
+      <span class="lang-zh">十二篇 · 八种语言 · Han Qin (秦汉) · Non Dubito</span>
+      <span class="lang-en">Twelve essays · Eight languages · Han Qin (秦汉) · Non Dubito</span>
     </div>
 
     <ul class="entry-list">
@@ -120,6 +128,7 @@
           <div class="entry-title-zh lang-zh">Rachel Green</div>
           <div class="entry-title-en lang-en">Rachel Green</div>
           <div class="entry-desc lang-zh">穿着婚纱的人</div>
+          <div class="entry-desc lang-en">The Woman in the Wedding Dress</div>
         </a>
       </li>
       <li>
@@ -130,6 +139,8 @@
           </div>
           <div class="entry-title-zh lang-zh">Ross Geller</div>
           <div class="entry-title-en lang-en">Ross Geller</div>
+          <div class="entry-desc lang-zh">“知道自己是谁”的人</div>
+          <div class="entry-desc lang-en">The Man Who Knew Who He Was Too Early</div>
         </a>
       </li>
       <li>
@@ -141,6 +152,7 @@
           <div class="entry-title-zh lang-zh">Monica Geller</div>
           <div class="entry-title-en lang-en">Monica Geller</div>
           <div class="entry-desc lang-zh">站在阴影里的那个人</div>
+          <div class="entry-desc lang-en">The One Standing in the Shadow</div>
         </a>
       </li>
       <li>
@@ -152,6 +164,7 @@
           <div class="entry-title-zh lang-zh">Chandler Bing</div>
           <div class="entry-title-en lang-en">Chandler Bing</div>
           <div class="entry-desc lang-zh">用笑话把自己藏起来的人</div>
+          <div class="entry-desc lang-en">The One Who Hid Behind Jokes</div>
         </a>
       </li>
       <li>
@@ -163,6 +176,7 @@
           <div class="entry-title-zh lang-zh">Joey Tribbiani</div>
           <div class="entry-title-en lang-en">Joey Tribbiani</div>
           <div class="entry-desc lang-zh">那个看起来最简单的人</div>
+          <div class="entry-desc lang-en">The One Who Looks the Simplest</div>
         </a>
       </li>
       <li>
@@ -174,6 +188,7 @@
           <div class="entry-title-zh lang-zh">Phoebe Buffay</div>
           <div class="entry-title-en lang-en">Phoebe Buffay</div>
           <div class="entry-desc lang-zh">在所有碎片之上活着的人</div>
+          <div class="entry-desc lang-en">The One Living Above All the Fragments</div>
         </a>
       </li>
       <li>
@@ -185,6 +200,7 @@
           <div class="entry-title-zh lang-zh">Monica &amp; Chandler</div>
           <div class="entry-title-en lang-en">Monica &amp; Chandler</div>
           <div class="entry-desc lang-zh">为什么这段感情从来没有让人担心过</div>
+          <div class="entry-desc lang-en">The Relationship No One Ever Worried About</div>
         </a>
       </li>
       <li>
@@ -196,6 +212,7 @@
           <div class="entry-title-zh lang-zh">Ross &amp; Rachel</div>
           <div class="entry-title-en lang-en">Ross &amp; Rachel</div>
           <div class="entry-desc lang-zh">那段所有人都操心的感情</div>
+          <div class="entry-desc lang-en">The Relationship Everyone Worried About</div>
         </a>
       </li>
       <li>
@@ -207,6 +224,7 @@
           <div class="entry-title-zh lang-zh">Monica &amp; Ross</div>
           <div class="entry-title-en lang-en">Monica &amp; Ross</div>
           <div class="entry-desc lang-zh">从同一张桌子的两边到同一边</div>
+          <div class="entry-desc lang-en">From Opposite Sides of the Same Table</div>
         </a>
       </li>
       <li>
@@ -218,6 +236,7 @@
           <div class="entry-title-zh lang-zh">Ross &amp; Chandler</div>
           <div class="entry-title-en lang-en">Ross &amp; Chandler</div>
           <div class="entry-desc lang-zh">两个边缘人的二十年</div>
+          <div class="entry-desc lang-en">Two Outsiders, Twenty Years</div>
         </a>
       </li>
       <li>
@@ -229,6 +248,7 @@
           <div class="entry-title-zh lang-zh">Joey &amp; Rachel</div>
           <div class="entry-title-en lang-en">Joey &amp; Rachel</div>
           <div class="entry-desc lang-zh">真的感情，不够的关系</div>
+          <div class="entry-desc lang-en">Real Feelings, Not Enough</div>
         </a>
       </li>
       <li>
@@ -238,8 +258,9 @@
             <span class="entry-num lang-en">Chapter 12 of 12</span>
           </div>
           <div class="entry-title-zh lang-zh">六个人</div>
-          <div class="entry-title-en lang-en">六个人</div>
+          <div class="entry-title-en lang-en">Six People</div>
           <div class="entry-desc lang-zh">为什么是这六个人</div>
+          <div class="entry-desc lang-en">Why These Six</div>
         </a>
       </li>
     </ul>
