@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Shows — Non Dubito</title>
+  <meta name="description" content="Non Dubito 电视剧解读频道：从人物、关系与制度的长期展开，细读电视叙事如何塑造人的目的。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TV Shows — Non Dubito">
+  <meta property="og:description" content="Close readings of television series, characters, relationships, and institutions.">
+  <meta property="og:url" content="https://nondubito.net/essays/tv/">
+  <link rel="canonical" href="https://nondubito.net/essays/tv/">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <style>
+.tv-intro{padding-bottom:0}
+.tv-section{max-width:1180px;margin:0 auto;padding:3.5rem 2rem 0}
+.tv-section-header{margin-bottom:2rem}
+.tv-section-tag{display:block;margin-bottom:.5rem;font-family:var(--sans);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.tv-section-name{font-family:var(--serif);font-size:1.45rem;line-height:1.3;color:var(--ink)}
+html[data-lang="zh"] .tv-section-name,html[data-lang="zh-hant"] .tv-section-name{font-family:var(--cjk),serif;font-weight:600}
+.series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem}
+.series-card{display:flex;flex-direction:column;background:var(--cream);border:1.5px solid var(--cream-border);padding:1.5rem 1.6rem 1.3rem;text-decoration:none;color:inherit;transition:border-color .18s,box-shadow .18s;position:relative}
+.series-card:hover{border-color:rgba(196,157,97,.55);box-shadow:0 2px 16px rgba(196,157,97,.08)}
+.series-card-count{font-family:var(--serif);font-size:.75rem;color:var(--gold);letter-spacing:.05em;margin-bottom:.55rem;font-style:italic}
+.series-card-title-zh{font-family:var(--cjk),serif;font-size:1.05rem;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:.2rem}
+.series-card-title-en{font-family:var(--serif);font-size:.88rem;font-style:italic;color:var(--ink-muted);margin-bottom:.85rem}
+.series-card-desc-zh{font-family:var(--cjk),serif;font-size:.82rem;color:var(--ink-muted);line-height:1.65;margin-bottom:auto}
+.series-card-desc-en{font-family:var(--sans);font-size:.8rem;color:var(--ink-muted);line-height:1.6;margin-bottom:auto}
+.series-card-arrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.08em;color:var(--gold);margin-top:1.1rem;display:flex;align-items:center;gap:.35rem}
+.series-card-arrow::after{content:'→'}
+html[data-lang="en"] .series-card-title-zh{display:none}
+html[data-lang="en"] .series-card-title-en{font-size:1.05rem;font-style:normal;font-weight:600;color:var(--ink);line-height:1.35}
+@media(max-width:600px){.tv-section{padding:2.75rem 1.25rem 0}.series-grid{grid-template-columns:1fr}}
+  </style>
+  <script>
+(function(){
+  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
+  document.documentElement.setAttribute('data-lang',saved);
+  document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='zh'?'zh-Hans':'en');
+  document.addEventListener('DOMContentLoaded',function(){
+    var btns=document.querySelectorAll('.lang-btn[data-lang]');
+    function update(){var cur=document.documentElement.getAttribute('data-lang')||'zh';btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});}
+    btns.forEach(function(btn){btn.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='zh'?'zh-Hans':'en');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+    update();
+  });
+})();
+  </script>
+  <script defer src="zh-hant-data/index.js"></script>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header><div class="header-inner">
+    <a href="../../index.html" class="site-title"><span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a>
+    <nav><a href="../../index.html">Essays</a><a href="../../start.html">Start Here</a><a href="../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a><a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack ↗</a></nav>
+  </div></header>
+  <div class="essay-page">
+    <div class="essay-page-hero"><div class="essay-page-inner">
+      <div class="lang-toggle" style="margin-bottom:.8rem;"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button></div>
+      <a href="../../library.html" class="back-link"><span class="lang-en">← Library</span><span class="lang-zh">← 文章库</span></a>
+      <div class="essay-page-num"><span class="lang-en">Channel · Television close readings</span><span class="lang-zh">频道 · 电视剧细读</span></div>
+      <h1 class="essay-page-title lang-en">TV Shows</h1>
+      <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">电视剧解读</h1>
+      <div class="essay-page-meta"><span>Aug 31, 2026</span><span>Han Qin (秦汉)</span><span class="lang-en">Two series · Twenty-four essays · Multiple languages</span><span class="lang-zh">两个系列 · 二十四篇 · 多语言阅读</span></div>
+    </div></div>
+    <div class="essay-body tv-intro lang-en"><p style="font-size:1.2rem;color:var(--ink);line-height:1.9;">Television unfolds across episodes and seasons, giving characters, relationships, and institutions time to reveal their structure. These readings move beyond plot summary to ask how people are shaped, recognized, and changed.</p></div>
+    <div class="essay-body tv-intro lang-zh" style="font-family:var(--cjk),serif;"><p style="font-size:1.2rem;color:var(--ink);line-height:1.9;">电视剧以季与集展开，让人物、关系与制度在更长时间中显露结构。这里不做剧情复述，而是追踪人怎样被世界塑造、被彼此识认，又怎样改变自己的目的。</p></div>
+    <section class="tv-section">
+      <div class="tv-section-header">
+        <span class="tv-section-tag"><span class="lang-en">Television archive</span><span class="lang-zh">电视剧目录</span></span>
+        <div class="tv-section-name"><span class="lang-en">Long Stories, Shared Worlds</span><span class="lang-zh">长故事与共同生活的世界</span></div>
+      </div>
+      <div class="series-grid"><a href="../literature/friends/index.html" class="series-card">
+  <span class="series-card-count"><span class="lang-en">12 essays · 8 languages</span><span class="lang-zh">12 篇 · 8 种语言</span></span>
+  <div class="series-card-title-zh">Friends：为什么我们看了三十年还在看</div>
+  <div class="series-card-title-en">Friends: Why We&#x27;re Still Watching After Thirty Years</div>
+  <p class="series-card-desc-zh lang-zh">一部情景喜剧为什么三十年不衰？答案不在剧情里，在人类的情感结构里。</p>
+  <p class="series-card-desc-en lang-en">Why does a sitcom remain compelling after thirty years? The answer is not in the plot — it is in the structure of human emotion.</p>
+  <span class="series-card-arrow lang-en">Read series</span>
+  <span class="series-card-arrow lang-zh">阅读系列</span>
+</a>
+<a href="breaking-bad/index.html" class="series-card"><span class="series-card-count"><span class="lang-en">12 essays · 3 reading modes</span><span class="lang-zh">12 篇 · 英 / 简 / 繁</span></span><div class="series-card-title-zh">《绝命毒师》：十二种读法</div><div class="series-card-title-en">Breaking Bad: Twelve Readings</div><p class="series-card-desc-zh lang-zh">十二篇从被否认的价值、压不下去的道德余项与被夺走的叙事权，读到“必要代价”的名单，以及最后那句“我是为了我自己”。</p><p class="series-card-desc-en lang-en">Twelve essays on denied value, the moral remainder that will not stay buried, stolen narrative authority, necessary costs, and the final admission: “I did it for me.”</p><span class="series-card-arrow lang-en">Read series</span><span class="series-card-arrow lang-zh">阅读系列</span></a></div>
+    </section>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-brand"><div class="footer-logo">Non <span>Dubito</span></div><div class="footer-tagline">A mind in many languages</div></div><div class="footer-links"><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a><a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://x.com/hqinjarsy" target="_blank" rel="noopener">X / Twitter</a><a href="../../about.html">About</a></div></div><div class="footer-bottom"><span>© 2026 Han Qin (秦汉) · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><span>nondubito.net</span></div></footer>
+</body>
+</html>
