@@ -170,6 +170,68 @@
       padding: 1.1rem 1.3rem;
       color: var(--ink) !important;
     }
+    .start-note {
+      margin: 1.8rem 0;
+      padding: 1.2rem 1.35rem;
+      border-left: 2px solid var(--gold);
+      background: rgba(196,157,97,0.07);
+    }
+    .start-note p {
+      margin: 0 !important;
+      font-size: 0.98rem !important;
+    }
+    .dd-list {
+      margin: 1.4rem 0 1.8rem;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--cream-border);
+    }
+    .dd-list li {
+      display: grid;
+      grid-template-columns: 4.5rem 1fr;
+      gap: 0.8rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--cream-border);
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+    .dd-list strong {
+      font-family: var(--sans);
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .start-path {
+      margin: 1.5rem 0 2rem;
+      padding: 0;
+      list-style: none;
+      counter-reset: sae-path;
+      border-top: 1px solid var(--cream-border);
+    }
+    .start-path li {
+      counter-increment: sae-path;
+      position: relative;
+      padding: 1.05rem 0 1.05rem 3.2rem;
+      border-bottom: 1px solid var(--cream-border);
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+    .start-path li::before {
+      content: counter(sae-path, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 1.08rem;
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+    }
+    .start-path a {
+      font-weight: 500;
+    }
+    .start-path-exits {
+      font-size: 0.98rem !important;
+      color: var(--ink-muted) !important;
+    }
     .start-glossary {
       margin: 1.5em 0 0;
       border-top: 1px solid var(--cream-border);
@@ -194,11 +256,14 @@
     [data-lang="en"] .lang-zh { display: none; }
     [data-lang="zh"] .lang-en { display: none; }
     [data-lang="zh-hant"] .lang-en { display: none; }
+    [data-lang="zh"] .zh-hant-only { display: none !important; }
+    [data-lang="zh-hant"] .zh-simp-only { display: none !important; }
 
     @media (max-width: 600px) {
       .start-hero { padding: 60px 1.25rem 50px; }
       .calligraphy-block { padding: 50px 1.25rem 0; }
       .start-body { padding: 44px 1.25rem 70px; }
+      .dd-list li { grid-template-columns: 4rem 1fr; }
     }
   </style>
   <script>
@@ -337,6 +402,8 @@
 
         <p>So you cannot actually use them purely as a tool. You think you are handling an instrument; in fact you are dealing with something that moves by itself, and whatever you press down surfaces somewhere else. <strong>"The person is an end" is a factual judgment first and an ethical conclusion second.</strong></p>
 
+        <div class="start-note"><p><strong>A remainder is not yet a subject.</strong> Stones, software, and institutions also exceed our descriptions. SAE's theory of subjecthood asks when a remainder is entered on a subject's own account — when that subject acquires authorship over whether and how to continue, refuse, or revise. This primer gives the conclusion; <a href="essays/sae-foundations/remainder-and-subject.html">the short bridge explains the missing step</a>.</p></div>
+
         <p>In passing: the name of this framework, Self-as-an-End, says exactly this. The name is never translated, in any language, anywhere on this site.</p>
 
         <h2>6. Cultivation and Colonization</h2>
@@ -353,11 +420,18 @@
 
         <p>The word has a more technical use in the essays too: one thing occupying a position it cannot reach. A conditional judgment impersonating unconditional truth; one particular theory impersonating the only framework; a layer of phenomena forced back down into a lower-level mechanism for its explanation. All of it is colonization, and what these share is a construct holding a place it cannot hold.</p>
 
-        <h2>7. What 13DD Means</h2>
+        <h2>7. What 13DD–16DD Mean</h2>
 
         <p>The essays are full of numbers like 13DD and 16DD. They are not a code. They are floor numbers.</p>
 
-        <p>SAE arranges the world in a sequence from simplest to most complex and numbers each level: 0D is hundun (prior to all structure), 1DD the law of identity, and so on upward — 13DD is self-awareness (not merely running, but "I" running), 16DD is mutual non dubito (two subjects each acknowledging the other as an end in itself).</p>
+        <p>SAE arranges the world in a sequence from simplest to most complex and numbers each level: 0D is hundun (prior to all structure), 1DD the law of identity, and so on upward. The four levels most often used in the essays are:</p>
+
+        <ul class="dd-list">
+          <li><strong>13DD</strong><span><b>the self-subject</b> — not merely a process running, but “I” running it; a remainder can now be registered as mine.</span></li>
+          <li><strong>14DD</strong><span><b>the subject as its own end</b> — the self forms a direction and a cannot-not of its own.</span></li>
+          <li><strong>15DD</strong><span><b>the self-legislating subject</b> — relationally, it can recognize the other as an end without waiting to be recognized in return: unilateral non dubito.</span></li>
+          <li><strong>16DD</strong><span><b>mutual non dubito</b> — two subjects recognize one another as ends.</span></li>
+        </ul>
 
         <p>You do not need to memorize any of it. Two things are enough:</p>
 
@@ -365,9 +439,23 @@
 
         <p>Second, <strong>no layer can explain its own foundation.</strong> Mathematics cannot prove the law of identity; physics cannot explain why mathematics works. Reach the foundation and you have to go up a layer for tools. That move is used constantly in the essays.</p>
 
-        <p>One more word you will meet: <strong>non dubito</strong>, Latin for "I do not doubt," which is also the name of this site. It does not mean certainty about the world. It means no longer being shaken about oneself — a subject who has internalized their own baseline deeply enough that outside questioning cannot rock it.</p>
+        <p>One more word you will meet: <strong>non dubito</strong>, Latin for "I do not doubt," which is also the name of this site. It means not wavering on one structural point: <strong>a subject is an end, not merely a means.</strong> It does not make anyone infallible or immune to criticism. You may challenge a person's claims and actions without canceling that person's standing as a subject. At 15DD this recognition runs one way; at 16DD it is mutual.</p>
 
-        <h2>8. Where to Start Reading</h2>
+        <h2>8. If You Want to Understand SAE</h2>
+
+        <p>You do not need to begin with an academic paper. These five readings form the shortest deliberate route from the vocabulary to the framework in use:</p>
+
+        <ol class="start-path">
+          <li><a href="start.html">Start Here</a> — learn chisel, construct, remainder, and cannot-not. You are reading it now.</li>
+          <li><a href="essays/sae-foundations/remainder-and-subject.html">When a Remainder Becomes Mine</a> — why exceeding a description is not enough, and what changes when a remainder belongs to a subject.</li>
+          <li><a href="essays/sae-foundations/ep10.html">Freedom as a Cannot-Not</a> — how a subject becomes its own end by carrying a direction of its own.</li>
+          <li><a href="essays/sae-foundations/ep11.html">When Two Ends Meet</a> — what recognition requires when neither subject can absorb the other.</li>
+          <li><a href="essays/ai_companion.html">AI Can Talk to You All Night. It Cannot End Loneliness.</a> — see the distinction between response and recognition do actual work.</li>
+        </ol>
+
+        <p class="start-path-exits">After these five, continue through <a href="essays/sae-foundations/index.html">SAE Foundations</a> for the full reader-facing path, or go to <a href="https://self-as-an-end.net">self-as-an-end.net</a> for the formal arguments.</p>
+
+        <h2>9. Or Browse by Curiosity</h2>
 
         <p>There is no required order. Pick whatever you were already curious about:</p>
 
@@ -377,7 +465,7 @@
 
         <p><a href="essays/method/i.html">The Methodological Overview</a> — the manual for the whole machine. Start here if you want the full derivation. This one is dense.</p>
 
-        <p><a href="library.html">The Library</a> — all thirty-seven series, grouped by theme. Come here when you want to browse.</p>
+        <p><a href="library.html">The Library</a> — 111 series and more than 978 essays, grouped by theme. Come here when you want to browse.</p>
 
         <p>A last note: this page is a construct too, so it has remainder. To be clear, it dropped a great many qualifications. When you read the essays you will find things more complicated than what is said here — that is not an error on this page. That is the remainder doing its work.</p>
 
@@ -395,8 +483,8 @@
           <dt>The person is an end / Self-as-an-End</dt><dd>A subject carries remainder you cannot hold down and grows on their own, so they cannot be made purely into a means. A fact first, an ethics second.</dd>
           <dt>Cultivation</dt><dd>Your intervention widens the other's space of possibility.</dd>
           <dt>Colonization</dt><dd>Your intervention narrows it; or a construct occupying a position it cannot reach. Usually well meant.</dd>
-          <dt>DD / the dimensional sequence</dt><dd>Floor numbers from simple to complex. 0D hundun, 1DD identity, 13DD self-awareness, 16DD mutual non dubito. No layer explains its own foundation.</dd>
-          <dt>Non dubito</dt><dd>Not certainty about the world, but no longer being shaken about oneself. The name of this site.</dd>
+          <dt>DD / the dimensional sequence</dt><dd>Floor numbers from simple to complex. 13DD is the self-subject, 14DD the subject as its own end, 15DD the self-legislating subject and unilateral non dubito, 16DD mutual non dubito. No layer explains its own foundation.</dd>
+          <dt>Non dubito</dt><dd>Not certainty about the world or personal infallibility, but not wavering on the standing of a subject as an end. Unilateral at 15DD, mutual at 16DD. The name of this site.</dd>
           <dt>Negativa</dt><dd>A deeper layer: negativity itself, prior to any being. Advanced material — safe to skip on a first read.</dd>
         </dl>
 
@@ -471,6 +559,9 @@
 
         <p>所以你不可能真的把他完全当工具用。你以为你在用一个工具，实际上你是在跟一个会自己动的东西打交道；你按下去的那部分，会从别的地方冒出来。<strong>「人是目的」首先是一个事实判断，然后才是一个伦理结论。</strong></p>
 
+        <div class="start-note zh-simp-only"><p><strong>有余项，不等于成为主体。</strong>石头、软件和制度同样会超出我们的描述。SAE 主体性理论处理的是：余项何时被记在一个主体自己的账上，由这个主体取得继续、拒绝或改写的作者位置。这里先给结论；<a href="essays/sae-foundations/remainder-and-subject.html">这篇短桥梁补上中间一步</a>。</p></div>
+        <div class="start-note zh-hant-only"><p><strong>有餘項，不等於成為主體。</strong>石頭、軟體和制度同樣會超出我們的描述。SAE 主體性理論處理的是：餘項何時被記在一個主體自己的帳上，由這個主體取得繼續、拒絕或改寫的作者位置。這裡先給結論；<a href="essays/sae-foundations/remainder-and-subject.html">這篇短橋梁補上中間一步</a>。</p></div>
+
         <p>顺带说一句：这个框架的名字 Self-as-an-End，说的就是这件事。这个名字在网站上任何语言的页面里都不翻译。</p>
 
         <h2>六、涵育与殖民</h2>
@@ -487,11 +578,26 @@
 
         <p>「殖民」这个词在文章里还有一个更技术的用法：一个东西冒充另一个东西的位置。一条有条件的判断冒充无条件的真理，一个特定理论冒充唯一的框架，一层现象被硬塞回更底层的机制去解释——这些都叫殖民。共同点是：一个构，占了它够不着的位置。</p>
 
-        <h2>七、13DD 是什么意思</h2>
+        <h2><span class="zh-simp-only">七、13DD–16DD 是什么意思</span><span class="zh-hant-only">七、13DD–16DD 是什麼意思</span></h2>
 
         <p>文章里满地都是 13DD、16DD 这种编号。它不是密码，是门牌号。</p>
 
-        <p>SAE 把世界从最简单到最复杂排成一条序列，每一层给一个号：0D 是浑沌（一切结构之前），1DD 是同一律，一路往上，13DD 是自意识（不只是在运转，是「我」在运转），16DD 是双向不疑（两个主体互相承认对方是目的本身）。</p>
+        <p class="zh-simp-only">SAE 把世界从最简单到最复杂排成一条序列，每一层给一个号：0D 是浑沌（一切结构之前），1DD 是同一律，一路往上。文章最常用到的四层是：</p>
+        <p class="zh-hant-only">SAE 把世界從最簡單到最複雜排成一條序列，每一層給一個號：0D 是渾沌（一切結構之前），1DD 是同一律，一路往上。文章最常用到的四層是：</p>
+
+        <ul class="dd-list zh-simp-only">
+          <li><strong>13DD</strong><span><b>自我主体</b>——不只是在运转，而是「我」在运转；余项开始能够被记作「我的余项」。</span></li>
+          <li><strong>14DD</strong><span><b>自目的主体</b>——主体形成自己的方向与自己的「不得不」。</span></li>
+          <li><strong>15DD</strong><span><b>自我立法主体</b>——在关系中，它能够不等待回报，单向承认他者也是目的；这就是单向不疑。</span></li>
+          <li><strong>16DD</strong><span><b>双向不疑</b>——两个主体相互承认对方为目的。</span></li>
+        </ul>
+
+        <ul class="dd-list zh-hant-only">
+          <li><strong>13DD</strong><span><b>自我主體</b>——不只是在運轉，而是「我」在運轉；餘項開始能夠被記作「我的餘項」。</span></li>
+          <li><strong>14DD</strong><span><b>自目的主體</b>——主體形成自己的方向與自己的「不得不」。</span></li>
+          <li><strong>15DD</strong><span><b>自我立法主體</b>——在關係中，它能夠不等待回報，單向承認他者也是目的；這就是單向不疑。</span></li>
+          <li><strong>16DD</strong><span><b>雙向不疑</b>——兩個主體相互承認對方為目的。</span></li>
+        </ul>
 
         <p>你完全不需要背下来。只要知道两件事：</p>
 
@@ -499,9 +605,34 @@
 
         <p>二，<strong>每一层解释不了自己的地基。</strong>数学证明不了同一律，物理解释不了数学为什么有效。碰到地基就得往上一层去找工具——这条在文章里用得很频繁。</p>
 
-        <p>还有一个词你会碰到：<strong>不疑</strong>，拉丁文 non dubito，也就是这个网站的名字。它不是「对世界很确定」，是「对自己不再动摇」——一个主体把自己的基准线内化得足够深，外面怎么问都晃不动它。</p>
+        <p class="zh-simp-only">还有一个词你会碰到：<strong>不疑</strong>，拉丁文 non dubito，也就是这个网站的名字。它指的是对一个结构事实的不疑与不动摇：<strong>主体是目的，而不只是手段。</strong>它不表示任何人不会犯错，也不让任何人的判断免于质疑。你可以反驳一个人的观点和行动，却不能因此取消这个人作为主体的地位。在 15DD，这种承认是单向的；在 16DD，它成为相互的。</p>
+        <p class="zh-hant-only">還有一個詞你會碰到：<strong>不疑</strong>，拉丁文 non dubito，也就是這個網站的名字。它指的是對一個結構事實的不疑與不動搖：<strong>主體是目的，而不只是手段。</strong>它不表示任何人不會犯錯，也不讓任何人的判斷免於質疑。你可以反駁一個人的觀點和行動，卻不能因此取消這個人作為主體的地位。在 15DD，這種承認是單向的；在 16DD，它成為相互的。</p>
 
-        <h2>八、从哪里开始读</h2>
+        <h2><span class="zh-simp-only">八、如果你想真正理解 SAE</span><span class="zh-hant-only">八、如果你想真正理解 SAE</span></h2>
+
+        <p class="zh-simp-only">不必先读学术论文。下面五篇组成一条最短的有意路线，从词汇一直走到框架实际运作：</p>
+        <p class="zh-hant-only">不必先讀學術論文。下面五篇組成一條最短的有意路線，從詞彙一直走到框架實際運作：</p>
+
+        <ol class="start-path zh-simp-only">
+          <li><a href="start.html">Start Here</a>——先认识凿、构、余项与不得不。你正在读的就是这一篇。</li>
+          <li><a href="essays/sae-foundations/remainder-and-subject.html">余项怎样成为「我的余项」</a>——为什么超出描述还不等于成为主体，以及余项被记在主体自己账上以后发生了什么。</li>
+          <li><a href="essays/sae-foundations/ep10.html">自由是自己的「不得不」</a>——主体怎样通过自己的方向成为自己的目的。</li>
+          <li><a href="essays/sae-foundations/ep11.html">两个目的相遇以后怎么办</a>——当任何一方都不能吞掉另一方，承认究竟要求什么。</li>
+          <li><a href="essays/ai_companion.html">AI 能陪你说一整夜的话，但它消除不了孤独</a>——看「回应」与「承认」的区别如何落到一个具体问题上。</li>
+        </ol>
+
+        <ol class="start-path zh-hant-only">
+          <li><a href="start.html">Start Here</a>——先認識鑿、構、餘項與不得不。你正在讀的就是這一篇。</li>
+          <li><a href="essays/sae-foundations/remainder-and-subject.html">餘項怎樣成為「我的餘項」</a>——為什麼超出描述還不等於成為主體，以及餘項被記在主體自己帳上以後發生了什麼。</li>
+          <li><a href="essays/sae-foundations/ep10.html">自由是自己的「不得不」</a>——主體怎樣通過自己的方向成為自己的目的。</li>
+          <li><a href="essays/sae-foundations/ep11.html">兩個目的相遇以後怎麼辦</a>——當任何一方都不能吞掉另一方，承認究竟要求什麼。</li>
+          <li><a href="essays/ai_companion.html">AI 能陪你說一整夜的話，但它消除不了孤獨</a>——看「回應」與「承認」的區別如何落到一個具體問題上。</li>
+        </ol>
+
+        <p class="start-path-exits zh-simp-only">读完这五篇，可以继续进入<a href="essays/sae-foundations/index.html">《SAE基础：人如何成为目的》</a>的完整大众路径；如果想看形式证明，再去 <a href="https://self-as-an-end.net">self-as-an-end.net</a>。</p>
+        <p class="start-path-exits zh-hant-only">讀完這五篇，可以繼續進入<a href="essays/sae-foundations/index.html">《SAE基礎：人如何成為目的》</a>的完整大眾路徑；如果想看形式證明，再去 <a href="https://self-as-an-end.net">self-as-an-end.net</a>。</p>
+
+        <h2><span class="zh-simp-only">九、也可以从兴趣出发</span><span class="zh-hant-only">九、也可以從興趣出發</span></h2>
 
         <p>不必按顺序。挑一个你本来就好奇的：</p>
 
@@ -511,7 +642,8 @@
 
         <p><a href="essays/method/i.html">方法论总论</a>——整台机器的说明书。想要完整推导的话，从这里进。这一篇偏硬。</p>
 
-        <p><a href="library.html">书架</a>——全部三十七个系列，按主题分组。想找什么就来这里翻。</p>
+        <p class="zh-simp-only"><a href="library.html">书架</a>——111 个系列、978+ 篇文章，按主题分组。想找什么就来这里翻。</p>
+        <p class="zh-hant-only"><a href="library.html">書架</a>——111 個系列、978+ 篇文章，按主題分組。想找什麼就來這裡翻。</p>
 
         <p>最后一句：这一页本身也是一个构，所以它也有余项。它为了讲清楚，把很多分寸拿掉了。你读文章的时候会发现比这里说的复杂——那不是这一页写错了，那正是余项在起作用。</p>
 
@@ -529,8 +661,12 @@
           <dt>人是目的 / Self-as-an-End</dt><dd>一个主体有你按不住的余项，会自己往前长，所以不可能被完全当作手段。先是事实，然后才是伦理。</dd>
           <dt>涵育</dt><dd>你的介入扩大了对方的可能性空间。</dd>
           <dt>殖民</dt><dd>你的介入压缩了对方的可能性空间；或者一个构占了它够不着的位置。常常出于好意。</dd>
-          <dt>DD / 维度序列</dt><dd>从简单到复杂的层级门牌号。0D 浑沌，1DD 同一律，13DD 自意识，16DD 双向不疑。每一层解释不了自己的地基。</dd>
-          <dt>不疑 / non dubito</dt><dd>不是对世界确定，是对自己不再动摇。这个网站的名字。</dd>
+          <dt><span class="zh-simp-only">DD / 维度序列</span><span class="zh-hant-only">DD / 維度序列</span></dt>
+          <dd class="zh-simp-only">从简单到复杂的层级门牌号。13DD 是自我主体，14DD 是自目的主体，15DD 是自我立法主体与单向不疑，16DD 是双向不疑。每一层解释不了自己的地基。</dd>
+          <dd class="zh-hant-only">從簡單到複雜的層級門牌號。13DD 是自我主體，14DD 是自目的主體，15DD 是自我立法主體與單向不疑，16DD 是雙向不疑。每一層解釋不了自己的地基。</dd>
+          <dt>不疑 / non dubito</dt>
+          <dd class="zh-simp-only">不是对世界的确定，也不是个人永不犯错，而是对主体作为目的之地位的不疑与不动摇。15DD 单向发生，16DD 双向发生。这个网站的名字。</dd>
+          <dd class="zh-hant-only">不是對世界的確定，也不是個人永不犯錯，而是對主體作為目的之地位的不疑與不動搖。15DD 單向發生，16DD 雙向發生。這個網站的名字。</dd>
           <dt>非 / Negativa</dt><dd>更深一层的说法：否定性本身，先于任何存在。属于进阶内容，第一次读可以先放过。</dd>
         </dl>
 

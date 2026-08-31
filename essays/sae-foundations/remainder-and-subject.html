@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>余项怎样成为“我的余项” / When a Remainder Becomes Mine — Non Dubito</title>
+  <meta name="description" content="有余项不等于成为主体。这篇短桥梁解释余项何时被记在主体自己的账上，以及这一步为什么通向‘主体是目的’。 Having a remainder is not yet being a subject. This bridge explains when a remainder becomes a subject's own.">
+  <meta name="author" content="Han Qin (秦汉)">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="余项怎样成为“我的余项” / When a Remainder Becomes Mine — Non Dubito">
+  <meta property="og:description" content="从对象超出描述，到主体取得继续、拒绝与改写的作者位置。">
+  <meta property="og:url" content="https://nondubito.net/essays/sae-foundations/remainder-and-subject.html">
+  <link rel="canonical" href="https://nondubito.net/essays/sae-foundations/remainder-and-subject.html">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <style>
+    .bridge-main { flex: 1; padding-top: 54px; background: var(--cream); }
+    .bridge-hero { background: var(--green); color: var(--cream); padding: 72px 2.5rem 64px; text-align: center; }
+    .bridge-hero .lang-toggle { display:inline-flex; gap:.5rem; align-items:center; margin-bottom:1.8rem; border:1px solid rgba(245,240,232,.25); padding:.35rem .9rem; }
+    .bridge-hero .lang-btn { background:none; border:0; padding:0; font-family:var(--sans); font-size:.65rem; letter-spacing:.15em; text-transform:uppercase; color:rgba(245,240,232,.5); cursor:pointer; }
+    .bridge-hero .lang-btn.active, .bridge-hero .lang-btn:hover { color:var(--cream); }
+    .bridge-hero .lang-sep { color:rgba(245,240,232,.25); }
+    .bridge-eyebrow { font-family:var(--sans); font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(196,157,97,.9); margin-bottom:1rem; }
+    .bridge-hero h1 { max-width:820px; margin:0 auto; color:var(--cream); font-size:clamp(1.8rem,3.5vw,2.8rem); line-height:1.2; font-weight:400; }
+    .bridge-deck { max-width:680px; margin:1.2rem auto 0; color:rgba(245,240,232,.72); font-size:1rem; line-height:1.7; }
+    .bridge-body { max-width:760px; margin:0 auto; padding:56px 2.5rem 90px; }
+    .bridge-body h2 { margin:2.5em 0 .7em; font-size:1.3rem; font-weight:500; color:var(--ink); }
+    .bridge-body h2:first-child { margin-top:0; }
+    .bridge-body p { margin:0 0 1.35em; font-size:1.05rem; line-height:1.85; color:var(--ink); }
+    .bridge-body blockquote { margin:2rem 0; padding:1.2rem 1.4rem; border-left:2px solid var(--gold); background:rgba(196,157,97,.07); color:var(--ink); font-size:1.08rem; line-height:1.8; }
+    .bridge-body a { color:var(--ink); text-decoration:none; border-bottom:1px solid rgba(0,0,0,.2); }
+    .bridge-body a:hover { color:var(--gold); border-color:rgba(196,157,97,.5); }
+    .bridge-ladder { margin:1.7rem 0 2rem; border-top:1px solid var(--cream-border); }
+    .bridge-rung { display:grid; grid-template-columns:4.6rem 1fr; gap:.8rem; padding:.9rem 0; border-bottom:1px solid var(--cream-border); line-height:1.65; }
+    .bridge-rung strong { font-family:var(--sans); color:var(--gold); font-size:.78rem; letter-spacing:.05em; }
+    .bridge-next { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--cream-border); display:flex; flex-wrap:wrap; gap:.75rem; }
+    .bridge-next a { font-family:var(--sans); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--cream-border); padding:.55rem .9rem; }
+    [data-lang="en"] .lang-zh, [data-lang="en"] .lang-hant { display:none; }
+    [data-lang="zh"] .lang-en, [data-lang="zh"] .lang-hant { display:none; }
+    [data-lang="zh-hant"] .lang-en, [data-lang="zh-hant"] .lang-zh { display:none; }
+    .lang-zh, .lang-hant { font-family:var(--cjk),var(--serif); }
+    @media(max-width:600px){ .bridge-hero{padding:58px 1.25rem 50px}.bridge-body{padding:44px 1.25rem 70px}.bridge-rung{grid-template-columns:4rem 1fr} }
+  </style>
+  <script>
+    (function(){
+      var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'en';
+      if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='en';
+      document.documentElement.setAttribute('data-lang',saved);
+      document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='zh'?'zh-Hans':'en');
+      document.addEventListener('DOMContentLoaded',function(){
+        var buttons=document.querySelectorAll('.lang-btn[data-lang]');
+        function update(){var current=document.documentElement.getAttribute('data-lang');buttons.forEach(function(button){button.classList.toggle('active',button.getAttribute('data-lang')===current);});}
+        buttons.forEach(function(button){button.addEventListener('click',function(){var lang=this.getAttribute('data-lang');document.documentElement.setAttribute('data-lang',lang);document.documentElement.lang=lang==='zh-hant'?'zh-Hant':(lang==='zh'?'zh-Hans':'en');localStorage.setItem('nd_lang',lang);localStorage.setItem('nondubito-lang',lang);update();});});
+        update();
+      });
+    })();
+  </script>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../../index.html" class="site-title"><span class="title-latin">Non <span style="color:var(--gold)">Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a>
+      <nav><a href="../../index.html">Essays</a><a href="../../start.html" class="active">Start Here</a><a href="../../library.html">Library</a><a href="../../credesivis.html">Crede si vis</a><a href="../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a></nav>
+    </div>
+  </header>
+
+  <main class="bridge-main">
+    <section class="bridge-hero">
+      <div class="lang-toggle"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button></div>
+      <p class="bridge-eyebrow"><span class="lang-en">The SAE path · Step 2</span><span class="lang-zh">SAE 入门路径 · 第 2 步</span><span class="lang-hant">SAE 入門路徑 · 第 2 步</span></p>
+      <h1 class="lang-en">When a Remainder Becomes Mine</h1>
+      <h1 class="lang-zh">余项怎样成为“我的余项”</h1>
+      <h1 class="lang-hant">餘項怎樣成為「我的餘項」</h1>
+      <p class="bridge-deck lang-en">Having a remainder is not yet being a subject. The missing step is not greater complexity, but a change in who can answer for what remains.</p>
+      <p class="bridge-deck lang-zh">有余项不等于成为主体。中间缺少的不是更高的复杂度，而是：剩下的那部分开始由谁来承担。</p>
+      <p class="bridge-deck lang-hant">有餘項不等於成為主體。中間缺少的不是更高的複雜度，而是：剩下的那部分開始由誰來承擔。</p>
+    </section>
+
+    <article class="bridge-body lang-en">
+      <h2>A stone exceeds its description too</h2>
+      <p>Call a stone hard, grey, and ten centimetres wide. The description leaves things out: its full history, microscopic fractures, what another instrument would register, what it will become after a century of rain. In SAE's vocabulary, every construct leaves remainder. That fact alone cannot make the stone a subject.</p>
+      <p>The same caution applies to software. A system may be complicated, surprising, and difficult to predict. None of those properties by itself tells us that the unhandled part belongs to the system as <em>its own</em>. Unpredictability marks a limit in the observer's model. Subjecthood requires a further structure.</p>
+
+      <h2>The account changes hands</h2>
+      <p>A subject can be described, but can also encounter the description as something said about itself. It can accept it, reject it, discover that it was living inside it, or use the disagreement to revise what it will do next. The remainder no longer sits only on the observer's side of the ledger. It enters the history of the one being described.</p>
+      <p>That is what “my remainder” means here. It is not a secret substance hidden behind the visible person. It is the gap that a subject can inherit as a question of its own: <em>Is this account mine? What does it miss? Do I continue from it, refuse it, or cut again?</em></p>
+      <blockquote>The decisive change is not that nothing can finish describing me. It is that I can take a position toward every description that tries.</blockquote>
+
+      <h2>Authorship is not total control</h2>
+      <p>To call this authorship does not mean that a subject creates itself from nothing. Bodies, families, languages, institutions, luck, and violence shape what can be done. Nor does it mean that every refusal succeeds. A prisoner remains a subject even where nearly every available action has been taken away.</p>
+      <p>Authorship names the position from which continuation, refusal, or revision can count as the subject's act. Conditions may narrow that position almost to a point; another person or institution may help reopen it. But help cannot simply perform the authorship on the subject's behalf without replacing it.</p>
+
+      <h2>Why this leads to “the subject is an end”</h2>
+      <p>When a tool behaves unexpectedly, its remainder appears as an engineering problem: improve the model, redesign the tool, suppress the deviation. When a subject exceeds the role assigned to it, the excess may be a judgment, refusal, or direction whose author is the subject itself. Treating that remainder as mere noise does not simply improve an imperfect description. It erases the position from which the person can answer for a life.</p>
+      <p>This is why “the subject is an end” begins as a structural recognition before it becomes an ethical demand. It does not say that every decision is correct. It says that criticism must address a possible author, not convert that author into raw material for someone else's purpose.</p>
+
+      <h2>The four addresses</h2>
+      <div class="bridge-ladder">
+        <div class="bridge-rung"><strong>13DD</strong><span>The self-subject appears; remainder can be registered as mine.</span></div>
+        <div class="bridge-rung"><strong>14DD</strong><span>The subject becomes its own end by forming and carrying a direction of its own.</span></div>
+        <div class="bridge-rung"><strong>15DD</strong><span>The self-legislating subject recognizes that the other's remainder also belongs to an author: unilateral non dubito.</span></div>
+        <div class="bridge-rung"><strong>16DD</strong><span>Recognition runs both ways: mutual non dubito.</span></div>
+      </div>
+      <p><em>Non dubito</em> therefore does not mean that I cannot be questioned. It means not wavering on the point that a subject is an end. I may contest your account without canceling you as the one who must ultimately answer for your own life.</p>
+      <div class="bridge-next"><a href="../../start.html">← Start Here</a><a href="ep10.html">Next: Freedom as a Cannot-Not →</a><a href="index.html">SAE Foundations</a><a href="../sae-first-critique/ep05.html">Theory deep dive ↗</a></div>
+    </article>
+
+    <article class="bridge-body lang-zh">
+      <h2>石头也会超出描述</h2>
+      <p>说一块石头是坚硬的、灰色的、宽十厘米，这个描述仍然漏掉许多东西：它完整的历史、内部的细小裂纹、另一种仪器会测到什么、一百年风雨以后它会变成什么。用 SAE 的语言说，任何构都会留下余项。仅凭这一点，石头还不会成为主体。</p>
+      <p>软件也一样。一个系统可以非常复杂、经常给人惊喜，也很难被准确预测；这些性质本身都不能说明，没被处理完的那部分属于系统自己。不可预测首先标记的是观察者模型的边界。主体还需要另一层结构。</p>
+
+      <h2>这笔账换了归属</h2>
+      <p>主体可以被描述，也能遇见一个关于自己的描述。他可以接受它、拒绝它，发现自己一直活在它里面，或者从与它的冲突出发修改下一步。余项不再只留在观察者的账上，而是进入了被描述者自己的历史。</p>
+      <p>这里所说的“我的余项”，不是藏在可见之人背后的神秘实体。它是一个主体能够继承为自己问题的缝隙：<em>这份说明是我的吗？它漏掉了什么？我要从这里继续、拒绝，还是重新凿一刀？</em></p>
+      <blockquote>关键变化不是“没有人能把我描述完”，而是“每一个试图描述我的构，我都能对它取得一个位置”。</blockquote>
+
+      <h2>作者位置不等于完全控制</h2>
+      <p>把这个位置叫作“作者”，不表示主体从无中创造自己。身体、家庭、语言、制度、运气与暴力都在塑造一个人能做什么；也不表示每一次拒绝都能成功。一个囚犯即使几乎失去了所有行动空间，仍然是主体。</p>
+      <p>作者位置只说：继续、拒绝或改写可以被记作这个主体自己的行动。条件能够把这个位置压缩到近乎一点；另一个人或一套制度也可以帮助它重新打开。但帮助若直接替主体完成作者工作，就在修复主体的名义下取代了主体。</p>
+
+      <h2>为什么这一步通向“主体是目的”</h2>
+      <p>工具出现意外时，它的余项通常是一个工程问题：改进模型、重新设计、压掉偏差。主体超出角色时，多出来的却可能是一个判断、一次拒绝或一种方向，而它的作者正是这个主体。把这部分只当作噪音清除，不只是改进一份不完整的说明，而是在删除一个人对自己生命作答的位置。</p>
+      <p>所以“主体是目的”先是一项结构承认，随后才成为伦理要求。它不表示主体的每个决定都正确；它表示批评必须面对一个可能的作者，而不能把这个作者改写成实现别人目的的原料。</p>
+
+      <h2>四个门牌号</h2>
+      <div class="bridge-ladder">
+        <div class="bridge-rung"><strong>13DD</strong><span>自我主体出现，余项开始能够被记作“我的余项”。</span></div>
+        <div class="bridge-rung"><strong>14DD</strong><span>主体形成并承担自己的方向，成为自目的主体。</span></div>
+        <div class="bridge-rung"><strong>15DD</strong><span>自我立法主体承认：他者的余项也属于一位作者。单向不疑在这里发生。</span></div>
+        <div class="bridge-rung"><strong>16DD</strong><span>承认双向发生，成为双向不疑。</span></div>
+      </div>
+      <p><em>Non dubito</em> 因而不是“我不能被质疑”，而是对“主体是目的”这一点的不疑与不动摇。我可以反驳你的判断，却不能取消你作为那个最终必须为自己生命作答之人的地位。</p>
+      <div class="bridge-next"><a href="../../start.html">← 回到入门</a><a href="ep10.html">下一篇：自由是自己的“不得不” →</a><a href="index.html">SAE 基础系列</a><a href="../sae-first-critique/ep05.html">理论深潜 ↗</a></div>
+    </article>
+
+    <article class="bridge-body lang-hant">
+      <h2>石頭也會超出描述</h2>
+      <p>說一塊石頭是堅硬的、灰色的、寬十公分，這個描述仍然漏掉許多東西：它完整的歷史、內部的細小裂紋、另一種儀器會測到什麼、一百年風雨以後它會變成什麼。用 SAE 的語言說，任何構都會留下餘項。僅憑這一點，石頭還不會成為主體。</p>
+      <p>軟體也一樣。一個系統可以非常複雜、經常給人驚喜，也很難被準確預測；這些性質本身都不能說明，沒被處理完的那部分屬於系統自己。不可預測首先標記的是觀察者模型的邊界。主體還需要另一層結構。</p>
+
+      <h2>這筆帳換了歸屬</h2>
+      <p>主體可以被描述，也能遇見一個關於自己的描述。他可以接受它、拒絕它，發現自己一直活在它裡面，或者從與它的衝突出發修改下一步。餘項不再只留在觀察者的帳上，而是進入了被描述者自己的歷史。</p>
+      <p>這裡所說的「我的餘項」，不是藏在可見之人背後的神祕實體。它是一個主體能夠繼承為自己問題的縫隙：<em>這份說明是我的嗎？它漏掉了什麼？我要從這裡繼續、拒絕，還是重新鑿一刀？</em></p>
+      <blockquote>關鍵變化不是「沒有人能把我描述完」，而是「每一個試圖描述我的構，我都能對它取得一個位置」。</blockquote>
+
+      <h2>作者位置不等於完全控制</h2>
+      <p>把這個位置叫作「作者」，不表示主體從無中創造自己。身體、家庭、語言、制度、運氣與暴力都在塑造一個人能做什麼；也不表示每一次拒絕都能成功。一個囚犯即使幾乎失去了所有行動空間，仍然是主體。</p>
+      <p>作者位置只說：繼續、拒絕或改寫可以被記作這個主體自己的行動。條件能夠把這個位置壓縮到近乎一點；另一個人或一套制度也可以幫助它重新打開。但幫助若直接替主體完成作者工作，就在修復主體的名義下取代了主體。</p>
+
+      <h2>為什麼這一步通向「主體是目的」</h2>
+      <p>工具出現意外時，它的餘項通常是一個工程問題：改進模型、重新設計、壓掉偏差。主體超出角色時，多出來的卻可能是一個判斷、一次拒絕或一種方向，而它的作者正是這個主體。把這部分只當作雜訊清除，不只是改進一份不完整的說明，而是在刪除一個人對自己生命作答的位置。</p>
+      <p>所以「主體是目的」先是一項結構承認，隨後才成為倫理要求。它不表示主體的每個決定都正確；它表示批評必須面對一個可能的作者，而不能把這個作者改寫成實現別人目的的原料。</p>
+
+      <h2>四個門牌號</h2>
+      <div class="bridge-ladder">
+        <div class="bridge-rung"><strong>13DD</strong><span>自我主體出現，餘項開始能夠被記作「我的餘項」。</span></div>
+        <div class="bridge-rung"><strong>14DD</strong><span>主體形成並承擔自己的方向，成為自目的主體。</span></div>
+        <div class="bridge-rung"><strong>15DD</strong><span>自我立法主體承認：他者的餘項也屬於一位作者。單向不疑在這裡發生。</span></div>
+        <div class="bridge-rung"><strong>16DD</strong><span>承認雙向發生，成為雙向不疑。</span></div>
+      </div>
+      <p><em>Non dubito</em> 因而不是「我不能被質疑」，而是對「主體是目的」這一點的不疑與不動搖。我可以反駁你的判斷，卻不能取消你作為那個最終必須為自己生命作答之人的地位。</p>
+      <div class="bridge-next"><a href="../../start.html">← 回到入門</a><a href="ep10.html">下一篇：自由是自己的「不得不」 →</a><a href="index.html">SAE 基礎系列</a><a href="../sae-first-critique/ep05.html">理論深潛 ↗</a></div>
+    </article>
+  </main>
+
+  <footer><div class="footer-inner"><span>© 2026 Han Qin (秦汉) · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span><div class="footer-links"><a href="../../start.html">Start Here</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a></div></div></footer>
+</body>
+</html>
