@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>那张图底下已经没有磁盘 — Non Dubito</title>
+  <meta name="description" content="1998 年的碎片整理程序有一张簇状图，Vista 把它删了，固态硬盘把功能也删了。Dennis Morello 把这张图重建成一台没有磁盘的机器，并且在底下装了一套真的算法。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-09-02.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; margin-right:1.25rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang'); if (saved !== 'zh' && saved !== 'en') saved = 'zh'; document.documentElement.setAttribute('data-lang', saved); document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh'); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-09-02</div>
+          <h1 class="lang-zh">那张图底下已经没有磁盘</h1>
+          <h1 class="lang-en">There Is No Disk Under the Map</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Windows 98 的磁盘碎片整理程序做的是一件枯燥的事。机械硬盘上，一个文件的各段被文件系统零散地塞在盘片的不同位置，读头要来回跑，于是需要一个工具把这些碎块搬到一起。搬运过程要有一个读数，微软给了它一张簇状图：一格一格的小方块，浅蓝是待整理的数据，深蓝是已整理，白的是空闲，读中与写中另有颜色，底下一条分段推进的进度条和一行「% Complete」。意大利前端开发者 Dennis Morello 在 2024 年 7 月把这张图搬进了浏览器，域名叫 defrag98.com。2026 年 6 月他把整个项目推倒重写了一遍：从 Next.js 换到 Vite，簇状图从几百个 DOM 节点改成直接画进 canvas，簇的数量随所选虚拟盘的容量变化，硬盘转动的循环音轨从一兆多重编码到三百五十 KB 上下，跑完会弹出 Windows 98 原样的完成对话框，连提示音一起。它不整理任何东西。没有磁盘，没有文件系统，没有碎片。用他自己的话说：没有真的磁盘受到损伤，也没有任何东西真的被优化了——而这正是全部的意思。</p>
+
+        <p>这张簇状图在原来那台机器里的位置，是余项的一个干净样本。碎片整理程序是一个目的完全闭合的构造：它要做的是连续性，它的产出是更短的寻道时间，此外没有别的。那张图是仪表，严格从属于功能——它存在是为了报告功能进行到哪里。但它溢出了。人们看它，一看几十分钟，不为任何这个工具能够解释的理由。这份剩余没有名字，没有归属的部门，没有对应的工时。它就是一个维护工具的余项。接下来是凿削那一下，而且非常干脆：Windows Vista 的碎片整理程序把这张图整个删掉了——不再显示碎片分布，连进度也不再显示。到 Windows 8，这个工具索性改名叫「优化驱动器」。构造删掉了自己的余项，不是因为它错，而是因为它不在账上。再之后，固态硬盘把功能本身也一并删掉了。读数没了，功能也没了。</p>
+
+        <p>Morello 做的事，要害不在于他把这张图复原了，而在于他把它复原成了一台没有对象的机器，并且拒绝让它作假。他没有录一段动画去循环播放。他写了一套真算法：逐簇模拟读与写，非顺序处理，所以每一次跑出来的样子都不一样。余项被装上了自己的引擎——那份溢出如今自己生产自己，不再需要那个曾经把它当副产品甩出来的功能。而这次重写的全部内容，逐条看，在功能上都等于零：簇状图的底色从黑改回白（真机是白的）；补回一个「图例」按钮，弹窗解释「正在读取」「正在写入」「坏簇」分别是什么颜色——解释一些并不存在的簇；进度条改成一格一格地跳而不是平滑填充；停止之前要先弹一个确认框，确认一件根本没在发生的事；补上「已暂停」与「已停止」两种状态；装一个 service worker，把字体、光标、音频、图标全部预缓存，好让你在没有信号的飞机上整理一块不存在的磁盘。这些全是对一个没有对象的动作「像不像」所做的修正。他自己给出的诊断，是关于这件东西最准的一句话：第一版<em>看上去像一个模拟；真的那个看上去像一台机器在想事情</em>。这两者之间的差，没法用功能语言写出来，只能被认出来。余项就是这种东西。</p>
+
+        <p>拿屏幕保护程序做对照，就能看清这条循环走完之后是什么样。屏保原本也有功能：防止 CRT 荧光粉烧屏。液晶屏来了，功能死了，外观活了下来——然后它被命名、被打包、被出售（After Dark，1989，会飞的烤面包机），成为软件史里一个有货架位置的品类。屏保今天是彻头彻尾的已构：它仍然好看，但那份好看是上一轮凿构循环留下的沉积物，里面已经没有任何未决的东西。簇状图没能走到那一步。它在被人卖掉之前就被微软删了。没有一个属于它的 After Dark，没有品类，没有货架。Morello 造出来的，是第一次有人把这张图当作对象本身来做，而不是当作某个对象的读数。循环在中途被打断过，他从那根被砍掉的枝上重新接了起来——所以它还活着。</p>
+
+        <p>它不是保存。真正的工具在模拟器里跑得好好的，没有什么需要抢救；而他做的恰恰是一件赝品，并且改动了做保存的人不能改的东西（canvas 渲染、随容量变化的簇数、一个藏起来的彩蛋）。它也不是模拟器：没有一行 Windows 98 的代码在执行，那是 TypeScript 往 2D 上下文里画方块。它不是网络艺术——它根本没有艺术界地址，它挂在 Product Hunt、Hacker News 和 Buy Me a Coffee 上。它不是游戏：没有目标，没有失败，没有分数。它不是 ASMR，尽管当 ASMR 用完全成立——ASMR 这个词 2010 年就有了，说的是听者身体上的反应，而这里的事情发生在机器那一侧，是一台机器显得在思考。它也不是生成艺术，尽管那套算法确实是生成的、确实不重复——生成艺术有名字也有市场，这个两样都没有。Hackaday 设有一个 Art 分类，但九月一日报道它的时候，编辑把它归进了 Misc Hacks：杂项，分类学的余料格。所有人伸手去够的那个词是「怀旧」，而怀旧描述的是看的人的状态，不是这个东西。</p>
+
+        <p>现在看比以后看要紧，两只钟在走。第一只是命名的钟，而且这一只走得比通常快，因为「怀旧」是一个太顺手的词。一旦「复古网页玩具」合拢，你看到的就只是一身年代戏服，而那个真问题——一个没有功能的读数，为什么底下需要装一套真算法——会变得问不出口。眼下这道缝还开着，只因为他把重写过程写成了文章，逐条列出自己修好了哪些在功能上等于零的细节，以及为什么还是要修。这份文档不会一直这么好读。第二只钟更硬：从 2024 年至今，全部捐款一百四十八美元。这中间经过了 Hacker News 首页、The Verge、Product Hunt，以及八月底的 Boing Boing 和九月一日的 Hackaday。那个数字是诚实的读数：没有生意，没有机构，没有市场，所以它随时会往某一边倒——被吸收进一个作品集、一个产品、一个品类，或者域名到期。还有一件更慢的事：真的坐在那块屏幕前面等过的人，是一个有限并且在缩小的集合。这件东西的余项有一部分靠他们还在——对他们那是记忆，不是戏服。等这批人走完，它就只剩已构：一件关于某个年代的装饰品。趁现在还有两种看法，去看一眼。</p>
+
+        <a href="https://defrag98.com/" target="_blank" rel="noopener" class="project-link">defrag98.com ↗</a>
+        <a href="https://morello.dev/blog/defrag98-rebuild" target="_blank" rel="noopener" class="project-link">morello.dev ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>The Windows 98 Disk Defragmenter did something boring. On a spinning drive, the parts of a file end up scattered across the platter by the file system, the head has to travel, and so a utility exists to shove those pieces back together. The shoving needed a readout, and Microsoft gave it a cluster map: a grid of little squares, pale blue for unoptimised data, dark blue for optimised, white for free space, separate colours for reading and writing, and beneath it a chunky segmented progress bar with a "% Complete" caption. In July 2024 the Italian front-end developer Dennis Morello put that map in a browser tab at defrag98.com. In June 2026 he tore the whole thing down and rebuilt it: Next.js out and Vite in, the cluster grid moved off hundreds of DOM nodes and drawn straight to a canvas, the number of clusters scaling with whichever virtual drive you pick, the hard-disk loop re-encoded from over a megabyte down to around 350KB, and an authentic Windows 98 completion dialog at the end, chime included. It defragments nothing. There is no disk, no file system, no fragmentation. In his words: no real disks are harmed and nothing actually gets optimised, and that is the whole point.</p>
+
+        <p>The position that cluster map occupied inside the original machine is a clean specimen of the remainder. A defragmenter is a construct with a completely closed purpose: it produces contiguity, its output is shorter seek times, and there is nothing else. The map was instrumentation, strictly subordinate to the function — it existed to report how far along the function had got. But it overflowed. People watched it, for half an hour at a stretch, for no reason the tool could account for. That surplus had no name, no department that owned it, no line of billable labour. It was the remainder of a maintenance utility. Then came the cut, and it was decisive: the Disk Defragmenter in Windows Vista removed the map entirely — no fragmentation display, and no progress display either. By Windows 8 the tool had been renamed Optimize Drives. The construct deleted its own remainder, not because it was wrong but because it was off the books. Then solid-state drives deleted the function as well. Readout gone, function gone.</p>
+
+        <p>What matters about what Morello did is not that he restored the map. It is that he restored it as a machine with no object, and then refused to let it cheat. He did not record an animation and loop it. He wrote a real algorithm — modelling reads and writes on individual clusters, processed non-sequentially, so no two runs come out the same. The remainder has been fitted with its own engine: the overflow now produces itself, with no need for the function that once threw it off as a byproduct. And every item in the rebuild is, taken one at a time, functionally worth zero. The grid background went from black back to white (the real one was white). A Legend button came back, opening a dialog that explains which colour means reading, writing, bad cluster — explaining clusters that do not exist. The progress bar now advances in discrete blocks instead of filling smoothly. Stopping raises a confirmation dialog, confirming something that is not happening. Paused and Stopped states were restored. A service worker precaches the fonts, cursors, audio and icons so that you can defragment a nonexistent drive on a plane with no signal. All of it is correction to how convincingly an objectless action is performed. His own diagnosis is the sharpest sentence anyone has written about the thing: the first version <em>looked like a simulation; the real one looked like a machine thinking</em>. The difference between those two cannot be written down in the language of function. It can only be recognised. That is what a remainder is.</p>
+
+        <p>Set it against the screensaver and you can see what this cycle looks like once it has finished running. The screensaver had a function too: keeping CRT phosphor from burning in. LCDs arrived, the function died, the appearance survived — and then it was named, packaged and sold (After Dark, 1989, the flying toasters), and became a category with shelf space in the history of software. The screensaver today is thoroughly already-construct: still pleasant to look at, but that pleasantness is sediment left by a completed chisel-construct cycle, with nothing unresolved left inside it. The cluster map never got that far. Microsoft deleted it before anyone could sell it. There is no After Dark for the defrag grid, no category, no shelf. What Morello built is the first artefact that treats the map as the object itself rather than as the readout of an object. The cycle was interrupted partway through, and he has grafted onto the branch that was cut — which is why it is still alive.</p>
+
+        <p>It is not preservation. The real utility runs perfectly well in an emulator; nothing needs rescuing. What he made is deliberately a fake, and he changed things a preservationist could not change (canvas rendering, cluster counts that scale with drive size, a hidden Easter egg). It is not emulation either: no line of Windows 98 code executes, this is TypeScript painting squares into a 2D context. It is not net art — it has no art-world address at all, it lives on Product Hunt, Hacker News and Buy Me a Coffee. It is not a game: no goal, no failure, no score. It is not ASMR, though it works perfectly as ASMR — that word has existed since 2010 and describes something happening in the listener's body, whereas the event here is on the machine's side, a machine appearing to think. It is not generative art, though the algorithm genuinely is generative and genuinely does not repeat; generative art has a name and a market and this has neither. Hackaday maintains an Art category, and when it wrote the piece up on 1 September the editor filed it under Misc Hacks: miscellaneous, the leftover bin of the taxonomy. The word everybody reaches for is nostalgia, and nostalgia describes the condition of the viewer, not the object.</p>
+
+        <p>Seeing it now matters more than seeing it later, and two clocks are running. The first is the naming clock, and it is running faster than usual because "nostalgia" is such an easy reach. Once "retro web toy" closes over it, what you will see is a period costume, and the real question — why does a readout with no function need a real algorithm underneath it? — becomes unaskable. The seam is open at the moment only because he wrote the rebuild up in public, itemising which functionally worthless details he fixed and why he fixed them anyway. That document will not stay this legible. The second clock is harder: $148 in total donations since 2024. That is after a Hacker News front page, a write-up in The Verge, Product Hunt, Boing Boing at the end of August and Hackaday on 1 September. The number is the honest readout — no business, no institution, no market — which means it can fall either way at any time: absorbed into a portfolio, a product or a genre, or else the domain lapses. And there is a slower thing running underneath. The set of people who actually sat in front of that screen and waited is finite and shrinking. Part of this work's remainder depends on those people still being here, because for them it is memory rather than costume. When they are gone, only the construct is left: a decorative object about a period. Go and look while there are still two ways of looking.</p>
+
+        <a href="https://defrag98.com/" target="_blank" rel="noopener" class="project-link">defrag98.com ↗</a>
+        <a href="https://morello.dev/blog/defrag98-rebuild" target="_blank" rel="noopener" class="project-link">morello.dev ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
