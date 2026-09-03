@@ -56,6 +56,29 @@ content) — cosmetic `git fsck` noise, not corruption. Same `mv`-to-
 `_to_delete` treatment if it comes up again; the non-suffixed object is
 always the real one.
 
+Why it is lock-happy: this repo lives under `~/Documents`, which is synced
+(iCloud Drive). The sync layer copies and renames files inside `.git`
+behind git's back — the `" 2"` suffix above is its conflict-copy naming,
+and it is also why git cannot unlink its own lock files.
+
+**`.git/index` can go missing entirely.** Symptom: `git status --short`
+suddenly reports EVERY tracked file in the repo as a staged deletion
+(`D  path`) while the working tree is untouched, and `git checkout --
+<path>` answers `pathspec ... did not match any file(s) known to git`.
+Check with `ls -la .git/index*`: if there is no plain `.git/index` but
+there are `index 2` / `index 3` / `index 4`, the sync layer renamed it.
+This is NOT data loss — HEAD and the working tree are both fine. Recover
+with a plain
+
+```
+git -c gc.auto=0 -c maintenance.auto=false reset
+```
+
+which rebuilds `.git/index` from HEAD and leaves the working tree alone.
+Do not `git reset --hard`, and do not copy an `index N` back into place;
+those snapshots are stale. Verify afterwards with `git status --short` —
+it should list only the files you actually changed.
+
 Deleting for real. `device_request_delete_permission` on the connected
 folder root (`/Users/hanqin/Documents/GitHub` — the whole connected
 folder, not a subfolder) turns `rm` on for the rest of the session, and
