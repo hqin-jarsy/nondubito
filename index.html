@@ -58,6 +58,44 @@
     .cl-hant { display:none; }
     [data-lang="zh-hant"] .cl-zh { display:none !important; }
     [data-lang="zh-hant"] .cl-hant { display:block; }
+
+    /* ── quick section bar ─────────────────────────────────────────── */
+    .secbar { position:fixed; top:54px; left:0; right:0; z-index:190;
+      background:rgba(245,240,232,0.96); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--cream-border);
+      transform:translateY(-105%); opacity:0; pointer-events:none;
+      transition:transform .28s ease, opacity .2s ease; }
+    .secbar.on { transform:none; opacity:1; pointer-events:auto; }
+    .secbar-inner { max-width:min(1600px, calc(100vw - 5rem)); margin:0 auto; padding:0 2.5rem; height:38px;
+      display:flex; align-items:center; gap:1.15rem;
+      overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; }
+    .secbar-inner::-webkit-scrollbar { display:none; }
+    .secbar a { flex:0 0 auto; white-space:nowrap; font-family:var(--sans); font-size:0.62rem;
+      letter-spacing:0.07em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none;
+      padding:0.55rem 0; border-bottom:1.5px solid transparent;
+      transition:color .15s, border-color .15s; }
+    .secbar a:hover { color:var(--ink); }
+    .secbar a.on { color:var(--green); border-bottom-color:var(--gold); }
+    [data-lang="zh"] .secbar a, [data-lang="zh-hant"] .secbar a {
+      font-family:var(--cjk),var(--sans); font-size:0.75rem; letter-spacing:0.05em; text-transform:none; }
+    [data-lang="zh-hant"] .secbar a { font-family:var(--tc),var(--sans); }
+    /* the row scrolls when it must; fades show there is more either side */
+    .secbar.fade-l .secbar-inner { -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 2.2rem);
+      mask-image:linear-gradient(90deg,transparent 0,#000 2.2rem); }
+    .secbar.fade-r .secbar-inner { -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 2.2rem),transparent 100%);
+      mask-image:linear-gradient(90deg,#000 calc(100% - 2.2rem),transparent 100%); }
+    .secbar.fade-l.fade-r .secbar-inner {
+      -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 2.2rem,#000 calc(100% - 2.2rem),transparent 100%);
+      mask-image:linear-gradient(90deg,transparent 0,#000 2.2rem,#000 calc(100% - 2.2rem),transparent 100%); }
+    section[id] { scroll-margin-top:102px; }
+    @media (max-width:900px) { .secbar-inner { padding:0 1.25rem; gap:1.2rem; } }
+    @media (max-width:620px) {
+      .secbar-inner { height:34px; }
+      .secbar a { font-size:0.58rem; padding:0.45rem 0; }
+      [data-lang="zh"] .secbar a, [data-lang="zh-hant"] .secbar a { font-size:0.7rem; }
+      section[id] { scroll-margin-top:94px; }
+    }
+    @media (prefers-reduced-motion:reduce) { .secbar { transition:none; } }
   </style>
 </head>
 <body>
@@ -80,6 +118,32 @@
     </nav>
   </div>
 </header>
+
+  <!-- ── QUICK SECTION BAR ─────────────────────────────────────────────── -->
+  <nav class="secbar" id="secbar" aria-label="Jump to a series">
+    <div class="secbar-inner">
+      <a href="#ai"><span class="lang-en">AI &amp; Human</span><span class="lang-zh">AI 与人</span></a>
+      <a href="#everyday-relationships"><span class="lang-en">Everyday Life</span><span class="lang-zh">日常生活</span></a>
+      <a href="#sae-foundations"><span class="lang-en">Foundations</span><span class="lang-zh">SAE 基础</span></a>
+      <a href="#sae-first-critique"><span class="lang-en">First Critique</span><span class="lang-zh">第一批判</span></a>
+      <a href="#sae-republic"><span class="lang-en">Republic</span><span class="lang-zh">理想国</span></a>
+      <a href="#sae-nicomachean"><span class="lang-en">Nicomachean</span><span class="lang-zh">尼各马可</span></a>
+      <a href="#sae-consolation"><span class="lang-en">Consolation</span><span class="lang-zh">哲学的慰藉</span></a>
+      <a href="#daode"><span class="lang-en">Moral Law</span><span class="lang-zh">道德律</span></a>
+      <a href="#law"><span class="lang-en">Law</span><span class="lang-zh">法学</span></a>
+      <a href="#learning"><span class="lang-en">Learning</span><span class="lang-zh">学习</span></a>
+      <a href="#mingren"><span class="lang-en">Great Lives</span><span class="lang-zh">名人</span></a>
+      <a href="#ouya"><span class="lang-en">Emperors</span><span class="lang-zh">欧亚帝王</span></a>
+      <a href="#athletics"><span class="lang-en">Athletics</span><span class="lang-zh">田径</span></a>
+      <a href="#quanli"><span class="lang-en">Power</span><span class="lang-zh">权力论</span></a>
+      <a href="#rights"><span class="lang-en">Rights</span><span class="lang-zh">权利论</span></a>
+      <a href="#sae-value"><span class="lang-en">Value</span><span class="lang-zh">价值论</span></a>
+      <a href="#war"><span class="lang-en">War</span><span class="lang-zh">战争论</span></a>
+      <a href="#science-fiction"><span class="lang-en">Sci-Fi</span><span class="lang-zh">科幻</span></a>
+      <a href="#shelf"><span class="lang-en">Library</span><span class="lang-zh">完整文章库</span></a>
+    </div>
+  </nav>
+
 
 <!-- ── HERO ──────────────────────────────────────────────────────────── -->
 <div class="hero">
@@ -1678,6 +1742,80 @@
     <span>nondubito.net</span>
   </div>
 </footer>
+
+
+<script>
+(function () {
+  var bar = document.getElementById('secbar');
+  if (!bar) return;
+  var inner = bar.querySelector('.secbar-inner');
+  var chips = [].slice.call(bar.querySelectorAll('a[href^="#"]'));
+  var chipFor = {}, targets = [];
+
+  chips.forEach(function (a) {
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) { chipFor[el.id] = a; targets.push(el); }
+  });
+  // the eight Everyday Life sub-sections all light the one Everyday chip
+  [].slice.call(document.querySelectorAll('section[id^="everyday-"]')).forEach(function (el) {
+    if (!chipFor[el.id]) { chipFor[el.id] = chipFor['everyday-relationships']; targets.push(el); }
+  });
+  targets.sort(function (a, b) {
+    return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+  });
+
+  var hero = document.querySelector('.hero'), current = null;
+
+  function mark(a) {
+    if (a === current) return;
+    if (current) { current.classList.remove('on'); current.removeAttribute('aria-current'); }
+    current = a;
+    if (!a) return;
+    a.classList.add('on');
+    a.setAttribute('aria-current', 'true');
+    var r = a.getBoundingClientRect(), box = inner.getBoundingClientRect();
+    if (r.left < box.left + 8 || r.right > box.right - 8) {
+      var to = inner.scrollLeft + (r.left - box.left) - box.width / 2 + r.width / 2;
+      if (inner.scrollTo) inner.scrollTo({ left: to, behavior: 'smooth' });
+      else inner.scrollLeft = to;
+    }
+    fades();
+  }
+
+  function update() {
+    bar.classList.toggle('on',
+      hero ? hero.getBoundingClientRect().bottom < 60 : window.pageYOffset > 400);
+    var cur = null;
+    for (var i = 0; i < targets.length; i++) {
+      if (targets[i].getBoundingClientRect().top <= 120) cur = targets[i]; else break;
+    }
+    if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight - 4)
+      cur = targets[targets.length - 1];
+    mark(cur ? chipFor[cur.id] : null);
+  }
+
+  function fades() {
+    var over = inner.scrollWidth - inner.clientWidth;
+    bar.classList.toggle('fade-l', over > 2 && inner.scrollLeft > 2);
+    bar.classList.toggle('fade-r', over > 2 && inner.scrollLeft < over - 2);
+  }
+  inner.addEventListener('scroll', fades, { passive: true });
+
+  var queued = false;
+  function onScroll() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; update(); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', function () { onScroll(); fades(); }, { passive: true });
+  // switching language rewrites every label, so the row's width changes with it
+  new MutationObserver(function () { update(); fades(); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+  update();
+  fades();
+})();
+</script>
 
 </body>
 </html>
