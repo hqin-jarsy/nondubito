@@ -67,7 +67,7 @@
       transition:transform .28s ease, opacity .2s ease; }
     .secbar.on { transform:none; opacity:1; pointer-events:auto; }
     .secbar-inner { max-width:min(1600px, calc(100vw - 5rem)); margin:0 auto; padding:0 2.5rem; height:38px;
-      display:flex; align-items:center; gap:1.15rem;
+      display:flex; align-items:center; gap:1.05rem;
       overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; }
     .secbar-inner::-webkit-scrollbar { display:none; }
     .secbar a { flex:0 0 auto; white-space:nowrap; font-family:var(--sans); font-size:0.62rem;
@@ -122,17 +122,17 @@
   <!-- ── QUICK SECTION BAR ─────────────────────────────────────────────── -->
   <nav class="secbar" id="secbar" aria-label="Jump to a series">
     <div class="secbar-inner">
-      <a href="#ai"><span class="lang-en">AI &amp; Human</span><span class="lang-zh">AI 与人</span></a>
-      <a href="#everyday-relationships"><span class="lang-en">Everyday Life</span><span class="lang-zh">日常生活</span></a>
+      <a href="#ai"><span class="lang-en">AI</span><span class="lang-zh">AI 与人</span></a>
+      <a href="#everyday-relationships"><span class="lang-en">Everyday</span><span class="lang-zh">日常生活</span></a>
       <a href="#sae-foundations"><span class="lang-en">Foundations</span><span class="lang-zh">SAE 基础</span></a>
-      <a href="#sae-first-critique"><span class="lang-en">First Critique</span><span class="lang-zh">第一批判</span></a>
+      <a href="#sae-first-critique"><span class="lang-en">Critique</span><span class="lang-zh">第一批判</span></a>
       <a href="#sae-republic"><span class="lang-en">Republic</span><span class="lang-zh">理想国</span></a>
-      <a href="#sae-nicomachean"><span class="lang-en">Nicomachean</span><span class="lang-zh">尼各马可</span></a>
+      <a href="#sae-nicomachean"><span class="lang-en">Ethics</span><span class="lang-zh">尼各马可</span></a>
       <a href="#sae-consolation"><span class="lang-en">Consolation</span><span class="lang-zh">哲学的慰藉</span></a>
       <a href="#daode"><span class="lang-en">Moral Law</span><span class="lang-zh">道德律</span></a>
       <a href="#law"><span class="lang-en">Law</span><span class="lang-zh">法学</span></a>
       <a href="#learning"><span class="lang-en">Learning</span><span class="lang-zh">学习</span></a>
-      <a href="#mingren"><span class="lang-en">Great Lives</span><span class="lang-zh">名人</span></a>
+      <a href="#mingren"><span class="lang-en">Lives</span><span class="lang-zh">名人</span></a>
       <a href="#ouya"><span class="lang-en">Emperors</span><span class="lang-zh">欧亚帝王</span></a>
       <a href="#athletics"><span class="lang-en">Athletics</span><span class="lang-zh">田径</span></a>
       <a href="#quanli"><span class="lang-en">Power</span><span class="lang-zh">权力论</span></a>
@@ -1796,8 +1796,8 @@
 
   function fades() {
     var over = inner.scrollWidth - inner.clientWidth;
-    bar.classList.toggle('fade-l', over > 2 && inner.scrollLeft > 2);
-    bar.classList.toggle('fade-r', over > 2 && inner.scrollLeft < over - 2);
+    bar.classList.toggle('fade-l', over > 8 && inner.scrollLeft > 4);
+    bar.classList.toggle('fade-r', over > 8 && inner.scrollLeft < over - 4);
   }
   inner.addEventListener('scroll', fades, { passive: true });
 
