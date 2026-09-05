@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Non Dubito — Navigation &amp; Home Prototype</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Inter:wght@300;400;500&amp;family=Noto+Serif+SC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="home-v1.css">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      if (['en', 'zh', 'zh-hant'].indexOf(saved) === -1) saved = 'zh';
+      document.documentElement.dataset.lang = saved;
+      document.documentElement.lang = saved === 'zh-hant' ? 'zh-Hant' : (saved === 'zh' ? 'zh-Hans' : 'en');
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var menu = document.getElementById('mobile-drawer');
+        var menuButton = document.getElementById('mobile-menu-button');
+        var currentLabels = document.querySelectorAll('[data-current-language]');
+
+        function updateLanguage(language) {
+          document.documentElement.dataset.lang = language;
+          document.documentElement.lang = language === 'zh-hant' ? 'zh-Hant' : (language === 'zh' ? 'zh-Hans' : 'en');
+          localStorage.setItem('nd_lang', language);
+          var label = language === 'en' ? 'EN' : (language === 'zh-hant' ? '繁體' : '中文');
+          currentLabels.forEach(function (node) { node.textContent = label; });
+        }
+
+        document.querySelectorAll('[data-set-language]').forEach(function (button) {
+          button.addEventListener('click', function () {
+            updateLanguage(button.dataset.setLanguage);
+            var details = button.closest('details');
+            if (details) details.open = false;
+          });
+        });
+
+        menuButton.addEventListener('click', function () {
+          var open = menu.classList.toggle('open');
+          menuButton.setAttribute('aria-expanded', String(open));
+        });
+
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') {
+            menu.classList.remove('open');
+            menuButton.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        updateLanguage(document.documentElement.dataset.lang);
+      });
+    })();
+  </script>
+</head>
+<body>
+  <div class="prototype-note">
+    <span class="lang-en">Private prototype · navigation and hierarchy only · public pages are unchanged</span>
+    <span class="lang-zh">内部原型 · 只验证导航与层级 · 公开页面尚未改变</span>
+  </div>
+
+  <header class="prototype-header">
+    <div class="header-inner">
+      <a href="#top" class="site-title" aria-label="Non Dubito home">
+        <span class="title-latin">Non <span>Dubito</span></span>
+        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="../start.html"><span class="lang-en">Start Here</span><span class="lang-zh">从这里开始</span></a>
+        <a class="active" href="#explore"><span class="lang-en">Explore</span><span class="lang-zh">探索</span></a>
+        <a href="#latest"><span class="lang-en">Latest</span><span class="lang-zh">最近更新</span></a>
+        <a href="../about.html"><span class="lang-en">About</span><span class="lang-zh">关于</span></a>
+      </nav>
+
+      <div class="header-tools">
+        <a class="tool-button" href="#search-preview" aria-label="Search">
+          <svg class="tool-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="tool-label lang-en">Search</span><span class="tool-label lang-zh">搜索</span>
+        </a>
+
+        <details class="language-picker">
+          <summary class="language-summary"><span data-current-language>中文</span><span aria-hidden="true">⌄</span></summary>
+          <div class="language-options">
+            <button type="button" data-set-language="en">English</button>
+            <button type="button" data-set-language="zh">中文</button>
+            <button type="button" data-set-language="zh-hant">繁體中文</button>
+            <a href="../essays/ja/index.html">日本語</a>
+            <a href="../essays/fr/index.html">Français</a>
+            <a href="../essays/de/index.html">Deutsch</a>
+            <a href="../essays/es/index.html">Español</a>
+            <a href="../essays/ko/index.html">한국어</a>
+          </div>
+        </details>
+
+        <button class="mobile-menu-button" id="mobile-menu-button" type="button" aria-controls="mobile-drawer" aria-expanded="false">
+          <span class="tool-label lang-en">Menu</span><span class="tool-label lang-zh">菜单</span><span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" id="mobile-drawer">
+    <nav aria-label="Mobile navigation">
+      <a href="../start.html"><span class="lang-en">Start Here</span><span class="lang-zh">从这里开始</span></a>
+      <a href="#explore"><span class="lang-en">Explore</span><span class="lang-zh">探索</span></a>
+      <a href="#latest"><span class="lang-en">Latest</span><span class="lang-zh">最近更新</span></a>
+      <a href="../about.html"><span class="lang-en">About</span><span class="lang-zh">关于</span></a>
+      <a href="../library.html"><span class="lang-en">Full Library</span><span class="lang-zh">完整书库</span></a>
+      <a href="../credesivis.html">Crede si vis</a>
+    </nav>
+    <div class="mobile-languages" aria-label="Languages">
+      <button type="button" data-set-language="en">EN</button>
+      <button type="button" data-set-language="zh">中文</button>
+      <button type="button" data-set-language="zh-hant">繁體</button>
+      <a href="../essays/ja/index.html">日本語</a>
+      <a href="../essays/fr/index.html">FR</a>
+      <a href="../essays/de/index.html">DE</a>
+      <a href="../essays/es/index.html">ES</a>
+      <a href="../essays/ko/index.html">한국어</a>
+    </div>
+  </div>
+
+  <main class="prototype-main" id="top">
+    <section class="home-hero">
+      <div class="home-hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Philosophy · Life · History · Stories</p>
+          <h1 class="lang-en">Enter through a question. Follow the thought as far as it goes.</h1>
+          <h1 class="lang-zh">从一个问题进来，沿一条思想走下去。</h1>
+          <p class="hero-deck lang-en">Non Dubito is a multilingual library of philosophical essays—beginning with ordinary life, artificial intelligence, history, and stories, then opening toward the Self-as-an-End tradition beneath them.</p>
+          <p class="hero-deck lang-zh">Non Dubito 是一座多语言哲学随笔馆。从生活里的困惑、人工智能、历史与故事进入，再逐渐走向它们背后的 Self-as-an-End 思想。</p>
+          <div class="hero-actions">
+            <a class="primary-action" href="../start.html"><span class="lang-en">New here? Start in five minutes</span><span class="lang-zh">第一次来？五分钟开始</span><span>→</span></a>
+            <a class="secondary-action" href="#explore"><span class="lang-en">Explore by interest</span><span class="lang-zh">按兴趣探索</span><span>↓</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section" id="explore">
+      <div class="home-section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Explore</p>
+            <h2 class="lang-en">Five ways into the library</h2>
+            <h2 class="lang-zh">从五扇门进入</h2>
+          </div>
+          <p class="lang-en">You do not need to know the site’s vocabulary first. Begin with the kind of question already on your mind.</p>
+          <p class="lang-zh">不需要先学会本站的术语。只要从你已经在意的问题开始。</p>
+        </div>
+
+        <div class="door-grid">
+          <a class="door-card" href="#">
+            <span class="door-number">01</span>
+            <p class="card-kicker lang-en">SAE &amp; Philosophy</p><p class="card-kicker lang-zh">SAE 与哲学</p>
+            <h3 class="lang-en">Why is a person more than a function?</h3><h3 class="lang-zh">为什么人不只是一种功能？</h3>
+            <p class="lang-en">Foundations, method, value, rights, power, moral law, and conversations with philosophical traditions.</p>
+            <p class="lang-zh">从基础、方法与价值，走到权利、权力、道德律，以及 SAE 与不同哲学传统的对话。</p>
+            <span class="door-arrow">→</span>
+          </a>
+
+          <a class="door-card" href="#">
+            <span class="door-number">02</span>
+            <p class="card-kicker lang-en">Everyday Life</p><p class="card-kicker lang-zh">日常生活</p>
+            <h3 class="lang-en">How do we care without taking over?</h3><h3 class="lang-zh">怎样关心一个人，又不接管他的人生？</h3>
+            <p class="lang-en">Relationships, work, parenting, money, time, social life, growth, the self, and conflict.</p>
+            <p class="lang-zh">关系、工作、亲子、金钱、时间、社交、成长、自己与冲突中的真实难题。</p>
+            <span class="door-arrow">→</span>
+          </a>
+
+          <a class="door-card" href="#">
+            <span class="door-number">03</span>
+            <p class="card-kicker lang-en">Mind, AI &amp; Technology</p><p class="card-kicker lang-zh">心灵、AI 与技术</p>
+            <h3 class="lang-en">What becomes visible when machines begin to answer?</h3><h3 class="lang-zh">当机器开始回答，人的什么反而显现出来？</h3>
+            <p class="lang-en">Consciousness, learning, desire, companionship, intelligence, and the human value that performance cannot settle.</p>
+            <p class="lang-zh">意识、学习、欲望、陪伴与智能，以及无法由表现和产出来裁决的人的价值。</p>
+            <span class="door-arrow">→</span>
+          </a>
+
+          <a class="door-card" href="#">
+            <span class="door-number">04</span>
+            <p class="card-kicker lang-en">History, Power &amp; Civilization</p><p class="card-kicker lang-zh">历史、权力与文明</p>
+            <h3 class="lang-en">Why do orders rise, harden, and lose the people inside them?</h3><h3 class="lang-zh">秩序为什么兴起、固化，又逐渐看不见其中的人？</h3>
+            <p class="lang-en">Rulers, presidents, wars, economies, civilizations, athletics, and the recurring structures beneath change.</p>
+            <p class="lang-zh">帝王、总统、战争、经济、文明与竞技，以及变化背后反复出现的结构。</p>
+            <span class="door-arrow">→</span>
+          </a>
+
+          <a class="door-card" href="#">
+            <span class="door-number">05</span>
+            <p class="card-kicker lang-en">Literature, Screen &amp; Narrative</p><p class="card-kicker lang-zh">文学、影视与叙事</p>
+            <h3 class="lang-en">What can a story show before a theory can name it?</h3><h3 class="lang-zh">一个故事能比理论更早让我们看见什么？</h3>
+            <p class="lang-en">World literature, science fiction, anime, wuxia, cinema, television, games, fables, and epics.</p>
+            <p class="lang-zh">世界文学、科幻、日漫、武侠、电影、电视剧、游戏、寓言与史诗传统。</p>
+            <span class="door-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section alt" id="latest">
+      <div class="home-section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Latest</p>
+            <h2 class="lang-en">New and newly reconsidered</h2>
+            <h2 class="lang-zh">新作，也包括重新想过的旧作</h2>
+          </div>
+          <p class="lang-en">A new translation does not become eight separate updates. A substantial revision does deserve to return.</p>
+          <p class="lang-zh">同一篇的八种语言不会刷成八条更新；真正重写过的旧文章，值得重新回到读者面前。</p>
+        </div>
+
+        <div class="latest-grid">
+          <article class="latest-feature">
+            <div><span class="latest-kind lang-en">New series · SAE &amp; Philosophy</span><span class="latest-kind lang-zh">新系列 · SAE 与哲学</span><span class="latest-date">Sep 5, 2026</span></div>
+            <h3 class="lang-en">Value is not a prize awarded from outside a life</h3>
+            <h3 class="lang-zh">价值不是从一个人的生活之外颁发的奖章</h3>
+            <p class="lang-en">The completed Value Theory series asks where value comes from, how it can be colonized, and why another person’s value is not ours to grant.</p>
+            <p class="lang-zh">完成后的价值论系列追问：价值从哪里来，它如何被殖民，以及为什么他者的价值不由我们授予。</p>
+            <div class="latest-meta"><span class="meta-chip lang-en">8 essays</span><span class="meta-chip lang-zh">8 篇</span><span class="meta-chip lang-en">8 languages</span><span class="meta-chip lang-zh">八种语言</span></div>
+          </article>
+          <div class="latest-list">
+            <a class="latest-row" href="#"><time>Sep 5</time><div><span class="latest-kind lang-en">Revised</span><span class="latest-kind lang-zh">重要修订</span><h3 class="lang-en">Kafka on the Shore · Version Two</h3><h3 class="lang-zh">《海边的卡夫卡》· 第二版</h3></div></a>
+            <a class="latest-row" href="#"><time>Sep 5</time><div><span class="latest-kind lang-en">New reading</span><span class="latest-kind lang-zh">新解读</span><h3 class="lang-en">Doctor Zhivago</h3><h3 class="lang-zh">《日瓦戈医生》</h3></div></a>
+            <a class="latest-row" href="#"><time>Sep 5</time><div><span class="latest-kind lang-en">Languages</span><span class="latest-kind lang-zh">语言拓展</span><h3 class="lang-en">The Structure of Conflict · now in eight languages</h3><h3 class="lang-zh">《冲突里的结构》· 现有八种语言</h3></div></a>
+            <a class="latest-row" href="#"><time>Sep 3</time><div><span class="latest-kind lang-en">Revised collection</span><span class="latest-kind lang-zh">整组重写</span><h3 class="lang-en">Science Fiction Readings</h3><h3 class="lang-zh">科幻小说解读</h3></div></a>
+          </div>
+        </div>
+        <div class="latest-footer"><span class="lang-en">Prototype content order · final dates will come from the registry</span><span class="lang-zh">原型中的内容顺序 · 正式日期将由内容注册表提供</span><a href="#"><span class="lang-en">View all updates →</span><span class="lang-zh">查看全部更新 →</span></a></div>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="home-section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Reading paths</p>
+            <h2 class="lang-en">A route, not another catalogue</h2>
+            <h2 class="lang-zh">给你一条路，而不是另一张清单</h2>
+          </div>
+          <p class="lang-en">Each path is short enough to begin and complete enough to reveal how the same way of thinking moves across different questions.</p>
+          <p class="lang-zh">每条路线都短到可以立刻开始，也完整到足以看见同一种思考如何穿过不同问题。</p>
+        </div>
+
+        <div class="path-grid">
+          <a class="path-card" href="../start.html"><span class="path-count">01</span><div><h3 class="lang-en">Understand SAE in five readings</h3><h3 class="lang-zh">用五篇真正进入 SAE</h3><p class="lang-en">From chisel, construct, and remainder to the self, one’s own law, the other, and one concrete application.</p><p class="lang-zh">从凿、构、余项，走到 Self、自己的法、他者，再看一次具体应用。</p></div><span class="path-steps lang-en">5 readings · beginner</span><span class="path-steps lang-zh">5 篇 · 入门</span></a>
+          <a class="path-card" href="#"><span class="path-count">02</span><div><h3 class="lang-en">Care without control</h3><h3 class="lang-zh">关心怎样不变成控制</h3><p class="lang-en">Begin in an ordinary relationship, then follow refusal, rights, power, and cultivation.</p><p class="lang-zh">从一段普通关系开始，再沿着拒绝、权利、权力与涵育继续走。</p></div><span class="path-steps lang-en">6 readings · everyday to theory</span><span class="path-steps lang-zh">6 篇 · 从生活到理论</span></a>
+          <a class="path-card" href="#"><span class="path-count">03</span><div><h3 class="lang-en">AI as a mirror of the human</h3><h3 class="lang-zh">把 AI 当作人的镜子</h3><p class="lang-en">Performance, desire, consciousness, companionship, and the value that cannot be reduced to output.</p><p class="lang-zh">表现、欲望、意识、陪伴，以及不能被还原为产出的人的价值。</p></div><span class="path-steps lang-en">5 readings · general</span><span class="path-steps lang-zh">5 篇 · 普通读者</span></a>
+          <a class="path-card" href="#"><span class="path-count">04</span><div><h3 class="lang-en">When stories refuse to judge for us</h3><h3 class="lang-zh">当作品拒绝替读者下判词</h3><p class="lang-en">Five close readings across literature, science fiction, anime, cinema, and television.</p><p class="lang-zh">跨过文学、科幻、日漫、电影与电视剧的五次细读。</p></div><span class="path-steps lang-en">5 readings · cross-media</span><span class="path-steps lang-zh">5 篇 · 跨媒介</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section alt" id="search-preview">
+      <div class="home-section-inner">
+        <div class="closing-grid">
+          <article class="closing-card">
+            <p class="section-kicker">Search</p>
+            <h2 class="lang-en">Already have a name or question?</h2><h2 class="lang-zh">已经有一个名字或问题？</h2>
+            <p class="lang-en">Search people, works, series, concepts, and the full text—within your current language by default.</p>
+            <p class="lang-zh">搜索人物、作品、系列、概念与正文；默认只看当前语言。</p>
+            <a href="#"><span class="lang-en">Search the site →</span><span class="lang-zh">搜索全站 →</span></a>
+          </article>
+          <article class="closing-card">
+            <p class="section-kicker">Full Library</p>
+            <h2 class="lang-en">Prefer to see everything?</h2><h2 class="lang-zh">还是想看见全部？</h2>
+            <p class="lang-en">The Library remains the complete, stable catalogue. Explore is the map; the Library is the inventory.</p>
+            <p class="lang-zh">完整书库仍然保留。Explore 是地图，Library 是全量清单。</p>
+            <a href="../library.html"><span class="lang-en">Open the full Library →</span><span class="lang-zh">打开完整书库 →</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="prototype-footer">
+    <div class="prototype-footer-inner">
+      <div><div class="footer-mark">Non <span style="color:var(--gold-light)">Dubito</span></div><p>A mind in many languages</p></div>
+      <div class="prototype-footer-links"><a href="../about.html">About</a><a href="../credesivis.html">Crede si vis</a><a href="../library.html">Full Library</a><a href="https://self-as-an-end.net">SAE Theory ↗</a><a href="https://hqin.substack.com">Substack ↗</a></div>
+    </div>
+  </footer>
+</body>
+</html>
