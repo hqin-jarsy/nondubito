@@ -1,0 +1,310 @@
+/* Reader-first site shell for Home, Explore, Latest, and Search. */
+
+.lang-hant { display: none; }
+[data-lang="zh-hant"] .lang-en,
+[data-lang="zh-hant"] .lang-zh { display: none !important; }
+[data-lang="zh-hant"] .lang-hant { display: block; }
+[data-lang="zh-hant"] span.lang-hant,
+[data-lang="zh-hant"] a.lang-hant { display: inline; }
+[data-lang="zh-hant"] { --reading-cjk: var(--tc); }
+[data-lang="zh"] { --reading-cjk: var(--cjk); }
+
+body.site-shell-page {
+  display: block;
+  background: var(--cream);
+}
+
+.site-shell-header {
+  top: 0;
+  height: 64px;
+  background: rgba(245, 240, 232, 0.97);
+}
+
+.site-shell-header .header-inner {
+  max-width: 1280px;
+}
+
+.site-shell-header .site-title {
+  align-items: center;
+}
+
+.site-shell-header .title-latin {
+  font-size: 1.08rem;
+}
+
+.site-shell-header .title-sub {
+  display: inline;
+  border-left: 1px solid var(--cream-border);
+  padding-left: 0.8rem;
+}
+
+.site-shell-header nav.site-shell-nav {
+  overflow: visible;
+  gap: 1.5rem;
+}
+
+.site-shell-header nav.site-shell-nav a {
+  position: relative;
+  padding: 0.35rem 0;
+}
+
+.site-shell-header nav.site-shell-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.25rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.site-shell-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+}
+
+.site-shell-tool,
+.site-shell-language-summary,
+.site-shell-menu-button {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 1px solid var(--cream-border);
+  background: transparent;
+  color: var(--ink-light);
+  padding: 0.4rem 0.65rem;
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.site-shell-tool:hover,
+.site-shell-language-summary:hover,
+.site-shell-menu-button:hover,
+.site-shell-tool:focus-visible,
+.site-shell-language-summary:focus-visible,
+.site-shell-menu-button:focus-visible {
+  border-color: var(--gold);
+  color: var(--green);
+  outline: none;
+}
+
+.site-shell-tool-icon {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+
+.site-shell-language {
+  position: relative;
+}
+
+.site-shell-language summary {
+  list-style: none;
+}
+
+.site-shell-language summary::-webkit-details-marker {
+  display: none;
+}
+
+.site-shell-language-options {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.55rem);
+  width: 235px;
+  padding: 0.55rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem;
+  background: var(--cream);
+  border: 1px solid var(--cream-border);
+  box-shadow: 0 15px 45px rgba(32, 29, 23, 0.12);
+}
+
+.site-shell-language-options button,
+.site-shell-language-options a {
+  border: 0;
+  background: transparent;
+  color: var(--ink-light);
+  padding: 0.6rem 0.65rem;
+  text-align: left;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.site-shell-language-options button:hover,
+.site-shell-language-options a:hover,
+.site-shell-language-options button:focus-visible,
+.site-shell-language-options a:focus-visible {
+  background: var(--cream-dark);
+  color: var(--green);
+  outline: none;
+}
+
+.site-shell-menu-button {
+  display: none;
+}
+
+.site-shell-drawer {
+  display: none;
+  position: fixed;
+  z-index: 190;
+  top: 64px;
+  left: 0;
+  right: 0;
+  padding: 1.15rem 1.25rem 1.35rem;
+  background: var(--cream);
+  border-bottom: 1px solid var(--cream-border);
+  box-shadow: 0 14px 30px rgba(32, 29, 23, 0.08);
+}
+
+.site-shell-drawer.open {
+  display: block;
+}
+
+.site-shell-drawer nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1.25rem;
+}
+
+.site-shell-drawer nav a {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--cream-border);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-shell-mobile-languages {
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  padding-top: 1rem;
+}
+
+.site-shell-mobile-languages button,
+.site-shell-mobile-languages a {
+  flex: 0 0 auto;
+  border: 1px solid var(--cream-border);
+  background: transparent;
+  color: var(--ink-muted);
+  padding: 0.35rem 0.55rem;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 0.64rem;
+}
+
+.site-shell-main {
+  padding-top: 64px;
+}
+
+.site-shell-footer {
+  background: var(--green);
+  color: var(--cream);
+  padding: 3rem 0;
+}
+
+.site-shell-footer-inner {
+  width: min(1180px, calc(100% - 5rem));
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.site-shell-footer-mark {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+}
+
+.site-shell-footer p,
+.site-shell-footer a {
+  color: rgba(245, 240, 232, 0.7);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  text-decoration: none;
+}
+
+.site-shell-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 1120px) {
+  .site-shell-header .title-sub {
+    display: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .site-shell-header nav.site-shell-nav,
+  .site-shell-header .site-shell-language {
+    display: none;
+  }
+
+  .site-shell-menu-button {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 660px) {
+  .site-shell-header {
+    height: 58px;
+  }
+
+  .site-shell-header .header-inner {
+    padding: 0 1rem;
+  }
+
+  .site-shell-header .title-latin {
+    font-size: 0.92rem;
+  }
+
+  .site-shell-tool {
+    width: 34px;
+    padding: 0;
+  }
+
+  .site-shell-tool .site-shell-tool-label,
+  .site-shell-menu-button .site-shell-tool-label {
+    display: none;
+  }
+
+  .site-shell-drawer {
+    top: 58px;
+  }
+
+  .site-shell-main {
+    padding-top: 58px;
+  }
+
+  .site-shell-footer-inner {
+    width: min(100% - 2.25rem, 1180px);
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
