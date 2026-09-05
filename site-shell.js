@@ -31,6 +31,9 @@
       currentLabels.forEach(function (node) {
         node.textContent = languageLabel(language);
       });
+      document.dispatchEvent(new CustomEvent('nondubito:languagechange', {
+        detail: { language: language }
+      }));
     }
 
     document.querySelectorAll('[data-set-language]').forEach(function (button) {
