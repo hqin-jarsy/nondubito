@@ -10,8 +10,8 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 7,252 | 6,556 | 696 | 39 | 36 | 0 |
-| Canonical-root pages | 3,083 | 2,710 | 373 | 39 | 36 | 0 |
+| All physical editions | 7,252 | 6,556 | 696 | 53 | 50 | 0 |
+| Canonical-root pages | 3,083 | 2,710 | 373 | 53 | 50 | 0 |
 | Independent language editions | 4,169 | 3,846 | 323 | 0 | 0 | 0 |
 
 ## Existing article navigation
@@ -50,7 +50,7 @@ separately from the newer three-route continuation pattern.
 | `sae-foundations` | 16 | 15 | 15 | 15 | 15 |
 | `war` | 16 | 0 | 0 | 16 | 16 |
 | `sae-nicomachean` | 13 | 0 | 0 | 13 | 13 |
-| `sae-republic` | 13 | 0 | 0 | 13 | 13 |
+| `sae-republic` | 13 | 13 | 13 | 13 | 13 |
 | `method` | 12 | 0 | 0 | 0 | 12 |
 | `sae-first-critique` | 12 | 12 | 12 | 12 | 12 |
 | `yinan` | 9 | 0 | 0 | 0 | 9 |
