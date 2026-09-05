@@ -313,6 +313,16 @@ def language_from_directory(relative: Path, root: Path) -> tuple[str | None, Pat
 
 
 def detect_same_page_languages(source: str, path: Path) -> set[str]:
+    explicit = re.search(r"<html\b[^>]*\bdata-editions\s*=\s*['\"]([^'\"]+)['\"]", source, flags=re.I)
+    if explicit:
+        languages = {
+            language
+            for raw in re.split(r"[\s,]+", explicit.group(1).strip())
+            if (language := normalized_lang(raw))
+        }
+        if languages:
+            return languages
+
     languages: set[str] = set()
     for raw in re.findall(r"data-lang\s*=\s*['\"]([^'\"]+)['\"]", source, flags=re.I):
         language = normalized_lang(raw)

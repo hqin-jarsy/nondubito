@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh" data-lang="zh" data-editions="en zh-Hans">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +7,26 @@
   <meta name="description" content="意识如何被拆开又装回：睡眠、梦境与麻醉中的DD层重建分析">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../reading-context.css?v=20260905a">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="canonical" href="https://nondubito.net/essays/dream_layers.html">
   <style>
     [data-lang="en"] .lang-zh { display:none; }
     [data-lang="zh"] .lang-en { display:none; }
+    .hant-fallback { display:none; }
+    [data-lang="zh-hant"] .lang-en { display:none; }
+    [data-lang="zh-hant"] .hant-fallback { display:block; }
     .essay-table { width:100%; border-collapse:collapse; margin:2rem 0; font-size:0.88rem; }
     .essay-table th { background:var(--ink); color:var(--cream); padding:0.5rem 0.75rem; text-align:left; font-weight:600; }
     .essay-table td { padding:0.45rem 0.75rem; border-bottom:1px solid var(--cream-border); vertical-align:top; }
     .essay-table tr:last-child td { border-bottom:none; }
     .essay-table tr:nth-child(even) td { background:var(--cream-dark); }
+    @media(max-width:620px) { .essay-table { display:block; max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; } }
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (['en','zh','zh-hant'].indexOf(saved) === -1) saved = 'zh';
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -67,6 +73,13 @@
   </header>
 
   <main class="essay-main">
+    <nav class="reading-breadcrumbs" aria-label="Breadcrumb" style="margin-bottom:1.5rem;">
+      <a href="../explore.html"><span class="lang-en">Explore</span><span class="lang-zh">探索</span></a><span class="reading-crumb-separator">/</span>
+      <a href="../explore.html#mind"><span class="lang-en">Mind &amp; AI</span><span class="lang-zh">心灵与 AI</span></a><span class="reading-crumb-separator">/</span>
+      <a href="consciousness-life/index.html"><span class="lang-en">Consciousness &amp; Life</span><span class="lang-zh">意识与生活</span></a><span class="reading-crumb-separator">/</span>
+      <span aria-current="page">03 / 05</span>
+    </nav>
+    <p class="hant-fallback" style="font-family:var(--cjk),serif;font-size:.78rem;line-height:1.7;color:var(--ink-muted);margin:0 0 1.5rem;">本篇目前提供英文与简体中文；繁体全文尚未补齐，因此暂显示简体版本。</p>
     <article>
 
       <header class="essay-header">
@@ -920,6 +933,15 @@
       </section>
 
     </article>
+
+    <section class="reading-next" aria-label="Continue reading">
+      <p class="reading-next-label"><span class="lang-en">Where to go next</span><span class="lang-zh">接下来读什么</span></p>
+      <div class="reading-next-grid">
+        <a class="reading-next-card" href="life-death.html"><small><span class="lang-en">Next in this series</span><span class="lang-zh">本系列下一篇</span></small><strong><span class="lang-en">Life and Death: The Failure of the Seam</span><span class="lang-zh">生与死：缝合者的消亡</span></strong><span>04 / 05 →</span></a>
+        <a class="reading-next-card" href="cache.html"><small><span class="lang-en">Previous in this series</span><span class="lang-zh">本系列上一篇</span></small><strong><span class="lang-en">Morning Creativity Has Nothing to Do with Energy</span><span class="lang-zh">早上适合创造，不是因为精力好</span></strong><span>← 02 / 05</span></a>
+        <a class="reading-next-card" href="../explore.html#mind"><small><span class="lang-en">Broaden the map</span><span class="lang-zh">回到主题地图</span></small><strong><span class="lang-en">Mind, AI &amp; Technology</span><span class="lang-zh">心灵、AI 与技术</span></strong><span>Explore →</span></a>
+      </div>
+    </section>
   </main>
 
 </body>
