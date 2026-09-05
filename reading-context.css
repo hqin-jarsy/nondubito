@@ -22,6 +22,15 @@
 .reading-breadcrumbs .reading-crumb-separator { color: var(--cream-border); }
 .reading-breadcrumbs [aria-current="page"] { color: var(--gold); }
 
+/* Foundation essays place orientation between the global header and their
+   full-bleed dark hero. Keep that strip aligned with the hero copy. */
+.essay-main > article > .reading-breadcrumbs {
+  box-sizing: border-box;
+  max-width: var(--max-w);
+  margin: 1rem auto 0;
+  padding: 0 2.5rem;
+}
+
 .series-entry-actions {
   display: flex;
   flex-wrap: wrap;
@@ -113,8 +122,15 @@
   color: var(--ink-muted);
 }
 
+/* Explicit Traditional labels for legacy pages whose offline converter cannot
+   discover navigation copy added after the converter was generated. */
+.context-hant { display: none; }
+[data-lang="zh-hant"] .context-hans { display: none; }
+[data-lang="zh-hant"] .context-hant { display: inline; }
+
 @media (max-width: 700px) {
   .reading-breadcrumbs { gap: 0.35rem; font-size: 0.6rem; }
+  .essay-main > article > .reading-breadcrumbs { padding: 0 1.25rem; }
   .series-entry-actions { margin-bottom: 2.4rem; }
   .series-entry-actions a { flex: 1 1 100%; justify-content: center; }
   .reading-next { margin-top: 3rem; }
