@@ -10,8 +10,8 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 7,252 | 6,556 | 696 | 53 | 50 | 0 |
-| Canonical-root pages | 3,083 | 2,710 | 373 | 53 | 50 | 0 |
+| All physical editions | 7,252 | 6,556 | 696 | 67 | 64 | 0 |
+| Canonical-root pages | 3,083 | 2,710 | 373 | 67 | 64 | 0 |
 | Independent language editions | 4,169 | 3,846 | 323 | 0 | 0 | 0 |
 
 ## Existing article navigation
@@ -49,7 +49,7 @@ separately from the newer three-route continuation pattern.
 | `worldcup` | 22 | 0 | 0 | 22 | 22 |
 | `sae-foundations` | 16 | 15 | 15 | 15 | 15 |
 | `war` | 16 | 0 | 0 | 16 | 16 |
-| `sae-nicomachean` | 13 | 0 | 0 | 13 | 13 |
+| `sae-nicomachean` | 13 | 13 | 13 | 13 | 13 |
 | `sae-republic` | 13 | 13 | 13 | 13 | 13 |
 | `method` | 12 | 0 | 0 | 0 | 12 |
 | `sae-first-critique` | 12 | 12 | 12 | 12 | 12 |
