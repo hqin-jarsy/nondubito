@@ -10,8 +10,8 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 7,252 | 6,556 | 696 | 67 | 64 | 0 |
-| Canonical-root pages | 3,083 | 2,710 | 373 | 67 | 64 | 0 |
+| All physical editions | 7,252 | 6,556 | 696 | 74 | 71 | 0 |
+| Canonical-root pages | 3,083 | 2,710 | 373 | 74 | 71 | 0 |
 | Independent language editions | 4,169 | 3,846 | 323 | 0 | 0 | 0 |
 
 ## Existing article navigation
@@ -61,7 +61,7 @@ separately from the newer three-route continuation pattern.
 | `rights` | 7 | 0 | 0 | 7 | 7 |
 | `econ` | 6 | 0 | 0 | 0 | 6 |
 | `sae-buddhist` | 6 | 0 | 0 | 6 | 6 |
-| `sae-consolation` | 6 | 0 | 0 | 6 | 6 |
+| `sae-consolation` | 6 | 6 | 6 | 6 | 6 |
 | `anthro` | 5 | 0 | 0 | 0 | 5 |
 | `bio` | 5 | 0 | 0 | 0 | 5 |
 | `civhist` | 5 | 0 | 0 | 0 | 5 |
