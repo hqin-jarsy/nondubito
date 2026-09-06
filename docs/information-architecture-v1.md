@@ -1,6 +1,6 @@
 # Non Dubito 信息架构蓝图 v1
 
-状态：设计基准，不直接改变公开页面  
+状态：设计基准；公开实施结果见 [`information-architecture-rollout.md`](information-architecture-rollout.md)
 日期：2026-09-05
 
 ## 1. 这次整理要解决什么

@@ -1,7 +1,9 @@
 # Navigation and home prototype notes
 
 Prototype: `prototypes/home-v1.html`  
-Status: private, `noindex`, not linked from public pages
+Status: archived prototype, `noindex`, not linked from public pages. Its tested
+navigation and homepage hierarchy have since been implemented on the public
+site; the current state is recorded in `information-architecture-rollout.md`.
 
 ## What this prototype tests
 
