@@ -10,9 +10,9 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 8,498 | 7,758 | 740 | 172 | 122 | 1 |
+| All physical editions | 8,593 | 7,838 | 755 | 172 | 122 | 1 |
 | Canonical-root pages | 3,259 | 2,882 | 377 | 147 | 122 | 1 |
-| Independent language editions | 5,239 | 4,876 | 363 | 25 | 0 | 0 |
+| Independent language editions | 5,334 | 4,956 | 378 | 25 | 0 | 0 |
 
 ## Existing article navigation
 
