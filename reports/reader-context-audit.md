@@ -10,9 +10,9 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 7,658 | 6,943 | 715 | 172 | 122 | 1 |
-| Canonical-root pages | 3,174 | 2,797 | 377 | 147 | 122 | 1 |
-| Independent language editions | 4,484 | 4,146 | 338 | 25 | 0 | 0 |
+| All physical editions | 7,766 | 7,051 | 715 | 172 | 122 | 1 |
+| Canonical-root pages | 3,192 | 2,815 | 377 | 147 | 122 | 1 |
+| Independent language editions | 4,574 | 4,236 | 338 | 25 | 0 | 0 |
 
 ## Existing article navigation
 
@@ -30,8 +30,8 @@ separately from the newer three-route continuation pattern.
 | `everyday` | 332 | 1 | 1 | 332 | 332 |
 | `literature` | 284 | 0 | 0 | 0 | 190 |
 | `film` | 147 | 0 | 0 | 0 | 60 |
+| `mingren` | 145 | 0 | 0 | 0 | 104 |
 | `aesthetics` | 129 | 0 | 0 | 0 | 0 |
-| `mingren` | 127 | 0 | 0 | 0 | 104 |
 | `jiaoyi` | 106 | 0 | 0 | 0 | 105 |
 | `daodejing` | 82 | 0 | 0 | 0 | 0 |
 | `tv` | 82 | 0 | 0 | 0 | 82 |
