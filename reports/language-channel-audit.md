@@ -30,8 +30,8 @@ language channels. English and Simplified Chinese share the root home.
 ## Public discovery surface
 
 - Core pages with verified canonical URLs: 7
-- Sitemap entries: 4,609
-- Unique sitemap entries: 4,609
+- Sitemap entries: 6,828
+- Unique sitemap entries: 6,828
 - Duplicate sitemap entries: 0
 - Missing local sitemap targets: 0
 

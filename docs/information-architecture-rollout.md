@@ -80,10 +80,12 @@ Explore 的五扇门为：
 - `scripts/build_content_registry.py`：注册表原型与异常报告；
 - `scripts/check_site_updates.py`：Latest 与事件清单一致性；
 - `scripts/build_search_index.py`：搜索索引生成与陈旧检查；
+- `scripts/normalize_canonicals.py`：统一站内 discovery URL 的 HTTPS、目录斜杠与 `index.html` 形式；
+- `scripts/build_sitemap.py`：从可索引、自指且元数据完整的 canonical 页面生成 sitemap 与可信 `lastmod`；
 - `scripts/audit_reader_context.py`：文章定位与继续阅读结构覆盖；
 - `scripts/audit_language_channels.py`：频道入口、搜索语言、公开元数据、canonical、hreflang 与 sitemap 完整性。
 
-当前公开快照包含 7,281 个 HTML 文件，其中 7,252 个位于 `essays/`。sitemap 有 4,609 个唯一 URL：没有重复条目，也没有指向不存在文件的条目。
+当前公开快照包含 7,281 个 HTML 文件，其中 7,252 个位于 `essays/`。sitemap 由页面 canonical 自动生成，包含 6,828 个唯一 URL；每项只保留 `loc` 与由 Git 页面变更日期生成的 `lastmod`，没有重复条目，也没有指向不存在文件的条目。
 
 ## 7. 刻意保留的后续工作
 
