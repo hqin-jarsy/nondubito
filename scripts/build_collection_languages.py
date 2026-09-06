@@ -29,6 +29,25 @@ UI = {
 }
 
 
+def item_copy(spec: dict[str, object], item: dict[str, object], lang: str) -> dict[str, object]:
+    """Return verbose copy; compact specs may use [title, deck, p1, p2, p3]."""
+    copy = item["copy"][lang]
+    if isinstance(copy, list):
+        if len(copy) != 5:
+            raise ValueError(f"{spec['id']}: {item['slug']}/{lang} compact copy needs five fields")
+        headings = spec.get("section_headings", {}).get(lang)
+        if not headings or len(headings) != 3:
+            raise ValueError(f"{spec['id']}: compact copy needs three {lang} section headings")
+        return {
+            "title": copy[0],
+            "deck": copy[1],
+            "sections": [
+                {"heading": headings[i], "paragraph": copy[i + 2]} for i in range(3)
+            ],
+        }
+    return copy
+
+
 def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
 
@@ -53,7 +72,8 @@ def load_specs(selected: set[str] | None = None) -> list[dict[str, object]]:
                 copy = item.get("copy", {}).get(lang)
                 if not copy:
                     raise ValueError(f"{path.name}: {item['slug']} missing {lang}")
-                if len(copy.get("sections", [])) != 3:
+                normalized = item_copy(spec, item, lang)
+                if len(normalized.get("sections", [])) != 3:
                     raise ValueError(f"{path.name}: {item['slug']}/{lang} needs three sections")
         specs.append(spec)
     return specs
@@ -104,7 +124,7 @@ def inject_source_links(text: str, slug: str | None, path: Path) -> str:
 
 def article_html(spec: dict[str, object], lang: str, index: int) -> str:
     item = spec["items"][index]
-    copy = item["copy"][lang]
+    copy = item_copy(spec, item, lang)
     series = spec["series"][lang]
     directory = str(spec["directory"])
     prefix = root_prefix(directory)
@@ -119,7 +139,7 @@ def article_html(spec: dict[str, object], lang: str, index: int) -> str:
         if target is None:
             return '<a href="index.html"><small>←</small>' + esc(series["title"]) + '</a>'
         label = UI[lang]["previous" if previous else "next"]
-        title = target["copy"][lang]["title"]
+        title = item_copy(spec, target, lang)["title"]
         arrow = "← " if previous else " →"
         return f'<a href="{target["slug"]}.html"><small>{esc(label)}</small>{arrow if previous else ""}{esc(title)}{"" if previous else arrow}</a>'
     canonical = f'https://nondubito.net/{directory}/{lang}/{item["slug"]}.html'
@@ -131,7 +151,7 @@ def index_html(spec: dict[str, object], lang: str) -> str:
     directory = str(spec["directory"])
     prefix = root_prefix(directory)
     cards = "".join(
-        f'<a class="collection-card" href="{item["slug"]}.html"><span>{i + 1:02d}</span><h2>{esc(item["copy"][lang]["title"])}</h2><p>{esc(item["copy"][lang]["deck"])}</p><b>{esc(UI[lang]["read"])} →</b></a>'
+        f'<a class="collection-card" href="{item["slug"]}.html"><span>{i + 1:02d}</span><h2>{esc(item_copy(spec, item, lang)["title"])}</h2><p>{esc(item_copy(spec, item, lang)["deck"])}</p><b>{esc(UI[lang]["read"])} →</b></a>'
         for i, item in enumerate(spec["items"])
     )
     canonical = f'https://nondubito.net/{directory}/{lang}/'
