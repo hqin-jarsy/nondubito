@@ -55,6 +55,8 @@ class PageParser(HTMLParser):
         self.description = ""
         self.author = ""
         self.canonical = ""
+        self.og_title = ""
+        self.og_description = ""
         self.og_type = ""
         self.og_locale = ""
         self.og_url = ""
@@ -74,6 +76,10 @@ class PageParser(HTMLParser):
             self.description = values.get("content", "").strip()
         if tag == "meta" and values.get("name") == "author":
             self.author = values.get("content", "").strip()
+        if tag == "meta" and values.get("property") == "og:title":
+            self.og_title = values.get("content", "").strip()
+        if tag == "meta" and values.get("property") == "og:description":
+            self.og_description = values.get("content", "").strip()
         if tag == "meta" and values.get("property") == "og:type":
             self.og_type = values.get("content", "").strip()
         if tag == "meta" and values.get("property") == "og:locale":
@@ -238,6 +244,18 @@ def build() -> dict[str, object]:
         status = "ok"
         if parser.canonical != expected_canonical:
             errors.append(f"core: {relative} canonical is {parser.canonical!r}, expected {expected_canonical!r}")
+            status = "error"
+        if not parser.description or parser.author != "Han Qin (秦汉)":
+            errors.append(f"core: {relative} description or author metadata is incomplete")
+            status = "error"
+        if not parser.og_title or not parser.og_description:
+            errors.append(f"core: {relative} Open Graph title or description is missing")
+            status = "error"
+        if parser.og_type != "website" or parser.og_locale != "en_US":
+            errors.append(f"core: {relative} Open Graph type or locale is incomplete")
+            status = "error"
+        if parser.og_url != expected_canonical or parser.twitter_card != "summary":
+            errors.append(f"core: {relative} social URL or card metadata is incomplete")
             status = "error"
         core_pages.append({"path": relative, "canonical": parser.canonical, "status": status})
 
