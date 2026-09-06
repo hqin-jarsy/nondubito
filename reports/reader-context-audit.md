@@ -10,16 +10,16 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 7,469 | 6,762 | 707 | 128 | 100 | 0 |
-| Canonical-root pages | 3,105 | 2,731 | 374 | 103 | 100 | 0 |
+| All physical editions | 7,513 | 6,804 | 709 | 172 | 122 | 0 |
+| Canonical-root pages | 3,149 | 2,773 | 376 | 147 | 122 | 0 |
 | Independent language editions | 4,364 | 4,031 | 333 | 25 | 0 | 0 |
 
 ## Existing article navigation
 
 | Scope | Series position | Legacy previous / next |
 | --- | ---: | ---: |
-| All physical editions | 3,838 | 5,116 |
-| Canonical-root pages | 612 | 1,917 |
+| All physical editions | 3,880 | 5,158 |
+| Canonical-root pages | 654 | 1,959 |
 | Independent language editions | 3,226 | 3,199 |
 
 ## Canonical-root articles by collection
@@ -37,6 +37,7 @@ separately from the newer three-route continuation pattern.
 | `tv` | 82 | 0 | 0 | 0 | 82 |
 | `anime` | 72 | 0 | 0 | 0 | 0 |
 | `wuxia` | 66 | 0 | 0 | 0 | 0 |
+| `blockchain` | 63 | 63 | 42 | 63 | 63 |
 | `games` | 51 | 0 | 0 | 0 | 0 |
 | `(standalone essays)` | 49 | 4 | 4 | 0 | 21 |
 | `hlm` | 48 | 0 | 0 | 0 | 0 |
@@ -47,7 +48,6 @@ separately from the newer three-route continuation pattern.
 | `xiyou` | 23 | 0 | 0 | 0 | 0 |
 | `ouya` | 22 | 0 | 0 | 22 | 22 |
 | `worldcup` | 22 | 0 | 0 | 22 | 22 |
-| `blockchain` | 21 | 21 | 21 | 21 | 21 |
 | `sae-foundations` | 16 | 15 | 15 | 15 | 15 |
 | `war` | 16 | 0 | 0 | 16 | 16 |
 | `sae-nicomachean` | 13 | 13 | 13 | 13 | 13 |

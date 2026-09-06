@@ -19,19 +19,19 @@ language channels. English and Simplified Chinese share the root home.
 | Language | Records |
 | --- | ---: |
 | `de` | 838 |
-| `en` | 2,924 |
+| `en` | 2,946 |
 | `es` | 837 |
 | `fr` | 838 |
 | `ja` | 900 |
 | `ko` | 837 |
 | `zh-Hans` | 2,949 |
-| `zh-Hant` | 2,279 |
+| `zh-Hant` | 2,301 |
 
 ## Public discovery surface
 
 - Core pages with verified canonical URLs: 7
-- Sitemap entries: 7,048
-- Unique sitemap entries: 7,048
+- Sitemap entries: 7,092
+- Unique sitemap entries: 7,092
 - Duplicate sitemap entries: 0
 - Missing local sitemap targets: 0
 
