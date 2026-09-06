@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh" data-editions="en zh-Hans">
+<html lang="zh" data-lang="zh" data-editions="en zh-Hans zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +13,7 @@
   <style>
     [data-lang="en"] .lang-zh { display:none; }
     [data-lang="zh"] .lang-en { display:none; }
-    .hant-fallback { display:none; }
     [data-lang="zh-hant"] .lang-en { display:none; }
-    [data-lang="zh-hant"] .hant-fallback { display:block; }
     .essay-table { width:100%; border-collapse:collapse; margin:2rem 0; font-size:0.88rem; }
     .essay-table th { background:var(--ink); color:var(--cream); padding:0.5rem 0.75rem; text-align:left; font-weight:600; }
     .essay-table td { padding:0.45rem 0.75rem; border-bottom:1px solid var(--cream-border); vertical-align:top; }
@@ -29,7 +27,7 @@
       if (['en','zh','zh-hant'].indexOf(saved) === -1) saved = 'zh';
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
+        var btns = document.querySelectorAll('.lang-btn[data-lang]');
         btns.forEach(function(btn) {
           btn.addEventListener('click', function() {
             var lang = this.getAttribute('data-lang');
@@ -50,6 +48,7 @@
       });
     })();
   </script>
+  <script defer src="consciousness-life/zh-hant-data/exact-text.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <body>
@@ -79,7 +78,6 @@
       <a href="consciousness-life/index.html"><span class="lang-en">Consciousness &amp; Life</span><span class="lang-zh">意识与生活</span></a><span class="reading-crumb-separator">/</span>
       <span aria-current="page">03 / 05</span>
     </nav>
-    <p class="hant-fallback" style="font-family:var(--cjk),serif;font-size:.78rem;line-height:1.7;color:var(--ink-muted);margin:0 0 1.5rem;">本篇目前提供英文与简体中文；繁体全文尚未补齐，因此暂显示简体版本。</p>
     <article>
 
       <header class="essay-header">
@@ -87,6 +85,13 @@
           <button class="lang-btn" data-lang="zh">中文</button>
           <span class="lang-sep">|</span>
           <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="zh-hant">繁體</button>
+          <span class="lang-sep">|</span><a class="lang-btn" href="consciousness-life/ja/dream-layers.html">日本語</a>
+          <span class="lang-sep">|</span><a class="lang-btn" href="consciousness-life/fr/dream-layers.html">Français</a>
+          <span class="lang-sep">|</span><a class="lang-btn" href="consciousness-life/de/dream-layers.html">Deutsch</a>
+          <span class="lang-sep">|</span><a class="lang-btn" href="consciousness-life/es/dream-layers.html">Español</a>
+          <span class="lang-sep">|</span><a class="lang-btn" href="consciousness-life/ko/dream-layers.html">한국어</a>
         </div>
         <div class="essay-titles">
           <h1 class="lang-zh" style="font-family:var(--cjk),var(--serif);">梦境的DD层结构</h1>
