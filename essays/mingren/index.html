@@ -1,238 +1,1462 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>名人系列 / Great Lives — Non Dubito</title>
-  <meta name="description" content="名人系列 / Great Lives：一百零八位跨越东西方的历史人物。">
+  <title>Great Lives — 108 Lives and an Unfinished Kingdom of Ends</title>
+  <meta name="description" content="Great Lives is a philosophical narrative told through 108 lives: how people become themselves, build worlds, meet their limits, and leave room for others.">
   <meta name="author" content="Han Qin (秦汉)">
-  <link rel="stylesheet" href="../../style.css">
-  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta property="og:title" content="Great Lives — Non Dubito">
+  <meta property="og:description" content="108 lives and an unfinished Kingdom of Ends.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nondubito.net/essays/mingren/">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://nondubito.net/essays/mingren/">
-  <style>
-    .series-container { max-width:var(--max-w-prose); margin:0 auto; padding:100px 2.5rem 80px; }
-    @media(max-width:620px) { .series-container { padding:80px 1.5rem 60px; } }
-    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
-    .back-link:hover { color:var(--ink); }
-    .series-label { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
-    .series-title { font-family:var(--serif); font-size:2rem; color:var(--ink); margin:0.5rem 0 0.25rem; line-height:1.2; }
-    .series-title-en { font-family:var(--serif); font-size:1.2rem; color:var(--ink-muted); margin-bottom:1.5rem; }
-    .series-desc { font-size:1rem; color:var(--ink); line-height:1.7; margin-bottom:2.5rem; }
-    .series-desc p { margin-bottom:1em; }
-    .series-meta { font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--cream-border); }
-    .entry-list { list-style:none; padding:0; margin:0; }
-    .entry-row { display:block; padding:1.25rem 1.5rem; border:1px solid var(--cream-border); border-radius:6px; text-decoration:none; color:var(--ink); margin-bottom:0.75rem; transition:background 0.15s, border-color 0.15s; }
-    .entry-row:hover { background:rgba(0,0,0,0.02); border-color:var(--ink-muted); }
-    .entry-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:0.4rem; }
-    .entry-num { font-family:var(--sans); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
-    .entry-title-zh { font-family:var(--serif); font-size:1.1rem; color:var(--ink); }
-    .entry-title-en { font-family:var(--serif); font-size:0.95rem; color:var(--ink-muted); margin-bottom:0.4rem; }
-    .entry-desc { font-size:0.85rem; color:var(--ink-muted); line-height:1.5; }
-    .source-note { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--cream-border); font-family:var(--sans); font-size:0.78rem; color:var(--ink-muted); }
-    .source-note a { color:var(--ink-muted); text-decoration:none; }
-    .source-note a:hover { color:var(--ink); }
-    .chip-wrap { display:flex; flex-wrap:wrap; gap:0.45rem; }
-    .name-chip { font-family:var(--sans); font-size:0.78rem; color:var(--ink); text-decoration:none; padding:0.28rem 0.65rem; border:1px solid var(--cream-border); border-radius:2px; transition:all 0.15s; }
-    .name-chip:hover { color:var(--gold); border-color:rgba(196,157,97,0.4); background:rgba(196,157,97,0.06); }
-    [data-lang="zh"] .name-chip { font-family:var(--cjk),var(--serif); font-size:0.82rem; }
-    [data-lang="en"] .lang-zh { display:none; }
-    [data-lang="zh"] .lang-en { display:none; }
-  </style>
-  <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang');
-      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          btns.forEach(function(btn) {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
-          });
-        }
-      });
-    })();
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500&amp;family=Noto+Serif+SC:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../site-shell.css?v=20260905b">
+  <script src="../../site-shell.js?v=20260905b"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Great Lives",
+  "alternateName": "一百零八种人生",
+  "description": "One hundred and eight lives and an unfinished Kingdom of Ends.",
+  "url": "https://nondubito.net/essays/mingren/",
+  "author": {
+    "@type": "Person",
+    "name": "Han Qin (秦汉)"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": 108,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Laozi, He Said It and Left",
+        "url": "https://nondubito.net/essays/mingren/laozi.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Confucius, Transmitting Without Creating",
+        "url": "https://nondubito.net/essays/confucius.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Socrates, the Man on the Clearing",
+        "url": "https://nondubito.net/essays/socrates.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Wang Yangming, This Mind Is Luminous",
+        "url": "https://nondubito.net/essays/wangyangming.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Completing Kant",
+        "url": "https://nondubito.net/essays/mingren/kant.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "Self-Cultivation in a Vacuum",
+        "url": "https://nondubito.net/essays/nietzsche.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "name": "Dreaming Zhuangzi",
+        "url": "https://nondubito.net/essays/mingren/zhuangzi.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "name": "Shakyamuni, Burning the Bridge Behind You",
+        "url": "https://nondubito.net/essays/mingren/buddha.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "name": "Jesus, Nailed to the Bridge",
+        "url": "https://nondubito.net/essays/mingren/jesus.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "name": "Gödel, No System Can Close",
+        "url": "https://nondubito.net/essays/mingren/godel.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "name": "Einstein, God Does Not Play Dice",
+        "url": "https://nondubito.net/essays/mingren/einstein.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "name": "Du Fu, Carved into Poetry",
+        "url": "https://nondubito.net/essays/mingren/dufu.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 13,
+        "name": "Qin Shi Huang, the Limit of Construction",
+        "url": "https://nondubito.net/essays/mingren/qinshihuang.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 14,
+        "name": "Washington, the Man Who Would Not Wear the Crown",
+        "url": "https://nondubito.net/essays/mingren/washington.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 15,
+        "name": "Alexander, Four Generations of Fragments",
+        "url": "https://nondubito.net/essays/mingren/alexander.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 16,
+        "name": "Darwin, Life Carves Itself",
+        "url": "https://nondubito.net/essays/mingren/darwin.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 17,
+        "name": "Newton, One Man Constructed an Entire Universe",
+        "url": "https://nondubito.net/essays/mingren/newton.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 18,
+        "name": "Bach, a Universe Built in Sound",
+        "url": "https://nondubito.net/essays/mingren/bach.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 19,
+        "name": "Beethoven, Deaf and Still Writing",
+        "url": "https://nondubito.net/essays/mingren/beethoven.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 20,
+        "name": "Sima Qian, Living Is Harder Than Dying",
+        "url": "https://nondubito.net/essays/mingren/simaqian.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 21,
+        "name": "Li Bai, He Never Touched the Ground",
+        "url": "https://nondubito.net/essays/mingren/libai.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 22,
+        "name": "Rumi, Carved into Song",
+        "url": "https://nondubito.net/essays/mingren/rumi.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 23,
+        "name": "Da Vinci, Everything Begun, Nothing Finished",
+        "url": "https://nondubito.net/essays/mingren/davinci.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 24,
+        "name": "Freud, Carving Inward to the Dark",
+        "url": "https://nondubito.net/essays/mingren/freud.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 25,
+        "name": "Lacan, There Is a Mirror in the Basement",
+        "url": "https://nondubito.net/essays/mingren/lacan.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 26,
+        "name": "Dostoevsky, Thirty Years Before Freud",
+        "url": "https://nondubito.net/essays/mingren/dostoevsky.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 27,
+        "name": "Kafka, You Wake Up and You Are Already a Bug",
+        "url": "https://nondubito.net/essays/mingren/kafka.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 28,
+        "name": "Huineng, Originally There Is Nothing",
+        "url": "https://nondubito.net/essays/mingren/huineng.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 29,
+        "name": "Hegel, Swallowing the Remainder",
+        "url": "https://nondubito.net/essays/mingren/hegel.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 30,
+        "name": "Napoleon, the World Spirit on Horseback",
+        "url": "https://nondubito.net/essays/mingren/napoleon.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 31,
+        "name": "Genghis Khan, Pure Carving",
+        "url": "https://nondubito.net/essays/mingren/genghiskhan.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 32,
+        "name": "Maria Skłodowska, Killed by Her Own Discovery",
+        "url": "https://nondubito.net/essays/mingren/curie.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 33,
+        "name": "Michelangelo, There Is a Person Inside the Stone",
+        "url": "https://nondubito.net/essays/mingren/michelangelo.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 34,
+        "name": "Lincoln, Don't Let It Fall",
+        "url": "https://nondubito.net/essays/mingren/lincoln.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 35,
+        "name": "Galileo, And Yet It Moves",
+        "url": "https://nondubito.net/essays/mingren/galileo.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 36,
+        "name": "Wittgenstein, After the Silence",
+        "url": "https://nondubito.net/essays/mingren/wittgenstein.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 37,
+        "name": "Augustine, You Cannot Wash It Clean",
+        "url": "https://nondubito.net/essays/mingren/augustine.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 38,
+        "name": "Bada Shanren, Eyes Rolled Toward the Sky",
+        "url": "https://nondubito.net/essays/mingren/badashanren.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 39,
+        "name": "Su Shi, Who's Afraid",
+        "url": "https://nondubito.net/essays/mingren/sushi.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 40,
+        "name": "Nishida Kitarō, The Place of Nothingness",
+        "url": "https://nondubito.net/essays/mingren/nishida.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 41,
+        "name": "The Japanese Emperor System, The Empty Throne",
+        "url": "https://nondubito.net/essays/mingren/emperor.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 42,
+        "name": "Homer, the Moment Sound Became Text",
+        "url": "https://nondubito.net/essays/mingren/homer.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 43,
+        "name": "Plato, He Wasn't There That Day",
+        "url": "https://nondubito.net/essays/mingren/plato.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 44,
+        "name": "Hume, Awake",
+        "url": "https://nondubito.net/essays/mingren/hume.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 45,
+        "name": "Schopenhauer, There Is Something Underneath",
+        "url": "https://nondubito.net/essays/mingren/schopenhauer.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 46,
+        "name": "Kierkegaard, Three in the Morning",
+        "url": "https://nondubito.net/essays/mingren/kierkegaard.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 47,
+        "name": "Turing, That Apple",
+        "url": "https://nondubito.net/essays/mingren/turing.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 48,
+        "name": "Chekhov, To Moscow",
+        "url": "https://nondubito.net/essays/mingren/chekhov.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 49,
+        "name": "Cantor, Larger Than Infinity",
+        "url": "https://nondubito.net/essays/mingren/cantor.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 50,
+        "name": "Copernicus, That Day, as It Happened",
+        "url": "https://nondubito.net/essays/mingren/copernicus.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 51,
+        "name": "Sartre, Hell Is Other People",
+        "url": "https://nondubito.net/essays/mingren/sartre.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 52,
+        "name": "Beauvoir, The Second Sex",
+        "url": "https://nondubito.net/essays/mingren/beauvoir.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 53,
+        "name": "Quine, There Is No Such Line",
+        "url": "https://nondubito.net/essays/mingren/quine.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 54,
+        "name": "Tesla, Pure Remainder",
+        "url": "https://nondubito.net/essays/mingren/tesla.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 55,
+        "name": "Edison, The Light Came On",
+        "url": "https://nondubito.net/essays/mingren/edison.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 56,
+        "name": "Heisenberg, Uncertain",
+        "url": "https://nondubito.net/essays/mingren/heisenberg.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 57,
+        "name": "Bohr, The Other Side Too",
+        "url": "https://nondubito.net/essays/mingren/bohr.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 58,
+        "name": "Tolstoy, The Prescription",
+        "url": "https://nondubito.net/essays/mingren/tolstoy.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 59,
+        "name": "Shakespeare, Not There",
+        "url": "https://nondubito.net/essays/mingren/shakespeare.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 60,
+        "name": "Spinoza, There Was Never a Wall",
+        "url": "https://nondubito.net/essays/mingren/spinoza.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 61,
+        "name": "Aristotle, the Floor",
+        "url": "https://nondubito.net/essays/mingren/aristotle.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 62,
+        "name": "Faraday, Hands",
+        "url": "https://nondubito.net/essays/mingren/faraday.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 63,
+        "name": "Maxwell, Light",
+        "url": "https://nondubito.net/essays/mingren/maxwell.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 64,
+        "name": "Joan of Arc, Fire",
+        "url": "https://nondubito.net/essays/mingren/joanofarc.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 65,
+        "name": "Wilde, That Sentence",
+        "url": "https://nondubito.net/essays/mingren/wilde.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 66,
+        "name": "Ramanujan, Dreams",
+        "url": "https://nondubito.net/essays/mingren/ramanujan.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 67,
+        "name": "Oppenheimer, Ash",
+        "url": "https://nondubito.net/essays/mingren/oppenheimer.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 68,
+        "name": "Charlotte Brontë, Being Loved",
+        "url": "https://nondubito.net/essays/mingren/charlottebronte.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 69,
+        "name": "Emily Brontë, Wind",
+        "url": "https://nondubito.net/essays/mingren/emilybronte.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 70,
+        "name": "Boltzmann, Disorder",
+        "url": "https://nondubito.net/essays/mingren/boltzmann.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 71,
+        "name": "Van Gogh, Color",
+        "url": "https://nondubito.net/essays/mingren/vangogh.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 72,
+        "name": "Dickens, The Crack",
+        "url": "https://nondubito.net/essays/mingren/dickens.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 73,
+        "name": "Churchill, Voice",
+        "url": "https://nondubito.net/essays/mingren/churchill.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 74,
+        "name": "Roosevelt, Architecture",
+        "url": "https://nondubito.net/essays/mingren/roosevelt.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 75,
+        "name": "Schrödinger, The Cat",
+        "url": "https://nondubito.net/essays/mingren/schrodinger.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 76,
+        "name": "Feynman, The Drum",
+        "url": "https://nondubito.net/essays/mingren/feynman.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 77,
+        "name": "Hawking, Flight",
+        "url": "https://nondubito.net/essays/mingren/hawking.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 78,
+        "name": "Cao Xueqin, Qing",
+        "url": "https://nondubito.net/essays/mingren/caoxueqin.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 79,
+        "name": "Comte: The Man Who Grouted the Cracks",
+        "url": "https://nondubito.net/essays/mingren/comte.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 80,
+        "name": "Popper: The Man Who Reversed the Direction",
+        "url": "https://nondubito.net/essays/mingren/popper.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 81,
+        "name": "Dirac: The Equation Arrived First",
+        "url": "https://nondubito.net/essays/mingren/dirac.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 82,
+        "name": "Qu Yuan: Beauty Is a Form of Cognition",
+        "url": "https://nondubito.net/essays/mingren/quyuan.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 83,
+        "name": "Fichte: Where Is the Knower Standing?",
+        "url": "https://nondubito.net/essays/mingren/fichte.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 84,
+        "name": "McClintock: She Felt It First",
+        "url": "https://nondubito.net/essays/mingren/mcclintock.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 85,
+        "name": "Weil: Attention Is Everything",
+        "url": "https://nondubito.net/essays/mingren/weil.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 86,
+        "name": "Thatcher: She Thought It Through, Then Stopped Thinking",
+        "url": "https://nondubito.net/essays/mingren/thatcher.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 87,
+        "name": "Nāgārjuna: Even the Floor Is Empty",
+        "url": "https://nondubito.net/essays/mingren/nagarjuna.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 88,
+        "name": "Woolf: Consciousness Has the Shape of Time",
+        "url": "https://nondubito.net/essays/mingren/woolf.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 89,
+        "name": "Yukawa: The East Never Sealed This Crack",
+        "url": "https://nondubito.net/essays/mingren/yukawa.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 90,
+        "name": "Arendt: Not-Thinking Is Evil",
+        "url": "https://nondubito.net/essays/mingren/arendt.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 91,
+        "name": "Murdoch: Seeing Is Morality",
+        "url": "https://nondubito.net/essays/mingren/murdoch.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 92,
+        "name": "Ibn Khaldun: How Does a Group Know Itself?",
+        "url": "https://nondubito.net/essays/mingren/ibnkhaldun.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 93,
+        "name": "Vygotsky: Cognition Is Pulled Upward by Others",
+        "url": "https://nondubito.net/essays/mingren/vygotsky.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 94,
+        "name": "Strawson: Re-Laying the Floor",
+        "url": "https://nondubito.net/essays/mingren/strawson.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 95,
+        "name": "Merleau-Ponty: The Body Knows Before Concepts Do",
+        "url": "https://nondubito.net/essays/mingren/merleauponty.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 96,
+        "name": "Polanyi: You Come",
+        "url": "https://nondubito.net/essays/mingren/polanyi.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 97,
+        "name": "Hypatia: A Cone, Cut",
+        "url": "https://nondubito.net/essays/mingren/hypatia.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 98,
+        "name": "Aquinas: Straw",
+        "url": "https://nondubito.net/essays/mingren/aquinas.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 99,
+        "name": "Bergson: Duration",
+        "url": "https://nondubito.net/essays/mingren/bergson.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 100,
+        "name": "Levinas: The Face",
+        "url": "https://nondubito.net/essays/mingren/levinas.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 101,
+        "name": "Buber: I and Thou",
+        "url": "https://nondubito.net/essays/mingren/buber.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 102,
+        "name": "Cao Zhi: What Cannot Be Held",
+        "url": "https://nondubito.net/essays/mingren/caozhi.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 103,
+        "name": "Girard: Desire Comes from Elsewhere",
+        "url": "https://nondubito.net/essays/mingren/girard.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 104,
+        "name": "Schelling: The Other Within the Self",
+        "url": "https://nondubito.net/essays/mingren/schelling.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 105,
+        "name": "Eckhart: That Which Cannot Be Named",
+        "url": "https://nondubito.net/essays/mingren/eckhart.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 106,
+        "name": "Rilke: Beauty Is Only the Beginning of Terror",
+        "url": "https://nondubito.net/essays/mingren/rilke.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 107,
+        "name": "Nobel: The Other in the Future",
+        "url": "https://nondubito.net/essays/mingren/nobel.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 108,
+        "name": "King: The 108th Seat",
+        "url": "https://nondubito.net/essays/mingren/king.html"
+      }
+    ]
+  }
+}
   </script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
+  <style>
+    :root{--great-max:1120px}html{scroll-behavior:smooth}body.site-shell-page{background:var(--cream)}.great-main{padding-top:64px}.great-inner{width:min(var(--great-max),calc(100% - 5rem));margin:0 auto}
+    .great-hero{position:relative;overflow:hidden;min-height:620px;display:flex;align-items:center;background:var(--green);color:var(--cream);border-bottom:1px solid var(--cream-border)}.great-hero::before{content:"";position:absolute;inset:auto -8% 20% 38%;height:1px;background:linear-gradient(90deg,transparent,rgba(224,197,150,.8),rgba(224,197,150,.18));transform:rotate(-4deg);transform-origin:right center}.great-hero::after{content:"";position:absolute;width:15rem;height:15rem;right:8%;bottom:-8rem;border:1px solid rgba(224,197,150,.4);border-radius:50%}
+    .great-hero-copy{position:relative;z-index:1;max-width:790px;padding:7.5rem 0 6.5rem}.great-kicker{margin:0 0 1.2rem;font:400 .68rem/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold-light)}.great-hero h1{margin:0;font:500 clamp(3.8rem,9vw,7.4rem)/.86 var(--serif);letter-spacing:-.035em;color:var(--cream)}.great-subtitle{margin:1.7rem 0 0;max-width:650px;font:400 clamp(1.25rem,2.6vw,1.75rem)/1.35 var(--serif);color:var(--gold-light)}.great-subtitle.lang-zh{font-family:var(--cjk),var(--serif);letter-spacing:.05em}.great-hero-deck{max-width:690px;margin:1.5rem 0 0;font-size:1.03rem;line-height:1.75;color:rgba(245,240,232,.77)}.great-hero-deck.lang-zh{font-family:var(--cjk),var(--serif)}
+    .great-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}.great-action{display:inline-flex;align-items:center;gap:1.5rem;border:1px solid rgba(245,240,232,.32);padding:.78rem 1rem;color:var(--cream);text-decoration:none;font:400 .68rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase}.great-action.primary{background:var(--cream);color:var(--green);border-color:var(--cream)}.great-action:hover{border-color:var(--gold-light)}.great-stats{position:relative;z-index:1;display:flex;gap:2.5rem;padding:0 0 2.2rem}.great-stat strong{display:block;font:500 1.55rem/1 var(--serif);color:var(--gold-light)}.great-stat span{display:block;margin-top:.35rem;font:400 .61rem/1.3 var(--sans);letter-spacing:.13em;text-transform:uppercase;color:rgba(245,240,232,.58)}
+    .great-section{padding:5rem 0;border-bottom:1px solid var(--cream-border)}.great-section.alt{background:var(--cream-dark)}.great-section-kicker{margin:0 0 .75rem;font:400 .64rem/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}.great-section h2{max-width:780px;margin:0 0 1.5rem;font:500 clamp(2rem,4vw,3.2rem)/1.05 var(--serif);color:var(--ink)}.great-section h2.lang-zh{font-family:var(--cjk),var(--serif);line-height:1.25}
+    .great-manifesto{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(240px,.6fr);gap:4rem;align-items:start}.great-manifesto-copy p{margin:0 0 1.15rem;font-size:1.08rem;line-height:1.85;color:var(--ink-light)}.great-manifesto-copy.lang-zh{font-family:var(--cjk),var(--serif)}.great-definition{padding:1.5rem;border-top:2px solid var(--gold);background:rgba(255,255,255,.35)}.great-definition strong{display:block;margin-bottom:.65rem;font:500 1.15rem/1.2 var(--serif);color:var(--ink)}.great-definition p{margin:0;font-size:.9rem;line-height:1.7;color:var(--ink-muted)}.great-definition .lang-zh{font-family:var(--cjk),var(--serif)}
+    .bridge{margin-top:3.8rem}.bridge-line{position:relative;height:1px;margin:0 2rem 1.1rem;background:linear-gradient(90deg,var(--gold),var(--green))}.bridge-line::before,.bridge-line::after{content:"";position:absolute;top:50%;width:9px;height:9px;transform:translateY(-50%) rotate(45deg);background:var(--cream);border:1px solid var(--gold)}.bridge-line::before{left:0}.bridge-line::after{right:0;background:var(--green);border-color:var(--green);box-shadow:0 0 0 7px var(--cream),0 0 0 8px var(--gold)}.bridge-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}.bridge-step{font:400 .66rem/1.45 var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-muted)}.bridge-step:last-child{text-align:right;color:var(--green)}.bridge-step.lang-zh{font-family:var(--cjk),var(--serif);text-transform:none;letter-spacing:.03em}
+    .starter-intro{max-width:720px;margin:0 0 2.2rem;line-height:1.75;color:var(--ink-muted)}.starter-intro.lang-zh{font-family:var(--cjk),var(--serif)}.starter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem}.starter-card{min-height:175px;display:flex;flex-direction:column;padding:1.2rem;border:1px solid var(--cream-border);background:var(--cream);color:var(--ink);text-decoration:none;transition:transform .18s,border-color .18s}.starter-card:hover{transform:translateY(-3px);border-color:var(--gold)}.starter-number{font:400 .62rem/1 var(--sans);letter-spacing:.12em;color:var(--gold)}.starter-card h3{margin:auto 0 .5rem;font:500 1.1rem/1.25 var(--serif)}.starter-card h3.lang-zh{font-family:var(--cjk),var(--serif)}.starter-card p{margin:0;font-size:.8rem;line-height:1.55;color:var(--ink-muted)}.starter-card p.lang-zh{font-family:var(--cjk),var(--serif)}
+    .movement-map{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--cream-border);margin:2rem 0 2.5rem}.movement-map a{min-height:132px;display:flex;flex-direction:column;padding:1rem;color:var(--ink);text-decoration:none;border-right:1px solid var(--cream-border);background:var(--cream)}.movement-map a:last-child{border-right:0}.movement-map a:hover{background:var(--cream-dark)}.movement-map-number{font:400 .6rem/1 var(--sans);letter-spacing:.1em;color:var(--gold)}.movement-map-title{margin:auto 0 .65rem;font-size:.92rem;line-height:1.25}.movement-map-title.lang-en{font-family:var(--serif)}.movement-map-title.lang-zh{font-family:var(--cjk),var(--serif)}.movement-map-count{font:400 .62rem/1 var(--sans);color:var(--ink-muted)}
+    .great-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.7rem;margin-bottom:1.5rem}.great-search{width:100%;box-sizing:border-box;border:1px solid var(--cream-border);background:var(--cream);color:var(--ink);padding:.9rem 1rem;font:400 .82rem/1.3 var(--sans);outline:none}.great-search:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(171,139,84,.12)}.great-tool-actions{display:flex;gap:.4rem}.great-tool{border:1px solid var(--cream-border);background:transparent;color:var(--ink-muted);padding:.75rem .85rem;font:400 .61rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}.great-tool:hover{color:var(--ink);border-color:var(--gold)}.great-search-status{grid-column:1/-1;min-height:1em;font:400 .63rem/1 var(--sans);color:var(--ink-muted)}
+    .movement{border-top:1px solid var(--cream-border);scroll-margin-top:78px}.movement:last-child{border-bottom:1px solid var(--cream-border)}.movement[hidden]{display:none}.movement summary{display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:1.5rem;align-items:start;padding:1.65rem .25rem;cursor:pointer;list-style:none}.movement summary::-webkit-details-marker{display:none}.movement summary::after{content:"+";grid-column:3;grid-row:1;margin-left:2.5rem;font:300 1.45rem/1 var(--sans);color:var(--gold)}.movement[open] summary::after{content:"−"}.movement-index{font:400 .68rem/1.3 var(--sans);letter-spacing:.1em;color:var(--gold)}.movement-heading{display:block}.movement-title{display:block;font:500 1.55rem/1.1 var(--serif);color:var(--ink)}.movement-title.lang-zh{font-family:var(--cjk),var(--serif)}.movement-desc{display:block;max-width:720px;margin-top:.55rem;font-size:.86rem;line-height:1.65;color:var(--ink-muted)}.movement-desc.lang-zh{font-family:var(--cjk),var(--serif)}.movement-count{grid-column:3;grid-row:1;margin-right:2.3rem;font:400 .62rem/1.3 var(--sans);letter-spacing:.08em;color:var(--ink-muted);white-space:nowrap}
+    .great-life-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;padding:0 0 1.8rem 4.6rem}.great-life-card{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:.8rem;align-items:center;min-height:68px;padding:.75rem .9rem;border:1px solid var(--cream-border);background:rgba(255,255,255,.25);color:var(--ink);text-decoration:none;transition:border-color .16s,background .16s}.great-life-card:hover{border-color:var(--gold);background:var(--cream-dark)}.great-life-card[hidden]{display:none}.life-number{font:400 .58rem/1 var(--sans);letter-spacing:.08em;color:var(--gold)}.life-title{font-size:.91rem;line-height:1.35}.life-title.lang-en{font-family:var(--serif)}.life-title.lang-zh{font-family:var(--cjk),var(--serif)}.life-arrow{color:var(--gold)}
+    .great-closing{background:var(--green);color:var(--cream);border-bottom:0}.great-closing blockquote{max-width:800px;margin:0;padding:0;border:0;font:400 clamp(1.65rem,4vw,2.7rem)/1.35 var(--serif);color:var(--cream)}.great-closing blockquote.lang-zh{font-family:var(--cjk),var(--serif)}.great-closing p{max-width:680px;margin:1.5rem 0 0;line-height:1.75;color:rgba(245,240,232,.72)}.great-closing p.lang-zh{font-family:var(--cjk),var(--serif)}.great-closing a{display:inline-block;margin-top:2rem;color:var(--gold-light);font:400 .68rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+    @media(max-width:980px){.starter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.movement-map{grid-template-columns:repeat(4,minmax(0,1fr))}.movement-map a{border-bottom:1px solid var(--cream-border)}.great-manifesto{grid-template-columns:1fr;gap:2rem}}
+    @media(max-width:720px){.great-main{padding-top:58px}.great-inner{width:min(100% - 2.25rem,var(--great-max))}.great-hero{min-height:0}.great-hero-copy{padding:5.5rem 0 4rem}.great-hero h1{font-size:clamp(3.4rem,18vw,5.5rem)}.great-stats{gap:1.25rem}.great-section{padding:3.7rem 0}.bridge-steps{grid-template-columns:1fr;gap:.45rem}.bridge-step:last-child{text-align:left}.movement-map{grid-template-columns:repeat(2,minmax(0,1fr))}.great-tools{grid-template-columns:1fr}.great-tool-actions{justify-content:flex-start}.movement summary{grid-template-columns:36px minmax(0,1fr);gap:.8rem}.movement summary::after{grid-column:2;justify-self:end;margin:0}.movement-count{grid-column:2;grid-row:1;justify-self:end;margin:2.1rem 0 0}.movement-desc{padding-right:1.5rem}.great-life-grid{grid-template-columns:1fr;padding-left:0}}
+    @media(max-width:470px){.starter-grid{grid-template-columns:1fr}.movement-map{grid-template-columns:1fr}.movement-map a{min-height:92px;border-right:0}.great-stats{flex-wrap:wrap}.great-action{width:100%;justify-content:space-between;box-sizing:border-box}}
+  </style>
 </head>
-<body>
-  <header>
-    <div class="header-inner">
-      <a href="../../index.html" class="site-title">
-        <span class="title-latin">Non Dubito</span>
-        <span class="title-sub">Essays in the Self-as-an-End Tradition</span>
-      </a>
-      <nav>
-        <a href="../../index.html" class="active">Essays</a><a href="../../start.html">Start Here</a>
-        <a href="../../library.html">Library</a>
-        <a href="../../credesivis.html">Crede si vis</a>
-        <a href="../../about.html">About</a>
-        <a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory</a>
-        <a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack</a>
-      </nav>
-    </div>
-  </header>
-  <main class="series-container">
-    <div class="lang-toggle" style="margin-bottom:1.5rem;">
-      <button class="lang-btn" data-lang="zh">中文</button>
-      <span class="lang-sep">|</span>
-      <button class="lang-btn" data-lang="en">EN</button>
-    </div>
+<body class="site-shell-page">
+  <header class="site-shell-header"><div class="header-inner"><a href="../../index.html" class="site-title" aria-label="Non Dubito home"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav class="site-shell-nav" aria-label="Primary navigation"><a href="../../start.html"><span class="lang-en">Start Here</span><span class="lang-zh">从这里开始</span><span class="lang-hant">從這裡開始</span></a><a href="../../explore.html"><span class="lang-en">Explore</span><span class="lang-zh">探索</span><span class="lang-hant">探索</span></a><a href="../../latest.html"><span class="lang-en">Latest</span><span class="lang-zh">最近更新</span><span class="lang-hant">最近更新</span></a><a href="../../about.html"><span class="lang-en">About</span><span class="lang-zh">关于</span><span class="lang-hant">關於</span></a></nav><div class="site-shell-tools"><a class="site-shell-tool" href="../../search.html" aria-label="Search"><svg class="site-shell-tool-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.5"/></svg><span class="site-shell-tool-label lang-en">Search</span><span class="site-shell-tool-label lang-zh">搜索</span><span class="site-shell-tool-label lang-hant">搜尋</span></a><details class="site-shell-language"><summary class="site-shell-language-summary"><span data-current-language>EN</span><span aria-hidden="true">⌄</span></summary><div class="site-shell-language-options"><button type="button" data-set-language="en">English</button><button type="button" data-set-language="zh">中文</button><button type="button" data-set-language="zh-hant">繁體中文</button><a href="../ja/index.html">日本語</a><a href="../fr/index.html">Français</a><a href="../de/index.html">Deutsch</a><a href="../es/index.html">Español</a><a href="../ko/index.html">한국어</a></div></details><button class="site-shell-menu-button" type="button" data-site-shell-menu aria-controls="site-shell-drawer" aria-expanded="false"><span class="site-shell-tool-label lang-en">Menu</span><span class="site-shell-tool-label lang-zh">菜单</span><span class="site-shell-tool-label lang-hant">選單</span><span aria-hidden="true">☰</span></button></div></div></header>
+  <div class="site-shell-drawer" id="site-shell-drawer" data-site-shell-drawer><nav aria-label="Mobile navigation"><a href="../../start.html"><span class="lang-en">Start Here</span><span class="lang-zh">从这里开始</span><span class="lang-hant">從這裡開始</span></a><a href="../../explore.html"><span class="lang-en">Explore</span><span class="lang-zh">探索</span><span class="lang-hant">探索</span></a><a href="../../latest.html"><span class="lang-en">Latest</span><span class="lang-zh">最近更新</span><span class="lang-hant">最近更新</span></a><a href="../../about.html"><span class="lang-en">About</span><span class="lang-zh">关于</span><span class="lang-hant">關於</span></a><a href="../../library.html"><span class="lang-en">Full Library</span><span class="lang-zh">完整书库</span><span class="lang-hant">完整書庫</span></a><a href="../../credesivis.html">Crede si vis</a></nav><div class="site-shell-mobile-languages" aria-label="Languages"><button type="button" data-set-language="en">EN</button><button type="button" data-set-language="zh">中文</button><button type="button" data-set-language="zh-hant">繁體</button><a href="../ja/index.html">日本語</a><a href="../fr/index.html">FR</a><a href="../de/index.html">DE</a><a href="../es/index.html">ES</a><a href="../ko/index.html">한국어</a></div></div>
+  <main class="great-main">
+    <section class="great-hero"><div class="great-inner"><div class="great-hero-copy"><p class="great-kicker"><span class="lang-en">Non Dubito · Flagship Series</span><span class="lang-zh">Non Dubito · 旗舰系列</span></p><h1 class="lang-en">Great Lives</h1><h1 class="lang-zh">一百零八种人生</h1><p class="great-subtitle lang-en">108 Lives and an Unfinished Kingdom of Ends</p><p class="great-subtitle lang-zh">一座尚未完成的目的王国</p><p class="great-hero-deck lang-en">A philosophical narrative told through particular lives: how people become themselves, build worlds, meet the limits of what they have built, and leave room—or fail to leave room—for another.</p><p class="great-hero-deck lang-zh">这是一部由具体人生写成的思想叙事：人怎样成为自己，怎样构成一个世界，怎样遭遇自己所构之物的边界，又怎样为他者留下位置——或者没有留下。</p><div class="great-actions"><a class="great-action primary" href="#start-route"><span class="lang-en">Begin with eight lives</span><span class="lang-zh">从八篇开始</span><span>→</span></a><a class="great-action" href="#all-lives"><span class="lang-en">Browse all 108</span><span class="lang-zh">浏览全部 108 篇</span><span>↓</span></a></div></div><div class="great-stats" aria-label="Series overview"><div class="great-stat"><strong>108</strong><span class="lang-en">Essays</span><span class="lang-zh">篇文章</span></div><div class="great-stat"><strong>7</strong><span class="lang-en">Movements</span><span class="lang-zh">个乐章</span></div><div class="great-stat"><strong>1</strong><span class="lang-en">Unfinished story</span><span class="lang-zh">个未完成的故事</span></div></div></div></section>
+    <section class="great-section"><div class="great-inner great-manifesto"><div><p class="great-section-kicker">What this series is</p><h2 class="lang-en">Not a hall of fame. Not 108 final verdicts.</h2><h2 class="lang-zh">不是名人录，也不是一百零八份盖棺论定。</h2><div class="great-manifesto-copy lang-en"><p>These essays ask how a person becomes their own within an inherited world, what kind of world they build, and whether that world leaves room for someone who does not fit its definitions.</p><p>As the series unfolds, a bridge comes into view. Beyond it lies not Kant’s solitary ideal but a gathering: an unfinished Kingdom of Ends. The final place is left not for another famous name, but for the reader who is still choosing.</p></div><div class="great-manifesto-copy lang-zh"><p>这些文章关心的是：一个人怎样从继承来的世界里成为自己，怎样用自己的工作构成一个世界，以及那个世界能否容纳不符合其定义的人。</p><p>随着系列推进，一座桥逐渐出现。桥的远处不是康德独自站立的理想，而是一群人的相遇：一座尚未完成的目的王国。最后留下的位置，不属于下一位名人，而属于仍在选择的读者。</p></div></div><aside class="great-definition"><strong class="lang-en">What does “great” mean here?</strong><strong class="lang-zh">这里的“伟大”是什么意思？</strong><p class="lang-en">Scale, not sainthood. Qin Shi Huang, Napoleon, and Thatcher belong beside Hypatia, Du Fu, and Levinas because achievement and danger can both make a human structure visible. Inclusion is an invitation to judge, not a declaration of innocence.</p><p class="lang-zh">它指向尺度，而不是封圣。秦始皇、拿破仑、撒切尔与希帕蒂娅、杜甫、列维纳斯同在这里，因为成就与危险都可能把人的结构放大给我们看。写入不是赦免，而是邀请读者判断。</p></aside></div><div class="great-inner bridge" aria-label="The series arc"><div class="bridge-line"></div><div class="bridge-steps"><span class="bridge-step lang-en">Become oneself</span><span class="bridge-step lang-zh">成为自己</span><span class="bridge-step lang-en">Make a world</span><span class="bridge-step lang-zh">构成世界</span><span class="bridge-step lang-en">Meet its limit</span><span class="bridge-step lang-zh">遭遇边界</span><span class="bridge-step lang-en">Make room for another</span><span class="bridge-step lang-zh">为他者留位</span><span class="bridge-step lang-en">The empty seat</span><span class="bridge-step lang-zh">留下空位</span></div></div></section>
+    <section class="great-section alt" id="start-route"><div class="great-inner"><p class="great-section-kicker">A short way in</p><h2 class="lang-en">Eight lives reveal the whole journey.</h2><h2 class="lang-zh">先读八篇，看见整段旅程。</h2><p class="starter-intro lang-en">You do not need to read 108 essays before the series has something to say. This route moves from self-direction through construction and closure to the other and the reader’s open place.</p><p class="starter-intro lang-zh">不必读完一百零八篇，系列才开始说话。这条路线从自己的方向出发，经过构与闭合，走向他者，最后把位置交还给读者。</p><div class="starter-grid">
+      <a class="starter-card" href="laozi.html"><span class="starter-number">01</span><h3 class="lang-en">Laozi</h3><h3 class="lang-zh">老子</h3><p class="lang-en">Do not turn the last sentence into a prison.</p><p class="lang-zh">不把最后一句话变成牢笼。</p></a>
+      <a class="starter-card" href="../socrates.html"><span class="starter-number">02</span><h3 class="lang-en">Socrates</h3><h3 class="lang-zh">苏格拉底</h3><p class="lang-en">Live by a law that remains your own.</p><p class="lang-zh">活在一条仍然属于自己的法里。</p></a>
+      <a class="starter-card" href="qinshihuang.html"><span class="starter-number">03</span><h3 class="lang-en">Qin Shi Huang</h3><h3 class="lang-zh">秦始皇</h3><p class="lang-en">See construction pushed to the dream of closure.</p><p class="lang-zh">看见构走向彻底闭合的梦想。</p></a>
+      <a class="starter-card" href="kant.html"><span class="starter-number">04</span><h3 class="lang-en">Kant</h3><h3 class="lang-zh">康德</h3><p class="lang-en">Give the Kingdom of Ends its name.</p><p class="lang-zh">目的王国第一次被清楚命名。</p></a>
+      <a class="starter-card" href="comte.html"><span class="starter-number">05</span><h3 class="lang-en">Comte</h3><h3 class="lang-zh">孔德</h3><p class="lang-en">Watch knowledge seal its own cracks.</p><p class="lang-zh">看知识怎样把自己的裂缝封死。</p></a>
+      <a class="starter-card" href="hypatia.html"><span class="starter-number">06</span><h3 class="lang-en">Hypatia</h3><h3 class="lang-zh">希帕蒂娅</h3><p class="lang-en">See what happens when a world leaves no room.</p><p class="lang-zh">看一个世界不为他者留位时发生什么。</p></a>
+      <a class="starter-card" href="levinas.html"><span class="starter-number">07</span><h3 class="lang-en">Levinas</h3><h3 class="lang-zh">列维纳斯</h3><p class="lang-en">Let the face interrupt the system.</p><p class="lang-zh">让一张面容打断整个系统。</p></a>
+      <a class="starter-card" href="king.html"><span class="starter-number">08</span><h3 class="lang-en">Stephen King</h3><h3 class="lang-zh">斯蒂芬·金</h3><p class="lang-en">Return the 108th seat to the living reader.</p><p class="lang-zh">把第 108 个位置交还给活着的人。</p></a>
+    </div></div></section>
+    <section class="great-section" id="all-lives"><div class="great-inner"><p class="great-section-kicker">The complete work</p><h2 class="lang-en">Read the story—or enter through a name.</h2><h2 class="lang-zh">顺着故事读，也可以从一个名字进入。</h2><div class="movement-map" aria-label="Seven movements">
+        <a href="#becoming" data-open-movement="becoming"><span class="movement-map-number">01</span><span class="movement-map-title lang-zh">成为自己</span><span class="movement-map-title lang-en">Becoming a Self</span><span class="movement-map-count">9</span></a>
+        <a href="#making" data-open-movement="making"><span class="movement-map-number">02</span><span class="movement-map-title lang-zh">构成一个世界</span><span class="movement-map-title lang-en">Making a World</span><span class="movement-map-count">14</span></a>
+        <a href="#pushes-back" data-open-movement="pushes-back"><span class="movement-map-number">03</span><span class="movement-map-title lang-zh">当世界反过来塑造人</span><span class="movement-map-title lang-en">When the World Pushes Back</span><span class="movement-map-count">18</span></a>
+        <a href="#truth-lines" data-open-movement="truth-lines"><span class="movement-map-number">04</span><span class="movement-map-title lang-zh">真理的边界画在哪里</span><span class="movement-map-title lang-en">Drawing the Lines of Truth</span><span class="movement-map-count">19</span></a>
+        <a href="#outlives" data-open-movement="outlives"><span class="movement-map-number">05</span><span class="movement-map-title lang-zh">生命之后留下的工作</span><span class="movement-map-title lang-en">Work That Outlives a Life</span><span class="movement-map-count">18</span></a>
+        <a href="#knowing" data-open-movement="knowing"><span class="movement-map-number">06</span><span class="movement-map-title lang-zh">我们怎样知道</span><span class="movement-map-title lang-en">How We Know</span><span class="movement-map-count">18</span></a>
+        <a href="#other" data-open-movement="other"><span class="movement-map-number">07</span><span class="movement-map-title lang-zh">他者与空位</span><span class="movement-map-title lang-en">The Other and the Empty Seat</span><span class="movement-map-count">12</span></a>
+    </div><div class="great-tools"><input class="great-search" type="search" data-great-search placeholder="Search a person or title…" aria-label="Search Great Lives"><div class="great-tool-actions"><button class="great-tool" type="button" data-expand-all><span class="lang-en">Expand all</span><span class="lang-zh">全部展开</span></button><button class="great-tool" type="button" data-collapse-all><span class="lang-en">Collapse</span><span class="lang-zh">收起</span></button></div><div class="great-search-status" data-great-status aria-live="polite"></div></div>
+    <!-- Canonical editorial order: these 108 positions and URLs are the source of truth for future navigation and language editions. -->
+      <details class="movement" id="becoming" data-movement open>
+        <summary>
+          <span class="movement-index">01</span>
+          <span class="movement-heading"><span class="movement-title lang-zh">成为自己</span><span class="movement-title lang-en">Becoming a Self</span><span class="movement-desc lang-zh">从老子到耶稣：当继承来的答案不再足够，一个人怎样辨认自己的方向，又怎样不把它变成强加给所有人的答案。</span><span class="movement-desc lang-en">From Laozi to Jesus: when inherited answers are no longer enough, how does a person find a direction of their own without making it everyone else’s law?</span></span>
+          <span class="movement-count">9<span class="lang-en"> lives</span><span class="lang-zh"> 篇</span></span>
+        </summary>
+        <div class="great-life-grid">
+          <a href="laozi.html" class="great-life-card" data-life-card>
+            <span class="life-number">001</span>
+            <span class="life-title lang-zh">老子，说完就走</span>
+            <span class="life-title lang-en">Laozi, He Said It and Left</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="../confucius.html" class="great-life-card" data-life-card>
+            <span class="life-number">002</span>
+            <span class="life-title lang-zh">孔子，述而不作</span>
+            <span class="life-title lang-en">Confucius, Transmitting Without Creating</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="../socrates.html" class="great-life-card" data-life-card>
+            <span class="life-number">003</span>
+            <span class="life-title lang-zh">苏格拉底，空地上的人</span>
+            <span class="life-title lang-en">Socrates, the Man on the Clearing</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="../wangyangming.html" class="great-life-card" data-life-card>
+            <span class="life-number">004</span>
+            <span class="life-title lang-zh">王阳明，此心光明</span>
+            <span class="life-title lang-en">Wang Yangming, This Mind Is Luminous</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="kant.html" class="great-life-card" data-life-card>
+            <span class="life-number">005</span>
+            <span class="life-title lang-zh">康德，完成康德</span>
+            <span class="life-title lang-en">Completing Kant</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="../nietzsche.html" class="great-life-card" data-life-card>
+            <span class="life-number">006</span>
+            <span class="life-title lang-zh">真空中的自我涵育</span>
+            <span class="life-title lang-en">Self-Cultivation in a Vacuum</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="zhuangzi.html" class="great-life-card" data-life-card>
+            <span class="life-number">007</span>
+            <span class="life-title lang-zh">梦庄子</span>
+            <span class="life-title lang-en">Dreaming Zhuangzi</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="buddha.html" class="great-life-card" data-life-card>
+            <span class="life-number">008</span>
+            <span class="life-title lang-zh">释迦牟尼，过河拆桥</span>
+            <span class="life-title lang-en">Shakyamuni, Burning the Bridge Behind You</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="jesus.html" class="great-life-card" data-life-card>
+            <span class="life-number">009</span>
+            <span class="life-title lang-zh">耶稣，钉在桥上的人</span>
+            <span class="life-title lang-en">Jesus, Nailed to the Bridge</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </details>
 
-    <a href="../../library.html" class="back-link lang-zh">← 书架</a>
-    <a href="../../library.html" class="back-link lang-en">← Library</a>
+      <details class="movement" id="making" data-movement>
+        <summary>
+          <span class="movement-index">02</span>
+          <span class="movement-heading"><span class="movement-title lang-zh">构成一个世界</span><span class="movement-title lang-en">Making a World</span><span class="movement-desc lang-zh">定理、帝国、科学、音乐与诗歌：人留下的世界往往比自己活得更久，也会暴露建造者未曾看见的裂缝。</span><span class="movement-desc lang-en">Theorems, empires, sciences, music, and poetry: what people build often outlives them—and reveals cracks its makers could not see.</span></span>
+          <span class="movement-count">14<span class="lang-en"> lives</span><span class="lang-zh"> 篇</span></span>
+        </summary>
+        <div class="great-life-grid">
+          <a href="godel.html" class="great-life-card" data-life-card>
+            <span class="life-number">010</span>
+            <span class="life-title lang-zh">哥德尔，构不可闭合</span>
+            <span class="life-title lang-en">Gödel, No System Can Close</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="einstein.html" class="great-life-card" data-life-card>
+            <span class="life-number">011</span>
+            <span class="life-title lang-zh">爱因斯坦，上帝不掷骰子</span>
+            <span class="life-title lang-en">Einstein, God Does Not Play Dice</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="dufu.html" class="great-life-card" data-life-card>
+            <span class="life-number">012</span>
+            <span class="life-title lang-zh">杜甫，被凿成诗的人</span>
+            <span class="life-title lang-en">Du Fu, Carved into Poetry</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="qinshihuang.html" class="great-life-card" data-life-card>
+            <span class="life-number">013</span>
+            <span class="life-title lang-zh">秦始皇，构的极限</span>
+            <span class="life-title lang-en">Qin Shi Huang, the Limit of Construction</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="washington.html" class="great-life-card" data-life-card>
+            <span class="life-number">014</span>
+            <span class="life-title lang-zh">华盛顿，不穿龙袍的人</span>
+            <span class="life-title lang-en">Washington, the Man Who Would Not Wear the Crown</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="alexander.html" class="great-life-card" data-life-card>
+            <span class="life-number">015</span>
+            <span class="life-title lang-zh">亚历山大，四代人的碎片</span>
+            <span class="life-title lang-en">Alexander, Four Generations of Fragments</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="darwin.html" class="great-life-card" data-life-card>
+            <span class="life-number">016</span>
+            <span class="life-title lang-zh">达尔文，生命自己在凿</span>
+            <span class="life-title lang-en">Darwin, Life Carves Itself</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="newton.html" class="great-life-card" data-life-card>
+            <span class="life-number">017</span>
+            <span class="life-title lang-zh">牛顿，一个人构了一个宇宙</span>
+            <span class="life-title lang-en">Newton, One Man Constructed an Entire Universe</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="bach.html" class="great-life-card" data-life-card>
+            <span class="life-number">018</span>
+            <span class="life-title lang-zh">巴赫，用音符构了一个宇宙</span>
+            <span class="life-title lang-en">Bach, a Universe Built in Sound</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="beethoven.html" class="great-life-card" data-life-card>
+            <span class="life-number">019</span>
+            <span class="life-title lang-zh">贝多芬，聋了还在写</span>
+            <span class="life-title lang-en">Beethoven, Deaf and Still Writing</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="simaqian.html" class="great-life-card" data-life-card>
+            <span class="life-number">020</span>
+            <span class="life-title lang-zh">司马迁，活着比死难</span>
+            <span class="life-title lang-en">Sima Qian, Living Is Harder Than Dying</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="libai.html" class="great-life-card" data-life-card>
+            <span class="life-number">021</span>
+            <span class="life-title lang-zh">李白，从来没有落过地</span>
+            <span class="life-title lang-en">Li Bai, He Never Touched the Ground</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="rumi.html" class="great-life-card" data-life-card>
+            <span class="life-number">022</span>
+            <span class="life-title lang-zh">鲁米，被凿成歌的人</span>
+            <span class="life-title lang-en">Rumi, Carved into Song</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="davinci.html" class="great-life-card" data-life-card>
+            <span class="life-number">023</span>
+            <span class="life-title lang-zh">达芬奇，什么都开始了，什么都没有完成</span>
+            <span class="life-title lang-en">Da Vinci, Everything Begun, Nothing Finished</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </details>
 
-    <div class="series-label lang-zh">Non Dubito · 系列</div>
-    <div class="series-label lang-en">Non Dubito · Series</div>
-    <h1 class="series-title lang-zh">名人系列</h1>
-    <h1 class="series-title lang-en">Great Lives</h1>
-    <div class="series-title-en lang-zh">Great Lives</div>
-    <div class="series-title-en lang-en">名人系列</div>
+      <details class="movement" id="pushes-back" data-movement>
+        <summary>
+          <span class="movement-index">03</span>
+          <span class="movement-heading"><span class="movement-title lang-zh">当世界反过来塑造人</span><span class="movement-title lang-en">When the World Pushes Back</span><span class="movement-desc lang-zh">无意识、制度、权力、信仰与语言进入人的内部。有人被它们吞没，有人在缝隙里保住了一个不能被取代的位置。</span><span class="movement-desc lang-en">The unconscious, institutions, power, faith, and language enter the person. Some are consumed; others preserve a place that cannot be replaced.</span></span>
+          <span class="movement-count">18<span class="lang-en"> lives</span><span class="lang-zh"> 篇</span></span>
+        </summary>
+        <div class="great-life-grid">
+          <a href="freud.html" class="great-life-card" data-life-card>
+            <span class="life-number">024</span>
+            <span class="life-title lang-zh">弗洛伊德，向内凿到暗</span>
+            <span class="life-title lang-en">Freud, Carving Inward to the Dark</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="lacan.html" class="great-life-card" data-life-card>
+            <span class="life-number">025</span>
+            <span class="life-title lang-zh">拉康，地下室里有镜子</span>
+            <span class="life-title lang-en">Lacan, There Is a Mirror in the Basement</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="dostoevsky.html" class="great-life-card" data-life-card>
+            <span class="life-number">026</span>
+            <span class="life-title lang-zh">陀思妥耶夫斯基，比弗洛伊德早了三十年</span>
+            <span class="life-title lang-en">Dostoevsky, Thirty Years Before Freud</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="kafka.html" class="great-life-card" data-life-card>
+            <span class="life-number">027</span>
+            <span class="life-title lang-zh">卡夫卡，早上醒来你已经是虫子了</span>
+            <span class="life-title lang-en">Kafka, You Wake Up and You Are Already a Bug</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="huineng.html" class="great-life-card" data-life-card>
+            <span class="life-number">028</span>
+            <span class="life-title lang-zh">慧能，本来无一物</span>
+            <span class="life-title lang-en">Huineng, Originally There Is Nothing</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="hegel.html" class="great-life-card" data-life-card>
+            <span class="life-number">029</span>
+            <span class="life-title lang-zh">黑格尔，把余项吃掉</span>
+            <span class="life-title lang-en">Hegel, Swallowing the Remainder</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="napoleon.html" class="great-life-card" data-life-card>
+            <span class="life-number">030</span>
+            <span class="life-title lang-zh">拿破仑，世界精神骑在马上</span>
+            <span class="life-title lang-en">Napoleon, the World Spirit on Horseback</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="genghiskhan.html" class="great-life-card" data-life-card>
+            <span class="life-number">031</span>
+            <span class="life-title lang-zh">成吉思汗，纯粹的凿</span>
+            <span class="life-title lang-en">Genghis Khan, Pure Carving</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="curie.html" class="great-life-card" data-life-card>
+            <span class="life-number">032</span>
+            <span class="life-title lang-zh">玛丽·斯克沃多夫斯卡，被自己的发现杀死</span>
+            <span class="life-title lang-en">Maria Skłodowska, Killed by Her Own Discovery</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="michelangelo.html" class="great-life-card" data-life-card>
+            <span class="life-number">033</span>
+            <span class="life-title lang-zh">米开朗基罗，石头里有人</span>
+            <span class="life-title lang-en">Michelangelo, There Is a Person Inside the Stone</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="lincoln.html" class="great-life-card" data-life-card>
+            <span class="life-number">034</span>
+            <span class="life-title lang-zh">林肯，房子裂开了</span>
+            <span class="life-title lang-en">Lincoln, Don&#x27;t Let It Fall</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="galileo.html" class="great-life-card" data-life-card>
+            <span class="life-number">035</span>
+            <span class="life-title lang-zh">伽利略，它还是在转</span>
+            <span class="life-title lang-en">Galileo, And Yet It Moves</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="wittgenstein.html" class="great-life-card" data-life-card>
+            <span class="life-number">036</span>
+            <span class="life-title lang-zh">维特根斯坦，沉默之后</span>
+            <span class="life-title lang-en">Wittgenstein, After the Silence</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="augustine.html" class="great-life-card" data-life-card>
+            <span class="life-number">037</span>
+            <span class="life-title lang-zh">奥古斯丁，你洗不干净</span>
+            <span class="life-title lang-en">Augustine, You Cannot Wash It Clean</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="badashanren.html" class="great-life-card" data-life-card>
+            <span class="life-number">038</span>
+            <span class="life-title lang-zh">八大山人，白眼朝天</span>
+            <span class="life-title lang-en">Bada Shanren, Eyes Rolled Toward the Sky</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="sushi.html" class="great-life-card" data-life-card>
+            <span class="life-number">039</span>
+            <span class="life-title lang-zh">苏轼，谁怕</span>
+            <span class="life-title lang-en">Su Shi, Who&#x27;s Afraid</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="nishida.html" class="great-life-card" data-life-card>
+            <span class="life-number">040</span>
+            <span class="life-title lang-zh">西田几多郎，无の场所</span>
+            <span class="life-title lang-en">Nishida Kitarō, The Place of Nothingness</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="emperor.html" class="great-life-card" data-life-card>
+            <span class="life-number">041</span>
+            <span class="life-title lang-zh">日本天皇制，空的王座</span>
+            <span class="life-title lang-en">The Japanese Emperor System, The Empty Throne</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </details>
 
-    <div class="series-desc lang-zh" style="font-family:var(--cjk),var(--serif);">
-      <p>一百零八位跨越东西方的历史人物——每一位都是一个关于人的目的的具体答案。</p>
-    </div>
-    <div class="series-desc lang-en">
-      <p>One hundred and eight lives across East and West — each one a concrete answer to the question of what a person is for.</p>
-    </div>
+      <details class="movement" id="truth-lines" data-movement>
+        <summary>
+          <span class="movement-index">04</span>
+          <span class="movement-heading"><span class="movement-title lang-zh">真理的边界画在哪里</span><span class="movement-title lang-en">Drawing the Lines of Truth</span><span class="movement-desc lang-zh">从声音成为文字，到理念、因果、意志、计算与存在：每一次划界都让世界清楚一点，也把某些东西留在界外。</span><span class="movement-desc lang-en">From voice becoming text to form, causation, will, computation, and existence: every boundary clarifies the world while leaving something outside.</span></span>
+          <span class="movement-count">19<span class="lang-en"> lives</span><span class="lang-zh"> 篇</span></span>
+        </summary>
+        <div class="great-life-grid">
+          <a href="homer.html" class="great-life-card" data-life-card>
+            <span class="life-number">042</span>
+            <span class="life-title lang-zh">荷马，声音变成文字的那一刻</span>
+            <span class="life-title lang-en">Homer, the Moment Sound Became Text</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="plato.html" class="great-life-card" data-life-card>
+            <span class="life-number">043</span>
+            <span class="life-title lang-zh">柏拉图，那天他不在</span>
+            <span class="life-title lang-en">Plato, He Wasn&#x27;t There That Day</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="hume.html" class="great-life-card" data-life-card>
+            <span class="life-number">044</span>
+            <span class="life-title lang-zh">休谟，醒了</span>
+            <span class="life-title lang-en">Hume, Awake</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="schopenhauer.html" class="great-life-card" data-life-card>
+            <span class="life-number">045</span>
+            <span class="life-title lang-zh">叔本华，底下有东西</span>
+            <span class="life-title lang-en">Schopenhauer, There Is Something Underneath</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="kierkegaard.html" class="great-life-card" data-life-card>
+            <span class="life-number">046</span>
+            <span class="life-title lang-zh">克尔凯郭尔，深夜三点</span>
+            <span class="life-title lang-en">Kierkegaard, Three in the Morning</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="turing.html" class="great-life-card" data-life-card>
+            <span class="life-number">047</span>
+            <span class="life-title lang-zh">图灵，那个苹果</span>
+            <span class="life-title lang-en">Turing, That Apple</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="chekhov.html" class="great-life-card" data-life-card>
+            <span class="life-number">048</span>
+            <span class="life-title lang-zh">契诃夫，到莫斯科去</span>
+            <span class="life-title lang-en">Chekhov, To Moscow</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="cantor.html" class="great-life-card" data-life-card>
+            <span class="life-number">049</span>
+            <span class="life-title lang-zh">康托尔，比无穷更大</span>
+            <span class="life-title lang-en">Cantor, Larger Than Infinity</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="copernicus.html" class="great-life-card" data-life-card>
+            <span class="life-number">050</span>
+            <span class="life-title lang-zh">哥白尼，那天刚好</span>
+            <span class="life-title lang-en">Copernicus, That Day, as It Happened</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="sartre.html" class="great-life-card" data-life-card>
+            <span class="life-number">051</span>
+            <span class="life-title lang-zh">萨特，他人即地狱</span>
+            <span class="life-title lang-en">Sartre, Hell Is Other People</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="beauvoir.html" class="great-life-card" data-life-card>
+            <span class="life-number">052</span>
+            <span class="life-title lang-zh">波伏瓦，第二性</span>
+            <span class="life-title lang-en">Beauvoir, The Second Sex</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="quine.html" class="great-life-card" data-life-card>
+            <span class="life-number">053</span>
+            <span class="life-title lang-zh">蒯因，没有那条线</span>
+            <span class="life-title lang-en">Quine, There Is No Such Line</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="tesla.html" class="great-life-card" data-life-card>
+            <span class="life-number">054</span>
+            <span class="life-title lang-zh">特斯拉，纯粹的余项</span>
+            <span class="life-title lang-en">Tesla, Pure Remainder</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="edison.html" class="great-life-card" data-life-card>
+            <span class="life-number">055</span>
+            <span class="life-title lang-zh">爱迪生，灯亮了</span>
+            <span class="life-title lang-en">Edison, The Light Came On</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="heisenberg.html" class="great-life-card" data-life-card>
+            <span class="life-number">056</span>
+            <span class="life-title lang-zh">海森堡，测不准</span>
+            <span class="life-title lang-en">Heisenberg, Uncertain</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="bohr.html" class="great-life-card" data-life-card>
+            <span class="life-number">057</span>
+            <span class="life-title lang-zh">玻尔，对面也是</span>
+            <span class="life-title lang-en">Bohr, The Other Side Too</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="tolstoy.html" class="great-life-card" data-life-card>
+            <span class="life-number">058</span>
+            <span class="life-title lang-zh">托尔斯泰，药方</span>
+            <span class="life-title lang-en">Tolstoy, The Prescription</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="shakespeare.html" class="great-life-card" data-life-card>
+            <span class="life-number">059</span>
+            <span class="life-title lang-zh">莎士比亚，不在</span>
+            <span class="life-title lang-en">Shakespeare, Not There</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="spinoza.html" class="great-life-card" data-life-card>
+            <span class="life-number">060</span>
+            <span class="life-title lang-zh">斯宾诺莎，从来就没有墙</span>
+            <span class="life-title lang-en">Spinoza, There Was Never a Wall</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </details>
 
-    <div class="series-meta">
-      <span>Han Qin (秦汉) · Non Dubito</span>
-    </div>
+      <details class="movement" id="outlives" data-movement>
+        <summary>
+          <span class="movement-index">05</span>
+          <span class="movement-heading"><span class="movement-title lang-zh">生命之后留下的工作</span><span class="movement-title lang-en">Work That Outlives a Life</span><span class="movement-desc lang-zh">手、光、火、梦、颜色与制度。这里关心的不只是一个人完成了什么，也关心作品离开作者以后怎样继续改变别人。</span><span class="movement-desc lang-en">Hands, light, fire, dreams, color, and institutions. What matters is not only what a person made, but what the work keeps doing after its maker is gone.</span></span>
+          <span class="movement-count">18<span class="lang-en"> lives</span><span class="lang-zh"> 篇</span></span>
+        </summary>
+        <div class="great-life-grid">
+          <a href="aristotle.html" class="great-life-card" data-life-card>
+            <span class="life-number">061</span>
+            <span class="life-title lang-zh">亚里士多德，地板</span>
+            <span class="life-title lang-en">Aristotle, the Floor</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="faraday.html" class="great-life-card" data-life-card>
+            <span class="life-number">062</span>
+            <span class="life-title lang-zh">法拉第，手</span>
+            <span class="life-title lang-en">Faraday, Hands</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="maxwell.html" class="great-life-card" data-life-card>
+            <span class="life-number">063</span>
+            <span class="life-title lang-zh">麦克斯韦，光</span>
+            <span class="life-title lang-en">Maxwell, Light</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="joanofarc.html" class="great-life-card" data-life-card>
+            <span class="life-number">064</span>
+            <span class="life-title lang-zh">贞德，火</span>
+            <span class="life-title lang-en">Joan of Arc, Fire</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="wilde.html" class="great-life-card" data-life-card>
+            <span class="life-number">065</span>
+            <span class="life-title lang-zh">王尔德，那句话</span>
+            <span class="life-title lang-en">Wilde, That Sentence</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="ramanujan.html" class="great-life-card" data-life-card>
+            <span class="life-number">066</span>
+            <span class="life-title lang-zh">拉马努金，梦</span>
+            <span class="life-title lang-en">Ramanujan, Dreams</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="oppenheimer.html" class="great-life-card" data-life-card>
+            <span class="life-number">067</span>
+            <span class="life-title lang-zh">奥本海默，灰</span>
+            <span class="life-title lang-en">Oppenheimer, Ash</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="charlottebronte.html" class="great-life-card" data-life-card>
+            <span class="life-number">068</span>
+            <span class="life-title lang-zh">夏洛蒂·勃朗特，被爱</span>
+            <span class="life-title lang-en">Charlotte Brontë, Being Loved</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="emilybronte.html" class="great-life-card" data-life-card>
+            <span class="life-number">069</span>
+            <span class="life-title lang-zh">艾米莉·勃朗特，风</span>
+            <span class="life-title lang-en">Emily Brontë, Wind</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="boltzmann.html" class="great-life-card" data-life-card>
+            <span class="life-number">070</span>
+            <span class="life-title lang-zh">玻尔兹曼，乱</span>
+            <span class="life-title lang-en">Boltzmann, Disorder</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="vangogh.html" class="great-life-card" data-life-card>
+            <span class="life-number">071</span>
+            <span class="life-title lang-zh">梵高，颜色</span>
+            <span class="life-title lang-en">Van Gogh, Color</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="dickens.html" class="great-life-card" data-life-card>
+            <span class="life-number">072</span>
+            <span class="life-title lang-zh">狄更斯，裂缝</span>
+            <span class="life-title lang-en">Dickens, The Crack</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="churchill.html" class="great-life-card" data-life-card>
+            <span class="life-number">073</span>
+            <span class="life-title lang-zh">丘吉尔，声音</span>
+            <span class="life-title lang-en">Churchill, Voice</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="roosevelt.html" class="great-life-card" data-life-card>
+            <span class="life-number">074</span>
+            <span class="life-title lang-zh">罗斯福，架构</span>
+            <span class="life-title lang-en">Roosevelt, Architecture</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="schrodinger.html" class="great-life-card" data-life-card>
+            <span class="life-number">075</span>
+            <span class="life-title lang-zh">薛定谔，猫</span>
+            <span class="life-title lang-en">Schrödinger, The Cat</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="feynman.html" class="great-life-card" data-life-card>
+            <span class="life-number">076</span>
+            <span class="life-title lang-zh">费曼，鼓</span>
+            <span class="life-title lang-en">Feynman, The Drum</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="hawking.html" class="great-life-card" data-life-card>
+            <span class="life-number">077</span>
+            <span class="life-title lang-zh">霍金，飞</span>
+            <span class="life-title lang-en">Hawking, Flight</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="caoxueqin.html" class="great-life-card" data-life-card>
+            <span class="life-number">078</span>
+            <span class="life-title lang-zh">曹雪芹，情</span>
+            <span class="life-title lang-en">Cao Xueqin, Qing</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </details>
 
-    <div class="chip-wrap">
-        <a href="laozi.html" class="name-chip"><span class="lang-zh">老子，说完就走</span><span class="lang-en">Laozi, He Said It and Left</span></a>
-        <a href="../confucius.html" class="name-chip"><span class="lang-zh">孔子，述而不作</span><span class="lang-en">Confucius, Transmitting Without Creating</span></a>
-        <a href="../socrates.html" class="name-chip"><span class="lang-zh">苏格拉底，空地上的人</span><span class="lang-en">Socrates, the Man on the Clearing</span></a>
-        <a href="../wangyangming.html" class="name-chip"><span class="lang-zh">王阳明，此心光明</span><span class="lang-en">Wang Yangming, This Mind Is Luminous</span></a>
-        <a href="kant.html" class="name-chip"><span class="lang-zh">康德，完成康德</span><span class="lang-en">Completing Kant</span></a>
-        <a href="../nietzsche.html" class="name-chip"><span class="lang-zh">真空中的自我涵育</span><span class="lang-en">Self-Cultivation in a Vacuum</span></a>
-        <a href="zhuangzi.html" class="name-chip"><span class="lang-zh">梦庄子</span><span class="lang-en">Dreaming Zhuangzi</span></a>
-        <a href="buddha.html" class="name-chip"><span class="lang-zh">释迦牟尼，过河拆桥</span><span class="lang-en">Shakyamuni, Burning the Bridge Behind You</span></a>
-        <a href="jesus.html" class="name-chip"><span class="lang-zh">耶稣，钉在桥上的人</span><span class="lang-en">Jesus, Nailed to the Bridge</span></a>
-        <a href="godel.html" class="name-chip"><span class="lang-zh">哥德尔，构不可闭合</span><span class="lang-en">Gödel, No System Can Close</span></a>
-        <a href="einstein.html" class="name-chip"><span class="lang-zh">爱因斯坦，上帝不掷骰子</span><span class="lang-en">Einstein, God Does Not Play Dice</span></a>
-        <a href="dufu.html" class="name-chip"><span class="lang-zh">杜甫，被凿成诗的人</span><span class="lang-en">Du Fu, Carved into Poetry</span></a>
-        <a href="qinshihuang.html" class="name-chip"><span class="lang-zh">秦始皇，构的极限</span><span class="lang-en">Qin Shi Huang, the Limit of Construction</span></a>
-        <a href="washington.html" class="name-chip"><span class="lang-zh">华盛顿，不穿龙袍的人</span><span class="lang-en">Washington, the Man Who Would Not Wear the Crown</span></a>
-        <a href="alexander.html" class="name-chip"><span class="lang-zh">亚历山大，四代人的碎片</span><span class="lang-en">Alexander, Four Generations of Fragments</span></a>
-        <a href="darwin.html" class="name-chip"><span class="lang-zh">达尔文，生命自己在凿</span><span class="lang-en">Darwin, Life Carves Itself</span></a>
-        <a href="newton.html" class="name-chip"><span class="lang-zh">牛顿，一个人构了一个宇宙</span><span class="lang-en">Newton, One Man Constructed an Entire Universe</span></a>
-        <a href="bach.html" class="name-chip"><span class="lang-zh">巴赫，用音符构了一个宇宙</span><span class="lang-en">Bach, a Universe Built in Sound</span></a>
-        <a href="beethoven.html" class="name-chip"><span class="lang-zh">贝多芬，聋了还在写</span><span class="lang-en">Beethoven, Deaf and Still Writing</span></a>
-        <a href="simaqian.html" class="name-chip"><span class="lang-zh">司马迁，活着比死难</span><span class="lang-en">Sima Qian, Living Is Harder Than Dying</span></a>
-        <a href="libai.html" class="name-chip"><span class="lang-zh">李白，从来没有落过地</span><span class="lang-en">Li Bai, He Never Touched the Ground</span></a>
-        <a href="rumi.html" class="name-chip"><span class="lang-zh">鲁米，被凿成歌的人</span><span class="lang-en">Rumi, Carved into Song</span></a>
-        <a href="davinci.html" class="name-chip"><span class="lang-zh">达芬奇，什么都开始了，什么都没有完成</span><span class="lang-en">Da Vinci, Everything Begun, Nothing Finished</span></a>
-        <a href="freud.html" class="name-chip"><span class="lang-zh">弗洛伊德，向内凿到暗</span><span class="lang-en">Freud, Carving Inward to the Dark</span></a>
-        <a href="lacan.html" class="name-chip"><span class="lang-zh">拉康，地下室里有镜子</span><span class="lang-en">Lacan, There Is a Mirror in the Basement</span></a>
-        <a href="dostoevsky.html" class="name-chip"><span class="lang-zh">陀思妥耶夫斯基，比弗洛伊德早了三十年</span><span class="lang-en">Dostoevsky, Thirty Years Before Freud</span></a>
-        <a href="kafka.html" class="name-chip"><span class="lang-zh">卡夫卡，早上醒来你已经是虫子了</span><span class="lang-en">Kafka, You Wake Up and You Are Already a Bug</span></a>
-        <a href="huineng.html" class="name-chip"><span class="lang-zh">慧能，本来无一物</span><span class="lang-en">Huineng, Originally There Is Nothing</span></a>
-        <a href="hegel.html" class="name-chip"><span class="lang-zh">黑格尔，把余项吃掉</span><span class="lang-en">Hegel, Swallowing the Remainder</span></a>
-        <a href="napoleon.html" class="name-chip"><span class="lang-zh">拿破仑，世界精神骑在马上</span><span class="lang-en">Napoleon, the World Spirit on Horseback</span></a>
-        <a href="genghiskhan.html" class="name-chip"><span class="lang-zh">成吉思汗，纯粹的凿</span><span class="lang-en">Genghis Khan, Pure Carving</span></a>
-        <a href="curie.html" class="name-chip"><span class="lang-zh">玛丽·斯克沃多夫斯卡，被自己的发现杀死</span><span class="lang-en">Maria Skłodowska, Killed by Her Own Discovery</span></a>
-        <a href="michelangelo.html" class="name-chip"><span class="lang-zh">米开朗基罗，石头里有人</span><span class="lang-en">Michelangelo, There Is a Person Inside the Stone</span></a>
-        <a href="lincoln.html" class="name-chip"><span class="lang-zh">林肯，房子裂开了</span><span class="lang-en">Lincoln, Don&#x27;t Let It Fall</span></a>
-        <a href="galileo.html" class="name-chip"><span class="lang-zh">伽利略，它还是在转</span><span class="lang-en">Galileo, And Yet It Moves</span></a>
-        <a href="wittgenstein.html" class="name-chip"><span class="lang-zh">维特根斯坦，沉默之后</span><span class="lang-en">Wittgenstein, After the Silence</span></a>
-        <a href="augustine.html" class="name-chip"><span class="lang-zh">奥古斯丁，你洗不干净</span><span class="lang-en">Augustine, You Cannot Wash It Clean</span></a>
-        <a href="badashanren.html" class="name-chip"><span class="lang-zh">八大山人，白眼朝天</span><span class="lang-en">Bada Shanren, Eyes Rolled Toward the Sky</span></a>
-        <a href="sushi.html" class="name-chip"><span class="lang-zh">苏轼，谁怕</span><span class="lang-en">Su Shi, Who&#x27;s Afraid</span></a>
-        <a href="nishida.html" class="name-chip"><span class="lang-zh">西田几多郎，无の场所</span><span class="lang-en">Nishida Kitarō, The Place of Nothingness</span></a>
-        <a href="emperor.html" class="name-chip"><span class="lang-zh">日本天皇制，空的王座</span><span class="lang-en">The Japanese Emperor System, The Empty Throne</span></a>
-        <a href="homer.html" class="name-chip"><span class="lang-zh">荷马，声音变成文字的那一刻</span><span class="lang-en">Homer, the Moment Sound Became Text</span></a>
-        <a href="plato.html" class="name-chip"><span class="lang-zh">柏拉图，那天他不在</span><span class="lang-en">Plato, He Wasn&#x27;t There That Day</span></a>
-        <a href="hume.html" class="name-chip"><span class="lang-zh">休谟，醒了</span><span class="lang-en">Hume, Awake</span></a>
-        <a href="schopenhauer.html" class="name-chip"><span class="lang-zh">叔本华，底下有东西</span><span class="lang-en">Schopenhauer, There Is Something Underneath</span></a>
-        <a href="kierkegaard.html" class="name-chip"><span class="lang-zh">克尔凯郭尔，深夜三点</span><span class="lang-en">Kierkegaard, Three in the Morning</span></a>
-        <a href="turing.html" class="name-chip"><span class="lang-zh">图灵，那个苹果</span><span class="lang-en">Turing, That Apple</span></a>
-        <a href="chekhov.html" class="name-chip"><span class="lang-zh">契诃夫，到莫斯科去</span><span class="lang-en">Chekhov, To Moscow</span></a>
-        <a href="cantor.html" class="name-chip"><span class="lang-zh">康托尔，比无穷更大</span><span class="lang-en">Cantor, Larger Than Infinity</span></a>
-        <a href="copernicus.html" class="name-chip"><span class="lang-zh">哥白尼，那天刚好</span><span class="lang-en">Copernicus, That Day, as It Happened</span></a>
-        <a href="sartre.html" class="name-chip"><span class="lang-zh">萨特，他人即地狱</span><span class="lang-en">Sartre, Hell Is Other People</span></a>
-        <a href="beauvoir.html" class="name-chip"><span class="lang-zh">波伏瓦，第二性</span><span class="lang-en">Beauvoir, The Second Sex</span></a>
-        <a href="quine.html" class="name-chip"><span class="lang-zh">蒯因，没有那条线</span><span class="lang-en">Quine, There Is No Such Line</span></a>
-        <a href="tesla.html" class="name-chip"><span class="lang-zh">特斯拉，纯粹的余项</span><span class="lang-en">Tesla, Pure Remainder</span></a>
-        <a href="edison.html" class="name-chip"><span class="lang-zh">爱迪生，灯亮了</span><span class="lang-en">Edison, The Light Came On</span></a>
-        <a href="heisenberg.html" class="name-chip"><span class="lang-zh">海森堡，测不准</span><span class="lang-en">Heisenberg, Uncertain</span></a>
-        <a href="bohr.html" class="name-chip"><span class="lang-zh">玻尔，对面也是</span><span class="lang-en">Bohr, The Other Side Too</span></a>
-        <a href="tolstoy.html" class="name-chip"><span class="lang-zh">托尔斯泰，药方</span><span class="lang-en">Tolstoy, The Prescription</span></a>
-        <a href="shakespeare.html" class="name-chip"><span class="lang-zh">莎士比亚，不在</span><span class="lang-en">Shakespeare, Not There</span></a>
-        <a href="spinoza.html" class="name-chip"><span class="lang-zh">斯宾诺莎，从来就没有墙</span><span class="lang-en">Spinoza, There Was Never a Wall</span></a>
-        <a href="aristotle.html" class="name-chip"><span class="lang-zh">亚里士多德，地板</span><span class="lang-en">Aristotle, the Floor</span></a>
-        <a href="faraday.html" class="name-chip"><span class="lang-zh">法拉第，手</span><span class="lang-en">Faraday, Hands</span></a>
-        <a href="maxwell.html" class="name-chip"><span class="lang-zh">麦克斯韦，光</span><span class="lang-en">Maxwell, Light</span></a>
-        <a href="joanofarc.html" class="name-chip"><span class="lang-zh">贞德，火</span><span class="lang-en">Joan of Arc, Fire</span></a>
-        <a href="wilde.html" class="name-chip"><span class="lang-zh">王尔德，那句话</span><span class="lang-en">Wilde, That Sentence</span></a>
-        <a href="ramanujan.html" class="name-chip"><span class="lang-zh">拉马努金，梦</span><span class="lang-en">Ramanujan, Dreams</span></a>
-        <a href="oppenheimer.html" class="name-chip"><span class="lang-zh">奥本海默，灰</span><span class="lang-en">Oppenheimer, Ash</span></a>
-        <a href="charlottebronte.html" class="name-chip"><span class="lang-zh">夏洛蒂·勃朗特，被爱</span><span class="lang-en">Charlotte Brontë, Being Loved</span></a>
-        <a href="emilybronte.html" class="name-chip"><span class="lang-zh">艾米莉·勃朗特，风</span><span class="lang-en">Emily Brontë, Wind</span></a>
-        <a href="boltzmann.html" class="name-chip"><span class="lang-zh">玻尔兹曼，乱</span><span class="lang-en">Boltzmann, Disorder</span></a>
-        <a href="vangogh.html" class="name-chip"><span class="lang-zh">梵高，颜色</span><span class="lang-en">Van Gogh, Color</span></a>
-        <a href="dickens.html" class="name-chip"><span class="lang-zh">狄更斯，裂缝</span><span class="lang-en">Dickens, The Crack</span></a>
-        <a href="churchill.html" class="name-chip"><span class="lang-zh">丘吉尔，声音</span><span class="lang-en">Churchill, Voice</span></a>
-        <a href="roosevelt.html" class="name-chip"><span class="lang-zh">罗斯福，架构</span><span class="lang-en">Roosevelt, Architecture</span></a>
-        <a href="schrodinger.html" class="name-chip"><span class="lang-zh">薛定谔，猫</span><span class="lang-en">Schrödinger, The Cat</span></a>
-        <a href="feynman.html" class="name-chip"><span class="lang-zh">费曼，鼓</span><span class="lang-en">Feynman, The Drum</span></a>
-        <a href="hawking.html" class="name-chip"><span class="lang-zh">霍金，飞</span><span class="lang-en">Hawking, Flight</span></a>
-        <a href="caoxueqin.html" class="name-chip"><span class="lang-zh">曹雪芹，情</span><span class="lang-en">Cao Xueqin, Qing</span></a>
-        <a href="comte.html" class="name-chip"><span class="lang-zh">孔德：把缝隙灌满水泥的人</span><span class="lang-en">Comte: The Man Who Grouted the Cracks</span></a>
-        <a href="popper.html" class="name-chip"><span class="lang-zh">波普尔：把方向翻过来的人</span><span class="lang-en">Popper: The Man Who Reversed the Direction</span></a>
-        <a href="dirac.html" class="name-chip"><span class="lang-zh">狄拉克：方程比观察先到</span><span class="lang-en">Dirac: The Equation Arrived First</span></a>
-        <a href="quyuan.html" class="name-chip"><span class="lang-zh">屈原：美是一种认知</span><span class="lang-en">Qu Yuan: Beauty Is a Form of Cognition</span></a>
-        <a href="fichte.html" class="name-chip"><span class="lang-zh">费希特：认知者站在哪里</span><span class="lang-en">Fichte: Where Is the Knower Standing?</span></a>
-        <a href="mcclintock.html" class="name-chip"><span class="lang-zh">麦克林托克：她先感觉到了</span><span class="lang-en">McClintock: She Felt It First</span></a>
-        <a href="weil.html" class="name-chip"><span class="lang-zh">薇依：注意力就是全部</span><span class="lang-en">Weil: Attention Is Everything</span></a>
-        <a href="thatcher.html" class="name-chip"><span class="lang-zh">撒切尔：想清楚了就不再想</span><span class="lang-en">Thatcher: She Thought It Through, Then Stopped Thinking</span></a>
-        <a href="nagarjuna.html" class="name-chip"><span class="lang-zh">龙树：连地板都是空的</span><span class="lang-en">Nāgārjuna: Even the Floor Is Empty</span></a>
-        <a href="woolf.html" class="name-chip"><span class="lang-zh">伍尔夫：意识有时间的形状</span><span class="lang-en">Woolf: Consciousness Has the Shape of Time</span></a>
-        <a href="yukawa.html" class="name-chip"><span class="lang-zh">汤川秀树：东方从来没封过这道缝</span><span class="lang-en">Yukawa: The East Never Sealed This Crack</span></a>
-        <a href="arendt.html" class="name-chip"><span class="lang-zh">阿伦特：不思考是恶</span><span class="lang-en">Arendt: Not-Thinking Is Evil</span></a>
-        <a href="murdoch.html" class="name-chip"><span class="lang-zh">默多克：看见就是道德</span><span class="lang-en">Murdoch: Seeing Is Morality</span></a>
-        <a href="ibnkhaldun.html" class="name-chip"><span class="lang-zh">伊本·赫勒敦：群体怎么认知自己</span><span class="lang-en">Ibn Khaldun: How Does a Group Know Itself?</span></a>
-        <a href="vygotsky.html" class="name-chip"><span class="lang-zh">维果茨基：认知被别人拉上去</span><span class="lang-en">Vygotsky: Cognition Is Pulled Upward by Others</span></a>
-        <a href="strawson.html" class="name-chip"><span class="lang-zh">斯特劳森：重新铺地板</span><span class="lang-en">Strawson: Re-Laying the Floor</span></a>
-        <a href="merleauponty.html" class="name-chip"><span class="lang-zh">梅洛-庞蒂：身体先于概念知道</span><span class="lang-en">Merleau-Ponty: The Body Knows Before Concepts Do</span></a>
-        <a href="polanyi.html" class="name-chip"><span class="lang-zh">波兰尼：你来</span><span class="lang-en">Polanyi: You Come</span></a>
-        <a href="hypatia.html" class="name-chip"><span class="lang-zh">希帕蒂娅：一个圆锥被切开</span><span class="lang-en">Hypatia: A Cone, Cut</span></a>
-        <a href="aquinas.html" class="name-chip"><span class="lang-zh">阿奎那：稻草</span><span class="lang-en">Aquinas: Straw</span></a>
-        <a href="bergson.html" class="name-chip"><span class="lang-zh">柏格森：绵延</span><span class="lang-en">Bergson: Duration</span></a>
-        <a href="levinas.html" class="name-chip"><span class="lang-zh">列维纳斯：面容</span><span class="lang-en">Levinas: The Face</span></a>
-        <a href="buber.html" class="name-chip"><span class="lang-zh">布伯：我与你</span><span class="lang-en">Buber: I and Thou</span></a>
-        <a href="caozhi.html" class="name-chip"><span class="lang-zh">曹植：不能拥有</span><span class="lang-en">Cao Zhi: What Cannot Be Held</span></a>
-        <a href="girard.html" class="name-chip"><span class="lang-zh">吉拉尔：欲望从别处来</span><span class="lang-en">Girard: Desire Comes from Elsewhere</span></a>
-        <a href="schelling.html" class="name-chip"><span class="lang-zh">谢林：自我中的他者</span><span class="lang-en">Schelling: The Other Within the Self</span></a>
-        <a href="eckhart.html" class="name-chip"><span class="lang-zh">埃克哈特：不能被命名</span><span class="lang-en">Eckhart: That Which Cannot Be Named</span></a>
-        <a href="rilke.html" class="name-chip"><span class="lang-zh">里尔克：美只是恐怖的开始</span><span class="lang-en">Rilke: Beauty Is Only the Beginning of Terror</span></a>
-        <a href="nobel.html" class="name-chip"><span class="lang-zh">诺贝尔：未来的他者</span><span class="lang-en">Nobel: The Other in the Future</span></a>
-        <a href="king.html" class="name-chip"><span class="lang-zh">斯蒂芬·金：第 108 个位置</span><span class="lang-en">King: The 108th Seat</span></a>
-    </div>
-    <div class="source-note">
-      <span class="lang-zh">全部系列见 <a href="../../library.html">书架 ↗</a>　·　学术原文：<a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
-      <span class="lang-en">All series on the <a href="../../library.html">Library ↗</a> · Academic originals: <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net ↗</a></span>
-    </div>
+      <details class="movement" id="knowing" data-movement>
+        <summary>
+          <span class="movement-index">06</span>
+          <span class="movement-heading"><span class="movement-title lang-zh">我们怎样知道</span><span class="movement-title lang-en">How We Know</span><span class="movement-desc lang-zh">从“只有说得出的才算知识”，走到“说不出来的是知识的地基”：认知不是封闭的判决，而是不断重开的循环。</span><span class="movement-desc lang-en">From “only the articulable counts as knowledge” to “the inarticulate is knowledge’s ground”: knowing becomes not a closed verdict but a cycle that reopens.</span></span>
+          <span class="movement-count">18<span class="lang-en"> lives</span><span class="lang-zh"> 篇</span></span>
+        </summary>
+        <div class="great-life-grid">
+          <a href="comte.html" class="great-life-card" data-life-card>
+            <span class="life-number">079</span>
+            <span class="life-title lang-zh">孔德：把缝隙灌满水泥的人</span>
+            <span class="life-title lang-en">Comte: The Man Who Grouted the Cracks</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="popper.html" class="great-life-card" data-life-card>
+            <span class="life-number">080</span>
+            <span class="life-title lang-zh">波普尔：把方向翻过来的人</span>
+            <span class="life-title lang-en">Popper: The Man Who Reversed the Direction</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="dirac.html" class="great-life-card" data-life-card>
+            <span class="life-number">081</span>
+            <span class="life-title lang-zh">狄拉克：方程比观察先到</span>
+            <span class="life-title lang-en">Dirac: The Equation Arrived First</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="quyuan.html" class="great-life-card" data-life-card>
+            <span class="life-number">082</span>
+            <span class="life-title lang-zh">屈原：美是一种认知</span>
+            <span class="life-title lang-en">Qu Yuan: Beauty Is a Form of Cognition</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="fichte.html" class="great-life-card" data-life-card>
+            <span class="life-number">083</span>
+            <span class="life-title lang-zh">费希特：认知者站在哪里</span>
+            <span class="life-title lang-en">Fichte: Where Is the Knower Standing?</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="mcclintock.html" class="great-life-card" data-life-card>
+            <span class="life-number">084</span>
+            <span class="life-title lang-zh">麦克林托克：她先感觉到了</span>
+            <span class="life-title lang-en">McClintock: She Felt It First</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="weil.html" class="great-life-card" data-life-card>
+            <span class="life-number">085</span>
+            <span class="life-title lang-zh">薇依：注意力就是全部</span>
+            <span class="life-title lang-en">Weil: Attention Is Everything</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="thatcher.html" class="great-life-card" data-life-card>
+            <span class="life-number">086</span>
+            <span class="life-title lang-zh">撒切尔：想清楚了就不再想</span>
+            <span class="life-title lang-en">Thatcher: She Thought It Through, Then Stopped Thinking</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="nagarjuna.html" class="great-life-card" data-life-card>
+            <span class="life-number">087</span>
+            <span class="life-title lang-zh">龙树：连地板都是空的</span>
+            <span class="life-title lang-en">Nāgārjuna: Even the Floor Is Empty</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="woolf.html" class="great-life-card" data-life-card>
+            <span class="life-number">088</span>
+            <span class="life-title lang-zh">伍尔夫：意识有时间的形状</span>
+            <span class="life-title lang-en">Woolf: Consciousness Has the Shape of Time</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="yukawa.html" class="great-life-card" data-life-card>
+            <span class="life-number">089</span>
+            <span class="life-title lang-zh">汤川秀树：东方从来没封过这道缝</span>
+            <span class="life-title lang-en">Yukawa: The East Never Sealed This Crack</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="arendt.html" class="great-life-card" data-life-card>
+            <span class="life-number">090</span>
+            <span class="life-title lang-zh">阿伦特：不思考是恶</span>
+            <span class="life-title lang-en">Arendt: Not-Thinking Is Evil</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="murdoch.html" class="great-life-card" data-life-card>
+            <span class="life-number">091</span>
+            <span class="life-title lang-zh">默多克：看见就是道德</span>
+            <span class="life-title lang-en">Murdoch: Seeing Is Morality</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="ibnkhaldun.html" class="great-life-card" data-life-card>
+            <span class="life-number">092</span>
+            <span class="life-title lang-zh">伊本·赫勒敦：群体怎么认知自己</span>
+            <span class="life-title lang-en">Ibn Khaldun: How Does a Group Know Itself?</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="vygotsky.html" class="great-life-card" data-life-card>
+            <span class="life-number">093</span>
+            <span class="life-title lang-zh">维果茨基：认知被别人拉上去</span>
+            <span class="life-title lang-en">Vygotsky: Cognition Is Pulled Upward by Others</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="strawson.html" class="great-life-card" data-life-card>
+            <span class="life-number">094</span>
+            <span class="life-title lang-zh">斯特劳森：重新铺地板</span>
+            <span class="life-title lang-en">Strawson: Re-Laying the Floor</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="merleauponty.html" class="great-life-card" data-life-card>
+            <span class="life-number">095</span>
+            <span class="life-title lang-zh">梅洛-庞蒂：身体先于概念知道</span>
+            <span class="life-title lang-en">Merleau-Ponty: The Body Knows Before Concepts Do</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="polanyi.html" class="great-life-card" data-life-card>
+            <span class="life-number">096</span>
+            <span class="life-title lang-zh">波兰尼：你来</span>
+            <span class="life-title lang-en">Polanyi: You Come</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </details>
+
+      <details class="movement" id="other" data-movement>
+        <summary>
+          <span class="movement-index">07</span>
+          <span class="movement-heading"><span class="movement-title lang-zh">他者与空位</span><span class="movement-title lang-en">The Other and the Empty Seat</span><span class="movement-desc lang-zh">十二种为他者留下位置的语言，最终汇入桥上的空位。它不奖给任何名人，只在一个人把自己和别人都当作目的的瞬间出现。</span><span class="movement-desc lang-en">Twelve languages for leaving room for another converge on the bridge’s empty seat. It is awarded to no famous name; it appears whenever someone treats self and other as ends.</span></span>
+          <span class="movement-count">12<span class="lang-en"> lives</span><span class="lang-zh"> 篇</span></span>
+        </summary>
+        <div class="great-life-grid">
+          <a href="hypatia.html" class="great-life-card" data-life-card>
+            <span class="life-number">097</span>
+            <span class="life-title lang-zh">希帕蒂娅：一个圆锥被切开</span>
+            <span class="life-title lang-en">Hypatia: A Cone, Cut</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="aquinas.html" class="great-life-card" data-life-card>
+            <span class="life-number">098</span>
+            <span class="life-title lang-zh">阿奎那：稻草</span>
+            <span class="life-title lang-en">Aquinas: Straw</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="bergson.html" class="great-life-card" data-life-card>
+            <span class="life-number">099</span>
+            <span class="life-title lang-zh">柏格森：绵延</span>
+            <span class="life-title lang-en">Bergson: Duration</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="levinas.html" class="great-life-card" data-life-card>
+            <span class="life-number">100</span>
+            <span class="life-title lang-zh">列维纳斯：面容</span>
+            <span class="life-title lang-en">Levinas: The Face</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="buber.html" class="great-life-card" data-life-card>
+            <span class="life-number">101</span>
+            <span class="life-title lang-zh">布伯：我与你</span>
+            <span class="life-title lang-en">Buber: I and Thou</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="caozhi.html" class="great-life-card" data-life-card>
+            <span class="life-number">102</span>
+            <span class="life-title lang-zh">曹植：不能拥有</span>
+            <span class="life-title lang-en">Cao Zhi: What Cannot Be Held</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="girard.html" class="great-life-card" data-life-card>
+            <span class="life-number">103</span>
+            <span class="life-title lang-zh">吉拉尔：欲望从别处来</span>
+            <span class="life-title lang-en">Girard: Desire Comes from Elsewhere</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="schelling.html" class="great-life-card" data-life-card>
+            <span class="life-number">104</span>
+            <span class="life-title lang-zh">谢林：自我中的他者</span>
+            <span class="life-title lang-en">Schelling: The Other Within the Self</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="eckhart.html" class="great-life-card" data-life-card>
+            <span class="life-number">105</span>
+            <span class="life-title lang-zh">埃克哈特：不能被命名</span>
+            <span class="life-title lang-en">Eckhart: That Which Cannot Be Named</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="rilke.html" class="great-life-card" data-life-card>
+            <span class="life-number">106</span>
+            <span class="life-title lang-zh">里尔克：美只是恐怖的开始</span>
+            <span class="life-title lang-en">Rilke: Beauty Is Only the Beginning of Terror</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="nobel.html" class="great-life-card" data-life-card>
+            <span class="life-number">107</span>
+            <span class="life-title lang-zh">诺贝尔：未来的他者</span>
+            <span class="life-title lang-en">Nobel: The Other in the Future</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="king.html" class="great-life-card" data-life-card>
+            <span class="life-number">108</span>
+            <span class="life-title lang-zh">斯蒂芬·金：第 108 个位置</span>
+            <span class="life-title lang-en">King: The 108th Seat</span>
+            <span class="life-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </details>
+    </div></section>
+    <section class="great-section great-closing"><div class="great-inner"><p class="great-section-kicker">The unfinished ending</p><blockquote class="lang-en">“Around Kant, there is one empty seat.”</blockquote><blockquote class="lang-zh">“康德周围，有一个空位。”</blockquote><p class="lang-en">It asks for no greatness, remembrance, book, or monument—only the recurring work of treating oneself as an end and another person as an end. The seat remains empty because no living person receives it once and for all.</p><p class="lang-zh">它不要求伟业、名声、著作或纪念碑，只要求一个人在具体时刻把自己当作目的，也把别人当作目的。这个位置始终空着，因为活着的人不会一次性获得它。</p><a href="king.html"><span class="lang-en">Read the final essay →</span><span class="lang-zh">阅读收篇 →</span></a></div></section>
   </main>
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
-    </div>
-  </footer>
+  <footer class="site-shell-footer"><div class="site-shell-footer-inner"><div><div class="site-shell-footer-mark">Non <span style="color:var(--gold-light)">Dubito</span></div><p>A mind in many languages</p></div><div class="site-shell-footer-links"><a href="../../about.html">About</a><a href="../../credesivis.html">Crede si vis</a><a href="../../library.html">Full Library</a><a href="https://self-as-an-end.net">SAE Theory ↗</a><a href="https://hqin.substack.com">Substack ↗</a></div></div></footer>
+  <script>
+  (function(){var input=document.querySelector('[data-great-search]'),status=document.querySelector('[data-great-status]'),cards=[].slice.call(document.querySelectorAll('[data-life-card]')),movements=[].slice.call(document.querySelectorAll('[data-movement]'));function lang(){return document.documentElement.getAttribute('data-lang')||'en'}function filter(){var q=input.value.trim().toLocaleLowerCase(),visible=0;cards.forEach(function(card){var match=!q||card.textContent.toLocaleLowerCase().indexOf(q)!==-1;card.hidden=!match;if(match)visible++});movements.forEach(function(movement){var any=movement.querySelector('[data-life-card]:not([hidden])');movement.hidden=!any;if(q&&any)movement.open=true});status.textContent=!q?'':(lang()==='en'?visible+(visible===1?' life found':' lives found'):'找到 '+visible+' 篇')}function setLanguage(){var chinese=lang()!=='en';input.placeholder=chinese?'搜索人物或文章标题…':'Search a person or title…';input.setAttribute('aria-label',chinese?'搜索一百零八种人生':'Search Great Lives');filter()}input.addEventListener('input',filter);document.querySelector('[data-expand-all]').addEventListener('click',function(){movements.forEach(function(m){if(!m.hidden)m.open=true})});document.querySelector('[data-collapse-all]').addEventListener('click',function(){movements.forEach(function(m){m.open=false})});document.querySelectorAll('[data-open-movement]').forEach(function(link){link.addEventListener('click',function(){var m=document.getElementById(this.getAttribute('data-open-movement'));if(m)m.open=true})});document.addEventListener('nondubito:languagechange',setLanguage);setLanguage()})();
+  </script>
 </body>
 </html>

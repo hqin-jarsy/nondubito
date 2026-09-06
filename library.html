@@ -241,6 +241,26 @@
       gap: 0.35rem;
     }
     .series-card-arrow::after { content: '→'; }
+    .series-card.series-card-flagship {
+      grid-column: 1 / -1;
+      min-height: 255px;
+      padding: 2rem;
+      border-color: rgba(176,141,87,0.62);
+      background:
+        radial-gradient(circle at 92% 12%, rgba(176,141,87,0.15), transparent 28%),
+        linear-gradient(135deg, var(--cream), var(--cream-dark));
+    }
+    .series-card-flagship .series-card-count {
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .series-card-flagship .series-card-title-zh { font-size: 1.5rem; }
+    .series-card-flagship .series-card-title-en { font-size: 1.35rem; }
+    .series-card-flagship .series-card-desc-zh,
+    .series-card-flagship .series-card-desc-en { max-width: 720px; font-size: 0.9rem; }
 
     /* Coming soon card */
     .series-card.coming-soon {
@@ -721,12 +741,12 @@
     <p class="lib-section-desc lang-en">Particular people in particular predicaments — one hundred and eight lives, the purpose of persons under the Second World War, structural coordinates of civilizational history, and those who bet under uncertainty.</p>
   </div>
   <div class="series-grid">
-    <a href="essays/mingren/index.html" class="series-card">
-      <span class="series-card-count">108 essays</span>
-      <div class="series-card-title-zh">名人系列</div>
+    <a href="essays/mingren/index.html" class="series-card series-card-flagship">
+      <span class="series-card-count"><span class="lang-en">Flagship series · 108 essays</span><span class="lang-zh">旗舰系列 · 108 篇</span></span>
+      <div class="series-card-title-zh">一百零八种人生</div>
       <div class="series-card-title-en">Great Lives</div>
-      <p class="series-card-desc-zh lang-zh">一百零八位跨越东西方的历史人物——每一位都是一个关于人的目的性的独立案例研究。</p>
-      <p class="series-card-desc-en lang-en">One hundred and eight historical figures spanning East and West — each an independent case study in human purposiveness.</p>
+      <p class="series-card-desc-zh lang-zh">不是名人录，而是一部长篇思想叙事：一百零八种人生怎样成为自己、构成世界、遭遇边界，并走向一座尚未完成的目的王国。</p>
+      <p class="series-card-desc-en lang-en">Not a hall of fame but a book-length philosophical narrative: 108 lives becoming themselves, making worlds, meeting limits, and approaching an unfinished Kingdom of Ends.</p>
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>

@@ -10,16 +10,16 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 7,514 | 6,805 | 709 | 172 | 122 | 0 |
-| Canonical-root pages | 3,150 | 2,774 | 376 | 147 | 122 | 0 |
+| All physical editions | 7,514 | 6,805 | 709 | 172 | 122 | 1 |
+| Canonical-root pages | 3,150 | 2,774 | 376 | 147 | 122 | 1 |
 | Independent language editions | 4,364 | 4,031 | 333 | 25 | 0 | 0 |
 
 ## Existing article navigation
 
 | Scope | Series position | Legacy previous / next |
 | --- | ---: | ---: |
-| All physical editions | 3,880 | 5,158 |
-| Canonical-root pages | 654 | 1,959 |
+| All physical editions | 3,880 | 5,162 |
+| Canonical-root pages | 654 | 1,963 |
 | Independent language editions | 3,226 | 3,199 |
 
 ## Canonical-root articles by collection
@@ -39,7 +39,7 @@ separately from the newer three-route continuation pattern.
 | `wuxia` | 66 | 0 | 0 | 0 | 0 |
 | `blockchain` | 63 | 63 | 42 | 63 | 63 |
 | `games` | 51 | 0 | 0 | 0 | 0 |
-| `(standalone essays)` | 49 | 4 | 4 | 0 | 21 |
+| `(standalone essays)` | 49 | 4 | 4 | 0 | 25 |
 | `hlm` | 48 | 0 | 0 | 0 | 0 |
 | `president` | 26 | 0 | 0 | 26 | 26 |
 | `emperor` | 25 | 0 | 0 | 25 | 25 |
