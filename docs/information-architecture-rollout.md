@@ -85,7 +85,7 @@ Explore 的五扇门为：
 - `scripts/audit_reader_context.py`：文章定位与继续阅读结构覆盖；
 - `scripts/audit_language_channels.py`：频道入口、搜索语言、公开元数据、canonical、hreflang 与 sitemap 完整性。
 
-当前公开快照包含 7,281 个 HTML 文件，其中 7,252 个位于 `essays/`。sitemap 由页面 canonical 自动生成，包含 6,828 个唯一 URL；每项只保留 `loc` 与由 Git 页面变更日期生成的 `lastmod`，没有重复条目，也没有指向不存在文件的条目。
+当前公开快照包含 7,303 个 HTML 文件，其中 7,274 个位于 `essays/`。sitemap 由页面 canonical 自动生成，包含 6,850 个唯一 URL；每项只保留 `loc` 与由 Git 页面变更日期生成的 `lastmod`，没有重复条目，也没有指向不存在文件的条目。
 
 ## 7. 刻意保留的后续工作
 

@@ -98,6 +98,7 @@ DOMAIN_PREFIXES = (
     ("essays/ouya/", "history"),
     ("essays/president/", "history"),
     ("essays/economy/", "history"),
+    ("essays/blockchain/", "history"),
     ("essays/athletics/", "history"),
     ("essays/worldcup/", "history"),
     ("essays/sae-", "sae-philosophy"),

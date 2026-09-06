@@ -1,0 +1,139 @@
+:root {
+  --bc-paper: #f7f3e9;
+  --bc-paper-light: #fcfaf4;
+  --bc-ink: #23251f;
+  --bc-muted: #6d7067;
+  --bc-green: #234637;
+  --bc-gold: #ad8750;
+  --bc-rule: rgba(72, 68, 55, .2);
+  --bc-sans: "Inter", sans-serif;
+  --bc-serif: "Noto Serif SC", serif;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body.blockchain-page { margin: 0; background: var(--bc-paper-light); color: var(--bc-ink); }
+.skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; padding: .7rem 1rem; background: var(--bc-green); color: white; font-family: var(--bc-sans); text-decoration: none; }
+.skip-link:focus { top: 1rem; }
+.blockchain-site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--bc-rule); background: rgba(252, 250, 244, .96); backdrop-filter: blur(12px); }
+.blockchain-header-inner { max-width: 1240px; min-height: 72px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2.2rem; }
+.blockchain-brand { display: inline-flex; flex-direction: column; font-family: "EB Garamond", serif; font-size: 1.03rem; line-height: .92; letter-spacing: .16em; color: var(--bc-green); text-decoration: none; }
+.blockchain-brand span:last-child { color: var(--bc-gold); }
+.blockchain-primary-nav { display: flex; justify-content: center; gap: clamp(1rem, 2.8vw, 2.4rem); }
+.blockchain-primary-nav a, .blockchain-header-tools a, .blockchain-header-tools span { color: var(--bc-muted); font-family: var(--bc-sans); font-size: .69rem; letter-spacing: .1em; text-decoration: none; }
+.blockchain-primary-nav a:hover, .blockchain-header-tools a:hover { color: var(--bc-green); }
+.blockchain-header-tools { display: flex; align-items: center; gap: 1rem; }
+.blockchain-header-tools span { padding-left: 1rem; border-left: 1px solid var(--bc-rule); color: var(--bc-gold); }
+.blockchain-main { max-width: 1180px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+.blockchain-page .reading-breadcrumbs { display: flex; flex-wrap: wrap; gap: .55rem; align-items: center; margin: 0 0 4.5rem; padding: 0; border: 0; font-family: var(--bc-sans); font-size: .68rem; letter-spacing: .08em; color: var(--bc-muted); }
+.blockchain-page .reading-breadcrumbs a { color: var(--bc-muted); text-decoration: none; }
+.blockchain-page .reading-breadcrumbs a:hover { color: var(--bc-green); }
+.blockchain-page .reading-breadcrumbs span[aria-hidden] { color: var(--bc-gold); }
+.article-kicker, .route-kicker, .note-label { margin: 0 0 1.4rem; font-family: var(--bc-sans); font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--bc-gold); }
+.article-kicker span { margin-left: .7rem; color: var(--bc-muted); }
+.blockchain-hero { max-width: 900px; padding: 1rem 0 7rem; }
+.blockchain-hero h1, .blockchain-article-header h1 { margin: 0; font-family: var(--bc-serif); font-weight: 500; color: var(--bc-green); letter-spacing: .015em; }
+.blockchain-hero h1 { font-size: clamp(3rem, 7vw, 6.2rem); line-height: 1.13; }
+.blockchain-refrain { max-width: 750px; margin: 2rem 0 0; font-family: var(--bc-serif); font-size: clamp(1.4rem, 3vw, 2.25rem); line-height: 1.65; color: var(--bc-ink); }
+.blockchain-intro { max-width: 790px; margin: 1.8rem 0 0; font-family: var(--bc-serif); font-size: 1.08rem; line-height: 2; color: var(--bc-muted); }
+.blockchain-series-meta { display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; margin: 2.1rem 0 0; font-family: var(--bc-sans); font-size: .66rem; letter-spacing: .08em; color: var(--bc-muted); }
+.blockchain-series-meta span + span { padding-left: 1.5rem; border-left: 1px solid var(--bc-rule); }
+.start-series { width: min(540px, 100%); box-sizing: border-box; display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding: 1.2rem 1.35rem; border: 1px solid var(--bc-gold); color: var(--bc-green); text-decoration: none; }
+.start-series span { font-family: var(--bc-sans); font-size: .68rem; letter-spacing: .09em; color: var(--bc-muted); }
+.start-series strong { font-family: var(--bc-serif); font-weight: 500; }
+.blockchain-reading-note { display: grid; grid-template-columns: minmax(220px, .75fr) 1.7fr; gap: 3rem 6rem; padding: 4.5rem 0; border-top: 1px solid var(--bc-rule); border-bottom: 1px solid var(--bc-rule); }
+.blockchain-reading-note h2 { margin: 0; font-family: var(--bc-serif); font-size: clamp(1.9rem, 3.6vw, 3rem); line-height: 1.5; font-weight: 500; color: var(--bc-green); }
+.blockchain-reading-note > div { grid-column: 2; }
+.blockchain-reading-note > div p { margin: 0 0 1.25rem; font-family: var(--bc-serif); font-size: 1.02rem; line-height: 2; color: var(--bc-muted); }
+.blockchain-group { padding: 5rem 0; border-bottom: 1px solid var(--bc-rule); }
+.blockchain-group > header { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 1.5rem; margin-bottom: 2.4rem; }
+.blockchain-group > header > p { margin: .35rem 0 0; font-family: var(--bc-sans); font-size: .72rem; color: var(--bc-gold); }
+.blockchain-group h2 { margin: 0; font-family: var(--bc-serif); font-size: clamp(1.9rem, 3.5vw, 2.9rem); font-weight: 500; color: var(--bc-green); }
+.blockchain-group header div p { max-width: 650px; margin: .7rem 0 0; font-family: var(--bc-serif); line-height: 1.8; color: var(--bc-muted); }
+.blockchain-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--bc-rule); }
+.blockchain-card { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 1rem; padding: 1.55rem 1.2rem 1.65rem 0; border-bottom: 1px solid var(--bc-rule); color: inherit; text-decoration: none; }
+.blockchain-card:nth-child(odd) { padding-right: 2.2rem; border-right: 1px solid var(--bc-rule); }
+.blockchain-card:nth-child(even) { padding-left: 2.2rem; }
+.card-number { padding-top: .25rem; font-family: var(--bc-sans); font-size: .67rem; color: var(--bc-gold); }
+.blockchain-card h3 { margin: 0; font-family: var(--bc-serif); font-size: 1.25rem; font-weight: 500; color: var(--bc-green); }
+.blockchain-card p { margin: .55rem 0 0; font-family: var(--bc-serif); font-size: .87rem; line-height: 1.75; color: var(--bc-muted); }
+.card-arrow { color: var(--bc-gold); transition: transform .18s ease; }
+.blockchain-card:hover .card-arrow { transform: translateX(.25rem); }
+.blockchain-language-note { max-width: 750px; margin: 4rem 0 0 auto; padding: 1.4rem 0 1.4rem 2rem; border-left: 2px solid var(--bc-gold); }
+.blockchain-language-note p { margin: 0; font-family: var(--bc-serif); line-height: 1.85; color: var(--bc-muted); }
+.blockchain-article-header { max-width: 880px; margin: 0 auto; padding: 1rem 0 5rem; border-bottom: 1px solid var(--bc-rule); }
+.blockchain-article-header h1 { font-size: clamp(3rem, 7vw, 5.8rem); line-height: 1.15; }
+.article-deck { max-width: 760px; margin: 1.8rem 0 0; font-family: var(--bc-serif); font-size: clamp(1.08rem, 2vw, 1.28rem); line-height: 2; color: var(--bc-muted); }
+.article-cutoff { display: inline-block; margin: 1.8rem 0 0; padding: .45rem .7rem; background: rgba(173, 135, 80, .12); font-family: var(--bc-sans); font-size: .68rem; letter-spacing: .08em; color: var(--bc-green); }
+.article-byline { margin: 2rem 0 0; font-family: var(--bc-sans); font-size: .66rem; letter-spacing: .1em; color: var(--bc-muted); }
+.blockchain-article-layout { display: grid; grid-template-columns: 210px minmax(0, 730px); justify-content: center; gap: 5rem; padding: 5rem 0 0; }
+.chapter-aside nav { position: sticky; top: 6.5rem; }
+.chapter-aside p { margin: 0 0 1rem; font-family: var(--bc-sans); font-size: .66rem; letter-spacing: .13em; color: var(--bc-gold); }
+.chapter-aside ol { margin: 0; padding: 0; list-style: none; counter-reset: section; }
+.chapter-aside li { counter-increment: section; border-top: 1px solid var(--bc-rule); }
+.chapter-aside li:last-child { border-bottom: 1px solid var(--bc-rule); }
+.chapter-aside a { display: grid; grid-template-columns: 1.7rem 1fr; gap: .4rem; padding: .75rem 0; color: var(--bc-muted); font-family: var(--bc-serif); font-size: .78rem; line-height: 1.55; text-decoration: none; }
+.chapter-aside a::before { content: counter(section, decimal-leading-zero); font-family: var(--bc-sans); font-size: .6rem; color: var(--bc-gold); }
+.chapter-aside a:hover { color: var(--bc-green); }
+.essay-body { min-width: 0; font-family: var(--bc-serif); font-size: 1.055rem; line-height: 2.08; letter-spacing: .012em; }
+.essay-body p { margin: 0 0 1.55rem; }
+.essay-body .opening { font-size: 1.14em; line-height: 2; color: var(--bc-green); }
+.essay-body h2 { margin: 5rem 0 1.6rem; padding-top: .2rem; font-family: var(--bc-serif); font-size: clamp(1.55rem, 3vw, 2rem); line-height: 1.55; font-weight: 500; color: var(--bc-green); }
+.essay-body h2:first-child { margin-top: 0; }
+.essay-body strong { font-weight: 600; color: var(--bc-green); }
+.essay-body code { padding: .08em .3em; background: rgba(173, 135, 80, .11); font-size: .88em; }
+.source-note { margin-top: 5rem; padding: 1.5rem 0; border-top: 1px solid var(--bc-rule); border-bottom: 1px solid var(--bc-rule); color: var(--bc-muted); }
+.source-note strong { display: block; margin-bottom: .65rem; font-family: var(--bc-sans); font-size: .67rem; letter-spacing: .12em; color: var(--bc-gold); }
+.source-note p { margin: 0; font-family: var(--bc-sans); font-size: .76rem; line-height: 1.75; }
+.series-pagination { display: grid; grid-template-columns: 1fr .65fr 1fr; gap: 1px; max-width: 1030px; margin: 5rem auto 0; background: var(--bc-rule); border: 1px solid var(--bc-rule); }
+.page-turn { display: flex; flex-direction: column; justify-content: center; min-height: 86px; padding: 1rem 1.2rem; background: var(--bc-paper-light); color: var(--bc-green); text-decoration: none; }
+.page-turn span { margin-bottom: .35rem; font-family: var(--bc-sans); font-size: .62rem; letter-spacing: .1em; color: var(--bc-muted); }
+.page-turn strong { font-family: var(--bc-serif); font-size: .9rem; font-weight: 500; }
+.page-turn.next { text-align: right; }
+.page-turn.series-home { text-align: center; }
+.reading-routes { margin-top: 7rem; padding-top: 4rem; border-top: 1px solid var(--bc-rule); }
+.reading-routes h2 { margin: 0 0 2.5rem; font-family: var(--bc-serif); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 500; color: var(--bc-green); }
+.blockchain-page .reading-next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin: 0; background: var(--bc-rule); border: 1px solid var(--bc-rule); }
+.blockchain-page .reading-next-grid a { min-height: 150px; display: flex; flex-direction: column; padding: 1.3rem; border: 0; background: var(--bc-paper-light); color: inherit; text-decoration: none; }
+.blockchain-page .reading-next-grid a > span { font-family: var(--bc-sans); font-size: .63rem; letter-spacing: .1em; color: var(--bc-gold); }
+.blockchain-page .reading-next-grid strong { margin-top: auto; padding-top: 1.6rem; font-family: var(--bc-serif); font-size: 1.05rem; font-weight: 500; color: var(--bc-green); }
+.blockchain-page .reading-next-grid small { margin-top: .55rem; font-family: var(--bc-serif); font-size: .74rem; line-height: 1.65; color: var(--bc-muted); }
+.blockchain-footer { max-width: 1180px; margin: 0 auto; padding: 2.4rem 2rem 3.5rem; border-top: 1px solid var(--bc-rule); display: flex; justify-content: space-between; gap: 2rem; }
+.blockchain-footer p { margin: .8rem 0 0; font-family: var(--bc-sans); font-size: .62rem; letter-spacing: .08em; color: var(--bc-muted); }
+.blockchain-footer nav { display: flex; flex-wrap: wrap; align-items: center; gap: 1.3rem; }
+.blockchain-footer nav a { font-family: var(--bc-sans); font-size: .66rem; letter-spacing: .08em; color: var(--bc-muted); text-decoration: none; }
+
+@media (max-width: 900px) {
+  .blockchain-header-inner { grid-template-columns: auto 1fr; }
+  .blockchain-primary-nav { display: none; }
+  .blockchain-header-tools { justify-self: end; }
+  .blockchain-article-layout { grid-template-columns: minmax(0, 730px); gap: 2.5rem; }
+  .chapter-aside nav { position: static; }
+  .chapter-aside ol { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .chapter-aside li:nth-child(odd) { border-right: 1px solid var(--bc-rule); padding-right: 1rem; }
+  .chapter-aside li:nth-child(even) { padding-left: 1rem; }
+  .blockchain-reading-note { grid-template-columns: 1fr; gap: 1.2rem; }
+  .blockchain-reading-note > div { grid-column: auto; }
+}
+
+@media (max-width: 680px) {
+  .blockchain-header-inner { min-height: 62px; padding: 0 1.1rem; }
+  .blockchain-header-tools a { display: none; }
+  .blockchain-main { padding: 1.4rem 1.15rem 4rem; }
+  .blockchain-page .reading-breadcrumbs { margin-bottom: 3rem; }
+  .blockchain-hero { padding-bottom: 4.5rem; }
+  .blockchain-series-meta span + span { padding-left: 0; border-left: 0; }
+  .blockchain-card-grid { grid-template-columns: 1fr; }
+  .blockchain-card, .blockchain-card:nth-child(odd), .blockchain-card:nth-child(even) { padding: 1.25rem 0; border-right: 0; }
+  .blockchain-group > header { grid-template-columns: 45px 1fr; }
+  .blockchain-article-header { padding-bottom: 3.5rem; }
+  .blockchain-article-layout { padding-top: 3.5rem; }
+  .chapter-aside ol { grid-template-columns: 1fr; }
+  .chapter-aside li:nth-child(odd), .chapter-aside li:nth-child(even) { padding-left: 0; padding-right: 0; border-right: 0; }
+  .essay-body { font-size: 1rem; line-height: 2; }
+  .essay-body h2 { margin-top: 4rem; }
+  .series-pagination { grid-template-columns: 1fr 1fr; }
+  .page-turn.series-home { display: none; }
+  .blockchain-page .reading-next-grid { grid-template-columns: 1fr; }
+  .blockchain-page .reading-next-grid a { min-height: 130px; }
+  .blockchain-footer { flex-direction: column; padding: 2rem 1.15rem 3rem; }
+}

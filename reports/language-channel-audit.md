@@ -24,14 +24,14 @@ language channels. English and Simplified Chinese share the root home.
 | `fr` | 799 |
 | `ja` | 861 |
 | `ko` | 798 |
-| `zh-Hans` | 2,924 |
+| `zh-Hans` | 2,946 |
 | `zh-Hant` | 2,272 |
 
 ## Public discovery surface
 
 - Core pages with verified canonical URLs: 7
-- Sitemap entries: 6,828
-- Unique sitemap entries: 6,828
+- Sitemap entries: 6,850
+- Unique sitemap entries: 6,850
 - Duplicate sitemap entries: 0
 - Missing local sitemap targets: 0
 
