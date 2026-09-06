@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a representative content-registry snapshot for Non Dubito.
 
-The first registry pass is deliberately a prototype.  It scans ten series that
+The first registry pass is deliberately a prototype.  It scans representative series that
 cover the site's main historical layouts, plus root pages and the Library
 taxonomy.  It never edits published HTML.
 """
@@ -56,6 +56,7 @@ PROTOTYPE_SERIES = (
     "essays/wuxia/smiling-proud-wanderer",
     "essays/film/inception",
     "essays/tv/breaking-bad",
+    "originals",
 )
 
 AI_LEGACY_FILES = {
@@ -358,6 +359,8 @@ def extract_date(source: str) -> str | None:
 
 def infer_domain(relative: Path) -> str:
     value = relative.as_posix()
+    if value.startswith("originals/"):
+        return "stories"
     if not value.startswith("essays/"):
         return "site"
     if relative.name in AI_LEGACY_FILES and len(relative.parts) == 2:
@@ -369,6 +372,12 @@ def infer_domain(relative: Path) -> str:
 
 
 def infer_record_type(relative: Path) -> str:
+    if relative.parts and relative.parts[0] == "originals":
+        if relative.name != "index.html":
+            return "story"
+        if len(relative.parts) == 2:
+            return "collection-index"
+        return "series-index"
     if len(relative.parts) == 1:
         return "site-page"
     if relative.name != "index.html":
@@ -381,6 +390,11 @@ def infer_record_type(relative: Path) -> str:
 
 
 def infer_taxonomy(relative: Path) -> tuple[str | None, str | None]:
+    if relative.parts and relative.parts[0] == "originals":
+        parts = list(relative.parts[1:-1])
+        if not parts:
+            return "originals", None
+        return "originals", parts[0]
     if not relative.parts or relative.parts[0] != "essays":
         return None, None
     parts = [part for part in relative.parts[1:-1] if part not in LANGUAGE_DIRS]
@@ -750,9 +764,9 @@ HTML files.
 
 def validate(registry: dict[str, Any], audit: dict[str, Any]) -> list[str]:
     errors: list[str] = []
-    if audit["library_category_count"] != 13:
+    if audit["library_category_count"] != 14:
         errors.append(
-            f"Expected 13 Library categories, found {audit['library_category_count']}."
+            f"Expected 14 Library categories, found {audit['library_category_count']}."
         )
     if audit["library_series_card_count"] < 1:
         errors.append("No Library series cards were detected.")
