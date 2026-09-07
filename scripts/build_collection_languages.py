@@ -58,7 +58,11 @@ def load_specs(selected: set[str] | None = None) -> list[dict[str, object]]:
         spec = json.loads(path.read_text(encoding="utf-8"))
         if selected and spec["id"] not in selected:
             continue
-        missing = set(LANGS) - set(spec["series"])
+        spec_langs = tuple(spec.get("languages", LANGS))
+        unknown = set(spec_langs) - set(LANGS)
+        if unknown:
+            raise ValueError(f"{path.name}: unknown languages {sorted(unknown)}")
+        missing = set(spec_langs) - set(spec["series"])
         if missing:
             raise ValueError(f"{path.name}: missing series copy for {sorted(missing)}")
         if not spec.get("items"):
@@ -68,7 +72,7 @@ def load_specs(selected: set[str] | None = None) -> list[dict[str, object]]:
             if item["slug"] in slugs:
                 raise ValueError(f"{path.name}: duplicate slug {item['slug']}")
             slugs.add(item["slug"])
-            for lang in LANGS:
+            for lang in spec_langs:
                 copy = item.get("copy", {}).get(lang)
                 if not copy:
                     raise ValueError(f"{path.name}: {item['slug']} missing {lang}")
@@ -118,6 +122,8 @@ def inject_source_links(text: str, slug: str | None, path: Path) -> str:
         return marker.sub(block, text, count=1)
     match = re.search(r'(<div class="lang-toggle"[^>]*>)(.*?)(</div>)', text, re.S)
     if not match:
+        match = re.search(r'(<div class="blockchain-header-tools"[^>]*>)(.*?)(</div>)', text, re.S)
+    if not match:
         raise ValueError(f"No language toggle in {path}")
     return text[:match.start()] + match.group(1) + match.group(2) + block + match.group(3) + text[match.end():]
 
@@ -161,7 +167,8 @@ def index_html(spec: dict[str, object], lang: str) -> str:
 def render(spec: dict[str, object]) -> dict[Path, str]:
     directory = ROOT / str(spec["directory"])
     outputs: dict[Path, str] = {}
-    for lang in LANGS:
+    spec_langs = tuple(spec.get("languages", LANGS))
+    for lang in spec_langs:
         outputs[directory / lang / "index.html"] = index_html(spec, lang)
         for i, item in enumerate(spec["items"]):
             outputs[directory / lang / f'{item["slug"]}.html'] = article_html(spec, lang, i)
@@ -215,7 +222,8 @@ def main() -> None:
         hub_path = ROOT / "essays" / lang / "index.html"
         hub_text = outputs.get(hub_path, hub_path.read_text(encoding="utf-8"))
         for spec in specs:
-            hub_text = inject_hub(hub_text, spec, lang, hub_path)
+            if lang in tuple(spec.get("languages", LANGS)):
+                hub_text = inject_hub(hub_text, spec, lang, hub_path)
         outputs[hub_path] = hub_text
     if args.check:
         stale = [str(path.relative_to(ROOT)) for path, text in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != text]
