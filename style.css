@@ -714,6 +714,91 @@ header nav.moral-header-nav { min-width: 0; }
 .lang-btn:hover { color: var(--green); }
 .lang-sep { color: var(--cream-border); font-size: 0.8rem; }
 
+/* Compact progressive enhancement for legacy multilingual series. The native
+   select keeps every available edition one click away without making the
+   header—or the reader—scroll through a row of language names. */
+.lang-toggle.lang-select-menu {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: auto;
+  max-width: none;
+  margin-bottom: 1.8rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.lang-select {
+  min-width: 8.25rem;
+  height: 2.35rem;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid var(--cream-border);
+  border-radius: 0;
+  padding: 0.45rem 2.15rem 0.45rem 0.75rem;
+  background: white;
+  color: var(--ink-light);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lang-select:hover { color: var(--green); }
+
+.lang-select:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.lang-select option {
+  background: white;
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+.lang-select-chevron {
+  position: absolute;
+  right: 0.72rem;
+  top: 50%;
+  color: var(--ink-muted);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  line-height: 1;
+  pointer-events: none;
+  transform: translateY(-55%);
+}
+
+header nav > .lang-toggle.lang-select-menu {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  flex: 0 0 auto;
+  margin: 0 0 0 auto;
+  background: var(--cream);
+}
+
+header nav:has(> .lang-toggle.lang-select-menu) {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.essay-header .lang-toggle.lang-select-menu {
+  display: flex;
+  margin: 0 auto 1.5rem;
+}
+
+.essay-header .lang-select {
+  border-color: rgba(245, 240, 232, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--cream);
+}
+
+.essay-header .lang-select-chevron { color: rgba(245, 240, 232, 0.72); }
+
 /* Essay list */
 .essay-list {
   display: flex;
