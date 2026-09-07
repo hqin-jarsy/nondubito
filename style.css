@@ -158,6 +158,49 @@ header nav {
 header nav::-webkit-scrollbar { display: none; }
 header nav a { white-space: nowrap; flex: 0 0 auto; }
 
+/* Some earlier multilingual series place the language selector at the end of
+   the primary nav instead of in its own header group.  Keep that selector on
+   one line: if the complete header is wider than the viewport, the nav may
+   scroll horizontally, but the language control must never grow vertically
+   beyond the fixed 54px header. */
+header nav > .lang-toggle {
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  max-width: none;
+}
+header nav > .lang-toggle .lang-btn,
+header nav > .lang-toggle .lang-sep {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Legacy multilingual headers predate the current compact site shell.  On a
+   laptop, keep the reading routes and the complete language selector, while
+   moving the three secondary destinations out of this crowded row.  They
+   remain available from the site shell, Library, and footer. */
+@media (max-width: 1280px) {
+  header .header-inner:has(nav > .lang-toggle) .title-sub { display: none; }
+  header nav:has(> .lang-toggle) > a[href*="credesivis"],
+  header nav:has(> .lang-toggle) > a[href^="https://self-as-an-end.net"],
+  header nav:has(> .lang-toggle) > a[href^="https://hqin.substack.com"] {
+    display: none;
+  }
+  header nav:has(> .lang-toggle) { gap: 0.75rem; }
+  header nav:has(> .lang-toggle) > a {
+    font-size: 0.61rem;
+    letter-spacing: 0.045em;
+  }
+  header nav > .lang-toggle {
+    gap: 0.25rem;
+    padding: 0.2rem 0.35rem;
+  }
+  header nav > .lang-toggle .lang-btn {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.2rem;
+  }
+  header nav > .lang-toggle .lang-sep { font-size: 0.7rem; }
+}
+
 /* The tagline is the first thing to go — it frees ~285px for the nav, which
    is what keeps the row intact through the laptop widths. */
 @media (max-width: 1100px) {
