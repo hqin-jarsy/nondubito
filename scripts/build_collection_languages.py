@@ -128,6 +128,15 @@ def inject_source_links(text: str, slug: str | None, path: Path) -> str:
     return text[:match.start()] + match.group(1) + match.group(2) + block + match.group(3) + text[match.end():]
 
 
+def replace_language_route(text: str, lang: str, slug: str | None, path: Path) -> str:
+    """Upgrade a pre-existing language edition to the shared eight-language route."""
+    match = re.search(r'(<div class="lang-toggle"[^>]*>)(.*?)(</div>)', text, re.S)
+    if not match:
+        raise ValueError(f"No language toggle in existing edition {path}")
+    route = language_route(lang, slug)
+    return text[:match.start()] + match.group(1) + route + match.group(3) + text[match.end():]
+
+
 def article_html(spec: dict[str, object], lang: str, index: int) -> str:
     item = spec["items"][index]
     copy = item_copy(spec, item, lang)
@@ -177,6 +186,16 @@ def render(spec: dict[str, object]) -> dict[Path, str]:
     for item in spec["items"]:
         source = directory / f'{item["slug"]}.html'
         outputs[source] = inject_source_links(source.read_text(encoding="utf-8"), str(item["slug"]), source)
+    for lang in tuple(spec.get("existing_languages", ())):
+        existing_index = directory / lang / "index.html"
+        outputs[existing_index] = replace_language_route(
+            existing_index.read_text(encoding="utf-8"), lang, None, existing_index
+        )
+        for item in spec["items"]:
+            existing = directory / lang / f'{item["slug"]}.html'
+            outputs[existing] = replace_language_route(
+                existing.read_text(encoding="utf-8"), lang, str(item["slug"]), existing
+            )
     return outputs
 
 
