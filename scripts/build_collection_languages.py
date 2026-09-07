@@ -30,19 +30,23 @@ UI = {
 
 
 def item_copy(spec: dict[str, object], item: dict[str, object], lang: str) -> dict[str, object]:
-    """Return verbose copy; compact specs may use [title, deck, p1, p2, p3]."""
+    """Return verbose copy; compact specs may use title/deck plus two or three sections."""
     copy = item["copy"][lang]
     if isinstance(copy, list):
-        if len(copy) != 5:
-            raise ValueError(f"{spec['id']}: {item['slug']}/{lang} compact copy needs five fields")
+        if len(copy) not in (4, 5):
+            raise ValueError(f"{spec['id']}: {item['slug']}/{lang} compact copy needs four or five fields")
         headings = spec.get("section_headings", {}).get(lang)
         if not headings or len(headings) != 3:
             raise ValueError(f"{spec['id']}: compact copy needs three {lang} section headings")
+        paragraph_offset = 2
+        section_count = len(copy) - paragraph_offset
+        heading_offset = 3 - section_count
         return {
             "title": copy[0],
             "deck": copy[1],
             "sections": [
-                {"heading": headings[i], "paragraph": copy[i + 2]} for i in range(3)
+                {"heading": headings[i + heading_offset], "paragraph": copy[i + paragraph_offset]}
+                for i in range(section_count)
             ],
         }
     return copy
@@ -77,8 +81,8 @@ def load_specs(selected: set[str] | None = None) -> list[dict[str, object]]:
                 if not copy:
                     raise ValueError(f"{path.name}: {item['slug']} missing {lang}")
                 normalized = item_copy(spec, item, lang)
-                if len(normalized.get("sections", [])) != 3:
-                    raise ValueError(f"{path.name}: {item['slug']}/{lang} needs three sections")
+                if len(normalized.get("sections", [])) not in (2, 3):
+                    raise ValueError(f"{path.name}: {item['slug']}/{lang} needs two or three sections")
         specs.append(spec)
     return specs
 
