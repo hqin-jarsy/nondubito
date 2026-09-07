@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 LANGUAGES = {"en", "zh", "zh-hant", "ja", "fr", "de", "es", "ko"}
 KINDS = {"new", "revised", "expanded"}
-DOMAINS = {"sae", "everyday", "mind", "history", "stories", "tv", "literature"}
+DOMAINS = {"sae", "everyday", "mind", "history", "stories", "tv", "literature", "games"}
 
 
 def check() -> list[str]:

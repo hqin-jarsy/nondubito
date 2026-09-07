@@ -8,30 +8,30 @@ language channels. English and Simplified Chinese share the root home.
 | Channel | Metadata | Guide cards | Preserved search routes | Local links | Status |
 | --- | --- | ---: | ---: | ---: | --- |
 | `zh-hant` | ok | 4 | 2 | 158 | OK |
-| `ja` | ok | 4 | 2 | 116 | OK |
-| `fr` | ok | 4 | 2 | 103 | OK |
-| `de` | ok | 4 | 2 | 103 | OK |
-| `es` | ok | 4 | 2 | 102 | OK |
-| `ko` | ok | 4 | 2 | 102 | OK |
+| `ja` | ok | 4 | 2 | 121 | OK |
+| `fr` | ok | 4 | 2 | 108 | OK |
+| `de` | ok | 4 | 2 | 108 | OK |
+| `es` | ok | 4 | 2 | 107 | OK |
+| `ko` | ok | 4 | 2 | 107 | OK |
 
 ## Search indexes
 
 | Language | Records |
 | --- | ---: |
-| `de` | 1,137 |
+| `de` | 1,162 |
 | `en` | 2,947 |
-| `es` | 1,136 |
-| `fr` | 1,137 |
-| `ja` | 1,175 |
-| `ko` | 1,136 |
+| `es` | 1,161 |
+| `fr` | 1,162 |
+| `ja` | 1,200 |
+| `ko` | 1,161 |
 | `zh-Hans` | 2,950 |
 | `zh-Hant` | 2,411 |
 
 ## Public discovery surface
 
 - Core pages with verified canonical URLs: 7
-- Sitemap entries: 8,673
-- Unique sitemap entries: 8,673
+- Sitemap entries: 8,798
+- Unique sitemap entries: 8,798
 - Duplicate sitemap entries: 0
 - Missing local sitemap targets: 0
 
