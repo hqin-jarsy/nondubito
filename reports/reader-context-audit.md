@@ -10,16 +10,16 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 9,703 | 8,810 | 893 | 172 | 122 | 1 |
-| Canonical-root pages | 3,259 | 2,882 | 377 | 147 | 122 | 1 |
+| All physical editions | 9,734 | 8,840 | 894 | 172 | 122 | 1 |
+| Canonical-root pages | 3,290 | 2,912 | 378 | 147 | 122 | 1 |
 | Independent language editions | 6,444 | 5,928 | 516 | 25 | 0 | 0 |
 
 ## Existing article navigation
 
 | Scope | Series position | Legacy previous / next |
 | --- | ---: | ---: |
-| All physical editions | 3,880 | 5,162 |
-| Canonical-root pages | 654 | 1,963 |
+| All physical editions | 3,910 | 5,192 |
+| Canonical-root pages | 684 | 1,993 |
 | Independent language editions | 3,226 | 3,199 |
 
 ## Canonical-root articles by collection
@@ -27,7 +27,7 @@ separately from the newer three-route continuation pattern.
 | Collection | Articles | Breadcrumbs | Three-route continuation | Series position | Legacy previous / next |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | `science-fiction` | 784 | 1 | 1 | 0 | 679 |
-| `everyday` | 332 | 1 | 1 | 332 | 332 |
+| `everyday` | 362 | 1 | 1 | 362 | 362 |
 | `literature` | 284 | 0 | 0 | 0 | 190 |
 | `mingren` | 212 | 0 | 0 | 0 | 104 |
 | `film` | 147 | 0 | 0 | 0 | 60 |
