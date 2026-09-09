@@ -312,7 +312,10 @@ def render() -> dict[Path, str]:
             outputs[SERIES / lang / f"{item[0]}-{item[1]}.html"] = article_html(lang, item, position, copy[lang])
         channel = ROOT / "essays" / lang / "index.html"
         outputs[channel] = channel_hub(lang, channel.read_text(encoding="utf-8"))
-    return outputs
+    return {
+        path: text.replace("analects.css?v=20260909", "analects.css?v=20260909b")
+        for path, text in outputs.items()
+    }
 
 
 def main() -> None:

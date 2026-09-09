@@ -738,7 +738,10 @@ def render() -> dict[Path, str]:
         outputs = updated_hubs()
         outputs[TARGET / "index.html"] = index_html(converter)
         outputs.update({TARGET / f"{item[0]}-{item[1]}.html":article_html(item, i, converter) for i,item in enumerate(ITEMS)})
-        return outputs
+        return {
+            path: text.replace("analects.css?v=20260909", "analects.css?v=20260909b")
+            for path, text in outputs.items()
+        }
     finally:
         converter.close()
 
