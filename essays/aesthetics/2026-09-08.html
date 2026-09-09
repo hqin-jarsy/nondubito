@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>这块屏幕不记得自己 — Non Dubito</title>
+  <meta name="description" content="P.A.R. 是一台没有帧缓存的翻片屏：666 块方片，一只机械手，每次打印前必须先扫描一遍自己才知道现在是什么。SAE 判断力与美学 · 余项之美。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-09-08.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang'); if (saved !== 'zh' && saved !== 'en') saved = 'zh'; document.documentElement.setAttribute('data-lang', saved); document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh'); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-09-08</div>
+          <h1 class="lang-zh">这块屏幕不记得自己</h1>
+          <h1 class="lang-en">The Screen That Can't Remember Itself</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>八月底，Hackaday 写了一台叫 P.A.R. 的机器——Pixel Art Robot，作者署名 Zimm。它看上去像一块翻片显示屏：37 × 18 的格子，666 块方片，一面黑，一面青，每一块都是手工装起来的。但传统翻片屏在每一块片子背后都要装一个电磁线圈和一块磁铁，几百块片子就是几百个线圈；P.A.R. 一个都没有。板子背面跑着一台两轴机器人，由一块 Arduino Nano ESP32 控制，工具头上装着一个颜色传感器、一个舵机和一根顶针，一块一块地把片子戳翻过来。整机一千多个 3D 打印件。任何人都可以在浏览器里画一张图交给它，免费，没有广告，画完还会收到一段它把你的图翻出来的视频。CAD 挂在 Onshape 上，代码在 GitHub 上，材料清单作者自己注明「还不一定完整」。</p>
+
+        <p>先看清楚一件最容易滑过去的事：这块屏幕不知道自己现在显示的是什么。它知道自己<em>想</em>显示什么——那张图从服务器的队列里取下来——但它没有关于板面当下状态的任何记录。所以每一次打印开始，它要做的第一件事是用颜色传感器把 666 块片子挨个扫一遍，读出自己的现状。普通显示器不需要这一步：状态存在显存里，面板只是下游，图像的正本在内存，玻璃上那份是复制品。P.A.R. 把这个关系倒过来了——板子是正本，而且是唯一一份。形式化通常把物质基底当作可以忽略的部分扔掉，模型与东西之间的那点差额，正是余项；在这台机器上，这个余项被抬成了承重结构。它必须先看一眼自己，才知道自己是什么。</p>
+
+        <p>接下来两步同样值得看。第一，它只翻需要改动的那些片子。这意味着板面从来不会被清空：每一张新图都是从上一张图的身体里长出来的，没变的像素不是重画的，是继承的。这是涵育而不是凿削——前一个构没有被削掉换掉，它是下一个构生长的地基。第二，翻完之后它要再扫一遍，专门找刚才没能翻成功的片子，然后回去补上。工程上通常的做法是把失败藏起来；P.A.R. 把失败排进了流程，给了它一道自己的工序。漏翻的那几块不是异常，是被预期的参与者。余项在这台机器里有座位。</p>
+
+        <p>666 个电磁线圈是这个问题的标准答案，1960 年代就解出来了。Zimm 没有要。他用这次拒绝换来的东西是时长，而且因果方向要弄清楚：慢不是他没能消除的成本，慢就是产品本身——你能看着自己那张图被一下一下顶出来。他自己网站首页那段展示三次完整打印的延时视频，必须加速 125 倍才看得下去。一台高效的机器会交给你一个图像；这一台交给你的是一个动作，图像只是动作停下来的地方。</p>
+
+        <p>外面怎么称呼它，是最硬的一条证据。Hackaday 写完自己也拿不准，说它让人想起的是绘图仪，而不是翻片屏。Hackster 的标题干脆写成：这台「flip-squisk」显示器和翻片显示器毫无相似之处。而 Zimm 本人不得不造一个词——squisk，square disc，因为片子是方的，「disc」这个词不对。一样东西逼得人造新名词，说明它还没有被消化。每一个构都有自己的美，但那种美是上一轮凿构循环结束之后留下的沉积；P.A.R. 这一轮还在跑，它的名字还不存在。</p>
+
+        <p>这个空位是有期限的。眼下它是一间屋子里的一台机器，队列很短，一个陌生人随手画的东西能占住整台机器好几分钟不受打扰——这是条件，不是设计，而条件会过期。等它拿到名字——「慢媒体」、「机械动力显示装置」、某句策展词——缝就合上了，好看的会变成构，不再是余项。何况这是一台手工装起来的孤机，靠一个人免费维持着，连建造文档作者自己都说还不完整。所以现在就去，往队列里放一张图，看着它被翻成物质——趁这台机器还必须先看一眼自己，才知道自己是什么。</p>
+        <a href="https://par.zimmzimm.com/" target="_blank" rel="noopener" class="project-link">par.zimmzimm.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) &middot; @hqinjarsy &middot; SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>At the end of August, Hackaday wrote up a machine called P.A.R. — Pixel Art Robot — built by someone who signs as Zimm. It looks like a flip-disc display: a 37 × 18 grid, 666 square tiles, black on one face and cyan on the other, every one assembled by hand. But a real flip-disc display puts a solenoid and a permanent magnet behind each disc, so a few hundred discs mean a few hundred solenoids. P.A.R. has none. Behind the board runs a two-axis robot on an Arduino Nano ESP32, its toolhead carrying a color sensor, a servo, and a pin, prodding the tiles over one at a time. More than a thousand 3D-printed parts went into it. Anyone can draw something in the browser and hand it to the queue — free, no ads — and you get back a video of your picture being flipped into existence. The CAD is on Onshape, the code is on GitHub, and the bill of materials carries the maker's own note that it isn't necessarily complete yet.</p>
+
+        <p>Start with the thing that is easiest to slide past: the screen does not know what it is showing. It knows what it <em>wants</em> to show — that file comes down from the server queue — but it holds no record of the board's present state. So the first move of every print is to sweep all 666 tiles with the color sensor and read its own current condition. An ordinary display never needs this. State lives in the framebuffer, the panel is downstream, the original of the image is in memory and the glass carries a reproduction. P.A.R. inverts the relation: the board is the original, and it is the only copy. Formalization usually treats the physical substrate as the negligible part, the slack between the model and the thing — and that slack is the remainder. Here the remainder has been promoted to load-bearing. The machine has to look at itself before it can know what it is.</p>
+
+        <p>The next two steps are just as good. First, it flips only the tiles that need to change. Which means the board is never cleared: each new picture grows out of the body of the one before it, and the unchanged pixels are not redrawn but inherited. That is cultivation rather than severing — the prior construct is not chiselled off and replaced, it is the ground the next one grows on. Second, after flipping it scans again, looking specifically for the flips that failed, and goes back to fix them. Engineering usually hides failure. P.A.R. schedules it and gives it a stage of its own in the cycle. The tiles that didn't turn are not exceptions; they are expected participants. In this machine the remainder has a seat.</p>
+
+        <p>Six hundred and sixty-six solenoids is the standard answer to this problem, and it was solved in the 1960s. Zimm declined it. What the refusal buys is duration, and the causal direction matters: slowness is not a cost he failed to eliminate, slowness is the product — you get to watch your picture pushed into being one prod at a time. On his own front page, the timelapse of three complete prints has to run at 125× before it is watchable. An efficient machine would hand you an image. This one hands you an act, and the image is only where the act stopped.</p>
+
+        <p>The hardest evidence is what other people call it. Hackaday finished the writeup unsure, saying it reminded them of plotters more than of flip-disc displays. Hackster's headline simply declares that this "flip-squisk" display is nothing like a flip-disc display. And Zimm had to coin a noun — squisk, square disc — because the tiles are square and "disc" was the wrong word. When a thing forces a new word out of people, it has not been digested. Every construct has its own beauty, but that beauty is sediment left by a chisel-construct cycle that already closed. This one is still running, and there is no name for it yet.</p>
+
+        <p>The vacancy has an expiry date. Right now it is one machine in one room, the queue is short, and a stranger's idle drawing can hold the whole machine's attention for several minutes without interruption. That is a condition, not a design decision, and conditions expire. Once it has a name — "slow media," "kinetic display art," some curator's phrase — the seam closes, and what is beautiful becomes the construct rather than the remainder. Beyond that, this is a single hand-assembled machine kept running for free by one person, with build documents its own maker calls incomplete. So go now. Put something in the queue and watch it turned into matter — while the machine still has to look at itself to find out what it is.</p>
+        <a href="https://par.zimmzimm.com/" target="_blank" rel="noopener" class="project-link">par.zimmzimm.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) &middot; @hqinjarsy &middot; SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
