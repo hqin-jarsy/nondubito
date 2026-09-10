@@ -10,8 +10,8 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 10,042 | 9,142 | 900 | 172 | 122 | 307 |
-| Canonical-root pages | 3,343 | 2,964 | 379 | 147 | 122 | 52 |
+| All physical editions | 10,101 | 9,187 | 914 | 172 | 122 | 307 |
+| Canonical-root pages | 3,402 | 3,009 | 393 | 147 | 122 | 52 |
 | Independent language editions | 6,699 | 6,178 | 521 | 25 | 0 | 255 |
 
 ## Existing article navigation
@@ -30,15 +30,15 @@ separately from the newer three-route continuation pattern.
 | `everyday` | 362 | 1 | 1 | 362 | 362 |
 | `literature` | 284 | 0 | 0 | 0 | 190 |
 | `mingren` | 212 | 0 | 0 | 0 | 104 |
-| `film` | 147 | 0 | 0 | 0 | 60 |
+| `film` | 177 | 0 | 0 | 0 | 60 |
 | `aesthetics` | 131 | 0 | 0 | 0 | 0 |
 | `jiaoyi` | 106 | 0 | 0 | 0 | 105 |
 | `daodejing` | 82 | 0 | 0 | 0 | 0 |
 | `tv` | 82 | 0 | 0 | 0 | 82 |
 | `anime` | 72 | 0 | 0 | 0 | 0 |
+| `games` | 66 | 0 | 0 | 0 | 0 |
 | `wuxia` | 66 | 0 | 0 | 0 | 0 |
 | `blockchain` | 63 | 63 | 42 | 63 | 63 |
-| `games` | 51 | 0 | 0 | 0 | 0 |
 | `analects` | 50 | 0 | 0 | 50 | 50 |
 | `(standalone essays)` | 49 | 4 | 4 | 0 | 25 |
 | `hlm` | 48 | 0 | 0 | 0 | 0 |
