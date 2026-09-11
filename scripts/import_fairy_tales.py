@@ -382,7 +382,7 @@ def page_head(title: str, description: str, canonical: str) -> str:
 
 
 def site_header() -> str:
-    return '''<body><header><div class="header-inner"><a href="../../../../index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../../index.html">Essays</a><a href="../../../../start.html">Start Here</a><a href="../../../../library.html" class="active">Library</a><a href="../../../../credesivis.html">Crede si vis</a><a href="../../../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a><a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack ↗</a></nav></div></header>'''
+    return '''<body><header><div class="header-inner"><a href="../../../../index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../../index.html">Essays</a><a href="../../../../start.html">Start Here</a><a href="../../../../library.html" class="active">Library</a><a href="https://credesivis.org/index.html">Crede si vis</a><a href="../../../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a><a href="https://hqin.substack.com" target="_blank" rel="noopener">Substack ↗</a></nav></div></header>'''
 
 
 def language_toggle() -> str:

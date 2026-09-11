@@ -91,7 +91,7 @@ Non Dubito 已经不再是一页向下滚动即可理解的小型随笔网站，
 
 - `Essays` 不再作为首页的同义词；
 - `Library` 从一级导航移入 Explore 页面中的明确入口，并保留页脚入口；
-- `Crede si vis` 作为宣言性内容，放入 About 下方或页脚；
+- `Crede si vis` 作为独立姊妹网站，直接链接至 `https://credesivis.org/index.html`，放入次级导航或页脚；旧 `credesivis.html` 保留为迁移跳转入口；
 - `SAE Theory` 与 `Substack` 作为外部目的地放入次级导航或页脚，并保留外链标识；
 - Search 在桌面端显示文字或图标，在移动端保持可见，不能藏入多层菜单；
 - Language 是工具，不是栏目，位置与样式在全站保持一致。

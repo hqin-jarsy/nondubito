@@ -76,7 +76,6 @@ ROOT_PAGES = (
     "start.html",
     "library.html",
     "about.html",
-    "credesivis.html",
 )
 
 DOMAIN_PREFIXES = (

@@ -61,6 +61,20 @@ def discovery_value(tag: str) -> tuple[str, str] | None:
     return None
 
 
+def is_external_redirect(source: str, canonical: str) -> bool:
+    """Allow a migrated page whose immediate redirect names its HTTPS canonical."""
+    parsed = urlsplit(canonical)
+    if parsed.scheme != "https" or not parsed.netloc or parsed.netloc == SITE_HOST:
+        return False
+    for tag in DISCOVERY_TAG_RE.findall(source):
+        attrs = {key.lower(): value for key, value in ATTR_RE.findall(tag)}
+        if tag.lower().startswith("<meta") and attrs.get("http-equiv", "").lower() == "refresh":
+            refresh = re.fullmatch(r"\s*0\s*;\s*url\s*=\s*(.*?)\s*", attrs.get("content", ""), flags=re.I)
+            if refresh and refresh.group(1) == canonical:
+                return True
+    return False
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true", help="fail if a canonical URL needs normalization")
@@ -94,7 +108,7 @@ def main() -> int:
         updated = DISCOVERY_TAG_RE.sub(replace_tag, text)
         if not args.check and updated != text:
             page.write_text(updated, encoding="utf-8")
-        if canonical:
+        if canonical and not is_external_redirect(updated, canonical):
             target = local_target(canonical)
             if target is None or not target.is_file():
                 errors.append(f"{page.relative_to(ROOT)}: canonical target is missing or invalid: {canonical}")
