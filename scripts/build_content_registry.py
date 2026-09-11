@@ -48,6 +48,7 @@ LANGUAGE_CODES = {
 PROTOTYPE_SERIES = (
     "essays/sae-value",
     "essays/everyday/relationships",
+    "essays/ai-work",
     "essays/ai-human",
     "essays/mingren",
     "essays/literature/kokoro",
@@ -90,6 +91,7 @@ DOMAIN_PREFIXES = (
     ("essays/tv/", "stories"),
     ("essays/games/", "stories"),
     ("essays/everyday/", "everyday"),
+    ("essays/ai-work/", "mind-ai"),
     ("essays/ai-human/", "mind-ai"),
     ("essays/ai-consciousness/", "mind-ai"),
     ("essays/consciousness-life/", "mind-ai"),

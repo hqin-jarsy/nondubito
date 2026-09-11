@@ -10,16 +10,16 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 10,101 | 9,187 | 914 | 172 | 122 | 307 |
-| Canonical-root pages | 3,402 | 3,009 | 393 | 147 | 122 | 52 |
+| All physical editions | 10,111 | 9,196 | 915 | 181 | 122 | 316 |
+| Canonical-root pages | 3,412 | 3,018 | 394 | 156 | 122 | 61 |
 | Independent language editions | 6,699 | 6,178 | 521 | 25 | 0 | 255 |
 
 ## Existing article navigation
 
 | Scope | Series position | Legacy previous / next |
 | --- | ---: | ---: |
-| All physical editions | 4,210 | 5,492 |
-| Canonical-root pages | 734 | 2,043 |
+| All physical editions | 4,210 | 5,500 |
+| Canonical-root pages | 734 | 2,051 |
 | Independent language editions | 3,476 | 3,449 |
 
 ## Canonical-root articles by collection
@@ -31,7 +31,7 @@ separately from the newer three-route continuation pattern.
 | `literature` | 284 | 0 | 0 | 0 | 190 |
 | `mingren` | 212 | 0 | 0 | 0 | 104 |
 | `film` | 177 | 0 | 0 | 0 | 60 |
-| `aesthetics` | 131 | 0 | 0 | 0 | 0 |
+| `aesthetics` | 132 | 0 | 0 | 0 | 0 |
 | `jiaoyi` | 106 | 0 | 0 | 0 | 105 |
 | `daodejing` | 82 | 0 | 0 | 0 | 0 |
 | `tv` | 82 | 0 | 0 | 0 | 82 |
@@ -56,6 +56,7 @@ separately from the newer three-route continuation pattern.
 | `method` | 12 | 0 | 0 | 0 | 12 |
 | `sae-first-critique` | 12 | 12 | 12 | 12 | 12 |
 | `yinan` | 9 | 0 | 0 | 0 | 9 |
+| `ai-work` | 8 | 8 | 0 | 0 | 8 |
 | `daode` | 8 | 0 | 0 | 8 | 8 |
 | `sae-value` | 8 | 0 | 0 | 8 | 8 |
 | `conflict` | 7 | 0 | 0 | 7 | 7 |

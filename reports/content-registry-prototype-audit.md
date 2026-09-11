@@ -7,18 +7,18 @@ read-only with respect to published pages.
 
 | Measure | Count |
 | --- | ---: |
-| Scanned HTML pages | 551 |
-| Canonical candidate records | 202 |
+| Scanned HTML pages | 1224 |
+| Canonical candidate records | 340 |
 | Library categories parsed | 14 |
-| Library series cards parsed | 214 |
+| Library series cards parsed | 230 |
 
 ## Record types
 
 | Type | Count |
 | --- | ---: |
-| collection-index | 4 |
-| essay | 184 |
-| series-index | 8 |
+| collection-index | 5 |
+| essay | 320 |
+| series-index | 9 |
 | site-page | 5 |
 | story | 1 |
 
@@ -29,24 +29,24 @@ HTML files.
 
 | Language | Records |
 | --- | ---: |
-| de | 69 |
-| en | 202 |
-| es | 68 |
-| fr | 69 |
-| ja | 75 |
-| ko | 68 |
-| zh-Hans | 200 |
-| zh-Hant | 94 |
+| de | 179 |
+| en | 211 |
+| es | 179 |
+| fr | 179 |
+| ja | 179 |
+| ko | 179 |
+| zh-Hans | 209 |
+| zh-Hant | 213 |
 
 ## Editions per canonical record
 
 | Edition count | Records |
 | ---: | ---: |
-| 1 | 2 |
-| 2 | 99 |
-| 3 | 32 |
-| 5 | 1 |
-| 8 | 68 |
+| 1 | 131 |
+| 2 | 1 |
+| 3 | 33 |
+| 7 | 104 |
+| 8 | 71 |
 
 ## Missing canonical links
 
@@ -54,6 +54,14 @@ None in prototype scope.
 
 ## Essay records without a detected public date
 
+- `essays/ai-work/01-writing-is-not-the-danger.html`
+- `essays/ai-work/02-prompting-is-not-judgment.html`
+- `essays/ai-work/03-efficiency-chooses-direction.html`
+- `essays/ai-work/04-options-and-stakes.html`
+- `essays/ai-work/05-memory-is-not-answerability.html`
+- `essays/ai-work/06-the-last-five-percent.html`
+- `essays/ai-work/07-three-ais-agree.html`
+- `essays/ai-work/08-working-together.html`
 - `essays/ai_companion.html`
 - `essays/ai_crisis.html`
 - `essays/ethics.html`
@@ -82,15 +90,7 @@ None in prototype scope.
 - `essays/everyday/relationships/23-forgiveness-does-not-erase-harm.html`
 - `essays/everyday/relationships/24-reconciliation-is-not-resolution.html`
 - `essays/everyday/relationships/25-does-calmness-make-you-right.html`
-- `essays/everyday/relationships/26-needing-is-not-owning.html`
-- `essays/everyday/relationships/27-can-a-relationship-allow-change.html`
-- `essays/everyday/relationships/28-leaving-does-not-deny-the-past.html`
-- `essays/everyday/relationships/29-when-joint-decisions-are-one-sided.html`
-- `essays/everyday/relationships/30-love-beyond-dependence.html`
-- `essays/introspection.html`
-- `essays/inverse_law.html`
-- `essays/libido.html`
-- … 115 additional paths in the generated audit JSON
+- … 251 additional paths in the generated audit JSON
 
 ## Unmapped primary domains
 
@@ -98,7 +98,15 @@ None in prototype scope.
 
 ## Edition collisions
 
-None in prototype scope.
+- `essays/mingren/buddha.html` / `ja`: `essays/ja/buddha.html` and `essays/mingren/ja/buddha.html`
+- `essays/mingren/einstein.html` / `ja`: `essays/ja/einstein.html` and `essays/mingren/ja/einstein.html`
+- `essays/mingren/godel.html` / `ja`: `essays/ja/godel.html` and `essays/mingren/ja/godel.html`
+- `essays/mingren/jesus.html` / `ja`: `essays/ja/jesus.html` and `essays/mingren/ja/jesus.html`
+- `essays/mingren/kant.html` / `de`: `essays/de/kant.html` and `essays/mingren/de/kant.html`
+- `essays/mingren/kant.html` / `fr`: `essays/fr/kant.html` and `essays/mingren/fr/kant.html`
+- `essays/mingren/kant.html` / `ja`: `essays/ja/kant.html` and `essays/mingren/ja/kant.html`
+- `essays/mingren/laozi.html` / `ja`: `essays/ja/laozi.html` and `essays/mingren/ja/laozi.html`
+- `essays/mingren/zhuangzi.html` / `ja`: `essays/ja/zhuangzi.html` and `essays/mingren/ja/zhuangzi.html`
 
 ## Interpretation
 
