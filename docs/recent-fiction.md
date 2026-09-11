@@ -15,6 +15,15 @@ in the browser. Edit the JSON, not the generated HTML.
 Keep these distinctions visible to readers:
 
 - The book's original publication date is not the guide's publication date.
+- For translated novels, `book` and `book_date` describe the original edition,
+  and `book_language` records its language (`en` is the legacy default).
+  Optional `book_en` / `book_zh` supply reader-facing names; use verified edition
+  titles where available and identify any working title in the reading notice.
+  Do not present an explanatory English title as a published translation.
+- `search_aliases` holds additional original titles, translated titles, and author
+  names for search. Only localized book names become Book `alternateName` values;
+  author-name search aliases must not be presented as alternate book titles.
+  A translated edition's year must never replace the original publication year.
 - Public excerpts support close discussion of those excerpts, not claims to
   have read or reviewed the full novel.
 - Attribute authors' and reviewers' observations; distinguish them from the
@@ -49,6 +58,8 @@ other curated site entrances remain manual.
 Search snippets for this shelf come from each language's visible hero deck,
 so Simplified and Traditional Chinese results do not inherit the English meta
 description. Other shelves keep their existing search-description behavior.
+Search result links for this shared-URL shelf carry `?lang=en`, `?lang=zh`, or
+`?lang=zh-hant` so the selected result language also opens in the article.
 
 New guides also need curated entries in Library, Explore, Latest, the update
 ledger, and any relevant homepage or language-channel links. Keep the literary

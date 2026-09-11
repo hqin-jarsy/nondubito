@@ -10,8 +10,8 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 10,124 | 9,208 | 916 | 194 | 122 | 329 |
-| Canonical-root pages | 3,425 | 3,030 | 395 | 169 | 122 | 74 |
+| All physical editions | 10,135 | 9,219 | 916 | 204 | 122 | 339 |
+| Canonical-root pages | 3,436 | 3,041 | 395 | 179 | 122 | 84 |
 | Independent language editions | 6,699 | 6,178 | 521 | 25 | 0 | 255 |
 
 ## Existing article navigation
@@ -31,7 +31,7 @@ separately from the newer three-route continuation pattern.
 | `literature` | 284 | 0 | 0 | 0 | 190 |
 | `mingren` | 212 | 0 | 0 | 0 | 104 |
 | `film` | 177 | 0 | 0 | 0 | 60 |
-| `aesthetics` | 132 | 0 | 0 | 0 | 0 |
+| `aesthetics` | 133 | 0 | 0 | 0 | 0 |
 | `jiaoyi` | 106 | 0 | 0 | 0 | 105 |
 | `daodejing` | 82 | 0 | 0 | 0 | 0 |
 | `tv` | 82 | 0 | 0 | 0 | 82 |
@@ -48,13 +48,13 @@ separately from the newer three-route continuation pattern.
 | `economy` | 23 | 0 | 0 | 23 | 23 |
 | `xiyou` | 23 | 0 | 0 | 0 | 0 |
 | `ouya` | 22 | 0 | 0 | 22 | 22 |
+| `recent-fiction` | 22 | 22 | 0 | 0 | 0 |
 | `worldcup` | 22 | 0 | 0 | 22 | 22 |
 | `sae-foundations` | 16 | 15 | 15 | 15 | 15 |
 | `war` | 16 | 0 | 0 | 16 | 16 |
 | `sae-nicomachean` | 13 | 13 | 13 | 13 | 13 |
 | `sae-republic` | 13 | 13 | 13 | 13 | 13 |
 | `method` | 12 | 0 | 0 | 0 | 12 |
-| `recent-fiction` | 12 | 12 | 0 | 0 | 0 |
 | `sae-first-critique` | 12 | 12 | 12 | 12 | 12 |
 | `yinan` | 9 | 0 | 0 | 0 | 9 |
 | `ai-work` | 8 | 8 | 0 | 0 | 8 |

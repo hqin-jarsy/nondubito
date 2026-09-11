@@ -126,6 +126,20 @@ class RecentFictionTests(unittest.TestCase):
         self.assertIn(expected, source)
         self.assertEqual(expected.count('class="series-card"'), len(self.books))
 
+    def test_original_languages_and_title_aliases(self):
+        expected = {'jacaranda': 'fr', 'hey-good-morning': 'de', 'the-brittle-age': 'it', 'bad-habit': 'es', 'naruse': 'ja'}
+        for book in self.books:
+            with self.subTest(book=book['slug']):
+                schema = self.pages[build.TARGET / (book['slug'] + '.html')].schemas[0]['about']
+                self.assertEqual(schema['inLanguage'], expected.get(book['slug'], 'en'))
+                self.assertEqual(schema['name'], book['book'])
+                self.assertEqual(schema.get('alternateName', []), build.book_aliases(book))
+                if book['slug'] in expected:
+                    source = (build.TARGET / (book['slug'] + '.html')).read_text(encoding='utf-8')
+                    search_text = search.extract_search_text(source)
+                    for alias in [book['book'], *build.book_aliases(book), *book.get('search_aliases', [])]:
+                        self.assertIn(alias, search_text)
+
     def test_inline_escapes_text_and_attributes(self):
         rendered = build.inline('A < B & [the source](https://example.com/?x=1&y=2)')
         self.assertIn('A &lt; B &amp;', rendered)

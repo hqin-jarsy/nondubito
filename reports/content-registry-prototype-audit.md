@@ -7,17 +7,17 @@ read-only with respect to published pages.
 
 | Measure | Count |
 | --- | ---: |
-| Scanned HTML pages | 1236 |
-| Canonical candidate records | 352 |
+| Scanned HTML pages | 1246 |
+| Canonical candidate records | 362 |
 | Library categories parsed | 15 |
-| Library series cards parsed | 242 |
+| Library series cards parsed | 252 |
 
 ## Record types
 
 | Type | Count |
 | --- | ---: |
 | collection-index | 6 |
-| essay | 332 |
+| essay | 342 |
 | series-index | 9 |
 | site-page | 4 |
 | story | 1 |
@@ -30,20 +30,20 @@ HTML files.
 | Language | Records |
 | --- | ---: |
 | de | 179 |
-| en | 223 |
+| en | 233 |
 | es | 179 |
 | fr | 179 |
 | ja | 179 |
 | ko | 179 |
-| zh-Hans | 221 |
-| zh-Hant | 226 |
+| zh-Hans | 231 |
+| zh-Hant | 236 |
 
 ## Editions per canonical record
 
 | Edition count | Records |
 | ---: | ---: |
 | 1 | 131 |
-| 3 | 46 |
+| 3 | 56 |
 | 7 | 104 |
 | 8 | 71 |
 

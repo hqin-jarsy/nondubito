@@ -258,6 +258,14 @@
     var heading = document.createElement('h2');
     var link = document.createElement('a');
     link.href = record.u;
+    // This shelf keeps three editions at one URL. Carry the result language
+    // into the page instead of falling back to the reader's saved UI language.
+    var readingLanguage = { en: 'en', 'zh-Hans': 'zh', 'zh-Hant': 'zh-hant' }[languageSelect.value];
+    if (record.u.startsWith('essays/recent-fiction/') && readingLanguage) {
+      var target = new URL(record.u, window.location.href);
+      target.searchParams.set('lang', readingLanguage);
+      link.href = target.href;
+    }
     link.textContent = record.t;
     heading.appendChild(link);
     var description = document.createElement('p');

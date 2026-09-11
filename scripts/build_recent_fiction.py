@@ -19,11 +19,23 @@ SOURCE = ROOT / "data" / "recent-fiction"
 TARGET = ROOT / "essays" / "recent-fiction"
 COLLECTION_PUBLISHED = "2026-09-10"
 ORDER = (
+    "audition", "jacaranda", "hey-good-morning", "headshot", "help-wanted",
+    "martyr", "my-friends", "the-brittle-age", "bad-habit", "naruse",
     "the-names", "the-antidote", "universality", "the-dream-hotel",
     "small-rain", "the-safekeep", "the-ministry-of-time", "beautyland",
     "james", "intermezzo", "all-fours", "the-wedding-people",
 )
 TOPICS = {
+    "audition": ("Roles & intimacy", "角色与亲密"),
+    "jacaranda": ("Silence & inheritance", "沉默与传承"),
+    "hey-good-morning": ("Care & imagined lives", "照护与想象中的生活"),
+    "headshot": ("Ambition & attention", "渴望与注视"),
+    "help-wanted": ("Work & dignity", "工作与尊严"),
+    "martyr": ("Meaning & the living", "意义与活着的人"),
+    "my-friends": ("Friendship & exile", "友谊与流亡"),
+    "the-brittle-age": ("Coming home & listening", "归来与倾听"),
+    "bad-habit": ("A neighborhood & a self", "街区与自己"),
+    "naruse": ("Going your own way", "走自己的路"),
     "the-dream-hotel": ("Surveillance & private life", "监控与私人生活"),
     "james": ("Voice & freedom", "声音与自由"),
     "intermezzo": ("Grief & intimacy", "失去与亲密"),
@@ -42,6 +54,11 @@ KIND_LABELS = {
     "excerpt": ("Read an excerpt", "公开试读"),
     "publisher": ("Publication details", "出版资料"),
     "review": ("Another reader’s view", "另一位读者的看法"),
+}
+BOOK_LANGUAGES = {
+    "en": ("English", "英语"), "fr": ("French", "法语"),
+    "de": ("German", "德语"), "it": ("Italian", "意大利语"),
+    "es": ("Spanish", "西班牙语"), "ja": ("Japanese", "日语"),
 }
 
 
@@ -90,6 +107,21 @@ def localized(en: str, zh: str, converter: TraditionalConverter, tag: str = "spa
     return tri(en, zh, converter.convert(zh), tag, classes)
 
 
+def book_label(book: dict, converter: TraditionalConverter) -> str:
+    return localized(esc(book.get('book_en', book['book'])), esc(book.get('book_zh', book['book'])), converter)
+
+
+def book_aliases(book: dict) -> list[str]:
+    return list(dict.fromkeys(value for value in [book.get('book_en'), book.get('book_zh')] if value and value != book['book']))
+
+
+def original_edition(book: dict, converter: TraditionalConverter) -> str:
+    if book.get('book_language', 'en') == 'en':
+        return ''
+    language_en, language_zh = BOOK_LANGUAGES[book['book_language']]
+    return f'<p class="rf-book-meta">{localized("Original title", "原书名", converter)}: <span lang="{book["book_language"]}">{esc(book["book"])}</span> · {localized(language_en, language_zh, converter)}</p>'
+
+
 def head(title: str, description: str, filename: str, book: dict | None = None, modified: str | None = None) -> str:
     url = "https://nondubito.net/essays/recent-fiction/" + ("" if filename == "index.html" else filename)
     schema = {
@@ -105,7 +137,9 @@ def head(title: str, description: str, filename: str, book: dict | None = None, 
     }
     if book:
         schema["headline"] = title
-        schema["about"] = {"@type": "Book", "name": book["book"], "author": {"@type": "Person", "name": book["author"]}, "datePublished": book["book_date"], "inLanguage": "en"}
+        schema["about"] = {"@type": "Book", "name": book["book"], "author": {"@type": "Person", "name": book["author"]}, "datePublished": book["book_date"], "inLanguage": book.get("book_language", "en")}
+        if book_aliases(book):
+            schema["about"]["alternateName"] = book_aliases(book)
         schema["isPartOf"] = {"@type": "CollectionPage", "name": "Recent Fiction", "url": "https://nondubito.net/essays/recent-fiction/"}
     alternates = "".join(f'<link rel="alternate" hreflang="{language}" href="{url}">' for language in ("en", "zh-Hans", "zh-Hant", "x-default"))
     schema_json = json.dumps(schema, ensure_ascii=False).replace('</', '<\\/')
@@ -141,7 +175,7 @@ def footer(converter: TraditionalConverter) -> str:
 
 
 def breadcrumbs(converter: TraditionalConverter, book: dict | None = None) -> str:
-    current = f'<span aria-current="page">{esc(book["book"])}</span>' if book else f'<span aria-current="page">{localized("Recent Fiction", "近年小说导读", converter)}</span>'
+    current = f'<span aria-current="page">{book_label(book, converter)}</span>' if book else f'<span aria-current="page">{localized("Recent Fiction", "近年小说导读", converter)}</span>'
     shelf = f'<a href="index.html">{localized("Recent Fiction", "近年小说导读", converter)}</a><span aria-hidden="true">/</span>' if book else ""
     return f'<nav class="reading-breadcrumbs" aria-label="Breadcrumb"><a href="../../explore.html#stories">{localized("Literature & narrative", "文学与叙事", converter)}</a><span aria-hidden="true">/</span>{shelf}{current}</nav>'
 
@@ -209,6 +243,16 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
     related = [candidate for candidate in books if candidate['slug'] != book['slug']]
     # Two nearby themes, without implying a mandatory reading sequence.
     recommended = {
+        'audition': ('intermezzo', 'universality'),
+        'jacaranda': ('my-friends', 'the-antidote'),
+        'hey-good-morning': ('small-rain', 'audition'),
+        'headshot': ('naruse', 'help-wanted'),
+        'help-wanted': ('headshot', 'universality'),
+        'martyr': ('my-friends', 'small-rain'),
+        'my-friends': ('jacaranda', 'martyr'),
+        'the-brittle-age': ('the-names', 'hey-good-morning'),
+        'bad-habit': ('beautyland', 'james'),
+        'naruse': ('headshot', 'beautyland'),
         'the-dream-hotel': ('james', 'intermezzo'),
         'james': ('the-dream-hotel', 'the-wedding-people'),
         'intermezzo': ('all-fours', 'the-wedding-people'),
@@ -223,18 +267,19 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
         'universality': ('james', 'the-antidote'),
     }[book['slug']]
     related = [next(item for item in related if item['slug'] == slug) for slug in recommended]
-    links = ''.join(f'<a href="{item["slug"]}.html"><span class="rf-kicker">{esc(item["author"])}</span><strong>{esc(item["book"])}</strong><span aria-hidden="true">→</span></a>' for item in related)
+    links = ''.join(f'<a href="{item["slug"]}.html"><span class="rf-kicker">{esc(item["author"])}</span><strong>{book_label(item, converter)}</strong><span aria-hidden="true">→</span></a>' for item in related)
     return f'''<!DOCTYPE html>
 <html lang="en" data-lang="en" data-editions="en zh zh-hant">
 {head(book['en_title'] + ' · ' + book['zh_title'], book['en_deck'], book['slug'] + '.html', book)}
 <body class="site-shell-page explicit-hant rf-page">
 {shell_header()}
-<main class="rf-wrap rf-article" data-search="{esc(book['book'] + ' ' + book['author'] + ' ' + book['book_date'][:4] + ' Recent Fiction 近年小说导读 近年小說導讀')}">
+<main class="rf-wrap rf-article" data-search="{esc(' '.join(filter(None, [book['book'], *book_aliases(book), *book.get('search_aliases', []), converter.convert(book.get('book_zh', '')), book['author'], book['book_date'][:4], 'Recent Fiction 近年小说导读 近年小說導讀'])))}">
 {breadcrumbs(converter, book)}
 <section class="rf-article-hero">
   <p class="rf-kicker">{localized(topic_en, topic_zh, converter)}</p>
   {localized(esc(book['en_title']), esc(book['zh_title']), converter, 'h1')}
   {localized(esc(book['en_deck']), esc(book['zh_deck']), converter, 'p', 'rf-article-deck')}
+{original_edition(book, converter)}
   <p class="rf-book-meta">{esc(book['author'])} · <span>{localized('Original publication', '原作首版', converter)} <time datetime="{book['book_date']}">{book['book_date']}</time></span> · {esc(book['publisher'])}</p>
   <p class="rf-guide-meta">Han Qin (秦汉) · {localized('Guide published', '导读发布', converter)} <time datetime="{book['guide_date']}">{display_date}</time></p>
   <div class="rf-notice">{localized(esc(book['en_notice']), esc(book['zh_notice']), converter, 'p')}</div>
@@ -293,6 +338,13 @@ def load_books() -> list[dict]:
             raise ValueError(f'Missing book data: {slug}')
         if book['slug'] != slug:
             raise ValueError(f'Slug mismatch: {slug}')
+        if book.get('book_language', 'en') not in BOOK_LANGUAGES:
+            raise ValueError(f'Unknown original language: {slug}')
+        for field in ('book_en', 'book_zh'):
+            if field in book and (not isinstance(book[field], str) or not book[field].strip()):
+                raise ValueError(f'Invalid localized book title: {slug} / {field}')
+        if not isinstance(book.get('search_aliases', []), list) or any(not isinstance(alias, str) or not alias.strip() for alias in book.get('search_aliases', [])):
+            raise ValueError(f'Invalid search aliases: {slug}')
         for field in ('book_date', 'guide_date'):
             date.fromisoformat(book[field])
         if book.get('updated_date') and date.fromisoformat(book['updated_date']) < date.fromisoformat(book['guide_date']):
