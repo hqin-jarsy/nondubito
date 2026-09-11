@@ -7,6 +7,7 @@ import argparse
 import html
 import json
 import re
+from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -16,14 +17,25 @@ from build_ai_work_series import TraditionalConverter, shell_header, tri
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data" / "recent-fiction"
 TARGET = ROOT / "essays" / "recent-fiction"
-DATE = "2026-09-10"
-ORDER = ("the-dream-hotel", "james", "intermezzo", "all-fours", "the-wedding-people")
+COLLECTION_PUBLISHED = "2026-09-10"
+ORDER = (
+    "the-names", "the-antidote", "universality", "the-dream-hotel",
+    "small-rain", "the-safekeep", "the-ministry-of-time", "beautyland",
+    "james", "intermezzo", "all-fours", "the-wedding-people",
+)
 TOPICS = {
     "the-dream-hotel": ("Surveillance & private life", "监控与私人生活"),
     "james": ("Voice & freedom", "声音与自由"),
     "intermezzo": ("Grief & intimacy", "失去与亲密"),
     "all-fours": ("Desire & middle age", "欲望与中年"),
     "the-wedding-people": ("Meeting & beginning again", "相遇与重新开始"),
+    "beautyland": ("Belonging & being heard", "归属与被听见"),
+    "the-ministry-of-time": ("Care & authority", "照顾与支配"),
+    "the-safekeep": ("A home & its strangers", "家与陌生人"),
+    "small-rain": ("Illness & shared life", "疾病与共同生活"),
+    "the-antidote": ("Memory & obligation", "记忆与承诺"),
+    "the-names": ("A name & a life", "名字与人生"),
+    "universality": ("Language & public life", "语言与公共生活"),
 }
 KIND_LABELS = {
     "interview": ("Author conversation", "作者访谈"),
@@ -78,7 +90,7 @@ def localized(en: str, zh: str, converter: TraditionalConverter, tag: str = "spa
     return tri(en, zh, converter.convert(zh), tag, classes)
 
 
-def head(title: str, description: str, filename: str, book: dict | None = None) -> str:
+def head(title: str, description: str, filename: str, book: dict | None = None, modified: str | None = None) -> str:
     url = "https://nondubito.net/essays/recent-fiction/" + ("" if filename == "index.html" else filename)
     schema = {
         "@context": "https://schema.org",
@@ -87,8 +99,8 @@ def head(title: str, description: str, filename: str, book: dict | None = None) 
         "description": description,
         "url": url,
         "inLanguage": ["en", "zh-Hans", "zh-Hant"],
-        "datePublished": DATE,
-        "dateModified": DATE,
+        "datePublished": book['guide_date'] if book else COLLECTION_PUBLISHED,
+        "dateModified": book.get('updated_date', book['guide_date']) if book else (modified or COLLECTION_PUBLISHED),
         "author": {"@type": "Person", "name": "Han Qin (秦汉)"},
     }
     if book:
@@ -148,12 +160,12 @@ def card(book: dict, converter: TraditionalConverter) -> str:
 def render_index(books: list[dict], converter: TraditionalConverter) -> str:
     shelf = []
     for year in sorted({book['book_date'][:4] for book in books}, reverse=True):
-        items = [book for book in books if book['book_date'].startswith(year)]
+        items = sorted((book for book in books if book['book_date'].startswith(year)), key=lambda book: book['book_date'], reverse=True)
         shelf.append(f'''<section class="rf-year-section" id="year-{year}"><div class="rf-shelf-heading"><h2>{year}</h2><p>{localized('Original publication year', '小说首版年份', converter)}</p></div><div class="rf-book-grid{' rf-book-grid-single' if len(items) == 1 else ''}">{''.join(card(book, converter) for book in items)}</div></section>''')
     years = ''.join(f'<a href="#year-{year}">{year}</a>' for year in sorted({book['book_date'][:4] for book in books}, reverse=True))
     return f'''<!DOCTYPE html>
 <html lang="en" data-lang="en" data-editions="en zh zh-hant">
-{head('Recent Fiction · 近年小说导读', 'Discover recent novels through their people, opening scenes, and questions: introductions with room left for the book, plus author conversations and public excerpts.', 'index.html')}
+{head('Recent Fiction · 近年小说导读', 'Discover recent novels through their people, opening scenes, and questions: introductions with room left for the book, plus author conversations and public excerpts.', 'index.html', modified=max(book.get('updated_date', book['guide_date']) for book in books))}
 <body class="site-shell-page explicit-hant rf-page">
 {shell_header()}
 <main class="rf-wrap">
@@ -184,6 +196,8 @@ def source_section(book: dict, converter: TraditionalConverter) -> str:
 
 
 def render_article(book: dict, books: list[dict], converter: TraditionalConverter) -> str:
+    published = date.fromisoformat(book['guide_date'])
+    display_date = f"{published.strftime('%b')} {published.day}, {published.year}"
     en_body = prose(book['en_body'])
     zh_body = prose(book['zh_body'])
     hant_body = prose(converter.convert(book['zh_body']))
@@ -200,6 +214,13 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
         'intermezzo': ('all-fours', 'the-wedding-people'),
         'all-fours': ('intermezzo', 'the-wedding-people'),
         'the-wedding-people': ('intermezzo', 'all-fours'),
+        'beautyland': ('james', 'small-rain'),
+        'the-ministry-of-time': ('the-dream-hotel', 'the-safekeep'),
+        'the-safekeep': ('all-fours', 'the-ministry-of-time'),
+        'small-rain': ('intermezzo', 'beautyland'),
+        'the-antidote': ('the-dream-hotel', 'universality'),
+        'the-names': ('james', 'small-rain'),
+        'universality': ('james', 'the-antidote'),
     }[book['slug']]
     related = [next(item for item in related if item['slug'] == slug) for slug in recommended]
     links = ''.join(f'<a href="{item["slug"]}.html"><span class="rf-kicker">{esc(item["author"])}</span><strong>{esc(item["book"])}</strong><span aria-hidden="true">→</span></a>' for item in related)
@@ -215,7 +236,7 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
   {localized(esc(book['en_title']), esc(book['zh_title']), converter, 'h1')}
   {localized(esc(book['en_deck']), esc(book['zh_deck']), converter, 'p', 'rf-article-deck')}
   <p class="rf-book-meta">{esc(book['author'])} · <span>{localized('Original publication', '原作首版', converter)} <time datetime="{book['book_date']}">{book['book_date']}</time></span> · {esc(book['publisher'])}</p>
-  <p class="rf-guide-meta">Han Qin (秦汉) · {localized('Guide published', '导读发布', converter)} <time datetime="{DATE}">Sep 10, 2026</time></p>
+  <p class="rf-guide-meta">Han Qin (秦汉) · {localized('Guide published', '导读发布', converter)} <time datetime="{book['guide_date']}">{display_date}</time></p>
   <div class="rf-notice">{localized(esc(book['en_notice']), esc(book['zh_notice']), converter, 'p')}</div>
   <div class="rf-actions">{actions}</div>
 </section>
@@ -228,18 +249,64 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
 </body></html>'''
 
 
+def library_section(books: list[dict], converter: TraditionalConverter) -> str:
+    """Keep this shelf's Library cards in sync without touching other categories."""
+    cards = []
+    for book in sorted(books, key=lambda item: item['book_date'], reverse=True):
+        year = book['book_date'][:4]
+        cards.append(f'''<a href="essays/recent-fiction/{book['slug']}.html" class="series-card">
+  <span class="series-card-count"><span class="lang-en">1 guide · {year} novel · EN / 简 / 繁</span><span class="lang-zh cl-zh">1 篇导读 · {year} 年小说 · 英 / 简 / 繁</span><span class="lang-zh cl-hant">1 篇導讀 · {year} 年小說 · 英 / 簡 / 繁</span></span>
+  <div class="series-card-title-zh cl-zh">{esc(book['zh_title'])}</div><div class="series-card-title-zh cl-hant">{esc(converter.convert(book['zh_title']))}</div><div class="series-card-title-en">{esc(book['en_title'])}</div>
+  <p class="series-card-desc-zh lang-zh cl-zh">{esc(book['zh_deck'])}</p><p class="series-card-desc-zh lang-zh cl-hant">{esc(converter.convert(book['zh_deck']))}</p><p class="series-card-desc-en lang-en">{esc(book['en_deck'])}</p>
+  <span class="series-card-arrow lang-en">Read introduction</span><span class="series-card-arrow lang-zh cl-zh">阅读导读</span><span class="series-card-arrow lang-zh cl-hant">閱讀導讀</span>
+</a>''')
+    return f'''<!-- RECENT FICTION CATEGORY START -->
+<hr class="lib-divider">
+<section class="lib-section" id="recent-fiction">
+  <div class="lib-section-header">
+    <span class="lib-section-tag">Category 07</span>
+    <a href="essays/recent-fiction/index.html" class="lib-section-name" style="text-decoration:none;"><span class="zh cl-zh">近年小说导读</span><span class="zh cl-hant">近年小說導讀</span><span class="en">Recent Fiction</span></a>
+    <p class="lib-section-desc lang-en">Meet recent novels through a voice, a scene, and a question worth following. Each introduction leaves major turns for the book and opens a path to author conversations and public excerpts.</p>
+    <p class="lib-section-desc lang-zh cl-zh">从一个声音、一个场景、一个值得追问的问题，认识近年的小说。每篇保留重要转折与结局，并附作者访谈与公开试读。</p>
+    <p class="lib-section-desc lang-zh cl-hant">從一個聲音、一個場景、一個值得追問的問題，認識近年的小說。每篇保留重要轉折與結局，並附作者訪談與公開試讀。</p>
+  </div><div class="series-grid">
+{chr(10).join(cards)}
+  </div>
+</section>
+<!-- RECENT FICTION CATEGORY END -->'''
+
+
+def library_output(books: list[dict], converter: TraditionalConverter) -> str:
+    source = (ROOT / 'library.html').read_text(encoding='utf-8')
+    pattern = r'<!-- RECENT FICTION CATEGORY START -->.*?<!-- RECENT FICTION CATEGORY END -->'
+    if len(re.findall(pattern, source, flags=re.S)) != 1:
+        raise ValueError('Expected one Recent Fiction Library section')
+    return re.sub(pattern, lambda _: library_section(books, converter), source, flags=re.S)
+
+
 def load_books() -> list[dict]:
     books = []
-    required = ('slug', 'book', 'author', 'book_date', 'publisher', 'en_title', 'zh_title', 'en_deck', 'zh_deck', 'en_notice', 'zh_notice', 'en_body', 'zh_body', 'en_source_note', 'zh_source_note')
+    required = ('slug', 'book', 'author', 'book_date', 'guide_date', 'publisher', 'en_title', 'zh_title', 'en_deck', 'zh_deck', 'en_notice', 'zh_notice', 'en_body', 'zh_body', 'en_source_note', 'zh_source_note')
     for slug in ORDER:
         book = json.loads((SOURCE / f'{slug}.json').read_text(encoding='utf-8'))
         if any(not isinstance(book.get(field), str) or not book[field].strip() for field in required):
             raise ValueError(f'Missing book data: {slug}')
         if book['slug'] != slug:
             raise ValueError(f'Slug mismatch: {slug}')
+        for field in ('book_date', 'guide_date'):
+            date.fromisoformat(book[field])
+        if book.get('updated_date') and date.fromisoformat(book['updated_date']) < date.fromisoformat(book['guide_date']):
+            raise ValueError(f'Update predates publication: {slug}')
+        if not isinstance(book.get('sources'), list) or not book['sources']:
+            raise ValueError(f'Missing sources: {slug}')
         for source in book['sources']:
-            if source['kind'] not in KIND_LABELS or urlsplit(source['url']).scheme != 'https':
+            fields = ('kind', 'url', 'label', 'description_en', 'description_zh')
+            if any(not isinstance(source.get(field), str) or not source[field].strip() for field in fields):
+                raise ValueError(f'Incomplete source: {slug} / {source}')
+            if source['kind'] not in KIND_LABELS or urlsplit(source['url']).scheme != 'https' or not urlsplit(source['url']).netloc:
                 raise ValueError(f'Invalid source: {slug} / {source}')
+        if not any(source['kind'] == 'interview' for source in book['sources']):
+            raise ValueError(f'Missing author conversation: {slug}')
         books.append(book)
     return books
 
@@ -253,6 +320,7 @@ def main() -> int:
     try:
         outputs = {TARGET / 'index.html': render_index(books, converter)}
         outputs.update({TARGET / (book['slug'] + '.html'): render_article(book, books, converter) for book in books})
+        outputs[ROOT / 'library.html'] = library_output(books, converter)
     finally:
         converter.close()
     stale = []

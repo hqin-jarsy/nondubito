@@ -14,7 +14,7 @@ import json
 import re
 from pathlib import Path
 
-from build_content_registry import clean_text, scan_page
+from build_content_registry import attr_value, clean_text, scan_page
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,6 +59,23 @@ def is_redirect(source: str) -> bool:
     return bool(re.search(r'<meta\b[^>]*http-equiv=["\']?refresh', source, flags=re.I))
 
 
+def extract_recent_fiction_descriptions(source: str) -> dict[str, str]:
+    """Use the published hero decks, not a shared English meta description."""
+    descriptions: dict[str, str] = {}
+    language_classes = {"lang-en": "en", "lang-zh": "zh-Hans", "lang-hant": "zh-Hant"}
+    for match in re.finditer(r"<p\b([^>]*)>(.*?)</p>", source, flags=re.I | re.S):
+        classes = set((attr_value(match.group(1), "class") or "").split())
+        if not classes.intersection({"rf-article-deck", "rf-hero-deck"}):
+            continue
+        description = clean_text(match.group(2))
+        if not description:
+            continue
+        for css_class, language in language_classes.items():
+            if css_class in classes:
+                descriptions.setdefault(language, description)
+    return descriptions
+
+
 def build() -> tuple[dict, dict[str, list[dict]]]:
     records: list[dict] = []
     skipped_redirects = 0
@@ -85,6 +102,8 @@ def build() -> tuple[dict, dict[str, list[dict]]]:
                 "titles": page["titles"],
                 "title": title,
                 "description": page["description"] or "",
+                "descriptions": extract_recent_fiction_descriptions(source)
+                if path.parent == ROOT / "essays" / "recent-fiction" else {},
                 "search_text": extract_search_text(source),
             }
         )
@@ -103,7 +122,7 @@ def build() -> tuple[dict, dict[str, list[dict]]]:
                     "s": item["series"],
                     "n": item["sequence"],
                     "t": item["titles"].get(language) or item["title"],
-                    "x": item["description"],
+                    "x": item["descriptions"].get(language) or item["description"],
                     "q": item["search_text"],
                 }
             )

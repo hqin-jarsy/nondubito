@@ -34,10 +34,21 @@ python3 scripts/build_sitemap.py
 python3 scripts/audit_reader_context.py
 ```
 
-The shelf order and topics are explicit in `build_recent_fiction.py`. The current
-`DATE` is the publication date of the initial five guides; do not advance it to
-date a later batch, since that would redate the existing guides. Add per-guide
-publication dates when publishing a later batch.
+The shelf topics and reading recommendations are explicit in
+`build_recent_fiction.py`. The shelf groups books by year, newest publication
+first. Each JSON has a `guide_date` independent of `book_date`; optional
+`updated_date` records a substantive editorial revision. Do not redate older
+guides when adding a batch. The collection preserves its initial publication
+date and takes its modification date from its guides.
+
+The builder also updates only the marked Recent Fiction section of
+`library.html`, so book titles, descriptions and links stay consistent. Do not
+edit those generated cards separately. The Library's overall statistics and the
+other curated site entrances remain manual.
+
+Search snippets for this shelf come from each language's visible hero deck,
+so Simplified and Traditional Chinese results do not inherit the English meta
+description. Other shelves keep their existing search-description behavior.
 
 New guides also need curated entries in Library, Explore, Latest, the update
 ledger, and any relevant homepage or language-channel links. Keep the literary
@@ -47,3 +58,5 @@ All five build scripts accept `--check`. Also run
 `scripts/check_site_updates.py`, `scripts/normalize_canonicals.py --check`, and
 `git diff --check`. Verify English, Simplified and Traditional Chinese modes,
 mobile widths, the source-section anchor, and searches by both book and author.
+Run `python3 scripts/test_recent_fiction.py` for focused checks of dates,
+source links, the three editions, generated Library cards and HTML structure.

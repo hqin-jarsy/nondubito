@@ -10,8 +10,8 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 10,117 | 9,201 | 916 | 187 | 122 | 322 |
-| Canonical-root pages | 3,418 | 3,023 | 395 | 162 | 122 | 67 |
+| All physical editions | 10,124 | 9,208 | 916 | 194 | 122 | 329 |
+| Canonical-root pages | 3,425 | 3,030 | 395 | 169 | 122 | 74 |
 | Independent language editions | 6,699 | 6,178 | 521 | 25 | 0 | 255 |
 
 ## Existing article navigation
@@ -54,6 +54,7 @@ separately from the newer three-route continuation pattern.
 | `sae-nicomachean` | 13 | 13 | 13 | 13 | 13 |
 | `sae-republic` | 13 | 13 | 13 | 13 | 13 |
 | `method` | 12 | 0 | 0 | 0 | 12 |
+| `recent-fiction` | 12 | 12 | 0 | 0 | 0 |
 | `sae-first-critique` | 12 | 12 | 12 | 12 | 12 |
 | `yinan` | 9 | 0 | 0 | 0 | 9 |
 | `ai-work` | 8 | 8 | 0 | 0 | 8 |
@@ -70,7 +71,6 @@ separately from the newer three-route continuation pattern.
 | `civhist` | 5 | 0 | 0 | 0 | 5 |
 | `kimetsu` | 5 | 0 | 0 | 0 | 0 |
 | `law` | 5 | 0 | 0 | 0 | 5 |
-| `recent-fiction` | 5 | 5 | 0 | 0 | 0 |
 | `wwii` | 5 | 0 | 0 | 0 | 0 |
 | `epistemology` | 4 | 0 | 0 | 0 | 4 |
 | `frieren` | 4 | 0 | 0 | 0 | 0 |
