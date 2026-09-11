@@ -10,8 +10,8 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 10,111 | 9,196 | 915 | 181 | 122 | 316 |
-| Canonical-root pages | 3,412 | 3,018 | 394 | 156 | 122 | 61 |
+| All physical editions | 10,117 | 9,201 | 916 | 187 | 122 | 322 |
+| Canonical-root pages | 3,418 | 3,023 | 395 | 162 | 122 | 67 |
 | Independent language editions | 6,699 | 6,178 | 521 | 25 | 0 | 255 |
 
 ## Existing article navigation
@@ -70,6 +70,7 @@ separately from the newer three-route continuation pattern.
 | `civhist` | 5 | 0 | 0 | 0 | 5 |
 | `kimetsu` | 5 | 0 | 0 | 0 | 0 |
 | `law` | 5 | 0 | 0 | 0 | 5 |
+| `recent-fiction` | 5 | 5 | 0 | 0 | 0 |
 | `wwii` | 5 | 0 | 0 | 0 | 0 |
 | `epistemology` | 4 | 0 | 0 | 0 | 4 |
 | `frieren` | 4 | 0 | 0 | 0 | 0 |

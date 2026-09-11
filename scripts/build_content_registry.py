@@ -52,6 +52,7 @@ PROTOTYPE_SERIES = (
     "essays/ai-human",
     "essays/mingren",
     "essays/literature/kokoro",
+    "essays/recent-fiction",
     "essays/science-fiction/solaris",
     "essays/anime/neon-genesis-evangelion",
     "essays/wuxia/smiling-proud-wanderer",
@@ -83,6 +84,7 @@ DOMAIN_PREFIXES = (
     ("essays/analects/", "stories"),
     ("essays/daodejing/", "stories"),
     ("essays/literature/", "stories"),
+    ("essays/recent-fiction/", "stories"),
     ("essays/science-fiction/", "stories"),
     ("essays/anime/", "stories"),
     ("essays/wuxia/", "stories"),
@@ -767,9 +769,9 @@ HTML files.
 
 def validate(registry: dict[str, Any], audit: dict[str, Any]) -> list[str]:
     errors: list[str] = []
-    if audit["library_category_count"] != 14:
+    if audit["library_category_count"] != 15:
         errors.append(
-            f"Expected 14 Library categories, found {audit['library_category_count']}."
+            f"Expected 15 Library categories, found {audit['library_category_count']}."
         )
     if audit["library_series_card_count"] < 1:
         errors.append("No Library series cards were detected.")
