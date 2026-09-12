@@ -531,6 +531,11 @@ def updated_hubs() -> dict[Path, str]:
     }
     values = {name: path.read_text(encoding="utf-8") for name, path in paths.items()}
 
+    # A later collection now owns the shelf totals and descriptions. Rebuilding
+    # the fairy tales must not restore the four-collection version of the hubs.
+    if 'href="drama/index.html"' in values["stories"]:
+        return {paths[name]: content for name, content in values.items()}
+
     story_changes = [
         ("Sixty-two essays reopen fables, ancient stories, and epic traditions as questions about power, judgment, loss, and care.", "Ninety-two essays reopen fables, ancient stories, epic traditions, and fairy tales as questions about power, judgment, loss, and care."),
         ('</a></div><div class="future-card">Fairy tales and further oral and written traditions will be added here as their collections are completed.', '</a><a class="collection-card" href="fairy-tales/index.html"><div><span class="count">Thirty essays · Three languages</span><h2>Structures in Fairy Tales</h2><p>Thirty familiar tales reopened around promises, voice, recognition, care, refusal, and the part of a happy ending that remains unfinished.</p></div><span class="arrow">Enter collection →</span></a></div><div class="future-card">Further oral and written traditions will be added here as their collections are completed.'),
