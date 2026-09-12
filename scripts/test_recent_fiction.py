@@ -127,7 +127,14 @@ class RecentFictionTests(unittest.TestCase):
         self.assertEqual(expected.count('class="series-card"'), len(self.books))
 
     def test_original_languages_and_title_aliases(self):
-        expected = {'jacaranda': 'fr', 'hey-good-morning': 'de', 'the-brittle-age': 'it', 'bad-habit': 'es', 'naruse': 'ja'}
+        expected = {
+            'jacaranda': 'fr', 'hey-good-morning': 'de', 'the-brittle-age': 'it',
+            'bad-habit': 'es', 'naruse': 'ja', 'oposicion': 'es',
+            'clara-y-confusa': 'es', 'madelaine-before-the-dawn': 'fr',
+            'le-bastion-des-larmes': 'fr', 'the-cafe-with-no-name': 'de',
+            'one-of-these-is-a-lie': 'ko', 'sympathy-tower-tokyo': 'ja',
+            'bari-sanko': 'ja',
+        }
         for book in self.books:
             with self.subTest(book=book['slug']):
                 schema = self.pages[build.TARGET / (book['slug'] + '.html')].schemas[0]['about']
@@ -144,6 +151,30 @@ class RecentFictionTests(unittest.TestCase):
         rendered = build.inline('A < B & [the source](https://example.com/?x=1&y=2)')
         self.assertIn('A &lt; B &amp;', rendered)
         self.assertIn('href="https://example.com/?x=1&amp;y=2"', rendered)
+
+    def test_hubs_sitemap_and_latest_include_the_world_voices_batch(self):
+        new_slugs = {
+            'oposicion', 'clara-y-confusa', 'the-coin', 'madelaine-before-the-dawn',
+            'le-bastion-des-larmes', 'the-cafe-with-no-name', 'one-of-these-is-a-lie',
+            'the-south', 'sympathy-tower-tokyo', 'bari-sanko',
+        }
+        self.assertTrue(new_slugs <= set(build.ORDER))
+        shelf = (build.TARGET / 'index.html').read_text(encoding='utf-8')
+        sitemap = (build.ROOT / 'sitemap.xml').read_text(encoding='utf-8')
+        for book in self.books:
+            if book['slug'] not in new_slugs:
+                continue
+            with self.subTest(book=book['slug']):
+                self.assertEqual(book['guide_date'], '2026-09-11')
+                self.assertIn(f'href="{book["slug"]}.html"', shelf)
+                self.assertIn(f'<loc>https://nondubito.net/essays/recent-fiction/{book["slug"]}.html</loc>', sitemap)
+                record = search.scan_page(build.ROOT, build.TARGET / (book['slug'] + '.html'))
+                # An original-language title does not advertise a nonexistent guide translation.
+                self.assertEqual(set(record['languages']), {'en', 'zh-Hans', 'zh-Hant'})
+        ledger = json.loads((build.ROOT / 'data/site-updates.json').read_text(encoding='utf-8'))
+        update = next(item for item in ledger['updates'] if item['id'] == '2026-09-11-recent-fiction-world-voices')
+        self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
+        self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
 
     def test_search_descriptions_follow_each_published_language(self):
         with patch.object(search, 'collect_pages', return_value=sorted(self.pages)):

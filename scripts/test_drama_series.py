@@ -100,8 +100,7 @@ class DramaTests(unittest.TestCase):
             self.assertIn(count, shelf)
             self.assertIn(count, (build.ROOT / 'library.html').read_text(encoding='utf-8'))
         ledger = json.loads((build.ROOT / 'data/site-updates.json').read_text(encoding='utf-8'))
-        update = ledger['updates'][0]
-        self.assertEqual(update['id'], '2026-09-11-drama-structures')
+        update = next(item for item in ledger['updates'] if item['id'] == '2026-09-11-drama-structures')
         self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
         self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
         sitemap = (build.ROOT / 'sitemap.xml').read_text(encoding='utf-8')

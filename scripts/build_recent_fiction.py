@@ -24,6 +24,9 @@ ORDER = (
     "the-names", "the-antidote", "universality", "the-dream-hotel",
     "small-rain", "the-safekeep", "the-ministry-of-time", "beautyland",
     "james", "intermezzo", "all-fours", "the-wedding-people",
+    "oposicion", "clara-y-confusa", "the-coin", "madelaine-before-the-dawn",
+    "le-bastion-des-larmes", "the-cafe-with-no-name", "one-of-these-is-a-lie",
+    "the-south", "sympathy-tower-tokyo", "bari-sanko",
 )
 TOPICS = {
     "audition": ("Roles & intimacy", "角色与亲密"),
@@ -48,6 +51,16 @@ TOPICS = {
     "the-antidote": ("Memory & obligation", "记忆与承诺"),
     "the-names": ("A name & a life", "名字与人生"),
     "universality": ("Language & public life", "语言与公共生活"),
+    "oposicion": ("Work & the need to belong", "工作与合群"),
+    "clara-y-confusa": ("Art & the work of living", "艺术与过日子"),
+    "the-coin": ("The body & displacement", "身体与异乡"),
+    "madelaine-before-the-dawn": ("Hunger & defiance", "饥饿与反抗"),
+    "le-bastion-des-larmes": ("Returning & listening", "归来与倾听"),
+    "the-cafe-with-no-name": ("A place & its regulars", "地方与常客"),
+    "one-of-these-is-a-lie": ("Friendship & what stays unsaid", "友谊与未说出口的话"),
+    "the-south": ("Desire & unequal lives", "欲望与不平等的生活"),
+    "sympathy-tower-tokyo": ("Names & ambition", "命名与野心"),
+    "bari-sanko": ("Work & another way of walking", "工作与另一种走法"),
 }
 KIND_LABELS = {
     "interview": ("Author conversation", "作者访谈"),
@@ -59,6 +72,7 @@ BOOK_LANGUAGES = {
     "en": ("English", "英语"), "fr": ("French", "法语"),
     "de": ("German", "德语"), "it": ("Italian", "意大利语"),
     "es": ("Spanish", "西班牙语"), "ja": ("Japanese", "日语"),
+    "ko": ("Korean", "韩语"),
 }
 
 
@@ -166,12 +180,17 @@ def head(title: str, description: str, filename: str, book: dict | None = None, 
   <link rel="stylesheet" href="../../reading-context.css?v=20260905a">
   <link rel="stylesheet" href="recent-fiction.css?v=20260910">
   <script src="../../site-shell.js?v=20260905b"></script>
+  <script defer src="recent-fiction.js?v=20260911"></script>
   <script type="application/ld+json">{schema_json}</script>
 </head>'''
 
 
 def footer(converter: TraditionalConverter) -> str:
     return f'''<footer class="site-shell-footer"><div class="site-shell-footer-inner"><div><div class="site-shell-footer-mark">Non <span>Dubito</span></div><p>A mind in many languages</p></div><div class="site-shell-footer-links"><a href="../../explore.html">{localized('Explore', '探索', converter)}</a><a href="../../library.html">{localized('Library', '文库', converter)}</a><a href="https://credesivis.org/index.html">Crede Si Vis ↗</a><a href="https://self-as-an-end.net">SAE Theory ↗</a></div></div></footer>'''
+
+
+def navigation() -> str:
+    return shell_header().replace('data-site-shell-menu aria-controls', 'data-site-shell-menu aria-label="Menu" aria-controls')
 
 
 def breadcrumbs(converter: TraditionalConverter, book: dict | None = None) -> str:
@@ -201,7 +220,7 @@ def render_index(books: list[dict], converter: TraditionalConverter) -> str:
 <html lang="en" data-lang="en" data-editions="en zh zh-hant">
 {head('Recent Fiction · 近年小说导读', 'Discover recent novels through their people, opening scenes, and questions: introductions with room left for the book, plus author conversations and public excerpts.', 'index.html', modified=max(book.get('updated_date', book['guide_date']) for book in books))}
 <body class="site-shell-page explicit-hant rf-page">
-{shell_header()}
+{navigation()}
 <main class="rf-wrap">
 {breadcrumbs(converter)}
 <section class="rf-shelf-hero">
@@ -265,6 +284,16 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
         'the-antidote': ('the-dream-hotel', 'universality'),
         'the-names': ('james', 'small-rain'),
         'universality': ('james', 'the-antidote'),
+        'oposicion': ('help-wanted', 'bari-sanko'),
+        'clara-y-confusa': ('all-fours', 'sympathy-tower-tokyo'),
+        'the-coin': ('bad-habit', 'the-south'),
+        'madelaine-before-the-dawn': ('the-brittle-age', 'the-antidote'),
+        'le-bastion-des-larmes': ('my-friends', 'the-safekeep'),
+        'the-cafe-with-no-name': ('hey-good-morning', 'small-rain'),
+        'one-of-these-is-a-lie': ('naruse', 'the-names'),
+        'the-south': ('my-friends', 'le-bastion-des-larmes'),
+        'sympathy-tower-tokyo': ('universality', 'the-dream-hotel'),
+        'bari-sanko': ('oposicion', 'help-wanted'),
     }[book['slug']]
     related = [next(item for item in related if item['slug'] == slug) for slug in recommended]
     links = ''.join(f'<a href="{item["slug"]}.html"><span class="rf-kicker">{esc(item["author"])}</span><strong>{book_label(item, converter)}</strong><span aria-hidden="true">→</span></a>' for item in related)
@@ -272,7 +301,7 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
 <html lang="en" data-lang="en" data-editions="en zh zh-hant">
 {head(book['en_title'] + ' · ' + book['zh_title'], book['en_deck'], book['slug'] + '.html', book)}
 <body class="site-shell-page explicit-hant rf-page">
-{shell_header()}
+{navigation()}
 <main class="rf-wrap rf-article" data-search="{esc(' '.join(filter(None, [book['book'], *book_aliases(book), *book.get('search_aliases', []), converter.convert(book.get('book_zh', '')), book['author'], book['book_date'][:4], 'Recent Fiction 近年小说导读 近年小說導讀'])))}">
 {breadcrumbs(converter, book)}
 <section class="rf-article-hero">
