@@ -80,7 +80,11 @@ class RecentFictionTests(unittest.TestCase):
             with self.subTest(book=book['slug']):
                 sources = {item['url'] for item in book['sources']}
                 kinds = {item['kind'] for item in book['sources']}
-                self.assertIn('excerpt', kinds)
+                if book.get('reading_basis', 'excerpt') == 'publication-and-interviews':
+                    self.assertNotIn('excerpt', kinds)
+                    self.assertTrue({'publisher', 'review'} <= kinds)
+                else:
+                    self.assertIn('excerpt', kinds)
                 self.assertIn('interview', kinds)
                 for body in (book['en_body'], book['zh_body']):
                     links = re.findall(r'\]\((https://[^\s]+?)\)', body)
@@ -134,6 +138,9 @@ class RecentFictionTests(unittest.TestCase):
             'le-bastion-des-larmes': 'fr', 'the-cafe-with-no-name': 'de',
             'one-of-these-is-a-lie': 'ko', 'sympathy-tower-tokyo': 'ja',
             'bari-sanko': 'ja',
+            'lichtungen': 'de', 'le-visage-de-la-nuit': 'fr',
+            'le-reve-du-jaguar': 'fr', 'anti-good-morning': 'ja',
+            'goethe-said-everything': 'ja', 'xian-de-wan-xiao': 'zh',
         }
         for book in self.books:
             with self.subTest(book=book['slug']):
@@ -205,6 +212,40 @@ class RecentFictionTests(unittest.TestCase):
                     self.assertEqual(records[language]['essays/recent-fiction/index.html']['x'], description)
         finally:
             converter.close()
+
+    def test_new_eleven_guides_are_integrated(self):
+        slugs = {
+            'good-people', 'leave-your-mess-at-home', 'the-loneliness-of-sonia-and-sunny',
+            'lichtungen', 'le-visage-de-la-nuit', 'le-reve-du-jaguar',
+            'yesteryear', 'whistler', 'xian-de-wan-xiao',
+            'anti-good-morning', 'goethe-said-everything',
+        }
+        self.assertTrue(slugs <= set(build.ORDER))
+        shelf = (build.TARGET / 'index.html').read_text(encoding='utf-8')
+        sitemap = (build.ROOT / 'sitemap.xml').read_text(encoding='utf-8')
+        self.assertIn('id="year-2026"', shelf)
+        for book in self.books:
+            if book['slug'] not in slugs:
+                continue
+            with self.subTest(book=book['slug']):
+                self.assertEqual(book['guide_date'], '2026-09-12')
+                self.assertIn(f'href="{book["slug"]}.html"', shelf)
+                self.assertIn(f'<loc>https://nondubito.net/essays/recent-fiction/{book["slug"]}.html</loc>', sitemap)
+                record = search.scan_page(build.ROOT, build.TARGET / (book['slug'] + '.html'))
+                self.assertEqual(set(record['languages']), {'en', 'zh-Hans', 'zh-Hant'})
+        ledger = json.loads((build.ROOT / 'data/site-updates.json').read_text(encoding='utf-8'))
+        update = next(item for item in ledger['updates'] if item['id'] == '2026-09-12-recent-fiction-eleven-more')
+        self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
+        self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
+
+    def test_publication_led_guide_does_not_advertise_an_excerpt(self):
+        book = next(item for item in self.books if item['slug'] == 'anti-good-morning')
+        self.assertEqual(book['reading_basis'], 'publication-and-interviews')
+        self.assertIn('No authorized excerpt was read', book['en_source_note'])
+        source = (build.TARGET / 'anti-good-morning.html').read_text(encoding='utf-8')
+        self.assertNotIn('Try the book', source)
+        self.assertNotIn('先读一段原作', source)
+        self.assertIn('#sources', self.pages[build.TARGET / 'anti-good-morning.html'].links)
 
     def test_search_deck_extraction_ignores_cards_and_preserves_text(self):
         source = '''<p class="lang-en rf-card-deck">Not the page description</p>

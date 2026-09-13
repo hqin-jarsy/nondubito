@@ -26,6 +26,12 @@ Keep these distinctions visible to readers:
   A translated edition's year must never replace the original publication year.
 - Public excerpts support close discussion of those excerpts, not claims to
   have read or reviewed the full novel.
+- A guide based on publication information and interviews rather than a read
+  excerpt must set `reading_basis` to `publication-and-interviews`, explicitly
+  explain its scope in both languages, and list publisher, interview, and review
+  sources without inventing an `excerpt` source. It has no "Try the book" action.
+  The default reading basis is `excerpt`. Public selected passages must not be
+  described as the novel's opening if they come from later chapters.
 - Attribute authors' and reviewers' observations; distinguish them from the
   guide's own interpretations.
 - Link directly to interviews, authorized excerpts, and relevant reviews.

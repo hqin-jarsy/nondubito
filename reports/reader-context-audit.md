@@ -10,8 +10,8 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 10,135 | 9,219 | 916 | 204 | 122 | 339 |
-| Canonical-root pages | 3,436 | 3,041 | 395 | 179 | 122 | 84 |
+| All physical editions | 10,181 | 9,264 | 917 | 225 | 122 | 384 |
+| Canonical-root pages | 3,482 | 3,086 | 396 | 200 | 122 | 129 |
 | Independent language editions | 6,699 | 6,178 | 521 | 25 | 0 | 255 |
 
 ## Existing article navigation
@@ -27,11 +27,11 @@ separately from the newer three-route continuation pattern.
 | Collection | Articles | Breadcrumbs | Three-route continuation | Series position | Legacy previous / next |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | `science-fiction` | 784 | 1 | 1 | 0 | 679 |
-| `everyday` | 362 | 1 | 1 | 362 | 362 |
+| `everyday` | 385 | 1 | 1 | 362 | 362 |
 | `literature` | 284 | 0 | 0 | 0 | 190 |
 | `mingren` | 212 | 0 | 0 | 0 | 104 |
 | `film` | 177 | 0 | 0 | 0 | 60 |
-| `aesthetics` | 133 | 0 | 0 | 0 | 0 |
+| `aesthetics` | 134 | 0 | 0 | 0 | 0 |
 | `jiaoyi` | 106 | 0 | 0 | 0 | 105 |
 | `daodejing` | 82 | 0 | 0 | 0 | 0 |
 | `tv` | 82 | 0 | 0 | 0 | 82 |
@@ -42,13 +42,13 @@ separately from the newer three-route continuation pattern.
 | `analects` | 50 | 0 | 0 | 50 | 50 |
 | `(standalone essays)` | 49 | 4 | 4 | 0 | 25 |
 | `hlm` | 48 | 0 | 0 | 0 | 0 |
+| `recent-fiction` | 43 | 43 | 0 | 0 | 0 |
 | `president` | 26 | 0 | 0 | 26 | 26 |
 | `emperor` | 25 | 0 | 0 | 25 | 25 |
 | `athletics` | 23 | 0 | 0 | 23 | 23 |
 | `economy` | 23 | 0 | 0 | 23 | 23 |
 | `xiyou` | 23 | 0 | 0 | 0 | 0 |
 | `ouya` | 22 | 0 | 0 | 22 | 22 |
-| `recent-fiction` | 22 | 22 | 0 | 0 | 0 |
 | `worldcup` | 22 | 0 | 0 | 22 | 22 |
 | `sae-foundations` | 16 | 15 | 15 | 15 | 15 |
 | `war` | 16 | 0 | 0 | 16 | 16 |

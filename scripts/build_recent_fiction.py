@@ -27,6 +27,10 @@ ORDER = (
     "oposicion", "clara-y-confusa", "the-coin", "madelaine-before-the-dawn",
     "le-bastion-des-larmes", "the-cafe-with-no-name", "one-of-these-is-a-lie",
     "the-south", "sympathy-tower-tokyo", "bari-sanko",
+    "good-people", "leave-your-mess-at-home", "the-loneliness-of-sonia-and-sunny",
+    "lichtungen", "le-visage-de-la-nuit", "le-reve-du-jaguar",
+    "yesteryear", "whistler", "xian-de-wan-xiao",
+    "anti-good-morning", "goethe-said-everything",
 )
 TOPICS = {
     "audition": ("Roles & intimacy", "角色与亲密"),
@@ -61,6 +65,17 @@ TOPICS = {
     "the-south": ("Desire & unequal lives", "欲望与不平等的生活"),
     "sympathy-tower-tokyo": ("Names & ambition", "命名与野心"),
     "bari-sanko": ("Work & another way of walking", "工作与另一种走法"),
+    "good-people": ("A family & its witnesses", "家庭与讲述者"),
+    "leave-your-mess-at-home": ("Family & expectations", "家庭与期待"),
+    "the-loneliness-of-sonia-and-sunny": ("Love & separate lives", "爱情与各自的人生"),
+    "lichtungen": ("Leaving & belonging", "离开与归属"),
+    "le-visage-de-la-nuit": ("Shelter & freedom", "庇护与自由"),
+    "le-reve-du-jaguar": ("Origins & possibility", "来处与可能"),
+    "yesteryear": ("An image & a life", "形象与生活"),
+    "whistler": ("Family & remembering", "家人与记忆"),
+    "xian-de-wan-xiao": ("Humor & being heard", "笑声与被听见"),
+    "anti-good-morning": ("Rest & the demands of care", "休息与照顾的要求"),
+    "goethe-said-everything": ("Knowledge & curiosity", "学问与好奇心"),
 }
 KIND_LABELS = {
     "interview": ("Author conversation", "作者访谈"),
@@ -73,6 +88,7 @@ BOOK_LANGUAGES = {
     "de": ("German", "德语"), "it": ("Italian", "意大利语"),
     "es": ("Spanish", "西班牙语"), "ja": ("Japanese", "日语"),
     "ko": ("Korean", "韩语"),
+    "zh": ("Chinese", "中文"),
 }
 
 
@@ -245,7 +261,7 @@ def source_section(book: dict, converter: TraditionalConverter) -> str:
     for source in sorted(book["sources"], key=lambda item: order[item["kind"]]):
         en, zh = KIND_LABELS[source["kind"]]
         cards.append(f'''<a class="rf-source-card" href="{esc(source['url'])}"><span class="rf-kicker">{localized(en, zh, converter)}</span><h3>{esc(source['label'])} <span aria-hidden="true">↗</span></h3>{localized(esc(source['description_en']), esc(source['description_zh']), converter, 'p')}</a>''')
-    return f'''<section class="rf-sources" id="sources" aria-labelledby="source-heading"><h2 id="source-heading">{localized('Beyond this introduction', '读完这里，还可以去哪里', converter)}</h2>{localized(esc(book['en_source_note']), esc(book['zh_source_note']), converter, 'p', 'rf-source-note')}{localized('The linked conversations and excerpts may discuss more of the story than this introduction does.', '外部访谈与试读可能谈到本文尚未展开的情节。', converter, 'p', 'rf-source-spoilers')}<div class="rf-source-grid">{''.join(cards)}</div></section>'''
+    return f'''<section class="rf-sources" id="sources" aria-labelledby="source-heading"><h2 id="source-heading">{localized('Beyond this introduction', '读完这里，还可以去哪里', converter)}</h2>{localized(esc(book['en_source_note']), esc(book['zh_source_note']), converter, 'p', 'rf-source-note')}{localized('The linked conversations, excerpts, and reviews may discuss more of the story than this introduction does.', '外部访谈、试读与评论可能谈到本文尚未展开的情节。', converter, 'p', 'rf-source-spoilers')}<div class="rf-source-grid">{''.join(cards)}</div></section>'''
 
 
 def render_article(book: dict, books: list[dict], converter: TraditionalConverter) -> str:
@@ -294,6 +310,17 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
         'the-south': ('my-friends', 'le-bastion-des-larmes'),
         'sympathy-tower-tokyo': ('universality', 'the-dream-hotel'),
         'bari-sanko': ('oposicion', 'help-wanted'),
+        'good-people': ('universality', 'the-names'),
+        'leave-your-mess-at-home': ('the-loneliness-of-sonia-and-sunny', 'intermezzo'),
+        'the-loneliness-of-sonia-and-sunny': ('my-friends', 'leave-your-mess-at-home'),
+        'lichtungen': ('le-bastion-des-larmes', 'the-cafe-with-no-name'),
+        'le-visage-de-la-nuit': ('madelaine-before-the-dawn', 'the-antidote'),
+        'le-reve-du-jaguar': ('jacaranda', 'lichtungen'),
+        'yesteryear': ('audition', 'the-dream-hotel'),
+        'whistler': ('hey-good-morning', 'small-rain'),
+        'xian-de-wan-xiao': ('the-cafe-with-no-name', 'goethe-said-everything'),
+        'anti-good-morning': ('help-wanted', 'bari-sanko'),
+        'goethe-said-everything': ('sympathy-tower-tokyo', 'xian-de-wan-xiao'),
     }[book['slug']]
     related = [next(item for item in related if item['slug'] == slug) for slug in recommended]
     links = ''.join(f'<a href="{item["slug"]}.html"><span class="rf-kicker">{esc(item["author"])}</span><strong>{book_label(item, converter)}</strong><span aria-hidden="true">→</span></a>' for item in related)
@@ -340,9 +367,9 @@ def library_section(books: list[dict], converter: TraditionalConverter) -> str:
   <div class="lib-section-header">
     <span class="lib-section-tag">Category 07</span>
     <a href="essays/recent-fiction/index.html" class="lib-section-name" style="text-decoration:none;"><span class="zh cl-zh">近年小说导读</span><span class="zh cl-hant">近年小說導讀</span><span class="en">Recent Fiction</span></a>
-    <p class="lib-section-desc lang-en">Meet recent novels through a voice, a scene, and a question worth following. Each introduction leaves major turns for the book and opens a path to author conversations and public excerpts.</p>
-    <p class="lib-section-desc lang-zh cl-zh">从一个声音、一个场景、一个值得追问的问题，认识近年的小说。每篇保留重要转折与结局，并附作者访谈与公开试读。</p>
-    <p class="lib-section-desc lang-zh cl-hant">從一個聲音、一個場景、一個值得追問的問題，認識近年的小說。每篇保留重要轉折與結局，並附作者訪談與公開試讀。</p>
+    <p class="lib-section-desc lang-en">Meet recent novels through a voice, a scene, and a question worth following. Each introduction leaves major turns for the book, with links to author conversations, available excerpts, and other readings.</p>
+    <p class="lib-section-desc lang-zh cl-zh">从一个声音、一个场景、一个值得追问的问题，认识近年的小说。每篇保留重要转折与结局，并附作者访谈、可用试读等延伸资料。</p>
+    <p class="lib-section-desc lang-zh cl-hant">從一個聲音、一個場景、一個值得追問的問題，認識近年的小說。每篇保留重要轉折與結局，並附作者訪談、可用試讀等延伸資料。</p>
   </div><div class="series-grid">
 {chr(10).join(cards)}
   </div>
@@ -388,6 +415,14 @@ def load_books() -> list[dict]:
                 raise ValueError(f'Invalid source: {slug} / {source}')
         if not any(source['kind'] == 'interview' for source in book['sources']):
             raise ValueError(f'Missing author conversation: {slug}')
+        basis = book.get('reading_basis', 'excerpt')
+        if basis not in ('excerpt', 'publication-and-interviews'):
+            raise ValueError(f'Unknown reading basis: {slug}')
+        kinds = {source['kind'] for source in book['sources']}
+        if basis == 'excerpt' and 'excerpt' not in kinds:
+            raise ValueError(f'Missing declared excerpt: {slug}')
+        if basis == 'publication-and-interviews' and ('excerpt' in kinds or not {'publisher', 'review'} <= kinds):
+            raise ValueError(f'Inconsistent publication-led sources: {slug}')
         books.append(book)
     return books
 
