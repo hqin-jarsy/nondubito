@@ -5,6 +5,11 @@ This shelf is for introductions to recent novels, distinct from the longer
 close-reading series in Literary Readings. Do not modify the source manuscripts
 as part of a website build.
 
+This shelf now sits beside Nonfiction under `essays/books/index.html` (Book
+Introductions / 书籍导读). Its article URLs remain unchanged. See
+`docs/book-introductions.md` for the parent entrance and nonfiction workflow;
+after changing the fiction inventory, rebuild that parent so its count stays current.
+
 ## Editorial source of truth
 
 `data/recent-fiction/*.json` holds edited Chinese and independently written

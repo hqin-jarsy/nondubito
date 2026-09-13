@@ -53,6 +53,8 @@ PROTOTYPE_SERIES = (
     "essays/mingren",
     "essays/literature/kokoro",
     "essays/recent-fiction",
+    "essays/books",
+    "essays/nonfiction",
     "essays/science-fiction/solaris",
     "essays/anime/neon-genesis-evangelion",
     "essays/wuxia/smiling-proud-wanderer",
@@ -85,6 +87,8 @@ DOMAIN_PREFIXES = (
     ("essays/daodejing/", "stories"),
     ("essays/literature/", "stories"),
     ("essays/recent-fiction/", "stories"),
+    ("essays/books/", "stories"),
+    ("essays/nonfiction/", "stories"),
     ("essays/science-fiction/", "stories"),
     ("essays/anime/", "stories"),
     ("essays/wuxia/", "stories"),
@@ -651,7 +655,7 @@ def build_registry(root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
             {"id": "everyday", "label_zh": "日常生活", "label_en": "Everyday Life"},
             {"id": "mind-ai", "label_zh": "心灵、AI 与技术", "label_en": "Mind, AI & Technology"},
             {"id": "history", "label_zh": "历史、权力与文明", "label_en": "History, Power & Civilization"},
-            {"id": "stories", "label_zh": "文学、影视与叙事", "label_en": "Literature, Screen & Narrative"},
+            {"id": "stories", "label_zh": "书籍、影视与叙事", "label_en": "Books, Screen & Narrative"},
         ],
         "library_categories": categories,
         "records": records,
@@ -769,9 +773,9 @@ HTML files.
 
 def validate(registry: dict[str, Any], audit: dict[str, Any]) -> list[str]:
     errors: list[str] = []
-    if audit["library_category_count"] != 15:
+    if audit["library_category_count"] != 16:
         errors.append(
-            f"Expected 15 Library categories, found {audit['library_category_count']}."
+            f"Expected 16 Library categories, found {audit['library_category_count']}."
         )
     if audit["library_series_card_count"] < 1:
         errors.append("No Library series cards were detected.")

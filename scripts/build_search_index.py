@@ -60,12 +60,12 @@ def is_redirect(source: str) -> bool:
 
 
 def extract_recent_fiction_descriptions(source: str) -> dict[str, str]:
-    """Use the published hero decks, not a shared English meta description."""
+    """Use localized book and drama decks, not a shared English meta description."""
     descriptions: dict[str, str] = {}
     language_classes = {"lang-en": "en", "lang-zh": "zh-Hans", "lang-hant": "zh-Hant"}
     for match in re.finditer(r"<p\b([^>]*)>(.*?)</p>", source, flags=re.I | re.S):
         classes = set((attr_value(match.group(1), "class") or "").split())
-        if not classes.intersection({"rf-article-deck", "rf-hero-deck", "drama-search-deck"}):
+        if not classes.intersection({"rf-article-deck", "rf-hero-deck", "nf-article-deck", "nf-hero-deck", "books-hero-deck", "drama-search-deck"}):
             continue
         description = clean_text(match.group(2))
         if not description:
@@ -103,7 +103,12 @@ def build() -> tuple[dict, dict[str, list[dict]]]:
                 "title": title,
                 "description": page["description"] or "",
                 "descriptions": extract_recent_fiction_descriptions(source)
-                if path.parent in (ROOT / "essays" / "recent-fiction", ROOT / "essays" / "everyday" / "stories" / "drama") else {},
+                if path.parent in (
+                    ROOT / "essays" / "recent-fiction",
+                    ROOT / "essays" / "books",
+                    ROOT / "essays" / "nonfiction",
+                    ROOT / "essays" / "everyday" / "stories" / "drama",
+                ) else {},
                 "search_text": extract_search_text(source),
             }
         )

@@ -10,8 +10,8 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 10,181 | 9,264 | 917 | 225 | 122 | 384 |
-| Canonical-root pages | 3,482 | 3,086 | 396 | 200 | 122 | 129 |
+| All physical editions | 10,186 | 9,267 | 919 | 229 | 122 | 388 |
+| Canonical-root pages | 3,487 | 3,089 | 398 | 204 | 122 | 133 |
 | Independent language editions | 6,699 | 6,178 | 521 | 25 | 0 | 255 |
 
 ## Existing article navigation
@@ -31,7 +31,7 @@ separately from the newer three-route continuation pattern.
 | `literature` | 284 | 0 | 0 | 0 | 190 |
 | `mingren` | 212 | 0 | 0 | 0 | 104 |
 | `film` | 177 | 0 | 0 | 0 | 60 |
-| `aesthetics` | 134 | 0 | 0 | 0 | 0 |
+| `aesthetics` | 135 | 0 | 0 | 0 | 0 |
 | `jiaoyi` | 106 | 0 | 0 | 0 | 105 |
 | `daodejing` | 82 | 0 | 0 | 0 | 0 |
 | `tv` | 82 | 0 | 0 | 0 | 82 |
@@ -81,6 +81,7 @@ separately from the newer three-route continuation pattern.
 | `to-live` | 4 | 0 | 0 | 0 | 0 |
 | `never-let-me-go` | 3 | 0 | 0 | 0 | 0 |
 | `xiangjun` | 3 | 0 | 0 | 0 | 0 |
+| `nonfiction` | 2 | 2 | 0 | 0 | 0 |
 | `consciousness-life` | 1 | 1 | 1 | 0 | 1 |
 
 ## How to use this report

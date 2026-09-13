@@ -34,7 +34,7 @@
     'everyday': choices('Everyday Life', '日常生活', '日常生活', '日常生活', 'Vie quotidienne', 'Alltagsleben', 'Vida cotidiana', '일상의 삶'),
     'mind-ai': choices('Mind, AI & Technology', '心灵、AI 与技术', '心靈、AI 與技術', '心・AI・技術', 'Esprit, IA et technologie', 'Geist, KI und Technik', 'Mente, IA y tecnología', '마음·AI·기술'),
     'history': choices('History, Power & Civilization', '历史、权力与文明', '歷史、權力與文明', '歴史・権力・文明', 'Histoire, pouvoir et civilisation', 'Geschichte, Macht und Zivilisation', 'Historia, poder y civilización', '역사·권력·문명'),
-    'stories': choices('Literature, Screen & Narrative', '文学、影视与叙事', '文學、影視與敘事', '文学・映像・物語', 'Littérature, écrans et récits', 'Literatur, Film und Erzählung', 'Literatura, pantallas y relatos', '문학·영상·서사'),
+    'stories': choices('Books, Screen & Narrative', '书籍、影视与叙事', '書籍、影視與敘事', '本・映像・物語', 'Livres, écrans et récits', 'Bücher, Film und Erzählung', 'Libros, pantallas y relatos', '책·영상·서사'),
     'site': choices('Site guide', '网站导览', '網站導覽', 'サイト案内', 'Guide du site', 'Wegweiser', 'Guía del sitio', '사이트 안내'),
     'unmapped': choices('Other essays', '其他文章', '其他文章', 'その他のエッセイ', 'Autres essais', 'Weitere Essays', 'Otros ensayos', '기타 글')
   };
@@ -261,7 +261,7 @@
     // These shelves keep three editions at one URL. Carry the result language
     // into the page instead of falling back to the reader's saved UI language.
     var readingLanguage = { en: 'en', 'zh-Hans': 'zh', 'zh-Hant': 'zh-hant' }[languageSelect.value];
-    if ((record.u.startsWith('essays/recent-fiction/') || record.u.startsWith('essays/everyday/stories/drama/')) && readingLanguage) {
+    if ((record.u.startsWith('essays/recent-fiction/') || record.u.startsWith('essays/books/') || record.u.startsWith('essays/nonfiction/') || record.u.startsWith('essays/everyday/stories/drama/')) && readingLanguage) {
       var target = new URL(record.u, window.location.href);
       target.searchParams.set('lang', readingLanguage);
       link.href = target.href;

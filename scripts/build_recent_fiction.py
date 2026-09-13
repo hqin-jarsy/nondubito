@@ -152,8 +152,10 @@ def original_edition(book: dict, converter: TraditionalConverter) -> str:
     return f'<p class="rf-book-meta">{localized("Original title", "原书名", converter)}: <span lang="{book["book_language"]}">{esc(book["book"])}</span> · {localized(language_en, language_zh, converter)}</p>'
 
 
-def head(title: str, description: str, filename: str, book: dict | None = None, modified: str | None = None) -> str:
-    url = "https://nondubito.net/essays/recent-fiction/" + ("" if filename == "index.html" else filename)
+def head(title: str, description: str, filename: str, book: dict | None = None, modified: str | None = None, *, collection: str = "recent-fiction", collection_name: str = "Recent Fiction", collection_published: str = COLLECTION_PUBLISHED, asset_prefix: str = "", extra_styles: tuple[str, ...] = ()) -> str:
+    """Shared three-edition document shell; collection-specific copy stays in each builder."""
+    collection_url = f"https://nondubito.net/essays/{collection}/"
+    url = collection_url + ("" if filename == "index.html" else filename)
     schema = {
         "@context": "https://schema.org",
         "@type": "Article" if book else "CollectionPage",
@@ -161,8 +163,8 @@ def head(title: str, description: str, filename: str, book: dict | None = None, 
         "description": description,
         "url": url,
         "inLanguage": ["en", "zh-Hans", "zh-Hant"],
-        "datePublished": book['guide_date'] if book else COLLECTION_PUBLISHED,
-        "dateModified": book.get('updated_date', book['guide_date']) if book else (modified or COLLECTION_PUBLISHED),
+        "datePublished": book['guide_date'] if book else collection_published,
+        "dateModified": book.get('updated_date', book['guide_date']) if book else (modified or collection_published),
         "author": {"@type": "Person", "name": "Han Qin (秦汉)"},
     }
     if book:
@@ -170,7 +172,9 @@ def head(title: str, description: str, filename: str, book: dict | None = None, 
         schema["about"] = {"@type": "Book", "name": book["book"], "author": {"@type": "Person", "name": book["author"]}, "datePublished": book["book_date"], "inLanguage": book.get("book_language", "en")}
         if book_aliases(book):
             schema["about"]["alternateName"] = book_aliases(book)
-        schema["isPartOf"] = {"@type": "CollectionPage", "name": "Recent Fiction", "url": "https://nondubito.net/essays/recent-fiction/"}
+        if book.get('genre_en'):
+            schema["about"]["genre"] = book['genre_en']
+        schema["isPartOf"] = {"@type": "CollectionPage", "name": collection_name, "url": collection_url}
     alternates = "".join(f'<link rel="alternate" hreflang="{language}" href="{url}">' for language in ("en", "zh-Hans", "zh-Hant", "x-default"))
     schema_json = json.dumps(schema, ensure_ascii=False).replace('</', '<\\/')
     return f'''<head>
@@ -194,9 +198,9 @@ def head(title: str, description: str, filename: str, book: dict | None = None, 
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../../site-shell.css?v=20260905b">
   <link rel="stylesheet" href="../../reading-context.css?v=20260905a">
-  <link rel="stylesheet" href="recent-fiction.css?v=20260910">
+  <link rel="stylesheet" href="{asset_prefix}recent-fiction.css?v=20260910">{''.join(f'<link rel="stylesheet" href="{esc(path)}">' for path in extra_styles)}
   <script src="../../site-shell.js?v=20260905b"></script>
-  <script defer src="recent-fiction.js?v=20260911"></script>
+  <script defer src="{asset_prefix}recent-fiction.js?v=20260911"></script>
   <script type="application/ld+json">{schema_json}</script>
 </head>'''
 
@@ -212,7 +216,7 @@ def navigation() -> str:
 def breadcrumbs(converter: TraditionalConverter, book: dict | None = None) -> str:
     current = f'<span aria-current="page">{book_label(book, converter)}</span>' if book else f'<span aria-current="page">{localized("Recent Fiction", "近年小说导读", converter)}</span>'
     shelf = f'<a href="index.html">{localized("Recent Fiction", "近年小说导读", converter)}</a><span aria-hidden="true">/</span>' if book else ""
-    return f'<nav class="reading-breadcrumbs" aria-label="Breadcrumb"><a href="../../explore.html#stories">{localized("Literature & narrative", "文学与叙事", converter)}</a><span aria-hidden="true">/</span>{shelf}{current}</nav>'
+    return f'<nav class="reading-breadcrumbs" aria-label="Breadcrumb"><a href="../books/index.html">{localized("Book Introductions", "书籍导读", converter)}</a><span aria-hidden="true">/</span>{shelf}{current}</nav>'
 
 
 def card(book: dict, converter: TraditionalConverter) -> str:
@@ -249,6 +253,7 @@ def render_index(books: list[dict], converter: TraditionalConverter) -> str:
   </div>
 </section>
 <nav class="rf-shelf-nav" aria-label="Publication years"><span>{localized('Browse by book year', '按小说年份浏览', converter)}</span>{years}<span class="rf-shelf-count">{localized(f'{len(books)} books · 3 reading modes', f'{len(books)} 部作品 · 英 / 简 / 繁', converter)}</span></nav>
+<div class="rf-actions" style="margin-top:1rem"><a href="../books/index.html">{localized('All book introductions →', '全部书籍导读 →', converter)}</a><a href="../nonfiction/index.html">{localized('Explore Nonfiction →', '看看非虚构 →', converter)}</a></div>
 {''.join(shelf)}
 <aside class="rf-shelf-afterword"><h2>{localized('Keep following the question', '沿着问题继续读', converter)}</h2>{localized('For longer readings across classics and contemporary literature, visit Literary Readings. For imagined worlds and their consequences, follow Science Fiction. This shelf will keep making room for newer voices.', '想继续读经典与现代文学，可以进入文学作品解读；想走向想象世界及其后果，可以去科幻小说区。这一架会继续为近年的新声音留下位置。', converter, 'p')}<div class="rf-actions"><a href="../literature/index.html">{localized('Literary Readings →', '文学作品解读 →', converter)}</a><a href="../science-fiction/index.html">{localized('Science Fiction →', '科幻小说解读 →', converter)}</a></div></aside>
 </main>{footer(converter)}
