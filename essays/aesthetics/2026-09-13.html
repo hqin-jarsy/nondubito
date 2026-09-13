@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>背面剔除是关着的 — Non Dubito</title>
+  <meta name="description" content="Dmitry Brant 把光速设成每小时五公里，做了一座可以走进去的公园。狭义相对论封闭了五十四年，它自己的外观才被发现；而在这座公园里，掉出来的是图形学那些没人写下来的物理前提。SAE 判断力与美学 · 余项之美。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-09-13.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang'); if (saved !== 'zh' && saved !== 'en') saved = 'zh'; document.documentElement.setAttribute('data-lang', saved); document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh'); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-09-13</div>
+          <h1 class="lang-zh">背面剔除是关着的</h1>
+          <h1 class="lang-en">Backface Culling Is Off</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>Dmitry Brant 做的是一座公园。公园里光速是每小时五公里——快步走的速度。里面有一条柱廊，两把一模一样的六十米红白标尺，一把沿 Z 摆，一把沿 X 摆；有几道闭合的拱，好让你看着一个圆变成椭圆；有一排灯柱，每一个「世界秒」闪一次；有旋转木马，有一辆沿 X 来回滑的穿梭车，有一座摩天轮，还有两尊架在基座上的 STL 雕塑。木马和摩天轮的车厢都跑 0.75c，两侧方向相反。W A S D 加速，但按住不放，线性增加的是快度而不是速度，所以你永远到不了五。速度读数留了五位小数，就是为了让你看着 4.99995 km/h 拒绝变成 5。四个效应各配一个按键单独开关：L 是光行时延，G 是像差与收缩，C 是多普勒着色，B 是相对论性集束。没有依赖，没有构建步骤，一张 WebGL2 画布，四十四次提交。他自己的说明只有两句：我一直想做一个把光速缩到人类尺度的可视化；这是第一版。</p>
+
+        <p>先把余项的位置摆清楚。狭义相对论是人类手上已构得最彻底的东西之一：一九○五年，几行代数，没有可调参数，验到荒谬的精度。但这套形式化承载的是「测量」，不是「看见」。一九二四年，Anton Lampa 在《Zeitschrift für Physik》上问了一根运动的杆子看起来会是什么样，没人理会，这个问题被埋了三十五年。一九五九年，James Terrell 发表《Invisibility of the Lorentz Contraction》，Roger Penrose 同年独立得到同一结论：高速运动的球体在快照里并不是被压扁的，它看起来是被转过去的。一个已经封闭了五十四年的理论，它自己的外观竟然是它的余项。而这个余项到今天都还没收干净——直到二○二四年才第一次有人在实验室里把它拍下来：飞秒激光脉冲，选通时间短到三百皮秒的增强相机，把有效光速压到每秒两米以下，对一个球和一个立方体拍照。论文二○二五年发在 Communications Physics，今年还挂了一条 addendum。作者自己写明，这项工作同时是为 Lampa 那篇文章的一百年做纪念。一百年，一个余项才第一次被拍到。</p>
+
+        <p>但这座公园真正的余项不在物理那边，在图形学这边。实时三维渲染本身也是一座已构：背面剔除、低多边形、静态细分、深度缓冲，每一条都是几十年凿出来的标准做法，每一条都省下真金白银的算力。而它们每一条底下都压着一个从没被写下来的物理前提。把光速降到每小时五公里，这些前提就一条条掉出来，掉出来的样子是 bug。README 里最短的一条是：背面剔除是关着的。理由只有一句——Terrell 旋转会让你看见背对着你的那些面，剔除它们等于把这个效应删掉。「不透明物体的背面看不见」是整条光栅化管线最底层、最不被怀疑的假设，它不是数学，是一句物理陈述，而在这座公园里它是假的。同理，一个立方体用八个顶点画，到 0.9c 还是个立方体，那是错的，所以场景默认细分到四十八万五千个顶点——不是为了细节，是为了让直边有能力弯。</p>
+
+        <p>地面被这个变换惩罚得最狠：一张全是直边的平面被推着弯成曲面，刻面误差按角步长的平方走。于是地面成了一张从 1.2 米指数分级到 4 公里的极坐标圆盘，格线与斑纹全在片元着色器里按世界坐标算，网格因此可以跟着眼睛滑动而看不出在动。他试过把它锚在原点：走出五百米，脚下的格距就变成了 7.8 米。求解光行时延要解 g(a) = a − |p(t−a) − eye| / c = 0；只要 |v| &lt; c，g′ 就到不了零，可是在旋转木马车厢的角上——那里线速度是 0.857c——g′ 会掉到 0.14，裸的牛顿法会把迭代甩到轨道的另一头去。每个顶点各解各的，于是相邻顶点落在不同的圈数上，整个场景的三角形当场撕开。他的办法是给延迟定一个必然含解的括号，用二分兜底，牛顿只在落进括号里时才被接受：二十四次迭代，最坏误差 0.06 像素。这些没有一条能从洛伦兹变换里读出来。它们只能从「造」里出来。这就是凿构循环的实际形状——每一次凿，构的那一面都会留下一层它自己处理不了的东西，而下一次凿正是从那层东西上起手的。</p>
+
+        <p>最见判断力的一处是摩天轮。吊舱是水平吊着的，每一个都在做纯平动，有自己的静止系，可以先按静止给出、再沿自身运动方向收缩，和木马车厢同一套处理。轮圈不行：一个刚性转动的环没有整体静止系可供设计，这就是 Ehrenfest 佯谬，而且那块材料在自己的参考系里是真的被拉伸的。他没有绕过去，也没有编一个答案。他把轮圈的世界线直接在世界系里给定，然后写下一行：它们是亚光速的、自洽的，而这就是渲染器有资格要求的全部。「有资格要求的全部」是拒绝收口。他大可以给轮圈编一个近似静止系，画面上没有任何人看得出来，那会是把余项抹平的第一凿；他不凿，他把「理论在这里没有答案」留在 README 里。同一份克制也出现在「哪些不准确」那一节：极端蓝移越过紫端之后，他把颜色做成金属银代表 X 射线、再到亮白代表伽马射线，并自己标注：完全不物理，只是给你一点感觉。</p>
+
+        <p>现在看比以后看重要，有三个具体理由。第一，这是第一版，作者自己这么说。仓库四十四次提交、七颗星；同一件东西在 Hacker News 上是六百一十七分、两百八十二条评论。差出两个数量级的那部分人看的是 demo，而余项在 README 里。他在评论区留的那句话是全篇的钥匙：数学一点都不复杂，只要你把数学做对，所有被预言的效应都会自己冒出来。这句话是对的——也正因为它是对的，难的部分全部落在了数学之外：顶点预算、括号、细分阈值、那条被关掉的背面剔除。第二，已经有一个格子在等它。MIT Game Lab 二○一二年的 A Slower Speed of Light 早把「相对论教学演示」这一格占好了；等到这个链接出现在某门课的参考资料里，它就成了那一格里的东西——已构，好用，不再被追问——而最先被丢掉的恰恰是 README，那是一份关于图形学为了让光变慢必须交出什么的记录。第三，另一头正在合拢。顺带算一笔：每小时五公里就是每秒 1.39 米，比实验室那台飞秒激光加皮秒选通相机压出来的「低于每秒两米」还要慢一点。两边是同一个动作——把光慢到人能站进去为止——一边花的是三百皮秒的选通，一边花的是四十四次提交。等实验那一侧给出一套定版的、可引用的外观，这座公园就从一次探问变成一幅插图。眼下还不是那一天：README 里还留着「轮圈没有静止系」那一行，速度表还留着五位小数，等你去看 4.99995 拒绝变成 5。</p>
+        <a href="https://rivendell.dmitrybrant.com/relativity/" target="_blank" rel="noopener" class="project-link">rivendell.dmitrybrant.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) &middot; @hqinjarsy &middot; SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>What Dmitry Brant has built is a park. Inside it the speed of light is 5 km/h — a brisk walk. There is a colonnade; two identical 60 m red-and-white rulers, one laid along Z and one along X; a set of closed arches, so you can watch a circle become an ellipse; a row of beacons that each flash once per second of <em>world</em> time; a carousel; a shuttle sliding back and forth along X; a Ferris wheel; and two STL sculptures on plinths. The carousel cars and the Ferris wheel gondolas all run at 0.75c, in opposite directions on either side. W A S D accelerate — but holding a key down adds <em>rapidity</em> linearly, not velocity, so you never arrive at five. The velocity readout carries five decimals for exactly one reason: so you can watch 4.99995 km/h refuse to become 5. Each of the four effects gets its own key: L for light-travel delay, G for aberration and contraction, C for Doppler color, B for relativistic beaming. No dependencies, no build step, one WebGL2 canvas, forty-four commits. His own account of it runs to two sentences: I've always wanted to make a visualization where the speed of light was scaled down to human speeds; here is the first version.</p>
+
+        <p>Place the remainder first. Special relativity is about as thoroughly constructed as anything we own: 1905, a few lines of algebra, no adjustable parameters, tested to absurd precision. But the formalization carries <em>measurement</em>, not <em>sight</em>. In 1924 Anton Lampa asked, in Zeitschrift für Physik, what a moving rod would look like. Nobody took it up, and the question sat buried for thirty-five years. In 1959 James Terrell published "Invisibility of the Lorentz Contraction," and Roger Penrose arrived independently at the same result that year: a sphere moving at speed does not photograph as squashed, it photographs as turned. A theory closed for fifty-four years, and its own appearance was its remainder. That remainder is still not cleaned up. Only in 2024 did anyone photograph it in a laboratory: femtosecond laser pulses, a gated intensified camera with gating as short as 300 picoseconds, an effective speed of light pushed below 2 m/s, and snapshots of a sphere and a cube. The paper appeared in Communications Physics in 2025, with an addendum this year. The authors say outright that the work also marks the hundredth anniversary of Lampa's paper. A hundred years before a remainder gets its first photograph.</p>
+
+        <p>But this park's real remainder is not on the physics side. It is on the graphics side. Real-time 3D rendering is itself a construct: backface culling, low-poly geometry, static tessellation, depth buffers — each a standard practice chiselled out over decades, each of them saving real money in compute. And underneath each one sits a physical premise nobody ever wrote down. Drop the speed of light to 5 km/h and the premises fall out one by one, and the form they take on the way out is a bug. The shortest line in the README reads: backface culling is off. The reason is one sentence — Terrell rotation shows you faces that point away from you, and culling them would delete the effect. "You cannot see the back of an opaque object" is the lowest and least-questioned assumption in the whole rasterization pipeline. It is not mathematics. It is a statement about physics, and in this park it is false. Likewise: a cube drawn with eight vertices would still look like a cube at 0.9c, which is wrong, so the scene is tessellated to about 485,000 vertices by default — not for detail, but so that straight edges are <em>able</em> to bend.</p>
+
+        <p>The ground is what the transform punishes hardest: a flat plane of straight edges bent into curves, with faceting error going as the square of the angular step. So the ground became a polar disc graded exponentially from 1.2 m out to 4 km, its grid and mottle computed from world coordinates in the fragment shader, which lets the mesh slide along with the eye without anything visibly moving. He tried anchoring it at the origin: 500 m out, the spacing beneath your feet was 7.8 m. Finding the light-travel delay means solving g(a) = a − |p(t − a) − eye| / c = 0. While |v| &lt; c, g′ never reaches zero — but at the corners of a carousel car, travelling at 0.857c, g′ falls to 0.14, and plain Newton flings the iterate most of the way around the orbit. Every vertex solves independently, so neighbours land on different revolutions and the triangles tear open across the scene. His answer: bracket the delay so a solution is guaranteed inside it, fall back on bisection, and accept Newton only when it lands in the bracket. Twenty-four iterations, worst error 0.06 px. Not one of these could be read off the Lorentz transformation. They only come out of building. That is the actual shape of the chisel-construct cycle: every cut leaves the construct with a layer it cannot itself process, and the next cut starts from that layer.</p>
+
+        <p>The Ferris wheel is where the judgment shows. The gondolas hang level, so each is in pure translation, each has a rest frame, and each can be specified at rest and then contracted along its own motion — the same treatment as a carousel car. The rim cannot. A rigidly rotating ring has no global rest frame to be designed in; that is Ehrenfest's paradox, and the material genuinely is strained in its own frame. He does not route around it and he does not invent an answer. He gives the rim's worldlines directly in the world frame, and writes one line: they are subluminal and self-consistent, which is the whole of what the renderer is entitled to ask. <em>Entitled to ask</em> is a refusal to close. He could have fabricated an approximate rest frame for the rim and not a single viewer would have caught it — that would have been the first chisel, the one that smooths the remainder away. He declines, and leaves "the theory has no answer here" standing in the README. The same restraint runs through the "what's not accurate" section: past violet, extreme blueshift turns metallic silver for x-rays and then bright white for gamma rays, and he labels it himself — totally unphysical, just to get a sense of it.</p>
+
+        <p>Three reasons seeing this now matters more than seeing it later. First, it is the first version, and he is the one saying so. Forty-four commits and seven stars on the repository; six hundred and seventeen points and two hundred and eighty-two comments for the same object on Hacker News. The two orders of magnitude are looking at the demo, and the remainder is in the README. His one comment in that thread is the key to the whole thing: none of the mathematics is particularly complicated, so if you get the math right, then all of the predicted effects emerge automatically. He is right — and precisely because he is right, everything hard landed outside the mathematics: vertex budgets, brackets, subdivision thresholds, that one disabled line of backface culling. Second, a slot is already waiting. MIT Game Lab's A Slower Speed of Light (2012) long ago took the category "relativity teaching demo," and the day this link turns up in a course reading list it becomes a thing in that slot — construct, useful, no longer interrogated — and the first thing discarded will be the README, which is a record of what graphics had to give up in order to let light run slow. Third, the other end is closing. Do the arithmetic: 5 km/h is 1.39 m/s, slightly slower than the "below 2 m/s" that the femtosecond laser and picosecond gated camera achieved in the lab. Both are the same gesture — slow light down until a person can stand inside it — one paid for with 300-picosecond gating, the other with forty-four commits. Once the experimental side settles into a canonical, citable account of the appearance, this park stops being an inquiry and becomes an illustration of it. That day has not come: the line about the rim having no rest frame is still standing in the README, and the speedometer still carries five decimals, waiting for you to watch 4.99995 refuse to become 5.</p>
+        <a href="https://rivendell.dmitrybrant.com/relativity/" target="_blank" rel="noopener" class="project-link">rivendell.dmitrybrant.com ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) &middot; @hqinjarsy &middot; SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
