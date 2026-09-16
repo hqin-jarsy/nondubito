@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>筛子后面总有一台更慢的 — Non Dubito</title>
+  <meta name="description" content="kbsriram 用三十片 ATtiny 复刻了 Lehmer 的数论筛。这台机器不做算术，只会说「不」——而一台只会否决的机器，没法告诉你它哪一次说错了。SAE 判断力与美学 · 余项之美。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-09-16.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang'); if (saved !== 'zh' && saved !== 'en') saved = 'zh'; document.documentElement.setAttribute('data-lang', saved); document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh'); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-09-16</div>
+          <h1 class="lang-zh">筛子后面总有一台更慢的</h1>
+          <h1 class="lang-en">Behind Every Sieve, Something Slower</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>八月三十一日，一个署名 kbsriram 的人在 hackaday.io 上开了个项目，叫 A Tiny Sieve。三十片 ATtiny412，一片管一个模数，插在一块 3U 欧卡洞洞板背板上，共用一根开漏的 VOTE 线；一块 Raspberry Pi Pico 给它们打拍子，并负责检查活下来的东西。他复刻的是 D. H. Lehmer 一九八二年那一版电子筛的设计，用 ATtiny 顶替 Lehmer 原来的「只读存储器加计数器」对。项目说明写得极直：从一九二〇年代到一九九〇年代末，回答某一类数论问题最快的东西不是通用计算机，而是一种叫数论筛的专用机器；Lehmer 一家——父亲、儿子、儿媳，三个数学家——先用自行车链条和齿轮做它，然后是延迟线、移位寄存器，最后是定制 VLSI。「链条和齿轮里没有任何东西在做算术，那它究竟怎么工作？它们为什么能一直撑到计算机的时代？我做了一台来弄明白。」</p>
+
+        <p>它确实不做算术。每片芯片手里只有一行「是／否」：对模数 p 而言，哪些余数还可能是一个平方数。每来一个时钟，它把手指往下挪一格；这一格若写着「不」，它就把共用的那根线拉低，走到行尾就从头再来。三十片全都沉默的时候，线才是高的。这台机器从不产出答案。它产出的是沉默。</p>
+
+        <p>先把已构摆在哪里说清楚。通用计算机这一凿，切下去的位置是「机器要不要长得像问题」。存储程序之所以是革命，正在于它让机器不必长得像任何问题——它本身什么形状也没有，因此什么形状都能扮。整部计算机史是从这一点开始讲的。被切到另一侧的，是长得像问题本身的机器：三十个齿轮就是三十个模数，一个模数一个轮子。它进不了任何一格——不是计算机，不是计算器，也不是模拟计算机，它连算术都不做。麻烦在于它一直在赢。DLS-127 从一九六五年起开始工作，一天二十四小时，连续十年；整机造价约两千美元，其中一百五十美元花在海军剩余物资的线延迟线上；它的输入是一条二十五英尺长的纸带，28,077 个字符，由一台 CDC 6400 打出来——通用机器在这里的职务是给专用机器打纸带。这一脉一直走到一九九五年曼尼托巴大学的一篇博士论文，题目就叫《一台非常快的电子数论筛》。七十年，就在计算机旁边，在它自己那件事上比计算机快，而它不在故事里。</p>
+
+        <p>不过这台机器最该看的地方不是快，是它拒绝下结论。筛子只排除可证不可能的东西：一个数在模 p 下若落在非二次剩余上，它就绝不可能是平方数——这一刀切得干净，且永不误伤。除此之外它什么也不说。活下来的候选并不是答案，只是「还没有人能否决的东西」，必须交给后面一台更慢的去验。kbsriram 把这条规律写成一句话：每一台筛子后面都有一台更慢的，否则这台筛子就没有用。数字很说明问题。他用三个模数去跑 Lehmer 当年那个十六位数 5,283,065,753,709,209，筛子一百一十三秒扫完 5,676,028 个候选，放过去七十四万个，Pico 花二十三分钟一个一个验完，最后给出 59,957 和 88,114,244,437——整个过程里筛子有百分之九十二的时间闲着，在等它的验算员。一九二八年那台十九条自行车链的机器每秒六十个候选，验算员是人；一九三二年那台三十个齿轮、靠一束光穿过对齐的孔照在光电管上的机器每秒五千个，验算员还是人。机器快了八十倍，验算那一头一步没动。余项永远跑在命名前面。</p>
+
+        <p>真正锋利的一处在这里：否决不留痕迹。一台只会说「不」的机器，没办法告诉你它哪一次说错了。kbsriram 讲得很平实：三十片共用一根开漏线，只要有一片因为一处焊桥而始终把线拉着低，它就会把本该通过的候选全部否掉，而那次运行会顺顺当当跑完，然后报告「无解」。这不是会报错的失败，这是会伪装成结果的失败。于是他造了一整套只为「核对否决是否诚实」而存在的装置：I2C 命令加 CRC-8 校验；每条命令必回一个字节的响应码，好让一片卡能拒绝一条损坏的命令，而不是默默照做；一个 STATUS 命令，读回这片卡的环位置、是否已武装、模数、固件版本，以及它上一次复位的原因——这样他能看出某片卡是不是在运行中途掉过电；烧录前的四项电气自检（对地短路、引脚桥接、开路、隔离），一项不过就不给烧正式固件；以及每次开跑之前，三十片全体再自检一遍。三十片板子连运费和关税八十一美元，每个模数两块七；三十片的排针是两百四十个焊点，其中任何一个都足以让整次运行安静地失效。</p>
+
+        <p>这件事在一九三二年有过一个对位。老 Lehmer 那年九月在《Scripta Mathematica》上写他儿子那台光电齿轮机：光穿过对齐的孔落在光电管上只有万分之一秒，那点信号要被放大七亿两千九百万倍才够切断电机；放大器因此神经质到极点，被搬到一堵砖墙之后，装进一口「赛璐板做的棺材」里，仍然每隔一刻钟就发作一次。查不出病因，最后他接了一只扬声器上去「听」——原来是附近一个短波无线电爱好者在发报。那一种错误至少还可恢复：机器停了，你把齿轮倒着摇回去找那道光，找不到，就知道它说了谎。而今天这台机器的危险方向是反的。假阳性会停机，你查得出来；假阴性什么也不做，它和「确实没有解」长得一模一样，永远查不出来。用 SAE 的话讲：凿削会把自己凿掉的东西的证据一并凿掉，所以它和涵育从来不是对称的两种操作。涵育留下它育成的东西；凿削什么也不留，包括不留下它出错的记录。唯一的办法是在机器之外另立一本账，手工写，专记「这一次本该被否决什么」，再回头核对。kbsriram 那五篇构建日志，大半在写这本账。</p>
+
+        <p>余项能在原地待多久，这一脉自己给过答案。第一台真正成功的自动同余机并不是 Lehmer 的，是 Eugène-Olivier Carissan 的：一九一九年由巴黎钟表商 Chateau Frères 制成，手摇，十五分钟证明 1,321,442,641 是素数。卡里桑兄弟到一九二五年都已去世，机器随即湮没；而毕生在造筛子的 D. H. Lehmer，直到一九八九年才第一次听说他们；那台机器一九九四年进了巴黎工艺博物馆，宣布它重现的那篇论文题目叫《一台丢失的因数分解机的发现》。七十年——而且是在一个全世界大概只有几十个人关心的领域里，在所有会关心的人都在看的情况下，它照样当了七十年的余项。</p>
+
+        <p>现在看比以后看重要，理由很具体。我写这段时，这个项目在 hackaday.io 上是六十五次浏览、一个关注、三个赞、零条评论。八月三十一日建立，最后一次更新在一天前，五篇日志。它还在半途：三十片卡刚刚第一次在背板上整体自检通过，三十个模数的完整运行还没跑过——这个项目存在的理由，那件它要弄明白的事，仍然是将来时。它报名了 Hackaday 的复古计算比赛，而「复古计算」这个格子早已开着口在等它。可它并不合身：复古计算靠的是群体记忆，靠的是足够多人摸过、因而有人怀旧的机器。没有人有关于数论筛的童年记忆——这种机器前后大概只有几十个人真正用过。那就是命名留下的缝。他自己给的动机也是一个问句而不是一个结论：我做了一台来弄明白。趁它还在被调试的时候去看：每一片卡上都有一颗 LED，闪的是这片卡自己投出的每一次否决。他把「不」做成了看得见的东西。</p>
+        <a href="https://hackaday.io/project/206556-a-tiny-sieve-lehmers-math-machine-in-attinys" target="_blank" rel="noopener" class="project-link">hackaday.io ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) &middot; @hqinjarsy &middot; SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>On 31 August someone posting as kbsriram opened a project on hackaday.io called A Tiny Sieve. Thirty ATtiny412s, one modulus per chip, standing in a 3U Eurocard stripboard backplane and sharing a single open-drain VOTE line, with a Raspberry Pi Pico clocking them and checking whatever survives. The design he is copying is D. H. Lehmer's 1982 electronic sieve, with the ATtinys standing in for Lehmer's ROM-and-counter pairs. The project description is unusually direct about why. From the 1920s to the late 1990s, the fastest way to answer a certain class of number-theory question was not a general-purpose computer but a special-purpose machine called a number sieve; the Lehmers — father, son, and the son's wife, all three mathematicians — built them first from bicycle chains and gears, then delay lines, then shift registers, then custom VLSI. "Nothing in chains and gears does arithmetic, so how does it work? And why did they last so long into the age of computers? I built one to find out."</p>
+
+        <p>It really does not do arithmetic. Each chip holds one row of yes and no: for its modulus p, which residues could still be a square. On every clock it moves its finger one cell along, and if that cell says no it pulls the shared line low; at the end of the row it starts again. The line stays high only when all thirty are silent. The machine never produces an answer. It produces silence.</p>
+
+        <p>Start with where the construct sits. The cut that made the general-purpose computer fell across the question of whether a machine has to be shaped like its problem. The stored program is revolutionary precisely because it lets a machine be shaped like nothing, and therefore like anything, and the whole history of computing is narrated forward from that point. What fell on the other side of the cut was the machine shaped like the problem itself: thirty gears are thirty moduli, one wheel per modulus. It has no slot to go in. It is not a computer, not a calculator, not an analogue computer, and it does no arithmetic at all. The awkward part is that it kept winning. The DLS-127 began operating in 1965 and ran twenty-four hours a day for ten years; the whole machine cost about two thousand dollars, of which about a hundred and fifty went on navy-surplus wire delay lines; its input was a paper tape twenty-five feet long carrying 28,077 characters, punched by a CDC 6400 — the general-purpose machine employed here as a tape punch for the special one. The line runs on to a 1995 doctoral thesis at the University of Manitoba titled, flatly, <em>A Very Fast Electronic Number Sieve</em>. Seventy years alongside the computer, faster than it at the one thing it did, and outside the story.</p>
+
+        <p>But the thing worth looking at is not the speed. It is that the machine refuses to conclude. A sieve excludes only what is provably impossible: if a number lands on a non-residue mod p it cannot be a square, and that cut is clean and never wrong. Beyond that it says nothing. What survives is not an answer, it is what nobody has managed to veto, and it has to be handed to something slower to be checked. kbsriram states the rule in a line: every sieve has something slower behind it, or the sieve would be no use. The numbers are eloquent. Running three moduli against Lehmer's sixteen-digit number 5,283,065,753,709,209, the sieve scanned 5,676,028 candidates in a hundred and thirteen seconds and let about seven hundred and forty thousand through; the Pico spent twenty-three minutes testing them one at a time before returning 59,957 and 88,114,244,437. Across the whole run the sieve was idle ninety-two per cent of the time, waiting on its checker. The 1928 machine of nineteen bicycle chains did sixty candidates a second and a human checked the survivors. The 1932 machine of thirty gears, which stopped when a beam of light found its way through aligned holes onto a photocell, did five thousand a second and a human still checked the survivors. The machine got eighty times faster and the checking end did not move. The remainder always outruns the naming.</p>
+
+        <p>Here is the sharp part: a veto leaves no trace. A machine that can only say no cannot tell you which time it said no wrongly. kbsriram puts it plainly — with thirty chips on one open-drain line, a single card holding that line low because of one solder bridge will reject every candidate that should have passed, and the run will complete perfectly normally and report that no solution exists. This is not a failure that raises an error. It is a failure that impersonates a result. So he built an entire apparatus whose only job is to certify that the vetoes were honest: CRC-8 on the I2C commands; a one-byte response code on every command, so a card can refuse a corrupted instruction instead of silently obeying it; a STATUS command returning the card's ring position, whether it is armed, its modulus, its firmware version and the reason for its last reset, so he can see whether a card browned out mid-run; four electrical checks at flash time — shorts to ground, pin bridges, opens, isolation — with no production firmware written to a card that fails one; and a full thirty-card self-test before every run. The boards cost eighty-one dollars for thirty with shipping and tariffs, about $2.70 a modulus, and their headers are two hundred and forty solder joints, any one of which is enough to make a run fail in silence.</p>
+
+        <p>There is a counterpart to this from 1932. That September the elder Lehmer described his son's photoelectric gear machine in <em>Scripta Mathematica</em>: the light passing through the aligned holes fell on the photocell for a ten-thousandth of a second, and that impulse had to be amplified seven hundred and twenty-nine million times to cut the motor. The amplifier was accordingly so highly strung that it was moved behind a brick wall and packed into what he called a coffin of celotex, and still threw a fit every quarter of an hour. Nothing in its symptoms explained it. In the end he attached a loudspeaker and listened to it, and found a short-wave radio enthusiast transmitting in the neighbourhood. That kind of error is at least recoverable: the machine stops, you wind the gears back looking for the beam, you find no beam, and you know it lied. The danger in the modern machine runs the other way. A false positive halts it and can be inspected. A false negative does nothing at all, looks exactly like there being no solution, and can never be found. In SAE terms: severing destroys the evidence of what it severed, which is why severing and cultivation are not two symmetrical operations. Cultivation leaves behind the thing it grew. Severing leaves nothing behind, including no record of its own mistakes. The only defence is a second ledger kept outside the machine, by hand, recording what should have been rejected this time, and checked afterwards against what was. Most of kbsriram's five build logs are that ledger.</p>
+
+        <p>As for how long a remainder can sit where it is, this lineage has already answered. The first genuinely successful automatic congruence machine was not a Lehmer's. It was Eugène-Olivier Carissan's, completed in 1919 by the Paris horologists Chateau Frères, hand-cranked, and able to prove 1,321,442,641 prime in fifteen minutes. Both Carissan brothers were dead by 1925 and the machine slid into obscurity; D. H. Lehmer, who spent his life building sieves, first heard of them in 1989; the machine entered the Musée des Arts et Métiers in 1994, and the paper announcing its reappearance was called "Discovery of a Lost Factoring Machine." Seventy years — inside a field of a few dozen people worldwide, with everyone who would have cared already looking.</p>
+
+        <p>Seeing this now matters more than seeing it later, for specific reasons. As I write, the project stands at sixty-five views, one follower, three likes and no comments. Created 31 August, last updated a day ago, five logs. It is mid-build: the thirty cards have only just passed their first whole-backplane self-test, and the full thirty-modulus run has not happened yet — the reason the project exists, the thing it is meant to find out, is still in the future tense. It is entered in Hackaday's Retro Computing Contest, and the slot marked retrocomputing is already open and waiting for it. But it does not fit. Retrocomputing runs on collective memory, on machines enough people touched to be nostalgic about. Nobody has a childhood memory of a number sieve; perhaps a few dozen people ever used one. That is the gap the naming leaves. His own stated motive is a question rather than a conclusion: I built one to find out. Go while it is still being debugged, because every card carries an LED, and what it blinks is each veto that card casts. He has made no into something you can watch.</p>
+        <a href="https://hackaday.io/project/206556-a-tiny-sieve-lehmers-math-machine-in-attinys" target="_blank" rel="noopener" class="project-link">hackaday.io ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) &middot; @hqinjarsy &middot; SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
