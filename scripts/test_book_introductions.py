@@ -46,6 +46,65 @@ class BookIntroductionsTests(unittest.TestCase):
         self.assertNotIn('may discuss more of the story', page)
         self.assertTrue('Research &amp; discussion' in page, 'Missing research source label')
 
+    def test_small_is_beautiful_revised_chinese_body(self):
+        book = next(book for book in self.books if book['slug'] == 'small-is-beautiful')
+        body = book['zh_body']
+        self.assertTrue(body.startswith('一家工厂添了新设备，用更少的人，做出了更多的东西。'))
+        self.assertEqual(re.findall(r'^## (.+)$', body, re.MULTILINE), [
+            '一、省了人工，谁过得更好了',
+            '二、账上的收入，可能是花掉的本钱',
+            '三、机器再先进，用不上怎么办',
+            '四、只靠老板的善意，还不够',
+            '五、他所说的好生活，适合每个人吗',
+            '六、带着赞同，也带着疑问去读',
+        ])
+        for approved_fix in (
+            '有一部分其实是卖家底得来的。',
+            '这样的分工，说来容易，真要实行，还有许多细节需要说清楚。',
+            '却没有同样重视女性的自主选择：要不要工作，想做什么工作。',
+        ):
+            with self.subTest(approved_fix=approved_fix):
+                self.assertIn(approved_fix, body)
+        self.assertNotRegex(body, r'(?i)porritt')
+
+    def test_small_is_beautiful_generated_bodies_use_independent_editions(self):
+        book = next(book for book in self.books if book['slug'] == 'small-is-beautiful')
+        source = (build.TARGET / 'small-is-beautiful.html').read_text(encoding='utf-8')
+        articles = dict(re.findall(
+            r'<article class="rf-prose [^"]+" lang="([^"]+)">(.*?)</article>',
+            source, re.DOTALL,
+        ))
+        converter = build.TraditionalConverter()
+        try:
+            # The Chinese revision is independent prose, not sentence-aligned English.
+            expected = {
+                'en': build.prose(book['en_body']),
+                'zh-Hans': build.prose(book['zh_body']),
+                'zh-Hant': build.prose(converter.convert(book['zh_body'])),
+            }
+        finally:
+            converter.close()
+        self.assertEqual(set(articles), set(expected))
+        for language, body in expected.items():
+            with self.subTest(language=language):
+                self.assertEqual(articles[language], body)
+
+    def test_small_is_beautiful_retains_registered_sources(self):
+        book = next(book for book in self.books if book['slug'] == 'small-is-beautiful')
+        self.assertEqual({item['url'] for item in book['sources']}, {
+            'https://centerforneweconomics.org/publications/buddhist-economics/',
+            'https://centerforneweconomics.org/publications/what-is-capital-chapter-1/',
+            'https://centerforneweconomics.org/publications/technology-guide-to-chapter-12/',
+            'https://centerforneweconomics.org/publications/giantism-guide-to-chapter-16/',
+            'https://www.cambridge.org/core/services/aop-cambridge-core/content/view/83903115DCDA6312E69C6314CAE15AC5/S0960777322000558a.pdf/between_the_handloom_and_the_samson_stripper_fritz_schumachers_struggle_for_intermediate_technology.pdf',
+            'https://journals.sagepub.com/doi/10.1177/13684310231215892',
+            'https://www.unm.edu/~varma/print/PGDT_Schumacher.pdf',
+            'https://www.scottbader.com/about-us/the-making-of-scott-bader/',
+            'https://www.scottbader.com/about-us/commonwealth-board/',
+            'https://www.un.org/sustainabledevelopment/blog/2021/03/un-adopts-landmark-framework-to-integrate-natural-capital-in-economic-reporting/',
+        })
+        build.validate_book(book, book['slug'])
+
     def test_publication_precision_and_collection_metadata(self):
         for book in self.books:
             page = self.pages[build.TARGET / (book['slug'] + '.html')]

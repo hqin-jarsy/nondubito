@@ -1,0 +1,65 @@
+/* The quoted Chinese text is stable across all eight reading languages. */
+.ddj-source {
+  max-width: var(--max-w, 700px);
+  margin: 0 auto;
+  padding: 2.75rem 2.5rem 1.5rem;
+}
+.ddj-source h2 {
+  margin: 0 0 0.45rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--green);
+}
+.ddj-source-edition {
+  margin: 0 0 1.15rem;
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+.ddj-source .ddj-source-text {
+  margin: 0;
+  padding: 0.2rem 0 0.2rem 1.25rem;
+  border-left: 2px solid var(--gold);
+  color: var(--ink);
+  font-family: var(--cjk), serif;
+  font-style: normal;
+  font-size: 1.05rem;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+.ddj-source-text p { margin: 0 0 0.8em; }
+.ddj-source-text p:last-child { margin-bottom: 0; }
+.ddj-source-details {
+  margin-top: 1.25rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--cream-border);
+  border-bottom: 1px solid var(--cream-border);
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.ddj-source-details summary { cursor: pointer; }
+.ddj-source-details summary:focus-visible,
+.ddj-source-details a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+.ddj-source-details p { margin: 0.8rem 0 0; }
+.ddj-source-details a { color: var(--green); text-underline-offset: 0.2em; }
+.ddj-source-note { color: var(--ink-light); }
+.ddj-source ~ .essay-body { padding-top: 1rem; }
+.ddj-source ~ .essay-body > :first-child { margin-top: 0; }
+.ddj-source [data-ddj-ui] { display: none; }
+.ddj-source [data-ddj-ui="zh"] { display: inline; }
+html[data-lang="en"] .ddj-source [data-ddj-ui],
+html[data-lang="zh-hant"] .ddj-source [data-ddj-ui] { display: none; }
+html[data-lang="en"] .ddj-source [data-ddj-ui="en"],
+html[data-lang="zh-hant"] .ddj-source [data-ddj-ui="zh-hant"] { display: inline; }
+@media (max-width: 700px) {
+  .ddj-source { padding: 2rem 1.25rem 1.25rem; }
+  .ddj-source .ddj-source-text { padding-left: 1rem; font-size: 1rem; }
+}
+@media print {
+  .ddj-source { break-inside: avoid; }
+  .ddj-source-details > :not(summary) { display: block; }
+}

@@ -17,7 +17,7 @@
     var node;
     while ((node = walker.nextNode())) {
       var parent = node.parentElement;
-      if (!parent || parent.closest('.lang-en, .lang-card, .lang-toggle, .footer-langs, script, style')) continue;
+      if (!parent || parent.closest('.lang-en, .lang-card, .lang-toggle, .footer-langs, script, style, .ddj-source')) continue;
       if (!originals.has(node)) originals.set(node, node.nodeValue);
       var source = originals.get(node);
       node.nodeValue = traditional && Object.prototype.hasOwnProperty.call(variants, source)
