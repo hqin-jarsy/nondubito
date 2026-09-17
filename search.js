@@ -261,7 +261,7 @@
     // These shelves keep three editions at one URL. Carry the result language
     // into the page instead of falling back to the reader's saved UI language.
     var readingLanguage = { en: 'en', 'zh-Hans': 'zh', 'zh-Hant': 'zh-hant' }[languageSelect.value];
-    if ((record.u.startsWith('essays/recent-fiction/') || record.u.startsWith('essays/books/') || record.u.startsWith('essays/nonfiction/') || record.u.startsWith('essays/everyday/stories/drama/')) && readingLanguage) {
+    if ((record.u.startsWith('essays/recent-fiction/') || record.u.startsWith('essays/books/') || record.u.startsWith('essays/nonfiction/') || record.u.startsWith('essays/everyday/stories/drama/') || record.u.startsWith('essays/meaning/')) && readingLanguage) {
       var target = new URL(record.u, window.location.href);
       target.searchParams.set('lang', readingLanguage);
       link.href = target.href;
