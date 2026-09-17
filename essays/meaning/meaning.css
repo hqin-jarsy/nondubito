@@ -17,8 +17,30 @@
 .entry-row p { font-size: .92rem; line-height: 1.7; color: var(--ink-light); }
 .entry-row.further-reading { margin-top: .8rem; border-style: dashed; }
 .source-note { margin-top: 2.5rem; }
+.meaning-languages .lang-btn[hidden] { display: none; }
+.meaning-languages.lang-select-menu { width: fit-content; max-width: 100%; }
+.meaning-edition { overflow-wrap: anywhere; }
+.meaning-edition:lang(ja) { font-family: var(--jp), var(--serif); }
+.meaning-edition:lang(ko) { font-family: var(--kr), var(--serif); word-break: keep-all; }
+.meaning-edition:lang(ja) .essay-body, .meaning-edition:lang(ko) .essay-body { font-family: inherit; }
+.meaning-edition:lang(ja) .essay-titles h1, .meaning-edition:lang(ko) .essay-titles h1 { line-height: 1.4; }
+.meaning-edition:lang(de) .essay-body, .meaning-edition:lang(de) .entry-row { hyphens: auto; }
+.meaning-edition .essay-header .back-link { max-width: var(--max-w); margin: 0 auto 1.5rem; color: var(--cream); }
+.meaning-edition .essay-series { color: var(--gold); font-size: .8rem; margin-bottom: .8rem; }
+.meaning-edition .essay-header h1 { overflow-wrap: anywhere; }
+.meaning-edition .method-citations { max-width: var(--max-w-prose); margin: 2rem auto; padding: 1.5rem 2.5rem 0; border-top: 1px solid var(--cream-border); font-size: .85rem; line-height: 1.7; color: var(--ink-muted); }
+.meaning-edition .method-citations p + p { margin-top: 1rem; }
+.meaning-edition .series-tail { max-width: var(--max-w-prose); margin: 0 auto; padding: 0 2.5rem 80px; }
+.meaning-edition .edition-note { margin: 1.5rem 0; font-size: .85rem; color: var(--ink-muted); }
+.meaning-edition .series-nav { display: flex; gap: 1rem; border-top: 1px solid var(--cream-border); padding-top: 1.5rem; }
+.meaning-edition .series-nav a { flex: 1; min-width: 0; padding: 1rem; border: 1px solid var(--cream-border); border-radius: 6px; color: var(--ink); text-decoration: none; }
+.meaning-edition .series-nav a:last-child { text-align: right; }
 .entry-row:focus-visible, .reading-note a:focus-visible, .lang-btn:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
 @media (max-width: 620px) {
   .series-container { padding: 85px 1.25rem 60px; }
   .entry-row { padding: 1rem; }
+  .meaning-edition .method-citations { padding: 1.5rem 1.25rem 0; }
+  .meaning-edition .series-tail { padding: 0 1.25rem 60px; }
+  .meaning-edition .series-nav { flex-direction: column; }
+  .meaning-edition .series-nav a:last-child { text-align: left; }
 }
