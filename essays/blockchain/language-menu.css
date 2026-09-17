@@ -1,0 +1,74 @@
+/* Links remain available when JavaScript is disabled; the enhanced control is
+   a native select, with the same destination URLs as those links. */
+/* This file is loaded only by the blockchain editions. Their five collection
+   templates must also shrink below the min-content width of long titles. */
+.collection-page {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.blockchain-language-menu {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem .85rem;
+  max-width: 32rem;
+  min-width: 0;
+  margin: .5rem 0;
+  font-family: "Inter", sans-serif;
+  font-size: .85rem;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+.blockchain-language-menu a {
+  color: #234637;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.blockchain-language-menu a[aria-current="page"] { text-decoration: underline; text-underline-offset: .25em; }
+.blockchain-language-menu [hidden] { display: none !important; }
+.blockchain-language-menu.is-enhanced { position: relative; flex-wrap: nowrap; }
+.blockchain-language-menu select {
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  width: 10rem;
+  max-width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: .55rem 2.1rem .55rem .8rem;
+  border: 1px solid rgba(72, 68, 55, .3);
+  border-radius: 2px;
+  background: #fcfaf4;
+  color: #234637;
+  font: inherit;
+  cursor: pointer;
+}
+.blockchain-language-menu::after {
+  content: none;
+}
+.blockchain-language-menu.is-enhanced::after {
+  content: "";
+  position: absolute;
+  right: .9rem;
+  top: calc(50% - .3rem);
+  width: .4rem;
+  height: .4rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg);
+  pointer-events: none;
+  color: #234637;
+}
+.blockchain-language-menu select:focus-visible,
+.blockchain-language-menu a:focus-visible {
+  outline: 2px solid #234637;
+  outline-offset: 3px;
+}
+@media (max-width: 680px) {
+  .collection-page h1 { font-size: clamp(2rem, 8vw, 2.35rem); hyphens: auto; }
+  .collection-hero h1 { font-size: clamp(2rem, 8vw, 2.75rem); }
+  .blockchain-language-menu { font-size: 1rem; }
+  .blockchain-language-menu select { width: 9rem; }
+}

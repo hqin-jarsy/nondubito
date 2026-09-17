@@ -14,16 +14,18 @@ html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
 body.blockchain-page { margin: 0; background: var(--bc-paper-light); color: var(--bc-ink); }
 .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; padding: .7rem 1rem; background: var(--bc-green); color: white; font-family: var(--bc-sans); text-decoration: none; }
 .skip-link:focus { top: 1rem; }
-.blockchain-site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--bc-rule); background: rgba(252, 250, 244, .96); backdrop-filter: blur(12px); }
-.blockchain-header-inner { max-width: 1240px; min-height: 72px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2.2rem; }
+.blockchain-site-header { position: sticky; top: 0; left: auto; right: auto; z-index: 20; display: block; height: auto; border-bottom: 1px solid var(--bc-rule); background: rgba(252, 250, 244, .96); backdrop-filter: blur(12px); }
+.blockchain-header-inner { max-width: 1240px; min-height: 72px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 2.2rem; }
 .blockchain-brand { display: inline-flex; flex-direction: column; font-family: "EB Garamond", serif; font-size: 1.03rem; line-height: .92; letter-spacing: .16em; color: var(--bc-green); text-decoration: none; }
 .blockchain-brand span:last-child { color: var(--bc-gold); }
 .blockchain-primary-nav { display: flex; justify-content: center; gap: clamp(1rem, 2.8vw, 2.4rem); }
-.blockchain-primary-nav a, .blockchain-header-tools a, .blockchain-header-tools span { color: var(--bc-muted); font-family: var(--bc-sans); font-size: .69rem; letter-spacing: .1em; text-decoration: none; }
+.blockchain-primary-nav a, .blockchain-header-tools > a { color: var(--bc-muted); font-family: var(--bc-sans); font-size: .69rem; letter-spacing: .1em; text-decoration: none; }
 .blockchain-primary-nav a:hover, .blockchain-header-tools a:hover { color: var(--bc-green); }
-.blockchain-header-tools { display: flex; align-items: center; gap: 1rem; }
-.blockchain-header-tools span { padding-left: 1rem; border-left: 1px solid var(--bc-rule); color: var(--bc-gold); }
+.blockchain-header-tools { min-width: 0; display: flex; align-items: center; gap: 1rem; }
+.blockchain-header-tools > a { flex: 0 0 auto; }
 .blockchain-main { max-width: 1180px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+/* The shared site stylesheet treats every header as the fixed site masthead. */
+.blockchain-main header { position: static; inset: auto; z-index: auto; height: auto; display: block; align-items: normal; background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
 .blockchain-page .reading-breadcrumbs { display: flex; flex-wrap: wrap; gap: .55rem; align-items: center; margin: 0 0 4.5rem; padding: 0; border: 0; font-family: var(--bc-sans); font-size: .68rem; letter-spacing: .08em; color: var(--bc-muted); }
 .blockchain-page .reading-breadcrumbs a { color: var(--bc-muted); text-decoration: none; }
 .blockchain-page .reading-breadcrumbs a:hover { color: var(--bc-green); }
@@ -45,7 +47,7 @@ body.blockchain-page { margin: 0; background: var(--bc-paper-light); color: var(
 .blockchain-reading-note > div { grid-column: 2; }
 .blockchain-reading-note > div p { margin: 0 0 1.25rem; font-family: var(--bc-serif); font-size: 1.02rem; line-height: 2; color: var(--bc-muted); }
 .blockchain-group { padding: 5rem 0; border-bottom: 1px solid var(--bc-rule); }
-.blockchain-group > header { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 1.5rem; margin-bottom: 2.4rem; }
+.blockchain-group > header { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 1.5rem; margin-bottom: 2.4rem; border: 0; }
 .blockchain-group > header > p { margin: .35rem 0 0; font-family: var(--bc-sans); font-size: .72rem; color: var(--bc-gold); }
 .blockchain-group h2 { margin: 0; font-family: var(--bc-serif); font-size: clamp(1.9rem, 3.5vw, 2.9rem); font-weight: 500; color: var(--bc-green); }
 .blockchain-group header div p { max-width: 650px; margin: .7rem 0 0; font-family: var(--bc-serif); line-height: 1.8; color: var(--bc-muted); }
@@ -75,6 +77,7 @@ body.blockchain-page { margin: 0; background: var(--bc-paper-light); color: var(
 .chapter-aside a::before { content: counter(section, decimal-leading-zero); font-family: var(--bc-sans); font-size: .6rem; color: var(--bc-gold); }
 .chapter-aside a:hover { color: var(--bc-green); }
 .essay-body { min-width: 0; font-family: var(--bc-serif); font-size: 1.055rem; line-height: 2.08; letter-spacing: .012em; }
+.blockchain-page .essay-body { max-width: none; margin: 0; padding: 0; }
 .essay-body p { margin: 0 0 1.55rem; }
 .essay-body .opening { font-size: 1.14em; line-height: 2; color: var(--bc-green); }
 .essay-body h2 { margin: 5rem 0 1.6rem; padding-top: .2rem; font-family: var(--bc-serif); font-size: clamp(1.55rem, 3vw, 2rem); line-height: 1.55; font-weight: 500; color: var(--bc-green); }
@@ -103,7 +106,7 @@ body.blockchain-page { margin: 0; background: var(--bc-paper-light); color: var(
 .blockchain-footer nav a { font-family: var(--bc-sans); font-size: .66rem; letter-spacing: .08em; color: var(--bc-muted); text-decoration: none; }
 
 @media (max-width: 900px) {
-  .blockchain-header-inner { grid-template-columns: auto 1fr; }
+  .blockchain-header-inner { grid-template-columns: auto minmax(0, 1fr); }
   .blockchain-primary-nav { display: none; }
   .blockchain-header-tools { justify-self: end; }
   .blockchain-article-layout { grid-template-columns: minmax(0, 730px); gap: 2.5rem; }
@@ -116,8 +119,8 @@ body.blockchain-page { margin: 0; background: var(--bc-paper-light); color: var(
 }
 
 @media (max-width: 680px) {
-  .blockchain-header-inner { min-height: 62px; padding: 0 1.1rem; }
-  .blockchain-header-tools a { display: none; }
+  .blockchain-header-inner { min-height: 62px; padding: .45rem 1.1rem; gap: .7rem; }
+  .blockchain-header-tools { gap: .6rem; }
   .blockchain-main { padding: 1.4rem 1.15rem 4rem; }
   .blockchain-page .reading-breadcrumbs { margin-bottom: 3rem; }
   .blockchain-hero { padding-bottom: 4.5rem; }

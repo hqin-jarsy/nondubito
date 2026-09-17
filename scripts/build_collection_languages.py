@@ -14,6 +14,8 @@ import json
 import re
 from pathlib import Path
 
+from blockchain_navigation import upgrade_page as upgrade_blockchain_page
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "collection-languages"
@@ -181,25 +183,43 @@ def render(spec: dict[str, object]) -> dict[Path, str]:
     directory = ROOT / str(spec["directory"])
     outputs: dict[Path, str] = {}
     spec_langs = tuple(spec.get("languages", LANGS))
+    blockchain = str(spec["directory"]) == "essays/blockchain"
     for lang in spec_langs:
-        outputs[directory / lang / "index.html"] = index_html(spec, lang)
+        index = index_html(spec, lang)
+        outputs[directory / lang / "index.html"] = (
+            upgrade_blockchain_page(index, lang, "index") if blockchain else index
+        )
         for i, item in enumerate(spec["items"]):
-            outputs[directory / lang / f'{item["slug"]}.html'] = article_html(spec, lang, i)
+            article = article_html(spec, lang, i)
+            outputs[directory / lang / f'{item["slug"]}.html'] = (
+                upgrade_blockchain_page(article, lang, str(item["slug"])) if blockchain else article
+            )
     source_index = directory / "index.html"
-    outputs[source_index] = inject_source_links(source_index.read_text(encoding="utf-8"), None, source_index)
+    source_text = source_index.read_text(encoding="utf-8")
+    outputs[source_index] = (
+        upgrade_blockchain_page(source_text, "zh", "index") if blockchain
+        else inject_source_links(source_text, None, source_index)
+    )
     for item in spec["items"]:
         source = directory / f'{item["slug"]}.html'
-        outputs[source] = inject_source_links(source.read_text(encoding="utf-8"), str(item["slug"]), source)
-    for lang in tuple(spec.get("existing_languages", ())):
-        existing_index = directory / lang / "index.html"
-        outputs[existing_index] = replace_language_route(
-            existing_index.read_text(encoding="utf-8"), lang, None, existing_index
+        source_text = source.read_text(encoding="utf-8")
+        outputs[source] = (
+            upgrade_blockchain_page(source_text, "zh", str(item["slug"])) if blockchain
+            else inject_source_links(source_text, str(item["slug"]), source)
         )
+    existing_languages = ("en", "zh-hant") if blockchain else tuple(spec.get("existing_languages", ()))
+    for lang in existing_languages:
+        existing_index = directory / lang / "index.html"
+        index = existing_index.read_text(encoding="utf-8")
+        outputs[existing_index] = replace_language_route(
+            index, lang, None, existing_index
+        ) if not blockchain else upgrade_blockchain_page(index, lang, "index")
         for item in spec["items"]:
             existing = directory / lang / f'{item["slug"]}.html'
+            article = existing.read_text(encoding="utf-8")
             outputs[existing] = replace_language_route(
-                existing.read_text(encoding="utf-8"), lang, str(item["slug"]), existing
-            )
+                article, lang, str(item["slug"]), existing
+            ) if not blockchain else upgrade_blockchain_page(article, lang, str(item["slug"]))
     return outputs
 
 

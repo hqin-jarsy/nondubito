@@ -14,6 +14,8 @@ import json
 import re
 from pathlib import Path
 
+from blockchain_navigation import VERSION, upgrade_page
+
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "essays" / "blockchain"
@@ -167,7 +169,7 @@ def head(*, title: str, description: str, canonical: str, page_type: str) -> str
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&amp;family=Inter:wght@300;400;500&amp;family=Noto+Serif+SC:wght@400;500;600&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../../reading-context.css?v=20260905a">
-  <link rel="stylesheet" href="blockchain.css?v=20260905a">'''
+  <link rel="stylesheet" href="blockchain.css?v={VERSION}">'''
 
 
 def breadcrumbs(current: str) -> str:
@@ -233,7 +235,7 @@ def render_article(source: Path, number: int, title: str, description: str) -> s
     )
     cutoff_note = '<p class="article-cutoff">资料截至 2026 年 8 月</p>' if number == 21 else ""
 
-    return f'''<!DOCTYPE html>
+    page = f'''<!DOCTYPE html>
 <html lang="zh-Hans">
 <head>
   {head(title=f"{title}｜凿构周期律：区块链 {number:02d}", description=description, canonical=canonical, page_type="article")}
@@ -270,6 +272,7 @@ def render_article(source: Path, number: int, title: str, description: str) -> s
 </body>
 </html>
 '''
+    return upgrade_page(page, "zh", f"ep{number:02d}")
 
 
 def index_json_ld() -> str:
@@ -309,7 +312,7 @@ def render_index() -> str:
 {chr(10).join(cards)}
         </div></section>''')
     canonical = f"{SITE}/essays/blockchain/"
-    return f'''<!DOCTYPE html>
+    page = f'''<!DOCTYPE html>
 <html lang="zh-Hans">
 <head>
   {head(title="凿构周期律：区块链", description=description, canonical=canonical, page_type="website")}
@@ -336,6 +339,7 @@ def render_index() -> str:
 </body>
 </html>
 '''
+    return upgrade_page(page, "zh", "index")
 
 
 def source_files(source_dir: Path) -> dict[int, Path]:
