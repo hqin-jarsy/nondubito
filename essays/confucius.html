@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confucius, Transmitting Without Creating — Non Dubito</title>
-  <meta name="description" content="What sustains a subject through fourteen years of failure?">
+  <meta name="description" content="What lets a person keep walking when the hoped-for world does not arrive?">
   <meta name="author" content="Han Qin (秦汉)">
   <link rel="stylesheet" href="../style.css">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -12,27 +12,34 @@
   
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'en';
-      document.documentElement.setAttribute('data-lang', saved);
+      var query = new URLSearchParams(window.location.search).get('lang');
+      var saved = null;
+      try { saved = localStorage.getItem('nd_lang'); } catch (error) {}
+      var initial = query === 'en' || query === 'zh' ? query :
+        (saved === 'en' || saved === 'zh' ? saved : 'en');
+      function setLanguage(lang) {
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : 'en';
+      }
+      setLanguage(initial);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            localStorage.setItem('nd_lang', lang);
-          });
-        });
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
         function updateActive() {
           var cur = document.documentElement.getAttribute('data-lang');
           btns.forEach(function(btn) {
             btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
           });
         }
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            if (lang !== 'en' && lang !== 'zh') return;
+            setLanguage(lang);
+            try { localStorage.setItem('nd_lang', lang); } catch (error) {}
+            updateActive();
+          });
+        });
+        updateActive();
       });
     })();
   </script>
@@ -64,16 +71,15 @@
       <header class="essay-header">
         
     <div class="lang-toggle">
-      <button class="lang-btn" data-lang="en">EN</button>
-      <span class="lang-sep">|</span>
-      <button class="lang-btn" data-lang="zh">中文</button>
-      <span class="lang-sep">|</span><a class="lang-btn" href="mingren/zh-hant/confucius.html">繁體</a>
-      <span class="lang-sep">|</span><a class="lang-btn" href="mingren/ja/confucius.html">日本語</a>
-      <span class="lang-sep">|</span><a class="lang-btn" href="mingren/fr/confucius.html">Français</a>
-      <span class="lang-sep">|</span><a class="lang-btn" href="mingren/de/confucius.html">Deutsch</a>
-      <span class="lang-sep">|</span><a class="lang-btn" href="mingren/es/confucius.html">Español</a>
-      <span class="lang-sep">|</span><a class="lang-btn" href="mingren/ko/confucius.html">한국어</a>
-    </div>
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span><button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span><a class="lang-btn" href="mingren/zh-hant/confucius.html">繁體</a>
+          <span class="lang-sep">|</span><a class="lang-btn" href="mingren/ja/confucius.html">日本語</a>
+          <span class="lang-sep">|</span><a class="lang-btn" href="mingren/fr/confucius.html">Français</a>
+          <span class="lang-sep">|</span><a class="lang-btn" href="mingren/de/confucius.html">Deutsch</a>
+          <span class="lang-sep">|</span><a class="lang-btn" href="mingren/es/confucius.html">Español</a>
+          <span class="lang-sep">|</span><a class="lang-btn" href="mingren/ko/confucius.html">한국어</a>
+        </div>
         <a href="mingren/index.html" class="back-link lang-zh">← 一百零八种人生</a>
         <a href="mingren/index.html" class="back-link lang-en">← Great Lives</a>
         <div class="essay-series lang-zh">一百零八种人生 · 002 / 108 · 成为自己</div>
@@ -81,8 +87,8 @@
         <div class="essay-titles">
           <h1 class="lang-en">Confucius, Transmitting Without Creating</h1>
           <h1 class="lang-zh">孔子，述而不作</h1>
-          <p class="essay-subtitle lang-en">What sustains a subject through fourteen years of failure?</p>
-          <p class="essay-subtitle lang-zh">什么样的主体性，能支撑十四年的失败？</p>
+          <p class="essay-subtitle lang-en">What lets a person keep walking when the hoped-for world does not arrive?</p>
+          <p class="essay-subtitle lang-zh">盼望的世界迟迟不来，一个人靠什么继续走？</p>
         </div>
         <div class="essay-meta">
           <span class="author">Han Qin (秦汉)</span>
@@ -97,44 +103,44 @@
 
       <div class="essay-body lang-en">
 <h2>I. The Stray Dog</h2>
-<p>492 BCE. Confucius was sixty years old.</p>
-<p>He and his band of disciples had become separated on the road between the states of Zheng and Chen. When the disciples found him at the city gate, someone told Zigong: there is a man standing outside the gate who looks “worn and weary, like a stray dog without a home.”</p>
-<p>Zigong went back and relayed this. Confucius laughed. “Yes! Yes! That is right.”</p>
-<p>This line has been passed down for twenty-five hundred years. In most retellings, it is used to illustrate Confucius’ self-deprecation, his magnanimity, or his destitution. But very few notice: he was laughing.</p>
-<p>A man who had spent fourteen years wandering among the states with a dozen students, rejected by every ruler he approached, standing at the gate of an unfamiliar city, told he looked like a homeless dog — and his response was to laugh and say “yes.”</p>
-<p>This laugh is the same laugh Socrates gave when he drank the hemlock.</p>
+<p>In the <em>Records of the Grand Historian</em>, Confucius once arrives in Zheng, becomes separated from his disciples, and stands alone at the eastern gate.</p>
+<p>A local man tells Zigong about the stranger. His forehead resembles Yao’s, his neck Gaotao’s, his shoulders Zichan’s — but, worn and weary as he is, he looks like a dog without a home.</p>
+<p>Zigong reports the description. Confucius laughs with pleasure. The physical comparisons are a minor matter, he says. But the homeless dog? “Yes indeed! Yes indeed!”</p>
+<p>The story has travelled a long way. We can hear self-mockery in it, or generosity of spirit, or the humiliation of a man brought low. I want to pause before all these explanations. He is laughing.</p>
+<p>Here is someone travelling among the states, hoping to make his Way a reality, standing at the gate of a strange city. Someone calls him a homeless dog, and he laughs and agrees. The journeys later remembered as fourteen years included welcome as well as hardship. The political order he hoped for remained beyond his reach.</p>
+<p>His laugh makes me think of Socrates, still able to smile with death approaching in the <em>Phaedo</em>. The circumstances are different. Something in their composure answers across the distance.</p>
 <hr>
 <h2>II. Transmitting Without Creating</h2>
-<p>Confucius and Socrates share one fundamental trait: neither of them ever wrote anything.</p>
-<p>Socrates did not write. Confucius did not write. Socrates’ thought survives in Plato’s dialogues. Confucius’ thought survives in the <em>Analects</em>, compiled by his disciples. Both men only spoke. Neither wrote.</p>
-<p>But Confucius said one additional sentence to explain this:</p>
+<p>Confucius and Socrates have this in common: we first encounter each as a man talking to other people, not as the author unfolding a philosophical treatise in his own name.</p>
+<p>Socrates reaches us through Plato, Xenophon, and others. Confucius reaches us through the gradually assembled <em>Analects</em> and through later stories. We hear their voices through the voices of those who followed them.</p>
+<p>Confucius also gave us a sentence about how he understood his work:</p>
 <p>“I transmit but do not create. I trust in and love the ancient ways. In this I dare to compare myself to Old Peng.”</p>
-<p>Transmitting, not creating. Passing down, not inventing. I am only handing down what the ancients already had. I am not making anything new. I privately compare myself to Old Peng — a worthy minister of the Shang dynasty, known for his love of recounting ancient matters.</p>
-<p>In the context of pre-Qin China, this sentence carried a political dimension. The <em>Book of Rites</em> states: “He who creates is called a sage; he who transmits is called an illuminator.” To “create” — to institute rites and compose music from nothing — was the prerogative of sage-kings. Yao, Shun, and the Duke of Zhou could “create.” Confucius was a shi — a scholar, not a king. He did not have the authority to “create.” “Transmitting without creating” was his acknowledgment of his own station.</p>
-<p>But that is only the surface explanation. The deeper layer is: he genuinely did not want to “create.”</p>
-<p>Not out of modesty. Not because of political station. Because he believed “creating” was unnecessary. The Way was already there — in the rites of Zhou, in the institutions of the ancient kings, in the old poems and music. It did not need to be invented. It only needed to be rediscovered.</p>
+<p>To transmit, not to claim the place of an originator. To trust and love what is old. Old Peng’s identity is uncertain, but the direction of the gesture is clear: Confucius looks back before he speaks.</p>
+<p>The distinction has a political weight. The <em>Book of Rites</em> calls the person who creates a sage, and the person who transmits an illuminator. To institute rites and music is not merely to have a new idea. It raises the question of who may establish an order for the world. Confucius admired Yao, Shun, and the Duke of Zhou; he was not himself a sovereign. We can hear in “transmitting without creating” a sense of his place.</p>
+<p>But what interests me more is the refusal to hurry toward a world with his own signature on everything.</p>
+<p>The Way need not begin with me. Traces of it are already there, in old poems, in ceremonies, in music. My work is to approach them again, until gestures that have become empty can once more touch the lives of people.</p>
 <p>“How resplendent was the culture of Zhou! I follow Zhou.”</p>
-<p>What he did was: carve. He carved away the dust that had covered the ancient Way, letting it show through again. He edited the <em>Book of Songs</em>, arranged the rites and music, annotated the <em>Book of Changes</em>, compiled the <em>Spring and Autumn Annals</em>. Zhu Xi said these efforts “all transmitted the old ways of the former kings; he never created anything of his own.”</p>
-<p>At least, that is what he himself believed.</p>
+<p>We might call his work excavation: opening the old road under the dust. Later tradition credited him with editing the Songs and Documents, ordering rites and music, working on the Changes, and compiling the Spring and Autumn Annals. These attributions cannot all be treated as securely established authorship. Yet the portrait they make is unmistakable: he selects, arranges, restores — and calls this transmission.</p>
+<p>Transmission can change a tradition. He simply does not make “it began with me” the measure of its worth.</p>
 <hr>
 <h2>III. Asking About Ren</h2>
-<p>Confucius did not write. But he spoke. And the way he spoke was different from Socrates.</p>
-<p>Socrates went out looking for people to talk to. He stopped you in the marketplace and asked you questions, whether you wanted to be asked or not. He was a gadfly, stinging of his own initiative.</p>
-<p>Confucius waited for you to come.</p>
+<p>The Confucius of the <em>Analects</em> is, first of all, a speaker. His way of speaking brings into view a kind of teaching different from the one we often encounter in Socrates.</p>
+<p>Plato’s Socrates goes looking for conversation. You think you know what courage is; he asks another question. You were not planning to doubt yourself; the question is already before you. This is the posture of the gadfly.</p>
+<p>With Confucius, there is also a readiness to wait.</p>
 <p>“I do not open the door for those who are not already struggling to understand. I do not assist those who are not already struggling to express. If I raise one corner and the student cannot come back with the other three, I do not continue.”</p>
-<p>If the feeling of “wanting to understand but not yet getting there” has not yet arisen in your heart, I will not speak. If the urge of “wanting to say it but not yet finding the words” has not yet reached your lips, I will not prompt. I show you one corner — can you deduce the other three? If not, I stop. Not because I do not want to teach you. Because the timing is not right.</p>
-<p>This is entirely different from Socrates. Socrates did not care whether your timing was right. He carved you directly. The advantage was breadth — all of Athens was carved. The cost was depth — many people were carved once and ran away.</p>
-<p>Confucius’ carving waited for the right moment. You walked to the door yourself; only then did he open it. The advantage was depth — carved to the bone. The cost was narrowness — if you did not come, he could not reach you.</p>
-<p>What best illustrates this deep carving is how he answered the question of “ren” — humaneness, benevolence, the heart of his thought.</p>
-<p>“Ren” is the core of Confucius’ philosophy. But he never once gave it a definition. The same question — “what is ren?” — received entirely different answers depending on who asked.</p>
-<p>Yan Hui asked about ren. Confucius said: “To master yourself and return to ritual — that is ren. If for a single day you could master yourself and return to ritual, the whole world would turn toward ren. Ren comes from yourself. Does it come from others?” He said this to Yan Hui because Yan Hui’s moral attainment was already the highest among the disciples. What he needed was the final step: to take responsibility for the entire order, starting from “I.”</p>
-<p>Zhonggong asked about ren. Confucius said: “When you go out, behave as though receiving a distinguished guest. When employing the people, behave as though conducting a great sacrifice. What you do not wish for yourself, do not impose on others.” He said this to Zhonggong because Zhonggong had the capacity for governance. What he needed was to translate ren into the practice of administration.</p>
-<p>Sima Niu asked about ren. Confucius said only four characters: “The person of ren is slow to speak.” Because Sima Niu was impulsive and talked too much. Confucius pulled the highest concept of “ren” down to the most concrete action: first, control your mouth.</p>
-<p>Fan Chi asked about ren. Confucius said: “Love others.” Two words. Because Fan Chi was plain and earnest. He did not need complex theory. He needed the most direct thing.</p>
-<p>Zigong asked about ren. Confucius said: “The person of ren, wishing to establish himself, establishes others; wishing to advance himself, advances others. To draw an analogy from what is near at hand — this may be called the method of ren.” Because Zigong was brilliant but fond of argument. He needed an operational framework.</p>
-<p>Five people asked the same question. Five different answers.</p>
-<p>Socrates carved “what is courage?” — carved to the bottom, no answer. The dialogue ended, and everyone knew they did not know. A clearing.</p>
-<p>Confucius carved “what is ren?” — carved to the bottom, and each person received a different answer. Not “ren has no definition,” but “ren grows differently in each person.” Not a clearing, but each person’s own ground.</p>
+<p>Until you are trying to understand and cannot quite reach it, I will not open the way. Until you are struggling for words, I will not supply them. I show you one corner: can you find the other three? If not, I do not go on repeating. In this image of teaching, the student’s own effort matters before the teacher speaks.</p>
+<p>A question can wake an unprepared person, or simply frighten him away. Socratic questioning has that edge. It opens a place a person had thought there was no reason to examine.</p>
+<p>Here Confucius attends to how far the student has already come. You reach the door yourself; then he opens it. He is not going to walk the rest of the road for you. He gives you a push because you have begun to find the strength to go.</p>
+<p>We can hear this responsiveness most clearly in his answers about ren — often translated as humaneness, a word at the heart of his teaching.</p>
+<p>He returns to ren again and again, but there is no single sentence to carry unchanged into every encounter. Put several conversations beside one another, and the questioner becomes audible in the answer.</p>
+<p>Yan Hui asks about ren. Confucius tells him to master himself and return to ritual: the practice depends on oneself, not on someone else. Yan Hui asks for particulars. Confucius turns to seeing, listening, speaking, acting — each brought into accord with ritual. The language opens onto the whole world, yet comes down to something very close: no one can do this work in your place.</p>
+<p>Zhonggong asks about ren. Go out as though receiving an honoured guest, Confucius says; employ the people as though taking part in a great sacrifice. Do not impose on others what you would not wish for yourself. Elsewhere Confucius judges Zhonggong fit to govern. Here ren reaches into how he will treat people, especially those subject to his commands.</p>
+<p>Sima Niu asks about ren. “The humane person is cautious in speech.” Is cautious speech really enough, Sima Niu asks? Confucius answers: if doing something is difficult, how could speaking of it not call for care? The <em>Records of the Grand Historian</em> describes Sima Niu as talkative and impetuous. Read the exchange beside that portrait, and the nudge becomes plain: do not let your mouth outrun your actions.</p>
+<p>Fan Chi asks about ren. “Love people.” A very short answer. It need not be a lesser lesson for a lesser mind. It turns his eyes straight toward someone else. If your account of humaneness makes no difference to how you see or treat a person, the finest explanation has not yet reached the ground.</p>
+<p>Zigong begins on a grander scale. What of someone who could benefit the people widely and bring help to everyone — would that be ren? That would go beyond ren toward sagehood, Confucius replies; even Yao and Shun would struggle with it. Then he brings Zigong nearer home. Wishing to stand, help others stand; wishing to make your way, help others make theirs. Draw an analogy from what is close at hand. You need not wait until you can save the world before beginning.</p>
+<p>Five people, five conversations about ren. None can be detached from the person before the teacher and pressed, unchanged, into everybody’s hands.</p>
+<p>In the <em>Laches</em>, Socrates asks what courage is, and the conversation fails to reach a definition that will hold. The confidence with which people began has loosened. A clearing.</p>
+<p>These answers from Confucius bring each person back to the ground under his own feet. Ren does not become five unrelated virtues. The same concern has to grow through five different lives. Not a house the teacher has built for you. Ground you will have to cultivate.</p>
 <hr>
 <h2>IV. I Wish to Say Nothing</h2>
 <p>But Confucius, too, had his moment of turning toward silence.</p>
@@ -143,72 +149,72 @@
 <p>Zigong was alarmed: “If you do not speak, Master, what shall we, your disciples, transmit?”</p>
 <p>Confucius replied:</p>
 <p>“Does Heaven speak? The four seasons turn, the hundred things grow. Does Heaven speak?”</p>
-<p>Heaven says nothing. Heaven does not carve. Heaven does not construct. The four seasons turn on their own. The hundred things grow on their own. The highest order does not need to be spoken.</p>
-<p>What was Confucius saying? He was saying: everything I have done in my life — speaking, teaching, transmitting the rites and music — in the end, the best state is not needing any of it. If the Way is truly at work, it is like the four seasons — it needs no one to articulate it. I have spent my life speaking, but the place I most want to reach is “not needing to speak.”</p>
-<p>This and Socrates’ “I know that I know nothing” are the same position — arrived at from different directions. Socrates carved for a lifetime and discovered he knew nothing. Confucius spoke for a lifetime and discovered the best state is silence.</p>
-<p>One arrived at not-knowing. The other arrived at not-speaking.</p>
+<p>Heaven does not issue one instruction after another to keep the seasons turning and things growing. For a man who spends his days teaching and answering questions, the comparison suddenly lightens the burden placed on speech.</p>
+<p>I hear a hope in it: I have spent my life speaking, teaching, handing on rites and music, but I want more than your memory of my sentences. If they enter your life, you will not need another reminder at every step. I speak so that, one day, the words may stop and something may still go on happening.</p>
+<p>Socrates makes people confront the limits of what they know. Here Confucius turns toward the limits of what can be said. An unanswered question, an answer not yet lived — neither is finished simply because a teacher adds more words.</p>
+<p>One leaves you for a while in not-knowing. The other asks: when I no longer speak, will you be able to continue?</p>
 <hr>
 <h2>V. Yan Hui</h2>
-<p>Among all of Confucius’ disciples, one came closest to him.</p>
+<p>Among Confucius’ disciples, Yan Hui was especially close to him.</p>
 <p>Yan Hui.</p>
-<p>Confucius spoke of Yan Hui differently from every other disciple. He said Yan Hui’s “heart did not depart from ren for three months.” Everyone else managed at most “to touch ren now and then” — a day here, a month there, then back to ordinary life.</p>
-<p>Three months without departing from ren. This meant Yan Hui did not need to be carved. He was already inside ren. He did not need his teacher to raise one corner so he could deduce the other three — he was already there.</p>
-<p>Yan Hui also barely spoke. When Confucius talked with him, “Hui is no help to me — there is nothing I say that does not please him.” This looks like a useless student. But Confucius’ “no help to me” was not a complaint. It was an exclamation: Yan Hui did not need to learn through disagreement. He simply understood.</p>
+<p>Confucius says that Yan Hui’s heart could remain with ren for three months, while the others reached it for a day or a month at a time. What moves me is not the arithmetic of virtue. It is the steadiness: where others arrived from time to time, Yan Hui could stay.</p>
+<p>He was still learning, of course. It was Yan Hui who asked how to put mastery of oneself and a return to ritual into practice. But in him the teacher’s words seem to have passed beyond recitation into ordinary conduct. When the speaking stopped, ren did not stop with it.</p>
+<p>“Hui is no help to me,” Confucius says. “There is nothing I say that does not delight him.” Elsewhere, he remembers talking to Yan Hui all day and receiving no objection, as though the young man were dull. Watching him afterwards, he discovers that Yan Hui can develop what he has learned. Understanding is not merely nodding. It begins to show in what a person does when the teacher has gone.</p>
 <p>Yan Hui died.</p>
 <p>“When Yan Hui died, the Master wept without restraint. His attendants said: ‘Master, you grieve too deeply.’ He said: ‘Do I grieve too deeply? If not for this man, for whom should I grieve?’”</p>
 <p>Confucius wept so hard that those around him were alarmed. They said: Master, this is too much. Confucius said: too much? If I do not grieve for this man, for whom should I grieve?</p>
-<p>Then he said:</p>
+<p>Another passage preserves his cry:</p>
 <p>“Alas! Heaven is destroying me! Heaven is destroying me!”</p>
-<p>This was not ordinary grief at a student’s death. This was a man who had carved for a lifetime discovering that the only person who could receive without being carved — the only one who arrived directly — was gone.</p>
-<p>When Socrates drank the hemlock, no one around him laughed. Confucius, while Yan Hui was alive, had one person beside him who understood — but that person left first.</p>
-<p>Socrates’ loneliness came at the final moment. Confucius’ loneliness began the day Yan Hui died.</p>
+<p>We need not immediately turn the grief into an explanation about the history of ideas. The person who died was Yan Hui. Not the most useful successor, not a vessel finally large enough to contain an entire teaching, but someone whose understanding the teacher could see becoming a life. Another good student cannot replace this person.</p>
+<p>Think of the friends weeping around Socrates in the <em>Phaedo</em>, and the loneliness of the two scenes draws closer. One man is about to leave people who care for him. The other remains in the world after someone dear to him has gone.</p>
+<p>Confucius will go on teaching. He will go on speaking. But that particular listener will not come back.</p>
 <hr>
 <h2>VI. Only Heaven Knows Me</h2>
-<p>After Yan Hui’s death, Confucius spoke many dark words.</p>
+<p>Read the cries of grief beside other passages in the <em>Analects</em>, and another, more distant loneliness becomes audible.</p>
 <p>“The phoenix does not come. The river yields no chart. It is all over for me!”</p>
-<p>The phoenix and the river chart were signs of a golden age — they appeared only when a sage-king was on the throne. Their absence meant that the order Confucius had spent his entire life trying to restore had not returned.</p>
-<p>He did not feel he had succeeded. He did not feel he had built anything. He felt he had spent a lifetime “transmitting,” but the thing he wanted to transmit — the order of Zhou, the Way of the ancient kings — had not come back to life in his lifetime.</p>
-<p>Then he spoke his final words about himself:</p>
+<p>In old stories, the phoenix and the river chart belong with sage rulers and an age of peace. In this lament, the world Confucius has hoped for has not arrived.</p>
+<p>So much speaking, so much teaching, and rites and music have not become the living order of the world again. A person may continue along his road while seeing how little his age has taken up what he offers.</p>
+<p>In another exchange, Confucius laments that no one understands him. Zigong asks why. The answer is:</p>
 <p>“I do not resent Heaven. I do not blame others. I study what is below and comprehend what is above. The one who knows me — is it not Heaven?”</p>
-<p>Only Heaven knows me.</p>
-<p>A person dedicated to constructing would crave understanding from contemporaries — if you understand, you can execute my plan, and my construction can take hold in the world.</p>
-<p>Confucius gave up that craving. He did not construct. He carved for a lifetime, and what he carved out was too large for anyone to hold completely — Yan Hui could hold it, but Yan Hui was gone. In the end, he gave himself over to Heaven. Not surrender, but recognition: what I have carved is larger than me, larger than my students, larger than my era. No one can hold it now. But Heaven knows.</p>
-<p>Socrates stood on the clearing, waiting for one person to laugh.</p>
-<p>Confucius stood on the same clearing and said: only Heaven knows me.</p>
+<p>The one who knows me — perhaps Heaven.</p>
+<p>To wish to be understood is often also to wish that something one has done can continue. If you understand, you need not remain beside me in admiration. You can take a little of it away and try it in your own life.</p>
+<p>I do not hear him ceasing to want human understanding. I hear an effort to move the weight of his life away from its immediate reception. He will not resent Heaven, or lay the whole burden of being misunderstood on other people. An insufficient response does not make the road already travelled worthless. He must still walk; he cannot command an echo from his age.</p>
+<p>Imagine Socrates standing in a clearing, waiting for someone who can share his composure.</p>
+<p>In another clearing, Confucius lifts his gaze a little: the one who knows me — perhaps Heaven.</p>
 <hr>
 <h2>VII. Eight Schools</h2>
-<p>After Confucius died, the same thing happened that happened after Socrates.</p>
+<p>After Confucius, a question arises that also follows Socrates: when the teacher is gone, who will say what he meant?</p>
 <p>Han Feizi recorded: “Since the death of Confucius, there have been the Confucians of Zizhang, the Confucians of Zisi, the Confucians of the Yan clan, the Confucians of the Meng clan, the Confucians of the Qidiao clan, the Confucians of the Zhongliang clan, the Confucians of the Sun clan, and the Confucians of the Yuezheng clan.”</p>
-<p>Eight schools. Their positions contradicted one another, yet each claimed to be the true Confucius.</p>
-<p>Why? Because the teacher only carved, never constructed. He left no standard textbook. He said different things to different students — to Yan Hui he said “master yourself and return to ritual,” to Sima Niu he said “control your speech,” to Fan Chi he said “love others.” Each student received a fragment of a different shape. While the teacher was alive, the fragments were whole in him. When the teacher was gone, each person held their own fragment and believed it was the whole.</p>
-<p>The Confucians of Zizhang — ambitious and broad-minded, inclined to break boundaries and embrace everything. The Confucians of Zixia — rooted in texts, devoted to the study and preservation of documents. The Confucians of Zengzi — turned inward, developing the depth of “filial piety” and “self-examination.” The Confucians of Qidiao — unyielding and resolute, unflinching in the face of power.</p>
-<p>Each school was one facet of Confucius. None was the complete Confucius.</p>
-<p>After Socrates, Plato alone constructed the theory of Forms — one grand edifice. After Confucius, seventy-two disciples split into eight schools — eight smaller buildings, each facing a different direction.</p>
-<p>Plato’s construction was concentrated: one person built an entire system. The eight schools’ construction was distributed: each person received a different fragment from the teacher and built something different from it.</p>
-<p>But what happened on both sides was structurally identical: the teacher only carved, never constructed. The students could not bear the clearing. The students constructed.</p>
-<p>Then two thousand years of intellectual history became the history of endlessly tearing down and rebuilding on the fragments the teacher left behind. In the West, from Plato to Aristotle to Scholasticism to Kant. In the East, from Mencius to Xunzi to Dong Zhongshu to Zhu Xi to Wang Yangming.</p>
-<p>All the constructions were built on clearings left by two men who never wrote a word.</p>
+<p>This is a picture of competing traditions in the late Warring States period, not eight groups formed at Confucius’ graveside. Some of the names belong to later lines of transmission. Han Feizi goes on to complain that the rival Confucian and Mohist schools make contrary choices while each claims the authentic inheritance.</p>
+<p>Return to those conversations and a difficulty comes into focus. There is no philosophical handbook, written by Confucius himself, to settle every dispute. To Yan Hui, he speaks of mastering oneself and returning to ritual; to Sima Niu, cautious speech; to Fan Chi, loving people. A living teacher can ask again, answer again, put a sentence back into the life of the person before him. After his death, a sentence can be lifted up alone and made to stand for everything.</p>
+<p>The circle already contained different voices. In the <em>Analects</em>, Zizhang speaks of making room for many people, Zixia of choosing friends; Zengzi repeatedly examines himself. Han Feizi’s portrait of the Qidiao school, unbending before power, brings another temperament into view. These are not an explanation of the eight names one by one. They show how differently people could grow from a common school.</p>
+<p>To attend to one side of a teacher is not necessarily to betray him. The danger begins when the side we understand best becomes, in our eyes, his entire face.</p>
+<p>Set Plato beside these later Confucian thinkers, and it is as though people are beginning to build on the open ground. Plato’s dialogues and the arguments of later scholars organise the questions anew, making a path by which others can enter.</p>
+<p>Plato was not Socrates’ only successor, nor were the eight Confucian schools simply seventy-two disciples divided into groups. Each history branches in ways that a neat comparison cannot contain.</p>
+<p>What interests me is the temptation: when the teacher is no longer there, we want to make something that will guarantee the right answer in his place. A canon. A settled interpretation. A house in which to live.</p>
+<p>The history of thought is much larger than this image. Yet from Plato to Kant, from Mencius and Xunzi to Zhu Xi and Wang Yangming, people return to earlier words, take something apart, add something, and ask again: what was he trying to make us see?</p>
+<p>The ground does not remain empty. Houses rise. Sometimes we have to step outside them to hear the teacher’s question again.</p>
 <hr>
 <h2>VIII. Two Clearings</h2>
-<p>This series has written about six men.</p>
-<p>Nietzsche carved to the bottom and kept carving. He had a path without a direction. Kant carved and then constructed. He had a direction without a path. Wang Yangming changed direction and carved inward. He had both a path and a direction, and verified them. Zhuangzi was pushed back to Hundun. He saw the entire structure from the side of the remainder. Socrates only carved, never constructed. He stood on the clearing, smiled, and drank the hemlock.</p>
-<p>Confucius also only carved, never constructed. But his carving was different from Socrates’.</p>
-<p>Socrates’ carving was demolition. You think you know what justice is? Come, let us see. — When the carving was done, you discovered you did not know. A clearing. Nothing left.</p>
-<p>Confucius’ carving was excavation. You want to know what ren is? Come, let me see what kind of person you are. — When the carving was done, you discovered ren was in you all along. Not a clearing, but your own ground.</p>
-<p>Socrates carved toward “not knowing.” Confucius carved toward “already having.”</p>
-<p>Socrates’ clearing was empty — knowing nothing, having built nothing, simply standing there. Confucius’ clearing was not empty — ren was inside it, but it had not been spoken, had not been written into a system, existed only in each person’s own life.</p>
-<p>Two clearings. One in the Athenian agora. One on a road in the Spring and Autumn period. One with nothing in it. One with everything in it, but nothing that could be said.</p>
-<p>“I know that I know nothing.” “Does Heaven speak? The four seasons turn, the hundred things grow.”</p>
-<p>Two sentences. The same position. Arrived at from different directions.</p>
-<p>Socrates smiled and drank the hemlock. No one around him laughed. Confucius smiled and admitted he was a stray dog. Then said: only Heaven knows me.</p>
-<p>They were both waiting.</p>
-<p>Socrates waited for one person to laugh. Confucius waited for one person who could understand without needing him to speak.</p>
+<p>The lives brought together in this series take different roads.</p>
+<p>Nietzsche refuses to stop at the answers already given. Kant marks the limits of reason and looks for principles on which a person can stand. Wang Yangming turns toward his own heart. Zhuangzi’s stories make us doubt arrangements that seemed complete. Among these lives, I keep returning to a question: once an old answer has been moved aside, how does a person go on living?</p>
+<p>Confucius and Socrates leave me with two different images of open ground.</p>
+<p>Socratic questioning feels like demolition. You think you know what justice is? Let us look. As the questions continue, cracks appear beneath the answer on which you stood so securely. You cannot stand there in quite the same way, but no new house is ready.</p>
+<p>Confucian questioning feels like excavation. You want to know what ren is? Look at how you speak, how you treat others, how you govern yourself. The teacher has not handed you a finished object to put away and admire. He has returned the work to your life.</p>
+<p>One asks a person who believes he knows to acknowledge what he does not. The other asks a person waiting for an answer to see where his own work must begin.</p>
+<p>To call Socrates’ clearing empty is not to say he had no convictions. To find ren in Confucius’ ground is not to say that each person is born with a completed answer. These are spaces left by two ways of teaching. A ready-made sentence steps aside so that a person can enter.</p>
+<p>Two clearings. One in the Athenian agora. One beside a road in the Spring and Autumn period. In one, certainty pauses. In the other, someone is being asked to live what he has heard.</p>
+<p>Here the question keeps asking. There: “Does Heaven speak? The four seasons turn, the hundred things grow.”</p>
+<p>I put the pictures together not because the two men arrived at the same answer, but because neither can take the last step in another person’s place.</p>
+<p>Socrates can still smile with death approaching. At the city gate, Confucius laughs and agrees that he resembles a homeless dog. And on another page of the <em>Analects</em>, we hear: the one who knows me — perhaps Heaven.</p>
+<p>In the two clearings I imagine, both are waiting.</p>
+<p>Socrates waits for someone who can face the unknown beside him. Confucius waits for someone who can keep walking after he has finished speaking.</p>
 <p>Yan Hui understood. But Yan Hui left first.</p>
 <hr>
 <h2>Notes</h2>
-<p>: The relationship between Confucius’ “transmitting without creating” and the chisel-construct cycle in Self-as-an-End theory: the core argument for the chisel-construct cycle can be found in the Methodological Overview (DOI: 10.5281/zenodo.18842450). Both Confucius and Socrates executed only the chisel, refusing to execute the construct. The subsequent intellectual histories on both sides — from Plato to Kant, from Mencius to Wang Yangming — are chisel-construct cycles carried out on the clearings they left behind.</p>
-<p>: Confucius’ life events are primarily drawn from the <em>Analects</em> and the <em>Records of the Grand Historian</em> (<em>Shiji</em>), “The Hereditary House of Confucius” and “Biographies of Confucius’ Disciples.” “The Confucians split into eight” is from Han Feizi, “Xian Xue” (Prominent Schools). The layered formation of the <em>Analects</em> draws on Bruce Brooks and Taeko Brooks, <em>The Original Analects</em> (Columbia University Press, 1998). The Socrates essay is “Socrates, the Man on the Clearing” (hqin.substack.com/p/socrates-the-man-on-the-clearing).</p>
-<p>: The previous five essays in this series: the Nietzsche essay “Self-Cultivation in a Vacuum” (hqin.substack.com/p/self-cultivation-in-a-vacuum), the Kant essay “Completing Kant” (hqin.substack.com), the Wang Yangming essay “Wang Yangming: This Mind Is Luminous” (hqin.substack.com), the Zhuangzi essay “Dreaming Zhuangzi” (hqin.substack.com/p/dreaming-zhuangzi), the Socrates essay “Socrates, the Man on the Clearing” (hqin.substack.com/p/socrates-the-man-on-the-clearing).</p>
+<p>This essay reads the portraits in the Analects and the Records of the Grand Historian alongside Socrates. Excavation and the two clearings are literary images, not a historical meeting or a claim that the two philosophies and their later histories are identical. The sayings about Yan Hui’s death, the phoenix and river chart, and being known by Heaven occur in different passages; their arrangement here does not establish a chronology.</p>
+<p>The homeless-dog story comes from <a href="https://zh.wikisource.org/zh-hans/史記/卷047">Shiji 47</a>; the portraits of disciples, including Sima Niu, are checked against <a href="https://zh.wikisource.org/zh-hans/史記/卷067">Shiji 67</a>. These are later biographical narratives, not eyewitness transcripts. Teaching, ren, Yan Hui and Heaven are read from the <a href="https://zh.wikisource.org/wiki/論語/全覽">Analects</a>. The distinction between creating and transmitting appears in the <a href="https://zh.wikisource.org/zh-hans/禮記/樂記">Book of Rites, “Record of Music”</a>; the eight schools in <a href="https://zh.wikisource.org/zh-hans/韓非子/顯學">Han Feizi, “Prominent Schools”</a>, within its polemic against competing claims to authority. Renderings of classical passages are made for this essay.</p>
+<p>The historical limits concerning the formation of the Analects and classical authorship are also checked against the <a href="https://plato.stanford.edu/entries/confucius/">Stanford Encyclopedia of Philosophy entry on Confucius</a>. Traditional attribution is not the same as established personal authorship, but neither warrants the claim that Confucius never wrote anything. Socrates’ smile and his drinking of the poison are distinguished as separate actions in the Phaedo; his friends’ tears do not prove that they failed to understand him. See the companion essay, <a href="socrates.html">Socrates, the Man on the Clearing</a>.</p>
 <p><strong>Framework:</strong> <a href="https://self-as-an-end.net" target="_blank" rel="noopener">self-as-an-end.net</a></p>
 <p><strong>Papers:</strong> <a href="https://zenodo.org/search?q=Han+Qin+%22Self-as-an-End%22&amp;sort=newest" target="_blank" rel="noopener">Zenodo archive</a></p>
 <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0009-9583-0018" target="_blank" rel="noopener">0009-0009-9583-0018</a></p>
@@ -216,42 +222,42 @@
 
       <div class="essay-body lang-zh">
 <h2>一、丧家之犬</h2>
-<p>公元前492年。孔子六十岁。</p>
-<p>他带着一群弟子在郑国和陈国之间的路上走散了。弟子们在城门口找到他的时候，有人告诉子贡：城门外有一个人，&quot;累累若丧家之犬&quot;。</p>
-<p>子贡回去转述，孔子笑了。&quot;然哉！然哉！&quot;——是的，是的，说得对。</p>
-<p>这句话流传了两千五百年。在大多数转述里，它被用来说明孔子的自嘲、豁达或落魄。但很少有人注意到：他在笑。</p>
-<p>一个带着十几个学生在列国之间奔波了十四年、没有一个国君愿意用他的人，站在陌生城市的门口，被人说像一条丧家之犬，他的反应是笑，然后说&quot;对&quot;。</p>
-<p>这个笑和苏格拉底喝毒酒时的笑是同一种笑。</p>
+<p>《史记》里，孔子有一次到了郑国，与弟子走散，独自站在城的东门。</p>
+<p>一个郑国人告诉子贡：东门有个人，额头像尧，脖子像皋陶，肩膀像子产，可那副疲惫的样子，&quot;累累若丧家之狗&quot;。</p>
+<p>子贡把这番话转告孔子。孔子欣然笑了：那些形貌的比拟倒在其次，说像丧家之狗，&quot;然哉！然哉！&quot;——是的，是的，说得对。</p>
+<p>这个故事传了很久。读它，可以读出自嘲，读出豁达，也可以读出落魄。但我想先停在一个动作上：他在笑。</p>
+<p>一个奔波于列国、想让自己的道真正行于世的人，站在陌生城市的门口，被人说像一条无家可归的狗，他的反应是笑，然后说&quot;对&quot;。后来被概括为十四年的周游，有礼遇，也有困厄；他盼望的政治秩序却始终没能展开。</p>
+<p>这个笑让我想到《斐多》里临近死亡仍能微笑的苏格拉底。处境不同，但有一种从容，在两个人身上彼此照见。</p>
 <h2>二、述而不作</h2>
-<p>孔子和苏格拉底有一个最基本的共同点：他们都没有写过任何东西。</p>
-<p>苏格拉底不写。孔子也不写。苏格拉底的思想保存在柏拉图的对话录里。孔子的思想保存在弟子编纂的《论语》里。两个人都只说，不写。</p>
-<p>但孔子比苏格拉底多说了一句话来解释这件事：</p>
+<p>孔子和苏格拉底有一个耐人寻味的共同点：我们首先遇见的，都是一个正在与人说话的人，而不是一本由他亲自铺陈的哲学论著。</p>
+<p>苏格拉底留在柏拉图、色诺芬等人的记述里。孔子留在逐渐编成的《论语》里，也留在更晚的故事中。我们听见他们的声音，却隔着学生与后学的转述。</p>
+<p>而孔子用一句话说出了他怎样看待自己的工作：</p>
 <p>&quot;述而不作，信而好古，窃比于我老彭。&quot;</p>
-<p>述，不是作。传述，不是创作。我只是把古人的东西传下来，不是自己发明新东西。我私下把自己比作老彭——殷商的一位贤臣，以好述古事著称。</p>
-<p>这句话在先秦的语境里有一层政治含义。《礼记》说：&quot;作者之谓圣，述者之谓明。&quot;&quot;作&quot;——从无到有地创制法度、制礼作乐——是圣王的特权。尧、舜、周公可以&quot;作&quot;。孔子是一个士，不是王。他没有&quot;作&quot;的权力。&quot;述而不作&quot;是对自己身份的自觉。</p>
-<p>但这只是表面的解释。更深的一层是：他真的不想&quot;作&quot;。</p>
-<p>不是因为谦虚。不是因为政治身份。是因为他认为&quot;作&quot;是多余的。道已经在那里了——在周礼中，在先王的典章中，在古老的诗歌和乐曲中。它不需要被发明，只需要被重新发现。</p>
-<p>&quot;郁郁乎文哉，吾从周。&quot;周朝的文化那么丰盛，我跟从周就够了。</p>
-<p>他做的事情是：凿。把覆盖在古老的道上面的灰尘凿掉，让它重新露出来。删诗书，定礼乐，赞周易，修春秋——朱熹说这些&quot;皆传先王之旧，而未尝有所自作也&quot;。他整理了，编辑了，重新排列了，但没有发明任何东西。</p>
-<p>至少他自己是这么认为的。</p>
+<p>述，不是作。传述，不是以创始者自居。我信任古老的东西，也喜爱它，私下把自己比作老彭。老彭的身份，后来的解释并不一致；这句话的重心，却落在那个向后望的姿态上。</p>
+<p>这句话也有政治的分量。《礼记·乐记》说：&quot;作者之谓圣，述者之谓明。&quot;在礼乐的世界里，创制不仅是想出一个新主意，还涉及谁有资格为天下立制度。孔子推重尧、舜、周公，却不是手握天下的君王。&quot;述而不作&quot;，可以听出他对自己位置的分寸。</p>
+<p>但我更在意的，是这句话里不急于把一切署上自己名字的意思。</p>
+<p>道不必由我从头发明。它已经在古老的诗歌、礼仪和音乐中留下踪迹。我能做的，是重新走近它，使那些已经变得空洞的动作，又与人的生活发生关系。</p>
+<p>&quot;郁郁乎文哉，吾从周。&quot;周的文化如此丰盛，我愿跟从它。</p>
+<p>不妨把这件事叫作凿。把覆盖在古道上的灰尘凿开，让路重新露出来。后世把删诗书、定礼乐、赞周易、修春秋等工作归于孔子；这些归属不能一概当作已经证实的亲笔著作。但这个传承中的孔子形象很鲜明：他整理、选择、重新安排，却把自己的工作叫作传述。</p>
+<p>传述也可能改变一个传统。只是他不把&quot;从我开始&quot;当作价值的凭据。</p>
 <h2>三、问仁</h2>
-<p>孔子不写。但他说。他说的方式，和苏格拉底不一样。</p>
-<p>苏格拉底是主动去找人说话的。他在集市上拦住你，问你问题，不管你想不想被问。他是牛虻，主动叮你。</p>
-<p>孔子等你来。</p>
+<p>《论语》里的孔子，首先是一个说话的人。他说话的方式，让我想到与苏格拉底不同的一种教学。</p>
+<p>柏拉图笔下的苏格拉底常主动找人交谈。你以为自己知道勇气是什么，他会追问；你未必打算怀疑自己，他已经把问题递到你面前。那是牛虻的姿态。</p>
+<p>孔子这里，还有一种等待。</p>
 <p>&quot;不愤不启，不悱不发。举一隅不以三隅反，则不复也。&quot;</p>
 <p>你心里还没有那个&quot;想通但通不了&quot;的感觉，我不开口。你嘴边还没有那个&quot;想说但说不出&quot;的冲动，我不点破。我给你举一个角，你能不能自己推出另外三个角？不能，那我就不再说了。不是不想教你，是时候没到。</p>
-<p>这和苏格拉底完全不同。苏格拉底不管你到没到时候，他直接凿你。好处是广——整个雅典都被他凿过。代价是浅——很多人被凿了一次就跑了。</p>
-<p>孔子的凿是等时机的。你自己走到了门口，他才开门。好处是深——一凿到底。代价是窄——你不来，他凿不到你。</p>
-<p>最能体现这种深凿的，是他对&quot;仁&quot;的回答。</p>
-<p>&quot;仁&quot;是孔子思想的核心。但他从来没有给&quot;仁&quot;下过一个定义。同一个问题——&quot;什么是仁&quot;——他对不同的人给出完全不同的回答。</p>
-<p>颜渊问仁。孔子说：&quot;克己复礼为仁。一日克己复礼，天下归仁焉。为仁由己，而由人乎哉？&quot;——克制自己，回归礼的秩序，这就是仁。仁是你自己的事，不是别人的事。对颜渊说这个，因为颜渊的德行已经很高了，他需要的是最后一步：从&quot;我&quot;出发去承担整个秩序。</p>
-<p>仲弓问仁。孔子说：&quot;出门如见大宾，使民如承大祭。己所不欲，勿施于人。&quot;——出门的时候像接待贵宾一样庄重，管理百姓像主持祭祀一样恭敬。你不想要的，不要加给别人。对仲弓说这个，因为仲弓有做官的能力，他需要的是把仁落实到治理上。</p>
-<p>司马牛问仁。孔子只说了四个字：&quot;仁者，其言也訒。&quot;——仁的人说话很慢。因为司马牛多话而急躁，孔子把最高的&quot;仁&quot;拉回到最具体的一个动作：先管住你的嘴。</p>
-<p>樊迟问仁。孔子说：&quot;爱人。&quot;两个字。因为樊迟朴实，不需要复杂的理论，只需要最直接的东西。</p>
-<p>子贡问仁。孔子说：&quot;己欲立而立人，己欲达而达人。能近取譬，可谓仁之方也已。&quot;——你想站得住，先帮别人站住；你想走得通，先帮别人走通。从身边最近的地方开始类推。因为子贡聪明但善辩，需要一个可操作的框架。</p>
-<p>五个人问同一个问题，五个不同的答案。</p>
-<p>苏格拉底凿&quot;什么是勇气&quot;，凿到底，没有答案。对话结束，大家都知道自己不知道。空地。</p>
-<p>孔子凿&quot;什么是仁&quot;，凿到底，每个人得到一个不同的答案。不是&quot;仁没有定义&quot;，是&quot;仁在每个人身上长的样子不一样&quot;。不是空地，是每个人自己的地。</p>
+<p>一个问题可以把没有准备的人惊醒，也可能只把他吓走。苏格拉底的追问有这种锋利。它打开一个人原以为不必再想的地方。</p>
+<p>孔子这句话，却把目光放在学生已经走到哪里。你自己走到了门口，他才开门。不是老师替你走完剩下的路，而是你已经有了走下去的力气，他再推你一下。</p>
+<p>最能看出这种分寸的，是他关于&quot;仁&quot;的回答。</p>
+<p>&quot;仁&quot;是孔子反复谈论的东西，却不只有一句可以到处照搬的答案。把几次问答放在一起，先听见的往往是问话的人。</p>
+<p>颜渊问仁。孔子说：&quot;克己复礼为仁。一日克己复礼，天下归仁焉。为仁由己，而由人乎哉？&quot;——克制自己，回到礼的秩序。接着颜渊问怎样去做，孔子就说到看、听、说、行动。话说得很大，落下来的地方却很具体：这件事必须由你来做，不能由别人代做。</p>
+<p>仲弓问仁。孔子说：&quot;出门如见大宾，使民如承大祭。己所不欲，勿施于人。&quot;——出门像接待贵宾一样庄重，役使百姓像主持大祭一样恭敬。你不想要的，不要加给别人。孔子曾说仲弓可以治理一方；在这里，仁落到了他将怎样对待别人，尤其是那些听命于他的人。</p>
+<p>司马牛问仁。孔子说：&quot;仁者，其言也訒。&quot;——仁的人，出言谨慎。司马牛不解：说话谨慎，就是仁了吗？孔子反问：做起来这么难，说的时候能不谨慎吗？《史记》写司马牛多言而躁。把这段问答放在他身上，就能听见那一下提醒：别让嘴巴跑得比行动快。</p>
+<p>樊迟问仁。孔子说：&quot;爱人。&quot;两个字。不是给一个不够聪明的学生降了难度，而是把目光直接转向别人。这个字若与你怎样看待、怎样对待人没有关系，再漂亮的解释也没有落地。</p>
+<p>子贡问得更大：如果能广施于民、救济众人，可算仁吗？孔子说，那何止是仁，恐怕到了圣的境界，尧舜也未必做得到。然后他把子贡带回近处：&quot;己欲立而立人，己欲达而达人。能近取譬，可谓仁之方也已。&quot;你想站得住，也帮助别人站住；你想走得通，也帮助别人走通。从自己知道的需要，推想到别人。不是等到能够救天下，才开始学仁。</p>
+<p>五个人，五次关于仁的问答。没有一个答案能够不看面前是谁，就原封不动地塞给所有人。</p>
+<p>《拉凯斯》里，苏格拉底追问&quot;什么是勇气&quot;，谈话没有得到一个站得住的定义。大家原先的确信松动了。空地。</p>
+<p>孔子的这些回答，则把人带回各自脚下。仁不是随人改成五种互不相干的东西；只是同一份关切，要从五种不同的生活里长出来。不是老师替你盖好的房子，是你要亲自耕作的地。</p>
 <h2>四、予欲无言</h2>
 <p>但孔子也有走向沉默的时刻。</p>
 <p>有一天他对子贡说了一句很奇怪的话：</p>
@@ -261,70 +267,70 @@
 <p>孔子回答：</p>
 <p>&quot;天何言哉？四时行焉，百物生焉，天何言哉？&quot;</p>
 <p>天说了什么吗？春夏秋冬照样运行，万物照样生长。天说了什么吗？</p>
-<p>这句话和庄子的&quot;天何言哉&quot;几乎可以互换。天不说话。天不凿。天不构。四时自己运行，百物自己生长。最高的秩序不需要被说出来。</p>
-<p>孔子在说什么？他在说：我这辈子做的事——说话，教学生，传礼乐——到头来最好的状态是不需要这些。如果道真的在运行，它就像四季一样，不需要任何人说出来。我一辈子在说，但我最想到达的地方是&quot;不需要说&quot;。</p>
-<p>这和苏格拉底的&quot;我知道我什么都不知道&quot;是同一个位置——从不同的方向到达的同一个位置。苏格拉底凿了一辈子，发现自己什么都不知道。孔子说了一辈子，发现最好的状态是不说。</p>
-<p>一个到达了无知。一个到达了无言。</p>
+<p>天不靠一条条训诫，让四季运行，让百物生长。对一个整日教人、答问的人来说，这个比喻忽然把说话放轻了。</p>
+<p>我愿意这样听这句话：我一辈子说话、教学生、传礼乐，可我盼望的，不只是你把这些话记住。若它们真的进入你的生活，便不必每走一步都等我再提醒。说，是为了有一天，话停了，事情仍然能够发生。</p>
+<p>这让我又想到苏格拉底。他不断追问，使人看见自己所知的限度；孔子在这里回过头，看见言说的限度。一个问题还没有被回答，一个答案还没有成为生活，都不能靠老师多说几句就算完成。</p>
+<p>一个让你暂时停在不知道的地方。一个问你：如果我不再说了，你能不能继续走？</p>
 <h2>五、颜回</h2>
-<p>在孔子所有的弟子里，有一个人最接近他。</p>
+<p>在孔子的弟子里，颜回是一个格外亲近的人。</p>
 <p>颜回。</p>
-<p>孔子对颜回的评价和对其他所有弟子的评价都不一样。他说颜回&quot;其心三月不违仁&quot;——他的心可以连续三个月不偏离仁。其他人最多做到&quot;日月至焉&quot;——偶尔碰一下仁就回去了。</p>
-<p>三个月不违仁。这意味着颜回不需要被凿。他已经在仁里面了。他不需要老师给他举一个角让他反三个角——他自己就在那里。</p>
-<p>颜回也几乎不说话。孔子和他对话，&quot;回也非助我者也，于吾言无所不说&quot;——颜回从来不反驳我，我说什么他都点头。这看起来像是没用的学生。但孔子说的&quot;非助我者&quot;不是抱怨，是感叹：颜回不需要通过反驳来学习，他直接就懂了。</p>
+<p>孔子说颜回&quot;其心三月不违仁&quot;，其他人则&quot;日月至焉而已矣&quot;。这里动人的，不是替几个人计算修养的天数，而是那种持续：别人时而抵达的地方，颜回能够长久地住下来。</p>
+<p>他当然还在学。问&quot;克己复礼&quot;怎样做的，正是颜回。但在他身上，老师说过的话似乎已经越过了背诵，进入平常的举止。话停下来，仁并没有跟着停下来。</p>
+<p>孔子说：&quot;回也非助我者也，于吾言无所不说。&quot;我说什么，他都欣然领会，倒不给我反驳的帮助。另一次，孔子起初觉得颜回整日听讲不反对，仿佛愚钝，退而观察他的行为，却发现他能够发挥所学。懂，不只是点头。老师离开之后，一个人怎样过，才慢慢显出来。</p>
 <p>颜回死了。</p>
 <p>&quot;颜渊死，子哭之恸。从者曰：'子恸矣。'曰：'有恸乎？非夫人之为恸而谁为？'&quot;</p>
 <p>孔子哭得太厉害了。旁边的人说：老师您太悲伤了。孔子说：我太悲伤了吗？我不为这个人悲伤还能为谁悲伤？</p>
-<p>然后他说了一句：</p>
+<p>另一则记载里，他喊道：</p>
 <p>&quot;噫！天丧予！天丧予！&quot;</p>
 <p>天要亡我！天要亡我！</p>
-<p>这不是普通的丧徒之痛。这是一个凿了一辈子的人发现：唯一一个不需要被凿就能直接抵达的人，走了。</p>
-<p>苏格拉底喝毒酒的时候，身边没有一个人笑。孔子在颜回活着的时候身边有一个人懂他——但这个人先走了。</p>
-<p>苏格拉底的孤独在最后一刻。孔子的孤独从颜回死的那天开始。</p>
+<p>这里先不要急着替悲伤找一个思想史的理由。死去的是颜回。不是一个最合用的传人，不是一只终于能盛满全部学说的器皿，是那个老师能够看见他在懂、也在活的人。这样一个人走了，失去的不会由另一位好学生补回来。</p>
+<p>想到这里，再回看《斐多》中围着苏格拉底哭泣的朋友，两个场景的孤独便彼此靠近。一个人即将离开理解他的人；另一个人留在世上，理解他的亲近者却先走了。</p>
+<p>孔子还会教，还会说话。只是那个听他说话的人，不会回来了。</p>
 <h2>六、知我者其天乎</h2>
-<p>颜回死后，孔子说了很多灰暗的话。</p>
+<p>把这些哭声与《论语》里的另一些话并读，会听见一种更远的寂寞。</p>
 <p>&quot;凤鸟不至，河不出图，吾已矣夫！&quot;</p>
-<p>凤凰不来了，黄河也不出图了，我这辈子完了。凤鸟和河图是太平盛世的征兆——圣王在位的时候才会出现。它们不来，说明孔子一辈子想要恢复的那个秩序，没有回来。</p>
-<p>他不觉得自己成功了。他不觉得自己建立了什么。他觉得自己&quot;述&quot;了一辈子，但他想述的那个东西——周礼的秩序，先王之道——在他的有生之年没有复活。</p>
-<p>然后他说了最后一句关于自己的话：</p>
+<p>凤凰不来，河图不出。在古老的传说里，它们与圣王、太平相连。这句叹息里，孔子盼望的那个世界没有到来。</p>
+<p>说了那么久，教了那么久，礼乐并没有因此重新成为天下的生活。一个人能够坚持自己的路，也会看见这条路尚未被时代接住。</p>
+<p>《论语》还记着另一场与子贡的对话。孔子叹没有人了解自己，子贡问为什么，他答：</p>
 <p>&quot;不怨天，不尤人，下学而上达。知我者其天乎！&quot;</p>
 <p>不埋怨天，不责怪人。从低处学起，向高处通达。了解我的，大概只有天吧。</p>
 <p>知我者其天乎。</p>
-<p>一个致力于构建的人会渴望被同时代的人理解——你理解了，你就能执行我的方案，我的构建就能落地。</p>
-<p>孔子放弃了这种渴望。他不构。他凿了一辈子，凿出来的东西没有人能完整地接住——颜回能接，但颜回死了。最后他把自己交给了天。不是放弃，是承认：我凿出来的东西比我自己大，比我的学生大，比我的时代大。它现在没有人接得住，但天知道。</p>
-<p>苏格拉底站在空地上，等一个笑的人。</p>
-<p>孔子站在同一片空地上，说：知我者其天乎。</p>
+<p>一个人希望被理解，往往也希望自己做的事能由此继续。你听明白了，便不只是在旁边称赞，你可以接过一点，在自己的生活里试。</p>
+<p>&quot;知我者其天乎&quot;，在我听来，并不是从此不要人懂，而是把自己的分量，暂时从眼前的成败里挪开。不怨天，也不把未被理解全算作别人的过错。没有得到足够的回应，不等于走过的路就全是徒劳。他仍然要走，只是不能命令时代给他一个回声。</p>
+<p>不妨想象，苏格拉底站在一片空地上，等有人能与他一起从容。</p>
+<p>另一片空地上，孔子把目光抬高一点：知我者，其天乎。</p>
 <h2>七、儒分为八</h2>
-<p>孔子死后，和苏格拉底身后发生了同一件事。</p>
+<p>孔子身后，也留下了一个与苏格拉底身后相照的问题：老师不在了，谁来解释他？</p>
 <p>韩非子记载：&quot;自孔子之死也，有子张之儒，有子思之儒，有颜氏之儒，有孟氏之儒，有漆雕氏之儒，有仲良氏之儒，有孙氏之儒，有乐正氏之儒。&quot;</p>
-<p>八派。取舍相反不同，而皆自谓真孔墨。</p>
-<p>八个方向。每一派都说自己才是真正的孔子。但八派之间的主张互相矛盾。</p>
-<p>为什么？因为老师只凿不构。他没有留下一本标准教科书。他对每个学生说的话不一样——对颜回说克己复礼，对司马牛说管住嘴，对樊迟说爱人。每个学生拿到的是一块不同形状的碎片。老师在的时候，碎片在老师身上是完整的。老师走了，每个人抱着自己的碎片，以为那就是全部。</p>
-<p>子张之儒——才高意广，倾向于打破界限，容纳万物。 子夏之儒——扎根典籍，重视文献整理和考据。 曾子之儒——向内省察，发展出&quot;孝&quot;和&quot;慎独&quot;的深度。 漆雕氏之儒——刚毅不屈，不色挠不目逃。</p>
-<p>每一派都是孔子的一个侧面。但没有一派是完整的孔子。</p>
-<p>苏格拉底身后，柏拉图一个人构了理型论——一座宏伟的大厦。孔子身后，七十二个弟子分成八派——八座不同方向的小楼。</p>
-<p>柏拉图的构是集中的，一个人建了一整个体系。儒分为八的构是分散的，每个人从老师那里接到的碎片不同，建出来的东西也不同。</p>
-<p>但两边发生的事情在结构上完全一样：老师只凿不构。学生受不了空地。学生构了。</p>
-<p>然后两千年的学术史，就是在老师留下的那些碎片上不断拆建的历史。西方从柏拉图到亚里士多德到经院哲学到康德。东方从孟子到荀子到董仲舒到朱熹到王阳明。</p>
-<p>所有的构，都建在两个不写字的人留下的空地上。</p>
+<p>这是战国晚期的一份争鸣图景，不是孔子去世那一天，弟子们立即分成了八队。名单里有跨越后世传承的名字。</p>
+<p>韩非接着说，儒墨各派取舍不同，却各自声称得了真传。八个方向，都说自己通向同一个人。</p>
+<p>把这件事放回那些问答里，就能感觉到一种困难。孔子没有留下可据以裁决一切分歧的、亲自写定的哲学手册。他对颜回说克己复礼，对司马牛说出言谨慎，对樊迟说爱人。活着的老师能再问、再答，能把一句话放回一个人身上。老师走了，留下来的话却可能被单独举起来，当作全部。</p>
+<p>门下原本就有不同的声音。《论语》里，子张讲容众，子夏谈择友；曾子反复省察自己。再读《韩非子》对漆雕一派刚毅不屈的描述，又是另一种气质。这些不是八派名单的一一注解，却让我们看到：同一个门庭，并不只长出一种人。</p>
+<p>各自强调一面，本身未必是背叛。困难在于，人太容易把自己最懂的那一面，当成老师全部的面孔。</p>
+<p>若把柏拉图与这些儒家后学并看，像是看见有人在空地上开始盖房子。柏拉图的对话、后世儒者的论说，都把老师留下的问题重新组织起来，给后来者一条可以进入的路。</p>
+<p>但柏拉图不是苏格拉底唯一的后继者，八儒也不是七十二弟子的一张分组表。两边的道路各有复杂的分叉，不能靠一个整齐的对照代替。</p>
+<p>我在意的只是那个诱惑：没有老师在场时，我们总想造出一个东西，替他保证什么才是对的。一部经典，一套讲法，一座可以居住的大厦。</p>
+<p>后来的思想史，当然远远大于这幅图。但从柏拉图到康德，从孟子、荀子到朱熹、王阳明，一再有人回到前人的话前，拆一点，补一点，再问一次：他究竟要我们看见什么？</p>
+<p>空地没有永远保持空着。房子建起来了。有时候，我们反而需要重新走出房子，才能听见老师当初的问题。</p>
 <h2>八、两片空地</h2>
-<p>这个系列写了六个人。</p>
-<p>尼采凿到底，继续凿。他有路没有方向。 康德凿完了构。他有方向没有路。 王阳明换方向凿，向内。他有路有方向，还验证了。 庄子被推回混沌。他从余项那一侧看整个结构。 苏格拉底只凿不构。他站在空地上，笑着喝了毒酒。</p>
-<p>孔子也只凿不构。但他和苏格拉底的凿法不同。</p>
-<p>苏格拉底的凿是拆的。你以为你知道什么是正义？来，让我们看看。——凿完了，你发现你不知道。空地。什么都没有了。</p>
-<p>孔子的凿是挖的。你想知道什么是仁？来，让我看看你是什么样的人。——凿完了，你发现仁在你自己身上。不是空地，是你自己的地。</p>
-<p>苏格拉底凿向&quot;不知&quot;。孔子凿向&quot;本有&quot;。</p>
-<p>苏格拉底的空地是空的——什么都不知道，什么都没有建，就站在那里。 孔子的空地不空——仁在里面，但没有被说出来，没有被写成体系，只在每个人自己的生命里。</p>
-<p>两片空地。一片在雅典的集市上。一片在春秋的官道旁。一片什么都没有。一片什么都有但说不出来。</p>
-<p>&quot;我知道我什么都不知道。&quot; &quot;天何言哉？四时行焉，百物生焉。&quot;</p>
-<p>两句话。同一个位置。从不同的方向到达。</p>
-<p>苏格拉底笑着喝了毒酒，身边没有人笑。 孔子笑着承认自己是丧家之犬，然后说：知我者其天乎。</p>
-<p>他们都在等。</p>
-<p>苏格拉底等一个笑的人。 孔子等一个不需要他说话就能懂的人。</p>
+<p>把本系列里几种不同的人生姿态放在一起看，会看见不同的路。</p>
+<p>尼采不肯停在已经给出的答案上。康德为人的理性划界，也寻找可以站住的原则。王阳明把目光转回自己的心。庄子的故事，让我们怀疑那些看似周全的安排。在这些人物之间，我不断回到一个问题：把旧答案移开以后，一个人怎样继续生活？</p>
+<p>孔子与苏格拉底，在这里给我两幅不同的空地图景。</p>
+<p>苏格拉底的凿，像拆。你以为你知道什么是正义？来，让我们看看。——问下去，你发现原来站得那么稳的答案，底下还有缝。你不能再照旧站着，却还没有一座新房子。</p>
+<p>孔子的凿，像挖。你想知道什么是仁？来，先看看你怎样说话，怎样待人，怎样管住自己。——问下去，你发现老师没有给你一件可以收藏的成品，他把工作还给了你自己的生活。</p>
+<p>一个让自以为知道的人，承认自己还不知道。一个让等着听答案的人，看见自己必须动手。</p>
+<p>说苏格拉底的空地是空的，不是说他没有信念；说孔子的地里有仁，也不是说每个人天生就有一套完成的答案。这是两种教学留下的空间：一句现成的话退开，人才能亲自走进去。</p>
+<p>两片空地。一片在雅典的集市上。一片在春秋的官道旁。一片让确信暂时停住。一片等着有人把听到的东西活出来。</p>
+<p>这边，问题还在追问。那边，&quot;天何言哉？四时行焉，百物生焉。&quot;</p>
+<p>我把它们放在一起，不是要说两个人走到了同一个答案。只是看见了同一种不肯替别人把最后一步走完的分寸。</p>
+<p>临近死亡的苏格拉底，还能从容微笑。城门口的孔子，笑着承认自己像一条丧家之犬。而在《论语》的另一页，我们听见：知我者其天乎。</p>
+<p>在我想象的两片空地上，他们都在等。</p>
+<p>苏格拉底等一个能一起面对未知的人。孔子等一个在他说完之后，仍能继续往前走的人。</p>
 <p>颜回懂了。但颜回先走了。</p>
 <h2>注释</h2>
-<p>孔子&quot;述而不作&quot;与Self-as-an-End理论中&quot;凿构循环&quot;的关系：凿构循环的核心论证见系列方法论总论（DOI: 10.5281/zenodo.18842450）。孔子和苏格拉底的共同位置在于他们都只执行了凿，而拒绝执行构。两人身后的学术史——从柏拉图到康德，从孟子到王阳明——是在他们留下的空地上不断进行的凿构循环。</p>
-<p>孔子生平事迹主要依据《论语》《史记·孔子世家》《史记·仲尼弟子列传》。&quot;儒分为八&quot;见《韩非子·显学》。论语成书分层参考Bruce Brooks and Taeko Brooks, The Original Analects (Columbia University Press, 1998)。苏格拉底篇见本系列&quot;苏格拉底，空地上的人&quot;（hqin.substack.com）。</p>
-<p>系列前五篇：尼采篇&quot;真空中的自我涵育&quot;（hqin.substack.com/p/self-cultivation-in-a-vacuum），康德篇&quot;康德，完成康德&quot;（hqin.substack.com），王阳明篇&quot;王阳明，此心光明&quot;（hqin.substack.com），庄子篇&quot;梦庄子&quot;（hqin.substack.com），苏格拉底篇&quot;苏格拉底，空地上的人&quot;（hqin.substack.com）。</p>
+<p>本文从《论语》《史记》中的人物形象出发，作一场与苏格拉底的散文对读。“凿”“空地”是本文的阅读比喻；两片空地并非历史上的会面，也不是把两人的学说或身后思想史归为同一种结构。颜回之死、凤鸟河图之叹与“知我者其天乎”分见不同篇章，本文不据其编排推定说话先后。</p>
+<p>丧家之狗见<a href="https://zh.wikisource.org/zh-hans/史記/卷047">《史记·孔子世家》</a>；司马牛等弟子事迹参看<a href="https://zh.wikisource.org/zh-hans/史記/卷067">《仲尼弟子列传》</a>。《史记》是后世传记，不等于当场记录。问仁、教学、颜回与天的言语，核对<a href="https://zh.wikisource.org/wiki/論語/全覽">《论语》</a>相关篇章。传述与创制之别参看<a href="https://zh.wikisource.org/zh-hans/禮記/樂記">《礼记·乐记》</a>；八派之说见<a href="https://zh.wikisource.org/zh-hans/韓非子/顯學">《韩非子·显学》</a>，保留其争鸣语境，不作第一代弟子的分派表。</p>
+<p>《论语》成书与经典归属的历史边界，另参核<a href="https://plato.stanford.edu/entries/confucius/">斯坦福哲学百科“Confucius”</a>。现存材料不足以把经典传统归属都判作孔子亲撰，也不宜反过来说他一生从未写过任何文字。苏格拉底临终的微笑与饮毒，依《斐多》的不同动作区分；朋友的眼泪不被当作他们不理解他的证据。参见本系列<a href="socrates.html">《苏格拉底，空地上的人》</a>。</p>
       </div>
 
       <nav class="xiyou-nav" aria-label="Great Lives">

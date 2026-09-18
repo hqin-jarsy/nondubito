@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,15 +28,22 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var requested = new URLSearchParams(location.search).get('lang');
+      var stored = null;
+      try { stored = localStorage.getItem('nd_lang'); } catch (e) {}
+      var preferred = (requested === 'zh' || requested === 'en') ? requested : stored;
+      var saved = preferred === 'en' ? 'en' : 'zh';
       document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.lang = saved === 'zh' ? 'zh-Hans' : 'en';
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
         btns.forEach(function(btn) {
           btn.addEventListener('click', function() {
             var lang = this.getAttribute('data-lang');
+            if (lang !== 'zh' && lang !== 'en') return;
             document.documentElement.setAttribute('data-lang', lang);
-            localStorage.setItem('nd_lang', lang);
+            document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : 'en';
+            try { localStorage.setItem('nd_lang', lang); } catch (e) {}
           });
         });
         updateActive();
@@ -80,8 +87,7 @@
       <header class="essay-header">
         <div class="lang-toggle">
           <button class="lang-btn" data-lang="zh">中文</button>
-          <span class="lang-sep">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
+          <span class="lang-sep">|</span><button class="lang-btn" data-lang="en">EN</button>
           <span class="lang-sep">|</span><a class="lang-btn" href="zh-hant/laozi.html">繁體</a>
           <span class="lang-sep">|</span><a class="lang-btn" href="ja/laozi.html">日本語</a>
           <span class="lang-sep">|</span><a class="lang-btn" href="fr/laozi.html">Français</a>
@@ -109,29 +115,29 @@
 
 <p>关于老子，我们知道的比庄子还少。</p>
 
-<p>司马迁写庄子，至少确定了他是蒙地人，做过漆园吏。写老子的时候，司马迁自己都写不下去了——他给了三个人选，然后说"世莫知其然否"。世界上没有人知道到底是哪一个。</p>
+<p>司马迁写庄子，留下了蒙地人、做过漆园吏的记载。写老子的时候，连人物的身份也不能说定——他写下了几个不同的说法，其中一处说"世莫知其然否"。这几个名字，究竟该不该合在一个人身上？</p>
 
 <p>第一个人选：李耳，字聃，楚国苦县人，周守藏室之史。<br>第二个人选：老莱子，也是楚人，著书十五篇。<br>第三个人选：周太史儋，孔子死后一百二十九年才出现。</p>
 
-<p>三个人。可能是同一个人，可能不是。司马迁选了第一个作为正传的主角，但他诚实地把另外两个也写了进去。然后他加了一句："老子，隐君子也。"</p>
+<p>三个名字。司马迁以第一个为传记的主角，也把另外的说法写了进去，没有替我们抹平它们之间的距离。然后他写道："老子，隐君子也。"</p>
 
 <p>隐君子。一个藏起来的人。连史官都找不到的人。</p>
 
-<p>但司马迁给了一个确定的信息：周守藏室之史。</p>
+<p>在这份身份未定的传记里，有一个格外鲜明的形象：周守藏室之史。</p>
 
-<p>守藏室不是现代意义上的图书馆。在先秦的政教合一体制里，守藏室是周天子的国家档案馆。里面藏的是三代以来的政令、盟书、宗法记录、卜筮档案、天文星象记录。这是当时人类知识的最高层——不是哪一家的学问，是所有学问的总库。</p>
+<p>一个替周王室保管典籍和记录的人。那间守藏室已经无法还原，我们只能沿着《史记》的形象想下去：一个人长久地与旧记录相处，会怎样看待眼前的秩序？</p>
 
-<p>老子在里面待过。他能看到夏商周三代兴亡的全部记录。他能看到占卜的阴阳消长规律。他能看到天文星象的周期运行。他看的不是某一个时代的东西，是所有时代的东西叠在一起。</p>
+<p>想象那些关于王朝、礼仪、政令与兴亡的文字，一层叠着一层。每一个时代都把自己的秩序说得坚不可摧。放到旧记录旁边，坚不可摧的东西，也就有了来处和尽头。</p>
 
-<p>这就是为什么他的思想不像任何一家。孔子说"吾从周"——他站在周朝里面往回看。墨子说兼爱——他站在底层往上看。老子站在所有朝代的档案上面往下看。他看到的不是某一个朝代的兴衰，是兴衰本身的规律。</p>
+<p>这样读，几个人的姿态就有了区别。孔子说"吾从周"，把眼光投向一种值得恢复的秩序。墨子的兼爱，把眼光投向人与人之间的偏私。老子这个守藏者的形象，则让我们看见另一种眼光：不是哪一朝应该长存，而是为什么看起来长存的东西，也会衰败。</p>
 
-<p>他看到了规律。然后他给规律起了一个名字。</p>
+<p>沿着这道目光往前走，我们碰到一个名字。</p>
 
 <h2>二、道</h2>
 
 <p>"道可道，非常道。名可名，非常名。无名天地之始。有名万物之母。故常无欲，以观其妙；常有欲，以观其徼。此两者，同出而异名，同谓之玄。玄之又玄，众妙之门。"</p>
 
-<p>《道德经》第一章。五千言的第一句。整部书的总纲。</p>
+<p>传世本《道德经》第一章。像整部书的总纲，也像一道先设在门口的提醒。</p>
 
 <p>这句话在说什么？</p>
 
@@ -143,7 +149,7 @@
 
 <p>为什么还要说？</p>
 
-<p>因为他被逼的。</p>
+<p>出关的故事给了一个回答：因为有人请他留下几句话。</p>
 
 <h2>三、出关</h2>
 
@@ -153,33 +159,33 @@
 
 <p>他在周朝待了很久。看到周朝要衰败了，决定走。走到关口——传说是函谷关——守关的官员尹喜拦住他说：你要走了，你要消失了，给我们留点什么吧。</p>
 
-<p>"强为我著书。"强——勉强。逼。不是请，是逼。</p>
+<p>"强为我著书。"不妨勉为其难，为我写下来吧。一个人想走，另一个人还想留下他的声音。</p>
 
-<p>老子被逼着写了五千个字。然后走了。"莫知其所终。"没有人知道他去了哪里。</p>
+<p>在这个故事里，老子应请留下五千余言。然后走了。"莫知其所终。"没有人知道他去了哪里。</p>
 
-<p>这个故事不管真假，它的结构是完美的。一个信奉"自隐无名"的人，一个认为"道可道非常道"的人，被一个守关的官员逼着说出了不可说的东西。他说了。然后他走了。</p>
+<p>这个故事不管能否当成实录，它的张力都在。一个以"自隐无名"为务的人，一个认为"道可道非常道"的人，被一个守关者留住，请他说出不愿被名字固定的东西。他说了。然后他走了。</p>
 
-<p>他不是被杀的。苏格拉底被雅典杀了。耶稣被罗马钉了。孔子虽然没被杀，但一辈子被拒绝，"累累若丧家之犬"。</p>
+<p>这个结尾不是被杀。苏格拉底被雅典处死，耶稣被罗马钉上十字架。孔子周游列国，屡遭困厄，也有那个被形容为"丧家之犬"的故事。</p>
 
-<p>老子是自己走的。没有人杀他，没有人拒绝他——楚威王没有请他当宰相（那是庄子的故事），雅典没有审判他。他看到周要衰了，他走了。简单。干净。</p>
+<p>在老子的出关故事里，离开是他自己的动作。叙事不以审判收尾，也不以受挫收尾。他看到周衰了，他走了。简单。干净。</p>
 
-<p>他是这个系列里唯一一个自己选择消失的人。</p>
+<p>在这里并置的几种姿态中，他把退场留给了自己。</p>
 
 <p>苏格拉底站在空地上不走。<br>孔子站在空地上等人来。<br>老子说完就走了。</p>
 
 <h2>四、龙</h2>
 
-<p>在他走之前，发生过一件事。</p>
+<p>《史记》在出关之前，还讲了另一个故事。</p>
 
-<p>孔子去周朝请教礼仪的问题，见到了老子。老子没有跟他谈礼仪。老子说了一段话：</p>
+<p>孔子去周朝向老子问礼。故事没有替我们保留一堂礼仪课，而是留下了这样一段话：</p>
 
 <p>"子所言者，其人与骨皆已朽矣，独其言在耳。且君子得其时则驾，不得其时则蓬累而行。吾闻之，良贾深藏若虚，君子盛德容貌若愚。去子之骄气与多欲，态色与淫志，是皆无益于子之身。吾所以告子，若是而已。"</p>
 
 <p>你说的那些人（制礼作乐的周公们），他们的骨头早就烂了，只剩下几句话。君子赶上好时代就出来做事，赶不上就像蓬草一样随风走。好的商人把宝贝藏得好像什么都没有，有大德的人看起来像个傻子。去掉你的骄气和贪欲，去掉你的做派和野心——这些东西对你一点好处都没有。我要告诉你的，就这些。</p>
 
-<p>这段话是老子对孔子的凿。</p>
+<p>这像是越过问礼的话题，直接追问那个问话的人。</p>
 
-<p>孔子想恢复周礼——那是一个构。老子说：制礼的人骨头都烂了，你恢复什么？孔子想入仕治国——那是一个欲。老子说：去掉你的骄气和野心。孔子要做圣人——那是一个态。老子说：真正有德的人看起来像傻子。</p>
+<p>一个人想恢复旧礼，另一个人先提醒他：制礼者也会死。一个人想入仕治国，另一个人问：你是否也夹带了自己的欲望？一个人有郑重的使命感，另一个人说：真正有德，不必处处把有德的姿态摆出来。</p>
 
 <p>一刀一刀，全是凿。不是凿孔子的某个观点，是凿孔子这个人——凿他的欲望，凿他的姿态，凿他的使命感。</p>
 
@@ -195,7 +201,7 @@
 
 <p>他把老子叫做龙。</p>
 
-<p>这个比喻后来被用了两千年。但很少有人注意到它在说什么：孔子亲口承认，他的网（礼乐秩序）罩不住老子。老子在网之外。老子在所有构之外。</p>
+<p>这个比喻后来被用了两千年。它留下的，不只是高下之分，而是一幅图景：织网的人遇到了一种网不能收尽的生命。老子在网之外。</p>
 
 <h2>五、反</h2>
 
@@ -203,23 +209,23 @@
 
 <p>"反者道之动；弱者道之用。天下万物生于有，有生于无。"</p>
 
-<p>第四十章。十九个字。</p>
+<p>第四十章。很短的一章。</p>
 
 <p>"反者道之动"——道的运动方式是"反"。反是什么？两层意思。第一层：事物到了极端就会向对立面转化。强到极致变弱，盛到极致变衰。第二层：万物最终会回归本源。不是线性前进，是循环回归。</p>
 
-<p>这两层不可分。向对立面转化是运动的方向，回归本源是运动的归宿。合在一起就是：道的运动是循环的——从无到有，从有再到无。</p>
+<p>把这两层放在一起读，运动就不再只有向前这一条路。成长也通向衰落，展开也带着返回的可能。从无到有，从有再回到无——这是一种读法，不是替每一次兴亡预先写好的时刻表。</p>
 
 <p>"弱者道之用"——道的作用方式是"弱"。不是刚强，不是猛烈，是柔弱。水是最柔弱的东西，但它能穿透石头。</p>
 
 <p>"天下万物生于有，有生于无"——万物从"有"中生出来，"有"从"无"中生出来。</p>
 
-<p>但这里有一个重要的考古发现。1993年出土的郭店楚简——比传世版本早了几百年——写的不是"有生于无"，是"生于有，生于无"。并列，不是先后。不是"无"生出了"有"，是"有"和"无"同时在那里，互相生成。</p>
+<p>但这里有一个重要的异文。1993年出土的郭店楚简中，相应的句子通常释作"天下之物，生于有，生于无"。比传世本少了一个"有"。一个字的出入，让句子的方向变得不那么确定。</p>
 
-<p>这个差别很大。传世版本把"无"放在"有"之前，变成了一个生成序列：先无后有。后来的玄学家就在这个序列上建了一整套"以无为本"的形而上学。但楚简版说的是：有和无并列，互相生成。这恰好和《道德经》第二章的"有无相生"吻合——有和无互相产生，没有谁在先。</p>
+<p>是抄写时少了字或重文符号，还是原本就让有、无并举？研究者没有同一个答案。不能只凭这枚简就宣布"无生有"被推翻，更不能把并举直接等同于同时互生。但它提醒人，熟悉的生成序列并不是读者唯一能看见的关系。第二章还有另一句："有无相生。"</p>
 
-<p>"反者道之动"在这个并列的结构里更有力：不是从无到有的单向箭头，是有和无之间的来回运动。反——来回。循环。没有起点，没有终点。</p>
+<p>把"反"放在这句旁边，本文更愿意听见一种来回：不是把"有"和"无"钉死在两个隔绝的位置上，而是留心它们如何使彼此显现。反——返回，也改变方向。</p>
 
-<p>这就是老子看到的东西。他在守藏室里看了三代兴亡的档案，看到的是：所有的兴都会衰，所有的衰都会兴。不是线性的进步，不是螺旋的上升，是循环。是来回。是反。</p>
+<p>再回到那个守藏者的形象。他看着旧日的盛大，今天只剩文字。你可以想象，他未必最关心如何把这一朝推到顶点，而会问：到了顶点，然后呢？不是保证衰败之后一定复兴，是不把眼前的盛大认作永恒。</p>
 
 <h2>六、有与无</h2>
 
@@ -239,11 +245,11 @@
 
 <p>"有之以为利，无之以为用"——构提供了边界，空提供了功能。</p>
 
-<p>这就是庄子后来看到的"余项"。凿出了七窍，混沌死了——但混沌的空不会消失。车轮的辐条是凿出来的（构），但让车轮真正能用的是辐条之间的空（余项）。</p>
+<p>把这一段放到庄子的混沌寓言旁边，会出现一个值得追问的差别。凿出七窍，本想帮助混沌，混沌却死了。给东西以形状，并不总等于成全它。轮毂也是如此：木料要做得结实，中央却不能填死。</p>
 
-<p>老子比庄子早一步看到了这个——但他用的不是"混沌"的语言，是"有无"的语言。庄子从"凿有代价"的方向看，看到了混沌的死亡。老子从"无才是用"的方向看，看到了空的价值。</p>
+<p>这样并置，庄子让人看见分割的代价，老子让人看见空处的价值。一个问你增加了什么，也夺去了什么；一个问你留下的空间，是否恰恰使东西能够起作用。</p>
 
-<p>两个人看的是同一个东西。</p>
+<p>两种眼光，在这里彼此照亮。</p>
 
 <h2>七、不可说与不可知</h2>
 
@@ -255,69 +261,69 @@
 
 <p>一个是认识论的边界：知性到不了物自体。<br>一个是语言的边界：名到不了道。</p>
 
-<p>两条边界指向同一个地方：有一个东西在所有构之外，所有的工具都够不着它。</p>
+<p>物自体并不是道。但把两种边界并置，仍会听到一个提醒：我们的工具，不能自动等于世界的全部。</p>
 
 <p>但两个人面对这条边界的姿态完全不同。</p>
 
-<p>康德划了界。他说：理性不能越过这条线。越过就是僭越，就会产生二律背反。所以他停在了线的这一边，用三大批判仔仔细细地描述了线的这一边是什么样子。他一辈子没有离开过柯尼斯堡。他站在线的这一边，不越界。</p>
+<p>康德划界，批评理性把超出经验的对象当作知识来把握。他没有因此停笔，而是用三大批判继续追问知识、行动与判断。他长期在柯尼斯堡工作。划界之后，仍有漫长的工作。</p>
 
-<p>老子也划了界。"道可道，非常道"——语言到不了那里。但他没有停在线的这一边。他说完了，走了。他骑青牛出了函谷关，消失了。"莫知其所终。"</p>
+<p>老子也给语言划界。"道可道，非常道。"而离去的传说，又给这句话配上一个动作。他说完了，走了。后来的图像里，他骑着青牛出关，消失在路的尽头。青牛不在《史记》这段记载里，却成了人们记住离去的方式。</p>
 
 <p>康德面对不可知，留下来建了三座大厦。<br>老子面对不可说，说了五千个字，然后消失了。</p>
 
-<p>一个是停在边界这一边继续工作。一个是说完边界那一边的事，然后走到那一边去了。</p>
+<p>一个在边界这里继续工作，一个不留下来守着自己的话。出关让一种思想姿态，有了背影。</p>
 
 <h2>八、道生一</h2>
 
 <p>老子和庄子的区别，比大多数人以为的更大。</p>
 
-<p>庄子的道是混沌——凿之前的状态。没有区分，没有结构，没有七窍。混沌不生，混沌只是"在那里"。你凿它，它退一步。你不凿它，它就是它。</p>
+<p>先把庄子的混沌寓言留在眼前：那个没有七窍、却被善意凿死的存在。借这个故事，我们可以想象区分尚未落下的一刻。暂且停在那里，不急着给什么开出眼睛和耳朵。</p>
 
 <p>老子的道不一样。老子的道会生。</p>
 
 <p>"道生一，一生二，二生三，三生万物。万物负阴而抱阳，冲气以为和。"</p>
 
-<p>道生出了一（混沌的元气）。一生出了二（阴阳）。二生出了三（阴阳交冲的动态平衡）。三生出了万物。</p>
+<p>一、二、三究竟怎样解释，注家并不一致。顺着后一句的阴阳与气，可以把它读成：从未分的一体，到阴阳相对，再到两者交会，万物由此展开。</p>
 
 <p>这是一个生成序列。从绝对的无分别到无限的多样性，一层一层地生出来。道不只是"在那里"——道在"生"。</p>
 
-<p>庄子不要这个序列。庄子要的是序列之前的状态。你问庄子"道生一"，庄子会说：你说"生"的那一刻，你已经在凿了。"生"是一个区分——它把"道"和"一"区分开了。在区分之前，道和一和二和三和万物没有分别。那才是混沌。</p>
+<p>若让本文的庄子形象从旁发问，他也许会说：你一说"生"，是不是已经划出了一条线？有了道，有了一，又有了谁先谁后。在混沌寓言打开的想象里，我们能不能退一步，看看这些名字还没有各占一边的时候？这不是庄子的原话，是借他的故事提出的问题。</p>
 
-<p>老子还有生成的方向——从道到万物。庄子连方向都取消了——"不知周之梦为胡蝶与，胡蝶之梦为周与"，方向在流动，没有固定。</p>
+<p>第四十二章让目光沿着生成展开。梦蝶的故事，则让目光往返：是庄周梦成蝴蝶，还是蝴蝶梦成庄周？两段文字并置，方向不再只有一种。</p>
 
-<p>所以：老子站在0D和1D之间。他看到了0D（道不可说），但他还在用1D的语言描述它（道生一）。他在边界上说话——一只脚在"不可说"那边，一只脚在"可以说"这边。</p>
+<p>老子于是显得像一个站在边界上说话的人。一边提醒你：名字抓不住全部。一边又写：道生一。他没有因为语言有边界，就让书只剩一片空白。</p>
 
-<p>庄子完全在0D那边了。他被推回去了。他不用生成序列，因为生成序列本身就是凿。</p>
+<p>混沌与梦蝶的故事，让我们回头看命名之前；生成的句子，让我们看万物怎样展开。读者不必把任何一边抹掉。</p>
 
-<p>老子是两边都踩着的人。他说了"不可说"——这是0D那一脚。他又说了"道生一"——这是1D这一脚。</p>
+<p>老子是两边都踩着的人。他说了"不可说"，又说了"道生一"。一只脚提醒说话的限度，另一只脚仍在试着说。</p>
 
-<p>这就是为什么他必须走。他不能同时站在两边。说完了，就要走到一边去。他选了0D那一边。消失了。</p>
+<p>也正因如此，出关的故事才那么动人。离去像一个句号：话已经留下，说话的人不再占住它。消失了。</p>
 
 <h2>九、七个人</h2>
 
-<p>这个系列的第0轮现在有七个人。</p>
+<p>现在，让这组文章中的七个人，在想象里各自站定。这不是历史上的会面，是七种姿态的并置。</p>
 
-<p>苏格拉底凿到空地，站在那里，不走，笑着喝了毒酒。<br>孔子凿到仁，说不出来，等人来，知我者其天乎。<br>尼采凿到底，继续凿，有路没有方向，疯了。<br>康德凿完了构，有方向没有路，一辈子没离开过柯尼斯堡。<br>王阳明换方向向内凿，有路有方向，在石棺里悟了，在战场上验证了，在船上微笑着死了。<br>庄子被推回混沌，在水里，和鱼在一起。</p>
+<p>苏格拉底问到空地，在城邦判处的死亡前没有逃走，举杯饮下毒酒。<br>孔子向仁追问，一次次等人理解：知我者其天乎。<br>尼采继续挥锤，直到疾病使写作中断；不能把疾病说成思想必须支付的价钱。<br>康德划界之后继续建造，把漫长的工作留在柯尼斯堡。<br>王阳明把追问转向内心：龙场传记里的石棺，后来实实在在的战场，临终舟上的"此心光明"。<br>庄子留在本文的水中，和鱼在一起。</p>
 
 <p>老子说了"不可说"，然后消失了。</p>
 
-<p>七个人，七种姿态。面对同一条边界——物自体，道，混沌，空地，仁，良知——每个人的反应不同。</p>
+<p>七个人，七种姿态。物自体、道、混沌、空地、仁、良知，不是同一个概念。把它们并置，是为了看人怎样面对自己无法轻易占有的东西。</p>
 
 <p>苏格拉底：站着不走。<br>孔子：等人来。<br>尼采：继续砸。<br>康德：留下来建房子。<br>王阳明：在里面活过了。<br>庄子：被推回到了那一边。<br>老子：说完走了。</p>
 
-<p>七种姿态里面，老子的最轻。他没有苏格拉底的重（毒酒），没有尼采的烈（疯），没有王阳明的实（战场），没有康德的密（三大批判）。他只做了两件事：说了五千个字，走了。</p>
+<p>七种姿态里面，出关故事里的老子最轻。这里没有毒酒，没有病中的沉默，没有战场，也没有三大批判的密密层层。叙事只留下两个动作：说了五千余言，走了。</p>
 
-<p>但这个"轻"恰好是他的重量。因为他证明了一件事：你可以碰到那条边界，说出它，然后走。不需要建三座大厦来守住它。不需要喝毒酒来证明它。不需要疯掉。不需要打仗。</p>
+<p>但这个"轻"恰好是他的重量。故事让人想到：触到边界以后，不一定还要为它造一座纪念碑。思想不必靠死亡、疾病或战争来证明自己。也可以留下话，把路让出来。</p>
 
 <p>你只需要说了，然后走。</p>
 
 <p>五千个字。一头青牛。莫知其所终。</p>
 
-<p>这是最轻的姿态，也是最彻底的。他什么都没有留下——除了那五千个字。他没有学生记录他的对话（那是孔子和苏格拉底），没有弟子编他的语录（那是论语和柏拉图对话录）。他自己写了五千个字，交给一个守关的人，走了。</p>
+<p>这是故事最轻，也最彻底的地方。我们只看见一个人把书交给守关者，走了。不是说历史上的《老子》必定由一个人在关口一次写成，也不是说背后绝无传授和编集。书的形成还藏着许多问题。故事却不替他安排一张留下来主持解释的椅子。</p>
 
-<p>后来有人把这五千个字编成了八十一章，分成了道经和德经，加了注释，建了道教，盖了道观，封了天师。</p>
+<p>我们今天读到的书，通常分为道经、德经八十一章；早期抄本的次序和分章并不全一样。后来，注释一层层积起来，道教传统发展起来，道观建起来，老子成了被敬奉的名字。离去的人，又被安放进了新的秩序。</p>
 
-<p>老子不知道。他已经走了。他是唯一一个走得干干净净的人。</p>
+<p>但在关口的那个故事里，老子不在。他已经走了。</p>
 
 <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · 名人系列</em></p>
       </div>
@@ -327,29 +333,29 @@
 
 <p>We know even less about Laozi than we know about Zhuangzi.</p>
 
-<p>When Sima Qian wrote about Zhuangzi, he could at least confirm the man was from Meng and had served as a lacquer garden clerk. When he came to Laozi, Sima Qian himself could not hold it together — he offered three candidates and then wrote: "The world does not know which is true."</p>
+<p>Writing about Zhuangzi, Sima Qian recorded a birthplace, Meng, and a position as a lacquer garden clerk. With Laozi, even the man's identity would not settle. He preserved several accounts, remarking at one point that nobody knew whether a proposed identification was right. Should these different names belong to one person at all?</p>
 
 <p>The first candidate: Li Er, courtesy name Dan, a native of Ku County in the state of Chu, Keeper of the Archives for the Zhou court.<br>The second: Lao Laizi, also from Chu, author of fifteen chapters.<br>The third: Grand Historian Dan of Zhou, who appeared one hundred and twenty-nine years after the death of Confucius.</p>
 
-<p>Three men. Perhaps the same person. Perhaps not. Sima Qian chose the first as the subject of the main biography but honestly included the other two. Then he added one line: "Laozi was a gentleman in hiding."</p>
+<p>Three names. Sima Qian made the first the subject of his biography, but included the other accounts without smoothing away their differences. He also wrote: "Laozi was a gentleman in hiding."</p>
 
 <p>A gentleman in hiding. A man who concealed himself. A man even the Grand Historian could not find.</p>
 
-<p>But Sima Qian did provide one piece of certain information: Keeper of the Archives for the Zhou court.</p>
+<p>Within this unsettled biography, one image has particular force: the keeper of the Zhou court's records.</p>
 
-<p>The Archive was not a library in the modern sense. In the theocratic structure of pre-Qin China, the Archive was the state repository of the Zhou Son of Heaven. It held the political decrees, covenant documents, genealogical records, divination archives, and astronomical observations accumulated across three dynasties — Xia, Shang, and Zhou. This was the highest tier of human knowledge at the time — not the learning of any single school, but the total repository of all schools.</p>
+<p>A man entrusted with books and records. We can no longer reconstruct that room, but we can follow the image in the <em>Records</em>. What might a life spent among old writings do to a person's view of the order around him?</p>
 
-<p>Laozi had been inside. He could see the complete records of three dynasties' rise and fall. He could see the patterns of yin and yang in the divination archives. He could see the cyclical movements of the heavens. He was not looking at any single era. He was looking at all eras stacked on top of one another.</p>
+<p>Imagine writings about rulers, rites, decrees, flourishing and decline, one age laid beside another. Every age describes its arrangements as unshakable. Beside an older record, the unshakable acquires a beginning and an end.</p>
 
-<p>This is why his thought resembles no single school. Confucius said "I follow Zhou" — he stood inside the Zhou dynasty and looked back. Mozi said "universal love" — he stood among the common people and looked up. Laozi stood on top of every dynasty's archives and looked down. What he saw was not the rise and fall of any particular dynasty, but the pattern of rise and fall itself.</p>
+<p>Read this way, several postures emerge. Confucius looks toward an order worth recovering. Mozi's concern with impartial care brings human partiality into view. The keeper of the records directs our attention elsewhere: not to which dynasty deserves to last, but to why even what seems permanent can decline.</p>
 
-<p>He saw the pattern. Then he gave it a name.</p>
+<p>Following that gaze, we arrive at a name.</p>
 
 <h2>II. The Way</h2>
 
 <p>"The Way that can be spoken is not the constant Way. The name that can be named is not the constant name. The nameless is the beginning of heaven and earth. The named is the mother of the ten thousand things. Therefore, always without desire, one observes its subtlety; always with desire, one observes its manifestations. These two emerge together but differ in name. Together they are called the mystery. Mystery upon mystery — the gate of all wonders."</p>
 
-<p>Chapter 1 of the <em>Daodejing</em>. The first sentence of five thousand words. The overture of the entire work.</p>
+<p>Chapter 1 of the received <em>Daodejing</em>. An overture to the book, and a warning placed at its door.</p>
 
 <p>What is this saying?</p>
 
@@ -361,7 +367,7 @@
 
 <p>Why say it at all?</p>
 
-<p>Because he was forced to.</p>
+<p>The story of his departure offers an answer: someone asked him to leave a few words behind.</p>
 
 <h2>III. Passing Through the Gate</h2>
 
@@ -371,31 +377,31 @@
 
 <p>He had been in Zhou a long time. When he saw that Zhou was declining, he decided to leave. At the pass — traditionally identified as Hangu Pass — the gatekeeper Yin Xi stopped him and said: you are going to vanish; leave us something.</p>
 
-<p>"I urge you — write." Urge. Press. Not a polite request. A demand.</p>
+<p>Make the effort; write something for me. One man wants to leave. The other wants to keep his voice a little longer.</p>
 
-<p>Laozi was pressed into writing five thousand words. Then he left. "No one knows where he ended."</p>
+<p>In this account, Laozi grants the request and leaves over five thousand Chinese characters. Then he goes. "No one knows where he ended."</p>
 
-<p>Whether or not this story is literally true, its structure is perfect. A man who believed in "self-concealment and namelessness," a man who held that "the Way that can be spoken is not the constant Way," was pressed by a border official into speaking the unspeakable. He spoke. Then he left.</p>
+<p>Whether or not the story can be treated as a literal record, its tension remains. A man devoted to concealment and namelessness, a man who distrusts the permanence of names, is detained by a request: say something before you leave. He speaks. Then he goes.</p>
 
-<p>He was not killed. Socrates was killed by Athens. Jesus was crucified by Rome. Confucius, though not killed, was rejected his whole life — "worn and weary, like a stray dog."</p>
+<p>The ending is not an execution. Socrates was put to death by Athens; Jesus was crucified by Rome. Confucius traveled among the states and repeatedly met hardship; his stories include the weary figure compared to a stray dog.</p>
 
-<p>Laozi left on his own. No one killed him. No one rejected him. He saw that Zhou was declining. He left. Simple. Clean.</p>
+<p>In Laozi's departure story, leaving is his own action. The narrative ends neither with a trial nor with rejection. He sees Zhou declining. He leaves. Simple. Clean.</p>
 
-<p>He is the only person in this series who chose to disappear.</p>
+<p>Among the postures set beside one another here, he keeps his departure in his own hands.</p>
 
 <p>Socrates stood on the clearing and stayed.<br>Confucius stood on the clearing and waited.<br>Laozi said what he had to say and left.</p>
 
 <h2>IV. The Dragon</h2>
 
-<p>Before he left, something happened.</p>
+<p>Before the departure, the <em>Records</em> tells another story.</p>
 
-<p>Confucius traveled to Zhou to ask about ritual propriety. He met Laozi. Laozi did not discuss ritual. He said:</p>
+<p>Confucius travels to Zhou to ask Laozi about ritual. What the account preserves is not a lesson in ceremonies, but a startling reply:</p>
 
 <p>"The men you speak of — their bones have long since turned to dust. Only their words remain. When the gentleman meets his time, he rides forth. When he does not, he drifts like tumbleweed. I have heard that a good merchant hides his wealth as if he had nothing, and a gentleman of great virtue looks like a fool. Strip away your arrogance and your many desires, your posturing and your overreaching ambitions — none of these are of any benefit to you. That is all I have to tell you."</p>
 
-<p>This was Laozi's carving of Confucius.</p>
+<p>It is as though Laozi has stepped past the question of ritual to question the person asking.</p>
 
-<p>Confucius wanted to restore the rites of Zhou — that was a construction. Laozi said: the men who made those rites are dust. What are you restoring? Confucius wanted to serve in government and bring order — that was a desire. Laozi said: strip away your arrogance and ambitions. Confucius wanted to be a sage — that was a posture. Laozi said: a man of true virtue looks like a fool.</p>
+<p>One man wants to restore old rites; the other reminds him that their makers also die. One wants to serve in government; the other asks what private desires accompany that wish. One carries a solemn sense of mission; the other says that goodness need not continually display the face of goodness.</p>
 
 <p>Cut after cut, all carving. Not carving any particular idea of Confucius, but carving Confucius the man — his desire, his posture, his sense of mission.</p>
 
@@ -409,7 +415,7 @@
 
 <p>He called Laozi a dragon.</p>
 
-<p>This metaphor has been used for over two thousand years. But few notice what it is saying: Confucius himself admitted that his net — the order of rites and music — could not contain Laozi. Laozi was outside the net. Laozi was outside all constructions.</p>
+<p>The metaphor has endured for over two thousand years. It leaves more than a ranking of two men: a maker of nets encounters a life his net cannot wholly contain. Laozi is outside the net.</p>
 
 <h2>V. Reversal</h2>
 
@@ -417,23 +423,23 @@
 
 <p>"Reversal is the movement of the Way. Weakness is the function of the Way. All things under heaven are born of being; being is born of nonbeing."</p>
 
-<p>Chapter 40. Nineteen characters.</p>
+<p>Chapter 40. A very short chapter.</p>
 
 <p>"Reversal is the movement of the Way" — the Way moves by reversal. What is reversal? Two layers of meaning. First: when things reach their extreme, they transform into their opposite. Strength at its peak becomes weakness; flourishing at its peak becomes decline. Second: all things ultimately return to the source. Not linear advance, but cyclical return.</p>
 
-<p>The two layers are inseparable. Transformation into the opposite is the direction of movement; return to the source is the destination. Together: the Way moves in cycles — from nonbeing to being, from being back to nonbeing.</p>
+<p>Read together, these meanings refuse to make forward movement the only movement. Growth also leads toward decline; unfolding contains the possibility of return. From absence to presence and back again: a way of reading change, not a timetable prescribing the fate of every state.</p>
 
 <p>"Weakness is the function of the Way" — the Way operates through weakness. Not through force or intensity, but through softness. Water is the weakest thing in the world, yet it wears through stone.</p>
 
 <p>"All things under heaven are born of being; being is born of nonbeing" — things emerge from being, and being emerges from nonbeing.</p>
 
-<p>But here there is an important archaeological discovery. The Guodian bamboo slips, unearthed in 1993 — several centuries older than the transmitted text — do not say "being is born of nonbeing." They say: "born of being, born of nonbeing." Side by side. Not sequential. Not "nonbeing" generating "being," but "being" and "nonbeing" coexisting, mutually generating.</p>
+<p>Here an early manuscript unsettles the familiar wording. In the Guodian bamboo slips, excavated in 1993, the corresponding sentence is commonly transcribed as things being "born of being, born of nonbeing." One occurrence of "being" is missing. A single sign changes the direction in which the sentence might lead.</p>
 
-<p>This difference is significant. The transmitted text places "nonbeing" before "being," creating a generative sequence: first nonbeing, then being. Later metaphysicians built an entire system of "taking nonbeing as the root" on this sequence. But the bamboo slip version says: being and nonbeing stand side by side, generating each other. This matches the <em>Daodejing</em>'s own second chapter perfectly — "being and nonbeing give rise to each other" — mutual generation, with neither coming first.</p>
+<p>Was a word or repetition mark omitted, or were being and nonbeing deliberately placed together? Scholars differ. The slip does not by itself disprove the received reading, still less establish simultaneous mutual generation. It does remind us that succession is not the only relation a reader might notice. Chapter 2 offers another phrase: being and nonbeing arise through one another.</p>
 
-<p>"Reversal is the movement of the Way" becomes more powerful within this parallel structure: not a one-way arrow from nonbeing to being, but a back-and-forth movement between them. Reversal. Back and forth. A cycle. No starting point. No endpoint.</p>
+<p>Placed beside that phrase, reversal acquires a back-and-forth rhythm. This essay listens for the ways presence and absence bring one another into view, rather than fixing them in two sealed compartments. Return. A change of direction.</p>
 
-<p>This is what Laozi saw. Inside the Archive, reading the records of three dynasties' rise and fall, what he saw was: every rise will decline, every decline will rise. Not linear progress. Not spiraling ascent. A cycle. Back and forth. Reversal.</p>
+<p>Return now to the imagined keeper. An earlier age's splendor survives before him as writing. Perhaps he asks not how to drive the present dynasty to its highest point, but what follows the highest point. This promises no automatic revival after decline. It refuses to mistake today's splendor for eternity.</p>
 
 <h2>VI. Being and Nonbeing</h2>
 
@@ -453,11 +459,11 @@
 
 <p>"Being provides the conditions; nonbeing provides the function" — construction provides boundaries; emptiness provides use.</p>
 
-<p>This is what Zhuangzi later saw as "the remainder." Bore seven openings and Hundun dies — but the emptiness of Hundun does not disappear. The spokes of the wheel are carved out (construction), but what makes the wheel actually work is the emptiness between them (the remainder).</p>
+<p>Place this beside Zhuangzi's fable of Hundun. Friends bore seven openings to help him, and he dies. Giving something a finished shape does not always fulfill it. The wheel's hub offers another warning: its wood must be sound, but its center must not be filled solid.</p>
 
-<p>Laozi saw this one step before Zhuangzi — but he used the language of "being and nonbeing" rather than the language of "Hundun." Zhuangzi approached from the direction of "carving has a cost" and saw the death of Hundun. Laozi approached from the direction of "nonbeing is what works" and saw the value of emptiness.</p>
+<p>Placed together, Zhuangzi shows the cost of cutting distinctions, Laozi the value of the space left open. One asks what an addition takes away; the other asks whether what remains unfilled is precisely what allows something to work.</p>
 
-<p>The two men were looking at the same thing.</p>
+<p>Two ways of looking illuminate one another.</p>
 
 <h2>VII. The Unspeakable and the Unknowable</h2>
 
@@ -469,69 +475,69 @@
 
 <p>One is an epistemological boundary: the understanding cannot reach the thing-in-itself.<br>The other is a linguistic boundary: names cannot reach the Way.</p>
 
-<p>Both boundaries point to the same place: there is something outside all constructions, and no tool can reach it.</p>
+<p>The thing-in-itself is not Dao. Yet placing these limits together offers a reminder: our tools do not automatically amount to the whole of the world.</p>
 
 <p>But the two men faced this boundary with entirely different postures.</p>
 
-<p>Kant drew the line. He said: reason must not cross it. To cross is to overstep, producing antinomies. So he stayed on this side of the line and used three Critiques to describe, with meticulous care, what this side looks like. He never left Königsberg. He stayed on this side. He did not cross.</p>
+<p>Kant draws a boundary against treating what exceeds possible experience as an object of knowledge. He does not therefore stop writing. Three Critiques continue the investigation of knowledge, action, and judgment. He works for many years in Königsberg. After drawing a limit, there is still a lifetime's work.</p>
 
-<p>Laozi also drew the line. "The Way that can be spoken is not the constant Way" — language cannot reach there. But he did not stay on this side. He said what he had to say. Then he left. He rode an ox through Hangu Pass and vanished. "No one knows where he ended."</p>
+<p>Laozi also places a limit on language. The legend of his departure gives that warning a movement. He speaks; he leaves. In later images he rides a dark ox through the pass and disappears down the road. The ox does not appear in this passage of the <em>Records</em>, but becomes a way of remembering the departure.</p>
 
 <p>Kant faced the unknowable and stayed behind to build three edifices.<br>Laozi faced the unspeakable, spoke five thousand words, and disappeared.</p>
 
-<p>One stayed on this side of the boundary and continued working. The other spoke about what lay beyond, then walked to the other side.</p>
+<p>One continues working at the limit; the other does not stay to preside over his words. The departure gives a posture of thought a silhouette receding down a road.</p>
 
 <h2>VIII. The Way Gives Birth to One</h2>
 
 <p>The difference between Laozi and Zhuangzi is greater than most people assume.</p>
 
-<p>Zhuangzi's Way is Hundun — the state before carving. No distinctions, no structure, no seven openings. Hundun does not generate. Hundun simply "is there." You carve it and it steps back. You leave it alone and it is what it is.</p>
+<p>Keep Zhuangzi's fable of Hundun before us: a being without seven openings, killed by a well-meant attempt to provide them. Through this story we can imagine a moment before distinctions are cut. Stay there briefly, without rushing to provide eyes and ears.</p>
 
 <p>Laozi's Way is different. Laozi's Way generates.</p>
 
 <p>"The Way gives birth to one. One gives birth to two. Two gives birth to three. Three gives birth to the ten thousand things. The ten thousand things carry yin on their backs and embrace yang, and through the blending of vital breath they achieve harmony."</p>
 
-<p>The Way gives birth to one (the primordial vital breath). One gives birth to two (yin and yang). Two gives birth to three (the dynamic equilibrium of yin and yang in interaction). Three gives birth to the ten thousand things.</p>
+<p>Commentators do not agree on every numeral. Following the next sentence's yin, yang, and vital breath, we might read an undivided unity, a pair of complementary forces, their interaction, and the unfolding of things.</p>
 
 <p>This is a generative sequence. From absolute undifferentiation to infinite diversity, layer by layer, generated. The Way does not merely "sit there" — the Way generates.</p>
 
-<p>Zhuangzi did not want this sequence. What Zhuangzi wanted was the state before the sequence. If you asked Zhuangzi about "the Way gives birth to one," Zhuangzi would say: the moment you say "gives birth," you are already carving. "Gives birth" is a distinction — it separates "the Way" from "one." Before that distinction, the Way and one and two and three and the ten thousand things are not yet differentiated. That is Hundun.</p>
+<p>If the Zhuangzi figure imagined here could question this sentence, he might ask whether saying "gives birth" has already drawn a line. Here is the Way, there is one, and now there is an earlier and a later. Could we step back and look before each name claimed its side? These are not Zhuangzi's recorded words. They are a question prompted by his fable.</p>
 
-<p>Laozi still has a direction of generation — from the Way to the ten thousand things. Zhuangzi cancels even the direction — "he did not know whether Zhou had dreamed the butterfly or the butterfly had dreamed Zhou." The direction is in flux. Nothing is fixed.</p>
+<p>Chapter 42 follows an unfolding. The butterfly dream sends our gaze in both directions: did Zhou dream he was a butterfly, or the butterfly dream it was Zhou? Set the passages together and direction is no longer singular.</p>
 
-<p>And so: Laozi stands between 0D and 1D. He sees 0D (the Way is unspeakable), but he still uses the language of 1D to describe it (the Way gives birth to one). He speaks from the boundary — one foot on the "unspeakable" side, one foot on the "speakable" side.</p>
+<p>Laozi appears as someone speaking at the boundary. He warns that names cannot capture everything, then writes that the Way gives birth to one. Language has limits; his response is not to leave the book entirely blank.</p>
 
-<p>Zhuangzi is entirely on the 0D side. He was pushed back. He does not use generative sequences, because generative sequences are themselves a form of carving.</p>
+<p>Hundun and the butterfly turn us toward the moment before a name settles. The sentence about generation turns us toward things unfolding. A reader need not erase either direction.</p>
 
-<p>Laozi is the man standing with one foot on each side. He said "unspeakable" — that is the 0D foot. He said "the Way gives birth to one" — that is the 1D foot.</p>
+<p>One foot on each side. One reminds us of speech's limits. The other is still trying to speak.</p>
 
-<p>This is why he had to leave. He could not stand on both sides at once. Having said what he said, he had to walk to one side. He chose the 0D side. He disappeared.</p>
+<p>That is why the departure story moves us. Leaving is like a full stop: the words remain, but their speaker no longer occupies them. He disappears.</p>
 
 <h2>IX. Seven Men</h2>
 
-<p>The ground layer of this series now has seven men.</p>
+<p>Let seven figures from these essays take their places in our imagination. Not a historical meeting: seven postures set beside one another.</p>
 
-<p>Socrates carved to the clearing, stood there, stayed, smiled, and drank the hemlock.<br>Confucius carved toward ren, could not speak it, waited for someone to come. Only Heaven knows me.<br>Nietzsche carved to the bottom and kept carving. A path without a direction. He went mad.<br>Kant carved and then constructed. A direction without a path. He never left Königsberg.<br>Wang Yangming reversed direction and carved inward. Path and direction both, verified. He awakened in a stone coffin, proved it on a battlefield, and smiled on a homeward boat as he died.<br>Zhuangzi was pushed back to Hundun. In the water, with the fish.</p>
+<p>Socrates questions his way to the clearing; facing the city's death sentence, he does not escape, and drinks the hemlock.<br>Confucius follows the question of ren and waits again for understanding: perhaps Heaven knows him.<br>Nietzsche keeps hammering until illness interrupts his writing; illness is not a price philosophy must pay.<br>Kant draws limits and continues building, leaving his long work in Königsberg.<br>Wang Yangming turns the question inward: the stone coffin of the Longchang biographical tradition, the later battlefields, the words about a luminous mind on his final voyage.<br>Zhuangzi remains in this essay's water, with the fish.</p>
 
 <p>Laozi said "the unspeakable," then disappeared.</p>
 
-<p>Seven men. Seven postures. Facing the same boundary — the thing-in-itself, the Way, Hundun, the clearing, ren, innate knowing — each responding differently.</p>
+<p>Seven people, seven postures. The thing-in-itself, Dao, Hundun, the clearing, ren, innate knowing: these are not one concept. Placing them together lets us watch people face what they cannot readily possess.</p>
 
 <p>Socrates: stood and stayed.<br>Confucius: waited for someone to come.<br>Nietzsche: kept hammering.<br>Kant: stayed behind and built.<br>Wang Yangming: lived through it.<br>Zhuangzi: was pushed back to the other side.<br>Laozi: said it and left.</p>
 
-<p>Of the seven postures, Laozi's is the lightest. He does not carry the weight of Socrates (hemlock), the intensity of Nietzsche (madness), the substance of Wang Yangming (the battlefield), or the density of Kant (three Critiques). He did only two things: spoke five thousand words, and left.</p>
+<p>Of these postures, the departing Laozi's is the lightest. Here there is no hemlock, no silence of illness, no battlefield, no densely layered Critiques. The story leaves two actions: over five thousand characters, then departure.</p>
 
-<p>But this lightness is precisely his weight. Because he demonstrated one thing: you can touch that boundary, speak it, and leave. You do not need to build three edifices to guard it. You do not need to drink hemlock to prove it. You do not need to go mad. You do not need to fight a war.</p>
+<p>That lightness gives the story its weight. Touching a limit need not require building a monument to it. Thought does not have to prove itself through death, illness, or war. One can also leave words, and make room for the road.</p>
 
 <p>You need only say it, and leave.</p>
 
 <p>Five thousand words. An ox. No one knows where he ended.</p>
 
-<p>This is the lightest posture, and the most thorough. He left nothing behind — except those five thousand words. He had no students recording his dialogues (that was Confucius and Socrates), no disciples compiling his sayings (that was the <em>Analects</em> and Plato's dialogues). He wrote five thousand words himself, handed them to a man at the gate, and left.</p>
+<p>This is the story's lightest and most thorough gesture: a man hands a book to the keeper and goes. It does not establish that one person composed the historical text at a pass in a single sitting, or that no transmission and compilation lay behind it. The book's formation leaves many questions open. The story simply gives its speaker no chair from which to preside over interpretation.</p>
 
-<p>Later, others divided those five thousand words into eighty-one chapters, split them into the <em>Dao Jing</em> and the <em>De Jing</em>, added commentaries, founded Daoism as a religion, built temples, appointed Celestial Masters.</p>
+<p>Today the book is usually read in eighty-one chapters, divided between the <em>Daojing</em> and <em>Dejing</em>; early manuscripts differ in order and divisions. Commentaries accumulated, religious Daoist traditions developed, temples rose, and Laozi became a revered name. The departing man was given a place in new arrangements.</p>
 
-<p>Laozi did not know. He had already left. He was the only one who left completely clean.</p>
+<p>But in the story at the pass, Laozi is not there. He has already gone.</p>
 
 <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · Great Lives</em></p>
       </div>

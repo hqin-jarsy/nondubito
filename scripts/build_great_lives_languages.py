@@ -14,6 +14,7 @@ import html
 import json
 import os
 import re
+from html.parser import HTMLParser
 from pathlib import Path
 
 
@@ -149,13 +150,65 @@ def load_copy() -> dict[str, dict[str, object]]:
     return entries
 
 
+class _SourceBodyParser(HTMLParser):
+    """Locate a language body without crossing nested divs or the next language."""
+
+    def __init__(self, text: str, lang: str):
+        super().__init__(convert_charrefs=False)
+        self.lang = lang
+        self.offsets = [0]
+        for line in text.splitlines(keepends=True):
+            self.offsets.append(self.offsets[-1] + len(line))
+        self.start = None
+        self.end = None
+        self.depth = 0
+
+    def source_offset(self) -> int:
+        row, column = self.getpos()
+        return self.offsets[row - 1] + column
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if self.end is not None or tag != "div":
+            return
+        if self.depth:
+            self.depth += 1
+            return
+        classes = (dict(attrs).get("class") or "").split()
+        if {"essay-body", f"lang-{self.lang}"}.issubset(classes):
+            self.start = self.source_offset() + len(self.get_starttag_text())
+            self.depth = 1
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "div" and self.depth:
+            self.depth -= 1
+            if self.depth == 0:
+                self.end = self.source_offset()
+
+
 def source_body(slug: str, lang: str) -> str:
-    """The narrative only; notes are separately reviewed for each edition."""
+    """The numbered narrative only, excluding signatures and editorial notes.
+
+    Early essays use a Notes heading rather than an essay-footer-note. Body
+    boundaries are parsed first, so a missing marker cannot consume another
+    language. Raw HTML is preserved for the source-revision digest.
+    """
     text = source_path_for(slug).read_text(encoding="utf-8")
-    match = re.search(rf'<div class="essay-body lang-{lang}"[^>]*>(.*?)<p class="essay-footer-note">', text, re.S)
-    if not match:
+    parser = _SourceBodyParser(text, lang)
+    parser.feed(text)
+    if parser.start is None or parser.end is None:
         raise ValueError(f"Cannot locate {slug}/{lang} source narrative")
-    return match.group(1).strip()
+    body = text[parser.start:parser.end]
+    markers = list(re.finditer(
+        r'<p\b[^>]*\bclass=["\'][^"\']*\bessay-footer-note\b[^"\']*["\'][^>]*>'
+        r'|<h2\b[^>]*>\s*(?:Notes|注释|註釋)\s*</h2>', body, re.I,
+    ))
+    if not markers:
+        raise ValueError(f"Cannot locate {slug}/{lang} source-note boundary")
+    body = body[:markers[0].start()]
+    first_heading = re.search(r"<h2\b", body)
+    if not first_heading:
+        raise ValueError(f"Cannot locate {slug}/{lang} numbered sections")
+    return body[first_heading.start():].strip()
 
 
 def source_path_for(slug: str) -> Path:
@@ -209,6 +262,11 @@ def validate_full_edition(entry: dict[str, object]) -> None:
 
 def esc(value: str) -> str:
     return html.escape(value, quote=True)
+
+
+def paragraph_html(value: str) -> str:
+    """Keep intentional line breaks in a paragraph, never accept raw HTML."""
+    return "<p>" + esc(value).replace("\n", "<br>") + "</p>"
 
 
 def language_switcher(lang: str, slug: str | None = None) -> str:
@@ -288,7 +346,7 @@ def article_html(lang: str, entry: dict[str, object], order: list[dict[str, obje
 
     sections = "".join(
         f'<section><h2>{esc(section["heading"])}</h2>'
-        + "".join(f'<p>{esc(paragraph)}</p>' for paragraph in section["paragraphs"])
+        + "".join(paragraph_html(paragraph) for paragraph in section["paragraphs"])
         + "</section>"
         for section in copy["sections"]
     )
