@@ -23,6 +23,14 @@ from typing import Any
 SITE_URL = "https://nondubito.net"
 SNAPSHOT_DATE = "2026-09-05"
 
+# Editorial categories need not mirror the stable, published series URLs.
+SAE_WESTERN_SERIES = frozenset({
+    "sae-republic",
+    "sae-nicomachean",
+    "sae-consolation",
+    "sae-montaigne",
+})
+
 LANGUAGE_DIRS = {
     "de": "de",
     "es": "es",
@@ -412,6 +420,10 @@ def infer_taxonomy(relative: Path) -> tuple[str | None, str | None]:
         return None, None
     if len(relative.parts) == 2 and relative.name in AI_LEGACY_FILES:
         return "ai-human", "ai-human"
+    if parts[0] == "sae-western":
+        return "sae-western", None
+    if parts[0] in SAE_WESTERN_SERIES:
+        return "sae-western", parts[0]
     category = parts[0]
     series = parts[1] if len(parts) > 1 else parts[0]
     return category, series
@@ -774,9 +786,9 @@ HTML files.
 
 def validate(registry: dict[str, Any], audit: dict[str, Any]) -> list[str]:
     errors: list[str] = []
-    if audit["library_category_count"] != 16:
+    if audit["library_category_count"] != 17:
         errors.append(
-            f"Expected 16 Library categories, found {audit['library_category_count']}."
+            f"Expected 17 Library categories, found {audit['library_category_count']}."
         )
     if audit["library_series_card_count"] < 1:
         errors.append("No Library series cards were detected.")
