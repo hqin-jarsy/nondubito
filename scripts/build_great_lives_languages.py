@@ -9,8 +9,10 @@ series landing pages.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
+import os
 import re
 from pathlib import Path
 
@@ -133,10 +135,76 @@ def load_copy() -> dict[str, dict[str, object]]:
                 raise ValueError(f"{slug} is missing: {', '.join(sorted(missing))}")
             for lang in LANGS:
                 sections = entry["copy"][lang].get("sections", [])
-                if len(sections) != 4:
-                    raise ValueError(f"{slug}/{lang} needs exactly four sections")
+                if not sections:
+                    raise ValueError(f"{slug}/{lang} needs essay sections")
+                for section in sections:
+                    paragraphs = section.get("paragraphs", [])
+                    if not section.get("heading", "").strip() or not paragraphs:
+                        raise ValueError(f"{slug}/{lang} has an empty section")
+                    if any(not isinstance(p, str) or not p.strip() for p in paragraphs):
+                        raise ValueError(f"{slug}/{lang} has an empty paragraph")
+            if entry.get("edition", {}).get("status") == "full":
+                validate_full_edition(entry)
             entries[slug] = entry
     return entries
+
+
+def source_body(slug: str, lang: str) -> str:
+    """The narrative only; notes are separately reviewed for each edition."""
+    text = source_path_for(slug).read_text(encoding="utf-8")
+    match = re.search(rf'<div class="essay-body lang-{lang}"[^>]*>(.*?)<p class="essay-footer-note">', text, re.S)
+    if not match:
+        raise ValueError(f"Cannot locate {slug}/{lang} source narrative")
+    return match.group(1).strip()
+
+
+def source_path_for(slug: str) -> Path:
+    item = next(item for item in canonical_order() if item["slug"] == slug)
+    path = (SERIES / str(item["source"])).resolve()
+    if path.parent not in {SERIES, SERIES.parent} or path.suffix != ".html":
+        raise ValueError(f"Unexpected canonical source path for {slug}: {path}")
+    return path
+
+
+def source_digest(slug: str, lang: str) -> str:
+    return hashlib.sha256(source_body(slug, lang).encode("utf-8")).hexdigest()
+
+
+def validate_full_edition(entry: dict[str, object]) -> None:
+    """Regression guards, not a substitute for paragraph-by-paragraph editing.
+
+    Legacy abridgements remain buildable during the staged upgrade. A full
+    edition must record its source revision and a reviewed content map, and
+    cannot silently regress into four one-paragraph summaries.
+    """
+    slug = str(entry["slug"])
+    edition = entry["edition"]
+    for lang in ("zh", "en"):
+        if edition.get("source_sha256", {}).get(lang) != source_digest(slug, lang):
+            raise ValueError(f"{slug}: {lang} source changed; review all full editions")
+    required = set(edition.get("required_topics", []))
+    if not required or not edition.get("reviewed_on") or not entry.get("sources"):
+        raise ValueError(f"{slug}: full edition needs content map, review date and sources")
+    for lang in LANGS:
+        copy = entry["copy"][lang]
+        paragraphs = [p for s in copy["sections"] for p in s["paragraphs"]]
+        covered = {topic for s in copy["sections"] for topic in s.get("covers", [])}
+        if covered != required or not copy.get("notes"):
+            raise ValueError(f"{slug}/{lang}: incomplete content map or missing notes")
+        # Deliberately conservative floors catch accidental synopsis replacement.
+        # Fullness is reviewed against the content map, never inferred from length.
+        body = " ".join(paragraphs)
+        units = len(re.sub(r"\s+", "", body)) if lang in {"zh-hant", "ja", "ko"} else len(body.split())
+        floor = 1200 if lang in {"zh-hant", "ja", "ko"} else 600
+        if len(paragraphs) < 20 or units < floor:
+            raise ValueError(f"{slug}/{lang}: full edition appears to have regressed to an abridgement")
+    zh = source_body(slug, "zh")
+    traditional = entry["copy"]["zh-hant"]["sections"]
+    source_sections = re.split(r"<h2\b[^>]*>.*?</h2>", zh, flags=re.S)[1:]
+    source_counts = [len(re.findall(r"<p\b", section)) for section in source_sections]
+    traditional_counts = [len(section["paragraphs"]) for section in traditional]
+    if source_counts != traditional_counts:
+        raise ValueError(f"{slug}: Traditional Chinese must retain every source section and paragraph")
 
 
 def esc(value: str) -> str:
@@ -145,7 +213,9 @@ def esc(value: str) -> str:
 
 def language_switcher(lang: str, slug: str | None = None) -> str:
     links = []
-    source = f"../{slug}.html" if slug else "../index.html"
+    source = "../index.html"
+    if slug:
+        source = "../" + str(next(item["source"] for item in canonical_order() if item["slug"] == slug))
     links.append(f'<a href="{source}">EN / 中文</a>')
     for code in LANGS:
         if code == lang:
@@ -164,7 +234,7 @@ def source_page_with_languages(path: Path, slug: str) -> str:
         '<button class="lang-btn" data-lang="en">EN</button>',
     ]
     links.extend(
-        f'<a class="lang-btn" href="{lang}/{slug}.html">{LANG_LABEL[lang]}</a>'
+        f'<a class="lang-btn" href="{Path(os.path.relpath(SERIES / lang / (slug + ".html"), path.parent)).as_posix()}">{LANG_LABEL[lang]}</a>'
         for lang in LANGS
     )
     toggle = '\n          ' + '\n          <span class="lang-sep">|</span>'.join(links) + '\n        '
@@ -195,7 +265,7 @@ def article_html(lang: str, entry: dict[str, object], order: list[dict[str, obje
     title = copy["title"]
     deck = copy["deck"]
     source = next(item["source"] for item in order if item["slug"] == slug)
-    source_href = f"../{Path(str(source)).name}"
+    source_href = f"../{source}"
     completed = [item for item in order if item["slug"] in available]
     position = next(i for i, item in enumerate(completed) if item["slug"] == slug)
     prev_item = completed[position - 1] if position else None
@@ -222,6 +292,11 @@ def article_html(lang: str, entry: dict[str, object], order: list[dict[str, obje
         + "</section>"
         for section in copy["sections"]
     )
+    editorial_notes = ""
+    if copy.get("notes"):
+        label = {"zh-hant": "閱讀說明與來源", "ja": "読書のための注記と出典", "fr": "Notes de lecture et sources", "de": "Lesehinweise und Quellen", "es": "Notas de lectura y fuentes", "ko": "읽기 안내와 출처"}[lang]
+        source_links = " · ".join(f'<a href="{esc(s["url"])}">{esc(s["title"])}</a>' for s in entry.get("sources", []))
+        editorial_notes = f'\n<section class="great-edition-note"><h2>{label}</h2>' + "".join(f'<p>{esc(note)}</p>' for note in copy["notes"]) + f'<p>{source_links}</p></section>'
     notes = {
         "zh-hant": "依據中英文原作編輯的繁體閱讀版。史料、引文與詳細註釋參見",
         "ja": "中国語・英語版を基に、日本語の読者に向けて独立に再構成したエッセイ。史料と詳注は",
@@ -253,7 +328,7 @@ def article_html(lang: str, entry: dict[str, object], order: list[dict[str, obje
 <div class="great-edition-switcher">{language_switcher(lang, slug)}</div>
 <a class="great-edition-back" href="index.html">← {esc(SERIES_NAME[lang])}</a>
 <header class="great-edition-header"><p class="great-edition-series">{number:03d} / 108 · {esc(movement_name)}</p><h1>{esc(title)}</h1><p class="great-edition-deck">{esc(deck)}</p></header>
-<div class="great-edition-body">{sections}</div>
+<div class="great-edition-body">{sections}</div>{editorial_notes}
 <nav class="great-edition-nav">{nav_item(prev_item, True)}{nav_item(next_item, False)}</nav>
 <p class="great-edition-note">{notes[lang]} <a href="{source_href}">{note_link[lang]}</a>。</p>
 </main>
@@ -264,6 +339,7 @@ def article_html(lang: str, entry: dict[str, object], order: list[dict[str, obje
 
 def index_html(lang: str, order: list[dict[str, object]], available: set[str], all_copy: dict[str, dict[str, object]]) -> str:
     count = len(available)
+    full_count = sum(e.get("edition", {}).get("status") == "full" for e in all_copy.values())
     movements = []
     for movement, info in MOVEMENTS.items():
         start, end = info["range"]
@@ -287,12 +363,12 @@ def index_html(lang: str, order: list[dict[str, object]], available: set[str], a
         )
     next_movement = next((m for m, info in MOVEMENTS.items() if any(item["slug"] not in available for item in order if info["range"][0] <= int(item["number"]) <= info["range"][1])), None)
     status = {
-        "zh-hant": f"繁體版依照七個樂章陸續刊行；目前已完成 {count} 篇。",
-        "ja": f"日本語版は七つの楽章に沿って刊行する。現在{count}篇を公開済み。",
-        "fr": f"L’édition française paraît en sept mouvements ; {count} essais sont désormais disponibles.",
-        "de": f"Die deutsche Ausgabe erscheint in sieben Bewegungen; {count} Essays sind jetzt verfügbar.",
-        "es": f"La edición española avanza en siete movimientos; ya están disponibles {count} ensayos.",
-        "ko": f"한국어판은 일곱 악장에 따라 이어진다. 현재 {count}편을 공개했다.",
+        "zh-hant": f"目前可讀 {count} 篇；其中 {full_count} 篇已完成全文修訂，其餘仍為節編版，將依序補全。",
+        "ja": f"現在{count}篇を公開中。うち{full_count}篇は全文改訂済みです。残りの抄録版も順次、全文版へ改訂します。",
+        "fr": f"{count} textes sont disponibles, dont {full_count} en version intégrale révisée. Les autres sont encore abrégés et seront repris progressivement.",
+        "de": f"{count} Texte sind verfügbar, davon {full_count} als überarbeitete Vollfassung. Die übrigen Kurzfassungen werden schrittweise vervollständigt.",
+        "es": f"Hay {count} textos disponibles, de los cuales {full_count} cuentan con una versión íntegra revisada. Los demás siguen abreviados y se ampliarán por etapas.",
+        "ko": f"현재 {count}편을 읽을 수 있으며, 이 가운데 {full_count}편은 전체 내용으로 개정했습니다. 나머지 축약본도 차례로 온전한 글로 보완합니다.",
     }
     if next_movement:
         nxt = MOVEMENTS[next_movement][lang][0]
@@ -303,9 +379,9 @@ def index_html(lang: str, order: list[dict[str, object]], available: set[str], a
         tail = f'<div class="great-edition-coming"><strong>{esc(coming)}</strong></div>'
     else:
         complete = {
-            "zh-hant": "七個樂章 · 一百零八種人生 · 全部完成", "ja": "全七楽章・108篇 完結",
-            "fr": "Sept mouvements · 108 vies · Édition complète", "de": "Sieben Bewegungen · 108 Leben · Vollständige Ausgabe",
-            "es": "Siete movimientos · 108 vidas · Edición completa", "ko": "일곱 악장 · 108개의 삶 · 전편 완성",
+            "zh-hant": "七個樂章 · 一百零八種人生", "ja": "七つの楽章・108の生",
+            "fr": "Sept mouvements · 108 vies", "de": "Sieben Bewegungen · 108 Leben",
+            "es": "Siete movimientos · 108 vidas", "ko": "일곱 악장 · 108개의 삶",
         }[lang]
         tail = f'<div class="great-edition-coming"><strong>{esc(complete)}</strong></div>'
     canonical = f"https://nondubito.net/essays/mingren/{lang}/"
@@ -360,9 +436,7 @@ def build() -> dict[Path, str]:
             raise ValueError(f"Canonical number mismatch for {slug}")
         for lang in LANGS:
             outputs[SERIES / lang / f"{slug}.html"] = article_html(lang, entry, order, available, copy)
-        source_path = (SERIES / str(by_slug[slug]["source"])).resolve()
-        if source_path.parent != SERIES:
-            raise ValueError(f"Unexpected source location for generated edition: {source_path}")
+        source_path = source_path_for(slug)
         outputs[source_path] = source_page_with_languages(source_path, slug)
     for lang in LANGS:
         outputs[SERIES / lang / "index.html"] = index_html(lang, order, available, copy)
