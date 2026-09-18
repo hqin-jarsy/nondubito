@@ -8,8 +8,11 @@ literary quality; that still requires reading every edition against its map.
 from __future__ import annotations
 
 import copy
+import html
+import re
 import unittest
 from unittest.mock import Mock, patch
+from urllib.parse import urlsplit, unquote
 
 import build_great_lives_languages as builder
 
@@ -22,6 +25,46 @@ class FullEditionTests(unittest.TestCase):
 
     def test_intentional_line_breaks_survive_without_allowing_html(self):
         self.assertEqual(builder.paragraph_html('一行\n<另一行>'), '<p>一行<br>&lt;另一行&gt;</p>')
+
+    def test_subheadings_preserve_order_without_changing_paragraphs(self):
+        section = {'heading': 'One', 'paragraphs': ['A', 'B'],
+                   'subheadings': [{'before': 1, 'text': 'Two <three>'}]}
+        rendered = builder.section_html(section)
+        self.assertEqual(rendered, '<section><h2>One</h2><p>A</p><h3>Two &lt;three&gt;</h3><p>B</p></section>')
+
+    def test_out_of_range_subheadings_are_rejected(self):
+        for before in (-1, 1, '0', True):
+            with self.subTest(before=before):
+                section = {'heading': 'One', 'paragraphs': ['A'],
+                           'subheadings': [{'before': before, 'text': 'Two'}]}
+                with self.assertRaisesRegex(ValueError, 'subheading'):
+                    builder.section_html(section)
+
+    def test_duplicate_or_reversed_subheadings_are_rejected(self):
+        for indexes in ((0, 0), (1, 0)):
+            with self.subTest(indexes=indexes):
+                section = {'heading': 'One', 'paragraphs': ['A', 'B'],
+                           'subheadings': [{'before': index, 'text': 'Two'} for index in indexes]}
+                with self.assertRaisesRegex(ValueError, 'subheading'):
+                    builder.section_html(section)
+
+    def test_source_labels_can_be_localized_with_a_safe_fallback(self):
+        entry = copy.deepcopy(self.weil)
+        entry['sources'][0]['titles'] = {'fr': 'Une source <annotée>'}
+        order = builder.canonical_order()
+        available = {item['slug'] for item in order}
+        french = builder.article_html('fr', entry, order, available, self.entries)
+        german = builder.article_html('de', entry, order, available, self.entries)
+        self.assertIn('>Une source &lt;annotée&gt;</a>', french)
+        self.assertIn('>' + builder.esc(entry['sources'][0]['title']) + '</a>', german)
+
+    def test_kant_keeps_internal_reading_landmarks(self):
+        for lang in builder.LANGS:
+            with self.subTest(lang=lang):
+                sections = self.entries['kant']['copy'][lang]['sections']
+                self.assertEqual(sum(len(s.get('subheadings', [])) for s in sections), 11)
+                for section in sections:
+                    builder.validate_subheadings(section)
 
     def test_weil_is_reviewed_full_text_in_six_languages(self):
         self.assertEqual(self.weil['edition']['status'], 'full')
@@ -56,6 +99,78 @@ class FullEditionTests(unittest.TestCase):
             self.assertIn('href="confucius.html"', socrates)
             self.assertIn('href="wangyangming.html"', socrates)
 
+    def test_second_batch_has_complete_editions(self):
+        for slug, number, sections in (('wangyangming', 4, 10), ('kant', 5, 10), ('nietzsche', 6, 8)):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual(entry['number'], number)
+                self.assertEqual(entry['movement'], 1)
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                for lang in builder.LANGS:
+                    self.assertEqual(len(entry['copy'][lang]['sections']), sections)
+                builder.validate_full_edition(entry)
+
+    def test_second_batch_has_no_unrendered_markdown_footnotes(self):
+        for slug in ('wangyangming', 'kant', 'nietzsche'):
+            for lang in builder.LANGS:
+                with self.subTest(slug=slug, lang=lang):
+                    edition = self.entries[slug]['copy'][lang]
+                    text = '\n'.join(
+                        paragraph for section in edition['sections']
+                        for paragraph in section['paragraphs']
+                    ) + '\n' + '\n'.join(edition['notes'])
+                    self.assertNotRegex(text, r'\[\^[^\]]+\]')
+
+    def test_second_batch_source_and_neighbour_links(self):
+        outputs = builder.build()
+        cases = (
+            ('wangyangming', '../../wangyangming.html', 'socrates', 'kant'),
+            ('kant', '../kant.html', 'wangyangming', 'nietzsche'),
+            ('nietzsche', '../../nietzsche.html', 'kant', 'zhuangzi'),
+        )
+        for lang in builder.LANGS:
+            for slug, source, previous, following in cases:
+                with self.subTest(slug=slug, lang=lang):
+                    page = outputs[builder.SERIES / lang / (slug + '.html')]
+                    self.assertIn(f'<a href="{source}">EN / 中文</a>', page)
+                    self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+                    self.assertIn(f'href="{previous}.html"', page)
+                    self.assertIn(f'href="{following}.html"', page)
+
+    def test_second_batch_local_links_resolve(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug in ('wangyangming', 'kant', 'nietzsche'):
+                path = builder.SERIES / lang / (slug + '.html')
+                for href in re.findall(r'href="([^"]+)"', outputs[path]):
+                    url = urlsplit(html.unescape(href))
+                    if url.scheme or url.netloc or not url.path:
+                        continue
+                    target = (path.parent / unquote(url.path)).resolve()
+                    with self.subTest(page=str(path), href=href):
+                        self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
+
+    def test_legacy_zhuangzi_links_back_with_current_nietzsche_title(self):
+        for lang in builder.LANGS:
+            with self.subTest(lang=lang):
+                page = (builder.SERIES / lang / 'zhuangzi.html').read_text(encoding='utf-8')
+                link = re.search(r'<a href="nietzsche.html">(.*?)</a>', page, re.S)
+                self.assertIsNotNone(link)
+                self.assertIn(builder.esc(self.entries['nietzsche']['copy'][lang]['title']), link.group(1))
+
+    def test_second_batch_narratives_have_explicit_boundaries(self):
+        for slug, sections in (('wangyangming', 10), ('kant', 10), ('nietzsche', 8)):
+            for lang in ('zh', 'en'):
+                with self.subTest(slug=slug, lang=lang):
+                    body = builder.source_body(slug, lang)
+                    self.assertTrue(body.startswith('<h2'))
+                    self.assertEqual(body.count('<h2'), sections)
+                    self.assertNotIn('<h2>Abstract</h2>', body)
+                    self.assertNotIn('<h2>Notes</h2>', body)
+                    self.assertNotIn('<h2>注释</h2>', body)
+                    self.assertNotIn('<p>---</p>', body)
+
     def test_classical_chong_is_not_converted_to_collision(self):
         traditional = self.entries['laozi']['copy']['zh-hant']
         body = '\n'.join(p for s in traditional['sections'] for p in s['paragraphs'])
@@ -63,7 +178,7 @@ class FullEditionTests(unittest.TestCase):
         self.assertNotIn('衝氣', body)
 
     def test_traditional_context_sensitive_spellings_are_preserved(self):
-        for slug in ('laozi', 'confucius', 'socrates'):
+        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche'):
             traditional = self.entries[slug]['copy']['zh-hant']
             body = '\n'.join(p for s in traditional['sections'] for p in s['paragraphs'])
             self.assertNotIn('尼採', body)
@@ -140,6 +255,20 @@ class FullEditionTests(unittest.TestCase):
         path.read_text.return_value = text
         with patch.object(builder, 'source_path_for', return_value=path):
             self.assertEqual(builder.source_body('test', 'zh'), '<h2>一</h2><div><p>A</p></div><p>B</p>')
+
+    def test_optional_english_abstract_is_not_a_numbered_section(self):
+        text = ('<div class="essay-body lang-en"><h1>Title</h1><p>Author</p>'
+                '<h2>Abstract</h2><p>Summary only.</p>'
+                '<h2>I. First scene</h2><p>Complete narrative.</p>'
+                '<h2>II. Second scene</h2><p>Its continuation.</p>'
+                '<h2>Notes</h2><p>Sources.</p></div>')
+        path = Mock()
+        path.read_text.return_value = text
+        with patch.object(builder, 'source_path_for', return_value=path):
+            body = builder.source_body('test', 'en')
+            self.assertTrue(body.startswith('<h2>I. First scene</h2>'))
+            self.assertEqual(body.count('<h2'), 2)
+            self.assertNotIn('Summary only.', body)
 
     def test_missing_note_boundary_cannot_consume_next_language(self):
         text = ('<div class="essay-body lang-zh"><h2>一</h2><p>A</p></div>'

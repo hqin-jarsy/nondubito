@@ -144,6 +144,7 @@ def load_copy() -> dict[str, dict[str, object]]:
                         raise ValueError(f"{slug}/{lang} has an empty section")
                     if any(not isinstance(p, str) or not p.strip() for p in paragraphs):
                         raise ValueError(f"{slug}/{lang} has an empty paragraph")
+                    validate_subheadings(section)
             if entry.get("edition", {}).get("status") == "full":
                 validate_full_edition(entry)
             entries[slug] = entry
@@ -205,7 +206,13 @@ def source_body(slug: str, lang: str) -> str:
     if not markers:
         raise ValueError(f"Cannot locate {slug}/{lang} source-note boundary")
     body = body[:markers[0].start()]
-    first_heading = re.search(r"<h2\b", body)
+    headings = list(re.finditer(r"<h2\b[^>]*>(.*?)</h2>", body, re.S | re.I))
+    # Some early English pages precede the numbered essay with an Abstract.
+    # It is introductory metadata, not an extra narrative section or a reason
+    # to drop section I when comparing the complete reading editions.
+    if headings and re.sub(r"<[^>]+>", "", headings[0].group(1)).strip().lower() == "abstract":
+        headings = headings[1:]
+    first_heading = headings[0] if headings else None
     if not first_heading:
         raise ValueError(f"Cannot locate {slug}/{lang} numbered sections")
     return body[first_heading.start():].strip()
@@ -269,6 +276,29 @@ def paragraph_html(value: str) -> str:
     return "<p>" + esc(value).replace("\n", "<br>") + "</p>"
 
 
+def validate_subheadings(section: dict[str, object]) -> None:
+    """Keep internal reading landmarks without counting them as prose paragraphs."""
+    previous = -1
+    for heading in section.get("subheadings", []):
+        before = heading.get("before")
+        title = heading.get("text")
+        if (type(before) is not int or not previous < before < len(section["paragraphs"])
+                or not isinstance(title, str) or not title.strip()):
+            raise ValueError("Invalid or unordered section subheading")
+        previous = before
+
+
+def section_html(section: dict[str, object]) -> str:
+    validate_subheadings(section)
+    headings = {item["before"]: item["text"] for item in section.get("subheadings", [])}
+    body = []
+    for index, paragraph in enumerate(section["paragraphs"]):
+        if index in headings:
+            body.append(f'<h3>{esc(headings[index])}</h3>')
+        body.append(paragraph_html(paragraph))
+    return f'<section><h2>{esc(section["heading"])}</h2>' + "".join(body) + "</section>"
+
+
 def language_switcher(lang: str, slug: str | None = None) -> str:
     links = []
     source = "../index.html"
@@ -322,6 +352,8 @@ def article_html(lang: str, entry: dict[str, object], order: list[dict[str, obje
     movement_name = MOVEMENTS[movement][lang][0]
     title = copy["title"]
     deck = copy["deck"]
+    # Full editions use internal headings and language-specific title wrapping.
+    style_version = "20260917" if entry.get("edition", {}).get("status") == "full" else "20260906"
     source = next(item["source"] for item in order if item["slug"] == slug)
     source_href = f"../{source}"
     completed = [item for item in order if item["slug"] in available]
@@ -344,16 +376,14 @@ def article_html(lang: str, entry: dict[str, object], order: list[dict[str, obje
         }
         return f'<a href="{item["slug"]}.html"><small>{labels[lang][0 if previous else 1]}</small>{esc(name)}</a>'
 
-    sections = "".join(
-        f'<section><h2>{esc(section["heading"])}</h2>'
-        + "".join(paragraph_html(paragraph) for paragraph in section["paragraphs"])
-        + "</section>"
-        for section in copy["sections"]
-    )
+    sections = "".join(section_html(section) for section in copy["sections"])
     editorial_notes = ""
     if copy.get("notes"):
         label = {"zh-hant": "閱讀說明與來源", "ja": "読書のための注記と出典", "fr": "Notes de lecture et sources", "de": "Lesehinweise und Quellen", "es": "Notas de lectura y fuentes", "ko": "읽기 안내와 출처"}[lang]
-        source_links = " · ".join(f'<a href="{esc(s["url"])}">{esc(s["title"])}</a>' for s in entry.get("sources", []))
+        source_links = " · ".join(
+            f'<a href="{esc(s["url"])}">{esc(s.get("titles", {}).get(lang, s["title"]))}</a>'
+            for s in entry.get("sources", [])
+        )
         editorial_notes = f'\n<section class="great-edition-note"><h2>{label}</h2>' + "".join(f'<p>{esc(note)}</p>' for note in copy["notes"]) + f'<p>{source_links}</p></section>'
     notes = {
         "zh-hant": "依據中英文原作編輯的繁體閱讀版。史料、引文與詳細註釋參見",
@@ -377,7 +407,7 @@ def article_html(lang: str, entry: dict[str, object], order: list[dict[str, obje
 <meta name="description" content="{esc(deck)}">
 <link rel="canonical" href="{canonical}">
 <link rel="stylesheet" href="../../../style.css">
-<link rel="stylesheet" href="../great-lives-edition.css?v=20260906">
+<link rel="stylesheet" href="../great-lives-edition.css?v={style_version}">
 <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
 </head>
 <body>
