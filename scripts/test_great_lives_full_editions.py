@@ -111,8 +111,10 @@ class FullEditionTests(unittest.TestCase):
                     self.assertEqual(len(entry['copy'][lang]['sections']), sections)
                 builder.validate_full_edition(entry)
 
-    def test_second_batch_has_no_unrendered_markdown_footnotes(self):
-        for slug in ('wangyangming', 'kant', 'nietzsche'):
+    def test_full_editions_have_no_unrendered_markdown_footnotes(self):
+        for slug, entry in self.entries.items():
+            if entry.get('edition', {}).get('status') != 'full':
+                continue
             for lang in builder.LANGS:
                 with self.subTest(slug=slug, lang=lang):
                     edition = self.entries[slug]['copy'][lang]
@@ -151,13 +153,74 @@ class FullEditionTests(unittest.TestCase):
                     with self.subTest(page=str(path), href=href):
                         self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
 
-    def test_legacy_zhuangzi_links_back_with_current_nietzsche_title(self):
+    def test_zhuangzi_links_back_with_current_nietzsche_title(self):
         for lang in builder.LANGS:
             with self.subTest(lang=lang):
                 page = (builder.SERIES / lang / 'zhuangzi.html').read_text(encoding='utf-8')
                 link = re.search(r'<a href="nietzsche.html">(.*?)</a>', page, re.S)
                 self.assertIsNotNone(link)
                 self.assertIn(builder.esc(self.entries['nietzsche']['copy'][lang]['title']), link.group(1))
+
+    def test_third_batch_has_complete_editions(self):
+        for slug, number, sections in (('zhuangzi', 7, 8), ('buddha', 8, 9), ('jesus', 9, 8)):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual(entry['number'], number)
+                self.assertEqual(entry['movement'], 1)
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                for lang in builder.LANGS:
+                    self.assertEqual(len(entry['copy'][lang]['sections']), sections)
+                builder.validate_full_edition(entry)
+
+    def test_third_batch_source_and_neighbour_links(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug, previous, following in (
+                ('zhuangzi', 'nietzsche', 'buddha'),
+                ('buddha', 'zhuangzi', 'jesus'),
+                ('jesus', 'buddha', 'godel'),
+            ):
+                with self.subTest(slug=slug, lang=lang):
+                    page = outputs[builder.SERIES / lang / (slug + '.html')]
+                    self.assertIn(f'<a href="../{slug}.html">EN / 中文</a>', page)
+                    self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+                    self.assertIn(f'href="{previous}.html"', page)
+                    self.assertIn(f'href="{following}.html"', page)
+
+    def test_third_batch_local_links_resolve(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug in ('zhuangzi', 'buddha', 'jesus'):
+                path = builder.SERIES / lang / (slug + '.html')
+                for href in re.findall(r'href="([^"]+)"', outputs[path]):
+                    url = urlsplit(html.unescape(href))
+                    if url.scheme or url.netloc or not url.path:
+                        continue
+                    target = (path.parent / unquote(url.path)).resolve()
+                    with self.subTest(page=str(path), href=href):
+                        self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
+
+    def test_third_batch_narratives_exclude_editorial_notes(self):
+        for slug, sections in (('zhuangzi', 8), ('buddha', 9), ('jesus', 8)):
+            for lang in ('zh', 'en'):
+                with self.subTest(slug=slug, lang=lang):
+                    body = builder.source_body(slug, lang)
+                    self.assertEqual(body.count('<h2'), sections)
+                    self.assertNotIn('<h2>Notes</h2>', body)
+                    self.assertNotIn('<h2>注释</h2>', body)
+
+    def test_first_movement_is_fully_upgraded(self):
+        first = [item for item in builder.canonical_order() if item['number'] <= 9]
+        self.assertEqual(len(first), 9)
+        self.assertTrue(all(self.entries[item['slug']]['edition']['status'] == 'full' for item in first))
+        self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full' for e in self.entries.values()), 10)
+
+    def test_jesus_traditional_uses_neighbour_not_relinquishment(self):
+        text = '\n'.join(p for section in self.entries['jesus']['copy']['zh-hant']['sections'] for p in section['paragraphs'])
+        self.assertIn('鄰舍', text)
+        self.assertNotIn('鄰捨', text)
+        self.assertNotIn('尼採', text)
 
     def test_second_batch_narratives_have_explicit_boundaries(self):
         for slug, sections in (('wangyangming', 10), ('kant', 10), ('nietzsche', 8)):
@@ -178,7 +241,7 @@ class FullEditionTests(unittest.TestCase):
         self.assertNotIn('衝氣', body)
 
     def test_traditional_context_sensitive_spellings_are_preserved(self):
-        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche'):
+        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche', 'zhuangzi', 'buddha', 'jesus'):
             traditional = self.entries[slug]['copy']['zh-hant']
             body = '\n'.join(p for s in traditional['sections'] for p in s['paragraphs'])
             self.assertNotIn('尼採', body)
