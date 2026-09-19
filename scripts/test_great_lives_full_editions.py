@@ -340,6 +340,71 @@ class FullEditionTests(unittest.TestCase):
         for incorrect in ('遠徵', '東徵', '另辟道路', '反復', '亞裡士多德', '阿裡安', '場景里', '史料里', '史詩里'):
             self.assertNotIn(incorrect, text)
 
+    def test_sixth_batch_has_complete_editions(self):
+        for slug, number, sections in (('darwin', 16, 9), ('newton', 17, 8), ('bach', 18, 8)):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual(entry['number'], number)
+                self.assertEqual(entry['movement'], 2)
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                for lang in builder.LANGS:
+                    self.assertEqual(len(entry['copy'][lang]['sections']), sections)
+                builder.validate_full_edition(entry)
+
+    def test_sixth_batch_source_and_neighbour_links(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug, previous, following in (
+                ('darwin', 'alexander', 'newton'),
+                ('newton', 'darwin', 'bach'),
+                ('bach', 'newton', 'beethoven'),
+            ):
+                with self.subTest(slug=slug, lang=lang):
+                    page = outputs[builder.SERIES / lang / (slug + '.html')]
+                    self.assertIn(f'<a href="../{slug}.html">EN / 中文</a>', page)
+                    self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+                    for neighbour in (previous, following):
+                        link = re.search(r'<a href="' + neighbour + r'\.html">(.*?)</a>', page, re.S)
+                        self.assertIsNotNone(link)
+                        self.assertIn(builder.esc(self.entries[neighbour]['copy'][lang]['title']), link.group(1))
+
+    def test_sixth_batch_local_links_resolve(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug in ('darwin', 'newton', 'bach'):
+                path = builder.SERIES / lang / (slug + '.html')
+                for href in re.findall(r'href="([^"]+)"', outputs[path]):
+                    url = urlsplit(html.unescape(href))
+                    if url.scheme or url.netloc or not url.path:
+                        continue
+                    target = (path.parent / unquote(url.path)).resolve()
+                    with self.subTest(page=str(path), href=href):
+                        self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
+
+    def test_sixth_batch_narratives_exclude_editorial_notes(self):
+        for slug, sections in (('darwin', 9), ('newton', 8), ('bach', 8)):
+            for lang in ('zh', 'en'):
+                with self.subTest(slug=slug, lang=lang):
+                    body = builder.source_body(slug, lang)
+                    self.assertEqual(body.count('<h2'), sections)
+                    self.assertNotIn('<h2>Notes</h2>', body)
+                    self.assertNotIn('<h2>注释</h2>', body)
+                    self.assertNotIn('essay-footer-note', body)
+
+    def test_first_eighteen_and_weil_have_full_editions(self):
+        required = [item['slug'] for item in builder.canonical_order() if item['number'] <= 18] + ['weil']
+        self.assertEqual(len(required), 19)
+        self.assertTrue(all(self.entries[slug]['edition']['status'] == 'full' for slug in required))
+
+    def test_sixth_batch_sources_are_localized_in_every_edition(self):
+        for slug in ('darwin', 'newton', 'bach'):
+            for source in self.entries[slug]['sources']:
+                with self.subTest(slug=slug, source=source['url']):
+                    self.assertTrue(source['url'].startswith('https://'))
+                    for lang in builder.LANGS:
+                        self.assertTrue(source['titles'].get(lang, '').strip())
+
     def test_dufu_keeps_the_poems_as_verse_in_every_edition(self):
         # Nine stanza blocks across the mountain, patronage, war, cottage,
         # river and late-life sections. Prose summaries cannot replace them.
@@ -408,7 +473,7 @@ class FullEditionTests(unittest.TestCase):
         self.assertNotIn('衝氣', body)
 
     def test_traditional_context_sensitive_spellings_are_preserved(self):
-        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche', 'zhuangzi', 'buddha', 'jesus', 'godel', 'einstein', 'dufu', 'qinshihuang', 'washington', 'alexander'):
+        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche', 'zhuangzi', 'buddha', 'jesus', 'godel', 'einstein', 'dufu', 'qinshihuang', 'washington', 'alexander', 'darwin', 'newton', 'bach'):
             traditional = self.entries[slug]['copy']['zh-hant']
             body = '\n'.join(p for s in traditional['sections'] for p in s['paragraphs'])
             self.assertNotIn('尼採', body)
