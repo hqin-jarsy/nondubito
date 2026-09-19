@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import copy
 import html
+import json
 import re
 import unittest
 from unittest.mock import Mock, patch
@@ -216,6 +217,106 @@ class FullEditionTests(unittest.TestCase):
         self.assertTrue(all(self.entries[item['slug']]['edition']['status'] == 'full' for item in first))
         self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full' for e in self.entries.values()), 10)
 
+    def test_fourth_batch_has_complete_editions(self):
+        for slug, number, sections in (('godel', 10, 7), ('einstein', 11, 6), ('dufu', 12, 9)):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual(entry['number'], number)
+                self.assertEqual(entry['movement'], 2)
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                for lang in builder.LANGS:
+                    self.assertEqual(len(entry['copy'][lang]['sections']), sections)
+                builder.validate_full_edition(entry)
+
+    def test_fourth_batch_source_and_neighbour_links(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug, previous, following in (
+                ('godel', 'jesus', 'einstein'),
+                ('einstein', 'godel', 'dufu'),
+                ('dufu', 'einstein', 'qinshihuang'),
+            ):
+                with self.subTest(slug=slug, lang=lang):
+                    page = outputs[builder.SERIES / lang / (slug + '.html')]
+                    self.assertIn(f'<a href="../{slug}.html">EN / 中文</a>', page)
+                    self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+                    for neighbour in (previous, following):
+                        link = re.search(r'<a href="' + neighbour + r'\.html">(.*?)</a>', page, re.S)
+                        self.assertIsNotNone(link)
+                        self.assertIn(builder.esc(self.entries[neighbour]['copy'][lang]['title']), link.group(1))
+
+    def test_fourth_batch_local_links_resolve(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug in ('godel', 'einstein', 'dufu'):
+                path = builder.SERIES / lang / (slug + '.html')
+                for href in re.findall(r'href="([^"]+)"', outputs[path]):
+                    url = urlsplit(html.unescape(href))
+                    if url.scheme or url.netloc or not url.path:
+                        continue
+                    target = (path.parent / unquote(url.path)).resolve()
+                    with self.subTest(page=str(path), href=href):
+                        self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
+
+    def test_fourth_batch_narratives_exclude_editorial_notes(self):
+        for slug, sections in (('godel', 7), ('einstein', 6), ('dufu', 9)):
+            for lang in ('zh', 'en'):
+                with self.subTest(slug=slug, lang=lang):
+                    body = builder.source_body(slug, lang)
+                    self.assertEqual(body.count('<h2'), sections)
+                    self.assertNotIn('<h2>Notes</h2>', body)
+                    self.assertNotIn('<h2>注释</h2>', body)
+                    self.assertNotIn('essay-footer-note', body)
+
+    def test_first_twelve_and_weil_have_full_editions(self):
+        required = [item['slug'] for item in builder.canonical_order() if item['number'] <= 12] + ['weil']
+        self.assertEqual(len(required), 13)
+        self.assertTrue(all(self.entries[slug]['edition']['status'] == 'full' for slug in required))
+
+    def test_dufu_keeps_the_poems_as_verse_in_every_edition(self):
+        # Nine stanza blocks across the mountain, patronage, war, cottage,
+        # river and late-life sections. Prose summaries cannot replace them.
+        minimum_stanzas = (1, 0, 1, 0, 1, 3, 2, 1, 0)
+        for lang in builder.LANGS:
+            sections = self.entries['dufu']['copy'][lang]['sections']
+            for index, minimum in enumerate(minimum_stanzas):
+                with self.subTest(lang=lang, section=index + 1):
+                    verses = [p for p in sections[index]['paragraphs'] if '\n' in p]
+                    self.assertGreaterEqual(len(verses), minimum)
+            self.assertGreaterEqual(sum(p.count('\n') for s in sections for p in s['paragraphs']), 25)
+
+    def test_dufu_traditional_resolves_context_sensitive_poem_characters(self):
+        body = '\n'.join(p for s in self.entries['dufu']['copy']['zh-hant']['sections'] for p in s['paragraphs'])
+        for correct in ('干謁', '造化鍾神秀', '無乾處', '踏裡裂', '楊萬里', '里巷'):
+            self.assertIn(correct, body)
+        for incorrect in ('乾謁', '造化鐘神秀', '無干處', '踏里裂', '楊萬裡', '裡巷'):
+            self.assertNotIn(incorrect, body)
+
+    def test_korean_full_editions_load_word_preserving_heading_styles(self):
+        css = (builder.SERIES / 'great-lives-edition.css').read_text(encoding='utf-8')
+        self.assertIn('html[lang="ko"] .great-edition-body h2,html[lang="ko"] .great-edition-body h3{word-break:keep-all;overflow-wrap:anywhere}', css)
+        outputs = builder.build()
+        for slug, entry in self.entries.items():
+            if entry.get('edition', {}).get('status') == 'full':
+                self.assertIn('great-lives-edition.css?v=20260918', outputs[builder.SERIES / 'ko' / (slug + '.html')])
+
+    def test_full_editions_keep_index_structured_titles_in_sync(self):
+        index = (builder.SERIES / 'index.html').read_text(encoding='utf-8')
+        block = re.search(r'<script type="application/ld\+json">(.*?)</script>', index, re.S)
+        self.assertIsNotNone(block)
+        items = json.loads(block.group(1))['mainEntity']['itemListElement']
+        names = {item['position']: item['name'] for item in items}
+        for slug, entry in self.entries.items():
+            if entry.get('edition', {}).get('status') != 'full':
+                continue
+            with self.subTest(slug=slug):
+                source = builder.source_path_for(slug).read_text(encoding='utf-8')
+                heading = re.search(r'<h1 class="lang-en">(.*?)</h1>', source, re.S)
+                self.assertIsNotNone(heading)
+                title = html.unescape(re.sub(r'<[^>]+>', '', heading.group(1)))
+                self.assertEqual(names[entry['number']], title)
+
     def test_jesus_traditional_uses_neighbour_not_relinquishment(self):
         text = '\n'.join(p for section in self.entries['jesus']['copy']['zh-hant']['sections'] for p in section['paragraphs'])
         self.assertIn('鄰舍', text)
@@ -241,7 +342,7 @@ class FullEditionTests(unittest.TestCase):
         self.assertNotIn('衝氣', body)
 
     def test_traditional_context_sensitive_spellings_are_preserved(self):
-        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche', 'zhuangzi', 'buddha', 'jesus'):
+        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche', 'zhuangzi', 'buddha', 'jesus', 'godel', 'einstein', 'dufu'):
             traditional = self.entries[slug]['copy']['zh-hant']
             body = '\n'.join(p for s in traditional['sections'] for p in s['paragraphs'])
             self.assertNotIn('尼採', body)

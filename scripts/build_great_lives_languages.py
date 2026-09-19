@@ -354,6 +354,8 @@ def article_html(lang: str, entry: dict[str, object], order: list[dict[str, obje
     deck = copy["deck"]
     # Full editions use internal headings and language-specific title wrapping.
     style_version = "20260917" if entry.get("edition", {}).get("status") == "full" else "20260906"
+    if lang == "ko" and entry.get("edition", {}).get("status") == "full":
+        style_version = "20260918"
     source = next(item["source"] for item in order if item["slug"] == slug)
     source_href = f"../{source}"
     completed = [item for item in order if item["slug"] in available]
