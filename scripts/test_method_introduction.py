@@ -55,6 +55,17 @@ class MethodIntroductionTests(unittest.TestCase):
                 for text in texts:
                     self.assertIn(html.escape(text), self.source)
 
+    def test_remainder_is_introduced_early_and_carried_through_examples(self):
+        # The first draft named the concept only in section six. Keep it central,
+        # not confined to a late glossary or the source note.
+        for lang, edition in self.editions.items():
+            term = {"zh": "余项", "zh-hant": "餘項", "en": "remainder"}[lang]
+            with self.subTest(lang=lang):
+                self.assertIn(term, edition["subtitle"].lower())
+                for section in edition["sections"][:5]:
+                    self.assertIn(term, " ".join(section["paragraphs"]).lower())
+                self.assertNotIn("在这里，我们才需要一个稍微专门的词", " ".join(edition["sections"][5]["paragraphs"]))
+
     def test_only_real_language_editions(self):
         info = PageInfo(self.source)
         self.assertEqual(set(info.buttons), set(LANGUAGES))
