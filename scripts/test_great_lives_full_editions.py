@@ -274,6 +274,72 @@ class FullEditionTests(unittest.TestCase):
         self.assertEqual(len(required), 13)
         self.assertTrue(all(self.entries[slug]['edition']['status'] == 'full' for slug in required))
 
+    def test_fifth_batch_has_complete_editions(self):
+        for slug, number in (('qinshihuang', 13), ('washington', 14), ('alexander', 15)):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual(entry['number'], number)
+                self.assertEqual(entry['movement'], 2)
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                for lang in builder.LANGS:
+                    self.assertEqual(len(entry['copy'][lang]['sections']), 8)
+                builder.validate_full_edition(entry)
+
+    def test_fifth_batch_source_and_neighbour_links(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug, previous, following in (
+                ('qinshihuang', 'dufu', 'washington'),
+                ('washington', 'qinshihuang', 'alexander'),
+                ('alexander', 'washington', 'darwin'),
+            ):
+                with self.subTest(slug=slug, lang=lang):
+                    page = outputs[builder.SERIES / lang / (slug + '.html')]
+                    self.assertIn(f'<a href="../{slug}.html">EN / 中文</a>', page)
+                    self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+                    for neighbour in (previous, following):
+                        link = re.search(r'<a href="' + neighbour + r'\.html">(.*?)</a>', page, re.S)
+                        self.assertIsNotNone(link)
+                        self.assertIn(builder.esc(self.entries[neighbour]['copy'][lang]['title']), link.group(1))
+
+    def test_fifth_batch_local_links_resolve(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug in ('qinshihuang', 'washington', 'alexander'):
+                path = builder.SERIES / lang / (slug + '.html')
+                for href in re.findall(r'href="([^"]+)"', outputs[path]):
+                    url = urlsplit(html.unescape(href))
+                    if url.scheme or url.netloc or not url.path:
+                        continue
+                    target = (path.parent / unquote(url.path)).resolve()
+                    with self.subTest(page=str(path), href=href):
+                        self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
+
+    def test_fifth_batch_narratives_exclude_editorial_notes(self):
+        for slug in ('qinshihuang', 'washington', 'alexander'):
+            for lang in ('zh', 'en'):
+                with self.subTest(slug=slug, lang=lang):
+                    body = builder.source_body(slug, lang)
+                    self.assertEqual(body.count('<h2'), 8)
+                    self.assertNotIn('<h2>Notes</h2>', body)
+                    self.assertNotIn('<h2>注释</h2>', body)
+                    self.assertNotIn('essay-footer-note', body)
+
+    def test_first_fifteen_and_weil_have_full_editions(self):
+        required = [item['slug'] for item in builder.canonical_order() if item['number'] <= 15] + ['weil']
+        self.assertEqual(len(required), 16)
+        self.assertTrue(all(self.entries[slug]['edition']['status'] == 'full' for slug in required))
+
+    def test_alexander_traditional_distinguishes_campaigns_and_names(self):
+        edition = self.entries['alexander']['copy']['zh-hant']
+        text = '\n'.join(p for s in edition['sections'] for p in s['paragraphs'])
+        text += '\n' + '\n'.join(edition['notes'])
+        for correct in ('遠征', '東征', '另闢道路', '反覆', '亞里士多德', '阿里安'):
+            self.assertIn(correct, text)
+        for incorrect in ('遠徵', '東徵', '另辟道路', '反復', '亞裡士多德', '阿裡安', '場景里', '史料里', '史詩里'):
+            self.assertNotIn(incorrect, text)
+
     def test_dufu_keeps_the_poems_as_verse_in_every_edition(self):
         # Nine stanza blocks across the mountain, patronage, war, cottage,
         # river and late-life sections. Prose summaries cannot replace them.
@@ -342,7 +408,7 @@ class FullEditionTests(unittest.TestCase):
         self.assertNotIn('衝氣', body)
 
     def test_traditional_context_sensitive_spellings_are_preserved(self):
-        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche', 'zhuangzi', 'buddha', 'jesus', 'godel', 'einstein', 'dufu'):
+        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche', 'zhuangzi', 'buddha', 'jesus', 'godel', 'einstein', 'dufu', 'qinshihuang', 'washington', 'alexander'):
             traditional = self.entries[slug]['copy']['zh-hant']
             body = '\n'.join(p for s in traditional['sections'] for p in s['paragraphs'])
             self.assertNotIn('尼採', body)
