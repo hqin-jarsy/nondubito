@@ -495,6 +495,93 @@ class FullEditionTests(unittest.TestCase):
         for incorrect in ('悲白發', '還複來', '還覆來', '不複回', '不覆回', '鍾鼓饌玉', '楊萬裡'):
             self.assertNotIn(incorrect, body)
 
+    def test_eighth_batch_has_complete_editions(self):
+        for slug, number, movement, sections in (
+            ('rumi', 22, 2, 9), ('davinci', 23, 2, 8), ('freud', 24, 3, 9),
+        ):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual(entry['number'], number)
+                self.assertEqual(entry['movement'], movement)
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                for lang in builder.LANGS:
+                    self.assertEqual(len(entry['copy'][lang]['sections']), sections)
+                builder.validate_full_edition(entry)
+
+    def test_eighth_batch_source_and_neighbour_links(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug, previous, following in (
+                ('rumi', 'libai', 'davinci'),
+                ('davinci', 'rumi', 'freud'),
+                ('freud', 'davinci', 'lacan'),
+            ):
+                with self.subTest(slug=slug, lang=lang):
+                    page = outputs[builder.SERIES / lang / (slug + '.html')]
+                    self.assertIn(f'<a href="../{slug}.html">EN / 中文</a>', page)
+                    self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+                    for neighbour in (previous, following):
+                        link = re.search(r'<a href="' + neighbour + r'\.html">(.*?)</a>', page, re.S)
+                        self.assertIsNotNone(link)
+                        self.assertIn(builder.esc(self.entries[neighbour]['copy'][lang]['title']), link.group(1))
+
+    def test_eighth_batch_local_links_resolve(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug in ('rumi', 'davinci', 'freud'):
+                path = builder.SERIES / lang / (slug + '.html')
+                for href in re.findall(r'href="([^"]+)"', outputs[path]):
+                    url = urlsplit(html.unescape(href))
+                    if url.scheme or url.netloc or not url.path:
+                        continue
+                    target = (path.parent / unquote(url.path)).resolve()
+                    with self.subTest(page=str(path), href=href):
+                        self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
+
+    def test_eighth_batch_narratives_exclude_editorial_notes(self):
+        for slug, sections in (('rumi', 9), ('davinci', 8), ('freud', 9)):
+            for lang in ('zh', 'en'):
+                with self.subTest(slug=slug, lang=lang):
+                    body = builder.source_body(slug, lang)
+                    self.assertEqual(body.count('<h2'), sections)
+                    self.assertNotIn('essay-footer-note', body)
+                    self.assertNotIn('<h2>Notes</h2>', body)
+                    self.assertNotIn('<h2>注释</h2>', body)
+
+    def test_first_twenty_four_and_weil_have_full_editions(self):
+        required = [item['slug'] for item in builder.canonical_order() if item['number'] <= 24] + ['weil']
+        self.assertEqual(len(required), 25)
+        self.assertTrue(all(self.entries[slug]['edition']['status'] == 'full' for slug in required))
+
+    def test_eighth_batch_sources_are_localized_in_every_edition(self):
+        for slug in ('rumi', 'davinci', 'freud'):
+            for source in self.entries[slug]['sources']:
+                with self.subTest(slug=slug, source=source['url']):
+                    self.assertTrue(source['url'].startswith('https://'))
+                    for lang in builder.LANGS:
+                        self.assertTrue(source['titles'].get(lang, '').strip())
+
+    def test_rumi_keeps_the_four_reed_couplets(self):
+        for lang in builder.LANGS:
+            with self.subTest(lang=lang):
+                section = self.entries['rumi']['copy'][lang]['sections'][3]
+                verse_lines = sum(len([line for line in p.split('\n') if line.strip()])
+                                  for p in section['paragraphs'] if '\n' in p)
+                self.assertGreaterEqual(verse_lines, 8)
+
+    def test_freud_no_longer_closes_the_obsolete_first_round(self):
+        self.assertNotIn('第一轮的最后一个人', builder.source_body('freud', 'zh'))
+        self.assertNotIn('The Last Person in Round One', builder.source_body('freud', 'en'))
+        self.assertEqual(self.entries['freud']['movement'], 3)
+
+    def test_davinci_retitled_without_changing_his_url(self):
+        index = (builder.SERIES / 'index.html').read_text(encoding='utf-8')
+        self.assertIn('达芬奇，还要打开一扇门', index)
+        self.assertIn('Da Vinci, One More Door to Open', index)
+        self.assertIn('href="davinci.html"', index)
+        self.assertNotIn('Da Vinci, Everything Begun, Nothing Finished', index)
+
     def test_dufu_keeps_the_poems_as_verse_in_every_edition(self):
         # Nine stanza blocks across the mountain, patronage, war, cottage,
         # river and late-life sections. Prose summaries cannot replace them.
@@ -563,7 +650,7 @@ class FullEditionTests(unittest.TestCase):
         self.assertNotIn('衝氣', body)
 
     def test_traditional_context_sensitive_spellings_are_preserved(self):
-        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche', 'zhuangzi', 'buddha', 'jesus', 'godel', 'einstein', 'dufu', 'qinshihuang', 'washington', 'alexander', 'darwin', 'newton', 'bach', 'beethoven', 'simaqian', 'libai'):
+        for slug in ('laozi', 'confucius', 'socrates', 'wangyangming', 'kant', 'nietzsche', 'zhuangzi', 'buddha', 'jesus', 'godel', 'einstein', 'dufu', 'qinshihuang', 'washington', 'alexander', 'darwin', 'newton', 'bach', 'beethoven', 'simaqian', 'libai', 'rumi', 'davinci', 'freud'):
             traditional = self.entries[slug]['copy']['zh-hant']
             body = '\n'.join(p for s in traditional['sections'] for p in s['paragraphs'])
             self.assertNotIn('尼採', body)
