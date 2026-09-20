@@ -807,6 +807,97 @@ class FullEditionTests(unittest.TestCase):
                 self.assertEqual(len(attrs), 2)
                 self.assertGreater(len(dict(attrs)['content']), 25)
 
+    def test_twelfth_batch_has_complete_editions(self):
+        for slug, number in (('lincoln', 34), ('galileo', 35), ('wittgenstein', 36)):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual(entry['number'], number)
+                self.assertEqual(entry['movement'], 3)
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                for lang in builder.LANGS:
+                    self.assertEqual(len(entry['copy'][lang]['sections']), 9)
+                builder.validate_full_edition(entry)
+
+    def test_first_thirty_six_and_weil_have_full_editions(self):
+        required = [item['slug'] for item in builder.canonical_order() if item['number'] <= 36] + ['weil']
+        self.assertEqual(len(required), 37)
+        self.assertTrue(all(self.entries[slug]['edition']['status'] == 'full' for slug in required))
+
+    def test_twelfth_batch_source_and_neighbour_links(self):
+        outputs = builder.build()
+        cases = (('lincoln', 'michelangelo', 'galileo'), ('galileo', 'lincoln', 'wittgenstein'),
+                 ('wittgenstein', 'galileo', 'augustine'))
+        for lang in builder.LANGS:
+            for slug, previous, following in cases:
+                with self.subTest(slug=slug, lang=lang):
+                    page = outputs[builder.SERIES / lang / (slug + '.html')]
+                    self.assertIn(f'<a href="../{slug}.html">EN / 中文</a>', page)
+                    self.assertIn(f'href="{previous}.html"', page)
+                    self.assertIn(f'href="{following}.html"', page)
+                    self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+
+    def test_twelfth_batch_local_links_resolve(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug in ('lincoln', 'galileo', 'wittgenstein'):
+                path = builder.SERIES / lang / (slug + '.html')
+                for href in re.findall(r'href="([^"]+)"', outputs[path]):
+                    url = urlsplit(html.unescape(href))
+                    if url.scheme or url.netloc or not url.path:
+                        continue
+                    target = (path.parent / unquote(url.path)).resolve()
+                    with self.subTest(page=str(path), href=href):
+                        self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
+
+    def test_twelfth_batch_sources_are_localized(self):
+        for slug in ('lincoln', 'galileo', 'wittgenstein'):
+            for source in self.entries[slug]['sources']:
+                with self.subTest(slug=slug, source=source['url']):
+                    self.assertTrue(source.get('title', '').strip())
+                    self.assertTrue(source['url'].startswith('https://'))
+                    self.assertEqual(set(source['titles']), set(builder.LANGS))
+                    self.assertTrue(all(source['titles'][lang].strip() for lang in builder.LANGS))
+
+    def test_twelfth_batch_source_narratives_exclude_notes(self):
+        for slug, paragraphs in (('lincoln', 60), ('galileo', 49), ('wittgenstein', 54)):
+            for lang in ('zh', 'en'):
+                with self.subTest(slug=slug, lang=lang):
+                    body = builder.source_body(slug, lang)
+                    self.assertEqual(body.count('<h2'), 9)
+                    self.assertEqual(len(re.findall(r'<p\b', body)), paragraphs)
+                    self.assertNotIn('essay-footer-note', body)
+                    self.assertNotIn('source-notes', body)
+
+    def test_twelfth_batch_description_attributes_are_well_formed(self):
+        from html.parser import HTMLParser
+
+        class Descriptions(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.items = []
+
+            def handle_starttag(self, tag, attrs):
+                if tag == 'meta' and dict(attrs).get('name') == 'description':
+                    self.items.append(attrs)
+
+        for slug in ('lincoln', 'galileo', 'wittgenstein'):
+            parser = Descriptions()
+            parser.feed(builder.source_path_for(slug).read_text())
+            with self.subTest(slug=slug):
+                self.assertEqual(len(parser.items), 1)
+                self.assertEqual({key for key, _ in parser.items[0]}, {'name', 'content'})
+                self.assertEqual(len(parser.items[0]), 2)
+                self.assertGreater(len(dict(parser.items[0])['content']), 25)
+
+    def test_twelfth_batch_traditional_has_every_paragraph(self):
+        for slug, expected in (('lincoln', [7, 6, 8, 5, 7, 6, 7, 6, 8]),
+                               ('galileo', [5, 6, 5, 5, 6, 5, 5, 6, 6]),
+                               ('wittgenstein', [6] * 9)):
+            with self.subTest(slug=slug):
+                sections = self.entries[slug]['copy']['zh-hant']['sections']
+                self.assertEqual([len(s['paragraphs']) for s in sections], expected)
+
     def test_huineng_preserves_both_gathas_as_verse(self):
         for lang in builder.LANGS:
             verses = [p for p in self.entries['huineng']['copy'][lang]['sections'][1]['paragraphs'] if '\n' in p]
