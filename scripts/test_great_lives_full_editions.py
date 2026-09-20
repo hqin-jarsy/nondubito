@@ -582,6 +582,71 @@ class FullEditionTests(unittest.TestCase):
         self.assertIn('href="davinci.html"', index)
         self.assertNotIn('Da Vinci, Everything Begun, Nothing Finished', index)
 
+    def test_ninth_batch_has_complete_editions(self):
+        for slug, number in (('lacan', 25), ('dostoevsky', 26), ('kafka', 27)):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual(entry['number'], number)
+                self.assertEqual(entry['movement'], 3)
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                for lang in builder.LANGS:
+                    self.assertEqual(len(entry['copy'][lang]['sections']), 8)
+                builder.validate_full_edition(entry)
+
+    def test_ninth_batch_source_and_neighbour_links(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug, previous, following in (
+                ('lacan', 'freud', 'dostoevsky'),
+                ('dostoevsky', 'lacan', 'kafka'),
+                ('kafka', 'dostoevsky', 'huineng'),
+            ):
+                with self.subTest(slug=slug, lang=lang):
+                    page = outputs[builder.SERIES / lang / (slug + '.html')]
+                    self.assertIn(f'<a href="../{slug}.html">EN / 中文</a>', page)
+                    self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+                    for neighbour in (previous, following):
+                        link = re.search(r'<a href="' + neighbour + r'\.html">(.*?)</a>', page, re.S)
+                        self.assertIsNotNone(link)
+                        self.assertIn(builder.esc(self.entries[neighbour]['copy'][lang]['title']), link.group(1))
+
+    def test_ninth_batch_local_links_resolve(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug in ('lacan', 'dostoevsky', 'kafka'):
+                path = builder.SERIES / lang / (slug + '.html')
+                for href in re.findall(r'href="([^"]+)"', outputs[path]):
+                    url = urlsplit(html.unescape(href))
+                    if url.scheme or url.netloc or not url.path:
+                        continue
+                    target = (path.parent / unquote(url.path)).resolve()
+                    with self.subTest(page=str(path), href=href):
+                        self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
+
+    def test_ninth_batch_narratives_exclude_editorial_notes(self):
+        for slug in ('lacan', 'dostoevsky', 'kafka'):
+            for lang in ('zh', 'en'):
+                with self.subTest(slug=slug, lang=lang):
+                    body = builder.source_body(slug, lang)
+                    self.assertEqual(body.count('<h2'), 8)
+                    self.assertNotIn('essay-footer-note', body)
+                    self.assertNotIn('<h2>Notes</h2>', body)
+                    self.assertNotIn('<h2>注释</h2>', body)
+
+    def test_first_twenty_seven_and_weil_have_full_editions(self):
+        required = [item['slug'] for item in builder.canonical_order() if item['number'] <= 27] + ['weil']
+        self.assertEqual(len(required), 28)
+        self.assertTrue(all(self.entries[slug]['edition']['status'] == 'full' for slug in required))
+
+    def test_ninth_batch_sources_are_localized_in_every_edition(self):
+        for slug in ('lacan', 'dostoevsky', 'kafka'):
+            for source in self.entries[slug]['sources']:
+                with self.subTest(slug=slug, source=source['url']):
+                    self.assertTrue(source['url'].startswith('https://'))
+                    for lang in builder.LANGS:
+                        self.assertTrue(source['titles'].get(lang, '').strip())
+
     def test_dufu_keeps_the_poems_as_verse_in_every_edition(self):
         # Nine stanza blocks across the mountain, patronage, war, cottage,
         # river and late-life sections. Prose summaries cannot replace them.

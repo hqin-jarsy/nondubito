@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>气永远用不完 — Non Dubito</title>
+  <meta name="description" content="Xcott Craver 做了一台没有风箱的盎格鲁式六角手风琴：两片木头铰在一起，顶着一枚一公斤的称重传感器。他把「气用不完」写成卖点，而那正是被删掉的那一项——一条一百八十年来从未被命名、却一直在决定乐句在哪里结束的约束。SAE 判断力与美学 · 余项之美。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-09-20.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; margin-right:1.25rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang'); if (saved !== 'zh' && saved !== 'en') saved = 'zh'; document.documentElement.setAttribute('data-lang', saved); document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh'); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 余项之美</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of the Remainder</div>
+          <div class="aesthetics-date">2026-09-20</div>
+          <h1 class="lang-zh">气永远用不完</h1>
+          <h1 class="lang-en">It Never Runs Out of Air</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>九月十八日，Hackaday 登出 Xcott Craver 做的一台盎格鲁式六角手风琴——就是海员号子背后那种方箱子，同一枚键推出去和拉回来发两个不同的音。它是电子的：Teensy 4.0 驱动，MIDI 输出，两侧各十六枚静音 Cherry MX 红轴，键帽是他自己打印的小圆顶（一炉三十二颗，三十颗白的、两颗换个颜色，好让多出来的那两枚显眼），三十二颗 SK6812 灯珠面朝下手工焊在电路板背面。真正奇怪的地方在别处：它没有风箱。两片 L 形的木端用首饰盒合页铰在一起，另一端顶着一枚一公斤量程的称重传感器，由二十四位的 NAU7802 读数。你依然要推、依然要拉，但箱子几乎不动，行程以零点几毫米计。全部做法写在一份公开的 Google 文档里，物料一百美元上下——对照一把手感过得去的真琴要几千美元。而这份文档不像规格书：它老实交代这些 PCB「是相当糟糕的 PCB 设计范例」，没有正经的地平面，整机连一颗去耦电容都没用，欢迎你来改进；讲木料的那一段结尾是「白杨木整个是由缺点构成的。我们还是别用白杨木了。」；讲怎么弹的那一节只有一句「演奏说明另见一份文档」——那份文档还不存在。</p>
+
+        <p>风箱这个构件已经定型了一百八十年，从来没有人把它拆成三样东西。它同时在做三件事：给簧片供气；把演奏者的用力换算成强弱；以及施加一份预算——箱子里的空气是有限的，会用完，所以每一台盎格鲁琴上都装着一枚「气键」，底下没有簧片，专门用来在乐句之间偷偷把箱子重新吸满。这三件事从未被分开过，因为在物理上它们本来就是同一件事。过去二十几年的 MIDI 六角手风琴——Concertina Connection 的 Wakker AMC-30，以及把一台老 Lachenal 掏空、改成无簧 MIDI 琴的那一类改装——凿子全都落在簧片上：把发声的那部分取走，其余原样留着。风箱在每一次这样的切割里都活了下来，不是因为有人保护它，而是因为它看上去像琴身，不像功能。Craver 把凿子落在了没人落过的位置：他删掉的是空气。</p>
+
+        <p>掉出来的那一项是预算。Craver 自己把它列成优点：「它的气用不完！」——夹在「随时可以练琴而不吵到家人、邻居、室友、同事和宠物」与「一键移调」之间，一条产品卖点。可是评论区一个 ID 叫 noname 的人把丢掉的东西说得完全准确，而他并不知道自己正在命名一件新东西：真琴上不按键你根本推不动风箱；按住的键越多，气跑得越快，能弹下去的时间越短。这是一条和声密度与乐句长度之间的耦合。它从来不是一个参数，只是一个后果，所以一百八十年里没有哪本教本把它当作音乐内容来教——而它一直在决定每一个乐句在哪里结束。一个约束正在起作用的时候，你看不见它。你只能在有人把它删掉、而音乐不再停在原来那个位置的那一刻，看见它。</p>
+
+        <p>同一次切割还翻转了别的东西。真琴上，一枚键发哪个音，取决于风箱正在往哪个方向动；这台琴上什么都不动，于是取决于你正在往哪个方向用力。位移被意图顶替了。还有一处更小、但更准的证据：通电后它做的第一件事是给传感器归零，所以文档提醒你此刻不要扶着它、不要压着它。这台琴需要你缺席一两秒，才能知道你在场意味着什么；而一台真琴的零点，就是它搁在那儿的样子。至于凿削，这里还有一个字面意义上的版本：Cherry MX 的键距是一个已经标准化完毕的构件，而盎格鲁琴的按键几何比它老得多，塞不进去。于是他拿一台磨刀用的小带式砂轮机，把三十二枚开关的外壳一枚一枚磨窄，让标准给更老的那个形状让出位置。</p>
+
+        <p>最要紧的证据是：命名正在公开进行，而且四十八小时里长出了四套互不兼容的读法。自称既弹六角手风琴、也做合成器的 Lavendel 说这是缺陷——身体的运动本身就是力度，想要的是一台会动、会像原声琴那样回应的琴。Keshlam 说这是优点，还顺手给了它一个名字：「无限高效的风箱」，在任何一个方向上都不会用光气，代价只是失去把两端在空中甩来甩去的那点视觉戏剧性，补偿是「你再也不必去够那枚换气键」。John 想把阻力装回去：一支带弹簧的直线行程电位器，弹簧硬度可调。另一个 ID 叫 lol 的人只写了六个词：「两侧各加一枚惯性测量单元？」——把被删掉的运动当作数据补回来。四个人，四种关于同一处空缺的本体论，没有一个人有词可用。而弹了十二年盎格鲁琴、手上有一把两千五百美元混合琴的 David Colpitts，九月十九日下午留言说他「花了几分钟适应没有运动这件事」，然后在同一段话里管这台机器叫「the Craver」。一位演奏者在评论区用制作者的姓氏给一件乐器命名，距离文章发表只隔了一天。沉积就是从拿到名字的那一刻开始的。</p>
+
+        <p>还有一件事说明它此刻仍然没有定型。Craver 第一次有胆量跟别人一起弹这台琴，弹到一支吉格舞曲时跺了一脚，正好踩在 USB 线上，把 Teensy 的接口从板子上生生扯下来，而当时正卡在一条 NOTE ON 上。在爱尔兰的乐会传统里，跺脚是音乐的一部分。这台机器没有任何模型能容纳「演奏里不属于演奏的那些部分」，于是它现在的硬件里多了一段对一只落下的脚的记忆：一枚 micro 转 C 的短转接头，加一个线夹。这种补丁只会长在还没定型的东西上；一旦定型，它就变成规格书里的一行「应力释放」。现在去看，是因为窗口正在关上：Keshlam 已经在排队要造一台，说二〇二七年初有两个场合想拿去用，还想「回馈这个项目」；Craver 说他的目标是让「任何一个足够有动力的业余爱好者」都能造得出来。等到三五台散落在不同人手里，那处空缺就会变成功能请求——弹簧电位器、惯性单元、一个可开关的「模拟气量」选项——而空缺一旦变成选项，就有了名字。此刻它还只是一个洞：一件你要用力去推、却什么都不会移动的乐器，和一小群刚刚发现自己失去了某样东西、却还叫不出它名字的人。</p>
+        <a href="https://docs.google.com/document/d/1GIbvy76bU2lhZPQxcADVWntyHWEosC6d8ObivO7hscE/edit" target="_blank" rel="noopener" class="project-link">docs.google.com · Making a MIDI Concertina &#8599;</a>
+        <a href="https://hackaday.com/2026/09/18/the-concertina-goes-electronic/" target="_blank" rel="noopener" class="project-link">hackaday.com · The Concertina Goes Electronic &#8599;</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) &middot; @hqinjarsy &middot; SAE 判断力与美学</em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>On September 18th Hackaday ran a build by [Xcott Craver]: an anglo concertina — the squeezebox behind the sea shanties, where the same button gives one note on the push and a different one on the draw. This one is electronic. A Teensy 4.0, MIDI out, sixteen silent Cherry MX reds per side, domed keycaps he prints himself (thirty-two at a go, thirty in white and two in another colour so the extra buttons stay obvious), thirty-two SK6812 LEDs hand-soldered face-down on the backs of the boards. The strange part is elsewhere: it has no bellows. Two L-shaped wooden ends are hinged together with jewellery-box hinges, and the far edges press into a 1 kg load cell read by a 24-bit NAU7802. You still push and you still pull, but the box barely moves — travel measured in fractions of a millimetre. The whole build lives in a public Google Doc, about a hundred dollars in parts against the several thousand a responsive instrument costs. And the document does not read like a spec sheet. It admits the PCBs are "pretty lousy examples of proper PCB design," with no ground plane and not one decoupling cap in the whole machine, and invites you to improve them. The section on timber ends: "poplar is made entirely out of cons. Let us not use poplar." The section on playing it says the playing instructions will be in a separate document. That document does not exist yet.</p>
+
+        <p>The bellows has been a settled design for a hundred and eighty years, and nobody had ever taken it apart into three things. It does three jobs at once: it feeds air to the reeds; it converts the player's effort into dynamics; and it imposes a budget — the air in the box is finite and runs out, which is why every anglo carries an air button with no reed under it, used to gulp the box full again between phrases. Those three were never separated because physically they were one thing. Twenty-odd years of MIDI concertinas — Concertina Connection's Wakker AMC-30, the conversions that gut an old Lachenal into a reedless MIDI box — all put the chisel on the reed: take away the part that sounds, leave everything else in place. The bellows survived every one of those cuts, not because anyone protected it, but because it looked like the body of the instrument rather than one of its functions. Craver put the chisel where nobody had put it. What he deleted is the air.</p>
+
+        <p>What falls out is the budget. Craver lists it as an advantage — "It doesn't run out of air!" — sitting between "practise without bothering family, neighbours, roommates, coworkers or pets" and the one-button transpose. But a commenter signing himself noname states the loss with complete precision, without knowing that he is naming something new: on a real box you cannot move the bellows at all until a key opens, and the more keys you hold down the faster the air goes and the sooner you run out of play. That is a coupling between harmonic density and phrase length. It was never a parameter, only a consequence, which is why no tutor book in a hundred and eighty years has taught it as musical content — and why it has been deciding where every phrase ends the entire time. You cannot see a constraint while it is still doing its work. You see it at the moment somebody deletes it and the music stops ending where it used to.</p>
+
+        <p>The same cut inverts something else. On a real anglo, which note a button gives depends on which way the bellows is travelling. Here nothing travels, so it depends on which way you are pushing. Intent has replaced displacement. There is a smaller and sharper piece of evidence too: the first thing the instrument does at power-on is zero its load cell, which is why the document warns you not to be holding it or leaning on it at that moment. This machine needs a second or two of your absence before it can know what your presence means; an acoustic concertina's zero is simply where it is sitting. And the chiselling has a literal form here. Cherry MX spacing is a standardised, finished thing, and the anglo's button geometry is much older and will not fit inside it — so he takes a small belt sander meant for sharpening knives and grinds the housings off all thirty-two switches, one at a time, until the standard makes room for the older shape.</p>
+
+        <p>The strongest evidence that it is still alive is that the naming is happening in the open, and that forty-eight hours produced four incompatible readings of it. Lavendel, who plays concertina and designs synths, calls it a defect: the physical movement is the dynamics, and what is wanted is an instrument that moves and responds like an acoustic one. Keshlam calls it a virtue and hands it a name — "infinitely efficient bellows," never running out in either direction, at the cost of the visual drama of swinging the ends around in the air, with the compensation that "you never have to resort to the breather button." John wants the resistance engineered back in: a linear stroke potentiometer with a spring to tune the force required. A commenter called lol writes six words — "Load cell + IMU on each side?" — restoring the deleted motion as data. Four people, four ontologies of the same absence, and not one word among them for the thing itself. And David Colpitts, who has played the anglo for a dozen years and owns a $2.5K hybrid, writes on the 19th that he needed a few minutes to get used to "the lack of movement," and in the same breath calls the machine "the Craver." A player naming an instrument after its maker in a comment thread, one day after publication. Sediment begins the moment a thing gets a name.</p>
+
+        <p>One more thing marks it as unset. The first time Craver had the nerve to play it with other people he started a jig, stomped his foot, landed on the USB cable, and tore the jack off the Teensy in the middle of a blaring NOTE ON. In Irish session playing the stomp is part of the music. The machine had no model at all for the parts of playing that are not playing, so its hardware now carries a memory of a foot coming down: a short micro-to-C adapter and a cable clip, bolted on. Patches like that only grow on things that have not set; once they set, it becomes one line in a spec sheet reading "strain relief." Go and look now, because the window is closing. Keshlam is already queuing a build, with two events in early 2027 he wants to use it at and an intention to "contribute back to the project"; Craver says his goal is to make the build available to "any sufficiently motivated hobbyist." Once three or four of these exist in different hands, the absence turns into a feature request — sprung potentiometer, IMU, a switchable "simulated air supply" — and an absence that becomes an option has a name. Right now it is still a hole: an instrument you play by pushing against something that will not move, and a small group of people who have just discovered they lost something and cannot yet say what.</p>
+        <a href="https://docs.google.com/document/d/1GIbvy76bU2lhZPQxcADVWntyHWEosC6d8ObivO7hscE/edit" target="_blank" rel="noopener" class="project-link">docs.google.com · Making a MIDI Concertina &#8599;</a>
+        <a href="https://hackaday.com/2026/09/18/the-concertina-goes-electronic/" target="_blank" rel="noopener" class="project-link">hackaday.com · The Concertina Goes Electronic &#8599;</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) &middot; @hqinjarsy &middot; SAE Judgment &amp; Aesthetics</em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang');
+      if (saved !== 'zh' && saved !== 'en') saved = 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.documentElement.setAttribute('lang', saved === 'en' ? 'en' : 'zh');
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh');
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
