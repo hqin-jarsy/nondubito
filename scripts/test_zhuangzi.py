@@ -48,8 +48,8 @@ class ZhuangziTests(unittest.TestCase):
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='discernment'},set(range(30,42))|set(range(59,66)))
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='outer'},set(range(42,59)))
     def test_only_edited_pages(self):
-        self.assertEqual(self.m['published'],list(range(16)))
-        self.assertEqual(set(self.pages),{'index.html','guide.html'}|{f'{n:02d}.html' for n in range(1,16)})
+        self.assertEqual(self.m['published'],list(range(21)))
+        self.assertEqual(set(self.pages),{'index.html','guide.html'}|{f'{n:02d}.html' for n in range(1,21)})
     def test_all_reading_editions_exist(self):
         for n in self.m['published']:
             for lang in b.LANGS:
@@ -92,20 +92,20 @@ class ZhuangziTests(unittest.TestCase):
                     self.assertIn(u.fragment,Page(target.read_text()).ids,(name,href))
     def test_pending_not_empty_links(self):
         links=Page(self.pages['index.html']).links
-        for n in range(16,68):self.assertNotIn(f'{n:02d}.html',links)
-        self.assertEqual(self.pages['index.html'].count('class="zz-pending"'),104)
-        self.assertIn('15/67',self.pages['index.html'])
+        for n in range(21,68):self.assertNotIn(f'{n:02d}.html',links)
+        self.assertEqual(self.pages['index.html'].count('class="zz-pending"'),94)
+        self.assertIn('20/67',self.pages['index.html'])
     def test_first_group_complete_and_navigation(self):
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='encounters'},set(range(1,11)))
-        for n in range(16):
+        for n in range(21):
             links=Page(self.pages[b.filename(n)]).links
             if n: self.assertIn(b.filename(n-1),links)
-            if n<15: self.assertIn(b.filename(n+1),links)
+            if n<20: self.assertIn(b.filename(n+1),links)
             else: self.assertIn('index.html#contents',links)
     def test_publication_dates(self):
         for name,text in self.pages.items():
             schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)[1])
-            new=name in {f'{n:02d}.html' for n in range(6,16)}
+            new=name in {f'{n:02d}.html' for n in range(6,21)}
             self.assertEqual(schema['datePublished'],'2026-09-21' if new else '2026-09-20')
             self.assertEqual(schema['dateModified'],'2026-09-21' if new or name=='index.html' else '2026-09-20')
     def test_second_batch_editorial_boundaries(self):
@@ -135,8 +135,27 @@ class ZhuangziTests(unittest.TestCase):
             for error in ('逍遙游','千裡','百裡','幾案','贊嘆','這周','賬單'):
                 self.assertNotIn(error,tc)
         self.assertIn('古代课程安排',self.pages['11.html'])
-        self.assertIn('essays 11–15 available',self.pages['index.html'])
+        self.assertIn('essays 11–20 available',self.pages['index.html'])
         self.assertIn('href="11.html"',self.pages['index.html'])
+    def test_fourth_batch_editorial_boundaries(self):
+        for n,zh_marker,en_marker in (
+            (16,'是以圣人和之以是非而休乎天均','timing, risk, or distribution'),
+            (17,'这段文学没有给出那样的证明','no reserved seat outside the problem'),
+            (18,'郭象把它读作野外之雉自得','Guo Xiang reads the closing words'),
+            (19,'三声不是新定额','Three cries are not a new quota'),
+            (20,'上司不是君王','A manager is not a sovereign'),
+        ):
+            self.assertIn(zh_marker,(b.DATA/'zh'/f'{n:02d}.md').read_text())
+            self.assertIn(en_marker,(b.DATA/'en'/f'{n:02d}.md').read_text())
+            self.assertIn(n,b.CHAPTERS)
+            tc=(b.DATA/'zh-hant'/f'{n:02d}.md').read_text()
+            for error in ('賬','松一口氣','松開','寬松','松下來','證明瞭','身份','下周','回復'):
+                self.assertNotIn(error,tc)
+        self.assertIn('保身、全生、尽年',(b.DATA/'zh/19.md').read_text())
+        self.assertIn('无迁令，无劝成',(b.DATA/'zh/20.md').read_text())
+        self.assertIn('does not report that the mission succeeds',(b.DATA/'en/20.md').read_text())
+        for name in ('18.html','19.html'):
+            self.assertIn('www.chineseclassic.com/content/445',self.pages[name])
     def test_canonicals_and_schema(self):
         for name,text in self.pages.items():
             url='https://nondubito.net/essays/zhuangzi/'+('' if name=='index.html' else name)
