@@ -2,6 +2,33 @@
 
 ## Current status — 2026-09-21
 
+Fifth batch ready in the local repository, not pushed or deployed: essays **21–25**, each in edited Simplified Chinese, reviewed Traditional Chinese, and independently rewritten English. Available: guide plus **25/67 numbered essays**. **42 essays (26–67) remain**; next batch **26–30**. This is not completion of the whole series.
+
+Started with a clean repository at `04a5c5b` (`zhuangzi batch 4`). Original Documents manuscripts were read, not edited. Previously reviewed 00–20 Markdown remains byte-identical to HEAD in all three languages; article 20 gains only its next-article link. No Great Lives content changed.
+
+### Batch 05 editorial work
+
+- **21, fasting the mind:** correct two proposals, with three elements within the second, rather than three proposals. Keep preparation useful and revisable; do not reduce qi to a modern listening technique. Understanding does not excuse violence, guarantee influence, or impose further exposure on an injured person. Restore permission to stop. Distinguish this encounter from the following Zigao passage and distinguish original chapter order from our reading route. Yan Hui's “未始有回” precedes further instruction, not an invented final disappearance. No successful mission is reported. Retitle Chinese to “人还没见到，话已经说完了——心斋.”
+- **22, oak and Shu:** retain task-specific carpentry expertise while questioning its extension into a verdict on an entire life. Restore the disciple's objection and the shrine's conditional protection. Avoid converting circumference units or inventing an actual crowd of sheltering cattle. Explain that Shu's second occupation has winnowing/divination readings; capacity to feed ten does not establish ten actual dependents. No retrospective diagnosis or self-injury advice. Respect must not be earned by exceptional productivity; practical standards and accommodations still matter.
+- **23, Jia and Zichan:** restore Zichan's spoken counterattack, the archer metaphor, Jia's acknowledged anger, the nineteen-year relationship, and Zichan's final utterance. Do not invent a criminal case or infer just punishment from bodily injury. Acceptance of an irreversible loss does not validate the institution that caused it. Inner worth does not cancel bodily needs or access. A changed expression is not evidence of permanent reform; a literary encounter is not a complete historical verdict. Respect also belongs to people who cannot answer as eloquently as Jia.
+- **24, Ai Taituo:** “和而不唱” is responsive rather than initiating, not muteness. Retain the ancient concubine/wife hierarchy as context, not a romantic prescription. Correct the duke's timeline to less than a year; distinguish entrusting government from a completed transfer of the throne. Departure has no supplied motive. Restore the piglets/dead mother image and the duke's later “德友” statement. Do not invent an instructional algorithm of nodding, silence, and departure. Friendship may include roles and payment; assistance requires consent and room to refuse. Retitle Chinese to “为什么和他在一起，就不想走——哀骀它.”
+- **25, genuine person and learning:** distinguish a sage's particular aptitude from general teacher incompetence; the student need not copy the teacher. “守而告之” includes instruction, not documented silence. Three/seven/nine days do not constitute a universal program. Preserve the ancient route while marking contemporary examples as interpretive entrances. No anti-aging promise, fire/water immunity, abandonment of care, or exemption from responsibility through lack of regret. Restore “撄宁” and preserve emotional life. A teacher cannot own the student's interpretation or right to leave; rejection does not determine all future possibility. Keep the playful lineage and its uncertain interpretations rather than inventing a definitive intellectual genealogy.
+
+### Batch 05 sources and language review
+
+Checked the relevant full passages in [《人間世》](https://zh.wikisource.org/wiki/莊子/人間世), [《德充符》](https://zh.wikisource.org/wiki/莊子/德充符), and [《大宗師》](https://zh.wikisource.org/wiki/莊子/大宗師). Compared the occupational alternatives for Shu in [《莊子集釋・人間世》](https://www.chineseclassic.com/content/446), including Cheng Xuanying's commentary and the cited older glosses. Article 22 links this commentary; each article links its chapter. This is a passage-level check, not collation of all editions. Classical quotations retain the wording of the linked primary passages, with modern punctuation and the appropriate script.
+
+English word counts: 21 **1,421**; 22 **1,437**; 23 **1,453**; 24 **1,533**; 25 **1,478**; total **7,322**. Chinese files contain roughly 2,517–2,728 characters including whitespace. These are completeness checks, not quality scores. Only the five new manuscripts were converted to Traditional Chinese drafts; all five were read fully, then corrected contextually (帳、沉、徭役、讚嘆、家具、身分、鬆、遊、豎、讚美、諮詢、紮實). Normal builds read the reviewed files without converting earlier work.
+
+### Batch 05 integration and verification
+
+- Publication boundary: 00–25; articles 21–25 dated 2026-09-21. Index, Library and Explore now show guide plus 25 essays. Latest and its ledger gain one matching update while previous updates remain historical. The Inner Chapters route says 11–25 available. Essays 26–67 remain unlinked inventory.
+- **20 Zhuangzi tests pass**: full reading editions, original-file hashes, editorial safeguards, Traditional Chinese, publication boundaries, navigation, links/fragments, metadata, and HTML structure. Builder check verifies **27 pages**. Update ledger agrees with Latest. Library, Explore and Latest have balanced markup and unique IDs. **10 method-introduction regression tests pass**.
+- Search: **10,024 source records**; exactly five additions in each of EN / zh-Hans / zh-Hant, no changed or removed old records. Other five language chunks unchanged. Sitemap: **9,872 canonical URLs**, exactly five additions, no removals or changed existing lastmod values. Generator check modes and `git diff --check` pass.
+- No browser-rendered visual QA was performed. Structural checks are not visual verification. No commit, push or deployment performed.
+
+## Fourth-batch record — 2026-09-21
+
 Fourth batch ready in the local repository, not pushed or deployed: essays **16–20**, each in edited Simplified Chinese, fully reviewed Traditional Chinese, and independently rewritten English. The series now has the guide plus **20/67 numbered essays**; **47 essays (21–67) remain**. Next batch: **21–25**. This is not completion of the whole series.
 
 The repository was clean at `207eb93` (`zhuangzi 3rd batch`). Previously reviewed manuscripts 00–15 remain byte-for-byte identical to HEAD in all three languages. Page 15 gains its next-essay link. No Great Lives files or original Documents manuscripts were edited.
@@ -165,6 +192,6 @@ Direct ctext.org chapter fetches failed with 403/inaccessible results; no claim 
 
 ## Original next-batch note (now completed) and later editorial flags
 
-The originally planned batches through 16–20 are now complete as recorded above. **Next: 21–25**, continuing the Inner Chapters route. Read each original in full, check claims against the primary passages, edit Chinese, write complete English, and review Traditional Chinese before expanding publication. Keep the same editorial standard; do not generate all remaining pages from unreviewed text.
+The originally planned batches through 21–25 are now complete as recorded above. **Next: 26–30**, finishing the Inner Chapters route before beginning textual discernment. Read each original in full, check claims against the primary passages, edit Chinese, write complete English, and review Traditional Chinese before expanding publication. Keep the same editorial standard; do not generate all remaining pages from unreviewed text.
 
 When reaching 30, 65 and 67, preserve the author's reading criterion while distinguishing it from proof of authorship. “Only internal evidence exists,” “forms of address make this impossible,” and “stopping cannot be imitated” need specific evidence or qualification. Essay 65 promises a return to the series' own use of explanation; ensure the ending actually answers that question without claiming that every explicit explanation is coercive. Those essays are not published in this batch.
