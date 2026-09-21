@@ -48,8 +48,8 @@ class ZhuangziTests(unittest.TestCase):
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='discernment'},set(range(30,42))|set(range(59,66)))
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='outer'},set(range(42,59)))
     def test_only_edited_pages(self):
-        self.assertEqual(self.m['published'],list(range(6)))
-        self.assertEqual(set(self.pages),{'index.html','guide.html','01.html','02.html','03.html','04.html','05.html'})
+        self.assertEqual(self.m['published'],list(range(11)))
+        self.assertEqual(set(self.pages),{'index.html','guide.html'}|{f'{n:02d}.html' for n in range(1,11)})
     def test_all_reading_editions_exist(self):
         for n in self.m['published']:
             for lang in b.LANGS:
@@ -68,7 +68,7 @@ class ZhuangziTests(unittest.TestCase):
             self.assertEqual(len(zh.split('\n\n')),len(tc.split('\n\n')))
     def test_traditional_context(self):
         tc='\n'.join((b.DATA/'zh-hant'/f'{n:02d}.md').read_text() for n in self.m['published'])
-        for error in ('余項','捨者','客捨','九萬裡','瞭望洋','這麼乾'):
+        for error in ('余項','捨者','客捨','九萬裡','瞭望洋','這麼乾','找准','拿不准','瞄准','稱贊','需要松開'):
             self.assertNotIn(error,tc)
         self.assertIn('舍者與之爭席',tc)
     def test_markup_and_language_bodies(self):
@@ -92,9 +92,33 @@ class ZhuangziTests(unittest.TestCase):
                     self.assertIn(u.fragment,Page(target.read_text()).ids,(name,href))
     def test_pending_not_empty_links(self):
         links=Page(self.pages['index.html']).links
-        for n in range(6,68):self.assertNotIn(f'{n:02d}.html',links)
-        self.assertEqual(self.pages['index.html'].count('class="zz-pending"'),124)
-        self.assertIn('5/67',self.pages['index.html'])
+        for n in range(11,68):self.assertNotIn(f'{n:02d}.html',links)
+        self.assertEqual(self.pages['index.html'].count('class="zz-pending"'),114)
+        self.assertIn('10/67',self.pages['index.html'])
+    def test_first_group_complete_and_navigation(self):
+        self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='encounters'},set(range(1,11)))
+        for n in range(11):
+            links=Page(self.pages[b.filename(n)]).links
+            if n: self.assertIn(b.filename(n-1),links)
+            if n<10: self.assertIn(b.filename(n+1),links)
+            else: self.assertIn('index.html#contents',links)
+    def test_publication_dates(self):
+        for name,text in self.pages.items():
+            schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)[1])
+            new=name in {f'{n:02d}.html' for n in range(6,11)}
+            self.assertEqual(schema['datePublished'],'2026-09-21' if new else '2026-09-20')
+            self.assertEqual(schema['dateModified'],'2026-09-21' if new or name=='index.html' else '2026-09-20')
+    def test_second_batch_editorial_boundaries(self):
+        for n,zh_marker,en_marker in (
+            (6,'不是一份实验报告','should not turn this into a controlled experiment'),
+            (7,'任何沉默都能直接判为共谋','Not every silence is complicity'),
+            (8,'不能证明他内心毫无怀疑','cannot prove he had no doubts'),
+            (9,'优先招待','preferential service'),
+            (10,'不是已经核实的病榻记录','not a verified transcript'),
+        ):
+            self.assertIn(zh_marker,(b.DATA/'zh'/f'{n:02d}.md').read_text())
+            self.assertIn(en_marker,(b.DATA/'en'/f'{n:02d}.md').read_text())
+        for n in range(1,11):self.assertIn(n,b.CHAPTERS)
     def test_canonicals_and_schema(self):
         for name,text in self.pages.items():
             url='https://nondubito.net/essays/zhuangzi/'+('' if name=='index.html' else name)

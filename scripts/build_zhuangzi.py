@@ -38,6 +38,11 @@ CHAPTERS = {
     3: ('Chapter 17 · Autumn Floods', '《秋水》', '《秋水》', 'https://zh.wikisource.org/wiki/莊子/秋水'),
     4: ('Chapter 24 · Xu Wugui', '《徐无鬼》', '《徐無鬼》', 'https://zh.wikisource.org/wiki/莊子/徐無鬼'),
     5: ('Chapter 27 · Borrowed Words', '《寓言》', '《寓言》', 'https://zh.wikisource.org/wiki/莊子/寓言'),
+    6: ('Chapter 3 · Nourishing Life', '《养生主》', '《養生主》', 'https://zh.wikisource.org/wiki/莊子/養生主'),
+    7: ('Chapter 21 · Tian Zifang', '《田子方》', '《田子方》', 'https://zh.wikisource.org/wiki/莊子/田子方'),
+    8: ('Chapter 17 · Autumn Floods', '《秋水》', '《秋水》', 'https://zh.wikisource.org/wiki/莊子/秋水'),
+    9: ('Chapter 32 · Lie Yukou', '《列御寇》', '《列禦寇》', 'https://zh.wikisource.org/wiki/莊子/列禦寇'),
+    10: ('Chapter 32 · Lie Yukou', '《列御寇》', '《列禦寇》', 'https://zh.wikisource.org/wiki/莊子/列禦寇'),
 }
 
 def traditional_copy(converter, text):
@@ -89,12 +94,12 @@ def prose(raw, language):
     flush()
     return '\n'.join(output)
 
-def head(name, deck, file, kind, date):
+def head(name, deck, file, kind, date, modified=None):
     url = 'https://nondubito.net/essays/zhuangzi/' + ('' if file == 'index.html' else file)
     schema = {'@context':'https://schema.org', '@type':kind, 'name':name,
               'description':deck, 'url':url, 'inLanguage':list(LANGS.values()),
               'author':{'@type':'Person','name':'Han Qin (秦汉)'},
-              'datePublished':date, 'dateModified':date}
+              'datePublished':date, 'dateModified':modified or date}
     alternates = ''.join(f'<link rel="alternate" hreflang="{lang}" href="{url}">' for lang in (*LANGS.values(), 'x-default'))
     return f'''<head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -108,10 +113,10 @@ def head(name, deck, file, kind, date):
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>
 </head>'''
 
-def page(body, name, description, file, date, kind):
+def page(body, name, description, file, date, kind, modified=None):
     return f'''<!DOCTYPE html>
 <html lang="en" data-lang="en" data-editions="en zh zh-hant">
-{head(name, description, file, kind, date)}
+{head(name, description, file, kind, date, modified)}
 <body class="site-shell-page explicit-hant">{shell_header()}
 <main class="zz-wrap">{body}</main>{footer()}
 </body></html>\n'''
@@ -144,7 +149,7 @@ def render_index(manifest):
 <section><h2>{tri('Ready to read','现在可以读','現在可以讀')}</h2><div class="zz-grid">{''.join(cards)}</div></section>
 <section class="zz-map" id="contents"><h2>{tri('The complete reading map','全系列阅读地图','全系列閱讀地圖')}</h2><p>{tri('The original numbers are retained. Essays 59–65 return to textual discernment; 66–67 close the series. Unlinked entries are still being edited.','保留原编号。59—65 回到文本辨析，66—67 收束全系列。未加链接的篇目仍在编辑，不是空白文章。','保留原編號。59—65 回到文本辨析，66—67 收束全系列。未加連結的篇目仍在編輯，不是空白文章。')}</p><nav class="zz-group-nav" aria-label="Reading groups">{group_nav}</nav>{sections}<details class="zz-sequence"><summary>{tri('Or browse in original order, 01–67','按原编号顺读：01—67','按原編號順讀：01—67')}</summary><ol class="zz-toc">{sequence}</ol></details></section>
 {research()}<nav class="zz-siblings"><a href="../daodejing/index.html">{tri('The Daodejing','大知道德经解','大知道德經解')} →</a><a href="../analects/index.html">{tri('The Analects, Reopened','大知解论语','大知解論語')} →</a></nav>'''
-    return page(body, ' · '.join(NAMES[:2]), DECK[0], 'index.html', manifest['publication_date'], 'CollectionPage')
+    return page(body, ' · '.join(NAMES[:2]), DECK[0], 'index.html', manifest['publication_date'], 'CollectionPage', manifest.get('updated_date'))
 
 def render_article(item, manifest):
     n = item['number']; published = sorted(manifest['published']); pos = published.index(n)
@@ -165,7 +170,7 @@ def render_article(item, manifest):
     body = f'''<nav class="reading-breadcrumbs"><a href="index.html">{tri(*NAMES)}</a><span>/</span><span>{'00 / GUIDE' if n == 0 else f'{n:02d} / 67'}</span></nav>
 <section class="zz-article-hero"><p class="zz-eyebrow">{tri('The Zhuangzi, Reopened','大知解庄子','大知解莊子')}</p>{tri(*map(esc,title(item)),tag='h1')}<p class="zz-byline">{tri('Han Qin · Dazhi','秦汉（字大知）','秦漢（字大知）')} · 2026</p><div class="zz-search-only">{tri(*map(esc,deck),tag='p',classes='zhuangzi-search-deck')}</div></section>
 {''.join(bodies)}{note}<nav class="zz-article-nav" aria-label="Series navigation">{previous}<a href="index.html">{tri('All essays','系列目录','系列目錄')}</a>{following}</nav>'''
-    return page(body, item['en_title']+' · '+item['zh_title'], description, filename(n), manifest['publication_date'], 'Article')
+    return page(body, item['en_title']+' · '+item['zh_title'], description, filename(n), item.get('publication_date', manifest['publication_date']), 'Article')
 
 def main():
     parser = argparse.ArgumentParser(); parser.add_argument('--check',action='store_true'); parser.add_argument('--refresh-hant',action='store_true'); args=parser.parse_args()

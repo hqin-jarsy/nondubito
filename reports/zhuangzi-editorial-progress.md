@@ -1,6 +1,40 @@
 # The Zhuangzi, Reopened / 大知解庄子
 
-## Status — 2026-09-20
+## Current status — 2026-09-21
+
+Second batch ready in the local repository, not pushed or deployed: essays 06–10 in Simplified Chinese, Traditional Chinese, and full independently rewritten English. The first group, **Ten Encounters / 先从十个故事开始**, is now complete. The site has the guide plus **10/67 numbered essays**; **57 essays (11–67) remain**. The full-series request is not complete.
+
+This turn began with a clean repository at `3bcaba3` (`batch 14th fix 2`). No Great Lives files or original Documents manuscripts were edited. The previously reviewed 00–05 Markdown files remain byte-for-byte identical to HEAD; page 05 only gains its next-essay link.
+
+### Batch 02 editorial review — 06–10
+
+All five original manuscripts were read in full. Chinese prose was edited to preserve the distinctive argument and contemporary applications without keeping the repeated bold one-line/X-post scaffolding. English editions are independently written full essays, not abbreviated catalogue summaries.
+
+- **06, Cook Ding:** preserve the already-competent cook, wear versus completion, attention to the ox's configuration, slowing at difficulty, apprenticeship, workplace friction, the ruler's turn toward nourishing life, and the final pause. Do not invent equal workloads among the three cooks or make exhaustion a personal failure. Rest, resources, changing the arrangement and stopping remain legitimate. Human refusal is not an anatomical obstacle to outmaneuver; the metaphor does not imply the butchered ox flourishes.
+- **07, Fan:** distinguish the loss from a total verdict on the person, preserve “not enough” rather than “irrelevant,” and retain the reversal toward the successful ruler. Do not infer every attendant's motive, certify the king's complicity from narrative silence, or make loss an automatic source of wisdom. Concern after layoffs can be genuine; material consequences and the need for support remain real. Refuse a second ranking based on how gracefully someone suffers.
+- **08, Hui Shi:** retain the sharp satire rather than denying its sting; develop the projection of one's own desired prize, the three-day search, the adjacent tortoise episode, workplace motive-reading, the lost interlocutor from essay 04, and the subsequent fish dialogue. Remove an unsupported ranking of the Chu/ Liang appointments, the claim that searching proves complete certainty, and the invented exhaustive national search. The Chinese title is now “他搜了三天三夜——鹓鶵与腐鼠.” The fish exchange raises a genuine epistemic question rather than merely repeating the minister's suspicion.
+- **09, Liezi:** “先馈” is preferential service, not proof of free meals. The ruler's appointment is Liezi's anticipation, not a subsequent event. Preserve the insight/action gap, shoes, silence, barefoot pursuit, request for medicine, absent honest feedback, and calendar analogy. Do not infer motives from a full doorway, equate all kindness with hidden debt, or condemn asking for help. Restore the fact that Bohun's eventual response is longer than a single diagnostic line. Silence is not a universal teaching prescription.
+- **10, approaching death:** preserve the cosmic funeral image, the bird/insect joke, the disciples' understandable concern, different expressions of care, the handover analogy and first-group conclusion. Distinguish a literary death scene from a verified transcript or the final words of the whole book. Humor does not prove fearlessness or authorship. Practical funeral differences and useful documentation are not dismissed; omission of arrangements in a story is not proof none existed.
+
+### Text checking and languages
+
+Checked the received classical passages against public-domain primary text at Wikisource: [養生主](https://zh.wikisource.org/wiki/莊子/養生主), [田子方](https://zh.wikisource.org/wiki/莊子/田子方), [秋水](https://zh.wikisource.org/wiki/莊子/秋水), and [列禦寇](https://zh.wikisource.org/wiki/莊子/列禦寇). This is passage checking, not a critical collation of editions. Source links appear on each page; classical quotation remains distinct from contemporary interpretation.
+
+English word counts: 06 **1,505**; 07 **1,559**; 08 **1,499**; 09 **1,595**; 10 **1,607**, total **7,765**. Chinese manuscripts are approximately 2,766–2,906 characters including headings and punctuation. Counts check completeness, not literary quality.
+
+Only the five new Traditional Chinese drafts were converted; all were then reread in full. Contextual corrections include 找準、拿不準、瞄準、鬆開、週、帳單、身分、稱讚、不繫之舟、與汝遊者、列禦寇 and 齎送. No regeneration over the six previously reviewed Traditional Chinese manuscripts occurred.
+
+### Integration and checks
+
+- Expand manifest publication boundary to 00–10. New articles carry 2026-09-21 publication dates; existing article dates remain 2026-09-20. The index retains its original publication date and gains a separate modification date.
+- Update Library, Explore and Latest, preserve the original first-batch update as history, and connect 05→06 through 10. Later entries remain unlinked editorial inventory, not empty pages.
+- 17 Zhuangzi tests pass: original-file hashes, inventory, all three full editions, contextual Traditional Chinese, grouping, publication boundaries, navigation, publication dates, editorial distinctions, HTML structure, local links/fragments, schema and search metadata.
+- All 12 generated pages match their builder. Latest agrees with the update ledger. Library/Explore/Latest pass balanced-markup and unique-ID checks. The 10 method-introduction tests pass.
+- Search has 10,009 source records. EN / zh-Hans / zh-Hant each gain exactly five records; among existing search records, only the Zhuangzi index changes. Other language chunks are unchanged.
+- Sitemap contains 9,857 canonical URLs, exactly five additions and no removals. Existing lastmod changes are confined to Library, Explore, the Zhuangzi index and page 05.
+- No browser-rendered visual QA was performed. Structural checks are not visual verification. No commit, push or deployment performed.
+
+## First-batch record — 2026-09-20
 
 First batch ready in the local repository, not deployed: the series index, guide (00), and essays 01–05. All six reading pages contain Simplified Chinese, Traditional Chinese, and complete independently written English. The full request is not yet complete: 62 numbered essays (06–67) remain to be edited and adapted.
 
@@ -70,8 +104,8 @@ Direct ctext.org chapter fetches failed with 403/inaccessible results; no claim 
 - No browser-rendered visual QA was completed. Structural tests are not presented as visual verification.
 - No commit, push, or deployment performed.
 
-## Next batch and later editorial flags
+## Original next-batch note (now completed) and later editorial flags
 
-Continue 06–10: 庖丁解牛、凡君、惠子相梁、列子门外的鞋、庄子将死. Read and edit each Chinese essay, write its complete English counterpart, review Traditional Chinese, then expand the publication manifest and source links. Update progress labels in Library/Explore/Latest and tests together. Do not generate all remaining pages from unreviewed text.
+The originally planned 06–10 batch is now complete as recorded above. **Next: 11–15**, beginning the Inner Chapters route. Read each original in full, check claims against the primary passages, edit Chinese, write complete English, and review Traditional Chinese before expanding publication. Keep the same editorial standard; do not generate all remaining pages from unreviewed text.
 
 When reaching 30, 65 and 67, preserve the author's reading criterion while distinguishing it from proof of authorship. “Only internal evidence exists,” “forms of address make this impossible,” and “stopping cannot be imitated” need specific evidence or qualification. Essay 65 promises a return to the series' own use of explanation; ensure the ending actually answers that question without claiming that every explicit explanation is coercive. Those essays are not published in this batch.
