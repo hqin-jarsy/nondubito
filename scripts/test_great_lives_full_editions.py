@@ -898,6 +898,101 @@ class FullEditionTests(unittest.TestCase):
                 sections = self.entries[slug]['copy']['zh-hant']['sections']
                 self.assertEqual([len(s['paragraphs']) for s in sections], expected)
 
+    def test_thirteenth_batch_has_complete_editions(self):
+        for slug, number in (('augustine', 37), ('badashanren', 38), ('sushi', 39)):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual(entry['number'], number)
+                self.assertEqual(entry['movement'], 3)
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                for lang in builder.LANGS:
+                    self.assertEqual(len(entry['copy'][lang]['sections']), 9)
+                builder.validate_full_edition(entry)
+
+    def test_first_thirty_nine_and_weil_have_full_editions(self):
+        required = [item['slug'] for item in builder.canonical_order() if item['number'] <= 39] + ['weil']
+        self.assertEqual(len(required), 40)
+        self.assertTrue(all(self.entries[slug]['edition']['status'] == 'full' for slug in required))
+
+    def test_thirteenth_batch_navigation_and_local_links(self):
+        outputs = builder.build()
+        cases = (('augustine', 'wittgenstein', 'badashanren'),
+                 ('badashanren', 'augustine', 'sushi'), ('sushi', 'badashanren', 'nishida'))
+        for lang in builder.LANGS:
+            for slug, previous, following in cases:
+                path = builder.SERIES / lang / (slug + '.html')
+                page = outputs[path]
+                with self.subTest(slug=slug, lang=lang):
+                    self.assertIn(f'<a href="../{slug}.html">EN / 中文</a>', page)
+                    self.assertIn(f'href="{previous}.html"', page)
+                    self.assertIn(f'href="{following}.html"', page)
+                    self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+                    for href in re.findall(r'href="([^"]+)"', page):
+                        url = urlsplit(html.unescape(href))
+                        if url.scheme or url.netloc or not url.path:
+                            continue
+                        target = (path.parent / unquote(url.path)).resolve()
+                        self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
+
+    def test_thirteenth_batch_sources_are_localized(self):
+        for slug in ('augustine', 'badashanren', 'sushi'):
+            for source in self.entries[slug]['sources']:
+                with self.subTest(slug=slug, source=source['url']):
+                    self.assertTrue(source.get('title', '').strip())
+                    self.assertTrue(source['url'].startswith('https://'))
+                    self.assertEqual(set(source['titles']), set(builder.LANGS))
+                    self.assertTrue(all(source['titles'][lang].strip() for lang in builder.LANGS))
+
+    def test_thirteenth_batch_source_narratives_and_traditional_paragraphs(self):
+        for slug in ('augustine', 'badashanren', 'sushi'):
+            for lang in ('zh', 'en'):
+                body = builder.source_body(slug, lang)
+                with self.subTest(slug=slug, lang=lang):
+                    self.assertEqual(body.count('<h2'), 9)
+                    self.assertGreaterEqual(len(re.findall(r'<p\b', body)), 40)
+                    self.assertNotIn('essay-footer-note', body)
+                    self.assertNotIn('source-notes', body)
+            sections = re.split(r'<h2\b[^>]*>.*?</h2>', builder.source_body(slug, 'zh'), flags=re.S)[1:]
+            source_counts = [len(re.findall(r'<p\b', section)) for section in sections]
+            self.assertEqual(source_counts, [len(s['paragraphs']) for s in self.entries[slug]['copy']['zh-hant']['sections']])
+
+    def test_thirteenth_batch_source_descriptions_are_well_formed(self):
+        from html.parser import HTMLParser
+
+        class Descriptions(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.items = []
+
+            def handle_starttag(self, tag, attrs):
+                if tag == 'meta' and dict(attrs).get('name') == 'description':
+                    self.items.append(attrs)
+
+        for slug in ('augustine', 'badashanren', 'sushi'):
+            parser = Descriptions()
+            parser.feed(builder.source_path_for(slug).read_text())
+            with self.subTest(slug=slug):
+                self.assertEqual(len(parser.items), 1)
+                self.assertEqual({key for key, _ in parser.items[0]}, {'name', 'content'})
+                self.assertEqual(len(parser.items[0]), 2)
+                self.assertGreater(len(dict(parser.items[0])['content']), 25)
+
+    def test_thirteenth_batch_keeps_the_grounding_scenes(self):
+        # Scene/attribution guards supplement the coverage map, not literary review.
+        augustine = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('augustine', 'zh')))
+        for term in ('梨', '伙伴', '记忆', '恩典', '上帝之城', '想象'):
+            self.assertIn(term, augustine)
+        self.assertNotIn('他已经不想了', augustine)
+        bada = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('badashanren', 'zh')))
+        for term in ('1699', '七条', '河上花', '阮籍', '慧能', '米开朗基罗', '想象'):
+            self.assertIn(term, bada)
+        self.assertNotIn('六十一年的沉默', bada)
+        sushi = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('sushi', 'zh')))
+        for term in ('1100', '柔奴', '寒食雨', '微冷', '夜郎', '想象'):
+            self.assertIn(term, sushi)
+        self.assertNotIn('你凿不碎一个不把你的凿当回事的人', sushi)
+
     def test_huineng_preserves_both_gathas_as_verse(self):
         for lang in builder.LANGS:
             verses = [p for p in self.entries['huineng']['copy'][lang]['sections'][1]['paragraphs'] if '\n' in p]
