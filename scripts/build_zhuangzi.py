@@ -43,6 +43,11 @@ CHAPTERS = {
     8: ('Chapter 17 · Autumn Floods', '《秋水》', '《秋水》', 'https://zh.wikisource.org/wiki/莊子/秋水'),
     9: ('Chapter 32 · Lie Yukou', '《列御寇》', '《列禦寇》', 'https://zh.wikisource.org/wiki/莊子/列禦寇'),
     10: ('Chapter 32 · Lie Yukou', '《列御寇》', '《列禦寇》', 'https://zh.wikisource.org/wiki/莊子/列禦寇'),
+    11: ('The seven Inner Chapters · reading map', '内篇七篇：阅读路线', '內篇七篇：閱讀路線', 'https://zh.wikisource.org/wiki/莊子'),
+    12: ('Chapter 1 · Free and Easy Wandering', '《逍遥游》', '《逍遙遊》', 'https://zh.wikisource.org/wiki/莊子/逍遙遊'),
+    13: ('Chapter 1 · Free and Easy Wandering', '《逍遥游》', '《逍遙遊》', 'https://zh.wikisource.org/wiki/莊子/逍遙遊'),
+    14: ('Chapter 1 · Free and Easy Wandering', '《逍遥游》', '《逍遙遊》', 'https://zh.wikisource.org/wiki/莊子/逍遙遊'),
+    15: ('Chapter 2 · Discussion on Making All Things Equal', '《齐物论》', '《齊物論》', 'https://zh.wikisource.org/wiki/莊子/齊物論'),
 }
 
 def traditional_copy(converter, text):
@@ -143,7 +148,7 @@ def render_index(manifest):
 <section class="zz-hero"><p class="zz-eyebrow">NON DUBITO · CHINESE CLASSICS</p>{tri(*NAMES,tag='h1')}{tri(*DECK,tag='p',classes='zhuangzi-search-deck zz-deck')}<p class="zz-progress">{tri(f'Available now: the guide + {count} of 67 essays. All completed pages offer English, Simplified and Traditional Chinese.',f'目前可读：导读＋{count}/67 篇正文。已完成页面均提供英文、简体与繁体。',f'目前可讀：導讀＋{count}/67 篇正文。已完成頁面均提供英文、簡體與繁體。')}</p></section>
 <section class="zz-entrances"><h2>{tri('Find a way in','从哪儿读','從哪裡讀')}</h2><div class="zz-routes">
 <a href="01.html">{tri('Begin with a story →','先读一个故事 →','先讀一個故事 →')}<small>{tri('Hundun, or the person who stood still: essays 1 and 4.','浑沌之死、运斤成风：第 1、4 篇。','渾沌之死、運斤成風：第 1、4 篇。')}</small></a>
-<a href="#inner">{tri('Follow the Inner Chapters','走进内篇七课','走進內篇七課')}<small>{tri('See the route · 11–29 · in preparation','查看路线 · 11—29 · 编辑中','查看路線 · 11—29 · 編輯中')}</small></a>
+<a href="11.html">{tri('Follow the Inner Chapters →','走进内篇七课 →','走進內篇七課 →')}<small>{tri('Begin at 11 · essays 11–15 available · the route continues through 29','从 11 开始 · 11—15 已可读 · 本辑延伸至 29','從 11 開始 · 11—15 已可讀 · 本輯延伸至 29')}</small></a>
 <a href="#discernment">{tri('How do we judge a passage?','怎样辨析一段文字','怎樣辨析一段文字')}<small>{tri('Reasons and limits · begins at 30 · in preparation','理由与限度 · 从 30 起 · 编辑中','理由與限度 · 從 30 起 · 編輯中')}</small></a>
 <a href="#outer">{tri('Meet the people who do things','看看那些做事的人','看看那些做事的人')}<small>{tri('Craft, attention, life · begins at 42 · in preparation','技艺、专注与生活 · 从 42 起 · 编辑中','技藝、專注與生活 · 從 42 起 · 編輯中')}</small></a></div></section>
 <section><h2>{tri('Ready to read','现在可以读','現在可以讀')}</h2><div class="zz-grid">{''.join(cards)}</div></section>
@@ -165,6 +170,8 @@ def render_article(item, manifest):
         en,zh,hant,url = CHAPTERS[n]
         note = f'<aside class="zz-source"><p>{tri("Passage and reading","原文与读法","原文與讀法")}: <a href="{url}">{tri(en,zh,hant)} ↗</a></p><p>{tri("The Chinese page quotes the classical text. English retellings are written for this edition. Interpretive extensions and contemporary comparisons are the author’s readings, not additional events reported in the original.","中文页保留古文引文；英文叙述为本版重写。文中的当代类比与进一步发挥属于作者的读法，不是原文另有交代的情节。","中文頁保留古文引文；英文敘述為本版重寫。文中的當代類比與進一步發揮屬於作者的讀法，不是原文另有交代的情節。")}</p><a href="index.html#research">{tri("The four companion volumes","查看四卷理论底本","查看四卷理論底本")} →</a></aside>'
     else: note = research()
+    if n == 11:
+        note = f'''<aside class="zz-source"><p>{tri('Reading route','阅读路线','閱讀路線')}: <a href="{CHAPTERS[11][3]}">{tri('The seven Inner Chapters','《庄子》内篇七篇','《莊子》內篇七篇')} ↗</a></p><p>{tri('The seven lessons are the author’s interpretive route, not an established ancient syllabus. Each essay can also be read independently.','“内篇七课”是作者提出的连读路线，不是已经证实的古代课程安排；各篇仍可独立阅读。','「內篇七課」是作者提出的連讀路線，不是已經證實的古代課程安排；各篇仍可獨立閱讀。')}</p><a href="index.html#research">{tri('The four companion volumes','查看四卷理论底本','查看四卷理論底本')} →</a></aside>'''
     description = item['en_title'] + '. A reader essay in The Zhuangzi, Reopened: stories, relationships, and the space left for another person.'
     deck = (description, item['zh_title']+'。从故事与细节出发，重新看见人与人之间留给彼此的空间。', item['hant_title']+'。從故事與細節出發，重新看見人與人之間留給彼此的空間。')
     body = f'''<nav class="reading-breadcrumbs"><a href="index.html">{tri(*NAMES)}</a><span>/</span><span>{'00 / GUIDE' if n == 0 else f'{n:02d} / 67'}</span></nav>

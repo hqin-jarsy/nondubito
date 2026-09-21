@@ -2,6 +2,35 @@
 
 ## Current status — 2026-09-21
 
+Third batch ready in the local repository, not pushed or deployed: essays **11–15** in Simplified Chinese, Traditional Chinese, and full independently rewritten English. The site now has the guide plus **15/67 numbered essays**; **52 essays (16–67) remain**. The full-series request is not complete. Next batch: **16–20**.
+
+This turn began with a clean repository at `d227a82` (`zhuangzi batch 2`). No Great Lives files or original Documents manuscripts were edited. Previously reviewed 00–10 Markdown files remain byte-for-byte identical to HEAD in all three languages; page 10 gains its next-essay link.
+
+### Batch 03 editorial review — 11–15
+
+All five source manuscripts were read in full. The new essays retain the author's contemporary applications and individual arguments, with full English rewrites rather than condensed summaries.
+
+- **11, the seven Inner Chapters:** present the seven-part sequence as this series' proposed reading route, not an established ancient curriculum or proof of a single author. Keep Cook Ding's place in the third chapter, the first/last pairing, and the risk of isolated quotations. Reading one story on its own remains legitimate; learning is not a ranking of superior and inferior people. Planning and study have value, and suffering is not the sole teacher. Retitle to “把庖丁放回七篇之中——内篇七课” / “Putting Cook Ding Back into the Book.”
+- **12, Peng and the cicada:** retain the laughter, different journeys and provisions, dependence on wind, and the difficulty of recognizing preparatory work. Acknowledge the passage's critical tone without making every reader aspire to be Peng. Do not turn “六月息” into a certified six-month stationary wait. Grain can be counted: long projects still need evidence and checkpoints, and ridicule is not proof of genius. Return to Peng's own limited view of the sky and the later question of dependence.
+- **13, short and long spans:** the passage does not give Pengzu's age as eight hundred; distinguish longevity legend from historical fact. Avoid treating debated ancient creature names as settled modern biology or claiming access to a short-lived creature's subjective completeness. A longer horizon is not greater human worth. Records and imagination extend our view without removing uncertainty. Quarterly metrics may omit real work, but review and stopping remain legitimate. Material constraints matter, and deliberately shifting costs to successors cannot simply be excused as limited perspective. Retitle to “彭祖已经很长寿，为什么还说‘悲’——小年与大年” / “When a Long Life Is No Longer the Measure.”
+- **14, the gourd and tree:** restore the hand-protecting ointment, Hui Shi's criticism of Zhuangzi's words, and the predator/ox comparison. Distinguish “unsuited to this use” from absolute worthlessness. Zhuangzi proposes a floating use; the story is not a tested safety recommendation. The text explicitly includes escape from the axe, so do not deny its preservation argument. Resting in shade differs from cutting down the tree. Human beings have wishes and refusals of their own, not merely undiscovered uses for an employer. Bills and practical needs remain real.
+- **15, the three pipings:** retain the changed teacher, wind and openings, the email example, and the question returned to the reader. “昔” need not mean yesterday; the two pronouns do not by themselves prove two metaphysical selves. Mark the reading of heavenly piping as an interpretation, not the sole uncontested meaning. Experience participates in understanding but does not make every interpretation equally accurate. Restore “夫言非吹也，言者有言”: speech is not simply wind. Evidence and consequences matter, and disagreement with this essay may correct it rather than prove the reader's bias.
+
+### Batch 03 sources, language and verification
+
+Checked the received passages against the public-domain primary text of [逍遙遊](https://zh.wikisource.org/wiki/莊子/逍遙遊) and [齊物論](https://zh.wikisource.org/wiki/莊子/齊物論). Relevant [《莊子集釋》 commentary](https://www.chineseclassic.com/content/443) also shows differing identifications of the short-lived creatures and differing longevity traditions; these are not treated as verified biological or historical facts. This was passage checking, not a critical collation of editions. Article 11 has a custom source note distinguishing the proposed reading route from a documented syllabus.
+
+English word counts: 11 **1,660**; 12 **1,482**; 13 **1,523**; 14 **1,494**; 15 **1,576**, total **7,735**. Chinese drafts run approximately 2,630–2,969 characters including whitespace. Counts indicate scope, not quality. Only the five new Traditional Chinese drafts were converted and then reread in full. Contextual corrections include 逍遙遊、千里、憑藉、讚嘆、介面、身分、帳單、這週、劃法、彷徨 and 几案.
+
+- Publication boundary is now 00–15; the five new articles carry 2026-09-21 dates. The Inner Chapters route opens at 11, and 16–67 remain unlinked pending entries.
+- Library, Explore, Latest and the update ledger reflect guide plus 15 essays. Earlier update entries remain historical records.
+- 18 Zhuangzi tests pass, covering original hashes, all three editions, editorial distinctions, Traditional Chinese, navigation, publication boundaries, metadata and HTML/link structure. All 17 generated pages match their builder. The 10 method-introduction regression tests pass; Library, Explore and Latest pass structural checks.
+- Search has **10,014** source records. EN / zh-Hans / zh-Hant each gain exactly five records, with no changes or removals among existing records; the other language chunks are unchanged.
+- Sitemap has **9,862** canonical URLs: exactly five additions, no removals and no changes to existing lastmod values.
+- No browser-rendered visual QA was performed. Structural checks are not visual verification. No commit, push or deployment performed.
+
+## Second-batch record — 2026-09-21
+
 Second batch ready in the local repository, not pushed or deployed: essays 06–10 in Simplified Chinese, Traditional Chinese, and full independently rewritten English. The first group, **Ten Encounters / 先从十个故事开始**, is now complete. The site has the guide plus **10/67 numbered essays**; **57 essays (11–67) remain**. The full-series request is not complete.
 
 This turn began with a clean repository at `3bcaba3` (`batch 14th fix 2`). No Great Lives files or original Documents manuscripts were edited. The previously reviewed 00–05 Markdown files remain byte-for-byte identical to HEAD; page 05 only gains its next-essay link.
@@ -106,6 +135,6 @@ Direct ctext.org chapter fetches failed with 403/inaccessible results; no claim 
 
 ## Original next-batch note (now completed) and later editorial flags
 
-The originally planned 06–10 batch is now complete as recorded above. **Next: 11–15**, beginning the Inner Chapters route. Read each original in full, check claims against the primary passages, edit Chinese, write complete English, and review Traditional Chinese before expanding publication. Keep the same editorial standard; do not generate all remaining pages from unreviewed text.
+The originally planned 06–10 and 11–15 batches are now complete as recorded above. **Next: 16–20**, continuing the Inner Chapters route. Read each original in full, check claims against the primary passages, edit Chinese, write complete English, and review Traditional Chinese before expanding publication. Keep the same editorial standard; do not generate all remaining pages from unreviewed text.
 
 When reaching 30, 65 and 67, preserve the author's reading criterion while distinguishing it from proof of authorship. “Only internal evidence exists,” “forms of address make this impossible,” and “stopping cannot be imitated” need specific evidence or qualification. Essay 65 promises a return to the series' own use of explanation; ensure the ending actually answers that question without claiming that every explicit explanation is coercive. Those essays are not published in this batch.
