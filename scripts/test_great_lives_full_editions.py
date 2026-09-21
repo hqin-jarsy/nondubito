@@ -1172,6 +1172,80 @@ class FullEditionTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'source-note boundary'):
                 builder.source_body('test', 'zh')
 
+    def test_fourteenth_batch_has_complete_editions(self):
+        for slug, number, movement, sections in (
+            ('nishida', 40, 3, 9),
+            ('emperor', 41, 3, 9),
+            ('homer', 42, 4, 9),
+        ):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual((entry['number'], entry['movement']), (number, movement))
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                self.assertTrue(all(len(entry['copy'][lang]['sections']) == sections for lang in builder.LANGS))
+                builder.validate_full_edition(entry)
+
+    def test_fourteenth_batch_source_and_neighbour_links(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug, previous, following in (
+                ('nishida', 'sushi', 'emperor'),
+                ('emperor', 'nishida', 'homer'),
+                ('homer', 'emperor', 'plato'),
+            ):
+                with self.subTest(slug=slug, lang=lang):
+                    page = outputs[builder.SERIES / lang / (slug + '.html')]
+                    self.assertIn(f'<a href="../{slug}.html">EN / 中文</a>', page)
+                    self.assertIn(f'href="{previous}.html"', page)
+                    self.assertIn(f'href="{following}.html"', page)
+
+    def test_fourteenth_batch_local_links_resolve(self):
+        outputs = builder.build()
+        for lang in builder.LANGS:
+            for slug in ('nishida', 'emperor', 'homer'):
+                path = builder.SERIES / lang / (slug + '.html')
+                for href in re.findall(r'href="([^"]+)"', outputs[path]):
+                    url = urlsplit(html.unescape(href))
+                    if url.scheme or url.netloc or not url.path:
+                        continue
+                    target = (path.parent / unquote(url.path)).resolve()
+                    with self.subTest(page=str(path), href=href):
+                        self.assertTrue(target in outputs or target.is_file(), f'Missing link: {href}')
+
+    def test_fourteenth_batch_completes_third_movement_and_reaches_43(self):
+        full = [entry for entry in self.entries.values() if entry.get('edition', {}).get('status') == 'full']
+        self.assertEqual(len(full), 43)
+        third = [item for item in builder.canonical_order() if self.entries[item['slug']]['movement'] == 3]
+        self.assertEqual(len(third), 18)
+        self.assertTrue(all(self.entries[item['slug']]['edition']['status'] == 'full' for item in third))
+
+    def test_fourteenth_batch_sources_are_localized(self):
+        for slug in ('nishida', 'emperor', 'homer'):
+            for source in self.entries[slug]['sources']:
+                with self.subTest(slug=slug, source=source['url']):
+                    self.assertEqual(set(source['titles']), set(builder.LANGS))
+                    self.assertTrue(all(source['titles'][lang].strip() for lang in builder.LANGS))
+
+    def test_fourteenth_batch_keeps_factual_boundaries_visible(self):
+        nishida = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('nishida', 'zh')))
+        self.assertIn('留下被帝国语言利用的暧昧', nishida)
+        self.assertNotIn('哲学与政治无关', nishida)
+        emperor = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('emperor', 'zh')))
+        for term in ('国民主权', '内阁', '国政权能', '神格'):
+            self.assertIn(term, emperor)
+        homer = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('homer', 'zh')))
+        for term in ('并无定论', '仍在争论', '不是学界定论'):
+            self.assertIn(term, homer)
+
+    def test_homer_threshold_title_is_synchronized(self):
+        source = builder.source_path_for('homer').read_text(encoding='utf-8')
+        self.assertIn('荷马，声音进入文字的门槛', source)
+        self.assertIn('Homer, at the Threshold of Voice and Text', source)
+        self.assertNotIn('Homer, the Moment Sound Became Text', source)
+        index = (builder.SERIES / 'index.html').read_text(encoding='utf-8')
+        self.assertIn('Homer, at the Threshold of Voice and Text', index)
+
 
 if __name__ == '__main__':
     unittest.main()
