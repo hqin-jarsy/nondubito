@@ -48,8 +48,8 @@ class ZhuangziTests(unittest.TestCase):
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='discernment'},set(range(30,42))|set(range(59,66)))
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='outer'},set(range(42,59)))
     def test_only_edited_pages(self):
-        self.assertEqual(self.m['published'],list(range(31)))
-        self.assertEqual(set(self.pages),{'index.html','guide.html'}|{f'{n:02d}.html' for n in range(1,31)})
+        self.assertEqual(self.m['published'],list(range(36)))
+        self.assertEqual(set(self.pages),{'index.html','guide.html'}|{f'{n:02d}.html' for n in range(1,36)})
     def test_all_reading_editions_exist(self):
         for n in self.m['published']:
             for lang in b.LANGS:
@@ -92,20 +92,20 @@ class ZhuangziTests(unittest.TestCase):
                     self.assertIn(u.fragment,Page(target.read_text()).ids,(name,href))
     def test_pending_not_empty_links(self):
         links=Page(self.pages['index.html']).links
-        for n in range(31,68):self.assertNotIn(f'{n:02d}.html',links)
-        self.assertEqual(self.pages['index.html'].count('class="zz-pending"'),74)
-        self.assertIn('30/67',self.pages['index.html'])
+        for n in range(36,68):self.assertNotIn(f'{n:02d}.html',links)
+        self.assertEqual(self.pages['index.html'].count('class="zz-pending"'),64)
+        self.assertIn('35/67',self.pages['index.html'])
     def test_first_group_complete_and_navigation(self):
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='encounters'},set(range(1,11)))
-        for n in range(31):
+        for n in range(36):
             links=Page(self.pages[b.filename(n)]).links
             if n: self.assertIn(b.filename(n-1),links)
-            if n<30: self.assertIn(b.filename(n+1),links)
+            if n<35: self.assertIn(b.filename(n+1),links)
             else: self.assertIn('index.html#contents',links)
     def test_publication_dates(self):
         for name,text in self.pages.items():
             schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)[1])
-            new=name in {f'{n:02d}.html' for n in range(6,31)}
+            new=name in {f'{n:02d}.html' for n in range(6,36)}
             self.assertEqual(schema['datePublished'],'2026-09-21' if new else '2026-09-20')
             self.assertEqual(schema['dateModified'],'2026-09-21' if new or name=='index.html' else '2026-09-20')
     def test_second_batch_editorial_boundaries(self):
@@ -199,6 +199,30 @@ class ZhuangziTests(unittest.TestCase):
         self.assertIn('this route is complete',self.pages['index.html'])
         self.assertNotIn('没有骗人',self.m['items'][28]['zh_title'])
         self.assertNotIn('讲的不是感情',self.m['items'][27]['zh_title'])
+    def test_seventh_batch_editorial_boundaries(self):
+        for n,zh_marker,en_marker in (
+            (31,'他在用类比论证','He is reasoning by analogy'),
+            (32,'相亲本身不能推出对外必然不仁','Affection for insiders does not logically entail cruelty'),
+            (33,'未大”明明在说尚未达到','Its force does not depend on pretending'),
+            (34,'文章后来还明说“伯乐之罪”','the text explicitly assigns blame to Bole'),
+            (35,'身体不是身外之物','A body is not an external possession'),
+        ):
+            self.assertIn(zh_marker,(b.DATA/'zh'/f'{n:02d}.md').read_text())
+            self.assertIn(en_marker,(b.DATA/'en'/f'{n:02d}.md').read_text())
+            self.assertIn(n,b.CHAPTERS)
+            tc=(b.DATA/'zh-hant'/f'{n:02d}.md').read_text()
+            for error in ('這隻能','乾活','證明瞭','千裡','稱贊','贊譽','松開','松緩','松滑','身份','賬'):
+                self.assertNotIn(error,tc)
+        self.assertIn('通行本后面还有一大段回答',(b.DATA/'zh/32.md').read_text())
+        self.assertIn('通行本还有关于天地与治理的总结',(b.DATA/'zh/33.md').read_text())
+        self.assertIn('若所言，顺吾意则生，逆吾心则死',(b.DATA/'zh/35.md').read_text())
+        self.assertIn('不是推测“真正的庄子一定会怎样写”',(b.DATA/'zh/35.md').read_text())
+        self.assertIn('www.chineseclassic.com/content/477',self.pages['31.html'])
+        self.assertIn('www.chinulture.com/ebook/read/341562/514497',self.pages['32.html'])
+        self.assertIn('not an ancient passage',self.pages['35.html'])
+        self.assertIn('essays 30–35 available',self.pages['index.html'])
+        self.assertNotIn('是真的懂马',self.m['items'][34]['zh_title'])
+        self.assertNotIn('比一个坏国君干净',self.m['items'][35]['zh_title'])
     def test_canonicals_and_schema(self):
         for name,text in self.pages.items():
             url='https://nondubito.net/essays/zhuangzi/'+('' if name=='index.html' else name)

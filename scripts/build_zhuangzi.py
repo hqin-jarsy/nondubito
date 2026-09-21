@@ -63,6 +63,11 @@ CHAPTERS = {
     28: ('Chapter 7 · Responding to Rulers', '《应帝王》', '《應帝王》', 'https://zh.wikisource.org/wiki/莊子/應帝王'),
     29: ('Chapter 7 · Responding to Rulers', '《应帝王》', '《應帝王》', 'https://zh.wikisource.org/wiki/莊子/應帝王'),
     30: ('Su Shi · Memorial for a Shrine to Zhuangzi', '苏轼《庄子祠堂记》', '蘇軾《莊子祠堂記》', 'https://zh.wikisource.org/wiki/莊子祠堂記'),
+    31: ('Chapter 13 · The Way of Heaven', '《天道》', '《天道》', 'https://zh.wikisource.org/wiki/莊子/天道'),
+    32: ('Chapter 14 · The Turning of Heaven', '《天运》', '《天運》', 'https://zh.wikisource.org/wiki/莊子/天運'),
+    33: ('Chapter 13 · The Way of Heaven', '《天道》', '《天道》', 'https://zh.wikisource.org/wiki/莊子/天道'),
+    34: ("Chapter 9 · Horses’ Hooves", '《马蹄》', '《馬蹄》', 'https://zh.wikisource.org/wiki/莊子/馬蹄'),
+    35: ('Chapter 29 · Robber Zhi', '《盗跖》', '《盜跖》', 'https://zh.wikisource.org/wiki/莊子/盜跖'),
 }
 
 def traditional_copy(converter, text):
@@ -164,7 +169,7 @@ def render_index(manifest):
 <section class="zz-entrances"><h2>{tri('Find a way in','从哪儿读','從哪裡讀')}</h2><div class="zz-routes">
 <a href="01.html">{tri('Begin with a story →','先读一个故事 →','先讀一個故事 →')}<small>{tri('Hundun, or the person who stood still: essays 1 and 4.','浑沌之死、运斤成风：第 1、4 篇。','渾沌之死、運斤成風：第 1、4 篇。')}</small></a>
 <a href="11.html">{tri('Follow the Inner Chapters →','走进内篇七课 →','走進內篇七課 →')}<small>{tri('Begin at 11 · essays 11–29 available · this route is complete','从 11 开始 · 11—29 已可读 · 本辑完整','從 11 開始 · 11—29 已可讀 · 本輯完整')}</small></a>
-<a href="30.html">{tri('How do we judge a passage? →','怎样辨析一段文字 →','怎樣辨析一段文字 →')}<small>{tri('Reasons and limits · begin with essay 30 · later readings in preparation','理由与限度 · 第 30 篇已可读 · 后续编辑中','理由與限度 · 第 30 篇已可讀 · 後續編輯中')}</small></a>
+<a href="30.html">{tri('How do we judge a passage? →','怎样辨析一段文字 →','怎樣辨析一段文字 →')}<small>{tri('Reasons and limits · essays 30–35 available · later readings in preparation','理由与限度 · 30—35 已可读 · 后续编辑中','理由與限度 · 30—35 已可讀 · 後續編輯中')}</small></a>
 <a href="#outer">{tri('Meet the people who do things','看看那些做事的人','看看那些做事的人')}<small>{tri('Craft, attention, life · begins at 42 · in preparation','技艺、专注与生活 · 从 42 起 · 编辑中','技藝、專注與生活 · 從 42 起 · 編輯中')}</small></a></div></section>
 <section><h2>{tri('Ready to read','现在可以读','現在可以讀')}</h2><div class="zz-grid">{''.join(cards)}</div></section>
 <section class="zz-map" id="contents"><h2>{tri('The complete reading map','全系列阅读地图','全系列閱讀地圖')}</h2><p>{tri('The original numbers are retained. Essays 59–65 return to textual discernment; 66–67 close the series. Unlinked entries are still being edited.','保留原编号。59—65 回到文本辨析，66—67 收束全系列。未加链接的篇目仍在编辑，不是空白文章。','保留原編號。59—65 回到文本辨析，66—67 收束全系列。未加連結的篇目仍在編輯，不是空白文章。')}</p><nav class="zz-group-nav" aria-label="Reading groups">{group_nav}</nav>{sections}<details class="zz-sequence"><summary>{tri('Or browse in original order, 01–67','按原编号顺读：01—67','按原編號順讀：01—67')}</summary><ol class="zz-toc">{sequence}</ol></details></section>
@@ -197,6 +202,15 @@ def render_article(item, manifest):
         note = note.replace('</aside>',references+'</aside>')
     if n == 30:
         references = f'''<p>{tri('Records of the transmitted text','传本记录','傳本記錄')}: <a href="https://zh.wikisource.org/wiki/漢書/卷030">{tri('History of the Han · Bibliographic Treatise','《汉书·艺文志》','《漢書・藝文志》')} ↗</a> · <a href="https://www.chineseclassic.com/content/441">{tri('Lu Deming · Preface to the Jingdian Shiwen','陆德明《经典释文序录》','陸德明《經典釋文序錄》')} ↗</a></p><p>{tri('An interpretation of a passage, a hypothesis about textual layers, and an attribution to a historical author require different kinds and degrees of evidence.','段落的解释、文本层次的假说、历史作者的归属，需要分别说明证据，不能自动互相代替。','段落的解釋、文本層次的假說、歷史作者的歸屬，需要分別說明證據，不能自動互相代替。')}</p>'''
+        note = note.replace('</aside>',references+'</aside>')
+    if n == 31:
+        references = f'''<p>{tri('Commentary on the wheelwright and the limits of transmission','参读轮扁与言传限度的注释','參讀輪扁與言傳限度的注釋')}: <a href="https://www.chineseclassic.com/content/477">{tri('Zhuangzi Jishi · The Way of Heaven','《庄子集释·天道》','《莊子集釋・天道》')} ↗</a></p>'''
+        note = note.replace('</aside>',references+'</aside>')
+    if n == 32:
+        references = f'''<p>{tri('Commentary identifying Shang with Song','参读“商”即宋的旧注','參讀「商」即宋的舊注')}: <a href="https://www.chinulture.com/ebook/read/341562/514497?lang=zh">{tri('Zhuangzi Jishi · The Turning of Heaven','《庄子集释·天运》','《莊子集釋・天運》')} ↗</a></p>'''
+        note = note.replace('</aside>',references+'</aside>')
+    if n == 35:
+        references = f'''<p>{tri('This essay concerns the chapter’s first encounter. The imagined continuation is the essayist’s exercise, not an ancient passage or a reconstruction of a lost original.','本文讨论本篇第一场相见。另写的后续只是散文作者的写作尝试，不是古文，也不是失落原稿的复原。','本文討論本篇第一場相見。另寫的後續只是散文作者的寫作嘗試，不是古文，也不是失落原稿的復原。')}</p>'''
         note = note.replace('</aside>',references+'</aside>')
     description = item['en_title'] + '. A reader essay in The Zhuangzi, Reopened: stories, relationships, and the space left for another person.'
     deck = (description, item['zh_title']+'。从故事与细节出发，重新看见人与人之间留给彼此的空间。', item['hant_title']+'。從故事與細節出發，重新看見人與人之間留給彼此的空間。')
