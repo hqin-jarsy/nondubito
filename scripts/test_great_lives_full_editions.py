@@ -1200,6 +1200,34 @@ class FullEditionTests(unittest.TestCase):
                     self.assertIn(f'href="{previous}.html"', page)
                     self.assertIn(f'href="{following}.html"', page)
 
+    def test_fourteenth_batch_does_not_regress_to_the_rejected_synopses(self):
+        # User review rejected the previous 20–21-paragraph editions.
+        # This catches that regression; length cannot certify literary quality.
+        for slug in ('nishida', 'emperor', 'homer'):
+            for lang in ('ja', 'fr', 'de', 'es', 'ko'):
+                with self.subTest(slug=slug, lang=lang):
+                    sections = self.entries[slug]['copy'][lang]['sections']
+                    paragraphs = [p for section in sections for p in section['paragraphs']]
+                    self.assertGreaterEqual(len(paragraphs), 40)
+                    self.assertTrue(all(len(s['paragraphs']) >= 4 for s in sections))
+                    body = ' '.join(paragraphs)
+                    if lang in ('ja', 'ko'):
+                        self.assertGreaterEqual(len(re.sub(r'\s+', '', body)), 3000)
+                    else:
+                        self.assertGreaterEqual(len(body.split()), 1200)
+
+    def test_fourteenth_batch_removes_conflicting_source_claims(self):
+        forbidden = {
+            'nishida': ('西田几多郎四十一岁', '都是这个意思', 'Nishida discovered what comes before language.', 'The same logic.'),
+            'emperor': ('空的东西不碎', '一千多年的程序', 'all political legitimacy flows from it', 'Postwar democracy used the Emperor'),
+            'homer': ('每一次唱都不一样', '声音是混沌', 'Gödel proved it — no system can close.', 'burned the bridge'),
+        }
+        for slug, fragments in forbidden.items():
+            body = '\n'.join(builder.source_body(slug, lang) for lang in ('zh', 'en'))
+            for fragment in fragments:
+                with self.subTest(slug=slug, fragment=fragment):
+                    self.assertNotIn(fragment, body)
+
     def test_fourteenth_batch_local_links_resolve(self):
         outputs = builder.build()
         for lang in builder.LANGS:

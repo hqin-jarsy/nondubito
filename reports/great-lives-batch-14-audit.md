@@ -1,38 +1,59 @@
-# Great Lives — batch 14 (040–042)
+# Great Lives — batch 14 redo (040–042)
 
-Date: 2026-09-20. Clean starting HEAD: `676b6d693c96b55d4e4ad6ccee733f95b1304569`. No commit or push was performed.
+Reviewed: 2026-09-21. Clean starting HEAD: `046987f17ba24af05bdcde0306d9ff045f2383fa`. No commit or push performed.
 
-## Scope and completeness
+## Why this batch was redone
 
-Revised the existing Chinese and English sources for Nishida Kitarō, the Japanese imperial institution and Homer; replaced their six short localized editions with full Traditional Chinese, Japanese, French, German, Spanish and Korean prose. No translation service was used. The narrative, philosophical comparisons and explicitly imagined bridge endings remain.
+The user rejected the previous batch as weaker than the preceding full editions. That assessment was justified: the five foreign-language versions retained topic headings but reduced most sections to two explanatory paragraphs. The previous audit called this complete on the strength of a coverage map and permissive minimum-length checks. That was not an adequate editorial standard.
 
-| Article | Sections | Traditional paragraphs | JA / FR / DE / ES / KO paragraphs | References |
-| --- | ---: | ---: | ---: | ---: |
-| 040 Nishida Kitarō | 9 | 63 | 21 / 21 / 21 / 21 / 21 | 2 |
-| 041 Japanese imperial institution | 9 | 79 | 21 / 21 / 21 / 21 / 21 | 4 |
-| 042 Homer | 9 | 79 | 20 / 20 / 20 / 20 / 20 | 5 |
+This revision replaces those synopses with sustained essays. It also removes assertions in the Chinese/English sources that contradicted caveats added elsewhere. The redo does not increase the series count: **43/108** remain full editions; the other 65 await their own upgrades.
 
-Full editions are now **43/108**: the first 41 entries, Homer at 042, and the earlier Weil pilot at 085. The third movement is complete. Next: 043 Plato, 044 Hume and 045 Schopenhauer.
+## Scope and extent
 
-The new files `movement-03h-nishida.json`, `movement-03h-emperor.json` and `movement-04b-homer.json` replace the corresponding entries in `movement-03c2.json` and `movement-04a.json`. All other 105 editorial objects remain byte-equivalent as parsed JSON to the starting commit. Stable article URLs are retained.
+| Article | Sections | Traditional Chinese paragraphs | JA / FR / DE / ES / KO paragraphs |
+| --- | ---: | ---: | ---: |
+| 040 Nishida | 9 | 63 | 48 / 48 / 48 / 48 / 48 |
+| 041 Imperial institution | 9 | 79 | 48 / 48 / 48 / 48 / 48 |
+| 042 Homer | 9 | 79 | 53 / 53 / 53 / 53 / 53 |
 
-## Editorial decisions
+Western-language prose now ranges from 1,525 to 2,165 whitespace-delimited words. Japanese/Korean prose ranges from 3,639 to 4,469 non-whitespace characters. These figures describe the result, not a literary-quality score. Paragraph organization follows the argument and can be changed during future editing.
 
-- **Nishida:** Western philosophy is not reduced to one doctrine of Being, Japanese philosophy does not begin with one man, and William James is not demoted to preliminary psychology. Pure experience, place and absolute nothingness remain distinct stages. Huineng, Kant and Wittgenstein are bounded comparisons. Nishida’s opposition to fascism does not erase his wartime responses to the state or the ambiguity of language available for imperial use.
-- **Japanese imperial institution:** mythical genealogy and documented continuity are separated. “Empty” does not mean emperors never governed or ritual did nothing. The postwar settlement is not attributed to MacArthur alone; the Humanity Declaration is not the sentence “I am not a god.” Popular sovereignty, Article 4, cabinet responsibility and concrete wartime actors prevent the metaphor from concealing law or responsibility.
-- **Homer:** the article is retitled **荷马，声音进入文字的门槛 / Homer, at the Threshold of Voice and Text**. The blind poet and single-author images remain traditions, not secure biography. Oral-formulaic composition does not mean every performance was wholly new. Dictation is one disputed textualization model, not a recovered day on which voice became writing. Briseis, Priam, Penelope, *polytropos* and Plato’s complicated dependence on poetry remain visible.
+Only the three existing editorial JSON objects, their Chinese/English sources, eighteen generated article pages, related search/update data, tests and this batch's reports are in scope. No new article URLs, title changes, movement rearrangements, or upgrades to another biography.
 
-Individual research and source limits are recorded in [040](great-lives-040-editor-notes.md), [041](great-lives-041-editor-notes.md) and [042](great-lives-042-editor-notes.md). All references have localized display labels in the six generated languages.
+## What the prose restores
 
-## Integration and verification
+- **Nishida:** the flower and pianist are developed before terminology; the stage and canvas have visible limits rather than being offered as a final ontology. James and earlier Japanese philosophy remain interlocutors. Huineng, Kant and Wittgenstein receive separate encounters, not one-sentence equivalences. Kyoto School politics remains part of the account. The bridge ends with an unresolved responsibility, not a philosopher magically outside history.
+- **Imperial institution:** ordinary government, ritual work and legitimation are distinguished through historical cases. Continuity is shown as reinterpretation, not invulnerability. The 1945–47 change explains popular sovereignty and distinguishes Article 3 cabinet responsibility from Article 4's denial of governing powers. Wartime actors cannot escape through the empty-stage metaphor. The closing chair changes how people stand around it; it is not a claim that institutions do nothing.
+- **Homer:** oral memory, formula and composition unfold before textualization. Confucius is a comparison about transmission, not a civilizational stereotype. Achilles' honor, Briseis' enslavement, Patroclus' death and violence against Hector prepare Priam's visit. Grief does not remove unequal power. Penelope gains time and judges the returned stranger through the bed test. Plato/Socrates and the final cross-series voices are restored without collapsing distinct questions into one theorem.
 
-- Great Lives generator: **762** language pages generated; check mode passes.
-- Full-edition regression suite: **116 tests pass**, including source digests, content maps, localized references, metadata, title synchronization and navigation.
-- Latest update ledger and `latest.html` agree.
-- Search rebuilt from **10,004 source records**. URL sets are unchanged. Per-language record counts: EN 3,207; ZH 3,210; TC 2,684; JA 1,338; FR 1,326; DE 1,326; ES 1,325; KO 1,325. The bilingual search records change only for Homer, whose source title and body changed; the six expanded languages change only for the three batch articles.
-- Sitemap rebuilt with **9,852 canonical URLs**; no URLs were added or removed.
-- Read-only scope verification confirms 108 slugs, the other 105 editorial objects unchanged, 43 full editions, balanced HTML and unique IDs on 21 article pages, the six language indexes and Latest.
-- The six language indexes still contain 108 cards in seven movements and display progress 43. Twelve generated neighbour pages change only in navigation. The bilingual Plato page changes only its adjacent Homer title.
-- `git diff --check` passes. HEAD remains at the clean starting commit.
+Traditional Chinese retains every Chinese source section and paragraph, with offline character conversion followed by editorial checks. No external translation service was used. The other five languages were authored as prose, not generated from summary templates.
 
-QA limitation: this batch received static content, structure, link and generator checks, not a browser-rendered visual pass. No deployment was performed.
+## Source corrections and limits
+
+Removed the unsupported age of forty-one at the 1911 publication; the James footnote now distinguishes earlier essays from their 1912 collection. Removed claims that pure experience equals every flow state, that Nishida bypasses Kant, and that Bada Shanren simply refused speech.
+
+Removed blanket Allied-position claims, the untouched thousand-year ritual claim, and statements that all modern legitimacy flows from the throne. Dynastic endings no longer serve as instant refutations of Hegel or Marx.
+
+Removed the remaining formless-oral-chaos claim, the claim of universally changing performances without stable forms, the Buddha burning a bridge, and Gödel as proof of every philosophical nonclosure claim. Penelope's stratagem is temporary, and her recognition has its own judgment.
+
+The sources linked in the individual notes are the research trail. Previously listed monographs are distinguished as further reading, not newly consulted books. Odyssey 23's rooted-bed scene was checked in the public-domain Butler text. Imagined bridge scenes remain explicitly literary.
+
+## Verification
+
+Automated length and content-map checks are regression guards, not substitutes for reading.
+
+- Generator wrote and check mode verified 762 language pages; only the eighteen target generated article pages differ from the baseline.
+- All 118 full-edition regression tests pass. Two added guards reject regression to the previous synopses and the specific conflicting source claims removed here.
+- Read-only scope verification retains all 108 slugs, leaves the other 105 editorial JSON objects unchanged, and verifies the three source hashes.
+- All 21 target article files have balanced, properly nested HTML and unique IDs, including checks against nested paragraphs/block elements inside paragraphs.
+- Search rebuilt from 10,004 source records. All eight search URL sets are unchanged; altered article records belong only to the three targets.
+- Sitemap rebuilt with 9,852 canonical URLs and an unchanged URL set.
+- Six language indexes retain 108 cards, seven movements and progress 43. No neighboring article pages changed.
+- Latest and its editorial ledger agree; the existing batch entry is revised rather than duplicated.
+- Whitespace/diff checks pass. No commit or push performed.
+
+Visual-QA limitation: the browser's URL policy rejected the local file URL, so no browser-rendered check is claimed and no alternate route was attempted. Verification above is static/build/content verification.
+
+- Stable URL and series count: 43/108; next are 043 Plato, 044 Hume, 045 Schopenhauer.
+- Scope baseline is the rejected batch's committed version, not the earlier pre-batch commit.
+- No publication or deployment was performed.

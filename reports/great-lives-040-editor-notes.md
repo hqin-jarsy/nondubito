@@ -1,19 +1,24 @@
-# Great Lives 040 — Nishida Kitarō, the Place of Nothingness
+# Great Lives 040 — Nishida Kitarō, redo
 
-Reviewed: 2026-09-20. Batch 14, movement 3. Stable article URL retained.
+Reviewed 2026-09-21. Batch 14. Existing URL and title retained.
 
-## Editorial approach
+The first five-language pass was too condensed. It has been replaced with 48 paragraphs in each of Japanese, French, German, Spanish and Korean, across the original nine topic sections. Traditional Chinese retains all 63 revised Chinese paragraphs.
 
-The essay keeps Nishida’s movement from pure experience to place and absolute nothingness, but no longer presents him as the first Japanese thinker or as the philosopher who single-handedly gained admission for “the East.” Nishi Amane and earlier Japanese philosophy remain visible. William James’s pure experience is not dismissed as psychology, and pure experience is not described as an escape above conceptual thought.
+## Reading work restored
 
-Comparisons with Huineng, Kant and Wittgenstein are explicitly limited comparisons. Absolute nothingness is not equated with a remainder, and the Kyoto School is not treated as one political voice. Nishida’s wartime writing is presented as politically ambivalent: his opposition to fascism and totalitarian erasure of the individual does not cancel his responses to state requests or the availability of his language to imperial use.
+The opening moves from actors to the conditions of their appearance. The flower and pianist now provide experiences the reader can follow, rather than decorative mentions after a definition. “Before” is not treated as merely an earlier thoughtless instant; ongoing thought and judgment are not excluded from experience.
 
-Traditional Chinese retains all 63 source paragraphs. Japanese, French, German, Spanish and Korean are complete independently written reading editions with nine mapped sections and 21 paragraphs each. No translation service was used.
+The place discussion no longer climbs through ever larger boxes and then denies being a container. Its examples lead to that distinction from the outset. Absolute nothingness is neither nihilism nor a substance behind the world, and is not silently equated with the series' remainder.
 
-## Checked source trail
+Meiji institutional philosophy, Nishi Amane and James remain visible. Huineng is not reduced to one silent experience; Kant is not bypassed through absorption; Wittgenstein is not a slower competitor on the same track. The Kyoto thinkers retain differences, and political complicity cannot be explained away as external appropriation.
 
-- [Stanford Encyclopedia of Philosophy: Nishida Kitarō](https://plato.stanford.edu/entries/nishida-kitaro/): intellectual development, pure experience, place, absolute nothingness and political ambiguity.
-- [Stanford Encyclopedia of Philosophy: The Kyoto School](https://plato.stanford.edu/entries/kyoto-school/): membership, shared problems, internal differences and wartime controversy.
+The path and imagined bridge are full endings again. Bada Shanren's pictorial blank space replaces the false image of lifelong mute refusal. Nishida arrives with his historical ambiguities, not at a privileged place outside history.
 
-The walk at the bridge is literary imagination. The Philosopher’s Path is treated as accumulated cultural memory rather than the documented site of a single philosophical breakthrough.
+## Source trail and corrections
 
+- [Stanford Encyclopedia: Nishida Kitarō](https://plato.stanford.edu/entries/nishida-kitaro/).
+- [Stanford Encyclopedia: The Kyoto School](https://plato.stanford.edu/entries/kyoto-school/).
+
+The 1911 publication no longer carries an unsupported age of forty-one. James's earlier essays are distinguished from their collection in 1912. Monographs previously listed as primary factual grounds are now identified as further reading; this revision does not claim fresh page-by-page consultation.
+
+The stage, canvas, pianist and bridge are explanatory or literary devices, not biographical evidence. Word/paragraph counts do not certify the quality of those comparisons. See the batch audit for integration checks.

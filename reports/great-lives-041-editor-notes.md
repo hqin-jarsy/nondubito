@@ -1,23 +1,26 @@
-# Great Lives 041 — The Japanese Imperial Institution, the Empty Throne
+# Great Lives 041 — Japanese imperial institution, redo
 
-Reviewed: 2026-09-20. Batch 14, movement 3. Stable article URL retained.
+Reviewed 2026-09-21. Batch 14. Existing URL and title retained.
 
-## Editorial approach
+The five foreign-language editions have been rewritten as 48-paragraph essays, retaining nine topic sections. Traditional Chinese keeps all 79 revised Chinese paragraphs. The earlier 21-paragraph versions were too close to topic summaries.
 
-The revised essay separates mythical genealogy, documented institutional history and literary metaphor. The imperial institution is not called the world’s oldest continuous dynasty without qualification, and “empty” no longer means that emperors never exercised power. Regency, cloistered rule, direct intervention, shogunal government and Meiji sovereignty are distinguished.
+## Reading work restored
 
-The postwar settlement is not reduced to one MacArthur decision. The 1946 rescript is not paraphrased as the simple sentence “I am not a god.” Articles 1 and 4 of the Constitution restore the legal details: status derives from the will of the sovereign people; the emperor has no powers related to government; acts in matters of state require cabinet advice and approval, with responsibility resting on the cabinet.
+The essay begins with offices and people moving at different speeds. Regency, cloistered rule, direct intervention, shogunal authority, court ritual and Meiji sovereignty are distinguished. Not administering everything does not mean doing nothing.
 
-The metaphor of an empty place cannot dissolve responsibility for aggression or the Nanjing Massacre. Emperors, cabinets, officials, soldiers and citizens remain actors, while the institution’s legitimating role remains open to criticism. The analogy with Nishida’s absolute nothingness is retained only as a dangerous and limited question about place and content.
+The stage analogy now includes actors rebuilding the stage. Imperial titles and anti-bakufu appeals show conflicting uses of continuity without making every transition identical. Qin's collapse and later political failures no longer “prove” that acting less guarantees survival or that Hegel and Marx are wholly refuted.
 
-Traditional Chinese retains all 79 source paragraphs. Japanese, French, German, Spanish and Korean are complete independently written reading editions with nine mapped sections and 21 paragraphs each. No translation service was used.
+The 1945–47 settlement is an actual change in authority. Article 1 establishes the symbolic position under popular sovereignty; Article 3 specifies cabinet advice, approval and responsibility; Article 4 denies governmental powers. The Humanity Declaration is not reduced to a colloquial denial of godhood.
 
-## Checked source trail
+The chain of accountability remains concrete: orders, decision-making organs, possible interventions and choices. An institution called empty does not thereby escape its history. The comparison with Nishida is a limited prompt, not an identity of structures.
 
-- [National Diet Library: The Constitution of Japan](https://www.ndl.go.jp/constitution/e/etc/c01.html), especially Articles 1, 3 and 4.
-- [National Diet Library: The Humanity Declaration](https://www.ndl.go.jp/constitution/shiryo/03/056shoshi.html).
+The closing chair changes the arrangement of people around it. Succession, representation, dissent and the right to keep one's distance remain questions for living people. Longevity is not a moral verdict.
+
+## Source trail
+
+- [National Diet Library: Constitution](https://www.ndl.go.jp/constitution/e/etc/c01.html), Articles 1, 3, 4.
+- [National Diet Library: Humanity Declaration](https://www.ndl.go.jp/constitution/shiryo/03/056shoshi.html).
 - [National Diet Library: Popular Sovereignty and the Emperor System](https://www.ndl.go.jp/constitution/e/ronten/01ronten.html).
 - [National Diet Library: Postwar Constitutional Reform](https://www.ndl.go.jp/constitution/e/outline/01outline.html).
 
-The chair at the bridge is literary imagination. Longevity is not presented as proof of legitimacy.
-
+Mythical genealogy is distinguished from documented history. The 2019 accession is not called an unchanged thousand-year ceremony. Previously named monographs remain further reading, not a new claim of consultation. The chair at the bridge is explicitly imagined.
