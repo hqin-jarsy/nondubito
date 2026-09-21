@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+"""Structural/editorial regression guards; not a substitute for reading review."""
+import hashlib
+from html.parser import HTMLParser
+import json
+from pathlib import Path
+import re
+import unittest
+from urllib.parse import urlsplit, unquote
+import build_zhuangzi as b
+from build_content_registry import scan_page
+
+class Page(HTMLParser):
+    VOID={'area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'}
+    def __init__(self,text):
+        super().__init__();self.stack=[];self.ids=set();self.links=[];self.headers=0;self.articles=[]
+        self.feed(text); self.close()
+        assert not self.stack, self.stack
+    def handle_starttag(self,tag,attrs):
+        d=dict(attrs)
+        if 'id' in d:
+            assert d['id'] not in self.ids, d['id']
+            self.ids.add(d['id'])
+        if 'href' in d:self.links.append(d['href'])
+        if tag=='header':self.headers+=1
+        if tag=='article':self.articles.append(d)
+        if tag not in self.VOID:self.stack.append(tag)
+    def handle_endtag(self,tag):
+        assert self.stack and self.stack[-1]==tag,(self.stack[-5:],tag)
+        self.stack.pop()
+    def handle_startendtag(self,tag,attrs):
+        self.handle_starttag(tag,attrs)
+        if tag not in self.VOID:self.handle_endtag(tag)
+
+class ZhuangziTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.m=json.loads((b.DATA/'manifest.json').read_text())
+        cls.pages={p.name:p.read_text() for p in b.TARGET.glob('*.html')}
+    def test_inventory(self):
+        self.assertEqual([x['number'] for x in self.m['items']],list(range(68)))
+        self.assertEqual(len({x['source_file'] for x in self.m['items']}),68)
+        for x in self.m['items']:
+            self.assertRegex(x['source_sha256'],r'^[0-9a-f]{64}$')
+            for k in ('en_title','zh_title','hant_title'):self.assertTrue(x[k])
+    def test_groups(self):
+        self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='inner'},set(range(11,30)))
+        self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='discernment'},set(range(30,42))|set(range(59,66)))
+        self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='outer'},set(range(42,59)))
+    def test_only_edited_pages(self):
+        self.assertEqual(self.m['published'],list(range(6)))
+        self.assertEqual(set(self.pages),{'index.html','guide.html','01.html','02.html','03.html','04.html','05.html'})
+    def test_all_reading_editions_exist(self):
+        for n in self.m['published']:
+            for lang in b.LANGS:
+                raw=(b.DATA/lang/f'{n:02d}.md').read_text()
+                self.assertGreater(len(raw),1000 if n==0 else 2500)
+                self.assertNotIn('见置顶',raw)
+                self.assertNotIn('TODO',raw)
+                self.assertNotIn('**',raw)
+            en=(b.DATA/'en'/f'{n:02d}.md').read_text()
+            self.assertGreater(len(en.split()),700 if n==0 else 1200)
+    def test_traditional_complete_sections(self):
+        for n in self.m['published']:
+            zh=(b.DATA/'zh'/f'{n:02d}.md').read_text()
+            tc=(b.DATA/'zh-hant'/f'{n:02d}.md').read_text()
+            self.assertEqual(zh.count('\n## '),tc.count('\n## '))
+            self.assertEqual(len(zh.split('\n\n')),len(tc.split('\n\n')))
+    def test_traditional_context(self):
+        tc='\n'.join((b.DATA/'zh-hant'/f'{n:02d}.md').read_text() for n in self.m['published'])
+        for error in ('余項','捨者','客捨','九萬裡','瞭望洋','這麼乾'):
+            self.assertNotIn(error,tc)
+        self.assertIn('舍者與之爭席',tc)
+    def test_markup_and_language_bodies(self):
+        for name,text in self.pages.items():
+            page=Page(text)
+            self.assertEqual(page.headers,1) # No content <header> inheriting the global fixed header.
+            if name!='index.html':
+                self.assertEqual({x['lang'] for x in page.articles},{'en','zh-Hans','zh-Hant'})
+            self.assertIn('site-shell-language',text)
+            self.assertIn('explicit-hant',text)
+            self.assertNotIn('<p>---</p>',text)
+    def test_local_links_and_fragments(self):
+        for name,text in self.pages.items():
+            for href in Page(text).links:
+                u=urlsplit(href)
+                if u.scheme or u.netloc:continue
+                target=(b.TARGET/name).parent/unquote(u.path) if u.path else b.TARGET/name
+                if target.is_dir():target=target/'index.html'
+                self.assertTrue(target.is_file(),(name,href))
+                if u.fragment and target.suffix=='.html':
+                    self.assertIn(u.fragment,Page(target.read_text()).ids,(name,href))
+    def test_pending_not_empty_links(self):
+        links=Page(self.pages['index.html']).links
+        for n in range(6,68):self.assertNotIn(f'{n:02d}.html',links)
+        self.assertEqual(self.pages['index.html'].count('class="zz-pending"'),124)
+        self.assertIn('5/67',self.pages['index.html'])
+    def test_canonicals_and_schema(self):
+        for name,text in self.pages.items():
+            url='https://nondubito.net/essays/zhuangzi/'+('' if name=='index.html' else name)
+            self.assertEqual(re.findall(r'<link rel="canonical" href="([^"]+)"',text),[url])
+            schemas=re.findall(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)
+            self.assertEqual(len(schemas),1)
+            self.assertEqual(json.loads(schemas[0])['url'],url)
+    def test_critical_editorial_distinctions(self):
+        allzh='\n'.join((b.DATA/'zh'/f'{n:02d}.md').read_text() for n in self.m['published'])
+        for old in ('第一窍凿完，浑沌能看见了','规格越高，死得越快','难堪是入场券','一个留了半分力的人','仿不到的是话到嘴边收住'):
+            self.assertNotIn(old,allzh)
+        self.assertIn('不是作者身份的印章',allzh)
+        self.assertIn('不是在要求无条件受训',allzh)
+        self.assertIn('不是现实中可以照做的安全保证',allzh)
+    def test_search_metadata(self):
+        for name in self.pages:
+            record=scan_page(b.ROOT,b.TARGET/name)
+            self.assertEqual(record['domain'],'stories')
+            self.assertEqual(set(record['languages']),{'en','zh-Hans','zh-Hant'})
+            self.assertTrue(record['titles']['en'])
+            self.assertTrue(record['titles']['zh-Hans'])
+            self.assertTrue(record['titles']['zh-Hant'])
+    def test_source_originals_unchanged_if_available(self):
+        folder=Path('/Users/hanqin/Documents/大知解庄子')
+        if not folder.exists():self.skipTest('Original private folder not present')
+        for x in self.m['items']:
+            self.assertEqual(hashlib.sha256((folder/x['source_file']).read_bytes()).hexdigest(),x['source_sha256'])
+    def test_reader_entrypoints(self):
+        for name in ('library.html','explore.html','latest.html'):
+            self.assertIn('essays/zhuangzi/index.html',(b.ROOT/name).read_text())
+
+if __name__=='__main__':unittest.main()
