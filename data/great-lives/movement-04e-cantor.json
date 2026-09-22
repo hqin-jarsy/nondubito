@@ -1,0 +1,933 @@
+{
+  "movement": 4,
+  "entries": [
+    {
+      "number": 49,
+      "slug": "cantor",
+      "movement": 4,
+      "copy": {
+        "zh-hant": {
+          "title": "康托爾：比無窮更大",
+          "deck": "從一把椅子配一個人，到永遠還可以向上的樓梯。無窮有不同的大小；理解康托爾，也要為他的病痛、德德金的貢獻和人的休息留出位置。",
+          "sections": [
+            {
+              "heading": "一、無窮有多大",
+              "paragraphs": [
+                "數到一百萬，還能再加一。再數下去，還是能再加一。",
+                "我們通常這樣理解無窮：前面永遠有路。因此，“兩個無窮哪個更大”聽起來像一句說錯了的話。既然都走不到頭，還能怎樣比較？",
+                "康托爾把問題換了一種問法。先別管走不走得到頭。如果兩邊的東西能夠一個不漏地配成對，它們是不是就一樣多？",
+                "這個問法沒有聲勢，甚至有點像分椅子。可是，十九世紀的數學會從這裡走進一片新地方。無窮不再只是手指向遠方的動作，它開始有可以辨認的形狀。",
+                "1874年，康托爾發表了實數不可數的結果。1891年，他又給出了著名的對角線論證。兩個年份之間，還有許多嘗試、通信與修改，不是一聲驚雷以後，世界才開始思考無窮。",
+                "先跟他算一小段。不要急著把這一生讀成“天才因看見太多而發瘋”的寓言。數學需要證明，一個生病的人則需要照顧。這兩件事不該互相冒充。"
+              ],
+              "covers": [
+                "pairing-and-two-proof-dates"
+              ]
+            },
+            {
+              "heading": "二、一把椅子配一個人",
+              "paragraphs": [
+                "假設屋裡的人和椅子都很多。你不必先數出總數：讓每個人坐下一把椅子，沒有人站著，也沒有空椅子，兩邊就一樣多。這是一一對應的直覺。",
+                "把自然數1、2、3、4依次配給偶數2、4、6、8。每一個自然數都有夥伴，每一個正偶數也會被配到。規則可以一直用下去，不會在哪一步突然失效。",
+                "偶數確實只是自然數的一部分。可是，在“能否一一配對”這個意義上，它們一樣多。有限集合裡管用的直覺——拿走一些就必定變少——到了這裡需要重新檢查。",
+                "分數更像一片擠滿人的廣場。任意兩個不同的有理數之間，還能放進別的有理數。這樣密，怎麼排得成一條隊？",
+                "把正分數按分子、分母排進格子，沿斜線一層層走，遇到1/2與2/4這樣的重複就跳過。再加入零和負數，每個有理數最終都能輪到。這裡的斜線是編排辦法，別和後面用來證明無法列全的對角線混在一起。",
+                "這種大小叫ℵ₀，讀作阿列夫零。自然數、正偶數、有理數，都能進入這支可數無窮的隊伍。你開始有理由懷疑：也許無窮只有一種大小。接下來的一步，才真正出人意料。"
+              ],
+              "covers": [
+                "countable-infinity-chairs-rationals"
+              ]
+            },
+            {
+              "heading": "三、隊伍外面那一個",
+              "paragraphs": [
+                "設想有人遞給你一份名單，說0與1之間的實數已經全在上面。第一行一個小數，第二行一個小數，一直往下，每行都有自己的自然數編號。",
+                "你不必讀完整份名單。沿對角線看：第一行第一位，第二行第二位，第三行第三位。每一行只取出一個位置，作為你要改變的地方。",
+                "我們只用1和2來寫新數。如果看到的那一位是1，就寫2；不是1，就寫1。這樣寫出的新小數，第一位與第一行不同，第二位與第二行不同，第n位與第n行不同。",
+                "只用1和2，還避開了小數表示的小陷阱：0.4999…與0.5000…其實相等。不能僅僅讓紙上的數字看起來不同，卻不小心寫出同一個數。",
+                "現在問：新數在哪一行？放在第一行不行，第一位不對；放在第二行也不行，第二位不對。不管你指哪一行，總有一個已經安排好的差別等在那裡。",
+                "它仍是0與1之間的實數，卻沒有出現在名單中。“已經列全”這句話破了。不是名單還不夠長：任何按自然數編號的名單，都可以這樣找出漏掉的數。",
+                "這是1891年論證的一種現代小數說明，不是原論文逐字照搬。1874年的證明走的是另一條路。真正重要的不是哪一種寫法最漂亮，而是從“我們暫時沒列出來”走到了“這種列法不可能列全”。",
+                "圖靈後來使用的反向構造，與這裡有家族相似性。但停機問題不只是再寫出一個遺漏的小數；那裡要構造程式，讓一個假定萬能的判定程式與自己的結果衝突。工具會遷移，問題仍各有邊界。"
+              ],
+              "covers": [
+                "diagonal-proof-decimal-boundary"
+              ]
+            },
+            {
+              "heading": "四、樓梯怎麼長出來",
+              "paragraphs": [
+                "自然數的大小是ℵ₀，實數的大小通常記作c。c更大。那它會不會就是最後一個無窮？",
+                "康托爾給出了一個可以反覆使用的辦法：從一個集合出發，考慮它所有子集組成的集合，叫作冪集。比如兩個人的小組，可以選誰都不選、只選甲、只選乙、兩人都選，共四種。",
+                "對任何集合，冪集都比原集合大。證明也帶著剛才的轉身：假設每個元素都已經領到一個子集，就收集那些“不屬於自己領到的子集”的元素。這個新子集不可能恰好是其中任何一個人的配額。",
+                "於是，只要你遞來一個集合，就還有更大的。這裡沒有最大的集合大小，可以讓樓梯在某一級正式封頂。",
+                "但符號也會使人產生錯覺。ℵ₀、ℵ₁、ℵ₂依次表示越來越大的無限基數；取一次冪集，卻不一定正好走到緊鄰的下一級。把這兩種往上走的方法畫成同一列臺階，會把一個尚待回答的問題偷偷畫成答案。",
+                "無窮因此變得更精確，並不是變得什麼都懂了。康托爾給我們的，不是掌握一切的最高位置，而是到了一個位置以後，還能認真問下一步在哪裡的辦法。"
+              ],
+              "covers": [
+                "power-sets-not-successor-alephs"
+              ]
+            },
+            {
+              "heading": "五、兩級之間",
+              "paragraphs": [
+                "ℵ₁是比ℵ₀大的最小無限基數。實數的大小c，會不會剛好等於ℵ₁？也就是說，在可數無窮與連續統之間，還有沒有別的大小？",
+                "這就是連續統假設。康托爾長年嘗試解決它，沒有成功。可以想像一頁頁計算重來的疲憊，卻不能從一個難題直接寫出一份精神疾病的病因報告。",
+                "1900年，希爾伯特把這個問題列在著名問題清單的首位。它沒有隨著康托爾的失敗消失。後來接手的人，連“怎樣才算回答”也一起改了。",
+                "哥德爾在1938年得到相對相容性結果，1940年發表專著；科恩在1963年完成另一方向。合起來說：如果通常使用的集合論公理系統ZFC是一致的，那麼它既不能證明連續統假設，也不能證明其否定。",
+                "“在ZFC內”不能省略。這不是宣佈任何可能的數學都永遠不能討論答案。加入新的公理、研究不同模型，正是後來的工作；它們也需要理由，不能為了喜歡某個結論就隨手選定。",
+                "有時候，沒找到答案是因為人還不夠熟練；有時候，是現有規則沒有決定答案。把這兩種情形分開，本身就是一種進展。未完成不總是個人失敗，更不必成為羞辱人的憑據。"
+              ],
+              "covers": [
+                "continuum-relative-independence"
+              ]
+            },
+            {
+              "heading": "六、通信桌的兩邊",
+              "paragraphs": [
+                "克羅內克是康托爾的重要反對者。他對哪些對象、哪些論證可以進入數學，有嚴格得多的要求。這是實質性的學術衝突，也伴隨著令人受傷的權力關係。",
+                "不過，不能把康托爾一生寫成一位惡人把門、其餘所有人都拒絕他的故事。魏爾斯特拉斯等人曾支持他，他在哈勒工作多年，參與建立數學共同體。批評、支持、職業受挫與疾病交錯，不歸一個原因管。",
+                "還有德德金。1873年的通信不是天才給聽眾發佈成果，而是兩個數學家交換問題、證明與改進。紙頁從一個人的桌上出發，到另一個人的桌上，思路才繼續往前。",
+                "這裡有一筆不能因為敬佩而抹去的署名帳。德德金留下記錄，指出自己的證明及改進進入了康托爾1874年的論文，公開發表時卻沒有得到應有承認。康托爾的數學貢獻和這筆欠帳，可以同時成立。",
+                "2026年《Quanta》的報道又把一封長期被認為失佚的信帶回公眾視野：德米安·古斯在2025年於哈勒查見的1873年11月30日信，其中包括德德金關於代數數可數性的證明。應把新近報道、保存的信件與對動機的推測分開。",
+                "這不是“原來一切都是偷來的”的反轉劇。實數不可數與超窮數研究的貢獻仍需逐項判斷；德德金也不應只是用來給康托爾增加人物複雜度的配角。他的名字應在他做過的工作旁邊。",
+                "受過不公的人，也可能沒有公正地對待另一個人。這值得直說，但它不是某種傷害守恆定律：受傷不會必然使人傷人，更不能替後來造成的傷害免責。",
+                "理解一個人，比替他辯護到底難一些。你要保留他的工作、他受的痛，也保留那個沒有得到署名的人。"
+              ],
+              "covers": [
+                "dedekind-credit-and-kronecker"
+              ]
+            },
+            {
+              "heading": "七、三種不同的邊界",
+              "paragraphs": [
+                "康托爾、哥德爾、圖靈，放在一起很有誘惑力。三個人都讓一種“應該可以全部完成”的願望遇到了嚴格的限制。",
+                "康托爾證明實數無法用自然數列全；哥德爾研究足夠表達算術、可有效列舉公理的形式系統；圖靈追問能否用一個通用演算法判定所有相關實例。他們不是把同一個定理說了三遍。",
+                "對角構造、自我指涉與編碼，把這些工作連成重要的思想線索。但名單、證明系統和程式不是同一種對象，連續統假設的獨立性也不等於停機問題的一個換皮例子。",
+                "我們可以從中讀出一種謙遜：工具很有力量，也值得問它適用於哪裡。這是哲學上的閱讀，不是說數學已經替所有哲學主張開具了證明。",
+                "尤其不能把三個人的疾病、迫害與死亡，寫成“看見邊界的人注定被邊界壓碎”。圖靈遭受國家迫害，康托爾經歷反覆疾病；他們的生活不是定理附帶的寓言。",
+                "證明有局限，並不妨礙生活需要朋友、工作、休息和照料。把一個人的痛苦當成思想深刻的證書，是我們在紀念他時還可以避免的一種傷害。"
+              ],
+              "covers": [
+                "cantor-godel-turing-distinct-limits"
+              ]
+            },
+            {
+              "heading": "八、沒有頂，不等於沒有路",
+              "paragraphs": [
+                "現在可以回到那座樓梯。你站在哪一級，都能問是否還有更大的集合；答案不會因為站得夠高就變成沒有。",
+                "這容易讓人想到別的宏大思想：柏拉圖的善、黑格爾的體系。但那是比較的起點，不是比較已經結束。基數定理不會直接證明理念論錯誤，也不會替我們判定歷史是否有終點。",
+                "康托爾本人還有強烈的宗教關切，並把數學中的超窮與神學意義上的絕對無窮區分開。把他寫成宣佈所有終極問題一律取消的人，也會錯過他自己的聲音。",
+                "更貼近他工作的比喻，也許不是“終於證明什麼都不可能”，而是發現尺子可以造得更好，問題可以問得更清楚。可數、不可數、冪集，各給了下一步一個落腳處。",
+                "人不必先擁有全部，才有資格做眼前這一段。讀者也不必懂完集合論，才看得見這裡發生的轉變：一句含混的“永遠”，被拆成了可以爭論、校正和接著工作的事情。",
+                "樓梯沒有頂，和你今天不能上一級，是兩句話。康托爾的工作留下了前一句，並沒有要求我們接受後一句。"
+              ],
+              "covers": [
+                "staircase-and-absolute-infinite"
+              ]
+            },
+            {
+              "heading": "九、把筆放下來一會兒",
+              "paragraphs": [
+                "1918年1月6日，康托爾在哈勒的精神病院去世，七十二歲。他晚年反覆住院，戰爭也使生活更艱難。最後的日子應當被記住，不必再添上“無窮終於奪走他的理智”的旁白。",
+                "希爾伯特關於康托爾所創造的天堂的名言，出現在他身後。它說的是數學的開闊，不是證明創造它的人曾經生活在天堂裡。學科的勝利不會倒流回去，使一個病人免於孤獨。",
+                "在這個系列想像的橋頭，康托爾仍然抬頭看。他手裡的筆在空中劃過，寫下ℵ₀、ℵ₁，後面還有地方。",
+                "這一次，我們不必替他畫一雙“有點瘋”的眼睛。他也可以只是一個想把事情講清楚、說到興頭上的人。",
+                "契訶夫走近一點。休謨把雙陸棋收好。圖靈拿著一張寫有符號的紙，沒有人催他把故事變成結論。",
+                "康托爾可以接著說，也可以停一下。有人願意聽，不是因為他一定還能證明一條驚人的定理。",
+                "那些臺階不會因他休息而消失。一個人也不必把自己耗盡，才配得上自己開出的路。",
+                "上面還有。這裡，也可以有一把椅子。"
+              ],
+              "covers": [
+                "illness-care-and-imagined-bridge"
+              ]
+            }
+          ],
+          "notes": [
+            "本文區分1874年的實數不可數證明與1891年的對角線論證；有理數格子的斜線枚舉不是不可數證明。冪集操作不保證到達緊鄰的下一阿列夫。連續統假設的獨立性以ZFC一致為條件，範圍限定在ZFC；關於哥德爾不完備性的比較同樣需要一致性、有效公理化與足夠算術等具體條件，不是三個定理完全相同。",
+            "康托爾與德德金的署名問題依據通信史與2026年Quanta對新近查見書信的報導；不據此斷言全部工作由他人完成，也不猜定內心動機。不用數學難題解釋精神疾病，不把數學證明當作SAE總原則的證明。希爾伯特的天堂之喻出於康托爾身後，橋頭相遇為本文的文學想像。"
+          ]
+        },
+        "ja": {
+          "title": "カントール――無限より大きい",
+          "deck": "椅子を一人に一脚ずつ配るところから、最上段のない階段へ。無限には異なる大きさがある。カントールを読むなら、病、デデキントの貢献、休む場所も消してはならない。",
+          "sections": [
+            {
+              "heading": "一　無限はどれくらい大きいのか",
+              "paragraphs": [
+                "百万まで数えても、もう一つ足せる。どれほど先へ進んでも、その先の数がある。",
+                "私たちが無限を思うとき、たいてい浮かぶのは終点のない道だ。だから、二つの無限のどちらが大きいかと聞かれると、問い方がおかしい気がする。どちらも終わらないのに、何を比べるのだろう。",
+                "カントールは少し違う入口を選んだ。最後までたどり着けるかはいったん置こう。片方のものをもう片方のものと、一つずつ余りなく組にできたら、同じ数だけあると言えないか。",
+                "数学を揺さぶるというより、椅子を並べる相談に近い。ところが、この小さな問いから新しい土地が開ける。無限は、遠くを指さすだけの言葉ではなく、調べられる形を持ち始める。",
+                "実数が可算ではないという結果の発表は1874年、有名な対角線論法は1891年だった。その間にも計算、手紙、修正、他人の仕事がある。ある日一人の頭に稲妻が落ち、無限が誕生したわけではない。",
+                "まず一緒に考えてみよう。「見すぎた天才は狂う」という筋書きを先に置かずに。数学の主張には証明が必要であり、病む人にはケアが必要だ。片方をもう片方の説明にしてはいけない。"
+              ],
+              "covers": [
+                "pairing-and-two-proof-dates"
+              ]
+            },
+            {
+              "heading": "二　一人に一脚",
+              "paragraphs": [
+                "大勢の人がいる部屋を考える。人と椅子を別々に数えなくても、一人ずつ座ってもらい、立つ人も空席も残らなければ、同じだけあるとわかる。これが一対一対応の手触りだ。",
+                "自然数1、2、3、4を、正の偶数2、4、6、8と組にする。どの自然数にも相手がいて、どの正の偶数にも漏れなく順番が来る。作業を実際に終えられなくても、規則が途中で壊れることはない。",
+                "偶数が自然数の一部分であることは変わらない。それでも、この対応という意味では同じ大きさになる。いくつか取り除けば必ず少なくなる、という有限の場合の感覚を、そのまま持ち込めない。",
+                "分数はもっと混み合って見える。異なる二つの有理数の間には、さらに有理数がある。こんなに密なのに、一列に並べて番号を振れるのだろうか。",
+                "正の分数を分子と分母で格子に配置し、斜めに順を追っていく。1/2と2/4のような重複を飛ばし、零と負の数も加えれば、どの有理数にも順番が来る。この斜めの道順と、後で名簿の不完全さを示す対角線とは、役割が違う。",
+                "この大きさをℵ₀、アレフ・ゼロという。自然数、正の偶数、有理数は、いずれも可算無限の列に入る。無限の大きさは結局一つなのかもしれない。そう考えたくなる地点まで、私たちは来た。"
+              ],
+              "covers": [
+                "countable-infinity-chairs-rationals"
+              ]
+            },
+            {
+              "heading": "三　名簿の外に一つ",
+              "paragraphs": [
+                "誰かが、零と一の間の実数をすべて並べたという名簿を渡す。一行目に小数、二行目にも小数。どの行にも自然数の番号が付いている。",
+                "全部を読む必要はない。一行目の小数第一位、二行目の第二位、三行目の第三位を見る。対角線に沿って、各行から一つだけ、違いをつくる場所を選ぶ。",
+                "新しい小数は1と2だけで書こう。見た桁が1なら2を、1でなければ1を書く。すると新しい数は、一行目とは第一位、二行目とは第二位、第n行とは第n位が違う。",
+                "1と2だけにするのは、小数の落とし穴を避けるためでもある。0.4999…と0.5000…は同じ数だ。文字の並びだけ変えて、実は同じ数だった、では証明にならない。",
+                "さて、この新しい数は何行目にあるのか。一行目にはない。第一位が違う。二行目にもない。第二位が違う。どの行を指しても、その行に対応する違いが待っている。",
+                "それでも新しい数は零と一の間の実数である。すべて載せたはずなのに、載っていない。紙が足りないという話ではない。自然数で番号を付けるどんな名簿にも、同じことができる。",
+                "これは1891年の考え方を小数で示す現代的な説明で、原論文の逐語訳ではない。1874年の証明は別の道を取っていた。肝心なのは、まだ並べ終わらないという失敗から、この方法では全部を並べられないという証明へ移ったことだ。",
+                "後のチューリングの逆向きの構成にも、似た働きがある。ただし、停止問題では万能と仮定した判定手続きに逆らうプログラムをつくる。小数を一つ追加する話ではない。手法は受け継がれても、対象と結論の違いは残る。"
+              ],
+              "covers": [
+                "diagonal-proof-decimal-boundary"
+              ]
+            },
+            {
+              "heading": "四　もう一段をつくる",
+              "paragraphs": [
+                "自然数の大きさがℵ₀、実数の大きさは通常cと書かれる。cのほうが大きい。では、それが最後の無限なのだろうか。",
+                "カントールは繰り返し使える操作を示した。ある集合の部分集合をすべて集める。これが冪集合だ。二人の組なら、誰も選ばない、一人目だけ、二人目だけ、二人とも、という四つの選び方がある。",
+                "どんな集合でも、その冪集合のほうが大きい。各要素に部分集合を割り当て、全部を対応させたと仮定する。そこで、自分に割り当てられた部分集合に自分が入っていない要素だけを集める。この新しい部分集合を誰かの割当てとすると、その人が入るか入らないかで矛盾する。",
+                "集合を一つ示されれば、より大きいものがある。最大の集合の大きさに到達して、ここで終わり、と宣言することはできない。",
+                "ただし、記号が錯覚をつくることもある。ℵ₀、ℵ₁、ℵ₂は順に次の無限基数を示すが、冪集合を取る操作が必ず隣のアレフへ進むとは限らない。二つの上り方を同じ階段として描くと、難問を知らずに解決済みにしてしまう。",
+                "無限は精密になったのであって、何もかもわかったのではない。彼が残したのは、全体を見下ろす最上階ではなく、ある場所に着いてから次を正確に問う方法だった。"
+              ],
+              "covers": [
+                "power-sets-not-successor-alephs"
+              ]
+            },
+            {
+              "heading": "五　二段の間",
+              "paragraphs": [
+                "ℵ₁はℵ₀より大きい最小の無限基数だ。実数の大きさcは、それと等しいのか。可算無限と連続体の間に、別の大きさはあるのだろうか。",
+                "これが連続体仮説である。カントールは長く取り組み、解けなかった。書き直す紙の山に疲れを想像することはできる。しかし、難問一つから精神疾患の原因を言い当てることはできない。",
+                "1900年、ヒルベルトは有名な問題集の最初にこれを掲げた。カントールが解けなかったから消えた問題ではない。後の研究者は、答えるとはどういうことかまで問い直すことになる。",
+                "ゲーデルは1938年に相対的無矛盾性の結果を得て、1940年に詳しい著作を刊行した。コーエンは1963年に反対側の結果を示した。合わせれば、通常の集合論の公理系ZFCが無矛盾なら、そこでは連続体仮説もその否定も証明できない。",
+                "「ZFCでは」を落としてはいけない。どんな数学でも永久に答えを論じられない、という宣告ではない。新しい公理や異なるモデルを調べる仕事は続く。公理を選ぶにも、好きな結論が欲しいという以上の理由が要る。",
+                "解けないのは、まだ推論が足りないからか。それとも採用した規則だけでは決まらないからか。この違いを知ることも進歩だ。未完の問題を、その人の能力不足や恥の証拠にする必要はない。"
+              ],
+              "covers": [
+                "continuum-relative-independence"
+              ]
+            },
+            {
+              "heading": "六　二つの机",
+              "paragraphs": [
+                "クロネッカーは重要な反対者だった。何を数学の対象と認め、どんな手続きを許すかについて、はるかに厳しい条件を求めた。学問上の実質的な対立であり、職業上の力の偏りもそこに重なった。",
+                "ただ、悪い門番が一人いて、全員がカントールを拒んだ、という一生ではない。ワイエルシュトラスらの支援があり、ハレで長年働き、数学者の共同体づくりにも加わった。支持、敵意、挫折、病は、一つの原因には収まらない。",
+                "デデキントもいた。1873年の手紙は、天才が聴衆へ成果を発表する形ではない。問い、証明、改良を二人で往復させ、紙が一方の机から他方へ届くことで考えが先へ進んだ。",
+                "そこには、敬意によって消してはいけない功績の勘定がある。デデキントは、自分の証明と改良がカントールの1874年の論文に入りながら、十分な公的承認を得なかったと記録した。カントールの業績と、この未払いは同時に存在する。",
+                "2026年のQuanta誌は、デミアン・グースが2025年にハレで確認した、長く失われたと思われていた手紙を報じた。1873年11月30日付で、代数的数の可算性についてデデキントの証明を含む。最近の報道、保存された文書、動機の推測は、別々に扱うべき証拠である。",
+                "だから全部が盗作だった、という逆転劇にするのも違う。非可算性や超限数への貢献は、個々に判断する必要がある。同時に、デデキントをカントールの人物像に陰影を添える脇役にしてはいけない。彼の名は彼の仕事の横にあるべきだ。",
+                "不当な扱いを受けた人が、別の人を公正に扱えないこともある。ただし、傷が保存されて必ず他人へ移る法則ではない。傷ついた経験は加害を必然にせず、免責もしない。",
+                "人を理解するのは、最後まで擁護するより難しい。仕事も、苦しみも、名前を十分に記されなかった相手も、残しておかなければならない。"
+              ],
+              "covers": [
+                "dedekind-credit-and-kronecker"
+              ]
+            },
+            {
+              "heading": "七　三つの異なる境界",
+              "paragraphs": [
+                "カントール、ゲーデル、チューリング。並べて読みたくなる三人だ。すべてできるはずだという期待に、厳密な限界を示したという共通点がある。",
+                "カントールは実数を自然数で列挙できないと証明した。ゲーデルは算術を十分に表現でき、有効に公理化された形式体系を扱った。チューリングはある種の問題をすべて判定する一般的アルゴリズムを問う。同じ定理を三度言ったわけではない。",
+                "対角的な構成、符号化、自己言及は、重要なつながりをつくる。それでも名簿、証明体系、プログラムは別の対象だ。連続体仮説の独立性も、停止問題の別名ではない。",
+                "そこから、道具の力と適用範囲をよく知ろう、という謙虚さを読むことはできる。ただし、それは数学についての哲学的な読みであって、望む哲学的結論をすべて数学が保証したことにはならない。",
+                "まして病、迫害、死を、「境界を見た者は境界に潰される」という系にしてはいけない。チューリングには国家の迫害があり、カントールには繰り返す病があった。人生は定理に付けられた挿絵ではない。",
+                "方法の限界を知っても、友人、休息、仕事、ケアは必要である。苦しみを深い洞察の証明書にすることは、追悼する側がなお与えてしまう傷の一つだ。"
+              ],
+              "covers": [
+                "cantor-godel-turing-distinct-limits"
+              ]
+            },
+            {
+              "heading": "八　頂上がないことと、道がないこと",
+              "paragraphs": [
+                "階段へ戻ろう。どこに立っても、さらに大きい集合があるかを問える。十分高くまで上がったから、今度はないという答えになるわけではない。",
+                "プラトンの善やヘーゲルの体系を思い出すかもしれない。それは比較の入口にはなる。しかし、基数についての定理だけでイデア論を否定したり、歴史の終点を判定したりはできない。",
+                "カントール自身は深い宗教的関心を持ち、数学的な超限と神学的な絶対無限を区別した。あらゆる究極の問いを廃止した人として描くと、彼自身の声を取り逃す。",
+                "その仕事に近いのは、何もできないと発見することより、よりよい物差しをつくることだろう。可算、非可算、冪集合。それぞれが、次に足を置く場所を少し確かにする。",
+                "すべてを所有してからでなくても、目の前の一部分に取り組める。集合論を学び尽くさなくても、曖昧な「永遠」が、議論し、修正し、一緒に調べられる事柄へ変わったことは見える。",
+                "頂上がない。今日は一段も上がれない。この二つは違う。カントールの数学は前者を残したが、後者を受け入れるようには求めていない。"
+              ],
+              "covers": [
+                "staircase-and-absolute-infinite"
+              ]
+            },
+            {
+              "heading": "九　少しペンを置く",
+              "paragraphs": [
+                "1918年1月6日、カントールはハレの精神病院で亡くなった。七十二歳だった。晩年には入院を繰り返し、戦争で暮らしも厳しくなった。その事実に、無限が最後に理性を奪ったという語りを添える必要はない。",
+                "カントールのつくった楽園というヒルベルトの有名な言葉は、彼の死後のものだ。数学に開かれた場所を語っており、その人の毎日が楽園だったとは言っていない。学問の勝利は過去へ戻って病人の孤独を埋められない。",
+                "このシリーズの想像上の橋で、カントールはやはり上を見る。ペンが空中にℵ₀、ℵ₁を描く。その先にも余白がある。",
+                "今回は、見すぎた人の狂気を目に描き込まなくてもよい。ただ説明に熱が入り、わかってほしいと思っている人でもよい。",
+                "チェーホフが少し近づく。ヒュームはバックギャモンを片づける。チューリングは記号のある紙を持ち、誰も結論を急がせない。",
+                "カントールは話を続けても、休んでもよい。聞く人は、次の驚くべき定理を入場料にはしない。",
+                "休んでいる間に階段は消えない。自分が開いた道にふさわしくあるために、身を使い果たす義務もない。",
+                "上にはまだある。ここには、一脚の椅子があってもいい。"
+              ],
+              "covers": [
+                "illness-care-and-imagined-bridge"
+              ]
+            }
+          ],
+          "notes": [
+            "1874年の非可算性の証明と1891年の対角線論法を区別した。有理数を格子の斜めに並べる方法は別物であり、冪集合が必ず次のアレフになるわけでもない。連続体仮説の独立性はZFCの無矛盾性を条件とし、ZFC内に限られる。ゲーデルとの比較にも無矛盾性、有効な公理化、十分な算術などの条件が必要で、三つは同じ定理ではない。",
+            "功績の表記については書簡史と、再発見された手紙に関するQuantaの2026年報道を参照した。全業績の盗用や内心の動機を断定しない。難問を病気の原因とせず、数学をSAE全体の証明にも使わない。ヒルベルトの楽園の比喩はカントール没後のもの。橋での出会いは文学的な創作である。"
+          ]
+        },
+        "fr": {
+          "title": "Cantor, plus grand que l’infini",
+          "deck": "Des chaises à apparier à un escalier sans dernier degré : les infinis n'ont pas tous la même taille. Comprendre Cantor demande aussi de laisser leur place à la maladie, à Dedekind et au repos.",
+          "sections": [
+            {
+              "heading": "I. Quelle taille peut avoir l’infini ?",
+              "paragraphs": [
+                "Vous comptez jusqu’à un million. Il reste possible d’ajouter un. Vous continuez : il en reste toujours un autre.",
+                "L’infini ressemble d’abord à une route sans arrivée. Demander lequel de deux infinis est le plus grand paraît manquer le sens même du mot. Comment comparer des parcours dont aucun ne s’achève ?",
+                "Cantor déplace la question. Oublions un instant l’arrivée. Si l’on peut associer chaque objet d’un côté à un seul objet de l’autre, sans oublier personne, n’a-t-on pas autant d’objets des deux côtés ?",
+                "On dirait une affaire de chaises à disposer. Pourtant, quelque chose s’ouvre. L’infini cesse d’être seulement le geste qui désigne le lointain ; il acquiert une forme que nous pouvons examiner.",
+                "Le résultat sur la non-dénombrabilité des réels paraît en 1874, le célèbre argument diagonal en 1891. Entre les deux : des calculs, des lettres, des corrections et le travail d’autres personnes. L’infini n’attendait pas, muet, qu’un génie le réveille d’un seul coup.",
+                "Suivons d’abord le raisonnement. Le récit du savant devenu fou pour avoir trop vu peut attendre indéfiniment. Une affirmation mathématique réclame une preuve ; une personne malade a besoin de soins. Ce ne sont pas deux formulations de la même chose."
+              ],
+              "covers": [
+                "pairing-and-two-proof-dates"
+              ]
+            },
+            {
+              "heading": "II. Une chaise pour chacun",
+              "paragraphs": [
+                "Dans une salle remplie de monde, inutile de compter séparément les gens et les sièges. Chacun s’assied sur une chaise ; personne ne reste debout, aucune chaise n’est vide. Voilà l’intuition de la correspondance un à un.",
+                "Associez maintenant 1 à 2, 2 à 4, 3 à 6, 4 à 8. Chaque entier positif trouve son nombre pair, et chaque nombre pair positif est atteint. La règle ne se dérègle pas parce que nous ne pouvons pas finir matériellement l’opération.",
+                "Les pairs restent une partie propre des entiers positifs. Pourtant, au sens de cette correspondance, ils sont aussi nombreux. Une évidence du monde fini — enlever des éléments réduit nécessairement la taille — doit être réexaminée.",
+                "Les fractions paraissent plus encombrantes encore. Entre deux rationnels distincts, d’autres peuvent s’insérer. Comment cette foule pourrait-elle former une file où chacun reçoit un numéro entier ?",
+                "Rangez les fractions positives dans un tableau, par numérateur et dénominateur, puis parcourez des diagonales successives en sautant les doublons, comme 1/2 et 2/4. Ajoutez zéro et les nombres négatifs : chaque rationnel finit par avoir son tour. Cette diagonale sert à parcourir un tableau ; elle ne joue pas le rôle de celle qui montrera bientôt qu’une liste est incomplète.",
+                "Cette taille s’appelle ℵ₀, aleph-zéro : l’infini dénombrable. Entiers, pairs positifs, rationnels peuvent tous y entrer. Peut-être n’existe-t-il finalement qu’une seule taille infinie. Nous avons désormais une raison de poser la question, au lieu d’en présumer la réponse."
+              ],
+              "covers": [
+                "countable-infinity-chairs-rationals"
+              ]
+            },
+            {
+              "heading": "III. Celui qui manque sur la liste",
+              "paragraphs": [
+                "Quelqu’un vous présente une liste censée contenir tous les réels compris entre zéro et un. Un développement décimal par ligne, avec un entier positif pour numéroter chaque ligne.",
+                "Vous n’avez pas besoin de tout lire. Prenez la première décimale de la première ligne, la deuxième de la deuxième, la troisième de la troisième. Vous choisissez ainsi, dans chaque ligne, l’endroit précis où vous allez diverger.",
+                "Construisez un nombre nouveau avec les seuls chiffres 1 et 2. Si la décimale observée vaut 1, écrivez 2 ; sinon, écrivez 1. Le nouveau nombre diffère de la ligne numéro n à la décimale numéro n.",
+                "Ce choix évite aussi un piège : 0,4999… et 0,5000… désignent le même réel. Faire varier les signes sur le papier ne suffit pas toujours à obtenir un autre nombre. Même une preuve élégante doit s’occuper de ce détail.",
+                "Où placer le nouveau venu ? Pas à la première ligne : la première décimale diffère. Pas à la deuxième non plus. Quelle que soit la ligne choisie, une différence a été préparée pour elle.",
+                "Il s’agit pourtant bien d’un réel entre zéro et un. La liste proclamée complète l’a laissé dehors. Ce n’est pas un manque de papier : toute liste indexée par les entiers positifs peut être mise en défaut de cette façon.",
+                "C’est une présentation décimale moderne de l’argument de 1891, non sa transcription littérale. La preuve de 1874 suivait une autre voie. L’essentiel est le passage de « nous n’avons pas encore fini » à « cette manière de procéder ne peut pas tout énumérer ».",
+                "Le retournement employé plus tard par Turing possède un air de famille. Mais il construit un programme qui contredit une procédure de décision supposée universelle, pas simplement un nombre oublié. Une méthode voyage ; ses objets et ses conclusions restent à distinguer."
+              ],
+              "covers": [
+                "diagonal-proof-decimal-boundary"
+              ]
+            },
+            {
+              "heading": "IV. Fabriquer la marche suivante",
+              "paragraphs": [
+                "Les entiers ont pour cardinal ℵ₀ ; celui des réels se note généralement c. Ce dernier est plus grand. Serait-ce le dernier infini ?",
+                "Cantor propose une opération réutilisable : considérer l’ensemble de toutes les parties d’un ensemble. Avec deux personnes, on peut choisir personne, la première seulement, la seconde seulement ou les deux : quatre possibilités.",
+                "L’ensemble des parties est toujours strictement plus grand. Supposons avoir attribué à chaque élément une partie de façon à tout couvrir. Réunissons les éléments qui n’appartiennent pas à leur propre partie attribuée. Cette nouvelle partie ne peut être celle d’aucun élément sans contradiction sur sa présence en elle.",
+                "Ainsi, pour tout ensemble présenté, une taille supérieure existe. Aucun cardinal maximal ne vient fermer la montée.",
+                "Les symboles risquent toutefois de nous tromper. ℵ₀, ℵ₁, ℵ₂ désignent des cardinaux infinis successifs ; prendre l’ensemble des parties ne conduit pas nécessairement à l’aleph immédiatement suivant. Dessiner une seule suite de marches pour les deux opérations ferait passer une question difficile pour une réponse acquise.",
+                "L’infini devient plus précis, pas entièrement possédé. Ce travail n’installe personne au-dessus de tout ; il permet de demander avec exactitude ce qui peut venir après le lieu où l’on se trouve."
+              ],
+              "covers": [
+                "power-sets-not-successor-alephs"
+              ]
+            },
+            {
+              "heading": "V. Entre deux marches",
+              "paragraphs": [
+                "ℵ₁ est le plus petit cardinal infini supérieur à ℵ₀. Le cardinal des réels c lui est-il égal ? Existe-t-il une taille strictement intermédiaire entre le dénombrable et le continu ?",
+                "C’est l’hypothèse du continu. Cantor la poursuit pendant des années sans parvenir à la résoudre. On peut imaginer la fatigue des reprises ; on ne peut pas tirer d’un problème ardu le diagnostic causal d’une maladie.",
+                "En 1900, Hilbert place la question en tête de sa célèbre liste. Elle ne disparaît pas avec l’échec de Cantor. Les travaux ultérieurs vont également transformer le sens d’une réponse possible.",
+                "Gödel obtient son résultat de cohérence relative en 1938, puis publie une monographie en 1940. Cohen apporte l’autre direction en 1963. Si les axiomes usuels de la théorie des ensembles, ZFC, sont cohérents, ils ne permettent de démontrer ni l’hypothèse du continu ni sa négation.",
+                "Les mots « dans ZFC » sont indispensables. Aucune interdiction ne frappe pour toujours toutes les mathématiques imaginables. D’autres axiomes et modèles deviennent des objets de recherche ; leur choix exige cependant des raisons, et pas seulement l’envie d’obtenir une réponse préférée.",
+                "Ne pas avoir trouvé la démonstration et travailler avec des règles qui ne déterminent pas la réponse sont deux situations différentes. Les distinguer constitue déjà un progrès. L’inachèvement n’est pas toujours une défaillance personnelle, encore moins une raison d’humilier."
+              ],
+              "covers": [
+                "continuum-relative-independence"
+              ]
+            },
+            {
+              "heading": "VI. Deux tables de travail",
+              "paragraphs": [
+                "Kronecker fut un adversaire important. Ses exigences concernant les objets et les méthodes admissibles étaient beaucoup plus restrictives. Il y avait là un désaccord intellectuel réel, traversé aussi par l’inégalité du pouvoir professionnel.",
+                "Mais la carrière de Cantor ne se résume pas à un gardien malveillant et à un rejet unanime. Weierstrass et d’autres l’ont soutenu ; il a travaillé longtemps à Halle et contribué à bâtir une communauté mathématique. Soutien, hostilité, maladie et revers ne relèvent pas d’une cause unique.",
+                "Il y avait aussi Dedekind. La correspondance de 1873 n’est pas celle d’un génie annonçant ses résultats à son public. Deux mathématiciens échangent des problèmes, des preuves, des améliorations. La pensée avance parce qu’une feuille passe d’une table à l’autre.",
+                "Une dette de reconnaissance doit demeurer visible. Dedekind a consigné que sa preuve et ses améliorations avaient été reprises dans l’article de 1874 sans reconnaissance publique adéquate. L’importance des découvertes de Cantor ne supprime pas cette dette.",
+                "En 2026, Quanta a rapporté le retour à l’attention du public d’une lettre longtemps tenue pour perdue, retrouvée par Demian Goos à Halle en 2025. Datée du 30 novembre 1873, elle contient la preuve de Dedekind sur la dénombrabilité des nombres algébriques. Reportage récent, documents conservés et suppositions sur les intentions ne sont pas des preuves de même nature.",
+                "Ce n’est pas le coup de théâtre où tout serait volé. Les contributions à la non-dénombrabilité et aux nombres transfinis restent à examiner séparément. Dedekind ne doit pas non plus servir uniquement à rendre Cantor plus complexe : son nom appartient au travail qu’il a fait.",
+                "Une personne injustement traitée peut en traiter une autre injustement. Cela mérite d’être dit, sans inventer une loi de conservation des blessures. Souffrir ne rend pas la faute future inévitable et ne l’excuse pas.",
+                "Comprendre quelqu’un est plus difficile que le défendre jusqu’au bout. Il faut préserver le travail, la souffrance, et la place de celui dont la contribution n’a pas reçu son nom."
+              ],
+              "covers": [
+                "dedekind-credit-and-kronecker"
+              ]
+            },
+            {
+              "heading": "VII. Trois limites distinctes",
+              "paragraphs": [
+                "Cantor, Gödel, Turing : la juxtaposition attire. Chacun impose une limite rigoureuse à l’espoir de pouvoir tout mener à bien.",
+                "Cantor montre qu’on ne peut numéroter tous les réels par les entiers. Gödel étudie des systèmes formels effectivement axiomatisés, assez riches pour exprimer l’arithmétique. Turing examine la possibilité d’un algorithme universel de décision. Ils ne récitent pas trois fois le même théorème.",
+                "Diagonales, codage et autoréférence dessinent une parenté importante. Pourtant, listes, systèmes de preuve et programmes sont des objets différents. L’indépendance du continu n’est pas simplement le problème de l’arrêt sous un autre nom.",
+                "Une lecture philosophique peut y trouver un exercice de modestie : savoir la puissance d’un outil et demander où elle s’applique. C’est une lecture, non la preuve mathématique de toutes les thèses philosophiques que nous souhaiterions confirmer.",
+                "Surtout, leurs maladies, les persécutions et leurs morts ne doivent pas devenir le corollaire selon lequel voir une limite condamne à être brisé par elle. Turing a subi la persécution de l’État ; Cantor a connu des troubles récurrents. Leurs vies ne sont pas des illustrations jointes aux théorèmes.",
+                "Même celui qui connaît les limites des méthodes a besoin d’amis, de travail, de repos et de soins. Faire de la souffrance un certificat de profondeur est une autre blessure que nous pouvons éviter d’infliger en commémorant."
+              ],
+              "covers": [
+                "cantor-godel-turing-distinct-limits"
+              ]
+            },
+            {
+              "heading": "VIII. Pas de sommet ne signifie pas pas de chemin",
+              "paragraphs": [
+                "Revenons à l’escalier. À chaque niveau, on peut demander s’il existe un ensemble plus grand. Monter suffisamment haut ne finit pas par transformer la réponse en non.",
+                "Cela peut rappeler le Bien de Platon ou le système de Hegel. C’est un début de comparaison, pas sa conclusion. Un théorème sur les cardinaux ne réfute directement ni les Formes ni une conception de la fin de l’histoire.",
+                "Cantor lui-même avait de fortes préoccupations religieuses et distinguait le transfini mathématique de l’infini absolu de la théologie. En faire l’homme qui abolit toute question ultime empêcherait aussi d’entendre sa voix.",
+                "Son travail ressemble moins à la découverte que rien n’est possible qu’à la fabrication d’un instrument de mesure meilleur. Dénombrable, non dénombrable, ensemble des parties : chaque distinction offre un appui plus sûr pour la suite.",
+                "Il n’est pas nécessaire de posséder le tout pour entreprendre la portion devant soi. Un lecteur n’a pas non plus à maîtriser toute la théorie des ensembles pour voir une transformation : un vague « toujours » devient matière à désaccord, à correction et à travail commun.",
+                "L’escalier n’a pas de sommet. Vous ne pouvez gravir aucune marche aujourd’hui. Ce sont deux phrases différentes. Les mathématiques de Cantor nous laissent la première ; elles n’exigent pas la seconde."
+              ],
+              "covers": [
+                "staircase-and-absolute-infinite"
+              ]
+            },
+            {
+              "heading": "IX. Une chaise, ici aussi",
+              "paragraphs": [
+                "Cantor meurt à l’hôpital psychiatrique de Halle le 6 janvier 1918, à soixante-douze ans. Les hospitalisations ont marqué ses dernières années ; la guerre rend la vie plus difficile. Ces faits n’ont pas besoin d’une voix ajoutant que l’infini aurait finalement emporté sa raison.",
+                "La formule de Hilbert sur le paradis créé par Cantor appartient aux années qui suivent sa mort. Elle parle de l’espace ouvert aux mathématiques, non du quotidien de son créateur. La victoire d’une discipline ne remonte pas le temps pour tenir compagnie à un malade.",
+                "Sur le pont imaginaire de cette série, Cantor regarde encore vers le haut. Sa plume trace ℵ₀, ℵ₁ dans l’air. Il reste de la place après.",
+                "Cette fois, nul besoin de lui dessiner les yeux fous de celui qui aurait trop vu. Il peut simplement être quelqu’un qui s’anime en expliquant, heureux qu’un autre cherche à comprendre.",
+                "Tchekhov s’approche. Hume range son backgammon. Turing tient une feuille couverte de signes ; personne ne le presse de transformer son histoire en conclusion.",
+                "Cantor peut poursuivre, ou s’interrompre. Quelqu’un écoutera sans exiger un nouveau théorème extraordinaire en échange.",
+                "Les marches ne disparaîtront pas pendant son repos. Une personne n’a pas à s’épuiser entièrement pour être digne du chemin qu’elle a ouvert.",
+                "Il y a encore quelque chose au-dessus. Ici aussi, il peut y avoir une chaise."
+              ],
+              "covers": [
+                "illness-care-and-imagined-bridge"
+              ]
+            }
+          ],
+          "notes": [
+            "La preuve de 1874 et l'argument diagonal de 1891 sont distincts ; parcourir la grille des rationnels est encore un autre usage de la diagonale. L'ensemble des parties ne donne pas nécessairement l'alef suivant. L'indépendance de l'hypothèse du continu suppose ZFC cohérent et concerne ZFC. Le rapprochement avec Gödel exige lui aussi les conditions pertinentes de cohérence, d'axiomatisation effective et d'arithmétique ; il ne s'agit pas d'un théorème unique.",
+            "La question de la reconnaissance s'appuie sur l'histoire de la correspondance et le reportage de Quanta de 2026 sur une lettre retrouvée, sans attribuer tout le travail à autrui ni prétendre connaître les motivations. Les difficultés mathématiques ne sont pas des diagnostics, et les théorèmes ne démontrent pas l'ensemble de SAE. L'image du paradis de Hilbert est posthume ; la rencontre sur le pont est inventée."
+          ]
+        },
+        "de": {
+          "title": "Cantor: Größer als unendlich",
+          "deck": "Von einem Stuhl für jeden bis zur Treppe ohne oberste Stufe: Unendlichkeiten haben verschiedene Größen. Zu Cantors Leben gehören aber auch Krankheit, Dedekinds Beitrag und ein Platz zum Ausruhen.",
+          "sections": [
+            {
+              "heading": "I. Wie groß ist unendlich?",
+              "paragraphs": [
+                "Zählen Sie bis zu einer Million. Danach lässt sich immer noch eins hinzufügen. Und dann wieder eins. Die nächste Zahl wartet schon.",
+                "So begegnet uns das Unendliche gewöhnlich: als Weg ohne Ende. Welche von zwei Unendlichkeiten größer sei, klingt zunächst wie eine falsch gestellte Frage. Wenn beide Wege niemals aufhören, was soll der Vergleich ihrer Länge bedeuten?",
+                "Cantor setzte anders an. Lassen wir das Ende vorläufig beiseite. Angenommen, jedes Element auf der einen Seite lässt sich genau einem auf der anderen zuordnen, ohne dass etwas übrig bleibt: Wären beide Mengen dann gleich groß?",
+                "Das klingt eher nach dem Aufstellen von Stühlen als nach einer Revolution der Mathematik. Aber in dieser unscheinbaren Frage öffnet sich ein Gebiet. Unendlichkeit bekommt Konturen, die sich untersuchen lassen, statt nur eine Handbewegung in die Ferne zu bleiben.",
+                "1874 veröffentlichte Cantor sein Ergebnis über die Überabzählbarkeit der reellen Zahlen. Das berühmte Diagonalargument folgte 1891. Dazwischen lagen Rechnungen, Briefe, Überarbeitungen und die Arbeit anderer. Das Unendliche trat nicht mit einem einzigen Geistesblitz in die Mathematik ein.",
+                "Folgen wir zuerst dem Argument, bevor wir die Tragödie erzählen. Eine mathematische Behauptung braucht einen Beweis; ein psychisch erkrankter Mensch braucht Fürsorge. Wenn eines das andere erklären soll, wird die Geschichte nicht tiefer, sondern ungenauer."
+              ],
+              "covers": [
+                "pairing-and-two-proof-dates"
+              ]
+            },
+            {
+              "heading": "II. Ein Stuhl für jeden",
+              "paragraphs": [
+                "In einem vollen Saal lässt sich feststellen, ob es genauso viele Stühle wie Menschen gibt, ohne beides vorher zu zählen. Jeder setzt sich auf einen eigenen Stuhl. Niemand steht, kein Platz bleibt frei. Das ist die alltägliche Anschauung hinter einer Eins-zu-eins-Zuordnung.",
+                "Ordnen wir nun den positiven ganzen Zahlen 1, 2, 3, 4 die Zahlen 2, 4, 6, 8 zu. Jede Zahl erhält ihren geraden Partner, jede positive gerade Zahl wird erreicht. Die Regel versagt nicht deshalb, weil wir ihre Anwendung niemals vollständig abarbeiten können.",
+                "Die geraden Zahlen bilden weiterhin einen echten Teil der positiven ganzen Zahlen. Trotzdem haben beide Mengen dieselbe Mächtigkeit. Eine bei endlichen Mengen verlässliche Vorstellung trägt hier nicht unverändert: Dass Elemente fehlen, muss die Mächtigkeit nicht verkleinern.",
+                "Bei Brüchen wird die Sache unübersichtlich. Zwischen zwei verschiedenen rationalen Zahlen liegen weitere. Wie sollte diese dicht besetzte Landschaft jemals zu einer Warteschlange werden, in der jeder eine ganzzahlige Nummer bekommt?",
+                "Man ordnet die positiven Brüche nach Zähler und Nenner in einem Raster und durchläuft dessen Diagonalen. Doppelungen wie 1/2 und 2/4 werden übersprungen; null und negative Brüche kommen hinzu. Jede rationale Zahl erhält irgendwann einen Platz. Diese Diagonale ist ein Weg durchs Raster, nicht das spätere Argument gegen die Vollständigkeit einer Liste.",
+                "Die gemeinsame Größe heißt ℵ₀, Aleph-null: abzählbar unendlich. Ganze Zahlen, positive gerade Zahlen, rationale Zahlen gehören dazu. Vielleicht sind am Ende alle unendlichen Mengen so groß. Nun haben wir einen guten Grund, danach zu fragen, statt die Antwort bloß vorauszusetzen."
+              ],
+              "covers": [
+                "countable-infinity-chairs-rationals"
+              ]
+            },
+            {
+              "heading": "III. Die fehlende Zeile",
+              "paragraphs": [
+                "Jemand legt uns eine Liste vor, auf der angeblich sämtliche reellen Zahlen zwischen null und eins stehen. In jeder Zeile eine Dezimalzahl; die Zeilen tragen die Nummern 1, 2, 3 und so weiter.",
+                "Wir müssen nicht die ganze Liste prüfen. Wir lesen diagonal: die erste Nachkommastelle der ersten Zeile, die zweite der zweiten, die dritte der dritten. Jede Zeile liefert eine Stelle, an der wir von ihr abweichen können.",
+                "Nun bilden wir eine neue Dezimalzahl ausschließlich aus Einsen und Zweien. Steht an der betrachteten Stelle eine Eins, schreiben wir eine Zwei, sonst eine Eins. Von Zeile eins unterscheidet sich unsere Zahl an Stelle eins, von Zeile zwei an Stelle zwei, von Zeile n an Stelle n.",
+                "Die Beschränkung auf Eins und Zwei vermeidet eine kleine, wichtige Falle: 0,4999… und 0,5000… bezeichnen dieselbe reelle Zahl. Verschiedene Ziffernfolgen sind nicht immer verschiedene Zahlen. Auch ein schöner Beweis schuldet uns diese Genauigkeit.",
+                "In welcher Zeile steht nun die neue Zahl? Nicht in der ersten, denn dort stimmt die erste Stelle nicht. Nicht in der zweiten, dort stimmt die zweite nicht. Auf welche Zeile wir auch zeigen: Gerade für diese wurde bereits ein Unterschied eingebaut.",
+                "Unsere Zahl liegt trotzdem zwischen null und eins. Sie fehlt also. Der Liste mangelt es nicht lediglich an Papier. Jede durch positive ganze Zahlen nummerierte Liste lässt sich auf diese Weise widerlegen.",
+                "Das ist eine heutige Darstellung des Arguments von 1891 mit Dezimalzahlen, keine Abschrift von Cantors damaligem Wortlaut. Sein Beweis von 1874 ging einen anderen Weg. Entscheidend ist der Übergang: Wir scheitern nicht bloß daran, mit dem Aufzählen fertig zu werden; wir beweisen, dass eine solche vollständige Aufzählung unmöglich ist.",
+                "Turings spätere Umkehrung besitzt eine Familienähnlichkeit. Sie betrifft aber Programme und ein angeblich universelles Entscheidungsverfahren, nicht einfach eine weitere fehlende Dezimalzahl. Eine Methode kann weiterwandern. Gegenstände, Voraussetzungen und Ergebnis müssen jeweils neu bestimmt werden."
+              ],
+              "covers": [
+                "diagonal-proof-decimal-boundary"
+              ]
+            },
+            {
+              "heading": "IV. Noch eine Stufe",
+              "paragraphs": [
+                "ℵ₀ bezeichnet die Mächtigkeit der natürlichen Zahlen, c die der reellen Zahlen. Wir wissen: c ist größer. Könnte dies die letzte Unendlichkeit sein?",
+                "Cantor gibt uns eine wiederholbare Operation. Wir nehmen sämtliche Teilmengen einer Menge zusammen; ihre Gesamtheit heißt Potenzmenge. Aus einer Gruppe mit zwei Personen können wir niemanden auswählen, die erste Person, die zweite oder beide. Das ergibt vier Möglichkeiten.",
+                "Die Potenzmenge ist stets mächtiger als die Ausgangsmenge. Angenommen, jedem Element wäre eine Teilmenge zugeordnet, und die Zuordnung erfasste alle Teilmengen. Sammeln wir nun genau jene Elemente, die nicht in ihrer jeweils zugeordneten Teilmenge liegen. Diese neue Teilmenge lässt sich keinem Element zuordnen, ohne einen Widerspruch über dessen Zugehörigkeit zu erzeugen.",
+                "Welche Menge man uns auch gibt, es gibt eine größere Mächtigkeit. Kein größter Gipfel beendet das Verfahren.",
+                "Doch die Zeichen können uns verführen. ℵ₀, ℵ₁, ℵ₂ benennen aufeinanderfolgende unendliche Mächtigkeiten. Die Potenzmenge zu bilden führt nicht notwendig zum unmittelbar nächsten Aleph. Wer beides als dieselbe Treppe zeichnet, beantwortet unbemerkt eine schwierige Frage.",
+                "Unendlichkeit ist genauer geworden, nicht restlos beherrscht. Der Gewinn besteht nicht in einer letzten Aussichtsplattform über allem. Er besteht in etwas Arbeitsfähigerem: einer präzisen Möglichkeit zu fragen, was als Nächstes kommen könnte."
+              ],
+              "covers": [
+                "power-sets-not-successor-alephs"
+              ]
+            },
+            {
+              "heading": "V. Zwischen zwei Stufen",
+              "paragraphs": [
+                "ℵ₁ ist die kleinste unendliche Mächtigkeit oberhalb von ℵ₀. Ist c gleich ℵ₁? Anders gefragt: Liegt zwischen dem abzählbar Unendlichen und dem Kontinuum noch eine andere Größe?",
+                "Das ist die Kontinuumshypothese. Cantor rang jahrelang mit ihr. Wir können uns die Erschöpfung wiederholter Anläufe vorstellen. Eine schwierige Aufgabe ist jedoch für sich genommen keine medizinische Erklärung für den Menschen, der daran arbeitet.",
+                "Hilbert setzte die Frage 1900 an die erste Stelle seiner berühmten Problemliste. Mit Cantors Scheitern verschwand sie nicht. Spätere Mathematiker veränderten unser Verständnis davon, was ihre Entscheidung überhaupt verlangen könnte.",
+                "Gödel erzielte 1938 ein Ergebnis zur relativen Widerspruchsfreiheit und veröffentlichte 1940 seine Monografie; Cohen lieferte 1963 das ergänzende Ergebnis. Zusammengenommen besagen sie: Falls die üblichen mengentheoretischen Axiome ZFC widerspruchsfrei sind, lassen sich in ZFC weder die Hypothese noch ihre Verneinung beweisen.",
+                "In ZFC: Diese Einschränkung darf nicht fehlen. Das Ergebnis verbietet nicht jedem denkbaren mathematischen Rahmen, die Frage zu behandeln. Neue Axiome und verschiedene Modelle wurden Teil der weiteren Forschung. Auch für ihre Wahl braucht es Gründe, nicht nur eine Vorliebe für eine Antwort.",
+                "Manchmal fehlt ein noch nicht gefundener Gedankenschritt. Manchmal bestimmen die gewählten Regeln die Antwort nicht. Beides unterscheiden zu können ist ein Fortschritt. Ein offenes Problem muss weder ein persönliches Versagen belegen noch irgendeine Demütigung rechtfertigen."
+              ],
+              "covers": [
+                "continuum-relative-independence"
+              ]
+            },
+            {
+              "heading": "VI. Zwischen zwei Schreibtischen",
+              "paragraphs": [
+                "Kronecker war ein bedeutender Gegner. Er stellte wesentlich engere Anforderungen an zulässige mathematische Gegenstände und Verfahren. Der Streit hatte einen sachlichen Kern; er spielte sich zugleich unter ungleich verteilter beruflicher Macht ab.",
+                "Dennoch lässt sich Cantors Laufbahn nicht auf einen böswilligen Torwächter und allgemeine Ablehnung reduzieren. Weierstraß und andere unterstützten ihn. Er arbeitete jahrzehntelang in Halle und half, eine mathematische Gemeinschaft aufzubauen. Unterstützung, Feindschaft, Enttäuschung und Krankheit haben nicht alle dieselbe Ursache.",
+                "Und da war Dedekind. Ihr Briefwechsel von 1873 war keine Einbahnstraße, auf der ein Genie seine Entdeckungen einem Publikum verkündete. Zwei Mathematiker tauschten Fragen, Beweise und Verbesserungen aus. Das Denken ging weiter, weil Papier zwischen ihren Schreibtischen wanderte.",
+                "Zu dieser Geschichte gehört eine unbeglichene Schuld der Anerkennung. Dedekind hielt fest, dass sein Beweis und seine Verbesserungen ohne angemessene öffentliche Würdigung in Cantors Aufsatz von 1874 eingegangen waren. Cantors bleibende Leistung lässt diese Aufzeichnung nicht verschwinden.",
+                "Quanta berichtete 2026 über einen lange für verloren gehaltenen Brief, den Demian Goos 2025 in Halle aufgefunden hatte. Das Schreiben vom 30. November 1873 enthält Dedekinds Beweis für die Abzählbarkeit der algebraischen Zahlen. Neue Berichterstattung, erhaltene Dokumente und Vermutungen über Beweggründe sind nicht dieselbe Art von Beleg.",
+                "Das ist keine überraschende Auflösung, nach der alles gestohlen gewesen wäre. Beiträge zur Überabzählbarkeit und zu transfiniten Zahlen müssen weiterhin einzeln beurteilt werden. Dedekind ist aber auch nicht bloß dazu da, Cantor als Figur interessanter zu machen. Sein Name gehört zu seiner Arbeit.",
+                "Wer ungerecht behandelt wurde, kann seinerseits jemand anderem Unrecht tun. Das muss deutlich benannt werden. Es gibt jedoch kein Gesetz der Erhaltung von Verletzungen: Erlittenes Unrecht macht späteres Fehlverhalten weder unausweichlich noch entschuldbar.",
+                "Ein Leben zu verstehen ist schwieriger, als es grenzenlos zu verteidigen. Wir müssen der Leistung Raum lassen, dem Leiden und dem Menschen, dessen Beitrag nicht angemessen genannt wurde."
+              ],
+              "covers": [
+                "dedekind-credit-and-kronecker"
+              ]
+            },
+            {
+              "heading": "VII. Drei verschiedene Grenzen",
+              "paragraphs": [
+                "Cantor, Gödel, Turing: Die Namen nebeneinanderzustellen liegt nahe. Jeder lässt eine mächtige Erwartung von Vollständigkeit auf eine streng bestimmte Grenze stoßen.",
+                "Cantor schließt aus, alle reellen Zahlen durch natürliche Zahlen aufzuzählen. Gödel untersucht effektiv axiomatisierte formale Systeme, die stark genug für Arithmetik sind. Turing fragt nach einem universellen Algorithmus, der sämtliche Fälle eines bestimmten Problems entscheidet. Das sind nicht drei Fassungen desselben Satzes.",
+                "Diagonalkonstruktionen, Kodierungen und Selbstbezüge verbinden diese Arbeiten. Listen, Beweissysteme und Programme bleiben dennoch verschiedene Gegenstände. Die Unabhängigkeit der Kontinuumshypothese ist nicht bloß das Halteproblem unter anderem Namen.",
+                "Ein philosophischer Leser kann darin eine Einladung zur Bescheidenheit finden: Verstehe ein leistungsfähiges Werkzeug und frage, wo seine Leistung gilt. Das ist eine Deutung der Mathematik, kein mathematischer Beweis für jede philosophische Folgerung, die uns lieb wäre.",
+                "Vor allem dürfen Krankheit, Verfolgung und Tod nicht zur Schlussfolgerung werden: Wer Grenzen entdeckt, wird von ihnen vernichtet. Turing wurde staatlich verfolgt; Cantor litt wiederholt an psychischen Erkrankungen. Ihre Leben sind keine Abbildungen im Anhang eines Lehrsatzes.",
+                "Begrenzte Verfahren bestehen neben dem Bedürfnis nach Freunden, Ruhe, Arbeit und Fürsorge. Wer Leiden zum Echtheitszertifikat einer tiefen Einsicht macht, fügt dem Menschen eine weitere Zumutung zu, den er angeblich würdigt."
+              ],
+              "covers": [
+                "cantor-godel-turing-distinct-limits"
+              ]
+            },
+            {
+              "heading": "VIII. Kein Gipfel heißt nicht: kein Weg",
+              "paragraphs": [
+                "Kehren wir zur Treppe zurück. An jeder Stelle können wir fragen, ob es eine größere Menge gibt. Auch von noch so großer Höhe aus wird die Antwort nicht plötzlich nein lauten.",
+                "Andere große Denkgebäude kommen in den Sinn: Platons Idee des Guten, Hegels System. Hier kann ein Vergleich beginnen, aber nicht schon enden. Ein Satz über Mächtigkeiten widerlegt nicht unmittelbar die Ideenlehre und entscheidet nicht über das Ziel der Geschichte.",
+                "Cantor selbst beschäftigten religiöse Fragen tief. Er unterschied das mathematisch Transfinite vom absolut Unendlichen der Theologie. Ihn zum Mann zu erklären, der alle letzten Fragen abgeschafft habe, würde einen wichtigen Teil seines Denkens zum Schweigen bringen.",
+                "Seine Arbeit ähnelt eher dem Bau eines besseren Messinstruments als der Entdeckung, dass nichts möglich sei. Abzählbarkeit, Überabzählbarkeit, Potenzmengen: Jede Unterscheidung schafft einen verlässlicheren Platz für den nächsten Schritt.",
+                "Man muss nicht alles besitzen, bevor man die vor einem liegende Arbeit tun kann. Und niemand muss die Mengenlehre beherrschen, um die Veränderung zu bemerken: Aus einem unbestimmten Immerweiter ist etwas geworden, das Menschen gemeinsam bestreiten, verbessern und untersuchen können.",
+                "Die Treppe hat keine oberste Stufe. Daraus folgt nicht, dass heute kein Schritt möglich wäre. Cantors Mathematik hinterlässt uns den ersten Satz; sie verpflichtet uns nicht, den zweiten hinzuzufügen."
+              ],
+              "covers": [
+                "staircase-and-absolute-infinite"
+              ]
+            },
+            {
+              "heading": "IX. Hier ist noch ein Stuhl",
+              "paragraphs": [
+                "Cantor starb am 6. Januar 1918 mit zweiundsiebzig Jahren in einer psychiatrischen Klinik in Halle. Wiederkehrende Erkrankungen prägten sein späteres Leben; der Krieg erschwerte die Lebensbedingungen. Das lässt sich erzählen, ohne eine Stimme aus dem Off zu behaupten, das Unendliche habe schließlich seinen Verstand verlangt.",
+                "Hilberts berühmtes Bild vom Paradies, das Cantor geschaffen habe, stammt aus den Jahren nach dessen Tod. Es beschreibt eine Öffnung der Mathematik, nicht den Alltag ihres Urhebers. Der spätere Triumph eines Fachs kann nicht rückwärts reisen und einem Kranken Gesellschaft leisten.",
+                "An der erfundenen Brücke dieser Reihe blickt Cantor noch immer nach oben. Sein Stift zeichnet ℵ₀ und ℵ₁ in die Luft. Dahinter ist weiterer Raum.",
+                "Wir müssen ihm keine angeblich wahnsinnigen Augen geben, weil er zu viel gesehen hätte. Vielleicht ist er einfach jemand, der beim Erklären lebhaft wird und hofft, dass ein anderer ihn versteht.",
+                "Tschechow tritt etwas näher. Hume legt sein Backgammon beiseite. Turing hält ein Blatt mit Zeichen; niemand verlangt von ihm, sein Leben auf eine letzte Moral zu verkürzen.",
+                "Cantor darf fortfahren. Er darf auch eine Pause machen. Jemand wird zuhören, ohne dafür einen weiteren erstaunlichen Satz zu verlangen.",
+                "Während er sich ausruht, verschwinden die Stufen nicht. Ein Mensch schuldet dem Weg, den er eröffnet hat, nicht seine vollständige Erschöpfung.",
+                "Oben geht es weiter. Hier darf trotzdem ein Stuhl stehen."
+              ],
+              "covers": [
+                "illness-care-and-imagined-bridge"
+              ]
+            }
+          ],
+          "notes": [
+            "Der Beweis von 1874 und das Diagonalargument von 1891 sind zu unterscheiden; die diagonale Aufzählung rationaler Zahlen ist ein anderes Verfahren. Eine Potenzmenge ergibt nicht notwendig das nächste Aleph. Die Unabhängigkeit der Kontinuumshypothese setzt widerspruchsfreies ZFC voraus und gilt für ZFC. Auch der Vergleich mit Gödel benötigt die jeweiligen Voraussetzungen zu Widerspruchsfreiheit, effektiver Axiomatisierung und Arithmetik; es handelt sich nicht um einen einzigen Satz.",
+            "Die Frage der Anerkennung stützt sich auf die Briefgeschichte und Quantas Bericht von 2026 über einen wiedergefundenen Brief. Weder werden sämtliche Leistungen anderen zugeschrieben noch Motive als erwiesen ausgegeben. Mathematische Schwierigkeiten sind keine Diagnosen; die Sätze beweisen auch nicht SAE insgesamt. Hilberts Paradiesbild entstand nach Cantors Tod, das Treffen an der Brücke ist erfunden."
+          ]
+        },
+        "es": {
+          "title": "Cantor: más grande que el infinito",
+          "deck": "De una silla para cada persona a una escalera sin último peldaño. Los infinitos tienen distintos tamaños; comprender a Cantor también exige dejar espacio a la enfermedad, a Dedekind y al descanso.",
+          "sections": [
+            {
+              "heading": "I. ¿Cuánto mide lo infinito?",
+              "paragraphs": [
+                "Cuente hasta un millón. Todavía puede sumar uno. Y otro. Por mucho que avance, siempre habrá un número más.",
+                "Así suele entrar el infinito en nuestra vida: como un camino que no termina. Preguntar cuál de dos infinitos es mayor parece no haber entendido la palabra. Si ninguno de los recorridos puede acabarse, ¿qué sentido tendría comparar su tamaño?",
+                "Cantor entró por otro lado. Dejemos de buscar el final. Si podemos emparejar cada elemento de un conjunto con exactamente uno del otro, sin que quede ninguno suelto, ¿diremos que ambos tienen el mismo tamaño?",
+                "Suena más a repartir sillas que a transformar las matemáticas. Sin embargo, dentro de esa pregunta se abre un territorio. El infinito empieza a adquirir una forma que podemos investigar, en vez de seguir siendo un gesto de la mano hacia la lejanía.",
+                "Cantor publicó en 1874 su resultado sobre la imposibilidad de enumerar los números reales; el célebre argumento diagonal llegó en 1891. Entre ambas fechas hubo cálculos, cartas, correcciones y trabajo ajeno. El infinito no entró en las matemáticas con un solo relámpago.",
+                "Sigamos primero el argumento y no adelantemos la tragedia. Una afirmación matemática necesita una demostración; una persona que padece una enfermedad mental necesita cuidados. Hacer que una cosa explique la otra no vuelve más profunda la historia. La vuelve menos cierta."
+              ],
+              "covers": [
+                "pairing-and-two-proof-dates"
+              ]
+            },
+            {
+              "heading": "II. Una silla para cada persona",
+              "paragraphs": [
+                "En una sala llena podemos comprobar si hay tantas sillas como personas sin contar antes unas y otras. Basta con que cada persona ocupe una silla distinta: nadie de pie, ningún asiento vacío. Esa es la intuición cotidiana de una correspondencia uno a uno.",
+                "Emparejemos ahora los enteros positivos 1, 2, 3, 4 con 2, 4, 6, 8. Cada número tiene su pareja par, y cada par positivo encuentra compañero. La regla no deja de funcionar porque nosotros no podamos terminar de aplicarla.",
+                "Los pares siguen siendo una parte propia de los enteros positivos. Aun así, los dos conjuntos tienen la misma cardinalidad. Una intuición fiable para las colecciones finitas no se traslada intacta: quitar elementos no tiene por qué reducir esa medida del tamaño.",
+                "Las fracciones parecen más difíciles. Entre dos racionales distintos siempre hay otros. ¿Cómo convertir un paisaje tan apretado en una fila donde cada cual reciba un turno señalado con un entero?",
+                "Se colocan las fracciones positivas en una cuadrícula, según numerador y denominador, y se recorren sus diagonales. Se saltan repeticiones como 1/2 y 2/4; se incorporan el cero y las fracciones negativas. Cada racional acaba teniendo lugar. Esta diagonal es una ruta por la cuadrícula, no el argumento posterior que mostrará que cierta lista siempre deja algo fuera.",
+                "El tamaño común se llama ℵ₀, alef cero: infinito numerable. Enteros, pares positivos y racionales caben en él. Quizá todos los conjuntos infinitos acaben midiendo lo mismo. Ahora tenemos un motivo para preguntarlo, en lugar de dar por supuesta la respuesta."
+              ],
+              "covers": [
+                "countable-infinity-chairs-rationals"
+              ]
+            },
+            {
+              "heading": "III. El número que falta",
+              "paragraphs": [
+                "Suponga que alguien le entrega una lista que, según asegura, contiene todos los números reales entre cero y uno. Hay un decimal en cada fila, y las filas llevan los números 1, 2, 3 y así sucesivamente.",
+                "No hace falta examinar la lista entera. Lea su diagonal: la primera cifra decimal de la primera fila, la segunda de la segunda, la tercera de la tercera. Cada fila nos da una posición en la que podemos llevarle la contraria.",
+                "Construya otro decimal utilizando solo unos y doses. Si la cifra examinada es un uno, escriba un dos; en cualquier otro caso, un uno. El nuevo número difiere de la primera fila en la primera posición, de la segunda en la segunda y de la fila n en la posición n.",
+                "Elegir solo unos y doses evita una trampa pequeña pero importante: 0,4999… y 0,5000… representan el mismo número real. Dos escrituras diferentes no siempre indican dos números distintos. Una demostración hermosa también tiene que cuidar esos detalles.",
+                "¿En qué fila aparece el número nuevo? En la primera no, porque falla su primera cifra. En la segunda tampoco. Señale cualquier fila: ya hemos preparado una diferencia precisamente para ella.",
+                "El recién llegado sigue estando entre cero y uno, pero no figura en la lista. El problema no es que a esta lista particular le falte papel. Cualquier lista numerada por los enteros positivos puede ser derrotada del mismo modo.",
+                "Esta es una presentación moderna, en decimales, del argumento de 1891, no una reproducción literal del texto de Cantor. Su demostración de 1874 seguía otro camino. Importa el paso de no conseguir acabar una enumeración a demostrar que tal enumeración completa es imposible.",
+                "La inversión que Turing realizará después tiene un aire de familia, pero se refiere a programas y a un supuesto procedimiento universal de decisión, no simplemente a otro decimal ausente. El método viaja. Los objetos, las condiciones y las conclusiones deben precisarse de nuevo."
+              ],
+              "covers": [
+                "diagonal-proof-decimal-boundary"
+              ]
+            },
+            {
+              "heading": "IV. Siempre se puede construir otro escalón",
+              "paragraphs": [
+                "Llamemos ℵ₀ al tamaño de los naturales y c al de los reales. Sabemos que c es mayor. ¿Podría ser el último infinito?",
+                "Cantor ofrece una operación que se puede repetir: reunir todos los subconjuntos de un conjunto. Esa nueva colección es su conjunto potencia. De un grupo de dos personas podemos elegir a nadie, a la primera, a la segunda o a ambas. Cuatro posibilidades.",
+                "El conjunto potencia siempre tiene una cardinalidad mayor. Supongamos que a cada elemento le asignamos un subconjunto y pretendemos cubrirlos todos. Reunamos entonces los elementos que no pertenecen al subconjunto que les tocó. Ese nuevo subconjunto no puede quedar asignado a ningún elemento sin producir una contradicción sobre la pertenencia de ese mismo elemento.",
+                "Dado un conjunto, hay un tamaño mayor. No nos espera en la cumbre una cardinalidad máxima que cierre el procedimiento.",
+                "Los símbolos, sin embargo, pueden engañarnos. ℵ₀, ℵ₁ y ℵ₂ designan cardinalidades infinitas sucesivas. Formar el conjunto potencia no lleva necesariamente al siguiente alef. Dibujar ambas operaciones como una sola escalera introduce, sin avisar, la respuesta a una pregunta difícil.",
+                "El infinito se ha vuelto más preciso, no completamente dominado. El logro no nos concede un mirador definitivo por encima de todo. Nos proporciona algo más útil para seguir trabajando: una manera exacta de preguntar qué puede venir después."
+              ],
+              "covers": [
+                "power-sets-not-successor-alephs"
+              ]
+            },
+            {
+              "heading": "V. Entre un escalón y otro",
+              "paragraphs": [
+                "ℵ₁ es la menor cardinalidad infinita mayor que ℵ₀. ¿Es c igual a ℵ₁? Dicho de otro modo: ¿existe algún tamaño estrictamente intermedio entre el infinito numerable y el continuo?",
+                "Esa es la hipótesis del continuo. Cantor intentó resolverla durante años. Podemos imaginar el cansancio de volver a empezar, pero un problema difícil no constituye por sí solo una explicación médica de la vida de quien lo estudia.",
+                "Hilbert situó la cuestión en el primer puesto de su famosa lista de problemas de 1900. La pregunta no desapareció porque Cantor no lograra cerrarla. Otros matemáticos transformarían después nuestra idea de lo que hacía falta para resolverla.",
+                "Gödel obtuvo en 1938 un resultado de consistencia relativa, desarrollado en una monografía de 1940; Cohen aportó el resultado complementario en 1963. Juntos establecen que, si los axiomas habituales de la teoría de conjuntos, ZFC, son consistentes, en ZFC no se puede demostrar ni la hipótesis ni su negación.",
+                "En ZFC: esas palabras son indispensables. El resultado no impide que cualquier marco matemático imaginable pueda abordar la cuestión. Nuevos axiomas y distintos modelos pasaron a formar parte de la investigación. Elegirlos también exige razones, no solo preferir una respuesta.",
+                "A veces falta un razonamiento que todavía no hemos encontrado. Otras veces las reglas adoptadas no determinan la respuesta. Saber distinguirlo es avanzar. Un problema abierto no tiene por qué probar la insuficiencia de una persona, y mucho menos autorizar su humillación."
+              ],
+              "covers": [
+                "continuum-relative-independence"
+              ]
+            },
+            {
+              "heading": "VI. Dos escritorios",
+              "paragraphs": [
+                "Kronecker fue un adversario importante. Sus exigencias acerca de los objetos y procedimientos matemáticos admisibles eran mucho más restrictivas. El desacuerdo tenía contenido intelectual real y, al mismo tiempo, transcurría en un mundo donde el poder profesional no estaba repartido por igual.",
+                "Pero la trayectoria de Cantor no se reduce a un guardián malicioso y al rechazo de todos los demás. Weierstrass y otros lo apoyaron; trabajó durante décadas en Halle y contribuyó a construir una comunidad matemática. Apoyo, hostilidad, desilusión y enfermedad no obedecen a una sola causa.",
+                "También estaba Dedekind. Su correspondencia de 1873 no era la transmisión de descubrimientos de un genio hacia un público pasivo. Dos matemáticos intercambiaban preguntas, pruebas y mejoras. El pensamiento continuaba porque los papeles iban de una mesa a la otra.",
+                "En esta historia queda una deuda de reconocimiento. Dedekind dejó constancia de que su demostración y sus mejoras habían entrado en el artículo de Cantor de 1874 sin el debido crédito público. La importancia duradera de Cantor no hace desaparecer ese testimonio.",
+                "En 2026, Quanta informó sobre una carta que se creía perdida y que Demian Goos había localizado en Halle en 2025. Fechada el 30 de noviembre de 1873, contiene la demostración de Dedekind de la numerabilidad de los números algebraicos. La noticia reciente, los documentos conservados y las conjeturas sobre motivos no son evidencias intercambiables.",
+                "Esto no descubre de pronto que todo hubiera sido robado. Las contribuciones a la no numerabilidad y a los números transfinitos siguen exigiendo un examen particular. Tampoco debe Dedekind existir solo para volver más interesante al personaje de Cantor. Su nombre corresponde al trabajo que hizo.",
+                "Alguien que ha recibido un trato injusto puede tratar injustamente a otra persona. Hay que decirlo con claridad. Pero no existe una ley de conservación del daño: haber sido herido no hace inevitable ni excusable herir después.",
+                "Comprender una vida cuesta más que defenderla sin límite. Hay que dejar sitio a la obra, al sufrimiento y a la persona cuyo aporte quedó sin reconocimiento suficiente."
+              ],
+              "covers": [
+                "dedekind-credit-and-kronecker"
+              ]
+            },
+            {
+              "heading": "VII. Tres límites distintos",
+              "paragraphs": [
+                "Cantor, Gödel, Turing: resulta tentador reunir los nombres. Cada uno hace que una expectativa poderosa de totalidad encuentre un límite riguroso.",
+                "Cantor descarta enumerar todos los reales mediante los naturales. Gödel investiga sistemas formales efectivamente axiomatizados y suficientemente potentes para la aritmética. Turing pregunta si un algoritmo universal puede decidir todos los casos de cierto problema. No son tres versiones de un mismo teorema.",
+                "Las construcciones diagonales, la codificación y la autorreferencia trazan una conexión intelectual importante. Pero listas, sistemas de prueba y programas son objetos diferentes. La independencia de la hipótesis del continuo no es simplemente el problema de la parada con otro nombre.",
+                "Un lector de filosofía puede encontrar aquí una invitación a la modestia: entender una herramienta poderosa y preguntar hasta dónde se aplica su poder. Eso es una lectura de las matemáticas, no una demostración matemática de cualquier conclusión filosófica que deseemos extraer.",
+                "Sobre todo, la enfermedad, la persecución y la muerte no deben convertirse en el corolario: quienes descubren límites son destruidos por ellos. Turing sufrió persecución estatal; Cantor padeció enfermedades recurrentes. Sus vidas no son ilustraciones añadidas al margen de unos teoremas.",
+                "Los métodos limitados conviven con la necesidad de amigos, descanso, trabajo y cuidados. Convertir el sufrimiento en certificado de profundidad impone otra carga a la persona que decimos recordar."
+              ],
+              "covers": [
+                "cantor-godel-turing-distinct-limits"
+              ]
+            },
+            {
+              "heading": "VIII. Sin cumbre no significa sin camino",
+              "paragraphs": [
+                "Volvamos a la escalera. En cualquier punto podemos preguntar si existe un conjunto mayor. Subir a una altura suficientemente impresionante no hará que la respuesta pase a ser no.",
+                "Podemos pensar en otras grandes arquitecturas: el Bien de Platón, el sistema de Hegel. La comparación puede empezar ahí, pero no terminar ahí. Un teorema sobre cardinalidades no refuta directamente las Ideas ni decide hacia dónde se dirige la historia.",
+                "El propio Cantor tenía profundas inquietudes religiosas y distinguía lo transfinito matemático de lo absolutamente infinito de la teología. Presentarlo como el hombre que abolió todas las preguntas últimas borraría una parte importante de su pensamiento.",
+                "Su obra se parece más a aprender a construir un instrumento de medida mejor que a descubrir que nada es posible. Numerabilidad, no numerabilidad, conjuntos potencia: cada distinción ofrece un lugar más seguro donde apoyar el pie.",
+                "No hace falta poseerlo todo antes de trabajar en lo que tenemos delante. Ni dominar la teoría de conjuntos para advertir la transformación: un vago para siempre se ha vuelto algo que las personas pueden discutir, corregir e investigar juntas.",
+                "La escalera no tiene un peldaño más alto que todos los demás. Eso no significa que hoy no podamos subir uno. La matemática de Cantor nos deja la primera afirmación; no nos exige aceptar la segunda."
+              ],
+              "covers": [
+                "staircase-and-absolute-infinite"
+              ]
+            },
+            {
+              "heading": "IX. Aquí también cabe una silla",
+              "paragraphs": [
+                "Cantor murió el 6 de enero de 1918, a los setenta y dos años, en un hospital psiquiátrico de Halle. Las recaídas marcaron su vejez y la guerra empeoró las condiciones de vida. Podemos recordarlo sin añadir una voz solemne que anuncie que el infinito acabó cobrándose su razón.",
+                "La célebre imagen de Hilbert sobre el paraíso creado por Cantor pertenece a los años posteriores a su muerte. Describe una apertura de las matemáticas, no la vida cotidiana de su creador. El triunfo tardío de una disciplina no puede viajar al pasado para acompañar a un enfermo.",
+                "En el puente imaginario de esta serie, Cantor sigue mirando hacia arriba. Su pluma dibuja ℵ₀ y ℵ₁ en el aire. Más allá hay sitio.",
+                "No necesita los supuestos ojos de loco de quien ha visto demasiado. Puede ser, simplemente, alguien que se anima al explicar y desea que otra persona lo entienda.",
+                "Chéjov se acerca un poco. Hume deja su backgammon. Turing sostiene una hoja de símbolos; nadie le exige reducir su vida a una moraleja final.",
+                "Cantor puede seguir o descansar un rato. Habrá alguien dispuesto a escucharlo sin cobrarle otro teorema asombroso como entrada.",
+                "Los peldaños no desaparecerán mientras descanse. Tampoco le debe una persona su agotamiento completo al camino que abrió.",
+                "Arriba hay más. Aquí también puede haber una silla."
+              ],
+              "covers": [
+                "illness-care-and-imagined-bridge"
+              ]
+            }
+          ],
+          "notes": [
+            "La prueba de 1874 y el argumento diagonal de 1891 son distintos; enumerar racionales recorriendo una cuadrícula es otro uso de la diagonal. El conjunto potencia no tiene por qué dar el siguiente alef. La independencia de la hipótesis del continuo presupone ZFC consistente y se refiere a ZFC. La comparación con Gödel exige también las condiciones pertinentes de consistencia, axiomatización efectiva y aritmética: no se trata de un único teorema.",
+            "La cuestión del reconocimiento se apoya en la historia de la correspondencia y en el reportaje de Quanta de 2026 sobre una carta localizada recientemente. No atribuye toda la obra a otros ni da por probados los motivos. Los problemas matemáticos no son diagnósticos, y los teoremas no demuestran SAE en su conjunto. La imagen del paraíso de Hilbert es posterior a la muerte de Cantor; el encuentro en el puente es ficticio."
+          ]
+        },
+        "ko": {
+          "title": "칸토어, 무한보다 더 크게",
+          "deck": "한 사람에게 의자 하나를 배정하는 데서 꼭대기 없는 계단까지. 무한에는 서로 다른 크기가 있다. 칸토어를 이해하려면 질환과 데데킨트의 기여, 쉬어 갈 자리도 함께 보아야 한다.",
+          "sections": [
+            {
+              "heading": "I. 무한에도 크기가 있을까",
+              "paragraphs": [
+                "백만까지 세었다고 해 보자. 거기에 하나를 더할 수 있다. 그다음에도 하나를 더할 수 있다. 아무리 멀리 가도 다음 수가 기다리고 있다.",
+                "우리는 대개 이런 식으로 무한을 만난다. 끝나지 않는 길이다. 그런데 두 무한 가운데 어느 쪽이 더 크냐고 묻는다면, 질문부터 잘못된 것처럼 들린다. 둘 다 끝까지 갈 수 없다면 무엇을 비교한다는 말인가.",
+                "칸토어는 방향을 바꾸었다. 끝에 도착하려는 일은 잠시 접어 두자. 한쪽의 모든 것을 다른 쪽의 것과 하나씩 짝지었을 때 어느 쪽에도 남는 것이 없다면, 두 모임의 크기가 같다고 해도 되지 않을까.",
+                "수학을 뒤집기보다는 의자를 배치하는 이야기 같다. 하지만 그 소박한 질문 안에서 새로운 땅이 열린다. 무한은 먼 곳을 가리키는 손짓에 머물지 않고, 따져 볼 수 있는 모양을 얻기 시작한다.",
+                "칸토어가 실수의 비가산성에 관한 결과를 발표한 것은 1874년이다. 널리 알려진 대각선 논법은 1891년에 나왔다. 그 사이에는 계산과 편지, 수정과 다른 사람의 작업이 있었다. 무한의 역사가 한 번의 번뜩임으로 바뀐 것은 아니다.",
+                "비극을 먼저 덧씌우지 말고 논증부터 따라가 보자. 수학적 주장은 증명을 필요로 하고, 정신질환을 겪는 사람은 돌봄을 필요로 한다. 하나로 다른 하나를 설명하려 할 때 이야기는 깊어지는 것이 아니라 사실에서 멀어진다."
+              ],
+              "covers": [
+                "pairing-and-two-proof-dates"
+              ]
+            },
+            {
+              "heading": "II. 모두에게 의자가 하나씩",
+              "paragraphs": [
+                "사람이 가득한 방에서 의자 수와 사람 수가 같은지 알아보려면 반드시 두 숫자를 먼저 셀 필요는 없다. 한 사람씩 서로 다른 의자에 앉으면 된다. 서 있는 사람도, 빈 의자도 없다면 수가 맞는다. 일대일 대응은 이 익숙한 장면에서 출발한다.",
+                "이제 양의 정수 1, 2, 3, 4를 2, 4, 6, 8과 짝지어 보자. 모든 정수에는 두 배인 짝수가 있고, 모든 양의 짝수도 제 짝을 찾는다. 우리가 끝까지 실행할 수 없다는 이유로 이 규칙이 멈추지는 않는다.",
+                "짝수는 여전히 양의 정수의 일부다. 홀수는 빠져 있다. 그런데 두 집합의 기수, 곧 이런 방식으로 비교한 크기는 같다. 유한한 모임에서는 분명하던 상식이 그대로 옮겨지지 않는다. 일부를 덜어 냈다고 반드시 크기가 작아지는 것은 아니다.",
+                "분수는 더 곤란해 보인다. 서로 다른 두 유리수 사이에는 또 다른 유리수가 있다. 이렇게 빽빽한 풍경을 어떻게 한 줄로 세워 저마다 정수 번호표를 나눠 줄 수 있을까.",
+                "양의 분수를 분자와 분모에 따라 격자에 놓고 대각선을 차례로 훑으면 된다. 1/2과 2/4처럼 같은 수는 건너뛴다. 여기에 0과 음의 분수까지 포함하면 모든 유리수가 자리를 얻는다. 이 대각선은 격자를 지나가는 경로다. 곧 나올, 어떤 목록에도 빠지는 수가 있다는 논법과는 다른 쓰임이다.",
+                "이 크기를 ℵ₀, 알레프 영이라고 부른다. 셀 수 있는 무한이다. 정수도 양의 짝수도 유리수도 여기에 들어간다. 그렇다면 모든 무한이 결국 같은 크기는 아닐까. 이제 우리는 답을 미리 정하는 대신 질문할 근거를 얻었다."
+              ],
+              "covers": [
+                "countable-infinity-chairs-rationals"
+              ]
+            },
+            {
+              "heading": "III. 목록에 없는 수 하나",
+              "paragraphs": [
+                "누군가 0과 1 사이의 실수를 전부 적었다며 목록을 내민다고 하자. 첫째 줄에도 소수 하나, 둘째 줄에도 소수 하나가 있다. 줄에는 1, 2, 3처럼 양의 정수 번호가 붙어 있다.",
+                "목록 전체를 검사할 필요는 없다. 첫째 줄의 소수 첫째 자리, 둘째 줄의 둘째 자리, 셋째 줄의 셋째 자리를 읽는다. 대각선으로 내려가면 각 줄에서 그 줄과 달라질 자리 하나를 얻는다.",
+                "새 소수는 1과 2만 써서 만든다. 읽은 숫자가 1이면 2를 쓰고, 그 밖의 숫자면 1을 쓴다. 그러면 새 수는 첫째 줄과 첫째 자리에서, 둘째 줄과 둘째 자리에서, n번째 줄과 n번째 자리에서 반드시 달라진다.",
+                "굳이 1과 2만 고르는 데는 이유가 있다. 0.4999…와 0.5000…은 겉모습은 다르지만 같은 실수다. 숫자 표기가 다르다고 언제나 다른 수인 것은 아니다. 아름다운 논증도 이런 작은 구멍을 막아야 한다.",
+                "새 수는 어느 줄에 있을까. 첫째 줄에는 없다. 첫째 자리가 다르다. 둘째 줄에도 없다. 둘째 자리가 다르다. 어느 줄을 가리키든 바로 그 줄을 피할 장치를 이미 마련해 놓았다.",
+                "그런데 새 수 역시 0과 1 사이의 실수다. 모든 수를 적었다던 목록에 없는 수가 생겼다. 종이가 부족했던 것도 아니고 이 목록만 서툴렀던 것도 아니다. 양의 정수로 줄을 매긴 어떤 목록에도 같은 방법이 통한다.",
+                "이는 1891년 논법을 소수로 설명하는 현대적인 방식이지 칸토어의 원문을 그대로 옮긴 것이 아니다. 1874년의 증명은 다른 길을 택했다. 핵심은 끝까지 세지 못했다는 경험에서, 이런 방식으로는 전부 셀 수 없다는 증명으로 넘어가는 데 있다.",
+                "훗날 튜링의 뒤집기에서도 닮은 움직임을 볼 수 있다. 하지만 거기서는 프로그램과 보편적인 판정 절차가 문제이지, 목록에서 빠진 소수 하나가 문제가 아니다. 방법이 건너갈 수는 있다. 대상과 전제와 결론은 그때마다 새로 밝혀야 한다."
+              ],
+              "covers": [
+                "diagonal-proof-decimal-boundary"
+              ]
+            },
+            {
+              "heading": "IV. 한 계단 더 만드는 법",
+              "paragraphs": [
+                "자연수의 크기를 ℵ₀, 실수의 크기를 c라고 하자. c가 더 크다는 사실은 알았다. 그렇다면 c가 마지막 무한일까.",
+                "칸토어는 되풀이할 수 있는 작업을 제시한다. 어떤 집합에서 만들 수 있는 부분집합을 전부 모으는 것이다. 이를 멱집합이라고 한다. 두 사람이 있는 모임에서는 아무도 고르지 않거나, 첫 사람만, 둘째 사람만, 두 사람 모두를 고를 수 있다. 네 가지다.",
+                "어떤 집합이든 멱집합은 원래 집합보다 크다. 각 원소에 부분집합 하나를 배정해서 모든 부분집합을 빠짐없이 대응시켰다고 해 보자. 이제 자신에게 배정된 부분집합 안에 들어 있지 않은 원소들만 모은다. 이 새 부분집합을 어느 원소에 배정해도 그 원소의 포함 여부에 모순이 생긴다.",
+                "어떤 집합을 내놓아도 더 큰 크기가 있다. 가장 큰 기수가 정상에서 기다리며 이제 그만 올라오라고 말해 주지 않는다.",
+                "하지만 기호를 조심해야 한다. ℵ₀, ℵ₁, ℵ₂는 차례로 이어지는 무한 기수들이다. 멱집합을 만드는 일이 반드시 바로 다음 알레프로 이동하는 것은 아니다. 둘을 같은 계단 그림으로 그리면 어려운 질문의 답을 슬쩍 넣어 버리게 된다.",
+                "무한은 정밀해졌지 완전히 정복된 것이 아니다. 모든 것을 내려다보는 마지막 전망대가 주어진 것도 아니다. 대신 계속 작업할 수 있는 도구를 얻었다. 다음에 무엇이 가능한지 정확히 묻는 방법이다."
+              ],
+              "covers": [
+                "power-sets-not-successor-alephs"
+              ]
+            },
+            {
+              "heading": "V. 두 계단 사이",
+              "paragraphs": [
+                "ℵ₁은 ℵ₀보다 큰 무한 기수 가운데 가장 작은 것이다. c는 ℵ₁과 같을까. 다시 말해 셀 수 있는 무한과 연속체 사이에 또 다른 크기가 있을까.",
+                "이것이 연속체 가설이다. 칸토어는 여러 해 동안 이 문제를 풀려고 애썼다. 다시 출발할 때의 피로를 짐작할 수는 있다. 그렇다고 어려운 문제가 그 사람의 질환을 설명하는 진단서가 되는 것은 아니다.",
+                "힐베르트는 1900년의 유명한 문제 목록에서 이 질문을 첫 자리에 놓았다. 칸토어가 해결하지 못했다고 질문이 사라지지 않았다. 뒤의 수학자들은 무엇을 해결이라고 부를 수 있는지부터 바꾸어 놓았다.",
+                "괴델은 1938년 상대적 무모순성 결과를 얻었고 1940년에 이를 다룬 저서를 냈다. 코언은 1963년 상보적인 결과를 내놓았다. 둘을 합치면, 통상적인 집합론 공리계 ZFC가 무모순일 경우 ZFC 안에서는 연속체 가설도 그 부정도 증명할 수 없다는 뜻이다.",
+                "ZFC 안에서라는 말을 빼면 안 된다. 가능한 모든 수학적 틀이 영원히 이 질문을 다룰 수 없다는 뜻은 아니다. 이후에는 새로운 공리와 여러 모형을 검토하는 연구가 이어졌다. 어떤 공리를 택할지도 원하는 답이 나오는가만으로 결정할 일은 아니다.",
+                "아직 찾지 못한 추론이 남아 있을 때가 있다. 채택한 규칙만으로는 답이 정해지지 않을 때도 있다. 둘을 구별하는 것 역시 진전이다. 풀리지 않은 문제가 한 사람의 무능을 증명할 필요는 없으며, 그를 모욕할 자격을 주지는 더더욱 않는다."
+              ],
+              "covers": [
+                "continuum-relative-independence"
+              ]
+            },
+            {
+              "heading": "VI. 두 개의 책상",
+              "paragraphs": [
+                "크로네커는 중요한 반대자였다. 수학에서 무엇을 대상으로 인정하고 어떤 방법을 허용할지에 관해 훨씬 엄격한 기준을 가졌다. 논쟁에는 실제 지적 쟁점이 있었고, 동시에 학계의 권력이 불균등하게 나뉜 현실도 있었다.",
+                "그렇다고 칸토어의 경력이 악의적인 문지기 한 명과 모든 사람의 거부로 설명되지는 않는다. 바이어슈트라스 등은 그를 지지했다. 칸토어는 할레에서 수십 년을 일했고 수학 공동체를 만드는 데 참여했다. 지지와 적대, 좌절과 질환에는 하나의 원인만 있지 않았다.",
+                "데데킨트도 있었다. 1873년의 편지는 천재가 청중에게 발견을 일방적으로 알린 기록이 아니다. 두 수학자가 질문과 증명과 개선안을 주고받았다. 두 책상 사이를 종이가 오갔기에 생각이 이어졌다.",
+                "여기에는 제대로 갚지 않은 인정의 빚도 남는다. 데데킨트는 자신의 증명과 개선이 칸토어의 1874년 논문에 들어갔지만 충분한 공개적 공로 표기를 받지 못했다고 기록했다. 칸토어의 큰 업적이 그 기록을 없애 주지는 않는다.",
+                "2026년 콴타는 오래 잃어버린 것으로 여겨졌던 편지를 데미안 고스가 2025년 할레에서 찾아냈다고 보도했다. 1873년 11월 30일 자 편지에는 데데킨트가 대수적 수의 가산성을 증명한 내용이 들어 있다. 최근의 보도, 남아 있는 문서, 동기에 관한 추측을 같은 종류의 증거로 취급해서는 안 된다.",
+                "그렇다고 모든 것이 훔친 업적이었다는 반전도 아니다. 비가산성과 초한수에 대한 기여는 각각 따져야 한다. 데데킨트 역시 칸토어를 더 복잡한 인물로 꾸미는 조연이어서는 안 된다. 그가 한 일에는 그의 이름이 놓여야 한다.",
+                "부당한 대우를 받은 사람이 다른 사람에게 부당하게 행동할 수 있다. 그 사실은 분명히 말해야 한다. 하지만 상처가 반드시 다른 상처로 옮겨 간다는 법칙은 없다. 피해를 입었다고 다음 잘못이 불가피해지거나 용서되는 것은 아니다.",
+                "한 생애를 이해하는 일은 무조건 옹호하는 일보다 어렵다. 성취가 들어갈 자리, 고통이 들어갈 자리, 충분히 인정받지 못한 다른 사람의 자리를 함께 남겨야 한다."
+              ],
+              "covers": [
+                "dedekind-credit-and-kronecker"
+              ]
+            },
+            {
+              "heading": "VII. 서로 다른 세 가지 경계",
+              "paragraphs": [
+                "칸토어, 괴델, 튜링. 이름을 나란히 놓고 싶어진다. 세 사람 모두 완전하게 끝낼 수 있으리라는 강한 기대가 엄밀한 한계와 만나게 했다.",
+                "칸토어는 모든 실수를 자연수로 열거할 수 없음을 보인다. 괴델은 산술을 담을 만큼 강하고 효과적으로 공리화된 형식 체계를 연구한다. 튜링은 특정 문제의 모든 경우를 판정하는 보편 알고리즘이 있는지를 묻는다. 하나의 정리를 세 번 말한 것이 아니다.",
+                "대각선 구성과 부호화와 자기 언급은 중요한 연결을 만든다. 하지만 목록과 증명 체계와 프로그램은 다른 대상이다. 연속체 가설의 독립성이 이름만 바꾼 정지 문제인 것은 아니다.",
+                "철학 독자는 여기서 겸손의 실마리를 얻을 수 있다. 강력한 도구를 이해한 뒤 그 힘이 어디까지 미치는지 묻는 것이다. 이는 수학에 대한 해석이지 우리가 바라는 모든 철학적 결론의 수학적 증명이 아니다.",
+                "무엇보다 질병과 박해와 죽음을 따름정리로 붙이면 안 된다. 한계를 발견한 사람은 그 한계에 파괴된다는 식으로 말이다. 튜링은 국가의 박해를 받았고 칸토어는 반복되는 질환을 겪었다. 그들의 생애는 정리 옆에 붙인 삽화가 아니다.",
+                "방법에 한계가 있다는 사실과 사람에게 친구, 휴식, 일, 돌봄이 필요하다는 사실은 함께 있다. 고통을 통찰의 깊이를 인증하는 표지로 만들면, 기억하겠다는 사람에게 또 다른 짐을 얹게 된다."
+              ],
+              "covers": [
+                "cantor-godel-turing-distinct-limits"
+              ]
+            },
+            {
+              "heading": "VIII. 꼭대기가 없다고 길도 없는 것은 아니다",
+              "paragraphs": [
+                "계단으로 돌아가 보자. 어느 지점에서든 더 큰 집합이 있는지 물을 수 있다. 충분히 높은 곳에 올라섰다고 그 답이 갑자기 없다고 바뀌지는 않는다.",
+                "플라톤의 선이나 헤겔의 체계 같은 거대한 사유의 건축물을 떠올릴 수 있다. 비교는 거기서 시작할 수 있지만 거기서 끝나지는 않는다. 기수에 관한 정리가 이데아론을 곧장 반박하거나 역사의 목적지를 결정해 주지는 않는다.",
+                "칸토어 자신도 종교적 물음에 깊이 관여했다. 그는 수학의 초한과 신학의 절대적 무한을 구별했다. 그를 모든 궁극적 질문을 폐기한 사람으로 그리면 정작 자신의 생각에서 중요한 부분을 지워 버린다.",
+                "그의 작업은 아무것도 할 수 없다는 발견보다는 더 나은 측정 도구를 만드는 일에 가깝다. 가산성, 비가산성, 멱집합. 구별이 하나 생길 때마다 발을 디딜 자리가 조금 더 단단해진다.",
+                "눈앞의 일을 하려면 먼저 모든 것을 가져야 하는 것은 아니다. 집합론 전체를 익히지 않아도 변화는 보인다. 막연한 영원히가 사람들이 함께 다투고 고치고 연구할 수 있는 무엇이 되었다.",
+                "계단에 가장 높은 칸은 없다. 그렇다고 오늘 한 칸도 오를 수 없다는 뜻은 아니다. 칸토어의 수학이 남기는 것은 앞의 말이지, 뒤의 말까지 받아들이라는 명령이 아니다."
+              ],
+              "covers": [
+                "staircase-and-absolute-infinite"
+              ]
+            },
+            {
+              "heading": "IX. 여기 앉아도 된다",
+              "paragraphs": [
+                "칸토어는 1918년 1월 6일 할레의 정신병원에서 일흔두 살로 세상을 떠났다. 반복되는 질환이 만년에 영향을 주었고 전쟁은 생활 여건을 악화시켰다. 무한이 마침내 그의 정신을 가져갔다는 해설을 붙이지 않고도 그 사실을 기억할 수 있다.",
+                "힐베르트가 칸토어의 낙원을 말한 유명한 표현은 칸토어 사후의 것이다. 수학에 열린 공간을 가리키는 말이지, 그 공간을 연 사람의 일상을 설명하는 말은 아니다. 한 분야의 뒤늦은 승리는 과거로 돌아가 환자의 곁을 지켜 줄 수 없다.",
+                "이 연작의 상상 속 다리에서 칸토어는 여전히 위를 바라본다. 펜으로 공중에 ℵ₀과 ℵ₁을 그린다. 그 너머에도 자리가 있다.",
+                "너무 많이 보아서 미쳐 버린 눈을 그에게 줄 필요는 없다. 설명하다가 신이 나서 누군가 알아듣기를 바라는 사람일 수 있다.",
+                "체호프가 조금 다가온다. 흄은 백개먼을 내려놓는다. 튜링은 기호가 적힌 종이를 들고 있다. 누구도 그에게 인생 전체를 마지막 교훈 하나로 줄여 말하라고 하지 않는다.",
+                "칸토어는 계속해도 되고 잠깐 멈춰도 된다. 또 하나의 놀라운 정리를 입장료로 요구하지 않고 들어 줄 사람이 있다.",
+                "쉬는 동안 계단은 사라지지 않는다. 자신이 열어 놓은 길에 완전히 소진된 몸을 바쳐야 할 의무도 없다.",
+                "위로는 더 갈 수 있다. 여기에는 의자가 있어도 된다."
+              ],
+              "covers": [
+                "illness-care-and-imagined-bridge"
+              ]
+            }
+          ],
+          "notes": [
+            "1874년의 비가산성 증명과 1891년의 대각선 논법은 다르다. 유리수 격자를 대각선으로 열거하는 방법도 구별했다. 멱집합이 반드시 다음 알레프가 되는 것은 아니다. 연속체 가설의 독립성은 ZFC의 무모순성을 전제로 하며 ZFC 안에 한정된다. 괴델과의 비교에도 무모순성, 효과적인 공리화, 충분한 산술 등의 조건이 필요하다. 세 정리는 하나가 아니다.",
+            "공로 표기 문제는 서신의 역사와 새로 찾아낸 편지에 대한 콴타의 2026년 보도를 참고했다. 모든 업적을 다른 사람에게 돌리거나 내적 동기를 확정하지 않는다. 수학 문제를 질환의 진단으로 삼지 않으며 정리를 SAE 전체의 증명으로 쓰지도 않는다. 힐베르트의 낙원 비유는 칸토어 사후의 표현이고 다리의 만남은 문학적 상상이다."
+          ]
+        }
+      },
+      "edition": {
+        "status": "full",
+        "reviewed_on": "2026-09-22",
+        "source_sha256": {
+          "zh": "4215b7a34f4dd14ac56780c604a1f26b4eb09a5cf75f3140fc7fd206a8ad68fb",
+          "en": "1fdff267767ef7bdfe798902d825bd7158211362503ffdae023bd730fa6a7bfe"
+        },
+        "required_topics": [
+          "pairing-and-two-proof-dates",
+          "countable-infinity-chairs-rationals",
+          "diagonal-proof-decimal-boundary",
+          "power-sets-not-successor-alephs",
+          "continuum-relative-independence",
+          "dedekind-credit-and-kronecker",
+          "cantor-godel-turing-distinct-limits",
+          "staircase-and-absolute-infinite",
+          "illness-care-and-imagined-bridge"
+        ]
+      },
+      "sources": [
+        {
+          "title": "Stanford Encyclopedia of Philosophy: The Continuum Hypothesis",
+          "url": "https://plato.stanford.edu/entries/continuum-hypothesis/",
+          "titles": {
+            "zh-hant": "史丹佛哲學百科：連續統假設",
+            "ja": "スタンフォード哲学百科：連続体仮説",
+            "fr": "Encyclopédie de Stanford : l'hypothèse du continu",
+            "de": "Stanford-Enzyklopädie: die Kontinuumshypothese",
+            "es": "Enciclopedia de Stanford: la hipótesis del continuo",
+            "ko": "스탠퍼드 철학백과: 연속체 가설"
+          }
+        },
+        {
+          "title": "University of St Andrews, MacTutor: Georg Cantor",
+          "url": "https://mathshistory.st-andrews.ac.uk/Biographies/Cantor/",
+          "titles": {
+            "zh-hant": "聖安德魯斯大學數學史檔案：康托爾",
+            "ja": "セント・アンドルーズ大学数学史：カントール",
+            "fr": "Université de St Andrews : biographie de Cantor",
+            "de": "Universität St Andrews: Cantors Lebenslauf",
+            "es": "Universidad de St Andrews: biografía de Cantor",
+            "ko": "세인트앤드루스대 수학사: 칸토어"
+          }
+        },
+        {
+          "title": "Halle University, Cantor-Vereinigung: history and documents",
+          "url": "https://www.cantor-vereinigung.uni-halle.de/historie/",
+          "titles": {
+            "zh-hant": "哈勒大學康托爾協會：生平與歷史材料",
+            "ja": "ハレ大学カントール協会：歴史資料",
+            "fr": "Association Cantor de l'université de Halle : documents historiques",
+            "de": "Cantor-Vereinigung der Universität Halle: historische Dokumente",
+            "es": "Asociación Cantor de la Universidad de Halle: documentos históricos",
+            "ko": "할레대 칸토어 협회: 역사 자료"
+          }
+        },
+        {
+          "title": "Quanta, 25 February 2026: The Man Who Stole Infinity (report on Dedekind correspondence)",
+          "url": "https://www.quantamagazine.org/the-man-who-stole-infinity-20260225/",
+          "titles": {
+            "zh-hant": "Quanta（2026年2月25日）：德德金書信與署名爭議報導",
+            "ja": "Quanta、2026年2月25日：デデキント書簡と功績表記の報道",
+            "fr": "Quanta, 25 février 2026 : reportage sur Dedekind et la reconnaissance des contributions",
+            "de": "Quanta, 25. Februar 2026: Bericht über Dedekinds Briefe und die Anerkennung seiner Arbeit",
+            "es": "Quanta, 25 de febrero de 2026: reportaje sobre Dedekind y el reconocimiento de su trabajo",
+            "ko": "콴타, 2026년 2월 25일: 데데킨트 서신과 공로 표기 보도"
+          }
+        }
+      ]
+    }
+  ]
+}

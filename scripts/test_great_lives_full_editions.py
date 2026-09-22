@@ -1524,6 +1524,125 @@ class FullEditionTests(unittest.TestCase):
                 self.assertIn(chain[i - 1] + '.html', page.links)
                 self.assertIn(chain[i + 1] + '.html', page.links)
 
+
+    def test_batch_17_all_three_are_reviewed_full_editions(self):
+        for number, slug in enumerate(('cantor', 'copernicus', 'sartre'), 49):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual((entry['number'], entry['movement']), (number, 4))
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                builder.validate_full_edition(entry)
+        self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full'
+                                    for e in self.entries.values()), 52)
+
+    def test_batch_17_keeps_all_nine_sections_and_full_endings(self):
+        expected = {
+            'cantor': [6, 6, 8, 6, 6, 8, 6, 6, 8],
+            'copernicus': [6] * 8 + [7],
+            'sartre': [6] * 8 + [8],
+        }
+        for slug, counts in expected.items():
+            entry = self.entries[slug]
+            for lang, copy in entry['copy'].items():
+                with self.subTest(slug=slug, lang=lang):
+                    self.assertEqual(len(copy['sections']), 9)
+                    self.assertEqual([len(s['paragraphs']) for s in copy['sections']], counts)
+                    self.assertEqual([s['covers'][0] for s in copy['sections']],
+                                     entry['edition']['required_topics'])
+                    body = ' '.join(p for s in copy['sections'] for p in s['paragraphs'])
+                    cjk = lang in ('zh-hant', 'ja', 'ko')
+                    units = len(re.sub(r'\s+', '', body)) if cjk else len(body.split())
+                    floor = 3500 if lang == 'zh-hant' else 4000 if cjk else 1800
+                    self.assertGreaterEqual(units, floor)
+
+    def test_batch_17_has_localized_notes_and_sources(self):
+        for slug, count in (('cantor', 4), ('copernicus', 7), ('sartre', 7)):
+            entry = self.entries[slug]
+            self.assertEqual(len(entry['sources']), count)
+            for source in entry['sources']:
+                self.assertEqual(set(source['titles']), set(builder.LANGS))
+                self.assertTrue(source['url'].startswith('https://'))
+                self.assertTrue(all(source['titles'].values()))
+            for lang in builder.LANGS:
+                self.assertEqual(len(entry['copy'][lang]['notes']), 2)
+
+    def test_cantor_keeps_proof_and_acknowledgment_boundaries(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('cantor', 'zh')))
+        for phrase in ('1874年', '1891年', '0.4999', '0.5000', '幂集',
+                       'ZFC是一致的', '德德金', '1873年11月30日', '不归一个原因管',
+                       '双陆棋', '这两件事不该互相冒充'):
+            self.assertIn(phrase, zh)
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('cantor', 'en')))
+        for phrase in ('power set need not', 'if the usual set-theoretic axioms ZFC are consistent',
+                       'adequate public credit', 'not three statements of one theorem',
+                       'There can also be a chair here'):
+            self.assertIn(phrase, en)
+        self.assertIn('dedekind-credit-and-kronecker', self.entries['cantor']['edition']['required_topics'])
+
+    def test_copernicus_differentiates_preface_and_later_evidence(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('copernicus', 'zh')))
+        for phrase in ('吉泽写给雷蒂库斯', '而非哥白尼', '1620年', '第谷式模型',
+                       '2009年', '2010年', '不能把那一句误作整本书最后一句'):
+            self.assertIn(phrase, zh)
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('copernicus', 'en')))
+        for phrase in ('Osiander, not written by Copernicus', 'Johannes Petreius',
+                       'Tychonic model', 'important source', 'not an astronomical theorem'):
+            self.assertIn(phrase, en)
+        self.assertIn('osiander-unauthorized-preface', self.entries['copernicus']['edition']['required_topics'])
+
+    def test_sartre_keeps_open_door_situation_and_other_people(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('sartre', 'zh')))
+        for phrase in ('门曾经打开', '不是说一切人际关系必然有毒', '自由不是全能',
+                       '受害者', '只承认可能、不承认事实', '偶然道具', '她自己有话要说'):
+            self.assertIn(phrase, zh)
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('sartre', 'en')))
+        for phrase in ('The door opens', 'Freedom is neither omnipotence',
+                       'Beauvoir is not an appendix', 'does not give No Exit a happy ending'):
+            self.assertIn(phrase, en)
+        self.assertIn('situated-freedom-without-victim-blame', self.entries['sartre']['edition']['required_topics'])
+
+    def test_batch_17_traditional_context_is_reviewed(self):
+        texts = {
+            slug: ' '.join(p for s in self.entries[slug]['copy']['zh-hant']['sections'] for p in s['paragraphs'])
+            for slug in ('cantor', 'copernicus', 'sartre')
+        }
+        for tc in texts.values():
+            for wrong in ('反復', '重復', '想象', '煙鬥', '捨恩貝格',
+                          '揭明瞭', '賬', '沈重', '咨詢', '里'):
+                self.assertNotIn(wrong, tc)
+        self.assertIn('煙斗', texts['sartre'])
+        self.assertIn('諮詢', texts['sartre'])
+        self.assertIn('署名帳', texts['cantor'])
+        self.assertIn('舍恩貝格', texts['copernicus'])
+
+    def test_batch_17_navigation_metadata_and_update_card(self):
+        from html.parser import HTMLParser
+        class Metadata(HTMLParser):
+            def __init__(self, text):
+                super().__init__()
+                self.descriptions, self.links = [], []
+                self.feed(text)
+            def handle_starttag(self, tag, attrs):
+                d = dict(attrs)
+                if tag == 'meta' and d.get('name') == 'description':
+                    self.descriptions.append(attrs)
+                if tag == 'a' and 'href' in d:
+                    self.links.append(d['href'])
+        chain = ['chekhov', 'cantor', 'copernicus', 'sartre', 'beauvoir']
+        for i, slug in enumerate(chain[1:-1], 1):
+            source = Metadata(builder.source_path_for(slug).read_text(encoding='utf-8'))
+            self.assertEqual(len(source.descriptions), 1)
+            self.assertEqual({k for k, v in source.descriptions[0]}, {'name', 'content'})
+            for lang in builder.LANGS:
+                page = Metadata((builder.SERIES / lang / (slug + '.html')).read_text(encoding='utf-8'))
+                self.assertIn(chain[i - 1] + '.html', page.links)
+                self.assertIn(chain[i + 1] + '.html', page.links)
+        latest = (builder.ROOT / 'latest.html').read_text(encoding='utf-8')
+        self.assertEqual(latest.count('data-update-id="2026-09-22-great-lives-batch-17-full"'), 1)
+        for slug in chain[1:-1]:
+            self.assertIn('essays/mingren/' + slug + '.html', Metadata(latest).links)
+
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
         self.assertIn('荷马，声音进入文字的门槛', source)
