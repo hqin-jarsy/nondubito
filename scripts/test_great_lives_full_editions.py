@@ -1858,6 +1858,116 @@ class FullEditionTests(unittest.TestCase):
         for slug in chain[1:-1]:
             self.assertIn('essays/mingren/' + slug + '.html', Metadata(latest).links)
 
+    def test_batch_20_all_three_are_reviewed_full_editions(self):
+        for number, slug in enumerate(('tolstoy', 'shakespeare', 'spinoza'), 58):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual((entry['number'], entry['movement']), (number, 4))
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                builder.validate_full_edition(entry)
+        self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full'
+                                    for e in self.entries.values()), 61)
+
+    def test_batch_20_preserves_nine_sections_and_full_prose(self):
+        for slug in ('tolstoy', 'shakespeare', 'spinoza'):
+            entry = self.entries[slug]
+            for lang in ('zh', 'en'):
+                source = builder.source_body(slug, lang)
+                self.assertEqual(len(re.findall(r'<h2\b', source)), 9)
+                self.assertGreaterEqual(len(re.findall(r'<p\b', source)), 54)
+                body = html.unescape(re.sub(r'<[^>]+>', ' ', source))
+                units = len(re.sub(r'\s+', '', body)) if lang == 'zh' else len(body.split())
+                self.assertGreaterEqual(units, 3500 if lang == 'zh' else 1800)
+            for lang, copy in entry['copy'].items():
+                with self.subTest(slug=slug, lang=lang):
+                    self.assertEqual(len(copy['sections']), 9)
+                    self.assertEqual([s['covers'][0] for s in copy['sections']],
+                                     entry['edition']['required_topics'])
+                    paragraphs = [p for s in copy['sections'] for p in s['paragraphs']]
+                    self.assertGreaterEqual(len(paragraphs), 54)
+                    self.assertGreaterEqual(len(copy['sections'][-1]['paragraphs']), 6)
+                    body = ' '.join(paragraphs)
+                    cjk = lang in ('zh-hant', 'ja', 'ko')
+                    units = len(re.sub(r'\s+', '', body)) if cjk else len(body.split())
+                    floor = 3500 if lang == 'zh-hant' else 4000 if cjk else 1800
+                    self.assertGreaterEqual(units, floor)
+
+    def test_batch_20_has_localized_notes_and_sources(self):
+        for slug in ('tolstoy', 'shakespeare', 'spinoza'):
+            entry = self.entries[slug]
+            self.assertGreaterEqual(len(entry['sources']), 3)
+            for source in entry['sources']:
+                self.assertEqual(set(source['titles']), set(builder.LANGS))
+                self.assertTrue(source['url'].startswith('https://'))
+                self.assertTrue(all(source['titles'].values()))
+            for lang in builder.LANGS:
+                self.assertEqual(len(entry['copy'][lang]['notes']), 2)
+
+    def test_tolstoy_keeps_family_agency_and_late_fiction(self):
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('tolstoy', 'en')))
+        for phrase in ('Sofia', 'Resurrection', 'Hadji Murad', 'Gerasim', 'Gandhi'):
+            self.assertIn(phrase.lower(), en.lower())
+        self.assertNotIn('he stopped writing fiction', en.lower())
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('tolstoy', 'zh')))
+        for phrase in ('11月10日', '10月28日', '11月20日', '11月7日', '儿子', '空椅子'):
+            self.assertIn(phrase, zh)
+
+    def test_shakespeare_keeps_evidence_and_interpretation_distinct(self):
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('shakespeare', 'en')))
+        for phrase in ('Quiney', '1598', 'Hand D', 'Fletcher', 'Caliban', 'Ariel', '1623',
+                       'whether Shakespeare received it is uncertain', 'eighteen previously unprinted'):
+            self.assertIn(phrase, en)
+        self.assertNotIn('We know nothing about Shakespeare', en)
+        self.assertNotIn('no letters survive at all', en.lower())
+
+    def test_spinoza_keeps_finite_difference_and_supported_independence(self):
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('spinoza', 'en')))
+        for phrase in ('1656', '1663', '1670', '1673', '1677', '1678', 'Fabritius',
+                       'financial help', 'stronger affect', 'nineteen lives'):
+            self.assertIn(phrase, en)
+        self.assertNotIn('The continuation prompt notes', en)
+        self.assertNotIn('There are no differences', en)
+        self.assertNotIn('forgotten for two hundred years', en.lower())
+
+    def test_batch_20_traditional_is_complete_and_reviewed(self):
+        for slug in ('tolstoy', 'shakespeare', 'spinoza'):
+            sections = self.entries[slug]['copy']['zh-hant']['sections']
+            source = builder.source_body(slug, 'zh')
+            self.assertEqual(len(re.findall(r'<h2\b', source)), len(sections))
+            self.assertEqual(len(re.findall(r'<p\b', source)),
+                             sum(len(s['paragraphs']) for s in sections))
+            text = ' '.join(p for s in sections for p in s['paragraphs'])
+            for wrong in ('反復', '重復', '想象', '煙鬥', '賬', '咨詢'):
+                self.assertNotIn(wrong, text)
+
+    def test_batch_20_navigation_metadata_and_update_card(self):
+        from html.parser import HTMLParser
+        class Metadata(HTMLParser):
+            def __init__(self, text):
+                super().__init__()
+                self.descriptions, self.links = [], []
+                self.feed(text)
+            def handle_starttag(self, tag, attrs):
+                d = dict(attrs)
+                if tag == 'meta' and d.get('name') == 'description':
+                    self.descriptions.append(attrs)
+                if tag == 'a' and 'href' in d:
+                    self.links.append(d['href'])
+        chain = ['bohr', 'tolstoy', 'shakespeare', 'spinoza', 'aristotle']
+        for i, slug in enumerate(chain[1:-1], 1):
+            source = Metadata(builder.source_path_for(slug).read_text(encoding='utf-8'))
+            self.assertEqual(len(source.descriptions), 1)
+            self.assertEqual({k for k, v in source.descriptions[0]}, {'name', 'content'})
+            for lang in builder.LANGS:
+                page = Metadata((builder.SERIES / lang / (slug + '.html')).read_text(encoding='utf-8'))
+                self.assertIn(chain[i - 1] + '.html', page.links)
+                self.assertIn(chain[i + 1] + '.html', page.links)
+        latest = (builder.ROOT / 'latest.html').read_text(encoding='utf-8')
+        self.assertEqual(latest.count('data-update-id="2026-09-22-great-lives-batch-20-full"'), 1)
+        for slug in chain[1:-1]:
+            self.assertIn('essays/mingren/' + slug + '.html', Metadata(latest).links)
+
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
         self.assertIn('荷马，声音进入文字的门槛', source)
