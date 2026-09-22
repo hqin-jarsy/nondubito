@@ -98,6 +98,8 @@ CHAPTERS = {
     63: ('Chapter 26 · External Things', '《外物》', '《外物》', 'https://zh.wikisource.org/wiki/莊子/外物'),
     64: ('Chapter 8 · Webbed Toes', '《骈拇》', '《駢拇》', 'https://zh.wikisource.org/wiki/莊子/駢拇'),
     65: ('Chapter 27 · Borrowed Words', '《寓言》', '《寓言》', 'https://zh.wikisource.org/wiki/莊子/寓言'),
+    66: ('Chapter 10 · Rifling Trunks', '《胠箧》', '《胠篋》', 'https://zh.wikisource.org/wiki/莊子/胠篋'),
+    67: ('Chapter 6 · The Great Ancestral Teacher', '《大宗师》', '《大宗師》', 'https://zh.wikisource.org/wiki/莊子/大宗師'),
 }
 
 def traditional_copy(converter, text):
@@ -195,14 +197,15 @@ def render_index(manifest):
     sections = ''.join(f'<section class="zz-group" id="{key}"><p class="zz-eyebrow">{numbers}</p><h2>{tri(*labels)}</h2><ol class="zz-toc">{"".join(row(i) for i in items if i["group"] == key)}</ol></section>' for key, numbers, labels in GROUPS)
     sequence = ''.join(row(i) for i in items if i['number'])
     body = f'''<nav class="reading-breadcrumbs"><a href="../../library.html">{tri('Library','文库','文庫')}</a><span>/</span><span>{tri('Chinese Classics','中国经典','中國經典')}</span></nav>
-<section class="zz-hero"><p class="zz-eyebrow">NON DUBITO · CHINESE CLASSICS</p>{tri(*NAMES,tag='h1')}{tri(*DECK,tag='p',classes='zhuangzi-search-deck zz-deck')}<p class="zz-progress">{tri(f'Available now: the guide + {count} of 67 essays. All completed pages offer English, Simplified and Traditional Chinese.',f'目前可读：导读＋{count}/67 篇正文。已完成页面均提供英文、简体与繁体。',f'目前可讀：導讀＋{count}/67 篇正文。已完成頁面均提供英文、簡體與繁體。')}</p></section>
+<section class="zz-hero"><p class="zz-eyebrow">NON DUBITO · CHINESE CLASSICS</p>{tri(*NAMES,tag='h1')}{tri(*DECK,tag='p',classes='zhuangzi-search-deck zz-deck')}<p class="zz-progress">{tri(f'The complete series: the guide + all {count} essays. Every page offers English, Simplified and Traditional Chinese.',f'全系列已完整：导读＋{count}/67 篇正文，每篇均提供英文、简体与繁体。',f'全系列已完整：導讀＋{count}/67 篇正文，每篇均提供英文、簡體與繁體。')}</p></section>
 <section class="zz-entrances"><h2>{tri('Find a way in','从哪儿读','從哪裡讀')}</h2><div class="zz-routes">
 <a href="01.html">{tri('Begin with a story →','先读一个故事 →','先讀一個故事 →')}<small>{tri('Hundun, or the person who stood still: essays 1 and 4.','浑沌之死、运斤成风：第 1、4 篇。','渾沌之死、運斤成風：第 1、4 篇。')}</small></a>
 <a href="11.html">{tri('Follow the Inner Chapters →','走进内篇七课 →','走進內篇七課 →')}<small>{tri('Begin at 11 · essays 11–29 available · this route is complete','从 11 开始 · 11—29 已可读 · 本辑完整','從 11 開始 · 11—29 已可讀 · 本輯完整')}</small></a>
 <a href="30.html">{tri('How do we judge a passage? →','怎样辨析一段文字 →','怎樣辨析一段文字 →')}<small>{tri('Reasons and limits · essays 30–41 and 59–65 available · this route is complete','理由与限度 · 30—41、59—65 已可读 · 本辑完整','理由與限度 · 30—41、59—65 已可讀 · 本輯完整')}</small></a>
-<a href="42.html">{tri('Meet the people who do things →','看看那些做事的人 →','看看那些做事的人 →')}<small>{tri('Craft, attention, life · essays 42–58 available · this route is complete','技艺、专注与生活 · 42—58 已可读 · 本辑完整','技藝、專注與生活 · 42—58 已可讀 · 本輯完整')}</small></a></div></section>
+<a href="42.html">{tri('Meet the people who do things →','看看那些做事的人 →','看看那些做事的人 →')}<small>{tri('Craft, attention, life · essays 42–58 available · this route is complete','技艺、专注与生活 · 42—58 已可读 · 本辑完整','技藝、專注與生活 · 42—58 已可讀 · 本輯完整')}</small></a>
+<a href="66.html">{tri('Turn the reading back on itself →','回看这套读法 →','回看這套讀法 →')}<small>{tri('Stolen locks, memorable words, and a reader’s judgment · essays 66–67','锁、名言与读者自己的判断 · 收束两篇 66—67','鎖、名言與讀者自己的判斷 · 收束兩篇 66—67')}</small></a></div></section>
 <section><h2>{tri('Ready to read','现在可以读','現在可以讀')}</h2><div class="zz-grid">{''.join(cards)}</div></section>
-<section class="zz-map" id="contents"><h2>{tri('The complete reading map','全系列阅读地图','全系列閱讀地圖')}</h2><p>{tri('The original numbers are retained. Essays 59–65 return to textual discernment; 66–67 close the series. Unlinked entries are still being edited.','保留原编号。59—65 回到文本辨析，66—67 收束全系列。未加链接的篇目仍在编辑，不是空白文章。','保留原編號。59—65 回到文本辨析，66—67 收束全系列。未加連結的篇目仍在編輯，不是空白文章。')}</p><nav class="zz-group-nav" aria-label="Reading groups">{group_nav}</nav>{sections}<details class="zz-sequence"><summary>{tri('Or browse in original order, 01–67','按原编号顺读：01—67','按原編號順讀：01—67')}</summary><ol class="zz-toc">{sequence}</ol></details></section>
+<section class="zz-map" id="contents"><h2>{tri('The complete reading map','全系列阅读地图','全系列閱讀地圖')}</h2><p>{tri('All 67 essays are ready. Choose a route or follow the original numbers: 59–65 return to textual discernment; 66–67 turn this reading back on itself.','六十七篇均已可读。可以按兴趣选一条路线，也可以按原编号顺读：59—65 回到文本辨析，66—67 回看这套读法，收束全系列。','六十七篇均已可讀。可以按興趣選一條路線，也可以按原編號順讀：59—65 回到文本辨析，66—67 回看這套讀法，收束全系列。')}</p><nav class="zz-group-nav" aria-label="Reading groups">{group_nav}</nav>{sections}<details class="zz-sequence"><summary>{tri('Or browse in original order, 01–67','按原编号顺读：01—67','按原編號順讀：01—67')}</summary><ol class="zz-toc">{sequence}</ol></details></section>
 {research()}<nav class="zz-siblings"><a href="../daodejing/index.html">{tri('The Daodejing','大知道德经解','大知道德經解')} →</a><a href="../analects/index.html">{tri('The Analects, Reopened','大知解论语','大知解論語')} →</a></nav>'''
     return page(body, ' · '.join(NAMES[:2]), DECK[0], 'index.html', manifest['publication_date'], 'CollectionPage', manifest.get('updated_date'))
 
@@ -276,6 +279,12 @@ def render_article(item, manifest):
         references = f'''<p>{tri('Commentaries compared','参读注本','參讀注本')}: <a href="https://www.chineseclassic.com/content/{commentary_id}">{tri('Zhuangzi Jishi · '+commentary_name[0],'《庄子集释·'+commentary_name[1]+'》','《莊子集釋・'+commentary_name[2]+'》')} ↗</a></p>'''
         if n == 62:
             references += f'''<p>{tri('The related account of sixty transformations','参读另一处六十化','參讀另一處六十化')}: <a href="https://zh.wikisource.org/wiki/莊子/寓言">{tri('Borrowed Words','《寓言》','《寓言》')} ↗</a></p>'''
+        note = note.replace('</aside>',references+'</aside>')
+    if n == 66:
+        references = f'''<p>{tri('Commentary and quotation wording','注本与引文用字','注本與引文用字')}: <a href="https://www.chineseclassic.com/content/474">{tri('Zhuangzi Jishi · Rifling Trunks','《庄子集释·胠箧》','《莊子集釋・胠篋》')} ↗</a></p><p>{tri('The continuation quoted here follows the collected commentary’s benevolence and righteousness (仁義); the linked Wikisource text reads righteous men (義士).','本文所引后半句据集释作“仁义”；上链维基文库本作“义士”。','本文所引後半句據集釋作「仁義」；上連結維基文庫本作「義士」。')}</p>'''
+        note = note.replace('</aside>',references+'</aside>')
+    if n == 67:
+        references = f'''<p>{tri('For the history of the collection','篇数与传本参读','篇數與傳本參讀')}: <a href="https://zh.wikisource.org/wiki/漢書/卷030">{tri('History of the Han · Bibliographical Treatise','《汉书·艺文志》','《漢書・藝文志》')} ↗</a> · <a href="https://www.chineseclassic.com/content/441">{tri('Lu Deming · Bibliographical Introduction','陆德明《经典释文序录》','陸德明《經典釋文序錄》')} ↗</a></p>'''
         note = note.replace('</aside>',references+'</aside>')
     description = item['en_title'] + '. A reader essay in The Zhuangzi, Reopened: stories, relationships, and the space left for another person.'
     deck = (description, item['zh_title']+'。从故事与细节出发，重新看见人与人之间留给彼此的空间。', item['hant_title']+'。從故事與細節出發，重新看見人與人之間留給彼此的空間。')

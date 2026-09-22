@@ -48,8 +48,8 @@ class ZhuangziTests(unittest.TestCase):
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='discernment'},set(range(30,42))|set(range(59,66)))
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='outer'},set(range(42,59)))
     def test_only_edited_pages(self):
-        self.assertEqual(self.m['published'],list(range(66)))
-        self.assertEqual(set(self.pages),{'index.html','guide.html'}|{f'{n:02d}.html' for n in range(1,66)})
+        self.assertEqual(self.m['published'],list(range(68)))
+        self.assertEqual(set(self.pages),{'index.html','guide.html'}|{f'{n:02d}.html' for n in range(1,68)})
     def test_all_reading_editions_exist(self):
         for n in self.m['published']:
             for lang in b.LANGS:
@@ -90,22 +90,24 @@ class ZhuangziTests(unittest.TestCase):
                 self.assertTrue(target.is_file(),(name,href))
                 if u.fragment and target.suffix=='.html':
                     self.assertIn(u.fragment,Page(target.read_text()).ids,(name,href))
-    def test_pending_not_empty_links(self):
+    def test_complete_map_without_pending_entries(self):
         links=Page(self.pages['index.html']).links
-        for n in range(66,68):self.assertNotIn(f'{n:02d}.html',links)
-        self.assertEqual(self.pages['index.html'].count('class="zz-pending"'),4)
-        self.assertIn('65/67',self.pages['index.html'])
+        for n in range(1,68):self.assertIn(f'{n:02d}.html',links)
+        self.assertNotIn('class="zz-pending"',self.pages['index.html'])
+        self.assertNotIn('still being edited',self.pages['index.html'])
+        self.assertIn('67/67',self.pages['index.html'])
+        self.assertIn('The complete series',self.pages['index.html'])
     def test_first_group_complete_and_navigation(self):
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='encounters'},set(range(1,11)))
-        for n in range(66):
+        for n in range(68):
             links=Page(self.pages[b.filename(n)]).links
             if n: self.assertIn(b.filename(n-1),links)
-            if n<65: self.assertIn(b.filename(n+1),links)
+            if n<67: self.assertIn(b.filename(n+1),links)
             else: self.assertIn('index.html#contents',links)
     def test_publication_dates(self):
         for name,text in self.pages.items():
             schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)[1])
-            new=name in {f'{n:02d}.html' for n in range(6,66)}
+            new=name in {f'{n:02d}.html' for n in range(6,68)}
             self.assertEqual(schema['datePublished'],'2026-09-21' if new else '2026-09-20')
             self.assertEqual(schema['dateModified'],'2026-09-21' if new or name=='index.html' else '2026-09-20')
     def test_second_batch_editorial_boundaries(self):
@@ -389,6 +391,33 @@ class ZhuangziTests(unittest.TestCase):
             self.assertTrue(record['titles']['en'])
             self.assertTrue(record['titles']['zh-Hans'])
             self.assertTrue(record['titles']['zh-Hant'])
+    def test_closing_pair_editorial_boundaries(self):
+        for n,zh_marker,en_marker in (
+            (66,'我接受它揭开的风险','Accepting the danger it reveals'),
+            (67,'作者是谁、论证好不好','Who wrote this? Is its reasoning sound?'),
+        ):
+            self.assertIn(zh_marker,(b.DATA/'zh'/f'{n}.md').read_text())
+            self.assertIn(en_marker,(b.DATA/'en'/f'{n}.md').read_text())
+            self.assertIn(n,b.CHAPTERS)
+        zh66=(b.DATA/'zh/66.md').read_text()
+        self.assertIn('也在“窃钩者诛”之前',zh66)
+        self.assertIn('转发也可以是阅读的开始',zh66)
+        self.assertIn('问题可以暗藏预定的答案',zh66)
+        self.assertIn('https://www.chineseclassic.com/content/474',self.pages['66.html'])
+        self.assertIn('义士',self.pages['66.html'])
+        zh67=(b.DATA/'zh/67.md').read_text()
+        self.assertIn('沉默可以装出来',zh67)
+        self.assertIn('这里的“不如”就是明确的比较',zh67)
+        self.assertIn('五十二减三十三，不等于',zh67)
+        self.assertNotIn('两条鱼',zh67)
+        self.assertIn('https://www.chineseclassic.com/content/441',self.pages['67.html'])
+        self.assertIn('https://zh.wikisource.org/wiki/漢書/卷030',self.pages['67.html'])
+        tc=(b.DATA/'zh-hant/66.md').read_text()+(b.DATA/'zh-hant/67.md').read_text()
+        for error in ('鬥斛','那隻不過','稱贊','覈實','賬目','身份'):
+            self.assertNotIn(error,tc)
+        self.assertIn('斗斛',tc)
+        self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='closing'},{66,67})
+
     def test_source_originals_unchanged_if_available(self):
         folder=Path('/Users/hanqin/Documents/大知解庄子')
         if not folder.exists():self.skipTest('Original private folder not present')
