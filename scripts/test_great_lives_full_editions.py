@@ -1430,6 +1430,100 @@ class FullEditionTests(unittest.TestCase):
         self.assertEqual({k for k, v in parser.items[0]}, {'name', 'content'})
         self.assertIn('同情', dict(parser.items[0])['content'])
 
+    def test_batch_16_all_three_are_reviewed_full_editions(self):
+        for number, slug in enumerate(('kierkegaard', 'turing', 'chekhov'), 46):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual((entry['number'], entry['movement']), (number, 4))
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                builder.validate_full_edition(entry)
+        self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full'
+                                    for e in self.entries.values()), 49)
+
+    def test_batch_16_retains_nine_sections_and_full_endings(self):
+        for slug in ('kierkegaard', 'turing', 'chekhov'):
+            entry = self.entries[slug]
+            counts = [6] * 8 + [9 if slug == 'chekhov' else 8]
+            for lang, copy in entry['copy'].items():
+                with self.subTest(slug=slug, lang=lang):
+                    sections = copy['sections']
+                    self.assertEqual(len(sections), 9)
+                    self.assertEqual([len(s['paragraphs']) for s in sections], counts)
+                    self.assertEqual([s['covers'][0] for s in sections], entry['edition']['required_topics'])
+                    body = ' '.join(p for s in sections for p in s['paragraphs'])
+                    cjk = lang in ('zh-hant', 'ja', 'ko')
+                    units = len(re.sub(r'\s+', '', body)) if cjk else len(body.split())
+                    self.assertGreaterEqual(units, 3700 if cjk else 1800)
+
+    def test_batch_16_has_localized_notes_and_bibliographies(self):
+        for slug, count in (('kierkegaard', 4), ('turing', 7), ('chekhov', 7)):
+            entry = self.entries[slug]
+            self.assertEqual(len(entry['sources']), count)
+            for source in entry['sources']:
+                self.assertEqual(set(source['titles']), set(builder.LANGS))
+                self.assertTrue(source['url'].startswith('https://'))
+            for lang in builder.LANGS:
+                self.assertEqual(len(entry['copy'][lang]['notes']), 2)
+
+    def test_kierkegaard_keeps_regine_and_pseudonym_boundaries(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('kierkegaard', 'zh')))
+        for phrase in ('1840年9月', '到10月', '蕾吉娜不能被缩成', '以撒不是',
+                       '后人概括', '虚构编者', '双陆棋'):
+            self.assertIn(phrase, zh)
+        self.assertIn('regine-separation-and-other-person', self.entries['kierkegaard']['edition']['required_topics'])
+        self.assertIn('abraham-faith-and-ethical-danger', self.entries['kierkegaard']['edition']['required_topics'])
+
+    def test_turing_keeps_mathematical_and_historical_distinctions(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('turing', 'zh')))
+        for phrase in ('1931年', '1936年', '三十九岁', '一阶逻辑', '苹果没有接受检验',
+                       '形态发生研究在定罪前已经开始', '死亡日期记为6月7日'):
+            self.assertIn(phrase, zh)
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('turing', 'en')))
+        for phrase in ('thirty-nine', 'first-order', 'before the conviction',
+                       'inquest returned a verdict of suicide', 'dignity is not a consequence of the halting theorem'):
+            self.assertIn(phrase, en)
+
+    def test_chekhov_is_not_reduced_to_inaction_or_neutrality(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('chekhov', 'zh')))
+        for phrase in ('1890年', '萨哈林', '两枪，都没打中', '《三姐妹》有四幕',
+                       '1888年10月27日', '回忆中的场面', '生蚝'):
+            self.assertIn(phrase, zh)
+        self.assertIn('restraint-is-not-neutrality', self.entries['chekhov']['edition']['required_topics'])
+        self.assertIn('posing-problems-and-artistic-construction', self.entries['chekhov']['edition']['required_topics'])
+
+    def test_batch_16_traditional_context_is_reviewed(self):
+        for slug in ('kierkegaard', 'turing', 'chekhov'):
+            tc = ' '.join(p for s in self.entries[slug]['copy']['zh-hant']['sections'] for p in s['paragraphs'])
+            for wrong in ('區分瞭解決', '住進瞭解釋', '證明瞭一次', '尼採', '賬', '想象', '反復', '沈默'):
+                self.assertNotIn(wrong, tc)
+        tc = ' '.join(p for s in self.entries['chekhov']['copy']['zh-hant']['sections'] for p in s['paragraphs'])
+        self.assertIn('區分了解決', tc)
+        self.assertIn('爆發', tc)
+
+    def test_batch_16_description_attributes_and_reading_navigation(self):
+        from html.parser import HTMLParser
+        class Metadata(HTMLParser):
+            def __init__(self, text):
+                super().__init__()
+                self.descriptions, self.links = [], []
+                self.feed(text)
+            def handle_starttag(self, tag, attrs):
+                d = dict(attrs)
+                if tag == 'meta' and d.get('name') == 'description':
+                    self.descriptions.append(attrs)
+                if tag == 'a' and 'href' in d:
+                    self.links.append(d['href'])
+        chain = ['schopenhauer', 'kierkegaard', 'turing', 'chekhov', 'cantor']
+        for i, slug in enumerate(chain[1:-1], 1):
+            page = Metadata(builder.source_path_for(slug).read_text(encoding='utf-8'))
+            self.assertEqual(len(page.descriptions), 1)
+            self.assertEqual({k for k, v in page.descriptions[0]}, {'name', 'content'})
+            for lang in builder.LANGS:
+                page = Metadata((builder.SERIES / lang / (slug + '.html')).read_text(encoding='utf-8'))
+                self.assertIn(chain[i - 1] + '.html', page.links)
+                self.assertIn(chain[i + 1] + '.html', page.links)
+
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
         self.assertIn('荷马，声音进入文字的门槛', source)
