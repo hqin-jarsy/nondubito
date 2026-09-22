@@ -1243,7 +1243,7 @@ class FullEditionTests(unittest.TestCase):
 
     def test_fourteenth_batch_completes_third_movement_and_reaches_43(self):
         full = [entry for entry in self.entries.values() if entry.get('edition', {}).get('status') == 'full']
-        self.assertEqual(len(full), 43)
+        self.assertGreaterEqual(len(full), 43)
         third = [item for item in builder.canonical_order() if self.entries[item['slug']]['movement'] == 3]
         self.assertEqual(len(third), 18)
         self.assertTrue(all(self.entries[item['slug']]['edition']['status'] == 'full' for item in third))
@@ -1265,6 +1265,170 @@ class FullEditionTests(unittest.TestCase):
         homer = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('homer', 'zh')))
         for term in ('并无定论', '仍在争论', '不是学界定论'):
             self.assertIn(term, homer)
+
+    def test_plato_full_edition_reaches_44(self):
+        entry = self.entries['plato']
+        self.assertEqual((entry['number'], entry['movement']), (43, 4))
+        self.assertEqual(entry['edition']['status'], 'full')
+        builder.validate_full_edition(entry)
+        full = [e for e in self.entries.values() if e.get('edition', {}).get('status') == 'full']
+        self.assertGreaterEqual(len(full), 44)
+        for lang in builder.LANGS:
+            sections = entry['copy'][lang]['sections']
+            self.assertEqual(len(sections), 9)
+            paragraphs = [p for s in sections for p in s['paragraphs']]
+            self.assertGreaterEqual(len(paragraphs), 50)
+            self.assertGreaterEqual(len(sections[-1]['paragraphs']), 8)
+            for section in sections:
+                self.assertGreaterEqual(len(section['paragraphs']), 5)
+            body = ' '.join(paragraphs)
+            units = len(re.sub(r'\s+', '', body)) if lang in ('zh-hant','ja','ko') else len(body.split())
+            self.assertGreaterEqual(units, 3500 if lang in ('zh-hant','ja','ko') else 1600)
+
+    def test_plato_keeps_factual_and_interpretive_boundaries(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('plato', 'zh')))
+        for term in ('叙述者斐多', '《法律篇》没有苏格拉底', '第一次旅程', '作者身份也未定', '《巴门尼德篇》', '这是我的文学想象', '他准备听'):
+            self.assertIn(term, zh)
+        for claim in ('心病也是病', '他错了因为他太痛了', '每一篇里都是主角', '第二次差点被卖成奴隶', '比任何帝国都长'):
+            self.assertNotIn(claim, zh)
+        tc = ' '.join(p for s in self.entries['plato']['copy']['zh-hant']['sections'] for p in s['paragraphs'])
+        for error in ('克裡托','西西裡','亞裡士多德','沈思','那只雞','記得准','證明瞭','覈實'):
+            self.assertNotIn(error, tc)
+        self.assertIn('那隻雞', tc)
+        self.assertIn('亞里斯多德', tc)
+        for source in self.entries['plato']['sources']:
+            self.assertEqual(set(source['titles']), set(builder.LANGS))
+
+
+    def test_hume_full_edition_reaches_45(self):
+        entry = self.entries['hume']
+        self.assertEqual((entry['number'], entry['movement']), (44, 4))
+        self.assertEqual(entry['edition']['status'], 'full')
+        builder.validate_full_edition(entry)
+        full = [e for e in self.entries.values() if e.get('edition', {}).get('status') == 'full']
+        self.assertGreaterEqual(len(full), 45)
+        for lang in builder.LANGS:
+            with self.subTest(lang=lang):
+                sections = entry['copy'][lang]['sections']
+                self.assertEqual(len(sections), 9)
+                self.assertEqual([len(s['paragraphs']) for s in sections], [6] * 8 + [8])
+                self.assertEqual([s['covers'][0] for s in sections], entry['edition']['required_topics'])
+                body = ' '.join(p for s in sections for p in s['paragraphs'])
+                units = len(re.sub(r'\s+', '', body)) if lang in ('zh-hant', 'ja', 'ko') else len(body.split())
+                self.assertGreaterEqual(units, 3800 if lang in ('zh-hant', 'ja', 'ko') else 1900)
+        for source in entry['sources']:
+            self.assertEqual(set(source['titles']), set(builder.LANGS))
+
+    def test_hume_keeps_corrected_facts_and_interpretive_boundaries(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('hume', 'zh')))
+        for term in ('1739至1740年', '双陆棋，不是台球', '感性直观的形式', '因果性是知性范畴',
+                     '还无法给出满意的解释', '种族天生高下的偏见', '不是历史上的相遇'):
+            self.assertIn(term, zh)
+        self.assertNotIn('1739年，二十八岁', zh)
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('hume', 'en')))
+        for term in ('backgammon, not billiards', 'forms of sensible intuition', 'a racist assertion',
+                     'not a historical meeting', 'not a readership survey'):
+            self.assertIn(term, en)
+
+    def test_hume_traditional_and_game_names(self):
+        entry = self.entries['hume']
+        tc = ' '.join(p for s in entry['copy']['zh-hant']['sections'] for p in s['paragraphs'])
+        for term in ('休謨', '撞球', '雙陸棋', '很準', '想像', '反覆'):
+            self.assertIn(term, tc)
+        for error in ('很准', '想象', '反復', '台球', '依据'):
+            self.assertNotIn(error, tc)
+        for lang, game in {'ja': 'バックギャモン', 'fr': 'backgammon', 'de': 'Backgammon',
+                           'es': 'backgammon', 'ko': '백개먼'}.items():
+            for section_number in (4, 8):
+                self.assertIn(game, ' '.join(entry['copy'][lang]['sections'][section_number]['paragraphs']))
+
+    def test_hume_description_is_a_single_valid_attribute(self):
+        from html.parser import HTMLParser
+        class MetaParser(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.descriptions = []
+            def handle_starttag(self, tag, attrs):
+                if tag == 'meta' and dict(attrs).get('name') == 'description':
+                    self.descriptions.append(attrs)
+        page = MetaParser()
+        page.feed(builder.source_path_for('hume').read_text(encoding='utf-8'))
+        self.assertEqual(len(page.descriptions), 1)
+        self.assertEqual({k for k, v in page.descriptions[0]}, {'name', 'content'})
+        self.assertIn('双陆棋', dict(page.descriptions[0])['content'])
+
+
+    def test_schopenhauer_full_edition_completes_batch_15(self):
+        entry = self.entries['schopenhauer']
+        self.assertEqual((entry['number'], entry['movement']), (45, 4))
+        self.assertEqual(entry['edition']['status'], 'full')
+        builder.validate_full_edition(entry)
+        full = [e for e in self.entries.values() if e.get('edition', {}).get('status') == 'full']
+        self.assertGreaterEqual(len(full), 46)
+        for slug in ('plato', 'hume', 'schopenhauer'):
+            self.assertEqual(self.entries[slug]['edition']['status'], 'full')
+        for lang in builder.LANGS:
+            with self.subTest(lang=lang):
+                sections = entry['copy'][lang]['sections']
+                self.assertEqual(len(sections), 9)
+                self.assertEqual([len(s['paragraphs']) for s in sections], [6, 6, 6, 6, 8, 6, 6, 7, 9])
+                self.assertEqual([s['covers'][0] for s in sections], entry['edition']['required_topics'])
+                body = ' '.join(p for s in sections for p in s['paragraphs'])
+                units = len(re.sub(r'\s+', '', body)) if lang in ('zh-hant', 'ja', 'ko') else len(body.split())
+                self.assertGreaterEqual(units, 4300 if lang in ('zh-hant', 'ja', 'ko') else 2100)
+        for source in entry['sources']:
+            self.assertEqual(set(source['titles']), set(builder.LANGS))
+
+    def test_schopenhauer_source_keeps_factual_and_philosophical_boundaries(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('schopenhauer', 'zh')))
+        for term in ('不是一个人也没来', '同一个行动以不同方式被知道', '形而上学的推展',
+                     '还有同情', '不是一张三格流程图', '1925年的自述', '自我报告',
+                     '并不能证明谁都做不到', '他六十三岁', '不是史料里的场面', '双陆棋'):
+            self.assertIn(term, zh)
+        for claim in ('失败本身就是证据', '余项守恒', '他比佛陀更诚实的地方',
+                      '第一个把东方思想当作严肃哲学资源', '推下楼梯'):
+            self.assertNotIn(claim, zh)
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('schopenhauer', 'en')))
+        for term in ('small, not nonexistent', 'one act known in different ways',
+                     'compassion', 'not Freud\'s unconscious', 'not a historical record',
+                     'sixty-three', 'backgammon'):
+            self.assertIn(term, en)
+
+    def test_schopenhauer_all_editions_keep_ethics_and_full_dog_ending(self):
+        terms = {
+            'zh-hant': ('同情', '雙陸棋', '狗'),
+            'ja': ('同情', 'バックギャモン', '犬'),
+            'fr': ('compassion', 'backgammon', 'chien'),
+            'de': ('Mitleid', 'Backgammon', 'Hund'),
+            'es': ('compasión', 'backgammon', 'perro'),
+            'ko': ('동정', '백개먼', '개'),
+        }
+        for lang, (ethics, game, animal) in terms.items():
+            sections = self.entries['schopenhauer']['copy'][lang]['sections']
+            self.assertIn(ethics, ' '.join(sections[4]['paragraphs']))
+            ending = ' '.join(sections[8]['paragraphs'])
+            self.assertIn(game, ending)
+            self.assertIn(animal, ending)
+        tc = ' '.join(p for s in self.entries['schopenhauer']['copy']['zh-hant']['sections'] for p in s['paragraphs'])
+        for correct in ('想像', '回覆', '帳', '沉溺', '尼采'):
+            self.assertIn(correct, tc)
+        for wrong in ('想象', '回復', '賬', '沈溺', '尼採'):
+            self.assertNotIn(wrong, tc)
+
+    def test_schopenhauer_source_metadata_is_well_formed(self):
+        from html.parser import HTMLParser
+        class DescriptionParser(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.items = []
+            def handle_starttag(self, tag, attrs):
+                if tag == 'meta' and dict(attrs).get('name') == 'description':
+                    self.items.append(attrs)
+        parser = DescriptionParser()
+        parser.feed(builder.source_path_for('schopenhauer').read_text(encoding='utf-8'))
+        self.assertEqual(len(parser.items), 1)
+        self.assertEqual({k for k, v in parser.items[0]}, {'name', 'content'})
+        self.assertIn('同情', dict(parser.items[0])['content'])
 
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
