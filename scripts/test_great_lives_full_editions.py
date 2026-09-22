@@ -1643,6 +1643,114 @@ class FullEditionTests(unittest.TestCase):
         for slug in chain[1:-1]:
             self.assertIn('essays/mingren/' + slug + '.html', Metadata(latest).links)
 
+    def test_batch_18_all_three_are_reviewed_full_editions(self):
+        for number, slug in enumerate(('beauvoir', 'quine', 'tesla'), 52):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual((entry['number'], entry['movement']), (number, 4))
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                builder.validate_full_edition(entry)
+        self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full'
+                                    for e in self.entries.values()), 55)
+
+    def test_batch_18_preserves_sections_and_full_prose(self):
+        for slug, count in (('beauvoir', 9), ('quine', 10), ('tesla', 9)):
+            entry = self.entries[slug]
+            for lang, copy in entry['copy'].items():
+                with self.subTest(slug=slug, lang=lang):
+                    self.assertEqual(len(copy['sections']), count)
+                    self.assertEqual([s['covers'][0] for s in copy['sections']],
+                                     entry['edition']['required_topics'])
+                    paragraphs = [p for s in copy['sections'] for p in s['paragraphs']]
+                    self.assertGreaterEqual(len(paragraphs), 54)
+                    self.assertGreaterEqual(len(copy['sections'][-1]['paragraphs']), 6)
+                    body = ' '.join(paragraphs)
+                    cjk = lang in ('zh-hant', 'ja', 'ko')
+                    units = len(re.sub(r'\s+', '', body)) if cjk else len(body.split())
+                    floor = 3500 if lang == 'zh-hant' else 4000 if cjk else 1800
+                    self.assertGreaterEqual(units, floor)
+
+    def test_batch_18_has_localized_notes_and_sources(self):
+        for slug in ('beauvoir', 'quine', 'tesla'):
+            entry = self.entries[slug]
+            self.assertGreaterEqual(len(entry['sources']), 3)
+            for source in entry['sources']:
+                self.assertEqual(set(source['titles']), set(builder.LANGS))
+                self.assertTrue(source['url'].startswith('https://'))
+                self.assertTrue(all(source['titles'].values()))
+            for lang in builder.LANGS:
+                self.assertEqual(len(entry['copy'][lang]['notes']), 2)
+
+    def test_beauvoir_keeps_agency_and_author_accountability(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('beauvoir', 'zh')))
+        for phrase in ('1944年', '1945年', '1965年', '朗布兰', '师生关系',
+                       '受过压迫', '专一', '诺贝尔奖', '第五卷'):
+            self.assertIn(phrase, zh)
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('beauvoir', 'en')))
+        for phrase in ('Bianca Lamblin', 'certificate of innocence', 'exclusivity',
+                       'A human-built wall', 'Book V'):
+            self.assertIn(phrase, en)
+        self.assertNotIn('Not second-class. The second to be seen.', en)
+
+    def test_quine_keeps_the_dispute_and_distinct_questions(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('quine', 'zh')))
+        for phrase in ('先天综合', '红杯子', '卡尔纳普', '格赖斯', '斯特劳森',
+                       '双陆棋', '西田', '同意与强迫'):
+            self.assertIn(phrase, zh)
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('quine', 'en')))
+        for phrase in ('synthetic a priori', 'chipped', 'Grice and Strawson',
+                       'explicit stipulations', 'consent and coercion'):
+            self.assertIn(phrase.lower(), en.lower())
+
+    def test_tesla_keeps_engineering_and_patent_boundaries(self):
+        zh = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('tesla', 'zh')))
+        for phrase in ('1887', '1888', '1895', '1896', '1917', '1943', 'FBI'):
+            self.assertIn(phrase, zh)
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('tesla', 'en')))
+        for phrase in ('O\'Neill', 'Office of Alien Property', 'Lodge', 'Stone',
+                       'high-voltage DC', 'Westinghouse'):
+            self.assertIn(phrase, en)
+        self.assertNotIn('Tesla was the sole inventor of radio', en)
+
+    def test_batch_18_traditional_is_complete_and_reviewed(self):
+        for slug in ('beauvoir', 'quine', 'tesla'):
+            sections = self.entries[slug]['copy']['zh-hant']['sections']
+            source = builder.source_body(slug, 'zh')
+            self.assertEqual(len(re.findall(r'<h2\b', source)), len(sections))
+            self.assertEqual(len(re.findall(r'<p\b', source)),
+                             sum(len(s['paragraphs']) for s in sections))
+            text = ' '.join(p for s in sections for p in s['paragraphs'])
+            for wrong in ('反復', '重復', '想象', '煙鬥', '賬', '咨詢'):
+                self.assertNotIn(wrong, text)
+
+    def test_batch_18_navigation_metadata_and_update_card(self):
+        from html.parser import HTMLParser
+        class Metadata(HTMLParser):
+            def __init__(self, text):
+                super().__init__()
+                self.descriptions, self.links = [], []
+                self.feed(text)
+            def handle_starttag(self, tag, attrs):
+                d = dict(attrs)
+                if tag == 'meta' and d.get('name') == 'description':
+                    self.descriptions.append(attrs)
+                if tag == 'a' and 'href' in d:
+                    self.links.append(d['href'])
+        chain = ['sartre', 'beauvoir', 'quine', 'tesla', 'edison']
+        for i, slug in enumerate(chain[1:-1], 1):
+            source = Metadata(builder.source_path_for(slug).read_text(encoding='utf-8'))
+            self.assertEqual(len(source.descriptions), 1)
+            self.assertEqual({k for k, v in source.descriptions[0]}, {'name', 'content'})
+            for lang in builder.LANGS:
+                page = Metadata((builder.SERIES / lang / (slug + '.html')).read_text(encoding='utf-8'))
+                self.assertIn(chain[i - 1] + '.html', page.links)
+                self.assertIn(chain[i + 1] + '.html', page.links)
+        latest = (builder.ROOT / 'latest.html').read_text(encoding='utf-8')
+        self.assertEqual(latest.count('data-update-id="2026-09-22-great-lives-batch-18-full"'), 1)
+        for slug in chain[1:-1]:
+            self.assertIn('essays/mingren/' + slug + '.html', Metadata(latest).links)
+
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
         self.assertIn('荷马，声音进入文字的门槛', source)
