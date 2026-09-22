@@ -48,8 +48,8 @@ class ZhuangziTests(unittest.TestCase):
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='discernment'},set(range(30,42))|set(range(59,66)))
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='outer'},set(range(42,59)))
     def test_only_edited_pages(self):
-        self.assertEqual(self.m['published'],list(range(51)))
-        self.assertEqual(set(self.pages),{'index.html','guide.html'}|{f'{n:02d}.html' for n in range(1,51)})
+        self.assertEqual(self.m['published'],list(range(56)))
+        self.assertEqual(set(self.pages),{'index.html','guide.html'}|{f'{n:02d}.html' for n in range(1,56)})
     def test_all_reading_editions_exist(self):
         for n in self.m['published']:
             for lang in b.LANGS:
@@ -92,20 +92,20 @@ class ZhuangziTests(unittest.TestCase):
                     self.assertIn(u.fragment,Page(target.read_text()).ids,(name,href))
     def test_pending_not_empty_links(self):
         links=Page(self.pages['index.html']).links
-        for n in range(51,68):self.assertNotIn(f'{n:02d}.html',links)
-        self.assertEqual(self.pages['index.html'].count('class="zz-pending"'),34)
-        self.assertIn('50/67',self.pages['index.html'])
+        for n in range(56,68):self.assertNotIn(f'{n:02d}.html',links)
+        self.assertEqual(self.pages['index.html'].count('class="zz-pending"'),24)
+        self.assertIn('55/67',self.pages['index.html'])
     def test_first_group_complete_and_navigation(self):
         self.assertEqual({x['number'] for x in self.m['items'] if x['group']=='encounters'},set(range(1,11)))
-        for n in range(51):
+        for n in range(56):
             links=Page(self.pages[b.filename(n)]).links
             if n: self.assertIn(b.filename(n-1),links)
-            if n<50: self.assertIn(b.filename(n+1),links)
+            if n<55: self.assertIn(b.filename(n+1),links)
             else: self.assertIn('index.html#contents',links)
     def test_publication_dates(self):
         for name,text in self.pages.items():
             schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)[1])
-            new=name in {f'{n:02d}.html' for n in range(6,51)}
+            new=name in {f'{n:02d}.html' for n in range(6,56)}
             self.assertEqual(schema['datePublished'],'2026-09-21' if new else '2026-09-20')
             self.assertEqual(schema['dateModified'],'2026-09-21' if new or name=='index.html' else '2026-09-20')
     def test_second_batch_editorial_boundaries(self):
@@ -266,7 +266,7 @@ class ZhuangziTests(unittest.TestCase):
         self.assertIn('两段在原书里并不紧挨着',(b.DATA/'zh/43.md').read_text())
         self.assertIn('不然则已',(b.DATA/'zh/44.md').read_text())
         self.assertNotIn('比花在手上的多',self.m['items'][44]['zh_title'])
-        self.assertIn('essays 42–50 available',self.pages['index.html'])
+        self.assertIn('essays 42–55 available',self.pages['index.html'])
         self.assertIn('href="42.html"',self.pages['index.html'])
     def test_tenth_batch_editorial_boundaries(self):
         for n,zh_marker,en_marker in (
@@ -306,6 +306,29 @@ class ZhuangziTests(unittest.TestCase):
         self.assertIn('不是作者身份的印章',allzh)
         self.assertIn('不是在要求无条件受训',allzh)
         self.assertIn('不是现实中可以照做的安全保证',allzh)
+    def test_eleventh_batch_editorial_boundaries(self):
+        for n,zh_marker,en_marker in (
+            (51,'他接受了政事，做了三年','He governs for three years'),
+            (52,'不是经核实的私人日记','not a verified private diary'),
+            (53,'不是死后经验的证据','not evidence about an afterlife'),
+            (54,'传本有“三月”和“三日”的差异','versions differ between three days and three months'),
+            (55,'不是“那张皮就是罪”','The skin is not the crime'),
+        ):
+            self.assertIn(zh_marker,(b.DATA/'zh'/f'{n}.md').read_text())
+            self.assertIn(en_marker,(b.DATA/'en'/f'{n}.md').read_text())
+            self.assertIn(n,b.CHAPTERS)
+            tc=(b.DATA/'zh-hant'/f'{n}.md').read_text()
+            for error in ('松開','一刻不松','拿不准','賬','消沈','贊美','每只動物','身份','虛己以游世'):
+                self.assertNotIn(error,tc)
+            ref=485 if n==51 else 482 if n<=53 else 484
+            self.assertIn(f'www.chineseclassic.com/content/{ref}',self.pages[f'{n}.html'])
+        self.assertIn('入其俗，从其令',(b.DATA/'zh/54.md').read_text())
+        self.assertIn('没有交代蝉和螳螂已经被吃掉',(b.DATA/'zh/54.md').read_text())
+        self.assertIn('洒心去欲',(b.DATA/'zh-hant/55.md').read_text())
+        self.assertIn('虛己以遊世',(b.DATA/'zh-hant/55.md').read_text())
+        self.assertNotIn('当然说死了好',self.m['items'][53]['zh_title'])
+        self.assertNotIn('就是它的罪',self.m['items'][55]['zh_title'])
+
     def test_search_metadata(self):
         for name in self.pages:
             record=scan_page(b.ROOT,b.TARGET/name)
