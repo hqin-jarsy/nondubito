@@ -2078,6 +2078,118 @@ class FullEditionTests(unittest.TestCase):
         for slug in chain[1:-1]:
             self.assertIn('essays/mingren/' + slug + '.html', Metadata(latest).links)
 
+    def test_batch_22_all_three_are_reviewed_full_editions(self):
+        for number, slug in enumerate(('joanofarc', 'wilde', 'ramanujan'), 64):
+            with self.subTest(slug=slug):
+                entry = self.entries[slug]
+                self.assertEqual((entry['number'], entry['movement']), (number, 5))
+                self.assertEqual(entry['edition']['status'], 'full')
+                self.assertEqual(set(entry['copy']), set(builder.LANGS))
+                builder.validate_full_edition(entry)
+        self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full'
+                                    for e in self.entries.values()), 67)
+
+    def test_batch_22_preserves_nine_sections_and_full_prose(self):
+        for slug in ('joanofarc', 'wilde', 'ramanujan'):
+            entry = self.entries[slug]
+            for lang in ('zh', 'en'):
+                source = builder.source_body(slug, lang)
+                self.assertEqual(len(re.findall(r'<h2\b', source)), 9)
+                self.assertGreaterEqual(len(re.findall(r'<p\b', source)), 48)
+                body = html.unescape(re.sub(r'<[^>]+>', ' ', source))
+                units = len(re.sub(r'\s+', '', body)) if lang == 'zh' else len(body.split())
+                self.assertGreaterEqual(units, 3500 if lang == 'zh' else 1800)
+            for lang, copy in entry['copy'].items():
+                with self.subTest(slug=slug, lang=lang):
+                    self.assertEqual(len(copy['sections']), 9)
+                    self.assertEqual([s['covers'][0] for s in copy['sections']],
+                                     entry['edition']['required_topics'])
+                    paragraphs = [p for s in copy['sections'] for p in s['paragraphs']]
+                    self.assertGreaterEqual(len(paragraphs), 48)
+                    self.assertGreaterEqual(len(copy['sections'][-1]['paragraphs']), 6)
+                    body = ' '.join(paragraphs)
+                    cjk = lang in ('zh-hant', 'ja', 'ko')
+                    units = len(re.sub(r'\s+', '', body)) if cjk else len(body.split())
+                    floor = 3500 if lang == 'zh-hant' else 4000 if cjk else 1800
+                    self.assertGreaterEqual(units, floor)
+
+    def test_batch_22_has_localized_notes_and_sources(self):
+        for slug in ('joanofarc', 'wilde', 'ramanujan'):
+            entry = self.entries[slug]
+            self.assertGreaterEqual(len(entry['sources']), 3)
+            for source in entry['sources']:
+                self.assertEqual(set(source['titles']), set(builder.LANGS))
+                self.assertTrue(source['url'].startswith('https://'))
+                self.assertTrue(all(source['titles'].values()))
+            for lang in builder.LANGS:
+                self.assertEqual(len(entry['copy'][lang]['notes']), 2)
+
+    def test_joan_keeps_agency_trial_and_rehabilitation_distinct(self):
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('joanofarc', 'en'))).lower()
+        for phrase in ('1431', '1456', '1920', 'charles', 'fear'):
+            self.assertIn(phrase, en)
+        self.assertRegex(en, 'orl[eé]ans')
+        for old_error in ('she simply did not see them', 'joan built nothing',
+                          'both killed by their own city', 'she never once treated anyone as a means',
+                          'joan does not know. but she arrives first'):
+            self.assertNotIn(old_error, en)
+
+    def test_wilde_keeps_specific_love_without_a_martyrdom_requirement(self):
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('wilde', 'en'))).lower()
+        for phrase in ('queensberry', '1895', 'dorian', 'douglas', 'turing', '2013', '2017'):
+            self.assertIn(phrase, en)
+        for old_error in ('had he run, the sentence would have been empty',
+                          'but if she had, she would not have', 'they are all saints',
+                          'turing said nothing', 'his only work was the ballad'):
+            self.assertNotIn(old_error, en)
+
+    def test_ramanujan_keeps_proof_training_and_other_people_visible(self):
+        en = html.unescape(re.sub(r'<[^>]+>', '', builder.source_body('ramanujan', 'en'))).lower()
+        for phrase in ('1913', 'hardy', 'littlewood', 'proof', '1729', 'positive', 'janaki'):
+            self.assertIn(phrase, en)
+        for old_error in ('the formulas know they are true', 'proof is the church of mathematics',
+                          'both had seen too much', 'he proved the non-closure of constructs',
+                          'he had only formulas'):
+            self.assertNotIn(old_error, en)
+
+    def test_batch_22_traditional_is_complete_and_reviewed(self):
+        for slug in ('joanofarc', 'wilde', 'ramanujan'):
+            sections = self.entries[slug]['copy']['zh-hant']['sections']
+            source = builder.source_body(slug, 'zh')
+            self.assertEqual(len(re.findall(r'<h2\b', source)), len(sections))
+            self.assertEqual(len(re.findall(r'<p\b', source)),
+                             sum(len(s['paragraphs']) for s in sections))
+            text = ' '.join(p for s in sections for p in s['paragraphs'])
+            for wrong in ('反復', '重復', '想象', '煙鬥', '賬', '咨詢'):
+                self.assertNotIn(wrong, text)
+
+    def test_batch_22_navigation_metadata_and_update_card(self):
+        from html.parser import HTMLParser
+        class Metadata(HTMLParser):
+            def __init__(self, text):
+                super().__init__()
+                self.descriptions, self.links = [], []
+                self.feed(text)
+            def handle_starttag(self, tag, attrs):
+                d = dict(attrs)
+                if tag == 'meta' and d.get('name') == 'description':
+                    self.descriptions.append(attrs)
+                if tag == 'a' and 'href' in d:
+                    self.links.append(d['href'])
+        chain = ['maxwell', 'joanofarc', 'wilde', 'ramanujan', 'oppenheimer']
+        for i, slug in enumerate(chain[1:-1], 1):
+            source = Metadata(builder.source_path_for(slug).read_text(encoding='utf-8'))
+            self.assertEqual(len(source.descriptions), 1)
+            self.assertEqual({k for k, v in source.descriptions[0]}, {'name', 'content'})
+            for lang in builder.LANGS:
+                page = Metadata((builder.SERIES / lang / (slug + '.html')).read_text(encoding='utf-8'))
+                self.assertIn(chain[i - 1] + '.html', page.links)
+                self.assertIn(chain[i + 1] + '.html', page.links)
+        latest = (builder.ROOT / 'latest.html').read_text(encoding='utf-8')
+        self.assertEqual(latest.count('data-update-id="2026-09-22-great-lives-batch-22-full"'), 1)
+        for slug in chain[1:-1]:
+            self.assertIn('essays/mingren/' + slug + '.html', Metadata(latest).links)
+
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
         self.assertIn('荷马，声音进入文字的门槛', source)
