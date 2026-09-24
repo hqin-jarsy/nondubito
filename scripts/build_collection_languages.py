@@ -220,6 +220,9 @@ def render(spec: dict[str, object]) -> dict[Path, str]:
             outputs[existing] = replace_language_route(
                 article, lang, str(item["slug"]), existing
             ) if not blockchain else upgrade_blockchain_page(article, lang, str(item["slug"]))
+    if spec['id'] == 'chinese-emperors':
+        from build_emperor_full_editions import upgrade_outputs as upgrade_emperor_full_editions
+        upgrade_emperor_full_editions(outputs)
     return outputs
 
 
