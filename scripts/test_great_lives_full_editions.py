@@ -2484,6 +2484,72 @@ class FullEditionTests(unittest.TestCase):
         for slug in chain[1:-1]:
             self.assertIn('href="essays/mingren/' + slug + '.html"', latest)
 
+    def test_batch_26_complete_editions_and_paragraph_maps(self):
+        maps = {'feynman': [11,9,12,11,9,11,10,9,17],
+                'hawking': [9,8,9,11,10,10,8,10,20],
+                'caoxueqin': [14,10,12,8,9,12,10,10,34]}
+        for number, (slug, counts) in enumerate(maps.items(), 76):
+            entry = self.entries[slug]
+            self.assertEqual((entry['number'], entry['movement']), (number, 5))
+            self.assertEqual(entry['edition']['status'], 'full')
+            builder.validate_full_edition(entry)
+            for lang, copy in entry['copy'].items():
+                self.assertEqual([len(s['paragraphs']) for s in copy['sections']], counts)
+                self.assertEqual([s['covers'][0] for s in copy['sections']], entry['edition']['required_topics'])
+                self.assertEqual(len(copy['notes']), 3)
+            for lang in ('zh', 'en'):
+                sections = re.split(r'<h2\b[^>]*>.*?</h2>', builder.source_body(slug, lang), flags=re.S)[1:]
+                self.assertEqual([len(re.findall(r'<p\b', s)) for s in sections], counts)
+        self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full'
+                                    for e in self.entries.values()), 79)
+
+    def test_batch_26_continuity_and_clean_public_copy(self):
+        games = {'zh-hant':'雙陸棋', 'ja':'バックギャモン', 'fr':'backgammon',
+                 'de':'Backgammon', 'es':'backgammon', 'ko':'백개먼'}
+        for slug in ('feynman','hawking','caoxueqin'):
+            for lang, copy in self.entries[slug]['copy'].items():
+                text = ' '.join(p for s in copy['sections'] for p in s['paragraphs'])
+                self.assertIn(games[lang], text)
+                self.assertNotRegex(text, r'\[\^\d+\]|\*\*|billiards|Billard|billard|billar|ビリヤード|당구|台球|撞球')
+                self.assertNotIn('v0.1', text)
+                for source in self.entries[slug]['sources']:
+                    self.assertEqual(set(source['titles']), set(builder.LANGS))
+                    self.assertTrue(source['url'].startswith('https://'))
+            self.assertIn('双陆棋', builder.source_body(slug, 'zh'))
+            self.assertIn('backgammon', builder.source_body(slug, 'en'))
+
+    def test_batch_26_preserves_substance_without_revision_log(self):
+        text = {s: html.unescape(re.sub(r'<[^>]+>', '', builder.source_body(s, 'en'))).lower()
+                for s in ('feynman','hawking','caoxueqin')}
+        for word in ('amplitude', 'arline', '1946', 'dyson', 'boisjoly', '1981', 'letter'):
+            self.assertIn(word, text['feynman'])
+        for word in ('1963', 'hand', 'cheek', 'bekenstein', 'hartle', '1983', 'assistance', 'lucasian'):
+            self.assertIn(word, text['hawking'])
+        for word in ('1791', 'lingguan', 'xiren', 'baochai',
+                     '1763', '1764', 'merely', 'last page', 'cat'):
+            self.assertIn(word, text['caoxueqin'])
+        self.assertIn('shakespeare is still the water', text['caoxueqin'])
+        for wrong in ('no engine', 'medical inventory', 'not another photograph'):
+            self.assertNotIn(wrong, text['hawking'])
+        for wrong in ('new proof about infinite sets', 'qing officials and ming loyalists',
+                      'grade human freedom', 'quotation from jane eyre'):
+            self.assertNotIn(wrong, text['caoxueqin'])
+
+    def test_batch_26_navigation_and_latest_entry(self):
+        chain = ['schrodinger','feynman','hawking','caoxueqin','comte']
+        for i, slug in enumerate(chain[1:-1], 1):
+            for lang in builder.LANGS:
+                path = builder.SERIES / lang / (slug + '.html')
+                page = path.read_text(encoding='utf-8')
+                for neighbour in (chain[i-1], chain[i+1]):
+                    self.assertIn(f'href="{neighbour}.html"', page)
+                self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+                self.assertNotRegex(page, r'\[\^\d+\]')
+        latest = (builder.ROOT / 'latest.html').read_text(encoding='utf-8')
+        self.assertEqual(latest.count('data-update-id="2026-09-24-great-lives-batch-26-full"'), 1)
+        for slug in chain[1:-1]:
+            self.assertIn('href="essays/mingren/' + slug + '.html"', latest)
+
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
         self.assertIn('荷马，声音进入文字的门槛', source)
