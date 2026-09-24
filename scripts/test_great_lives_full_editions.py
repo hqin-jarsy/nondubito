@@ -2416,6 +2416,74 @@ class FullEditionTests(unittest.TestCase):
                        'september', '1860', '1870'):
             self.assertIn(phrase, body['dickens'])
 
+    def test_batch_25_full_editions_and_source_revisions(self):
+        for number, slug in enumerate(('churchill', 'roosevelt', 'schrodinger'), 73):
+            entry = self.entries[slug]
+            self.assertEqual((entry['number'], entry['movement']), (number, 5))
+            self.assertEqual(entry['edition']['status'], 'full')
+            self.assertEqual(set(entry['copy']), set(builder.LANGS))
+            builder.validate_full_edition(entry)
+        self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full'
+                                    for e in self.entries.values()), 76)
+
+    def test_batch_25_complete_paragraph_maps_and_localized_notes(self):
+        maps = {'churchill': [11,9,9,11,11,9,8,9,18],
+                'roosevelt': [8,11,10,12,10,10,10,10,18],
+                'schrodinger': [10,9,9,9,11,9,10,9,20]}
+        for slug, counts in maps.items():
+            entry = self.entries[slug]
+            self.assertEqual(len(entry['sources']), {'churchill':25,'roosevelt':36,'schrodinger':12}[slug])
+            for source in entry['sources']:
+                self.assertEqual(set(source['titles']), set(builder.LANGS))
+                self.assertTrue(source['url'].startswith('https://'))
+            for lang, copy in entry['copy'].items():
+                with self.subTest(slug=slug, lang=lang):
+                    self.assertEqual([len(s['paragraphs']) for s in copy['sections']], counts)
+                    self.assertEqual([s['covers'][0] for s in copy['sections']], entry['edition']['required_topics'])
+                    self.assertEqual(len(copy['notes']), 3 if slug == 'churchill' else 4)
+                    text = ' '.join(p for s in copy['sections'] for p in s['paragraphs'])
+                    self.assertNotRegex(text, r'\[\^\d+\]|\*\*|billiards|ビリヤード|당구')
+            for lang in ('zh', 'en'):
+                source = builder.source_body(slug, lang)
+                sections = re.split(r'<h2\b[^>]*>.*?</h2>', source, flags=re.S)[1:]
+                self.assertEqual([len(re.findall(r'<p\b', s)) for s in sections], counts)
+                self.assertNotRegex(source, r'\[\^\d+\]|\*\*')
+
+    def test_batch_25_keeps_substantive_boundaries_without_editorial_asides(self):
+        text = {s: html.unescape(re.sub(r'<[^>]+>', '', builder.source_body(s, 'en'))).lower()
+                for s in ('churchill', 'roosevelt', 'schrodinger')}
+        for term in ('1949', 'halifax', 'nanavati', '1944', 'woodford', 'backgammon',
+                     'respect for someone', 'more useful afterward'):
+            self.assertIn(term, text['churchill'])
+        for term in ('perkins', 'korematsu', 'endo', 'sugiyama', 'september 2', 'ramp', 'two inks'):
+            self.assertIn(term, text['roosevelt'])
+        for term in ('probability amplitudes', 'decoherence', 'franklin', 'gosling',
+                     'underage pupil', 'adult has a particular responsibility', 'literary imagination'):
+            self.assertIn(term, text['schrodinger'])
+        for term in ('zurich sanatorium', 'no imaginary meeting', 'this time both hands are free'):
+            self.assertNotIn(term, text['schrodinger'])
+        self.assertNotIn('definitive final line of dialogue', text['roosevelt'])
+        self.assertIn('puts the papers in his pocket, freeing both hands, then picks up the cat', text['schrodinger'])
+
+    def test_batch_25_navigation_sources_and_latest_card(self):
+        chain = ['dickens', 'churchill', 'roosevelt', 'schrodinger', 'feynman']
+        for i, slug in enumerate(chain[1:-1], 1):
+            for lang in builder.LANGS:
+                path = builder.SERIES / lang / (slug + '.html')
+                page = path.read_text(encoding='utf-8')
+                self.assertIn(f'href="{chain[i-1]}.html"', page)
+                self.assertIn(f'href="{chain[i+1]}.html"', page)
+                self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+                self.assertNotRegex(page, r'\[\^\d+\]')
+                for href in re.findall(r'href="([^"]+)"', page):
+                    url = urlsplit(html.unescape(href))
+                    if not url.scheme and not url.netloc and url.path:
+                        self.assertTrue((path.parent / unquote(url.path)).resolve().is_file(), href)
+        latest = (builder.ROOT / 'latest.html').read_text(encoding='utf-8')
+        self.assertEqual(latest.count('data-update-id="2026-09-23-great-lives-batch-25-full"'), 1)
+        for slug in chain[1:-1]:
+            self.assertIn('href="essays/mingren/' + slug + '.html"', latest)
+
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
         self.assertIn('荷马，声音进入文字的门槛', source)
