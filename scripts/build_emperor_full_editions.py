@@ -48,7 +48,7 @@ def editions():
             # use [n] paragraphs. Both become the same accessible link targets.
             notes = re.sub(r'^(\d+)\. ', r'[\1] ', notes, flags=re.M)
             definitions = set(re.findall(r'^\[(\d+)\]', notes, re.M))
-            references = set(re.findall(r'\[(\d+)\]', main + '\n' + notes))
+            references = set(re.findall(r'\[(\d+)\](?!\()', main + '\n' + notes))
             if references - definitions:
                 raise ValueError(f'Unresolved notes in {p}: {references-definitions}')
             notes = re.sub(r'^\[(\d+)\]\s*', lambda m: f'<a id="note-{lang}-{m[1]}"></a>\n\n**{m[1]}.** ',notes,flags=re.M)

@@ -60,6 +60,24 @@ class EmperorFullEditionsTest(unittest.TestCase):
                             self.assertIn(link[1:], page.ids)
                         self.assertFalse(urlsplit(link).path.endswith('.md'))
 
+    def test_second_batch_has_all_sections_in_seven_source_languages(self):
+        for number, sections in enumerate((6, 9, 8, 8, 8), 6):
+            slug = f'ep{number:02}'
+            self.assertEqual(set(self.editions[slug]), set(full.LANGS))
+            for lang in full.LANGS:
+                with self.subTest(slug=slug, lang=lang):
+                    source = (full.DATA / f'{slug}.{lang}.md').read_text()
+                    self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
+                    self.assertIn(self.editions[slug][lang]['body'],
+                                  self.outputs[full.SERIES / (f'{slug}.html' if lang in ('zh','en') else f'{lang}/{slug}.html')])
+
+    def test_second_batch_old_title_commentary_removed(self):
+        patterns = r'中国語(?:の)?原題|중국어 원제|título chino|titre chinois|chinesischen Titel|chinesische Überschrift'
+        for number in range(6, 11):
+            for lang in ('ja', 'ko', 'fr', 'de', 'es'):
+                source = (full.DATA / f'ep{number:02}.{lang}.md').read_text()
+                self.assertEqual(re.findall(patterns, source), [], (number, lang))
+
     def test_render_is_current_and_idempotent(self):
         for path, expected in self.outputs.items():
             with self.subTest(page=path):
