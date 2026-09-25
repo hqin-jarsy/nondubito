@@ -136,6 +136,38 @@ class EmperorFullEditionsTest(unittest.TestCase):
             for term in terms:
                 self.assertIn(term, source, (slug, term))
 
+    def test_final_batch_complete_and_submission_markers_removed(self):
+        self.assertEqual(set(self.editions), {f'ep{n:02}' for n in range(1, 26)})
+        for number, notes in zip(range(21, 26), (29, 26, 31, 31, 30)):
+            slug = f'ep{number:02}'
+            self.assertEqual(set(self.editions[slug]), set(full.LANGS))
+            for lang in full.LANGS:
+                with self.subTest(slug=slug, lang=lang):
+                    source = (full.DATA / f'{slug}.{lang}.md').read_text()
+                    self.assertEqual(len(re.findall(r'^## ', source, re.M)), 7)
+                    self.assertNotIn('[^S', source)
+                    self.assertNotIn('.md', source)
+                    self.assertNotIn('v0.1', source)
+                    self.assertNotIn('non validé pour publication', source)
+                    self.assertFalse(re.search(r'^<a id=', source, re.M))
+                    if lang not in ('zh', 'en'):
+                        self.assertEqual(len(re.findall(r'^\[\d+\]', source, re.M)), notes)
+                    path = full.SERIES / (f'{slug}.html' if lang in ('zh', 'en') else f'{lang}/{slug}.html')
+                    self.assertIn(self.editions[slug][lang]['body'], self.outputs[path])
+
+    def test_final_batch_english_keeps_concrete_questions(self):
+        topics = {
+            'ep21': ('1617', 'Single Whip', 'Gu Xiancheng', 'Wang Aoyong', '1638'),
+            'ep22': ('Liu Mingying', 'forty-two days', 'Jiangyin', 'Jiading', '1683'),
+            'ep23': ('Fang Bao', 'Qian Feng', 'Liu Qiyuan', 'Dai Zhen', 'Nerchinsk'),
+            'ep24': ('Tongwenguan', '1894', 'Weihai', '1905', 'Sun Yat-sen'),
+            'ep25': ('Hu Shi', '1931', '1934', 'Xi’an', 'Chen Sheng'),
+        }
+        for slug, terms in topics.items():
+            source = (full.DATA / f'{slug}.en.md').read_text().replace("'", '’')
+            for term in terms:
+                self.assertIn(term, source, (slug, term))
+
     def test_render_is_current_and_idempotent(self):
         for path, expected in self.outputs.items():
             with self.subTest(page=path):
