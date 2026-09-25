@@ -111,6 +111,31 @@ class EmperorFullEditionsTest(unittest.TestCase):
         self.assertIn('href="https://zh.wikisource.org/wiki/後漢書/卷114">114</a>', body)
         self.assertNotIn('href="#note-en-114"', body)
 
+    def test_fourth_batch_complete_in_all_source_languages(self):
+        for number, sections in enumerate((6, 8, 6, 7, 6), 16):
+            slug = f'ep{number:02}'
+            self.assertEqual(set(self.editions[slug]), set(full.LANGS))
+            for lang in full.LANGS:
+                with self.subTest(slug=slug, lang=lang):
+                    source = (full.DATA / f'{slug}.{lang}.md').read_text()
+                    self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
+                    path = full.SERIES / (f'{slug}.html' if lang in ('zh', 'en') else f'{lang}/{slug}.html')
+                    self.assertIn(self.editions[slug][lang]['body'], self.outputs[path])
+                    self.assertFalse(re.search(r'中国語の原題|중국어 원제|titre chinois|título chino|chinesischen Titel', source))
+
+    def test_fourth_batch_english_preserves_key_discussions(self):
+        topics = {
+            'ep16': ('Wang Gui', 'Wu Zetian', '737', 'Bian Lingcheng', 'Wu Jing'),
+            'ep17': ('Tian Hongzheng', 'Feng Dao', 'Fu Lingguang', '961', 'Chanyuan'),
+            'ep18': ('Yuanfeng', 'Bi Sheng', '1089', 'Yingtianfu', '1129'),
+            'ep19': ('Ögödei', '1315', 'Cheng Jufu', 'Jia Lu', '1367'),
+            'ep20': ('Qian Xing', '1393', 'Qi Jiguang', 'Fish-Scale', 'Shi Lingzhi', '1519'),
+        }
+        for slug, terms in topics.items():
+            source = (full.DATA / f'{slug}.en.md').read_text()
+            for term in terms:
+                self.assertIn(term, source, (slug, term))
+
     def test_render_is_current_and_idempotent(self):
         for path, expected in self.outputs.items():
             with self.subTest(page=path):
