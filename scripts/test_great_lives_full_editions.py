@@ -2605,6 +2605,60 @@ class FullEditionTests(unittest.TestCase):
         for slug in chain[1:-1]:
             self.assertIn(f'href="essays/mingren/{slug}.html"', latest)
 
+    def test_batch_28_full_editions_and_traditional_coverage(self):
+        for number, slug in enumerate(('quyuan', 'fichte', 'mcclintock'), 82):
+            entry = self.entries[slug]
+            self.assertEqual((entry['number'], entry['movement']), (number, 6))
+            self.assertEqual(entry['edition']['status'], 'full')
+            builder.validate_full_edition(entry)
+            for lang, copy in entry['copy'].items():
+                self.assertEqual(len(copy['sections']), 8)
+                self.assertEqual(len(copy['notes']), 3)
+                self.assertEqual([s['covers'][0] for s in copy['sections']], entry['edition']['required_topics'])
+                body = ' '.join(p for s in copy['sections'] for p in s['paragraphs'])
+                self.assertNotRegex(body, r'\[\^\d+\]|\*\*|v0\.2|旧稿|舊稿|旧稿|옛 초고|La versión anterior|L’ancienne version|Die ältere Fassung')
+            for lang in ('zh', 'en'):
+                self.assertEqual(len(re.findall(r'<h2\b', builder.source_body(slug, lang))), 8)
+        self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full' for e in self.entries.values()), 85)
+
+    def test_batch_28_essay_substance_and_editorial_boundaries(self):
+        bodies = {slug: html.unescape(re.sub(r'<[^>]+>', '', builder.source_body(slug, 'en')))
+                  for slug in ('quyuan', 'fichte', 'mcclintock')}
+        for body in bodies.values():
+            self.assertNotRegex(body, r'earlier draft|old essay|this revision can sustain|already corrected|Self-as-an-End')
+        for term in ('She Jiang', 'Orange Tree', 'Liu Xie', 'fisherman', 'remains on the bank'):
+            self.assertIn(term, bodies['quyuan'])
+        for term in ('Tathandlung', 'Anstoß', 'Aufforderung', '1799', 'education', 'refuse'):
+            self.assertIn(term, bodies['fichte'])
+        for term in ('breakage–fusion–bridge', '1953', '1961', 'gender', 'Plant again', 'Evidence still has to follow'):
+            self.assertIn(term, bodies['mcclintock'])
+
+    def test_batch_28_navigation_sources_and_latest(self):
+        chain = ('dirac', 'quyuan', 'fichte', 'mcclintock', 'weil')
+        for i, slug in enumerate(chain[1:-1], 1):
+            urls = [s['url'] for s in self.entries[slug]['sources']]
+            self.assertEqual(len(urls), len(set(urls)))
+            self.assertTrue(all(u.startswith('https://') for u in urls))
+            self.assertTrue(all(u.count('https://') == 1 and '[' not in u and ']' not in u for u in urls))
+            for lang in builder.LANGS:
+                page = (builder.SERIES / lang / (slug + '.html')).read_text(encoding='utf-8')
+                for neighbour in (chain[i-1], chain[i+1]):
+                    self.assertIn(f'href="{neighbour}.html"', page)
+                self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+        latest = (builder.ROOT / 'latest.html').read_text(encoding='utf-8')
+        self.assertEqual(latest.count('data-update-id="2026-09-25-great-lives-batch-28-full"'), 1)
+        for slug in chain[1:-1]:
+            self.assertIn(f'href="essays/mingren/{slug}.html"', latest)
+
+    def test_batch_28_mcclintock_opens_with_material_not_audit(self):
+        for lang in ('zh', 'en'):
+            body = builder.source_body('mcclintock', lang)
+            paragraphs = re.findall(r'<p>(.*?)</p>', body, re.S)
+            self.assertIn('玉米' if lang == 'zh' else 'kernel', paragraphs[0])
+            self.assertNotIn('Ds', paragraphs[0])
+        for copy in self.entries['mcclintock']['copy'].values():
+            self.assertNotIn('Ds', copy['sections'][0]['paragraphs'][0])
+
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
         self.assertIn('荷马，声音进入文字的门槛', source)
