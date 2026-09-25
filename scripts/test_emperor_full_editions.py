@@ -78,6 +78,39 @@ class EmperorFullEditionsTest(unittest.TestCase):
                 source = (full.DATA / f'ep{number:02}.{lang}.md').read_text()
                 self.assertEqual(re.findall(patterns, source), [], (number, lang))
 
+    def test_third_batch_has_complete_sections_and_sources(self):
+        for number, sections in enumerate((7, 7, 7, 6, 6), 11):
+            slug = f'ep{number:02}'
+            self.assertEqual(set(self.editions[slug]), set(full.LANGS))
+            for lang in full.LANGS:
+                with self.subTest(slug=slug, lang=lang):
+                    source = (full.DATA / f'{slug}.{lang}.md').read_text()
+                    self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
+                    path = full.SERIES / (f'{slug}.html' if lang in ('zh', 'en') else f'{lang}/{slug}.html')
+                    self.assertIn(self.editions[slug][lang]['body'], self.outputs[path])
+                    self.assertNotIn('中国語の原題', source)
+                    self.assertNotIn('중국어 원제', source)
+                    self.assertNotIn('titre chinois', source)
+                    self.assertNotIn('título chino', source)
+                    self.assertNotIn('chinesischen Titel', source)
+
+    def test_third_batch_restored_english_topics_and_numeric_links(self):
+        topics = {
+            'ep11': ('He Hai', 'Lü Qiang', '194', '220'),
+            'ep12': ('Jiang Wan', 'Fei Yi', 'Wei Guan', 'households'),
+            'ep13': ('Xu Xian', 'Dao’an', 'Daosheng', 'registration'),
+            'ep14': ('Empress Dowager Feng', 'Liu Xie', '574', '590'),
+            'ep15': ('Yongfeng', '631', 'Wude', 'community-granary'),
+        }
+        for slug, terms in topics.items():
+            source = (full.DATA / f'{slug}.en.md').read_text().replace("'", '’')
+            for term in terms:
+                self.assertIn(term, source, (slug, term))
+        # Numeric source labels are ordinary external links, not note numbers.
+        body = self.editions['ep11']['en']['body']
+        self.assertIn('href="https://zh.wikisource.org/wiki/後漢書/卷114">114</a>', body)
+        self.assertNotIn('href="#note-en-114"', body)
+
     def test_render_is_current_and_idempotent(self):
         for path, expected in self.outputs.items():
             with self.subTest(page=path):
