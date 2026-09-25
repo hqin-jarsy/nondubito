@@ -2550,6 +2550,61 @@ class FullEditionTests(unittest.TestCase):
         for slug in chain[1:-1]:
             self.assertIn('href="essays/mingren/' + slug + '.html"', latest)
 
+    def test_batch_27_complete_editions_and_content_maps(self):
+        for number, slug in enumerate(('comte', 'popper', 'dirac'), 79):
+            entry = self.entries[slug]
+            self.assertEqual((entry['number'], entry['movement']), (number, 6))
+            self.assertEqual(entry['edition']['status'], 'full')
+            builder.validate_full_edition(entry)
+            for lang, copy in entry['copy'].items():
+                self.assertEqual(len(copy['sections']), 8)
+                self.assertEqual([s['covers'][0] for s in copy['sections']], entry['edition']['required_topics'])
+                self.assertEqual(len(copy['notes']), 3)
+                body = ' '.join(p for s in copy['sections'] for p in s['paragraphs'])
+                self.assertNotRegex(body, r'\[\^\d+\]|\*\*|v0\.1|\\\[|\\frac')
+            for lang in ('zh', 'en'):
+                self.assertEqual(len(re.findall(r'<h2\b', builder.source_body(slug, lang))), 8)
+        self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full'
+                                   for e in self.entries.values()), 82)
+
+    def test_batch_27_readable_equations_in_all_editions(self):
+        formulas = ('iℏ ∂ψ/∂t = (c α·p + βmc²)ψ', 'E = ±√(|p|²c² + m²c⁴)')
+        for copy in self.entries['dirac']['copy'].values():
+            paragraphs = [p for s in copy['sections'] for p in s['paragraphs']]
+            for formula in formulas:
+                self.assertEqual(paragraphs.count(formula), 1)
+        for lang in ('zh', 'en'):
+            body = builder.source_body('dirac', lang)
+            for formula in formulas:
+                self.assertEqual(body.count(formula), 1)
+            self.assertNotIn('\\(', body)
+
+    def test_batch_27_substance_and_bridge_continuity(self):
+        bodies = {slug: html.unescape(re.sub(r'<[^>]+>', '', builder.source_body(slug, 'en'))).lower()
+                  for slug in ('comte', 'popper', 'dirac')}
+        for term in ('clotilde', 'friendship', '1849', 'relative', 'observation', 'water'):
+            self.assertIn(term, bodies['comte'])
+        self.assertNotIn('shakespeare is on the bridge', bodies['comte'])
+        for term in ('black swan', 'criterion of meaning', '1978', 'auxiliary', 'finish speaking'):
+            self.assertIn(term, bodies['popper'])
+        for term in ('1928', '1931', '1932', '1933', 'weyl', 'anderson', 'vacuum', 'positive-energy'):
+            self.assertIn(term, bodies['dirac'])
+        self.assertNotIn('before counting tears', bodies['dirac'])
+        self.assertNotIn('a mouth the equation', bodies['dirac'])
+
+    def test_batch_27_navigation_and_latest_entry(self):
+        chain = ('caoxueqin', 'comte', 'popper', 'dirac', 'quyuan')
+        for i, slug in enumerate(chain[1:-1], 1):
+            for lang in builder.LANGS:
+                page = (builder.SERIES / lang / (slug + '.html')).read_text(encoding='utf-8')
+                for neighbour in (chain[i-1], chain[i+1]):
+                    self.assertIn(f'href="{neighbour}.html"', page)
+                self.assertIn(f'https://nondubito.net/essays/mingren/{lang}/{slug}.html', page)
+        latest = (builder.ROOT / 'latest.html').read_text(encoding='utf-8')
+        self.assertEqual(latest.count('data-update-id="2026-09-25-great-lives-batch-27-full"'), 1)
+        for slug in chain[1:-1]:
+            self.assertIn(f'href="essays/mingren/{slug}.html"', latest)
+
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
         self.assertIn('荷马，声音进入文字的门槛', source)
