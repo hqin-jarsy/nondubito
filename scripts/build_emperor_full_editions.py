@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
-"""Render reviewed Emperor Markdown into existing, stable-URL site templates.
+"""Render Emperor editions into existing, stable-URL site templates.
 
 Only episodes with all seven source files are published. Traditional Chinese
 continues to use the site's offline reading map, rebuilt after this script.
 The compact collection builder calls upgrade_outputs too, so it cannot replace
-reviewed full editions with its older three-paragraph records.
+full foreign editions with its older three-paragraph records. Chinese/English
+retain the locked pre-upgrade originals rather than the multilingual rewrites.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
+import json
 import re
 from pathlib import Path
 import markdown
@@ -18,6 +21,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SERIES = ROOT / 'essays/emperor'
 DATA = ROOT / 'data/emperor-full'
 LANGS = ('zh', 'en', 'ja', 'fr', 'de', 'es', 'ko')
+ORIGINAL_MARKER = '<!-- emperor-original-html -->'
+ORIGINAL_BASELINE = DATA / 'original-zh-en.json'
 STYLE = '''<style id="emperor-full-style">
 .full-edition p{margin:0 0 1.35em;line-height:1.9;overflow-wrap:anywhere}
 .full-edition h2{margin:2.5em 0 .85em;line-height:1.4}
@@ -29,6 +34,7 @@ STYLE = '''<style id="emperor-full-style">
 
 def editions():
     result = {}
+    originals = json.loads(ORIGINAL_BASELINE.read_text(encoding='utf-8'))['editions']
     for path in sorted(DATA.glob('ep*.zh.md')):
         slug = path.name.split('.')[0]
         copies = {}
@@ -39,6 +45,24 @@ def editions():
             if not heading:
                 raise ValueError(f'Missing title: {p}')
             body = source[heading.end():].strip()
+            if lang in ('zh', 'en'):
+                # These editions are restored author-approved originals, not
+                # inputs to the multilingual rewrite. Preserve their HTML and
+                # paragraph boundaries without a Markdown round trip.
+                if not body.startswith(ORIGINAL_MARKER):
+                    raise ValueError(f'Missing original-edition marker: {p}')
+                original = originals[slug][lang]
+                original_body = body[len(ORIGINAL_MARKER):].strip()
+                if (heading[1] != original['title'] or
+                        hashlib.sha256(original_body.encode()).hexdigest() != original['body_sha256']):
+                    raise ValueError(f'Original edition changed: {p}; explicit editorial approval and re-baselining required')
+                copies[lang] = dict(
+                    title=heading[1], deck=original['deck'],
+                    nav_title=original['nav_title'],
+                    link_title=original.get('link_title', original['nav_title']),
+                    body=original_body,
+                )
+                continue
             split = list(re.finditer(r'^#{2,3} (.+)$', body, re.M))[-1]
             label = split[1]
             if not re.search(r'Sources|Quellen|Fuentes|史|사료',label):
@@ -114,7 +138,7 @@ def navigation(text, lang, all_editions):
         copies = all_editions[slug]
         if lang == 'zh':
             for code in ('zh','en'):
-                for klass,key in [('card-title-'+code,'title'),('card-desc','deck'),('xiyou-nav-title','title')]:
+                for klass,key in [('card-title-'+code,'nav_title'),('card-desc','deck'),('xiyou-nav-title','link_title')]:
                     pattern=r'(<(?:div|p|span)\b[^>]*class="[^"\n]*'+klass+r'[^"\n]*lang-'+code+r'[^"\n]*"[^>]*>).*?(</(?:div|p|span)>)'
                     contents=re.sub(pattern,lambda n:n[1]+html.escape(copies[code][key])+n[2],contents,flags=re.S)
         else:

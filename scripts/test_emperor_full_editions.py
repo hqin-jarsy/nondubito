@@ -4,11 +4,16 @@
 These checks detect lost prose, broken notes, and compact-generator overwrites;
 they are not a substitute for editorial or browser review.
 """
+import hashlib
+import html
+import json
 import re
 import unittest
 from collections import Counter
 from html.parser import HTMLParser
 from urllib.parse import unquote, urlsplit
+from unittest.mock import patch
+from pathlib import Path
 
 import build_emperor_full_editions as full
 from build_collection_languages import load_specs, render as collection_render
@@ -38,18 +43,28 @@ class EmperorFullEditionsTest(unittest.TestCase):
     def setUpClass(cls):
         cls.editions = full.editions()
         cls.outputs = full.render()
+        cls.originals = json.loads(full.ORIGINAL_BASELINE.read_text())['editions']
+
+    def assert_original(self, slug, lang):
+        copy = self.editions[slug][lang]
+        baseline = self.originals[slug][lang]
+        self.assertEqual(copy['title'], baseline['title'])
+        self.assertEqual(hashlib.sha256(copy['body'].encode()).hexdigest(), baseline['body_sha256'])
+        self.assertIn(copy['body'], self.outputs[full.SERIES / f'{slug}.html'])
 
     def test_first_batch_is_complete(self):
         for number, sections in enumerate((6, 7, 7, 9, 8), 1):
             slug = f'ep{number:02}'
             self.assertEqual(set(self.editions[slug]), set(full.LANGS))
             for lang in ('zh', 'en'):
-                source = (full.DATA / f'{slug}.{lang}.md').read_text()
-                self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
+                self.assert_original(slug, lang)
 
     def test_full_sources_and_notes_render(self):
         for slug, copies in self.editions.items():
             for lang, copy in copies.items():
+                if lang in ('zh', 'en'):
+                    self.assert_original(slug, lang)
+                    continue
                 with self.subTest(slug=slug, lang=lang):
                     page = Page(copy['body'])
                     self.assertTrue(page.ids)
@@ -67,7 +82,8 @@ class EmperorFullEditionsTest(unittest.TestCase):
             for lang in full.LANGS:
                 with self.subTest(slug=slug, lang=lang):
                     source = (full.DATA / f'{slug}.{lang}.md').read_text()
-                    self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
+                    if lang not in ('zh', 'en'):
+                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
                     self.assertIn(self.editions[slug][lang]['body'],
                                   self.outputs[full.SERIES / (f'{slug}.html' if lang in ('zh','en') else f'{lang}/{slug}.html')])
 
@@ -85,7 +101,8 @@ class EmperorFullEditionsTest(unittest.TestCase):
             for lang in full.LANGS:
                 with self.subTest(slug=slug, lang=lang):
                     source = (full.DATA / f'{slug}.{lang}.md').read_text()
-                    self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
+                    if lang not in ('zh', 'en'):
+                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
                     path = full.SERIES / (f'{slug}.html' if lang in ('zh', 'en') else f'{lang}/{slug}.html')
                     self.assertIn(self.editions[slug][lang]['body'], self.outputs[path])
                     self.assertNotIn('中国語の原題', source)
@@ -94,22 +111,22 @@ class EmperorFullEditionsTest(unittest.TestCase):
                     self.assertNotIn('título chino', source)
                     self.assertNotIn('chinesischen Titel', source)
 
-    def test_third_batch_restored_english_topics_and_numeric_links(self):
-        topics = {
-            'ep11': ('He Hai', 'Lü Qiang', '194', '220'),
-            'ep12': ('Jiang Wan', 'Fei Yi', 'Wei Guan', 'households'),
-            'ep13': ('Xu Xian', 'Dao’an', 'Daosheng', 'registration'),
-            'ep14': ('Empress Dowager Feng', 'Liu Xie', '574', '590'),
-            'ep15': ('Yongfeng', '631', 'Wude', 'community-granary'),
-        }
-        for slug, terms in topics.items():
-            source = (full.DATA / f'{slug}.en.md').read_text().replace("'", '’')
-            for term in terms:
-                self.assertIn(term, source, (slug, term))
-        # Numeric source labels are ordinary external links, not note numbers.
-        body = self.editions['ep11']['en']['body']
-        self.assertIn('href="https://zh.wikisource.org/wiki/後漢書/卷114">114</a>', body)
-        self.assertNotIn('href="#note-en-114"', body)
+    def test_all_original_bodies_are_locked_to_baseline(self):
+        self.assertEqual(set(self.originals), {f'ep{n:02}' for n in range(1, 26)})
+        for slug in self.originals:
+            for lang in ('zh', 'en'):
+                with self.subTest(slug=slug, lang=lang):
+                    self.assert_original(slug, lang)
+
+    def test_builder_rejects_silent_original_rewrites(self):
+        read = Path.read_text
+        target = full.DATA / 'ep09.zh.md'
+        def changed(path, *args, **kwargs):
+            text = read(path, *args, **kwargs)
+            return text + '\n<p>Unapproved replacement.</p>\n' if path == target else text
+        with patch.object(Path, 'read_text', changed):
+            with self.assertRaisesRegex(ValueError, 'Original edition changed'):
+                full.editions()
 
     def test_fourth_batch_complete_in_all_source_languages(self):
         for number, sections in enumerate((6, 8, 6, 7, 6), 16):
@@ -118,23 +135,19 @@ class EmperorFullEditionsTest(unittest.TestCase):
             for lang in full.LANGS:
                 with self.subTest(slug=slug, lang=lang):
                     source = (full.DATA / f'{slug}.{lang}.md').read_text()
-                    self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
+                    if lang not in ('zh', 'en'):
+                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
                     path = full.SERIES / (f'{slug}.html' if lang in ('zh', 'en') else f'{lang}/{slug}.html')
                     self.assertIn(self.editions[slug][lang]['body'], self.outputs[path])
                     self.assertFalse(re.search(r'中国語の原題|중국어 원제|titre chinois|título chino|chinesischen Titel', source))
 
-    def test_fourth_batch_english_preserves_key_discussions(self):
-        topics = {
-            'ep16': ('Wang Gui', 'Wu Zetian', '737', 'Bian Lingcheng', 'Wu Jing'),
-            'ep17': ('Tian Hongzheng', 'Feng Dao', 'Fu Lingguang', '961', 'Chanyuan'),
-            'ep18': ('Yuanfeng', 'Bi Sheng', '1089', 'Yingtianfu', '1129'),
-            'ep19': ('Ögödei', '1315', 'Cheng Jufu', 'Jia Lu', '1367'),
-            'ep20': ('Qian Xing', '1393', 'Qi Jiguang', 'Fish-Scale', 'Shi Lingzhi', '1519'),
-        }
-        for slug, terms in topics.items():
-            source = (full.DATA / f'{slug}.en.md').read_text()
-            for term in terms:
-                self.assertIn(term, source, (slug, term))
+    def test_original_directory_titles_and_summaries(self):
+        index = self.outputs[full.SERIES / 'index.html']
+        for slug, copies in self.originals.items():
+            card = re.search(r'<a href="'+slug+r'\.html" class="essay-card">(.*?)</a>', index, re.S)[1]
+            for lang, original in copies.items():
+                self.assertIn(html.escape(original['nav_title']), card)
+                self.assertIn(html.escape(original['deck']), card)
 
     def test_final_batch_complete_and_submission_markers_removed(self):
         self.assertEqual(set(self.editions), {f'ep{n:02}' for n in range(1, 26)})
@@ -144,7 +157,8 @@ class EmperorFullEditionsTest(unittest.TestCase):
             for lang in full.LANGS:
                 with self.subTest(slug=slug, lang=lang):
                     source = (full.DATA / f'{slug}.{lang}.md').read_text()
-                    self.assertEqual(len(re.findall(r'^## ', source, re.M)), 7)
+                    if lang not in ('zh', 'en'):
+                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), 7)
                     self.assertNotIn('[^S', source)
                     self.assertNotIn('.md', source)
                     self.assertNotIn('v0.1', source)
@@ -155,18 +169,21 @@ class EmperorFullEditionsTest(unittest.TestCase):
                     path = full.SERIES / (f'{slug}.html' if lang in ('zh', 'en') else f'{lang}/{slug}.html')
                     self.assertIn(self.editions[slug][lang]['body'], self.outputs[path])
 
-    def test_final_batch_english_keeps_concrete_questions(self):
-        topics = {
-            'ep21': ('1617', 'Single Whip', 'Gu Xiancheng', 'Wang Aoyong', '1638'),
-            'ep22': ('Liu Mingying', 'forty-two days', 'Jiangyin', 'Jiading', '1683'),
-            'ep23': ('Fang Bao', 'Qian Feng', 'Liu Qiyuan', 'Dai Zhen', 'Nerchinsk'),
-            'ep24': ('Tongwenguan', '1894', 'Weihai', '1905', 'Sun Yat-sen'),
-            'ep25': ('Hu Shi', '1931', '1934', 'Xi’an', 'Chen Sheng'),
-        }
-        for slug, terms in topics.items():
-            source = (full.DATA / f'{slug}.en.md').read_text().replace("'", '’')
-            for term in terms:
-                self.assertIn(term, source, (slug, term))
+    def test_traditional_maps_cover_restored_text(self):
+        from build_emperor_traditional import TextCollector, TraditionalConverter
+        converter = TraditionalConverter()
+        try:
+            for path in sorted(full.SERIES.glob('*.html')):
+                collector = TextCollector()
+                collector.feed(path.read_text())
+                script = (full.SERIES / 'zh-hant-data' / f'{path.stem}.js').read_text()
+                variants = json.loads(re.search(r'var variants = (.*);', script)[1])
+                for text in collector.text:
+                    converted = converter.convert(text)
+                    if converted != text:
+                        self.assertEqual(variants.get(text), converted, path.name)
+        finally:
+            converter.close()
 
     def test_render_is_current_and_idempotent(self):
         for path, expected in self.outputs.items():
@@ -177,10 +194,11 @@ class EmperorFullEditionsTest(unittest.TestCase):
         specs = load_specs({'chinese-emperors'})
         self.assertEqual(len(specs), 1)
         for path, content in collection_render(specs[0]).items():
-            if path.stem in self.editions and path.parent.name in full.LANGS:
-                body = self.editions[path.stem][path.parent.name]['body']
-                self.assertIn(body, content)
-                self.assertEqual(content, path.read_text())
+            if path.stem in self.editions:
+                languages = ('zh', 'en') if path.parent == full.SERIES else (path.parent.name,)
+                for lang in languages:
+                    self.assertIn(self.editions[path.stem][lang]['body'], content)
+            self.assertEqual(content, path.read_text())
 
     def test_page_ids_canonicals_and_local_targets(self):
         for path, content in self.outputs.items():
