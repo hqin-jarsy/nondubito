@@ -53,6 +53,7 @@ def render_pages():
             if hant:
                 value = converter.convert(value).replace('“', '「').replace('”', '」').replace('‘', '『').replace('’', '』')
                 value = value.replace('乾活', '幹活').replace('復述', '複述').replace('賬', '帳').replace('不咸', '不鹹')
+                value = value.replace('輕輕鬆松', '輕輕鬆鬆').replace('包扎', '包紮').replace('鬥篷', '斗篷').replace('准是', '準是')
             return html.escape(value)
 
         def page(filename, title, description, content, article=False):
@@ -100,12 +101,22 @@ def render_pages():
 </body></html>
 '''
 
-        cards = []
-        for i, issue in enumerate(data['issues'], 1):
-            cards.append(f'<a class="humor-issue" href="{issue["slug"]}.html"><span class="humor-number">{i:02}</span><div><h2>{t(issue["title"])}</h2><p>{t(issue["deck"])}</p><span class="humor-meta">{t("六则 · 约两三分钟")}</span></div><span aria-hidden="true">↗</span></a>')
+        groups, jumps = [], []
+        start = 1
+        for batch in data['batches']:
+            end = start + len(batch) - 1
+            anchor = f'issues-{start:02}-{end:02}'
+            label = f'{start:02}–{end:02}'
+            jumps.append(f'<a href="#{anchor}">{label}</a>')
+            cards = []
+            for i, issue in enumerate(batch, start):
+                cards.append(f'<a class="humor-issue" href="{issue["slug"]}.html"><span class="humor-number">{i:02}</span><div><h3>{t(issue["title"])}</h3><p>{t(issue["deck"])}</p><span class="humor-meta">{t("六则 · 约两三分钟")}</span></div><span aria-hidden="true">↗</span></a>')
+            groups.append(f'<section class="humor-group" id="{anchor}" aria-labelledby="{anchor}-title"><h2 id="{anchor}-title">{t("第")} {label} {t("辑")}</h2>{"".join(cards)}</section>')
+            start = end + 1
         introduction = f'''<div class="humor-breadcrumb"><a href="{base}library.html?lang={lang}">← {t('书库')}</a></div>
 <section class="humor-hero"><p class="humor-kicker">NON DUBITO · {t('笑话选')}</p><h1>{t('笑话选')}</h1><p class="humor-deck">{t('从不同地方传来的笑话，关于我们怎样生活，又怎样把自己绕进去。')}</p><p class="humor-welcome">{t('先笑一会儿。想查来处，每则后面都有；不想查，就接着读。')}</p><p class="humor-meta">{t(f"{len(data['issues'])} 个短辑 · {total} 则 · 简体 / 繁体")}</p><a class="humor-start" href="{data['batches'][-1][0]['slug']}.html">{t('读最新一批')} →</a><p class="humor-meta"><a href="{data['issues'][0]['slug']}.html">{t('也可以从第一辑读起')} →</a></p></section>
-<section class="humor-issues" aria-label="{t('选择一辑')}">{''.join(cards)}</section>
+<nav class="humor-jump" aria-label="{t('按辑数跳转')}"><span>{t('跳到')}</span>{''.join(jumps)}</nav>
+<div class="humor-issues">{''.join(groups)}</div>
 <details class="humor-editorial"><summary>{t('关于这份选本')}</summary><div><p>{t('这里收录旧笑话、诙谐轶事和少量带有喜剧意味的故事，不是原创小说，也不把书中轶事当作已证实的历史。中文根据所列版本译述或改写，题目多为编选时另拟。')}</p><p>{t('出处标明我们读到的版本，不声称已经找到了故事最早的源头。工作稿中的理论分类与分析留在编辑档案里；这里不逐则讲道理。')}</p><p>{t('这一批先提供简体与繁体中文。英文将另行打磨，不以机器直译替代笑话的节奏。第三辑末则写到临终与天堂。')}</p></div></details>'''
         outputs[folder / 'index.html'] = page('index.html', '笑话选', description, introduction)
         for index, issue in enumerate(data['issues']):

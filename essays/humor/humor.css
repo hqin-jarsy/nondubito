@@ -23,12 +23,19 @@
 .humor-start:hover { background: var(--green); color: var(--cream); }
 .humor-issue { display: grid; grid-template-columns: 32px 1fr 20px; gap: 20px; padding: 27px 0; border-top: 1px solid var(--cream-border); text-decoration: none; }
 .humor-issue:last-child { border-bottom: 1px solid var(--cream-border); }
-.humor-issue h2 { font-size: 1.32rem; font-weight: 500; margin-bottom: 10px; }
+.humor-issue h3 { font-size: 1.32rem; font-weight: 500; margin-bottom: 10px; }
 .humor-issue p { font-size: .92rem; color: var(--ink-light); line-height: 1.9; }
 .humor-issue .humor-meta { margin-top: 12px; }
 .humor-number, .humor-joke-number { color: var(--gold); font-family: var(--serif); }
 .humor-number { font-size: 1.25rem; }
-.humor-issue:hover h2 { text-decoration: underline; text-underline-offset: .3em; }
+.humor-issue:hover h3 { text-decoration: underline; text-underline-offset: .3em; }
+.humor-jump { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; white-space: normal; overflow: visible; margin-bottom: 26px; }
+.humor-jump span, .humor-jump a { font-family: var(--sans); font-size: .78rem; letter-spacing: normal; }
+.humor-jump span { color: var(--ink-light); }
+.humor-jump a { padding: 9px 12px; border: 1px solid var(--cream-border); text-decoration: none; }
+.humor-jump a:hover { border-color: var(--green); }
+.humor-group { scroll-margin-top: 100px; margin-bottom: 36px; }
+.humor-group > h2 { font-size: .88rem; font-weight: 500; color: var(--ink-light); margin-bottom: 18px; }
 .humor-editorial { margin-top: 35px; }
 .humor-page summary { cursor: pointer; padding: 10px 0; color: var(--ink-light); font-size: .78rem; }
 .humor-editorial > div, .humor-source > div { padding: 12px 16px; border-left: 2px solid var(--cream-border); font-size: .8rem; line-height: 1.9; color: var(--ink-light); overflow-wrap: anywhere; }
@@ -66,6 +73,7 @@
   .humor-prose { font-size: 1.06rem; }
   .humor-joke { scroll-margin-top: 120px; padding-top: 38px; }
   .humor-next { gap: 15px; }
+  .humor-group { scroll-margin-top: 125px; }
   #main { scroll-margin-top: 115px; }
 }
 @media(prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
