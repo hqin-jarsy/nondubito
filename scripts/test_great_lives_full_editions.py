@@ -2887,7 +2887,7 @@ class FullEditionTests(unittest.TestCase):
                 expected_topics = (['kant-and-revisions', 'self-positing', 'knowers-position',
                                     'religion-nation-education', 'kant-and-revisions',
                                     'body-and-recognition', 'freedom-and-others', 'bridge']
-                                   if slug == 'fichte' and lang == 'zh-hant'
+                                   if slug == 'fichte'
                                    else entry['edition']['required_topics'])
                 self.assertEqual([s['covers'][0] for s in copy['sections']], expected_topics)
                 body = ' '.join(p for s in copy['sections'] for p in s['paragraphs'])
@@ -2967,16 +2967,20 @@ class FullEditionTests(unittest.TestCase):
             sections = re.split(r'<h2\b[^>]*>.*?</h2>', builder.source_body('fichte', lang), flags=re.S)[1:]
             self.assertEqual([len(re.findall(r'<p\b', s)) for s in sections], expected)
 
-    def test_fichte_untouched_translations_keep_old_source_receipts(self):
+    def test_fichte_translations_follow_restored_source_receipts(self):
         edition = self.entries['fichte']['edition']
-        old = {'zh': '403ef562234756d999192f2f437922934ff11795649426418243a4cc641eac37',
-               'en': '062d059531037658695752f989580407af615452d81a421e369c48778b4438cf'}
+        restored = {'zh': '6e0f4f03fc02af50a1b87dd6023a2e9eda9c3f43357b9975e2778086f221683e',
+                    'en': 'd03b1a63ace3d4259b3cedf99ce636bc4031c373bf66cc01c68fabb55f053833'}
+        self.assertEqual(edition['source_sha256'], restored)
         self.assertEqual(edition['source_revision']['baseline'], '3374a61')
         self.assertEqual(edition['source_revision']['scope'], ['zh', 'en', 'zh-hant'])
-        self.assertEqual(edition['pending_source_review'], ['ja', 'fr', 'de', 'es', 'ko'])
+        self.assertEqual(edition['pending_source_review'], [])
+        self.assertEqual(edition['translation_revision']['scope'], ['ja', 'fr', 'de', 'es', 'ko'])
+        self.assertEqual(edition['translation_revision']['baseline'], '4d655c9')
+        self.assertEqual(edition['translation_revision']['report'], 'reports/great-lives-082-084-local-review.md')
         self.assertEqual(edition['translation_source_sha256']['zh-hant'], edition['source_sha256'])
-        for lang in edition['pending_source_review']:
-            self.assertEqual(edition['translation_source_sha256'][lang], old)
+        for lang in ('ja', 'fr', 'de', 'es', 'ko'):
+            self.assertEqual(edition['translation_source_sha256'][lang], restored)
 
     def test_mcclintock_restoration_keeps_feeling_and_original_ending(self):
         zh = html.unescape(builder.source_body('mcclintock', 'zh'))
@@ -3012,16 +3016,86 @@ class FullEditionTests(unittest.TestCase):
             sections = re.split(r'<h2\b[^>]*>.*?</h2>', builder.source_body('mcclintock', lang), flags=re.S)[1:]
             self.assertEqual([len(re.findall(r'<p\b', s)) for s in sections], expected)
 
-    def test_mcclintock_untouched_translations_keep_old_source_receipts(self):
+    def test_mcclintock_translations_follow_restored_source_receipts(self):
         edition = self.entries['mcclintock']['edition']
-        old = {'zh': '9f690ea3c12876bb0b17ad59e3a14bb68f7891acbb9705ac059859e83981236d',
-               'en': '0de013cdacb41574e8cf9cce66e84b3de255b2aab90405230f4c18720d54fad6'}
+        restored = {'zh': '38e6321b8ba1671e55d5a5f5e93d9189904d23f7068f799afe0d628413eb2bde',
+                    'en': '9a51f61e8f42150f715b5703a36f66363c4a0e929d38045a1694026629b99627'}
+        self.assertEqual(edition['source_sha256'], restored)
         self.assertEqual(edition['source_revision']['baseline'], '3374a61')
         self.assertEqual(edition['source_revision']['scope'], ['zh', 'en', 'zh-hant'])
-        self.assertEqual(edition['pending_source_review'], ['ja', 'fr', 'de', 'es', 'ko'])
+        self.assertEqual(edition['pending_source_review'], [])
+        self.assertEqual(edition['translation_revision']['scope'], ['ja', 'fr', 'de', 'es', 'ko'])
+        self.assertEqual(edition['translation_revision']['baseline'], '4d655c9')
+        self.assertEqual(edition['translation_revision']['report'], 'reports/great-lives-082-084-local-review.md')
         self.assertEqual(edition['translation_source_sha256']['zh-hant'], edition['source_sha256'])
-        for lang in edition['pending_source_review']:
-            self.assertEqual(edition['translation_source_sha256'][lang], old)
+        for lang in ('ja', 'fr', 'de', 'es', 'ko'):
+            self.assertEqual(edition['translation_source_sha256'][lang], restored)
+
+    def test_batch_28_local_review_preserves_quyuan_and_approved_traditional(self):
+        frozen = {
+            'quyuan': '1fd85dbf87b857c1b3e71882577e460660cba7929ce2128ab15b86bd360ad949',
+            'fichte': 'fb01a2261098634a46d6b71d6789dd3ea60fddf0d20f9e15dcf8abceb30d7c91',
+            'mcclintock': '1111bee2e91c7543eea301b3f222eae54f9ac91f8eed217053994a22e8250996',
+        }
+        for slug, expected in frozen.items():
+            raw = json.dumps(self.entries[slug]['copy']['zh-hant'], sort_keys=True, ensure_ascii=False)
+            self.assertEqual(hashlib.sha256(raw.encode()).hexdigest(), expected)
+        quyuan = json.dumps(self.entries['quyuan']['copy'], sort_keys=True, ensure_ascii=False)
+        self.assertEqual(hashlib.sha256(quyuan.encode()).hexdigest(),
+                         '2901698ddf09000e5a5666b072f7f82338cf306ead4ccff5f5c8cd4b4b6d6369')
+
+    def test_fichte_five_languages_restore_sequence_knower_freedom_and_bridge(self):
+        endings = {
+            'ja': '怖くはない。彼はそこから来たのだ。',
+            'fr': 'Il n’a pas peur. C’est de là qu’il vient.',
+            'de': 'Er hat keine Angst. Von dort ist er gekommen.',
+            'es': 'No tiene miedo. De allí ha venido.',
+            'ko': '두렵지 않다. 그는 거기서 왔다.',
+        }
+        markers = {
+            'ja': ('鏡', 'ヨハンナ', '窓', 'メルロ＝ポンティ', 'そうせずにはいられない', '左右の板に片足ずつ'),
+            'fr': ('miroir', 'Johanna', 'vitre', 'Merleau-Ponty', 'ne pas pouvoir ne pas', 'un pied sur chaque planche'),
+            'de': ('Spiegel', 'Johanna', 'Fenster', 'Merleau-Ponty', 'Nicht-anders-Können', 'je einem Fuß auf einem Brett'),
+            'es': ('espejo', 'Johanna', 'ventana', 'Merleau-Ponty', 'no poder dejar de', 'un pie en cada tabla'),
+            'ko': ('거울', '요한나', '창틀', '메를로퐁티', '그러지 않을 수 없음', '양쪽 판에 한 발씩'),
+        }
+        for lang, ending in endings.items():
+            sections = self.entries['fichte']['copy'][lang]['sections']
+            self.assertEqual([len(s['paragraphs']) for s in sections], [10, 14, 12, 14, 13, 12, 13, 15])
+            self.assertEqual(sections[-1]['paragraphs'][-1], ending)
+            for section, marker in zip((2, 3, 5, 5, 6, 7), markers[lang]):
+                self.assertIn(marker, ' '.join(sections[section]['paragraphs']))
+            for section, marker in ((1, 'Tathandlung'), (4, 'Anstoß'), (5, 'Aufforderung'),
+                                    (3, '1814'), (3, '1807'), (4, '1799')):
+                self.assertIn(marker, ' '.join(sections[section]['paragraphs']))
+            self.assertNotIn('Self-as-an-End', ' '.join(p for s in sections for p in s['paragraphs']))
+
+    def test_mcclintock_five_languages_restore_images_and_keep_experimental_work(self):
+        endings = {
+            'ja': 'まだしゃがんでいる。粒を見ている。微笑んでいる。',
+            'fr': 'Elle est toujours accroupie. Elle regarde les grains. Elle sourit.',
+            'de': 'Sie hockt noch da. Betrachtet die Körner. Lächelt.',
+            'es': 'Sigue en cuclillas. Mira los granos. Sonríe.',
+            'ko': '여전히 쪼그려 앉아 있다. 낟알들을 본다. 미소 짓는다.',
+        }
+        markers = {
+            'ja': ('小さく', 'カントール', '時間をかけて彫る', '自転車', '土台', '壁', 'もう一度植える', '土と花粉'),
+            'fr': ('rapetisser', 'Cantor', 'Creuser avec le temps', 'vélo', 'fondations', 'mur', 'On replante', 'terre et le pollen'),
+            'de': ('kleiner', 'Cantor', 'Mit der Zeit meißeln', 'Rad fahren', 'Fundament', 'Mauer', 'Wieder pflanzen', 'Erde und Pollen'),
+            'es': ('más pequeña', 'Cantor', 'Tallar con el tiempo', 'bicicleta', 'cimientos', 'muro', 'Sembrar otra vez', 'tierra y polen'),
+            'ko': ('작아지고', '칸토어', '시간으로 깎아', '자전거', '기초', '벽', '다시 심어요', '흙과 꽃가루'),
+        }
+        for lang, ending in endings.items():
+            sections = self.entries['mcclintock']['copy'][lang]['sections']
+            self.assertEqual([len(s['paragraphs']) for s in sections], [11, 14, 12, 11, 12, 13, 16, 22])
+            self.assertEqual(sections[-1]['paragraphs'][-1], ending)
+            for section, marker in zip((1, 3, 4, 5, 5, 6, 7, 7), markers[lang]):
+                self.assertIn(marker, ' '.join(sections[section]['paragraphs']))
+            for section, markers_here in ((0, ('1931', '1950', 'Ac', 'Ds', '1983')),
+                                          (1, ('1953',)), (4, ('1953', '1956', '1961', '1967'))):
+                for marker in markers_here:
+                    self.assertIn(marker, ' '.join(sections[section]['paragraphs']))
+            self.assertNotIn('Self-as-an-End', ' '.join(p for s in sections for p in s['paragraphs']))
 
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
