@@ -8,6 +8,7 @@ literary quality; that still requires reading every edition against its map.
 from __future__ import annotations
 
 import copy
+import hashlib
 import html
 import json
 import re
@@ -2465,6 +2466,52 @@ class FullEditionTests(unittest.TestCase):
             hant = ' '.join(p for s in self.entries[slug]['copy']['zh-hant']['sections']
                             for p in s['paragraphs'])
             self.assertNotRegex(hant, r'斯托裡|贊美|“|”')
+
+    def test_073_075_local_review_tracks_current_sources(self):
+        for slug in ('churchill', 'roosevelt', 'schrodinger'):
+            edition = self.entries[slug]['edition']
+            revision = edition['source_revision']
+            self.assertEqual(revision['baseline'], '3374a61')
+            self.assertEqual(revision['report'], 'reports/great-lives-073-075-local-review.md')
+            self.assertTrue((builder.ROOT / revision['report']).is_file())
+            self.assertEqual(set(revision['scope']), {'zh', 'en', *builder.LANGS})
+            self.assertEqual(edition['pending_source_review'], [])
+            current = {lang: builder.source_digest(slug, lang) for lang in ('zh', 'en')}
+            self.assertEqual(edition['source_sha256'], current)
+            for lang in builder.LANGS:
+                self.assertEqual(edition['translation_source_sha256'][lang], current)
+
+    def test_073_075_local_review_preserves_complete_bridge_ensembles(self):
+        # Freeze only the three unchanged ensemble paragraphs per edition,
+        # not the surrounding scenes being edited. Baseline: 023ca2b.
+        expected = {
+            'churchill': (6, 'c15063ff14992a40eaadd1eba373719d9e7b9954d42679d7b1b5f24c2b5644e5'),
+            'roosevelt': (6, '307190dd896285e1b618adaa42e89404624df243052a423dc3d2c32114222729'),
+            'schrodinger': (4, '6b63581ec036652d196b655552d420bf1ec78c6b94ead71d82fda5c40c7e5d02'),
+        }
+        for slug, (start, digest) in expected.items():
+            copies = self.entries[slug]['copy']
+            blocks = {lang: copies[lang]['sections'][8]['paragraphs'][start:start + 3]
+                      for lang in sorted(copies)}
+            encoded = json.dumps(blocks, ensure_ascii=False, sort_keys=True).encode()
+            self.assertEqual(hashlib.sha256(encoded).hexdigest(), digest, slug)
+
+    def test_073_075_localized_endings_keep_their_narrative_direction(self):
+        markers = {
+            'churchill': {'zh-hant': '很沉。但在走', 'ja': 'それでも、歩いている',
+                          'fr': 'Mais il avance', 'de': 'Doch er geht',
+                          'es': 'sigue andando', 'ko': '그래도 걷는다'},
+            'roosevelt': {'zh-hant': '參與建起', 'ja': 'ともに築いた',
+                          'fr': 'contribué à bâtir', 'de': 'mit aufgebaut',
+                          'es': 'ayudó a construir', 'ko': '함께 지은'},
+            'schrodinger': {'zh-hant': '貓睡了', 'ja': '猫は眠った',
+                            'fr': 'chat dort', 'de': 'Katze schläft',
+                            'es': 'gato duerme', 'ko': '고양이는 잠든다'},
+        }
+        for slug, languages in markers.items():
+            for lang, marker in languages.items():
+                ending = self.entries[slug]['copy'][lang]['sections'][-1]['paragraphs'][-1]
+                self.assertIn(marker, ending, (slug, lang))
 
     def test_batch_25_full_editions_and_source_revisions(self):
         for number, slug in enumerate(('churchill', 'roosevelt', 'schrodinger'), 73):
