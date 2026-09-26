@@ -5,7 +5,9 @@ const {chromium} = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const data = require('../data/humor/selection-01.json');
+const dataDir = path.join(__dirname, '../data/humor');
+const data = {issues: fs.readdirSync(dataDir).filter(f => /^selection-.*\.json$/.test(f)).sort()
+  .flatMap(f => JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8')).issues)};
 const base = process.argv[2] || 'http://127.0.0.1:8776';
 (async () => {
   const browser = await chromium.launch({headless: true, channel: 'chrome'});
@@ -58,7 +60,7 @@ const base = process.argv[2] || 'http://127.0.0.1:8776';
     await page.locator('a[rel="next"]').click();
     assert.equal(await page.locator('html').getAttribute('lang'), 'zh-Hans');
     if (process.env.HUMOR_SCREENSHOTS) {
-      for (const [name, width, file] of [['desktop', 1440, 'index'], ['mobile', 390, data.issues[0].slug]]) {
+      for (const [name, width, file] of [['desktop', 1440, 'index'], ['mobile', 390, data.issues[5].slug]]) {
         await page.setViewportSize({width, height: 920});
         await page.goto(`${base}/essays/humor/${file}.html?lang=zh`);
         await page.screenshot({path: path.join(process.env.HUMOR_SCREENSHOTS, name+'.png'), fullPage: true});
@@ -66,7 +68,7 @@ const base = process.argv[2] || 'http://127.0.0.1:8776';
     }
     const nojs = await browser.newContext({javaScriptEnabled: false, viewport: {width: 390, height: 850}});
     const plain = await nojs.newPage();
-    await plain.goto(`${base}/essays/humor/01-children-have-a-point.html`);
+    await plain.goto(`${base}/essays/humor/06-out-and-about.html`);
     assert.equal(await plain.locator('article').count(), 6);
     await plain.locator('.humor-source summary').first().click();
     assert.equal(await plain.locator('.humor-source[open]').count(), 1);
