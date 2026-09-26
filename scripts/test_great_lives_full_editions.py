@@ -2630,6 +2630,49 @@ class FullEditionTests(unittest.TestCase):
                 self.assertEqual(body.count(formula), 1)
             self.assertNotIn('\\(', body)
 
+    def test_batch_27_author_voice_restoration(self):
+        landmarks = {
+            'comte': ('按得很用力。', 'He presses hard.', '模式匹配不是认知的天花板，是认知的地板。'),
+            'popper': ('先让那个人把话说完。', 'First, let the person finish speaking.', '这是本乐章的三步。'),
+            'dirac': ('缝隙里有东西。方程知道。', 'There is something in the cracks. The equation knows.', '我把这个姿态叫作听方程说话。'),
+        }
+        for slug, (zh_end, en_end, phrase) in landmarks.items():
+            zh = html.unescape(builder.source_body(slug, 'zh'))
+            en = html.unescape(builder.source_body(slug, 'en'))
+            self.assertTrue(zh.endswith(zh_end + '</p>'))
+            self.assertTrue(en.endswith(en_end + '</p>'))
+            self.assertIn(phrase, zh)
+            for body in (zh, en):
+                self.assertNotRegex(body, r'原稿里|原稿裡|in the original draft|this revision')
+        dirac = html.unescape(builder.source_body('dirac', 'zh'))
+        self.assertIn('指南针不是目的地', dirac)
+        self.assertIn('接受这些前提', dirac)
+        for wrong in ('一辈子只哭过一次', '因为他的美学判断一直是对的', '他的证明方式是什么？沉默。'):
+            self.assertNotIn(wrong, dirac)
+
+    def test_batch_27_traditional_retains_every_source_paragraph(self):
+        for slug in ('comte', 'popper', 'dirac'):
+            hant = self.entries[slug]['copy']['zh-hant']['sections']
+            for lang in ('zh', 'en'):
+                sections = re.split(r'<h2\b[^>]*>.*?</h2>', builder.source_body(slug, lang), flags=re.S)[1:]
+                self.assertEqual([len(re.findall(r'<p\b', s)) for s in sections],
+                                 [len(s['paragraphs']) for s in hant])
+
+    def test_batch_27_other_languages_remain_pending_not_newly_approved(self):
+        originals = {
+            'comte': {'zh': '932c9ca318d9b72481b868c218bc8d9cf319020efc4e10222331186a528d2b7b', 'en': '45c2d64da108e5b00509f995a4f3571a31300ccc074d493a1ea4ae57edb68ac3'},
+            'popper': {'zh': '6dc36e17055a26205db984fed50a953e1cf2c51961e4c554a66a0182e038aa74', 'en': '44062b7830574fc72555119b4ba5c0a0b69a052a3957ec4ff5da6d74fa2b0f02'},
+            'dirac': {'zh': '5fc34703a04a17b28309831b99d8577e344b580e5a7c715069bb900244ec5ada', 'en': '4324d4e91905d2c655da15a9f328b63dfa4329ac14c6f86f2873233d05dc9a95'},
+        }
+        for slug, old in originals.items():
+            edition = self.entries[slug]['edition']
+            self.assertEqual(edition['source_revision']['scope'], ['zh', 'en', 'zh-hant'])
+            self.assertEqual(edition['source_revision']['baseline'], '3374a61')
+            self.assertEqual(edition['pending_source_review'], ['ja', 'fr', 'de', 'es', 'ko'])
+            self.assertEqual(edition['translation_source_sha256']['zh-hant'], edition['source_sha256'])
+            for lang in edition['pending_source_review']:
+                self.assertEqual(edition['translation_source_sha256'][lang], old)
+
     def test_batch_27_substance_and_bridge_continuity(self):
         bodies = {slug: html.unescape(re.sub(r'<[^>]+>', '', builder.source_body(slug, 'en'))).lower()
                   for slug in ('comte', 'popper', 'dirac')}
