@@ -2802,6 +2802,51 @@ class FullEditionTests(unittest.TestCase):
         for lang in edition['pending_source_review']:
             self.assertEqual(edition['translation_source_sha256'][lang], old)
 
+    def test_mcclintock_restoration_keeps_feeling_and_original_ending(self):
+        zh = html.unescape(builder.source_body('mcclintock', 'zh'))
+        en = html.unescape(builder.source_body('mcclintock', 'en'))
+        self.assertEqual(re.findall(r'<h2>(.*?)</h2>', zh), [
+            '一、三十年', '二、对有机体的感觉', '三、她和狄拉克', '四、被否定',
+            '五、她停了又没停', '六、tacit knowing', '七、一个人', '八、桥头'])
+        for phrase in ('这个“先”，前面已经站着许多年', '用时间凿', '你会骑自行车',
+                       '论文想成房子', '泥土和花粉', '下一篇，薇依',
+                       '她没有在1953年停止发表', '转座本身在五十年代就得到'):
+            self.assertIn(phrase, zh)
+        for phrase in ('Years of work stood behind that first', 'Chiseling with time',
+                       'You can ride a bicycle', 'papers as a house', 'Earth and pollen',
+                       'In the next essay, Weil', 'She Stopped and She Didn’t'):
+            self.assertIn(phrase, en)
+        self.assertTrue(zh.endswith('她还是蹲着。看着那些玉米粒。微笑着。</p>'))
+        self.assertTrue(en.endswith('She is still crouching. Looking at the kernels. Smiling.</p>'))
+        for wrong in ('她等了三十年。现在所有人都听到了', '她的数据经得起任何检验',
+                      '费希特的“我”没有身体', '被克罗内克迫害', '只卖出一幅画'):
+            self.assertNotIn(wrong, zh)
+
+    def test_mcclintock_restoration_three_versions_retain_all_paragraphs(self):
+        expected = [12, 13, 11, 11, 13, 13, 12, 22]
+        traditional = self.entries['mcclintock']['copy']['zh-hant']['sections']
+        self.assertEqual([len(s['paragraphs']) for s in traditional], expected)
+        self.assertEqual(traditional[-1]['paragraphs'][-1], '她還是蹲著。看著那些玉米粒。微笑著。')
+        text = ' '.join(p for s in traditional for p in s['paragraphs'])
+        for wrong in ('證明瞭', '密蘇裡', '輓留', '重復', '划線', '認准'):
+            self.assertNotIn(wrong, text)
+        for correct in ('證明了', '密蘇里', '挽留', '重複', '劃線', '認準'):
+            self.assertIn(correct, text)
+        for lang in ('zh', 'en'):
+            sections = re.split(r'<h2\b[^>]*>.*?</h2>', builder.source_body('mcclintock', lang), flags=re.S)[1:]
+            self.assertEqual([len(re.findall(r'<p\b', s)) for s in sections], expected)
+
+    def test_mcclintock_untouched_translations_keep_old_source_receipts(self):
+        edition = self.entries['mcclintock']['edition']
+        old = {'zh': '9f690ea3c12876bb0b17ad59e3a14bb68f7891acbb9705ac059859e83981236d',
+               'en': '0de013cdacb41574e8cf9cce66e84b3de255b2aab90405230f4c18720d54fad6'}
+        self.assertEqual(edition['source_revision']['baseline'], '3374a61')
+        self.assertEqual(edition['source_revision']['scope'], ['zh', 'en', 'zh-hant'])
+        self.assertEqual(edition['pending_source_review'], ['ja', 'fr', 'de', 'es', 'ko'])
+        self.assertEqual(edition['translation_source_sha256']['zh-hant'], edition['source_sha256'])
+        for lang in edition['pending_source_review']:
+            self.assertEqual(edition['translation_source_sha256'][lang], old)
+
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
         self.assertIn('荷马，声音进入文字的门槛', source)
