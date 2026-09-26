@@ -2708,7 +2708,12 @@ class FullEditionTests(unittest.TestCase):
             for lang, copy in entry['copy'].items():
                 self.assertEqual(len(copy['sections']), 8)
                 self.assertEqual(len(copy['notes']), 3)
-                self.assertEqual([s['covers'][0] for s in copy['sections']], entry['edition']['required_topics'])
+                expected_topics = (['kant-and-revisions', 'self-positing', 'knowers-position',
+                                    'religion-nation-education', 'kant-and-revisions',
+                                    'body-and-recognition', 'freedom-and-others', 'bridge']
+                                   if slug == 'fichte' and lang == 'zh-hant'
+                                   else entry['edition']['required_topics'])
+                self.assertEqual([s['covers'][0] for s in copy['sections']], expected_topics)
                 body = ' '.join(p for s in copy['sections'] for p in s['paragraphs'])
                 self.assertNotRegex(body, r'\[\^\d+\]|\*\*|v0\.2|旧稿|舊稿|旧稿|옛 초고|La versión anterior|L’ancienne version|Die ältere Fassung')
             for lang in ('zh', 'en'):
@@ -2752,6 +2757,50 @@ class FullEditionTests(unittest.TestCase):
             self.assertNotIn('Ds', paragraphs[0])
         for copy in self.entries['mcclintock']['copy'].values():
             self.assertNotIn('Ds', copy['sections'][0]['paragraphs'][0])
+
+    def test_fichte_restoration_keeps_the_knower_and_original_ending(self):
+        zh = html.unescape(builder.source_body('fichte', 'zh'))
+        en = html.unescape(builder.source_body('fichte', 'en'))
+        self.assertEqual(re.findall(r'<h2>(.*?)</h2>', zh), [
+            '一、被当成康德的人', '二、我设定我自身', '三、缝隙站在你脚下',
+            '四、被指控无神论的人', '五、他和康德', '六、他和本轮其他人',
+            '七、自由的第一个系统', '八、桥头'])
+        for phrase in ('那个“谁”从哪里来', '认知者就是认知的地基',
+                       '本系列反复遇见的“不能不”', '两只脚分别踩住两块板'):
+            self.assertIn(phrase, zh)
+        for phrase in ('The Crack Is Under Your Feet', 'The knower is the foundation of knowing.',
+                       'the cannot-not that keeps appearing in this series', 'one foot on each side'):
+            self.assertIn(phrase, en)
+        self.assertTrue(zh.endswith('他不害怕。他就是从那里来的。</p>'))
+        self.assertTrue(en.endswith('He is not afraid. He came from there.</p>'))
+        for wrong in ('把两只脚都放回了木板', '他没有解释“我”本身', '病毒从她传给了他',
+                      '被他者的余项杀死', '《离骚》第一句就是“我”'):
+            self.assertNotIn(wrong, zh)
+        for required in ('康德并没有忘记“我”', 'Anstoß', 'Aufforderung', '早期传记',
+                         '不是说他的第一原则已经写出了同一套答案'):
+            self.assertIn(required, zh)
+
+    def test_fichte_restoration_three_versions_retain_all_paragraphs(self):
+        expected = [10, 12, 13, 14, 12, 13, 15, 15]
+        entry = self.entries['fichte']
+        traditional = ' '.join(p for s in entry['copy']['zh-hant']['sections'] for p in s['paragraphs'])
+        self.assertIn('兩隻腳分別踩住兩塊板', traditional)
+        self.assertNotIn('兩只腳', traditional)
+        self.assertEqual([len(s['paragraphs']) for s in entry['copy']['zh-hant']['sections']], expected)
+        for lang in ('zh', 'en'):
+            sections = re.split(r'<h2\b[^>]*>.*?</h2>', builder.source_body('fichte', lang), flags=re.S)[1:]
+            self.assertEqual([len(re.findall(r'<p\b', s)) for s in sections], expected)
+
+    def test_fichte_untouched_translations_keep_old_source_receipts(self):
+        edition = self.entries['fichte']['edition']
+        old = {'zh': '403ef562234756d999192f2f437922934ff11795649426418243a4cc641eac37',
+               'en': '062d059531037658695752f989580407af615452d81a421e369c48778b4438cf'}
+        self.assertEqual(edition['source_revision']['baseline'], '3374a61')
+        self.assertEqual(edition['source_revision']['scope'], ['zh', 'en', 'zh-hant'])
+        self.assertEqual(edition['pending_source_review'], ['ja', 'fr', 'de', 'es', 'ko'])
+        self.assertEqual(edition['translation_source_sha256']['zh-hant'], edition['source_sha256'])
+        for lang in edition['pending_source_review']:
+            self.assertEqual(edition['translation_source_sha256'][lang], old)
 
     def test_homer_threshold_title_is_synchronized(self):
         source = builder.source_path_for('homer').read_text(encoding='utf-8')
