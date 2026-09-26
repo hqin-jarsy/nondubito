@@ -2416,6 +2416,56 @@ class FullEditionTests(unittest.TestCase):
                        'september', '1860', '1870'):
             self.assertIn(phrase, body['dickens'])
 
+    def test_070_072_local_review_has_current_receipts_for_every_language(self):
+        for slug in ('boltzmann', 'vangogh', 'dickens'):
+            edition = self.entries[slug]['edition']
+            self.assertEqual(set(edition['source_revision']['scope']),
+                             {'zh', 'en', *builder.LANGS})
+            self.assertEqual(edition['pending_source_review'], [])
+            current = {lang: builder.source_digest(slug, lang) for lang in ('zh', 'en')}
+            self.assertEqual(edition['source_sha256'], current)
+            self.assertEqual(edition['translation_source_sha256'],
+                             {lang: current for lang in builder.LANGS})
+
+    def test_070_072_keeps_the_long_bridge_ensemble(self):
+        names = {
+            'zh-hant': ('蘇格拉底', '休謨', '莎士比亞', '艾蜜莉'),
+            'ja': ('ソクラテス', 'ヒューム', 'シェイクスピア', 'エミリー'),
+            'fr': ('Socrate', 'Hume', 'Shakespeare', 'Emily'),
+            'de': ('Sokrates', 'Hume', 'Shakespeare', 'Emily'),
+            'es': ('Sócrates', 'Hume', 'Shakespeare', 'Emily'),
+            'ko': ('소크라테스', '흄', '셰익스피어', '에밀리'),
+        }
+        for slug, start in (('boltzmann', 5), ('vangogh', 8), ('dickens', 8)):
+            for lang in builder.LANGS:
+                paragraphs = self.entries[slug]['copy'][lang]['sections'][8]['paragraphs']
+                ensemble = paragraphs[start:start + 3]
+                self.assertEqual(len(ensemble), 3)
+                # Character density differs: the shortest intact Chinese block is 82.
+                self.assertTrue(all(len(p) > 80 for p in ensemble), (slug, lang))
+                for name in names[lang]:
+                    self.assertIn(name, ' '.join(ensemble))
+
+    def test_070_072_localized_endings_remain_full_narrative_endings(self):
+        markers = {
+            'boltzmann': {'zh-hant': '走向秩序', 'ja': '秩序へ向かって歩く',
+                         'fr': 'marcher vers lui', 'de': 'der Weg auf sie zu',
+                         'es': 'caminar hacia él', 'ko': '그쪽으로 걸어가는'},
+            'vangogh': {'zh-hant': '全是顏色', 'ja': '色', 'fr': 'de la couleur',
+                       'de': 'überall Farbe', 'es': 'queda color', 'ko': '색'},
+            'dickens': {'zh-hant': '信被折疊', 'ja': '手紙を折りたたむ',
+                       'fr': 'une lettre qu’on plie', 'de': 'ein Brief gefaltet',
+                       'es': 'una carta al doblarse', 'ko': '편지를 접는'},
+        }
+        for slug, languages in markers.items():
+            for lang, marker in languages.items():
+                ending = self.entries[slug]['copy'][lang]['sections'][-1]['paragraphs'][-1]
+                self.assertIn(marker, ending, (slug, lang))
+        for slug in markers:
+            hant = ' '.join(p for s in self.entries[slug]['copy']['zh-hant']['sections']
+                            for p in s['paragraphs'])
+            self.assertNotRegex(hant, r'斯托裡|贊美|“|”')
+
     def test_batch_25_full_editions_and_source_revisions(self):
         for number, slug in enumerate(('churchill', 'roosevelt', 'schrodinger'), 73):
             entry = self.entries[slug]
