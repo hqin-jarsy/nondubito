@@ -2793,20 +2793,61 @@ class FullEditionTests(unittest.TestCase):
                 self.assertEqual([len(re.findall(r'<p\b', s)) for s in sections],
                                  [len(s['paragraphs']) for s in hant])
 
-    def test_batch_27_other_languages_remain_pending_not_newly_approved(self):
+    def test_batch_27_translations_follow_restored_sources_without_overwriting_them(self):
         originals = {
-            'comte': {'zh': '932c9ca318d9b72481b868c218bc8d9cf319020efc4e10222331186a528d2b7b', 'en': '45c2d64da108e5b00509f995a4f3571a31300ccc074d493a1ea4ae57edb68ac3'},
-            'popper': {'zh': '6dc36e17055a26205db984fed50a953e1cf2c51961e4c554a66a0182e038aa74', 'en': '44062b7830574fc72555119b4ba5c0a0b69a052a3957ec4ff5da6d74fa2b0f02'},
-            'dirac': {'zh': '5fc34703a04a17b28309831b99d8577e344b580e5a7c715069bb900244ec5ada', 'en': '4324d4e91905d2c655da15a9f328b63dfa4329ac14c6f86f2873233d05dc9a95'},
+            'comte': {'zh': '87ba4c96e8a2a7322607cbd3efc3ee4399777d41709d42cea27ae31b5cc53b83', 'en': 'd42e829c7d77e33391225cebb392e5b15291451f855c5293b5b796716bcd090e'},
+            'popper': {'zh': 'cc90ebf6851146b352c3840fc5d75928445e0e6a14b5f2d8e3e6527f6636c848', 'en': '82039785538b3c499dd301bc5b8852708f3d7893ae77a78dead7a62d1b64464d'},
+            'dirac': {'zh': 'f18e7cf551681efb682ddf1814a930b8e58474576b5ef72b885aab65ce656e6b', 'en': '70caf8e051cbaa971b224510a14c762b07f99b7174d0b24ec47ccae5181c5743'},
         }
-        for slug, old in originals.items():
+        hant_hashes = {'comte': 'a6f5cf04a49d8fb737e19c65f75b3503e353c601b0a15a3f5823815e3774f80e',
+                       'popper': 'a3edcf00e6228b3117f53b6012bfbcdd2e1c51cb6adddafd570fc931e1167f9a',
+                       'dirac': 'ca23c581bf292f09bd2c6559e5a3f54d656775e89e0e562e18d8fc59f1173e1a'}
+        for slug, approved in originals.items():
             edition = self.entries[slug]['edition']
             self.assertEqual(edition['source_revision']['scope'], ['zh', 'en', 'zh-hant'])
             self.assertEqual(edition['source_revision']['baseline'], '3374a61')
-            self.assertEqual(edition['pending_source_review'], ['ja', 'fr', 'de', 'es', 'ko'])
-            self.assertEqual(edition['translation_source_sha256']['zh-hant'], edition['source_sha256'])
-            for lang in edition['pending_source_review']:
-                self.assertEqual(edition['translation_source_sha256'][lang], old)
+            self.assertEqual(edition['source_sha256'], approved)
+            self.assertEqual(edition['pending_source_review'], [])
+            self.assertEqual(edition['translation_revision']['scope'], ['ja', 'fr', 'de', 'es', 'ko'])
+            self.assertEqual(edition['translation_revision']['report'], 'reports/great-lives-079-081-local-review.md')
+            for lang in builder.LANGS:
+                self.assertEqual(edition['translation_source_sha256'][lang], approved)
+            hant = json.dumps(self.entries[slug]['copy']['zh-hant'], ensure_ascii=False, sort_keys=True)
+            self.assertEqual(hashlib.sha256(hant.encode()).hexdigest(), hant_hashes[slug])
+
+    def test_batch_27_five_languages_keep_full_maps_and_restored_endings(self):
+        maps = {'comte': [12,13,12,13,13,12,10,10],
+                'popper': [9,10,13,11,12,10,10,14],
+                'dirac': [15,12,12,10,10,12,19,14]}
+        endings = {
+            'ja': ['とても強く、押さえる。', 'まず、その人が話し終えるまで。', '隙間には何かがある。方程式は知っている。'],
+            'fr': ['Il appuie fort.', 'D’abord, laisser cette personne finir sa phrase.', 'Il y a quelque chose dans la fissure. L’équation le sait.'],
+            'de': ['Er drückt sehr fest.', 'Erst diesen Menschen ausreden lassen.', 'In den Fugen ist etwas. Die Gleichung weiß es.'],
+            'es': ['Aprieta con mucha fuerza.', 'Primero, que esa persona termine de hablar.', 'Hay algo en las grietas. La ecuación lo sabe.'],
+            'ko': ['아주 세게 누른다.', '먼저 그 사람이 말을 끝내게 두자.', '틈에는 무언가 있다. 방정식은 안다.'],
+        }
+        for i, (slug, expected) in enumerate(maps.items()):
+            for lang in endings:
+                sections = self.entries[slug]['copy'][lang]['sections']
+                self.assertEqual([len(s['paragraphs']) for s in sections], expected)
+                self.assertEqual(sections[-1]['paragraphs'][-1], endings[lang][i])
+                text = ' '.join(p for s in sections for p in s['paragraphs'])
+                self.assertNotIn('Self-as-an-End', text)
+
+    def test_batch_27_five_languages_keep_sequence_and_scientific_boundaries(self):
+        # Guard the reading route without treating literary metaphors as physics.
+        markers = {
+            'ja': [('認知の天井ではない', '十八人', '拒絶'), ('三歩', 'ハンドル', '1978'), ('方程式の声を聞く', '紙の上の必然', '1933')],
+            'fr': [('pas le plafond', 'dix-huit', 'refus'), ('Trois pas', 'volant', '1978'), ('écouter l’équation', 'nécessité du papier', '1933')],
+            'de': [('nicht die Decke', 'achtzehn', 'Nein'), ('Drei Leseschritte', 'Steuer', '1978'), ('der Gleichung zuhören', 'Notwendigkeit auf Papier', '1933')],
+            'es': [('no es el techo', 'dieciocho', 'no de Clotilde'), ('Tres pasos', 'volante', '1978'), ('escuchar la ecuación', 'necesidad del papel', '1933')],
+            'ko': [('인식의 천장이 아니다', '열여덟', '거절'), ('세 걸음', '운전대', '1978'), ('방정식의 말을 듣는', '종이의 필연', '1933')],
+        }
+        for lang, groups in markers.items():
+            for slug, expected in zip(('comte', 'popper', 'dirac'), groups):
+                body = ' '.join(p for s in self.entries[slug]['copy'][lang]['sections'] for p in s['paragraphs'])
+                for phrase in expected:
+                    self.assertIn(phrase, body, (slug, lang, phrase))
 
     def test_batch_27_substance_and_bridge_continuity(self):
         bodies = {slug: html.unescape(re.sub(r'<[^>]+>', '', builder.source_body(slug, 'en'))).lower()
