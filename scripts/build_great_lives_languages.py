@@ -242,6 +242,25 @@ def validate_full_edition(entry: dict[str, object]) -> None:
     for lang in ("zh", "en"):
         if edition.get("source_sha256", {}).get(lang) != source_digest(slug, lang):
             raise ValueError(f"{slug}: {lang} source changed; review all full editions")
+    # A scoped author revision must not silently certify untouched translations
+    # against the new source. Preserve their receipts and name the pending work.
+    receipts = edition.get("translation_source_sha256")
+    pending = edition.get("pending_source_review", [])
+    if receipts is not None or pending:
+        if (not isinstance(receipts, dict) or set(receipts) != set(LANGS)
+                or not isinstance(pending, list)
+                or any(not isinstance(lang, str) for lang in pending)
+                or len(set(pending)) != len(pending)
+                or not set(pending).issubset(set(LANGS) - {"zh-hant"})):
+            raise ValueError(f"{slug}: invalid translation review receipts")
+        for lang, receipt in receipts.items():
+            if (not isinstance(receipt, dict) or set(receipt) != {"zh", "en"}
+                    or any(not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value)
+                           for value in receipt.values())):
+                raise ValueError(f"{slug}/{lang}: invalid translation source digest")
+            is_current = receipt == edition["source_sha256"]
+            if is_current == (lang in pending):
+                raise ValueError(f"{slug}/{lang}: translation source review status is inconsistent")
     required = set(edition.get("required_topics", []))
     if not required or not edition.get("reviewed_on") or not entry.get("sources"):
         raise ValueError(f"{slug}: full edition needs content map, review date and sources")

@@ -2494,12 +2494,16 @@ class FullEditionTests(unittest.TestCase):
             self.assertEqual(entry['edition']['status'], 'full')
             builder.validate_full_edition(entry)
             for lang, copy in entry['copy'].items():
-                self.assertEqual([len(s['paragraphs']) for s in copy['sections']], counts)
+                expected = ([6,11,7,18,12,9,9,12,70]
+                            if slug == 'caoxueqin' and lang == 'zh-hant' else counts)
+                self.assertEqual([len(s['paragraphs']) for s in copy['sections']], expected)
                 self.assertEqual([s['covers'][0] for s in copy['sections']], entry['edition']['required_topics'])
                 self.assertEqual(len(copy['notes']), 3)
             for lang in ('zh', 'en'):
                 sections = re.split(r'<h2\b[^>]*>.*?</h2>', builder.source_body(slug, lang), flags=re.S)[1:]
-                self.assertEqual([len(re.findall(r'<p\b', s)) for s in sections], counts)
+                expected = ([6,11,7,18,12,9,9,12,70]
+                            if slug == 'caoxueqin' else counts)
+                self.assertEqual([len(re.findall(r'<p\b', s)) for s in sections], expected)
         self.assertGreaterEqual(sum(e.get('edition', {}).get('status') == 'full'
                                     for e in self.entries.values()), 79)
 
@@ -2518,6 +2522,53 @@ class FullEditionTests(unittest.TestCase):
             self.assertIn('双陆棋', builder.source_body(slug, 'zh'))
             self.assertIn('backgammon', builder.source_body(slug, 'en'))
 
+    def test_caoxueqin_restoration_preserves_author_landmarks(self):
+        zh = html.unescape(builder.source_body('caoxueqin', 'zh'))
+        en = html.unescape(builder.source_body('caoxueqin', 'en'))
+        for phrase in ('四、构不可闭合', '构碎了，但人还在。人不是为构活的。人是目的。',
+                       '情不是桥。情是桥合不拢的地方长出来的东西。',
+                       '他看着你。他的意思是：你也是目的。'):
+            self.assertIn(phrase, zh)
+        for phrase in ('The Construct Cannot Close', 'The construct is shattered, but the people remain.',
+                       'Qing is not the bridge. Qing is what grows where the bridge fails to close.',
+                       'you, too, are an end.'):
+            self.assertIn(phrase, en)
+        for name in ('苏格拉底', '柏拉图', '休谟', '叔本华', '克尔凯郭尔', '图灵',
+                     '契诃夫', '康托尔', '托尔斯泰', '莎士比亚', '斯宾诺莎',
+                     '亚里士多德', '法拉第', '麦克斯韦', '贞德', '王尔德',
+                     '拉马努金', '奥本海默', '夏洛蒂', '艾米莉', '玻尔兹曼',
+                     '梵高', '狄更斯', '丘吉尔', '罗斯福', '薛定谔', '费曼',
+                     '霍金', '海森堡', '玻尔', '康德'):
+            self.assertIn(name, zh.split('<h2>九、情</h2>')[1])
+        for wrong in ('遗民不让他改', '时代把他的书拿走了', '曹雪芹用一本未完成的书证明了它',
+                      '这是最高的熵', '七十五个人', '一旦你写了结局，人就从目的降格'):
+            self.assertNotIn(wrong, zh)
+
+    def test_caoxueqin_pending_translations_keep_old_source_receipts(self):
+        entry = self.entries['caoxueqin']
+        edition = entry['edition']
+        self.assertEqual(edition['source_revision']['scope'], ['zh', 'en', 'zh-hant'])
+        self.assertEqual(set(edition['pending_source_review']), {'ja', 'fr', 'de', 'es', 'ko'})
+        self.assertEqual(edition['translation_source_sha256']['zh-hant'], edition['source_sha256'])
+        old = {'zh': '16745289d9e3d26bb88200c8cd453d6dc5173f185e95eeab80422b3089faee04',
+               'en': 'a4b92d6e0afd60b875a23fd0763266f7d3f5253a24389c1d1b37c686c0591aca'}
+        for lang in edition['pending_source_review']:
+            self.assertEqual(edition['translation_source_sha256'][lang], old)
+
+    def test_translation_receipt_cannot_silently_claim_new_source(self):
+        entry = copy.deepcopy(self.entries['caoxueqin'])
+        entry['edition']['pending_source_review'].remove('ja')
+        with self.assertRaisesRegex(ValueError, 'review status is inconsistent'):
+            builder.validate_full_edition(entry)
+        entry = copy.deepcopy(self.entries['caoxueqin'])
+        entry['edition']['translation_source_sha256']['ja'] = entry['edition']['source_sha256']
+        with self.assertRaisesRegex(ValueError, 'review status is inconsistent'):
+            builder.validate_full_edition(entry)
+        entry = copy.deepcopy(self.entries['caoxueqin'])
+        entry['edition']['pending_source_review'].append('zh-hant')
+        with self.assertRaisesRegex(ValueError, 'invalid translation review receipts'):
+            builder.validate_full_edition(entry)
+
     def test_batch_26_preserves_substance_without_revision_log(self):
         text = {s: html.unescape(re.sub(r'<[^>]+>', '', builder.source_body(s, 'en'))).lower()
                 for s in ('feynman','hawking','caoxueqin')}
@@ -2526,9 +2577,9 @@ class FullEditionTests(unittest.TestCase):
         for word in ('1963', 'hand', 'cheek', 'bekenstein', 'hartle', '1983', 'assistance', 'lucasian'):
             self.assertIn(word, text['hawking'])
         for word in ('1791', 'lingguan', 'xiren', 'baochai',
-                     '1763', '1764', 'merely', 'last page', 'cat'):
+                     '1763', '1764', 'merely', 'final page', 'cat'):
             self.assertIn(word, text['caoxueqin'])
-        self.assertIn('shakespeare is still the water', text['caoxueqin'])
+        self.assertIn('he was the water beneath the bridge', text['caoxueqin'])
         for wrong in ('no engine', 'medical inventory', 'not another photograph'):
             self.assertNotIn(wrong, text['hawking'])
         for wrong in ('new proof about infinite sets', 'qing officials and ming loyalists',
