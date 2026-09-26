@@ -2584,7 +2584,7 @@ class FullEditionTests(unittest.TestCase):
     def test_batch_26_complete_editions_and_paragraph_maps(self):
         maps = {'feynman': [11,9,12,11,9,11,10,9,17],
                 'hawking': [9,8,9,11,10,10,8,10,20],
-                'caoxueqin': [14,10,12,8,9,12,10,10,34]}
+                'caoxueqin': [17,14,13,18,12,14,9,15,70]}
         for number, (slug, counts) in enumerate(maps.items(), 76):
             entry = self.entries[slug]
             self.assertEqual((entry['number'], entry['movement']), (number, 5))
@@ -2641,24 +2641,62 @@ class FullEditionTests(unittest.TestCase):
                       '这是最高的熵', '七十五个人', '一旦你写了结局，人就从目的降格'):
             self.assertNotIn(wrong, zh)
 
-    def test_caoxueqin_pending_translations_keep_old_source_receipts(self):
+    def test_caoxueqin_translations_now_follow_restored_source(self):
         entry = self.entries['caoxueqin']
         edition = entry['edition']
         self.assertEqual(edition['source_revision']['scope'], ['zh', 'en', 'zh-hant'])
-        self.assertEqual(set(edition['pending_source_review']), {'ja', 'fr', 'de', 'es', 'ko'})
-        self.assertEqual(edition['translation_source_sha256']['zh-hant'], edition['source_sha256'])
-        old = {'zh': '16745289d9e3d26bb88200c8cd453d6dc5173f185e95eeab80422b3089faee04',
-               'en': 'a4b92d6e0afd60b875a23fd0763266f7d3f5253a24389c1d1b37c686c0591aca'}
-        for lang in edition['pending_source_review']:
-            self.assertEqual(edition['translation_source_sha256'][lang], old)
+        self.assertEqual(edition['pending_source_review'], [])
+        self.assertEqual(edition['translation_revision']['scope'], ['ja', 'fr', 'de', 'es', 'ko'])
+        for lang in builder.LANGS:
+            self.assertEqual(edition['translation_source_sha256'][lang], edition['source_sha256'])
+        # The restored Chinese, English and Traditional Chinese are not overwritten.
+        expected = {'zh': '793eee60afdf083b6caa8642656155b29dca7504a0e77b9483ec2a17ade646dd',
+                    'en': '8e3c09ab6c1eb18691e828b778cb99492b90b36421fb70439de93167e857e024'}
+        self.assertEqual(edition['source_sha256'], expected)
+        self.assertEqual(hashlib.sha256(json.dumps(entry['copy']['zh-hant'], ensure_ascii=False,
+                         sort_keys=True).encode()).hexdigest(),
+                         '4f953d06848b1642f66ca4f6ed5ab698885445afcd060dc0027ff0ab35e222fc')
+
+    def test_caoxueqin_five_languages_preserve_ensemble_and_invitation(self):
+        names = {
+            'ja': 'ソクラテス|プラトン|ヒューム|ショーペンハウアー|キルケゴール|チューリング|チェーホフ|カントール|トルストイ|シェイクスピア|スピノザ|アリストテレス|ファラデー|マクスウェル|ジャンヌ|ワイルド|ラマヌジャン|オッペンハイマー|シャーロット|エミリー|ボルツマン|ゴッホ|ディケンズ|チャーチル|ルーズベルト|シュレーディンガー|ファインマン|ホーキング|ハイゼンベルク|ボーア|カント',
+            'fr': 'Socrate|Platon|Hume|Schopenhauer|Kierkegaard|Turing|Tchekhov|Cantor|Tolstoï|Shakespeare|Spinoza|Aristote|Faraday|Maxwell|Jeanne|Wilde|Ramanujan|Oppenheimer|Charlotte|Emily|Boltzmann|Van Gogh|Dickens|Churchill|Roosevelt|Schrödinger|Feynman|Hawking|Heisenberg|Bohr|Kant',
+            'de': 'Sokrates|Platon|Hume|Schopenhauer|Kierkegaard|Turing|Tschechow|Cantor|Tolstoi|Shakespeare|Spinoza|Aristoteles|Faraday|Maxwell|Jeanne|Wilde|Ramanujan|Oppenheimer|Charlotte|Emily|Boltzmann|Van Gogh|Dickens|Churchill|Roosevelt|Schrödinger|Feynman|Hawking|Heisenberg|Bohr|Kant',
+            'es': 'Sócrates|Platón|Hume|Schopenhauer|Kierkegaard|Turing|Chéjov|Cantor|Tolstói|Shakespeare|Spinoza|Aristóteles|Faraday|Maxwell|Juana|Wilde|Ramanujan|Oppenheimer|Charlotte|Emily|Boltzmann|Van Gogh|Dickens|Churchill|Roosevelt|Schrödinger|Feynman|Hawking|Heisenberg|Bohr|Kant',
+            'ko': '소크라테스|플라톤|흄|쇼펜하우어|키르케고르|튜링|체호프|칸토어|톨스토이|셰익스피어|스피노자|아리스토텔레스|패러데이|맥스웰|잔|와일드|라마누잔|오펜하이머|샬럿|에밀리|볼츠만|반 고흐|디킨스|처칠|루스벨트|슈뢰딩거|파인먼|호킹|하이젠베르크|보어|칸트',
+        }
+        landmarks = {
+            'ja': ['情は橋ではない', '曹雪芹には、迎えに出る', 'あなたも目的である', '今度は、あなたが。'],
+            'fr': ['Le qing n’est pas le pont', 'Vers Cao, il s’avance', 'vous aussi, vous êtes une fin', 'À vous.'],
+            'de': ['Qing ist nicht die Brücke', 'Cao geht er entgegen', 'Auch du bist ein Zweck', 'Jetzt du.'],
+            'es': ['El qing no es el puente', 'Sale al encuentro de Cao', 'tú también eres un fin', 'Te toca.'],
+            'ko': ['정은 다리가 아니다', '조설근에게는 마중을 나온다', '당신도 목적이다', '이제 당신이.'],
+        }
+        for lang, expected in names.items():
+            ending = self.entries['caoxueqin']['copy'][lang]['sections'][-1]['paragraphs']
+            text = ' '.join(ending)
+            for phrase in expected.split('|') + landmarks[lang]:
+                self.assertIn(phrase, text, (lang, phrase))
+            self.assertEqual(ending[-1], landmarks[lang][-1])
+
+    def test_feynman_hawking_local_edits_keep_review_receipts_current(self):
+        for slug in ('feynman', 'hawking'):
+            edition = self.entries[slug]['edition']
+            self.assertEqual(edition['source_revision']['report'], 'reports/great-lives-076-078-local-review.md')
+            self.assertEqual(edition['pending_source_review'], [])
+            for lang in builder.LANGS:
+                self.assertEqual(edition['translation_source_sha256'][lang], edition['source_sha256'])
+            builder.validate_full_edition(self.entries[slug])
 
     def test_translation_receipt_cannot_silently_claim_new_source(self):
         entry = copy.deepcopy(self.entries['caoxueqin'])
-        entry['edition']['pending_source_review'].remove('ja')
+        entry['edition']['translation_source_sha256']['ja'] = {
+            'zh': '16745289d9e3d26bb88200c8cd453d6dc5173f185e95eeab80422b3089faee04',
+            'en': 'a4b92d6e0afd60b875a23fd0763266f7d3f5253a24389c1d1b37c686c0591aca'}
         with self.assertRaisesRegex(ValueError, 'review status is inconsistent'):
             builder.validate_full_edition(entry)
         entry = copy.deepcopy(self.entries['caoxueqin'])
-        entry['edition']['translation_source_sha256']['ja'] = entry['edition']['source_sha256']
+        entry['edition']['pending_source_review'] = ['ja']
         with self.assertRaisesRegex(ValueError, 'review status is inconsistent'):
             builder.validate_full_edition(entry)
         entry = copy.deepcopy(self.entries['caoxueqin'])
