@@ -96,10 +96,10 @@ class OuyaFullEditionsTest(unittest.TestCase):
     def test_traditional_navigation_does_not_invent_editions(self):
         source = self.pages[full.SERIES / 'zh-hant/ep01.html']
         self.assertIn('<html lang="zh-Hant">', source)
-        self.assertIn('href="../ep02.html"', source)
-        self.assertIn('下一篇（簡體）', source)
+        self.assertIn('href="ep02.html"', source)
+        self.assertIn('下一篇</span>', source)
         self.assertIn('系列目錄（簡體／English）', source)
-        self.assertNotIn('href="ep02.html"', source)
+        self.assertNotIn('href="../ep02.html"', source)
 
     def test_historical_corrections_present_in_all_editions(self):
         for lang in full.LANGS:

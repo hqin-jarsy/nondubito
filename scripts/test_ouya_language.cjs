@@ -64,9 +64,10 @@ function fixture(relative, query, saved, denied = false) {
 }
 
 let checks = 0;
+for (const episode of ['ep01', 'ep02']) {
 for (const saved of [null, 'en', 'zh', 'zh-hant', 'fr']) {
   for (const query of ['', '?lang=en', '?lang=zh', '?lang=ko']) {
-    const f = fixture('essays/ouya/ep01.html', query, saved);
+    const f = fixture(`essays/ouya/${episode}.html`, query, saved);
     const expected = query === '?lang=en' ? 'en' : query === '?lang=zh' ? 'zh' : saved === 'en' ? 'en' : 'zh';
     assert.equal(f.select.options.length, 8);
     assert.equal(f.select.options[f.select.selectedIndex].dataset.inlineLanguage, expected);
@@ -80,15 +81,17 @@ for (const saved of [null, 'en', 'zh', 'zh-hant', 'fr']) {
   }
 }
 for (const language of ['zh-hant', 'ja', 'fr', 'de', 'es', 'ko']) {
-  const f = fixture(`essays/ouya/${language}/ep01.html`, '', 'en');
+  const f = fixture(`essays/ouya/${language}/${episode}.html`, '', 'en');
   assert.equal(f.select.options.length, 8);
   assert.equal(f.select.options[f.select.selectedIndex].dataset.href, undefined);
   for (const [index, lang] of [[0, 'en'], [1, 'zh']]) {
     f.select.selectedIndex = index; f.select.handlers.change();
-    assert.equal(f.destination(), `../ep01.html?lang=${lang}`);
+    assert.equal(f.destination(), `../${episode}.html?lang=${lang}`);
   }
   checks++;
 }
-const denied = fixture('essays/ouya/ep01.html', '?lang=en', null, true);
+const denied = fixture(`essays/ouya/${episode}.html`, '?lang=en', null, true);
 assert.equal(denied.documentElement.getAttribute('data-lang'), 'en');
-console.log(`OK: ${checks + 1} language-state/menu unit scenarios (no visual browser test)`);
+checks++;
+}
+console.log(`OK: ${checks} language-state/menu unit scenarios (no visual browser test)`);

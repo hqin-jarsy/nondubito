@@ -153,9 +153,9 @@ def outputs():
         s=s.replace('<header class="essay-header">',f'<a class="ouya-series-back" href="{href}"{onclick}>{label}</a>\n<header class="essay-header">',1)
         if lang=='zh-Hant':
             s=re.sub(r'<div class="essay-series-label">.*?</div>','<div class="essay-series-label">鑿構週期律 · 歐亞帝王系列 — 第01篇／共22篇</div>',s)
-            s=re.sub(r'<span class="xiyou-nav-sub">.*?</span>','<span class="xiyou-nav-sub">下一篇（簡體）</span>',s)
+            s=re.sub(r'<span class="xiyou-nav-sub">.*?</span>','<span class="xiyou-nav-sub">下一篇</span>',s)
             s=re.sub(r'<span class="xiyou-nav-title">.*?</span>','<span class="xiyou-nav-title">亞歷山大與希臘化</span>',s)
-            s=re.sub(r'<a href="(?:\.\./)?ep02.html"', '<a href="../ep02.html" onclick="localStorage.setItem(\'nd_lang\',\'zh\')"',s)
+            s=re.sub(r'<a href="(?:\.\./)?ep02.html"(?: onclick="localStorage.setItem\(\'nd_lang\',\'zh\'\)")?', '<a href="ep02.html"',s)
             # Prevent duplicate onclick attributes after repeat builds.
             s=s.replace(' onclick="localStorage.setItem(\'nd_lang\',\'zh\')" onclick="localStorage.setItem(\'nd_lang\',\'zh\')"',' onclick="localStorage.setItem(\'nd_lang\',\'zh\')"')
         s=metadata(s,copies[lang]['title'],DECKS[lang],f'https://nondubito.net/essays/ouya/{lang.lower()}/ep01.html')
