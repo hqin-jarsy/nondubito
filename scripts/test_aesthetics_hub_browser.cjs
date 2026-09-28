@@ -12,7 +12,7 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
   for(const width of [1440,768,390,320]){
    await page.setViewportSize({width,height:900});
    for(const [dir,lang] of [['','zh'],['en/','en'],['zh-hant/','zh-hant']]){
-    for(const file of ['index.html','seeing-beauty.html']){
+    for(const file of ['index.html','seeing-beauty.html','ray01.html','ray02.html','ray03.html']){
      await page.goto(`${base}/essays/aesthetics/${dir}${file}?lang=${lang}`);
      assert.equal(await page.locator('h1:visible').count(),1);
      assert.equal(await page.locator('.aesthetics-header').count(),1);
@@ -21,15 +21,19 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
      assert.equal(await page.locator('[data-edition]:visible').count(),3);
      await page.locator('.language-menu summary').click();
      if(file==='index.html'){
+      assert.equal(await page.locator('.ray-card').count(),3);
+      assert.equal(await page.locator('.ray-card a[href*="ray04"]').count(),0);
       assert.equal(await page.locator('.recent-list>a').count(),6);
       assert.equal(await page.locator('.paper-map[open]').count(),0);
       await page.locator('.paper-map summary').click();assert.equal(await page.locator('.ray-list a:visible').count(),13);
       await page.locator('#archive>summary').click();await page.locator('.month>summary').first().click();
       assert.ok(await page.locator('.archive-list a:visible').count()>0);
      }else{
-      assert.equal(await page.locator('.prose h2').count(),6);
+      const headings={'seeing-beauty.html':6,'ray01.html':4,'ray02.html':5,'ray03.html':4};
+      assert.equal(await page.locator('.prose h2').count(),headings[file]);
       await page.locator('.contents summary').click();await page.locator('.contents nav a').last().click();
-      assert.ok(page.url().endsWith('#section-6'));
+      assert.ok(page.url().endsWith('#section-'+headings[file]));
+      if(file.startsWith('ray')) assert.equal(await page.locator('.chapter-links a').count(),2);
      }
      count++;
     }
@@ -42,8 +46,13 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
   await page.waitForURL('**/zh-hant/index.html?lang=zh-hant');
   await page.locator('.recent-list a').first().click();
   assert.equal(await page.locator('html').getAttribute('data-lang'),'zh');
+  await page.goto(`${base}/essays/aesthetics/ray02.html?lang=zh#section-3`);
+  await page.locator('.language-menu summary').click();await page.locator('[data-edition="en"]').click();
+  await page.waitForURL('**/en/ray02.html?lang=en#section-3');
+  await page.locator('.chapter-links a').last().click();await page.waitForURL('**/en/ray03.html?lang=en');
+  await page.locator('.chapter-links a').last().click();await page.waitForURL('**/en/index.html?lang=en#rays');
   if(process.env.AESTHETICS_SCREENSHOTS){
-   for(const [name,width,url] of [['desktop',1440,'index.html?lang=zh'],['mobile',390,'en/index.html?lang=en'],['guide',390,'zh-hant/seeing-beauty.html?lang=zh-hant']]){
+   for(const [name,width,url] of [['desktop',1440,'index.html?lang=zh'],['mobile',390,'en/ray02.html?lang=en'],['traditional',390,'zh-hant/ray03.html?lang=zh-hant']]){
     await page.setViewportSize({width,height:950});await page.goto(`${base}/essays/aesthetics/${url}`);
     await page.screenshot({path:path.join(process.env.AESTHETICS_SCREENSHOTS,name+'.png'),fullPage:name==='desktop'});
    }
@@ -56,6 +65,8 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
   await p.locator('#archive>summary').click();await p.locator('.month>summary').first().click();
   assert.ok(await p.locator('.archive-list a:visible').count()>0);
   await p.locator('#begin .button').click();assert.equal(await p.locator('.prose h2').count(),6);
-  assert.deepEqual(errors,[]);console.log(`OK: ${count} viewport/edition/page checks; dropdown, archive, source map, language anchors, legacy fallback and no-JS reading`);
+  await p.locator('.end-links a[href*="ray01"]').click();assert.equal(await p.locator('.prose h2').count(),4);
+  await p.locator('.chapter-links a').last().click();assert.equal(await p.locator('.prose h2').count(),5);
+  assert.deepEqual(errors,[]);console.log(`OK: ${count} viewport/edition/page checks; dropdown, archive, source map, language anchors, chapters, legacy fallback and no-JS reading`);
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1)});

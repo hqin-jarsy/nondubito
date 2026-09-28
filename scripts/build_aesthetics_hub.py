@@ -3,7 +3,8 @@
 
 Daily posts and log.json remain the author's inputs. After adding a daily post,
 run this script instead of inserting cards into the generated index by hand.
-This does not generate, convert or edit any daily article or ray essay.
+Daily article bodies are never generated or edited here. Ray essays render
+from individually authored manuscripts and the published-only rays.json list.
 """
 import argparse
 import html
@@ -21,13 +22,20 @@ ORIGIN = 'https://nondubito.net/'
 PAPERS = 'https://self-as-an-end.net/papers/'
 EDITIONS = {'zh': ('', 'zh-Hans', '简体中文'), 'en': ('en/', 'en', 'English'), 'zh-hant': ('zh-hant/', 'zh-Hant', '繁體中文')}
 RAYS = [
- ('混沌之美', 'Chaos'), ('哲学之美', 'Philosophy'), ('数学之美', 'Mathematics'),
+ ('混沌之美', 'Hundun (the undivided)'), ('哲学之美', 'Philosophy'), ('数学之美', 'Mathematics'),
  ('物理之美', 'Physics'), ('因果之美', 'Causation'), ('生物之美', 'Biology'),
  ('繁殖之美', 'Reproduction'), ('感知之美', 'Perception'), ('认知之美', 'Cognition'),
  ('自我之美', 'Self'), ('目的之美', 'Purpose'), ('不疑之美', 'Non-doubt'), ('双向不疑之美', 'Mutual non-doubt')]
 
 
 def render_pages():
+    rays = json.loads((DATA/'rays.json').read_text())
+    assert [r['number'] for r in rays] == list(range(1,len(rays)+1))
+    assert len(rays) <= len(RAYS)
+    for r in rays:
+        assert r['slug'] == f"ray{r['number']:02d}"
+        for language in ['zh','en']:
+            assert (DATA/f"{r['slug']}-{language}.md").is_file()
     entries = json.loads((TARGET / 'log.json').read_text())['entries']
     entries = sorted(entries, key=lambda e: e['date'], reverse=True)
     assert len({e['slug'] for e in entries}) == len(entries)
@@ -45,7 +53,7 @@ def render_pages():
             value = english if en and english is not None else zh
             if lang == 'zh-hant':
                 value = converter.convert(value).replace('“','「').replace('”','」').replace('‘','『').replace('’','』')
-                for a,b in {'余項':'餘項', '關系':'關係', '里面':'裡面', '那只已經':'那隻已經', '這只杯子':'這隻杯子', '贊美':'讚美', '一段代碼':'一段程式碼'}.items():
+                for a,b in {'余項':'餘項', '關系':'關係', '里面':'裡面', '那只已經':'那隻已經', '這只杯子':'這隻杯子', '贊美':'讚美', '一段代碼':'一段程式碼', '屏幕':'螢幕', '冰棍':'冰棒', '便簽':'便箋', '賬單':'帳單', '屋檐':'屋簷', '沈默':'沉默', '松口氣':'鬆口氣', '余一':'餘一'}.items():
                     value = value.replace(a,b)
             return value
 
@@ -59,7 +67,21 @@ def render_pages():
             choice = 'en' if en else 'zh'
             return a(up+href+'?lang='+choice, title, f'data-legacy-language="{choice}"')
 
-        def page(filename, title, description, body, guide=False):
+        def manuscript(stem):
+            source=(DATA/(stem+('-en.md' if en else '-zh.md'))).read_text().strip()
+            prose=[]; headings=[]
+            for block in source.split('\n\n'):
+                if block.startswith('## '):
+                    anchor='section-'+str(len(headings)+1)
+                    heading=text(block[3:])
+                    headings.append((anchor,heading))
+                    prose.append(f'<h2 id="{anchor}">{html.escape(heading)}</h2>')
+                else:
+                    prose.append('<p>'+t(block)+'</p>')
+            contents=''.join(a('#'+anchor,html.escape(heading)) for anchor,heading in headings)
+            return ''.join(prose), contents
+
+        def page(filename, title, description, body, guide=False, citation=None, date=DATE):
             path = folder / filename
             relative = path.relative_to(ROOT).as_posix()
             canonical = ORIGIN + relative.removesuffix('index.html') if filename == 'index.html' else ORIGIN+relative
@@ -74,10 +96,10 @@ def render_pages():
                       'name':title,'url':canonical,'inLanguage':langcode,'description':description,
                       'isPartOf':{'@type':'WebSite','name':'Non Dubito','url':ORIGIN}}
             if guide:
-                schema.update(headline=title,datePublished=DATE,author={'@type':'Person','name':'Han Qin'},
-                              citation=PAPERS+'sae-judgment-aesthetics.html')
+                schema.update(headline=title,datePublished=date,author={'@type':'Person','name':'Han Qin'},
+                              citation=citation or PAPERS+'sae-judgment-aesthetics.html')
             else:
-                schema['dateModified'] = max(DATE, entries[0]['date'])
+                schema['dateModified'] = max([DATE, entries[0]['date']]+[r['date'] for r in rays])
             return f'''<!doctype html>
 <html lang="{langcode}" data-lang="{lang}" data-editions="{langcode}">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -103,8 +125,10 @@ def render_pages():
         body = f'''<section class="hero"><p class="kicker">NON DUBITO · {t('美学','AESTHETICS')}</p><h1>{html.escape(title)}</h1><p class="deck">{t('我们可以各有所爱，也可以在同一个地方相遇。从作品和生活出发，不必先记住一套术语。','Our tastes can remain our own even when we see something together. Begin with works and ordinary life, not a vocabulary test.')}</p></section>
 <nav class="jump" aria-label="{t('本页导航','On this page')}">{a('#begin',t('从这里开始','Start here'))}{a('#rays',t('十三条射线','Thirteen rays'))}{a('#feed',t('日常发现','Daily discoveries'))}</nav>
 <section id="begin" class="hub-section"><p class="kicker">01 · {t('总导读 · 简中 / 繁中 / 英文','OPENING ESSAY · THREE LANGUAGES')}</p><h2>{html.escape(guide_title)}</h2><p>{html.escape(guide_deck)}</p>{a('seeing-beauty.html?lang='+lang,t('读总导读 →','Read the opening essay →'),'class="button"')}</section>
-<section id="rays" class="hub-section"><p class="kicker">02 · {t('看见美的不同方向','DIRECTIONS OF ATTENTION')}</p><h2>{t('十三条射线，不是一架梯子','Thirteen rays, not a ladder')}</h2><p>{t('同一片星空，可以从不同方向去看。射线不是给事物分箱，也不是把人的趣味分高低。以下是理论地图，不是阅读考试。','The same night sky can be approached in several ways. These rays are not bins for objects or ranks for people’s tastes. They are a map of questions, not a reading test.')}</p><p class="edition-note">{t('十三篇原论文均已发布，中英双语。对应的 Non Dubito 散文将分批制作；本批上线的是上面的总导读。','All thirteen academic papers are available in English and Chinese. Their Non Dubito essay counterparts are still to come; the opening essay above is available now.')}</p>
-<details class="paper-map"><summary>{t('展开理论地图与原论文链接','Open the theory map and paper links')}</summary><ol class="ray-list">'''
+<section id="rays" class="hub-section"><p class="kicker">02 · {t('看见美的不同方向','DIRECTIONS OF ATTENTION')}</p><h2>{t('十三条射线，不是一架梯子','Thirteen rays, not a ladder')}</h2><p>{t('同一片星空，可以从不同方向去看。射线不是给事物分箱，也不是把人的趣味分高低。每篇散文都可以单独读，不必先读原论文。','The same night sky can be approached in several ways. These rays are not bins for objects or ranks for people’s tastes. Each essay stands on its own; the papers are not prerequisites.')}</p><p class="edition-note">{t(f'射线散文已发布 {len(rays)} / 13 篇，均有简中、繁中与英文。其余 {13-len(rays)} 篇尚未发布。十三篇中英双语原论文均可在下方展开查看。',f'{len(rays)} of 13 companion essays are published, each in English and both Chinese editions. The remaining {13-len(rays)} are not yet published. All thirteen bilingual academic papers are linked in the expandable map below.')}</p><div class="ray-essays">'''
+        for r in rays:
+            body+=f'''<article class="ray-card"><p class="kicker">{r['number']:02d} · {t(*RAYS[r['number']-1])}</p><h3>{a(r['slug']+'.html?lang='+lang,t(r['title_zh'],r['title_en']))}</h3><p>{t(r['deck_zh'],r['deck_en'])}</p></article>'''
+        body+='</div><details class="paper-map"><summary>'+t('展开理论地图与原论文链接','Open the theory map and paper links')+'</summary><ol class="ray-list">'
         for n,(zh,english) in enumerate(RAYS,1):
             body+=f'<li>{a(PAPERS+f"sae-aesthetics-ray-{n}.html", t(zh,english)+" ↗")}<span>{t("原论文","Academic paper")}</span></li>'
         body+=f'''</ol><p>{a(PAPERS+'sae-judgment-aesthetics.html',t('总纲：判断力与美学 · 第二版 ↗','Framework: Judgment and Aesthetics · Second edition ↗'))}</p></details></section>
@@ -122,23 +146,30 @@ def render_pages():
 <section class="hub-section related"><h2>{t('另一条入口','Another way in')}</h2><h3>{legacy('../artist_dead.html',t('艺术家已死','The Artist Is Dead'))}</h3><p>{t('一篇较早的长文，从市场、学院和算法讨论创作怎样被收窄。可以单独读；它不是总导读的先修课。原文为简体中文与英文。','An earlier long essay on how markets, academies and algorithms narrow creative work. Read it independently; it is not a prerequisite. Available in English and Simplified Chinese.')}</p></section>'''
         outputs[folder/'index.html']=page('index.html',title,desc,body)
 
-        source=(DATA/('guide-en.md' if en else 'guide-zh.md')).read_text().strip()
-        prose=[]; headings=[]
-        for block in source.split('\n\n'):
-            if block.startswith('## '):
-                anchor='section-'+str(len(headings)+1)
-                heading=text(block[3:])
-                headings.append((anchor,heading))
-                prose.append(f'<h2 id="{anchor}">{html.escape(heading)}</h2>')
-            else:
-                prose.append('<p>'+t(block)+'</p>')
-        contents=''.join(a('#'+anchor,html.escape(heading)) for anchor,heading in headings)
+        prose,contents=manuscript('guide')
         body=f'''<a class="back" href="index.html?lang={lang}">← {t('美学','Aesthetics')}</a><header class="hero"><p class="kicker">{t('美学 · 从这里开始','AESTHETICS · START HERE')}</p><h1>{html.escape(guide_title)}</h1><p class="deck">{html.escape(guide_deck)}</p><p class="byline">{t('秦汉','Han Qin')} · <time datetime="{DATE}">{DATE}</time></p></header>
 <details class="contents"><summary>{t('这篇谈什么','In this essay')}</summary><nav aria-label="{t('文章目录','Essay sections')}">{contents}</nav></details>
-<article class="prose">{''.join(prose)}</article>
+<article class="prose">{prose}</article>
 <aside class="source-note"><h2>{t('想再往里读','For a closer look')}</h2><p>{t('本文依据《SAE 判断力与美学》第二版及十三条射线写成。文中的小说、电影、音乐与陶艺场景是为讨论而设的例子，不指向某一部已发表作品或真实事件。','This essay draws on the second edition of SAE Judgment and Aesthetics and its thirteen rays. The scenes involving a novel, a film, music and a pottery class are illustrative, not reports about particular published works or actual events.')}</p><p>{a(PAPERS+'sae-judgment-aesthetics.html',t('读理论总纲 · 第二版 ↗','Read the theoretical framework · Second edition ↗'))}</p><p>{a('index.html?lang='+lang+'#rays',t('查看十三条射线的原论文 →','Explore the thirteen academic papers →'))}</p></aside>
-<nav class="end-links" aria-label="{t('继续阅读','Continue reading')}">{a('index.html?lang='+lang+'#feed',t('去日常作品里看看 →','Visit the daily discoveries →'))}{a('#main',t('回到页首','Back to top'))}</nav>'''
+<nav class="end-links" aria-label="{t('继续阅读','Continue reading')}">{a(rays[0]['slug']+'.html?lang='+lang,t('读第一篇射线散文 →','Read the first ray essay →')) if rays else ''}{a('index.html?lang='+lang+'#feed',t('去日常作品里看看 →','Visit the daily discoveries →'))}{a('#main',t('回到页首','Back to top'))}</nav>'''
         outputs[folder/'seeing-beauty.html']=page('seeing-beauty.html',guide_title,guide_deck,body,True)
+
+        for index,r in enumerate(rays):
+            title=text(r['title_zh'],r['title_en'])
+            deck=text(r['deck_zh'],r['deck_en'])
+            prose,contents=manuscript(r['slug'])
+            previous=rays[index-1] if index else None
+            following=rays[index+1] if index+1<len(rays) else None
+            prev_link=a(previous['slug']+'.html?lang='+lang,'← '+t(previous['title_zh'],previous['title_en'])) if previous else a('seeing-beauty.html?lang='+lang,'← '+t('总导读','Opening essay'))
+            next_link=a(following['slug']+'.html?lang='+lang,t(following['title_zh'],following['title_en'])+' →') if following else a('index.html?lang='+lang+'#rays',t('回到射线目录 →','Back to the ray essays →'))
+            pending=f'<p class="edition-note">{t("本批到这里。后续射线散文完成后，再接上下一篇。","This is the end of the current selection. Further ray essays will be linked as they are published.")}</p>' if not following and len(rays)<13 else ''
+            paper=PAPERS+f"sae-aesthetics-ray-{r['number']}.html"
+            extra=f'<p>{a("https://www.claymath.org/millennium/riemann-hypothesis/",t("深入参考：克雷数学研究所的黎曼猜想介绍 ↗","Further reading: the Clay Mathematics Institute on the Riemann hypothesis ↗"))}</p>' if r['number']==3 else ''
+            body=f'''<a class="back" href="index.html?lang={lang}#rays">← {t('美学 · 射线散文','Aesthetics · Ray essays')}</a><header class="hero"><p class="kicker">{t('美学射线','AESTHETIC RAYS')} · {r['number']:02d} / 13 · {t(*RAYS[r['number']-1])}</p><h1>{html.escape(title)}</h1><p class="deck">{html.escape(deck)}</p><p class="byline">{t('秦汉','Han Qin')} · <time datetime="{r['date']}">{r['date']}</time></p></header>
+<details class="contents"><summary>{t('这篇谈什么','In this essay')}</summary><nav aria-label="{t('文章目录','Essay sections')}">{contents}</nav></details><article class="prose">{prose}</article>
+<aside class="source-note"><h2>{t('写作说明与原论文','About this essay and its source')}</h2><p>{t(r['note_zh'],r['note_en'])}</p><p>{a(paper,t('读原论文：','Read the source paper: ')+t(*RAYS[r['number']-1])+' ↗')}</p>{extra}</aside>
+<nav class="chapter-links" aria-label="{t('前后篇','Previous and next essays')}">{prev_link}{next_link}</nav>{pending}<nav class="end-links" aria-label="{t('继续阅读','Continue reading')}">{a('index.html?lang='+lang,t('美学首页','Aesthetics home'))}{a('#main',t('回到页首','Back to top'))}</nav>'''
+            outputs[folder/(r['slug']+'.html')]=page(r['slug']+'.html',title,deck,body,True,paper,r['date'])
     return outputs
 
 
