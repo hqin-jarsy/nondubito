@@ -55,6 +55,8 @@ def render_pages():
                 value = converter.convert(value).replace('“','「').replace('”','」').replace('‘','『').replace('’','』')
                 for a,b in {'余項':'餘項', '關系':'關係', '里面':'裡面', '那只已經':'那隻已經', '這只杯子':'這隻杯子', '贊美':'讚美', '一段代碼':'一段程式碼', '屏幕':'螢幕', '冰棍':'冰棒', '便簽':'便箋', '賬單':'帳單', '屋檐':'屋簷', '沈默':'沉默', '松口氣':'鬆口氣', '余一':'餘一'}.items():
                     value = value.replace(a,b)
+                for a,b in {'公裡':'公里', '兩筆賬':'兩筆帳', '算不准':'算不準', '證明瞭':'證明了', '生命奇跡':'生命奇蹟', '復印件':'影印本', '冷冰冰的重復':'冷冰冰的重複', '反復猜':'反覆猜'}.items():
+                    value = value.replace(a,b)
             return value
 
         def t(zh, english=None):
@@ -165,6 +167,7 @@ def render_pages():
             pending=f'<p class="edition-note">{t("本批到这里。后续射线散文完成后，再接上下一篇。","This is the end of the current selection. Further ray essays will be linked as they are published.")}</p>' if not following and len(rays)<13 else ''
             paper=PAPERS+f"sae-aesthetics-ray-{r['number']}.html"
             extra=f'<p>{a("https://www.claymath.org/millennium/riemann-hypothesis/",t("深入参考：克雷数学研究所的黎曼猜想介绍 ↗","Further reading: the Clay Mathematics Institute on the Riemann hypothesis ↗"))}</p>' if r['number']==3 else ''
+            extra += ''.join('<p>'+a(ref['url'],t(ref['title_zh'],ref['title_en'])+' ↗')+'</p>' for ref in r.get('references',[]))
             body=f'''<a class="back" href="index.html?lang={lang}#rays">← {t('美学 · 射线散文','Aesthetics · Ray essays')}</a><header class="hero"><p class="kicker">{t('美学射线','AESTHETIC RAYS')} · {r['number']:02d} / 13 · {t(*RAYS[r['number']-1])}</p><h1>{html.escape(title)}</h1><p class="deck">{html.escape(deck)}</p><p class="byline">{t('秦汉','Han Qin')} · <time datetime="{r['date']}">{r['date']}</time></p></header>
 <details class="contents"><summary>{t('这篇谈什么','In this essay')}</summary><nav aria-label="{t('文章目录','Essay sections')}">{contents}</nav></details><article class="prose">{prose}</article>
 <aside class="source-note"><h2>{t('写作说明与原论文','About this essay and its source')}</h2><p>{t(r['note_zh'],r['note_en'])}</p><p>{a(paper,t('读原论文：','Read the source paper: ')+t(*RAYS[r['number']-1])+' ↗')}</p>{extra}</aside>

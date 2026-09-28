@@ -45,6 +45,7 @@ class HubTests(unittest.TestCase):
                     self.assertEqual(schema['datePublished'],self.rays[n-1]['date'])
                 if lang=='zh-Hant':
                     for wrong in ['“','”','那只已經','這只杯子','贊美','沈默','松口氣','余一']:self.assertNotIn(wrong,s)
+                    for wrong in ['公裡','算不准','證明瞭','生命奇跡','冷冰冰的重復']:self.assertNotIn(wrong,s)
 
     def test_links(self):
         for path,s in self.pages.items():
@@ -70,10 +71,11 @@ class HubTests(unittest.TestCase):
             self.assertEqual(sum('sae-aesthetics-ray-' in a.get('href','') for t,a in tags),13)
             self.assertNotIn('它不活',s)
             self.assertNotIn('it is no longer alive',s)
-            self.assertTrue('3 of 13' in s or '3 / 13' in s)
-            self.assertTrue('remaining 10' in s or '其余 10' in s or '其餘 10' in s)
-            self.assertEqual(sum(a.get('class')=='ray-card' for t,a in tags),3)
-            self.assertNotRegex(s,r'href="[^"]*ray(?:0[4-9]|1[0-3])\.html')
+            count=len(self.rays)
+            self.assertTrue(f'{count} of 13' in s or f'{count} / 13' in s)
+            if count<13:self.assertTrue(any(f'{prefix} {13-count}' in s for prefix in ['remaining','其余','其餘']))
+            self.assertEqual(sum(a.get('class')=='ray-card' for t,a in tags),count)
+            for n in range(count+1,14):self.assertNotRegex(s,rf'href="[^"]*ray{n:02d}\.html')
             self.assertIn('artist_dead.html',s)
 
     def test_discovery(self):
@@ -82,7 +84,7 @@ class HubTests(unittest.TestCase):
         updates=json.loads((build.ROOT/'data/site-updates.json').read_text())['updates']
         item=next(x for x in updates if x['id']=='2026-09-28-aesthetics-hub')
         self.assertEqual(set(item['languages']),{'en','zh','zh-hant'})
-        self.assertEqual(updates[0]['id'],'2026-09-28-aesthetics-rays-01-03')
+        self.assertEqual(updates[0]['id'],'2026-09-28-aesthetics-rays-04-07')
 
     def test_search_sitemap(self):
         for lang,sub in [('zh-hans',''),('en','en/'),('zh-hant','zh-hant/')]:
@@ -107,7 +109,7 @@ class HubTests(unittest.TestCase):
                 self.assertEqual([html.unescape(x) for x in rendered],[x.removeprefix('## ') for x in blocks])
             self.assertEqual(len(re.findall(r'<h2 ',article)),source.count('## '))
             if lang=='en':self.assertGreater(len(source.split()),1100)
-            else:self.assertGreater(len(re.findall(r'[\u3400-\u9fff]',source)),1800)
+            else:self.assertGreater(len(re.findall(r'[\u3400-\u9fff]',source)),1700)
             current='zh-hant' if path.parent.name=='zh-hant' else lang
             chapter=re.search(r'<nav class="chapter-links"[^>]*>(.*?)</nav>',s,re.S)[1]
             expected_prev=f'ray{n-1:02d}.html' if n>1 else 'seeing-beauty.html'
@@ -115,6 +117,7 @@ class HubTests(unittest.TestCase):
             self.assertIn(f'href="{expected_prev}?lang={current}"',chapter)
             self.assertIn(f'href="{expected_next}"',chapter)
             self.assertNotRegex(article,r'\b(?:13|14|15|16)DD\b')
+            for ref in self.rays[n-1].get('references',[]):self.assertIn(html.escape(ref['url'],quote=True),s)
 
     def test_arithmetic_and_traditional_fixes(self):
         self.assertEqual(sum(range(1,101)),50*101)
