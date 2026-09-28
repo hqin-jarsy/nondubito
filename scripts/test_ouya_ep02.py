@@ -70,9 +70,9 @@ class EP02Test(unittest.TestCase):
         page=self.pages[full.SERIES/'zh-hant/ep02.html']
         self.assertIn('<html lang="zh-Hant">',page)
         self.assertIn('href="ep01.html"',page)
-        self.assertIn('href="../ep03.html?lang=zh"',page)
-        self.assertIn('下一篇（簡體）',page)
-        self.assertNotIn('href="ep03.html"',page)
+        self.assertIn('href="ep03.html"',page)
+        self.assertIn('下一篇</span>',page)
+        self.assertNotIn('href="../ep03.html?lang=zh"',page)
         self.assertIn('href="ep02.html"',(full.SERIES/'zh-hant/ep01.html').read_text())
 
 if __name__=='__main__':unittest.main()

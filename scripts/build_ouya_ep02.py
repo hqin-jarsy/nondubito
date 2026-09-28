@@ -90,11 +90,11 @@ def outputs():
         s=s.replace('<header class="essay-header">',f'<a class="ouya-series-back" href="{href}">{label}</a>\n<header class="essay-header">',1)
         if lang=='zh-Hant':
             s=re.sub(r'<div class="essay-series-label">.*?</div>','<div class="essay-series-label">鑿構週期律 · 歐亞帝王系列 — 第02篇／共22篇</div>',s)
-            subs=iter(['上一篇','下一篇（簡體）'])
+            subs=iter(['上一篇','下一篇'])
             titles=iter(['雅典與斯巴達','羅馬共和國'])
             s=re.sub(r'<span class="xiyou-nav-sub">.*?</span>',lambda _:f'<span class="xiyou-nav-sub">{next(subs)}</span>',s)
             s=re.sub(r'<span class="xiyou-nav-title">.*?</span>',lambda _:f'<span class="xiyou-nav-title">{next(titles)}</span>',s)
-            s=re.sub(r'href="(?:\.\./)?ep03.html(?:\?lang=zh)?"','href="../ep03.html?lang=zh" onclick="localStorage.setItem(\'nd_lang\',\'zh\')"',s)
+            s=re.sub(r'href="(?:\.\./)?ep03.html(?:\?lang=zh)?"(?: onclick="localStorage.setItem\(\'nd_lang\',\'zh\'\)")?', 'href="ep03.html"',s)
             s=s.replace(' onclick="localStorage.setItem(\'nd_lang\',\'zh\')" onclick="localStorage.setItem(\'nd_lang\',\'zh\')"',' onclick="localStorage.setItem(\'nd_lang\',\'zh\')"')
         s=shared.metadata(s,copies[lang]['title'],DECKS[lang],f'https://nondubito.net/essays/ouya/{lang.lower()}/ep02.html')
         out[p]=shared.resources(s,'../../../')

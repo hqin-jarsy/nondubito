@@ -64,7 +64,7 @@ function fixture(relative, query, saved, denied = false) {
 }
 
 let checks = 0;
-for (const episode of ['ep01', 'ep02']) {
+for (const episode of ['ep01', 'ep02', 'ep03']) {
 for (const saved of [null, 'en', 'zh', 'zh-hant', 'fr']) {
   for (const query of ['', '?lang=en', '?lang=zh', '?lang=ko']) {
     const f = fixture(`essays/ouya/${episode}.html`, query, saved);
