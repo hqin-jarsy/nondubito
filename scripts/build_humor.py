@@ -54,6 +54,8 @@ def render_pages():
                 value = converter.convert(value).replace('“', '「').replace('”', '」').replace('‘', '『').replace('’', '』')
                 value = value.replace('乾活', '幹活').replace('復述', '複述').replace('賬', '帳').replace('不咸', '不鹹')
                 value = value.replace('輕輕鬆松', '輕輕鬆鬆').replace('包扎', '包紮').replace('鬥篷', '斗篷').replace('准是', '準是')
+                value = value.replace('乾完活', '幹完活').replace('該乾的事', '該幹的事').replace('乾得疲憊', '幹得疲憊')
+                value = value.replace('阿裡斯提卜', '阿里斯提卜').replace('望瞭望', '望了望').replace('系著紅帶子', '繫著紅帶子').replace('沈下臉', '沉下臉')
             return html.escape(value)
 
         def page(filename, title, description, content, article=False):
@@ -117,7 +119,7 @@ def render_pages():
 <section class="humor-hero"><p class="humor-kicker">NON DUBITO · {t('笑话选')}</p><h1>{t('笑话选')}</h1><p class="humor-deck">{t('从不同地方传来的笑话，关于我们怎样生活，又怎样把自己绕进去。')}</p><p class="humor-welcome">{t('先笑一会儿。想查来处，每则后面都有；不想查，就接着读。')}</p><p class="humor-meta">{t(f"{len(data['issues'])} 个短辑 · {total} 则 · 简体 / 繁体")}</p><a class="humor-start" href="{data['batches'][-1][0]['slug']}.html">{t('读最新一批')} →</a><p class="humor-meta"><a href="{data['issues'][0]['slug']}.html">{t('也可以从第一辑读起')} →</a></p></section>
 <nav class="humor-jump" aria-label="{t('按辑数跳转')}"><span>{t('跳到')}</span>{''.join(jumps)}</nav>
 <div class="humor-issues">{''.join(groups)}</div>
-<details class="humor-editorial"><summary>{t('关于这份选本')}</summary><div><p>{t('这里收录旧笑话、诙谐轶事和少量带有喜剧意味的故事，不是原创小说，也不把书中轶事当作已证实的历史。中文根据所列版本译述或改写，题目多为编选时另拟。')}</p><p>{t('出处标明我们读到的版本，不声称已经找到了故事最早的源头。工作稿中的理论分类与分析留在编辑档案里；这里不逐则讲道理。')}</p><p>{t('这一批先提供简体与繁体中文。英文将另行打磨，不以机器直译替代笑话的节奏。第三辑末则写到临终与天堂。')}</p></div></details>'''
+<details class="humor-editorial"><summary>{t('关于这份选本')}</summary><div><p>{t('这里收录旧笑话、诙谐轶事和少量带有喜剧意味的故事，不是原创小说，也不把书中轶事当作已证实的历史。中文根据所列版本译述或改写，题目多为编选时另拟。')}</p><p>{t('出处标明我们读到的版本，不声称已经找到了故事最早的源头。工作稿中的理论分类与分析留在编辑档案里；这里不逐则讲道理。')}</p><p>{t('目前提供简体与繁体中文。英文将另行打磨，不以机器直译替代笑话的节奏。第三辑末则写到临终与天堂。')}</p></div></details>'''
         outputs[folder / 'index.html'] = page('index.html', '笑话选', description, introduction)
         for index, issue in enumerate(data['issues']):
             articles = []

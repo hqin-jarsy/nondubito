@@ -35,12 +35,12 @@ const base = process.argv[2] || 'http://127.0.0.1:8776';
           assert.ok(geometry.page <= geometry.width + 1, `overflow ${width} ${lang} ${slug}`);
           assert.equal(await page.locator('.humor-footer').evaluate(el => getComputedStyle(el).backgroundColor), 'rgba(0, 0, 0, 0)');
           if (slug === 'index') {
-            assert.equal(await page.locator('.humor-group').count(), 3);
-            assert.equal(await page.locator('.humor-issue').count(), 15);
+            assert.equal(await page.locator('.humor-group').count(), 4);
+            assert.equal(await page.locator('.humor-issue').count(), 23);
             await page.locator('.humor-jump a').last().click();
-            await page.locator('#issues-11-15').scrollIntoViewIfNeeded();
-            assert.ok(page.url().endsWith('#issues-11-15'));
-            assert.equal(await page.locator('#issues-11-15 .humor-issue').count(), 5);
+            await page.locator('#issues-16-23').scrollIntoViewIfNeeded();
+            assert.ok(page.url().endsWith('#issues-16-23'));
+            assert.equal(await page.locator('#issues-16-23 .humor-issue').count(), 8);
           }
           if (slug !== 'index') {
             assert.equal(await page.locator('.humor-source[open]').count(), 0);
@@ -68,7 +68,7 @@ const base = process.argv[2] || 'http://127.0.0.1:8776';
     await page.locator('a[rel="next"]').click();
     assert.equal(await page.locator('html').getAttribute('lang'), 'zh-Hans');
     if (process.env.HUMOR_SCREENSHOTS) {
-      for (const [name, width, file] of [['desktop', 1440, 'index'], ['mobile', 390, data.issues[10].slug]]) {
+      for (const [name, width, file] of [['desktop', 1440, 'index'], ['mobile', 390, data.issues[15].slug]]) {
         await page.setViewportSize({width, height: 920});
         await page.goto(`${base}/essays/humor/${file}.html?lang=zh`);
         await page.screenshot({path: path.join(process.env.HUMOR_SCREENSHOTS, name+'.png'), fullPage: true});
@@ -76,7 +76,7 @@ const base = process.argv[2] || 'http://127.0.0.1:8776';
     }
     const nojs = await browser.newContext({javaScriptEnabled: false, viewport: {width: 390, height: 850}});
     const plain = await nojs.newPage();
-    await plain.goto(`${base}/essays/humor/11-hear-me-out.html`);
+    await plain.goto(`${base}/essays/humor/16-sounds-convincing.html`);
     assert.equal(await plain.locator('article').count(), 6);
     await plain.locator('.humor-source summary').first().click();
     assert.equal(await plain.locator('.humor-source[open]').count(), 1);
