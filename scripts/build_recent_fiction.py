@@ -370,7 +370,7 @@ def library_section(books: list[dict], converter: TraditionalConverter) -> str:
 <hr class="lib-divider">
 <section class="lib-section" id="recent-fiction">
   <div class="lib-section-header">
-    <span class="lib-section-tag">Category 07</span>
+    <span class="lib-section-tag">Category 08</span>
     <a href="essays/recent-fiction/index.html" class="lib-section-name" style="text-decoration:none;"><span class="zh cl-zh">近年小说导读</span><span class="zh cl-hant">近年小說導讀</span><span class="en">Recent Fiction</span></a>
     <p class="lib-section-desc lang-en">Meet recent novels through a voice, a scene, and a question worth following. Each introduction leaves major turns for the book, with links to author conversations, available excerpts, and other readings.</p>
     <p class="lib-section-desc lang-zh cl-zh">从一个声音、一个场景、一个值得追问的问题，认识近年的小说。每篇保留重要转折与结局，并附作者访谈、可用试读等延伸资料。</p>

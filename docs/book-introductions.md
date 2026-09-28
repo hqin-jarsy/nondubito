@@ -35,7 +35,7 @@ Traditional Chinese is rendered with the existing converter and visually checked
 Add one JSON and register its slug in `scripts/build_book_introductions.py:ORDER`.
 Include `topic_en`, `topic_zh`, `genre_en`, `genre_zh` alongside the fields used by
 Recent Fiction. The nonfiction shelf uses editorial order, with genres as labels;
-it does not split two books into separate year/category sections. Expand browsing
+it does not split five books into separate year/category sections. Expand browsing
 only when the collection warrants it.
 
 The hub counts the two inventories automatically. Its featured block shows the
@@ -43,6 +43,14 @@ first two nonfiction books; reconsider editorial order when a new batch arrives.
 The nonfiction Library block is generated between `NONFICTION CATEGORY` markers;
 the fiction builder independently owns `RECENT FICTION CATEGORY` markers.
 Curated homepage/Explore/Latest updates and overall Library statistics remain manual.
+
+The 2026-09-28 batch replaces the Small Is Beautiful introduction and adds
+How to Do Nothing, Seeing Like a State, and Being Mortal. Preserve the original
+Small Is Beautiful guide date (2026-09-13) and use updated_date for the revision;
+the article displays both dates. Raising Hare retains its text and dates.
+All four approved Chinese bodies are imported unchanged after removing the
+manuscript title and bibliographic paragraph. English is written for continuous
+reading; source links stay in the separate source section, not inside the prose.
 
 ## Build and verify
 
@@ -60,8 +68,8 @@ python3 scripts/normalize_canonicals.py --check
 git diff --check
 ```
 
-All build commands support `--check`. Browser QA covers the two entrances, both
-articles, the three reading languages, the mobile menu, source anchors, and search
+All build commands support `--check`. Browser QA covers the two entrances, all
+five articles, the three reading languages, the mobile menu, source anchors, and search
 by title/author. Search uses localized visible decks and preserves the selected
 language on result links for both new paths.
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import re
 import unittest
@@ -13,6 +14,16 @@ import build_book_introductions as build
 import build_recent_fiction as fiction
 import build_search_index as search
 from test_recent_fiction import Page
+
+
+# Approved 2026-09-28 manuscripts, excluding their title and bibliographic line.
+# Keep these fixed: tests must not depend on the author's external manuscript folder.
+APPROVED_CHINESE_SHA256 = {
+    'small-is-beautiful': '2a74e113f31e75bc0e82c9a6354e5527267b60edcaff26f7264e45e0ce5daf74',
+    'how-to-do-nothing': '979b1156e41dd54555233eba325d7be7bdf9b1d259a10de72c2d2a2dfdb15390',
+    'seeing-like-a-state': '978814a12bbda981c07165ee16e87649c91c274ca8e6765cece6df9ee3ce8efa',
+    'being-mortal': 'b735de02ca685a6a0ab04fd15193e4685c291ba17c53edb1f452699662581917',
+}
 
 
 class BookIntroductionsTests(unittest.TestCase):
@@ -38,8 +49,14 @@ class BookIntroductionsTests(unittest.TestCase):
     def test_no_fiction_only_source_requirements(self):
         book = next(book for book in self.books if book['slug'] == 'small-is-beautiful')
         self.assertEqual(book['reading_basis'], 'excerpts-and-research')
-        self.assertNotIn('interview', {item['kind'] for item in book['sources']})
         build.validate_book(book, book['slug'])
+        # An interview can enrich nonfiction research, but must not be compulsory.
+        without_interviews = copy.deepcopy(book)
+        without_interviews['sources'] = [
+            item for item in book['sources'] if item['kind'] != 'interview'
+        ]
+        self.assertLess(len(without_interviews['sources']), len(book['sources']))
+        build.validate_book(without_interviews, book['slug'])
         page = (build.TARGET / 'small-is-beautiful.html').read_text(encoding='utf-8')
         self.assertTrue('Sources &amp; further reading' in page, 'Missing sources heading')
         self.assertNotIn('Author conversations &amp; sources', page)
@@ -49,67 +66,84 @@ class BookIntroductionsTests(unittest.TestCase):
     def test_small_is_beautiful_revised_chinese_body(self):
         book = next(book for book in self.books if book['slug'] == 'small-is-beautiful')
         body = book['zh_body']
-        self.assertTrue(body.startswith('一家工厂添了新设备，用更少的人，做出了更多的东西。'))
+        self.assertTrue(body.startswith('舒马赫在英国国家煤炭局做了二十年经济学家'))
         self.assertEqual(re.findall(r'^## (.+)$', body, re.MULTILINE), [
-            '一、省了人工，谁过得更好了',
-            '二、账上的收入，可能是花掉的本钱',
-            '三、机器再先进，用不上怎么办',
-            '四、只靠老板的善意，还不够',
-            '五、他所说的好生活，适合每个人吗',
-            '六、带着赞同，也带着疑问去读',
+            '多出来的收成',
+            '这一年的收入，下一代的本钱',
+            '公司是谁的',
+            '小，也不能替人作主',
         ])
-        for approved_fix in (
-            '有一部分其实是卖家底得来的。',
-            '这样的分工，说来容易，真要实行，还有许多细节需要说清楚。',
-            '却没有同样重视女性的自主选择：要不要工作，想做什么工作。',
-        ):
-            with self.subTest(approved_fix=approved_fix):
-                self.assertIn(approved_fix, body)
         self.assertNotRegex(body, r'(?i)porritt')
 
-    def test_small_is_beautiful_generated_bodies_use_independent_editions(self):
-        book = next(book for book in self.books if book['slug'] == 'small-is-beautiful')
-        source = (build.TARGET / 'small-is-beautiful.html').read_text(encoding='utf-8')
-        articles = dict(re.findall(
-            r'<article class="rf-prose [^"]+" lang="([^"]+)">(.*?)</article>',
-            source, re.DOTALL,
-        ))
+    def test_september_batch_preserves_approved_manuscripts(self):
+        books = {book['slug']: book for book in self.books}
+        self.assertTrue(set(APPROVED_CHINESE_SHA256).issubset(books))
+        for slug, approved_hash in APPROVED_CHINESE_SHA256.items():
+            with self.subTest(slug=slug):
+                book = books[slug]
+                body = book['zh_body']
+                self.assertEqual(hashlib.sha256(body.encode('utf-8')).hexdigest(), approved_hash)
+                self.assertEqual(len(re.findall(r'^## ', body, re.MULTILINE)), 4)
+                self.assertEqual(len(re.findall(r'^## ', book['en_body'], re.MULTILINE)), 4)
+                self.assertNotRegex(body + book['en_body'], r'https?://')
+
+    def test_generated_bodies_use_independent_editions(self):
         converter = build.TraditionalConverter()
         try:
-            # The Chinese revision is independent prose, not sentence-aligned English.
-            expected = {
-                'en': build.prose(book['en_body']),
-                'zh-Hans': build.prose(book['zh_body']),
-                'zh-Hant': build.prose(converter.convert(book['zh_body'])),
-            }
+            for book in self.books:
+                source = (build.TARGET / (book['slug'] + '.html')).read_text(encoding='utf-8')
+                articles = dict(re.findall(
+                    r'<article class="rf-prose [^"]+" lang="([^"]+)">(.*?)</article>',
+                    source, re.DOTALL,
+                ))
+                # Chinese and English are independent prose, not sentence-aligned text.
+                expected = {
+                    'en': build.prose(book['en_body']),
+                    'zh-Hans': build.prose(book['zh_body']),
+                    'zh-Hant': build.prose(converter.convert(book['zh_body'])),
+                }
+                self.assertEqual(set(articles), set(expected))
+                for language, body in expected.items():
+                    with self.subTest(slug=book['slug'], language=language):
+                        self.assertEqual(articles[language], body)
         finally:
             converter.close()
-        self.assertEqual(set(articles), set(expected))
-        for language, body in expected.items():
-            with self.subTest(language=language):
-                self.assertEqual(articles[language], body)
 
     def test_small_is_beautiful_retains_registered_sources(self):
         book = next(book for book in self.books if book['slug'] == 'small-is-beautiful')
         self.assertEqual({item['url'] for item in book['sources']}, {
             'https://centerforneweconomics.org/publications/buddhist-economics/',
-            'https://centerforneweconomics.org/publications/what-is-capital-chapter-1/',
-            'https://centerforneweconomics.org/publications/technology-guide-to-chapter-12/',
-            'https://centerforneweconomics.org/publications/giantism-guide-to-chapter-16/',
-            'https://www.cambridge.org/core/services/aop-cambridge-core/content/view/83903115DCDA6312E69C6314CAE15AC5/S0960777322000558a.pdf/between_the_handloom_and_the_samson_stripper_fritz_schumachers_struggle_for_intermediate_technology.pdf',
-            'https://journals.sagepub.com/doi/10.1177/13684310231215892',
-            'https://www.unm.edu/~varma/print/PGDT_Schumacher.pdf',
-            'https://www.scottbader.com/about-us/the-making-of-scott-bader/',
-            'https://www.scottbader.com/about-us/commonwealth-board/',
-            'https://www.un.org/sustainabledevelopment/blog/2021/03/un-adopts-landmark-framework-to-integrate-natural-capital-in-economic-reporting/',
+            'https://centerforneweconomics.org/publications/writings-on-issues-of-scale-by-e-f-schumacher/',
+            'https://centerforneweconomics.org/wp-content/uploads/2024/01/small-is-beautiful-revisited-study-guide.pdf',
+            'https://www.cambridge.org/core/journals/contemporary-european-history/article/between-the-handloom-and-the-samson-stripper-fritz-schumachers-struggle-for-intermediate-technology/83903115DCDA6312E69C6314CAE15AC5',
+            'https://www.manasjournal.org/pdf_library/VolumeXXIX_1976/XXIX-20.pdf',
+            'https://centerforneweconomics.org/publications/how-to-help-them-help-themselves/',
+            'https://qfp.quaker.org.uk/passage/23-57/',
+            'https://aei.pitt.edu/33684/1/A218.pdf',
+            'https://journals.sagepub.com/doi/10.1177/13684310241244492',
         })
         build.validate_book(book, book['slug'])
+
+    def test_september_batch_publication_and_revision_dates(self):
+        books = {book['slug']: book for book in self.books}
+        self.assertEqual(books['small-is-beautiful']['guide_date'], '2026-09-13')
+        self.assertEqual(books['small-is-beautiful']['updated_date'], '2026-09-28')
+        self.assertEqual(books['raising-hare']['guide_date'], '2026-09-13')
+        self.assertEqual(books['raising-hare']['book_date'], '2024-09-26')
+        self.assertNotIn('updated_date', books['raising-hare'])
+        for slug in ('how-to-do-nothing', 'seeing-like-a-state', 'being-mortal'):
+            with self.subTest(slug=slug):
+                self.assertEqual(books[slug]['guide_date'], '2026-09-28')
+        source = (build.TARGET / 'small-is-beautiful.html').read_text(encoding='utf-8')
+        self.assertIn('Revised', source)
+        self.assertIn('修订', source)
 
     def test_publication_precision_and_collection_metadata(self):
         for book in self.books:
             page = self.pages[build.TARGET / (book['slug'] + '.html')]
             schema = page.schemas[0]
             self.assertEqual(schema['datePublished'], book['guide_date'])
+            self.assertEqual(schema['dateModified'], book.get('updated_date', book['guide_date']))
             self.assertEqual(schema['about']['datePublished'], book['book_date'])
             self.assertEqual(schema['about']['genre'], book['genre_en'])
             self.assertEqual(schema['isPartOf']['url'], 'https://nondubito.net/essays/nonfiction/')
@@ -183,7 +217,8 @@ class BookIntroductionsTests(unittest.TestCase):
             converter.close()
         self.assertIn(expected, source)
         self.assertEqual(expected.count('class="series-card"'), len(self.books))
-        self.assertEqual(re.findall(r'Category (\d\d)', source), [f'{i:02}' for i in range(1, 17)])
+        self.assertEqual(re.findall(r'Category (\d\d)', source), [f'{i:02}' for i in range(1, 18)])
+        self.assertIn('Category 09', expected)
 
     def test_search_uses_each_languages_deck(self):
         with patch.object(search, 'collect_pages', return_value=self.paths):
@@ -210,7 +245,20 @@ class BookIntroductionsTests(unittest.TestCase):
         update = next(item for item in ledger['updates'] if item['id'] == '2026-09-13-nonfiction-shelf')
         self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
         self.assertEqual(update['url'], 'essays/books/index.html')
-        self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
+        latest = (build.ROOT / 'latest.html').read_text(encoding='utf-8')
+        self.assertIn(update['id'], latest)
+        updates = {item['id']: item for item in ledger['updates']}
+        for identifier, kind, url in (
+            ('2026-09-28-nonfiction-three-guides', 'new', 'essays/nonfiction/index.html'),
+            ('2026-09-28-small-is-beautiful-rewritten', 'revised', 'essays/nonfiction/small-is-beautiful.html'),
+        ):
+            with self.subTest(update=identifier):
+                item = updates[identifier]
+                self.assertEqual(item['date'], '2026-09-28')
+                self.assertEqual(item['kind'], kind)
+                self.assertEqual(item['url'], url)
+                self.assertEqual(item['languages'], ['en', 'zh', 'zh-hant'])
+                self.assertIn(identifier, latest)
 
 
 if __name__ == '__main__':

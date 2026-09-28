@@ -20,7 +20,8 @@ SOURCE = ROOT / 'data/nonfiction'
 TARGET = ROOT / 'essays/nonfiction'
 HUB = ROOT / 'essays/books/index.html'
 PUBLISHED = '2026-09-13'
-ORDER = ('raising-hare', 'small-is-beautiful')
+ORDER = ('small-is-beautiful', 'how-to-do-nothing', 'seeing-like-a-state',
+         'being-mortal', 'raising-hare')
 SOURCE_LABELS = {
     'interview': ('Author conversation', '作者访谈'),
     'excerpt': ('Read the original', '阅读原作'),
@@ -131,6 +132,11 @@ def source_section(book: dict, converter: TraditionalConverter) -> str:
 def render_article(book: dict, books: list[dict], converter: TraditionalConverter) -> str:
     published = date.fromisoformat(book['guide_date'])
     display_date = f"{published.strftime('%b')} {published.day}, {published.year}"
+    revision_meta = ''
+    if book.get('updated_date') and book['updated_date'] != book['guide_date']:
+        updated = date.fromisoformat(book['updated_date'])
+        display_updated = f"{updated.strftime('%b')} {updated.day}, {updated.year}"
+        revision_meta = f' · {localized("Revised", "修订", converter)} <time datetime="{book["updated_date"]}">{display_updated}</time>'
     aliases = ' '.join([book['book'], *fiction.book_aliases(book), *book.get('search_aliases', []), book['author'], 'Nonfiction 非虚构导读 非虛構導讀'])
     excerpt = next(item for item in book['sources'] if item['kind'] == 'excerpt')
     related = ''.join(f'<a href="{item["slug"]}.html"><span class="rf-kicker">{localized(esc(item["genre_en"]), esc(item["genre_zh"]), converter)}</span><strong>{fiction.book_label(item, converter)}</strong>→</a>' for item in books if item['slug'] != book['slug'])
@@ -146,7 +152,7 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
 {fiction.original_edition(book, converter)}
 <p class="rf-book-meta">{esc(book['author'])} · {localized(esc(book['genre_en']), esc(book['genre_zh']), converter)}</p>
 <p class="rf-book-meta">{localized('Original publication', '原作首版', converter)} <time datetime="{book['book_date']}">{book['book_date']}</time> · {esc(book['publisher'])}</p>
-<p class="rf-guide-meta">Han Qin (秦汉) · {localized('Guide published', '导读发布', converter)} <time datetime="{book['guide_date']}">{display_date}</time></p>
+<p class="rf-guide-meta">Han Qin (秦汉) · {localized('Guide published', '导读发布', converter)} <time datetime="{book['guide_date']}">{display_date}</time>{revision_meta}</p>
 <div class="rf-notice">{localized(esc(book['en_notice']), esc(book['zh_notice']), converter, 'p')}</div>
 <div class="rf-actions"><a href="#sources">{localized('Sources &amp; further reading ↓', '出处与延伸阅读 ↓', converter)}</a><a href="{esc(excerpt['url'])}">{localized('Read the original ↗', '先读一段原作 ↗', converter)}</a></div>
 </section>
@@ -210,7 +216,7 @@ def library_section(books: list[dict], converter: TraditionalConverter) -> str:
 <p class="series-card-desc-zh lang-zh cl-zh">{esc(book['zh_deck'])}</p><p class="series-card-desc-zh lang-zh cl-hant">{esc(converter.convert(book['zh_deck']))}</p><p class="series-card-desc-en lang-en">{esc(book['en_deck'])}</p>
 <span class="series-card-arrow lang-en">Read introduction</span><span class="series-card-arrow lang-zh cl-zh">阅读导读</span><span class="series-card-arrow lang-zh cl-hant">閱讀導讀</span></a>''')
     return f'''<!-- NONFICTION CATEGORY START -->
-<hr class="lib-divider"><section class="lib-section" id="nonfiction"><div class="lib-section-header"><span class="lib-section-tag">Category 08</span>
+<hr class="lib-divider"><section class="lib-section" id="nonfiction"><div class="lib-section-header"><span class="lib-section-tag">Category 09</span>
 <a href="essays/nonfiction/index.html" class="lib-section-name" style="text-decoration:none"><span class="zh cl-zh">非虚构导读</span><span class="zh cl-hant">非虛構導讀</span><span class="en">Nonfiction</span></a>
 <p class="lib-section-desc lang-en">Memoir, nature writing and books of ideas: recent work and classics, with sources, questions and room for disagreement. <a href="essays/books/index.html">All book introductions →</a></p>
 <p class="lib-section-desc lang-zh cl-zh">回忆录、自然书写与思想著作：介绍新作，也重访经典，说明出处，保留疑问与分歧。<a href="essays/books/index.html">全部书籍导读 →</a></p>

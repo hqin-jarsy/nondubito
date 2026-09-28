@@ -10,17 +10,17 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 10,186 | 9,267 | 919 | 229 | 122 | 388 |
-| Canonical-root pages | 3,487 | 3,089 | 398 | 204 | 122 | 133 |
-| Independent language editions | 6,699 | 6,178 | 521 | 25 | 0 | 255 |
+| All physical editions | 10,386 | 9,455 | 931 | 301 | 122 | 468 |
+| Canonical-root pages | 3,642 | 3,237 | 405 | 276 | 122 | 213 |
+| Independent language editions | 6,744 | 6,218 | 526 | 25 | 0 | 255 |
 
 ## Existing article navigation
 
 | Scope | Series position | Legacy previous / next |
 | --- | ---: | ---: |
-| All physical editions | 4,210 | 5,500 |
-| Canonical-root pages | 734 | 2,051 |
-| Independent language editions | 3,476 | 3,449 |
+| All physical editions | 4,229 | 5,567 |
+| Canonical-root pages | 753 | 2,078 |
+| Independent language editions | 3,476 | 3,489 |
 
 ## Canonical-root articles by collection
 
@@ -31,11 +31,12 @@ separately from the newer three-route continuation pattern.
 | `literature` | 284 | 0 | 0 | 0 | 190 |
 | `mingren` | 212 | 0 | 0 | 0 | 104 |
 | `film` | 177 | 0 | 0 | 0 | 60 |
-| `aesthetics` | 135 | 0 | 0 | 0 | 0 |
-| `jiaoyi` | 106 | 0 | 0 | 0 | 105 |
+| `aesthetics` | 149 | 0 | 0 | 0 | 0 |
+| `jiaoyi` | 110 | 0 | 0 | 0 | 109 |
 | `daodejing` | 82 | 0 | 0 | 0 | 0 |
 | `tv` | 82 | 0 | 0 | 0 | 82 |
 | `anime` | 72 | 0 | 0 | 0 | 0 |
+| `zhuangzi` | 68 | 68 | 0 | 0 | 0 |
 | `games` | 66 | 0 | 0 | 0 | 0 |
 | `wuxia` | 66 | 0 | 0 | 0 | 0 |
 | `blockchain` | 63 | 63 | 42 | 63 | 63 |
@@ -43,22 +44,25 @@ separately from the newer three-route continuation pattern.
 | `(standalone essays)` | 49 | 4 | 4 | 0 | 25 |
 | `hlm` | 48 | 0 | 0 | 0 | 0 |
 | `recent-fiction` | 43 | 43 | 0 | 0 | 0 |
+| `humor` | 30 | 0 | 0 | 0 | 0 |
 | `president` | 26 | 0 | 0 | 26 | 26 |
 | `emperor` | 25 | 0 | 0 | 25 | 25 |
+| `ouya` | 25 | 0 | 0 | 22 | 25 |
 | `athletics` | 23 | 0 | 0 | 23 | 23 |
 | `economy` | 23 | 0 | 0 | 23 | 23 |
 | `xiyou` | 23 | 0 | 0 | 0 | 0 |
-| `ouya` | 22 | 0 | 0 | 22 | 22 |
 | `worldcup` | 22 | 0 | 0 | 22 | 22 |
 | `sae-foundations` | 16 | 15 | 15 | 15 | 15 |
 | `war` | 16 | 0 | 0 | 16 | 16 |
+| `method` | 13 | 0 | 0 | 0 | 13 |
 | `sae-nicomachean` | 13 | 13 | 13 | 13 | 13 |
 | `sae-republic` | 13 | 13 | 13 | 13 | 13 |
-| `method` | 12 | 0 | 0 | 0 | 12 |
 | `sae-first-critique` | 12 | 12 | 12 | 12 | 12 |
+| `action` | 11 | 0 | 0 | 11 | 11 |
 | `yinan` | 9 | 0 | 0 | 0 | 9 |
 | `ai-work` | 8 | 8 | 0 | 0 | 8 |
 | `daode` | 8 | 0 | 0 | 8 | 8 |
+| `meaning` | 8 | 0 | 0 | 8 | 8 |
 | `sae-value` | 8 | 0 | 0 | 8 | 8 |
 | `conflict` | 7 | 0 | 0 | 7 | 7 |
 | `quanli` | 7 | 0 | 0 | 7 | 7 |
@@ -66,11 +70,13 @@ separately from the newer three-route continuation pattern.
 | `econ` | 6 | 0 | 0 | 0 | 6 |
 | `sae-buddhist` | 6 | 6 | 6 | 6 | 6 |
 | `sae-consolation` | 6 | 6 | 6 | 6 | 6 |
+| `sae-montaigne` | 6 | 0 | 0 | 0 | 0 |
 | `anthro` | 5 | 0 | 0 | 0 | 5 |
 | `bio` | 5 | 0 | 0 | 0 | 5 |
 | `civhist` | 5 | 0 | 0 | 0 | 5 |
 | `kimetsu` | 5 | 0 | 0 | 0 | 0 |
 | `law` | 5 | 0 | 0 | 0 | 5 |
+| `nonfiction` | 5 | 5 | 0 | 0 | 0 |
 | `wwii` | 5 | 0 | 0 | 0 | 0 |
 | `epistemology` | 4 | 0 | 0 | 0 | 4 |
 | `frieren` | 4 | 0 | 0 | 0 | 0 |
@@ -81,7 +87,6 @@ separately from the newer three-route continuation pattern.
 | `to-live` | 4 | 0 | 0 | 0 | 0 |
 | `never-let-me-go` | 3 | 0 | 0 | 0 | 0 |
 | `xiangjun` | 3 | 0 | 0 | 0 | 0 |
-| `nonfiction` | 2 | 2 | 0 | 0 | 0 |
 | `consciousness-life` | 1 | 1 | 1 | 0 | 1 |
 
 ## How to use this report
