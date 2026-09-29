@@ -84,7 +84,7 @@ class HubTests(unittest.TestCase):
         updates=json.loads((build.ROOT/'data/site-updates.json').read_text())['updates']
         item=next(x for x in updates if x['id']=='2026-09-28-aesthetics-hub')
         self.assertEqual(set(item['languages']),{'en','zh','zh-hant'})
-        self.assertEqual(updates[0]['id'],'2026-09-28-aesthetics-rays-04-07')
+        self.assertEqual(updates[0]['id'],'2026-09-28-aesthetics-rays-08-10')
 
     def test_search_sitemap(self):
         for lang,sub in [('zh-hans',''),('en','en/'),('zh-hant','zh-hant/')]:
@@ -126,5 +126,13 @@ class HubTests(unittest.TestCase):
         self.assertIn('都會餘一',self.pages[build.TARGET/'zh-hant/ray03.html'])
         self.assertIn('沉默',self.pages[build.TARGET/'zh-hant/ray02.html'])
         self.assertIn('鬆口氣',self.pages[build.TARGET/'zh-hant/ray02.html'])
+
+    def test_third_selection_editorial_boundaries(self):
+        expected={8:['光变了','感官怎样形成','美不是一种好心情的别名'],9:['记着，不保证记得对','可能根本不是同一个版本','不是猜中的奖励'],10:['所有条件都是自己造成的','被迫说出口','这里的完整，不是没有缺点']}
+        for n,phrases in expected.items():
+            source=(build.DATA/f'ray{n:02d}-zh.md').read_text()
+            for phrase in phrases:self.assertIn(phrase,source)
+        self.assertIn('像鬆開了',self.pages[build.TARGET/'zh-hant/ray10.html'])
+        self.assertIn('檔案在那裡',self.pages[build.TARGET/'zh-hant/ray09.html'])
 
 if __name__=='__main__':unittest.main()

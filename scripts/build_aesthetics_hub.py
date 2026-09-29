@@ -57,6 +57,8 @@ def render_pages():
                     value = value.replace(a,b)
                 for a,b in {'公裡':'公里', '兩筆賬':'兩筆帳', '算不准':'算不準', '證明瞭':'證明了', '生命奇跡':'生命奇蹟', '復印件':'影印本', '冷冰冰的重復':'冷冰冰的重複', '反復猜':'反覆猜'}.items():
                     value = value.replace(a,b)
+                for a,b in {'那個像松開了':'那個像鬆開了', '有鑒賞力':'有鑑賞力', '人生的啓示':'人生的啟示', '文件在那裡':'檔案在那裡', '隱瞞信息':'隱瞞資訊'}.items():
+                    value = value.replace(a,b)
             return value
 
         def t(zh, english=None):
