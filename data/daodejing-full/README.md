@@ -58,3 +58,35 @@ python3 -B scripts/test_daodejing_batch01.py
 ```
 
 These checks complement the chapter-1 and classical-source regression tests.
+
+## Chapters 6–10 and selective batch-01 revisions
+
+`daodejing-batch02-ch06-ch10.zip` supplies 25 complete manuscripts plus five
+revised Korean texts and localized app examples in French/German chapter 5.
+The Korean revisions are merged selectively: the published introduction's
+division correction and chapter 5's ritual/history corrections are retained.
+The French/German updates change only the examples, not the corrected argument.
+
+Chapter 6 separates the etymology of 浴 from this essay's stream imagery,
+aligns the chapter-1 naming quotation, and replaces the obstetric analogy with
+a child finding their own words. Chapter 8 corrects the 慈故能勇 reference to
+chapter 67 and qualifies physical/historical overstatements. Chapter 9 separates
+the Shiji account from the ox legend. Chapter 10 discusses the reading effect
+of variant wording without asserting a verified editor, date or motive.
+These source corrections are synchronized in Chinese, Traditional Chinese and
+English. The adopted classical-text blocks remain untouched.
+
+Visible variant glyphs are restored in German, French and Spanish; new titles
+are synchronized in page headings, metadata, indexes and neighboring links.
+`batch02-review.json` records reversible edits against all 32 incoming files.
+The batch-01 receipt also preserves its older provenance through explicit
+amendments, so both received versions remain recoverable. Text-node mappings
+for the existing Traditional reader are updated offline.
+
+```sh
+python3 -B scripts/build_daodejing_batch02.py --check
+python3 -B scripts/test_daodejing_batch02.py
+```
+
+Run these alongside the earlier batch and classical-source checks. These are
+static content and navigation checks, not a browser rendering certification.
