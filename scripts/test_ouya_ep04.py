@@ -1,47 +1,47 @@
 #!/usr/bin/env python3
-"""EP03 full-prose, reversible-edit, metadata and navigation regressions."""
+"""EP04 full-prose, reversible-edit, metadata and navigation regressions."""
 import hashlib
 import json
 import re
 import unittest
 from urllib.parse import unquote, urlsplit
 
-import build_ouya_ep03 as full
+import build_ouya_ep04 as full
 from test_ouya_full_editions import Page
 
 
-class EP03Test(unittest.TestCase):
+class EP04Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.copies = full.manuscripts()
         cls.pages = full.outputs()
-        cls.receipt = json.loads((full.DATA/'ep03-review.json').read_text())
+        cls.receipt = json.loads((full.DATA/'ep04-review.json').read_text())
 
     def test_complete_prose(self):
         for lang, copy in self.copies.items():
             body = full.body_html(lang, copy)
-            path = full.SERIES/('ep03.html' if lang in ('zh-Hans', 'en') else f'{lang.lower()}/ep03.html')
+            path = full.SERIES/('ep04.html' if lang in ('zh-Hans', 'en') else f'{lang.lower()}/ep04.html')
             self.assertIn(body, self.pages[path])
-            self.assertEqual(body.split('</div>')[0].count('<p>'), 128, lang)
+            self.assertEqual(body.split('</div>')[0].count('<p>'), 132, lang)
             self.assertEqual(body.count('<h2 id='), 10, lang)
 
     def test_reversible_edits_and_untouched_languages(self):
-        self.assertEqual(len(self.receipt['edits']), 28)
+        self.assertEqual(len(self.receipt['edits']), 5)
         for lang in full.LANGS:
-            text = (full.DATA/f'ep03.{lang}.md').read_text()
+            text = (full.DATA/f'ep04.{lang}.md').read_text()
             edits = [e for e in self.receipt['edits'] if e['language'] == lang]
             for e in reversed(edits):
                 i = e['offset']
                 self.assertEqual(text[i:i+len(e['new'])], e['new'])
                 text = text[:i]+e['old']+text[i+len(e['new']):]
             self.assertEqual(hashlib.sha256(text.encode()).hexdigest(), self.receipt['source_sha256'][lang])
-            if lang in ('zh-Hans', 'zh-Hant', 'de', 'ko'):
+            if lang in ('zh-Hans', 'zh-Hant', 'ja', 'es'):
                 self.assertEqual(edits, [])
                 self.assertEqual(self.receipt['source_sha256'][lang], self.receipt['published_sha256'][lang])
 
     def test_scope_and_idempotence(self):
         self.assertEqual(len(self.pages), 7)
-        self.assertEqual({p.name for p in self.pages}, {'ep03.html'})
+        self.assertEqual({p.name for p in self.pages}, {'ep04.html'})
         for path, text in self.pages.items():
             self.assertEqual(path.read_text(), text, str(path))
             self.assertEqual(text.count('id="ouya-full-style"'), 1)
@@ -67,29 +67,30 @@ class EP03Test(unittest.TestCase):
                 self.assertIn('id="ouya-inline-language"', text)
             else:
                 self.assertEqual(menu.count('aria-current="page"'), 1)
-                self.assertIn('../ep03.html?lang=en', menu)
-                self.assertIn('../ep03.html?lang=zh', menu)
+                self.assertIn('../ep04.html?lang=en', menu)
+                self.assertIn('../ep04.html?lang=zh', menu)
 
     def test_traditional_neighbors(self):
-        page = self.pages[full.SERIES/'zh-hant/ep03.html']
+        page = self.pages[full.SERIES/'zh-hant/ep04.html']
         self.assertIn('<html lang="zh-Hant">', page)
-        self.assertIn('href="ep02.html"', page)
-        self.assertIn('href="ep04.html"', page)
-        self.assertNotIn('href="../ep04.html?lang=zh"', page)
-        self.assertIn('下一篇</span>', page)
-        self.assertIn('href="ep03.html"', (full.SERIES/'zh-hant/ep02.html').read_text())
+        self.assertIn('href="ep03.html"', page)
+        self.assertIn('href="../ep05.html?lang=zh"', page)
+        self.assertIn('下一篇（簡體）', page)
+        self.assertNotIn('href="ep05.html"', page)
+        self.assertIn('href="ep04.html"', (full.SERIES/'zh-hant/ep03.html').read_text())
 
     def test_targeted_copyedits_present(self):
-        ja = (full.DATA/'ep03.ja.md').read_text()
-        self.assertIn('官職には任期を設ける', ja)
-        self.assertIn('複数の政務官の協力', ja)
-        self.assertIn('ある者たちは実力行使に踏み切り', ja)
-        self.assertIn('新しい政治連合が再び開いた', ja)
-        self.assertNotIn('官職が聞き流せる', ja)
-        es = (full.DATA/'ep03.es.md').read_text()
-        self.assertIn('se disponía de ellos por separado', es)
-        self.assertIn('sirvió para matar.', es)
-        self.assertNotIn('sirvió para matarse', es)
+        en = (full.DATA/'ep04.en.md').read_text()
+        self.assertIn('the language of political legitimacy', en)
+        self.assertIn('His building projects also left their mark on Rome.', en)
+        self.assertNotIn('He also left construction in Rome.', en)
+        de = (full.DATA/'ep04.de.md').read_text()
+        self.assertIn('die Sprache politischer Legitimität', de)
+        fr = (full.DATA/'ep04.fr.md').read_text()
+        self.assertIn('Tandis que Tibère décline et que les sénateurs insistent', fr)
+        ko = (full.DATA/'ep04.ko.md').read_text()
+        self.assertIn('원로원 명부를 정비하는 과정에서 라베오가 레피두스를 추천', ko)
+        self.assertNotIn('라베오가 원로원을 정비할 때', ko)
 
 
 if __name__ == '__main__':
