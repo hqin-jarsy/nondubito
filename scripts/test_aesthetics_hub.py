@@ -84,7 +84,7 @@ class HubTests(unittest.TestCase):
         updates=json.loads((build.ROOT/'data/site-updates.json').read_text())['updates']
         item=next(x for x in updates if x['id']=='2026-09-28-aesthetics-hub')
         self.assertEqual(set(item['languages']),{'en','zh','zh-hant'})
-        self.assertEqual(updates[0]['id'],'2026-09-28-aesthetics-rays-08-10')
+        self.assertEqual(updates[0]['id'],'2026-09-28-aesthetics-rays-11-13')
 
     def test_search_sitemap(self):
         for lang,sub in [('zh-hans',''),('en','en/'),('zh-hant','zh-hant/')]:
@@ -134,5 +134,19 @@ class HubTests(unittest.TestCase):
             for phrase in phrases:self.assertIn(phrase,source)
         self.assertIn('像鬆開了',self.pages[build.TARGET/'zh-hant/ray10.html'])
         self.assertIn('檔案在那裡',self.pages[build.TARGET/'zh-hant/ray09.html'])
+
+    def test_complete_collection_and_final_boundaries(self):
+        self.assertEqual(len(self.rays),13)
+        for path,s in self.pages.items():
+            self.assertNotRegex(s,r'(remaining 0|其余 0|其餘 0)')
+            if path.name=='index.html':self.assertTrue('collection is complete' in s or '十三篇现已齐备' in s or '十三篇現已齊備' in s)
+            if path.stem=='ray13':
+                self.assertNotIn('Further ray essays will be linked',s)
+                self.assertNotIn('后续射线散文完成后',s)
+                self.assertNotRegex(s,r'\b(?:13|14|15|16)DD\b')
+        expected={11:['它不是为了使自己从此不可纠正','译者保住了自己的词，还能不能看见她'],12:['不靠你的点头才敢判断','不是一笔等着结清的交换','这里只写清老师这一边'],13:['一次彼此留出位置，不能证明两个人已经在所有事情上都做到了','最后一篇，不是最高一层','可以拒绝这个问法，也可以离开']}
+        for n,phrases in expected.items():
+            source=(build.DATA/f'ray{n:02d}-zh.md').read_text()
+            for phrase in phrases:self.assertIn(phrase,source)
 
 if __name__=='__main__':unittest.main()

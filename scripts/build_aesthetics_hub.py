@@ -59,6 +59,8 @@ def render_pages():
                     value = value.replace(a,b)
                 for a,b in {'那個像松開了':'那個像鬆開了', '有鑒賞力':'有鑑賞力', '人生的啓示':'人生的啟示', '文件在那裡':'檔案在那裡', '隱瞞信息':'隱瞞資訊'}.items():
                     value = value.replace(a,b)
+                for a,b in {'焦躁、反復':'焦躁、反覆', '划好這個邊界':'劃好這個邊界', '被稱贊時':'被稱讚時', '爭得越凶':'爭得越兇'}.items():
+                    value = value.replace(a,b)
             return value
 
         def t(zh, english=None):
@@ -129,7 +131,7 @@ def render_pages():
         body = f'''<section class="hero"><p class="kicker">NON DUBITO · {t('美学','AESTHETICS')}</p><h1>{html.escape(title)}</h1><p class="deck">{t('我们可以各有所爱，也可以在同一个地方相遇。从作品和生活出发，不必先记住一套术语。','Our tastes can remain our own even when we see something together. Begin with works and ordinary life, not a vocabulary test.')}</p></section>
 <nav class="jump" aria-label="{t('本页导航','On this page')}">{a('#begin',t('从这里开始','Start here'))}{a('#rays',t('十三条射线','Thirteen rays'))}{a('#feed',t('日常发现','Daily discoveries'))}</nav>
 <section id="begin" class="hub-section"><p class="kicker">01 · {t('总导读 · 简中 / 繁中 / 英文','OPENING ESSAY · THREE LANGUAGES')}</p><h2>{html.escape(guide_title)}</h2><p>{html.escape(guide_deck)}</p>{a('seeing-beauty.html?lang='+lang,t('读总导读 →','Read the opening essay →'),'class="button"')}</section>
-<section id="rays" class="hub-section"><p class="kicker">02 · {t('看见美的不同方向','DIRECTIONS OF ATTENTION')}</p><h2>{t('十三条射线，不是一架梯子','Thirteen rays, not a ladder')}</h2><p>{t('同一片星空，可以从不同方向去看。射线不是给事物分箱，也不是把人的趣味分高低。每篇散文都可以单独读，不必先读原论文。','The same night sky can be approached in several ways. These rays are not bins for objects or ranks for people’s tastes. Each essay stands on its own; the papers are not prerequisites.')}</p><p class="edition-note">{t(f'射线散文已发布 {len(rays)} / 13 篇，均有简中、繁中与英文。其余 {13-len(rays)} 篇尚未发布。十三篇中英双语原论文均可在下方展开查看。',f'{len(rays)} of 13 companion essays are published, each in English and both Chinese editions. The remaining {13-len(rays)} are not yet published. All thirteen bilingual academic papers are linked in the expandable map below.')}</p><div class="ray-essays">'''
+<section id="rays" class="hub-section"><p class="kicker">02 · {t('看见美的不同方向','DIRECTIONS OF ATTENTION')}</p><h2>{t('十三条射线，不是一架梯子','Thirteen rays, not a ladder')}</h2><p>{t('同一片星空，可以从不同方向去看。射线不是给事物分箱，也不是把人的趣味分高低。每篇散文都可以单独读，不必先读原论文。','The same night sky can be approached in several ways. These rays are not bins for objects or ranks for people’s tastes. Each essay stands on its own; the papers are not prerequisites.')}</p><p class="edition-note">{t(f'射线散文已发布 {len(rays)} / 13 篇，均有简中、繁中与英文。'+(f'其余 {13-len(rays)} 篇尚未发布。' if len(rays)<13 else '十三篇现已齐备，可以从任意一篇开始。')+'十三篇中英双语原论文均可在下方展开查看。',f'{len(rays)} of 13 companion essays are published, each in English and both Chinese editions. '+(f'The remaining {13-len(rays)} are not yet published. ' if len(rays)<13 else 'The collection is complete; begin with any essay. ')+'All thirteen bilingual academic papers are linked in the expandable map below.')}</p><div class="ray-essays">'''
         for r in rays:
             body+=f'''<article class="ray-card"><p class="kicker">{r['number']:02d} · {t(*RAYS[r['number']-1])}</p><h3>{a(r['slug']+'.html?lang='+lang,t(r['title_zh'],r['title_en']))}</h3><p>{t(r['deck_zh'],r['deck_en'])}</p></article>'''
         body+='</div><details class="paper-map"><summary>'+t('展开理论地图与原论文链接','Open the theory map and paper links')+'</summary><ol class="ray-list">'

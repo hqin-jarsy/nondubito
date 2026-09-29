@@ -59,7 +59,7 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
   }
   await page.locator('.chapter-links a').last().click();await page.waitForURL('**/en/index.html?lang=en#rays');
   if(process.env.AESTHETICS_SCREENSHOTS){
-   for(const [name,width,url] of [['desktop',1440,'index.html?lang=zh'],['mobile',390,'en/ray09.html?lang=en'],['traditional',390,'zh-hant/ray10.html?lang=zh-hant']]){
+   for(const [name,width,url] of [['desktop',1440,'index.html?lang=zh'],['mobile',390,'en/ray12.html?lang=en'],['traditional',390,'zh-hant/ray13.html?lang=zh-hant']]){
     await page.setViewportSize({width,height:950});await page.goto(`${base}/essays/aesthetics/${url}`);
     await page.screenshot({path:path.join(process.env.AESTHETICS_SCREENSHOTS,name+'.png'),fullPage:name==='desktop'});
    }
