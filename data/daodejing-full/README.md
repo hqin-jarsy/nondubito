@@ -90,3 +90,50 @@ python3 -B scripts/test_daodejing_batch02.py
 
 Run these alongside the earlier batch and classical-source checks. These are
 static content and navigation checks, not a browser rendering certification.
+
+## Chapters 11–15
+
+`daodejing-batch03-ch11-ch15.zip` supplies 25 full manuscripts in Japanese,
+Korean, German, French and Spanish. The reviewed editions retain the chapter
+structures, practical examples and philosophical arguments. Targeted editing
+distinguishes the author's interpretation from lexical history, established
+biography and claims about the motives behind textual variants.
+
+Chapter 11 treats the 利/用 wordplay as a reading aid, not a proven etymology.
+Chapter 12 separates attention narrowed by labels from physiological sensory
+loss, qualifies the Five Phases chronology, and correctly identifies the five
+pentatonic degrees. Chapters 12 and 13 retain the full Paper 2 discussion;
+the previously missing English passages and the Wang Bi context are included.
+Chapter 13 distinguishes the Shiji portrait from the later ox legend.
+Chapter 14 retains the tool/world analogy without treating nonzero model error
+or absent sensory responses as a proof of existence. The 呵/兮 discussion is
+an adopted reading rather than a complete reconstruction of ancient speech.
+Chapter 15 distinguishes active support from taking over another person's
+decisions; water treatment itself is not called colonization. Its opening lists
+all seven images in Chinese and English as well as the five incoming editions.
+
+Shared corrections also appear in the existing Chinese/English bodies and the
+offline Traditional Chinese mappings. The adopted classical-text blocks are
+unchanged. Titles are synchronized through exact title nodes only, including
+indexes and adjacent-page navigation; short titles never trigger a global
+character replacement. `batch03-review.json` records recoverable incoming texts,
+reversible edits and final page checksums. Earlier receipts record explicit
+navigation/index amendments without changing their reviewed manuscripts.
+The browser search indexes are regenerated; their changed records are confined
+to these chapter pages and the affected German series index.
+
+Review references:
+
+- Author's interpretive conventions: https://self-as-an-end.net/papers/sae-daodejing-2.html
+- Wang Bi text: https://zh.wikisource.org/wiki/道德經_(王弼本)
+- Ancient sound/graph discussion: https://www.ccdbhk.com/demo/public/detail-page/290?txt=%E5%85%AE
+- Bias, variance and irreducible noise: https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html
+
+```sh
+python3 -B scripts/build_daodejing_batch03.py --check
+python3 -B scripts/test_daodejing_batch03.py
+python3 -B scripts/test_daodejing_sources.py
+```
+
+These are static integrity/content/link checks, not a claim of browser layout
+verification. No new URLs or routing scheme are introduced by this upgrade.
