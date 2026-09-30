@@ -231,3 +231,61 @@ Chinese/Traditional/English switching and five foreign-language chapter-25
 pages: 75 language/viewport checks, source-panel bounds, keyboard disclosure,
 JavaScript errors and a no-JavaScript source-reading check. Desktop chapter 24
 and mobile chapter 25 screenshots were also visually inspected.
+
+## Sixth batch: chapters 26–30
+
+The 25 manuscripts from `daodejing-batch06-ch26-ch30.zip` have been edited
+and integrated. All seven/eight/seven/six/seven section structures remain.
+Shared corrections apply to the existing Chinese and English essays; Traditional
+Chinese mappings, chapter titles, neighboring navigation, indexes and search
+are synchronized. The supplied archive is untouched. `batch06-review.json`
+records its checksum, the baseline commit, reversible manuscript changes,
+published section/paragraph counts, length ratios and affected-page checksums.
+
+- Chapter 26 distinguishes the traditional archivist portrait from verified
+  biography; corrects the chapter-16 quotation and 昭 dictionary gloss; attributes
+  the adopted night-camp reading and distinguishes 环官 from the Zhouli's 环人.
+  Responsibility is not a deterministic law of dynastic collapse, and quick
+  protective action is not automatically rashness.
+- Chapter 27 retains the five images, Nan Huaijin quotation and credential
+  examples. 善人 as an action is an explicitly philosophical rereading, not the
+  only grammar. 才质/资质 are working concepts, not a claim about innate essence.
+  Respect does not depend on productivity, and boundaries or exit do not deny
+  another person's standing. The invalid 眇目-to-subtle-wisdom inference is removed.
+- Chapter 28 attributes 君子不器 to Analects 2.12 and makes the interreading explicit.
+  Neither accepting praise nor remaining in one profession erases personhood.
+  Infant imagery is not a therapeutic promise. Concrete scenes of rest, interests
+  outside work and a negotiated handover keep the argument accessible. Cooperation
+  requires explanation, consent and room to leave, not unlimited availability.
+- Chapter 29 does not rank negatives as a universal scale, turn 神器 into a proof
+  of systems theory, or infer intentional rewriting from 大/泰 alone. The four
+  images invite attention to change rather than prove a complete cosmic law.
+  Its title now says “Act Without Owning the World”: non-possession is no guarantee
+  against loss. Planning, maintenance and necessary collective action remain valid.
+- Chapter 30 distinguishes limits on force from merely hiding its display.
+  Fruit is an image of completion, not a naturalization of war. The unsupported
+  soil-compaction explanation, etymological psychology and Jobs-as-total-exemplar
+  ending are removed. Necessity requires justification; completion still permits
+  review, repair and accountability; aging is not moral failure. The five 果而
+  clauses are not incorrectly described as five occurrences of 毋.
+
+Removing repeated arguments built on the rejected claims substantially shortens
+these drafts: chapters 26–28 and 30 retain roughly half their incoming character
+length; chapter 29 roughly two fifths. All chapter sections, principal questions
+and practical applications remain, with new concrete explanations where needed.
+This is substantive editing, not a verbatim import or an abridged-language tier.
+The new language pages contain the same revised argument as Chinese and English.
+The supplied glossaries were not imported over previously reviewed terminology.
+Classical source panels, URLs and the separate source-paper website are unchanged.
+
+```sh
+python3 -B scripts/build_daodejing_batch06.py --check
+python3 -B -m unittest discover -s scripts -p 'test_daodejing*.py'
+python3 -B scripts/build_search_index.py --check
+DDJ_BROWSER_CHANNEL=chrome node scripts/test_daodejing_batch06_browser.cjs http://127.0.0.1:8766
+```
+
+Browser checks cover widths 1440, 390 and 320, Chinese/Traditional/English
+switching in chapters 26–30, five foreign-language chapter-30 pages, source-panel
+bounds, keyboard disclosure and a no-JavaScript reading check. The script can
+save desktop chapter-27 and mobile chapter-28 screenshots via `DDJ_SCREENSHOTS`.
