@@ -137,3 +137,46 @@ python3 -B scripts/test_daodejing_sources.py
 
 These are static integrity/content/link checks, not a claim of browser layout
 verification. No new URLs or routing scheme are introduced by this upgrade.
+
+## Fourth batch: chapters 16–20
+
+The 25 manuscripts from `daodejing-batch04-ch16-ch20.zip` were edited against
+the existing Chinese essays, with shared corrections propagated to English
+and the offline Traditional Chinese mappings. All chapter sections remain.
+The received manuscripts are recoverable through the reversible edits in
+`batch04-review.json`; the original ZIP is not modified.
+
+- Chapter 16 no longer uses exhaustive lexical counts or the Guodian find to
+  date the first appearance of an emotional sense of 情.
+- Chapter 17 corrects the purported 下/不 contrast: the consulted Wang Bi text
+  and commentary also read 下知有之. Repeated 其次 does not erase a ranking.
+  Helpful speech, clear rules and responsibility are distinguished from control.
+- Chapter 18 retains the four diagnostics, everyday examples and self-checks,
+  but replaces the unsupported seven-edit history and claims about editors'
+  intentions. This chapter is deliberately about one third shorter than the
+  incoming drafts after removing that argument and its repeated conclusion.
+  Virtue-talk is tested against conduct, not treated as automatic proof of vice;
+  loyal remonstrance is not equated with obedience to a ruler's mistakes.
+- Chapter 19 presents 利 and 學 connections as philosophical extensions, not
+  settled etymology. French/German “remainder of the people” ambiguity is removed.
+- Chapter 20 uses 有 as a name for the mother, not as an agent naming her.
+  我/吾 is a reading of this portrait, not a universal pronoun rule or a condition
+  for qualifying as a subject. The Chinese and English opening now includes the
+  previously absent “fool's heart” in its inventory of six 我 occurrences.
+
+German, French and Spanish include the characters under discussion, alongside
+pronunciation and glosses. Titles, index cards, neighboring chapter navigation
+and affected descriptions are synchronized. The classical source blocks and
+all URLs are unchanged. The source paper's chapter 17 issue is documented in
+the receipt but was not edited in the separate self-as-an-end project.
+
+```sh
+python3 -B scripts/build_daodejing_batch04.py --check
+python3 -B scripts/test_daodejing_batch04.py
+python3 -B -m unittest discover -s scripts -p 'test_daodejing*.py'
+python3 -B scripts/build_search_index.py --check
+```
+
+These checks cover content integrity, eight language links, neighboring-page
+navigation, source preservation, Traditional Chinese and search consistency;
+they do not constitute browser layout verification.
