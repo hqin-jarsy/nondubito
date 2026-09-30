@@ -230,7 +230,7 @@ Beim Lesen dieser Reihe werden Ihnen einige Zeichen immer wieder begegnen. Was s
 **Das erste Kapitel gehört zu den schwierigsten des ganzen Buches.** Wenn Sie neu hier sind, steigen Sie ruhig mit einem dieser Kapitel ein:
 
 **(Kap. 8)** Wie Wasser;<br>
-**(Kap. 22)** Nicht zugreifen;<br>
+**(Kap. 22)** Nicht an sich reißen;<br>
 **(Kap. 46)** Genug ist eine Fähigkeit;<br>
 **(Kap. 63)** Wer Schwierigkeit ernst nimmt, hat weniger Schwierigkeiten;<br>
 **(Kap. 76)** Was lebt, ist weich.

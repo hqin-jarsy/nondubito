@@ -180,3 +180,54 @@ python3 -B scripts/build_search_index.py --check
 These checks cover content integrity, eight language links, neighboring-page
 navigation, source preservation, Traditional Chinese and search consistency;
 they do not constitute browser layout verification.
+
+## Fifth batch: chapters 21–25
+
+The 25 manuscripts from `daodejing-batch05-ch21-ch25.zip` are reviewed and
+rendered in full section structure. Shared substantive corrections also apply
+to the existing Chinese and English essays and their Traditional Chinese maps.
+`batch05-review.json` records the ZIP checksum, reversible manuscript edits,
+baseline commit and checksums of all affected pages. The supplied ZIP is intact.
+
+- Chapter 21 separates the mother's nourishing role from an equation with 无,
+  consistent with chapter 1's naming by 有. The conflicting 绝 example, speculative
+  graph-origin claims, mathematical proof analogy and 吾 occurrence count are
+  corrected. The philosophical interpretation is retained as interpretation.
+- Chapter 22 distinguishes the four reading prompts from universal grammar,
+  replaces the wire/straightness analogy, and does not promise that non-contention
+  prevents attacks or makes criticism invalid. Six pairs and seven self-checks
+  remain. Repeated categorical arguments were replaced, making this chapter
+  about 40% shorter than the incoming manuscripts; it is not a summary edition.
+- Chapter 23 distinguishes room for another person's judgment from a soft voice
+  or slow delivery. The weather image is not treated as a meteorological law;
+  changed actions do not instantly erase earlier harm or consequences.
+- Chapter 24 preserves the concrete examples while distinguishing self-assessment,
+  rest and retirement from refusing present responsibilities. Prior contributions
+  and personal worth are not erased by a pause in output. The cooking reading is
+  explicitly adopted rather than claimed as settled philology. This chapter is
+  roughly 25–35% shorter after removing repeated invalid implications.
+- Chapter 25 distinguishes autonomy from exemption from reality. Conditions and
+  institutions do not acquire ownership of a person's life. The relation to
+  chapter 17's 我自然 is made explicit; sections 7–9 are substantively revised.
+
+The four supplied `daoyan-updated` files were **not** used as replacement bases:
+they revert previously reviewed claims about manuscript divisions. Only exact
+chapter-title references were merged into the reviewed introductions. Earlier
+receipts, including batch 02's supplementary Korean introduction record, retain
+reversible edit provenance. Classical source panels and all URLs are unchanged.
+Titles, descriptions, series cards, neighboring navigation and eight search
+indexes are synchronized. The separate source-paper website was not modified.
+
+```sh
+python3 -B scripts/build_daodejing_batch05.py --check
+python3 -B -m unittest discover -s scripts -p 'test_daodejing*.py'
+python3 -B scripts/build_search_index.py --check
+# With a local static server and Playwright:
+DDJ_BROWSER_CHANNEL=chrome node scripts/test_daodejing_batch05_browser.cjs http://127.0.0.1:8766
+```
+
+Browser verification covers chapters 21–25 at widths 1440, 390 and 320,
+Chinese/Traditional/English switching and five foreign-language chapter-25
+pages: 75 language/viewport checks, source-panel bounds, keyboard disclosure,
+JavaScript errors and a no-JavaScript source-reading check. Desktop chapter 24
+and mobile chapter 25 screenshots were also visually inspected.

@@ -231,7 +231,7 @@ En lisant cette série, vous retomberez sans cesse sur une poignée de caractèr
 **Le premier chapitre est l’un des plus difficiles du livre.** Si vous arrivez tout juste, entrez plutôt par l’un de ceux-ci :
 
 **(ch. 8)** Comme l’eau ;<br>
-**(ch. 22)** Ne pas s’emparer ;<br>
+**(ch. 22)** Ne rien accaparer ;<br>
 **(ch. 46)** Dire « assez » est une compétence ;<br>
 **(ch. 63)** Voir la difficulté rend la chose moins difficile ;<br>
 **(ch. 76)** Tout ce qui vit est souple.
