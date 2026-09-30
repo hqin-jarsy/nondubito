@@ -6,6 +6,7 @@ import subprocess
 import unittest
 from urllib.parse import unquote, urlsplit
 import build_daodejing_batch04 as build
+from daodejing_review_checks import after_batch07
 from test_daodejing_sources import Page
 from build_emperor_traditional import TextCollector, TraditionalConverter
 
@@ -33,7 +34,7 @@ class Batch04(unittest.TestCase):
     def test_page_checksums(self):
         for path, record in self.receipt['page_edits'].items():
             with self.subTest(path=path):
-                self.assertEqual(build.digest((build.ROOT / path).read_bytes()), record['after_sha256'])
+                self.assertEqual(build.digest((build.ROOT / path).read_bytes()), after_batch07(build.DATA, path, record['after_sha256']))
 
     def test_complete_pages_and_navigation(self):
         pages = build.updates()
