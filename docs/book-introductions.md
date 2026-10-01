@@ -8,7 +8,8 @@ and Science Fiction close-reading series. Nonfiction is not limited to new books
 ## Editorial source and scope
 
 Manuscripts live in `/Users/hanqin/Documents/SAE介绍`; do not edit those sources
-when building the site. `data/nonfiction/*.json` holds the lightly edited Chinese,
+when building the site. Approved follow-up manuscripts also live in the writing
+workspace's `outputs/` folder. `data/nonfiction/*.json` holds the approved Chinese,
 independently written English, book metadata, sources and reading-scope notes.
 Traditional Chinese is rendered with the existing converter and visually checked.
 
@@ -21,9 +22,11 @@ Traditional Chinese is rendered with the existing converter and visually checked
   boundary should also be apparent before reading the article.
 - Sources can be `excerpt`, `interview`, `publisher`, `review`, `research`, or
   `institution`. An author interview is not compulsory. Original excerpts are
-  required by the presently supported reading bases (`excerpt`,
-  `excerpts-and-interviews`, `excerpts-and-research`). If introducing another
-  basis, implement its visible reading limits and tests first.
+  required by `excerpt`, `excerpts-and-interviews`, and `excerpts-and-research`.
+  `interviews-and-research` requires an interview and a publisher record; it
+  explicitly discloses the absence of a full-book reading and uses an “About
+  the book” action, not a fabricated excerpt link. A precursor original essay
+  may use `excerpt` only when its relation to the later book is explicit.
 - A source described as an opening must actually be an opening, not an arbitrary
   selected passage. Contemporary editions, translations and adaptations have
   their own dates and titles.
@@ -35,7 +38,7 @@ Traditional Chinese is rendered with the existing converter and visually checked
 Add one JSON and register its slug in `scripts/build_book_introductions.py:ORDER`.
 Include `topic_en`, `topic_zh`, `genre_en`, `genre_zh` alongside the fields used by
 Recent Fiction. The nonfiction shelf uses editorial order, with genres as labels;
-it does not split five books into separate year/category sections. Expand browsing
+it does not split the books into separate year/category sections. Expand browsing
 only when the collection warrants it.
 
 The hub counts the two inventories automatically. Its featured block shows the
@@ -51,6 +54,16 @@ the article displays both dates. Raising Hare retains its text and dates.
 All four approved Chinese bodies are imported unchanged after removing the
 manuscript title and bibliographic paragraph. English is written for continuous
 reading; source links stay in the separate source section, not inside the prose.
+
+The 2026-09-30 batch adds The Art of Gathering, Four Thousand Weeks, The Craftsman,
+The Serviceberry, The Sound of a Wild Snail Eating, Palaces for the People, and
+The Other Significant Others. All seven approved Chinese bodies are preserved
+verbatim (excluding the title and bibliographic paragraph), protected by fixed
+hashes. English renders the complete arguments, not summaries. Gathering and
+time lead the editorial shelf and the hub's two featured cards. There are now
+12 nonfiction books and 55 books across both shelves. Palaces uses the
+interviews-and-research basis; The Serviceberry explicitly identifies its
+precursor essay. Existing article bodies and dates remain unchanged.
 
 ## Build and verify
 
@@ -69,7 +82,7 @@ git diff --check
 ```
 
 All build commands support `--check`. Browser QA covers the two entrances, all
-five articles, the three reading languages, the mobile menu, source anchors, and search
+12 articles, the three reading languages, the mobile menu, source anchors, and search
 by title/author. Search uses localized visible decks and preserves the selected
 language on result links for both new paths.
 

@@ -20,7 +20,10 @@ SOURCE = ROOT / 'data/nonfiction'
 TARGET = ROOT / 'essays/nonfiction'
 HUB = ROOT / 'essays/books/index.html'
 PUBLISHED = '2026-09-13'
-ORDER = ('small-is-beautiful', 'how-to-do-nothing', 'seeing-like-a-state',
+ORDER = ('the-art-of-gathering', 'four-thousand-weeks', 'the-craftsman',
+         'the-serviceberry', 'the-sound-of-a-wild-snail-eating',
+         'palaces-for-the-people', 'the-other-significant-others',
+         'small-is-beautiful', 'how-to-do-nothing', 'seeing-like-a-state',
          'being-mortal', 'raising-hare')
 SOURCE_LABELS = {
     'interview': ('Author conversation', '作者访谈'),
@@ -54,7 +57,8 @@ def validate_book(book: dict, slug: str) -> None:
             raise ValueError(f'Invalid book title: {slug}/{field}')
     if not isinstance(book.get('search_aliases', []), list) or any(not isinstance(v, str) or not v.strip() for v in book.get('search_aliases', [])):
         raise ValueError(f'Invalid search aliases: {slug}')
-    if book.get('reading_basis', 'excerpt') not in ('excerpt', 'excerpts-and-research', 'excerpts-and-interviews'):
+    basis = book.get('reading_basis', 'excerpt')
+    if basis not in ('excerpt', 'excerpts-and-research', 'excerpts-and-interviews', 'interviews-and-research'):
         raise ValueError(f'Unknown reading basis: {slug}')
     sources = book.get('sources')
     if not isinstance(sources, list) or not sources:
@@ -68,7 +72,10 @@ def validate_book(book: dict, slug: str) -> None:
     urls = {source['url'] for source in sources}
     if len(urls) != len(sources):
         raise ValueError(f'Duplicate nonfiction sources: {slug}')
-    if not any(source['kind'] == 'excerpt' for source in sources):
+    if basis == 'interviews-and-research':
+        if not {'interview', 'publisher'}.issubset({source['kind'] for source in sources}):
+            raise ValueError(f'Interview-based guides require an interview and publication record: {slug}')
+    elif not any(source['kind'] == 'excerpt' for source in sources):
         raise ValueError(f'These reading bases require an original excerpt: {slug}')
     # A deceased author does not need a manufactured contemporary interview.
     for body in (book['en_body'], book['zh_body']):
@@ -138,7 +145,9 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
         display_updated = f"{updated.strftime('%b')} {updated.day}, {updated.year}"
         revision_meta = f' · {localized("Revised", "修订", converter)} <time datetime="{book["updated_date"]}">{display_updated}</time>'
     aliases = ' '.join([book['book'], *fiction.book_aliases(book), *book.get('search_aliases', []), book['author'], 'Nonfiction 非虚构导读 非虛構導讀'])
-    excerpt = next(item for item in book['sources'] if item['kind'] == 'excerpt')
+    interview_based = book.get('reading_basis') == 'interviews-and-research'
+    primary = next(item for item in book['sources'] if item['kind'] == ('publisher' if interview_based else 'excerpt'))
+    primary_label = localized('About the book ↗', '查看原书资料 ↗', converter) if interview_based else localized('Read the original ↗', '先读一段原作 ↗', converter)
     related = ''.join(f'<a href="{item["slug"]}.html"><span class="rf-kicker">{localized(esc(item["genre_en"]), esc(item["genre_zh"]), converter)}</span><strong>{fiction.book_label(item, converter)}</strong>→</a>' for item in books if item['slug'] != book['slug'])
     return f'''<!DOCTYPE html>
 <html lang="en" data-lang="en" data-editions="en zh zh-hant">
@@ -154,7 +163,7 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
 <p class="rf-book-meta">{localized('Original publication', '原作首版', converter)} <time datetime="{book['book_date']}">{book['book_date']}</time> · {esc(book['publisher'])}</p>
 <p class="rf-guide-meta">Han Qin (秦汉) · {localized('Guide published', '导读发布', converter)} <time datetime="{book['guide_date']}">{display_date}</time>{revision_meta}</p>
 <div class="rf-notice">{localized(esc(book['en_notice']), esc(book['zh_notice']), converter, 'p')}</div>
-<div class="rf-actions"><a href="#sources">{localized('Sources &amp; further reading ↓', '出处与延伸阅读 ↓', converter)}</a><a href="{esc(excerpt['url'])}">{localized('Read the original ↗', '先读一段原作 ↗', converter)}</a></div>
+<div class="rf-actions"><a href="#sources">{localized('Sources &amp; further reading ↓', '出处与延伸阅读 ↓', converter)}</a><a href="{esc(primary['url'])}">{primary_label}</a></div>
 </section>
 <article class="rf-prose lang-en" lang="en">{prose(book['en_body'])}</article>
 <article class="rf-prose lang-zh" lang="zh-Hans">{prose(book['zh_body'])}</article>

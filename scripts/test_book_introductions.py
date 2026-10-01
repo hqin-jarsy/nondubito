@@ -16,9 +16,16 @@ import build_search_index as search
 from test_recent_fiction import Page
 
 
-# Approved 2026-09-28 manuscripts, excluding their title and bibliographic line.
+# Approved 2026-09-28 / 2026-09-30 manuscripts, excluding title and bibliography.
 # Keep these fixed: tests must not depend on the author's external manuscript folder.
 APPROVED_CHINESE_SHA256 = {
+    'the-art-of-gathering': '100ac9ddbc2b72198b4acbc0bb1fb1e66432c06e2c4ca22402432ed9c01565f6',
+    'four-thousand-weeks': '2282381f50ad33b05558578776905d62bd00036ab3984e7269a1647756ace010',
+    'the-craftsman': '9875d78c8deac8903c37228d9ee54d16a62292d0ba0664b29816e4314ddfd40e',
+    'the-serviceberry': '982d0f096ba047af6f32a3f9c3d687a5c1c19d1abb269d791a8f674d5f18443d',
+    'the-sound-of-a-wild-snail-eating': '18e78793b182d2e518a5d7d69d957df4afabbdf63528720a1be389f945b2be62',
+    'palaces-for-the-people': '6997a28ba68a91fd3f94ea015a190613145d48357b5796eb2c557618859b3142',
+    'the-other-significant-others': '0bca88cf752e1041c33058c02f121a12b7e8f6194ad24f815dc03d79c68b9ce0',
     'small-is-beautiful': '2a74e113f31e75bc0e82c9a6354e5527267b60edcaff26f7264e45e0ce5daf74',
     'how-to-do-nothing': '979b1156e41dd54555233eba325d7be7bdf9b1d259a10de72c2d2a2dfdb15390',
     'seeing-like-a-state': '978814a12bbda981c07165ee16e87649c91c274ca8e6765cece6df9ee3ce8efa',
@@ -83,9 +90,40 @@ class BookIntroductionsTests(unittest.TestCase):
                 book = books[slug]
                 body = book['zh_body']
                 self.assertEqual(hashlib.sha256(body.encode('utf-8')).hexdigest(), approved_hash)
-                self.assertEqual(len(re.findall(r'^## ', body, re.MULTILINE)), 4)
-                self.assertEqual(len(re.findall(r'^## ', book['en_body'], re.MULTILINE)), 4)
+                expected = 3 if slug in ('the-art-of-gathering', 'four-thousand-weeks', 'the-craftsman') else 4
+                self.assertEqual(len(re.findall(r'^## ', body, re.MULTILINE)), expected)
+                self.assertEqual(len(re.findall(r'^## ', book['en_body'], re.MULTILINE)), expected)
                 self.assertNotRegex(body + book['en_body'], r'https?://')
+
+    def test_interview_basis_does_not_invent_an_excerpt(self):
+        book = next(book for book in self.books if book['slug'] == 'palaces-for-the-people')
+        self.assertEqual(book['reading_basis'], 'interviews-and-research')
+        self.assertNotIn('excerpt', {item['kind'] for item in book['sources']})
+        build.validate_book(book, book['slug'])
+        for missing in ('interview', 'publisher'):
+            candidate = copy.deepcopy(book)
+            candidate['sources'] = [item for item in book['sources'] if item['kind'] != missing]
+            with self.subTest(missing=missing), self.assertRaises(ValueError):
+                build.validate_book(candidate, book['slug'])
+        source = (build.TARGET / 'palaces-for-the-people.html').read_text(encoding='utf-8')
+        actions = re.search(r'<div class="rf-actions">(.*?)</div>', source, re.S).group(1)
+        self.assertIn('About the book', actions)
+        self.assertIn('查看原书资料', actions)
+        self.assertNotIn('先读一段原作', actions)
+        excerpt_book = copy.deepcopy(self.books[0])
+        excerpt_book['sources'] = [item for item in excerpt_book['sources'] if item['kind'] != 'excerpt']
+        with self.assertRaises(ValueError):
+            build.validate_book(excerpt_book, excerpt_book['slug'])
+
+    def test_seven_new_guides_have_publication_and_discovery_records(self):
+        new_books = [book for book in self.books if book['guide_date'] == '2026-09-30']
+        self.assertEqual(len(new_books), 7)
+        ledger = json.loads((build.ROOT / 'data/site-updates.json').read_text(encoding='utf-8'))
+        update = next(item for item in ledger['updates'] if item['id'] == '2026-09-30-nonfiction-seven-guides')
+        self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
+        self.assertEqual(update['kind'], 'new')
+        self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
+        self.assertEqual(len(self.books), 12)
 
     def test_generated_bodies_use_independent_editions(self):
         converter = build.TraditionalConverter()

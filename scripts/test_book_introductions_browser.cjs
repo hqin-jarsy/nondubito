@@ -1,7 +1,7 @@
 /* Start a local static server and finish the search-index build before running.
  * NODE_PATH=/path/to/node_modules node scripts/test_book_introductions_browser.cjs http://127.0.0.1:8788
  * Uses isolated headless Chrome, never the user's browser profile.
- * BOOKS_SCREENSHOTS=/absolute/existing/directory optionally saves two views.
+ * BOOKS_SCREENSHOTS=/absolute/existing/directory optionally saves three views.
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -12,9 +12,9 @@ const root = path.resolve(__dirname, '..');
 const base = new URL(process.argv[2] || 'http://127.0.0.1:8788');
 const languages = {en: 'en', zh: 'zh-Hans', 'zh-hant': 'zh-Hant'};
 const languageClasses = {en: 'lang-en', zh: 'lang-zh', 'zh-hant': 'lang-hant'};
-const slugs = ['raising-hare', 'small-is-beautiful', 'how-to-do-nothing', 'seeing-like-a-state', 'being-mortal'];
-const newSlugs = slugs.slice(2);
-const revisedSlugs = new Set(slugs.slice(1));
+const slugs = fs.readdirSync(path.join(root, 'data/nonfiction')).filter(name => name.endsWith('.json')).map(name => name.slice(0, -5)).sort();
+const newSlugs = slugs.filter(slug => !['raising-hare', 'small-is-beautiful'].includes(slug));
+const revisedSlugs = new Set(slugs.filter(slug => slug !== 'raising-hare'));
 const books = Object.fromEntries(slugs.map(slug => [slug,
   JSON.parse(fs.readFileSync(path.join(root, 'data/nonfiction', slug + '.json'), 'utf8'))]));
 const routes = [
@@ -143,7 +143,8 @@ async function assertMobileMenu(page) {
               assert.equal(await article.getAttribute('lang'), languages[lang]);
               assert.ok((await article.innerText()).length > 1800, 'complete visible prose');
               if (revisedSlugs.has(route.slug)) {
-                assert.equal(await article.locator('h2').count(), 4, 'four sections in new/revised article');
+                const sectionCount = (books[route.slug].zh_body.match(/^## /gm) || []).length;
+                assert.equal(await article.locator('h2').count(), sectionCount, 'all manuscript sections remain');
                 assert.equal(await article.locator('a[href^="https://"]').count(), 0, 'sources stay outside the prose');
               }
               if (route.slug === 'small-is-beautiful') {
@@ -214,7 +215,14 @@ async function assertMobileMenu(page) {
     const localizedTitles = {
       'how-to-do-nothing': {zh: '如何无所事事', 'zh-hant': '如何無所事事'},
       'seeing-like-a-state': {zh: '国家的视角', 'zh-hant': '國家的視角'},
-      'being-mortal': {zh: '最好的告别', 'zh-hant': '最好的告別'}
+      'being-mortal': {zh: '最好的告别', 'zh-hant': '最好的告別'},
+      'the-art-of-gathering': {zh: '聚会', 'zh-hant': '聚會'},
+      'four-thousand-weeks': {zh: '四千周', 'zh-hant': '四千周'},
+      'the-craftsman': {zh: '匠人', 'zh-hant': '匠人'},
+      'the-serviceberry': {zh: '礼物经济', 'zh-hant': '禮物經濟'},
+      'the-sound-of-a-wild-snail-eating': {zh: '蜗牛教我慢慢活', 'zh-hant': '蝸牛教我慢慢活'},
+      'palaces-for-the-people': {zh: '没有人是一座孤岛', 'zh-hant': '沒有人是一座孤島'},
+      'the-other-significant-others': {zh: 'The Other Significant Others', 'zh-hant': 'The Other Significant Others'}
     };
     for (const slug of newSlugs) {
       for (const lang of Object.keys(languages)) {
@@ -245,14 +253,16 @@ async function assertMobileMenu(page) {
       await visit(page, '/essays/books/index.html', 'zh');
       await page.screenshot({path: path.join(output, 'books-hub-desktop-zh.png')});
       await page.setViewportSize({width: 390, height: 1100});
-      await visit(page, '/essays/nonfiction/being-mortal.html', 'zh-hant');
-      await page.screenshot({path: path.join(output, 'being-mortal-mobile-zh-hant.png')});
+      await visit(page, '/essays/nonfiction/the-other-significant-others.html', 'zh-hant');
+      await page.screenshot({path: path.join(output, 'friendship-mobile-zh-hant.png')});
+      await page.locator('article.rf-prose:visible h2').first().scrollIntoViewIfNeeded();
+      await page.screenshot({path: path.join(output, 'friendship-mobile-prose-zh-hant.png')});
       console.log(`Screenshots: ${output}`);
     }
     await check('no JavaScript errors', () => assert.deepEqual(runtimeErrors, []));
     await check('no failed local resources', () => assert.deepEqual([...new Set(httpErrors)], []));
     assert.equal(failures.length, 0, `${failures.length} browser checks failed:\n${failures.join('\n')}`);
-    console.log(`OK: ${checks} checks; 63 page/language/viewport combinations, language reloads and anchors, shelf navigation, 18 title/author searches, and mobile menus`);
+    console.log(`OK: ${checks} checks; ${routes.length * 9} page/language/viewport combinations, language reloads and anchors, shelf navigation, ${newSlugs.length * 6} title/author searches, and mobile menus`);
   } finally {
     await browser.close();
   }
