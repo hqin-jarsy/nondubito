@@ -33,6 +33,20 @@ class WorldcupTests(unittest.TestCase):
         for path,expected in self.outputs.items():
             self.assertEqual(path.read_text(),expected,str(path))
 
+    def test_source_corrections_are_exact_and_authorized(self):
+        current = {}
+        for correction in self.receipt.get('source_corrections', []):
+            rel = correction['path']
+            if rel not in current:
+                current[rel] = subprocess.check_output(['git','show',self.receipt['baseline_commit']+':'+rel],cwd=build.ROOT).decode()
+            self.assertEqual(build.digest(current[rel].encode()),correction['before_sha256'])
+            for edit in correction['edits']:
+                self.assertEqual(current[rel].count(edit['before']),1)
+                current[rel] = current[rel].replace(edit['before'],edit['after'],1)
+            self.assertEqual(build.digest(current[rel].encode()),correction['after_sha256'])
+        for rel,expected in current.items():
+            self.assertEqual((build.ROOT/rel).read_text(),expected)
+
     def test_exact_rendered_text(self):
         for key,copy in self.copies.items():
             ep,lang=key.split('.')

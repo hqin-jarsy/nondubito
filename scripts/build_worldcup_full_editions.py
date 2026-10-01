@@ -92,6 +92,23 @@ def import_batch(folder, plan_path):
                     paragraphs_by_section=expected, edits=edits,
                     removed_preface=original[:original.index('\n## ')].strip())
                 prepared[DATA/f'{key}.md'] = text
+    corrected_sources = []
+    for correction in plan.get('source_corrections', []):
+        path = ROOT / correction['path']
+        assert path.parent == SERIES and path.suffix == '.html'
+        original = path.read_bytes()
+        before_hash = digest(original)
+        assert before_hash == receipt['protected_files'][correction['path']], 'Protected source drift'
+        text = original.decode()
+        for edit in correction['edits']:
+            assert text.count(edit['before']) == 1, (path, edit['before'])
+            text = text.replace(edit['before'], edit['after'], 1)
+        after_hash = digest(text.encode())
+        receipt.setdefault('source_corrections', []).append(dict(correction,
+            before_sha256=before_hash, after_sha256=after_hash, batch=plan['batch']))
+        receipt['protected_files'][correction['path']] = after_hash
+        prepared[path] = text
+        corrected_sources.append(path)
     receipt['batches'].append(dict(plan, plan_file=plan_path.relative_to(ROOT).as_posix(),
                                  plan_sha256=digest(plan_path.read_bytes())))
     # Archive-to-source import is a mechanical build step; all copyedits are
@@ -100,7 +117,8 @@ def import_batch(folder, plan_path):
     for path, text in prepared.items():
         path.write_text(text)
     RECEIPT.write_text(json.dumps(receipt, ensure_ascii=False, indent=2)+'\n')
-    print(f'Imported {len(prepared)} reviewed manuscripts')
+    print(f'Imported {len(prepared)-len(corrected_sources)} reviewed manuscripts; corrected {len(corrected_sources)} authorized source pages')
+    return corrected_sources
 
 
 def manuscripts():
@@ -173,10 +191,12 @@ def refresh_indexes(changed):
     import build_search_index as search
     _, chunks = search.build()
     scope = {p.relative_to(ROOT).as_posix() for p in changed}
-    for lang in LANGS:
-        path = ROOT/f'data/search/{lang}.json'
+    for lang in search.SEARCH_LANGUAGES:
+        path = ROOT/f'data/search/{lang.lower()}.json'
         current = json.loads(path.read_text())
         fresh = {r['u']:r for r in chunks[lang] if r['u'] in scope}
+        if not fresh:
+            continue
         assert fresh.keys() <= {r['u'] for r in current['records']}
         current['records'] = [fresh.get(r['u'],r) for r in current['records']]
         path.write_text(search.serialized(current))
@@ -199,8 +219,9 @@ def main():
     args = parser.parse_args()
     if bool(args.import_archives) != bool(args.plan) or (args.check and (args.import_archives or args.refresh_indexes)):
         parser.error('Import needs a plan; --check is read-only')
+    corrected_sources = []
     if args.import_archives:
-        import_batch(args.import_archives,args.plan.resolve())
+        corrected_sources = import_batch(args.import_archives,args.plan.resolve())
     expected = outputs()
     changed = {p:s for p,s in expected.items() if p.read_text()!=s}
     if args.check:
@@ -210,7 +231,7 @@ def main():
         for path,text in changed.items():
             path.write_text(text)
         if args.refresh_indexes:
-            refresh_indexes(changed)
+            refresh_indexes(set(changed) | set(corrected_sources))
         print(f'Updated {len(changed)} pages')
 
 

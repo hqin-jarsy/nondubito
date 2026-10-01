@@ -58,6 +58,18 @@ const labels = {de:'Deutsch',fr:'Français',es:'Español',ja:'日本語',ko:'한
     await page.locator('.lang-select').selectOption({label:'中文'});
     await page.waitForURL('**/worldcup/ep02.html');
     assert.equal(await page.locator('html').getAttribute('data-lang'),'zh');
+    for (const correction of receipt.source_corrections || []) {
+      await page.goto(`${base}/${correction.path}`);
+      for (const edit of correction.edits) {
+        const lang=/[\u4e00-\u9fff]/.test(edit.after)?'zh':'en';
+        await page.locator(`.lang-btn[data-lang="${lang}"]`).click();
+        const body=page.locator(`.essay-body.lang-${lang}`);
+        assert.ok(await body.isVisible());
+        const text=await body.innerText();
+        assert.ok(text.includes(edit.after),`${correction.path}: missing corrected ${lang} text`);
+        assert.ok(!text.includes(edit.before),`${correction.path}: obsolete ${lang} text`);
+      }
+    }
     const staticContext=await browser.newContext({javaScriptEnabled:false});
     await staticContext.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());
     const staticPage=await staticContext.newPage();
@@ -68,6 +80,6 @@ const labels = {de:'Deutsch',fr:'Français',es:'Español',ja:'日本語',ko:'한
       assert.equal(await staticPage.locator('.lang-toggle .lang-btn').count(),7);
     }
     assert.deepEqual(errors,[]);
-    console.log(`OK: ${checks} article/viewport checks, 15 index checks, keyboard contents, language switching, neighbors and five no-JS editions`);
+    console.log(`OK: ${checks} article/viewport checks, 15 index checks, keyboard contents, language switching, neighbors, authorized source corrections and five no-JS editions`);
   } finally {await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
