@@ -63,6 +63,22 @@ class WorldcupTests(unittest.TestCase):
             for edit in copy['edits']:
                 self.assertIn(edit['after'],(build.DATA/f'{key}.md').read_text())
 
+    def test_ep16_headings_do_not_overstate_errors(self):
+        if 'ep16' not in self.receipt['archives']:
+            self.skipTest('EP16 not yet imported')
+        obsolete = {
+            'de': 'Drei Szenen, drei Fehlentscheidungen',
+            'fr': 'Trois actions, trois erreurs d’arbitrage',
+            'es': 'Tres jugadas, tres decisiones equivocadas',
+            'ja': '三つとも誤った判定',
+            'ko': '셋 다 잘못 판정한 장면',
+        }
+        for lang, phrase in obsolete.items():
+            self.assertNotIn(phrase, (build.SERIES/lang/'ep16.html').read_text())
+        source = (build.SERIES/'ep16.html').read_text()
+        self.assertNotIn('三个都判错了的球', source)
+        self.assertNotIn('Three Calls, All of Them Wrong', source)
+
     def test_links_metadata_and_unique_ids(self):
         for path,source in self.outputs.items():
             page=Page(source)
