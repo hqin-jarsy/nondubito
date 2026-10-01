@@ -4,7 +4,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { chromium } = require('playwright');
 const root = path.resolve(__dirname, '..');
-const records = JSON.parse(fs.readFileSync(path.join(root, 'data/worldcup-full/review.json'))).manuscripts;
+const receipt = JSON.parse(fs.readFileSync(path.join(root, 'data/worldcup-full/review.json')));
+const records = receipt.manuscripts;
+const latestEpisodes = receipt.batches.at(-1).episodes;
 const base = process.argv[2] || 'http://127.0.0.1:8774';
 const labels = {de:'Deutsch',fr:'Français',es:'Español',ja:'日本語',ko:'한국어'};
 (async () => {
@@ -36,7 +38,7 @@ const labels = {de:'Deutsch',fr:'Français',es:'Español',ja:'日本語',ko:'한
           await page.locator('.worldcup-toc a').last().click();
           assert.ok(page.url().endsWith('#section-'+record.paragraphs_by_section.length));
         }
-        if (process.env.WORLDCUP_SCREENSHOTS && ((ep==='ep01'&&lang==='es'&&width===1440)||(ep==='ep04'&&lang==='ja'&&width===390))) {
+        if (process.env.WORLDCUP_SCREENSHOTS && ((ep===latestEpisodes[0]&&lang==='es'&&width===1440)||(ep===latestEpisodes.at(-1)&&lang==='ja'&&width===390))) {
           await page.locator('h1').scrollIntoViewIfNeeded();
           await page.screenshot({path:path.join(process.env.WORLDCUP_SCREENSHOTS,`${ep}-${lang}-${width}.png`)});
         }
@@ -60,8 +62,9 @@ const labels = {de:'Deutsch',fr:'Français',es:'Español',ja:'日本語',ko:'한
     await staticContext.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());
     const staticPage=await staticContext.newPage();
     for(const lang of Object.keys(labels)) {
-      await staticPage.goto(`${base}/essays/worldcup/${lang}/ep01.html`);
-      assert.equal(await staticPage.locator('.worldcup-full p').count(),60);
+      const ep=latestEpisodes[0];
+      await staticPage.goto(`${base}/essays/worldcup/${lang}/${ep}.html`);
+      assert.equal(await staticPage.locator('.worldcup-full p').count(),records[`${ep}.${lang}`].paragraphs_by_section.reduce((a,b)=>a+b,0));
       assert.equal(await staticPage.locator('.lang-toggle .lang-btn').count(),7);
     }
     assert.deepEqual(errors,[]);

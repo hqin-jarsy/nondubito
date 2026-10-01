@@ -148,6 +148,9 @@ def outputs():
                 text = replace_div(text, 'essay-body', '<div class="worldcup-full">\n'+copy['body']+'\n</div>')
                 text = re.sub(r'(<h1\b[^>]*>).*?(</h1>)', lambda m:m[1]+html.escape(copy['title'])+m[2], text, count=1, flags=re.S)
                 text = re.sub(r'<p class="essay-subtitle"[^>]*>.*?</p>\s*', '', text, flags=re.S)
+                # Old compact templates put the next tag directly after h1.
+                # Normalize this boundary before insertion, including first build.
+                text = re.sub(r'</h1>\s*', '</h1>\n', text, count=1)
                 text = text.replace('</h1>', '</h1>\n<p class="essay-subtitle">'+html.escape(copy['deck'])+'</p>\n', 1)
                 text = re.sub(r'<title>.*?</title>', lambda _:'<title>'+html.escape(copy['full_title'])+' — Non Dubito</title>', text, count=1, flags=re.S)
                 text = re.sub(r'(<meta property="og:title" content=")[^"]*(">)', lambda m:m[1]+html.escape(copy['full_title']+' — Non Dubito', quote=True)+m[2], text)
