@@ -65,9 +65,15 @@ const labels = {de:'Deutsch',fr:'Français',es:'Español',ja:'日本語',ko:'한
         await page.locator(`.lang-btn[data-lang="${lang}"]`).click();
         const body=page.locator(`.essay-body.lang-${lang}`);
         assert.ok(await body.isVisible());
-        const text=await body.innerText();
-        assert.ok(text.includes(edit.after),`${correction.path}: missing corrected ${lang} text`);
-        assert.ok(!text.includes(edit.before),`${correction.path}: obsolete ${lang} text`);
+        // Receipts may record either a phrase or an entire HTML paragraph.
+        // Compare rendered text, decoding entities as the browser does.
+        const snippets=await page.evaluate(({before,after})=>{
+          const plain=value=>new DOMParser().parseFromString(value,'text/html').body.textContent.replace(/\s+/g,' ').trim();
+          return {before:plain(before),after:plain(after)};
+        },edit);
+        const text=(await body.innerText()).replace(/\s+/g,' ').trim();
+        assert.ok(text.includes(snippets.after),`${correction.path}: missing corrected ${lang} text`);
+        assert.ok(!text.includes(snippets.before),`${correction.path}: obsolete ${lang} text`);
       }
     }
     const staticContext=await browser.newContext({javaScriptEnabled:false});

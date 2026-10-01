@@ -79,6 +79,32 @@ class WorldcupTests(unittest.TestCase):
         self.assertNotIn('三个都判错了的球', source)
         self.assertNotIn('Three Calls, All of Them Wrong', source)
 
+    def test_final_batch_evidence_boundaries(self):
+        if 'ep22' not in self.receipt['archives']:
+            self.skipTest('Final batch not yet imported')
+        self.assertEqual(len(self.copies), 110)
+        for lang in build.LANGS:
+            self.assertEqual(sum(self.copies[f'ep21.{lang}']['paragraphs_by_section']), 60)
+            self.assertEqual(sum(self.copies[f'ep22.{lang}']['paragraphs_by_section']), 80)
+        qualifiers = {
+            'de': ('bis dahin untersuchten', 'nicht Messungen im Stadion', 'Schon vor Turnierbeginn'),
+            'fr': ('analysés à ce stade', 'non des mesures prises à l’intérieur', 'Avant le tournoi'),
+            'es': ('analizados hasta ese momento', 'no a mediciones dentro de ellos', 'Antes del torneo'),
+            'ja': ('その時点で分析対象となった', '場内での実測値ではない', 'FIFAは大会前から'),
+            'ko': ('당시까지 분석 대상에 포함된', '경기장 안에서 직접 측정한 값은 아니다', 'FIFA는 대회 전부터'),
+        }
+        for lang, phrases in qualifiers.items():
+            body = self.copies[f'ep22.{lang}']['body']
+            for phrase in phrases:
+                self.assertIn(phrase, body)
+            for obsolete in ('575', 'fünfhundertfünfundsiebzig', 'cinq cent soixante-quinze', 'quinientos setenta y cinco'):
+                self.assertNotIn(obsolete, body)
+        source = (build.SERIES/'ep22.html').read_text()
+        for obsolete in ('575', '五百七十五', "this tournament's ninety-four matches", "FIFA's response was"):
+            self.assertNotIn(obsolete, source)
+        for phrase in ('当时纳入分析', '并非场内实测数据', '在赛前已规定', 'matches analyzed at that point', 'not measurements inside the grounds', 'had already scheduled'):
+            self.assertIn(phrase, source)
+
     def test_links_metadata_and_unique_ids(self):
         for path,source in self.outputs.items():
             page=Page(source)
