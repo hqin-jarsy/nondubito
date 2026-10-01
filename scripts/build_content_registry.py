@@ -122,6 +122,7 @@ DOMAIN_PREFIXES = (
     ("essays/blockchain/", "history"),
     ("essays/athletics/", "history"),
     ("essays/worldcup/", "history"),
+    ("essays/math-history/", "history"),
     ("essays/sae-", "sae-philosophy"),
     ("essays/method/", "sae-philosophy"),
     ("essays/meaning/", "sae-philosophy"),
