@@ -6,6 +6,7 @@ import unittest
 from urllib.parse import unquote, urlsplit
 
 import build_daodejing_batch09 as build
+from daodejing_review_checks import after_batch10
 from test_daodejing_sources import Page
 from build_emperor_traditional import TextCollector, TraditionalConverter
 
@@ -28,7 +29,7 @@ class Batch09(unittest.TestCase):
         for path, content in build.updates().items():
             self.assertEqual(path.read_text(), content, str(path))
         for path, record in self.receipt['page_edits'].items():
-            self.assertEqual(build.digest((build.ROOT / path).read_bytes()), record['after_sha256'], path)
+            self.assertEqual(build.digest((build.ROOT / path).read_bytes()), after_batch10(build.DATA, path, record['after_sha256']), path)
             self.assertEqual(build.digest(build.baseline(build.ROOT / path, self.receipt['baseline_commit']).encode()), record['before_sha256'], path)
 
     def test_pages_metadata_structure_links(self):
@@ -77,7 +78,14 @@ class Batch09(unittest.TestCase):
             for adjacent in ('ch40', 'ch46'):
                 neighbour = build.page_path(adjacent, lang)
                 old = Page(build.baseline(neighbour, self.receipt['baseline_commit']))
-                new = Page(neighbour.read_text())
+                successor = build.DATA / 'batch10-review.json'
+                if adjacent == 'ch46' and successor.exists():
+                    # Batch 09 only touched this neighbour's label; compare its
+                    # body at the next reviewed baseline, not after batch 10.
+                    next_commit = json.loads(successor.read_text())['baseline_commit']
+                    new = Page(build.baseline(neighbour, next_commit))
+                else:
+                    new = Page(neighbour.read_text())
                 self.assertEqual([n.text() for n in old.nodes if n.has_class('essay-body')],
                                  [n.text() for n in new.nodes if n.has_class('essay-body')])
             path = build.page_path('daoyan', lang)

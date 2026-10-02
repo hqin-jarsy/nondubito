@@ -1,6 +1,51 @@
 # Reviewed Daodejing full editions
 
-## Current progress: chapters 41–45 (ninth batch)
+## Current progress: chapters 46–50 (tenth batch)
+
+The tenth batch continues direct, full-length independent writing in Japanese,
+Korean, German, French and Spanish. Chinese and English were edited alongside
+them; Traditional Chinese is generated offline. The user wrote “45–50”; chapter
+45 had already been completed, so its reviewed body remains unchanged and this
+batch covers the five new chapters 46–50.
+
+The 7/5/7/6/7-section argument sequences remain, with the original substantive
+examples and all six DOI destinations. The prose now develops scenes and
+connected paragraphs instead of repeating each inference as a separate slogan.
+Necessary qualifications are integrated where they matter. The full closing
+wording of chapter 49 is discussed rather than skipped.
+
+`batch10-brief.json` records the shared coverage brief and consulted primary-text
+transcriptions. `batch10-review.json` freezes the reviewed manuscripts and their
+publication changes against the baseline commit; it is not generated until
+editorial review is complete. No external translation package or service is used.
+
+Key corrections: chapter 46's three moments do not make craving irreversible;
+chapter 47 does not replace evidence with introspection; chapter 48 preserves
+learning, protective boundaries and necessary action without promising automatic
+success. Chapter 49 distinguishes respect from unchecked access or trust, and
+support from infantilization. Chapter 50 compares Wang Bi's and Heshanggong's
+readings of 十有三 without inventing fate statistics; it retains prudent avoidance
+without immunity, victim-blaming or medical/financial prescriptions. The exact
+Mencius precarious-wall wording is distinguished from the familiar paraphrase.
+
+Classical source panels, source-paper website and chapter URLs are unchanged.
+Localized headings, index cards, immediate-neighbour navigation, metadata,
+Traditional reading dictionaries and search entries are synchronized. Earlier
+review receipts stay intact through explicit before/after digest links.
+
+```sh
+python3 -B scripts/build_daodejing_batch10.py --check
+python3 -B -m unittest discover -s scripts -p 'test_daodejing*.py'
+python3 -B scripts/build_search_index.py --check
+DDJ_BROWSER_CHANNEL=chrome node scripts/test_daodejing_batch10_browser.cjs http://127.0.0.1:8774
+```
+
+The browser test covers every chapter in all eight reading languages at 1440,
+390 and 320 pixels, unchanged source passages, source-note keyboard access,
+language switching, overflow and static reading without JavaScript. These are
+technical regression checks, not substitutes for the prose review.
+
+## Chapters 41–45 (ninth batch)
 
 `batch09-review.json` freezes 25 locally authored full editions in Japanese,
 Korean, German, French and Spanish, plus the corrected Chinese and English
