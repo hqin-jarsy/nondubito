@@ -65,6 +65,25 @@ time lead the editorial shelf and the hub's two featured cards. There are now
 interviews-and-research basis; The Serviceberry explicitly identifies its
 precursor essay. Existing article bodies and dates remain unchanged.
 
+## 2026-10-02 publication
+
+Ten guides enter the website for the first time, using the approved October 2
+quality-revision manuscripts: The Book of Delights, A Life’s Work, Wintering,
+You’re Not Listening, Yowai Robotto, Educated, Because Internet, Ways of Seeing,
+The Personality Brokers, and The Living Mountain. Their website guide date is
+2026-10-02, not the earlier drafting dates; no artificial online revision date
+is assigned. The collection now has 22 nonfiction guides and 65 books across
+both shelves. Delights and A Life’s Work lead the featured cards.
+
+The Chinese bodies are imported verbatim, excluding only the title and italic
+bibliographic paragraph, and protected by a separate set of fixed test hashes.
+English preserves the complete discussion and section structure, rather than
+summarizing it. Notices retain provisional titles, reading limits, the 2012
+Japanese robot book identity, and the distinction between a new translation
+edition and a newly written book. Existing twelve guide bodies and dates are
+unchanged; related-reading links expand with the inventory. This request does
+not include the other five unimported manuscripts in the writing workspace.
+
 ## Build and verify
 
 ```sh
@@ -82,7 +101,7 @@ git diff --check
 ```
 
 All build commands support `--check`. Browser QA covers the two entrances, all
-12 articles, the three reading languages, the mobile menu, source anchors, and search
+22 articles, the three reading languages, the mobile menu, source anchors, and search
 by title/author. Search uses localized visible decks and preserves the selected
 language on result links for both new paths.
 

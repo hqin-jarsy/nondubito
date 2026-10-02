@@ -10,8 +10,8 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 10,459 | 9,524 | 935 | 308 | 122 | 475 |
-| Canonical-root pages | 3,715 | 3,306 | 409 | 283 | 122 | 220 |
+| All physical editions | 10,497 | 9,561 | 936 | 318 | 122 | 511 |
+| Canonical-root pages | 3,753 | 3,343 | 410 | 293 | 122 | 256 |
 | Independent language editions | 6,744 | 6,218 | 526 | 25 | 0 | 255 |
 
 ## Existing article navigation
@@ -30,7 +30,7 @@ separately from the newer three-route continuation pattern.
 | `everyday` | 385 | 1 | 1 | 362 | 362 |
 | `literature` | 284 | 0 | 0 | 0 | 190 |
 | `mingren` | 212 | 0 | 0 | 0 | 104 |
-| `aesthetics` | 194 | 0 | 0 | 0 | 0 |
+| `aesthetics` | 196 | 0 | 0 | 0 | 0 |
 | `film` | 177 | 0 | 0 | 0 | 60 |
 | `jiaoyi` | 110 | 0 | 0 | 0 | 109 |
 | `daodejing` | 82 | 0 | 0 | 0 | 0 |
@@ -48,16 +48,17 @@ separately from the newer three-route continuation pattern.
 | `ouya` | 26 | 0 | 0 | 22 | 26 |
 | `president` | 26 | 0 | 0 | 26 | 26 |
 | `emperor` | 25 | 0 | 0 | 25 | 25 |
+| `math-history` | 25 | 0 | 0 | 0 | 0 |
 | `athletics` | 23 | 0 | 0 | 23 | 23 |
 | `economy` | 23 | 0 | 0 | 23 | 23 |
 | `xiyou` | 23 | 0 | 0 | 0 | 0 |
+| `nonfiction` | 22 | 22 | 0 | 0 | 0 |
 | `worldcup` | 22 | 0 | 0 | 22 | 22 |
 | `sae-foundations` | 16 | 15 | 15 | 15 | 15 |
 | `war` | 16 | 0 | 0 | 16 | 16 |
 | `method` | 13 | 0 | 0 | 0 | 13 |
 | `sae-nicomachean` | 13 | 13 | 13 | 13 | 13 |
 | `sae-republic` | 13 | 13 | 13 | 13 | 13 |
-| `nonfiction` | 12 | 12 | 0 | 0 | 0 |
 | `sae-first-critique` | 12 | 12 | 12 | 12 | 12 |
 | `action` | 11 | 0 | 0 | 11 | 11 |
 | `yinan` | 9 | 0 | 0 | 0 | 9 |

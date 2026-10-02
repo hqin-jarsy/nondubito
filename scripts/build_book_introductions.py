@@ -20,7 +20,10 @@ SOURCE = ROOT / 'data/nonfiction'
 TARGET = ROOT / 'essays/nonfiction'
 HUB = ROOT / 'essays/books/index.html'
 PUBLISHED = '2026-09-13'
-ORDER = ('the-art-of-gathering', 'four-thousand-weeks', 'the-craftsman',
+ORDER = ('the-book-of-delights', 'a-lifes-work', 'wintering',
+         'youre-not-listening', 'yowai-robotto', 'educated', 'because-internet',
+         'ways-of-seeing', 'the-personality-brokers', 'the-living-mountain',
+         'the-art-of-gathering', 'four-thousand-weeks', 'the-craftsman',
          'the-serviceberry', 'the-sound-of-a-wild-snail-eating',
          'palaces-for-the-people', 'the-other-significant-others',
          'small-is-beautiful', 'how-to-do-nothing', 'seeing-like-a-state',

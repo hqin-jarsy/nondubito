@@ -508,7 +508,7 @@ def parse_library_categories(library_path: Path) -> list[dict[str, Any]]:
     source = library_path.read_text(encoding="utf-8", errors="replace")
     starts = list(
         re.finditer(
-            r'<span class="lib-section-tag">Category\s+(\d+)</span>',
+            r'<span\b[^>]*class="lib-section-tag"[^>]*>Category\s+(\d+)</span>',
             source,
             flags=re.I,
         )

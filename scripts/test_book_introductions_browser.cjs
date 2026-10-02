@@ -213,6 +213,16 @@ async function assertMobileMenu(page) {
     }
 
     const localizedTitles = {
+      'the-book-of-delights': {zh: '欢喜之书', 'zh-hant': '歡喜之書'},
+      'a-lifes-work': {zh: '成为母亲', 'zh-hant': '成為母親'},
+      'wintering': {zh: '过冬', 'zh-hant': '過冬'},
+      'youre-not-listening': {zh: '你都没在听', 'zh-hant': '你都沒在聽'},
+      'yowai-robotto': {zh: '弱机器人', 'zh-hant': '弱機器人'},
+      'educated': {zh: '你当像鸟飞往你的山', 'zh-hant': '你當像鳥飛往你的山'},
+      'because-internet': {zh: 'Because Internet', 'zh-hant': 'Because Internet'},
+      'ways-of-seeing': {zh: '观看之道', 'zh-hant': '觀看之道'},
+      'the-personality-brokers': {zh: 'MBTI的前世今生', 'zh-hant': 'MBTI的前世今生'},
+      'the-living-mountain': {zh: '活山', 'zh-hant': '活山'},
       'how-to-do-nothing': {zh: '如何无所事事', 'zh-hant': '如何無所事事'},
       'seeing-like-a-state': {zh: '国家的视角', 'zh-hant': '國家的視角'},
       'being-mortal': {zh: '最好的告别', 'zh-hant': '最好的告別'},

@@ -13,6 +13,7 @@ from urllib.parse import unquote, urlsplit
 import build_book_introductions as build
 import build_recent_fiction as fiction
 import build_search_index as search
+import build_content_registry as registry
 from test_recent_fiction import Page
 
 
@@ -30,6 +31,20 @@ APPROVED_CHINESE_SHA256 = {
     'how-to-do-nothing': '979b1156e41dd54555233eba325d7be7bdf9b1d259a10de72c2d2a2dfdb15390',
     'seeing-like-a-state': '978814a12bbda981c07165ee16e87649c91c274ca8e6765cece6df9ee3ce8efa',
     'being-mortal': 'b735de02ca685a6a0ab04fd15193e4685c291ba17c53edb1f452699662581917',
+}
+
+
+OCTOBER_APPROVED_CHINESE_SHA256 = {
+    'a-lifes-work': '0e1b110f6b4da504d4eda6e9022fdc1548518ef62d61d1ae710c4c2560e70fd2',
+    'because-internet': '637239a6f6abbd8b066f2f9fd5bb32f249c1195533a8712fef0e776cff8e4862',
+    'educated': '2628a6c30c19be850dcfcc3d22cb8e5263222381ee87269c7ad9724ba45672e1',
+    'the-book-of-delights': 'ed687c623974f2d2da5739de8c2ec7871f3fcd8dfb23a388858131331b13725e',
+    'the-living-mountain': 'd28ce48f99592fecb7762f39e0bd018aa1093fa16363058e70576f412c4530f9',
+    'the-personality-brokers': 'e0aa4183d57a3e883d976043c2479c5fdfc091532f81272d34267f3342def460',
+    'ways-of-seeing': '642bef904b5531888ea754f4efba69d6d717da303f2430c43d6ead11016ba35b',
+    'wintering': '0092e5a2724a5c39d1dede6583ddfe806cf4f6c3213af4d320534d228bbd54ba',
+    'youre-not-listening': 'd71215fb502aa039b8f33f72333f7486d9d84abe07e839a45a656f4e58134961',
+    'yowai-robotto': '0eee31815ba44b08f71a9222a1d792e87c91ccfdcef581586db452d7e60d6bb7',
 }
 
 
@@ -123,7 +138,31 @@ class BookIntroductionsTests(unittest.TestCase):
         self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
         self.assertEqual(update['kind'], 'new')
         self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
-        self.assertEqual(len(self.books), 12)
+        self.assertEqual(len(self.books), 22)
+
+    def test_october_batch_uses_revised_manuscripts_and_complete_editions(self):
+        books = {book['slug']: book for book in self.books}
+        self.assertEqual({book['slug'] for book in self.books if book['guide_date'] == '2026-10-02'},
+                         set(OCTOBER_APPROVED_CHINESE_SHA256))
+        for slug, expected_hash in OCTOBER_APPROVED_CHINESE_SHA256.items():
+            with self.subTest(slug=slug):
+                book = books[slug]
+                self.assertEqual(hashlib.sha256(book['zh_body'].encode('utf-8')).hexdigest(), expected_hash)
+                self.assertNotIn('updated_date', book)  # First website publication, not a live revision.
+                sections = 5 if slug == 'youre-not-listening' else 4
+                for lang in ('zh', 'en'):
+                    self.assertEqual(len(re.findall(r'^## ', book[f'{lang}_body'], re.M)), sections)
+                    self.assertNotRegex(book[f'{lang}_body'], r'https?://|TODO|TBD')
+                self.assertIn('未通读全书', book['zh_notice'])
+        self.assertEqual(books['yowai-robotto']['book_language'], 'ja')
+        self.assertEqual(books['yowai-robotto']['book_date'], '2012')
+        self.assertEqual(books['the-personality-brokers']['book_date'], '2018')
+        self.assertEqual(books['the-living-mountain']['book_date'], '1977')
+        ledger = json.loads((build.ROOT / 'data/site-updates.json').read_text(encoding='utf-8'))
+        update = next(item for item in ledger['updates'] if item['id'] == '2026-10-02-nonfiction-ten-guides')
+        self.assertEqual(update['kind'], 'new')
+        self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
+        self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
 
     def test_generated_bodies_use_independent_editions(self):
         converter = build.TraditionalConverter()
@@ -257,6 +296,9 @@ class BookIntroductionsTests(unittest.TestCase):
         self.assertEqual(expected.count('class="series-card"'), len(self.books))
         self.assertEqual(re.findall(r'Category (\d\d)', source), [f'{i:02}' for i in range(1, 18)])
         self.assertIn('Category 09', expected)
+        # Category 04 has an id on its label; extra attributes must not hide it.
+        categories = registry.parse_library_categories(build.ROOT / 'library.html')
+        self.assertEqual([category['number'] for category in categories], list(range(1, 18)))
 
     def test_search_uses_each_languages_deck(self):
         with patch.object(search, 'collect_pages', return_value=self.paths):
