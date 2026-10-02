@@ -1,6 +1,48 @@
 # Reviewed Daodejing full editions
 
-## Current progress: chapters 56–60 (twelfth batch)
+## Current progress: chapters 61–70 (thirteenth batch)
+
+The thirteenth batch contains fifty complete, independently authored Japanese,
+Korean, German, French and Spanish essays, with synchronized Chinese/English
+editing and offline Traditional Chinese. All ten argument arcs and substantive
+examples remain in 6/7/8/8/7/7/9/8/7/8 sections. The seventy manuscripts preserve
+seven original DOI destinations for 61–63 and eight for 64–70, plus Papers 7/8.
+
+`batch13-brief.json` records the shared coverage and editorial reference checks.
+`batch13-review.json` freezes only the final reviewed manuscripts and page edits
+against the clean baseline. Earlier receipts remain unchanged; digest chaining
+records later index and navigation changes without resealing earlier prose.
+
+Key calibrations: 61 does not require weaker parties to submit; 62 combines
+nonabandonment with accountability and distinguishes presenting the Dao from
+the inward-practice application. 63/69 no longer promise immunity through
+nonaggression. 64 corrects the earliest-manuscript claim. 65 acknowledges the
+conventional grammar and ancient political paternalism rather than presenting
+the author's philosophical rereading as proven syntax. 66–68 distinguish text
+variants from ethical applications; calmness is not a test of moral worth,
+and compassion is not a guarantee of victory. 69 identifies the rattan-armour
+episode as a novel and does not let remorse excuse the harm. 70 preserves the
+value of teaching and criticism: being misunderstood does not prove truth.
+
+Author self-review and independent cross-review precede the publication freeze.
+Original classical panels, the theory website, stable URLs and adjacent chapter
+bodies are unchanged. Local labels, metadata, navigation, Traditional dictionaries,
+all eight search indexes and sitemap metadata are synchronized.
+
+```sh
+python3 -B scripts/build_daodejing_batch13.py --check
+python3 -B -m unittest discover -s scripts -p 'test_daodejing*.py'
+python3 -B scripts/build_search_index.py --check
+python3 -B scripts/build_sitemap.py --check
+DDJ_BROWSER_CHANNEL=chrome node scripts/test_daodejing_batch13_browser.cjs http://127.0.0.1:8774
+```
+
+Browser checks cover all ten chapters at 1440/390/320 pixels across eight languages,
+including source-panel preservation, language switching, keyboard disclosure,
+horizontal overflow and static reading without JavaScript. Desktop and mobile
+samples are visually inspected. Counts and hashes do not replace prose review.
+
+## Chapters 56–60 (twelfth batch)
 
 The twelfth batch contains 25 full independently written Japanese, Korean,
 German, French and Spanish essays, with synchronized Chinese/English editing

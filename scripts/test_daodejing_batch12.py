@@ -8,6 +8,7 @@ from urllib.parse import unquote, urlsplit
 import build_daodejing_batch12 as build
 from test_daodejing_sources import Page
 from build_emperor_traditional import TextCollector, TraditionalConverter
+from daodejing_review_checks import after_batch13
 
 
 class Batch12(unittest.TestCase):
@@ -30,7 +31,7 @@ class Batch12(unittest.TestCase):
         for path, content in build.updates().items():
             self.assertEqual(path.read_text(), content, str(path))
         for path, record in self.receipt['page_edits'].items():
-            self.assertEqual(build.digest((build.ROOT / path).read_bytes()), record['after_sha256'], path)
+            self.assertEqual(build.digest((build.ROOT / path).read_bytes()), after_batch13(build.DATA, path, record['after_sha256']), path)
             self.assertEqual(build.digest(build.baseline(build.ROOT / path, self.receipt['baseline_commit']).encode()), record['before_sha256'], path)
 
     def test_pages_metadata_structure_links(self):
@@ -79,7 +80,12 @@ class Batch12(unittest.TestCase):
             for adjacent in ('ch55', 'ch61'):
                 neighbour = build.page_path(adjacent, lang)
                 old = Page(build.baseline(neighbour, self.receipt['baseline_commit']))
-                new = Page(neighbour.read_text())
+                successor = build.DATA / 'batch13-review.json'
+                if adjacent == 'ch61' and successor.exists():
+                    next_commit = json.loads(successor.read_text())['baseline_commit']
+                    new = Page(build.baseline(neighbour, next_commit))
+                else:
+                    new = Page(neighbour.read_text())
                 self.assertEqual([n.text() for n in old.nodes if n.has_class('essay-body')],
                                  [n.text() for n in new.nodes if n.has_class('essay-body')])
             path = build.page_path('daoyan', lang)
