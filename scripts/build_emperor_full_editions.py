@@ -23,6 +23,7 @@ DATA = ROOT / 'data/emperor-full'
 LANGS = ('zh', 'en', 'ja', 'fr', 'de', 'es', 'ko')
 ORIGINAL_MARKER = '<!-- emperor-original-html -->'
 ORIGINAL_BASELINE = DATA / 'original-zh-en.json'
+REVIEW = DATA / 'new-edition-review.json'
 STYLE = '''<style id="emperor-full-style">
 .full-edition p{margin:0 0 1.35em;line-height:1.9;overflow-wrap:anywhere}
 .full-edition h2{margin:2.5em 0 .85em;line-height:1.4}
@@ -30,11 +31,15 @@ STYLE = '''<style id="emperor-full-style">
 .full-edition .full-sources{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--cream-border)}
 .full-edition .full-sources p{font-size:.86rem;line-height:1.75}
 .full-edition [id]{scroll-margin-top:110px}
+.collection-page{overflow-wrap:anywhere}
+.collection-page h1,.collection-deck,.collection-nav a,.collection-card h2,.xiyou-nav-title,.card-title{overflow-wrap:anywhere;min-width:0}
+html[lang="ko"] .collection-page{word-break:keep-all}
 </style>'''
 
 def editions():
     result = {}
     originals = json.loads(ORIGINAL_BASELINE.read_text(encoding='utf-8'))['editions']
+    reviewed = json.loads(REVIEW.read_text())['manuscripts'] if REVIEW.exists() else {}
     for path in sorted(DATA.glob('ep*.zh.md')):
         slug = path.name.split('.')[0]
         copies = {}
@@ -62,6 +67,25 @@ def editions():
                     link_title=original.get('link_title', original['nav_title']),
                     body=original_body,
                 )
+                continue
+            if slug+'.'+lang in reviewed:
+                record = reviewed[slug+'.'+lang]
+                if hashlib.sha256(source.encode()).hexdigest() != record['published_sha256']:
+                    raise ValueError(f'Reviewed edition changed without updating its receipt: {p}')
+                main_html = markdown.markdown(body)
+                section = 0
+                def anchor(match):
+                    nonlocal section
+                    section += 1
+                    return f'<h2 id="section-{section}">'+match[1]+'</h2>'
+                main_html = re.sub(r'<h2>(.*?)</h2>', anchor, main_html, flags=re.S)
+                rendered = f'<div class="full-edition" data-edition="2026-10-01">\n{main_html}\n</div>'
+                first = re.search(r'<p>(.*?)</p>', main_html, re.S)
+                deck = html.unescape(re.sub(r'<[^>]+>', '', first[1])).strip() if first else heading[1]
+                if len(deck) > 220:
+                    clipped = deck[:217]
+                    deck = (clipped.rsplit(' ', 1)[0] if ' ' in clipped else clipped)+'…'
+                copies[lang] = dict(title=heading[1], deck=deck, body=rendered)
                 continue
             split = list(re.finditer(r'^#{2,3} (.+)$', body, re.M))[-1]
             label = split[1]
@@ -167,6 +191,9 @@ def upgrade_outputs(outputs):
             continue
         if path.stem in all_editions:
             text=article(text,path.stem,lang,all_editions)
+        elif path.stem == 'index':
+            text=re.sub(r'<style id="emperor-full-style">.*?</style>\n?', '',text,flags=re.S)
+            text=text.replace('</head>', STYLE+'\n</head>',1)
         outputs[path]=navigation(text,lang,all_editions)
     return outputs
 

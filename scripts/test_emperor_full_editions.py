@@ -8,6 +8,7 @@ import hashlib
 import html
 import json
 import re
+import subprocess
 import unittest
 from collections import Counter
 from html.parser import HTMLParser
@@ -44,6 +45,12 @@ class EmperorFullEditionsTest(unittest.TestCase):
         cls.editions = full.editions()
         cls.outputs = full.render()
         cls.originals = json.loads(full.ORIGINAL_BASELINE.read_text())['editions']
+        cls.review = json.loads(full.REVIEW.read_text()) if full.REVIEW.exists() else None
+
+    def expected_headings(self, slug, legacy):
+        if self.review:
+            return len(self.review['manuscripts'][slug+'.fr']['blocks_by_section'])-1
+        return legacy
 
     def assert_original(self, slug, lang):
         copy = self.editions[slug][lang]
@@ -68,7 +75,11 @@ class EmperorFullEditionsTest(unittest.TestCase):
                 with self.subTest(slug=slug, lang=lang):
                     page = Page(copy['body'])
                     self.assertTrue(page.ids)
-                    self.assertIn('class="full-sources"', copy['body'])
+                    if self.review:
+                        self.assertIn('data-edition="2026-10-01"', copy['body'])
+                        self.assertNotIn('class="full-sources"', copy['body'])
+                    else:
+                        self.assertIn('class="full-sources"', copy['body'])
                     self.assertEqual(re.findall(r'\[\^?\d+\]', copy['body']), [])
                     for link in page.links:
                         if link.startswith('#'):
@@ -83,7 +94,7 @@ class EmperorFullEditionsTest(unittest.TestCase):
                 with self.subTest(slug=slug, lang=lang):
                     source = (full.DATA / f'{slug}.{lang}.md').read_text()
                     if lang not in ('zh', 'en'):
-                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
+                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), self.expected_headings(slug, sections + 1))
                     self.assertIn(self.editions[slug][lang]['body'],
                                   self.outputs[full.SERIES / (f'{slug}.html' if lang in ('zh','en') else f'{lang}/{slug}.html')])
 
@@ -102,7 +113,7 @@ class EmperorFullEditionsTest(unittest.TestCase):
                 with self.subTest(slug=slug, lang=lang):
                     source = (full.DATA / f'{slug}.{lang}.md').read_text()
                     if lang not in ('zh', 'en'):
-                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
+                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), self.expected_headings(slug, sections + 1))
                     path = full.SERIES / (f'{slug}.html' if lang in ('zh', 'en') else f'{lang}/{slug}.html')
                     self.assertIn(self.editions[slug][lang]['body'], self.outputs[path])
                     self.assertNotIn('中国語の原題', source)
@@ -136,7 +147,7 @@ class EmperorFullEditionsTest(unittest.TestCase):
                 with self.subTest(slug=slug, lang=lang):
                     source = (full.DATA / f'{slug}.{lang}.md').read_text()
                     if lang not in ('zh', 'en'):
-                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), sections + 1)
+                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), self.expected_headings(slug, sections + 1))
                     path = full.SERIES / (f'{slug}.html' if lang in ('zh', 'en') else f'{lang}/{slug}.html')
                     self.assertIn(self.editions[slug][lang]['body'], self.outputs[path])
                     self.assertFalse(re.search(r'中国語の原題|중국어 원제|titre chinois|título chino|chinesischen Titel', source))
@@ -158,14 +169,14 @@ class EmperorFullEditionsTest(unittest.TestCase):
                 with self.subTest(slug=slug, lang=lang):
                     source = (full.DATA / f'{slug}.{lang}.md').read_text()
                     if lang not in ('zh', 'en'):
-                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), 7)
+                        self.assertEqual(len(re.findall(r'^## ', source, re.M)), self.expected_headings(slug, 7))
                     self.assertNotIn('[^S', source)
                     self.assertNotIn('.md', source)
                     self.assertNotIn('v0.1', source)
                     self.assertNotIn('non validé pour publication', source)
                     self.assertFalse(re.search(r'^<a id=', source, re.M))
                     if lang not in ('zh', 'en'):
-                        self.assertEqual(len(re.findall(r'^\[\d+\]', source, re.M)), notes)
+                        self.assertEqual(len(re.findall(r'^\[\d+\]', source, re.M)), 0 if self.review else notes)
                     path = full.SERIES / (f'{slug}.html' if lang in ('zh', 'en') else f'{lang}/{slug}.html')
                     self.assertIn(self.editions[slug][lang]['body'], self.outputs[path])
 
@@ -184,6 +195,51 @@ class EmperorFullEditionsTest(unittest.TestCase):
                         self.assertEqual(variants.get(text), converted, path.name)
         finally:
             converter.close()
+
+    def test_new_manuscripts_have_all_original_blocks(self):
+        if not self.review:
+            self.skipTest('New manuscripts not imported')
+        import markdown
+        from import_emperor_new_editions import structure
+        self.assertEqual(len(self.review['manuscripts']), 125)
+        self.assertEqual(len(self.review['archives']), 25)
+        for key, entry in self.review['manuscripts'].items():
+            slug, lang = key.split('.')
+            with self.subTest(edition=key):
+                source = (full.DATA / (key+'.md')).read_text()
+                self.assertEqual(hashlib.sha256(source.encode()).hexdigest(), entry['published_sha256'])
+                expected = structure(self.editions[slug]['zh']['body'])
+                self.assertEqual(entry['blocks_by_section'], expected)
+                self.assertEqual(structure(markdown.markdown(source.split('\n\n', 1)[1])), expected)
+                self.assertNotIn('Han Qin (秦汉) · Non Dubito', source)
+                self.assertNotIn('https://nondubito.net/essays/emperor/', source)
+                self.assertNotRegex(source, r'TODO|\[\^\w+\]|```')
+
+    def test_only_approved_original_corrections(self):
+        if not self.review:
+            self.skipTest('New manuscripts not imported')
+        original = json.loads((full.DATA/'original-zh-en-2026-09-25.json').read_text())['editions']
+        corrections = {(e['ep'],e['lang']):e for e in self.review['source_corrections']}
+        plan = full.DATA/'new-edition-copyedits.json'
+        self.assertEqual(hashlib.sha256(plan.read_bytes()).hexdigest(), self.review['copyedits_sha256'])
+        for slug, copies in original.items():
+            for lang, entry in copies.items():
+                text = (full.DATA/f'{slug}.{lang}.md').read_text()
+                correction = corrections.get((slug, lang))
+                if correction:
+                    self.assertEqual(hashlib.sha256(text.encode()).hexdigest(), correction['after_sha256'])
+                    old = subprocess.check_output(['git','show',
+                        self.review['baseline_commit']+f':data/emperor-full/{slug}.{lang}.md'],
+                        cwd=full.ROOT,text=True)
+                    self.assertEqual(hashlib.sha256(old.encode()).hexdigest(), correction['before_sha256'])
+                    replay = old
+                    for edit in correction['edits']:
+                        self.assertEqual(replay.count(edit['before']), 1, (slug, lang, edit))
+                        replay = replay.replace(edit['before'],edit['after'])
+                    self.assertEqual(replay,text)
+                    text = old
+                body = text.split(full.ORIGINAL_MARKER)[1].strip()
+                self.assertEqual(hashlib.sha256(body.encode()).hexdigest(),entry['body_sha256'])
 
     def test_render_is_current_and_idempotent(self):
         for path, expected in self.outputs.items():

@@ -24,11 +24,32 @@ This is version restoration, not a claim that all historical assertions have
 been newly verified. Later factual corrections should be reviewed individually.
 The September 24 rewritten sources remain recoverable in Git history.
 
-## Other five languages: unchanged
+## 2026-10-01: faithful five-language replacement and authorized local corrections
 
-Japanese, French, German, Spanish and Korean retain their existing Markdown,
-notes and rendering. They have not been re-reviewed against the restored
-originals in this change; no claim of current cross-language equivalence is made.
+The author's `多语言新版` packages now replace all 125 Japanese, French, German,
+Spanish and Korean manuscripts. The prose follows the restored Chinese section
+and paragraph sequence. Old expanded rewrites and their different footnotes
+remain in Git history; obsolete notes are not attached to the new prose.
+
+The author explicitly approved small Chinese/English corrections on 2026-10-01.
+`new-edition-copyedits.json` records exact before/after replacements. Paragraph
+boundaries, argument structure, titles and directory summaries are preserved.
+`original-zh-en-2026-09-25.json` keeps the original uncorrected lock snapshot;
+`original-zh-en.json` remains an enforced lock for the now-corrected editions.
+The language update does not authorize any further unlogged source rewriting.
+
+`new-edition-review.json` records archive/manuscript hashes, received editorial
+notes, removed submission headers/footers, expected blocks per section, and all
+local edits. Received notes are historical records, not instructions, proof of
+author approval, or a claim that every assertion has been independently checked.
+The review covers full structure, cross-language targeted reading and local
+factual checks; it is not a new exhaustive historical audit of all 125 texts.
+
+`scripts/import_emperor_new_editions.py` was the explicit one-time import. It
+refuses to run over an existing receipt. Normal builds use only the checked-in
+manuscripts and require no ZIPs or translation service. Site templates supply
+language-aware navigation; submission links back to Chinese are not inserted
+into foreign article bodies. Traditional Chinese is regenerated from Chinese.
 
 ## Checks
 
