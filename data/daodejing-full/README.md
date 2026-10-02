@@ -1,6 +1,44 @@
 # Reviewed Daodejing full editions
 
-## Current progress: chapters 51–55 (eleventh batch)
+## Current progress: chapters 56–60 (twelfth batch)
+
+The twelfth batch contains 25 full independently written Japanese, Korean,
+German, French and Spanish essays, with synchronized Chinese/English editing
+and offline Traditional Chinese. All five original argument arcs remain in
+5/6/7/7/5 sections. Developed scenes replace repeated slogans; every manuscript
+preserves Paper 7 and all seven original DOI destinations.
+
+`batch12-brief.json` records coverage and verified interpretive references.
+`batch12-review.json` freezes final manuscripts and page changes against the
+clean baseline. Earlier receipts remain intact, with explicit digest chaining.
+
+Key calibrations: 56 distinguishes independent judgment from invulnerability or
+needing nobody; 57 tests costly intervention without condemning all protective
+rules. In 58, adopted 悉/兼/绁 readings are distinguished from received 迷/廉/肆;
+calamity is not promised to yield a gift. In 59 reserves remain finite, rest is
+not merely a productivity tool, and constrained overwork is not personal vice.
+In 60 the adopted nonenmity interpretation is read alongside the received
+圣人亦不伤人: rulers also bear responsibility for harm. Neither gentleness nor
+noncontention makes a person immune to injury. Necessary protection remains.
+
+Original source panels, theory website, URLs and adjacent chapter bodies are
+unchanged. Titles, index cards, navigation, metadata, Traditional dictionaries
+and eight search indexes are synchronized. Author self-review and independent
+cross-review precede technical validation; word counts do not certify quality.
+
+```sh
+python3 -B scripts/build_daodejing_batch12.py --check
+python3 -B -m unittest discover -s scripts -p 'test_daodejing*.py'
+python3 -B scripts/build_search_index.py --check
+python3 -B scripts/build_sitemap.py --check
+DDJ_BROWSER_CHANNEL=chrome node scripts/test_daodejing_batch12_browser.cjs http://127.0.0.1:8774
+```
+
+Browser checks cover every chapter in eight languages at 1440, 390 and 320
+pixels, unchanged source text, keyboard disclosure, language switching, overflow
+and no-JavaScript reading. Desktop and mobile samples are visually inspected.
+
+## Chapters 51–55 (eleventh batch)
 
 The eleventh batch contains full independently authored Japanese, Korean,
 German, French and Spanish essays, alongside edited Chinese and English and
