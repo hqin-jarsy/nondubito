@@ -1,6 +1,50 @@
 # Reviewed Daodejing full editions
 
-## Current progress: chapters 46–50 (tenth batch)
+## Current progress: chapters 51–55 (eleventh batch)
+
+The eleventh batch contains full independently authored Japanese, Korean,
+German, French and Spanish essays, alongside edited Chinese and English and
+offline Traditional Chinese. The original argument arcs remain in 7/8/7/8/7
+sections, with developed scenes and native prose rather than summary editions.
+The 35 authored manuscripts retain six DOI destinations for chapters 51–54 and
+seven for chapter 55, where the underlying commentary moves to Paper 7.
+
+`batch11-brief.json` records the common editorial brief and sources consulted.
+`batch11-review.json` freezes only the final reviewed manuscripts and publication
+changes against the clean baseline commit. Existing receipts are not resealed;
+the digest chain explicitly records later changes to indexes and navigation.
+
+Key calibrations: nonownership in 51 preserves fair pay, credit, reciprocity and
+the giver's boundaries. Roots in 52 are not predictive formulas or lifelong
+immunity, and the warning about multiplying affairs is not irreversible fate.
+In 53 the polished court/neglected fields contrast supports the critique of
+entrusted power without the erroneous exclusive gloss of 除 as dereliction;
+wealth or low visible productivity alone is not theft. In 54 ethical continuity
+across scales requires appropriate institutions and knowledge, not a family
+model imposed on citizens or moral perfection before public participation.
+Chapter 55 keeps the grip, involuntary bodily response and crying examples but
+distinguishes poetic images and ancient concepts from biology; no immunity,
+unsafe lifting suggestion, medical guarantee or blame for illness/aging remains.
+
+Original classical panels, source-paper website and stable URLs are untouched.
+Local titles, indexes, neighbouring navigation, metadata, Traditional dictionaries
+and all eight search-language records are synchronized. Authors self-review;
+independent cross-review checks meaning, language and missing examples before
+technical verification. Tests do not substitute for editorial reading.
+
+```sh
+python3 -B scripts/build_daodejing_batch11.py --check
+python3 -B -m unittest discover -s scripts -p 'test_daodejing*.py'
+python3 -B scripts/build_search_index.py --check
+python3 -B scripts/build_sitemap.py --check
+DDJ_BROWSER_CHANNEL=chrome node scripts/test_daodejing_batch11_browser.cjs http://127.0.0.1:8774
+```
+
+The browser check covers every chapter in eight languages at 1440, 390 and 320
+pixels, source-text preservation, keyboard access, language switching, overflow
+and static reading without JavaScript.
+
+## Chapters 46–50 (tenth batch)
 
 The tenth batch continues direct, full-length independent writing in Japanese,
 Korean, German, French and Spanish. Chinese and English were edited alongside
