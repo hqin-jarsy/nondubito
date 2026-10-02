@@ -14,8 +14,12 @@ def _after_batch(data, path, approved_digest, batch):
     return edit['after_sha256']
 
 
+def after_batch09(data, path, approved_digest):
+    return _after_batch(data, path, approved_digest, 'batch09')
+
+
 def after_batch08(data, path, approved_digest):
-    return _after_batch(data, path, approved_digest, 'batch08')
+    return after_batch09(data, path, _after_batch(data, path, approved_digest, 'batch08'))
 
 
 def after_batch07(data, path, approved_digest):

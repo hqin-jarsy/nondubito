@@ -1,5 +1,45 @@
 # Reviewed Daodejing full editions
 
+## Current progress: chapters 41–45 (ninth batch)
+
+`batch09-review.json` freezes 25 locally authored full editions in Japanese,
+Korean, German, French and Spanish, plus the corrected Chinese and English
+editions. Unlike batches 1–8, this batch has no incoming translation ZIP:
+the five languages were independently written here against the full Chinese
+essays. The baseline Git commit preserves every previous page.
+
+All original section counts remain (8/8/6/8/8), as do the principal arguments,
+examples, three extended applications in chapter 43, and chapter 45's closing
+review of chapters 37–45. Independent wording and paragraph counts differ by
+language; these are full essays, not shorter summary tiers.
+
+Editorial changes are shared across languages: adopted textual readings are
+distinguished from manuscript transcription, immutable reader classes and
+invented 强梁 etymology are removed, 金人铭 is not attributed to 周公训伯禽,
+and the received chapter 43 also retains 知. Water is a bounded analogy, not a
+proof that gentleness penetrates anything. Contentment does not make a person
+immune to mistreatment; noncoercion still allows protection, boundaries and
+exit. Maturity, finishing work and responsible institutions remain legitimate.
+The source-paper website and all classical source panels are unchanged.
+
+The builder renders only the frozen manuscripts, synchronizes localized titles
+in indexes and immediate-neighbour navigation, and regenerates the offline
+Traditional Chinese dictionaries. Previous receipts remain linked through
+explicit before/after hashes, without resealing their manuscripts.
+
+```sh
+python3 -B scripts/build_daodejing_batch09.py --check
+python3 -B -m unittest discover -s scripts -p 'test_daodejing*.py'
+python3 -B scripts/build_search_index.py --check
+DDJ_BROWSER_CHANNEL=chrome node scripts/test_daodejing_batch09_browser.cjs http://127.0.0.1:8774
+```
+
+The browser test covers every chapter and all eight reading languages at 1440,
+390 and 320 pixels, unchanged classical passages, keyboard-accessible source
+notes, language switching, overflow and reading without JavaScript.
+
+## Initial chapter
+
 Chapter 1 was the first chapter opted in. Its five manuscripts come from
 `daodejing-ch01-translations.zip` in the author's multilingual flagship archive.
 Simplified Chinese, Traditional Chinese and English are unchanged.
