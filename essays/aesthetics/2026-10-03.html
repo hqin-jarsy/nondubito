@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh" data-lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>平坦的地方也有话说 — Non Dubito</title>
+  <meta name="description" content="2026 年四色定理的新证明：不是一处可约，而是线性多处可约且互不相碰；平坦的区域也有话说。">
+  <meta name="author" content="Han Qin (秦汉)">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="canonical" href="https://nondubito.net/essays/aesthetics/2026-10-03.html">
+  <style>
+    .back-link { display:block; font-family:var(--sans); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none; margin-bottom:1.5rem; }
+    .back-link:hover { color:var(--ink); }
+    .essay-series { font-family:var(--sans); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+    .essay-footer-note { font-size:0.9rem; color:var(--ink-muted); margin-top:2rem; }
+    .aesthetics-date { font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:0.4rem; }
+    .project-link { display:inline-block; margin-top:1.5rem; font-family:var(--sans); font-size:0.78rem; letter-spacing:0.06em; color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--cream-border); padding-bottom:2px; }
+    .project-link:hover { color:var(--ink); border-color:var(--ink-muted); }
+    .aesthetics-img { width:100%; max-width:600px; margin:1.5rem 0; border-radius:4px; display:block; }
+    [data-lang="en"] .lang-zh { display:none; }
+    [data-lang="zh"] .lang-en { display:none; }
+  </style>
+  <script>(function() { var saved = localStorage.getItem('nd_lang') || 'zh'; document.documentElement.setAttribute('data-lang', saved); })();</script>
+</head>
+<body>
+  <main class="essay-main">
+    <article>
+      <header class="essay-header">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="zh">中文</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link lang-zh">← 判断力与美学</a>
+        <a href="index.html" class="back-link lang-en">← Judgment &amp; Aesthetics</a>
+        <div class="essay-titles">
+          <div class="essay-series lang-zh">SAE 判断力与美学 · 数学之美 · 缺口之形</div>
+          <div class="essay-series lang-en">SAE Judgment &amp; Aesthetics · Beauty of Mathematics · The Shape of a Gap</div>
+          <div class="aesthetics-date">2026-10-03</div>
+          <h1 class="lang-zh">平坦的地方也有话说</h1>
+          <h1 class="lang-en">The Flat Places Had Something to Say</h1>
+        </div>
+        <div class="essay-meta"><span class="author">Han Qin (秦汉)</span></div>
+      </header>
+
+      <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
+        <p>这是一篇 2026 年 3 月提交到 arXiv 的论文（2603.24880，5 月修订），作者是 Yuta Inoue、Ken-ichi Kawarabayashi、Atsuyuki Miyashita、Bojan Mohar、Carsten Thomassen 和 Mikkel Thorup，题目是《具有线性多个可约构形的四色定理与近线性时间着色》。四色定理说，平面上任何地图都可以用四种颜色涂好，相邻的区域不同色。1976 年的第一个证明和后来 Robertson、Sanders、Seymour、Thomas 的简化证明都靠计算机检查一批“可约构形”，而且每一步只处理一个：找到一处可约的局部结构，把它缩掉，把剩下的小图涂好，再把那一处补回去。照这个办法给 n 个顶点的平面图涂色，需要 n² 量级的步骤。新论文证明：每个平面三角剖分里，都含有线性多个两两不相接的可约构形；因此每一轮可以同时缩掉一个常数比例，总共 O(n log n) 步。据 Quanta 报道（2026 年 9 月 10 日，Gregory Barber），他们用到的不可避免集有 8,202 个构形。</p>
+        <p>新的东西出在“看哪里”。经典的放电法（discharging）给每个顶点分配组合曲率：度数小于 6 的顶点曲率为正，度数恰好为 6 的地方曲率为零，也就是三角格点那样的“平坦”区域。早先的证明只盯着正曲率的地方，也就是顶点连接很少的那些簇，因为那里一定存在可约的东西，而且一次只能指出一处。这篇论文说：平坦的区域同样有可约构形，而且比前者常见得多、分布得广得多；把两处都收进来，就能保证总有许多个互不接触的可约构形，各自缩掉时不会改变彼此的着色。摘要里的原话是：每个平面三角剖分含有“线性多个两两不接触的可约构形”，而且“所有构形都是 D-可约的”。</p>
+        <p>这是第三条光线，数学之美，显现的是它的“缺口之形”那一面，同时带着一点生成的张力。一个判断者在这里不能不承认的，是一个结构上的转向：同一批对象，原先的证明把唯一的“可约处”当作必须去找的东西，新证明看到的是，只要把此前没人认真看的零曲率区域也算作对象，“可缩之处”就不是一处，而是处处都有，并且彼此不相干。这条理由写在构形的不接触性里，摆在眼前，不需要相信计算机说了什么。它不是“更快”这么简单：n² 变成 n log n 是后果，不是美本身；它也不是“又一次确认了定理是对的”，因为定理早就是对的。它的美在于：一个已经被证明的东西，被重新看清了它为什么可以这样被拆开。这是凿与构的同一个事件：凿的是“一次只缩一处”这个未被质疑的前提，构的是线性多处并行。</p>
+        <p>它留下的余项，作者自己没有回避，Quanta 引了 Thomassen 的话：“我想要的是一个不用计算机的证明，我永远不会停止想这件事。”这个证明仍然靠计算机去验证那些构形的可约性。也就是说，“为什么四种颜色够用”仍然没有一个能整个摆在人面前的理由；新证明让这个缺口变得更精确了：它告诉我们，缺的那一块不是更多的构形，而是另一种看法。这是一个方向，不是缺陷，也不能拿这件事去给任何一个证明排名。</p>
+        <p>现在值得看，是因为这个证明要到 11 月才在 FOCS 上宣讲，评价还没有定型。能看到的东西很具体：一个人们以为只有一种办法看的结构，在一个原先被当作“什么都没有”的平坦地方，有了话说。</p>
+        <a href="https://arxiv.org/abs/2603.24880" target="_blank" rel="noopener" class="project-link">Inoue et al., arXiv:2603.24880 ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE 判断力与美学 · <a href="https://self-as-an-end.net/papers/sae-aesthetics-ray-3.html">Ray 3</a></em></p>
+      </div>
+
+      <div class="essay-body lang-en">
+        <p>This is a paper posted to arXiv in March 2026 (2603.24880, revised in May) by Yuta Inoue, Ken-ichi Kawarabayashi, Atsuyuki Miyashita, Bojan Mohar, Carsten Thomassen and Mikkel Thorup, titled “The Four Color Theorem with Linearly Many Reducible Configurations and Near-Linear Time Coloring.” The four color theorem says every map in the plane can be colored with four colors so that neighbouring regions differ. The first proof (1976) and the later simplified proof by Robertson, Sanders, Seymour and Thomas both rely on a computer checking a list of “reducible configurations”, and both work one at a time: find one reducible local structure, shrink it away, color the smaller graph, then put the piece back. Coloring a planar graph with n vertices that way takes on the order of n² steps. The new paper proves that every planar triangulation contains linearly many pairwise non-touching reducible configurations, so a constant fraction can be shrunk in each round, for O(n log n) steps in all. According to Quanta (10 September 2026, Gregory Barber), the unavoidable set they use has 8,202 configurations.</p>
+        <p>What is new is where they look. The classical discharging method assigns each vertex a combinatorial curvature: a vertex of degree below 6 has positive curvature, and a vertex of degree exactly 6 has zero curvature, the “flat” region of a triangular lattice. Earlier proofs looked at the positively curved places, the clusters of vertices with few neighbours, because a reducible configuration is guaranteed to be there and it can be pointed to one at a time. This paper says the flat regions also contain reducible configurations, far more common and far more widespread; once both kinds are counted, there are always many reducible configurations that do not touch, and shrinking one never disturbs the coloring of another. In the abstract’s words: every planar triangulation contains “linearly many pairwise non-touching reducible configurations”, and “all configurations are D-reducible.”</p>
+        <p>This is the third ray, the Beauty of Mathematics, in the face of the shape of a gap, with some of the tension of the generative face. What a judge cannot not acknowledge here is a structural turn: the same objects, but where the old proofs treated the one reducible place as something to be found, the new proof sees that once the zero-curvature regions nobody had weighed are counted as objects too, the place that can be reduced is not one place but everywhere, and the places do not interfere with one another. The reason is written into the non-touching of the configurations and sits in front of you; you do not have to believe what a computer reports. It is not merely “faster”: n² becoming n log n is a consequence, not the beauty. It is not another confirmation that the theorem is true, since it was already true. The beauty is that something already proved is seen again, and you can see why it can be taken apart this way. It is chisel and construct as one event: the chisel is the unquestioned premise “reduce one place at a time”, the construct is linearly many places in parallel.</p>
+        <p>Its remainder is not hidden. Quanta quotes Thomassen: “What I would like is a proof without the use of a computer. And I will never stop thinking about that.” This proof still relies on a computer to verify that the configurations are reducible. So “why four colors suffice” still has no reason that can be laid whole before a person; the new proof makes the gap more exact: what is missing is not more configurations but another way of seeing. That is a direction, not a defect, and nothing here ranks one proof above another.</p>
+        <p>It is worth looking now because the proof will only be presented at FOCS in November, and its standing has not settled. What can be seen is concrete: in a structure everyone thought had one way of being looked at, a flat place that had been taken for “nothing there” has something to say.</p>
+        <a href="https://arxiv.org/abs/2603.24880" target="_blank" rel="noopener" class="project-link">Inoue et al., arXiv:2603.24880 ↗</a>
+        <p class="essay-footer-note"><em>Han Qin (秦汉) · @hqinjarsy · SAE Judgment &amp; Aesthetics · <a href="https://self-as-an-end.net/papers/sae-aesthetics-ray-3.html">Ray 3</a></em></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('nd_lang') || 'zh';
+      document.documentElement.setAttribute('data-lang', saved);
+      document.addEventListener('DOMContentLoaded', function() {
+        var btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var lang = this.getAttribute('data-lang');
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('nd_lang', lang);
+          });
+        });
+        function updateActive() {
+          var cur = document.documentElement.getAttribute('data-lang');
+          document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-lang') === cur);
+          });
+        }
+        updateActive();
+        document.addEventListener('click', function(e) { if (e.target.classList.contains('lang-btn')) updateActive(); });
+      });
+    })();
+  </script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script>
+</body>
+</html>
