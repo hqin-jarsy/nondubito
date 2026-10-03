@@ -28,7 +28,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -60,6 +62,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -83,22 +110,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep15.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep15.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep15.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep15.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep15.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep15.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep15.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep15.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep15.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep15.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -116,21 +145,21 @@
 
 <h3>一、长出一副新的身体</h3>
 
-<p>上一篇结尾说过，这套构终于要开始笨拙却也认真地，去长出治理经济权力所需的那副身体。而西奥多·罗斯福这几年真正的意义，正在于这副身体是怎样长出来的。</p>
+<p>第十三篇结尾说过，这套构终于要开始笨拙却也认真地，去长出治理经济权力所需的那副身体。而西奥多·罗斯福这几年真正的意义，正在于这副身体是怎样长出来的。</p>
 
 <p>要抓住这一段的结构，先得纠正一个印象。罗斯福最重要的，不是他单独发明了现代国家，而是他把此前已经累积的制度压力，集中地转译成了联邦的行政行动。工业资本主义造成的经济集中，劳资的冲突，跨州公司难以由州政府单独约束，消费者保护的立法缺口，以及资源掠夺的速度超过既有法制的承载力，这些压力早已存在，而罗斯福做的，是把它们一起交给了联邦的行政，尤其是总统去处理。现代研究普遍把他视作把总统这个职位，从一个相对被动的执行者，推进为国家政治中心的人物，甚至直接称他为第一位现代总统。</p>
 
 <p>这里要点破一个贯穿全篇的判断。监管国家的兴起，与总统权力的扩张，并不是两条并行的线，而是同一个制度回应的两种表现形式。当国会因为委员会化，分散化而反应迟缓时，是总统，抓住了那个能迅速行动的位置，把自己塑造成了那个在公共利益受到威胁时可以主动出手的制度节点。所以这一篇要追的，是这套构如何通过行政权的扩张，去长出它治理经济权力所需的身体，以及这个过程，从一开始就带着的那种双重性。</p>
 
-<p>这里用长出身体这个说法，不只是一个比喻。这套构原有的那套制衡机制，三权分立，联邦制，是为了对付政治权力而设计的一副骨架，可它面对经济权力时，这副骨架上却缺了对应的器官。它没有一个能持续地调查企业，监督运价，检验食品，仲裁劳资的常设机构，也没有一套能让总统在危机中迅速行动的权力语言。罗斯福这几年做的，正是在这副旧骨架上，一个器官一个器官地把这些缺失的部分补上，补上监管的机构，补上行政的能力，补上总统主动的资格。这副新长出的身体，此后会不断地生长，增厚，一直长成后来那个庞大的联邦行政国家。而它最初的雏形，就成形于罗斯福的这几年。</p>
+<p>这里用长出身体这个说法，不只是一个比喻。这套构原有的那套制衡机制，三权分立，联邦制，是为了对付政治权力而设计的一副骨架，可它面对经济权力时，这副骨架上却缺了对应的器官。它已有1887年成立的州际商业委员会等监管基础，却还缺少把企业调查，运价监督，食品检验与劳资调停衔接起来的持续治理能力，也没有一套能让总统在危机中迅速行动的权力语言。罗斯福这几年做的，正是在这副旧骨架上，在已有机构之上，一个器官一个器官地扩展，整合并补上这些缺失的部分，补上监管的机构，补上行政的能力，补上总统主动的资格。这副新长出的身体，此后会不断地生长，增厚，一直长成后来那个庞大的联邦行政国家。而已有的雏形，在罗斯福这几年变得更成体系。</p>
 
-<p>还要先记住一件事，罗斯福的上台方式本身就意味深长。1901年9月14日麦金利遇刺后，他以四十二岁之龄继任，是当时美国史上最年轻的总统，而且他并不是被直接选为总统的，而是由副总统的位置意外进入白宫。他之所以被推上副总统，恰恰是因为党内的老板想把他从纽约州长的位置上挪开，而副总统在当时被普遍视为一个政治的边缘岗位。这种本欲边缘化，结果反成中枢的路径，让罗斯福的上台，尤其适合用来观察这套构如何在一场继承性的危机里，突然改变了它的权力重心。</p>
+<p>还要先记住一件事，罗斯福的上台方式本身就意味深长。1901年9月6日麦金利遇刺，9月14日去世后，他以四十二岁之龄继任，是当时美国史上最年轻的总统，而且他并不是被直接选为总统的，而是由副总统的位置意外进入白宫。他之所以被推上副总统，恰恰是因为党内的老板想把他从纽约州长的位置上挪开，而副总统在当时被普遍视为一个政治的边缘岗位。这种本欲边缘化，结果反成中枢的路径，让罗斯福的上台，尤其适合用来观察这套构如何在一场继承性的危机里，突然改变了它的权力重心。</p>
 
 <h3>二、管家理论与宪法争议</h3>
 
 <p>罗斯福后来在自传里，给出了对自己最清晰的概括。他写道，总统应该是人民的管家，并且总统有权，也有义务，去做国家所需要的一切事，除非宪法或法律明确地加以禁止。他拒绝接受那种除非能找到明确的授权，否则总统就不能行动的看法，而他的信念是，总统只要未被明禁，且确属国家需要，就应当行动。</p>
 
-<p>罗斯福还明确地把这种理解，与另一种总统观对立起来。他把自己的立场归入杰克逊与林肯的学派，而把布坎南以及后来塔夫脱的立场，归入一种狭义法律主义的总统观。后者认为，总统只有在宪法明确授予时才能行动，而前者则认为，总统只要没有被明确禁止，且确属国家需要，就可以行动。换句话说，罗斯福并不是简单地主张总统很强，而是在重新定义总统与人民，总统与国会之间的关系，总统首先对人民负责，而不是首先作为国会的被动代理人。</p>
+<p>罗斯福还明确地把这种理解，与另一种总统观对立起来。他把自己的立场归入杰克逊与林肯的学派，而把布坎南以及后来塔夫脱的立场，归入一种狭义法律主义的总统观。以塔夫脱的表述来说，总统的行动必须能依据宪法或法律的授权，包括从中合理推导出的必要权力，不能仅凭国家需要就自行取得权限，而前者则认为，总统只要没有被明确禁止，且确属国家需要，就可以行动。换句话说，罗斯福并不是简单地主张总统很强，而是在重新定义总统与人民，总统与国会之间的关系，总统首先对人民负责，而不是首先作为国会的被动代理人。</p>
 
 <p>从宪法的角度看，这套管家理论，从它诞生的那一刻起，就带着一种双重性，而这种双重性，恰恰是这一篇的核心。一方面，它为联邦在面对跨州的资本，全国性的劳资危机，公共卫生的风险时，提供了行动的基础。没有这种解释，总统在许多关键的地方，就只能干等着国会缓慢地反应。但另一方面，一种批评也从一开始就存在，如果行政权只受明确禁止的限制，而不是受明确授权的限制，那么总统权力的边界，就会更多地依赖政治的判断，而不是文本的边界，这就容易为未来更危险的扩张打开一道门。</p>
 
@@ -144,19 +173,19 @@
 
 <p>但必须把罗斯福实际的反垄断立场，与大众的记忆区分开来。1905年，他明确地说，我绝不敌视公司，并把立场概括为好托拉斯与坏托拉斯之分，罗斯福并不反对大，而是反对在他看来背离了公共利益，破坏了公平，或利用不正当手段扩张的那种大。也正因如此，托拉斯破除者这个声誉本身，就是史学争议的对象。较保守的总结会强调，罗斯福任内通常被统计为发起了四十四起反托拉斯诉讼，远多于多数前任，因此他确实重启了联邦的反垄断。而修正性的解释则强调，罗斯福从不主张普遍地拆散大企业，他更在意的，是确立国家有权监督大企业这个原则。</p>
 
-<p>看清这一点，对理解这套构的这次转变很重要。监督的原则，等于是这套构第一次宣布，那张经济的棋盘，也归它管。它未必要吃掉棋盘上的每一个大子，但它要确立自己有权坐到这张棋盘边上，去当那个裁判。好托拉斯与坏托拉斯之分，正是这种裁判姿态的体现，它不问大小，只问那个大，是不是服从了它所定义的公共利益。</p>
+<p>看清这一点，对理解这套构的这次转变很重要。监督的原则，等于是这套构更明确，更有力地宣布，那张经济的棋盘，也归它管。它未必要吃掉棋盘上的每一个大子，但它要确立自己有权坐到这张棋盘边上，去当那个裁判。好托拉斯与坏托拉斯之分，正是这种裁判姿态的体现，它不问大小，只问那个大，是不是服从了它所定义的公共利益。</p>
 
 <p>从监管国家的角度看，罗斯福真正的关键，不是某一起诉讼，而是把联邦常设的监管工具，嵌入了行政的体系。1903年成立的商务与劳工部及其下属的公司局，就是典型的例子。随后1906年的赫本法，又显著地强化了州际商业委员会，对铁路运价和财务监督的联邦权力明显扩大。把这一段放回框架，这正是这套构那副新身体开始生长的具体形态，它长出的，是一种前所未有的自我理解，国家不再只是政治权力的分配者，而开始成为一个代表公共利益，去监督经济权力的仲裁者。</p>
 
 <h3>四、煤矿罢工与劳资调停</h3>
 
-<p>1902年的无烟煤大罢工，是这一篇最重要的节点之一。约十四万七千名矿工于5月12日罢工，进入夏秋之后，冬季取暖的危机逼近，公众的压力急速上升。这里最适合与上一篇里的普尔曼罢工对照。普尔曼所显示的，是联邦以邮政与州际商业的名义，对罢工实行镇压，实际上站到了资本的一边。而罗斯福在1902年，首先把公共利益，明确地置于劳资双方之上。</p>
+<p>1902年的无烟煤大罢工，是这一篇最重要的节点之一。约十四万七千名矿工于5月12日罢工，进入夏秋之后，冬季取暖的危机逼近，公众的压力急速上升。这里最适合与第十三篇里的普尔曼罢工对照。普尔曼所显示的，是联邦以邮政与州际商业的名义，对罢工实行镇压，实际上站到了资本的一边。而罗斯福在1902年，首先把公共利益，明确地置于劳资双方之上。</p>
 
 <p>他并不是亲劳工意义上的站队者，而是试图迫使双方进入一个由联邦定义的仲裁程序。经由摩根的介入，促成资方接受了仲裁。最终的结果说明，这不是工人的全面胜利，而是联邦主导下的一次折中。委员会给予了多数矿工百分之十的加薪，把工作日从十小时降为九小时，但资方并未正式承认矿工的工会。不过，把这场危机放回制度史，它真正的意义在于，它在长期中，建立了联邦政府在劳资争端中的一种新角色。</p>
 
 <p>罗斯福自己在1906年进一步概括了这类争端的公共逻辑，他说，在大规模的公司与劳工组织并存的时代里，雇主和雇员，都不应被完全置于争端中更强一方的摆布之下，许多争端，应当由代表国家的，无偏见的机构去调查与调停，因为公众本身，也有着不可忽视的利益。这个表述非常重要，因为它把1902年的经验，上升成了一条制度的原则，国家不再只是单纯地保护合同的自由，而是把社会中那个第三方，公众，正式写进了处理劳资争端的框架。</p>
 
-<p>把这一段放回框架，它是这套构开始吸纳工人这个余项的一个清晰信号。上一篇里，那个被经济权力挤压的工人余项，在普尔曼被联邦以维持秩序的名义镇压。而现在，同样是维持秩序，这套构却不再把秩序简单地等同于资方的胜利，而是试图把劳工的诉求，公众的供暖，行业的运行与联邦的仲裁，放进一个新的框架。这不是工人的胜利，工会连正式的承认都没有得到，但那个此前只能靠罢工和暴力去表达的余项，第一次有了一个被这套构正式接纳的，制度化的表达通道。</p>
+<p>把这一段放回框架，它是这套构开始吸纳工人这个余项的一个清晰信号。第十三篇里，那个被经济权力挤压的工人余项，在普尔曼被联邦以维持秩序的名义镇压。而现在，同样是维持秩序，这套构却不再把秩序简单地等同于资方的胜利，而是试图把劳工的诉求，公众的供暖，行业的运行与联邦的仲裁，放进一个新的框架。这不是工人的胜利，工会连正式的承认都没有得到，但那个此前只能靠罢工和暴力去表达的余项，有了一个更清楚地被这套构接纳的，制度化的表达通道。</p>
 
 <h3>五、消费者保护，铁路监管，资源保护</h3>
 
@@ -178,7 +207,7 @@
 
 <p>如果只写罗斯福的监管，保育与反垄断，而不写种族问题，这一时期就会被误写成一个制度开始普遍吸纳社会余项的线性进步故事，而事实并非如此。1901年10月16日，罗斯福邀请布克·华盛顿到白宫共进晚餐。这场晚餐在次日公布宾客名单之后，引发了全国的轰动，南方，但不止南方的舆论，猛烈地抨击了它。这件事之所以震撼，恰恰在于它既显示了白宫作为国家象征的力量，也暴露了当时全国范围内的种族主义。</p>
 
-<p>但这并不意味着罗斯福在种族问题上，是一个持续推进平等的人物。在1906年的布朗斯维尔事件中，白人的居民把一起枪击，归咎于附近驻扎的一支非裔步兵团。即便士兵们都坚持无罪，白人的士官也作证说许多人当时都在营房内，罗斯福仍然下令，把一百六十七人整团以不名誉的方式退伍，而且没有举行军事审判。这一处置，后世普遍把它看作罗斯福任内最严重的错误之一，直到1970年代复查之后，国会与军方才纠正了这个结论。</p>
+<p>但这并不意味着罗斯福在种族问题上，是一个持续推进平等的人物。在1906年的布朗斯维尔事件中，白人的居民把一起枪击，归咎于附近驻扎的一支非裔步兵团。即便士兵们都坚持无罪，白人的军官也作证说许多人当时都在营房内，罗斯福仍然下令，把第二十五步兵团三个连的一百六十七名士兵集体以“无荣誉”（without honor）的方式退伍，而且没有举行军事审判；这与军法审判后的“不名誉退伍”并非同一种处分。这一处置，后世普遍把它看作罗斯福任内最严重的错误之一，直到1970年代复查之后，国会与军方才纠正了这个结论。</p>
 
 <p>这一反差，恰恰照亮了这个系列一个极重要的判断。进步时代确实在吸纳工业资本主义，消费者安全，公共资源和部分的劳工争端，但在种族的平等上，这种吸纳不但极其有限，而且经常是倒退的。更值得注意的是，进步派的内部，常常把秩序置于种族平等之上，有研究尤其指出，许多进步派之所以支持种族隔离，正因为他们更想去压制那些他们认为无法用别的方式控制的社会冲突。</p>
 
@@ -194,7 +223,7 @@
 
 <p>把西奥多·罗斯福这几年放回这个系列，最值得记住的，是那个贯穿全篇的判断，这套构开始为治理经济权力，长出一副新的身体，而这副身体，是从行政这一端长出来的。</p>
 
-<p>上一篇留下的那个难题，这套构该如何对付那种未被设计过的经济权力，在这几年得到了第一个像样的回答。它没有，也无法，靠那套为政治冲突打造的旧工具去应对，而是开始长出一套全新的东西，常设的监管机构，持续的行政能力，以及一种代表公共利益去监督经济权力的自我理解。反垄断的诉讼，劳资的联邦仲裁，食品药品的监管，铁路运价的审查，资源的保育，这些看似分散的行动，其实是同一件事的不同侧面，都是这套构在把工业社会的一个个矛盾，转化为联邦持续治理的对象。而所有这一切，都高度依赖行政权的扩张，依赖那套管家理论所提供的，总统可以主动行动的语言。监管国家的兴起与总统权力的扩张，正是同一个回应的两面。</p>
+<p>前文留下的那个难题，这套构该如何对付那种未被设计过的经济权力，在这几年得到了第一个像样的回答。它没有，也无法，靠那套为政治冲突打造的旧工具去应对，而是在既有基础上扩展，整合出更成体系的东西，常设的监管机构，持续的行政能力，以及一种代表公共利益去监督经济权力的自我理解。反垄断的诉讼，劳资的联邦仲裁，食品药品的监管，铁路运价的审查，资源的保育，这些看似分散的行动，其实是同一件事的不同侧面，都是这套构在把工业社会的一个个矛盾，转化为联邦持续治理的对象。而所有这一切，都高度依赖行政权的扩张，依赖那套管家理论所提供的，总统可以主动行动的语言。监管国家的兴起与总统权力的扩张，正是同一个回应的两面。</p>
 
 <p>但这个回应，从一开始就带着两重必须同时握住的限度。第一重是它的双重性。管家理论既是吸纳经济余项所必需的工具，又是一个极具先例效应的扩权论证。这套构为了对付眼前的余项而扩张的行政权，也在为日后那种可能挣脱约束的行政权，预先铺路。它解决了当下的治理赤字，却埋下了远期的隐患，这条线索，会在后面的篇章里一再回来。第二重是它的不均匀。这套构吸纳余项，从来不是整体的，普遍的，而是分轴的，层级化的。就在它沿着阶级这条轴长出监管身体的同一时期，它沿着种族这条轴却在倒退，把黑人压在了种族关系的最低点。进步时代的进步，因此是一种一条轴向前，另一条轴向后的，极不平衡的进步。</p>
 
@@ -206,17 +235,17 @@
 
 <h3>I. Growing a New Body</h3>
 
-<p>The previous essay left the construct facing an unresolved problem: how to govern a kind of economic power that its constitutional architecture had not been designed to contain. The Roosevelt years are the story of the first credible answer — not complete, not balanced, but real. The construct began to grow the institutional body that economic governance required.</p>
+<p>Essay 13 left the construct facing an unresolved problem: how to govern a kind of economic power that its constitutional architecture had not been designed to contain. The Roosevelt years are the story of the first credible answer — not complete, not balanced, but real. Building on earlier foundations such as the Interstate Commerce Commission of 1887, the construct began to develop a more coordinated institutional body for economic governance.</p>
 
 <p>The key correction to make at the outset: Roosevelt did not invent the modern state. He translated into executive action the accumulated institutional pressures that had been building since the Gilded Age — economic concentration that crossed state lines, labor conflicts that produced casualties, consumer hazards that reached into every kitchen, resource depletion that outpaced any existing legal constraint. What Roosevelt added was the presidency as the translating mechanism. Modern historians call him the first modern president: the first to position the office, rather than Congress or the courts, as the active center of national governance.</p>
 
 <p>The regulatory state and presidential power are not two parallel developments here. They are two faces of the same institutional response. When Congress — fragmented into committees, pulled in multiple directions by competing interests — could not move quickly enough, the president moved. He became the point in the constitutional structure capable of rapid action in the public interest. This essay tracks how the construct grew that new governance body from the executive end, and the double nature of the growth: genuinely necessary, genuinely consequential, and carrying within it the seeds of problems that would surface much later.</p>
 
-<p>Roosevelt's path to the presidency is itself structurally revealing. He was forty-two when McKinley was shot on September 14, 1901 — the youngest president in American history at that point. He had not been chosen for the office; he had been elevated to the vice presidency precisely because Republican machine bosses wanted to remove him from the New York governorship, where his reform activity was inconvenient. The vice presidency was understood at the time as a political dead end. His arrival in the White House by assassination was, in other words, the construct's machinery producing an unintended outcome that abruptly shifted its center of gravity.</p>
+<p>Roosevelt's path to the presidency is itself structurally revealing. He was forty-two when McKinley died on September 14, 1901, after being shot on September 6 — the youngest president in American history at that point. He had not been chosen for the office; he had been elevated to the vice presidency precisely because Republican machine bosses wanted to remove him from the New York governorship, where his reform activity was inconvenient. The vice presidency was understood at the time as a political dead end. His arrival in the White House by assassination was, in other words, the construct's machinery producing an unintended outcome that abruptly shifted its center of gravity.</p>
 
 <h3>II. The Stewardship Theory and Constitutional Controversy</h3>
 
-<p>Roosevelt articulated his understanding of the presidency explicitly in his autobiography: the president is the steward of the people, possessing the right and duty to do whatever the needs of the nation demand, unless prohibited by the Constitution or by law. He distinguished this position — which he associated with Jackson and Lincoln — from what he called the Buchanan-Taft school: the view that a president can do nothing except what is expressly authorized. On the stewardship view, the absence of explicit prohibition, combined with a genuine national need, is sufficient authorization to act.</p>
+<p>Roosevelt articulated his understanding of the presidency explicitly in his autobiography: the president is the steward of the people, possessing the right and duty to do whatever the needs of the nation demand, unless prohibited by the Constitution or by law. He distinguished this position — which he associated with Jackson and Lincoln — from what he called the Buchanan-Taft school: a position Taft grounded in constitutional or statutory authorization, including powers reasonably implied by those grants, rather than national necessity alone. On the stewardship view, the absence of explicit prohibition, combined with a genuine national need, is sufficient authorization to act.</p>
 
 <p>The stewardship theory carries a double nature from the moment of its articulation, and that double nature is the structural heart of this essay. On one side, it solved a real governance problem. Without an expansive presidential mandate, the executive could not respond to the speed of industrial capitalism — could not deploy regulatory agencies, could not intervene in labor crises before the winter, could not order inspections of meatpacking plants while Congress deliberated. On the other side, a principle that makes "not prohibited and nationally necessary" sufficient authorization for executive action is a principle that depends heavily on the political judgment of whoever holds the office. It is not, ultimately, a textual limit. Future presidents — with different judgments about what the nation needs — would use the same logic to reach very different places.</p>
 
@@ -234,9 +263,9 @@
 
 <h3>IV. The Coal Strike and Labor Mediation</h3>
 
-<p>The anthracite coal strike of 1902 is the episode in this period that most clearly marks the shift in the construct's posture toward labor conflict. One hundred forty-seven thousand miners walked out in May; by autumn, with winter approaching and coal stocks depleting, the public pressure was acute. The previous essay described Pullman: federal intervention on the side of capital, justified by the rhetoric of postal and interstate commerce protection. Roosevelt's response to the coal strike was structurally different. He placed the public interest — specifically the public's need for heat — above both the operators and the union, and demanded that both submit to arbitration.</p>
+<p>The anthracite coal strike of 1902 is the episode in this period that most clearly marks the shift in the construct's posture toward labor conflict. One hundred forty-seven thousand miners walked out in May; by autumn, with winter approaching and coal stocks depleting, the public pressure was acute. Essay 13 described Pullman: federal intervention on the side of capital, justified by the rhetoric of postal and interstate commerce protection. Roosevelt's response to the coal strike was structurally different. He placed the public interest — specifically the public's need for heat — above both the operators and the union, and demanded that both submit to arbitration.</p>
 
-<p>The outcome was a federal compromise. An arbitration commission granted most miners a ten-percent wage increase and a nine-hour day, reduced from ten. It did not recognize the union. But the institutional meaning of the episode was larger than its specific terms: for the first time, the federal government had positioned itself not as the enforcer of order on capital's behalf but as a third party representing a public whose interests were distinct from both. Roosevelt himself articulated the general principle in 1906: in an era of large corporations and large unions, neither employers nor employees should be "left entirely at the mercy of the stronger party," and disputes of broad public concern should be investigated and mediated by "a disinterested body representing the State."</p>
+<p>The outcome was a federal compromise. An arbitration commission granted most miners a ten-percent wage increase and a nine-hour day, reduced from ten. It did not recognize the union. But the institutional meaning of the episode was larger than its specific terms: the federal government had more clearly positioned itself not as the enforcer of order on capital's behalf but as a third party representing a public whose interests were distinct from both. Roosevelt himself articulated the general principle in 1906: in an era of large corporations and large unions, neither employers nor employees should be "left entirely at the mercy of the stronger party," and disputes of broad public concern should be investigated and mediated by "a disinterested body representing the State."</p>
 
 <p>The difference from Pullman is the key. At Pullman, the state entered the labor conflict by defining the strike as a threat to federal services — and then restored the order capital required. In 1902, the state entered the labor conflict by asserting that public welfare was an independent interest, and insisted that both parties negotiate rather than that one party win. The union did not get formal recognition; the remainder was not fully absorbed. But the channel was opened: labor disputes could now be brought into the construct's institutional processes rather than simply suppressed by them. That channel, narrow as it was in 1902, would widen in subsequent decades.</p>
 
@@ -254,7 +283,7 @@
 
 <p>The Roosevelt Corollary extended the logic to the whole hemisphere. His 1904 annual message to Congress declared that "chronic wrongdoing" or "impotence" by Western Hemisphere nations might require the United States to exercise "an international police power." The Monroe Doctrine, originally a posture of defensive resistance to European re-colonization, was converted into an affirmative right of American intervention in Latin American affairs. Two defensible readings exist: the realist view that Roosevelt was responding to genuine instability and European debt-collection threats; the critical view that the Corollary transformed a defensive principle into an offensive imperial authorization. Both deserve to stand.</p>
 
-<p>The foreign-policy domain reveals the asymmetry in the stewardship theory's application. At home, executive expansion had to contend with courts, Congress, and organized interests that could slow or modify presidential action. Abroad, these constraints were thinner. The president as commander-in-chief, as sole foreign-policy representative, as treaty-maker, could move faster and further. The canal was accomplished before Congress could effectively object. This asymmetry — more constrained at home, less constrained abroad — is not incidental. It prefigures what later scholarship calls the imperial presidency: the progressive concentration of foreign-policy authority in the executive, insulated from the checks that applied domestically.</p>
+<p>The foreign-policy domain reveals the asymmetry in the stewardship theory's application. At home, executive expansion had to contend with courts, Congress, and organized interests that could slow or modify presidential action. Abroad, these constraints were thinner. The president as commander-in-chief, as sole foreign-policy representative, as treaty-maker, could move faster and further. Roosevelt sought to create a fait accompli in Panama before the political debate had run its course. This asymmetry — more constrained at home, less constrained abroad — is not incidental. It prefigures what later scholarship calls the imperial presidency: the progressive concentration of foreign-policy authority in the executive, insulated from the checks that applied domestically.</p>
 
 <h3>VII. The Racial Boundary and the Limits of Inclusion</h3>
 
@@ -262,19 +291,19 @@
 
 <p>Roosevelt's dinner with Booker T. Washington on October 16, 1901 — made public the next day — produced a national uproar. Southern newspapers were explicit; much Northern opinion was nearly as hostile. The dinner illustrated both the White House's symbolic power and the depth of the racial animus it had touched. Roosevelt knew what he was doing politically; he did it anyway. That matters. But it was a single gesture, not a program.</p>
 
-<p>The Brownsville affair of 1906 shows the other side. After a shooting incident in Brownsville, Texas, that local white residents blamed on Black soldiers of the 25th Infantry Regiment, Roosevelt discharged 167 men without trial — with a dishonorably-discharged designation — despite the soldiers' consistent denials of involvement and testimony from white officers that many were in barracks at the time. Modern review by Congress and the Army in the 1970s reversed the finding. By contemporary historical judgment, Brownsville was the worst single injustice of Roosevelt's presidency on racial grounds.</p>
+<p>The Brownsville affair of 1906 shows the other side. After a shooting incident in Brownsville, Texas, that local white residents blamed on Black soldiers of the 25th Infantry Regiment, Roosevelt discharged 167 men from three companies "without honor," without a court-martial — a different status from a court-martial's dishonorable discharge — despite the soldiers' consistent denials of involvement and testimony from white officers that many were in barracks at the time. Modern review by Congress and the Army in the 1970s reversed the finding. By contemporary historical judgment, Brownsville was the worst single injustice of Roosevelt's presidency on racial grounds.</p>
 
 <p>The juxtaposition is not incidental to the series' argument. It is the argument. The construct's progressive absorption of the class axis — regulatory oversight of corporations, federal mediation of labor disputes, consumer protection, conservation — was real. The construct's retreat on the race axis during the same years — Black voters still under Jim Crow, the courts still enforcing segregation, racial violence still endemic — was also real. The two happened simultaneously, in the same presidency, sometimes by the same hand. The implication is direct: the construct does not absorb the remainder uniformly across all axes at once. When it advances on one axis, it may hold still or move backward on another. The progress of the Progressive Era was genuine and partial; what it illuminated made visible, by contrast, what it left in shadow.</p>
 
 <h3>VIII. Taft's Succession and the Prelude to 1912</h3>
 
-<p>Roosevelt chose Taft as his successor and worked hard for his election in 1908, bound by the pledge he had made after his own 1904 victory not to seek a third term. The choice reflected a belief that Taft shared his essential outlook. By 1910, the belief had dissolved. Taft moved in a more legalist direction — the president acts only where expressly authorized, not merely where not prohibited — and his decisions on conservation, tariff, and antitrust diverged from what Roosevelt expected. By 1912, Roosevelt had concluded that Taft had betrayed the program; Taft's supporters believed that Roosevelt's "New Nationalism" was dangerously statist. This was not a personality dispute. It was a genuine constitutional argument about the scope and limits of executive power — the first direct confrontation between the stewardship theory and its legalist opposite.</p>
+<p>Roosevelt chose Taft as his successor and worked hard for his election in 1908, bound by the pledge he had made after his own 1904 victory not to run in 1908. The choice reflected a belief that Taft shared his essential outlook. By 1910, the belief had dissolved. Taft moved in a more legalist direction — the president must ground action in constitutional or statutory grants, including their reasonable implications, not merely in the absence of a prohibition — and his decisions on conservation, tariff, and antitrust diverged from what Roosevelt expected. By 1912, Roosevelt had concluded that Taft had betrayed the program; Taft's supporters believed that Roosevelt's "New Nationalism" was dangerously statist. This was not a personality dispute. It was a genuine constitutional argument about the scope and limits of executive power — the first direct confrontation between the stewardship theory and its legalist opposite.</p>
 
 <p>That confrontation would become 1912's four-way election and the progressive Democrat Wilson's presidency — the subject of the next essay. What the Roosevelt–Taft split reveals in advance is that the new body the construct had grown was contested from within. The expansion of presidential power had opponents who were not simply defenders of plutocracy; they had a genuine constitutional argument for a more constrained executive. The regulatory state was not a settled achievement. It was a contested institutional terrain that would require continuous political defense.</p>
 
 <h3>IX. Conclusion</h3>
 
-<p>The Roosevelt presidency's central accomplishment was institutional: the construct grew, for the first time, a body capable of governing economic power. The regulatory agencies, the antitrust principles, the labor arbitration precedents, the conservation apparatus — these were not gestures. They were the founding structures of what would become the modern federal administrative state. And they were grown from the executive end, through the stewardship theory, because the executive was the point in the constitutional structure capable of moving at the speed the problem required.</p>
+<p>The Roosevelt presidency's central accomplishment was institutional: the construct expanded and integrated its earlier regulatory foundations into a more capable body for governing economic power. The regulatory agencies, the antitrust principles, the labor arbitration precedents, the conservation apparatus — these were not gestures. They were the founding structures of what would become the modern federal administrative state. And they were grown from the executive end, through the stewardship theory, because the executive was the point in the constitutional structure capable of moving at the speed the problem required.</p>
 
 <p>Two limits must be held alongside this accomplishment. The first is the stewardship theory's double nature. The same constitutional logic that enabled the Square Deal could be used, by future presidents with different intentions, to justify actions very different from consumer protection and railroad rate regulation. Every expansion of executive power, however justified at the moment, is a precedent that outlasts the justification. The regulatory body the construct grew in these years was a necessary and genuinely progressive achievement; the expansive presidential authority theory it rested on was a more ambiguous legacy.</p>
 
@@ -292,7 +321,7 @@
             <span class="xiyou-nav-title lang-en">McKinley and the Spanish-American War</span>
           </span>
         </a>
-        <a href="ep16.html" class="xiyou-nav-btn xiyou-nav-next">
+        <a href="ep16.html" class="xiyou-nav-btn xiyou-nav-next" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">
           <span class="xiyou-nav-label">
             <span class="xiyou-nav-sub lang-zh">下一篇</span>
             <span class="xiyou-nav-sub lang-en">Next</span>
@@ -304,5 +333,6 @@
       </nav>
     </article>
   </main>
+<script defer src="zh-hant-data/ep15.js"></script>
 </body>
 </html>

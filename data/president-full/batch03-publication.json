@@ -1,0 +1,42 @@
+{
+  "batch": "batch03",
+  "episodes": [11, 12, 13, 14, 15],
+  "scope": "25 complete DE/FR/ES/JA/KO editions; bounded corrections to existing ZH/EN; Traditional Chinese derived from corrected ZH; existing URLs retained.",
+  "review_boundary": "Root read all five Chinese essays; delegated reviewers read all assigned target essays against all five Chinese originals. Spanish reviewer additionally read all five existing English essays. Root verifies shared factual decisions and all final changed target-language passages before freezing.",
+  "preservation": "Original Chinese and English body snapshots are immutable. Every source correction is an exact once-only replacement in batch03-source-copyedits.json. All sections, paragraphs, examples and argument sequences are retained. ZIPs and the author's external originals remain untouched.",
+  "coverage": {"target_essays": 25, "sections_per_essay": [8, 8, 9, 8, 9], "target_sections_total": 210, "target_paragraphs_total": 820},
+  "historical_checks": [
+    {"topic": "Grant's personal integrity, attributed rather than presented as unanimous historiography", "url": "https://millercenter.org/president/grant/domestic-affairs"},
+    {"topic": "1877 withdrawal of protection for Reconstruction governments, not evacuation of every federal soldier from the South", "url": "https://www.nps.gov/articles/reconstruction.htm"},
+    {"topic": "New Orleans: 34 Black supporters killed, about two hours", "url": "https://www.nps.gov/articles/000/neworleansmassacre.htm"},
+    {"topic": "Facially neutral voting barriers are not constitutional permission for discriminatory enforcement", "url": "https://www.law.cornell.edu/constitution-conan/amendment-15/section-1/grandfather-clauses"},
+    {"topic": "1883 decision addresses the first two sections, public-accommodation guarantees and remedies", "url": "https://supreme.justia.com/cases/federal/us/109/3/"},
+    {"topic": "Tuskegee totals count people, not separate mob incidents", "url": "https://archive.tuskegee.edu/repository/digital-collection/lynching-information/"},
+    {"topic": "EJI 4084/800 figures retained with third-edition attribution, not silently mixed with newer webpage totals", "url": "https://eji.org/racial-justice/", "edition_url": "https://eji.org/wp-content/uploads/2005/11/lynching-in-america-3d-ed-110121.pdf"},
+    {"topic": "Wells and three murdered Black grocery proprietors", "url": "https://home.nps.gov/people/idabwells.htm"},
+    {"topic": "1887 regulatory foundations and qualified long-/short-haul rate prohibition", "url": "https://www.archives.gov/milestone-documents/interstate-commerce-act"},
+    {"topic": "1882 law did not categorically expel existing lawful Chinese residents", "url": "https://www.archives.gov/research/chinese-americans/guide"},
+    {"topic": "Scott Act return prohibition", "url": "https://teachinglegalhistory.unl.edu/s/oer/item/2004"},
+    {"topic": "1904 indefinite extension", "url": "https://www.archives.gov.mo/en/detail/27"},
+    {"topic": "Congressional annexation resolution and Senate treaty consent remain necessary despite executive initiative", "url": "https://history.state.gov/milestones/1866-1898/spanish-american-war"},
+    {"topic": "Teller pacification exception and subsequent self-government pledge", "url": "https://faculty.etsu.edu/history/documents/teller.htm"},
+    {"topic": "Gates 1981 estimate: 1898–1903 war-related deaths including 1902 cholera; not a newer civilian-death consensus", "url": "https://www.nybooks.com/articles/1981/12/17/death-in-the-philippines-1/"},
+    {"topic": "Taft's constitutional/statutory authorization and reasonable implied powers", "url": "https://teachingamericanhistory.org/document/on-the-source-of-executive-power/"},
+    {"topic": "Brownsville: 167 enlisted men, discharge without honor, not a court-martial dishonorable discharge", "url": "https://www.tshaonline.org/handbook/entries/brownsville-raid-of-1906"},
+    {"topic": "1913 tax enactment distinguished from the Sixteenth Amendment", "url": "https://reagan.blogs.archives.gov/2022/09/20/constitutional-amendments-series-amendment-xvi-income-taxes/"}
+  ],
+  "limitations": "Targeted checks of flagged claims, not a new source audit of every historical statistic. Interpretive arguments remain the author's. Archive PDFs that could not be fetched in full were not represented as fully read; EJI third-edition figures were cross-checked against indexed report text and EJI's own webpage.",
+  "validation": {
+    "final_language_review": "25 final SHA256 values and every ordered edit independently reverse-replayed to the received normalized SHA256. Root reread all changed target-language passages, including the final EP15 refinements, before freeze.",
+    "foreign_edit_events": 110,
+    "source_edit_events": 89,
+    "reproducibility": "batch01: 40 outputs; batch02 and batch03: 41 each; all --check runs passed.",
+    "regression": "All 9 batch03 tests passed; all 9 batch01 regression tests passed. Earlier bodies and future unpublished episodes are preserved.",
+    "browser": "120 episode/language/viewport combinations (390, 768, 1440px), zero horizontal overflow, zero script errors; 8 article language choices; native TOCs; actual five-language navigation; reversible simplified/traditional switching; previous/next fallback behavior.",
+    "visual_review": "Root inspected the French EP11 mobile and Traditional Chinese EP13 desktop screenshots; no title/header collision or unreadable language menu.",
+    "search": "25 foreign records updated, 5 Traditional Chinese records added; all existing ordering retained; no records deleted; no unrelated series changed.",
+    "sitemap": "Global check passed: 10085 canonical URLs.",
+    "whitespace": "All 25 manuscripts, JSON files and git diff --check passed.",
+    "deployment": "Prepared for local git commit only; user performs push."
+  }
+}

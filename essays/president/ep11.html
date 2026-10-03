@@ -28,7 +28,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -60,6 +62,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -83,22 +110,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep11.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep11.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep11.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep11.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep11.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep11.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep11.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep11.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep11.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep11.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -116,9 +145,9 @@
 
 <h3>一、纳入又压回</h3>
 
-<p>上一篇结尾说过，那个刚刚被认领的承诺，将在此后的几十年里被一点一点地拆掉。从1869年格兰特就职，到1881年海斯任满的后一年，这套构经历的，正是它如何把那个最深的余项一度纳入核心，又如何眼看着它被重新压回边缘的过程。</p>
+<p>上一篇结尾说过，那个刚刚被认领的承诺，将在此后的几十年里被一点一点地拆掉。从1869年格兰特就职，到1881年海斯任期结束，这套构经历的，正是它如何把那个最深的余项一度纳入核心，又如何眼看着它被重新压回边缘的过程。</p>
 
-<p>要抓住这段历史的结构，最好的办法，不是在成功和失败之间选一个，而是同时承认两件事都真实地发生了。其一，第十五修正案把黑人男性的投票权写进了宪法，南方随之出现了大规模的黑人参政，黑人选民，黑人州议员，黑人地方官，乃至黑人国会议员，第一次成规模地进入了这个国家的政治。其二，这种纳入很快就遭到了有组织的白人暴力，遭到了州一级以恢复自治为名的所谓救赎，遭到了最高法院对联邦权力的限缩，并最终在一场总统选举的危机里，被一纸政治交易和一次撤军所放弃。</p>
+<p>要抓住这段历史的结构，最好的办法，不是在成功和失败之间选一个，而是同时承认两件事都真实地发生了。其一，第十五修正案把黑人男性的投票权写进了宪法，南方随之出现了大规模的黑人参政，黑人选民，黑人州议员，黑人地方官，乃至黑人国会议员，第一次成规模地进入了这个国家的政治。其二，这种纳入很快就遭到了有组织的白人暴力，遭到了州一级以恢复自治为名的所谓救赎，遭到了最高法院对联邦权力的限缩，并最终在一场总统选举的危机里，被一场非正式政治交易和一次撤军所放弃。</p>
 
 <p>把这件事放回这个系列，它的位置就清楚了。前面三篇讲的，是那个最深的余项如何被战争和宪法，第一次正面地带进核心。而这一篇要讲的，是一个相反方向的运动，那个刚被带进核心的余项，如何在短短十来年里，又被一股股力量合力压回了边缘。</p>
 
@@ -136,17 +165,17 @@
 
 <p>这里有一个真正的悖论。格兰特几乎没有总统所需的政党和议会操作经验，他自己后来也承认没有任何先前的政治训练。但现代的总统史和重建史，又越来越强调，他在保护黑人公民权，推动第十五修正案，支持强制法案，动用联邦军队和司法部去打击三K党这些方面，确实表现出了比传统那种腐败总统叙事更真诚，也更积极的投入。也就是说，格兰特的弱点，不应该掩盖他在重建这条防线上曾经实际承担过的角色。</p>
 
-<p>格兰特政府的丑闻，也应该作同样的区分。现代研究明确说，格兰特本人从未成为调查的目标，他个人的诚实并没有被质疑，他也没有从这些丑闻里获得私利，但他识人不明，对旧友过分忠诚，使得他的政府不断被丑闻拖累。把格兰特代表放回框架，他代表的，是这套构第一次真正动用它的力量，去保护那个刚被纳入的余项。前面几篇里，行政权的扩张，多半是为了战争，为了扩张，为了在危机中保全自己。而到了格兰特这里，行政权第一次被大规模地用在了一个新的方向上，用联邦的立法，军队和法院，去保护那些刚刚被写进宪法的人。</p>
+<p>格兰特政府的丑闻，也应该作同样的区分。弗吉尼亚大学米勒中心的总统史介绍指出，格兰特本人并非这些丑闻调查的目标，也没有从中获得私利；这份介绍区分了他的个人诚实与政府的腐败，但他识人不明，对旧友过分忠诚，使得他的政府不断被丑闻拖累。把格兰特放回框架，他代表的，是这套构第一次真正动用它的力量，去保护那个刚被纳入的余项。前面几篇里，行政权的扩张，多半是为了战争，为了扩张，为了在危机中保全自己。而到了格兰特这里，行政权第一次被大规模地用在了一个新的方向上，用联邦的立法，军队和法院，去保护那些刚刚被写进宪法的人。</p>
 
 <h3>三、第十五修正案，纳入的宪法顶点</h3>
 
 <p>第十五修正案，是这一阶段纳入的宪法顶点。它的正文规定，合众国公民的投票权，不得因种族，肤色，或先前曾为奴役的身份，而被否认或剥夺，第二款同时授权国会以适当的立法去执行这一条。在当时的语境里，它实际授予的，是非裔美国男性的投票权。格兰特自己把第十五修正案看作重建最重要的成果之一，1870年他称它为一项比建国以来同类举措都更重大的措施。</p>
 
-<p>在第十五修正案和此前重建立法的共同作用下，南方的政治一度发生了真正的制度性改写。到1870年，共和党已经控制了南方的州政府，黑人议员进入了州的立法机构，到1877年，南方大约有两千名黑人男性担任地方，州和联邦的公职。国会层面也出现了前所未有的景象，海勒姆·雷维尔斯在1870年2月成为第一位黑人国会议员，约瑟夫·雷尼在同年12月成为第一位由民选产生的黑人众议员，从1870年到1901年，共有二十二名黑人进入国会。重建州政府的成就，现代史学通常首先强调教育，以南卡罗来纳为例，1868到1876年间，入学人数从大约三万增加到了十二万三千。</p>
+<p>在第十五修正案和此前重建立法的共同作用下，南方的政治一度发生了真正的制度性改写。重建期间，共和党一度在多个南方州掌握政权，黑人议员进入了州的立法机构，到1877年，南方大约有两千名黑人男性担任地方，州和联邦的公职。国会层面也出现了前所未有的景象，海勒姆·雷维尔斯在1870年2月成为第一位黑人国会议员，约瑟夫·雷尼在同年12月成为第一位由民选产生的黑人众议员，从1870年到1901年，共有二十二名黑人进入国会。重建州政府的成就，现代史学通常首先强调教育，以南卡罗来纳为例，1868到1876年间，入学人数从大约三万增加到了十二万三千。</p>
 
 <p>但这个纳入的顶点，从一开始就带着它自己的限度，必须写清楚。第一，这个修正案在实践中并没有让女性获得投票权，女性的选举权要到第十九修正案，才在联邦层面得到明确的保障。第二，这个修正案禁止的，只是基于种族，肤色，奴役经历的剥夺，而不是一切投票的门槛，因此后来南方各州，才得以通过识字测验，祖父条款，投票税这些表面上中性的制度，绕开它的正文。</p>
 
-<p>这个缝隙，不是后人才发现的漏洞，而是这个纳入从一开始就带着的两面性。第十五修正案禁止的是因种族而剥夺选票，可它没有，也很难，去禁止那些不点名种族，却专门冲着黑人来的门槛。识字测验不提种族，投票税不提种族，祖父条款也不提种族，但它们每一样，都精准地把黑人挡在投票站之外。这正是那个余项难以被真正吸收的又一种体现，你在最高的层面把它纳入了，可只要现实里还有人一心想把它排除，他们总能找到一种绕开正文，却又实现排除的办法。</p>
+<p>这个缝隙，不是后人才发现的漏洞，而是这个纳入从一开始就带着的两面性。第十五修正案禁止的是因种族而剥夺选票，可它当时并未能在实践中阻止那些不点名种族，却专门冲着黑人来的门槛；这不是说这种歧视获得了宪法许可，而是说宪法承诺在执行中被架空了。识字测验不提种族，投票税不提种族，祖父条款也不提种族，但它们每一样，都精准地把黑人挡在投票站之外。这正是那个余项难以被真正吸收的又一种体现，你在最高的层面把它纳入了，可只要现实里还有人一心想把它排除，他们总能找到一种绕开正文，却又实现排除的办法。</p>
 
 <h3>四、重建州政府与腐败叙事的修正</h3>
 
@@ -160,7 +189,7 @@
 
 <p>这一篇的中心之一，是要把南方白人的反扑，写成一种政治暴力，而不是写成骚乱或者社会失序。三K党以及它的同类组织，目标并不只是恐吓黑人个体，而是要通过殴打，强奸，谋杀，焚烧学校和教堂，压制投票和陪审，把黑人的公民权和共和党的州政府一起打掉。这不是失控的群氓，而是一场有组织，有政治目标的恐怖运动。</p>
 
-<p>几次标志性的大屠杀，需要把时间，对象和死亡数字分开来写。孟菲斯的屠杀发生在1866年5月，由白人民众和执法者攻击黑人社区，现代研究给出的估计是四十六名非裔美国人死亡。新奥尔良的屠杀发生在1866年7月，大约两小时内，三十四名黑人的支持者死亡，一百一十九人受伤，谢里登将军把它定性为一场不折不扣的大屠杀。格兰特任内最关键的案例之一，是科尔法克斯的屠杀，发生于1873年4月13日，至少六十二人死亡，较高的估计达到约一百五十人，其中大多数是黑人。</p>
+<p>几次标志性的大屠杀，需要把时间，对象和死亡数字分开来写。孟菲斯的屠杀发生在1866年5月，由白人民众和执法者攻击黑人社区，现代研究给出的估计是四十六名非裔美国人死亡。新奥尔良的屠杀发生在1866年7月，大约两小时内，三十四名支持制宪会议的黑人死亡，一百一十九人受伤，谢里登将军把它定性为一场不折不扣的大屠杀。格兰特任内最关键的案例之一，是科尔法克斯的屠杀，发生于1873年4月13日，至少六十二人死亡，较高的估计达到约一百五十人，其中大多数是黑人。</p>
 
 <p>面对这种暴力，格兰特和国会的回应，是1870到1871年的一系列强制法案。第一部法案禁止团伙以暴力，贿赂，威胁，恐吓等方式阻挠黑人投票。1871年4月的第三部法案，也就是后人常说的三K党法案，授权总统在必要时动用武装力量，并暂停人身保护令。格兰特不只是签字而已。他在1871年10月于南卡罗来纳的九个县宣布了严重状态，暂停人身保护令，并派军队和联邦官员大规模地抓捕嫌犯。到1871年底，军方已经拘押了六百多人，这轮起诉确实对这个组织造成了沉重的打击，并保住了1872年一次相对公平的选举。</p>
 
@@ -182,7 +211,7 @@
 
 <p>1876年的大选，是重建的政治防线，最后一次在全国的层面被公开谈判的时刻。民主党人蒂尔登在普选票上领先，并且在没有争议的选举人票上已经接近胜利，但佛罗里达，路易斯安那，南卡罗来纳的结果不清楚，于是出现了一个没有明确胜者的局面，南卡和路易斯安那甚至出现了相互对立的两套政府。</p>
 
-<p>国会最后采用了一个特别的选举委员会来处理这场危机。它的结果，是把全部有争议的票都判给了海斯，使他以一百八十五对一百八十四，成为总统，他也因此被对手讥讽为骗子海斯。通常所谓的1877年妥协，在现代的写法里，最好明确为一种非正式的安排，而不是一份成文的协定。它的非正式政治结果，是海斯政府转向所谓的地方自治，撤走军队，安抚南方的白人民主党人，并停止把联邦的武力，持续地用于保卫南方的黑人共和党政权。</p>
+<p>国会最后采用了一个特别的选举委员会来处理这场危机。它的结果，是把全部有争议的票都判给了海斯，使他以一百八十五对一百八十四，成为总统，他也因此被对手讥讽为骗子海斯。通常所谓的1877年妥协，在现代的写法里，最好明确为一种非正式的安排，而不是一份成文的协定。它的非正式政治结果，是海斯政府转向所谓的地方自治，把保护剩余重建州政府的联邦部队调回营房，安抚南方的白人民主党人，并停止把联邦的武力，持续地用于保卫南方的黑人共和党政权。</p>
 
 <p>关于这一安排的性质，史学界一直有分歧，最好把两种解释并置。第一种更接近政治现实主义，海斯接手时，南方只剩下两个州还依赖极少数的联邦军队撑持，而民主党控制的众议院又拒绝为继续驻军拨款，北方的民意也已经厌倦，在这种条件下，继续军事重建几乎难以为继。第二种则更接近对黑人的背叛，无论是否有一份完整的密约，撤军和不再积极执法的后果都是真实的，它让黑人选民重新暴露在州一级的暴力，地方司法的冷漠和系统性的剥夺面前，并为后来的吉姆·克罗秩序铺平了道路。</p>
 
@@ -192,7 +221,7 @@
 
 <p>把格兰特到海斯这十二年放回这个系列，最值得记住的，是那个贯穿全篇的判断，纳入又压回。</p>
 
-<p>这两件事都是真实的，都不是修辞。纳入是真实的，第十五修正案把黑人男性的投票权写进了宪法，南方出现了大规模的黑人参政，而格兰特政府也确实一度动用联邦的立法，军队和法院，去保卫这种纳入，并且一度奏效。压回也是真实的，到1877年前后，白人的暴力，司法的限缩，经济的危机，北方意志的衰退，以及一纸政治交易，合在一起，又把这部分人重新压回了政治共同体的边缘。</p>
+<p>这两件事都是真实的，都不是修辞。纳入是真实的，第十五修正案把黑人男性的投票权写进了宪法，南方出现了大规模的黑人参政，而格兰特政府也确实一度动用联邦的立法，军队和法院，去保卫这种纳入，并且一度奏效。压回也是真实的，到1877年前后，白人的暴力，司法的限缩，经济的危机，北方意志的衰退，以及一场非正式政治交易，合在一起，又把这部分人重新压回了政治共同体的边缘。</p>
 
 <p>而这一切最深的含义，还是要落回这套构不可闭合的本性上。压回，不等于消灭。第十五修正案没有被废除，它和那个平等的承诺，仍然作为潜伏的宪法义务，留在了根本大法里。旧的秩序，用暴力和交易，把这个余项在执行的层面掏空了，却没有能力，也不可能，把它从宪法里彻底抹去。所以这并不是一次成功的闭合，而是不可闭合的又一种样子。那个余项，既没有被新秩序兑现成真正的平等，也没有被旧秩序彻底地清除，它停在了一个被压回边缘，却又始终没有被抹掉的悬置状态里。它会在宪法的文本里静静地潜伏几十年，等待一个遥远的时刻，重新被人拿起来。</p>
 
@@ -214,17 +243,17 @@
 
 <p>Understanding this period requires understanding Grant as a paradox. He won in 1868 primarily on the strength of his Civil War reputation, and on the support of nearly half a million Black voters across the South. He brought almost no prior political experience to office — he later admitted as much himself. Yet the modern historiography of Reconstruction has increasingly rehabilitated his record on the core civil rights question.</p>
 
-<p>Grant genuinely feared that Klan violence was reversing the verdict of the war. He supported and signed the Enforcement Acts, deployed federal troops and the Justice Department against the Klan, and saw himself as a defender of the rights newly inscribed in the Constitution. The corruption scandals that marred his presidency — Crédit Mobilier, the Whiskey Ring — are real, but modern scholarship is careful to note that Grant himself was never a target of investigation and did not profit personally. His failing was loyalty to the wrong men, not personal venality.</p>
+<p>Grant genuinely feared that Klan violence was reversing the verdict of the war. He supported and signed the Enforcement Acts, deployed federal troops and the Justice Department against the Klan, and saw himself as a defender of the rights newly inscribed in the Constitution. The corruption scandals that marred his presidency — Crédit Mobilier, the Whiskey Ring — are real, but the University of Virginia's Miller Center distinguishes Grant's personal honesty from his administration's corruption, noting that he was not himself a target of these investigations and did not profit from the scandals. His failing was loyalty to the wrong men, not personal venality.</p>
 
 <p>What Grant's presidency represents in this series is something worth marking precisely. For the first time, executive power was deployed on a large scale to protect the remainder that had just been included — not to wage war, not to expand territory, but to shield the people newly written into the Constitution's guarantees. The Enforcement Acts and the prosecutions that followed briefly worked. They disrupted the Klan, and the election of 1872 was relatively fair. This matters enormously for the anti-fatalist reading of Reconstruction's collapse: the failure was not inevitable.</p>
 
 <h3>III. The Fifteenth Amendment: Constitutional Zenith of Inclusion</h3>
 
-<p>The Fifteenth Amendment was the high-water mark of Reconstruction's inclusion. It prohibited denying or abridging the right to vote "on account of race, color, or previous condition of servitude," and empowered Congress to enforce it by appropriate legislation. Grant called it, in 1870, a measure of greater importance than any act since the founding.</p>
+<p>The Fifteenth Amendment was the high-water mark of Reconstruction's inclusion. It prohibited denying or abridging the right to vote "on account of race, color, or previous condition of servitude," and empowered Congress to enforce it by appropriate legislation. Grant called it, in 1870, a measure of greater importance than any act of its kind since the founding.</p>
 
-<p>The political changes it enabled were real. By 1870, Republicans controlled Southern state governments; Black men served in state legislatures and in local offices; between 1870 and 1901, twenty-two Black men served in Congress. Hiram Revels entered the Senate in February 1870; Joseph Rainey became the first popularly elected Black member of the House that December. Reconstruction state governments built the South's first publicly funded school systems — South Carolina's enrollment rose from roughly thirty thousand to one hundred twenty-three thousand between 1868 and 1876.</p>
+<p>The political changes it enabled were real. During Reconstruction, Republicans held power in a number of Southern states; Black men served in state legislatures and in local offices; between 1870 and 1901, twenty-two Black men served in Congress. Hiram Revels entered the Senate in February 1870; Joseph Rainey became the first popularly elected Black member of the House that December. Reconstruction state governments expanded public schooling across the South — South Carolina's enrollment rose from roughly thirty thousand to one hundred twenty-three thousand between 1868 and 1876.</p>
 
-<p>But the amendment's limits were built into its text from the start. It forbade denial of the vote on racial grounds — not all voter qualifications. This left the precise gap that Southern states would later exploit: poll taxes, literacy tests, grandfather clauses, and white primaries all operated without ever naming race, yet achieved racial exclusion with surgical precision. The inclusion at the constitutional summit contained the mechanism of its own circumvention. Paper inclusion and ground-level exclusion could coexist indefinitely, and they would.</p>
+<p>The amendment did not abolish all voter qualifications; it prohibited racial exclusion. Southern states nevertheless undermined its enforcement: poll taxes, literacy tests, and grandfather clauses used ostensibly race-neutral terms, while white primaries excluded Black voters explicitly. Discriminatory administration could empty the constitutional guarantee of practical force. This was a failure to enforce the prohibition, not constitutional permission to discriminate. Paper inclusion and ground-level exclusion could coexist indefinitely, and they would.</p>
 
 <h3>IV. Reconstruction Governments and the Corruption Narrative</h3>
 
@@ -234,7 +263,7 @@
 
 <h3>V. White Violence and Federal Legal Counter-Measures</h3>
 
-<p>The white Southern counter-movement must be written as organized political terror, not as social unrest. The Klan and its affiliates were not mobs out of control. They were pursuing a political program: beat, rape, murder, and burn enough Black citizens and white Republican officeholders that Black civil rights and Republican state governments became impossible to sustain. The Memphis massacre of May 1866 killed forty-six Black residents; the New Orleans massacre of July 1866 killed thirty-four within two hours. Grant's most significant test came with the Colfax massacre of April 1873, in which at least sixty-two Black men — and by some estimates closer to one hundred fifty — were killed in a dispute over control of a Louisiana courthouse.</p>
+<p>The white Southern counter-movement must be written as organized political terror, not as social unrest. The Klan and its affiliates were not mobs out of control. They were pursuing a political program: beat, rape, murder, and burn enough Black citizens and white Republican officeholders that Black civil rights and Republican state governments became impossible to sustain. The Memphis massacre of May 1866 killed forty-six Black residents; the New Orleans massacre of July 1866 killed thirty-four Black supporters of the constitutional convention within about two hours. Grant's most significant test came with the Colfax massacre of April 1873, in which at least sixty-two Black men — and by some estimates closer to one hundred fifty — were killed in a dispute over control of a Louisiana courthouse.</p>
 
 <p>Grant's response was the Enforcement Acts of 1870–71. The third, the Ku Klux Klan Act, authorized the president to suspend habeas corpus and deploy the military. Grant used it. In October 1871 he declared a state of emergency in nine South Carolina counties, suspended habeas corpus, and sent federal forces to arrest suspects. By year's end more than six hundred people had been detained; dozens were convicted. The Klan was disrupted. The 1872 election was relatively fair. The episode proves that the inclusion was defensible — if the construct chose to keep defending it.</p>
 
@@ -242,7 +271,7 @@
 
 <p>Why did the protection not continue? The answer is not a single cause but a convergence of several, and they must be held together.</p>
 
-<p>The Supreme Court was the first. In United States v. Cruikshank, arising directly from the Colfax massacre, the Court held that the Fourteenth Amendment's equal protection clause reached only state action, not private violence. The murders committed at Colfax were returned to Southern state courts — which meant, in practice, to the very system that had no intention of prosecuting them. The legal weapon forged to protect the newly included was blunted by the institution charged with interpreting the Constitution.</p>
+<p>The Supreme Court was the first. In United States v. Cruikshank, arising directly from the Colfax massacre, the Court held that the Fourteenth Amendment's equal protection clause reached only state action, not private violence. Responsibility for prosecuting the violence at Colfax was left to Southern state authorities — which meant, in practice, to the very system that had no intention of prosecuting them. The legal weapon forged to protect the newly included was blunted by the institution charged with interpreting the Constitution.</p>
 
 <p>The economic crisis of 1873 — triggered by railroad speculation, the contraction of European credit, and a cascade of bank failures — lasted more than five years. Northern attention turned inward; Republican anxiety about Southern intervention and its political costs grew; the moral energy that had survived the war began to dissipate. And underlying all of this was something more structural: most white Northerners did not, in fact, genuinely accept Black civil and political equality. As Foner has noted, the failure to address the economic demands of the freedpeople — land above all — meant that formal political rights were chronically exposed to coercion.</p>
 
@@ -252,7 +281,7 @@
 
 <p>The disputed election of 1876 was the last moment at which Reconstruction's political defenses were openly negotiated at the national level. Tilden led in the popular vote, but three Southern states returned conflicting electoral certificates. A special Electoral Commission awarded all disputed votes to Hayes, giving him a one-vote margin. The political settlement that followed — informal rather than a written treaty — saw the Hayes administration adopt a policy of "local self-government," withdraw federal troops from Southern statehouses, and effectively end active federal protection of Black Republican governments in the South. Hayes removed federal soldiers from South Carolina and Louisiana in April 1877.</p>
 
-<p>Two readings of this settlement exist and both should be recorded. The realist reading: Hayes inherited a situation in which almost no federal troops remained in the South, the Democratic House refused to fund further deployments, and Northern opinion had turned. Military Reconstruction could not have continued much longer regardless. The moral reading: whatever the constraints, the withdrawal exposed Black Southerners to systematic violence, judicial indifference, and disfranchisement that would define the next eighty years. Hayes himself later complained of the fraud, intimidation, and violence used against Black voters in 1878 — but by then the troops were gone.</p>
+<p>Two readings of this settlement exist and both should be recorded. The realist reading: Hayes inherited a situation in which only small federal detachments still protected the remaining Reconstruction governments, the Democratic House refused to fund further deployments, and Northern opinion had turned. Military Reconstruction could not have continued much longer regardless. The moral reading: whatever the constraints, the withdrawal exposed Black Southerners to systematic violence, judicial indifference, and disfranchisement that would define the next eighty years. Hayes himself later complained of the fraud, intimidation, and violence used against Black voters in 1878 — but by then the troops guarding those governments had returned to their barracks.</p>
 
 <p>The deeper irony is worth noting. Earlier essays in this series identified the construct's openness — its retained electoral mechanism — as its tool of self-correction. Lincoln used it to sustain legitimacy through the Civil War; Congress used the 1866 midterms to reclaim the terms of Reconstruction from Andrew Johnson. By 1877, the same openness became the vehicle for abandoning the promise. The mechanism is not on the side of the remainder automatically. It only provides the arena. What plays out on that stage depends on whether those with votes and power choose to treat the promise as binding.</p>
 
@@ -288,5 +317,6 @@
       </nav>
     </article>
   </main>
+<script defer src="zh-hant-data/ep11.js"></script>
 </body>
 </html>

@@ -28,7 +28,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -60,6 +62,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -83,22 +110,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep14.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep14.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep14.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep14.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep14.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep14.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep14.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep14.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep14.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep14.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -128,7 +157,7 @@
 
 <h3>二、民粹主义与1896年大选</h3>
 
-<p>十九世纪末的民粹主义，首先应该按人民党与农民联盟的具体纲领来理解，而不该套进当代那种泛化的反建制话术里。1892年人民党的奥马哈纲领，并不只是模糊地反对东部的精英，而是提出了一整套明确的制度主张。它要求由联邦政府发行安全，健全，灵活的国家货币，要求金银按十六比一自由无限地铸币，要求累进的所得税，要求政府拥有并经营铁路，还在附带的决议里明确支持美国参议员的直接选举。</p>
+<p>十九世纪末的民粹主义，首先应该按人民党与农民联盟的具体纲领来理解，而不该套进当代那种泛化的反建制话术里。1892年人民党的奥马哈纲领，并不只是模糊地反对东部的精英，而是提出了一整套明确的制度主张。它要求由联邦政府发行安全，健全，灵活的国家货币，要求按十六份银对一份金的重量比自由无限地铸币，要求累进的所得税，要求政府拥有并经营铁路，还在附带的决议里明确支持美国参议员的直接选举。</p>
 
 <p>1896年的大选，使这些诉求达到了全国政治的最高点。民主党在芝加哥的大会上转向了自由铸银的路线，威廉·詹宁斯·布莱恩以金十字架的演说震动了会场，其中最著名的一句是，你们不能把人类钉死在一个黄金的十字架上。这句话之所以重要，不仅因为它修辞有力，更因为它把货币问题道德化，社会化了，金本位不再只是一种技术性的金融安排，而被表述成一种在劳动者的额头上压下荆冠的秩序。</p>
 
@@ -150,9 +179,9 @@
 
 <p>真正改变美国制度位置的，不是战场上的英雄主义，而是战争的结算。1898年的巴黎条约规定，西班牙放弃对古巴的主权，波多黎各及西印度群岛中其他的西班牙属岛，以及关岛，被割让给美国，菲律宾群岛也被割让给美国，美国向西班牙支付两千万美元。同一年，美国还以联合决议的方式兼并了夏威夷。把古巴，波多黎各，关岛，菲律宾与夏威夷放在同一年来看，就能看出1898年并不是一场孤立的战争，而是美国向太平洋与加勒比双向扩张的制度转折点。</p>
 
-<p>这次向海外的扩张，也在悄悄地改变这套构内部的权力格局。镀金时代的总统是相对弱的，国会和党机器占着上风。而一场对外的战争，一个海外的帝国，恰恰是总统权力重新上升的绝好土壤。战争要靠总统作为总司令去指挥，海外的领地要靠行政去治理，而与列强的博弈，条约的谈判，也天然地把权力集中到白宫这一端。麦金利以联合决议兼并夏威夷，以战争咨文把国家带入战争，以巴黎条约的谈判处置几大属地，这些都是国会难以主导，而只能由行政来推动的事。帝国的诞生，和总统权力的复兴，是同一个过程的两面。</p>
+<p>这次向海外的扩张，也在悄悄地改变这套构内部的权力格局。镀金时代的总统是相对弱的，国会和党机器占着上风。而一场对外的战争，一个海外的帝国，恰恰是总统权力重新上升的绝好土壤。战争要靠总统作为总司令去指挥，海外的领地要靠行政去治理，而与列强的博弈，条约的谈判，也天然地把权力集中到白宫这一端。麦金利以联合决议兼并夏威夷，以战争咨文把国家带入战争，以巴黎条约的谈判处置几大属地，这些行动都显示了行政的主动推动，但兼并与开战仍需国会授权，条约仍需参议院同意；总统的主动权，并不等于可以绕过这些程序。帝国的诞生，和总统权力的复兴，是同一个过程的两面。</p>
 
-<p>古巴的地位，尤其适合用来说明名义独立与实质控制之间的差异。1898年的特勒修正案，在对西战争的决议中明言，美国不打算对古巴行使主权，管辖权或控制权。可到了1901年的普拉特修正案，又要求古巴承认美国有权为维护古巴的独立，以及保护生命，财产和个人自由，而干预其内政，并允许美国取得海军基地和煤站。这一组文本非常关键，因为它把美国对外的普遍主义，与它实际的控制之间的差距，以一种连续的立法与条约的形式，清清楚楚地呈现了出来。特勒修正案是那句普遍主义的许诺，而普拉特修正案是那个实际的控制，两者之间的距离，就是那个余项在海外的形态。</p>
+<p>古巴的地位，尤其适合用来说明名义独立与实质控制之间的差异。1898年的特勒修正案，在对西战争的决议中明言，美国除为平定局势之外，不打算对古巴行使主权，管辖权或控制权，并承诺在平定后把治理与控制交还古巴人民。可到了1901年的普拉特修正案，又要求古巴承认美国有权为维护古巴的独立，以及保护生命，财产和个人自由，而干预其内政，并允许美国取得海军基地和煤站。这一组文本非常关键，因为它把美国对外的普遍主义，与它实际的控制之间的差距，以一种连续的立法与条约的形式，清清楚楚地呈现了出来。特勒修正案是那句普遍主义的许诺，而普拉特修正案是那个实际的控制，两者之间的距离，就是那个余项在海外的形态。</p>
 
 <h3>五、菲律宾战争</h3>
 
@@ -162,7 +191,7 @@
 
 <p>关于暴行与镇压的方式，今天已经不宜再沿用旧式的净化叙事。现代的官方说明也明确承认，美军在某些时候焚烧村庄，推行平民的重新集中政策，并对疑似游击队员施加酷刑。其中所谓的灌水刑，被界定为一种当时几乎被普遍承认为违反战争法的酷刑，而焚毁村镇，重新集中营，以及对无辜人质的报复，则并列为这场战争争议的核心。</p>
 
-<p>伤亡的数字必须注明是估计，且差异很大。常见的数字是，美军死亡超过四千二百人，菲律宾的战斗人员死亡超过两万人，而菲律宾的平民，多达二十万死于暴力，饥荒与疾病，较新的严格估计上限约为三十二万一千左右。把菲律宾战争放回框架，它的意义很清楚。当那个海外的边界余项，那些被美国统治却不愿被殖民的人，起而反抗时，这套构对它的回答，和它当年对南方黑人反抗的回答，在结构上是相通的，用武力去镇压。一个以被治者同意来奠基的政体，却在用武力，去统治那些明确表达了不同意的人，这中间的矛盾，赤裸而尖锐。</p>
+<p>伤亡的数字必须注明是估计，且差异很大。常见的数字是，美军死亡超过四千二百人，菲律宾的战斗人员死亡超过两万人，而菲律宾的平民，多达二十万死于暴力，饥荒与疾病，另一个不能混为一谈的数字，来自约翰·M·盖茨1981年的估计：若把1902年霍乱死亡计入，1898到1903年间战争相关死亡总数的上限约为三十二万一千人；这不是同一口径的平民死亡上限，也不是新近的统一结论。把菲律宾战争放回框架，它的意义很清楚。当那个海外的边界余项，那些被美国统治却不愿被殖民的人，起而反抗时，这套构对它的回答，和它当年对南方黑人反抗的回答，在结构上是相通的，用武力去镇压。一个以被治者同意来奠基的政体，却在用武力，去统治那些明确表达了不同意的人，这中间的矛盾，赤裸而尖锐。</p>
 
 <h3>六、反帝国主义的反击</h3>
 
@@ -214,7 +243,7 @@
 
 <p>McKinley won with 271 electoral votes and 51.1 percent of the popular vote. The Republican campaign, managed by Mark Hanna, raised approximately four million dollars — mostly from manufacturers who wanted tariff protection and bankers who wanted the gold standard — and deployed it in industrial-scale organizing and canvassing. But reducing 1896 to a bought election misses the structural reality: McKinley genuinely assembled a broader coalition, winning Northern cities, industrial workers, and commercial interests who believed currency stability meant jobs and that free silver meant inflation.</p>
 
-<p>The People's Party collapsed after 1896, but its agenda did not disappear. Direct election of senators was enacted by the Seventeenth Amendment in 1913. A graduated income tax became law that same year through the Sixteenth Amendment. Federal railroad regulation was substantially strengthened in the Roosevelt years. The platform's specific demands became, piecemeal, the Progressive Era's accomplishments. The remainder was defeated in 1896 — not extinguished.</p>
+<p>The People's Party collapsed after 1896, but its agenda did not disappear. Direct election of senators was enacted by the Seventeenth Amendment in 1913. The Sixteenth Amendment authorized a federal income tax without apportionment, and Congress enacted a graduated tax in 1913. Federal railroad regulation was substantially strengthened in the Roosevelt years. The platform's specific demands became, piecemeal, the Progressive Era's accomplishments. The remainder was defeated in 1896 — not extinguished.</p>
 
 <h3>III. From the Cuba Crisis to War with Spain</h3>
 
@@ -226,23 +255,23 @@
 
 <h3>IV. A Short War and the Birth of an Overseas Empire</h3>
 
-<p>Secretary of State John Hay called it "a splendid little war." Dewey's Asiatic Squadron destroyed the Spanish fleet at Manila Bay on May 1, 1898; U.S. forces landed in Cuba and isolated the Spanish garrison; Spain sued for peace in August. The entire conflict lasted four months.</p>
+<p>John Hay called it "a splendid little war." Dewey's Asiatic Squadron destroyed the Spanish fleet at Manila Bay on May 1, 1898; U.S. forces landed in Cuba and isolated the Spanish garrison; Spain sued for peace in August. The entire conflict lasted four months.</p>
 
 <p>The Treaty of Paris settled the results. Spain relinquished sovereignty over Cuba, ceded Puerto Rico, Guam, and the Philippines to the United States, and received twenty million dollars. A joint congressional resolution had already annexed Hawaii earlier that year. Together, Cuba (under American military occupation and then under the Platt Amendment's protectorate clauses), Puerto Rico, Guam, the Philippines, and Hawaii represented a rapid conversion from continental republic to Pacific-and-Caribbean empire.</p>
 
-<p>The empire also shifted the internal balance of constitutional power. Gilded Age presidents had been relatively weak against Congress. An overseas empire naturally concentrated authority at the executive end: the commander-in-chief conducts wars, the administration governs territories, treaty negotiations belong to the president. McKinley's annexation of Hawaii by joint resolution — sidestepping a treaty requiring two-thirds Senate approval — and his management of the Paris peace terms were acts that Congress could influence at the margins but not direct. Empire and executive revival grew together.</p>
+<p>The empire also shifted the internal balance of constitutional power. Gilded Age presidents had been relatively weak against Congress. An overseas empire naturally concentrated authority at the executive end: the commander-in-chief conducts wars, the administration governs territories, treaty negotiations belong to the president. McKinley's annexation of Hawaii by joint resolution — sidestepping a treaty requiring two-thirds Senate approval — and his management of the Paris peace terms showed executive initiative, but annexation and war still required congressional authorization, and the peace treaty required Senate consent. Empire and executive revival grew together.</p>
 
-<p>Cuba illustrates the gap between professed purpose and actual control with documentary precision. The Teller Amendment of April 1898 declared that the United States "hereby disclaims any disposition or intention to exercise sovereignty, jurisdiction, or control over said island." The Platt Amendment of 1901 required Cuba, as a condition of independence, to accept American rights of intervention "for the preservation of Cuban independence" and "the maintenance of a government adequate for protecting life, property, and individual liberty," and to lease naval bases. Cuba's constitutional convention incorporated the Platt Amendment under pressure. The distance from Teller to Platt is the distance between universalist principle and imperial practice — measured, in this case, in four years and in treaty text.</p>
+<p>Cuba illustrates the gap between professed purpose and actual control with documentary precision. The Teller Amendment of April 1898 disclaimed American sovereignty, jurisdiction, or control except for pacification, and promised to leave government and control to the Cuban people once that task was completed. The Platt Amendment of 1901 required Cuba, as a condition of independence, to accept American rights of intervention "for the preservation of Cuban independence" and "the maintenance of a government adequate for protecting life, property, and individual liberty," and to lease naval bases. Cuba's constitutional convention incorporated the Platt Amendment under pressure. The distance from Teller to Platt is the distance between universalist principle and imperial practice — measured, in this case, in three years and in treaty text.</p>
 
 <h3>V. The Philippine War</h3>
 
 <p>The Philippine-American War demands honest treatment. Filipino nationalists under Emilio Aguinaldo had allied with American forces against Spain in the expectation that the United States would support independence. When the Treaty of Paris transferred the Philippines to American sovereignty, they established the Philippine Republic and fought for it. The American government called this an insurrection — a term that preemptively classified Filipinos as rebels against American authority rather than as adversaries in a war of independence.</p>
 
-<p>The war proceeded in two phases: conventional fighting from February to November 1899, followed by guerrilla resistance until Aguinaldo's capture in 1901 and sporadic fighting until 1902. American conduct included acts that both contemporaries and subsequent official acknowledgment have identified as atrocities: the waterboarding of prisoners (referred to at the time as the "water cure"), the burning of villages, reconcentration camps for civilians, and reprisals against civilian populations. These were not marginal incidents but documented aspects of the counterinsurgency campaign.</p>
+<p>The war proceeded in two phases: conventional fighting from February to November 1899, followed by guerrilla resistance until Aguinaldo's capture in 1901 and sporadic fighting until 1902. American conduct included acts that both contemporaries and subsequent official acknowledgment have identified as atrocities: the water torture of prisoners known as the "water cure", the burning of villages, reconcentration camps for civilians, and reprisals against civilian populations. These were not marginal incidents but documented aspects of the counterinsurgency campaign.</p>
 
-<p>Casualty estimates vary considerably, but the ranges are significant. American deaths exceeded 4,200. Filipino combatant deaths exceeded 20,000. Filipino civilian deaths from violence, famine, and disease are estimated in the mainstream historiography at 200,000 to perhaps 320,000; higher figures circulate in Philippine nationalist historiography and some American scholarship. Whatever the precise count, the scale of suffering was enormous.</p>
+<p>Casualty estimates vary considerably, but the ranges are significant. American deaths exceeded 4,200. Filipino combatant deaths exceeded 20,000. A commonly cited estimate puts Filipino civilian deaths from violence, famine, and disease at around 200,000. A different figure comes from John M. Gates's 1981 estimate: including the cholera deaths of 1902, he put the upper estimate for war-related deaths during 1898–1903 at about 321,000. That is a broader total, not a newer consensus ceiling for civilian deaths. Whatever the precise count, the scale of suffering was enormous.</p>
 
-<p>The structural parallel with the domestic history is uncomfortable but unmistakable. When the racial remainder rose against Jim Crow — when Black Southerners voted, organized, or resisted — the construct's answer was violent suppression: the Klan, the Redeemer governments, the withdrawal of federal protection. When the Philippine remainder rose against American colonial rule, the construct's answer was also violent suppression: troops, waterboarding, burning villages. The racial hierarchy invoked in the Insular Cases' language about "alien races" and the inapplicability of "Anglo-Saxon principles" echoed the language used to justify Jim Crow. The logic was the same chessboard.</p>
+<p>The structural parallel with the domestic history is uncomfortable but unmistakable. When the racial remainder rose against Jim Crow — when Black Southerners voted, organized, or resisted — the construct's answer was violent suppression: the Klan, the Redeemer governments, the withdrawal of federal protection. When the Philippine remainder rose against American colonial rule, the construct's answer was also violent suppression: troops, water torture, burning villages. The racial hierarchy invoked in the Insular Cases' language about "alien races" and the inapplicability of "Anglo-Saxon principles" echoed the language used to justify Jim Crow. The logic was the same chessboard.</p>
 
 <h3>VI. The Anti-Imperialist Counter-Attack</h3>
 
@@ -256,7 +285,7 @@
 
 <p>The legal question was whether the Constitution applied automatically to newly acquired territories. If it did, colonial governance would be constitutionally constrained in ways that might make the empire difficult to maintain. If it did not, the United States would have to acknowledge that it could acquire and rule territory without extending constitutional protections — that it was, in constitutional terms, a different kind of polity than it had claimed to be.</p>
 
-<p>The Insular Cases of 1901 — particularly Downes v. Bidwell — produced a deeply fragmented result. Justice Brown's plurality opinion held that Puerto Rico was "a territory appended to and belonging to the United States, but not a part of the United States" for purposes of the revenue uniformity clause. The same opinion contained explicit references to "alien races" differing "from us in religion, customs, laws, methods of taxation, and modes of thought" and to the difficulty of extending "Anglo-Saxon principles" to such populations. Justice White's concurring opinion — which eventually became the controlling doctrine — distinguished between "incorporated" territories (destined for statehood, full constitutional protection) and "unincorporated" territories (not so destined, limited constitutional protection).</p>
+<p>The Insular Cases of 1901 — particularly Downes v. Bidwell — produced a deeply fragmented result. Justice Brown's opinion held that Puerto Rico was "a territory appended to and belonging to the United States, but not a part of the United States" for purposes of the revenue uniformity clause. The same opinion contained explicit references to "alien races" differing "from us in religion, customs, laws, methods of taxation, and modes of thought" and to the difficulty of extending "Anglo-Saxon principles" to such populations. Justice White's concurring opinion — which eventually became the controlling doctrine — distinguished between "incorporated" territories (destined for statehood, full constitutional protection) and "unincorporated" territories (not so destined, limited constitutional protection).</p>
 
 <p>What the Insular Cases accomplished was a third option for handling the remainder, alongside inclusion and exclusion. The Court invented a legal device that suspended the question indefinitely. "Belonging to but not a part of" the United States was a logically contradictory formulation — but it was functionally useful. It allowed the construct to claim sovereignty and collect revenue from Puerto Rico and the Philippines while deferring or denying their populations' claims to equal constitutional status. The remainder was not included, not excluded, but held in a deliberately ambiguous intermediate zone, belonging and not belonging simultaneously.</p>
 
@@ -294,5 +323,6 @@
       </nav>
     </article>
   </main>
+<script defer src="zh-hant-data/ep14.js"></script>
 </body>
 </html>

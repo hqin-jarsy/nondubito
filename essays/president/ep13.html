@@ -28,7 +28,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -60,6 +62,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -83,22 +110,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep13.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep13.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep13.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep13.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep13.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep13.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep13.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep13.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep13.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep13.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -162,17 +191,17 @@
 
 <h3>六、早期监管与制度的错配</h3>
 
-<p>州际商业法与谢尔曼反托拉斯法，通常被视作联邦国家第一次系统性地尝试去处理经济权力的集中。1887年的州际商业法建立了州际商业委员会，使铁路成为第一个受联邦持续规制的产业。这部法要求运价公正而合理，禁止给个别托运人特殊的折扣或返利，禁止长短途的差别待遇和线路的合谋。但要注意，这部法在实践中并不十分有效，它最成功的地方，是要求铁路提交年报，以及对某些明显的返利做法有所约束。</p>
+<p>州际商业法与谢尔曼反托拉斯法，通常被视作联邦国家第一次系统性地尝试去处理经济权力的集中。1887年的州际商业法建立了州际商业委员会，使铁路成为第一个受联邦持续规制的产业。这部法要求运价公正而合理，禁止给个别托运人特殊的折扣或返利，禁止在相似条件下对同线同向、包含于长途之内的短途收取更高总运费，并禁止线路的合谋。但要注意，这部法在实践中并不十分有效，它最成功的地方，是要求铁路提交年报，以及对某些明显的返利做法有所约束。</p>
 
 <p>1890年生效的谢尔曼法，是第一部联邦层面的反托拉斯法。它规定，凡是以信托形式或其他方式的契约，结合或共谋，只要构成对州际贸易的限制，即属非法。问题在于，这部法律在初期，既没有定义信托，垄断这些关键的概念，也很快就遭遇了司法的限缩。1895年的合众国诉奈特案，把制造与商业区分开来，认为制糖业的制造垄断，并不等同于州际商业本身，结果显著地缩小了联邦反托拉斯可用的范围。</p>
 
-<p>所以关于谢尔曼法的初期效果，必须并置两件事。第一，它在象征的层面极重要，这是联邦第一次明确宣布，托拉斯与垄断是全国性立法的对象。第二，它在操作的层面最初非常有限，甚至常常被拿去对付工会。1890年代的法院，把谢尔曼法关于限制贸易的表述，解释成可以适用于劳工的联合与抵制，1894年德布斯案的禁令政治，更使这种倾向广为人知。也就是说，国家最早创造出来反对经济集中的工具，并没有自动地只落到资本的身上，反而先落到了工人的身上。</p>
+<p>所以关于谢尔曼法的初期效果，必须并置两件事。第一，它在象征的层面极重要，这是联邦第一次明确宣布，托拉斯与垄断是全国性立法的对象。第二，它在操作的层面最初非常有限，甚至常常被拿去对付工会。1890年代的法院，把谢尔曼法关于限制贸易的表述，解释成可以适用于劳工的联合与抵制，1894年德布斯案的禁令政治，更使这种倾向广为人知。也就是说，国家最早创造出来反对经济集中的工具，并没有自动地只落到资本的身上，反而也被用来打击工人。</p>
 
-<p>把这一段放回这个系列的主线，最稳妥的写法不是直接下判断说宪法失败了，而是更精确地说，这里出现的是一种错配。这套构被设计来容纳政治的冲突，它有一整套办法去处理谁掌权，谁制衡谁，可当那种未被设计过的经济权力升起时，它手里那套为政治冲突量身打造的工具，一时之间竟不太用得上。这套构要想真正地把经济权力纳入治理，它就必须去长出一套全新的东西，专业的监管机构，持续的行政能力，能够看穿托拉斯和金融运作的专门知识。而这些，在1890年代，几乎都还不存在。</p>
+<p>把这一段放回这个系列的主线，最稳妥的写法不是直接下判断说宪法失败了，而是更精确地说，这里出现的是一种错配。这套构被设计来容纳政治的冲突，它有一整套办法去处理谁掌权，谁制衡谁，可当那种未被设计过的经济权力升起时，它手里那套为政治冲突量身打造的工具，一时之间竟不太用得上。这套构要想真正地把经济权力纳入治理，它就必须去长出一套全新的东西，专业的监管机构，持续的行政能力，能够看穿托拉斯和金融运作的专门知识。而这些，在1890年代，基础仍然零散而薄弱，尚未形成成熟的体系。</p>
 
 <h3>七、排华法，边界余项的新形态</h3>
 
-<p>在阶级这条经济的新轴之外，这一段还必须单列出另一条线，那就是1882年的排华法，因为它不围绕劳资的分配，而是直接围绕政治共同体的边界。这部法是第一部重要的限制移民的联邦法律。它规定，十年内暂停华工来美，已经来的也不得继续留居，美国的法院不得接纳华人为公民。此后，1892年的吉尔里法又将排斥延长了十年，并在1902年走向了永久化。</p>
+<p>在阶级这条经济的新轴之外，这一段还必须单列出另一条线，那就是1882年的排华法，因为它不围绕劳资的分配，而是直接围绕政治共同体的边界。这部法是第一部重要的限制移民的联邦法律。它规定，十年内暂停华工来美，它并未一概禁止此前合法在美的华人继续居留，但离境后的再入境受证书等条件限制，美国的法院不得接纳华人为公民。此后，1892年的吉尔里法又将排斥延长了十年，1902年再次延续，1904年改为无限期实施。</p>
 
 <p>这一立法的历史定位，在现代学界已经相当明确。它不是一般性的移民管理细则，而是第一次以广泛的联邦立法方式，以族群和职业的类别为核心对象，对特定的移民群体实施系统的排斥。把这一点放回这个系列的主线，尤其关键。前面几篇里，那个古老的边界余项，主要体现在奴隶制上，问题是黑人算不算这个政治共同体的完整成员。而现在，即便奴隶制这个上一阶段的边界余项已经结束，政治共同体的边界排除机制，并没有随之消失，它只是换了一个对象，换了一副法律的面孔，在排华法里重新出现了。</p>
 
@@ -184,7 +213,7 @@
 
 <p>1893年恐慌的严重程度，在数字上必须注明存在估算的差异。两套经典的序列都显示这场萧条极深，1894年的失业率，一套估计约为百分之十二点三，另一套则高达百分之十八点四。克利夫兰本人在这里很重要，因为他那种有限政府的立场，并不只是抽象的意识形态。1887年否决得克萨斯的种子救济法案时，他写道，政府不应供养人民，并称自己找不到宪法的依据，去用公共的资金救济这类个人的苦难。到了第二任，他又在货币问题上坚守金本位，因此既失去了西部和南部民主党人的支持，也加速了农民与债务人政治的独立化。</p>
 
-<p>把这一段放回框架，克利夫兰有限政府的立场，恰恰代表着这套构一种旧的自我理解，那种认为政府的职责有限，不该介入社会经济苦难的理解。而它撞上的，是一个全新的现实，一个由铁路，托拉斯和紧缩货币共同制造出来的，大规模的经济痛苦。人民党的出现之所以重要，正在于它把那些被铁路，债务与紧货币挤压的农民，从零散的利益抱怨，转成了一套制度的语言。克利夫兰是美国唯一一位两次非连续任期的总统，而他两任之间的这种立场，恰恰站在了那个正在裂开的，旧的有限政府观念与新的经济治理需求之间的裂缝上。</p>
+<p>把这一段放回框架，克利夫兰有限政府的立场，恰恰代表着这套构一种旧的自我理解，那种认为政府的职责有限，不该介入社会经济苦难的理解。而它撞上的，是一个全新的现实，一个由铁路，托拉斯和紧缩货币共同制造出来的，大规模的经济痛苦。人民党的出现之所以重要，正在于它把那些被铁路，债务与紧货币挤压的农民，从零散的利益抱怨，转成了一套制度的语言。克利夫兰是美国第一位两次任期不连续的总统，而他两任之间的这种立场，恰恰站在了那个正在裂开的，旧的有限政府观念与新的经济治理需求之间的裂缝上。</p>
 
 <h3>九、结语</h3>
 
@@ -192,7 +221,7 @@
 
 <p>这套构当初被设计出来，是为了分割和制衡政治的权力，它对谁掌权，谁制衡谁，权力如何不被垄断，有一整套精密的安排。但它几乎没有为集中的私人经济权力做过任何准备。而恰恰在这十几年里，铁路，托拉斯与金融的集中，构造出了一种能左右市场，运价，就业和信用的支配力，一种宪法原始设计从未预设过的权力。与之相伴的，是那个最深余项一条全新的轴，阶级这条经济的轴，它不再首先以谁算公民的方式出现，而是以工资，运价，债务，劳动安全这些经济关系的方式出现，但它仍然是同一个未兑现承诺的另一副面孔。</p>
 
-<p>面对这种新权力，这套构的反应，最准确的概括是错配。它最成熟的工具，都是为政治冲突打造的，而它第一次尝试去对付经济权力的那些工具，州际商业法与谢尔曼法，则规则含混，机构稚嫩，并很快遭到司法的限缩，甚至被反过来用去镇压工会。当劳资冲突升级时，这套构确实能够强势地介入，但它介入的方式，禁令与军警，是站在秩序与资本一边去维持秩序，而不是去居中调停。国家最早造出来反对经济集中的武器，最初落到的，反而是工人的身上。</p>
+<p>面对这种新权力，这套构的反应，最准确的概括是错配。它最成熟的工具，都是为政治冲突打造的，而它第一次尝试去对付经济权力的那些工具，州际商业法与谢尔曼法，则规则含混，机构稚嫩，并很快遭到司法的限缩，甚至被反过来用去镇压工会。当劳资冲突升级时，这套构确实能够强势地介入，但它介入的方式，禁令与军警，是站在秩序与资本一边去维持秩序，而不是去居中调停。国家最早造出来反对经济集中的武器，在早期也被反过来用到了工人的身上。</p>
 
 <p>与此同时，那条古老的边界余项也并没有消失。排华法证明，即便奴隶制这个上一阶段的边界余项已经结束，把某个群体排除在政治共同体之外的机制，仍然会换一副法律的面孔重新出现。那个最深的余项，从来不会因为在一个地方被压住，就在所有地方都归于沉寂。</p>
 
@@ -230,15 +259,15 @@
 
 <h3>IV. Workers, Immigrants, Farmers: New Squeezed Groups</h3>
 
-<p>On the other side of concentrated economic power were its new victims. The Knights of Labor, founded in 1869, reached nearly a million members by its peak in 1886–87 — more inclusive than any subsequent federation, enrolling significant numbers of Black workers and women alongside skilled and unskilled labor. The American Federation of Labor, organized in 1886 under Samuel Gompers, concentrated on craft unions and immediate workplace goals. By 1890, more than eighteen percent of children aged ten to fifteen were employed; long hours, inadequate safety measures, and subsistence wages were normal conditions of industrial work.</p>
+<p>On the other side of concentrated economic power were its new victims. The Knights of Labor, founded in 1869, reached nearly a million members by its peak in 1886–87 — more inclusive than the later American Federation of Labor, enrolling significant numbers of Black workers and women alongside skilled and unskilled labor. The American Federation of Labor, organized in 1886 under Samuel Gompers, concentrated on craft unions and immediate workplace goals. By 1890, more than eighteen percent of children aged ten to fifteen were employed; long hours, inadequate safety measures, and subsistence wages were normal conditions of industrial work.</p>
 
-<p>Immigration transformed in composition as well as volume. Before 1890, most immigrants came from northern and western Europe; the wave of 1890–1919 — over eighteen million — was more than sixty percent from eastern and southern Europe. Cities filled with newcomers whose languages, religions, and customs alarmed nativist opinion even as factory owners welcomed their labor. The nativist reaction and the industrial demand grew at the same rate.</p>
+<p>Immigration transformed in composition as well as volume. Before 1890, most immigrants came from northern and western Europe; the wave of 1890–1919 — over eighteen million — was more than sixty percent from eastern and southern Europe. Cities filled with newcomers whose languages, religions, and customs alarmed nativist opinion even as factory owners welcomed their labor. The nativist reaction and the industrial demand grew together.</p>
 
 <p>Farmers experienced the squeeze through three mechanisms: railroad pricing, debt, and monetary contraction. Modern economic historians are careful to note that the falling prices of the late nineteenth century reflected real productivity gains as well as monetary tightness — deflation was not uniformly bad. But for farmers paying fixed debt obligations in dollars that were rising in real value, while crop prices fell, the tightening was experienced as a real compression regardless of the aggregate statistics. The organizational arc from the Grangers through the Farmers' Alliance to the People's Party of 1892 was the translation of that economic pain into institutional demands: free silver coinage, a graduated income tax, government ownership or control of railroads. The specific demands mattered less than the act of translation: people were bringing economic grievance into the construct's political vocabulary.</p>
 
 <h3>V. Labor Conflicts and Federal Intervention</h3>
 
-<p>The Haymarket affair of May 4, 1886 — a bomb thrown at police during a demonstration for the eight-hour day, killing seven officers — became the era's defining image of labor conflict. Eight anarchists were tried and convicted on evidence that did not establish individual guilt for the bombing; it was 1893 before Governor Altgeld pardoned the survivors and excoriated the proceedings. More careful recent scholarship has added nuance — anarchist networks did exist and did use violent rhetoric — but even revised accounts do not describe the trial as a model of due process.</p>
+<p>The Haymarket affair of May 4, 1886 — a bombing and subsequent gunfire during a demonstration for the eight-hour day, in which seven officers died — became the era's defining image of labor conflict. Eight anarchists were tried and convicted on evidence that did not establish individual guilt for the bombing; it was 1893 before Governor Altgeld pardoned the survivors and excoriated the proceedings. More careful recent scholarship has added nuance — anarchist networks did exist and did use violent rhetoric — but even revised accounts do not describe the trial as a model of due process.</p>
 
 <p>The Homestead Strike of 1892 exposed the triangular relationship between capital, private force, and the state. Carnegie Steel locked out the union; the company hired three hundred Pinkerton agents to occupy the plant; workers and Pinkertons fought a battle that killed at least ten. Pennsylvania then sent in eight thousand five hundred National Guardsmen, production resumed with replacement workers, and the union was broken. The Pullman Strike of 1894 brought federal power into the center. Because Pullman cars were attached to mail trains, the strike was reframed as interference with federal mail and interstate commerce. Federal courts issued injunctions; the Cleveland administration deployed thousands of federal troops, overriding the Illinois governor's objection. Around thirty people died. The Supreme Court subsequently confirmed that federal power over interstate commerce and postal service could be used to clear strikes that obstructed those channels, and that civil injunctions were a legitimate suppression tool.</p>
 
@@ -248,13 +277,13 @@
 
 <p>The Interstate Commerce Act of 1887 and the Sherman Antitrust Act of 1890 were the construct's first systematic attempts to govern concentrated economic power. The ICC — the first independent federal regulatory agency — required railroads to charge "just and reasonable" rates, prohibited rebates and rate discrimination, and demanded annual financial reports. In practice it was a weak instrument; its most durable early achievement was the reporting requirement. The Sherman Act declared combinations in restraint of interstate trade illegal, and made monopolization a federal offense. Its problems were definitional: "trust" and "monopoly" were not defined, and courts soon narrowed its scope. The 1895 Knight decision distinguished manufacturing from commerce — a sugar refinery controlling ninety-eight percent of national production was not in interstate commerce — and gutted the statute's reach.</p>
 
-<p>Two things about the Sherman Act must be held simultaneously. It was symbolically enormous: Congress had declared, for the first time, that private economic concentration was a national legislative concern. And it was operationally negligible in its early years — and when it was used, it was used against labor unions, whose combination in strikes the courts found fit the "restraint of trade" language as well as anything. The first federal weapon against economic consolidation landed, initially, on workers.</p>
+<p>Two things about the Sherman Act must be held simultaneously. It was symbolically enormous: Congress had declared, for the first time, that private economic concentration was a national legislative concern. And it was operationally negligible in its early years — it was also used against labor unions, whose combination in strikes the courts found fit the "restraint of trade" language as well as anything. An early federal weapon against economic consolidation was also turned against workers.</p>
 
 <p>The accurate verdict on this period is not that the Constitution failed but that there was a mismatch. The construct's most refined tools — legislative process, judicial review, executive appointment, the management of political conflict — were built for political power struggles. When economic power rose that was organized differently, crossing state lines, held by private parties outside any public office, the existing toolkit did not fit. To govern economic power, the construct needed new instruments: professional regulatory agencies, sustained administrative capacity, specialized expertise in reading corporate structures and financial flows. In 1890, none of those instruments were mature. The mismatch is not the end of the story; it is the condition that makes the Progressive Era's next chapter necessary.</p>
 
 <h3>VII. The Chinese Exclusion Act: New Form of the Boundary Remainder</h3>
 
-<p>Alongside the class axis, the boundary axis — who belongs to the political community at all — did not disappear. The Chinese Exclusion Act of 1882 was the first significant federal law restricting immigration on ethnic and occupational grounds. It suspended Chinese labor immigration for ten years, barred courts from naturalizing Chinese residents, and was extended and made permanent by subsequent legislation through 1902. The Scott Act of 1888 made it difficult for Chinese residents who left the country to return; the Geary Act of 1892 extended the exclusion another decade.</p>
+<p>Alongside the class axis, the boundary axis — who belongs to the political community at all — did not disappear. The Chinese Exclusion Act of 1882 was the first significant federal law restricting immigration on ethnic and occupational grounds. It suspended Chinese labor immigration for ten years, barred courts from naturalizing Chinese residents, and was extended in 1892 and again in 1902, then made indefinite in 1904. The Scott Act of 1888 barred the return of Chinese laborers who had left the country, invalidating their return certificates; the Geary Act of 1892 extended the exclusion another decade.</p>
 
 <p>Modern scholarship is clear on what this law was: the first time Congress enacted broad statutory exclusion targeting a specific ethnic group. The framing invoked labor market protection and social order, but the mechanism was ethnic identity. Earlier essays traced the boundary remainder through slavery — the question of whether Black Americans counted as full members of the political community. The Fourteenth Amendment had answered that question constitutionally. But the mechanism of exclusion had not ended; it had migrated. With the Chinese Exclusion Act, the construct's boundary-drawing apparatus shifted target, with new legal clothing but the same structural logic: this group is to be excluded from membership.</p>
 
@@ -300,5 +329,6 @@
       </nav>
     </article>
   </main>
+<script defer src="zh-hant-data/ep13.js"></script>
 </body>
 </html>

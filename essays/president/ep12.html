@@ -28,7 +28,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -60,6 +62,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -83,22 +110,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep12.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep12.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep12.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep12.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep12.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep12.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep12.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep12.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep12.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep12.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -120,11 +149,11 @@
 
 <p>要理解这次闭合，得先破除一个太简单的印象。吉姆·克罗并不是一部法律，也不是一纸判决，甚至也不只是白人至上这种残余观念的延续。它是在重建失败之后，由州宪法，普通立法，行政裁量，法院判决，劳工制度，私刑恐怖以及历史叙事共同编织出来的一套体制，它要做的，是逐步封死黑人在政治，经济和社会上的每一个出口。它的关键转折，并不在1865年就立刻完成，而是在1890年代到20世纪初，才被系统化，宪法化，常态化。</p>
 
-<p>这次闭合有三条最关键的机制，正好对应三个被封死的出口。第一，政治的出口被关闭，密西西比1890年的宪法，路易斯安那1898年的宪法以及它们的模仿者，用人头税，识字或理解测试，登记裁量，祖父条款，白人初选这些看似种族中性的装置，几乎消灭了黑人选民。第二，经济的出口被关闭，从黑法典，流浪法到罪犯租赁，再到佃农制，作物留置权与债役，解放后黑人对重新奴役化的抗拒，被一步步改写成，你可以名义上自由，但你离不开土地，雇主，债务和地方司法。第三，暴力的出口被关闭，私刑并不是制度之外的混乱，而是这套制度运作的一部分，是让法律的歧视，经济的束缚与政治的剥夺真正可以被执行的恐怖支撑。</p>
+<p>这次闭合有三条最关键的机制，正好对应三个被封死的出口。第一，政治的出口被关闭，密西西比1890年的宪法，路易斯安那1898年的宪法以及它们的模仿者，用人头税，识字或理解测试，登记裁量，祖父条款这些表面中立的门槛，以及明确排斥黑人的白人初选，几乎消灭了黑人选民。第二，经济的出口被关闭，从黑法典，流浪法到罪犯租赁，再到佃农制，作物留置权与债役，解放后黑人对重新奴役化的抗拒，被一步步改写成，你可以名义上自由，但你离不开土地，雇主，债务和地方司法。第三，暴力的出口被关闭，私刑并不是制度之外的混乱，而是这套制度运作的一部分，是让法律的歧视，经济的束缚与政治的剥夺真正可以被执行的恐怖支撑。</p>
 
 <p>把这三个出口放在一起看，才能看出这次闭合的野心。一个人要摆脱被强加的处境，无非有三条路，或者通过政治去改变规则，或者通过经济去获得独立，或者在走投无路时用人身的反抗去挣脱。而吉姆·克罗要做的，恰恰是把这三条路一次性地全部堵死。剥夺选举权，堵死了通过政治改变规则的路，罪犯租赁和债役，堵死了通过经济获得独立的路，而遍布的私刑，则堵死了用反抗去挣脱的路，并警告任何敢于尝试的人。三条出口一起封死，一个人就被围困在了一个几乎密不透风的处境里。</p>
 
-<p>还要立刻点出一件全国层面的事。这并不只是南方的地方恶政，联邦层面的退却同样关键。妥协的政治在1877年削弱了联邦的保障，1883年的民权案件把1875年的民权法打掉，1896年的普莱西诉弗格森案为隔离但平等背书，1903年的贾尔斯诉哈里斯案又事实上拒绝强制南方遵守第十五修正案。换句话说，南方白人民主党的救赎，只有在行政，国会与最高法院的全国性退却之中，才变成了一个可以持久的闭合秩序。</p>
+<p>还要立刻点出一件全国层面的事。这并不只是南方的地方恶政，联邦层面的退却同样关键。妥协的政治在1877年削弱了联邦的保障，1883年的民权案件把1875年民权法中公共场所平等待遇及相应救济的条款判为无效，1896年的普莱西诉弗格森案为隔离但平等背书，1903年的贾尔斯诉哈里斯案又事实上拒绝强制南方遵守第十五修正案。换句话说，南方白人民主党的救赎，只有在行政，国会与最高法院的全国性退却之中，才变成了一个可以持久的闭合秩序。</p>
 
 <h3>二、从零散做法到系统法制</h3>
 
@@ -136,13 +165,13 @@
 
 <h3>三、关闭政治出口</h3>
 
-<p>在政治层面，这次闭合最核心的机制，是把第十五修正案所允许的那种形式上的中立，变成一件种族选择性执行的工具。第十五修正案禁止的只是因种族而剥夺选票，而不是一切门槛，于是南方各州就抓住这个缝隙，用一整套不点名种族，却专门冲着黑人来的装置，把黑人一个个地挡在了投票站之外。</p>
+<p>在政治层面，这次闭合最核心的机制，是把表面不点名种族的投票门槛，变成一件种族选择性执行的工具。第十五修正案禁止的只是因种族而剥夺选票，而不是一切门槛，于是南方各州就抓住这个缝隙，用表面中立却歧视性实施的门槛，再加上公开排斥黑人的白人初选，把黑人一个个地挡在了投票站之外；这不意味着歧视获得了宪法许可，而是保护在实践中被架空了。</p>
 
 <p>这套制度的效果，用数字来看最触目惊心。密西西比是模板州。1867年，密西西比有六万零一百六十七名黑人登记选民，1868年，黑人登记选民已经达到八万六千九百七十三人，超过了白人登记者。而到了1890年宪法之后，黑人登记选民到1892年，只剩下八千六百一十五人。路易斯安那的数据更常被引用，1896年有十三万零三百三十四名非裔登记选民，1898年新宪法采纳了密西西比式的装置之后，到1900年只剩下五千三百二十人，到1904年，更只剩下一千三百四十二人。</p>
 
 <p>最高法院在这一闭合过程中，同样起了关键的作用。在威廉斯诉密西西比案里，法院维持了1890年密西西比宪法中的人头税，剥夺公民权条款与识字测试。到1903年的贾尔斯诉哈里斯案，法院走得更远，它基本上拒绝了去强迫南方各州遵守第十五修正案。这在制度上意味着，黑人连向联邦法院去寻求强制执行的那个出口，也越来越被堵死了。政治的出口，就这样从投票站，一直到最高法院，被一道道地关上。</p>
 
-<p>这套装置，从头到尾，没有一处敢在字面上写明要剥夺黑人的选票，人头税不提种族，识字测试不提种族，祖父条款也不提种族。第十五修正案明明白白地写在宪法里，禁止因种族而剥夺选票，而这套装置，恰恰是绕开这行字，却又实现了这行字所禁止的事。宪法上，黑人的选举权仍然堂堂正正地受着保护，现实里，黑人的选票却被清得干干净净。承认和现实之间的那道鸿沟，在这里被撑到了极致。</p>
+<p>这些表面中立的门槛，不像白人初选那样公开按种族排除选民，人头税不提种族，识字测试不提种族，祖父条款也不提种族。第十五修正案明明白白地写在宪法里，禁止因种族而剥夺选票，而这套装置，恰恰是绕开这行字，却又实现了这行字所禁止的事。宪法上，黑人的选举权仍然堂堂正正地受着保护，现实里，黑人的选票却被清得干干净净。承认和现实之间的那道鸿沟，在这里被撑到了极致。</p>
 
 <h3>四、关闭经济出口</h3>
 
@@ -156,9 +185,9 @@
 
 <h3>五、关闭暴力出口，私刑作为体制</h3>
 
-<p>在这套体制里，私刑不是边角，而是核心。它是让前面那些法律的歧视与经济的束缚，真正能够被执行下去的恐怖支撑。关于私刑的数字，必须按不同的口径分别标明。按塔斯基吉的传统统计，1882到1968年间，美国共记录了四千七百四十三起私刑，其中三千四百四十六名受害者是黑人，而峰值集中在1890年代，1892年有二百三十起，其中黑人受害者一百六十一人。较新的一项关于种族恐怖私刑的研究，在南方十二个州1877到1950年间，识别出了四千零八十四起，比此前最全面的旧统计还多出至少八百起。</p>
+<p>在这套体制里，私刑不是边角，而是核心。它是让前面那些法律的歧视与经济的束缚，真正能够被执行下去的恐怖支撑。关于私刑的数字，必须按不同的口径分别标明。按塔斯基吉的传统统计，1882到1968年间，美国共记录了四千七百四十三人遭私刑杀害，其中三千四百四十六名受害者是黑人，而峰值集中在1890年代，1892年有二百三十人遇害，其中黑人受害者一百六十一人。平等正义倡议组织的《美国私刑》第三版报告，在南方十二个州1877到1950年间，记录了四千零八十四名遭种族恐怖私刑杀害的黑人，比此前最全面的旧统计还多出至少八百人。</p>
 
-<p>私刑的这种恐怖性质，最早正是由艾达·B·威尔斯系统地揭示出来的。她最早把私刑从一桩地方的治安事件，重新定义为一种政治性的种族恐怖。1892年，孟菲斯一家由黑人经营的杂货店老板被私刑处死之后，威尔斯在报纸上进行了猛烈的揭露，此后开启了全国性的反私刑运动，她的工作之所以重要，是因为它让人看到，私刑并不只是针对某个被指控的个人，而是在向整个黑人共同体示范，什么叫越界，以及越界要付出怎样的代价。</p>
+<p>私刑的这种恐怖性质，最早正是由艾达·B·威尔斯系统地揭示出来的。她最早把私刑从一桩地方的治安事件，重新定义为一种政治性的种族恐怖。1892年，孟菲斯一家杂货店的三名黑人经营者被私刑处死之后，威尔斯在报纸上进行了猛烈的揭露，此后开启了全国性的反私刑运动，她的工作之所以重要，是因为它让人看到，私刑并不只是针对某个被指控的个人，而是在向整个黑人共同体示范，什么叫越界，以及越界要付出怎样的代价。</p>
 
 <p>这里恰恰藏着一个关于闭合的深刻悖论。如果那个余项真的已经被闭合了，那么维持这套秩序，本不需要如此持续，如此密集的恐怖。一件已经被真正了结的事，是不需要靠年复一年的私刑去反复恐吓的。正因为那个余项并没有被真正地消灭，正因为被压回边缘的黑人始终还在，还想越界，还在抗拒，这套闭合秩序才必须动用持续的私刑，去一次次地把他们摁回去。私刑的存在本身，就是那个余项没有被闭合的证据，它证明的不是压制的成功，而是压制的永远无法一劳永逸。</p>
 
@@ -188,9 +217,9 @@
 
 <p>把吉姆·克罗这段历史放回这个系列，最值得记住的是，它是这套构历史上最系统的一次闭合尝试，却也最清楚地证明了，那个余项终究闭合不了。</p>
 
-<p>这次闭合的系统性，是前所未有的。它封死了政治的出口，用一整套种族中立的装置，把密西西比八万多的黑人登记选民压到了八千多，把路易斯安那十三万的黑人登记选民压到了一千多。它封死了经济的出口，用罪犯租赁和债役，把自由人重新拴在了土地，债务和地方司法上。它封死了暴力的出口，用持续的私刑，让前面那些法律和经济的高墙真正可以被执行。它还有普莱西案的宪法背书，有失败的事业的文化防御，更有联邦从行政到最高法院的全线退却为它让路。</p>
+<p>这次闭合的系统性，是前所未有的。它封死了政治的出口，用表面中立的门槛和明确的种族排除，把密西西比八万多的黑人登记选民压到了八千多，把路易斯安那十三万的黑人登记选民压到了一千多。它封死了经济的出口，用罪犯租赁和债役，把自由人重新拴在了土地，债务和地方司法上。它封死了暴力的出口，用持续的私刑，让前面那些法律和经济的高墙真正可以被执行。它还有普莱西案的宪法背书，有失败的事业的文化防御，更有联邦从行政到最高法院的全线退却为它让路。</p>
 
-<p>然而，恰恰是这次最系统的闭合，最清楚地暴露了闭合的不可能。原因有三。其一，这次闭合是靠掏空，而不是靠抹去来完成的。第十三，第十四，第十五修正案，一条都没有被从宪法里删掉，那句平等的承诺，连同哈伦大法官那句我们的宪法是色盲的异议，都作为一种潜伏的力量，留在了根本大法里。其二，这次闭合需要持续的恐怖来维持。年复一年的私刑说明，那个余项并没有被真正消灭，一件真正了结了的事，是不需要靠恐怖去反复守卫的。其三，这次闭合也需要持续的叙事来加固。失败的事业这套故事之所以要被反反复复地讲述，正因为这套秩序的正当性从未真正被坐实。而在这一切之外，被封在墙内的黑人，用他们的教会，学校，社群，以及华盛顿与杜波依斯那样的争论，始终保留着组织和行动的能力。</p>
+<p>然而，恰恰是这次最系统的闭合，最清楚地暴露了闭合的不可能。原因有三。其一，这次闭合是靠掏空，而不是靠抹去来完成的。第十三，第十四，第十五修正案，一条都没有被从宪法里删掉，平等的承诺仍留在宪法里，而哈伦大法官那句我们的宪法是色盲的异议，则留在了司法记录中，两者都成了一种潜伏的力量。其二，这次闭合需要持续的恐怖来维持。年复一年的私刑说明，那个余项并没有被真正消灭，一件真正了结了的事，是不需要靠恐怖去反复守卫的。其三，这次闭合也需要持续的叙事来加固。失败的事业这套故事之所以要被反反复复地讲述，正因为这套秩序的正当性从未真正被坐实。而在这一切之外，被封在墙内的黑人，用他们的教会，学校，社群，以及华盛顿与杜波依斯那样的争论，始终保留着组织和行动的能力。</p>
 
 <p>所以吉姆·克罗真正达成的，是持久，而不是闭合。这套精密的高墙越是森严，越是需要持续的恐怖和叙事去维持，就越是反过来证明，它所要封死的那个东西，从来没有被真正地封死。这一切也再一次落回反宿命论。这次闭合不是自然而然发生的，它是无数具体的政治选择，司法判决和暴力行动，一块块垒起来的，因此它也不是不可拆除的。那道高墙会矗立很久，久到几代人的一生，但它终究是被人建起来的，而凡是被人建起来的，就有可能被人重新拆掉。</p>
 
@@ -204,9 +233,9 @@
 
 <p>Jim Crow was not a single law. It was not a single ruling. It was the interlocking architecture built from state constitutions, ordinary legislation, administrative discretion, court decisions, labor arrangements, lynching terror, and historical narrative — assembled after Reconstruction's failure to progressively eliminate Black political, economic, and personal agency in the South. The key turning point was not 1865 but the 1890s, when this patchwork was systematized, constitutionalized, and normalized. What existed before as scattered exclusionary practice was now forged into a coherent regime.</p>
 
-<p>Three mechanisms, three sealed exits. First: political. Mississippi's constitution of 1890, Louisiana's of 1898, and their imitators across the South used poll taxes, literacy and "understanding" tests, discretionary registration, grandfather clauses, and white primaries — all facially race-neutral — to eliminate Black voters. Second: economic. From the Black Codes and vagrancy laws through convict leasing to sharecropping, crop-lien credit, and debt peonage, the legal freedom of the freedpeople was translated into a condition from which departure was practically impossible. Third: violent. Lynching was not disorder outside the system but enforcement within it — the terror that made the legal and economic walls actually hold.</p>
+<p>Three mechanisms, three sealed exits. First: political. Mississippi's constitution of 1890, Louisiana's of 1898, and their imitators across the South used poll taxes, literacy and "understanding" tests, discretionary registration, and grandfather clauses — ostensibly race-neutral barriers — alongside explicitly exclusionary white primaries to eliminate Black voters. Second: economic. From the Black Codes and vagrancy laws through convict leasing to sharecropping, crop-lien credit, and debt peonage, the legal freedom of the freedpeople was translated into a condition from which departure was practically impossible. Third: violent. Lynching was not disorder outside the system but enforcement within it — the terror that made the legal and economic walls actually hold.</p>
 
-<p>Crucially, this was not only a Southern story. Federal retreat enabled the entire structure. The Civil Rights Cases of 1883 struck down the Civil Rights Act of 1875. Plessy v. Ferguson in 1896 constitutionalized "separate but equal." Giles v. Harris in 1903 effectively refused to compel Southern compliance with the Fifteenth Amendment. Southern Democratic Redemption could only become a durable order because the national executive, Congress, and Supreme Court collectively stepped aside.</p>
+<p>Crucially, this was not only a Southern story. Federal retreat enabled the entire structure. The Civil Rights Cases of 1883 struck down the public-accommodation equality and remedy provisions of the Civil Rights Act of 1875. Plessy v. Ferguson in 1896 constitutionalized "separate but equal." Giles v. Harris in 1903 effectively refused to compel Southern compliance with the Fifteenth Amendment. Southern Democratic Redemption could only become a durable order because the national executive, Congress, and Supreme Court collectively stepped aside.</p>
 
 <h3>II. From Scattered Practices to Systematic Law</h3>
 
@@ -218,7 +247,7 @@
 
 <h3>III. Closing the Political Exit</h3>
 
-<p>The political mechanism was the exploitation of the precise gap the Fifteenth Amendment left open. The Amendment prohibited denial of the vote on grounds of race — not all voter qualifications. Southern states seized this space: poll taxes, literacy tests, grandfather clauses, white primaries. Not one of these devices named race in its text. Each achieved racial exclusion in its operation.</p>
+<p>The political mechanism exploited the distance between a constitutional prohibition and its enforcement. The Fifteenth Amendment prohibited racial exclusion without abolishing all voter qualifications. Southern states used ostensibly neutral poll taxes, literacy tests, and grandfather clauses alongside explicitly exclusionary white primaries. These devices achieved racial exclusion in practice; that did not make the discrimination constitutionally permissible.</p>
 
 <p>The numbers are the argument. Mississippi in 1867 had sixty thousand Black registered voters; by 1868, Black registrations exceeded white. After the 1890 constitution, Black registrations fell to eight thousand six hundred by 1892. Louisiana had one hundred thirty thousand Black registered voters in 1896; by 1900, five thousand three hundred twenty; by 1904, one thousand three hundred forty-two. The Supreme Court closed the remaining judicial exit. Williams v. Mississippi upheld the 1890 constitution's disfranchising provisions. Giles v. Harris declined to compel enforcement of the Fifteenth Amendment. The political exit was sealed from the polling place to the courtroom.</p>
 
@@ -234,11 +263,11 @@
 
 <h3>V. Closing the Exit Through Violence: Lynching as Institution</h3>
 
-<p>Lynching was not chaos outside the system. It was the enforcement mechanism that made the system work. Tuskegee Institute's records count 4,743 lynchings between 1882 and 1968, of whom 3,446 victims were Black; the decade of peak frequency was the 1890s, with 230 recorded in 1892 alone. More recent research on racial terror lynching in twelve Southern states between 1877 and 1950 identified 4,084 cases — at least 800 more than prior comprehensive counts.</p>
+<p>Lynching was not chaos outside the system. It was the enforcement mechanism that made the system work. Tuskegee Institute's records count 4,743 people lynched between 1882 and 1968, of whom 3,446 were Black; the decade of peak frequency was the 1890s, with 230 people lynched in 1892 alone. The Equal Justice Initiative's third edition of Lynching in America documented 4,084 Black victims of racial terror lynching in twelve Southern states between 1877 and 1950 — at least 800 more people than prior comprehensive counts.</p>
 
-<p>Ida B. Wells systematically established the political character of lynching, beginning after the 1892 murder of a Black Memphis grocer. She documented, in pamphlets that she updated over years, that lynching was not criminal justice for heinous crimes but a tool for demonstrating to entire communities what the cost of transgression would be. It was not punishment for acts; it was instruction for a population about the limits of their permissible existence.</p>
+<p>Ida B. Wells systematically established the political character of lynching, beginning after the 1892 lynching of three Black men who ran a Memphis grocery. She documented, in pamphlets that she updated over years, that lynching was not criminal justice for heinous crimes but a tool for demonstrating to entire communities what the cost of transgression would be. It was not punishment for acts; it was instruction for a population about the limits of their permissible existence.</p>
 
-<p>This is where the deepest structural paradox of closure surfaces. If the remainder had genuinely been closed — if the problem had truly been solved — the system would not require annual, region-wide campaigns of lethal terror to maintain itself. Things that are actually settled do not need constant violent reinforcement. The necessity of the terror is the confession of the instability. Lynching did not demonstrate the strength of the racial order; it demonstrated its fragility. Every man killed was evidence that people were trying to cross the lines, that the lines were not self-enforcing, that the closure was not real.</p>
+<p>This is where the deepest structural paradox of closure surfaces. If the remainder had genuinely been closed — if the problem had truly been solved — the system would not require annual, region-wide campaigns of lethal terror to maintain itself. Things that are actually settled do not need constant violent reinforcement. The necessity of the terror is the confession of the instability. Lynching did not demonstrate the strength of the racial order; it demonstrated its fragility. The repeated killings showed how much renewed terror the order required to police its boundaries: the lines were not self-enforcing, and the closure was not real.</p>
 
 <h3>VI. The Lost Cause and Its Monuments</h3>
 
@@ -288,5 +317,6 @@
       </nav>
     </article>
   </main>
+<script defer src="zh-hant-data/ep12.js"></script>
 </body>
 </html>
