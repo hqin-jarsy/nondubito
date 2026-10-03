@@ -1,6 +1,53 @@
 # Reviewed Daodejing full editions
 
-## Current progress: chapters 61–70 (thirteenth batch)
+## Current progress: chapters 71–81 (fourteenth and final chapter batch)
+
+The final batch completes this full-edition upgrade through chapter 81: fifty-five
+independently authored Japanese, Korean, German, French and Spanish essays,
+synchronized Chinese/English editing and offline Traditional Chinese. All eleven
+argument arcs and substantive examples are retained in 7/8/7/7/8/7/8/8/7/8/9
+sections. The seventy-seven authored manuscripts preserve eight original DOI
+destinations for 71–72 and nine for 73–81, alongside Papers 8/9.
+
+`batch14-brief.json` records the coverage and textual/editorial reference checks;
+`batch14-review.json` freezes final reviewed manuscripts and exact page edits
+against the clean baseline. Earlier receipts remain immutable; explicit digest
+chaining follows later index/navigation updates without resealing earlier prose.
+
+Editorial focus: task-specific Dunning–Kruger research and the Socrates paraphrase
+are not universal proofs (71); self-respect is not superiority (72); the three
+negative clauses plus calm planning and the limits of cosmic repayment remain
+clear (73). Expertise does not confer unlimited legitimacy (74); the received text
+also criticizes ruler-caused disorder (75). Flexibility is not a biological law or
+immunity (76); redistribution is not reduced to ego advice (77). Responsibility is
+not scapegoating, waterjet cutting includes machinery/abrasives, and manuscripts
+have historical layers (78). Mediation is an acknowledged philosophical rereading,
+not an exclusive lexical restoration (79). Antiwar, agency and enjoyment coexist
+with the text's archaic/paternalistic features and genuine material needs (80).
+The closing route is not a claim about Laozi's last written words; generosity and
+noncontention preserve rest, rights and necessary protection (81).
+
+All authored editions receive self-review and independent full cross-review before
+freezing. Word counts are truncation guards, not a substitute for prose review.
+Classical source panels, stable URLs, intro and adjacent chapter 70 bodies remain
+unchanged. Indexes, titles, metadata, navigation, Traditional dictionaries, eight
+search indexes and sitemap are synchronized. Chapter 81 retains its previous-only
+chapter navigation; no nonexistent chapter 82 is introduced.
+
+```sh
+python3 -B scripts/build_daodejing_batch14.py --check
+python3 -B -m unittest discover -s scripts -p 'test_daodejing*.py'
+python3 -B scripts/build_search_index.py --check
+python3 -B scripts/build_sitemap.py --check
+DDJ_BROWSER_CHANNEL=chrome node scripts/test_daodejing_batch14_browser.cjs http://127.0.0.1:8774
+```
+
+Browser validation covers all eleven chapters at 1440, 390 and 320 pixels: 297
+language/viewport checks, unchanged source text, keyboard disclosures, full Hant
+text conversion, language round-trips, overflow and no-JavaScript reading.
+Representative desktop/mobile screenshots are also inspected visually.
+
+## Chapters 61–70 (thirteenth batch)
 
 The thirteenth batch contains fifty complete, independently authored Japanese,
 Korean, German, French and Spanish essays, with synchronized Chinese/English
