@@ -1,0 +1,63 @@
+{
+  "batch": "batch06",
+  "episodes": [26],
+  "scope": "Final episode: five complete DE/FR/ES/JA/KO editions, bounded corrections to existing ZH/EN, Traditional Chinese derived from corrected ZH, existing URLs retained. Completes the 26-episode upgrade.",
+  "review_boundary": "Root read the complete Chinese and English source essays and archive notes. Language reviewers read every assigned target manuscript against the Chinese source and reread their final editions. Root read all changed target-language passages and all 19 English replacements before freeze.",
+  "preservation": "Immutable original ZH/EN body snapshots and external ZIPs preserved. Exact source replacements retain section and paragraph boundaries. Each target manuscript retains eight sections and 29 paragraphs, with full arguments and examples rather than summaries.",
+  "coverage": {
+    "target_essays": 5,
+    "target_sections_total": 40,
+    "target_paragraphs_total": 145,
+    "foreign_edit_events": 105,
+    "source_edit_events": 37
+  },
+  "editorial_decisions": [
+    "Date the First Red Scare after World War I, as already corrected by the incoming five-language package.",
+    "Limit the half-workforce coverage claim to initial contributory old-age insurance, not the whole Social Security system.",
+    "Distinguish institutional design and opportunities for correction from guaranteed self-correction or uninterrupted historical openness; explicitly retain Civil War and Reconstruction as rupture and rebuilding.",
+    "Keep the constitutional distinction between federal employees subject to a strike prohibition and private-sector workers under the Wagner Act, while preserving the essay's political interpretation of PATCO.",
+    "Keep administrative reorganization within congressional authorizations and statutory limits; avoid universal claims of postwar contraction.",
+    "Clarify that persons-as-ends is not a guaranteed historical destination, without withdrawing the author's normative commitment or rewriting the recursive, two-sided and relational-remainder arguments."
+  ],
+  "historical_checks": [
+    {
+      "topic": "1919–1920 Palmer raids and postwar Red Scare",
+      "url": "https://www.fbi.gov/history/cases-and-criminals/palmer-raids"
+    },
+    {
+      "topic": "Limited initial contributory old-age insurance, initially about half of jobs",
+      "url": "https://www.ssa.gov/policy/docs/ssb/v66n1/v66n1p1.html",
+      "supporting_source": "https://www.ssa.gov/history/50mm2.html"
+    },
+    {
+      "topic": "Civil War and constitutional reconstruction",
+      "url": "https://www.archives.gov/milestone-documents/13th-amendment"
+    },
+    {
+      "topic": "Voting-rights enforcement and the continued need for legal and political support; align with batch05 EP22 review",
+      "url": "https://www.justice.gov/crt/history-federal-voting-rights-laws"
+    },
+    {
+      "topic": "PATCO federal employee strike prohibition and private-sector distinction",
+      "url": "https://www.presidency.ucsb.edu/documents/remarks-and-question-and-answer-session-with-reporters-the-air-traffic-controllers-strike"
+    },
+    {
+      "topic": "Reorganization subject to statutory delegation; align with batch04 EP19 review",
+      "url": "https://www.presidency.ucsb.edu/documents/message-congress-the-reorganization-act"
+    }
+  ],
+  "limitations": "Targeted verification of flagged examples and consistency with previously reviewed episodes, not a fresh comprehensive historical audit. The theoretical synthesis remains the author's interpretation; a single case is not presented as proof of a universal law.",
+  "validation": {
+    "status": "All scoped batch06 checks and earlier-batch regressions passed.",
+    "deployment": "Local commit only; user pushes.",
+    "source_integrity": "All five final manuscript hashes independently verified; all 105 ordered foreign edits reverse-replayed to received normalized hashes. All 37 source replacements match exactly once; original snapshots unchanged.",
+    "reproducibility": "All six frozen batches reproduce: batch01 40 outputs, batch02–05 41 each, batch06 13.",
+    "unit_tests": "All nine batch06 tests passed, including scoped search and sitemap freshness, source boundaries, full body coverage, indexes, links and previous-episode body preservation.",
+    "regression": "All nine batch01 tests and all 120 batch05 article/language/viewport browser checks passed after extending the reusable tests for the single final episode.",
+    "browser": "24 article/language/viewport combinations passed at 390, 768 and 1440 pixels, plus eight-language choices, five-language navigation roundtrip, reversible Hans/Hant switching, TOC anchors, EP25-to-EP26 Traditional Chinese navigation and final return-to-index links in every foreign edition. No nonexistent EP27 link, page errors, title/body overlap or horizontal body overflow.",
+    "visual_review": "Root inspected French EP26 mobile and Traditional Chinese EP26 desktop screenshots; titles, language menu and body are readable without overlap.",
+    "search": "Five foreign records refreshed and one Traditional Chinese record added; unrelated records and ordering independently verified unchanged.",
+    "sitemap": "Six scoped article dates refreshed; all unrelated sitemap entries independently verified unchanged. The previously documented aesthetics discrepancy inherited from ec56630 remains outside scope; no global sitemap-clean claim.",
+    "whitespace": "git diff --check passed. Final new-file JSON and trailing-whitespace checks performed before commit."
+  }
+}

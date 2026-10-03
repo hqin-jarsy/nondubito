@@ -78,17 +78,32 @@ const epName=n=>`ep${String(n).padStart(2,'0')}`;
       await page.waitForFunction(()=>document.documentElement.lang==='zh-Hant');
     }
     await page.goto(`${origin}/essays/president/${epName(last)}.html?lang=zh-hant`);
-    await page.locator(`a[href="${epName(last+1)}.html"]`).click();
-    assert.equal(await page.locator('.essay-body.lang-zh').isVisible(),true);
-    assert.equal(await page.locator('.essay-body.lang-en').isVisible(),false);
-    const nextHasHant=fs.existsSync(`${__dirname}/../essays/president/zh-hant-data/${epName(last+1)}.js`);
-    if(nextHasHant)await page.waitForFunction(()=>document.documentElement.lang==='zh-Hant');
-    else assert.equal(await page.evaluate(()=>document.documentElement.dataset.lang),'zh');
+    if(last<26){
+      await page.locator(`a[href="${epName(last+1)}.html"]`).click();
+      assert.equal(await page.locator('.essay-body.lang-zh').isVisible(),true);
+      assert.equal(await page.locator('.essay-body.lang-en').isVisible(),false);
+      const nextHasHant=fs.existsSync(`${__dirname}/../essays/president/zh-hant-data/${epName(last+1)}.js`);
+      if(nextHasHant)await page.waitForFunction(()=>document.documentElement.lang==='zh-Hant');
+      else assert.equal(await page.evaluate(()=>document.documentElement.dataset.lang),'zh');
+    }else{
+      // The closing essay returns to the real series index, never an EP27.
+      assert.equal(await page.locator('a[href="ep27.html"]').count(),0);
+      await Promise.all([page.waitForURL('**/president/index.html'),page.locator('a.xiyou-nav-next[href="index.html"]').click()]);
+      assert.equal(await page.evaluate(()=>document.documentElement.dataset.lang),'zh');
+      for(const lang of ['ja','fr','de','es','ko']){
+        await page.goto(`${origin}/essays/president/${lang}/${epName(last)}.html`);
+        assert.equal(await page.locator('a[href="ep27.html"]').count(),0);
+        const indexLinks=page.locator('a[href="index.html"]');
+        assert(await indexLinks.count()>0,`${lang} missing closing index link`);
+        await Promise.all([page.waitForURL(`**/president/${lang}/index.html`),indexLinks.last().click()]);
+        assert.equal(await page.locator('a[href^="ep"][href$=".html"]').count(),26);
+      }
+    }
     // Fresh surfaces avoid Chromium's occasional fixed-header paint residue
     // after the stress test's many viewport changes and anchor jumps.
     for(const [width,path,label] of [
       [390,`fr/${epName(first)}.html`,'mobile'],
-      [1440,`${epName(first+2)}.html?lang=zh-hant`,'desktop']]){
+      [1440,`${epName(receipt.episodes[Math.min(2,receipt.episodes.length-1)])}.html?lang=zh-hant`,'desktop']]){
       const capture=await context.newPage();
       capture.on('pageerror',e=>errors.push(String(e)));
       await capture.setViewportSize({width,height:900});

@@ -22,7 +22,10 @@ class PresidentsBatchTests(unittest.TestCase):
         cls.expected=build.outputs(BATCH)
 
     def test_reproducibility(self):
-        self.assertIn(len(self.expected),(40,41))
+        previous=min(self.review['episodes'])-1
+        previous_has_hant=(build.SERIES/'zh-hant-data'/f'ep{previous:02}.js').exists()
+        expected_count=7*len(self.review['episodes'])+len(build.LANGS)+int(previous>0 and previous_has_hant)
+        self.assertEqual(len(self.expected),expected_count)
         for path,text in self.expected.items():self.assertEqual(path.read_text(),text,str(path))
 
     def test_originals_and_bounded_corrections(self):
