@@ -28,7 +28,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -60,6 +62,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -83,22 +110,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep25.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep25.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep25.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep25.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep25.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep25.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep25.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep25.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep25.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep25.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -116,7 +145,7 @@
 
 <h3>一、闭合幻觉最强的时刻</h3>
 
-<p>上一篇结尾说过，那位老练的外交型总统，将主持苏联解体与一场速胜的战争，而随后那位年轻的继任者，则将在一个再无对手的单极时刻，宣告一种新的繁荣，那是一个许多人开始谈论历史终结的年代。从1989年老布什就职，到2001年初克林顿离任，这十二年，正是这套构那场永恒的角力，看似终于可以画上句号的时刻。而这一篇要追的，正是这个句号，为什么终究没有画下去。</p>
+<p>接下来，那位老练的外交型总统，经历了苏联解体与一场速胜的战争；随后那位年轻的继任者，则在冷战对手已不复存在的单极时刻，宣告一种新的繁荣。那是一个许多人开始谈论历史终结的年代。从1989年老布什就职，到2001年初克林顿离任，这十二年，正是这套构那场永恒的角力，看似终于可以画上句号的时刻。而这一篇要追的，正是这个句号，为什么终究没有画下去。</p>
 
 <p>先把这一段的结构判断摆出来。如果把这段时期放进整个系列的长时段里看，它不宜被写成一条制度自我完成的胜利曲线。更准确的历史位置是，冷战确实结束了，苏联体系确实解体了，自由民主与市场资本主义，在当时也确实被许多人视为唯一仍具普遍号召力的制度组合，但正是在这种看似赢了的时刻，新的张力，开始以别的形式出现。1989年，福山把这种氛围概括为人类意识形态演化的终点，与西方自由民主的普遍化，而稍后的批评者，从亨廷顿到后来的民主理论家，则不断强调，民族，宗教，文明，主权，以及公民对增长成果分配的不满，并不会因为冷战的结束而消失。</p>
 
@@ -126,9 +155,9 @@
 
 <p>老布什上台后，并没有简单地延续里根晚期的对苏政策，而是先做了一轮对苏关系的战略评估，这很能说明他的风格，外交经验深，节奏慢，谨慎，不愿把对手逼到墙角。现代研究明确指出，1989年秋冬之交，布什的团队对公开谈论德国的统一，一开始相当谨慎，担心会刺激东德与苏联的强硬派，从而妨碍改革。1989年11月9日柏林墙被民众冲开之后，布什也有意避免炫耀式的反应，官方后来的总结甚至写得很直白，他的团队不愿让华盛顿看起来，像是在把东欧的变动，包装成一个美国的项目。</p>
 
-<p>这种克制并不等于消极。德国统一的关键在于，美国支持统一，但同时把统一，嵌入了一个更广泛的安全安排里。围绕德国统一最关键的争点，是统一后的德国是否留在北约，而最终的二加四安排，让德国得以留在北约，同时对东部的驻军与苏军的撤离作出了妥协。历史的时间线可以抓住三点，柏林墙于1989年11月9日倒塌，德国于1990年10月3日正式统一，而到1991年12月25日，戈尔巴乔夫辞职，苏联正式解体。现代研究对布什的一个评价很值得保留，一方面，美国支持了东欧的独立与民主化，另一方面，华盛顿的政策，在许多关键的节点上，是反应性的，而不是主导性的。</p>
+<p>这种克制并不等于消极。德国统一的关键在于，美国支持统一，但同时把统一，嵌入了一个更广泛的安全安排里。围绕德国统一最关键的争点，是统一后的德国是否留在北约，而最终的二加四安排，让德国得以留在北约，同时对东部的驻军与苏军的撤离作出了妥协。历史的时间线可以抓住三点，柏林墙于1989年11月9日倒塌，德国于1990年10月3日正式统一，而到1991年12月25日，戈尔巴乔夫辞职，次日苏联正式解体。现代研究对布什的一个评价很值得保留，一方面，美国支持了东欧的独立与民主化，另一方面，华盛顿的政策，在许多关键的节点上，是反应性的，而不是主导性的。</p>
 
-<p>把它放回这个系列，老布什这种强调协调，联盟，程序与克制的风格，恰恰是对上一篇结尾那个帝国总统制的一种反向的注脚。这也预示了他处理海湾战争的方式，同样是联合国授权，国际联盟，有限目标，而不是单边的，不设限的总统战争。</p>
+<p>把它放回这个系列，老布什这种强调协调，联盟，程序与克制的风格，恰恰是对前面几篇所追踪的帝国总统制的一种反向的注脚。这也预示了他处理海湾战争的方式，同样是联合国授权，国际联盟，有限目标，而不是单边的，不设限的总统战争。</p>
 
 <h3>三、海湾战争与新世界秩序</h3>
 
@@ -136,13 +165,13 @@
 
 <p>联合国安理会第678号决议于1990年11月29日通过，授权与科威特政府合作的会员国，在伊拉克不于1991年1月15日前撤军的情况下，使用一切必要手段。最终参战的联盟由三十四个国家构成，其中包括多个阿拉伯国家，地面战于1991年2月24日开始，仅持续四天，便解放了科威特城。布什对战争目标的限定非常清楚，我们的目标不是征服伊拉克，而是解放科威特，到宣布停火时，他又说，科威特解放了，伊拉克的军队被击败了，我们的军事目标达到了。</p>
 
-<p>把它放回这个系列，这场战争几乎是帝国总统制那种无限战争的一个反面。前面几篇讲过，从朝鲜到越南，总统的战争权，是沿着未经宣战，目标模糊，不断升级的方向膨胀的，而海湾战争，则罕见地展示了另一种可能，一场有着国际授权，明确目标与自我克制的有限战争。布什在这里，主动地为总统的战争权，套上了一副联盟，目标与期限的框架。但这种自我约束，是一种选择，而不是一种保证，它取决于总统的判断，而非制度的强制，这也正是它此后并不总能被重复的原因。</p>
+<p>把它放回这个系列，这场战争几乎是帝国总统制那种无限战争的一个反面。前面几篇讲过，从朝鲜到越南，总统的战争权，是沿着未经宣战，目标模糊，不断升级的方向膨胀的，而海湾战争，则罕见地展示了另一种可能，一场有着国际授权，明确目标与自我克制的有限战争。布什在这里，主动地为总统的战争权，套上了一副联盟，目标与期限的框架。这种约束并不只是个人选择：1991年1月，国会也以法律授权用兵，明确连向联合国决议所规定的目标。可是，如何理解授权、何时停止推进，仍有赖于总统的判断与其他力量的制衡；法律框架与个人克制的结合，并不是以后每次战争都会自动具备的保证。</p>
 
 <h3>四、老布什的国内困局与一九九二</h3>
 
 <p>如果只写冷战的收束与海湾战争，老布什会显得几乎是成功的，但他的一任之所以结束于败选，恰恰在于，国际的成功，并没有自动地转化为国内政治的稳定。最有标志性的事件是税收承诺。1988年接受提名的演说中，布什明确说出了那句后来几乎吞没其国内政治遗产的话，听好了，不加新税。然而到1990年11月，他还是签署了综合预算协调法。经济的背景同样不能轻描淡写。在1989到1992年间，美国家庭的实际中位收入下降了约百分之六，贫困人口增加了五百四十万，贫困率从百分之十二点八升到了百分之十四点五。这组数据能解释，为什么海湾战争那样高的民意支持，并不足以保住连任，外交上的高光时刻，抵不过选民对工资，就业与家庭收入的持续焦虑。</p>
 
-<p>不过，把布什的国内遗产只写成违背诺言，也会失真。1990年的美国残疾人法，是必须写足的一项扩展性的民权立法，它保护残障者在公共生活的多个领域免受歧视。把它放回这个系列，这项立法很值得一提，因为它提醒我们，即便在税收与衰退的阴影里，即便在冷战胜利的喧嚣中，那条最深的线索，把曾被排除者纳入平等公民的进程，仍在悄然地继续。残障者，作为一个长期在公共生活中被忽视的群体，在这里，被联邦的法律第一次系统地纳入了反歧视的保护。那句人人平等的承诺，一旦被写下，它的适用范围，就再也无法被永久地固定住了。</p>
+<p>不过，把布什的国内遗产只写成违背诺言，也会失真。1990年的美国残疾人法，是必须写足的一项扩展性的民权立法，它保护残障者在公共生活的多个领域免受歧视。把它放回这个系列，这项立法很值得一提，因为它提醒我们，即便在税收与衰退的阴影里，即便在冷战胜利的喧嚣中，那条最深的线索，把曾被排除者纳入平等公民的进程，仍在悄然地继续。残障者，作为一个长期在公共生活中被忽视的群体，在已有的《1973年康复法》第504条等保障之上，又获得了范围大为拓展的联邦反歧视保护。那句人人平等的承诺，一旦被写下，它的适用范围，就再也无法被永久地固定住了。</p>
 
 <p>1992年的大选，呈现出一种很有世纪之交意味的重组图景，克林顿得票百分之四十三，赢得三百七十张选举人票，布什为百分之三十七点四，一百六十八张选举人票，而佩罗，则拿下了百分之十八点九的普选票，却未得任何一张选举人票。佩罗的存在，至少说明，到1992年，对财政与建制失望的选民，已经足够多，足以把一个独立的候选人，推到近五分之一的选票。这本身，就是那个正在成形的新余项，一次早期的，微弱的显形。</p>
 
@@ -164,7 +193,7 @@
 
 <p>1990年代最容易被写成全球化高潮的部分，是贸易与技术几乎同时向前推进。北美自由贸易协定于1994年1月1日生效，逐步取消关税，并在投资，服务，知识产权与争端解决上进行制度整合。克林顿对更大范围贸易自由化的推进，还包括世界贸易组织与给予中国永久正常贸易关系。官方的记录显示，2000年4月，失业率降到了百分之三点九，是自1970年1月以来首次低于百分之四，家庭的中位收入也升至当时的新高。</p>
 
-<p>但这层乐观，从一开始就不是均匀分布的，而这，正是这一篇收尾最要紧的地方。这里必须并置两套都不能轻易抹掉的事实。一套事实是，北美自由贸易协定，世界贸易组织，对华永久正常贸易关系与互联网革命，确实推动了贸易，投资，供应链的整合，生产率的上升与消费福利的扩张。另一套事实则是，同一个过程，在美国的国内，制造了高度集中，难以自动自愈的损失，尤其体现在制造业的社区，区域发展的断层，工会政治与社会保障的再安排压力上。现代研究关于制造业就业的长期研究指出，制造业的就业自1979年的峰值后总体走低，而收入分配的研究则显示，自1979年以来，美国的收入不平等总体上持续上升。也就是说，1990年代后期的繁荣，不能简单地等同于普遍同速的上升，高收入的群体，所得增长更快，份额更高。</p>
+<p>但这层乐观，从一开始就不是均匀分布的，而这，正是这一篇收尾最要紧的地方。这里必须并置两套都不能轻易抹掉的事实。一套事实是，北美自由贸易协定，世界贸易组织与互联网革命，确实推动了贸易，投资，供应链的整合，生产率的上升与消费福利的扩张；2000年通过的对华永久正常贸易关系立法，则为此后的进一步整合铺路，其后果不能倒写成1990年代繁荣的既成原因。另一套事实则是，同一个过程，在美国的国内，制造了高度集中，难以自动自愈的损失，尤其体现在制造业的社区，区域发展的断层，工会政治与社会保障的再安排压力上。现代研究关于制造业就业的长期研究指出，制造业的就业自1979年的峰值后总体走低，而收入分配的研究则显示，自1979年以来，美国的收入不平等总体上持续上升。也就是说，1990年代后期的繁荣，不能简单地等同于普遍同速的上升，高收入的群体，所得增长更快，份额更高。</p>
 
 <p>1999年11月，世界贸易组织在西雅图的部长级会议，本意是启动新一轮的多边谈判，却被大规模的街头抗议与组织的混乱深刻地冲击，最终未能达成预期的结果。这场西雅图的抗议，正是那个正在成形的余项，一次响亮的显形。世纪之交的美国，既是全球规则扩张的主要推动者，也是对这些规则的社会反弹，最早显形的地点之一。</p>
 
@@ -174,7 +203,7 @@
 
 <p>而1998到1999年的克林顿弹劾，则是1990年代政治极化最集中的一次爆发。众议院最终于1998年12月19日通过了两项条款，一项是向大陪审团作伪证，一项是妨碍司法，而到1999年2月，参议院的审判结果，均未达到定罪所需的三分之二门槛。就制度史而言，它既是一次正式的问责，也是一次极强的党派信号。</p>
 
-<p>而2000年的大选，则把这种制度继续运作，但在争议中运作的图景，推到了极致。在布什诉戈尔案中，最高法院于2000年12月12日以五比四裁定，佛罗里达州在不同的县采用不同的人工计票标准，违反了平等保护，而既然无法在联邦法所设的时限内，完成一个合宪的重新计票，佛州便无需继续计票。请注意这里发生了什么，即便在一场极度接近，极度争议的总统选举中，这套构，并没有闭合出一个共识。它没有让所有人都心服口服，没有消除掉那份争议，它只是通过法院，州的程序与全国政治心理的相互作用，勉强地，给出了一个可以被执行的终局。它完成了程序，却没有消除余项。这几乎是这整个系列，一个最完美的缩影，这套构能做的，从来不是抵达一个所有争议都烟消云散的闭合的终点，而只是凭着它的程序，勉力地给出一个可以继续走下去的，暂时的答案。</p>
+<p>而2000年的大选，则把这种制度继续运作，但在争议中运作的图景，推到了极致。在布什诉戈尔案中，最高法院于2000年12月12日终止了佛罗里达州的重新计票。七位大法官认为现行计票安排存在宪法问题，但是否还能重新制定合宪的程序，法院分裂了：五位大法官依据他们对佛州法律的理解，认定州议会要遵守联邦法的安全港期限，而期限内已无法完成合宪的重计。五比四决定的是结束这次重计，并不是联邦法一概禁止期限之后继续计票。请注意这里发生了什么，即便在一场极度接近，极度争议的总统选举中，这套构，并没有闭合出一个共识。它没有让所有人都心服口服，没有消除掉那份争议，它只是通过法院，州的程序与全国政治心理的相互作用，勉强地，给出了一个可以被执行的终局。它完成了程序，却没有消除余项。这几乎是这整个系列，一个最完美的缩影，这套构能做的，从来不是抵达一个所有争议都烟消云散的闭合的终点，而只是凭着它的程序，勉力地给出一个可以继续走下去的，暂时的答案。</p>
 
 <h3>九、结语</h3>
 
@@ -192,13 +221,13 @@
 
 <h3>I. The Strongest Moment of Closure Illusion</h3>
 
-<p>The previous essay ended by noting that a seasoned diplomatic president would preside over the Cold War's peaceful end and a quick military victory, followed by a younger successor who would declare a new prosperity in a unipolar moment — an era when many began speaking of the end of history. The twelve years from Bush's inauguration to Clinton's departure are the moment when the structure's permanent contest appeared, to many observers, to be approaching its conclusion. This essay traces why that conclusion never arrived.</p>
+<p>A seasoned diplomatic president would preside over the Cold War's peaceful end and a quick military victory, followed by a younger successor who would declare a new prosperity in a unipolar moment — an era when many began speaking of the end of history. The twelve years from Bush's inauguration to Clinton's departure are the moment when the structure's permanent contest appeared, to many observers, to be approaching its conclusion. This essay traces why that conclusion never arrived.</p>
 
 <p>The judgment for this period: it should not be narrated as a triumph curve of institutional self-completion. The Cold War did end; the Soviet system did dissolve; liberal democracy and market capitalism were by then widely regarded as the only remaining framework with genuine universal appeal. But precisely at the moment of apparent victory, new tensions began forming in different registers. Fukuyama's 1989 formulation — the end of the ideological evolution of mankind, the universalization of Western liberal democracy — captured a real historical mood. Critics from Huntington onward have noted that ethnicity, religion, civilizational identity, sovereignty, and distributive resentment do not dissolve with the Cold War. For this series, the end-of-history argument is the strongest instance of what has been called throughout: the closure illusion. Real confidence, genuine achievement — transformed by the desire for finality into a claim that the contest was over. It was not over. The remainder was already forming.</p>
 
 <h3>II. Bush and the Cold War's Peaceful Resolution</h3>
 
-<p>Bush's approach to the Soviet collapse was notable for its restraint. His team was initially cautious about public advocacy for German unification, worried about provoking Soviet hard-liners. After the Berlin Wall fell on November 9, 1989, he deliberately avoided triumphalist celebration — acknowledging, as official retrospectives put it, that the administration did not want Washington to look like it was packaging Eastern European change as an American project. German unification on October 3, 1990, and Soviet dissolution on December 25, 1991 completed the sequence. The Two-Plus-Four arrangement allowed Germany to remain in NATO while managing Soviet security concerns through transition agreements on troop deployment.</p>
+<p>Bush's approach to the Soviet collapse was notable for its restraint. His team was initially cautious about public advocacy for German unification, worried about provoking Soviet hard-liners. After the Berlin Wall fell on November 9, 1989, he deliberately avoided triumphalist celebration — acknowledging, as official retrospectives put it, that the administration did not want Washington to look like it was packaging Eastern European change as an American project. German unification on October 3, 1990, Gorbachev's resignation on December 25, 1991, and the Soviet Union's formal dissolution the following day completed the sequence. The Two-Plus-Four arrangement allowed Germany to remain in NATO while managing Soviet security concerns through transition agreements on troop deployment.</p>
 
 <p>Contemporary scholarship qualifies the American role appropriately: the United States supported Eastern European independence and democratization, but Washington was largely reactive at key nodes, not directive. The change was driven primarily by the Soviet internal situation and Eastern European popular mobilization. For this series, Bush's diplomatic style — coalition-centered, procedurally careful, restrained in claiming personal credit — is almost the inverse of the imperial presidency this series has been tracking. It prefigured his Gulf War approach: international authorization, defined objective, limited duration.</p>
 
@@ -206,13 +235,13 @@
 
 <p>Iraq's invasion of Kuwait on August 2, 1990 became the first test of post-Cold War international order. Bush's stated objectives were clear: unconditional Iraqi withdrawal, restoration of Kuwait's legitimate government, regional stability, protection of American citizens. He embedded these within a "new world order" framework — a world where law, not the law of the jungle, governs the conduct of nations. UN Security Council Resolution 678 authorized the use of all necessary means after a January 15, 1991 deadline. The coalition of thirty-four nations, including multiple Arab states, launched the ground campaign on February 24; Kuwait was liberated in four days.</p>
 
-<p>For this series' argument about presidential war powers, the Gulf War stands as a counter-example to the long escalation narrative. From Korea to Vietnam, the president's war authority had expanded through undeclared commitments, vague authorizations, and incremental escalation. The Gulf War demonstrated the alternative: international authorization, explicit objective, self-imposed termination when the objective was met. Bush voluntarily framed presidential war-making within multilateral constraints. This was a choice, not an institutional requirement — which is precisely why it proved difficult to reproduce.</p>
+<p>For this series' argument about presidential war powers, the Gulf War stands as a counter-example to the long escalation narrative. From Korea to Vietnam, the president's war authority had expanded through undeclared commitments, vague authorizations, and incremental escalation. The Gulf War demonstrated an alternative: international authorization, congressional authorization in January 1991, an explicit objective, and termination when that objective was met. Bush framed presidential war-making within multilateral constraints and a statutory authorization tied to the UN resolutions. His judgment still mattered, as did pressure from other institutions and allies. This combination of legal limits and personal restraint was not a guarantee that every later president would reproduce it.</p>
 
 <h3>IV. Bush's Domestic Difficulties and 1992</h3>
 
 <p>International success did not translate to domestic political stability. The "read my lips: no new taxes" pledge of the 1988 convention proved fatal: the November 1990 Budget Reconciliation Act included revenue increases, enraging conservatives and destroying the pledge's credibility with everyone else. The economic background was unfavorable: real median household income fell roughly 6 percent between 1989 and 1992; the poverty rate rose from 12.8 to 14.5 percent, adding 5.4 million people in poverty. A post-Gulf War approval rating near 89 percent could not survive sustained economic anxiety. Foreign policy prestige does not transfer to domestic economic relief.</p>
 
-<p>Bush's domestic legacy is not reducible to the broken tax pledge. The Americans with Disabilities Act of 1990 systematically extended civil rights protections to a group long excluded from public life. For this series, the ADA continues the pattern established in earlier essays: the universalist promise, once articulated, cannot be permanently fixed in its scope. Each generation produces new groups who claim its coverage. Disabled Americans had been largely invisible in the formal civil rights framework; the ADA placed them within it. The phrase "all men are created equal" continues generating its own implications beyond any particular moment's understanding of who is included.</p>
+<p>Bush's domestic legacy is not reducible to the broken tax pledge. The Americans with Disabilities Act of 1990 systematically extended civil rights protections to a group long excluded from public life. For this series, the ADA continues the pattern established in earlier essays: the universalist promise, once articulated, cannot be permanently fixed in its scope. Each generation produces new groups who claim its coverage. The ADA greatly widened federal protections for disabled Americans, building on earlier guarantees such as Section 504 of the Rehabilitation Act of 1973. The phrase "all men are created equal" continues generating its own implications beyond any particular moment's understanding of who is included.</p>
 
 <p>The 1992 election produced Clinton's victory with 43 percent of the popular vote, 370 electoral votes; Bush took 37.4 percent, 168 electoral votes; and Perot, running as an independent, captured 18.9 percent of the popular vote with no electoral votes. Perot's near-fifth of the electorate — organized around deficit concern, establishment fatigue, and dissatisfaction with both parties — was itself a faint early signal of the new remainder forming beneath the surface of Cold War triumph.</p>
 
@@ -232,7 +261,7 @@
 
 <h3>VII. Globalization, the New Economy, and the Forming Remainder</h3>
 
-<p>The 1990s economic record contained genuine achievement alongside structural damage that the period's dominant narrative failed to register. NAFTA, effective January 1, 1994; the WTO; China's Permanent Normal Trade Relations status; the internet revolution — these produced real gains in productivity, trade integration, and consumer welfare. By April 2000, unemployment had fallen to 3.9 percent, the lowest since 1970; median household income reached a record high.</p>
+<p>The 1990s economic record contained genuine achievement alongside structural damage that the period's dominant narrative failed to register. NAFTA, effective January 1, 1994; the WTO; the internet revolution — these produced real gains in productivity, trade integration, and consumer welfare. Legislation approving Permanent Normal Trade Relations with China in 2000 laid groundwork for further integration afterward; its later effects should not be projected back onto the 1990s boom. By April 2000, unemployment had fallen to 3.9 percent, the lowest since 1970; median household income reached a record high.</p>
 
 <p>But the distribution of those gains was never uniform. Manufacturing employment had been declining from its 1979 peak, with each recession producing a lower recovery floor than the last. Income inequality, by most measures, rose steadily from 1979 onward; the 1990s expansion did not reverse this trend. Top-quintile households captured a disproportionate share of the decade's gains. The communities that bore the concentrated costs of trade-driven deindustrialization did not experience the 1990s as a decade of shared prosperity.</p>
 
@@ -240,17 +269,17 @@
 
 <h3>VIII. Impeachment and the 2000 Suspension</h3>
 
-<p>Clinton's foreign policy was characterized by selective intervention and strategic inconsistency. The Black Hawk Down disaster in Mogadishu in October 1993 — eighteen killed, two helicopters down — prompted withdrawal within days and shaped subsequent risk calculus. Balkan intervention eventually succeeded through NATO air campaigns that compelled Milosevic to accept international peacekeeping. Rwanda was the absence: the United States declined to intervene as the genocide progressed, a decision that became one of American foreign policy's most persistent objects of retrospective examination. Terrorism announced itself — the 1993 World Trade Center bombing, the simultaneous 1998 embassy attacks in Kenya and Tanzania — without yet achieving the narrative centrality it would acquire later.</p>
+<p>Clinton's foreign policy was characterized by selective intervention and strategic inconsistency. The Black Hawk Down disaster in Mogadishu in October 1993 — eighteen killed, two helicopters down — prompted an announcement of withdrawal within days and shaped subsequent risk calculus. Balkan intervention eventually succeeded through NATO air campaigns that compelled Milosevic to accept international peacekeeping. Rwanda was the absence: the United States declined to intervene as the genocide progressed, a decision that became one of American foreign policy's most persistent objects of retrospective examination. Terrorism announced itself — the 1993 World Trade Center bombing, the simultaneous 1998 embassy attacks in Kenya and Tanzania — without yet achieving the narrative centrality it would acquire later.</p>
 
-<p>The 1998–99 impeachment was 1990s political polarization concentrated into a constitutional proceeding. The House passed two articles — perjury before a grand jury and obstruction of justice — on December 19, 1998. The Senate acquitted on both counts in February 1999, neither reaching the two-thirds threshold. The institutional analysis is clean: the mechanism worked, but as a partisan signal at least as much as a accountability instrument.</p>
+<p>The 1998–99 impeachment was 1990s political polarization concentrated into a constitutional proceeding. The House passed two articles — perjury before a grand jury and obstruction of justice — on December 19, 1998. The Senate acquitted on both counts in February 1999, neither reaching the two-thirds threshold. The institutional analysis is clean: the mechanism worked, but as a partisan signal at least as much as an accountability instrument.</p>
 
-<p>Bush v. Gore (2000) brought the decade to its most instructive close. The Supreme Court's 5-4 ruling on December 12 — holding that Florida's use of different recount standards across counties violated equal protection, and that no constitutional recount could be completed within the statutory deadline — ended the dispute by judicial decree. The decision was intensely contested, its legal reasoning disputed by many scholars, its outcome accepted by the losing side without resort to force. What this moment demonstrates, precisely, is the structure's actual claim on legitimacy: not the production of consensus, but the production of a procedurally finalized outcome that the parties accept even when they do not agree. The structure completed a process. It did not dissolve a disagreement. It gave the contest a temporary resting point from which the next round could begin.</p>
+<p>Bush v. Gore (2000) brought the decade to its most instructive close. The Supreme Court ended Florida's recount on December 12. Seven justices found constitutional problems with the existing recount arrangements, but they divided over the remedy. A five-justice majority, interpreting Florida law as requiring adherence to the federal safe-harbor deadline, concluded that a constitutional recount could not be completed in time. The 5-4 division concerned ending this recount, not a general federal prohibition on counting after that deadline. The decision was intensely contested, its legal reasoning disputed by many scholars, its outcome accepted by the losing side without resort to force. What this moment demonstrates, precisely, is the structure's actual claim on legitimacy: not the production of consensus, but the production of a procedurally finalized outcome that the parties accept even when they do not agree. The structure completed a process. It did not dissolve a disagreement. It gave the contest a temporary resting point from which the next round could begin.</p>
 
 <h3>IX. Conclusion</h3>
 
 <p>These twelve years represent the strongest instance of the closure illusion in this series. The Cold War's peaceful conclusion, the Gulf War's quick victory, the decade of low unemployment and rising income, the spread of trade rules and internet connectivity — together these produced a genuine historical mood of arrival, a sense that the fundamental contest over political forms had been resolved. Fukuyama named it; the mood was real.</p>
 
-<p>But the structure does not close. Precisely as the end-of-history argument was being articulated, the processes that would contest it were already forming. Welfare was contracting while the carceral state expanded; the racial remainder reappeared in a new form. Globalization was distributing its gains unequally; the communities bearing concentrated costs were accumulating grievances that Seattle's protests foreshadowed. Political polarization was deepening; the impeachment showed the system could be weaponized as a partisan instrument. And a presidential election ended in a 5-4 Supreme Court decision that half the country did not accept.</p>
+<p>But the structure does not close. Precisely as the end-of-history argument was being articulated, the processes that would contest it were already forming. Welfare was contracting while the carceral state expanded; the racial remainder reappeared in a new form. Globalization was distributing its gains unequally; the communities bearing concentrated costs were accumulating grievances that Seattle's protests foreshadowed. Political polarization was deepening; the impeachment showed the system could be weaponized as a partisan instrument. And a presidential election ended in a 5-4 Supreme Court decision that many Americans continued to contest.</p>
 
 <p>The decade's two faces — triumph and fracture — were not separate. They were simultaneous. The same processes that produced genuine prosperity for some produced new exclusions for others; the same institutional capacity that managed Cold War's end produced the seeds of its own contestation. This is not a paradox that the structure resolves; it is the structure's permanent condition. The cycle of chisel-and-construct does not stop at a moment of success. It keeps turning, because the remainder it generates is constitutive, not incidental. The structure's vitality is precisely its refusal to declare the contest over.</p>
 
@@ -264,7 +293,7 @@
             <span class="xiyou-nav-title lang-zh">卡特与里根</span><span class="xiyou-nav-title lang-en">Carter and Reagan</span>
           </span>
         </a>
-        <a href="ep26.html" class="xiyou-nav-btn xiyou-nav-next">
+        <a href="ep26.html" class="xiyou-nav-btn xiyou-nav-next" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">
           <span class="xiyou-nav-label">
             <span class="xiyou-nav-sub lang-zh">下一篇</span><span class="xiyou-nav-sub lang-en">Next</span>
             <span class="xiyou-nav-title lang-zh">理论回望</span><span class="xiyou-nav-title lang-en">Theoretical Retrospective</span>
@@ -275,5 +304,6 @@
 
     </article>
   </main>
+<script defer src="zh-hant-data/ep25.js"></script>
 </body>
 </html>

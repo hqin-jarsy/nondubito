@@ -28,7 +28,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -60,6 +62,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -83,22 +110,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep22.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep22.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep22.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep22.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep22.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep22.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep22.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep22.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep22.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep22.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -116,7 +145,7 @@
 
 <h3>一、纳入与升级的悖论</h3>
 
-<p>上一篇结尾说过，那场自下而上的运动，将走向它的高潮，一位年轻的总统将被刺杀，而接替他的那位老练的立法者，将把那个被压制了整整一个世纪的种族余项，第一次以联邦法律的形式，正面地，大规模地承接下来。从1961年肯尼迪就职，到1969年约翰逊离任，这不到十年，正是那个最深的余项，以前所未有的力量重新涌上这套构中心的时刻，但也正是同一个总统制国家，把自己一步步拖进一场遥远战争的时刻。</p>
+<p>上一篇结尾说过，那场自下而上的运动，将走向它的高潮，一位年轻的总统将被刺杀，而接替他的那位老练的立法者，将把那个被压制了整整一个世纪的种族余项，以新的联邦民权立法，正面地，大规模地承接下来。从1961年肯尼迪就职，到1969年约翰逊离任，这不到十年，正是那个最深的余项，以前所未有的力量重新涌上这套构中心的时刻，但也正是同一个总统制国家，把自己一步步拖进一场遥远战争的时刻。</p>
 
 <p>先把这一段的结构判断摆出来。如果要抓住那个未兑现的普遍主义，在美国制度中最充分，也最矛盾的一次进入，可以把主轴压缩成一句话，一边是被长期排除在政治共同体之外的黑人，终于迫使联邦的规则重写，另一边是同一个总统制国家，在越南以行政权扩张的方式，把一个对外秩序的问题，升级成了战争的泥潭。这不是两条互不相关的线，而是同一时期，纳入与强制秩序输出并行的一个结构性的悖论。</p>
 
@@ -128,7 +157,7 @@
 
 <p>但在修正卡米洛特的叙事时，必须把形象与成绩拆开。后来那个卡米洛特的名号，主要是肯尼迪遇刺之后，由杰奎琳·肯尼迪帮助塑造的一个记忆框架。而修正性的历史则更强调，肯尼迪在民权问题上，长期采取的是一种增量主义，他优先级更高的是外交与冷战的危机，直到1963年，基层运动的公开压力，伯明翰与阿拉巴马大学的危机，以及国际形象的成本已经高到难以回避时，他才真正把全面的民权立法送上了轨道。</p>
 
-<p>他在冷战中的权威，也是在一系列危机里被塑造的。古巴导弹危机，通常被界定为冷战中两大超级大国最接近核战争的一次直接对抗，传统的叙述常把它写成肯尼迪冷静，克制而成功的胜利，但解密资料推动的再评估则更加谨慎，不少学者强调，这场危机之所以没有滑向核战，也包含了大量的偶然性，沟通失灵中的侥幸，以及像核潜艇几乎发射核鱼雷那样，直到事后才更清楚的险情。更准确的写法是，这场危机有技巧，但并不安全，有决断，但并不从容。而在越南，肯尼迪虽然不是全面战争的发动者，却明显地扩大了介入，美国的军事顾问人数，在他任内从上任之初的数百人，上升到了1963年底的一万六千以上。</p>
+<p>他在冷战中的权威，也是在一系列危机里被塑造的。古巴导弹危机，通常被界定为冷战中两大超级大国最接近核战争的一次直接对抗，传统的叙述常把它写成肯尼迪冷静，克制而成功的胜利，但解密资料推动的再评估则更加谨慎，不少学者强调，这场危机之所以没有滑向核战，也包含了大量的偶然性，沟通失灵中的侥幸，以及像携带核鱼雷的苏联常规动力潜艇几乎发射核鱼雷那样，直到事后才更清楚的险情。更准确的写法是，这场危机有技巧，但并不安全，有决断，但并不从容。而在越南，肯尼迪虽然不是全面战争的发动者，却明显地扩大了介入，美国的军事顾问人数，在他任内从上任之初的数百人，上升到了1963年底的一万六千以上。</p>
 
 <p>肯尼迪在民权上真正的转折点，是1963年6月11日阿拉巴马大学危机之后的全国演说。他当晚称，民权首先是一个道德问题，并明确要求国会处理公共设施的隔离。这里非常关键，它不是肯尼迪突然觉醒的一个孤立时刻，而是基层运动迫使行政首脑改变议程排序的结果。就这一篇而言，他更适合被写成那扇窗口的前奏者，而不是主要的兑现者。</p>
 
@@ -150,17 +179,17 @@
 
 <p>约翰逊的关键，不是理念更纯粹，而是他的立法技艺，远强于肯尼迪。1964年的民权法案在参议院遭遇了长期的阻挠，最终在6月10日以七十一比二十九，通过了终结冗长辩论的表决，其中支持的联盟，包括了二十七名共和党人与四十四名民主党人。这正是必须避免用当代党派图式去理解的地方，这场立法斗争的基本断层，不是今天意义上的民主党对共和党，而更接近南方的隔离主义者，对一个跨党派的民权联盟。1964年民权法案在制度史上的意义，是把反隔离，从零散的诉讼与行政的命令，推进到了一套全国性的成文法规则。它禁止公共场所的歧视，推动学校与其他公共设施的整合，并把就业的歧视定为非法。</p>
 
-<p>而1965年的投票权法案，则更直接地逆转了吉姆·克罗时期那个剥夺选举权的闭合。这部法禁止了识字测验等测验或手段，并在被覆盖的辖区，设置了联邦的考试员与事前预审的机制。塞尔玛，是这部法案情绪与政治的引爆点。1965年3月7日，大约六百名示威者，在埃德蒙·佩特斯桥上，遭到了阿拉巴马州警与地方执法者的暴力拦截，约翰·刘易斯头骨骨折。八天之后，约翰逊在国会的演说中说出了我们终将胜利，并把塞尔玛事件，直接提升为一场全国民主合法性的考验。这里要特别强调，这不是总统在单向地领导运动，而是运动者先在桥上流了血，才把总统推到了必须全面立法的位置上。</p>
+<p>而1965年的投票权法案，则更直接地逆转了吉姆·克罗时期那个剥夺选举权的闭合。这部法在被覆盖的辖区暂停了识字测验等歧视性的测试或手段，并设置了联邦的选民登记审查员与事前预审的机制。塞尔玛，是这部法案情绪与政治的引爆点。1965年3月7日，大约六百名示威者，在埃德蒙·佩特斯桥上，遭到了阿拉巴马州警与地方执法者的暴力拦截，约翰·刘易斯头骨骨折。八天之后，约翰逊在国会的演说中说出了我们终将胜利，并把塞尔玛事件，直接提升为一场全国民主合法性的考验。这里要特别强调，这不是总统在单向地领导运动，而是运动者先在桥上流了血，才把总统推到了必须全面立法的位置上。</p>
 
 <p>约翰逊的功劳，不在于他发起了这场运动，他没有，而在于他有着肯尼迪所缺乏的立法技艺，能在运动撬开的那扇窗口关上之前，迅速地把它，铸成耐久的法律。用一句话概括，就是运动迫使制度开了窗，而约翰逊，把这扇窗立法化了。没有前者，就没有议程的强制，没有后者，运动的胜利，又难以沉淀为耐久的规则。</p>
 
 <h3>五、为什么这次比重建更耐久</h3>
 
-<p>投票权法案之后的数字变化，是规则真的被重写了的最硬的证据之一。阿拉巴马州，从法案前的百分之十九点三，升到了法案后的百分之五十一点六，密西西比，则从百分之六点七，升到了百分之五十九点八。这组数字，对这个系列尤为关键，因为它几乎可以直接作为一个证据，证明第十二篇里讲过的，吉姆·克罗对选举权的那次闭合，被1965年的法案实质地逆转了。</p>
+<p>投票权法案之后，以黑人为主的非白人选民登记率的变化，是规则真的被重写了的最硬的证据之一。阿拉巴马州，从法案前的百分之十九点三，升到了法案后的百分之五十一点六，密西西比，则从百分之六点七，升到了百分之五十九点八。这组数字，对这个系列尤为关键，因为它几乎可以直接作为一个证据，证明第十二篇里讲过的，吉姆·克罗对选举权的那次闭合，被1965年的法案实质地逆转了。</p>
 
-<p>这就引出了这一篇一个必须回答的问题，为什么这一次的纳入，会比重建时期更耐久。回想第十一篇，重建时期的种族推进，一度也走得很远，可它随后却被三K党的暴力，南方的抵抗与联邦的撤军，一级一级地压回了边缘。那一次的推进，为什么没能守住，而这一次，为什么守住了。答案的核心，就在投票权法案那套制度的构造里。重建时期的联邦保护，本质上是一种政治意志的产物，它系于北方是否愿意继续投入，系于联邦是否愿意继续驻军，而一旦这种政治意志消退，它就随之瓦解了。而1965年的法案则不同，它没有把希望寄托在联邦持续的政治意愿上，而是把联邦的监督，通过第五条的预审，前移到了规则变更之前。这是一个极其关键的制度设计。它意味着，联邦不再是等到南方想出一个新的规避手段之后，再靠一桩桩个案的诉讼去追赶，而是要求那些有歧视历史的辖区，在改变任何选举规则之前，就先得到联邦的批准。换句话说，它把联邦的监督，从一种被动的，事后的追赶，变成了一种主动的，事前的把关。</p>
+<p>这就引出了这一篇一个必须回答的问题，为什么这一次的纳入，会比重建时期更耐久。回想第十一篇，重建时期的种族推进，一度也走得很远，可它随后却被三K党的暴力，南方的抵抗与联邦的撤军，一级一级地压回了边缘。那一次的推进，为什么没能守住，而这一次，为什么守住了。答案的核心，就在投票权法案那套制度的构造里。重建时期的保护，也曾写进宪法与联邦法律，但能否落实，仍系于北方是否愿意继续投入，系于联邦是否愿意持续执行，而政治意志一旦消退，这些保障就可能被架空。1965年的法案试图减少对一次次个案追诉的依赖，把联邦的监督，通过第五条的预审，前移到了规则变更之前。当然，这套法律机制的执行与维护，仍需要政治与司法的支持。这是一个极其关键的制度设计。它意味着，联邦不再是等到南方想出一个新的规避手段之后，再靠一桩桩个案的诉讼去追赶，而是要求那些有歧视历史的辖区，在改变任何选举规则之前，就先得到联邦的批准。换句话说，它把联邦的监督，从一种被动的，事后的追赶，变成了一种主动的，事前的把关。</p>
 
-<p>耐久的纳入与脆弱的纳入，其根本的区别，正在于此。前者把余项的权利，锚定在了制度的齿轮上，而后者，只是把它挂在了政治的风向标上。</p>
+<p>耐久的纳入与脆弱的纳入，一个重要的区别，正在于此：不仅把权利写下来，还要让它咬合进日常执行的齿轮，减少它随政治风向摆动的机会。齿轮仍需维护，却能让一次胜利更难被轻易撤回。</p>
 
 <h3>六、伟大社会与边界的重写</h3>
 
@@ -190,9 +219,9 @@
 
 <p>把肯尼迪与约翰逊这不到十年放回这个系列，最值得记住的，是那个贯穿全篇的悖论，同一个总统制国家，在同一个时期，完成了它历史上最深的一次国内纳入，也进行了它最危险的一次对外升级。</p>
 
-<p>国内纳入的这一面是真实而深远的。那个被压制了将近一个世纪的种族余项，终于迫使这套构重写了它的规则。而这次重写之所以比重建更耐久，关键就在于它把纳入，从依赖政治意愿的脆弱承诺，铸成了嵌进法律机器的可执行规则，尤其是投票权法案那套把联邦监督前移到规则变更之前的预审机制。</p>
+<p>国内纳入的这一面是真实而深远的。那个被压制了将近一个世纪的种族余项，终于迫使这套构重写了它的规则。而这次重写之所以比重建更耐久，关键就在于它进一步把纳入，落实为嵌进法律机器的可执行规则，减少了对一次次临时政治选择的依赖，尤其是投票权法案那套把联邦监督前移到规则变更之前的预审机制。</p>
 
-<p>但这次纳入，从一开始就伴随着它的限度，而这限度有两重。第一重，是那个熟悉的道理，吸纳本身就在制造新的排除。法律上的平等资格一旦被承认，那些实质的，经济的不平等，反而更加刺眼，瓦茨的火光，克纳委员会那句彼此隔离而不平等的判断，黑人权力的兴起，都在说明，规则的重写虽然真实，却远未闭合那个种族的余项，它只是把问题，推进到了一个新的，更深的层次。第二重，则来自那个悖论的另一面，越南。那场战争的负担，那些城市的骚乱，那一连串的遇刺，共同压垮了约翰逊，这个既是重建以来最伟大的民权立法者，又是那场战争最主要的升级者的总统，最终被迫宣布不再寻求连任。</p>
+<p>但这次纳入，从一开始就伴随着它的限度，而这限度有两重。第一重，是那个熟悉的道理，吸纳本身就在制造新的排除。法律上的平等资格一旦被承认，那些实质的，经济的不平等，反而更加刺眼，瓦茨的火光，克纳委员会那句彼此隔离而不平等的判断，黑人权力的兴起，都在说明，规则的重写虽然真实，却远未闭合那个种族的余项，它只是把问题，推进到了一个新的，更深的层次。第二重，则来自那个悖论的另一面，越南。那场战争的负担与国内的冲突，让约翰逊承受了巨大的压力。这个既是重建以来最伟大的民权立法者，又是那场战争最主要的升级者的总统，在1968年3月31日宣布不再寻求连任；此后马丁·路德·金与罗伯特·肯尼迪接连遇刺，又把这一年的危机推得更深。</p>
 
 <p>接下来登场的，是一位承诺要恢复秩序，结束战争的总统。他将把行政权那种在越南已经显露的，不受制衡的扩张冲动，带回国内，推向一个新的顶点，而这一次，等待着他的，将不再是一场遥远的战争，而是这套构那套古老的制衡，一次最直接，也最彻底的反扑。那是尼克松的故事，是行政权那条长线，如何在帝国总统制的顶峰，撞上它最深的一次危机的故事。</p>
 
@@ -222,17 +251,17 @@
 
 <h3>IV. Johnson and the Rewriting of Rules</h3>
 
-<p>Kennedy's assassination created the political window. Johnson used it with legislative mastery that Kennedy had lacked. The Civil Rights Act of 1964 broke a Senate filibuster — the longest in Senate history to that point — by a vote of seventy-one to twenty-nine, with a coalition of forty-four Democrats and twenty-seven Republicans. The partisan geography of this vote is essential: the fundamental cleavage was not Democratic versus Republican in today's sense but Southern segregationists versus a cross-party civil rights coalition. The Act prohibited discrimination in public accommodations, pushed desegregation of schools and other facilities, and outlawed employment discrimination — embedding federal law directly into the daily operations of social order.</p>
+<p>Kennedy's assassination created the political window. Johnson used it with legislative mastery that Kennedy had lacked. The Senate ended the prolonged filibuster against the Civil Rights Act of 1964 by a vote of seventy-one to twenty-nine, with a coalition of forty-four Democrats and twenty-seven Republicans. The partisan geography of this vote is essential: the fundamental cleavage was not Democratic versus Republican in today's sense but Southern segregationists versus a cross-party civil rights coalition. The Act prohibited discrimination in public accommodations, pushed desegregation of schools and other facilities, and outlawed employment discrimination — embedding federal law directly into the daily operations of social order.</p>
 
-<p>The Voting Rights Act of 1965 targeted the specific mechanisms of disfranchisement that had survived the Fifteenth Amendment. It eliminated literacy tests and similar devices and, crucially, established a preclearance system under Section 5 requiring jurisdictions with a history of discrimination to obtain federal approval before changing any election rule. Selma was the emotional and political catalyst: six hundred marchers attacked on the Edmund Pettus Bridge on March 7, 1965, John Lewis's skull fractured. Eight days later, Johnson addressed Congress and used the movement's own phrase — "we shall overcome" — as president.</p>
+<p>The Voting Rights Act of 1965 targeted the specific mechanisms of disfranchisement that had survived the Fifteenth Amendment. It suspended literacy tests and similar devices in jurisdictions covered by its statutory formula and, crucially, established a preclearance system under Section 5 requiring those jurisdictions to obtain federal approval before changing any election rule. Selma was the emotional and political catalyst: six hundred marchers attacked on the Edmund Pettus Bridge on March 7, 1965, John Lewis's skull fractured. Eight days later, Johnson addressed Congress and used the movement's own phrase — "we shall overcome" — as president.</p>
 
 <p>The formula is precise: the movement forced the door open; Johnson's legislative skill locked it in place as durable law. Neither element is sufficient alone. Without the movement's compulsion there was no agenda change. Without federal legislative form the victories could not survive the next shift in political will.</p>
 
 <h3>V. Why This Inclusion Lasted</h3>
 
-<p>The registration figures tell the story directly. Alabama's Black voter registration rose from 19.3 percent before the Voting Rights Act to 51.6 percent afterward. Mississippi's moved from 6.7 to 59.8 percent. These numbers demonstrate that the Jim Crow closure this series analyzed in Essay 12 was genuinely reversed — not rhetorically but structurally.</p>
+<p>The registration figures tell the story directly. In Alabama, voter registration among the predominantly Black population classified as non-white in the statistical table rose from 19.3 percent before the Voting Rights Act to 51.6 percent afterward. Mississippi's moved from 6.7 to 59.8 percent. These numbers demonstrate that the Jim Crow closure this series analyzed in Essay 12 was genuinely reversed — not rhetorically but structurally.</p>
 
-<p>The contrast with Reconstruction explains why. The Fifteenth Amendment was constitutional in form and sweeping in aspiration, but it made federal protection contingent on sustained federal political will. When that will withdrew — when Northern voters tired of Reconstruction, when troops were pulled — the amendment became a dead letter. The 1965 Act built differently. Its preclearance mechanism moved federal oversight to a point prior to the change in rules, not after. Southern jurisdictions could not implement new electoral procedures without federal approval. The monitoring was automatic, not discretionary. Durable inclusion depends on anchoring rights in institutional machinery, not in the goodwill of the moment. This is the distinction between inclusion that holds and inclusion that doesn't.</p>
+<p>The contrast with Reconstruction explains why. Reconstruction had constitutional and statutory protections, but their enforcement depended heavily on sustained federal political will. When that will withdrew — when Northern voters tired of Reconstruction, when troops were pulled — those guarantees could be hollowed out. The 1965 Act built differently. Its preclearance mechanism moved federal oversight to a point prior to the change in rules, not after. Covered jurisdictions could not implement new electoral procedures without federal approval. This reduced dependence on a fresh federal response to each discriminatory maneuver; it did not eliminate the need for enforcement or political and judicial support. Durable inclusion requires rights to be anchored in the machinery of everyday enforcement, not merely proclaimed. That machinery still needs maintenance, but it makes a victory harder to reverse.</p>
 
 <h3>VI. The Great Society and Rewritten Boundaries</h3>
 
@@ -250,11 +279,11 @@
 
 <p>The Tet Offensive in early 1968 shattered the public credibility of the administration's optimistic war narrative. Johnson's March 31 announcement — limiting bombing of North Vietnam and withdrawing from the presidential race — was the moment the dual overextension collapsed inward. The office that had been stretched in two directions simultaneously finally buckled under the strain.</p>
 
-<p>Domestically, the legislative victories had not produced integration. The Watts uprising in 1965 lasted six days, killed thirty-four, injured more than a thousand, and arrested nearly four thousand. The Kerner Commission's verdict — that America was moving toward two societies, separate and unequal — registered what the legislation could not by itself address: that formal legal equality and substantive economic equality were separated by a distance that statutes could acknowledge but not close. Black Power emerged in 1966 as a recognition of that gap, demanding self-determination and material power rather than integration into a structure that remained economically stratified. King himself moved toward economic justice, Northern urban conditions, and anti-war positions in his final years. The year closed with his assassination, Robert Kennedy's assassination, and the chaos of the Chicago Democratic convention — a fracture without clean resolution.</p>
+<p>Domestically, the legislative victories had not produced integration. The Watts uprising in 1965 lasted six days and left thirty-four dead, more than a thousand injured, and nearly four thousand under arrest. The Kerner Commission's verdict — that America was moving toward two societies, separate and unequal — registered what the legislation could not by itself address: that formal legal equality and substantive economic equality were separated by a distance that statutes could acknowledge but not close. Black Power emerged in 1966 as a recognition of that gap, demanding self-determination and material power rather than integration into a structure that remained economically stratified. King himself moved toward economic justice, Northern urban conditions, and anti-war positions in his final years. The year's sequence of shocks included his assassination, Robert Kennedy's assassination, and the chaos of the Chicago Democratic convention — a fracture without clean resolution.</p>
 
 <h3>IX. Conclusion</h3>
 
-<p>This decade demonstrated both the deepest capacity and the deepest dysfunction of the American presidential system in the twentieth century. On one side: a century-old racial exclusion was finally forced into formal reversal by a movement that compelled the structure to honor its own founding texts. The reversal was more durable than Reconstruction because it lodged in self-executing institutional mechanisms rather than in temporary political will. The same period also rewrote external membership categories by dismantling the racial hierarchy of immigration law.</p>
+<p>This decade demonstrated both the deepest capacity and the deepest dysfunction of the American presidential system in the twentieth century. On one side: a century-old racial exclusion was finally forced into formal reversal by a movement that compelled the structure to honor its own founding texts. The reversal proved more durable than Reconstruction in part because its enforcement mechanisms reduced dependence on repeated, case-by-case political decisions, while still requiring sustained support. The same period also rewrote external membership categories by dismantling the racial hierarchy of immigration law.</p>
 
 <p>On the other side: the same executive authority that could sign civil rights legislation could also, through a process of incremental commitment and manufactured justification, expand an undeclared war to half a million troops and sixteen thousand dead in a single year. These were not independent phenomena. They ran through the same office, operated through the same logic of executive discretion, and ultimately collided in the same person. Johnson's tragedy — the greatest civil rights legislator since Reconstruction destroyed by the war he chose to fight to protect his domestic agenda — is precisely the paradox this series has been tracing: the structure's capacity for inclusion and its capacity for unchecked coercive expansion are inseparable features of the same institutional form.</p>
 
@@ -279,5 +308,6 @@
 
     </article>
   </main>
+<script defer src="zh-hant-data/ep22.js"></script>
 </body>
 </html>

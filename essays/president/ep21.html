@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep21.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep21.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep21.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep21.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep21.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep21.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep21.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep21.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep21.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep21.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -117,13 +146,13 @@
 
 <h3>一、把战时变成常态</h3>
 
-<p>上一篇结尾说过，那位在数小时内接过战时国家的继任者，将主持这套构从热战转入冷战，把那个战时锻造出来的国家安全国家，铸成一个长达半个世纪的常态。从1945年罗斯福去世，杜鲁门接任，到1961年艾森豪威尔卸任，这十六年最重要的变化，如果放进这个系列那条制度如何一边扩张，一边被迫接受制衡的长线里看，就不只是冷战开始了这么简单。</p>
+<p>那位在数小时内接过战时国家的继任者，随后主持了这套构从热战转入冷战，把那个战时锻造出来的国家安全国家，铸成一个长达半个世纪的常态。从1945年罗斯福去世，杜鲁门接任，到1961年艾森豪威尔卸任，这十六年最重要的变化，如果放进这个系列那条制度如何一边扩张，一边被迫接受制衡的长线里看，就不只是冷战开始了这么简单。</p>
 
 <p>先把这一段的结构判断摆出来。1945到1961年真正关键的，是冷战把战时的行政扩张，军备的动员，情报的组织，以及总统在外交与军事上的自由裁量，固化成了一种半永久的结构。1947年的国家安全法，把国家安全委员会，中央情报局，统一的军政协调机制，以及独立的空军，全都制度化了，而1950年的第68号文件，又把遏制，从一种地区性，有限性的构想，推进为一套全球性，长期性的战略动员蓝图。学界对这套结构的评价长期分裂，一派强调它是对苏联压力与核时代风险的必要回应，另一派则强调它在美国的宪政内部，制造了长期的行政集中，公民自由的收缩，以及预算政治上的常态化战备。</p>
 
-<p>把这个判断放回这个系列，它的分量就清楚了。上一篇讲过，二战把这套构的行政国家，推向了空前的规模，长出了一副庞大的战时身体。而这一篇最要紧的一点是，这副战时的身体，在战争结束之后，并没有像一战之后那样被拆掉。回想第十七篇，一战结束后，美国迅速地转向了回归常态，把战时的国家机器大幅地收缩了回去。可这一次，二战结束后，那副战时的行政身体，非但没有收缩，反而被冷战，以国家安全的名义，固定了下来，铸成了一个长达半个世纪的常态。</p>
+<p>把这个判断放回这个系列，它的分量就清楚了。上一篇讲过，二战把这套构的行政国家，推向了空前的规模，长出了一副庞大的战时身体。而这一篇最要紧的一点是，这副战时的身体，在战争结束之后，虽然大幅缩编，却没有简单回到一战后那种回归常态的轨道。回想第十七篇，一战结束后，美国迅速地转向了回归常态，把战时的国家机器大幅地收缩了回去。可这一次，二战结束后，美国虽然大规模复员，收缩了战时的兵力与动员机构，却又在冷战中，以国家安全的名义，把军事、情报与战略协调的核心能力重新组织起来，铸成了一个长达半个世纪的常态。</p>
 
-<p>前面几篇追过的那条行政权扩张的长线，此前每一次扩张，都还需要一个具体的危机，一场战争，一次大萧条，来为它提供正当性，而现在，冷战提供的，是一种永不结束的危机，于是那种本该随危机结束而收缩的行政扩张，第一次获得了一个永久的理由。这一篇要追的，正是这套构如何把战时，变成了常态，以及这种常态化，给它自身带来的深刻的两难。而这个两难，最终会由一位五星上将出身的总统，在他卸任的告别演说里，用军工复合体这个名字，亲手点破。</p>
+<p>前面几篇追过的那条行政权扩张的长线，此前每一次扩张，都还需要一个具体的危机，一场战争，一次大萧条，来为它提供正当性，而现在，冷战提供的，是一种永不结束的危机，于是那种本该随战争结束而收缩的安全权力，获得了一个可以长期援引的理由。这一篇要追的，正是这套构如何把战时，变成了常态，以及这种常态化，给它自身带来的深刻的两难。而这个两难，最终会由一位五星上将出身的总统，在他卸任的告别演说里，用军工复合体这个名字，亲手点破。</p>
 
 <h3>二、杜鲁门，原子弹，与冷战转向</h3>
 
@@ -139,11 +168,11 @@
 
 <p>1947年的国家安全法，是这一篇最关键的制度节点。这部法要求对外交与军事的机构进行一次重大的重组，并创设了一整套在制定和执行外交政策时极其有用的新机构。具体而言，它建立了国家安全委员会，确立了中央情报局，重组了陆海军的体制，确立了国防部的方向，并把空军独立为一个单独的军种。</p>
 
-<p>从制度史的视角看，这部法律的重要性，不在于机构的名称，而在于它把战时那种临时性的协调，改造成了总统周边一套常设的国家安全决策机器。而1950年的第68号文件，则赋予了这套结构一种更强的战略意识形态。它提出了几种路径，退回孤立主义，直接战争，继续外交谈判，或者迅速地建立起自由世界在政治，经济与军事上的力量，而最后这一种，就成了此后几十年美国全球遏制战略的骨架。在这套逻辑之下，长期的，巨额的，制度化的军事，工业与科研的动员，就被合理化了。</p>
+<p>从制度史的视角看，这部法律的重要性，不在于机构的名称，而在于它把战时那种临时性的协调，改造成了总统周边一套常设的国家安全决策机器。而1950年的第68号文件，则赋予了这套结构一种更强的战略意识形态。它提出了几种路径，退回孤立主义，直接战争，维持现行政策与外交努力，或者迅速地建立起自由世界在政治，经济与军事上的力量，而最后这一种，就成了此后几十年美国全球遏制战略的骨架。在这套逻辑之下，长期的，巨额的，制度化的军事，工业与科研的动员，就被合理化了。</p>
 
-<p>这里有一个对这个系列尤其重要的判断，国家安全国家并不只是对外更强硬，它同时是联邦政府内部权力重心的一次再排列。这正好接上了这个系列那条长线，新政与二战，已经把联邦的能力推高了，而冷战，则把这种能力，在国家安全的名义下，制度化了。前面几篇里，行政国家的每一次扩张，都还伴随着一种它终将被收回的预期，而国家安全国家的奠基，则第一次把这种扩张，变成了一个不打算被收回的，永久的结构。这是这套构历史上，行政权第一次以一种半永久的形态，被固定在了宪制的中心。</p>
+<p>这里有一个对这个系列尤其重要的判断，国家安全国家并不只是对外更强硬，它同时是联邦政府内部权力重心的一次再排列。这正好接上了这个系列那条长线，新政与二战，已经把联邦的能力推高了，而冷战，则把这种能力，在国家安全的名义下，制度化了。新政早已留下长期的行政机构；这里的新变化，并不是行政国家第一次获得持久形态，而是战时的安全权力被重组为一个并不准备随热战结束而撤销的结构。国家安全由此把一组半永久的行政能力，固定在了宪制的中心。</p>
 
-<p>这个半永久，值得反复强调，因为它是这一段与此前所有行政扩张最根本的区别。回想这个系列走过的路，杰克逊的扩权，是围绕他个人的民意，林肯的扩权，是围绕内战的紧急，罗斯福的扩权，是围绕大萧条与二战。这些扩张，无论多大，都还系在一个具体的，终将过去的危机上，因此人们至少可以期待，危机过去之后，那扩张也会随之收缩。而国家安全国家的奠基，则第一次斩断了这种期待。因为冷战被构想成的，不是一场终将结束的战争，而是一种可能持续几代人的，长期的对峙。</p>
+<p>这个半永久，值得反复强调，因为它标出了国家安全权力在这一阶段的新形态。回想这个系列走过的路，杰克逊的扩权，是围绕他个人的民意，林肯的扩权，是围绕内战的紧急，罗斯福的扩权，是围绕大萧条与二战。这些扩张，都曾以具体的危机获得正当性；即使新政已有不少制度留存，人们仍会期待战争结束后，紧急动员也随之收缩。而国家安全国家的奠基，则让这种期待在安全领域变得格外难以兑现。因为冷战被构想成的，不是一场终将结束的战争，而是一种可能持续几代人的，长期的对峙。</p>
 
 <h3>四、朝鲜战争与总统战争权</h3>
 
@@ -167,7 +196,7 @@
 
 <p>在冷战与麦卡锡主义的阴影之外，这一段还有一条相反方向的线索，那就是那个长期被排除的余项，黑人，开始被联邦的行政权，逐步地重新纳入。杜鲁门时期，必须被写成这个纳入过程的一个早期时刻。1946年，杜鲁门任命了总统民权委员会，该委员会1947年的报告《确保这些权利》，主张反私刑，反人头税，建立永久的公平就业实践委员会，并强化司法部的民权职能。1948年2月，杜鲁门要求国会落实这些建议，但南方的参议员立刻威胁要以冗长辩论来阻挠，结果反而迫使杜鲁门，更多地依靠行政的手段。</p>
 
-<p>第9981号行政令，正是这种行政手段的产物。它规定，总统的政策是，武装部队中所有人员，无论种族，肤色，宗教或民族来源，都应享有平等的待遇与机会，并要求这一政策尽快予以实施。这道命令在军中遭遇了相当的抵制，但到朝鲜战争结束时，军队已基本完成了整合。这里的制度意义有三层，都值得点明。第一，在国会立法停滞的情况下，是行政令，直接推进了种族的平等。第二，军队，这个国家安全国家的核心组织，首先成了去隔离化的场域。第三，也是对这个系列最重要的一层，被排除者被纳入的过程，并不是先有社会的共识，再有制度的跟进，而恰恰是制度，先把那扇门，推开了一点。</p>
+<p>第9981号行政令，正是这种行政手段的产物。它规定，总统的政策是，武装部队中所有人员，无论种族，肤色，宗教或民族来源，都应享有平等的待遇与机会，并要求这一政策尽快予以实施。这道命令在军中遭遇了相当的抵制，但朝鲜战争期间，军队的整合已取得重大进展，并在战后继续推进。这里的制度意义有三层，都值得点明。第一，在国会立法停滞的情况下，是行政令，直接推进了种族的平等。第二，军队，这个国家安全国家的核心组织，成了早期推进去隔离化的重要场域。第三，也是对这个系列最重要的一层，被排除者被纳入的过程，并不是先有社会的共识，再有制度的跟进，而恰恰是制度，先把那扇门，推开了一点。</p>
 
 <p>冷战，使得承认黑人的公民权，在某种意义上，也变成了一种国家战略的需要。这提醒我们，民权的推进，与国家安全国家，并不是两条互不相干的线，它们有时彼此推动，彼此借力。那个战时被双V运动预演过的追问，一个声称为自由而战的国家，如何面对自己内部的种族压迫，在冷战里，变成了一个这套构再也无法回避的战略问题。</p>
 
@@ -177,7 +206,7 @@
 
 <p>布朗案在这个系列里的位置，格外意味深长。回想第十二篇，正是普莱西案，为种族隔离盖上了合宪的印章，而当时哈伦大法官那句我们的宪法是色盲的异议，被埋进了这套构的司法记忆里，像一颗等待发芽的种子。而现在，几十年过去，那颗种子，终于在布朗案里发了芽。那个在吉姆·克罗的高墙里被压制了半个多世纪的余项，那句被普莱西案背离了的平等承诺，终于被最高法院，重新拿了起来。</p>
 
-<p>但布朗案之后的历史也立刻显示，联邦权力的推进，并不是一个自然而然的进步过程，它常常是在州权的抵抗，地方的暴力，以及法院命令被阻挠时，以强制执行的方式，才艰难地向前推进的。1957年9月，阿肯色州长福布斯，调动州的国民警卫队，去阻止九名黑人学生入学。骚乱升级之后，艾森豪威尔通过第10730号行政令，把阿肯色州的国民警卫队联邦化，并派遣第一百零一空降师进入小石城，去执行联邦法院的命令。这个画面极具象征性，那个曾经用军队去镇压罢工，去驱逐补偿金大军的联邦强制力，现在，被用来护送几名黑人学生走进校门。同一件工具，联邦的军队，在这个系列里，第一次被大规模地用在了强制推行种族平等的方向上。</p>
+<p>但布朗案之后的历史也立刻显示，联邦权力的推进，并不是一个自然而然的进步过程，它常常是在州权的抵抗，地方的暴力，以及法院命令被阻挠时，以强制执行的方式，才艰难地向前推进的。1957年9月，阿肯色州长奥瓦尔·福布斯，调动州的国民警卫队，去阻止九名黑人学生入学。骚乱升级之后，艾森豪威尔通过第10730号行政令，把阿肯色州的国民警卫队联邦化，并派遣第一百零一空降师进入小石城，去执行联邦法院的命令。这个画面极具象征性，那个曾经用军队去镇压罢工，去驱逐补偿金大军的联邦强制力，现在，被用来护送几名黑人学生走进校门。同一件工具，联邦的军队，在重建时期的先例之后，再次被用在了强制推进种族平等的方向上。</p>
 
 <p>与此同时，蒙哥马利的巴士抵制，则把这种自上而下的司法与行政推进，与自下而上的社会运动接了起来。1955年12月1日，罗莎·帕克斯因拒绝在巴士上让座而被捕，随后长达约十三个月的抵制，使马丁·路德·金迅速进入了全国的视野。这说明，被纳入的进程，已经不再只靠白宫或法院的单向推动，而开始形成一种自下而上的运动能量。</p>
 
@@ -187,7 +216,7 @@
 
 <p>在冷战的战略上，艾森豪威尔带来的，是通常被称为新面貌的国家安全政策。而这一时期，还必须纳入中央情报局的隐蔽行动。现代研究已经公开承认，在1953年的伊朗政变中，艾森豪威尔在日记里提到，美国帮助促成了摩萨台政府被推翻，以及沙阿的复位，而关于1954年的危地马拉，官方的回顾也说明了一系列秘密行动计划的存在。这些材料，非常适合用来说明国家安全国家的另一重扩张，它不仅扩大了总统正规的外交与军事权力，也扩大了隐蔽行动，秘密预算，与民主问责之间的那片灰色地带。</p>
 
-<p>在国家安全的名义下，总统可以指使中央情报局，去别的国家颠覆一个政府，而这一切，可以完全不经过国会的辩论，不经过公众的知情，不经过任何正常的问责。这意味着，国家安全国家不只是让行政权变得更大，还让它的一部分，变得不可见。而一个不可见的权力，恰恰是这套构的制衡，最难以约束的权力，因为你无法制衡一件你根本看不见的事。</p>
+<p>在国家安全的名义下，总统可以指使中央情报局，去别的国家颠覆一个政府，而这一切，可以完全不经过国会的辩论，不经过公众的知情，绕开通常可见的公共问责。少数国会小组虽有秘密监督渠道，却远不能替代公开辩论与充分的审查。这意味着，国家安全国家不只是让行政权变得更大，还让它的一部分，变得不可见。而一个不可见的权力，恰恰是这套构的制衡，最难以约束的权力，因为你无法制衡一件你根本看不见的事。</p>
 
 <h3>九、告别演说与不闭合的要求</h3>
 
@@ -197,9 +226,9 @@
 
 <p>而艾森豪威尔开出的药方，尤其值得放在这个系列的核心判断里来理解，那就是一个警觉而有见识的公民群体。这句话的深意在于，它没有说要靠某一道新的法律，某一个新的机构，去一劳永逸地锁住这个权力团块。用这个系列的语言来说，对付这个由制度自我演化生成的权力团块，唯一的办法，不是把这套构闭合起来，交给某一套一劳永逸的规则去看管，而恰恰是要让这套构，保持一种持续的不闭合，一种永远睁着眼睛，永远在追问，永远不肯把警惕交出去的开放状态。</p>
 
-<p>把杜鲁门与艾森豪威尔这十六年放回这个系列，最值得记住的，就是这套构如何把战时，铸成了常态。它面对冷战与核时代的压力，没有像一战后那样，把战时的行政国家收缩回去，而是把它固化成了一个半永久的，以总统为中心的国家安全国家。麦卡锡主义，是这套构在这个安全至上的氛围里，那个闭合冲动的又一次越界，而它虽然最终被纠正，却已造成了实实在在的伤害。与此同时，那个被排除已久的种族余项，却也恰恰在这个冷战的时代，借着行政令，借着司法判决，借着冷战的战略需要，以及一场正在兴起的社会运动，开始被重新纳入。这套构在同一个时代，一面在安全的名义下逼近闭合，一面又在民权的方向上重新打开，而它最终的智慧，被浓缩在艾森豪威尔那句朴素的告诫里，面对一个自我生成的，庞大的权力团块，唯一的守护，是永不闭合的警觉。</p>
+<p>把杜鲁门与艾森豪威尔这十六年放回这个系列，最值得记住的，就是这套构如何把战时，铸成了常态。它在战后大规模复员，又面对冷战与核时代的压力，把安全领域的核心能力重组为一个半永久的，以总统为中心的国家安全国家。麦卡锡主义，是这套构在这个安全至上的氛围里，那个闭合冲动的又一次越界，而它虽然最终被纠正，却已造成了实实在在的伤害。与此同时，那个被排除已久的种族余项，却也恰恰在这个冷战的时代，借着行政令，借着司法判决，借着冷战的战略需要，以及一场正在兴起的社会运动，开始被重新纳入。这套构在同一个时代，一面在安全的名义下逼近闭合，一面又在民权的方向上重新打开，而它最终的智慧，被浓缩在艾森豪威尔那句朴素的告诫里，面对一个自我生成的，庞大的权力团块，唯一的守护，是永不闭合的警觉。</p>
 
-<p>接下来登场的，是那场自下而上的运动，如何走向它的高潮。一位年轻的总统将被刺杀，而接替他的那位老练的立法者，则将把那个被压制了整整一个世纪的种族余项，第一次以联邦法律的形式，正面地，大规模地承接下来。那是肯尼迪与约翰逊的故事，是那个最深的余项，如何在1960年代，以前所未有的力量，重新涌上这套构的中心的故事。</p>
+<p>接下来登场的，是那场自下而上的运动，如何走向它的高潮。一位年轻的总统将被刺杀，而接替他的那位老练的立法者，则将把那个被压制了整整一个世纪的种族余项，以新的联邦民权立法，正面地，大规模地承接下来。那是肯尼迪与约翰逊的故事，是那个最深的余项，如何在1960年代，以前所未有的力量，重新涌上这套构的中心的故事。</p>
 
       </div>
 
@@ -207,11 +236,11 @@
 
 <h3>I. Casting Wartime into Permanence</h3>
 
-<p>The previous essay closed with the observation that the man who inherited the wartime state in a matter of hours would preside over its transformation from hot war to cold — cementing the national security apparatus forged in combat into something approaching permanent infrastructure. The sixteen years from Truman's accession to Eisenhower's farewell represent a qualitative shift in the long arc this series has been tracing: not merely the beginning of the Cold War, but the moment when wartime administrative expansion stopped being temporary.</p>
+<p>The man who inherited the wartime state in a matter of hours would preside over its transformation from hot war to cold — reorganizing its security capabilities into something approaching permanent infrastructure. The sixteen years from Truman's accession to Eisenhower's farewell represent a qualitative shift in the long arc this series has been tracing: not merely the beginning of the Cold War, but the consolidation of a lasting national-security architecture out of wartime expansion.</p>
 
 <p>The structural judgment is this: the Cold War converted wartime measures — mobilized defense industries, expanded intelligence services, presidential discretion over foreign and military affairs — into semi-permanent fixtures. The National Security Act of 1947 institutionalized the National Security Council, the CIA, and a unified military command structure. NSC-68, produced in 1950, transformed containment from a regionally circumscribed concept into a global, open-ended strategic posture requiring sustained mobilization. Scholarly opinion divides predictably: one camp sees these arrangements as proportionate responses to Soviet pressure and the nuclear age; another emphasizes their corrosive effect on constitutional governance, civil liberties, and the political economy of permanent war readiness.</p>
 
-<p>The deeper significance emerges when placed against the series' long thread. The First World War had produced a wartime state that was rapidly dismantled after 1918. This time there was no dismantling. The Cold War provided something unprecedented: a crisis without foreseeable end. Every previous administrative expansion in this series was tethered to a particular emergency — a civil war, a depression, a world war — with the implicit expectation of eventual retraction. The Cold War severed that tether. The permanent reason for emergency was born.</p>
+<p>The deeper significance emerges when placed against the series' long thread. The First World War had produced a wartime state that was rapidly dismantled after 1918. After 1945, too, there was large-scale demobilization and a sharp reduction in military spending. Yet the Cold War supplied a crisis without foreseeable end around which core security capabilities could be reorganized into lasting institutions. Earlier expansions had also left enduring agencies, but their emergency powers were justified by particular crises — a civil war, a depression, a world war — with some expectation of eventual retraction. In national security, the Cold War weakened that expectation. A durable reason for emergency was born.</p>
 
 <h3>II. Truman, the Atomic Bomb, and the Cold War Turn</h3>
 
@@ -225,17 +254,17 @@
 
 <h3>III. The Institutional Foundations of the National Security State</h3>
 
-<p>The 1947 National Security Act is this essay's pivotal institutional moment. What mattered was not the names of the new agencies but the structural transformation they represented: converting wartime improvisation into a permanent machinery surrounding the president. The National Security Council gave the executive branch a standing forum for integrating diplomatic and military judgment. NSC-68 then provided the ideological spine — rejecting both isolationism and accommodation in favor of sustained, globally calibrated military and industrial buildup.</p>
+<p>The 1947 National Security Act is this essay's pivotal institutional moment. What mattered was not the names of the new agencies but the structural transformation they represented: converting wartime improvisation into a permanent machinery surrounding the president. The National Security Council gave the executive branch a standing forum for integrating diplomatic and military judgment. NSC-68 then provided the ideological spine — weighing continuation of existing policies, isolationism, and war against a rapid buildup of the free world's political, economic, and military strength, and favoring the last course.</p>
 
-<p>The institutional consequence was a redistribution of power within the federal government itself. The New Deal and the Second World War had already expanded federal capacity enormously. The Cold War now locked that capacity into place under the rubric of national security. Previous administrative expansions in this series had always carried the expectation of eventual contraction; crises had ends, and governments were supposed to return to normalcy. The national security state inverted this logic. Its justifying crisis was structural and indefinite. The administrative expansion it produced was thus, for the first time, designed never to be reversed.</p>
+<p>The institutional consequence was a redistribution of power within the federal government itself. The New Deal and the Second World War had already expanded federal capacity enormously. The Cold War now locked that capacity into place under the rubric of national security. The New Deal had already left lasting administrative institutions; permanence itself was not new. What changed was the organization of wartime security powers around a crisis understood as structural and indefinite. These capabilities were no longer expected to disappear at the end of a particular war. The national security state gave them a new, semi-permanent institutional form.</p>
 
-<p>This is the deepest difference from all earlier expansions. Jackson's presidency enlarged executive reach through democratic mobilization; Lincoln's through war emergency; Franklin Roosevelt's through economic catastrophe and total war. Each expansion was tethered to conditions that might eventually pass. The Cold War supplied what none of those crises could: a framework in which the emergency never ended and therefore the exception never closed.</p>
+<p>This marks a new stage in the organization of national-security power. Jackson's presidency enlarged executive reach through democratic mobilization; Lincoln's through war emergency; Franklin Roosevelt's through economic catastrophe and total war. Each expansion was tethered to conditions that might eventually pass. The Cold War supplied what none of those crises could: a framework in which the emergency never ended and therefore the exception never closed.</p>
 
 <h3>IV. The Korean War and Presidential War Powers</h3>
 
-<p>Korea became the definitive postwar precedent for presidential war-making without congressional declaration. Truman framed the intervention as a United Nations police action, thus bypassing the constitutional requirement for formal authorization. This was not semantics: it established the template that every subsequent president would draw on when committing American forces to sustained combat abroad.</p>
+<p>Korea became the definitive postwar precedent for presidential war-making without congressional declaration. Truman framed the intervention as a United Nations police action without seeking a congressional declaration or specific statutory authorization, setting off an enduring constitutional dispute. This was not merely semantics: it established an influential postwar template for committing American forces to sustained combat abroad.</p>
 
-<p>The precedent cut in two directions simultaneously. As a model for unilateral executive war-making, Korea was exactly what Justice Jackson had warned about: a rationalized overreach lodged in the legal order like a loaded weapon, available for later use. Every debate about Vietnam, Lebanon, Grenada, and beyond would circle back to this founding instance of undeclared major war.</p>
+<p>The precedent cut in two directions simultaneously. As a model for unilateral executive war-making, Korea was exactly what Justice Jackson had warned about: a rationalized overreach lodged in the legal order like a loaded weapon, available for later use. Later debates about Vietnam, Lebanon, Grenada, and beyond would repeatedly return to this major postwar precedent for war without a declaration.</p>
 
 <p>Yet the same conflict generated a countervailing precedent. Truman's dismissal of MacArthur in April 1951, at enormous political cost, affirmed civilian supremacy over the military in conditions of genuine difficulty. The president who set the precedent for war without declaration also held the line on the republic's most fundamental military principle: that generals serve elected governments, not the reverse. Holding both facts together — expanded war powers and enforced civilian control — is the only honest picture of the Truman legacy.</p>
 
@@ -251,15 +280,15 @@
 
 <p>Running counter to the closure pressures was an early and tentative inclusion of the most deeply excluded remainder. Truman's President's Committee on Civil Rights, established in 1946, produced a report in 1947 calling for anti-lynching legislation, elimination of the poll tax, and a permanent fair employment agency. When southern senators threatened filibuster, Truman was pushed toward executive action rather than legislation.</p>
 
-<p>Executive Order 9981, requiring equal treatment and opportunity in the armed forces regardless of race, color, religion, or national origin, was the result. Military resistance was real and sustained; integration was not complete until after Korea. But the order established three things of structural importance: that executive action could advance racial equality when legislation was blocked; that the national security state's core institution would be the first venue for desegregation; and that inclusion sometimes arrives not because society reaches consensus first but because the structure, for its own strategic reasons, chooses to open the door.</p>
+<p>Executive Order 9981, requiring equal treatment and opportunity in the armed forces regardless of race, color, religion, or national origin, was the result. Military resistance was real and sustained; integration was not complete until after Korea. But the order established three things of structural importance: that executive action could advance racial equality when legislation was blocked; that the national security state's core institution would become an important early venue for postwar federal desegregation; and that inclusion sometimes arrives not because society reaches consensus first but because the structure, for its own strategic reasons, chooses to open the door.</p>
 
 <p>That last point deserves emphasis. Cold War competition with the Soviet Union made American apartheid a foreign policy liability. The Double V movement had asked, during the war, how a nation claiming to fight for freedom could maintain racial hierarchy at home. By the 1950s that question had become a strategic burden. Civil rights and national security were not separate tracks; they intersected through the logic of ideological competition, and that intersection gave the excluded remainder unexpected leverage.</p>
 
 <h3>VII. Brown, Little Rock, and Federal Compulsion</h3>
 
-<p>Brown v. Board of Education in 1954 did not merely reverse Plessy; it articulated what Harlan's solitary dissent had maintained for half a century — that the Constitution is color-blind, that separate educational facilities are inherently unequal. The seed planted in Harlan's dissent, buried in the legal record through the Jim Crow decades, had germinated. The Supreme Court retrieved a promise the Constitution had made and then abandoned.</p>
+<p>Brown v. Board of Education in 1954 rejected separate-but-equal in public education, holding that separate educational facilities are inherently unequal. For this series, the decision recalls the promise defended in Harlan's solitary dissent in Plessy, though Brown's reasoning was not simply a restatement of his color-blind Constitution. The seed planted in that dissent, buried in the legal record through the Jim Crow decades, had germinated. The Supreme Court returned to an equality promise that Plessy had betrayed.</p>
 
-<p>What followed immediately demonstrated that the law's declaration and its enforcement are different problems. Brown II's implementation standard — "with all deliberate speed" — became a warrant for delay. The real test came in Little Rock in September 1957, when Arkansas Governor Faubus deployed the National Guard to block nine Black students from entering Central High School. Eisenhower's response — federalizing the Arkansas National Guard and ordering the 101st Airborne to escort the students — was constitutionally decisive. The same federal coercive power that had suppressed labor strikes and expelled the Bonus Army now enforced racial integration at bayonet point.</p>
+<p>What followed immediately demonstrated that the law's declaration and its enforcement are different problems. Brown II's implementation standard — "with all deliberate speed" — became a warrant for delay. The real test came in Little Rock in September 1957, when Arkansas Governor Orval Faubus deployed the National Guard to block nine Black students from entering Central High School. Eisenhower's response — federalizing the Arkansas National Guard and ordering the 101st Airborne to escort the students — was constitutionally decisive. The same federal coercive power that had suppressed labor strikes and expelled the Bonus Army now enforced racial integration at bayonet point.</p>
 
 <p>The Montgomery Bus Boycott ran in parallel, connecting this top-down judicial and executive push with bottom-up mobilization. Rosa Parks' arrest in December 1955 and the thirteen-month boycott that followed brought Martin Luther King into national prominence. The struggle for inclusion was no longer dependent solely on courts and presidents; it was generating its own organizational momentum, its own capacity to force the structure to face its unfulfilled universalism.</p>
 
@@ -267,7 +296,7 @@
 
 <p>The popular image of Eisenhower as a passive, disengaged president has been substantially revised. The "hidden hand" interpretation, drawing on documentary evidence accumulated after his death, reveals a president who managed agendas and internal conflicts deliberately, projecting moderation while maintaining firm control behind the scenes. His handling of McCarthy — never confronting him directly, working instead to erode his support from within — exemplifies this approach.</p>
 
-<p>Domestically, Eisenhower accepted the New Deal's basic settlements while pursuing fiscal restraint. His international posture — heavy reliance on nuclear deterrence to reduce conventional force commitments — was more sophisticated than the "massive retaliation" slogan suggested. But the covert action record complicates the picture in important ways. The 1953 Iranian coup and the 1954 Guatemalan intervention, now acknowledged in official retrospectives, demonstrate the other face of national security expansion: a zone of presidential action deliberately designed to be invisible, operating outside normal accountability structures. The CIA could overthrow a foreign government without congressional debate, public knowledge, or any mechanism of regular review. The national security state had not merely grown larger; part of it had become structurally hidden.</p>
+<p>Domestically, Eisenhower accepted the New Deal's basic settlements while pursuing fiscal restraint. His international posture — heavy reliance on nuclear deterrence to reduce conventional force commitments — was more sophisticated than the "massive retaliation" slogan suggested. But the covert action record complicates the picture in important ways. The 1953 Iranian coup and the 1954 Guatemalan intervention, now acknowledged in official retrospectives, demonstrate the other face of national security expansion: a zone of presidential action deliberately designed to be invisible, operating outside normal accountability structures. The CIA could help overthrow a foreign government without public congressional debate or public knowledge, while secret oversight remained limited and concentrated in a few hands. The national security state had not merely grown larger; part of it had become structurally hidden.</p>
 
 <h3>IX. The Farewell Address and the Demand for Non-Closure</h3>
 
@@ -300,5 +329,6 @@
 
     </article>
   </main>
+<script defer src="zh-hant-data/ep21.js"></script>
 </body>
 </html>

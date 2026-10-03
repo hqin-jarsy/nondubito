@@ -28,7 +28,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -60,6 +62,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -83,22 +110,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep23.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep23.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep23.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep23.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep23.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep23.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep23.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep23.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep23.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep23.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -120,7 +149,7 @@
 
 <p>先把这一段的结构判断摆出来。如果把这一篇放在总统权力扩张遭遇制衡反弹，制度自我纠错的长线里看，最稳妥的写法是，尼克松并不是凭空制造了一个异类的总统，而是把二十世纪以来已经不断膨胀的现代总统制，尤其是战争，外交，保密，情报与预算执行上的行政主导，推到了一个尤其尖锐，尤其个人化的极点。1973年，一位历史学家提出了帝国总统制这个概念，他的重点，本就放在战争与外交权限的持续扩张上，而后来的研究也常把尼克松，视作这一趋势在冷战条件下的极端呈现。与此同时，水门事件则不是单一英雄的胜利，而是新闻，国会，司法，特别检察官，行政部门内部的法治规范，以及共和党自身的政治计算同时启动之后，形成的一次分布式的纠错。</p>
 
-<p>这里要先把一个最容易产生的误解破除掉。人们很容易把尼克松，当作一个道德败坏的个案，一颗恰好烂掉的苹果，仿佛只要换一个人品更端正的总统，帝国总统制的问题就不存在了。但这个系列反复追踪的那条行政权长线，恰恰否定了这种个案化的解读。尼克松的越权，不是他一个人的道德污点，而是一整套制度趋势累积到顶点后的爆发。前面几篇里，那个庞大的行政权，是被一场又一场真实的危机，一寸一寸喂大的，每一次喂大，当时都显得那么必要，那么正当。到了尼克松这里，这副被喂养了一个多世纪的庞大身体，终于遇到了一个愿意把它的全部潜能，包括它最黑暗的潜能，都释放出来的主人。所以水门真正暴露的，不是尼克松一个人有多坏，而是这套构容许行政权膨胀到了一个多么危险的地步。</p>
+<p>这里要先把一个最容易产生的误解破除掉。人们很容易把尼克松，当作一个道德败坏的个案，一颗恰好烂掉的苹果，仿佛只要换一个人品更端正的总统，帝国总统制的问题就不存在了。但这个系列反复追踪的那条行政权长线，恰恰否定了这种个案化的解读。尼克松的越权，不能只归结为他个人的道德污点，也是一整套制度趋势累积到顶点后的爆发；结构性的解释，并不减轻他的个人责任。前面几篇里，那个庞大的行政权，是被一场又一场真实的危机，一寸一寸喂大的，每一次喂大，当时都显得那么必要，那么正当。到了尼克松这里，这副被喂养了一个多世纪的庞大身体，终于遇到了一个愿意把它的全部潜能，包括它最黑暗的潜能，都释放出来的主人。所以水门真正暴露的，不是尼克松一个人有多坏，而是这套构容许行政权膨胀到了一个多么危险的地步。</p>
 
 <h3>二、当选，沉默的大多数，与南方战略</h3>
 
@@ -152,15 +181,15 @@
 
 <p>这里最值得强调的，是纠错的分布式特征。委员会，检察与媒体，是平行展开的。参议院于1973年2月设立了总统竞选活动特别委员会，5月17日开始公开听证，5月25日，考克斯宣誓就任特别检察官，而《华盛顿邮报》的伍德沃德与伯恩斯坦，则不断地推进着线索，那位后来被证实的深喉，是联邦调查局的副局长费尔特。这里最好避免记者打倒总统这种通俗的写法，因为官方的时间线本身就表明，没有参议院的听证，没有特别检察官，没有后续的司法程序，媒体的披露，是不足以单独完成制度制裁的。</p>
 
-<p>而决定性的转折，首先来自那套录音系统。1973年7月16日，巴特菲尔德向参议院委员会透露了白宫录音系统的存在。1973年10月20日，尼克松提出了一个所谓的折中方案，遭到考克斯的拒绝，于是总统命令司法部长理查森解雇考克斯，理查森拒绝并辞职，副手拉克尔肖斯也辞职，最终由博克执行了命令，这就是所谓的周六之夜大屠杀。它之所以关键，不只是因为戏剧性，而是因为，司法部内部那种职业与宪法的规范，第一次以高度可见的方式，反抗了总统的命令。</p>
+<p>而决定性的转折，首先来自那套录音系统。1973年7月16日，巴特菲尔德向参议院委员会透露了白宫录音系统的存在。1973年10月19日，尼克松提出了一个所谓的折中方案。次日，方案遭到考克斯的拒绝，总统随即命令司法部长理查森解雇考克斯，理查森拒绝并辞职，副手拉克尔肖斯也辞职，最终由博克执行了命令，这就是所谓的周六之夜大屠杀。它之所以关键，不只是因为戏剧性，而是因为，司法部内部那种职业与宪法的规范，以高度可见的方式，反抗了总统的命令。</p>
 
-<p>而合众国诉尼克松案，则是司法制衡的核心节点。最高法院在1974年一致裁定，总统那种笼统的特权主张，必须让位于刑事审判中经证明的，具体的证据需求。判决把一个更一般的宪法原则钉住了，总统并不存在一种能够绝对阻断刑事传票的行政特权，总统，不是一个凌驾于刑事司法之外的独立主权者。</p>
+<p>而合众国诉尼克松案，则是司法制衡的核心节点。最高法院在1974年一致裁定，总统那种笼统的特权主张，必须让位于刑事审判中经证明的，具体的证据需求。判决把一个更一般的宪法原则钉住了，总统不能仅凭一般性的保密需要，就主张足以绝对阻断刑事传票的行政特权，总统，不是一个凌驾于刑事司法之外的独立主权者。</p>
 
 <p>把这一整套过程放回框架，它是这个系列里，那套古老制衡的一次最彻底的反扑。前面第十九篇讲过，这套构的制衡，不是一套写在纸上的僵死规则，而是一股活的力量，它能从国会，舆论，法院，甚至总统自己的党内同时涌出。而水门，正是这股力量迄今为止最壮观的一次总动员，参议院的公开听证提供了全国的可见性，特别检察官把政治的指控，转化为了可裁判的刑事证据争议，最高法院裁定总统不能凌驾于司法之上，众议院司法委员会把它转化为了正式的弹劾程序，而最终，连总统本党的支持都松动了。制度的力量，在于它的分布，而不在于某一个英雄。</p>
 
 <h3>六、制度的成功与它的偶然</h3>
 
-<p>1974年8月公开的那盘确凿证据的录音带，进一步摧毁了尼克松最后的政治防线。这盘1972年6月23日的录音显示，尼克松同意让中央情报局，去要求联邦调查局以国家安全的名义，收缩水门的调查。在最高法院迫使交出录音带之后，连原本坚定的支持者，都承认将不得不支持弹劾。随后，众议院司法委员会已在7月底通过了三项弹劾的条款，妨碍调查，滥用权力，抗拒国会的传票，而在8月8日晚，尼克松发表电视讲话宣布辞职。</p>
+<p>1974年8月公开的那盘确凿证据的录音带，进一步摧毁了尼克松最后的政治防线。这盘1972年6月23日的录音显示，尼克松同意让中央情报局，去要求联邦调查局以国家安全的名义，收缩水门的调查。在最高法院迫使交出录音带之后，连原本坚定的支持者，都承认将不得不支持弹劾。在此之前，众议院司法委员会已在7月底通过了三项弹劾的条款，妨碍调查，滥用权力，抗拒国会的传票，而在8月8日晚，尼克松发表电视讲话宣布辞职。</p>
 
 <p>但这里有一个最值得点破的争论，水门究竟说明，制度必然会纠错，还是说明，制度在一些关键的偶然条件下仍能纠错。支持制度成功者，最有力的证据，就是媒体，参院，特别检察官，最高法院，司法部内部的规范，众院司法委员会，以及总统党内支持的流失，是同时发生的。而支持带有侥幸者，则会强调，如果没有巴特菲尔德揭露那套录音系统，如果没有6月23日这盘确凿证据的录音带，那么，要证明尼克松亲自参与了掩盖的这条链条，将会困难得多。就材料的状态看，最准确的表述不是二选一，而是，制度确实成功了，但它的成功，呈现出明显的偶然性与脆弱性。</p>
 
@@ -168,11 +197,11 @@
 
 <h3>七、福特，特赦，与后水门的回弹</h3>
 
-<p>福特的特殊性在于，他既是第一位依据第二十五修正案被提名，并由国会确认的副总统，也是第一位通过这一程序成为总统的人。因此，福特既是水门危机的一个制度性产物，也是这套构恢复正常运转的一个容器。</p>
+<p>福特的特殊性在于，他既是第一位依据第二十五修正案被提名，并由国会确认的副总统，随后又因尼克松辞职，依该修正案关于继任的规定成为总统，而无需再次由国会确认。因此，福特既是水门危机的一个制度性产物，也是这套构恢复正常运转的一个容器。</p>
 
 <p>1974年9月8日的特赦，是福特任内最有争议的决定。他在声明里写得很清楚，他担心，若起诉这位前总统，国家刚刚恢复的安宁会再度被破坏，因此，他给予尼克松完全的，无条件的，绝对的赦免，范围覆盖了尼克松在任期间已经犯下或可能犯下的联邦罪行。支持者因此把特赦理解为一种治愈国家的政治与道德决断，而批评者则认为，这削弱了最高层违法之后应受追责的原则。就文本而言，两种解释都能找到根据，最好的处理方式，是把可能伤害问责，与可能有助于止损治理，并列起来，而不是简单地断言它的历史功过。</p>
 
-<p>后水门的制度回弹，则不止于换人。1973年的战争权力决议，在尼克松否决之后被国会推翻，它的核心机制是，总统将美军投入敌对行动时，须在四十八小时内向国会提交报告，且须在六十天内终止该行动，除非国会宣战，立法特别授权或延长期限。信息自由法1974年的修正案，也是在总统否决之后再次通过的，它强化了司法审查与公开的义务，再加上那部1974年的预算与扣押拨款控制法，行政权在战争，信息与预算这三条战线上，都遭遇了制度性的限缩。而一个参议院的委员会，则把这场后水门的回弹，推进到了情报国家的层面，它调查并揭露了中央情报局，联邦调查局，国税局与国家安全局的多种滥权，包括联邦调查局那个反谍计划，以及此前公众并不知晓的一些秘密监控项目，还涉及非法的拆信，对国内政治异见者的监视，乃至暗杀外国领导人的计划。</p>
+<p>后水门的制度回弹，则不止于换人。1973年的战争权力决议，经国会推翻尼克松的否决而成为法律，它的核心机制是，总统将美军投入敌对行动时，须在四十八小时内向国会提交报告，相关敌对行动报告提交或依法应当提交后，原则上须在六十天内终止用兵，除非国会宣战，特别授权或延长期限；为安全撤军而确有军事必要时，依法还可延长最多三十天。信息自由法1974年的修正案，也是在总统否决之后再次通过的，它强化了司法审查与公开的义务，再加上那部1974年的预算与扣押拨款控制法，行政权在战争，信息与预算这三条战线上，都遭遇了制度性的限缩。而一个参议院的委员会，则把这场后水门的回弹，推进到了情报国家的层面，它调查并揭露了中央情报局，联邦调查局，国税局与国家安全局的多种滥权，包括联邦调查局那个反情报计划（COINTELPRO），以及此前公众并不知晓的一些秘密监控项目，还涉及非法的拆信，对国内政治异见者的监视，乃至暗杀外国领导人的计划。</p>
 
 <h3>八、结语</h3>
 
@@ -190,13 +219,13 @@
 
 <h3>I. The Imperial Presidency Made Visible</h3>
 
-<p>The previous essay ended with the promise that the president who pledged to restore order and end the war would carry the unchecked expansionist impulse already visible in Vietnam back into domestic politics, driving it to a new peak — and that what awaited him was the structure's most direct and thorough counterattack. The eight years between Nixon's inauguration and Ford's departure are the story of how the long line of administrative expansion crested and was finally broken.</p>
+<p>The previous essay ended with the promise that the president who pledged to restore order and end the war would carry the unchecked expansionist impulse already visible in Vietnam back into domestic politics, driving it to a new peak — and that what awaited him was the structure's most direct and thorough counterattack. The eight years between Nixon's inauguration and Ford's departure are the story of how the long line of administrative expansion crested and met a powerful institutional check.</p>
 
-<p>The structural judgment: Nixon did not invent the imperial presidency. He inherited a modern executive that had been fed by a succession of real crises — civil war, depression, two world wars, Cold War — each of which had licensed another increment of administrative growth. The term "imperial presidency," coined by a historian in 1973, was meant to describe a trend in war-making and foreign policy authority that long predated Nixon. What Nixon contributed was willingness to extract from this accumulated institutional capacity everything it could yield, including its darkest potentials. The problem was not one man's character; it was a body that had been fed for a century and finally found a master willing to use its full strength.</p>
+<p>The structural judgment: Nixon did not invent the imperial presidency. He inherited a modern executive that had been fed by a succession of real crises — civil war, depression, two world wars, Cold War — each of which had licensed another increment of administrative growth. The term "imperial presidency," coined by a historian in 1973, was meant to describe a trend in war-making and foreign policy authority that long predated Nixon. What Nixon contributed was willingness to extract from this accumulated institutional capacity everything it could yield, including its darkest potentials. The problem was not only one man's character; it was also a body that had been fed for a century and finally found a master willing to use its full strength. The structural explanation does not diminish Nixon's personal responsibility.</p>
 
 <h3>II. Election, the Silent Majority, and the Southern Strategy</h3>
 
-<p>Nixon's 1968 victory — 301 electoral votes to Humphrey's 191, with Wallace taking 46, and a popular margin of less than one percentage point — was not a mandate. It was a coalition assembled from Democratic fracture: the Vietnam catastrophe, urban unrest, civil rights realignment, and Southern defection. His first political task was to constitute a majority that did not yet fully exist.</p>
+<p>Nixon's 1968 victory — 301 electoral votes to Humphrey's 191, with Wallace taking 46, and a popular margin of less than one percentage point — was not a landslide popular mandate. It was a coalition assembled from Democratic fracture: the Vietnam catastrophe, urban unrest, civil rights realignment, and Southern defection. His first political task was to constitute a majority that did not yet fully exist.</p>
 
 <p>The "silent majority" appeal in his November 1969 Vietnam address was a political instrument, not a spontaneous description. The White House organized support around the speech deliberately, hoping to neutralize the antiwar movement's momentum. The deeper significance for this series: presidents have always shaped public opinion, but Nixon's approach went further — he actively constructed the claim to represent an inchoate, inarticulate majority whose preferences could be defined only through presidential assertion. This is executive power at a new level of sophistication: not just managing but manufacturing the authorization for itself.</p>
 
@@ -204,7 +233,7 @@
 
 <h3>III. Vietnamization and Its Hidden Expansion</h3>
 
-<p>Nixon inherited 550,000 American troops in Vietnam and reduced that number to 69,000 by 1972. American combat deaths fell from 16,899 in 1968 to 68 in 1973. The withdrawal was real.</p>
+<p>Nixon inherited roughly half a million American troops in Vietnam and announced in January 1972 a target of reducing that number to 69,000. American military deaths fell from 16,899 in 1968 to 68 in 1973. The withdrawal was real.</p>
 
 <p>But Vietnamization was not simply a drawdown. It was a dual policy: reduce American ground presence while escalating air power, covert operations, and cross-border action. The secret bombing of Cambodia, Operation Menu, began shortly after inauguration. The April 1970 Cambodia incursion extended the ground war across an international border. The 1971 Laos operation used South Vietnamese troops under American air cover. Four students died at Kent State on May 4, 1970, as the domestic cost of the expansion came due.</p>
 
@@ -220,25 +249,25 @@
 
 <h3>V. Watergate and Distributed Correction</h3>
 
-<p>Five burglars were arrested inside the Democratic National Committee headquarters in the Watergate complex at approximately 2 a.m. on June 17, 1972. The subsequent investigation established their connection to the Committee to Re-Elect the President. The crime was not the break-in but the cover-up: systematic obstruction of investigation, management of hush money, and use of national security claims to deflect FBI inquiry.</p>
+<p>Five burglars were arrested inside the Democratic National Committee headquarters in the Watergate complex at approximately 2 a.m. on June 17, 1972. The subsequent investigation established their connection to the Committee to Re-Elect the President. The scandal was not only the break-in but also the cover-up: systematic obstruction of investigation, management of hush money, and use of national security claims to deflect FBI inquiry.</p>
 
 <p>What followed was the most spectacular institutional self-correction in American history — and it was distributed, not heroic. The Senate Select Committee began public hearings in May 1973, providing national visibility. Special Prosecutor Cox was sworn in the same month, converting political accusations into judicially manageable evidentiary disputes. The Washington Post's Woodward and Bernstein advanced the factual record, with FBI Deputy Director Felt ("Deep Throat") as their source. None of these mechanisms was sufficient alone. The press could report but not compel. The Senate could investigate but not prosecute. Only their simultaneous operation produced the institutional force that brought Nixon down.</p>
 
-<p>The decisive turn was Alexander Butterfield's July 1973 disclosure of the White House taping system. The Saturday Night Massacre followed in October — Nixon ordering Richardson to fire Cox, Richardson resigning rather than comply, his deputy Ruckelshaus also resigning, Bork ultimately executing the order. The internal legal culture of the Justice Department had, visibly and at personal cost, refused a presidential command. United States v. Nixon (1974) was the legal culmination: unanimous Supreme Court rejection of absolute executive privilege, establishing that no president stands above criminal judicial process. By August, the June 23 "smoking gun" tape — showing Nixon directing CIA interference with the FBI investigation — had eliminated his last Republican defenders. He resigned on August 9.</p>
+<p>The decisive turn was Alexander Butterfield's July 1973 disclosure of the White House taping system. The Saturday Night Massacre followed in October — Nixon ordering Richardson to fire Cox, Richardson resigning rather than comply, his deputy Ruckelshaus also resigning, Bork ultimately executing the order. The internal legal culture of the Justice Department had, visibly and at personal cost, refused a presidential command. United States v. Nixon (1974) was the legal culmination: unanimous Supreme Court rejection of an absolute privilege based on a generalized claim of confidentiality against the criminal subpoena, without denying all protection to presidential communications. By August, the June 23 "smoking gun" tape — showing Nixon directing CIA interference with the FBI investigation — had eliminated his last Republican defenders. He resigned on August 9.</p>
 
 <h3>VI. The Correction's Contingency</h3>
 
-<p>The Watergate correction was real. But the most honest reading of what it proves is not that the structure inevitably self-corrects. It is that the structure self-corrected under a specific conjunction of circumstances that included a recording system that happened to exist, an official who happened to reveal it, a prosecutor who happened to refuse a corrupt order, and a sufficient number of legislators who happened to choose constitutional obligation over party loyalty. Remove any of those contingencies and the outcome changes.</p>
+<p>The Watergate correction was real. But the most honest reading of what it proves is not that the structure inevitably self-corrects. It is that the structure self-corrected under a specific conjunction of circumstances that included a recording system that happened to exist, an official who happened to reveal it, a prosecutor who happened to refuse a corrupt order, and a sufficient number of legislators who happened to choose constitutional obligation over party loyalty. Remove one of those contingencies and the outcome might have changed.</p>
 
 <p>This is the correct way to understand institutional resilience. The distributed character of American checks and balances made the correction harder to defeat than a system dependent on any single mechanism. No single failure point could collapse the whole. But the correction was not automatic; it was activated by specific choices by specific people. The structure provides the opportunity; it does not guarantee the result. Watergate demonstrated that the structure can work. It did not demonstrate that it must.</p>
 
 <h3>VII. Ford, the Pardon, and Post-Watergate Reform</h3>
 
-<p>Ford's accession was itself a constitutional novelty — the first president who had attained both the vice presidency and the presidency through appointment rather than election, under the Twenty-Fifth Amendment. His presidency was thus both a product of the Watergate crisis and a vessel for the structure's return to normal operation.</p>
+<p>Ford's accession was itself a constitutional novelty: he became vice president through nomination and congressional confirmation under the Twenty-Fifth Amendment, then succeeded automatically to the presidency when Nixon resigned, without having been elected to either office. His presidency was thus both a product of the Watergate crisis and a vessel for the structure's return to normal operation.</p>
 
 <p>The September 8, 1974 pardon of Nixon — "full, free, and absolute" for all federal offenses Nixon "has committed or may have committed" during his presidency — was Ford's most consequential and controversial decision. His stated justification was preventing the country's return to divisive turmoil. The pardon's critics argued it undermined accountability at the highest level; its defenders saw it as pragmatic governance in a damaged polity. Both readings have merit; the honest treatment holds them simultaneously without pretending the question is resolved.</p>
 
-<p>The post-Watergate institutional response was the most systematic restriction of executive power since the New Deal. The War Powers Resolution — passed over Nixon's veto in 1973 — required congressional notification within forty-eight hours of committing troops to hostilities and mandated withdrawal within sixty days absent formal authorization. The 1974 Freedom of Information Act amendments strengthened judicial review of executive secrecy. The Congressional Budget and Impoundment Control Act reclaimed the legislative power of the purse against presidential impoundment. The Church Committee's investigation of intelligence agencies revealed programs — domestic surveillance, mail opening, assassination planning — that demonstrated the full scope of the national security state's self-insulation from accountability. These reforms targeted the three main vectors of executive expansion that the series has traced: war, secrecy, and money. They were genuine constraints. They were not permanent solutions. The imperial presidency was pressed down, not destroyed. It would surface again.</p>
+<p>The post-Watergate institutional response was the most systematic restriction of executive power since the New Deal. The War Powers Resolution — passed over Nixon's veto in 1973 — required congressional notification within forty-eight hours of committing troops to hostilities and generally required termination within sixty days of the report being submitted or becoming due, absent a declaration of war, specific authorization, or congressional extension; it allowed up to thirty additional days when specified military conditions required time for safe withdrawal. The 1974 Freedom of Information Act amendments strengthened judicial review of executive secrecy. The Congressional Budget and Impoundment Control Act reclaimed the legislative power of the purse against presidential impoundment. The Church Committee's investigation of intelligence agencies revealed programs — domestic surveillance, mail opening, assassination planning — that demonstrated the full scope of the national security state's self-insulation from accountability. These reforms targeted the three main vectors of executive expansion that the series has traced: war, secrecy, and money. They were genuine constraints. They were not permanent solutions. The imperial presidency was pressed down, not destroyed. It would surface again.</p>
 
 <h3>VIII. Conclusion</h3>
 
@@ -267,5 +296,6 @@
 
     </article>
   </main>
+<script defer src="zh-hant-data/ep23.js"></script>
 </body>
 </html>

@@ -28,7 +28,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -60,6 +62,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -83,22 +110,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep24.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep24.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep24.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep24.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep24.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep24.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep24.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep24.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep24.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep24.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -154,23 +183,23 @@
 
 <p>里根在意识形态层面最著名的表述，是1981年就职演说中的那句，在当前这场危机中，政府不是解决我们问题的办法，政府本身就是问题。这句话的重要性不只是修辞，而在于它重新规定了，自新政以来联邦政府扩张的正当性边界，政府不再首先被理解为市场失灵的纠偏者，而被理解为迟滞，浪费，寻租与道德依赖的来源。无论后来的实践有多少折中，这句话都重塑了此后几十年的美国政治语法。</p>
 
-<p>但写作时，必须把话语上的小政府，和财政上的政府规模，区分开来。这是这一篇最能服务于整体系列主题的地方。官方的预算统计显示，联邦的赤字在里根首个完整的预算年后迅速扩大，1983财年的赤字占国内生产总值达到百分之五点九，而到1989财年仍为百分之二点七，债务持有者所持的公债占国内生产总值的比重，更是从1981年初的大约百分之二十四点八，升到了1989年底的约百分之三十九点一。如果只讲里根缩小了政府，就会把这个时代最有分析价值的张力抹掉，他更成功地缩小的，是政府的合法性叙事，而并没有同样成功地缩小，政府作为一台财政，军事与福利机器的体量。</p>
+<p>但写作时，必须把话语上的小政府，和财政上的政府规模，区分开来。这是这一篇最能服务于整体系列主题的地方。官方的预算统计显示，联邦的赤字在里根首个完整的预算年后迅速扩大，1983财年的赤字占国内生产总值达到百分之五点九，而到1989财年仍为百分之二点七，公众持有的联邦债务占国内生产总值的比重，更是从1981年第一季度的大约百分之二十四点八，升到了1989年第四季度、也就是老布什上任后的约百分之三十九点一。如果只讲里根缩小了政府，就会把这个时代最有分析价值的张力抹掉，他更成功地缩小的，是政府的合法性叙事，而并没有同样成功地缩小，政府作为一台财政，军事与福利机器的体量。</p>
 
 <p>里根经济学的实际过程，也远比流行叙事复杂。1981年的经济复兴税法，被称为一段很长时间里最大的减税法案，但1982年的税收公平与财政责任法，又构成了一次重要的回调，而1986年的税制改革，则把重点从单纯的减税，转向了更大范围的税基重整。从结果看，通胀率从1980年的百分之十三点五，降到了1983年的百分之三点二，实际国内生产总值的年增长率，则从1982年的负百分之二，回升到1983年的百分之四点三，1984年更达到百分之七点三。但支持者据此强调里根重振了增长与信心，而批评者则指出，那场决定性的转折，首先来自沃尔克式的货币紧缩，而不是单独来自供给学派的税政，而且恢复本身，还伴随着高企的赤字，去工会化与更明显的分配分化。现代研究指出，家庭的收入不平等，在1980年之后明显上升，1980年代，不是一个人人按比例一起富起来的时代。</p>
 
-<p>而在劳资关系上，空中交通管制员的罢工事件，在政治象征的层面，与税改同样重要。里根上任后不久，即在联邦的层面，与罢工的空中交通管制员发生了正面的冲突，他公开地解雇了他们。把它放回这个系列，这是一个格外意味深长的转折。前面第十三，十五，十八篇追过工人这个余项被逐步吸纳的漫长轨迹，而空中交通管制员罢工事件，则标志着这条吸纳的轨迹，在里根这里，发生了一次明显的反转，那只曾经伸出来保护工人的联邦的手，第一次公开地，收了回去。这里揭示了吸纳的可逆性，一次已经完成的吸纳，本身也是可以被部分地逆转的。</p>
+<p>而在劳资关系上，空中交通管制员的罢工事件，在政治象征的层面，与税改同样重要。里根上任后不久，即在联邦的层面，与罢工的空中交通管制员发生了正面的冲突，他公开地解雇了拒绝复工的管制员。这些人是受联邦禁罢工规定约束的雇员，与《瓦格纳法》主要保护的私营部门工人并不处在同一法律框架内。把它放回这个系列，这是一个格外意味深长的转折。前面第十三，十五，十八篇追过工人这个余项被逐步吸纳的漫长轨迹，而空中交通管制员罢工事件，则标志着这条吸纳的轨迹，在里根这里，发生了一次明显的反转，那只曾经伸出来保护工人的联邦的手，在这里公开地，收了回去。这里揭示了吸纳的可逆性，一次已经完成的吸纳，本身也是可以被部分地逆转的。</p>
 
 <h3>七、冷战后期的强硬与转向</h3>
 
 <p>里根对苏联的早期语言非常强硬。1983年3月，他在一次讲话中，把苏联称作邪恶帝国，并警告美国人，不要在核冻结的论争中模糊善与恶的界线，同月，他又宣布了战略防御倡议，试图以技术的方案，去突破相互确保摧毁的核平衡逻辑。</p>
 
-<p>但如果只写强硬迫使苏联屈服，就会错过1980年代后半段真正重要的变化。1986年的雷克雅未克会晤，虽然没有达成立即的协议，却曾逼近大规模的核裁减，其后，双方在这种对话的基础上，推进出了1987年的中程核力量条约。这份条约要求消除射程五百到五千五百公里的陆基导弹，是冷战史上第一次真正消灭一整类核武器的协议。关于里根在冷战终结中的作用，最应该避免的，就是把它写成一部里根赢得冷战的单人史诗。更可靠的解释，是一种互动的解释，里根的军备扩张，道德攻势，以及后来肯谈判的转向，都很重要，但戈尔巴乔夫的改革意志，苏联内部的经济与民族问题，东欧的政治变动，同样是决定性的。</p>
+<p>但如果只写强硬迫使苏联屈服，就会错过1980年代后半段真正重要的变化。1986年的雷克雅未克会晤，虽然没有达成立即的协议，却曾逼近大规模的核裁减，其后，双方在这种对话的基础上，推进出了1987年的中程核力量条约。这份条约要求消除射程五百到五千五百公里的陆基弹道导弹与巡航导弹及相关发射器，不论所配弹头是核弹头还是常规弹头。它以消除一整类可携核导弹，而不只是限制数量，成为冷战军控史上的突破。关于里根在冷战终结中的作用，最应该避免的，就是把它写成一部里根赢得冷战的单人史诗。更可靠的解释，是一种互动的解释，里根的军备扩张，道德攻势，以及后来肯谈判的转向，都很重要，但戈尔巴乔夫的改革意志，苏联内部的经济与民族问题，东欧的政治变动，同样是决定性的。</p>
 
 <h3>八、伊朗门与行政权越界的继续</h3>
 
 <p>伊朗门事件，最适合接在这个系列从水门延伸出来的那条行政权越界与制衡回应的主线上来写。里根政府的高级官员，秘密地推动向伊朗出售武器，与此同时，国家安全委员会的工作人员及其外围网络，又把部分的收益，转用于支持尼加拉瓜的反政府武装，而这，与国会对援助这支武装的限制，直接相冲突。</p>
 
-<p>调查的结果，呈现出重要的制度信息。塔委员会与国会的联合调查，都没有给出白宫最高层有明确犯罪计划的简单结论，但它们都对国家安全委员会体系的运作，程序的失控，记录的混乱与责任的链条，提出了严厉的批评。里根本人在1987年3月的全国讲话中承认，自己授权了对伊朗的军售，但否认知晓向那支反政府武装转移资金的全部细节，他同时承认，自己此前关于没有以武器换人质的表述，站不住了。</p>
+<p>调查的结果，呈现出重要的制度信息。塔委员会与国会的联合调查，没有证明里根事先知晓那笔转款，但这不等于白宫高层获得了免责。调查揭示了严重的欺瞒与违法问题，对国家安全委员会体系的运作，程序的失控，记录的混乱与责任的链条，提出了严厉的批评；国会报告也把最终责任归于总统。里根本人在1987年3月的全国讲话中承认，自己授权了对伊朗的军售，但否认事先知晓向那支反政府武装转移资金，他同时承认，自己此前关于没有以武器换人质的表述，站不住了。</p>
 
 <p>但无论哪一派，都很难否认一件事，伊朗门再次证明，水门之后的美国，并没有从此免疫于行政权的越界。把它放回框架，它恰恰印证了上一篇那个开放性的结尾，水门后的那一系列改革，虽然一度把总统权力压了回去，但这种压制并不是永久的。那个过度膨胀的行政权，在国家安全的领域，又一次探出了头。</p>
 
@@ -196,7 +225,7 @@
 
 <p>Carter's political advantage in 1976 was distance: a Southern governor untainted by Washington, presenting himself after Watergate as proof that honest government was possible. Contemporary scholarship has largely abandoned the "failed presidency" label in favor of something more complex. Carter's weaknesses were real — poor legislative coalition-building, insufficient narrative simplification, trouble prioritizing an agenda — but his record on issues he cared about, including human rights, energy, the environment, and conflict mediation, showed more foresight than contemporary politics rewarded.</p>
 
-<p>What Carter did to the presidency is distinct from what he accomplished in specific policies. He moralized the office. After Nixon's aggressive extension of executive power, after the accumulation of the imperial presidency, Carter deliberately constructed a presidency that acknowledged limits. He pointed to constraints rather than promising to overcome them. He wore a cardigan to address energy use. He returned the Panama Canal. He told Americans their confidence was eroding. For this series, this is extraordinary: a president who questioned the purpose of his own institution, who chose the honest acknowledgment of limits over the mobilizing promise of endless capacity. It was, politically, nearly fatal. But it named something real.</p>
+<p>What Carter did to the presidency is distinct from what he accomplished in specific policies. He moralized the office. After Nixon's aggressive extension of executive power, after the accumulation of the imperial presidency, Carter deliberately constructed a presidency that acknowledged limits. He pointed to constraints rather than promising to overcome them. He wore a cardigan to address energy use. He negotiated the Panama Canal's eventual transfer to Panama. He told Americans their confidence was eroding. For this series, this is extraordinary: a president who questioned the purpose of his own institution, who chose the honest acknowledgment of limits over the mobilizing promise of endless capacity. It was, politically, nearly fatal. But it named something real.</p>
 
 <h3>III. Human Rights Diplomacy and Self-Limitation</h3>
 
@@ -210,25 +239,25 @@
 
 <p>The economic environment Carter inherited defied the standard Keynesian toolkit. Annual inflation reached 11.3 percent in 1979 and 13.5 percent in 1980; unemployment rose from 5.9 to 7.2 percent over the same period. The simultaneous presence of high inflation and high unemployment — stagflation — directly challenged the postwar assumption that the two could be traded off against each other. For this series, stagflation represented the reemergence of the economic remainder: the New Deal's tools, which had seemed to absorb the instability of unmanaged capitalism, could not handle this new form of economic disorder. The absorbed remainder had reappeared in an unanticipated shape.</p>
 
-<p>Carter's July 15, 1979 address — remembered as the "malaise speech," though he never used the word — was the most unusual presidential address of the postwar era. He told Americans that the erosion of confidence in the future was threatening to destroy the social and political fabric of American life, and that the tendency to worship self-indulgence and consumption was eroding the foundations of the republic. This is a remarkable text: a president not mobilizing his audience toward confident action but asking them to confront limits, question assumptions, accept a more constrained understanding of what the nation could promise itself. The Volcker shock — the Federal Reserve's aggressive anti-inflation tightening beginning in October 1979 — began under Carter and continued under Reagan, producing a severe recession in 1981–82 but breaking the inflationary spiral. The credit for taming inflation belongs to both administrations. The political costs fell disproportionately on Carter.</p>
+<p>Carter's July 15, 1979 address — remembered as the "malaise speech," though he never used the word — was the most unusual presidential address of the postwar era. He told Americans that the erosion of confidence in the future was threatening to destroy the social and political fabric of American life, and that the tendency to worship self-indulgence and consumption was eroding the foundations of the republic. This is a remarkable text: a president not mobilizing his audience toward confident action but asking them to confront limits, question assumptions, accept a more constrained understanding of what the nation could promise itself. The Volcker shock — the Federal Reserve's aggressive anti-inflation tightening beginning in October 1979 — began under Carter and continued under Reagan, producing a severe recession in 1981–82 but breaking the inflationary spiral. The Federal Reserve under Volcker led the anti-inflation effort across both administrations. Carter paid a heavy political price for the crisis, while the deep 1981–82 recession also imposed major costs during Reagan's presidency.</p>
 
 <h3>V. The Iran Hostage Crisis and the 1980 Turning Point</h3>
 
 <p>Fifty-two American diplomatic personnel were held hostage in Tehran from November 4, 1979 to January 20, 1981 — 444 days. The crisis dominated the final fourteen months of Carter's presidency and rendered it politically terminal. The failed April 1980 rescue attempt — Operation Eagle Claw, aborted due to equipment failures, with eight American servicemen killed in a helicopter-transport aircraft collision during withdrawal — completed the picture of executive impotence.</p>
 
-<p>Placed alongside Watergate, the hostage crisis produced what this series identifies as a double disillusionment. Watergate taught that presidential power could corrupt. The hostage crisis taught that presidential power could fail. Together they created an almost impossible public expectation: the president must be constrained enough not to abuse power, but forceful enough to project American strength globally. Carter satisfied neither demand. His restraint, genuinely admirable as a response to the Watergate lesson, read as weakness against the hostage backdrop. Reagan's offer — restored confidence, morning in America, no apologies — answered the question the double disillusionment had opened.</p>
+<p>Placed alongside Watergate, the hostage crisis produced what this series identifies as a double disillusionment. Watergate taught that presidential power could corrupt. The hostage crisis taught that presidential power could fail. Together they created an almost impossible public expectation: the president must be constrained enough not to abuse power, but forceful enough to project American strength globally. Carter satisfied neither demand. His restraint, genuinely admirable as a response to the Watergate lesson, read as weakness against the hostage backdrop. Reagan's offer — restored confidence, national renewal, no apologies — answered the question the double disillusionment had opened.</p>
 
 <h3>VI. Reagan and the Redefinition of the State's Purpose</h3>
 
-<p>Reagan's 1981 inaugural declaration — "government is not the solution to our problem; government is the problem" — reshaped the political grammar of the next several decades. It reversed the burden of proof established by the New Deal: the regulatory and welfare state no longer represented the obvious response to market failure; it now required justification against a default presumption in favor of markets. Whatever subsequent policy compromises modified this position in practice, the rhetorical transformation was durable.</p>
+<p>Reagan's 1981 inaugural declaration — "In this present crisis, government is not the solution to our problem; government is the problem" — reshaped the political grammar of the next several decades. It reversed the burden of proof established by the New Deal: the regulatory and welfare state no longer represented the obvious response to market failure; it now required justification against a default presumption in favor of markets. Whatever subsequent policy compromises modified this position in practice, the rhetorical transformation was durable.</p>
 
-<p>The crucial distinction this series must make is between the rhetoric of small government and the fiscal reality. Federal deficits expanded rapidly after 1981, reaching 5.9 percent of GDP in fiscal year 1983. The national debt held by the public grew from approximately 24.8 percent of GDP at the start of 1981 to roughly 39.1 percent by the end of 1989. Reagan's revolution was primarily discursive, not fiscal. He successfully changed how Americans talked about government — but he did not significantly reduce government's actual size. What he ended was not a fiscal regime but a political common sense.</p>
+<p>The crucial distinction this series must make is between the rhetoric of small government and the fiscal reality. Federal deficits expanded rapidly after 1981, reaching 5.9 percent of GDP in fiscal year 1983. Federal debt held by the public grew from approximately 24.8 percent of GDP in the first quarter of 1981 to roughly 39.1 percent in the fourth quarter of 1989, by then during George H. W. Bush's presidency. Reagan's revolution was primarily discursive, not fiscal. He successfully changed how Americans talked about government — but he did not significantly reduce government's actual size. What he ended was not a fiscal regime but a political common sense.</p>
 
-<p>The PATCO strike of 1981 carried symbolic weight equal to the tax cuts. Reagan's dismissal of striking air traffic controllers signaled that the federal government would no longer function as the natural protector of organized labor. This series has tracked the gradual absorption of the labor remainder — from Pullman's suppression to the Wagner Act's formal recognition. The PATCO dismissal reversed that trajectory. A completed inclusion was partially reverted. This demonstrates a point this series returns to repeatedly: absorption is not a ratchet. What has been included can be partially excluded again.</p>
+<p>The PATCO strike of 1981 carried symbolic weight equal to the tax cuts. Reagan's dismissal of air traffic controllers who refused to return to work signaled that the federal government would no longer function as the natural protector of organized labor. These were federal employees subject to a statutory strike ban, not private-sector workers covered by the Wagner Act. This series has tracked the gradual absorption of the labor remainder — from Pullman's suppression to the Wagner Act's formal recognition. The PATCO dismissal reversed that trajectory. A completed inclusion was partially reverted. This demonstrates a point this series returns to repeatedly: absorption is not a ratchet. What has been included can be partially excluded again.</p>
 
 <h3>VII. Cold War Endgame</h3>
 
-<p>Reagan's early Cold War posture was aggressive. The "evil empire" speech and the Strategic Defense Initiative both signaled a departure from détente toward ideological confrontation. But the second term told a different story. The 1986 Reykjavik summit almost produced an agreement to eliminate all ballistic missiles; the 1987 Intermediate-Range Nuclear Forces Treaty did eliminate an entire class of nuclear weapons — the first such agreement in Cold War history. Reagan's 1987 Berlin Wall address is remembered for "tear down this wall," but the more important story was the trajectory from confrontation to negotiation across the 1985–1988 period.</p>
+<p>Reagan's early Cold War posture was aggressive. The "evil empire" speech and the Strategic Defense Initiative both signaled a departure from détente toward ideological confrontation. But the second term told a different story. The 1986 Reykjavik summit almost produced an agreement to eliminate all ballistic missiles; the 1987 Intermediate-Range Nuclear Forces Treaty required elimination of ground-launched ballistic and cruise missiles with ranges of 500 to 5,500 kilometers and their launchers, whether nuclear- or conventionally armed — a Cold War breakthrough in removing an entire class of missile systems rather than merely capping numbers. Reagan's 1987 Berlin Wall address is remembered for "tear down this wall," but the more important story was the trajectory from confrontation to negotiation across the 1985–1988 period.</p>
 
 <p>The honest account of Cold War's end requires the same distributed explanation that Watergate's correction required: no single actor was decisive. Reagan's defense buildup and moral pressure mattered. Gorbachev's reform impulse mattered more directly. Soviet internal contradictions — economic sclerosis, nationalist pressures, the burden of empire — were structural. Any single-variable account, whether celebrating Reagan's victory or crediting Soviet collapse, misses the interaction.</p>
 
@@ -236,7 +265,7 @@
 
 <p>The Iran-Contra affair demonstrates that Watergate's institutional corrections were real but temporary. Senior Reagan administration officials secretly sold weapons to Iran — in apparent violation of the stated policy of no arms-for-hostages negotiations — and diverted proceeds to the Nicaraguan Contras in violation of congressional prohibitions on such aid. The two operations were connected through the NSC staff and a network of outside operatives.</p>
 
-<p>The Tower Board and congressional investigations found no evidence of a criminal command structure comparable to Watergate's. Reagan acknowledged authorizing the Iran arms sales but denied knowledge of the diversion. His credibility was damaged but not destroyed. What the affair demonstrated unambiguously is that the impulse toward executive action in the security domain, outside normal accountability structures, had not been extinguished by post-Watergate reforms. The same structural tendency — using national security as a cover for action that could not survive democratic scrutiny — had simply found a new channel. The body pressed down by Watergate's correction had surfaced again, in different clothing.</p>
+<p>The Tower Board and congressional investigations did not establish that Reagan knew in advance about the diversion of funds. That did not exonerate senior officials or erase the serious deception and illegality the investigations exposed. They sharply criticized the NSC's operations, lost procedural control, confused records, and chain of responsibility; the congressional report placed ultimate responsibility on the president. Reagan acknowledged authorizing the Iran arms sales but denied knowledge of the diversion. His credibility was damaged but not destroyed. What the affair demonstrated unambiguously is that the impulse toward executive action in the security domain, outside normal accountability structures, had not been extinguished by post-Watergate reforms. The same structural tendency — using national security as a cover for action that could not survive democratic scrutiny — had simply found a new channel. The body pressed down by Watergate's correction had surfaced again, in different clothing.</p>
 
 <h3>IX. Conclusion</h3>
 
@@ -265,5 +294,6 @@
 
     </article>
   </main>
+<script defer src="zh-hant-data/ep24.js"></script>
 </body>
 </html>
