@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep16.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep16.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep16.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep16.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep16.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep16.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep16.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep16.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep16.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep16.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -117,11 +146,11 @@
 
 <h3>一、探照灯扫过的时代</h3>
 
-<p>上一篇结尾说过，那条沉默已久的性别之轴，将在威尔逊的任内，被一场声势浩大的运动，第一次推到宪法斗争的最前沿。而从1909年塔夫脱就职，到1921年威尔逊离任，这十二年，正是美国这套构历史上一个格外剧烈的转折点，也是上一篇那个探照灯的比喻，得到最生动印证的一段。</p>
+<p>在威尔逊任内，争取妇女选举权的运动声势日盛，性别平等成为宪法斗争的一大焦点。而从1909年塔夫脱就职，到1921年威尔逊离任，这十二年，正是美国这套构历史上一个格外剧烈的转折点，也是上一篇那个探照灯的比喻，得到最生动印证的一段。</p>
 
 <p>先把这十二年的结构摆出来。在这段不长的时间里，联邦政府获得了重要的新财政与行政工具，国会和各州以重塑代表制与税制的方式修改了宪法，美国参加了第一次世界大战，并以一种全新的语言投射出全球性的抱负，而与此同时，这个战时的国家，又对国内的异见发动了猛烈的镇压。同一位以民主的语言去倡导一种新的国际秩序的总统，也主持了联邦机构里种族隔离的重新推行，以及美国历史上最大规模的言论起诉之一。这不是一个无关紧要的矛盾，而是这个时代最核心的历史事实之一。</p>
 
-<p>用上一篇那个探照灯的比喻来看，这个时代最清楚不过。这套构与那个最深余项的关系，从来不是一列匀速驶向理想的火车，而是一盏在黑暗中扫过的探照灯，照亮此处，却让别处重新陷入黑暗。而1909到1921年，恰恰是这盏灯移动得最剧烈的一段。它在阶级这条经济的轴上大步前进，累进的所得税，直选的参议员，联邦储备，联邦贸易委员会，克莱顿法，把此前几十年被挤压者的诉求，一件件变成了制度。它在性别这条轴上，也迎来了历史性的胜利，第十九修正案第一次把妇女纳入了正式的选民。可就在这束光照亮阶级与性别的同时，它却把种族这条轴，留在了更深的阴影里，威尔逊政府把一个已经融合了几十年的联邦文官系统，重新隔离了开来。</p>
+<p>用上一篇那个探照灯的比喻来看，这个时代最清楚不过。这套构与那个最深余项的关系，从来不是一列匀速驶向理想的火车，而是一盏在黑暗中扫过的探照灯，照亮此处，却让别处重新陷入黑暗。而1909到1921年，恰恰是这盏灯移动得最剧烈的一段。它在阶级这条经济的轴上大步前进，累进的所得税，直选的参议员，联邦储备，联邦贸易委员会，克莱顿法，把此前几十年被挤压者的诉求，一件件变成了制度。它在性别这条轴上，也迎来了历史性的胜利，第十九修正案首次在全国宪法层面保障投票权不因性别而被剥夺；此前已有多个州承认妇女选举权。可就在这束光照亮阶级与性别的同时，它却把种族这条轴，留在了更深的阴影里，威尔逊政府把一个已经融合了几十年的联邦文官系统，重新隔离了开来。</p>
 
 <h3>二、塔夫脱与进步主义的裂开</h3>
 
@@ -169,7 +198,7 @@
 
 <p>尤金·德布斯，成了这场行动最著名的个体受害者。在1918年6月16日于俄亥俄州坎顿发表了一场反战演说之后，他依据修订后的间谍法被起诉，定罪，并被判处十年监禁，最高法院在德布斯诉合众国案里维持了这一定罪。这件事的重点不只是一位社会主义领袖受了惩罚，而是一位在1912年得票接近百万的重要总统候选人，竟然可以因为战时的言论，依据一部威尔逊政府所极力推动的法律，而被投入监狱。申克诉合众国案，则提供了那个经典的教义公式。霍姆斯大法官的明显而现实的危险标准，是那个用于闭合的，经典的战时先例，但1969年的勃兰登堡诉俄亥俄案，已经远离了申克案那种在战时相当宽容的姿态，把门槛提高到了鼓吹只有在它旨在煽动迫在眉睫的非法行动，并且很可能做到时，才能被惩罚。</p>
 
-<p>这一时期的悖论，因此是坚硬而具体的。威尔逊以国外民主自治的名义，为战争辩护，而在国内，他却在推行言论的限制，惩罚反战的异见，并维持着联邦的种族等级。以民主为名的解放语言，与对国内异见的闭合，以及对种族的压制，就这样在同一个人身上并存。这不是威尔逊一个人的伪善，而是这套构那道从奠基起就合不拢的缝，在一个把普遍主义语言投射到全球的时刻，被撑到了它最刺眼的宽度。</p>
+<p>这一时期的悖论，因此是坚硬而具体的。威尔逊以国外民主自治的名义，为战争辩护，而在国内，他却在推行言论的限制，惩罚反战的异见，并维持着联邦的种族等级。以民主为名的解放语言，与对国内异见的闭合，以及对种族的压制，就这样在同一个人身上并存。这不只是威尔逊个人的伪善，也是这套构那道从奠基起就合不拢的缝，在一个把普遍主义语言投射到全球的时刻，被撑到了它最刺眼的宽度。</p>
 
 <h3>七、盟约之争与参议院的宪法否决</h3>
 
@@ -177,9 +206,9 @@
 
 <p>关于国联失败的责任，是这一时期史学争论的核心之一。一条解释的路线，把沉重的责任放在威尔逊身上，他对洛奇的个人蔑视，他拒绝把关键的参议员纳入巴黎的代表团，他不愿接受保留条款，以及他日益恶化的健康。另一条路线，则更看重共和党的党派立场，对第十条的宪法忧虑，以及美国更广泛的，对具有约束力的欧洲承诺的抵触。较为平衡的解读是，个人的对立起了作用，政党的控制起了作用，宪法的关切起了作用，而威尔逊1919年10月的病倒，又进一步压缩了妥协的可能。参议院在1919年11月19日否决了条约，并在1920年3月再次否决，美国从未加入国际联盟。</p>
 
-<p>把这一段放回框架，它恰好构成了上一篇的一个对照。上一篇里，罗斯福在巴拿马，把先斩后奏的行政主动性，推到了极致，因为在对外事务上，国内的制衡格外稀薄。而在这里，同样是把总统的抱负推向对外，威尔逊却撞上了那道稀薄制衡中，仍然存在的最硬的一环，参议院的条约批准权。行政权那条不断扩张的长线，在这里被这套构宪法的咽喉，硬生生地卡住了。即便行政权在这几十年里大幅膨胀，这套构的分权，也并没有完全失效，它至少还保留着，在某些关键处，把总统摁住的能力。</p>
+<p>把这一段放回框架，它恰好构成了上一篇的一个对照。上一篇里，罗斯福在巴拿马，把先斩后奏的行政主动性，推到了极致，因为在对外事务上，国内的制衡格外稀薄。而在这里，同样是把总统的抱负推向对外，威尔逊却撞上了那道稀薄制衡中，仍然存在的最硬的一环，参议院对条约批准的同意权。行政权那条不断扩张的长线，在这里被这套构宪法的咽喉，硬生生地卡住了。即便行政权在这几十年里大幅膨胀，这套构的分权，也并没有完全失效，它至少还保留着，在某些关键处，把总统摁住的能力。</p>
 
-<h3>八、战后的余波，禁酒与红色恐慌</h3>
+<h3>八、战后的余波，红色恐慌</h3>
 
 <p>战后的国内气氛，随后硬化成了所谓的第一次红色恐慌。帕尔默突袭，生长于一连串的炸弹恐慌与反激进的恐慌之中，它由司法部长帕尔默主持，并得到年轻的埃德加·胡佛的大力协助。现代研究给出了一个可靠的官方基准，1920年1月那场遍及全国的突袭，导致了约三千人被捕。最稳妥的表述是，单是1920年1月的那几场突袭，就规模庞大且在法律上充满滥权，而它们，为战后那种把激进异见当作内部安全紧急事态来对待的更广泛模式，画上了一个顶点。</p>
 
@@ -189,11 +218,11 @@
 
 <p>把塔夫脱与威尔逊这十二年放回这个系列，最值得记住的，是那盏探照灯，在同一个时代里，移动得如此剧烈，以至于它照亮的与它遮蔽的，同样鲜明。</p>
 
-<p>这套构在这十二年里，确实经历了一次财政，监管与宪法能力的真正扩张。累进的所得税，直选的参议员，联邦储备，联邦贸易委员会，克莱顿法，把此前几十年里那个被挤压的阶级余项，相当程度地吸纳了进来，兑现了1896年那份未竟的清单。而第十九修正案，则把沉默了七十余年的性别之轴，第一次推进了正式的选民行列。就这两条轴而言，这盏探照灯确实大步向前了。</p>
+<p>这套构在这十二年里，确实经历了一次财政，监管与宪法能力的真正扩张。累进的所得税，直选的参议员，联邦储备，联邦贸易委员会，克莱顿法，把此前几十年里那个被挤压的阶级余项，相当程度地吸纳了进来，兑现了1896年那份未竟的清单。而第十九修正案，则把历经七十余年争取的妇女选举权，推进到了全国性的宪法保障层面。就这两条轴而言，这盏探照灯确实大步向前了。</p>
 
 <p>但这次前进，从一开始就带着它无法抹去的阴影。就在同一位威尔逊，用联邦储备与反托拉斯去吸纳阶级余项的同时，他却把已经融合了几十年的联邦文官，重新隔离，让种族这条轴，主动地倒退。而即便是性别那条轴上的胜利，也被种族撕开了一道裂缝，第十九修正案在法律上解决了因性别的排除，却没能消除那些仍然把许多黑人妇女挡在选票之外的种族歧视。一个余项被纳入的那一刻，另一条轴上的排除，就在它内部重新显现。这正是那个最深余项，无法被整体地，均匀地闭合的又一层证明。</p>
 
-<p>而这个时代最尖锐的悖论，则把这套构那道最深的缝，撑到了极致。威尔逊以民主的名义，把美国带入了一场世界大战，把自决与民主的语言，投射到了整个世界，可就在同一时刻，他却在国内，把数以千计反对这场战争的人投进了监狱，把一位得票近百万的总统候选人关进了牢房，并维持着联邦的种族等级。以民主为名的解放语言，与对国内异见的闭合，就这样在同一个人身上并存。这不是威尔逊一个人的伪善，而是这套构那道从奠基起就合不拢的缝，在一个把普遍主义语言投射到全球的时刻，被撑到了它最刺眼的宽度。国联的失败则提醒我们，即便行政权在这几十年里空前地膨胀，这套构的分权，也仍然保留着在关键处把总统摁住的能力。</p>
+<p>而这个时代最尖锐的悖论，则把这套构那道最深的缝，撑到了极致。威尔逊以民主的名义，把美国带入了一场世界大战，把自决与民主的语言，投射到了整个世界，可就在同一时刻，他却在国内，起诉了数以千计的反战者，并把其中许多人投入监狱，把一位得票近百万的总统候选人关进了牢房，并维持着联邦的种族等级。以民主为名的解放语言，与对国内异见的闭合，就这样在同一个人身上并存。这不只是威尔逊个人的伪善，也是这套构那道从奠基起就合不拢的缝，在一个把普遍主义语言投射到全球的时刻，被撑到了它最刺眼的宽度。国联的失败则提醒我们，即便行政权在这几十年里空前地膨胀，这套构的分权，也仍然保留着在关键处把总统摁住的能力。</p>
 
       </div>
 
@@ -239,17 +268,17 @@
 
 <p>Wilson won re-election in 1916 partly on the promise of staying out of war. By April 1917 he was asking Congress for a declaration. The immediate triggers were Germany's resumption of unrestricted submarine warfare and the Zimmermann Telegram. His war address gave the era its defining phrase: the world must be made safe for democracy.</p>
 
-<p>The language of democratic liberation abroad coexisted with domestic suppression. The Espionage Act of 1917 criminalized interference with military recruitment and attempts to cause insubordination. The Sedition Act of 1918 went further, criminalizing disloyal, profane, scurrilous, or abusive language about the government, Constitution, flag, or armed forces. The Wilson administration used them vigorously: approximately two thousand prosecutions were brought under the Espionage Act alone. Debs — who had received nearly a million votes in 1912 — was convicted and sentenced to ten years for an antiwar speech. The Supreme Court upheld the conviction. Justice Holmes's clear and present danger formulation in Schenck v. United States was the era's judicial benchmark, later substantially superseded by Brandenburg v. Ohio (1969), which requires that speech incite imminent lawless action to be punishable.</p>
+<p>The language of democratic liberation abroad coexisted with domestic suppression. The Espionage Act of 1917 criminalized interference with military recruitment and attempts to cause insubordination. The Sedition Act of 1918 went further, criminalizing disloyal, profane, scurrilous, or abusive language about the government, Constitution, flag, or armed forces. The Wilson administration used them vigorously: approximately two thousand prosecutions were brought under the Espionage Act alone. Debs — who had received nearly a million votes in 1912 — was convicted and sentenced to ten years for an antiwar speech. The Supreme Court upheld the conviction. Justice Holmes's clear and present danger formulation in Schenck v. United States was the era's judicial benchmark, later substantially superseded by Brandenburg v. Ohio (1969), which permits punishment of advocacy only when it is directed to inciting imminent lawless action and is likely to produce it.</p>
 
 <p>The paradox this produces is hard-edged rather than rhetorical. Wilson justified American entry in the language of universal democracy and self-determination; at home he imprisoned opponents of that war, maintained federal racial hierarchy, and presided over the re-segregated civil service. The universalist language and the domestic exclusion were not merely parallel — they were sustained by the same administration, sometimes by the same offices. This is the gap between the founding documents' promises and actual practice stretched to its most visible width.</p>
 
 <h3>VII. The League and the Senate's Constitutional Veto</h3>
 
-<p>Wilson's Fourteen Points, presented in January 1918, combined war aims with a blueprint for postwar order, culminating in the proposal for a League of Nations. The Senate fight is the clearest example in modern American history of the treaty ratification power constraining a president's global ambitions.</p>
+<p>Wilson's Fourteen Points, presented in January 1918, combined war aims with a blueprint for postwar order, culminating in the proposal for a League of Nations. The Senate fight is one of the clearest examples in modern American history of the Senate's advice-and-consent power constraining a president's global ambitions.</p>
 
 <p>Wilson's difficulties were partly self-inflicted: he had excluded senators from the Paris delegation, presented the result before serious consultation, and refused to bargain meaningfully over reservations. Henry Cabot Lodge used the Foreign Relations Committee chairmanship to press for conditions — particularly around Article X's collective security commitments — that Wilson would not accept. The Senate rejected the treaty in November 1919 and again in March 1920. America never joined the League.</p>
 
-<p>The contrast with Roosevelt's Panama maneuvers a decade earlier is instructive. Roosevelt had pushed executive initiative in foreign affairs to its limit, exploiting the relative thinness of domestic constraints on presidential action abroad. Wilson projected even more ambitious goals internationally but collided with the hardest remaining check: the Senate's treaty ratification power. The lesson is structural. Even an expanded executive, even one draped in the highest moral language, cannot bypass the Constitution's requirement of senatorial consent for treaties. Administrative power had grown greatly; the skeleton of divided government still held at this critical joint.</p>
+<p>The contrast with Roosevelt's Panama maneuvers a decade earlier is instructive. Roosevelt had pushed executive initiative in foreign affairs to its limit, exploiting the relative thinness of domestic constraints on presidential action abroad. Wilson projected even more ambitious goals internationally but collided with the hardest remaining check: the Senate's power to consent to treaty ratification. The lesson is structural. Even an expanded executive, even one draped in the highest moral language, cannot bypass the Constitution's requirement of senatorial consent for treaties. Administrative power had grown greatly; the skeleton of divided government still held at this critical joint.</p>
 
 <h3>VIII. Aftermath: Prohibition and the Red Scare</h3>
 
@@ -286,5 +315,6 @@
 
     </article>
   </main>
+<script defer src="zh-hant-data/ep16.js"></script>
 </body>
 </html>
