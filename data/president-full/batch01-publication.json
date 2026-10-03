@@ -1,0 +1,55 @@
+{
+  "batch": "batch01",
+  "episodes": [1, 2, 3, 4, 5],
+  "scope": "25 complete DE/FR/ES/JA/KO editions at their existing URLs, bounded ZH/EN source corrections, offline Traditional Chinese reading for these five essays, five language index entries, search and sitemap. EP06–26 bodies remain untouched. Local commit only; author pushes.",
+  "review_boundary": "All 25 target manuscripts were read in full against all five complete Chinese bodies by the three authorized language reviewers. Root checked shared historical corrections and every changed passage in all five target languages. This is a full language/coverage review plus targeted factual calibration, not a claim that every statistic in the underlying series has received a new archival audit.",
+  "coverage": {"target_essays": 25, "sections": 185, "body_paragraphs": 1015, "all_source_paragraphs_retained": true, "zh_en_local_replacements": 55},
+  "validation": {
+    "offline_regressions": "8 tests: deterministic output, exact original snapshots and bounded ZH/EN corrections, full foreign body equality, DOM/links/canonicals/eight choices, complete Hant maps, localized index titles, untouched EP06–26, scoped search and sitemap.",
+    "browser": "120 page/language/viewport combinations at390/768/1440px; actual five-language roundtrip and English return; simplified/traditional text restoration; five26-entry language indexes; HantEP05→olderEP06 fallback; no page errors or horizontal overflow.",
+    "visual_review": "MobileFrenchEP01 and desktopTraditionalChineseEP03 screenshots inspected; corrected inherited cream-on-cream language-select styling and balanced long titles.",
+    "sitemap": "10085 canonical URLs; full sitemap check passed.",
+    "search_scope": "Only25foreign records and5newTraditionalChinese records changed; unrelated records and existing ordering preserved."
+  },
+  "original_snapshots": "epNN.zh.json and epNN.en.json are JSON-encoded exact original HTML fragments. JSON encoding preserves the original whitespace without introducing trailing-whitespace lines in new repository files. Decoded content hashes are the immutable hashes in batch01-received.json.",
+  "post_freeze_amendments": [
+    {
+      "id": "PF001-MCGRAW-GIVEN-NAME",
+      "reason": "Root cross-read caught an unsupported given name in the Japanese/Korean portrait-rescue correction. The reviewer changed John to Thomas after checking WHHA and appended an exact amendment to its language audit.",
+      "source": "https://www.whitehousehistory.org/paul-jennings",
+      "hash_changes": {
+        "ep04.ja": ["84fe51950f8fea04c176d2b18a8353d986d72a9bc8f035b0735d3cb2b79fc9e0", "5294ee5b61b6f85d6e4b245952da8defe0df2948de848350ce7dd2c184a4c671"],
+        "ep04.ko": ["b5e4a847ca2b56474fb2912e4c55b99ba906e5263f2c96732fbe93a461720997", "d67af475ff3456a882ebdfaa88d8fed548a6e118343bfea2534b226bf3c6207d"],
+        "batch01-ja-ko-review.json": ["c8e1d506c5dbe1f030de8fcdaeb7bc51cc67c23a78716dc694e1c9de200ad26a", "33ecb5a3658d6d5071b1484d3ee74d721394423fde7df38d18086323d2737751"]
+      }
+    }
+  ],
+  "source_checks": [
+    {"issue": "EP01 inaugural quotation is not the address's conclusion", "url": "https://www.archives.gov/exhibits/american_originals/inaugtxt.html"},
+    {"issue": "EP01 Funding Act rather than a generic appropriation", "url": "https://guides.loc.gov/federal-budget/background"},
+    {"issue": "EP01 Jay Treaty ratifications exchanged October1795; proclaimed February1796", "url": "https://avalon.law.yale.edu/18th_century/jay.asp"},
+    {"issue": "EP01 Congress proposed22ndAmendment1947, states ratified1951", "url": "https://www.archives.gov/founding-docs/amendments-11-27"},
+    {"issue": "EP01 WilliamLee immediate freedom exception", "url": "https://www.mountvernon.org/george-washington/death/washingtons-last-will-testament"},
+    {"issue": "EP02 sunset preserves liability for prior offenses", "url": "https://www.archives.gov/milestone-documents/alien-and-sedition-acts"},
+    {"issue": "EP02 resolution authors and4silent10opposed", "url": "https://www.monticello.org/encyclopedia/kentucky-and-virginia-resolutions"},
+    {"issue": "EP02 House balloting February11–17,36thballot decisive", "url": "https://history.house.gov/Institution/Joint-Sessions/1-19/"},
+    {"issue": "EP03 distinguish1803guardian analogy from1810necessity formulation", "url": "https://founders.archives.gov/documents/Jefferson/01-41-02-0139"},
+    {"issue": "EP03 laterColvinletter", "url": "https://founders.archives.gov/documents/Jefferson/03-03-02-0060"},
+    {"issue": "EP03 Marbury precedent and jurisdiction; no commission-delivery order", "url": "https://constitution.congress.gov/browse/essay/artIII-S1-3/ALDE_00013514/"},
+    {"issue": "EP03 treason proof includes open-court confession alternative", "url": "https://www.archives.gov/founding-docs/constitution-transcript"},
+    {"issue": "EP03 annual exports1807/1808, not a spring1808 total", "url": "https://www.digitalhistory.uh.edu/disp_textbook.cfm?psid=2986&smtID=2"},
+    {"issue": "EP03 freedom totals include lifetime, testamentary and informal cases", "url": "https://www.monticello.org/slavery/slavery-faqs"},
+    {"issue": "EP03 wolf cannot be held or safely released", "url": "https://www.monticello.org/encyclopedia/wolf-ear-quotation"},
+    {"issue": "EP04 formal revocationJune23, notJune16", "url": "https://hansard.parliament.uk/Commons/1812-06-23/debates/a6db8078-d4fb-49fe-94c3-9748a27e660f/RevocationOfTheOrdersInCouncil"},
+    {"issue": "EP04 portrait actual takedown versusJennings as witness", "url": "https://www.whitehousehistory.org/paul-jennings"},
+    {"issue": "EP04 Senate balance and MissouriCompromise", "url": "https://www.senate.gov/artandhistory/history/minute/Missouri_Compromise.htm"},
+    {"issue": "EP05 Clay was not in Congress in1830", "url": "https://www.senate.gov/senators/FeaturedBios/Featured_Bio_Clay.htm"},
+    {"issue": "EP05 Worcester: initial failure to compelGeorgia, not a direct order addressed toJackson", "url": "https://www.fjc.gov/node/9065496"},
+    {"issue": "EP05 original late1833deposit account confirmed and retained; no correction needed", "url": "https://www.federalreservehistory.org/essays/second-bank-of-the-us"}
+  ],
+  "disclosed_limitations": [
+    "Bird's51prosecutions/33defendants remain explicitly attributed to his research as in the source; the exact counting denominator was not independently verified against his original appendix. No unsupported alternative number was introduced.",
+    "English remains the existing independently written essay with local corrections, not a back-translation or wholesale expansion to Chinese length.",
+    "The five newly supported Traditional Chinese modes fall back to simplified Chinese when navigating to the older series index or unupgradedEP06; the rest of the series is not claimed as newly upgraded."
+  ]
+}

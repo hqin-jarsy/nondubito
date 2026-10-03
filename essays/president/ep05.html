@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep05.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep05.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep05.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep05.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep05.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep05.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep05.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep05.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep05.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep05.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -153,15 +182,15 @@
 
 <p>就在民主的容纳一侧不断扩展的同时，驱逐的一侧也在被制度化。1830年的印第安人迁移法，是这一时期最关键，也最需要严肃对待的法案之一。它的正式标题，是一部为了与居住在各州或领地内的印第安人交换土地，并把他们迁往密西西比河以西而设立的法。法案授权总统在密西西比河以西划出地区，与东部的部族交换土地，法文里反复使用那些选择交换并迁移的部族这样的措辞，表面上保留了选择的语言，同时又授权总统提供迁移，安置和一年的生计支持。但从立法之后的实际运作看，迁移是通过条约，胁迫，贿赂，威胁，以及在许多场合下对既有条约和司法裁决的违背来推进的。法律上的选择语言，并没有消除它实际的强制性。</p>
 
-<p>这部法案在国会通过得极其惊险。参议院以二十八比十九通过，众议院以一百零二比九十七通过，杰克逊于1830年5月28日签署成法。如此接近的票数本身就说明，即便在当时，这也不是一种没有争议的共识政策。传教士的网络，包括杰里迈亚·埃瓦茨在内的反对者，以及弗里林海森，亨利·克莱，戴维·克罗克特等国会议员，都曾公开反对。</p>
+<p>这部法案在国会通过得极其惊险。参议院以二十八比十九通过，众议院以一百零二比九十七通过，杰克逊于1830年5月28日签署成法。如此接近的票数本身就说明，即便在当时，这也不是一种没有争议的共识政策。传教士的网络，包括杰里迈亚·埃瓦茨在内的反对者，以及弗里林海森、戴维·克罗克特等国会议员和亨利·克莱等政治人物，都曾公开反对。</p>
 
 <p>迁移的规模，最好按口径分别陈述，而不要强行合并成一个单一的数字。如果限定在杰克逊任内，政府签署了将近七十份迁移条约，使接近五万名东部印第安人被迁往印第安领地。如果讨论1830到1850年整个迁移时代，被用条约，欺骗，恐吓和暴力移往密西西比河以西的，大约有十万人。五部落通常指切罗基，克里克，乔克托，奇克索和塞米诺尔。以切罗基为例，较稳妥的表述是，近一万六千人被迁移，死亡约在两千到四千之间，若依据一些机构和切罗基传统记忆的常见口径，常写约四千，某些切罗基自己的口径更高。</p>
 
-<p>无论按哪一种口径，事实本身已经足够沉重。这是一场用法律的外壳包装起来的国家驱逐工程。一个民族被迫离开世代居住的土地，在迁徙途中成千上万地死去，许多原本签订的条约被违背，而这一切，发生在那个号称把民主扩展到了更多人的同一个时代，由同一批人主导。</p>
+<p>无论按哪一种口径，事实本身已经足够沉重。这是一场用法律的外壳包装起来的国家驱逐工程。一个民族被迫离开世代居住的土地，在迁徙途中成千地死去，许多原本签订的条约被违背，而这一切，发生在那个号称把民主扩展到了更多人的同一个时代，由同一批人主导。</p>
 
-<p>司法的那一根线，更把这件事的性质照得清楚。1832年，首席大法官马歇尔代表最高法院在伍斯特诉乔治亚案里裁定，切罗基构成一个独立的政治共同体，乔治亚州的法律不得适用于切罗基的领地，也就是说，州不能单方面把自己的法权覆盖到切罗基这个政治共同体之上。这本是一次明确的司法胜诉。但乔治亚拒绝执行，州长公开抗拒，而杰克逊没有采取任何行动去迫使乔治亚服从。</p>
+<p>司法的那一根线，更把这件事的性质照得清楚。1832年，首席大法官马歇尔代表最高法院在伍斯特诉乔治亚案里裁定，切罗基构成一个独立的政治共同体，乔治亚州的法律不得适用于切罗基的领地，也就是说，州不能单方面把自己的法权覆盖到切罗基这个政治共同体之上。这本是一次明确的司法胜诉。但乔治亚拒绝执行，州长公开抗拒，而杰克逊起初没有采取行动强制乔治亚服从判决。</p>
 
-<p>把这件事和前面几篇放在一起，会照出这套构一个令人不安的限度。第三篇里，马伯里案确立了司法审查，把总统也关进了法律的笼子，那是这套构用自己长出的制衡约束行政的一次成功。可是在切罗基这件事上，同样是最高法院作出了对原住民有利的判决，结果却是另一回事。当总统干脆拒绝执行，而广大的白人选民又站在驱逐这一边时，司法的胜诉就落了空。这说明这套构的制衡，是在各个分支彼此较真，彼此配合时才管用的，一旦行政公然不执行，立法不愿干预，而民意又压在被排除者的对立面，那么纸面上的胜诉，就保护不了那些被排除在政治共同体之外的人。这套构能把斗争关进规则的笼子，却没能保证笼子里的规则，总会站在最弱势的一方那一边。对那些已经被推到共同体边界之外的人来说，制衡的失灵，往往就是致命的。</p>
+<p>把这件事和前面几篇放在一起，会照出这套构一个令人不安的限度。第三篇里，马伯里案确立了司法审查的重要先例，使包括行政权在内的公权力受到宪法审查的原则更为明确；但法院并未实际下令强迫麦迪逊交付委任状。原则的确立和判决的执行，是两回事。可是在切罗基这件事上，同样是最高法院作出了对原住民有利的判决，结果却是另一回事。当总统不出面迫使州服从判决，而广大的白人选民又站在驱逐这一边时，司法的胜诉就落了空。这说明这套构的制衡，是在各个分支彼此较真，彼此配合时才管用的，一旦行政不愿为判决提供有效支持，立法不愿干预，而民意又压在被排除者的对立面，那么纸面上的胜诉，就保护不了那些被排除在政治共同体之外的人。这套构能把斗争关进规则的笼子，却没能保证笼子里的规则，总会站在最弱势的一方那一边。对那些已经被推到共同体边界之外的人来说，制衡的失灵，往往就是致命的。</p>
 
 <h3>五、总统作为人民的代表</h3>
 
@@ -245,15 +274,15 @@
 
 <p>As democratic inclusion expanded on one side, expulsion was being institutionalized on the other. The Indian Removal Act of 1830 was the most consequential and most serious legislation of the period. Its formal title described the exchange of lands with Indians residing in any of the states or territories, and their removal to the west of the river Mississippi. The act authorized the president to designate land west of the Mississippi for exchange, used language throughout about tribes choosing to exchange and remove, nominally preserved the language of choice, and authorized the president to fund removal, resettlement, and a year of subsistence support. But from the actual implementation, removal proceeded through treaty, coercion, bribery, threat, and in many cases violation of existing treaties and judicial rulings. The legal language of choice did not eliminate the practical coercive character.</p>
 
-<p>The bill's congressional passage was extremely close: twenty-eight to nineteen in the Senate, one hundred two to ninety-seven in the House. Jackson signed it on May 28, 1830. Those margins themselves show that even at the time, this was not a policy of uncontested consensus. A network of missionaries and humanitarian advocates, Congressman Jeremiah Evarts, and congressional opponents including Frelinghuysen, Henry Clay, and Davy Crockett publicly opposed it.</p>
+<p>The bill's congressional passage was extremely close: twenty-eight to nineteen in the Senate, one hundred two to ninety-seven in the House. Jackson signed it on May 28, 1830. Those margins themselves show that even at the time, this was not a policy of uncontested consensus. A network of missionaries and humanitarian advocates, including Jeremiah Evarts, congressional opponents such as Frelinghuysen and Davy Crockett, and political figures such as Henry Clay publicly opposed removal.</p>
 
 <p>The scale of removal is best described by specifying the measurement window rather than forcing a single number. During Jackson's presidency specifically, the government signed roughly seventy removal treaties, leading to approximately fifty thousand eastern Indians being relocated to Indian Territory. Over the full removal era of 1830–1850, roughly one hundred thousand people were pushed west of the Mississippi through treaty, fraud, intimidation, and force. The Five Civilized Tribes were the Cherokee, Creek, Choctaw, Chickasaw, and Seminole. For the Cherokee specifically, approximately sixteen thousand were relocated; death estimates range from roughly two thousand to four thousand in the more conservative scholarly range, with four thousand being the figure most commonly cited by institutional sources and Cherokee oral tradition, and some Cherokee sources placing the figure higher.</p>
 
 <p>Whatever the precise numbers, the fact is heavy enough at any count. This was a state-organized expulsion program wrapped in legal form. Nations were forced from lands they had inhabited for generations; thousands died in transit; treaties were violated; and all of this happened in the same era, by the same political actors, who claimed to be expanding democratic governance.</p>
 
-<p>The judicial thread illuminates the nature of the failure most sharply. In Worcester v. Georgia in 1832, Chief Justice Marshall, writing for the Supreme Court, held that the Cherokee constituted a distinct political community occupying their own territory in which Georgia's laws had no force. This was an unambiguous judicial victory for the Cherokee. But Georgia refused to comply; the governor publicly defied the ruling; and Jackson took no action to compel Georgia's obedience. The famous attributed remark — "John Marshall has made his decision; now let him enforce it" — is of highly questionable authenticity. What Jackson actually wrote privately was that he regarded the ruling as still-born. But the practical effect is documented: federal action to enforce the ruling was not forthcoming, and removal proceeded.</p>
+<p>The judicial thread illuminates the nature of the failure most sharply. In Worcester v. Georgia in 1832, Chief Justice Marshall, writing for the Supreme Court, held that the Cherokee constituted a distinct political community occupying their own territory in which Georgia's laws had no force. This was an unambiguous judicial victory for the Cherokee. But Georgia refused to comply; the governor publicly defied the ruling; and Jackson initially took no action to compel Georgia's obedience. The famous attributed remark — "John Marshall has made his decision; now let him enforce it" — is of highly questionable authenticity. What Jackson actually wrote privately was that he regarded the ruling as still-born. But the practical effect is documented: federal action to enforce the ruling was not forthcoming, and removal proceeded.</p>
 
-<p>Placing this alongside the earlier essays reveals a troubling limit of this construct. The third essay traced how Marbury v. Madison placed the president himself inside the law's cage — a successful moment of the construct using its own generated checks to constrain executive power. But in the Cherokee case, the Supreme Court ruled in favor of the indigenous claimants and the ruling had no effect. When the president chose not to enforce, the legislature was unwilling to compel, and white public opinion stood on the side of expulsion, a judicial victory on paper left the most vulnerable parties without protection. This construct can put the struggle inside the rule's cage; it cannot guarantee that the rules inside the cage will always stand on the side of the weakest. For those already pushed to the boundary of the political community, the failure of the check can be fatal.</p>
+<p>Placing this alongside the earlier essays reveals a troubling limit of this construct. The third essay traced how Marbury v. Madison established a landmark precedent for judicial review, strengthening the principle that public power, including executive power, remained subject to the Constitution. It did not, however, issue an enforceable order compelling Madison to deliver the commission. Establishing a principle and securing compliance are different things. But in the Cherokee case, the Supreme Court ruled in favor of the indigenous claimants and the ruling had no effect. When the president chose not to enforce, the legislature was unwilling to compel, and white public opinion stood on the side of expulsion, a judicial victory on paper left the most vulnerable parties without protection. This construct can put the struggle inside the rule's cage; it cannot guarantee that the rules inside the cage will always stand on the side of the weakest. For those already pushed to the boundary of the political community, the failure of the check can be fatal.</p>
 
 <h3>5. The President as Tribune of the People</h3>
 
@@ -305,7 +334,7 @@
             <span class="xiyou-nav-title lang-en">Madison and Monroe</span>
           </span>
         </a>
-        <a href="ep06.html" class="xiyou-nav-btn xiyou-nav-next">
+        <a href="ep06.html" class="xiyou-nav-btn xiyou-nav-next" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">
           <span class="xiyou-nav-label">
             <span class="xiyou-nav-sub lang-zh">下一篇</span>
             <span class="xiyou-nav-sub lang-en">Next</span>
@@ -322,5 +351,6 @@
       <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
     </div>
   </footer>
+<script defer src="zh-hant-data/ep05.js"></script>
 </body>
 </html>

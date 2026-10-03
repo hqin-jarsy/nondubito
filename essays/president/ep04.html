@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep04.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep04.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep04.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep04.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep04.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep04.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep04.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep04.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep04.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep04.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -129,7 +158,7 @@
 
 <p>但如果只写这些正式理由，就会把史实写窄。国会里的主战派，尤其是亨利·克莱和约翰·卡尔霍恩这一代人，确实推动了更强硬的战争选择，他们既要求回应海权侵犯，也把加拿大问题看成削弱英国在北美影响的途径。这里要写得精确，兼并加拿大并不是麦迪逊咨文里的正式战争目标，但它确实是相当一部分主战者公开或半公开期待的战争收益之一。</p>
 
-<p>还有一个意味深长的细节，英国其实在1812年6月16日就撤销了那项破坏美国贸易的法令，但消息到得太晚，美国已经在6月18日宣战。这意味着这场战争带着典型的通信时代的滞后特征，一个关键的争端在法律上正被对方撤销，却已经无法阻止战争进入制度的轨道。</p>
+<p>还有一个意味深长的细节，英国在1812年6月16日宣布了暂停相关法令的政策意向，正式撤销令则在6月23日发出。美国6月18日宣战时，还没有收到前一项消息。这意味着这场战争带着典型的通信时代的滞后特征，一个关键的争端在法律上正被对方撤销，却已经无法阻止战争进入制度的轨道。</p>
 
 <h3>二、首都被烧而制度幸存</h3>
 
@@ -141,7 +170,7 @@
 
 <p>这一点值得多说一句，因为它触及一套构成熟与否的一个根本标志。一套还把自己等同于某个中心的秩序，无论那个中心是一位君主，一座都城，还是一个家族，一旦那个中心被摧毁，整套秩序往往就随之瓦解，因为它的权威本就寄居在那个中心身上。而一套成熟的构，已经把自己的权威从任何单一的中心里分散了出去，分散进了程序，进了制度，进了无数人共有的预期。它的权威不在某一栋楼里，而在一套大家都还认账的规则里。所以你能烧掉它的楼，却烧不掉那套规则。1814年的华盛顿之火，恰恰是这套构第一次用一种极端的方式证明，它已经走到了这一步，它的中枢可以化为灰烬，它本身却照常运转。</p>
 
-<p>这里还有一处现代研究对流行叙事的修正，值得写进来。广为流传的版本是，多莉·麦迪逊亲自抱着那幅华盛顿的肖像逃出白宫，但更可靠的材料表明，她做的是下令必须把这幅画取走，而真正执行打包和转移的，包括白宫的奴隶保罗·詹宁斯，门房，园丁，以及后来受托带走画作的人。最稳的写法是，多莉·麦迪逊主导并坚持抢救了这幅肖像，但她并不是神话里那个独自抱画奔逃的人。这类修正很适合用来提醒一件事，早期共和国记忆的形成，往往会抹去仆役，奴隶和那些真正动手做事的人。那个最深的余项，连在这样一个爱国传奇里，都是被抹去的存在。</p>
+<p>这里还有一处现代研究对流行叙事的修正，值得写进来。广为流传的版本是，多莉·麦迪逊亲自抱着那幅华盛顿的肖像逃出白宫，但更可靠的材料表明，她做的是下令必须把这幅画取走，按当时被奴役的白宫侍从保罗·詹宁斯后来的回忆，实际取下画作的是管事让-皮埃尔·西乌萨和园丁托马斯·麦格劳，随后由其他人接运。詹宁斯的见证保存了这些工作人员的角色，不宜因此把他也直接写成搬画者。最稳的写法是，多莉·麦迪逊主导并坚持抢救了这幅肖像，但她并不是神话里那个独自抱画奔逃的人。这类修正很适合用来提醒一件事，早期共和国记忆的形成，往往会抹去仆役，奴隶和那些真正动手做事的人。那个最深的余项，连在这样一个爱国传奇里，都是被抹去的存在。</p>
 
 <p>1814年秋天，美国又在巴尔的摩的防御战中赢得了一场极具象征意义的成功。英军在9月13日到14日对一座要塞进行了约二十五小时的炮击，没能摧毁巴尔的摩的防御。一个目睹了黎明时分要塞上仍然飘扬着大旗的人，写下了后来成为美国国歌歌词的诗句。这件事的政治意义在于，美国迅速把幸存这件事，翻译成了可以传唱的国家象征。旗帜，歌曲和城市的防御，被用来重新塑造关于这场战争的记忆。</p>
 
@@ -173,7 +202,7 @@
 
 <p>在硬壳和向外投射之间，这套构呈现出一种表面的统一，后人给它起了个好听的名字，好感时代。但这个名字，恰恰最容易骗人。</p>
 
-<p>要理解这种表面的统一是怎么来的，得先看一件发生在战争末期的事，哈特福德会议。新英格兰从一开始就是这场战争最强的反对者，它的商业利益受战争和禁运打击最重，它的反战情绪在1814年底到1815年初凝聚成了一场会议。这场会议很容易被后来的口号简化成联邦党要分裂国家，但它的实际决议并没有正式宣布脱离联邦。它提出的，是一套州权色彩很重的对策和修宪建议，要求新英格兰各州可以自行承担防务并截留部分本州的税款用于防卫，同时建议修宪，内容包括废除三分之五条款给蓄奴州带来的代表优势，新州加入须经两院三分之二同意，宣战须经两院三分之二同意，以及同一个州不得连续两任出总统等等。</p>
+<p>要理解这种表面的统一是怎么来的，得先看一件发生在战争末期的事，哈特福德会议。新英格兰从一开始就是这场战争最强的反对者，它的商业利益受战争和禁运打击最重，它的反战情绪在1814年底到1815年初凝聚成了一场会议。这场会议很容易被后来的口号简化成联邦党要分裂国家，但它的实际决议并没有正式宣布脱离联邦。它提出的，是一套州权色彩很重的对策和修宪建议，要求新英格兰各州可以自行承担防务并截留部分本州的税款用于防卫，同时建议修宪，内容包括废除五分之三条款给蓄奴州带来的代表优势，新州加入须经两院三分之二同意，宣战须经两院三分之二同意，以及同一个州不得连续两任出总统等等。</p>
 
 <p>可是在政治后果上，哈特福德会议成了联邦党的致命一击。会议刚结束不久，根特和约与新奥尔良大捷的消息接连传来，新英格兰的反战姿态立刻被全国舆论读成狭隘，败兴，甚至近乎不忠。联邦党此前本已因为区域化而严重萎缩，哈特福德会议则几乎耗尽了它作为一个全国性反对党的正当性。到1817年，许多人已经把联邦党看成实际上已经死了。第一党制就此终结，而那种看似无党的统一，正是从这场反对党的崩溃里来的。</p>
 
@@ -185,7 +214,7 @@
 
 <p>这种表面统一，深层裂缝的最好例证，就是密苏里危机。它是这一篇真正的锋刃，因为那个最深的余项，在这里第一次以几乎不可误解的方式，被投射到了联邦结构本身。</p>
 
-<p>1819年密苏里申请加入联邦时，关键其实并不是一个新州要不要蓄奴这么简单，而是领土的扩张将如何改变自由州和蓄奴州在参议院里的平衡。当时密苏里的居民里，大约百分之十六是被奴役的黑人。一项修正案试图禁止新的奴隶进入密苏里，并逐步解放未来在那里出生的奴隶。结果是，众议院里的北方多数赞成，参议院里的南方多数否决，投票呈现出严格的地域化。这正是这一篇最该照亮的结构点，党派的统一在这里第一次明显地让位于地域的分裂。</p>
+<p>1819年密苏里申请加入联邦时，关键其实并不是一个新州要不要蓄奴这么简单，而是领土的扩张将如何改变自由州和蓄奴州在参议院里的平衡。当时密苏里的居民里，大约百分之十六是被奴役的黑人。一项修正案试图禁止新的奴隶进入密苏里，并逐步解放未来在那里出生的奴隶。结果是，众议院里的北方多数赞成，参议院里的蓄奴利益支持者联合其他议员将其挡下，投票呈现出严格的地域化。这正是这一篇最该照亮的结构点，党派的统一在这里第一次明显地让位于地域的分裂。</p>
 
 <p>密苏里妥协的内容必须写得非常精确。密苏里作为蓄奴州加入，缅因作为自由州加入，以维持参议院的平衡，同时，在路易斯安那购地剩下的地区里，北纬三十六度三十分以北的地方，不含密苏里，奴隶制被永远禁止。这条线，这个永远，就是这场妥协的核心。</p>
 
@@ -217,7 +246,7 @@
 
 <p>Understanding the War of 1812 requires seeing how it entered this construct. It was not a strongman's decision; it moved through constitutional procedure, and from the beginning it carried sharp regional divisions. Madison's war message of June 1, 1812, cited impressment of American sailors, violations of neutral trade rights, British interference with coastal shipping, and British influence on renewed frontier Indian warfare. The formal war aims were maritime sovereignty and border security, not territorial conquest. Congress voted to declare war — seventy-nine to forty-nine in the House, nineteen to thirteen in the Senate. Those margins revealed two things simultaneously: the war entered through institutional process, and it was contested from the start, with opposition votes clustering substantially along regional lines.</p>
 
-<p>Limiting the account to those formal grounds would narrow the history. The War Hawks in Congress — Henry Clay, John C. Calhoun, and their generation — pushed for war and linked it, partly openly and partly in expectation, to weakening British influence in North America and to the possibility of acquiring Canadian territory. Annexation of Canada was not in Madison's formal war message, but it was among the anticipated benefits for a substantial portion of the war's congressional supporters. One further detail is worth noting: Britain actually repealed the offending Orders in Council on June 16, 1812, but the news arrived after the United States had declared war on June 18. The war thus entered the institutional track before a key underlying dispute had even been settled — a characteristic symptom of what poor communication does to diplomatic timing.</p>
+<p>Limiting the account to those formal grounds would narrow the history. The War Hawks in Congress — Henry Clay, John C. Calhoun, and their generation — pushed for war and linked it, partly openly and partly in expectation, to weakening British influence in North America and to the possibility of acquiring Canadian territory. Annexation of Canada was not in Madison's formal war message, but it was among the anticipated benefits for a substantial portion of the war's congressional supporters. One further detail is worth noting: Britain announced its intention to suspend the offending Orders in Council on June 16, 1812; the formal revocation followed on June 23. When the United States declared war on June 18, it had not yet received the earlier news. The war thus entered the institutional track before a key underlying dispute had even been settled — a characteristic symptom of what poor communication does to diplomatic timing.</p>
 
 <h3>2. The Capital Burns, the Institution Survives</h3>
 
@@ -229,7 +258,7 @@
 
 <p>This is worth dwelling on because it touches a fundamental marker of a construct's maturity. An order that identifies itself with a center — whether a monarch, a capital city, or a dynasty — typically collapses when that center is destroyed, because its authority resided there. A mature construct has distributed its authority away from any single center — into procedures, institutions, and the shared expectations of countless people. Its authority is not in a building but in a set of rules that people continue to recognize. You can burn the building without burning the rules. The fire of 1814 was this construct's most extreme proof yet that it had reached that stage.</p>
 
-<p>A correction to popular memory is also worth including. The well-known story of Dolley Madison personally carrying Gilbert Stuart's portrait of Washington out of the White House is substantially more complicated than the legend. The more reliable account is that she ordered the portrait saved, and the actual work of removing and securing it was done by White House slaves including Paul Jennings, servants, and others. The accurate description is that Dolley Madison directed and insisted on the portrait's rescue, but she was not the lone heroic carrier of myth. Such corrections serve a purpose: the formation of early republican memory consistently erased servants, enslaved people, and those who did the actual physical work. The deepest remainder is absent even from patriotic legend.</p>
+<p>A correction to popular memory is also worth including. The well-known story of Dolley Madison personally carrying Gilbert Stuart's portrait of Washington out of the White House is substantially more complicated than the legend. The more reliable account is that she ordered the portrait saved, and according to the later account of the enslaved White House servant Paul Jennings, steward Jean-Pierre Sioussat and gardener Thomas McGraw took the painting down before others carried it away; Jennings preserves their role as a witness, not as an established participant in moving the portrait. The accurate description is that Dolley Madison directed and insisted on the portrait's rescue, but she was not the lone heroic carrier of myth. Such corrections serve a purpose: the formation of early republican memory consistently erased servants, enslaved people, and those who did the actual physical work. The deepest remainder is absent even from patriotic legend.</p>
 
 <p>The defense of Baltimore in September 1814, where British bombardment of Fort McHenry over roughly twenty-five hours failed to dislodge the garrison, provided the crucial counternarrative. The witness who watched the flag still flying at dawn wrote the words that became the national anthem. America rapidly translated the fact of survival into a symbol that could be sung — and the symbol did real political work in reshaping how the war's memory was constructed.</p>
 
@@ -265,9 +294,9 @@
 
 <p>The best evidence for this surface unity concealing deep fracture was the Missouri Crisis. It is this essay's sharpest edge because it was where the deepest remainder became unmistakably visible in the structure of the federal union itself.</p>
 
-<p>When Missouri applied for statehood in 1819, the essential question was not simply whether the new state would permit slavery. It was how territorial expansion would alter the balance between free and slave states in the Senate. Roughly sixteen percent of Missouri's population was enslaved. A proposed amendment would have barred new slaves from entering Missouri and gradually emancipated those born there after statehood. Northern House majorities supported it; southern Senate majorities blocked it. The voting aligned strictly along geographic lines — the first moment in this series when party unity clearly yielded to regional division.</p>
+<p>When Missouri applied for statehood in 1819, the essential question was not simply whether the new state would permit slavery. It was how territorial expansion would alter the balance between free and slave states in the Senate. Roughly sixteen percent of Missouri's population was enslaved. A proposed amendment would have barred new slaves from entering Missouri and gradually emancipated those born there after statehood. Northern House majorities supported it; supporters of slaveholding interests joined other senators to block it. The voting aligned strictly along geographic lines — the first moment in this series when party unity clearly yielded to regional division.</p>
 
-<p>The Missouri Compromise requires precise description. Missouri entered as a slave state; Maine entered simultaneously as a free state, preserving the Senate balance. In the remaining territory of the Louisiana Purchase, slavery was permanently prohibited north of 36°30′ latitude, excluding Missouri. That line and that word permanently were the compromise's core.</p>
+<p>The Missouri Compromise requires precise description. Missouri entered as a slave state; the compromise paired this with Maine's admission as a free state, preserving the Senate balance. In the remaining territory of the Louisiana Purchase, slavery was permanently prohibited north of 36°30′ latitude, excluding Missouri. That line and that word permanently were the compromise's core.</p>
 
 <p>Jefferson provided the most penetrating private comment on the crisis. On April 22, 1820, he wrote that the Missouri question had awakened and filled him with terror. He called it a fire bell in the night. He wrote that he regarded it as the knell of the Union, and added — crucially — that a geographical line, coinciding with a marked principle, moral and political, once conceived and held up to the angry passions of men, will never be obliterated; and every new irritation will mark it deeper and deeper. This passage is important not only because it is famous but because it identifies the compromise's paradox with exceptional precision. The crisis was suppressed, but the method of suppression further geographized, bounded, and institutionalized the slavery question. This was not resolution; it was postponement.</p>
 
@@ -310,5 +339,6 @@
       <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
     </div>
   </footer>
+<script defer src="zh-hant-data/ep04.js"></script>
 </body>
 </html>

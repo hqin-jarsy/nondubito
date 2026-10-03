@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep03.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep03.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep03.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep03.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep03.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep03.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep03.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep03.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep03.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep03.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -135,13 +164,13 @@
 
 <p>如果说银行问题显示的是引力的静态一面，那么路易斯安那购地显示的就是它的动态一面。这是整篇最核心的制度素材，因为悖论在这里不是后人硬加的，而是杰斐逊自己在文字里亲手留下的。</p>
 
-<p>事实先压实。1803年，美国以约一千五百万美元从法国手中购得路易斯安那，其中现金六千万法郎，另承担法国欠美国公民的债务两千万法郎。这块土地几乎使美国的疆域翻了一倍，若要极精确，应当写成大体翻倍。条约于1803年4月30日在巴黎签署，参议院于10月20日以二十四比七批准，法国于12月20日在新奥尔良完成正式移交。它涵盖了今天十五个州的全部或部分，若只算后来主要由这块领土雕出来的完整的州，又常被写成十三个州。</p>
+<p>事实先压实。1803年，美国以约一千五百万美元从法国手中购得路易斯安那，其中现金六千万法郎，另承担法国欠美国公民的债务两千万法郎。这块土地几乎使美国的疆域翻了一倍，若要极精确，应当写成大体翻倍。条约于1803年4月30日在巴黎签署，参议院于10月20日以二十四比七同意批准条约，法国于12月20日在新奥尔良完成正式移交。它涵盖了今天十五个州的全部或部分，有些历史概述另用十三个州的口径，但不能把这理解为十三个州的全部疆域都来自这次购地。</p>
 
 <p>购地的外交背景也很清楚。拿破仑原本想重建法国在新大陆的帝国，先恢复对圣多明各的控制，再把路易斯安那变成他加勒比殖民体系的粮仓。但法国军队在圣多明各被黄热病和战争重创，加上英法之间大战在即，使拿破仑放弃了这个计划，于是突然把整块路易斯安那，而不只是新奥尔良，向美国开价。对美国而言，新奥尔良和密西西比河下游本来就是西部农产品的生命线，对法国而言，这块土地在失去加勒比帝国的前景之后，迅速从战略中心变成了一笔可以变现的资产。</p>
 
 <p>真正要紧的是杰斐逊自己的宪法焦虑，这一点必须用他的私下通信来写。1803年9月7日，他在给一位友人的信里明确说，当一份文件存在两种解释时，他宁愿选那个安全而精确的解释，不要用解释把宪法变成一张白纸。在同一封信里他还说，如果把缔约权理解成无边无际，那我们就没有宪法了，并且倾向于通过修宪来增加必要的权力，而不是借宽泛的解释去假定权力已经存在。</p>
 
-<p>但仅仅几周之前，1803年8月12日，他在给参议员布雷肯里奇的信里，又已经在为突破寻找理由。他把这件事比作一个监护人，擅自动用被监护人的钱去买下一块重要的相邻土地，他甚至承认这是一种为你冒险的做法，希望事后由国家追认。他诉诸的是必要，自保，以及在国家陷入危险时拯救国家的那种道理。最好的处理方式，是把这两封信并置。一封表现他仍然把宪法当成一部写下来的宪法，不愿用解释把它写成白纸，另一封则表现他在机会稍纵即逝时，把必要性，自保和国家利益放到了前面。悖论是他自己留下的。</p>
+<p>但仅仅几周之前，1803年8月12日，他在给参议员布雷肯里奇的信里，又已经在为突破寻找理由。他把这件事比作一个监护人，擅自动用被监护人的钱去买下一块重要的相邻土地，他甚至承认这是一种为你冒险的做法，希望事后由国家追认。他在这里诉诸的是稍纵即逝的公共利益，以及行动之后再求国家追认的责任。必要、自保和挽救国家的那套更明确的说法，则出现在他1810年9月20日写给约翰·科尔文的信里，不能移到这封1803年的信中。最好的处理方式，是把这两封1803年的信并置。一封表现他仍然把宪法当成一部写下来的宪法，不愿用解释把它写成白纸，另一封则表现他在机会稍纵即逝时，把抓住机会与国家利益放到了前面。悖论是他自己留下的。</p>
 
 <p>史学解释上至少可以并置三路。第一路把购地看成务实的必要，机遇难得，修宪来不及，错过就永远错过。第二路强调原则上的不一致甚至背离，严格解释的杰斐逊在关键时刻，为扩张打开了一扇他自己都不愿承认的门。第三路更接近结构的解释，以奥努夫为代表，重点不是只看个人是否虚伪，而是看到杰斐逊从一开始就既是共和国的人，也是联邦的人。他口中的联邦原则，他对自由帝国的想象，他对疆域和联盟的设想，早就使他不是一个纯粹的地方主义者。把这三路放在一起，最完整的说法是，购地既是个人的妥协，也是美国联邦在大陆扩张中的制度逻辑的显形。</p>
 
@@ -155,17 +184,17 @@
 
 <p>马伯里诉麦迪逊案之所以重要，不只是因为它出现在这场冲突里，更因为它用一种极典型的政治上让一步，制度上进一步的方式，确立了司法审查。首席大法官马歇尔一方面没有真的强迫麦迪逊交付委任状，避免了与杰斐逊政府的正面执行冲突，另一方面，他通过宣布1789年司法法中关于强制令的那一部分违宪，写下了司法审查的原则。判词里最常被引用的两句是，一项与宪法相抵触的法律是无效的，以及，阐明法律是什么，乃是司法部门的权限和职责。它的逻辑链条非常清楚，宪法高于普通立法，若普通立法与宪法冲突，法院在审案时就必须决定适用哪一个，因此法院有责任拒绝适用违宪的法律。</p>
 
-<p>司法审查这个东西，宪法的文本里并没有明明白白地写出来。是马歇尔通过这一案的判词，把它从宪法的逻辑里推导了出来，并确立为惯例。也就是说，这是这套构在运行的过程中，自己长出来的一道新的制衡，而不是设计者一开始就摆好的。这一点很能说明这套构的性质，它不是一台一次造好，此后只是运转的机器，它会在运行中不断生出新的部件，新的制衡，新的规则。而最耐人寻味的是，确立这道制衡的马歇尔，正是联邦党人，正是杰斐逊的政敌亚当斯在卸任前任命的首席大法官。换句话说，把总统关进法律笼子的这道关键制衡，恰恰是在一位最想扩张总统权力的总统任内，由他对手之手确立起来的。这套构生长的方向，从来不由某一个掌权者单独决定。</p>
+<p>司法审查这个东西，宪法的文本里并没有明明白白地写出来。是马歇尔通过这一案的判词，把它从宪法的逻辑里推导了出来，并确立为惯例。司法审查并非凭空出现，它有更早的宪法论述和实践背景；马伯里案使它获得了一个关键的最高法院先例。也就是说，设计中的原则还要经过实际争执，才能长成可援引的制衡。这一点很能说明这套构的性质，它不是一台一次造好，此后只是运转的机器，它会在运行中不断生出新的部件，新的制衡，新的规则。而最耐人寻味的是，确立这道制衡的马歇尔，正是联邦党人，正是杰斐逊的政敌亚当斯在卸任前任命的首席大法官。换句话说，把总统关进法律笼子的这道关键制衡，恰恰是在总统权力不断扩展的杰斐逊任内，由他对手之手确立起来的。这套构生长的方向，从来不由某一个掌权者单独决定。</p>
 
 <p>杰斐逊一方随后试图用弹劾来打击联邦党法官，但正是在这里，司法独立又一次被巩固了。塞缪尔·蔡斯是最高法院里党派性极强的联邦党法官，共和派在杰斐逊的推动下对他发起弹劾。众议院于1804年3月12日通过了弹劾案，但参议院于1805年3月1日，在全部八项指控上都没有达到定罪所需的三分之二多数。蔡斯的获释实际上帮助界定了，法官什么样的行为才构成足以罢免的重罪和不端，从而把单纯的党派偏见与可弹劾的罪行区分了开来。对这一篇的题目来说，这个失败很关键，杰斐逊能废法，能扩张行政，却没能把司法彻底改造成总统的附属品。</p>
 
-<p>伯尔事件则把行政，司法，个人野心和叛国的定义纠缠在了一起。伯尔在1804年与汉密尔顿决斗并将其击毙，这实际上终结了他在全国政治中的正常前程，1807年，杰斐逊政府又以叛国罪追诉他。这场审判在宪法意义上最值得注意的，是马歇尔对叛国条款的狭义解释。叛国仅限于发动战争或归附敌人，而且必须有两个证人证明同一桩公开的行为。马歇尔因此把构想，组织，煽动与法律意义上的发动战争区分开来，使叛国的定罪变得极其困难。最终，陪审团给出的结论是，依据本起诉书，伯尔的罪行未获证明。这一整组事实合在一起说明，总统可以在政治上公开宣判一个人有罪，但在法庭上，行政的意志仍要服从狭义的宪法定义和证据规则。</p>
+<p>伯尔事件则把行政，司法，个人野心和叛国的定义纠缠在了一起。伯尔在1804年与汉密尔顿决斗并将其击毙，这实际上终结了他在全国政治中的正常前程，1807年，杰斐逊政府又以叛国罪追诉他。这场审判在宪法意义上最值得注意的，是马歇尔对叛国条款的狭义解释。叛国仅限于发动战争或归附敌人，定罪须有两个证人证明同一桩公开行为，或有被告在公开法庭上的自白。马歇尔因此把构想，组织，煽动与法律意义上的发动战争区分开来，使叛国的定罪变得极其困难。最终，陪审团给出的结论是，依据本起诉书，伯尔的罪行未获证明。这一整组事实合在一起说明，总统可以在政治上公开宣判一个人有罪，但在法庭上，行政的意志仍要服从狭义的宪法定义和证据规则。</p>
 
 <h3>四、对外先例与远征</h3>
 
 <p>引力的另一个方向是向外。杰斐逊任内有两件对外的事，常被写得太轻，其实都关系到这套构如何向外投射。</p>
 
-<p>巴巴里战争常被写成一场单纯反海盗的正义战争，但它更重要的制度含义，是为总统在没有正式宣战之前先行使用海军力量，提供了一个早期的先例。1801年，的黎波里的帕夏以美国拖欠贡款为由，要求更多贡金并对美国宣战，杰斐逊随后派出海军中队进入地中海，国会则在1802年通过法案，授权总统装备并派遣武装舰只去保护美国的商船和水手。这部法案虽然并不是一份宣战书，却支持了杰斐逊动用海军和武力的决定。也就是说，这既不是总统完全单独作战，也不是严格意义上的正式宣战，而是一种先行动，再由国会作有限授权的早期模式。这个模式，会在这个系列后面的战争里一再被放大。</p>
+<p>巴巴里战争常被写成一场单纯反海盗的正义战争，但它更重要的制度含义，是为总统在没有正式宣战之前先行使用海军力量，提供了一个早期的先例。1801年，的黎波里的帕夏以美国拖欠贡款为由，要求更多贡金并对美国宣战，杰斐逊则在尚未收到宣战消息时，就已安排派遣海军中队进入地中海，国会则在1802年通过法案，授权总统装备并派遣武装舰只去保护美国的商船和水手。这部法案虽然并不是一份宣战书，却支持了杰斐逊动用海军和武力的决定。也就是说，这既不是总统完全单独作战，也不是严格意义上的正式宣战，而是一种先行动，再由国会作有限授权的早期模式。这个模式，会在这个系列后面的战争里一再被放大。</p>
 
 <p>刘易斯与克拉克远征同样不该只写成一个探险故事。杰斐逊交给这支远征队的任务至少有三层，科学的观察与分类，商业路线的探查，以及与西部原住民族建立外交关系。它不仅代表着启蒙的科学，也代表着一个正在升起的美国帝国。就这一篇的结构而言，这意味着远征要被看成一项国家知识生产，地图制造，外交接触与帝国投射的综合工程，而不只是总统派人去看一眼新买来的土地。一个以有限政府为语言的总统，却在用国家的力量去丈量，命名和占有一片大陆，这本身就是引力把他拉向疆域逻辑的又一个证据。</p>
 
@@ -173,7 +202,7 @@
 
 <p>真正把行政过度的反噬演到极致的，是禁运法案。</p>
 
-<p>它的直接背景，是英国和法国在拿破仑战争中的海上封锁，扣船，搜船和强征水手，尤其是1807年切萨皮克号与豹号事件之后，美国国内的愤怒一度高涨。杰斐逊选择的不是立即开战，而是用国家的商业力量去胁迫英法。他先禁止英国舰只进入美国港口，命令各州州长准备民兵，继而在1807年12月推动全面禁运，指望英法会因为失去美国的农产品和航运而让步。结果却是，到1808年春天，美国经济遭到重击，出口额从一亿零八百万美元暴跌到两千两百万美元。经济史家道格拉斯·欧文的估算更进一步，这场几乎逼近自我封闭的贸易禁运，所造成的福利损失，大约相当于1807年美国国民生产总值的百分之五。</p>
+<p>它的直接背景，是英国和法国在拿破仑战争中的海上封锁，扣船，搜船和强征水手，尤其是1807年切萨皮克号与豹号事件之后，美国国内的愤怒一度高涨。杰斐逊选择的不是立即开战，而是用国家的商业力量去胁迫英法。他先禁止英国舰只进入美国港口，命令各州州长准备民兵，继而在1807年12月推动全面禁运，指望英法会因为失去美国的农产品和航运而让步。结果却是美国经济遭到重击：按年度统计，出口额从1807年的约一亿零八百万美元暴跌到1808年的约两千两百万美元。经济史家道格拉斯·欧文的估算更进一步，这场几乎逼近自我封闭的贸易禁运，所造成的福利损失，大约相当于1807年美国国民生产总值的百分之五。</p>
 
 <p>但更要紧的，是这项原本为了避免战争的政策，把联邦权力在国内推向了高度的强制。禁运通过之后，国会又接连出台补充法，追加法和执行法，要求沿海贸易，渔业和捕鲸的船只缴纳保证金，禁止通过陆路和海路出口货物，授权港口官员在怀疑有人违法时扣押货物，甚至授权总统动用陆海军协助执法。也就是说，一位以节俭和有限政府为语言上台的总统，为了执行自己的中立政策，走向了更强的行政裁量和更深的日常管制。这是这一篇里引力最刺眼的一次显形，连一个最不愿意扩大政府的人，都被自己的政策逻辑推着，去建立一套渗透到港口和渔船的管制机器。</p>
 
@@ -185,9 +214,9 @@
 
 <p>在引力和制衡这两条线之外，杰斐逊这个人身上还压着这个系列最深的那个余项，而且压得比任何人都重。</p>
 
-<p>杰斐逊是独立宣言里人人生而平等这句话的主要起草者，他一生却奴役了六百多人。这些被奴役者大多不是他买来的，而是通过继承和被奴役家庭的自然增长获得的。他一生释放的人总共只有十个，而且基本出自同一个家庭。在所有美国总统里，他拥有的被奴役者数量属于最多的之列。把这两件事并排放在一起，原则被写下，人却被奴役，就是这个系列主干线最尖锐的一次具体呈现。</p>
+<p>杰斐逊是独立宣言里人人生而平等这句话的主要起草者，他一生却奴役了六百多人。这些被奴役者大多不是他买来的，而是通过继承和被奴役家庭的自然增长获得的。按蒙蒂塞洛的概括，若把生前释放、遗嘱解放以及获准离开等不同情形合在一起，他给予自由的人总共只有十个，均出自同一个家庭；这并不是说他生前正式释放了十个人。在所有美国总统里，他拥有的被奴役者数量属于最多的之列。把这两件事并排放在一起，原则被写下，人却被奴役，就是这个系列主干线最尖锐的一次具体呈现。</p>
 
-<p>杰斐逊关于奴隶制的文字，内部的张力极强，不能只挑好的引。在1780年代的弗吉尼亚笔记里，他一方面写下，当我想到上帝是公正的，我为我的国家颤栗，并严厉地描述奴隶制如何腐蚀主人和他们孩子的德性，另一方面，他又在同一部作品里写下系统性的种族等级判断，认为黑人在身心的禀赋上低于白人，并主张解放之后必须把他们迁到不致与白人混血的远处。这两段必须并置，他既不安于奴隶制，又深深地嵌在它的种族秩序里。到了晚年，他在一封信里写下那个著名的比喻，说我们就像抓住了狼的耳朵，既不能松手，也无法安全地放开。</p>
+<p>杰斐逊关于奴隶制的文字，内部的张力极强，不能只挑好的引。在1780年代的弗吉尼亚笔记里，他一方面写下，当我想到上帝是公正的，我为我的国家颤栗，并严厉地描述奴隶制如何腐蚀主人和他们孩子的德性，另一方面，他又在同一部作品里写下系统性的种族等级判断，认为黑人在身心的禀赋上低于白人，并主张解放之后必须把他们迁到不致与白人混血的远处。这两段必须并置，他既不安于奴隶制，又深深地嵌在它的种族秩序里。到了晚年，他在一封信里写下那个著名的比喻，说我们就像抓住了狼的耳朵，既无法继续抓住，也不能安全地放开。</p>
 
 <p>这种诊断深刻却出路无力的状态，本身就需要一个结构的解释，而不只是道德的评判。杰斐逊的不安是真实的，但他的不安撼动不了那套把他和奴隶制绑在一起的结构。奴隶制在当时的南方不是一种可以随个人良心取舍的选择，它是种植园经济的劳动基础，是杰斐逊本人财富和生活方式的根基，是把南方各州留在这个新联盟里的妥协的一部分。一个人的良心，无论多么不安，都无法独自抬动这样一整套嵌得极深的结构。</p>
 
@@ -227,13 +256,13 @@
 
 <p>The Bank question showed the static face of the construct's gravity. The Louisiana Purchase showed its dynamic face. This is the essay's core institutional material because the paradox was not imposed by later historians — Jefferson created it himself, in writing.</p>
 
-<p>The facts are these. In 1803, the United States purchased Louisiana from France for roughly fifteen million dollars — sixty million francs in cash plus assumption of French debts to American citizens of twenty million francs. The territory approximately doubled the nation's size. The treaty was signed in Paris on April 30, 1803; the Senate ratified it twenty-four to seven on October 20; France completed the formal transfer in New Orleans on December 20. The land encompasses all or parts of fifteen present-day states, depending on how one counts.</p>
+<p>The facts are these. In 1803, the United States purchased Louisiana from France for roughly fifteen million dollars — sixty million francs in cash plus assumption of French debts to American citizens of twenty million francs. The territory approximately doubled the nation's size. The treaty was signed in Paris on April 30, 1803; the Senate consented to ratification by twenty-four votes to seven on October 20; France completed the formal transfer in New Orleans on December 20. The land encompasses all or parts of fifteen present-day states, depending on how one counts.</p>
 
 <p>The diplomatic context was specific. Napoleon had intended to rebuild French power in the Americas, first restoring control of Saint-Domingue and then using Louisiana as the breadbasket for a Caribbean empire. French armies in Saint-Domingue were devastated by yellow fever and war; with renewed conflict between France and Britain approaching, Napoleon abruptly pivoted and offered the entire Louisiana territory — not just New Orleans — to the United States. For America, New Orleans and the lower Mississippi were vital arteries for western agricultural products. For France, Louisiana had become a liquid asset once the Caribbean imperial project collapsed.</p>
 
 <p>What matters most is Jefferson's own constitutional anxiety, documented in his private correspondence. On September 7, 1803, he wrote to a friend that when a document admitted of two constructions, he preferred the safe and precise one — that he did not want to make the Constitution a blank paper by construction. He added that if the treaty power were unlimited, they would have no constitution, and that he leaned toward a constitutional amendment to add the necessary authority rather than assuming it through broad interpretation.</p>
 
-<p>But just weeks before, on August 12, he had already been reasoning his way toward crossing the line. Writing to Senator Breckinridge, he compared the situation to a guardian who oversteps in buying important adjacent land with his ward's money — acknowledging it was risky, and hoping the nation would ratify it after the fact. He invoked necessity, self-preservation, and saving the country in danger. The best treatment is to place these two letters side by side: one showing Jefferson still treating the Constitution as a written document he did not want dissolved by interpretation, the other showing him putting necessity and national interest first when the opportunity was about to vanish. He left the paradox in his own handwriting.</p>
+<p>But just weeks before, on August 12, he had already been reasoning his way toward crossing the line. Writing to Senator Breckinridge, he compared the situation to a guardian who oversteps in buying important adjacent land with his ward's money — acknowledging it was risky, and hoping the nation would ratify it after the fact. Here he invoked a fleeting public opportunity and the responsibility of acting first and seeking the nation's approval afterward. His more explicit language of necessity, self-preservation, and saving the country belongs to his letter to John Colvin of September 20, 1810, not this 1803 letter. The best treatment is to place the two letters of 1803 side by side: one showing Jefferson still treating the Constitution as a written document he did not want dissolved by interpretation, the other showing him putting the opportunity and national interest first when the opportunity was about to vanish. He left the paradox in his own handwriting.</p>
 
 <p>Three historiographical lines can be placed alongside each other here. The first treats the Purchase as pragmatic necessity — the opportunity was unique, amendment took too long, the moment would not return. The second emphasizes the principled inconsistency — a strict constructionist opened a door for expansion he could not acknowledge. The third, represented by Onuf's work, looks structurally rather than personally: Jefferson was always both a republican and a federalist, his imagination of a "free empire," his vision of continental expansion, had never been purely localist. The most complete account holds all three together: the Purchase was both personal compromise and an expression of the institutional logic driving American continental expansion.</p>
 
@@ -245,23 +274,23 @@
 
 <p>Marbury v. Madison is important not merely because it emerged from the conflict over the midnight judges but because it established judicial review through a move that was politically deferential and institutionally aggressive at the same time. Chief Justice Marshall declined to actually compel Madison to deliver Marbury's commission — avoiding direct enforcement conflict with Jefferson's government. But by declaring the relevant section of the Judiciary Act of 1789 unconstitutional, he wrote the principle of judicial review into American law. The most-cited lines of the opinion are that a law repugnant to the Constitution is void, and that it is emphatically the province and duty of the judicial department to say what the law is. The logical chain is clear: the Constitution supersedes ordinary legislation; where they conflict, a court adjudicating a case must decide which applies; therefore courts must refuse to apply unconstitutional laws.</p>
 
-<p>Judicial review was not written explicitly into the constitutional text. Marshall derived it from the Constitution's logic in this case and established it as practice. This construct did not emerge from its designers' work as a finished machine that then simply ran; it kept growing new parts, new checks, new rules as it operated. Most strikingly, the check that placed the president inside the law's cage was established during the presidency of someone who most wanted to expand executive power — and it was established by a jurist appointed by Jefferson's predecessor and political enemy. The direction in which this construct grew was never determined by any single ruler.</p>
+<p>Judicial review was not written explicitly into the constitutional text. It had earlier constitutional arguments and judicial practice behind it; Marshall's reasoning in this case gave it a landmark Supreme Court precedent. This construct did not emerge from its designers' work as a finished machine that then simply ran; it kept growing new parts, new checks, new rules as it operated. Most strikingly, the check that placed the president inside the law's cage was established during a presidency in which executive power kept expanding — and it was established by a jurist appointed by Jefferson's predecessor and political enemy. The direction in which this construct grew was never determined by any single ruler.</p>
 
 <p>Jefferson's subsequent attempt to remove Federalist judges through impeachment was turned back by the Senate's failure to convict Justice Samuel Chase in 1805. The acquittal effectively drew a line between partisan behavior and impeachable high crimes and misdemeanors, reinforcing judicial independence. Jefferson could repeal legislation and expand executive reach, but he could not convert the judiciary into an instrument of the presidency.</p>
 
-<p>The Aaron Burr trial of 1807 wrapped executive will, judicial independence, personal ambition, and the definition of treason together. After Burr's duel with Hamilton ended his political career, Jefferson's government prosecuted him for treason. Marshall's narrowly defined reading of the treason clause — requiring two witnesses to the same overt act of levying war — made conviction practically impossible. The jury found Burr not guilty on the indictment as charged. The president could publicly declare someone guilty; in court, the administration's will still had to yield to narrow constitutional definitions and rules of evidence.</p>
+<p>The Aaron Burr trial of 1807 wrapped executive will, judicial independence, personal ambition, and the definition of treason together. After Burr's duel with Hamilton ended his political career, Jefferson's government prosecuted him for treason. Marshall's narrowly defined reading of the treason clause — requiring two witnesses to the same overt act of levying war, absent a confession in open court — made conviction practically impossible. The jury found Burr not guilty on the indictment as charged. The president could publicly declare someone guilty; in court, the administration's will still had to yield to narrow constitutional definitions and rules of evidence.</p>
 
 <h3>4. External Projections</h3>
 
 <p>The construct's gravitational pull also worked outward. Two foreign-facing episodes of Jefferson's presidency, often described too briefly, both bear on how this construct projects itself beyond its borders.</p>
 
-<p>The Barbary Wars are commonly told as a simple anti-piracy story. Their more important institutional meaning was providing an early precedent for presidential use of naval force before a formal declaration of war. When the Pasha of Tripoli declared war over tribute disputes in 1801, Jefferson sent naval squadrons to the Mediterranean. Congress subsequently passed legislation in 1802 authorizing the president to equip armed vessels for the protection of American commerce and seamen — not a declaration of war but support for the already-deployed force. The pattern established was: act first, receive limited congressional authorization afterward. This pattern would be amplified in subsequent wars throughout this series.</p>
+<p>The Barbary Wars are commonly told as a simple anti-piracy story. Their more important institutional meaning was providing an early precedent for presidential use of naval force before a formal declaration of war. The Pasha of Tripoli declared war over tribute disputes in May 1801. Before learning of that declaration, Jefferson had already arranged to send a naval squadron to the Mediterranean. Congress subsequently passed legislation in 1802 authorizing the president to equip armed vessels for the protection of American commerce and seamen — not a declaration of war but support for the already-deployed force. The pattern established was: act first, receive limited congressional authorization afterward. This pattern would be amplified in subsequent wars throughout this series.</p>
 
 <p>The Lewis and Clark Expedition should not be written as merely an adventure story. Jefferson charged the expedition with scientific observation and classification, exploration of commercial routes, and establishing diplomatic relations with western indigenous nations. It was simultaneously Enlightenment science and the projection of a rising American empire — a national knowledge-production, map-making, diplomatic engagement, and imperial projection exercise. A president who came to office on the language of limited government used state capacity to survey, name, and begin claiming a continent. This too was the construct's gravity at work, pulling him toward the territorial logic whether he framed it in those terms or not.</p>
 
 <h3>5. The Embargo: The Overreach and Its Rebound</h3>
 
-<p>The Embargo Act of 1807 was where administrative overreach played out most completely. The background was Anglo-French maritime interference with American shipping — impressment of sailors, seizure of vessels, and especially the Chesapeake-Leopard affair of 1807, which drove public anger to new heights. Jefferson chose not immediate war but economic coercion: he would pressure Britain and France by denying them American agricultural exports and shipping. The result was that American exports plummeted from $108 million to $22 million. Economist Douglas Irwin's estimates suggest the welfare loss amounted to roughly five percent of 1807 GDP.</p>
+<p>The Embargo Act of 1807 was where administrative overreach played out most completely. The background was Anglo-French maritime interference with American shipping — impressment of sailors, seizure of vessels, and especially the Chesapeake-Leopard affair of 1807, which drove public anger to new heights. Jefferson chose not immediate war but economic coercion: he would pressure Britain and France by denying them American agricultural exports and shipping. The result was that American exports plummeted from about $108 million in 1807 to $22 million in 1808. Economist Douglas Irwin's estimates suggest the welfare loss amounted to roughly five percent of 1807 GDP.</p>
 
 <p>More striking institutionally was how the enforcement of this anti-war policy turned the federal government toward high domestic coercion. A series of supplemental and enforcement acts required bonds from coastal and fishing vessels, banned overland export, authorized port officials to seize suspicious goods, and eventually authorized the president to use land and naval forces to execute the embargo. A president who came to office on the language of frugal, limited government was driven by his own policy's logic into building a regulatory machine that reached down to fishing boats and harbor docks. This was the construct's gravity in its most glaring form: even the person least willing to expand government was pushed by his own policy into expanding government.</p>
 
@@ -269,7 +298,7 @@
 
 <h3>6. The Deepest Remainder: Equality Written but Not Honored</h3>
 
-<p>Jefferson carried the deepest remainder of this series more heavily than anyone. He was the principal author of the line "all men are created equal" in the Declaration of Independence. He enslaved more than six hundred people over his lifetime. Most were not purchased but acquired through inheritance and natural increase of enslaved families. He freed ten people in his lifetime, most from the same family. Among all American presidents, his total falls among the highest.</p>
+<p>Jefferson carried the deepest remainder of this series more heavily than anyone. He was the principal author of the line "all men are created equal" in the Declaration of Independence. He enslaved more than six hundred people over his lifetime. Most were not purchased but acquired through inheritance and natural increase of enslaved families. Monticello's summary counts only ten people granted freedom through lifetime releases, his will, and informal departures together, all from one family; this does not mean ten formal manumissions during his lifetime. Among all American presidents, his total falls among the highest.</p>
 
 <p>Jefferson's writings on slavery carry intense internal tension that cannot be selectively quoted. In the Notes on the State of Virginia from the 1780s, he wrote that when he reflected that God is just, he trembled for his country, and he described slavery's corrupting effects on the character of masters and their children. In the same work, he wrote systematic racial hierarchy — asserting that Black people were inferior in mind and body and advocating post-emancipation removal to prevent racial mixing. Both passages must stand together: he was genuinely troubled by slavery and deeply embedded in its racial order simultaneously. In later correspondence he used the image of holding a wolf by the ears — unable to hold on safely, unable to let go safely.</p>
 
@@ -316,5 +345,6 @@
       <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
     </div>
   </footer>
+<script defer src="zh-hant-data/ep03.js"></script>
 </body>
 </html>

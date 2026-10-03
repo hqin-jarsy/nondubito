@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep02.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep02.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep02.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep02.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep02.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep02.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep02.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep02.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep02.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep02.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -139,7 +168,7 @@
 
 <p>第一部把入籍居住的年限从五年延长到十四年，这抬高了新移民转化为选民的门槛。第二部赋予总统在平时驱逐被认定为危险的外侨的权力。第三部是针对敌国臣民的，在宣战或入侵威胁下允许对其拘押和驱逐，它没有日落条款，后来长期保留在美国法制里。真正落在制度核心上的，是第四部，也就是《煽动叛乱法》，因为它直接把国内的政治批评带进了联邦刑法。</p>
 
-<p>这部法律的文本本身就值得拆开看。它的第一节并不主要处理报刊，而是惩罚以非法结合或共谋去反对政府措施，阻碍联邦法律实施，恐吓联邦官员，或煽动骚乱和非法集会的行为，最高可罚款五千美元并监禁五年。第二节才是后世记忆中的核心。如果有人书写，印刷，发表任何针对联邦政府，针对国会任何一院，或针对总统的虚假，恶意，诽谤性的文字，意图使其蒙羞，遭人轻蔑，激起人民的仇恨，或鼓动人们反对法律，就可以被罚款最高两千美元并监禁最长两年。第三节表面上给了被告以事实真实作为抗辩的空间，并规定陪审团有权同时裁断法律与事实。第四节则规定这部法律将于1801年3月3日失效。</p>
+<p>这部法律的文本本身就值得拆开看。它的第一节并不主要处理报刊，而是惩罚以非法结合或共谋去反对政府措施，阻碍联邦法律实施，恐吓联邦官员，或煽动骚乱和非法集会的行为，最高可罚款五千美元并监禁五年。第二节才是后世记忆中的核心。如果有人书写，印刷，发表任何针对联邦政府，针对国会任何一院，或针对总统的虚假，恶意，诽谤性的文字，意图使其蒙羞，遭人轻蔑，激起人民的仇恨，或鼓动人们反对法律，就可以被罚款最高两千美元并监禁最长两年。第三节表面上给了被告以事实真实作为抗辩的空间，并规定陪审团有权同时裁断法律与事实。第四节则规定这部法律将于1801年3月3日失效，但失效并不妨碍追诉和处罚它有效期间发生的违法行为。</p>
 
 <p>有两个细节，对理解这次闭合冲动的性质极其要紧。第一，这部法律保护的对象列了联邦政府，国会任何一院，还有总统，却唯独不包括副总统。而当时的副总统正是杰斐逊。也就是说，在党争白热的环境里，攻击执政一方的总统会被刑事化，攻击在野一方的领袖却不会。第二，法条表面上给了真相抗辩和陪审团裁断的空间，但联邦党法官在具体案件里的做法，往往把这些形式上的保障压到很窄。联邦党人的核心辩护是，第一修正案只禁止事前审查，并不禁止事后以诽谤为名加以刑罚。共和党人则主张，这在实质上侵犯了言论与出版的自由。这正是1798年那场争论的宪法学核心。</p>
 
@@ -163,7 +192,7 @@
 
 <p>闭合冲动遇到的第一次系统性反制，来自州一级。但这次反制本身，也埋下了一个长期的问题。</p>
 
-<p>弗吉尼亚和肯塔基决议由杰斐逊和麦迪逊秘密起草，分别经肯塔基和弗吉尼亚的立法机关通过，用来反对那几部法律。它们的直接目标是宣称这些法律违宪，但它们所采取的论证路径，是把宪法理解成一份州际的契约，并强调当联邦越权时，作为契约当事方的各州有判断和抵抗的权利。</p>
+<p>肯塔基决议由杰斐逊秘密起草，弗吉尼亚决议由麦迪逊秘密起草，两者分别经各自州的立法机关通过，用来反对那几部法律。它们的直接目标是宣称这些法律违宪，但它们所采取的论证路径，是把宪法理解成一份州际的契约，并强调当联邦越权时，作为契约当事方的各州有判断和抵抗的权利。</p>
 
 <p>两份决议的措辞并不一样。弗吉尼亚决议的关键词是介入。它最关键的一句是说，当联邦政府进行蓄意的，明显的，危险的越权时，作为缔约方的各州有权利，也有责任介入，以阻止这种祸害的扩散。肯塔基决议的原始草案则更猛。杰斐逊在草案里明确写道，面对未被授予的权力，废止那个法令才是正当的救济，并写下那句很能概括这套构精神的话，要用宪法的锁链把当权者牢牢拴住，使其不能为害。但这里有一个极重要的细节，废止这个词，在1798年肯塔基最终通过的文本里被删掉了。</p>
 
@@ -191,7 +220,7 @@
 
 <p>这场竞选被同时代人形容为极端党派化而且彻底下作。汉密尔顿在竞选中公开倒戈攻击同党的亚当斯，联邦党人则持续把杰斐逊塑造成一个不信神的人，借法国革命和宗教上的不虔诚来攻击他。所以1800年并不是这套构冷静处理分歧的时刻，恰恰相反，它是分歧被公开煽动到极高强度之后，这套构仍然没有塌掉的时刻。</p>
 
-<p>选举的计票结果是，杰斐逊和伯尔都获得了七十三张选举人票，于是按当时的宪法规则，决定权被交给了众议院。联邦党控制的那个即将卸任的众议院，在五天里投了三十五轮仍然没有决出结果，一直到1801年2月17日，才在第三十六轮选出杰斐逊。这场僵局暴露出，原始的选举制度根本没有为政党出现之后的情况做好准备，它没有预料到正副总统会被一张党票捆绑提名。</p>
+<p>选举的计票结果是，杰斐逊和伯尔都获得了七十三张选举人票，于是按当时的宪法规则，决定权被交给了众议院。联邦党控制的那个即将卸任的众议院，在数日里投了三十五轮仍然没有决出结果，一直到1801年2月17日，才在第三十六轮选出杰斐逊。这场僵局暴露出，原始的选举制度根本没有为政党出现之后的情况做好准备，它没有预料到正副总统会被一张党票捆绑提名。</p>
 
 <p>第十二修正案正是这场危机的直接制度后果。此后，选举人必须分别为总统和副总统投票，若总统无人过半，则由众议院从得票最高的三人中选出总统。这个调整在1804年生效。它的意义对这套构是根本性的。1800年的危机不是通过宣布以后不要再有党派来解决的，而是通过修改规则，让制度承认党派已经存在。这套构面对它产生的余项，反应不是去消除余项，而是去调整自己的规则来容纳它。它不假装党派不存在，它改写规则来接纳党派已经存在这个事实。</p>
 
@@ -235,7 +264,7 @@
 
 <p>The four laws of 1798 are often remembered as a single great suppression package, but their legal structures differ. The first extended naturalization from five to fourteen years, raising the threshold for new immigrants to become voters. The second gave the president peacetime power to expel aliens deemed dangerous. The third authorized detention and deportation of alien enemies during declared war or invasion threat, and had no sunset clause. The fourth — the Sedition Act — was the one that struck at the institutional core by bringing domestic political criticism into federal criminal law.</p>
 
-<p>The Sedition Act's text is worth examining closely. Its first section penalized unlawful combination or conspiracy to oppose government measures, impede federal law, intimidate federal officials, or instigate riot or illegal assembly, with penalties up to five thousand dollars and five years in prison. The second section — the part that lives in constitutional memory — penalized writing, printing, or publishing any false, scandalous, or malicious text against the federal government, either house of Congress, or the president, with intent to bring them into contempt, excite hatred, or stir up opposition to law — punishable by up to two thousand dollars and two years in prison. A third section nominally allowed truth as a defense and allowed juries to judge law as well as fact. A fourth section set the law to expire on March 3, 1801.</p>
+<p>The Sedition Act's text is worth examining closely. Its first section penalized unlawful combination or conspiracy to oppose government measures, impede federal law, intimidate federal officials, or instigate riot or illegal assembly, with penalties up to five thousand dollars and five years in prison. The second section — the part that lives in constitutional memory — penalized writing, printing, or publishing any false, scandalous, or malicious text against the federal government, either house of Congress, or the president, with intent to bring them into contempt, excite hatred, or stir up opposition to law — punishable by up to two thousand dollars and two years in prison. A third section nominally allowed truth as a defense and allowed juries to judge law as well as fact. A fourth section set the law to expire on March 3, 1801, while preserving prosecution and punishment for offenses committed during its term.</p>
 
 <p>Two details illuminate the nature of this closing impulse. First, the law's protection covered the federal government, either house of Congress, and the president — but conspicuously not the vice president, who was Jefferson. In the heat of partisan conflict, attacking the ruling party's president was criminalized; attacking the opposition leader was not. Second, while the truth defense and jury power sounded fair in principle, the practical space they created was very narrow. Political criticism consists primarily of judgment and satire, not verifiable factual claims. Saying a president's conduct is absurd, or that a policy is dangerous, are opinions that cannot be proved true in a courtroom. The nominal defense thus offered little real protection for most political speech.</p>
 
@@ -251,11 +280,11 @@
 
 <h3>4. The Virginia and Kentucky Resolutions: Dissent Transferred</h3>
 
-<p>The first systematic counterattack on the closing impulse came from the state level — and it introduced a long-running problem into American political language. Jefferson and Madison secretly drafted the Virginia and Kentucky Resolutions, which were passed by their respective state legislatures. Their immediate purpose was to declare the Alien and Sedition Acts unconstitutional. Their argumentative method was to characterize the Constitution as a compact among states and to assert that when the federal government overstepped, the states as parties to the compact had the right to judge and resist.</p>
+<p>The first systematic counterattack on the closing impulse came from the state level — and it introduced a long-running problem into American political language. Jefferson secretly drafted the Kentucky Resolutions, and Madison the Virginia Resolutions, which were passed by their respective state legislatures. Their immediate purpose was to declare the Alien and Sedition Acts unconstitutional. Their argumentative method was to characterize the Constitution as a compact among states and to assert that when the federal government overstepped, the states as parties to the compact had the right to judge and resist.</p>
 
 <p>The two documents differed in wording. Virginia's resolution spoke of interposition. Kentucky's original draft, in Jefferson's hand, used the word nullification — asserting that states faced with unauthorized federal acts could declare those acts void within their borders. But the word nullification was removed from the final text Kentucky actually passed. The distinction matters: Jefferson's draft and the enacted resolution were not identical, and the history of influence runs through both versions.</p>
 
-<p>No other states joined the protest. Of the fourteen that responded, four gave no answer and ten explicitly rejected the resolutions' reasoning. They did not succeed in reversing the federal legislation. But they introduced into American political vocabulary the option of the state as ultimate interpreter — a dangerous option that would be taken up by very different forces in very different circumstances decades later. The most stable historical assessment runs on two tracks simultaneously: these texts did provide language resources that later nullification and even secessionist arguments would cite, while equating Madison and Jefferson's 1798 position directly with antebellum nullification theory would be a serious overreach. The texts were a vocabulary library; how that vocabulary was later used exceeded their authors' intent.</p>
+<p>No other states joined the protest. Of the other fourteen states, four gave no answer and ten explicitly rejected the resolutions' reasoning. They did not succeed in reversing the federal legislation. But they introduced into American political vocabulary the option of the state as ultimate interpreter — a dangerous option that would be taken up by very different forces in very different circumstances decades later. The most stable historical assessment runs on two tracks simultaneously: these texts did provide language resources that later nullification and even secessionist arguments would cite, while equating Madison and Jefferson's 1798 position directly with antebellum nullification theory would be a serious overreach. The texts were a vocabulary library; how that vocabulary was later used exceeded their authors' intent.</p>
 
 <p>The structural point is clear: the closing impulse tried to expel dissent from the institution. Dissent was not eliminated; it moved — from the federal level to the question of federal-state relations — and continued to exist and contend. A remainder acknowledged by a construct can evolve, change form, and still remain within the institution's field of vision.</p>
 
@@ -269,7 +298,7 @@
 
 <p>The election of 1800 matters less because of how vicious it was — and it was spectacularly vicious, with Hamilton openly attacking his own party's president and Federalists depicting Jefferson as godless and dangerous — than because it was the first time the question of peaceful transfer of power between hostile parties became a real test rather than a theoretical aspiration.</p>
 
-<p>Jefferson and Aaron Burr tied at seventy-three electoral votes each. Under the original constitutional rules, the choice went to the outgoing Federalist-controlled House of Representatives, which balloted thirty-five times over five days before selecting Jefferson on the thirty-sixth ballot on February 17, 1801. The deadlock exposed that the original electoral system had been designed without anticipating political parties — it had not foreseen that presidential and vice-presidential candidates would be nominated on a single party ticket.</p>
+<p>Jefferson and Aaron Burr tied at seventy-three electoral votes each. Under the original constitutional rules, the choice went to the outgoing Federalist-controlled House of Representatives, which balloted thirty-five times over several days before selecting Jefferson on the thirty-sixth ballot on February 17, 1801. The deadlock exposed that the original electoral system had been designed without anticipating political parties — it had not foreseen that presidential and vice-presidential candidates would be nominated on a single party ticket.</p>
 
 <p>The Twelfth Amendment, ratified in 1804, was the direct institutional response: electors would henceforth cast separate ballots for president and vice president. The significance for this construct is fundamental. The crisis of 1800 was not resolved by declaring that there should be no more parties. It was resolved by rewriting the rules to acknowledge that parties already existed. This construct's response to a remainder it generated was not to eliminate the remainder but to adjust its own rules to accommodate it. It did not pretend parties did not exist; it rewrote its rules to accept that they did.</p>
 
@@ -314,5 +343,6 @@
       <p class="footer-copy">© 2026 Han Qin (秦汉). All rights reserved.</p>
     </div>
   </footer>
+<script defer src="zh-hant-data/ep02.js"></script>
 </body>
 </html>
