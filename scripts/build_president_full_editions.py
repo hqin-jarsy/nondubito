@@ -114,12 +114,24 @@ def style(source, depth):
     return source
 
 
+def navigation_fallbacks(page, available):
+    """Only reset Hant when the destination genuinely lacks a Hant edition."""
+    page=re.sub(r''' data-president-fallback="true" onclick="[^"]*"''','',page)
+    def fallback(match):
+        node=match[0]; target=match[1]
+        if target in available:return node
+        return node[:-1]+''' data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">'''
+    return re.sub(r'<a\b[^>]*href="((?:index|ep\d{2}))\.html"[^>]*>',fallback,page)
+
+
 def outputs(batch):
     receipt=json.loads((DATA/f'{batch}-review.json').read_text())
     assert sha((DATA/f'{batch}-received.json').read_bytes())==receipt['received_sha256']
     assert sha((DATA/f'{batch}-source-copyedits.json').read_bytes())==receipt['copyedits_sha256']
     for file,digest in receipt['language_reviews'].items(): assert sha((DATA/file).read_bytes())==digest,file
     out={}; source=source_copies(batch); titles={}
+    available={p.stem for p in (SERIES/'zh-hant-data').glob('ep*.js')}
+    available.update(f'ep{n:02}' for n in receipt['episodes'])
     for key,r in receipt['manuscripts'].items():
         text=(DATA/f'{key}.md').read_text(); assert sha(text)==r['sha256'],key
         ep,lang=key.split('.'); titles[key]=r['title']; path=SERIES/lang/f'{ep}.html'
@@ -149,19 +161,18 @@ def outputs(batch):
             page=style(page,'../../')
             tag=f'<script defer src="zh-hant-data/{ep}.js"></script>'
             if tag not in page:page=page.replace('</body>',tag+'\n</body>')
-            # Older, not-yet-upgraded series pages have only ZH/EN. Explicit
-            # fallback prevents their old scripts displaying both bodies.
-            def fallback(match):
-                node=match[0]
-                if 'data-president-fallback' in node:return node
-                return node[:-1]+''' data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">'''
-            page=re.sub(r'<a\b[^>]*href="(?:index|ep06)\.html"[^>]*>',fallback,page)
+            page=navigation_fallbacks(page,available)
             collector=TextCollector();collector.feed(page)
             variants={s:converter.convert(s) for s in collector.text}
             variants={s:t for s,t in variants.items() if s!=t}
             out[SERIES/'zh-hant-data'/f'{ep}.js']=reading_script(variants,path)
             out[path]=page
     finally:converter.close()
+    # The previous batch's last page can now retain Hant into this batch.
+    previous=min(receipt['episodes'])-1
+    if previous and f'ep{previous:02}' in available:
+        path=SERIES/f'ep{previous:02}.html'
+        out[path]=navigation_fallbacks(path.read_text(),available)
     for lang in LANGS:
         path=SERIES/lang/'index.html';page=path.read_text()
         def entry(match):

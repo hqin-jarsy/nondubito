@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep10.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep10.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep10.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep10.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep10.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep10.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep10.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep10.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep10.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep10.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -126,7 +155,7 @@
 
 <p>要理解这场对撞，得先理解约翰逊这个人站在什么位置上。他出身贫寒，几乎没有受过正规教育，早年以裁缝为业。1864年，林肯为了平衡选票、争取那些支持战争的民主党人，以"国民联盟"而不是单纯共和党的名义竞选连任，选中了约翰逊做他的副总统搭档，当时约翰逊被看作全国最显眼的战争民主党人之一。换句话说，他坐上总统这个位置，并不是因为他和共和党的重建纲领天然一致，而是因为战时联盟政治的安排。</p>
 
-<p>约翰逊政治上的复杂，在于他反对奴隶制，主要并不是出于黑人平等的理念，而是高度夹杂着对种植园贵族的敌意，以及对非奴隶主白人利益的强调。在他的逻辑里，废除奴隶制并不自动推出黑人应该获得政治平等，既有的选举权原本属于白人男子，而黑人一旦立刻进入选举政治，反而会引发种族战争。这就是他那种在阶级上反种植园、却绝不接受种族平权的核心结构。</p>
+<p>约翰逊政治上的复杂，在于他在战争中转向支持废奴，主要并不是出于黑人平等的理念，而是高度夹杂着对种植园贵族的敌意，以及对非奴隶主白人利益的强调。在他的逻辑里，废除奴隶制并不自动推出黑人应该获得政治平等，既有的选举权原本属于白人男子，而黑人一旦立刻进入选举政治，反而会引发种族战争。这就是他那种在阶级上反种植园、却绝不接受种族平权的核心结构。</p>
 
 <p>他的种族观，在公开的文件里也很清楚。否决民权法案时，他抱怨这部法偏袒黑人。1867年的国情咨文里，他又把国会的重建斥为可能使国家一半"被非洲化"的危险。现代主流史学之所以显著下调他的历史评价，关键并不只是他政治技巧的拙劣，而是他在奴隶制终结之后，仍然顽固地拒绝承认黑人的政治平等，是战后秩序应有的组成部分。</p>
 
@@ -134,7 +163,7 @@
 
 <h3>三、总统重建——把定义权先攥在手里</h3>
 
-<p>林肯遇刺后，第三十八届国会已经休会，而第三十九届国会要到1865年12月才开会。正是在这几个月的制度空档里，约翰逊几乎单方面地推行了所谓总统重建。1865年5月29日，他一方面发布大赦公告，向大多数参与叛乱的人提供赦免并恢复他们的财产权，另一方面任命临时州长，授权各州召集忠诚的选民去制定新宪法，恢复州政府。以他给北卡罗来纳的命令为例，他明确规定，只有那些符合1861年以前本州选民资格、并宣誓效忠的人，才能参加新的政治秩序——这个安排实际上就把新近获得自由的黑人，排除在了重建的政治之外。</p>
+<p>林肯遇刺后，第三十八届国会已经休会，而第三十九届国会要到1865年12月才开会。正是在这几个月的制度空档里，约翰逊几乎单方面地推行了所谓总统重建。1865年5月29日，他一方面发布大赦公告，向大多数参与叛乱的人提供赦免并恢复他们的财产权，但不包括对奴隶的所有权及已启动联邦没收程序的财产，另一方面任命临时州长，授权各州召集忠诚的选民去制定新宪法，恢复州政府。以他给北卡罗来纳的命令为例，他明确规定，只有那些符合1861年以前本州选民资格、并宣誓效忠的人，才能参加新的政治秩序——这个安排实际上就把新近获得自由的黑人，排除在了重建的政治之外。</p>
 
 <p>这套方案的结构关键，并不在于宽大本身，而在于它把"谁有权定义战后政治共同体"这个问题，先交给了总统和南方的白人精英去处理，而不是交给那个由宪法选举产生、握有接纳议员之权和修宪之权的国会。国会的共和党人之所以愤怒，不仅因为他宽赦了前邦联者，更因为南方的新政府在几乎不承认黑人权利的条件下，就想恢复完整的代表权，甚至把许多前邦联的精英重新送回国家政治的中心。</p>
 
@@ -160,7 +189,7 @@
 
 <p>国会收回定义权的努力，首先体现在立法上。1866年的民权法案宣布，凡是出生在美国、且不受外国权力支配的人，排除不纳税的印第安人，都是美国公民，并规定这些公民无论种族与肤色，都享有和白人相同的订约、起诉、作证、继承、购买、租赁、持有和转让财产的权利，以及同等地受法律保护其人身和财产的权利。约翰逊否决了这部法律，在否决文里抱怨它偏袒黑人。参议院于1866年4月6日以三十三比十五推翻了否决，众议院在4月9日以一百二十二比四十一跟进。这是战后国会与总统对抗的一道分水岭。</p>
 
-<p>但国会很快意识到，仅仅靠普通法并不足以稳固这个成果，于是转向了修宪。第十四修正案必须分款来看。第一款确立了出生公民权，同时禁止各州剥夺联邦公民的特权或豁免，禁止未经正当程序剥夺任何人的生命、自由和财产，并要求各州给予平等的保护。第二款按全体人口重新计算众议院的代表名额，但若某个州拒绝给予成年男性公民选举权，它的代表名额就要按比例减少——这说明它还没有直接确立普遍的黑人男性选举权。第三款禁止那些曾宣誓拥护宪法、后来却参与叛乱的人担任联邦或州的公职。第四款确认联邦的公债有效，同时否认邦联的债务。</p>
+<p>但国会很快意识到，仅仅靠普通立法并不足以稳固这个成果，于是转向了修宪。第十四修正案必须分款来看。第一款确立了在美国出生或归化、并受美国管辖者的公民权，同时禁止各州剥夺联邦公民的特权或豁免，禁止未经正当程序剥夺任何人的生命、自由和财产，并要求各州给予平等的保护。第二款按全体人口重新计算众议院的代表名额，但若某个州拒绝给予成年男性公民选举权，除因参与叛乱或其他犯罪而被剥夺选举权的情形外，它的代表名额就要按比例减少——这说明它还没有直接确立普遍的黑人男性选举权。第三款禁止那些曾因任职宣誓拥护宪法、后来却参与叛乱或援助敌对者的人担任所列公职，但国会两院可各以三分之二多数解除这一限制。第四款确认联邦的公债有效，同时否认邦联的债务，也否认因奴隶获释而提出的赔偿要求。</p>
 
 <p>第十四修正案的历史意义至少有三层。第一，它直接推翻了德雷德·斯科特案关于黑人不能成为联邦公民的核心判断——第七篇里说过，最高法院曾经试图用那个判决把对黑人的排除写进宪法的解释，而现在，这套构掉过头来，用一条宪法修正案把那个判决彻底推翻了。第二，它把平等的公民权从政治的辩论推进到了宪法的核心。第三，它后来成为现代美国宪法里最富生命力的条文之一，平等保护和正当程序的现代判例史几乎都绕不开它。</p>
 
@@ -197,7 +226,7 @@
 
 <h3>I. The Residue Pushed to Center, Then Immediately Pulled Back</h3>
 
-<p>Lincoln had just recommitted the nation to the promise of equality and written abolition into the Constitution. Five days after Lee's surrender, a bullet transferred the presidency to a man who embodied the opposing impulse. The years from 1865 to 1868 are the story of a newly acknowledged debt meeting immediate resistance: who has the right to define the membership of the political community?</p>
+<p>Lincoln had just recommitted the nation to the promise of equality and won congressional approval for a constitutional amendment abolishing slavery. Six days after Lee's surrender, Lincoln's death transferred the presidency to a man who embodied the opposing impulse. The years from 1865 to 1868 are the story of a newly acknowledged debt meeting immediate resistance: who has the right to define the membership of the political community?</p>
 
 <p>The standard narrative frames these years as "Southern restoration" versus "Radical Reconstruction." The more illuminating frame is this: the abolition of slavery created a question the constitutional order had never had to answer directly — who belongs to the political community as a full member? This question, long managed by being deferred to the margins, now had to be answered at the constitutional level. The Black Codes, the Freedmen's Bureau, the Civil Rights Act of 1866, the Fourteenth Amendment, the Reconstruction Acts, and the impeachment trial are not six separate events; they are one extended structural conflict about a single issue: who defines the community, and who gets to be in it?</p>
 
@@ -207,13 +236,13 @@
 
 <p>Andrew Johnson's political position requires understanding before assessing his choices. Born poor, nearly without formal education, a tailor by trade, he had risen through Tennessee politics as a Democrat who opposed secession — not out of antislavery conviction but because he identified with non-slaveholding white men against the planter aristocracy. In 1864, Lincoln ran on a National Union ticket rather than a purely Republican one, selecting Johnson as a running mate precisely because Johnson was the most prominent War Democrat in the country. Johnson became president not because he shared the Republican reconstruction program but because wartime coalition politics placed him on the ticket.</p>
 
-<p>Johnson's opposition to slavery was real but consistently entangled with racial hierarchy. He understood emancipation as a class matter — the overthrow of the planter elite — rather than as a rights matter. In his logic, abolishing slavery did not entail Black political equality. Existing voting rights belonged to white men; immediate Black political participation would trigger race war. His racial views appear directly in the record: in vetoing the Civil Rights Act he complained it discriminated against white people; his 1867 annual message denounced congressional Reconstruction as risking the "Africanization" of half the country. Contemporary historians who rank him at or near the bottom of the presidential rankings do so primarily not because he was politically inept — though he was — but because he refused after emancipation to acknowledge Black political equality as a proper component of the postwar order.</p>
+<p>Johnson's wartime turn toward emancipation was real but entangled with racial hierarchy. He understood emancipation as a class matter — the overthrow of the planter elite — rather than as a rights matter. In his logic, abolishing slavery did not entail Black political equality. Existing voting rights belonged to white men; immediate Black political participation would trigger race war. His racial views appear directly in the record: in vetoing the Civil Rights Act he complained it discriminated against white people; his 1867 annual message denounced congressional Reconstruction as risking the "Africanization" of half the country. Contemporary historians who rank him at or near the bottom of the presidential rankings do so primarily not because he was politically inept — though he was — but because he refused after emancipation to acknowledge Black political equality as a proper component of the postwar order.</p>
 
 <p>The structural irony is sharp. The constitutional order had just, at enormous cost, moved its deepest residue to the center. A bullet made the new president someone who embodied the structural force most committed to pushing that residue back to the margins. Johnson was not an isolated bad actor; he represented a real and powerful social force — the old white republic seeking to perpetuate its dominance after the legal form of slavery had been destroyed. The accident was that this force happened to hold the presidency.</p>
 
 <h3>III. Presidential Reconstruction: Seizing the Power to Define</h3>
 
-<p>Between Lincoln's death and the convening of the Thirty-Ninth Congress in December 1865, Johnson operated through a constitutional gap. The Thirty-Eighth Congress had adjourned; the incoming Congress would not meet for months. In that interval, he effectively implemented Presidential Reconstruction unilaterally: issuing amnesty proclamations that restored property rights to most former Confederate participants, appointing provisional governors, and authorizing states to reconstitute their governments. His instructions for North Carolina, for example, limited participation in the new political order to those who had met the state's 1861 voter qualifications and taken a loyalty oath — a requirement that excluded the newly freed Black population entirely.</p>
+<p>Between Lincoln's death and the convening of the Thirty-Ninth Congress in December 1865, Johnson operated through a constitutional gap. The Thirty-Eighth Congress had adjourned; the incoming Congress would not meet for months. In that interval, he effectively implemented Presidential Reconstruction unilaterally: issuing amnesty proclamations that restored property rights to most former Confederate participants, except ownership of enslaved people and property already subject to federal confiscation proceedings, appointing provisional governors, and authorizing states to reconstitute their governments. His instructions for North Carolina, for example, limited participation in the new political order to those who had met the state's 1861 voter qualifications and taken a loyalty oath — a requirement that excluded the newly freed Black population entirely.</p>
 
 <p>The structural key is not the leniency itself but the question of who held the definitional power. Johnson positioned the president and Southern white elites as the primary definers of postwar political community, rather than the constitutionally elected body with the power to seat members and amend the Constitution. Congressional Republicans were angry not only at the pardons but at the result: Southern states were reconstituting governments that denied Black rights almost entirely, would restore full representation, and were sending former Confederate leaders back to Washington. When the Thirty-Ninth Congress convened, it refused to seat Southern representatives and formed the Joint Committee on Reconstruction — taking back the definitional power Johnson had seized in the interim.</p>
 
@@ -229,7 +258,7 @@
 
 <p>The primary federal tool for managing the transition from slavery to citizenship was the Bureau of Refugees, Freedmen, and Abandoned Lands, established March 3, 1865. The Bureau distributed food, clothing, and medical care; established schools; supervised labor contracts; and handled land issues, legal disputes, and family reunification for formerly enslaved people. Its work established hundreds of schools that became the foundation of Black educational institutions in the South.</p>
 
-<p>But the Bureau operated under two permanent constraints: limited resources and enforcement capacity, and presidential hostility. Johnson vetoed the first extension bill in February 1866, calling it unnecessary. Congress revised and resubmitted; Johnson vetoed again in July. Both chambers overrode the second veto, and the Bureau continued operating for two more years. The fight over the Bureau was a core element of the larger Reconstruction conflict.</p>
+<p>But the Bureau operated under two permanent constraints: limited resources and enforcement capacity, and presidential hostility. Johnson vetoed the first extension bill in February 1866, calling it unnecessary. Congress revised and resubmitted; Johnson vetoed again in July. Both chambers overrode the second veto, and the Bureau's authorization was extended for two more years. The fight over the Bureau was a core element of the larger Reconstruction conflict.</p>
 
 <p>The Freedmen's Bureau's historical significance in this series' framework is this: it was the constitutional order's first large-scale attempt not merely to acknowledge the deepest residue but to begin paying the debt — building the institutions that would allow formerly enslaved people to function as actual citizens. Its limits were equally revealing. Without land redistribution, without sufficient military force to protect against violence, and without presidential support, the Bureau could stabilize the transition but not complete it. Acknowledging a constitutional debt requires only text; paying that debt requires the state capacity to enforce it on the ground. The gap between the acknowledgment (Thirteenth Amendment) and the payment (actual equal citizenship in southern communities) was vast, and the Bureau's limits made that gap visible. The constitutional order had run far ahead of its enforcement capacity.</p>
 
@@ -237,7 +266,7 @@
 
 <p>Congress moved to secure the gains through legislation and then constitutional amendment. The Civil Rights Act of 1866 declared that all persons born in the United States and not subject to foreign powers — excluding non-taxed Indians — were citizens, and that citizens of every race and color were entitled to make and enforce contracts, sue, give evidence, inherit, and purchase, lease, and hold property, with full and equal benefit of all laws for security of person and property. Johnson vetoed it, complaining it favored Black over white Americans. The Senate overrode 33 to 15; the House 122 to 41. This was a watershed: Congress had publicly demonstrated, on a major piece of legislation, that the president was not the final arbiter of Reconstruction's direction.</p>
 
-<p>Recognizing that ordinary legislation could be repealed by a future Congress or challenged in court, Congress turned to constitutional amendment. The Fourteenth Amendment's provisions must be read section by section. Section 1 established birthright citizenship, prohibited states from abridging the privileges or immunities of citizens, prohibited deprivation of life, liberty, or property without due process, and required equal protection of the laws. Section 2 recalculated congressional representation based on total population but reduced representation proportionally for states that denied adult male citizens the right to vote — a transitional mechanism, not a direct mandate for Black male suffrage. Section 3 disqualified from federal and state office those who had violated an oath to the Constitution by participating in rebellion. Section 4 affirmed the federal debt and repudiated Confederate debts and claims for emancipated slaves.</p>
+<p>Recognizing that ordinary legislation could be repealed by a future Congress or challenged in court, Congress turned to constitutional amendment. The Fourteenth Amendment's provisions must be read section by section. Section 1 established citizenship for those born or naturalized in the United States and subject to its jurisdiction, prohibited states from abridging the privileges or immunities of citizens, prohibited deprivation of life, liberty, or property without due process, and required equal protection of the laws. Section 2 recalculated congressional representation based on total population but reduced representation proportionally for states that denied adult male citizens the right to vote, except for participation in rebellion or other crime — a transitional mechanism, not a direct mandate for Black male suffrage. Section 3 disqualified from the listed offices those who, after taking an official oath to support the Constitution, engaged in rebellion or aided its enemies; a two-thirds vote in each house of Congress could remove the disability. Section 4 affirmed the federal debt and repudiated Confederate debts and claims for emancipated slaves.</p>
 
 <p>The Fourteenth Amendment's historical significance operates on multiple levels. It directly overturned Dred Scott's holding that Black people could not be federal citizens — a holding this series has tracked as an attempt to use judicial authority to permanently foreclose the deepest residue. The Constitution now answered that attempt with explicit inclusion. It placed equal citizenship and due process at the constitutional core rather than leaving them dependent on ordinary legislation. And its equal protection clause became, in later decades, the most generative provision in the American constitutional system.</p>
 
@@ -249,7 +278,7 @@
 
 <p>These results were not ordinary midterm fluctuations. They were a re-authorization by the electorate of congressional rather than presidential leadership on the central question of Reconstruction. In this series' terms: the constitutional order's mechanism for correcting presidential overreach — competitive elections — functioned exactly as designed. Johnson had used the presidential succession gap to pre-empt Congress's definitional role. The electorate returned a Congress capable of reclaiming it. The correction happened not through a coup or administrative reorganization but through the open verdict of voters.</p>
 
-<p>The Reconstruction Acts of 1867 followed. They declared the ex-Confederate states (except Tennessee, which had already ratified the Fourteenth Amendment) to lack lawful governments, divided them into five military districts, and established the conditions for restored representation: male citizens over 21, regardless of race or prior condition, would elect constitutional conventions; new state constitutions must guarantee this suffrage; and state legislatures must ratify the Fourteenth Amendment. The Reconstruction Acts explicitly elevated Black men from a labor-force management problem to a constitutive element of reconstruction legitimacy. Political membership and constitutional restoration were now linked.</p>
+<p>The Reconstruction Acts of 1867 followed. They declared the ex-Confederate states (except Tennessee, which had already ratified the Fourteenth Amendment) to lack lawful governments, divided them into five military districts, and established the conditions for restored representation: male citizens aged 21 or older, regardless of race or prior condition, would elect constitutional conventions; new state constitutions must guarantee this suffrage; and state legislatures must ratify the Fourteenth Amendment. The Reconstruction Acts explicitly elevated Black men from a labor-force management problem to a constitutive element of reconstruction legitimacy. Political membership and constitutional restoration were now linked.</p>
 
 <h3>VIII. Impeachment: When the Branches Fundamentally Disagree on Who Belongs</h3>
 
@@ -281,7 +310,7 @@
             <span class="xiyou-nav-title lang-en">Lincoln II</span>
           </span>
         </a>
-        <a href="ep11.html" class="xiyou-nav-btn xiyou-nav-next">
+        <a href="ep11.html" class="xiyou-nav-btn xiyou-nav-next" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">
           <span class="xiyou-nav-label">
             <span class="xiyou-nav-sub lang-zh">下一篇</span>
             <span class="xiyou-nav-sub lang-en">Next</span>
@@ -293,5 +322,6 @@
       </nav>
     </article>
   </main>
+<script defer src="zh-hant-data/ep10.js"></script>
 </body>
 </html>

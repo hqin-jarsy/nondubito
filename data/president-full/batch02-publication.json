@@ -1,0 +1,50 @@
+{
+  "batch": "batch02",
+  "episodes": [6, 7, 8, 9, 10],
+  "status": "reviewed_and_validated_for_local_commit",
+  "scope": "25 complete DE/FR/ES/JA/KO editions at their existing URLs; bounded ZH/EN corrections; offline Traditional Chinese reading for EP06–10; localized index titles, search and sitemap. EP05 navigation-only repair preserves Hant into newly upgraded EP06. EP11–26 are outside scope. Local commit only; author pushes.",
+  "review_boundary": "Three authorized language reviewers read all five Chinese originals and all 25 foreign essays to EOF; the Spanish reviewer additionally read all five original English essays to EOF. Root read the Chinese originals, checked targeted historical issues, reviewed the changed foreign passages, and owns the explicit ZH/EN correction plan. This is a complete language/coverage review with targeted factual calibration, not a fresh archival audit of every statistic or an endorsement of every historical interpretation.",
+  "coverage": {"foreign_essays": 25, "sections": 215, "body_paragraphs": 815, "original_paragraph_boundaries_preserved": true, "foreign_local_edits": 132, "zh_en_local_replacements": 74},
+  "validation": {
+    "language_audits": "All 25 final hashes checked against the three independent review logs; reverse replay of all 132 ordered foreign edits exactly restores the received normalized hashes.",
+    "offline_regressions": "Nine tests passed for batch02: deterministic outputs, exact original snapshots and bounded ZH/EN edits, full manuscripts with Chinese-matched paragraph/section counts, DOM/links/canonicals/eight choices, complete Hant maps, localized index titles, unchanged future essays, preserved prior-batch bodies, scoped search/sitemap.",
+    "reproducibility": "Batch01 produces 40 unchanged outputs; batch02 produces 41 unchanged outputs including the EP05 navigation-only repair.",
+    "browser": "120 page/language/viewport combinations at 390/768/1440px; actual five-language roundtrip and English return; ZH/Hant restoration; Hant EP05→EP06 continuation; EP10→unupgraded EP11 safe fallback; five 26-entry localized indexes; no horizontal overflow or page errors.",
+    "visual_review": "Mobile French EP06 and desktop Traditional Chinese EP08 inspected. A fresh browser surface and DOM hit-test confirmed that a duplicated fixed header in the stress-test screenshot was a Chromium capture artifact, not a page overlay; screenshot capture now uses fresh surfaces.",
+    "search_scope": "Only 25 foreign records and five new Traditional Chinese records changed; unrelated records and ordering preserved.",
+    "sitemap": "Full sitemap --check passed: 10085 canonical URLs.",
+    "whitespace": "git diff --check passed."
+  },
+  "source_preservation": "Original Chinese/English body HTML remains immutable in JSON-encoded snapshots, with decoded SHA256 recorded in batch02-received.json. Only exact, replayable before/after replacements are applied. English remains its existing independent essay, not a newly expanded back-translation. Original ZIPs are untouched.",
+  "import_validation": "This batch starts with section I before the opening prose, unlike batch01. The importer now retains that first heading and the short Japanese EP06 opening, and validates section counts against Chinese rather than a fixed range. All 25 manuscripts preserve 9/9/8/8/9 sections and 33/32/34/34/30 paragraphs. Batch01 receipt headers were also checked: none contained discarded section headings or body paragraphs.",
+  "historical_sources": [
+    {"issue": "EP06 Mexican cession versus total territorial claims including Texas; distinguish the 525,000-square-mile cession from the broader 55 percent loss", "url": "https://www.archives.gov/milestone-documents/treaty-of-guadalupe-hidalgo"},
+    {"issue": "EP06 Zachary Taylor, not an ambiguous recurrence of John Tyler", "url": "https://npg.si.edu/blog/zachary-taylor-1784-1850"},
+    {"issue": "EP06 nationwide rendition preceded 1850; the later act strengthened federal enforcement", "url": "https://www.nps.gov/articles/000/fugitive-slave-laws-boston.htm"},
+    {"issue": "EP07 six delegates' states at provisional Confederate constitution", "url": "https://www.loc.gov/exhibits/civil-war-in-america/prologue.html#obj7"},
+    {"issue": "EP07 Dred Scott opinion's stated category: Africans imported and enslaved and their descendants, free or enslaved", "url": "https://www.archives.gov/milestone-documents/dred-scott-v-sandford"},
+    {"issue": "EP07 Marbury did not issue a commission-delivery order", "url": "https://www.fjc.gov/history/cases/cases-that-shaped-the-federal-courts/marbury-v-madison"},
+    {"issue": "EP07 Worcester: Jackson administration initially failed to compel Georgia; later negotiations differ from categorical permanent defiance", "url": "https://www.fjc.gov/node/9065496"},
+    {"issue": "EP07 English: Fillmore ran for the American Party in 1856", "url": "https://www.loc.gov/collections/millard-fillmore-papers/articles-and-essays/timeline/"},
+    {"issue": "EP08 Sumter resupply notice was conditional, not an unconditional absence of reinforcement preparations", "url": "https://quod.lib.umich.edu/l/lincoln/lincoln4/1%3A505"},
+    {"issue": "EP08 approximately 34 hours of fighting at Sumter", "url": "https://www.archives.gov/milestone-documents/telegram-announcing-the-surrender-of-fort-sumter"},
+    {"issue": "EP08 July 12 appeal addressed border-state members of Congress", "url": "https://www.presidency.ucsb.edu/documents/message-appeal-border-state-representatives-favor-compensated-emancipation"},
+    {"issue": "EP08 colonization abroad, not repatriation to a presumed birthplace", "url": "https://www.archives.gov/exhibits/american_originals_iv/sections/transcript_preliminary_emancipation.html"},
+    {"issue": "EP08 forty-eight counties exception, not the final county count of West Virginia", "url": "https://www.archives.gov/milestone-documents/emancipation-proclamation"},
+    {"issue": "EP09 total soldier ballots exceed the 40,247 partial tally retained in the original; avoid presenting it as all military voting", "url": "https://www.nps.gov/pete/learn/historyculture/the-1864-election.htm"},
+    {"issue": "EP09 original partial-tally figures retained with an explicit coverage qualification", "url": "https://www.battlefields.org/learn/articles/election-1864-and-soldiers-vote"},
+    {"issue": "EP09 Thirteenth Amendment: congressional passage, December 6 ratification, and criminal-punishment exception", "url": "https://www.archives.gov/milestone-documents/13th-amendment"},
+    {"issue": "EP09 Lee's surrender at McLean house in Appomattox Court House village, not a courthouse", "url": "https://www.nps.gov/apco/the-surrender.htm"},
+    {"issue": "EP09–10 April 15 presidential succession was six days after Lee's surrender; April 14 shooting was five days after", "url": "https://www.nps.gov/articles/000/andrew-johnson-s-inauguration.htm"},
+    {"issue": "EP09 mortality estimates are military deaths, not combat deaths only; 2024 estimate retained", "url": "https://pubmed.ncbi.nlm.nih.gov/39556740/"},
+    {"issue": "EP10 pardon did not restore ownership of enslaved people or property already in confiscation proceedings", "url": "https://www.presidency.ucsb.edu/documents/proclamation-134-granting-amnesty-participants-the-rebellion-with-certain-exceptions"},
+    {"issue": "EP10 precise Fourteenth Amendment provisions and exceptions", "url": "https://www.archives.gov/milestone-documents/14th-amendment"},
+    {"issue": "EP10 English: two-year authorization extension, not termination of all Bureau operations two years later", "url": "https://www.nps.gov/articles/000/the-rise-and-fall-of-the-freedmen-s-bureau.htm"}
+  ],
+  "limitations": [
+    "The source's structural interpretations are retained rather than replaced with a new historical thesis.",
+    "The older high-end New York riot death estimate is retained as an explicitly uncertain older estimate, not validated as a confirmed death toll.",
+    "The precise denominator of the retained 40,247 soldier-vote tally has not been newly audited against original state returns; it is explicitly partial, not nationwide.",
+    "Traditional Chinese is added for these five individual pages; older unupgraded destinations and the root series index fall back to simplified Chinese."
+  ]
+}

@@ -4,6 +4,10 @@ const fs=require('node:fs');
 const assert=require('node:assert/strict');
 const origin=process.env.PRESIDENT_PREVIEW_ORIGIN||'http://127.0.0.1:8786';
 const langs=['zh','en','zh-hant','ja','fr','de','es','ko'];
+const batch=process.env.PRESIDENT_BATCH||'batch01';
+const receipt=JSON.parse(fs.readFileSync(`${__dirname}/../data/president-full/${batch}-review.json`));
+const first=receipt.episodes[0],last=receipt.episodes.at(-1);
+const epName=n=>`ep${String(n).padStart(2,'0')}`;
 (async()=>{
   const browser=await chromium.launch({channel:'chrome',headless:true});
   const context=await browser.newContext();
@@ -13,7 +17,7 @@ const langs=['zh','en','zh-hant','ja','fr','de','es','ko'];
   try{
     for(const width of [390,768,1440]){
       await page.setViewportSize({width,height:900});
-      for(let n=1;n<=5;n++)for(const lang of langs){
+      for(const n of receipt.episodes)for(const lang of langs){
         const ep=`ep${String(n).padStart(2,'0')}`;
         const inline=['zh','en','zh-hant'].includes(lang);
         const path=inline?`essays/president/${ep}.html?lang=${lang}`:`essays/president/${lang}/${ep}.html`;
@@ -42,13 +46,13 @@ const langs=['zh','en','zh-hant','ja','fr','de','es','ko'];
         if(!inline){
           await page.locator('.president-toc summary').click();
           await page.locator('.president-toc a').last().click();
-          assert(/#section-[78]$/.test(page.url()),path+' TOC');
+          assert(page.url().endsWith(`#section-${receipt.manuscripts[`${ep}.${lang}`].sections}`),path+' TOC');
         }
         results.push({path,width,...metrics});
       }
     }
     // Actual select navigation in both directions, plus text restoration.
-    await page.goto(`${origin}/essays/president/ep01.html?lang=zh`);
+    await page.goto(`${origin}/essays/president/${epName(first)}.html?lang=zh`);
     const chinese=await page.locator('.essay-body.lang-zh').innerText();
     await page.selectOption('.lang-select',{label:'繁體中文'});
     await page.waitForFunction(()=>document.documentElement.lang==='zh-Hant');
@@ -57,10 +61,10 @@ const langs=['zh','en','zh-hant','ja','fr','de','es','ko'];
     await page.waitForFunction(()=>document.documentElement.lang==='zh-Hans');
     assert.equal(await page.locator('.essay-body.lang-zh').innerText(),chinese);
     for(const [code,label] of [['de','Deutsch'],['fr','Français'],['es','Español'],['ja','日本語'],['ko','한국어']]){
-      await Promise.all([page.waitForURL(`**/${code}/ep01.html`),page.selectOption('.lang-select',{label})]);
+      await Promise.all([page.waitForURL(`**/${code}/${epName(first)}.html`),page.selectOption('.lang-select',{label})]);
       assert.equal(await page.locator('.lang-select option').count(),8);
     }
-    await Promise.all([page.waitForURL('**/ep01.html?lang=en'),page.selectOption('.lang-select',{label:'English'})]);
+    await Promise.all([page.waitForURL(`**/${epName(first)}.html?lang=en`),page.selectOption('.lang-select',{label:'English'})]);
     assert.equal(await page.locator('.essay-body.lang-en').isVisible(),true);
     for(const lang of ['ja','fr','de','es','ko']){
       await page.goto(`${origin}/essays/president/${lang}/index.html`);
@@ -68,18 +72,32 @@ const langs=['zh','en','zh-hant','ja','fr','de','es','ko'];
       assert(await page.locator('.lang-select').isVisible());
       assert.equal(await page.locator('a[href^="ep"][href$=".html"]').count(),26);
     }
-    await page.goto(`${origin}/essays/president/ep05.html?lang=zh-hant`);
-    await page.locator('a[href="ep06.html"]').click();
+    if(first>1){
+      await page.goto(`${origin}/essays/president/${epName(first-1)}.html?lang=zh-hant`);
+      await page.locator(`a[href="${epName(first)}.html"]`).click();
+      await page.waitForFunction(()=>document.documentElement.lang==='zh-Hant');
+    }
+    await page.goto(`${origin}/essays/president/${epName(last)}.html?lang=zh-hant`);
+    await page.locator(`a[href="${epName(last+1)}.html"]`).click();
     assert.equal(await page.locator('.essay-body.lang-zh').isVisible(),true);
     assert.equal(await page.locator('.essay-body.lang-en').isVisible(),false);
-    await page.setViewportSize({width:390,height:900});
-    await page.goto(`${origin}/essays/president/fr/ep01.html`);
-    await page.screenshot({path:'/private/tmp/president-batch01-mobile.png',fullPage:false});
-    await page.setViewportSize({width:1440,height:900});
-    await page.goto(`${origin}/essays/president/ep03.html?lang=zh-hant`);
-    await page.screenshot({path:'/private/tmp/president-batch01-desktop.png',fullPage:false});
+    const nextHasHant=fs.existsSync(`${__dirname}/../essays/president/zh-hant-data/${epName(last+1)}.js`);
+    if(nextHasHant)await page.waitForFunction(()=>document.documentElement.lang==='zh-Hant');
+    else assert.equal(await page.evaluate(()=>document.documentElement.dataset.lang),'zh');
+    // Fresh surfaces avoid Chromium's occasional fixed-header paint residue
+    // after the stress test's many viewport changes and anchor jumps.
+    for(const [width,path,label] of [
+      [390,`fr/${epName(first)}.html`,'mobile'],
+      [1440,`${epName(first+2)}.html?lang=zh-hant`,'desktop']]){
+      const capture=await context.newPage();
+      capture.on('pageerror',e=>errors.push(String(e)));
+      await capture.setViewportSize({width,height:900});
+      await capture.goto(`${origin}/essays/president/${path}`,{waitUntil:'load'});
+      await capture.screenshot({path:`/private/tmp/president-${batch}-${label}.png`,fullPage:false});
+      await capture.close();
+    }
     assert.deepEqual(errors,[]);
-    fs.writeFileSync('/private/tmp/president-batch01-browser.json',JSON.stringify({tested:results.length,errors,results},null,2)+'\n');
+    fs.writeFileSync(`/private/tmp/president-${batch}-browser.json`,JSON.stringify({tested:results.length,errors,results},null,2)+'\n');
     console.log(`OK: ${results.length} viewport/language pages; five-language roundtrip; ZH/Hant restoration; no page errors`);
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

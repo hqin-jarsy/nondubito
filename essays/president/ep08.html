@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep08.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep08.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep08.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep08.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep08.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep08.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep08.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep08.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep08.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep08.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -128,7 +157,7 @@
 
 <p>林肯在1861年3月4日宣誓时，联邦的危机已经不是潜在的危险，而是现实的崩裂。在他正式就职之前，七个蓄奴州已经脱离联邦并在蒙哥马利建立了邦联政府。他的第一次就职演说因此同时在做两件事：一方面，他明确地向南方作出安抚，宣称自己无意干预那些已经存在奴隶制的州；另一方面，他直截了当地否认一个州单方面脱离联邦的合法性。演说结尾那句"我们不是敌人，而是朋友"，并不是抽象的抒情，而是在不可干预现存奴隶制和联邦不可分裂这两者之间，试图维持最后的一点宪制平衡。</p>
 
-<p>林肯没有直接派大军去增援萨姆特堡，而是决定只派出运送补给的舰队，并事先通知了堡内的守军和南卡州长，此次行动只是为萨姆特堡补给给养。这是一个高度政治化的策略——它尽量把先动武的责任，压到邦联那一边去。邦联随后要求守军撤离，遭拒之后于1861年4月12日清晨开火，不到三十四小时，守军指挥官投降。南方先开第一枪的政治意义极大：它帮助林肯把整个危机，从一场关于分离的争论，转成了一场镇压叛乱的更广泛的北方动员。</p>
+<p>林肯没有直接派大军去增援萨姆特堡，而是安排补给行动，并通知南卡州长：先尝试只运送给养；若不受阻，在没有另行通知、堡垒也未遭攻击的情况下，就不增送人员、武器或弹药。这不是没有增援准备，而是把行动限定在有条件的补给上。这是一个高度政治化的策略——它尽量把先动武的责任，压到邦联那一边去。邦联随后要求守军撤离，遭拒之后于1861年4月12日清晨开火，约三十四小时后，守军指挥官投降。南方先开第一枪的政治意义极大：它帮助林肯把整个危机，从一场关于分离的争论，转成了一场镇压叛乱的更广泛的北方动员。</p>
 
 <p>萨姆特堡陷落之后，4月15日林肯发布征召令，要求各州提供七万五千名民兵。此前尚未脱离的上南方各州在这一刻重新判断了局势，弗吉尼亚、阿肯色、田纳西、北卡罗来纳随后脱离联邦。这套构容纳的语言，到此彻底让位给了强制的逻辑。</p>
 
@@ -136,7 +165,7 @@
 
 <p>第一次马纳萨斯会战使短期镇压叛乱的幻想破灭。到1862年秋天的安提塔姆，战场的现实更加残酷。关于安提塔姆的伤亡总数，不同材料有小幅的差异，常见的官方统计是两万二千七百余人的战斗伤亡，也有两万三千以上的口径。但无论采用哪一个数字，安提塔姆都被普遍认定为美国历史上单日伤亡最惨重的战斗。</p>
 
-<p>对于林肯而言，真正在早期把反奴政策束缚住的，不只是战场，还有边境的蓄奴州。马里兰、肯塔基、密苏里、特拉华留在联邦，是林肯早期全部政治计算的核心条件之一。他自己在1862年7月12日致边境州议员的呼吁里明确说，这些州握有的好的力量，比任何同等数目的成员都更大。这说明在1861到1862年间，林肯的反奴政策，必须服从一个更高的优先级——边境州绝不能倒向邦联。</p>
+<p>对于林肯而言，真正在早期把反奴政策束缚住的，不只是战场，还有边境的蓄奴州。马里兰、肯塔基、密苏里、特拉华留在联邦，是林肯早期全部政治计算的核心条件之一。他自己在1862年7月12日致边境州议员的呼吁里明确说，这些边境州议员比其他同等人数的议员，更有力量促成有益的结果。这说明在1861到1862年间，林肯的反奴政策，必须服从一个更高的优先级——边境州绝不能倒向邦联。</p>
 
 <p>这个约束本身，就是这套构那个最深余项的两面性在战时的一个尖锐体现。边境州是留在联邦里的蓄奴州，林肯要保住它们，就不能让这场战争看上去像是一场针对奴隶制本身的战争，否则它们随时可能倒向南方。那个最深的余项，连在被战争逼到必须处理的时候，都还在用它自己的方式，限制着处理它的方式。</p>
 
@@ -168,11 +197,11 @@
 
 <h3>六、解放奴隶宣言——一项战争措施</h3>
 
-<p>预备的解放宣言于1862年9月22日发布，恰好在安提塔姆之后五天。它有三个关键点必须同时写出来。第一，林肯依然把战争的正式目标表述为实际上恢复宪法的关系。第二，它宣布如果到1863年1月1日仍在叛乱中的州不回归联邦，其境内的奴隶将从此并永远获得自由。第三，它同时仍然保留了边境州有偿解放和殖民遣返这两套语言。</p>
+<p>预备的解放宣言于1862年9月22日发布，恰好在安提塔姆之后五天。它有三个关键点必须同时写出来。第一，林肯依然把战争的正式目标表述为实际上恢复宪法的关系。第二，它宣布如果到1863年1月1日仍在叛乱中的州不回归联邦，其境内的奴隶将从此并永远获得自由。第三，它同时仍然保留了边境州有偿解放和将获释者迁往美国境外殖民安置这两套语言。</p>
 
 <p>最终版的解放奴隶宣言于1863年1月1日生效。它的法律性质写得极其清楚，林肯是凭借"作为陆海军总司令赋予他的权力"并"作为镇压上述叛乱的一项恰当而必要的战争措施"而发布此令的。也就是说，它在法律和宪法的层面，首先是一项战争措施，而不是一部一般民法意义上的全国废奴法令。</p>
 
-<p>更关键的是，它的适用范围被精确地限定了。它点名包括了阿肯色、德克萨斯、密西西比等叛乱地区，但又明确排除了路易斯安那的若干教区和新奥尔良，排除了后来组成西弗吉尼亚的四十八个县，以及弗吉尼亚若干已经在联邦控制之下的县市。因此，这份宣言并没有解放边境蓄奴州的奴隶，也没有立即解放那些已经在联邦控制之下而被排除在外的南方地区的奴隶。</p>
+<p>更关键的是，它的适用范围被精确地限定了。它点名包括了阿肯色、德克萨斯、密西西比等叛乱地区，但又明确排除了路易斯安那的若干教区和新奥尔良，排除了后来成为西弗吉尼亚一部分的四十八个县，以及弗吉尼亚若干已经在联邦控制之下的县市。因此，这份宣言并没有解放边境蓄奴州的奴隶，也没有立即解放那些已经在联邦控制之下而被排除在外的南方地区的奴隶。</p>
 
 <p>但说它有限，并不等于说它无效，这正是前面反复讲过的那种两面性，必须同时握住。这份宣言从根本上改变了这场战争的性质。这种改变通常被解释为三种效应的叠加：它削弱了邦联的劳动力基础，改变了联邦军的作战和招募逻辑，并强化了欧洲尤其是英国舆论中"这是一场围绕奴隶制的战争"这种理解，从而进一步压缩了正式承认邦联的空间。</p>
 
@@ -213,7 +242,7 @@
 
 <p>Lincoln's First Inaugural attempted a final balance. He reassured the South that he had no intention of interfering with slavery where it already existed, and simultaneously denied any constitutional right of unilateral secession. The famous closing — "We are not enemies, but friends" — was not sentiment but strategy: an attempt to hold the contradiction between non-interference and union-preservation open a little longer.</p>
 
-<p>The Sumter decision was similarly calibrated. Rather than send reinforcements, Lincoln dispatched only supply ships, notifying both the garrison commander and South Carolina's governor in advance that the mission was limited to food. The political purpose was to make the Confederacy bear responsibility for firing first. When Confederate batteries opened fire on April 12, 1861, and the garrison surrendered within thirty-four hours, Lincoln gained what he needed: a narrative of suppressing rebellion rather than waging sectional war. The constitutional order, when it found itself compelled to use force, wanted the other side to have visibly broken the rules first — because the whole of its legitimacy rested on being the rule's guardian.</p>
+<p>The Sumter decision was similarly calibrated. Lincoln arranged an attempt to provision the fort, notifying South Carolina's governor that, if it was not resisted, no men, arms, or ammunition would be sent without further notice unless the fort was attacked. The plan made provisioning conditional; it did not rule out reinforcement if resistance followed. The political purpose was to make the Confederacy bear responsibility for firing first. When Confederate batteries opened fire on April 12, 1861, and the garrison surrendered after about thirty-four hours, Lincoln gained what he needed: a narrative of suppressing rebellion rather than waging sectional war. The constitutional order, when it found itself compelled to use force, wanted the other side to have visibly broken the rules first — because the whole of its legitimacy rested on being the rule's guardian.</p>
 
 <p>The aftermath reshaped the political geography. Lincoln called for 75,000 militia on April 15. The upper South states that had not yet seceded now recalculated: Virginia, Arkansas, Tennessee, and North Carolina departed. The language of accommodation had finally given way to the logic of compulsion.</p>
 
@@ -221,7 +250,7 @@
 
 <p>The illusion of a short war was destroyed at First Bull Run in summer 1861. By the autumn of 1862 and the Battle of Antietam — whose casualty figures, commonly cited at over 22,700 killed, wounded, and missing, make it the bloodiest single day in American military history — the scale of the conflict was undeniable.</p>
 
-<p>What constrained anti-slavery policy in the early period was not battlefield failure alone but the border slave states. Maryland, Kentucky, Missouri, and Delaware remained in the Union, and Lincoln's July 1862 appeal to border-state representatives made explicit how much weight he placed on their loyalty. He told them that the force residing in them was more than any equal number of members from any other section. This was not rhetoric. In 1861–62, any policy that made the war visibly a war against slavery risked converting those states into Confederate allies. The slavery question, even when war had finally forced it to be addressed, constrained the manner of its own addressing. The residue shaped the conditions of its own treatment.</p>
+<p>What constrained anti-slavery policy in the early period was not battlefield failure alone but the border slave states. Maryland, Kentucky, Missouri, and Delaware remained in the Union, and Lincoln's July 1862 appeal to border-state representatives made explicit how much weight he placed on their loyalty. He told the border-state representatives that they had more power to bring about good than any equal number of other members of Congress. This was not rhetoric. In 1861–62, any policy that made the war visibly a war against slavery risked converting those states into Confederate allies. The slavery question, even when war had finally forced it to be addressed, constrained the manner of its own addressing. The residue shaped the conditions of its own treatment.</p>
 
 <p>Lincoln's August 1862 letter to editor Horace Greeley made this public. He wrote that his paramount object was to save the Union, and that if he could save it without freeing any slave, he would do that. This letter is often misread as a window into Lincoln's private indifference to emancipation. The political context is essential: it was a public document, addressed to a major northern editor, designed to manage border-state anxieties and conservative northern opinion. A month earlier, on July 22, Lincoln had already shown his cabinet a draft of an emancipation proclamation. The caution was structural before it was personal.</p>
 
@@ -239,15 +268,15 @@
 
 <p>The contraband designation is worth examining closely. Butler did not argue for freedom on moral grounds; he applied a property-and-war logic — these are enemy assets that can be seized. This framing still treated persons as property. But it was precisely this remaining-within-the-property-framework that made the first institutional rupture possible. Once you begin asking what to do with confiscated human property, you cannot avoid confronting the fact that these are people who ran here, who labor, who choose sides. The cold legal language worked as a wedge, prying the old framework open from within.</p>
 
-<p>Two Confiscation Acts followed. The First, signed August 6, 1861, cancelled Confederate owners' claims to enslaved people used in direct support of the rebellion. The Second, July 17, 1862, went further: it freed the enslaved people of those in rebellion and authorized the president to employ as many persons of African descent as he found necessary and proper. Neither was an abstract moral statement; both were instruments of military pressure — weakening Confederate labor while expanding Union capacity. The deepest residue entered the center of federal policy not through moral awakening but through strategic necessity.</p>
+<p>Two Confiscation Acts followed. The First, signed August 6, 1861, cancelled Confederate owners' claims to enslaved people used in direct support of the rebellion. The Second, July 17, 1862, went further: it declared free enslaved people held by rebels who escaped to Union lines or otherwise came under Union control within the law's specified categories and authorized the president to employ as many persons of African descent as he found necessary and proper. Neither was an abstract moral statement; both were instruments of military pressure — weakening Confederate labor while expanding Union capacity. The deepest residue entered the center of federal policy not through moral awakening but through strategic necessity.</p>
 
 <h3>VI. The Emancipation Proclamation as a War Measure</h3>
 
-<p>The preliminary Emancipation Proclamation was issued September 22, 1862 — five days after Antietam. Three features must be held together simultaneously. First, Lincoln still described the war's official purpose as "restoring the constitutional relation." Second, it announced that in states still in rebellion on January 1, 1863, enslaved people "shall be then, thenceforward, and forever free." Third, it retained language about compensated emancipation and colonization for border states.</p>
+<p>The preliminary Emancipation Proclamation was issued September 22, 1862 — five days after Antietam. Three features must be held together simultaneously. First, Lincoln still described the war's official purpose as "restoring the constitutional relation." Second, it announced that in states still in rebellion on January 1, 1863, enslaved people "shall be then, thenceforward, and forever free." Third, it retained language about compensated emancipation in loyal slave states and the resettlement of freed people in colonies outside the United States.</p>
 
-<p>The final Proclamation of January 1, 1863, made the legal character explicit: Lincoln issued it by virtue of the power vested in me as Commander-in-Chief of the Army and Navy as "a fit and necessary war measure for suppressing said rebellion." As a matter of constitutional law, it was a war measure first. Its geographic scope was correspondingly precise: it named the Confederate states in rebellion and simultaneously excepted specific Louisiana parishes, the soon-to-be West Virginia counties, and parts of Virginia already under Union control. The Proclamation did not free enslaved people in the loyal border states, and it explicitly preserved existing arrangements in certain areas under Union control.</p>
+<p>The final Proclamation of January 1, 1863, made the legal character explicit: Lincoln invoked his authority as Commander-in-Chief of the Army and Navy as "a fit and necessary war measure for suppressing said rebellion." As a matter of constitutional law, it was a war measure first. Its geographic scope was correspondingly precise: it named the Confederate states in rebellion and simultaneously excepted specific Louisiana parishes, forty-eight counties later forming part of West Virginia, and parts of Virginia already under Union control. The Proclamation did not free enslaved people in the loyal border states, and it explicitly preserved existing arrangements in certain areas under Union control.</p>
 
-<p>Acknowledging these limits does not diminish the Proclamation's significance — but both faces must be held at once. The document fundamentally changed the character of the war in three interlocking ways. It weakened Confederate labor capacity. It transformed the Union Army's recruiting logic. And it substantially raised the political cost for Britain and France of extending formal recognition to the Confederacy, though Britain had already granted belligerent status in 1861 and the Proclamation accelerated rather than single-handedly stopped European intervention.</p>
+<p>Acknowledging these limits does not diminish the Proclamation's significance — but both faces must be held at once. The document fundamentally changed the character of the war in three interlocking ways. It weakened Confederate labor capacity. It transformed the Union Army's recruiting logic. And it substantially raised the political cost for Britain and France of extending formal recognition to the Confederacy, though Britain had already granted belligerent status in 1861 and the Proclamation reinforced resistance to intervention rather than single-handedly preventing it.</p>
 
 <p>The Proclamation's basis in war-powers authority also raised an immediate constitutional question: if it derived from the Commander-in-Chief's emergency powers, what happened when the emergency ended? Could peacetime courts unwind what wartime necessity had produced? This question would have to be answered by amendment — which is where the next essay begins.</p>
 
@@ -293,5 +322,6 @@
       </nav>
     </article>
   </main>
+<script defer src="zh-hant-data/ep08.js"></script>
 </body>
 </html>

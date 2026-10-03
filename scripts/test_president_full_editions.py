@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Offline regression checks for the fully reviewed Presidents batch."""
 import json
+import os
 import re
 import subprocess
 import unittest
@@ -10,20 +11,22 @@ import build_president_full_editions as build
 from import_president_full_editions import body_fragment, sha
 from test_daodejing_sources import Page
 
+BATCH=os.environ.get('PRESIDENT_BATCH','batch01')
+
 
 class PresidentsBatchTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.received=json.loads((build.DATA/'batch01-received.json').read_text())
-        cls.review=json.loads((build.DATA/'batch01-review.json').read_text())
-        cls.expected=build.outputs('batch01')
+        cls.received=json.loads((build.DATA/f'{BATCH}-received.json').read_text())
+        cls.review=json.loads((build.DATA/f'{BATCH}-review.json').read_text())
+        cls.expected=build.outputs(BATCH)
 
     def test_reproducibility(self):
-        self.assertEqual(len(self.expected),40)
+        self.assertIn(len(self.expected),(40,41))
         for path,text in self.expected.items():self.assertEqual(path.read_text(),text,str(path))
 
     def test_originals_and_bounded_corrections(self):
-        corrected=build.source_copies('batch01')
+        corrected=build.source_copies(BATCH)
         for key,record in self.received['originals'].items():
             ep,lang=key.split('.')
             baseline=subprocess.check_output(['git','show',f'{self.received["baseline_commit"]}:essays/president/{ep}.html'],cwd=build.ROOT,text=True)
@@ -46,6 +49,7 @@ class PresidentsBatchTests(unittest.TestCase):
             self.assertEqual(len(list(body.descendants('p'))),r['paragraphs'])
             chinese=Page(json.loads((build.DATA/f'{ep}.zh.json').read_text()))
             self.assertEqual(r['paragraphs'],len([n for n in chinese.nodes if n.tag=='p']),key)
+            self.assertEqual(r['sections'],len([n for n in chinese.nodes if n.tag=='h3']),key)
             self.assertIsNone(re.search(r'\b(?:TODO|FIXME|TBD)\b|\[insert|占位',text),key)
 
     def test_dom_links_language_choices_and_canonical(self):
@@ -96,11 +100,22 @@ class PresidentsBatchTests(unittest.TestCase):
 
     def test_future_essays_not_overwritten(self):
         baseline=self.received['baseline_commit']
-        for ep in range(6,27):
+        published={n for p in build.DATA.glob('batch*-review.json') if re.fullmatch(r'batch\d+-review.json',p.name) for n in json.loads(p.read_text())['episodes']}
+        for ep in sorted(set(range(1,27))-published):
             for lang in ('',*build.LANGS):
                 path=build.SERIES/lang/f'ep{ep:02}.html'
                 original=subprocess.check_output(['git','show',f'{baseline}:{path.relative_to(build.ROOT)}'],cwd=build.ROOT)
                 self.assertEqual(path.read_bytes(),original,path)
+
+    def test_previous_batch_bodies_preserved(self):
+        baseline=self.received['baseline_commit']
+        for ep in range(1,min(self.review['episodes'])):
+            for lang in ('',*build.LANGS):
+                path=build.SERIES/lang/f'ep{ep:02}.html'
+                original=subprocess.check_output(['git','show',f'{baseline}:{path.relative_to(build.ROOT)}'],cwd=build.ROOT,text=True)
+                if lang:self.assertEqual(path.read_text(),original,path)
+                else:
+                    for code in ('zh','en'):self.assertEqual(body_fragment(path.read_text(),code),body_fragment(original,code),path)
 
     def test_search_and_sitemap(self):
         import build_search_index as search

@@ -59,12 +59,16 @@ def prepare(folder, start, end, batch):
                 titles = re.findall(r'^# (.+)$',source,re.M)
                 assert len(titles)==1, (ep,lang,'title')
                 blocks = list(re.finditer(r'\S[\s\S]*?(?=\n\s*\n|\Z)',source))
-                first = next(m for m in blocks if len(m[0])>160 and not m[0].startswith(('#','['))
-                             and 'https://' not in m[0] and 'Han Qin' not in m[0])
+                # Some batches start immediately with section I, and East Asian
+                # opening paragraphs can be shorter than 160 characters.
+                first = next(m for m in blocks if m[0].startswith('## ') or
+                             (len(m[0])>160 and not m[0].startswith(('#','['))
+                              and 'https://' not in m[0] and 'Han Qin' not in m[0]))
                 footer = next(m for m in blocks if m.start()>first.end()
                               and re.search(r'\]\(https://nondubito.net/essays/president/ep\d+\.html\)',m[0]))
                 body = source[first.start():footer.start()].strip()
-                assert len(re.findall(r'^## ',body,re.M)) in (7,8), (ep,lang,'sections')
+                expected = len(re.findall(r'<h3\b', body_fragment(page.read_text(), 'zh')))
+                assert len(re.findall(r'^## ',body,re.M)) == expected, (ep,lang,'sections')
                 text = '# '+titles[0]+'\n\n'+body+'\n'
                 key = f'{ep}.{lang}'
                 pending[DATA / f'{key}.md'] = text

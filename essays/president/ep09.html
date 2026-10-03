@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep09.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep09.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep09.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep09.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep09.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep09.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep09.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep09.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep09.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep09.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -132,7 +161,7 @@
 
 <p>但战争的转折并不意味着社会压力的减轻。1863年的征兵法把二十到四十五岁的男性纳入联邦的征兵体系，并允许符合条件者以三百美元的通融费，或者雇佣一个代役人来避役。这种安排很快成了阶级和种族怨恨的焦点——它实际上意味着，有钱人可以花钱免于上战场，而穷人不能。</p>
 
-<p>纽约的征兵暴动，则把这种张力暴露成了一场公开的城市内战。暴动发生在1863年7月中旬，最初是对征兵的反弹，但很快演变成了针对黑人的种族暴力。一座有色人种孤儿院被焚毁，最严重的暴力主要落在黑人男性身上，公开的死亡数字是一百一十九人，但更高的估计可达一千两百人。这件事的结构意义不只在于后方不稳——它真正说明的是，这套构并没有因为战争的压力，就去消灭这些冲突，相反，它让这些冲突以一种极端破坏性的形式暴露了出来。它没有把冲突闭合掉，它只是带着这些冲突继续往前走。</p>
+<p>纽约的征兵暴动，则把这种张力暴露成了一场公开的城市内战。暴动发生在1863年7月中旬，最初是对征兵的反弹，但很快演变成了针对黑人的种族暴力。一座有色人种孤儿院被焚毁，最严重的暴力主要落在黑人男性身上，公开的死亡数字是一百一十九人，较早的高端估计曾达一千两百人，但这并非确数。这件事的结构意义不只在于后方不稳——它真正说明的是，这套构并没有因为战争的压力，就去消灭这些冲突，相反，它让这些冲突以一种极端破坏性的形式暴露了出来。它没有把冲突闭合掉，它只是带着这些冲突继续往前走。</p>
 
 <h3>三、葛底斯堡演说——把国家的起点改写</h3>
 
@@ -152,7 +181,7 @@
 
 <p>这里必须严格区分两层：民主党全国大会的党纲宣称要立即停止敌对行动，但被提名的麦克莱伦在接受提名时，强烈支持不惜一切代价保全联邦，实际上拒斥了党纲里的和谈倾向。战局对选情的作用极大。夏天的高伤亡和战事的胶着一度使民主党判断林肯会败，但莫比尔湾、亚特兰大以及彼得斯堡对联邦有利的进展，重新塑造了公众的预期。</p>
 
-<p>联邦的士兵也不是被动的观众。1864年是美国历史上第一次大规模讨论并实践缺席投票和军营投票，在有统计的四万零二百四十七张士兵票里，有三万零五百零三张投给了林肯，占百分之七十五点八。最终林肯获得二百一十二张选举人票，麦克莱伦只有二十一张，全国民众票大约是百分之五十五对百分之四十五。</p>
+<p>联邦的士兵也不是被动的观众。1864年是美国历史上第一次大规模讨论并实践缺席投票和军营投票，在一组并不涵盖全军的统计所列的四万零二百四十七张士兵票里，有三万零五百零三张投给了林肯，占百分之七十五点八。最终林肯获得二百一十二张选举人票，麦克莱伦只有二十一张，全国民众票大约是百分之五十五对百分之四十五。</p>
 
 <p>把这场选举放回框架，它的意义就格外清楚。在内战最深处，在闭合的压力最大的时刻，这套构本来最有理由、也最有借口去闭合——去取消选举、集中权力、把反对的声音当作通敌来压制。但它没有。它顶着战争，把竞争性的选举照常办了下来，让一个主张和谈的反对党公开地参选。那个在战时被放大到极致的闭合冲动，在这里又一次被这套构重新吸收了，没有变成它的组织原则。</p>
 
@@ -162,13 +191,13 @@
 
 <p>上一篇说过，解放宣言只适用于处于叛乱状态的邦联地区，既不适用于边境的蓄奴州，也不适用于部分受联邦控制的南方地区，而且它在法律上首先是一项战争措施，效力与战争绑在一起。林肯清楚地认识到，若要保证废奴不被战后的法理逆转，就必须诉诸宪法的修正。</p>
 
-<p>参议院于1864年4月8日以三十八比六通过了提案，但众议院在同年6月没能达到三分之二的门槛。林肯随后积极介入，要求把这条修正案写进1864年的共和党党纲，并促成了1865年1月在跛脚鸭会期的重新表决。最终，众议院于1865年1月31日以一百一十九比五十六通过了修正案，林肯于2月1日象征性地签署了提交各州的联合决议。</p>
+<p>参议院于1864年4月8日以三十八比六通过了提案，但众议院在同年6月没能达到三分之二的门槛。林肯随后积极介入，要求把这条修正案写进1864年的共和党党纲，并促成了1865年1月在跛脚鸭会期的重新表决。最终，众议院于1865年1月31日以一百一十九比五十六通过了修正案，林肯于2月1日象征性地签署了提交各州的联合决议。国会通过提案还不等于修宪完成：直到他去世后的1865年12月6日，各州批准才达到生效所需的门槛。</p>
 
 <p>关于林肯政治运作的问题，必须把高确定性的事实和低确定性的传闻分开。高确定性的事实是：他确实积极推动了这条修正案，把它列入了竞选纲领，并在1865年初亲自施压、争取票数。低确定性的部分则是具体交换了哪些职位、承诺了哪些好处，史料和后世的叙述并不完全一致。</p>
 
 <p>把这件事放回框架，它的结构含义极重。上一篇说，这套构通过战争措施撕开了它和那个最深余项之间的旧关系，但那只是一种临时的、例外的形式。第十三修正案做的，是把这种撕开钉死，从一种和战争绑在一起的权宜，变成一条不随战争结束而动摇的宪法核心规则。这是这个系列里，第一次出现这套构在余项的压力下，正面改写自己宪法核心的时刻。</p>
 
-<p>但这里同样要保留分寸。第十三修正案处理的，是那个最深余项的一条轴——奴隶制，而它是这套构宪法重写的开端，而不是完成。它废除了奴隶制这种身份本身，但黑人在战后能不能成为完整的公民，能不能投票，能不能在南方的地方秩序里得到保护，这些问题都还远远没有解决。同时，林肯的百分之十计划与激进的共和党人之间的分歧已经浮现出来，重写在向前推进，但围绕它该推进到多深、由谁来主导的分歧，已经在内部裂开。</p>
+<p>但这里同样要保留分寸。第十三修正案处理的，是那个最深余项的一条轴——奴隶制，而它是这套构宪法重写的开端，而不是完成。它废除了奴隶制这种身份本身，却保留了依法定罪后的刑罚例外；而黑人在战后能不能成为完整的公民，能不能投票，能不能在南方的地方秩序里得到保护，这些问题都还远远没有解决。同时，林肯的百分之十计划与激进的共和党人之间的分歧已经浮现出来，重写在向前推进，但围绕它该推进到多深、由谁来主导的分歧，已经在内部裂开。</p>
 
 <h3>六、第二次就职演说——带着审判的和解</h3>
 
@@ -180,17 +209,17 @@
 
 <h3>七、阿波马托克斯、死亡的代价，与一颗子弹</h3>
 
-<p>1865年4月9日，李在阿波马托克斯法院向格兰特投降。格兰特开出的条件相对宽和：军官可以保留佩剑和私人的马匹，士兵经假释后回家，他还同意给饥饿的邦联军发送两万五千份口粮。这一幕宽和的场景，和林肯倾向于宽和的重建，是相互照应的，但必须记住，它终结的是主要的军队，而不是那些关于重建的争议。</p>
+<p>1865年4月9日，李在阿波马托克斯村的麦克莱恩住宅向格兰特投降。格兰特开出的条件相对宽和：军官可以保留佩剑和私人的马匹，士兵经假释后回家，他还同意给饥饿的邦联军发送两万五千份口粮。这一幕宽和的场景，和林肯倾向于宽和的重建，是相互照应的，但必须记住，它终结的是主要的军队，而不是那些关于重建的争议。</p>
 
 <p>内战总的死亡数字，必须采用一种并置的写法，因为它至今仍是一个估计的问题。传统的数字长期约为六十二万，2011年有学者基于人口普查样本的方法把可能的总数上修到约七十五万，2024年又有研究利用更完整的普查记录提出了约六十九万八千的新估计。最稳妥的写法不是给出一个唯一正确的数，而是说：传统常引六十二万，较新的估计约在七十万到七十五万之间，并注明它们都是基于不同方法的估计。无论取哪一个口径，这都是美国历史上代价最惨重的一场战争，而这个代价，正是这套构为它最深的那个余项，最终付出的。</p>
 
-<p>林肯遇刺的时机，几乎决定了它在这一篇里的结构分量。1865年4月14日晚，林肯在福特剧院被布斯用手枪击中头部，他再也没有苏醒，于4月15日清晨在街对面的一所房子里去世。同一天上午，安德鲁·约翰逊就宣誓就任了总统。也就是说，在李的军队投降仅仅五天之后，总统的更替就在一场暗杀里发生了。关于林肯如果不死重建会走向何方，史学界并没有共识，而且这个问题本质上是一种反事实的推测，必须严格地标示出来。一颗子弹，把这个最关键的问题，永远地留在了无法回答的状态里。</p>
+<p>林肯遇刺的时机，几乎决定了它在这一篇里的结构分量。1865年4月14日晚，林肯在福特剧院被布斯用手枪击中头部，他再也没有苏醒，于4月15日清晨在街对面的一所房子里去世。同一天上午，安德鲁·约翰逊就宣誓就任了总统。也就是说，在李的军队投降仅仅六天之后，总统的更替就在一场暗杀里发生了。关于林肯如果不死重建会走向何方，史学界并没有共识，而且这个问题本质上是一种反事实的推测，必须严格地标示出来。一颗子弹，把这个最关键的问题，永远地留在了无法回答的状态里。</p>
 
 <h3>八、结语</h3>
 
 <p>把从1863到1865年这段历史放回这个系列，最值得记住的，是那个贯穿全篇的判断：这套构不靠闭合，重写了自己。</p>
 
-<p>前面八篇反复说过，这套构不可闭合，它最深的余项无法被吸收。而这一篇显示的是，在它最大的生存危机面前，在一个本来最有理由去闭合的时刻，这套构反而做出了相反的选择。它没有取消选举，没有集中权力，没有让那个在战时被放大到极致的闭合冲动取得胜利。1864年那场照常举行的大选，就是这种不闭合最极端的证明——一个预感自己会输的总统，顶着内战，把权力交还给了选民去裁决。与此同时，它又顶着这种不闭合带来的全部代价，征兵的怨恨、城市的暴动、惨重的伤亡，把那个被推迟了几代人的承诺，第一次正面写进了自己的核心。</p>
+<p>前面八篇反复说过，这套构不可闭合，它最深的余项无法被吸收。而这一篇显示的是，在它最大的生存危机面前，在一个本来最有理由去闭合的时刻，这套构反而做出了相反的选择。它没有取消选举，没有把权力永久集中到一个中心，没有让那个在战时被放大到极致的闭合冲动取得胜利。1864年那场照常举行的大选，就是这种不闭合最极端的证明——一个预感自己会输的总统，顶着内战，把权力交还给了选民去裁决。与此同时，它又顶着这种不闭合带来的全部代价，征兵的怨恨、城市的暴动、惨重的伤亡，把那个被推迟了几代人的承诺，第一次正面写进了自己的核心。</p>
 
 <p>用这个系列的语言来精确地说，这套构在这里做的，不是闭合那个余项——闭合是不可能的，因为那个余项的两面性使它无法被吸收。它做的，是在承认无法闭合的前提下，彻底地改写了容纳那个余项的全部条件。在此之前，那个余项被圈在边缘，被当作一种地方制度，被一条条妥协的线勉强按住。而现在，它被从边缘提到了中心，被写进了国家的起点和根本的大法。余项还是那个余项，它并没有消失，但这套构和它之间的关系，被彻底地重排了。</p>
 
@@ -205,7 +234,7 @@
 
 <p>The previous essay ended with a question: once the Emancipation Proclamation had made freedom a war measure, could that freedom survive the peace? The answer required converting an executive order into a constitutional amendment — transforming a temporary exception into a permanent rule. This essay covers that transformation, and the three documents that together constitute the most important self-rewriting this constitutional order has ever performed: the Gettysburg Address, the Thirteenth Amendment, and the 1864 election.</p>
 
-<p>The structural argument of this essay can be stated at the outset. At the moment of its greatest existential pressure — in an active civil war, with enormous casualties, internal unrest, and genuine uncertainty about the outcome — this constitutional order did not close. It did not cancel elections. It did not consolidate power into a single center. It did not convert wartime emergency into permanent emergency rule. Instead, while absorbing all the costs of openness, it moved the long-deferred promise of equality from the constitutional periphery to the constitutional core. The rewriting was not caused by the crisis closing down; it was accomplished precisely because the crisis did not cause the order to close.</p>
+<p>The structural argument of this essay can be stated at the outset. At the moment of its greatest existential pressure — in an active civil war, with enormous casualties, internal unrest, and genuine uncertainty about the outcome — this constitutional order did not close. It did not cancel elections. It did not permanently consolidate power into a single center. It did not convert wartime emergency into permanent emergency rule. Instead, while absorbing all the costs of openness, it moved the long-deferred promise of equality from the constitutional periphery to the constitutional core. The rewriting was not caused by the crisis closing down; it was accomplished precisely because the crisis did not cause the order to close.</p>
 
 <p>This requires an immediate qualification to prevent a triumphalist reading. The rewriting was real but incomplete. Lincoln and the Radical Republicans were already in disagreement over reconstruction terms. Appomattox ended Lee's army, not the political conflict. And Lincoln's assassination on April 14, 1865 — five days after Lee's surrender — meant that the rewriting, having just reached the level of constitutional text, was handed over to a successor who opposed its direction at the level of practical implementation. This was a beginning, not a completion.</p>
 
@@ -215,7 +244,7 @@
 
 <p>The Conscription Act of 1863 created a draft covering men aged 20 to 45 but allowed commutation for $300 or the hiring of a substitute. This proviso — which allowed wealthy men to buy their way out of combat — became a focus of class and racial resentment. The New York draft riots of mid-July 1863 began as protest against the draft and rapidly became racial violence. A Black orphanage was burned. The violence fell most heavily on Black men. Official death figures give 119 killed; other estimates run much higher.</p>
 
-<p>The structural significance of this episode is not merely that the home front was unstable. It is that the constitutional order did not suppress these eruptions with overwhelming force or use them as a pretext to close competitive politics. It bore the violence, managed it with whatever enforcement capacity was available, and continued. An order designed to pursue closure would have found the New York riots a perfect justification for concentrating emergency power. This order treated them as one more cost of its own openness — and kept going.</p>
+<p>The structural significance of this episode is not merely that the home front was unstable. It is that the constitutional order did not use these eruptions as a pretext to close competitive politics. Police and federal troops suppressed the riots by force; what survived was not an absence of coercion but the continuation of competitive politics. An order designed to pursue closure would have found the New York riots a perfect justification for concentrating emergency power. This order treated them as one more cost of its own openness — and kept going.</p>
 
 <h3>III. The Gettysburg Address: Rewriting the Starting Point</h3>
 
@@ -235,21 +264,21 @@
 
 <p>The Democratic platform called for immediate cessation of hostilities. But the nominee, George McClellan, rejected the peace plank, insisting on Union preservation as a condition of any negotiation. The military situation shifted over the summer and fall: the fall of Mobile Bay in August, Atlanta in September, and progress at Petersburg changed the political atmosphere. Lincoln won 212 electoral votes to McClellan's 21, and approximately 55 percent of the popular vote.</p>
 
-<p>Soldier voting matters for this essay's argument. 1864 was the first election in which large-scale absentee and camp voting was organized and practiced. Of the tallied soldier votes, about 75.8 percent went to Lincoln. These were men on active duty, fighting a war the government had sent them to fight, whose votes could have produced a president committed to ending that war on different terms. The constitutional order did not exclude its own soldiers from the electoral verdict on the war being fought in their name. Even the most disciplined participants in organized state violence retained their political standing as voters. That is a particular kind of non-closure commitment — one that refused to convert emergency service into the surrender of political agency.</p>
+<p>Soldier voting matters for this essay's argument. 1864 was the first election in which large-scale absentee and camp voting was organized and practiced. In one partial tally, not a count of all soldiers' votes, about 75.8 percent went to Lincoln. These were men on active duty, fighting a war the government had sent them to fight, whose votes could have produced a president committed to ending that war on different terms. The constitutional order did not exclude its own soldiers from the electoral verdict on the war being fought in their name. Even the most disciplined participants in organized state violence retained their political standing as voters. That is a particular kind of non-closure commitment — one that refused to convert emergency service into the surrender of political agency.</p>
 
 <h3>V. The Thirteenth Amendment: From War Measure to Constitutional Core</h3>
 
 <p>The Thirteenth Amendment completed a transformation the Emancipation Proclamation could not. The Proclamation was a war measure — valid under the Commander-in-Chief's emergency authority, operative only in Confederate territory, and legally tied to the existence of the rebellion. When the rebellion ended, what would happen to the freedoms it had produced? Lincoln recognized that the only secure answer was a constitutional amendment: making freedom permanent by writing it into the fundamental law rather than deriving it from emergency power.</p>
 
-<p>The Senate passed the amendment 38 to 6 in April 1864. The House fell short of the two-thirds threshold in June. Lincoln pushed for inclusion in the Republican platform, lobbied actively during the lame-duck session, and the House passed the amendment 119 to 56 on January 31, 1865. The legislative effort involved genuine political pressure from Lincoln, though the specific mechanics — which votes were secured by what promises — are less documented in reliable primary sources than in subsequent dramatizations. What is well-established is that Lincoln regarded passage as essential and committed presidential resources to it.</p>
+<p>The Senate passed the amendment 38 to 6 in April 1864. The House fell short of the two-thirds threshold in June. Lincoln pushed for inclusion in the Republican platform, lobbied actively during the lame-duck session, and the House passed the amendment 119 to 56 on January 31, 1865. Congressional approval still had to be followed by state ratification: the required threshold was reached on December 6, 1865, after Lincoln's death. The legislative effort involved genuine political pressure from Lincoln, though the specific mechanics — which votes were secured by what promises — are less documented in reliable primary sources than in subsequent dramatizations. What is well-established is that Lincoln regarded passage as essential and committed presidential resources to it.</p>
 
 <p>The Thirteenth Amendment's structural significance for this series is this: it was the first time the constitutional order, under the pressure of its deepest residue, had amended the fundamental law itself rather than managing the residue within the existing constitutional frame. Every prior attempt — geographic lines, compromises, popular sovereignty, judicial rulings — had worked within the existing constitutional structure. The Thirteenth Amendment rewrote the structure. It converted a war measure into a constitutional constant, making the status of freedom independent of the war that had produced it.</p>
 
-<p>The qualification must be stated clearly. The amendment abolished the institution of slavery but left open the questions that would define Reconstruction: What legal standing would freed people have? Could they vote? What protections would the federal government provide against violence and economic coercion? These questions required a Fourteenth Amendment, a Fifteenth Amendment, and enforcement legislation that had not yet been written. The rewriting had begun; it was far from complete. And Lincoln's own reconstruction plan was already in tension with the Radical Republican majority that would be needed to answer these further questions.</p>
+<p>The qualification must be stated clearly. The amendment abolished slavery while retaining an exception for punishment after criminal conviction, and left open the questions that would define Reconstruction: What legal standing would freed people have? Could they vote? What protections would the federal government provide against violence and economic coercion? These questions required a Fourteenth Amendment, a Fifteenth Amendment, and enforcement legislation that had not yet been written. The rewriting had begun; it was far from complete. And Lincoln's own reconstruction plan was already in tension with congressional Republicans that would be needed to answer these further questions.</p>
 
 <h3>VI. The Second Inaugural: Acknowledgment of Cause</h3>
 
-<p>Lincoln's Second Inaugural is the third document in this essay's trio, and in some ways the most remarkable. Delivered on March 4, 1865, with Confederate defeat visible but not yet complete, the speech does not celebrate impending victory. Instead, it names the cause of the war.</p>
+<p>Lincoln's Second Inaugural is another key document in this essay, and in some ways the most remarkable. Delivered on March 4, 1865, with Confederate defeat visible but not yet complete, the speech does not celebrate impending victory. Instead, it names the cause of the war.</p>
 
 <p>The address describes slavery as "this powerful interest" that caused the war. It does not soften this into a clash of sections or a tragedy of misunderstanding. It says that if God wills that the war continue "until all the wealth piled by the bond-man's two hundred and fifty years of unrequited toil shall be sunk, and until every drop of blood drawn with the lash shall be paid by another drawn with the sword, as was said three thousand years ago, so still it must be said 'the judgments of the Lord are true and righteous altogether.'" Only after this accounting — this explicit naming of the debt — comes the famous close: "With malice toward none, with charity for all... to bind up the nation's wounds."</p>
 
@@ -257,9 +286,9 @@
 
 <h3>VII. Appomattox, the Death Toll, and a Bullet</h3>
 
-<p>Lee's surrender on April 9, 1865 ended the primary Confederate military force; it did not end every Confederate army or resolve the political questions of Reconstruction. Grant's terms were notably generous: officers kept their sidearms and horses, soldiers were paroled rather than imprisoned, and 25,000 rations were distributed to the hungry Confederate forces. Lincoln's preference for lenient reconstruction was consistent with this scene.</p>
+<p>Lee's surrender at the McLean house in the village of Appomattox Court House on April 9, 1865 ended the primary Confederate military force; it did not end every Confederate army or resolve the political questions of Reconstruction. Grant's terms were notably generous: officers kept their sidearms and horses, soldiers were paroled rather than imprisoned, and 25,000 rations were distributed to the hungry Confederate forces. Lincoln's preference for lenient reconstruction was consistent with this scene.</p>
 
-<p>The war's total death toll remains a subject of scholarly revision. The traditional figure of approximately 620,000 combat deaths has been revised upward by demographic analysis: a 2011 study using census sampling methods suggested a figure closer to 750,000; a 2024 study using more complete census records proposed approximately 698,000. None of these figures should be treated as exact; all are estimates. What can be stated without qualification is that this was the deadliest war in American history, that the deaths fell on both sides of a conflict whose underlying cause was the constitutional order's failure to manage its deepest residue, and that the cost was the direct consequence of the deferral — what the Second Inaugural called two hundred and fifty years of unrequited toil now paid in blood.</p>
+<p>The war's total death toll remains a subject of scholarly revision. The traditional figure of approximately 620,000 military deaths has been revised upward by demographic analysis: a 2011 study using census sampling methods suggested a figure closer to 750,000; a 2024 study using more complete census records proposed approximately 698,000. None of these figures should be treated as exact; all are estimates. What can be stated without qualification is that this was the deadliest war in American history, that the deaths fell on both sides of a conflict whose underlying cause was the constitutional order's failure to manage its deepest residue, and that the cost was the direct consequence of the deferral — what the Second Inaugural called two hundred and fifty years of unrequited toil now paid in blood.</p>
 
 <p>Lincoln was shot on the evening of April 14, 1865 — five days after Lee's surrender — and died the following morning. Andrew Johnson was sworn in the same day. The constitutional order's self-rewriting, having just reached the level of fundamental law, immediately passed to a successor whose commitments ran against the direction of the rewriting. What Lincoln would have done with Reconstruction is genuinely unknowable — the historical debate is real, and the counterfactual must be marked as such. One bullet made the most consequential question in the order's post-war history permanently unanswerable.</p>
 
@@ -297,5 +326,6 @@
       </nav>
     </article>
   </main>
+<script defer src="zh-hant-data/ep09.js"></script>
 </body>
 </html>

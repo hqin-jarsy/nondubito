@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep06.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep06.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep06.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep06.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep06.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep06.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep06.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep06.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep06.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep06.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -158,7 +187,7 @@
 
 <p>从华盛顿靠先例，到杰斐逊靠既成事实的引力，到波尔克用一场边境冲突去启动战争，总统在对外和战争事务上的主动权，一直在被一点点推大。波尔克这一次走得尤其远，几乎是用军队的部署亲手制造了开战的条件。林肯的斑点决议之所以重要，正在于它点破了这套手法。这个关于行政战争权的余项，当时没有被解决，往后也不会被解决，它会在更晚的战争里一再重现。</p>
 
-<p>战争的结果是1848年的瓜达卢佩伊达尔戈条约：墨西哥割让了约五十二万五千平方英里的土地，约相当于它战前领土的百分之五十五，这片割地包括了今天的加州、内华达、犹他、新墨西哥、亚利桑那和科罗拉多的大部分。而这片领土，立刻就把奴隶制的问题推回了全国政治的正中心。</p>
+<p>战争的结果是1848年的瓜达卢佩伊达尔戈条约：墨西哥割让了约五十二万五千平方英里的土地；连同放弃对德克萨斯的领土要求计算，它失去了原先所声索疆域的约百分之五十五。这片割地覆盖了今天加州、内华达、犹他、新墨西哥、亚利桑那和科罗拉多等州的全部或部分地区。而这片领土，立刻就把奴隶制的问题推回了全国政治的正中心。</p>
 
 <h3>六、威尔莫特但书——旧政党体系装不下了</h3>
 
@@ -172,7 +201,7 @@
 
 <p>加州随即把领土问题逼成了眼前的危机。1848年1月加州发现黄金，移民的涌入迅速把它推向建州。加州人寻求以一部自由州的宪法加入联邦，这威胁到了自密苏里以来一直维持着的自由州与蓄奴州在参议院里的平衡。</p>
 
-<p>1850年妥协并不是一部法律，而是五部法令。加州作为自由州加入，犹他和新墨西哥获得了领地政府，德克萨斯的边界被划定，华盛顿特区废除了奴隶贸易，国会还通过了一部更严厉的逃奴法。克莱发起了结算的努力，但在参议院否决了一揽子打包方案之后，斯蒂芬·道格拉斯把它拆开，分别推动各项法案通过。泰勒生前反对这个方案，而菲尔莫尔上任后转为支持，并签署了这些法令。</p>
+<p>1850年妥协并不是一部法律，而是五部法令。加州作为自由州加入，犹他和新墨西哥获得了领地政府，德克萨斯的边界被划定，华盛顿特区废除了奴隶贸易，国会还通过了一部更严厉的逃奴法。克莱发起了结算的努力，但在参议院否决了一揽子打包方案之后，斯蒂芬·道格拉斯把它拆开，分别推动各项法案通过。扎卡里·泰勒生前反对这个方案，而菲尔莫尔上任后转为支持，并签署了这些法令。</p>
 
 <p>这里有一个值得明说的现代修正。新墨西哥和犹他那部分结算的文本，是刻意含糊的——它们在组建这些领地时，并没有写进任何明确的联邦层面对奴隶制的限制，而是把问题往后推，让奴隶制的未来去取决于以后的领土政治和州政治。这场妥协的典型方法是靠含糊来拖延，而不是靠原则来结算。</p>
 
@@ -182,9 +211,9 @@
 
 <p>这场妥协里最具爆炸性的部分，是1850年的逃奴法。它要求执法人员仅凭索取者一方宣誓的证词就去逮捕被指认的逃亡者，它付给专员的报酬是裁定支持索取者给十美元、认定证据不足只给五美元，它还对任何阻挠抓捕或窝藏逃亡者的人处以最高一千美元的罚款和最长六个月的监禁。这部法律还剥夺了被指认者获得陪审团审判的权利，并禁止他们为自己作证。</p>
 
-<p>正是这部法律，构成了这一篇真正的结构转折点。它把奴隶制的强制机器全国化了。在此之前，许多北方人可以把奴隶制想象成一件发生在南方的、与自己有距离的事，而这部法律把奴隶制变成了在他们自己社区里由联邦力量强制执行的事。这套构容纳奴隶制这个余项的老办法，核心就是把它地理化，而逃奴法做的，恰恰是摧毁了这个空间隔离的办法。那个最深的余项，第一次溢出了它被圈定的地理范围，开始在全国被强制执行。</p>
+<p>正是这部法律，构成了这一篇真正的结构转折点。它大幅强化了奴隶制的全国性强制机器。宪法的逃奴条款和1793年逃奴法早已提供跨州追索的依据，1850年的变化不是从无到有，而是联邦执行力度的升级。在此之前，许多北方人可以把奴隶制想象成一件发生在南方的、与自己有距离的事，而这部法律把奴隶制变成了在他们自己社区里由联邦力量强制执行的事。这套构容纳奴隶制这个余项的老办法，核心就是把它地理化，而逃奴法做的，恰恰是摧毁了这个空间隔离的办法。那个最深的余项，以更强的联邦执行力量冲破了许多北方人想象中的地理隔离。</p>
 
-<p>逃奴法还逼着每一个北方的普通人对那个余项做出个人的选择。在空间隔离的旧办法下，一个北方人可以什么都不做，保持道德上的距离。而逃奴法取消了这种距离——你要么配合，要么旁观，要么反抗，无论哪一种，你都已经被卷了进去。那个最深的余项，一旦溢出了它被圈定的地理范围，就不再是一个可以远远旁观的抽象问题，而变成了一件逼到每个人面前、要求每个人表态的具体的事。</p>
+<p>逃奴法还逼着每一个北方的普通人对那个余项做出个人的选择。在那种把奴隶制想象成远方之事的习惯里，许多北方人觉得自己可以什么都不做，保持道德上的距离。而逃奴法取消了这种距离——你要么配合，要么旁观，要么反抗，无论哪一种，你都已经被卷了进去。那个最深的余项，一旦溢出了它被圈定的地理范围，就不再是一个可以远远旁观的抽象问题，而变成了一件逼到每个人面前、要求每个人表态的具体的事。</p>
 
 <p>哈丽叶特·比彻·斯托的小说，1851到1852年先以连载的形式出现，1852年出版成书，在第一年就卖出了约三十万册。没有争议的是它的规模和反应——这部小说成了一桩大众层面的反奴隶制轰动，加剧了公众的讨论，也加深了地域的两极分化。而它的写作，正与逃奴法直接相关，它把那部法律所制造的道德冲击，变成了千百万人共同的阅读体验。</p>
 
@@ -227,7 +256,7 @@
 
 <p>Texas annexation had been blocked by Van Buren out of fear of both Mexican retaliation and renewed slavery controversy. Tyler reopened negotiations in 1844, failed to win two-thirds of the Senate, and resorted to a joint resolution requiring only simple majorities from both chambers. Texas entered the Union as a slave state in December 1845. Mexico broke off diplomatic relations and the boundary remained disputed.</p>
 
-<p>It was in this moment that "Manifest Destiny" entered circulation. Editor John O'Sullivan wrote in 1845 of America's "manifest destiny to overspread the continent." The phrase fused providential language, demographic confidence, anti-European assertion, and a theory of political entitlement rooted in settlement and migration. It also casually erased Mexican sovereignty and Indigenous political communities. Newer borderlands history has particularly emphasized what the nation-to-nation narrative between Washington and Mexico City obscures: the Comanche, Apache, and Navaho empires that controlled vast stretches of northern Mexico and shaped the conditions of conquest.</p>
+<p>It was in this moment that "Manifest Destiny" entered circulation. Editor John O'Sullivan wrote in 1845 of America's "manifest destiny to overspread the continent." The phrase fused providential language, demographic confidence, anti-European assertion, and a theory of political entitlement rooted in settlement and migration. It also casually erased Mexican sovereignty and Indigenous political communities. Newer borderlands history has particularly emphasized what the nation-to-nation narrative between Washington and Mexico City obscures: the powerful Comanche, Apache, and Navajo polities that controlled vast stretches of northern Mexico and shaped the conditions of conquest.</p>
 
 <p>Polk won the 1844 election partly on the promise of both Texas and Oregon. He ultimately accepted the 49th parallel for Oregon while deploying much harder pressure against Mexico. Expansion's gravity was again visible: the same movement that extended the domain of free settlement also required the conquest and dispossession of those already living on the land. And every expansion reactivated the slavery question.</p>
 
@@ -237,7 +266,7 @@
 
 <p>This episode fits a pattern running through the series: the executive's unilateral power over war and foreign affairs had been expanding since Washington issued the Neutrality Proclamation without congressional authorization. Polk took this the furthest yet, essentially engineering the conditions for war. Lincoln's resolutions named the technique. The question they raised — how far can executive action go in creating irreversible facts before Congress can weigh in — was not resolved then and would recur in every subsequent war.</p>
 
-<p>The Treaty of Guadalupe Hidalgo in February 1848 transferred roughly 525,000 square miles — more than half of Mexico's prewar territory — to the United States. The new lands immediately forced the slavery question back to the national center.</p>
+<p>The Treaty of Guadalupe Hidalgo in February 1848 transferred roughly 525,000 square miles to the United States. Together with Mexico's relinquishment of its claims to Texas, the loss amounted to about 55 percent of its previously claimed territory. The new lands immediately forced the slavery question back to the national center.</p>
 
 <h3>VI. The Wilmot Proviso: The Party System Breaks</h3>
 
@@ -249,25 +278,25 @@
 
 <h3>VII. The Compromise of 1850: Deliberate Ambiguity</h3>
 
-<p>California's gold rush brought the territorial crisis to an immediate head. By 1849 California was moving toward statehood, and its prospective free-state constitution threatened the Senate balance that had held since Missouri. Taylor's approach — push California and New Mexico directly toward statehood, bypassing the territorial stage where Congress would have to rule on slavery — was derailed by his death in July 1850. Fillmore's succession changed the political arithmetic, and Clay's omnibus package, broken into separate bills by Stephen Douglas, passed in a series of votes.</p>
+<p>California's gold rush brought the territorial crisis to an immediate head. By 1849 California was moving toward statehood, and its prospective free-state constitution threatened the Senate balance that had held since Missouri. Zachary Taylor's approach — push California and New Mexico directly toward statehood, bypassing the territorial stage where Congress would have to rule on slavery — was derailed by his death in July 1850. Fillmore's succession changed the political arithmetic, and Clay's omnibus package, broken into separate bills by Stephen Douglas, passed in a series of votes.</p>
 
-<p>The five measures admitted California as a free state, organized Utah and New Mexico as territories, settled the Texas boundary, abolished the slave trade in Washington, D.C., and enacted a new Fugitive Slave Law. The territorial legislation for Utah and New Mexico is the key to understanding the Compromise's method: it said nothing explicit about slavery. The question was deliberately left to future local politics. This was not resolution by principle but deferral by ambiguity — the same basic technique as the Missouri Compromise, now in a different form.</p>
+<p>The five measures admitted California as a free state, organized Utah and New Mexico as territories, settled the Texas boundary, abolished the slave trade in Washington, D.C., and enacted a new Fugitive Slave Law. The territorial legislation for Utah and New Mexico is the key to understanding the Compromise's method: it imposed no explicit federal restriction on slavery. The question was deliberately left to future local politics. This was not resolution by principle but deferral by ambiguity — the same basic technique as the Missouri Compromise, now in a different form.</p>
 
 <p>Missouri had tried an explicit geographic line; 1850 tried deliberate vagueness. Both methods failed for the same underlying reason: neither addressed the core two-sidedness of the residue. A constitutional order cannot permanently manage something it can neither endorse nor repudiate. Every such arrangement merely postponed the reckoning while raising the stakes.</p>
 
 <h3>VIII. The Fugitive Slave Law: Nationalizing the Enforcement Machine</h3>
 
-<p>The most explosive element of the Compromise was the new Fugitive Slave Law. It required federal commissioners to issue arrest warrants on the sworn testimony of the claimant alone, paid those commissioners ten dollars for rulings in favor of claimants and five dollars for rulings against — effectively incentivizing capture — fined anyone who harbored or impeded an escaped person up to a thousand dollars, and denied the accused any right to testify in their own defense or receive a jury trial.</p>
+<p>The most explosive element of the Compromise was the new Fugitive Slave Law. It required federal commissioners to issue arrest warrants on the sworn testimony of the claimant alone, paid those commissioners ten dollars for rulings in favor of claimants and five dollars for rulings against — effectively incentivizing capture — fined anyone who harbored an escaped person or obstructed their arrest up to a thousand dollars, and denied the accused any right to testify in their own defense or receive a jury trial.</p>
 
-<p>This law marks the true structural turning point of this essay. It nationalized the enforcement apparatus of slavery. Before 1850, many northerners could maintain a kind of moral distance from slavery as something that happened elsewhere, in the South, in a different legal world. The Fugitive Slave Law demolished that distance. Federal power now reached into northern communities to compel participation: you could be required to assist in a capture, fined for refusing, prosecuted for harboring. The deepest residue had escaped its geographic container and was being enforced everywhere.</p>
+<p>This law marks the true structural turning point of this essay. It greatly strengthened slavery's nationwide enforcement apparatus. The Constitution's fugitive-slave clause and the 1793 law had already provided for interstate rendition; what changed in 1850 was the reach and force of federal enforcement. Before 1850, many northerners could maintain a kind of moral distance from slavery as something that happened elsewhere, in the South, in a different legal world. The Fugitive Slave Law demolished that distance. Federal power now reached into northern communities to compel participation: you could be required to assist in a capture, penalized for obstructing enforcement, prosecuted for harboring. The deepest residue had escaped its geographic container and was being enforced everywhere.</p>
 
-<p>There was a further dimension. The law eliminated the possibility of non-involvement. Under the old spatial segregation, a northerner could simply do nothing and maintain a kind of neutral distance from the issue. The Fugitive Slave Law made doing nothing a choice — compliance, passive witnessing, or resistance were all positions that now had consequences. The residue, once it overflowed its geographic bounds, was no longer an abstract problem that could be observed from a distance. It demanded a response from everyone it touched.</p>
+<p>There was a further dimension. The law eliminated the possibility of non-involvement. While many northerners could imagine slavery as a distant southern institution, they could also imagine doing nothing as a form of neutrality. The Fugitive Slave Law made doing nothing a choice — compliance, passive witnessing, or resistance were all positions that now had consequences. The residue, once it overflowed its geographic bounds, was no longer an abstract problem that could be observed from a distance. It demanded a response from everyone it touched.</p>
 
 <p>Harriet Beecher Stowe's novel, published serially in 1851–52 and in book form in 1852, sold roughly 300,000 copies in its first year in the United States alone. It converted the moral shock produced by the Fugitive Slave Law into a mass reading experience, deepening polarization while dramatizing what the law had made visible: that the enforcement of slavery was no longer a distant southern institution but a northern social fact.</p>
 
 <h3>IX. Conclusion</h3>
 
-<p>The sixteen years from Van Buren to Fillmore are best understood as the period in which slavery escaped every procedural container the constitutional order had devised to hold it. Territorial expansion — each acquisition from Texas to the Mexican Cession — reactivated the question each time. The party system began to fracture along sectional lines, revealing that the cross-cutting coalitions which had been the primary containment device were no longer reliable. And the Fugitive Slave Law destroyed the spatial strategy entirely, extending slavery's enforcement apparatus into northern communities and eliminating the moral distance that strategy had depended on.</p>
+<p>The sixteen years from Van Buren to Fillmore are best understood as the period in which slavery escaped every procedural container the constitutional order had devised to hold it. Territorial expansion — each acquisition from Texas to the Mexican Cession — reactivated the question each time. The party system began to fracture along sectional lines, revealing that the cross-cutting coalitions which had been the primary containment device were no longer reliable. And the Fugitive Slave Law shattered the imagined distance on which the spatial strategy depended, extending slavery's enforcement apparatus into northern communities and eliminating the moral distance that strategy had depended on.</p>
 
 <p>The compromises of this period — Missouri's line and the 1850 package — are best understood as failed closures of an irresolvable residue. Both temporarily lowered the temperature, buying time at the cost of raising the eventual stakes. Neither could address the underlying two-sidedness: a residue that can be neither fully affirmed nor fully denied cannot be managed permanently by any procedural arrangement, however clever.</p>
 
@@ -297,5 +326,6 @@
       </nav>
     </article>
   </main>
+<script defer src="zh-hant-data/ep06.js"></script>
 </body>
 </html>

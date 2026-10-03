@@ -29,7 +29,9 @@
   </style>
   <script>
     (function() {
-      var saved = localStorage.getItem('nd_lang') || 'zh';
+      var saved = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nd_lang') || 'zh';
+      if (!['zh','zh-hant','en'].includes(saved)) saved = 'zh';
+      localStorage.setItem('nd_lang', saved);
       document.documentElement.setAttribute('data-lang', saved);
       document.addEventListener('DOMContentLoaded', function() {
         var btns = document.querySelectorAll('.lang-btn');
@@ -61,6 +63,31 @@
   .lang-toggle.president-editions .edition-link:hover{color:var(--gold)}
   .president-language-note{font-size:.84rem;line-height:1.7;color:var(--ink-muted);margin:1rem 0 0}
 </style>
+<style id="president-full-style">
+.essay-main{box-sizing:border-box;width:100%;min-width:0;max-width:820px;margin:0 auto;padding:96px 28px 70px;overflow-wrap:anywhere}
+.essay-main .essay-body{max-width:none;margin:0;padding:0}
+.essay-main .essay-header{position:static;display:block;height:auto;background:none;border:0;padding:0;margin:0 0 2rem;backdrop-filter:none;text-align:left;color:var(--ink)}
+.essay-main .essay-header h1{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.4;color:var(--ink);overflow-wrap:anywhere;text-wrap:balance}
+.essay-main .essay-meta{color:var(--ink-muted)}
+.essay-main .lang-toggle{margin-bottom:1.5rem}
+.essay-main .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;max-width:100%;margin:0 0 1.5rem;background:transparent}
+.essay-main .lang-select{color:var(--ink-light);background:white;border-color:var(--cream-border)}
+.essay-main .lang-select-chevron{color:var(--ink-muted)}
+.essay-main .lang-btn{color:var(--ink-muted)}
+.essay-main .lang-btn.active{color:var(--green);background:var(--cream-dark)}
+.essay-main .essay-titles{max-width:none;margin:0}
+.president-full h2{line-height:1.55;scroll-margin-top:100px}
+.president-full p{overflow-wrap:break-word}
+html[lang="ko"] .president-full p{word-break:keep-all;overflow-wrap:break-word}
+.president-toc{margin:1.5rem 0 2rem;padding:1rem 1.25rem;border:1px solid var(--cream-border)}
+.president-toc summary{cursor:pointer;font-family:var(--sans);color:var(--ink-muted)}
+.president-toc ul{padding-left:1.3rem}.president-toc li{margin:.5rem 0;line-height:1.6}
+.president-toc a{color:var(--ink-light)}
+.entry-title,.entry-desc,.series-nav a{overflow-wrap:anywhere}
+[data-lang="zh-hant"] .lang-en{display:none}
+@media(max-width:600px){.essay-main{padding:88px 22px 50px}}
+</style>
+<script defer src="../../language-select.js"></script>
 </head>
 <body>
   <header>
@@ -84,22 +111,24 @@
     <article>
       <header class="essay-header">
         <div class="lang-toggle president-editions">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="en">English</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang="zh">简体中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ja/ep07.html">日本語</a>
+<button class="lang-btn" data-lang="zh-hant">繁體中文</button>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="fr/ep07.html">Français</a>
+<a class="lang-btn edition-link" href="ja/ep07.html">日本語</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="de/ep07.html">Deutsch</a>
+<a class="lang-btn edition-link" href="fr/ep07.html">Français</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="es/ep07.html">Español</a>
+<a class="lang-btn edition-link" href="de/ep07.html">Deutsch</a>
 <span class="lang-sep">|</span>
-<a class="edition-link" href="ko/ep07.html">한국어</a>
+<a class="lang-btn edition-link" href="es/ep07.html">Español</a>
+<span class="lang-sep">|</span>
+<a class="lang-btn edition-link" href="ko/ep07.html">한국어</a>
 </div>
-        <a href="index.html" class="back-link lang-zh">← 凿构周期律·美国总统系列</a>
-        <a href="index.html" class="back-link lang-en">← Chisel-Construct Cycle: US Presidents</a>
+        <a href="index.html" class="back-link lang-zh" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← 凿构周期律·美国总统系列</a>
+        <a href="index.html" class="back-link lang-en" data-president-fallback="true" onclick="if(document.documentElement.dataset.lang==='zh-hant')localStorage.setItem('nd_lang','zh')">← Chisel-Construct Cycle: US Presidents</a>
         <div class="essay-titles">
           <div class="essay-series lang-zh">凿构周期律 · 美国总统系列</div>
           <div class="essay-series lang-en">Chisel-Construct Cycle · US Presidents</div>
@@ -152,17 +181,17 @@
 
 <h3>五、德雷德·斯科特——从上方强行闭合</h3>
 
-<p>没有哪一件事比1857年3月6日的德雷德·斯科特诉桑福德案，更契合这一篇的核心主题。最高法院在一个判决里试图一举确定奴隶制在领土上的宪法地位，结果却扩大了冲突。坦尼为代表的多数意见认为：非洲后裔的黑人不被包括在宪法所说的"公民"之内，因此不能主张联邦的公民权利；国会没有权力在联邦的领土上禁止奴隶制，因而密苏里妥协里那条领土限制是无效的；对奴隶的财产权在宪法里被"清楚而明确地肯定了"。</p>
+<p>没有哪一件事比1857年3月6日的德雷德·斯科特诉桑福德案，更契合这一篇的核心主题。最高法院在一个判决里试图一举确定奴隶制在领土上的宪法地位，结果却扩大了冲突。坦尼为代表的多数意见认为：被运到美国为奴的非洲人及其后裔，无论是否已获自由，都不被包括在宪法所说的"公民"之内，因此不能主张联邦的公民权利；国会没有权力在联邦的领土上禁止奴隶制，因而密苏里妥协里那条领土限制是无效的；对奴隶的财产权在宪法里被"清楚而明确地肯定了"。</p>
 
-<p>关于公民身份，坦尼写道，黑人不被包括，也从来无意被包括在宪法的"公民"一词之内。这把这个系列那条最深的线逼到了最刺眼的地方。这套构最深的余项，从一开始就是它写在奠基文献里的那句"人人平等"，与它实际上把黑人、女性、原住民排除在外之间的落差。而德雷德·斯科特做的，是把这个排除直接写进了宪法的解释——明确宣告非洲后裔的黑人根本不在宪法所说的"人民"和"公民"之内，从来也无意被包括进去。</p>
+<p>关于公民身份，坦尼针对这一群体写道，他们不被包括，也从来无意被包括在宪法的"公民"一词之内。这把这个系列那条最深的线逼到了最刺眼的地方。这套构最深的余项，从一开始就是它写在奠基文献里的那句"人人平等"，与它实际上把黑人、女性、原住民排除在外之间的落差。而德雷德·斯科特做的，是把这个排除直接写进了宪法的解释——明确宣告被运来为奴的非洲人及其后裔根本不在宪法所说的"人民"和"公民"之内，从来也无意被包括进去。</p>
 
-<p>说到公民身份的排除，这里必须补上一个最容易被漏掉的方面。在这场关于谁算公民的全部争吵里，有一个前提是双方都默认的：政治共同体是男性的。德雷德·斯科特在种族这条轴上把排除推到了最刺眼的地步，引爆了全国，而在性别这条轴上，排除却彻底到根本不需要一个判决去确认。但这两种排除，是同一个余项的两面。早在1848年，塞尼卡福尔斯的妇女权利大会就已经把这一点点破：它的宣言直接改写独立宣言，宣告人人生而平等，无论男女。</p>
+<p>说到公民身份的排除，这里必须补上一个最容易被漏掉的方面。在这场关于谁算公民的全部争吵里，有一个前提是双方都默认的：拥有完整选举权的政治共同体，被当作男性的共同体；这不等于说女性一概没有公民身份。德雷德·斯科特在种族这条轴上把排除推到了最刺眼的地步，引爆了全国，而在性别这条轴上，排除却彻底到根本不需要一个判决去确认。但这两种排除，是同一个余项的两面。早在1848年，塞尼卡福尔斯的妇女权利大会就已经把这一点点破：它的宣言直接改写独立宣言，宣告人人生而平等，无论男女。</p>
 
 <p>布坎南在这件事上的行为是关键。在1857年3月4日的就职演说里——也就是判决公布的前两天——他表示领土上的奴隶制问题正待最高法院裁决，并很快就会得到"迅速而最终的解决"。他在判决甚至还没有宣布之前，就公开预告了司法的终局。现代研究指出，布坎南在判决之前曾与大法官有过接触，部分是为了促成一个范围更广的裁决。</p>
 
 <p>这件事更深的反讽在于，坦尼和布坎南双方的本意都是要给这个问题去政治化。布坎南希望最高法院把它了结，坦尼也试图把奴隶制从民主政治那个乱糟糟的竞技场里移出来。结果却是这个判决让妥协变得更难了。共和党人拒绝接受它是一个合法的最终结算，而1857年之后林肯的崛起，离开了对德雷德·斯科特案的政治反弹，就根本无法理解。</p>
 
-<p>这也是司法那条线上的一个决定性时刻。第三篇里，马伯里案确立了司法审查，把总统也关进了法律的笼子。第五篇里，伍斯特案显示，当行政拒不执行时，司法的胜诉保护不了最弱势的人。而到了德雷德·斯科特，事情走到了第三步：最高法院主动地想用自己的权威，对那个最深的余项盖棺定论。结果，它非但没能闭合那个余项，反而把自己作为仲裁者的权威一并烧毁了。一旦它选了边，在另一边眼里就不再是仲裁者，而是对手。</p>
+<p>这也是司法那条线上的一个决定性时刻。第三篇里，马伯里案确立了司法审查，也阐明行政官员履行法定义务时受法律约束，尽管法院并未发出交付委任状的命令。第五篇里，伍斯特案显示，当杰克逊政府起初不肯迫使佐治亚州遵守判决时，司法的胜诉仍保护不了最弱势的人。而到了德雷德·斯科特，事情走到了第三步：最高法院主动地想用自己的权威，对那个最深的余项盖棺定论。结果，它非但没能闭合那个余项，反而把自己作为仲裁者的权威一并烧毁了。一旦它选了边，在另一边眼里就不再是仲裁者，而是对手。</p>
 
 <h3>六、林肯、道格拉斯、布朗——宪法空间的收窄</h3>
 
@@ -170,7 +199,7 @@
 
 <p>约翰·布朗1859年对哈珀斯渡口的袭击，把危机从政治语言推向了对暴动的恐惧。布朗和二十一名追随者夺取了联邦军械库，希望点燃一场更广泛的奴隶起义，袭击在约三十六小时内崩溃，布朗被俘、受审并被处决。反应是尖锐地按地域分裂的：许多南方白人把布朗看成他们最可怕的噩梦的印证，而许多北方的废奴主义者则越来越把他当成一个殉道者。</p>
 
-<p>这个分歧至关重要，因为它显示的，已经不只是政策上的分歧，而是对政治暴力本身的道德解读上的不相容。当人们连一个人究竟是殉道者还是恐怖分子都无法共享判断时，那套用来分歧的共同框架就瓦解了。分歧不再是关于规则的分歧，而变成了两个互不相容的道德世界之间的对峙。制度性的分歧，到这里变成了文明性的分歧。</p>
+<p>这个分歧至关重要，因为它显示的，已经不只是政策上的分歧，而是对政治暴力本身的道德解读上的不相容。当人们连一个人究竟是殉道者还是恐怖分子都无法共享判断时，那套用来容纳分歧的共同框架就瓦解了。分歧不再是关于规则的分歧，而变成了两个互不相容的道德世界之间的对峙。制度性的分歧，到这里变成了文明性的分歧。</p>
 
 <h3>七、1860年大选——全国政党框架的瓦解</h3>
 
@@ -180,11 +209,11 @@
 
 <h3>八、布坎南的脱离之冬——宪法的死胡同</h3>
 
-<p>林肯当选之后，南卡罗来纳在1860年12月20日宣布脱离，成为第一个离开联邦的州。四天之后它发布的宣言对奴隶制毫不含糊：宣言谴责不蓄奴各州对奴隶制日益增长的敌意，指责北方违反了诸如遣返逃奴这样的宪法义务，并把林肯的当选和一项即将到来的敌视南方的政策联系起来。南卡罗来纳的领导人，亲口向全世界宣告，奴隶制是他们脱离的核心。到1861年2月，临时的邦联宪法已经被七个州的代表通过了。</p>
+<p>林肯当选之后，南卡罗来纳在1860年12月20日宣布脱离，成为第一个离开联邦的州。四天之后它发布的宣言对奴隶制毫不含糊：宣言谴责不蓄奴各州对奴隶制日益增长的敌意，指责北方违反了诸如遣返逃奴这样的宪法义务，并把林肯的当选和一项即将到来的敌视南方的政策联系起来。南卡罗来纳的领导人，亲口向全世界宣告，奴隶制是他们脱离的核心。到1861年2月，临时的邦联宪法已经被六个州的代表通过了。</p>
 
 <p>布坎南在脱离危机中的立场，体现了一个范畴已经与事件不再匹配的宪法秩序的瘫痪。在他1860年12月的第四篇年度咨文里，布坎南否认仅凭一次总统大选就能为革命提供正当理由，但同时又论证说，国会没有权力强制一个州回到联邦里来。他问，国会是否拥有强制一个州屈服的权力，而他的回答是经过反复认真思考得出的否定。脱离不合法，而强制不可用——这个组合，恰好抓住了布坎南最后那个冬天里行政上的无能为力。</p>
 
-<p>正因为如此，布坎南的所谓软弱，不应该被简单地归结为怯懦，尽管他的选择无疑使危机恶化了。他站在一条链条的末端：妥协的公式已经被耗尽，政党的中介已经崩溃，最高法院也已经把自己作为仲裁者的资格败坏掉了。他手上可用的那套宪法逻辑，既给不出一个稳定的结算，也给不出一套说得通的强制理论。这正是这套构走到的那个宪法的死胡同：它的自己的逻辑，除了战争，再也提供不出任何把自己维系在一起的办法。</p>
+<p>正因为如此，布坎南的所谓软弱，不应该被简单地归结为怯懦，尽管他的选择无疑使危机恶化了。他站在一条链条的末端：妥协的公式已经被耗尽，政党的中介已经崩溃，最高法院也已经把自己作为仲裁者的资格败坏掉了。他手上可用的那套宪法逻辑，既给不出一个稳定的结算，也给不出一套说得通的强制理论。这正是这套构走到的那个宪法的死胡同：它自己的逻辑，除了战争，再也提供不出任何把自己维系在一起的办法。</p>
 
 <h3>九、结语</h3>
 
@@ -192,7 +221,7 @@
 
 <p>前面几篇里，密苏里和1850年的妥协，虽然是失败的闭合，但它们至少还能把爆炸往后推。而在这八年里，每一次试图容纳那个余项的努力，都不再是把爆炸推后，而是把它提前。堪萨斯内布拉斯加法用人民主权去重新打开问题，结果砸碎了跨地域的政党。流血的堪萨斯显示，人民主权一接触到有组织的派系，就崩溃成了相互竞争的主权和实地的内战。德雷德·斯科特想从最高的位置上一劳永逸地闭合，结果反而激进化了反对派，并烧毁了最高法院自己的权威。而1860年的大选，则暴露出一个再也无法做全国中介的政党体系。</p>
 
-<p>这一连串失败的最深的原因，还是那个反复出现的道理：奴隶制这个余项，既不能被明确肯定，也不能被明确否定，所以无法被这套构真正吸收。越是想给它一个干脆的答案，它炸得就越凶。与此同时，约翰·布朗的命运还显示出一种更深的崩溃：到这个时候，美国人连一个反奴隶制的暴力者究竟是殉道者还是恐怖分子都无法共享判断，那套用来分歧的共同框架本身瓦解了，制度的分歧变成了文明的分歧。</p>
+<p>这一连串失败的最深的原因，还是那个反复出现的道理：奴隶制这个余项，既不能被明确肯定，也不能被明确否定，所以无法被这套构真正吸收。越是想给它一个干脆的答案，它炸得就越凶。与此同时，约翰·布朗的命运还显示出一种更深的崩溃：到这个时候，美国人连一个反奴隶制的暴力者究竟是殉道者还是恐怖分子都无法共享判断，那套用来容纳分歧的共同框架本身瓦解了，制度的分歧变成了文明的分歧。</p>
 
 <p>接下来登场的，是这套构第一次不再靠容纳，而要靠战争来回答自己能否存续的年代。而最深的反讽在于，要把这个联邦保住，要让那句"人人平等"终于向更多的人兑现，将需要这套构调动起它建国以来从未有过的强制力量。那是林肯的故事。</p>
 
@@ -227,15 +256,15 @@
 
 <p>The structural significance was what the event revealed: even in the institution that had long served as the primary theater of sectional compromise, the basic discipline of deliberative restraint was breaking down. The constitutional order managed conflict by converting violence into speech — the chamber was precisely where the most intense disagreements were supposed to unfold as argument. Sumner's speech, however sharp, was exactly what the chamber was for. Brooks's cane converted argument back into physical violence, destroying not the outcome of a debate but the mechanism that transformed violence into deliberation in the first place.</p>
 
-<p>The 1856 election registered the same collapse in electoral form. Buchanan won with 174 electoral votes; the newly formed Republican Party's Frémont took 114; Fillmore, running on the old Whig line, won only 8 despite 21.6 percent of the popular vote. The Republicans had instantly become a major northern force; the old Whig center had effectively ceased to exist. Buchanan's particular value to the Democrats was that his tenure as minister to Britain had kept him away from Kansas-Nebraska, allowing him to run as someone untainted by the most destructive legislation of the previous years.</p>
+<p>The 1856 election registered the same collapse in electoral form. Buchanan won with 174 electoral votes; the newly formed Republican Party's Frémont took 114; Fillmore, running as the American Party candidate, won only 8 despite 21.6 percent of the popular vote. The Republicans had instantly become a major northern force; the old Whig center had effectively ceased to exist. Buchanan's particular value to the Democrats was that his tenure as minister to Britain had kept him away from Kansas-Nebraska, allowing him to run as someone untainted by the most destructive legislation of the previous years.</p>
 
 <h3>V. Dred Scott: Forced Closure from Above</h3>
 
-<p>No episode better illustrates the essay's central theme than the Dred Scott v. Sandford decision of March 6, 1857. The Supreme Court attempted to resolve slavery's constitutional status once and for all, and instead detonated the crisis. Chief Justice Taney's majority opinion held that persons of African descent were not included within the constitutional meaning of "citizen" and could claim no federal civil rights; that Congress had no power to prohibit slavery in federal territories, rendering the Missouri Compromise's territorial restriction unconstitutional; and that the right to slave property was "distinctly and expressly affirmed" in the Constitution.</p>
+<p>No episode better illustrates the essay's central theme than the Dred Scott v. Sandford decision of March 6, 1857. The Supreme Court attempted to resolve slavery's constitutional status once and for all, and instead detonated the crisis. Chief Justice Taney's majority opinion held that Africans brought to America and enslaved, and their descendants whether free or enslaved, were not included within the constitutional meaning of "citizen" and could claim no federal civil rights; that Congress had no power to prohibit slavery in federal territories, rendering the Missouri Compromise's territorial restriction unconstitutional; and that the right to slave property was "distinctly and expressly affirmed" in the Constitution.</p>
 
-<p>The citizenship holding deserves special attention. It pushed to its starkest legal expression the deepest residue of the constitutional order: the gap between the founding documents' language of universal equality and the actual exclusion of Black people, women, and Native peoples from its protections. Taney did not merely leave that gap unremedied; he wrote the exclusion directly into constitutional interpretation, declaring that Black persons of African descent were not among "the people" the Constitution described and had never been intended to be included.</p>
+<p>The citizenship holding deserves special attention. It pushed to its starkest legal expression the deepest residue of the constitutional order: the gap between the founding documents' language of universal equality and the actual exclusion of Black people, women, and Native peoples from its protections. Taney did not merely leave that gap unremedied; he wrote the exclusion directly into constitutional interpretation, declaring that the people in this category were not among "the people" the Constitution described and had never been intended to be included.</p>
 
-<p>One dimension of this exclusion is almost always overlooked. In the entire controversy over who counts as a citizen and who can vote on slavery in the territories, both sides shared an unexamined premise: the political community is male. Popular sovereignty's "people" had never included women. The Dred Scott decision pushed racial exclusion to its most visible extreme and ignited the country. On the axis of sex, exclusion was so complete it required no ruling to confirm it — no one in mainstream politics questioned it. But the two exclusions are faces of the same residue. The Seneca Falls Convention of 1848 had already named this: its declaration rewrote the Declaration of Independence to assert that "all men and women are created equal." The same founding promise that was splitting the country on the racial axis was being silently dishonored on the sex axis as well.</p>
+<p>One dimension of this exclusion is almost always overlooked. In the entire controversy over who counts as a citizen and who can vote on slavery in the territories, both sides shared an unexamined premise: full electoral membership belonged to men. This did not mean that women categorically lacked citizenship. Popular sovereignty's "people" had never included women. The Dred Scott decision pushed racial exclusion to its most visible extreme and ignited the country. On the axis of sex, exclusion was so complete it required no ruling to confirm it — no one in mainstream politics questioned it. But the two exclusions are faces of the same residue. The Seneca Falls Convention of 1848 had already named this: its declaration rewrote the Declaration of Independence to assert that "all men and women are created equal." The same founding promise that was splitting the country on the racial axis was being silently dishonored on the sex axis as well.</p>
 
 <p>Buchanan's conduct compounded the damage. In his inaugural address of March 4, 1857 — two days before the ruling was announced — he declared the territorial slavery question "a judicial question, which legitimately belongs to the Supreme Court," soon to receive "a speedy and final settlement." He was publicly previewing a verdict not yet announced, and research has established that he had communicated with justices beforehand, partly to encourage a broader ruling. In Taney's and Buchanan's intentions, the decision was meant to de-politicize the slavery question by removing it from democratic contestation. It did the opposite: Republicans refused to accept it as a legitimate final settlement, and Lincoln's rise after 1857 is incomprehensible without understanding the political backlash the ruling generated.</p>
 
@@ -249,11 +278,11 @@
 
 <h3>VII. The Election of 1860 and the Collapse of National Party Structure</h3>
 
-<p>The 1860 election completed the dissolution of the national party framework. Four major candidacies: Lincoln (Republican), Douglas (Democrat), Breckinridge (Southern Democrat), Bell (Constitutional Union). Lincoln won 180 electoral votes with 39.8 percent of the popular vote. The decisive structural fact was the Democratic Party's own split: the last national party that crossed the sectional divide had fractured along exactly those sectional lines, nominating Douglas in the North and Breckinridge in the South. There was no longer any truly national party. Lincoln won an election that did not exist in the South — a purely sectional victory. The containment mechanism that had done the most to prevent the country from dividing along geographic lines had ceased to function.</p>
+<p>The 1860 election completed the dissolution of the national party framework. Four major candidacies: Lincoln (Republican), Douglas (Democrat), Breckinridge (Southern Democrat), Bell (Constitutional Union). Lincoln won 180 electoral votes with 39.8 percent of the popular vote. The decisive structural fact was the Democratic Party's own split: the last national party that crossed the sectional divide had fractured along exactly those sectional lines, nominating Douglas in the North and Breckinridge in the South. There was no longer any truly national party. Lincoln won without carrying a single Southern state — a sharply sectional victory. The containment mechanism that had done the most to prevent the country from dividing along geographic lines had ceased to function.</p>
 
 <h3>VIII. Buchanan's Winter: The Constitutional Dead End</h3>
 
-<p>South Carolina seceded on December 20, 1860. Four days later, its declaration of immediate causes spelled out its reasons with clarity that demolishes any later revisionist attempt to make the conflict about something other than slavery. The declaration condemned northern hostility to slavery, accused northern states of violating constitutional obligations regarding fugitive slaves, and linked Lincoln's election to an anticipated hostile policy toward southern institutions. South Carolina's leaders told the world that slavery was the core of their departure. By February 1861, seven states had adopted a provisional Confederate constitution.</p>
+<p>South Carolina seceded on December 20, 1860. Four days later, its declaration of immediate causes spelled out its reasons with clarity that demolishes any later revisionist attempt to make the conflict about something other than slavery. The declaration condemned northern hostility to slavery, accused northern states of violating constitutional obligations regarding fugitive slaves, and linked Lincoln's election to an anticipated hostile policy toward southern institutions. South Carolina's leaders told the world that slavery was the core of their departure. In February 1861, delegates from six seceded states adopted a provisional Confederate constitution.</p>
 
 <p>Buchanan's response in his December 3 annual message captured the paralysis of a constitutional framework whose categories no longer fit the crisis. He denied that a presidential election alone could justify revolution, but concluded that Congress lacked the power to coerce a state back into the Union. The formulation was: secession is unconstitutional, but coercion is also unavailable. This combination, however precise as constitutional logic, left him with nothing to do. Buchanan's impotence was not simply personal cowardice, though his choices worsened the crisis. He stood at the end of a chain in which every containment mechanism had been exhausted: compromise formulas were spent, party mediation had collapsed, the Supreme Court had destroyed its own authority as arbiter. The constitutional logic available to him could produce neither a stable settlement nor a coherent theory of enforcement. That was the constitutional dead end — a system designed to manage conflict through accommodation, now facing a conflict that had escaped every accommodation, with no internal resource left except war.</p>
 
@@ -289,5 +318,6 @@
       </nav>
     </article>
   </main>
+<script defer src="zh-hant-data/ep07.js"></script>
 </body>
 </html>
