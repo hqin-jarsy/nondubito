@@ -79,8 +79,8 @@ class WesternTests(unittest.TestCase):
 
     def test_shelf_and_series_links(self):
         shelf = self.outputs[build.SHELF/'index.html']
-        self.assertEqual(shelf.count('class="western-book"'), 4)
-        for slug in ('sae-republic', 'sae-nicomachean', 'sae-consolation', 'sae-montaigne'):
+        self.assertEqual(shelf.count('class="western-book"'), 6)
+        for slug in ('sae-republic', 'sae-nicomachean', 'sae-consolation', 'sae-montaigne', 'sae-descartes', 'sae-spinoza'):
             self.assertIn(f'href="../{slug}/index.html"', shelf)
         index = self.outputs[build.SERIES/'index.html']
         self.assertEqual(index.count('class="western-entry"'), 6)

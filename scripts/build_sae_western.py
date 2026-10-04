@@ -43,7 +43,7 @@ class Converter(TraditionalConverter):
             '尼採': '尼采', '想象': '想像', '拿不准': '拿不準',
             '乾完活': '幹完活', '它乾的事': '它幹的事', '外頭髮話': '外頭發話',
             '證明瞭蒙田': '證明了蒙田', '數得再准': '數得再準', '看准了': '看準了',
-            '划': '劃',
+            '划': '劃', '沈思': '沉思',
         }.items():
             text = text.replace(old, new)
         return text
@@ -96,7 +96,7 @@ def head(title: str, deck: str, relative: str, item: dict | None = None) -> str:
 <link rel="canonical" href="{url}"><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Inter:wght@300;400;500&amp;family=Noto+Serif+SC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../style.css"><link rel="stylesheet" href="../../site-shell.css?v=20260905b"><link rel="stylesheet" href="../sae-western/western.css?v=20260917">
-<script src="../sae-western/western.js?v=20260917b"></script><script type="application/ld+json">{data}</script>
+<script src="../sae-western/western.js?v=20261003"></script><script type="application/ld+json">{data}</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token":"1c920752456e42b5b5469641245a07c2"}}'></script>
 </head>'''
 
@@ -119,8 +119,10 @@ def render_shelf(c: Converter) -> str:
     cards = []
     for n, series in enumerate(data['series'], 1):
         cards.append(f'''<a class="western-book" href="../{series['slug']}/index.html"><p class="western-kicker">{n:02d} · {localized(series['author'], c)}</p>{localized(series['title'], c, 'h2')}{localized(series['question'], c, 'p', 'western-question')}{localized(series['description'], c, 'p')}{localized(series['count'], c, 'p', 'western-meta')}{words('Open series →', '进入系列 →', c, 'span', 'western-read')}</a>''')
-    content = f'''<main class="western-wrap">{crumbs(c, 0)}<section class="western-hero"><p class="western-kicker">Non Dubito · {words('Four books, four conversations', '四部经典，四场对话', c)}</p>{localized(data['title'], c, 'h1')}{localized(data['deck'], c, 'p', 'western-deck western-search-deck')}{words('Choose a book or a question. No knowledge of SAE is required to begin.', '从一本书或一个问题进入；不必先学过 SAE。', c, 'p', 'western-meta')}</section><div class="western-book-grid">{''.join(cards)}</div><aside class="western-afterword">{words('Read each book on its own terms. The encounters matter as much for their disagreements as for what they share.', '先让每本书用自己的方式说话。彼此相遇之处值得读，不能互相代替的地方也一样。', c, 'p')}<a href="../sae-foundations/index.html">{words('Want to know more about SAE? Start with the foundations →', '想进一步了解 SAE？从基础系列进入 →', c)}</a></aside></main>'''
-    return shell(content, head(data['title']['en'], data['deck']['en'], 'essays/sae-western/'))
+    content = f'''<main class="western-wrap">{crumbs(c, 0)}<section class="western-hero"><p class="western-kicker">Non Dubito · {words('Classics in conversation', '与经典对话', c)}</p>{localized(data['title'], c, 'h1')}{localized(data['deck'], c, 'p', 'western-deck western-search-deck')}{words('Choose a book or a question. No knowledge of SAE is required to begin.', '从一本书或一个问题进入；不必先学过 SAE。', c, 'p', 'western-meta')}</section><div class="western-book-grid">{''.join(cards)}</div><aside class="western-afterword">{words('Read each book on its own terms. The encounters matter as much for their disagreements as for what they share.', '先让每本书用自己的方式说话。彼此相遇之处值得读，不能互相代替的地方也一样。', c, 'p')}<a href="../sae-foundations/index.html">{words('Want to know more about SAE? Start with the foundations →', '想进一步了解 SAE？从基础系列进入 →', c)}</a></aside></main>'''
+    page_head = head(data['title']['en'], data['deck']['en'], 'essays/sae-western/')
+    page_head = page_head.replace('"dateModified": "2026-09-17"', '"dateModified": "2026-10-03"')
+    return shell(content, page_head)
 
 
 def render_index(items: list[dict], c: Converter) -> str:

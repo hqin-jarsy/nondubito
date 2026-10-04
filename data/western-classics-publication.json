@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-03",
+  "series": [
+    {"slug": "sae-descartes", "title": "SAE笛卡尔沉思集", "reading_units": 7, "chinese_body_paragraphs": 217, "english_body_words": 5977, "logged_chinese_text_edits": 10},
+    {"slug": "sae-spinoza", "title": "SAE斯宾诺莎伦理学", "reading_units": 11, "chinese_body_paragraphs": 153, "english_body_words": 6007, "logged_chinese_text_edits": 13, "logged_heading_edits": 1}
+  ],
+  "languages": ["zh-Hans", "zh-Hant", "en"],
+  "method": {
+    "chinese": "Complete supplied manuscripts, with bounded corrections recorded as exact old/new edits in each article JSON. All 370 body paragraphs retained. Original receipts are preserved separately.",
+    "traditional": "Full local character conversion with context-sensitive editorial corrections; not an abridgment.",
+    "english": "Independently written by the primary agent against the Chinese section structure, retaining the arguments, examples and conclusions. Paragraph boundaries may differ. No translation service or delegated drafting used.",
+    "external_manuscripts": "Read-only; SHA-256 values checked against received receipts before publication.",
+    "statistics_caveat": "Paragraph and word totals demonstrate inventory, not literary quality or proof of semantic equivalence."
+  },
+  "source_checks": [
+    {
+      "subject": "Descartes editions, replies and translation differences",
+      "sources": [
+        "https://fr.wikisource.org/wiki/Œuvres_de_Descartes/Édition_Adam_et_Tannery/Tome_7/Texte_entier",
+        "https://fr.wikisource.org/wiki/Œuvres_de_Descartes/Édition_Adam_et_Tannery/Tome_9/Texte_entier",
+        "https://www.unicaen.fr/puc/sources/prodescartes/tdm/descartes/Oeuvres/Traductions/meditations_metaphysiques.xml.html"
+      ],
+      "decisions": [
+        "Do not make parer à mean exclusively a head-on answer; preserve the qualified contrast with Latin declinavi.",
+        "Remove unverified exact page-length ratios and counts of insulting forms of address, retaining their argumentative role.",
+        "Distinguish the visible fly/music textual difference from the hostile Revius report about its provenance; do not infer an established motive.",
+        "Retain the distinction between requested omission, subsequent permission and later editors' choices."
+      ]
+    },
+    {
+      "subject": "Spinoza Latin structure and numerical claims",
+      "source_pattern": "https://www.thelatinlibrary.com/spinoza.ethica{1..5}.html",
+      "verified": {
+        "propositions_by_part": [36, 49, 59, 73, 42],
+        "scholia_by_part": [14, 24, 37, 37, 18],
+        "demonstration_labels_by_part": [36, 62, 66, 75, 42],
+        "ocul_forms_by_part": [2, 1, 2, 1, 1]
+      },
+      "decisions": [
+        "Retain only approximate word-length comparisons for scholia and demonstrations; totals vary with section boundaries and tokenization.",
+        "Do not publish precise first-person verb counts without a morphological audit. Preserve the singular/plural narrative contrast in qualitative terms.",
+        "Remove an unverified exhaustive partition of the appendix and exact temporal-reference grouping.",
+        "Keep physical and everyday examples as explanatory analogies, not independent proofs of Spinoza's metaphysical claims."
+      ]
+    }
+  ],
+  "verification": {
+    "python_tests": "23 passing Western Philosophy publication/navigation tests, including exact source-preservation checks, metadata, local links, search and sitemap coverage.",
+    "reproducible_pages": "20 new trilingual pages; shared shelf and seven pre-existing Montaigne pages also pass rebuild checks.",
+    "browser": "180 combinations: 20 pages × 3 languages × 390/768/1440 widths. Checked overflow, header clearance, one visible title/body, complete paragraph rendering, expandable source notes, storage-disabled language navigation, desktop language dropdown and mobile menu.",
+    "visual_review": "Inspected English mobile Descartes Essay 05 and Traditional Chinese desktop Spinoza Essay 01 screenshots.",
+    "discovery": "20 new canonical sitemap URLs and 20 new records in each of the three language search chunks; updated shelf and latest/library/explore entries.",
+    "scope": "Unrelated search records and ordering preserved. Existing Montaigne HTML differs only in the shared JavaScript cache key. No assertion of a full-site SEO or historical fact audit."
+  }
+}

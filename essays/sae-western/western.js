@@ -39,7 +39,7 @@
       // Keep the chosen language even when browser storage is unavailable.
       document.querySelectorAll('main a[href]').forEach(function (link) {
         var target = new URL(link.getAttribute('href'), location.href);
-        if (target.origin === location.origin && /\/essays\/(sae-western|sae-montaigne)\//.test(target.pathname)) {
+        if (target.origin === location.origin && /\/essays\/(sae-western|sae-montaigne|sae-descartes|sae-spinoza)\//.test(target.pathname)) {
           target.searchParams.set('lang', language);
           link.href = target.href;
         }

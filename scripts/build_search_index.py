@@ -110,6 +110,8 @@ def build() -> tuple[dict, dict[str, list[dict]]]:
                     ROOT / "essays" / "everyday" / "stories" / "drama",
                     ROOT / "essays" / "sae-western",
                     ROOT / "essays" / "sae-montaigne",
+                    ROOT / "essays" / "sae-descartes",
+                    ROOT / "essays" / "sae-spinoza",
                     ROOT / "essays" / "method",
                     ROOT / "essays" / "zhuangzi",
                     ROOT / "essays" / "math-history",

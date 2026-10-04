@@ -11,7 +11,7 @@ import build_content_registry as registry
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SERIES = ("sae-republic", "sae-nicomachean", "sae-consolation", "sae-montaigne")
+SERIES = ("sae-republic", "sae-nicomachean", "sae-consolation", "sae-montaigne", "sae-descartes", "sae-spinoza")
 LANGUAGES = ("ja", "fr", "de", "es", "ko")
 
 
@@ -34,7 +34,7 @@ class WesternPhilosophyNavigationTests(unittest.TestCase):
         self.assertEqual(registry.infer_record_type(path), "collection-index")
         self.assertEqual(registry.infer_domain(path), "sae-philosophy")
 
-    def test_library_has_one_category_with_exactly_four_series(self):
+    def test_library_has_one_category_with_exactly_six_series(self):
         categories = registry.parse_library_categories(ROOT / "library.html")
         self.assertEqual([category["number"] for category in categories], list(range(1, 18)))
         western = next(

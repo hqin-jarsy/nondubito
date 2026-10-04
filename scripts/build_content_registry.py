@@ -29,6 +29,8 @@ SAE_WESTERN_SERIES = frozenset({
     "sae-nicomachean",
     "sae-consolation",
     "sae-montaigne",
+    "sae-descartes",
+    "sae-spinoza",
 })
 
 LANGUAGE_DIRS = {
