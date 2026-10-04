@@ -47,7 +47,7 @@ class HubTests(unittest.TestCase):
             self.assertEqual(len(legacy),51)
             self.assertEqual({a['data-legacy-language'] for a in legacy},{'en' if lang=='en' else 'zh'})
             papers=[a['href'] for tag,a in nodes if tag=='a' and a.get('href','').startswith('https://self-as-an-end.net/papers/')]
-            self.assertEqual(papers,[f'https://self-as-an-end.net/papers/sae-hongloumeng-{i}.html' for i in range(3)])
+            self.assertEqual(papers,[f'https://self-as-an-end.net/papers/sae-hongloumeng-{i}.html' for i in range(4)])
             for tag,a in nodes:
                 url=a.get('href',a.get('src',''))
                 if not url or urlsplit(url).scheme: continue

@@ -5,7 +5,7 @@
   try { saved = localStorage.getItem('nd_lang'); } catch (_) {}
   const requested = new URLSearchParams(location.search).get('lang');
   // Explicit language URLs take precedence over a stored preference.
-  const choice = requested || (/\/(en|zh-hant)\/index\.html$|\/(en|zh-hant)\/$/.test(location.pathname) ? current : saved);
+  const choice = requested || (document.documentElement.dataset.explicitEdition || /\/(en|zh-hant)\/index\.html$|\/(en|zh-hant)\/$/.test(location.pathname) ? current : saved);
   const target = links.find(a => a.dataset.edition === choice);
   if (target && choice !== current) {
     location.replace(target.href + location.hash);

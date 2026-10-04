@@ -14,7 +14,8 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
    for(const [dir,lang] of [['','zh'],['en/','en'],['zh-hant/','zh-hant']]){
     await page.goto(`${base}/essays/literature/hlm/${dir}index.html?lang=${lang}`);
     assert.equal(await page.locator('h1:visible').count(),1);
-    assert.equal(await page.locator('.paper').count(),3);
+    assert.equal(await page.locator('.paper').count(),4);
+    assert.equal(await page.locator('.reading-card').count(),6);
     assert.equal(await page.locator('.catalog a').count(),48);
     assert.equal(await page.locator('#continuation a').count(),0);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
