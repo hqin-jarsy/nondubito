@@ -10,7 +10,7 @@ from import_fairy_tales import TraditionalConverter
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'originals/hongloumeng'
 SOURCE = ROOT / 'data/originals/hongloumeng/ch081.zh.txt'
-SHA256 = '474d903fa5d252b20a6fc6c859d165addbaff9b3037aaa24f1019016e90c3437'
+SHA256 = '2b2e3370b189ccda89292e42507b31809fc9b687ddf7bbc95092e7fed2f12d3d'
 DATE = '2026-10-05'
 ORIGIN = 'https://nondubito.net/originals/hongloumeng/'
 EDITIONS = {'zh': ('', 'zh-Hans', '简体中文'), 'zh-hant': ('zh-hant/', 'zh-Hant', '繁體中文')}
