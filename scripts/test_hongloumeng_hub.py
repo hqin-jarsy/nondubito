@@ -60,9 +60,11 @@ class HubTests(unittest.TestCase):
             self.assertEqual(schema['inLanguage'],code)
             self.assertNotIn('恢复曹雪芹原稿',source)
             section=source.split('<section id="continuation">')[1].split('</section>')[0]
-            self.assertNotIn('<a ',section)
+            self.assertEqual(section.count('<a '),2)
+            self.assertIn('ch081.html',section)
+            self.assertNotIn('ch082.html',section)
             self.assertIn('original fiction by Han Qin' if lang=='en' else ('秦漢的原創小說' if lang=='zh-hant' else '秦汉的原创小说'),section)
-            self.assertIn('Not yet released' if lang=='en' else ('尚未公開' if lang=='zh-hant' else '尚未公开'),section)
+            self.assertIn('Chapter 81 published' if lang=='en' else ('第八十一回定稿已發佈' if lang=='zh-hant' else '第八十一回定稿已发布'),section)
 
 
 if __name__=='__main__': unittest.main()

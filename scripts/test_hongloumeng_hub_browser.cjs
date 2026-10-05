@@ -17,7 +17,7 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
     assert.equal(await page.locator('.paper').count(),4);
     assert.equal(await page.locator('.reading-card').count(),6);
     assert.equal(await page.locator('.catalog a').count(),48);
-    assert.equal(await page.locator('#continuation a').count(),0);
+    assert.equal(await page.locator('#continuation a').count(),2);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     await page.locator('.language-menu summary').focus();await page.keyboard.press('Enter');
     assert.equal(await page.locator('[data-edition]:visible').count(),3);
@@ -53,6 +53,6 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
   assert.equal(await p.locator('html').getAttribute('lang'),'en');
   await p.locator('#zhengce summary').click();assert.equal(await p.locator('#zhengce a:visible').count(),10);
   assert.deepEqual(errors,[]);
-  console.log(`OK: ${checks} viewport/edition checks; language menu, original anchors, article language, 48 links, unreleased manuscript and no-JS hub.`);
+  console.log(`OK: ${checks} viewport/edition checks; language menu, original anchors, article language, 48 links, published chapter entrance and no-JS hub.`);
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1)});

@@ -97,10 +97,11 @@ class ReadingTests(unittest.TestCase):
         try:
             for s,expected in [('赞美','讚美'),('赞叹','讚嘆'),('赞成','贊成'),('沉默','沉默'),('准许','準許')]:self.assertEqual(c.convert(s),expected)
         finally:c.close()
-        # Unreleased chapters must not acquire chapter navigation in the essay launch.
+        # Only the finalized chapter is available; later chapters remain unlinked.
         for directory,_,_ in build.EDITIONS.values():
             source=(build.TARGET/directory/'index.html').read_text()
             fiction=source.split('<section id="continuation">')[1].split('</section>')[0]
-            self.assertNotIn('<a ',fiction)
+            self.assertIn('ch081.html',fiction)
+            self.assertNotIn('ch082.html',fiction)
 
 if __name__=='__main__':unittest.main()
