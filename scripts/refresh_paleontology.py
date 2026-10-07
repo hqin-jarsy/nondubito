@@ -4,11 +4,11 @@ import json
 import xml.etree.ElementTree as ET
 import build_search_index as search
 from build_sitemap import parse_page, sitemap_xml
-from build_paleontology import render, DATE, LANGS, PUBLISHED, destination
+from build_paleontology import render, DATE, LANGS, ARTICLES, destination
 
 def refresh():
     before = {destination(lang, ep): destination(lang, ep).read_bytes()
-              for lang in LANGS for ep in (None, *PUBLISHED)
+              for lang in LANGS for ep in (None, *ARTICLES)
               if destination(lang, ep).exists()}
     paths = list(render()) + [search.ROOT / 'library.html']
     paths += [search.ROOT / f'essays/{lang}/index.html' for lang in ('de','fr','es','ja','ko')]

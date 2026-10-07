@@ -36,11 +36,23 @@ class Publication(unittest.TestCase):
                 seen.extend(actual)
             self.assertEqual(seen, list(p.PUBLISHED))
 
+    def test_optional_afterword(self):
+        for lang in p.LANGS:
+            hub = p.destination(lang).read_text()
+            self.assertIn('id="afterword"', hub)
+            self.assertIn('href="afterword.html"', hub)
+            self.assertIn('href="afterword.html"', p.destination(lang, 23).read_text())
+            final = p.destination(lang, p.AFTERWORD).read_text()
+            self.assertIn('href="ep23.html"', final)
+            self.assertNotIn('EP24', final)
+            self.assertNotIn('ep24.html', hub + final)
+            self.assertEqual(len(p.parts(p.AFTERWORD, lang)[1]), 7)
+
     def test_full_text_and_immutable_sources(self):
         for lang in p.LANGS:
-            for ep in p.PUBLISHED:
+            for ep in p.ARTICLES:
                 original = p.original(ep, lang); edited = p.reviewed(ep, lang)
-                self.assertEqual(len(re.findall(r'^### ', original, re.M)), 8)
+                self.assertEqual(len(re.findall(r'^### ', original, re.M)), 7 if ep == p.AFTERWORD else 8)
                 # Ignore trailing blank lines in supplied files, not real paragraphs.
                 self.assertEqual(len(re.split(r'\n\s*\n', original.strip())),
                                  len(re.split(r'\n\s*\n', edited.strip())))
@@ -51,9 +63,9 @@ class Publication(unittest.TestCase):
                 self.assertEqual(body.count('<p>'), markdown.markdown(original).count('<p>'))
 
     def test_generated_documents_and_links(self):
-        paths = list(p.TARGET.rglob('*.html')); self.assertEqual(len(paths), len(p.LANGS) * (len(p.PUBLISHED) + 1))
+        paths = list(p.TARGET.rglob('*.html')); self.assertEqual(len(paths), len(p.LANGS) * (len(p.ARTICLES) + 1))
         for lang in p.LANGS:
-            for ep in (None, *p.PUBLISHED):
+            for ep in (None, *p.ARTICLES):
                 path = p.destination(lang, ep); source = path.read_text(); doc = Document(source)
                 self.assertEqual(source, p.hub(lang) if ep is None else p.essay(lang, ep))
                 self.assertEqual(sum(t == 'h1' for t,a in doc.tags), 1)
@@ -88,8 +100,8 @@ class Publication(unittest.TestCase):
         for lang in p.LANGS:
             chunk = json.loads((p.ROOT/f'data/search/{lang.lower()}.json').read_text())
             records = [r for r in chunk['records'] if r['u'].startswith('essays/paleontology/')]
-            self.assertEqual(len(records), len(p.PUBLISHED) + 1)
-            self.assertEqual({r['u'] for r in records}, {str(p.destination(lang,n).relative_to(p.ROOT)) for n in (None,*p.PUBLISHED)})
+            self.assertEqual(len(records), len(p.ARTICLES) + 1)
+            self.assertEqual({r['u'] for r in records}, {str(p.destination(lang,n).relative_to(p.ROOT)) for n in (None,*p.ARTICLES)})
             self.assertTrue(all(r['s'] == 'paleontology' and r['d'] == 'history' for r in records))
             self.assertEqual(manifest['languages'][lang]['count'], len(chunk['records']))
             total += len(chunk['records'])
@@ -97,7 +109,7 @@ class Publication(unittest.TestCase):
         self.assertGreaterEqual(total, manifest['record_count'])
         entries = [u.find('{http://www.sitemaps.org/schemas/sitemap/0.9}loc').text for u in ET.parse(p.ROOT/'sitemap.xml').getroot()]
         self.assertEqual(len(entries), len(set(entries)))
-        self.assertEqual(sum('/essays/paleontology/' in u for u in entries), len(p.LANGS) * (len(p.PUBLISHED) + 1))
+        self.assertEqual(sum('/essays/paleontology/' in u for u in entries), len(p.LANGS) * (len(p.ARTICLES) + 1))
 
 if __name__ == '__main__':
     unittest.main()

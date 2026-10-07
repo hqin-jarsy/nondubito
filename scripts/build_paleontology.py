@@ -2,7 +2,7 @@
 """Build full, separately addressable editions from immutable supplied texts.
 
 No translation service, runtime content injection, or source-folder mutation.
-Only reviewed essays listed in PUBLISHED are exposed as links.
+Only the reviewed essays and optional afterword in ARTICLES are exposed as links.
 """
 from pathlib import Path
 import hashlib
@@ -17,13 +17,16 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/paleontology'
 TARGET = ROOT / 'essays/paleontology'
 DATE = '2026-10-07'
-PUBLISHED = tuple(range(1, 21))
+PUBLISHED = tuple(range(1, 24))
+AFTERWORD = 24  # Internal key only; public route and label are not EP24.
+ARTICLES = (*PUBLISHED, AFTERWORD)
 UI = json.loads((DATA / 'ui.json').read_text())
 EDITS = json.loads((DATA / 'review.json').read_text())['edits']
 EDITS += json.loads((DATA / 'review-batch02.json').read_text())['edits']
 EDITS += json.loads((DATA / 'review-batch03.json').read_text())['edits']
 EDITS += json.loads((DATA / 'review-batch04.json').read_text())['edits']
 EDITS += json.loads((DATA / 'review-batch05.json').read_text())['edits']
+EDITS += json.loads((DATA / 'review-batch06.json').read_text())['edits']
 LANGS = tuple(UI)
 SITE = 'https://nondubito.net/'
 
@@ -33,9 +36,12 @@ def publication_date(ep):
 def esc(s):
     return html.escape(str(s), quote=True)
 
+def stem(ep):
+    return 'afterword' if ep == AFTERWORD else f'ep{ep:02d}'
+
 def destination(lang, ep=None):
     folder = TARGET if lang == 'zh-Hans' else TARGET / lang.lower()
-    return folder / (f'ep{ep:02d}.html' if ep else 'index.html')
+    return folder / (stem(ep) + '.html' if ep else 'index.html')
 
 def relative(path, current):
     return os.path.relpath(path, current.parent)
@@ -44,7 +50,7 @@ def url(path):
     return SITE + path.relative_to(ROOT).as_posix()
 
 def original(ep, lang):
-    item = json.loads((DATA / 'sources' / f'ep{ep:02d}.{lang}.json').read_text())
+    item = json.loads((DATA / 'sources' / f'{stem(ep)}.{lang}.json').read_text())
     assert hashlib.sha256(item['original'].encode()).hexdigest() == item['sha256']
     return item['original']
 
@@ -71,7 +77,7 @@ def typography(text, lang):
 def parts(ep, lang):
     text = typography(reviewed(ep, lang), lang)
     headings = re.findall(r'^### (.+)$', text, re.M)
-    assert len(headings) == 8, (ep, lang, headings)
+    assert len(headings) == (7 if ep == AFTERWORD else 8), (ep, lang, headings)
     title = re.search(r'^## (.+)$', text, re.M).group(1)
     body = text[text.index('\n### ') + 1:]
     for i, heading in enumerate(headings, 1):
@@ -102,7 +108,7 @@ def shell(lang, ep, title, description, content):
               'author': {'@type': 'Person', 'name': 'Han Qin'},
               'isPartOf': {'@type': 'CreativeWorkSeries', 'name': ui['series'], 'url': url(destination(lang))}}
     if not ep:
-        schema['hasPart'] = [{'@type': 'Article', 'url': url(destination(lang, n)), 'name': parts(n, lang)[0]} for n in PUBLISHED]
+        schema['hasPart'] = [{'@type': 'Article', 'url': url(destination(lang, n)), 'name': parts(n, lang)[0]} for n in ARTICLES]
     site_lang = {'zh-Hans': 'zh', 'zh-Hant': 'zh-hant'}.get(lang, lang)
     library = relative(ROOT / 'library.html', path) + '?lang=' + site_lang + '#cycles'
     search = relative(ROOT / 'search.html', path) + '?lang=' + site_lang
@@ -128,18 +134,22 @@ def essay(lang, ep):
     toc = ''.join(f'<li><a href="#section-{i}">{esc(h)}</a></li>' for i, h in enumerate(headings, 1))
     nav = f'<a href="{relative(destination(lang), path)}">{esc(ui["back"])}</a>'
     for n, key in ((ep - 1, 'prev'), (ep + 1, 'next')):
-        if n in PUBLISHED:
-            nav += f'<a href="{relative(destination(lang, n), path)}">{esc(ui[key])} · {n:02d}</a>'
+        if n in ARTICLES:
+            label = ui['afterwordLabel'] if n == AFTERWORD else f'{n:02d}'
+            nav += f'<a href="{relative(destination(lang, n), path)}">{esc(ui[key])} · {esc(label)}</a>'
     refs = json.loads((DATA / 'references.json').read_text())[str(ep)]
     sources = ''.join(f'<li><a href="{esc(r[1])}">{esc(r[0])}</a></li>' for r in refs)
-    content = f'''<header class="essay-heading"><p class="eyebrow"><a href="{relative(destination(lang), path)}">{esc(ui['series'])}</a> · {ep:02d}</p>
-<h1>{esc(title)}</h1><p class="deck">{esc(ui['descs'][ep-1])}</p>
+    label = ui['afterwordLabel'] if ep == AFTERWORD else f'{ep:02d}'
+    description = ui['afterword'] if ep == AFTERWORD else ui['descs'][ep-1]
+    search_key = 'afterword 后记' if ep == AFTERWORD else f'EP{ep:02d}'
+    content = f'''<header class="essay-heading"><p class="eyebrow"><a href="{relative(destination(lang), path)}">{esc(ui['series'])}</a> · {esc(label)}</p>
+<h1>{esc(title)}</h1><p class="deck">{esc(description)}</p>
 <p class="meta">{esc(ui['by'])} · {esc(reading_time(ep, lang))} · {esc(ui['published'])} <time datetime="{publication_date(ep)}">{publication_date(ep)}</time></p></header>
 <div class="reading-layout"><aside class="contents"><details><summary>{esc(ui['toc'])}</summary><nav aria-label="{esc(ui['toc'])}"><ol>{toc}</ol></nav></details></aside>
-<article class="prose" data-search="paleontology 古生物 凿构周期律 EP{ep:02d}">{body}
+<article class="prose" data-search="paleontology 古生物 凿构周期律 {search_key}">{body}
 <details class="research"><summary>{esc(ui['sources'])}</summary><ul>{sources}</ul></details>
 <nav class="essay-nav" aria-label="{esc(ui['back'])}">{nav}</nav></article></div>'''
-    return shell(lang, ep, title, ui['descs'][ep-1], content)
+    return shell(lang, ep, title, description, content)
 
 def hub(lang):
     ui = UI[lang]; path = destination(lang)
@@ -151,22 +161,22 @@ def hub(lang):
         cards = ''.join(f'''<a class="essay-card" href="{relative(destination(lang, n), path)}"><span class="card-number">{n:02d}</span>
 <div><h3>{esc(parts(n, lang)[0])}</h3><p>{esc(ui['descs'][n-1])}</p><span class="card-time">{esc(reading_time(n, lang))} →</span></div></a>''' for n in episodes)
         sections.append(f'<section class="published" id="group-{first:02d}"><h2>{esc(group)}</h2><div class="essay-grid">{cards}</div></section>')
-    route = ''.join(f'<li>{esc(g)}</li>' for g in ui['groups'])
     content = f'''<header class="series-heading"><p class="eyebrow">NON DUBITO · PALEONTOLOGY</p><p class="series-name">{esc(ui['series'])}</p>
 <h1>{esc(ui['title'])}</h1><p class="deck">{esc(ui['intro'])}</p><p class="status">{esc(ui['status'])}</p>
 <a class="start-link" href="{relative(destination(lang, 1), path)}">{esc(ui['read'])} · 01 →</a></header>
 {''.join(sections)}
-<section class="future"><h2>{esc(ui['future'])}</h2><p>{esc(ui['futureNote'])}</p><ol>{route}</ol><p>{esc(ui['afterword'])}</p></section>'''
+<section class="future" id="afterword"><h2>{esc(ui['afterwordLabel'])}</h2><p>{esc(ui['afterword'])}</p>
+<a class="essay-card" href="{relative(destination(lang, AFTERWORD), path)}"><div><h3>{esc(parts(AFTERWORD, lang)[0])}</h3><span class="card-time">{esc(reading_time(AFTERWORD, lang))} →</span></div></a></section>'''
     return shell(lang, None, ui['series'], ui['intro'], content)
 
 def render():
     paths = []
     for lang in LANGS:
-        for ep in (None, *PUBLISHED):
+        for ep in (None, *ARTICLES):
             path = destination(lang, ep); path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(hub(lang) if ep is None else essay(lang, ep))
             paths.append(path)
     return paths
 
 if __name__ == '__main__':
-    print(f'Built {len(render())} pages: {len(PUBLISHED)} full essays × {len(LANGS)} languages, plus their hubs.')
+    print(f'Built {len(render())} pages: {len(PUBLISHED)} full essays and an optional afterword × {len(LANGS)} languages, plus their hubs.')
