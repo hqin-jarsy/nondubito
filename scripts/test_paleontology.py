@@ -64,6 +64,10 @@ class Publication(unittest.TestCase):
                 for l in p.LANGS: self.assertEqual(alternates[l], p.url(p.destination(l, ep)))
                 schema = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', source, re.S)[1])
                 self.assertEqual(schema['inLanguage'], lang)
+                self.assertEqual(schema['datePublished'], p.publication_date(ep))
+                self.assertEqual(schema['dateModified'], p.publication_date(ep) if ep else p.DATE)
+                if ep:
+                    self.assertIn(f'<time datetime="{p.publication_date(ep)}">', source)
                 for tag, attrs in doc.links:
                     parsed = urlsplit(attrs['href'])
                     if parsed.scheme or parsed.netloc: continue

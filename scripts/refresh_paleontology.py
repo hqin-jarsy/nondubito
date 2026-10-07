@@ -4,9 +4,12 @@ import json
 import xml.etree.ElementTree as ET
 import build_search_index as search
 from build_sitemap import parse_page, sitemap_xml
-from build_paleontology import render, DATE
+from build_paleontology import render, DATE, LANGS, PUBLISHED, destination
 
 def refresh():
+    before = {destination(lang, ep): destination(lang, ep).read_bytes()
+              for lang in LANGS for ep in (None, *PUBLISHED)
+              if destination(lang, ep).exists()}
     paths = list(render()) + [search.ROOT / 'library.html']
     paths += [search.ROOT / f'essays/{lang}/index.html' for lang in ('de','fr','es','ja','ko')]
     scope = {str(p.relative_to(search.ROOT)) for p in paths}
@@ -36,7 +39,9 @@ def refresh():
     for p in paths + [search.ROOT / 'latest.html']:
         canonical = parse_page(p).canonical
         assert canonical.startswith('https://nondubito.net/')
-        entries[canonical] = DATE
+        # Rebuilding unchanged articles must not advertise a fresh modification.
+        if canonical not in entries or p not in before or p.read_bytes() != before[p]:
+            entries[canonical] = DATE
     path.write_text(sitemap_xml(sorted(entries.items(), key=lambda x: (x[0] != 'https://nondubito.net/', x[0]))))
     print(f'Refreshed {len(scope)} discovery pages; added {len(added)} source records')
 

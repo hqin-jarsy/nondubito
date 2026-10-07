@@ -16,14 +16,18 @@ import markdown
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/paleontology'
 TARGET = ROOT / 'essays/paleontology'
-DATE = '2026-10-06'
-PUBLISHED = tuple(range(1, 13))
+DATE = '2026-10-07'
+PUBLISHED = tuple(range(1, 17))
 UI = json.loads((DATA / 'ui.json').read_text())
 EDITS = json.loads((DATA / 'review.json').read_text())['edits']
 EDITS += json.loads((DATA / 'review-batch02.json').read_text())['edits']
 EDITS += json.loads((DATA / 'review-batch03.json').read_text())['edits']
+EDITS += json.loads((DATA / 'review-batch04.json').read_text())['edits']
 LANGS = tuple(UI)
 SITE = 'https://nondubito.net/'
+
+def publication_date(ep):
+    return '2026-10-06' if ep is None or ep <= 12 else '2026-10-07'
 
 def esc(s):
     return html.escape(str(s), quote=True)
@@ -92,7 +96,8 @@ def shell(lang, ep, title, description, content):
     aliases += f'<link rel="alternate" hreflang="x-default" href="{url(destination("en", ep))}">'
     schema = {'@context': 'https://schema.org', '@type': 'Article' if ep else 'CollectionPage',
               'name': title, 'headline': title, 'description': description, 'url': canonical,
-              'inLanguage': lang, 'datePublished': DATE, 'dateModified': DATE,
+              'inLanguage': lang, 'datePublished': publication_date(ep),
+              'dateModified': publication_date(ep) if ep else DATE,
               'author': {'@type': 'Person', 'name': 'Han Qin'},
               'isPartOf': {'@type': 'CreativeWorkSeries', 'name': ui['series'], 'url': url(destination(lang))}}
     if not ep:
@@ -128,7 +133,7 @@ def essay(lang, ep):
     sources = ''.join(f'<li><a href="{esc(r[1])}">{esc(r[0])}</a></li>' for r in refs)
     content = f'''<header class="essay-heading"><p class="eyebrow"><a href="{relative(destination(lang), path)}">{esc(ui['series'])}</a> · {ep:02d}</p>
 <h1>{esc(title)}</h1><p class="deck">{esc(ui['descs'][ep-1])}</p>
-<p class="meta">{esc(ui['by'])} · {esc(reading_time(ep, lang))} · {esc(ui['published'])} <time datetime="{DATE}">{DATE}</time></p></header>
+<p class="meta">{esc(ui['by'])} · {esc(reading_time(ep, lang))} · {esc(ui['published'])} <time datetime="{publication_date(ep)}">{publication_date(ep)}</time></p></header>
 <div class="reading-layout"><aside class="contents"><details><summary>{esc(ui['toc'])}</summary><nav aria-label="{esc(ui['toc'])}"><ol>{toc}</ol></nav></details></aside>
 <article class="prose" data-search="paleontology 古生物 凿构周期律 EP{ep:02d}">{body}
 <details class="research"><summary>{esc(ui['sources'])}</summary><ul>{sources}</ul></details>

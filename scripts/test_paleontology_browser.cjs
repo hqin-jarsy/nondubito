@@ -14,7 +14,7 @@ const assert = require('node:assert/strict');
     for (const width of [375, 768, 1440]) {
       await page.setViewportSize({width, height:900});
       for (const lang of ['', 'en/', 'zh-hant/', 'de/', 'fr/', 'es/', 'ja/', 'ko/']) {
-        for (const filename of ['index.html', ...Array.from({length:12}, (_, i) => `ep${String(i + 1).padStart(2,'0')}.html`)]) {
+        for (const filename of ['index.html', ...Array.from({length:16}, (_, i) => `ep${String(i + 1).padStart(2,'0')}.html`)]) {
           const response = await page.goto(`${base}/essays/paleontology/${lang}${filename}`);
           assert.equal(response.status(), 200);
           assert.equal(await page.locator('h1').count(), 1);
@@ -50,19 +50,19 @@ const assert = require('node:assert/strict');
     }
     const noJS = await browser.newContext({javaScriptEnabled:false, viewport:{width:390,height:844}});
     const plain = await noJS.newPage();
-    await plain.goto(`${base}/essays/paleontology/en/ep09.html`);
+    await plain.goto(`${base}/essays/paleontology/en/ep13.html`);
     assert.equal(await plain.locator('article.prose > h2').count(), 8);
     await plain.locator('.language-menu summary').click();
     await plain.locator('.language-menu a[lang="ja"]').click();
-    assert(plain.url().endsWith('/ja/ep09.html'));
+    assert(plain.url().endsWith('/ja/ep13.html'));
     assert.equal(await plain.locator('article.prose > h2').count(), 8);
     await page.setViewportSize({width:1440,height:1000});
     await page.goto(`${base}/essays/paleontology/index.html`);
     await page.screenshot({path:'/tmp/paleontology-hub-desktop.png', fullPage:true});
-    await page.goto(`${base}/essays/paleontology/en/ep09.html`);
+    await page.goto(`${base}/essays/paleontology/en/ep13.html`);
     await page.screenshot({path:'/tmp/paleontology-essay-desktop.png'});
     await page.setViewportSize({width:390,height:844});
-    await page.goto(`${base}/essays/paleontology/zh-hant/ep12.html`);
+    await page.goto(`${base}/essays/paleontology/zh-hant/ep16.html`);
     await page.screenshot({path:'/tmp/paleontology-essay-mobile.png'});
     assert.deepEqual(errors, []);
     console.log(JSON.stringify({viewportChecks:checks, menuLinks:'8 per page', libraryAndLatestLanguageLinks:'passed', withoutJavaScript:'passed', pageErrors:errors}));
