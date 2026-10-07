@@ -9,17 +9,18 @@ const base=process.argv[2]||'http://127.0.0.1:8786';
   const ctx=await browser.newContext({reducedMotion:'reduce'});
   await ctx.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());
   const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  const lines=fs.readFileSync(path.join(__dirname,'../data/originals/hongloumeng/ch081.zh.txt'),'utf8').split('\n');
+  const originalLines=fs.readFileSync(path.join(__dirname,'../data/originals/hongloumeng/ch082.zh.txt'),'utf8').split('\n');
   let checks=0;
   for(const width of [1440,768,390,320]){
    await page.setViewportSize({width,height:900});
-   for(const dir of ['','zh-hant/'])for(const filename of ['index.html','ch081.html']){
+   for(const dir of ['','zh-hant/'])for(const filename of ['index.html','ch081.html','ch082.html']){
     await page.goto(`${base}/originals/hongloumeng/${dir}${filename}`);
     assert.equal(await page.locator('h1:visible').count(),1);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-    assert.equal(await page.locator('a[href*="ch082"]').count(),0);
-    if(filename==='ch081.html'){
-     assert.equal(await page.locator('.verse p').count(),8);
+    assert.equal(await page.locator('a[href*="ch083"]').count(),0);
+    if(filename!=='index.html'){
+     const lines=fs.readFileSync(path.join(__dirname,`../data/originals/hongloumeng/${filename.replace('.html','.zh.txt')}`),'utf8').split('\n');
+     assert.equal(await page.locator('.verse p').count(),filename==='ch081.html'?8:2);
      assert.equal(await page.locator('.novel-text p').count(),lines.slice(1).filter(Boolean).length);
      if(!dir)assert.deepEqual(await page.locator('.novel-text p').allTextContents(),lines.slice(1).filter(Boolean));
      await page.locator('.novel-text p').last().scrollIntoViewIfNeeded();
@@ -28,22 +29,22 @@ const base=process.argv[2]||'http://127.0.0.1:8786';
     checks++;
    }
   }
-  await page.goto(`${base}/originals/hongloumeng/ch081.html`);
+  await page.goto(`${base}/originals/hongloumeng/ch082.html`);
   await page.getByRole('link',{name:'繁體中文',exact:true}).click();
-  await page.waitForURL('**/zh-hant/ch081.html');
+  await page.waitForURL('**/zh-hant/ch082.html');
   await page.getByRole('link',{name:'简体中文',exact:true}).click();
-  await page.waitForURL('**/hongloumeng/ch081.html');
+  await page.waitForURL('**/hongloumeng/ch082.html');
   await page.setViewportSize({width:1440,height:1000});
-  await page.screenshot({path:'/tmp/hongloumeng-ch081-desktop.png'});
+  await page.screenshot({path:'/tmp/hongloumeng-ch082-desktop.png'});
   await page.setViewportSize({width:390,height:844});
-  await page.goto(`${base}/originals/hongloumeng/ch081.html`);
+  await page.goto(`${base}/originals/hongloumeng/ch082.html`);
   await page.evaluate(()=>scrollTo(0,0));
-  await page.screenshot({path:'/tmp/hongloumeng-ch081-mobile.png'});
+  await page.screenshot({path:'/tmp/hongloumeng-ch082-mobile.png'});
   await page.locator('.verse').scrollIntoViewIfNeeded();
-  await page.screenshot({path:'/tmp/hongloumeng-ch081-verse.png'});
+  await page.screenshot({path:'/tmp/hongloumeng-ch082-verse.png'});
   const plain=await browser.newContext({javaScriptEnabled:false,viewport:{width:320,height:900}});
-  const p=await plain.newPage();await p.goto(`${base}/originals/hongloumeng/ch081.html`);
-  assert.equal(await p.locator('.novel-text p').count(),lines.slice(1).filter(Boolean).length);
+  const p=await plain.newPage();await p.goto(`${base}/originals/hongloumeng/ch082.html`);
+  assert.equal(await p.locator('.novel-text p').count(),originalLines.slice(1).filter(Boolean).length);
   assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   assert.deepEqual(errors,[]);
   console.log(`PASS: ${checks} responsive page checks, full manuscript parity, poem, language switches and no-JS reading.`);

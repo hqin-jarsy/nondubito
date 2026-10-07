@@ -9,7 +9,7 @@ from build_hongloumeng_original import render, DATE
 def refresh():
     paths=list(render())
     paths += [search.ROOT/'essays/literature/hlm'/d/'index.html' for d in ('','en','zh-hant')]
-    paths += [search.ROOT/p for p in ('originals/index.html','library.html','essays/literature/index.html')]
+    paths += [search.ROOT/'originals/index.html']
     scope={str(p.relative_to(search.ROOT)) for p in paths}
     previous=search.collect_pages
     try:
