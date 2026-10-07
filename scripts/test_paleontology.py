@@ -41,7 +41,9 @@ class Publication(unittest.TestCase):
             for ep in p.PUBLISHED:
                 original = p.original(ep, lang); edited = p.reviewed(ep, lang)
                 self.assertEqual(len(re.findall(r'^### ', original, re.M)), 8)
-                self.assertEqual(len(original.split('\n\n')), len(edited.split('\n\n')))
+                # Ignore trailing blank lines in supplied files, not real paragraphs.
+                self.assertEqual(len(re.split(r'\n\s*\n', original.strip())),
+                                 len(re.split(r'\n\s*\n', edited.strip())))
                 self.assertGreater(len(edited) / len(original), .97)
                 # All source paragraphs survive; exact reviewed HTML is embedded intact.
                 body = p.parts(ep, lang)[2]

@@ -17,12 +17,13 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/paleontology'
 TARGET = ROOT / 'essays/paleontology'
 DATE = '2026-10-07'
-PUBLISHED = tuple(range(1, 17))
+PUBLISHED = tuple(range(1, 21))
 UI = json.loads((DATA / 'ui.json').read_text())
 EDITS = json.loads((DATA / 'review.json').read_text())['edits']
 EDITS += json.loads((DATA / 'review-batch02.json').read_text())['edits']
 EDITS += json.loads((DATA / 'review-batch03.json').read_text())['edits']
 EDITS += json.loads((DATA / 'review-batch04.json').read_text())['edits']
+EDITS += json.loads((DATA / 'review-batch05.json').read_text())['edits']
 LANGS = tuple(UI)
 SITE = 'https://nondubito.net/'
 
