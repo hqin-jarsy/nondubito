@@ -125,6 +125,7 @@ DOMAIN_PREFIXES = (
     ("essays/athletics/", "history"),
     ("essays/worldcup/", "history"),
     ("essays/math-history/", "history"),
+    ("essays/paleontology/", "history"),
     ("essays/sae-", "sae-philosophy"),
     ("essays/method/", "sae-philosophy"),
     ("essays/meaning/", "sae-philosophy"),
@@ -306,6 +307,13 @@ def traditional_variant(root: Path, path: Path, simplified: str) -> str | None:
 def language_from_directory(relative: Path, root: Path) -> tuple[str | None, Path | None]:
     parts = list(relative.parts)
 
+    # Paleontology gives all eight editions their own static URL, including EN/Hant.
+    if len(parts) == 4 and parts[:2] == ["essays", "paleontology"]:
+        language = LANGUAGE_CODES.get(parts[2])
+        candidate = Path("essays", "paleontology", parts[3])
+        if language and (root / candidate).exists():
+            return language, candidate
+
     # Early AI pages keep their bilingual originals directly under essays/,
     # while later language editions live under essays/ai-human/<lang>/.
     if (
@@ -397,6 +405,8 @@ def infer_domain(relative: Path) -> str:
 
 
 def infer_record_type(relative: Path) -> str:
+    if relative.parts[:2] == ("essays", "paleontology") and relative.name == "index.html":
+        return "series-index"
     if relative.parts and relative.parts[0] == "originals":
         if relative.name != "index.html":
             return "story"

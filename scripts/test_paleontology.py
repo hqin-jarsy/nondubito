@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""Completeness, reproducibility, discovery and local-link regression checks."""
+import json
+import re
+import unittest
+import xml.etree.ElementTree as ET
+from html.parser import HTMLParser
+from urllib.parse import urlsplit, unquote
+import markdown
+import build_paleontology as p
+from build_content_registry import scan_page
+
+class Document(HTMLParser):
+    def __init__(self, source):
+        super().__init__(); self.tags = []; self.ids = []; self.links = []
+        self.feed(source)
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs); self.tags.append((tag, attrs))
+        if 'id' in attrs: self.ids.append(attrs['id'])
+        if tag in ('a', 'link') and 'href' in attrs: self.links.append((tag, attrs))
+
+class Publication(unittest.TestCase):
+    def test_full_text_and_immutable_sources(self):
+        for lang in p.LANGS:
+            for ep in p.PUBLISHED:
+                original = p.original(ep, lang); edited = p.reviewed(ep, lang)
+                self.assertEqual(len(re.findall(r'^### ', original, re.M)), 8)
+                self.assertEqual(len(original.split('\n\n')), len(edited.split('\n\n')))
+                self.assertGreater(len(edited) / len(original), .97)
+                # All source paragraphs survive; exact reviewed HTML is embedded intact.
+                body = p.parts(ep, lang)[2]
+                self.assertIn(body, p.destination(lang, ep).read_text())
+                self.assertEqual(body.count('<p>'), markdown.markdown(original).count('<p>'))
+
+    def test_generated_documents_and_links(self):
+        paths = list(p.TARGET.rglob('*.html')); self.assertEqual(len(paths), 40)
+        for lang in p.LANGS:
+            for ep in (None, *p.PUBLISHED):
+                path = p.destination(lang, ep); source = path.read_text(); doc = Document(source)
+                self.assertEqual(source, p.hub(lang) if ep is None else p.essay(lang, ep))
+                self.assertEqual(sum(t == 'h1' for t,a in doc.tags), 1)
+                self.assertEqual(len(doc.ids), len(set(doc.ids)))
+                self.assertIn(('html', {'lang':lang, 'data-editions':lang}), doc.tags)
+                canonical = [a['href'] for t,a in doc.links if a.get('rel') == 'canonical']
+                self.assertEqual(canonical, [p.url(path)])
+                alternates = {a['hreflang']:a['href'] for t,a in doc.links if a.get('rel') == 'alternate'}
+                self.assertEqual(len(alternates), 9)
+                for l in p.LANGS: self.assertEqual(alternates[l], p.url(p.destination(l, ep)))
+                schema = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', source, re.S)[1])
+                self.assertEqual(schema['inLanguage'], lang)
+                for tag, attrs in doc.links:
+                    parsed = urlsplit(attrs['href'])
+                    if parsed.scheme or parsed.netloc: continue
+                    target = (path.parent / unquote(parsed.path)).resolve() if parsed.path else path
+                    self.assertTrue(target.exists(), (path, attrs))
+                    if parsed.fragment and target.suffix == '.html':
+                        self.assertIn(parsed.fragment, Document(target.read_text()).ids)
+                record = scan_page(p.ROOT, path)
+                self.assertEqual(record['languages'], [lang])
+                self.assertEqual(record['series'], 'paleontology')
+                self.assertEqual(record['domain'], 'history')
+
+    def test_discovery(self):
+        manifest = json.loads((p.ROOT/'data/search-index.json').read_text())
+        total = 0
+        for lang in p.LANGS:
+            chunk = json.loads((p.ROOT/f'data/search/{lang.lower()}.json').read_text())
+            records = [r for r in chunk['records'] if r['u'].startswith('essays/paleontology/')]
+            self.assertEqual(len(records), 5)
+            self.assertEqual({r['u'] for r in records}, {str(p.destination(lang,n).relative_to(p.ROOT)) for n in (None,*p.PUBLISHED)})
+            self.assertTrue(all(r['s'] == 'paleontology' and r['d'] == 'history' for r in records))
+            self.assertEqual(manifest['languages'][lang]['count'], len(chunk['records']))
+            total += len(chunk['records'])
+        # Existing manifest counts unique source records, not all language copies.
+        self.assertGreaterEqual(total, manifest['record_count'])
+        entries = [u.find('{http://www.sitemaps.org/schemas/sitemap/0.9}loc').text for u in ET.parse(p.ROOT/'sitemap.xml').getroot()]
+        self.assertEqual(len(entries), len(set(entries)))
+        self.assertEqual(sum('/essays/paleontology/' in u for u in entries), 40)
+
+if __name__ == '__main__':
+    unittest.main()

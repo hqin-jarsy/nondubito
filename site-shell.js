@@ -10,6 +10,10 @@
     document.documentElement.lang = language === 'zh-hant' ? 'zh-Hant' : (language === 'zh' ? 'zh-Hans' : 'en');
     localStorage.setItem('nd_lang', language);
     localStorage.setItem('nondubito-lang', language);
+    document.querySelectorAll('a[data-edition-en]').forEach(function (link) {
+      var target = link.getAttribute('data-edition-' + language);
+      if (target) link.setAttribute('href', target);
+    });
   }
 
   applyLanguage(savedLanguage);
