@@ -33,7 +33,7 @@ class Publication(unittest.TestCase):
                 self.assertEqual(body.count('<p>'), markdown.markdown(original).count('<p>'))
 
     def test_generated_documents_and_links(self):
-        paths = list(p.TARGET.rglob('*.html')); self.assertEqual(len(paths), 40)
+        paths = list(p.TARGET.rglob('*.html')); self.assertEqual(len(paths), len(p.LANGS) * (len(p.PUBLISHED) + 1))
         for lang in p.LANGS:
             for ep in (None, *p.PUBLISHED):
                 path = p.destination(lang, ep); source = path.read_text(); doc = Document(source)
@@ -66,7 +66,7 @@ class Publication(unittest.TestCase):
         for lang in p.LANGS:
             chunk = json.loads((p.ROOT/f'data/search/{lang.lower()}.json').read_text())
             records = [r for r in chunk['records'] if r['u'].startswith('essays/paleontology/')]
-            self.assertEqual(len(records), 5)
+            self.assertEqual(len(records), len(p.PUBLISHED) + 1)
             self.assertEqual({r['u'] for r in records}, {str(p.destination(lang,n).relative_to(p.ROOT)) for n in (None,*p.PUBLISHED)})
             self.assertTrue(all(r['s'] == 'paleontology' and r['d'] == 'history' for r in records))
             self.assertEqual(manifest['languages'][lang]['count'], len(chunk['records']))
@@ -75,7 +75,7 @@ class Publication(unittest.TestCase):
         self.assertGreaterEqual(total, manifest['record_count'])
         entries = [u.find('{http://www.sitemaps.org/schemas/sitemap/0.9}loc').text for u in ET.parse(p.ROOT/'sitemap.xml').getroot()]
         self.assertEqual(len(entries), len(set(entries)))
-        self.assertEqual(sum('/essays/paleontology/' in u for u in entries), 40)
+        self.assertEqual(sum('/essays/paleontology/' in u for u in entries), len(p.LANGS) * (len(p.PUBLISHED) + 1))
 
 if __name__ == '__main__':
     unittest.main()
