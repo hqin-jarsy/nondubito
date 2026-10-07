@@ -20,6 +20,22 @@ class Document(HTMLParser):
         if tag in ('a', 'link') and 'href' in attrs: self.links.append((tag, attrs))
 
 class Publication(unittest.TestCase):
+    def test_hub_groups_match_published_episodes(self):
+        for lang in p.LANGS:
+            source = p.destination(lang).read_text()
+            seen = []
+            for first, last in ((1, 8), (9, 13), (14, 18), (19, 23)):
+                expected = [n for n in p.PUBLISHED if first <= n <= last]
+                section = re.search(r'<section class="published" id="group-' + f'{first:02d}' + r'">(.*?)</section>', source, re.S)
+                if not expected:
+                    self.assertIsNone(section)
+                    continue
+                self.assertIsNotNone(section)
+                actual = [int(n) for n in re.findall(r'class="essay-card" href="ep(\d+)\.html"', section[1])]
+                self.assertEqual(actual, expected)
+                seen.extend(actual)
+            self.assertEqual(seen, list(p.PUBLISHED))
+
     def test_full_text_and_immutable_sources(self):
         for lang in p.LANGS:
             for ep in p.PUBLISHED:

@@ -17,10 +17,11 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/paleontology'
 TARGET = ROOT / 'essays/paleontology'
 DATE = '2026-10-06'
-PUBLISHED = tuple(range(1, 9))
+PUBLISHED = tuple(range(1, 13))
 UI = json.loads((DATA / 'ui.json').read_text())
 EDITS = json.loads((DATA / 'review.json').read_text())['edits']
 EDITS += json.loads((DATA / 'review-batch02.json').read_text())['edits']
+EDITS += json.loads((DATA / 'review-batch03.json').read_text())['edits']
 LANGS = tuple(UI)
 SITE = 'https://nondubito.net/'
 
@@ -136,13 +137,19 @@ def essay(lang, ep):
 
 def hub(lang):
     ui = UI[lang]; path = destination(lang)
-    cards = ''.join(f'''<a class="essay-card" href="{relative(destination(lang, n), path)}"><span class="card-number">{n:02d}</span>
-<div><h3>{esc(parts(n, lang)[0])}</h3><p>{esc(ui['descs'][n-1])}</p><span class="card-time">{esc(reading_time(n, lang))} →</span></div></a>''' for n in PUBLISHED)
+    sections = []
+    for group, (first, last) in zip(ui['groups'], ((1, 8), (9, 13), (14, 18), (19, 23))):
+        episodes = [n for n in PUBLISHED if first <= n <= last]
+        if not episodes:
+            continue
+        cards = ''.join(f'''<a class="essay-card" href="{relative(destination(lang, n), path)}"><span class="card-number">{n:02d}</span>
+<div><h3>{esc(parts(n, lang)[0])}</h3><p>{esc(ui['descs'][n-1])}</p><span class="card-time">{esc(reading_time(n, lang))} →</span></div></a>''' for n in episodes)
+        sections.append(f'<section class="published" id="group-{first:02d}"><h2>{esc(group)}</h2><div class="essay-grid">{cards}</div></section>')
     route = ''.join(f'<li>{esc(g)}</li>' for g in ui['groups'])
     content = f'''<header class="series-heading"><p class="eyebrow">NON DUBITO · PALEONTOLOGY</p><p class="series-name">{esc(ui['series'])}</p>
 <h1>{esc(ui['title'])}</h1><p class="deck">{esc(ui['intro'])}</p><p class="status">{esc(ui['status'])}</p>
 <a class="start-link" href="{relative(destination(lang, 1), path)}">{esc(ui['read'])} · 01 →</a></header>
-<section class="published"><h2>{esc(ui['groups'][0])}</h2><div class="essay-grid">{cards}</div></section>
+{''.join(sections)}
 <section class="future"><h2>{esc(ui['future'])}</h2><p>{esc(ui['futureNote'])}</p><ol>{route}</ol><p>{esc(ui['afterword'])}</p></section>'''
     return shell(lang, None, ui['series'], ui['intro'], content)
 
