@@ -3,13 +3,15 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const base=process.argv[2]||'http://127.0.0.1:8786';
+const chapter=process.argv[3]||'ch082';
+assert.ok(['ch081','ch082'].includes(chapter));
 (async()=>{
  const browser=await chromium.launch({headless:true,channel:'chrome'});
  try{
   const ctx=await browser.newContext({reducedMotion:'reduce'});
   await ctx.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());
   const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  const originalLines=fs.readFileSync(path.join(__dirname,'../data/originals/hongloumeng/ch082.zh.txt'),'utf8').split('\n');
+  const originalLines=fs.readFileSync(path.join(__dirname,`../data/originals/hongloumeng/${chapter}.zh.txt`),'utf8').split('\n');
   let checks=0;
   for(const width of [1440,768,390,320]){
    await page.setViewportSize({width,height:900});
@@ -29,21 +31,21 @@ const base=process.argv[2]||'http://127.0.0.1:8786';
     checks++;
    }
   }
-  await page.goto(`${base}/originals/hongloumeng/ch082.html`);
+  await page.goto(`${base}/originals/hongloumeng/${chapter}.html`);
   await page.getByRole('link',{name:'繁體中文',exact:true}).click();
-  await page.waitForURL('**/zh-hant/ch082.html');
+  await page.waitForURL(`**/zh-hant/${chapter}.html`);
   await page.getByRole('link',{name:'简体中文',exact:true}).click();
-  await page.waitForURL('**/hongloumeng/ch082.html');
+  await page.waitForURL(`**/hongloumeng/${chapter}.html`);
   await page.setViewportSize({width:1440,height:1000});
-  await page.screenshot({path:'/tmp/hongloumeng-ch082-desktop.png'});
+  await page.screenshot({path:`/tmp/hongloumeng-${chapter}-desktop.png`});
   await page.setViewportSize({width:390,height:844});
-  await page.goto(`${base}/originals/hongloumeng/ch082.html`);
+  await page.goto(`${base}/originals/hongloumeng/${chapter}.html`);
   await page.evaluate(()=>scrollTo(0,0));
-  await page.screenshot({path:'/tmp/hongloumeng-ch082-mobile.png'});
+  await page.screenshot({path:`/tmp/hongloumeng-${chapter}-mobile.png`});
   await page.locator('.verse').scrollIntoViewIfNeeded();
-  await page.screenshot({path:'/tmp/hongloumeng-ch082-verse.png'});
+  await page.screenshot({path:`/tmp/hongloumeng-${chapter}-verse.png`});
   const plain=await browser.newContext({javaScriptEnabled:false,viewport:{width:320,height:900}});
-  const p=await plain.newPage();await p.goto(`${base}/originals/hongloumeng/ch082.html`);
+  const p=await plain.newPage();await p.goto(`${base}/originals/hongloumeng/${chapter}.html`);
   assert.equal(await p.locator('.novel-text p').count(),originalLines.slice(1).filter(Boolean).length);
   assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   assert.deepEqual(errors,[]);

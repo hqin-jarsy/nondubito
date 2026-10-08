@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'originals/hongloumeng'
 DATE = '2026-10-07'
 CHAPTERS = {
-    'ch081': {'sha256': '2b2e3370b189ccda89292e42507b31809fc9b687ddf7bbc95092e7fed2f12d3d',
+    'ch081': {'sha256': '17b576513dcd1b234b8043cf62cf624b376bb9c0e490014d2103941743dca131',
               'published': '2026-10-05', 'number': '第八十一回',
               'verse': ('抛红豆，滴相思。', '任凭风雨误花期。')},
     'ch082': {'sha256': '1fb3f88c945d4e6fea5eabaf7bff1cff01f1c370b968a2c5487d604e175806d0',
@@ -41,6 +41,8 @@ def render():
                 value = converter.convert(value)
                 # Context-sensitive script choices, never changes to the author's wording.
                 choices = {'城東二十裡':'城東二十里', '一乾人':'一干人', '對不准針眼':'對不準針眼', '我系了送給':'我繫了送給'}
+                if stem == 'ch081':
+                    choices.update({'我系了這幾年了':'我繫了這幾年了', '鄰捨':'鄰舍'})
                 if stem == 'ch082':
                     choices.update({'腰系青絲':'腰繫青絲', '系一條淡':'繫一條淡', '帕子松了':'帕子鬆了', '拿不准':'拿不準', '參須':'參鬚'})
                 for before, after in choices.items():
