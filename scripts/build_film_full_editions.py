@@ -14,7 +14,9 @@ DATE='2026-10-07'
 NAMES={'en':'English','zh':'简体中文','zh-hant':'繁體中文','de':'Deutsch','fr':'Français','es':'Español','ja':'日本語','ko':'한국어'}
 GROUPS={'de':'Deutsch','fr':'Français','es':'Español','ja':'日本語','ko':'한국어'}
 UI=json.loads((DATA/'ui.json').read_text())
-FILMS=json.loads((DATA/'batch01-received.json').read_text())['films']
+RECEIPTS=[json.loads(p.read_text()) for p in sorted(DATA.glob('batch*-received.json'))]
+FILMS=[f for r in RECEIPTS for f in r['films']]
+assert len({f['slug'] for f in FILMS})==len(FILMS)
 E=lambda s:html.escape(str(s),quote=True)
 
 def plain(s):
@@ -25,7 +27,11 @@ def index_source(film,lang):
     for name in ('INDEX.md','index.md','README.md'):
         p=root/lang/name
         if p.exists():return p,p.read_text()
-    p=root/'README.md';s=p.read_text()
+    p=root/('INDEX.md' if (root/'INDEX.md').exists() else 'README.md');s=p.read_text()
+    if film['slug']=='inception':
+        sections=list(re.finditer(r'(?m)^## (.+)$',s));assert len(sections)==5
+        i=LANGS.index(lang)
+        return p,s[sections[i].start():sections[i+1].start() if i<4 else len(s)]
     pattern=r'(?m)^(?:## '+re.escape(GROUPS[lang])+r'|\*\*'+re.escape(GROUPS[lang])+r'\*\*)\s*$'
     m=re.search(pattern,s);assert m,(film['slug'],lang)
     rest=s[m.end():]
@@ -39,7 +45,7 @@ def split_copy(film,lang,ep=None):
     else:
         p=DATA/'reviewed'/film['slug']/lang/f'EP{ep:02}.md';s=p.read_text()
     m=re.search(r'(?m)^#{1,3} (.+)$',s);assert m,p
-    title=plain(m[1]);text=s[m.end():].strip()
+    title=re.sub(r'^(?:Deutsch|Français|Español|日本語|한국어)\s*·\s*','',plain(m[1]));text=s[m.end():].strip()
     if ep is None:
         # Delivery-package instructions are not reader-facing edition information.
         text=re.sub(r'(?m)^## (?:Zu dieser Ausgabe|À propos des éditions|Sobre esta edición|この日本語版について|판본과 읽기 안내)\s*\n+[^\n]+\n*','',text)
@@ -49,6 +55,9 @@ def split_copy(film,lang,ep=None):
     paragraphs=[x for x in paragraphs if not ('Han Qin' in x and len(x)<260) and not re.search(note,x) and not (ep is not None and re.fullmatch(r'(?:\[[^\]]*\]\([^)]*\)\s*(?:[·|]\s*)?)+',x) and not re.search(r'https?://',x))]
     if ep is None:
         paragraphs=[x for x in paragraphs if not ('·' in x and len(x)<220 and '[' not in x)]
+        furniture=r'^(?:Éditions (?:originales|sources|du site)|Quellenausgaben:|Le site d’origine propose|Reescritura independiente en español del original chino$|\[원문 연작\])'
+        paragraphs=[x for x in paragraphs if not re.search(furniture,x) and not re.match(r'^\[←[^\]]*\]\([^)]*\)$',x)]
+    paragraphs=[x for x in paragraphs if not x.startswith('**原作について：**')]
     text='\n\n'.join(paragraphs)
     def link(m):
         label,url=m[1],m[2].strip('<>')
@@ -123,6 +132,9 @@ def legacy(path,film,hub=False):
     if hub:
         head=head.replace('Fifty-nine series · One hundred seventy-seven essays · Three reading modes','59 film series · 177 essays · First 5 series in 8 languages')
         head=head.replace('五十九个系列 · 一百七十七篇 · 英 / 简 / 繁','59 个系列 · 177 篇 · 首批 5 部作品八语齐备')
+        head=re.sub(r'First \d+ series in 8 languages',f'First {len(FILMS)} series in 8 languages',head)
+        head=re.sub(r'首批 \d+ 部作品八语齐备',f'前 {len(FILMS)} 部作品八语齐备',head)
+        head=re.sub(r'前 \d+ 部作品八语齐备',f'前 {len(FILMS)} 部作品八语齐备',head)
     else:
         head=head.replace('English · Simplified · Traditional','8 language editions')
         head=head.replace('英文 · 简体 · 繁体','八种语言版本')
