@@ -63,18 +63,19 @@ class Films(unittest.TestCase):
                 for slug in film['chapters']:
                     self.assertIn(f'href="{slug}.html"',index,(film['slug'],lang,slug))
                 for ep,slug in enumerate(film['chapters'],1):
-                    s=(b.DATA/'reviewed'/film['slug']/lang/f'EP{ep:02}.md').read_text()
+                    s=b.article_source(film,lang,ep).read_text()
                     page=self.pages[b.ROOT/'essays/film'/film['slug']/lang/(slug+'.html')]
                     expected=len(re.findall(r'^## ',s,re.M))
                     self.assertEqual(page.count('<h2'),expected,(film['slug'],lang,ep))
                     self.assertGreater(len(b.plain(b.split_copy(film,lang,ep)['body'])),len(b.plain(s))*.85)
 
     def test_recorded_editorial_corrections(self):
-        audit=json.loads((b.DATA/'batch02-corrections.json').read_text())
-        for change in audit['changes']:
-            text=(b.ROOT/change['path']).read_text()
-            self.assertIn(change['after'],text,change['path'])
-            self.assertNotIn(change['before'],text,change['path'])
+        for path in sorted(b.DATA.glob('batch*-corrections.json')):
+            audit=json.loads(path.read_text())
+            for change in audit['changes']:
+                text=(b.ROOT/change['path']).read_text()
+                self.assertIn(change['after'],text,change['path'])
+                self.assertNotIn(change['before'],text,change['path'])
 
     def test_discovery_coverage(self):
         import xml.etree.ElementTree as ET
@@ -87,7 +88,7 @@ class Films(unittest.TestCase):
             for film in b.FILMS:
                 for name in ['index',*film['chapters']]:
                     route=f'essays/film/{film["slug"]}/{lang}/{name}.html'
-                    self.assertIn(route,records)
+                    self.assertTrue(route in records,route)
                     canonical='https://nondubito.net/'+(route[:-10] if name=='index' else route)
                     self.assertIn(canonical,urls)
 

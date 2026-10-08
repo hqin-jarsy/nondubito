@@ -28,10 +28,15 @@ def index_source(film,lang):
         p=root/lang/name
         if p.exists():return p,p.read_text()
     p=root/('INDEX.md' if (root/'INDEX.md').exists() else 'README.md');s=p.read_text()
-    if film['slug']=='inception':
-        sections=list(re.finditer(r'(?m)^## (.+)$',s));assert len(sections)==5
+    if film['slug']=='hachi':
+        sections=list(re.finditer(r'(?m)^\[←[^\n]+\]\(https://nondubito.net/essays/film/index.html\)',s));assert len(sections)==5
         i=LANGS.index(lang)
         return p,s[sections[i].start():sections[i+1].start() if i<4 else len(s)]
+    if film['slug'] in ('inception','truman-show','legend-of-1900'):
+        sections=list(re.finditer(r'(?m)^## (.+)$',s));assert len(sections)==5
+        i=LANGS.index(lang)
+        start=sections[i].end() if sections[i][1] in GROUPS.values() else sections[i].start()
+        return p,s[start:sections[i+1].start() if i<4 else len(s)]
     pattern=r'(?m)^(?:## '+re.escape(GROUPS[lang])+r'|\*\*'+re.escape(GROUPS[lang])+r'\*\*)\s*$'
     m=re.search(pattern,s);assert m,(film['slug'],lang)
     rest=s[m.end():]
@@ -40,12 +45,18 @@ def index_source(film,lang):
     rest=re.sub(r'(?m)^原作版权.*$','',rest)
     return p,rest
 
+def article_source(film,lang,ep):
+    root=DATA/'reviewed'/film['slug']/lang
+    paths=[root/f'EP{ep:02}.md',root/f'{ep:02}.md']
+    found=[p for p in paths if p.exists()];assert len(found)==1,(film['slug'],lang,ep)
+    return found[0]
+
 def split_copy(film,lang,ep=None):
     if ep is None:p,s=index_source(film,lang)
     else:
-        p=DATA/'reviewed'/film['slug']/lang/f'EP{ep:02}.md';s=p.read_text()
+        p=article_source(film,lang,ep);s=p.read_text()
     m=re.search(r'(?m)^#{1,3} (.+)$',s);assert m,p
-    title=re.sub(r'^(?:Deutsch|Français|Español|日本語|한국어)\s*·\s*','',plain(m[1]));text=s[m.end():].strip()
+    title=re.sub(r'^(?:Deutsch|Français|Español|日本語|한국어)\s*[·—]\s*','',plain(m[1]));text=s[m.end():].strip()
     if ep is None:
         # Delivery-package instructions are not reader-facing edition information.
         text=re.sub(r'(?m)^## (?:Zu dieser Ausgabe|À propos des éditions|Sobre esta edición|この日本語版について|판본과 읽기 안내)\s*\n+[^\n]+\n*','',text)
@@ -63,7 +74,7 @@ def split_copy(film,lang,ep=None):
         label,url=m[1],m[2].strip('<>')
         if urlsplit(url).scheme:return m[0]
         target=(p.parent/url.split('#')[0]).resolve()
-        n=re.fullmatch(r'EP0([123])\.md',target.name,re.I)
+        n=re.fullmatch(r'(?:EP)?0([123])\.md',target.name,re.I)
         if n:return '['+label+']('+film['chapters'][int(n[1])-1]+'.html)'
         if target.name.lower() in ('index.md','readme.md','multilingual_index.md'):return '['+label+'](index.html)'
         raise AssertionError((p,url))
