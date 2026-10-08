@@ -20,7 +20,10 @@ SOURCE = ROOT / 'data/nonfiction'
 TARGET = ROOT / 'essays/nonfiction'
 HUB = ROOT / 'essays/books/index.html'
 PUBLISHED = '2026-09-13'
-ORDER = ('the-book-of-delights', 'a-lifes-work', 'wintering',
+ORDER = ('the-year-of-magical-thinking', 'the-library-book', 'working',
+         'a-field-guide-to-getting-lost', 'the-gift', 'seeing-voices', 'the-years',
+         'the-shepherds-life', 'beginners', 'paying-the-land',
+         'the-book-of-delights', 'a-lifes-work', 'wintering',
          'youre-not-listening', 'yowai-robotto', 'educated', 'because-internet',
          'ways-of-seeing', 'the-personality-brokers', 'the-living-mountain',
          'the-art-of-gathering', 'four-thousand-weeks', 'the-craftsman',

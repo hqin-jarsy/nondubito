@@ -72,10 +72,11 @@ class Publication(unittest.TestCase):
                 self.assertEqual(len(doc.ids), len(set(doc.ids)))
                 self.assertIn(('html', {'lang':lang, 'data-editions':lang}), doc.tags)
                 canonical = [a['href'] for t,a in doc.links if a.get('rel') == 'canonical']
-                self.assertEqual(canonical, [p.url(path)])
+                self.assertEqual(canonical, [p.canonical_url(path)])
+                self.assertFalse(canonical[0].endswith('/index.html'))
                 alternates = {a['hreflang']:a['href'] for t,a in doc.links if a.get('rel') == 'alternate'}
                 self.assertEqual(len(alternates), 9)
-                for l in p.LANGS: self.assertEqual(alternates[l], p.url(p.destination(l, ep)))
+                for l in p.LANGS: self.assertEqual(alternates[l], p.canonical_url(p.destination(l, ep)))
                 schema = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', source, re.S)[1])
                 self.assertEqual(schema['inLanguage'], lang)
                 self.assertEqual(schema['datePublished'], p.publication_date(ep))

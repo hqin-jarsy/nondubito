@@ -213,6 +213,16 @@ async function assertMobileMenu(page) {
     }
 
     const localizedTitles = {
+      'the-year-of-magical-thinking': {zh: '奇想之年', 'zh-hant': '奇想之年'},
+      'the-library-book': {zh: '亲爱的图书馆', 'zh-hant': '親愛的圖書館'},
+      'working': {zh: '工作', 'zh-hant': '工作'},
+      'a-field-guide-to-getting-lost': {zh: '迷失指南', 'zh-hant': '迷失指南'},
+      'the-gift': {zh: '礼物', 'zh-hant': '禮物'},
+      'seeing-voices': {zh: '看见声音', 'zh-hant': '看見聲音'},
+      'the-years': {zh: '悠悠岁月', 'zh-hant': '悠悠歲月'},
+      'the-shepherds-life': {zh: '放牧人生', 'zh-hant': '放牧人生'},
+      'beginners': {zh: 'Beginners', 'zh-hant': 'Beginners'},
+      'paying-the-land': {zh: 'Paying the Land', 'zh-hant': 'Paying the Land'},
       'the-book-of-delights': {zh: '欢喜之书', 'zh-hant': '歡喜之書'},
       'a-lifes-work': {zh: '成为母亲', 'zh-hant': '成為母親'},
       'wintering': {zh: '过冬', 'zh-hant': '過冬'},

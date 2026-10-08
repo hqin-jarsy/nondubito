@@ -48,6 +48,20 @@ OCTOBER_APPROVED_CHINESE_SHA256 = {
 }
 
 
+OCTOBER_SEVENTH_APPROVED = {
+    'the-year-of-magical-thinking': '87361b8c5df0593c6af91fe5e0a4cd3ae76ecd1699cf8b9fa5c0405cec05fd47',
+    'the-library-book': '83d43930b3f16552db203f91eff6150ee417a0f9f3c485329b1fce4af7318c02',
+    'working': '36200ebe5f3b2379fa9a7b9ca234ca11e3f71eea65c145ca4c662f690640bd5c',
+    'a-field-guide-to-getting-lost': '6f67feaf75e4cf2c643d5e92c1f85bbbb1bb0b11321fee2964b98302ba81173e',
+    'the-gift': 'c612c1203a07cf019460bd8c61a1f1900ec7e710b2c4aa28e33457ddefcddf83',
+    'seeing-voices': '64d2c6de07c801214a264757ce8b3fdee590fbc1b7a3349248e0a1b6a97deb6b',
+    'the-years': 'd1b02c6651ea99b6c3182d22584fca1edab1582078c47caf9f78fc5d9d177d8d',
+    'the-shepherds-life': 'f1cb5c9b9eb13c8823a164a77698f301b534acb8e94dede2245c8d08851711d4',
+    'beginners': 'bba9c030349e5c18dd784943d3705f004d7430a42d1e6bdd07c91da1da00e8cb',
+    'paying-the-land': '6ecaca425f4ab8bff0de348fc7e394592a2448cc1c5544c055ff8a0f2a2cb78a',
+}
+
+
 class BookIntroductionsTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -138,7 +152,34 @@ class BookIntroductionsTests(unittest.TestCase):
         self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
         self.assertEqual(update['kind'], 'new')
         self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
-        self.assertEqual(len(self.books), 22)
+        self.assertEqual(len(self.books), 32)
+
+    def test_october_seventh_preserves_reviewed_texts_and_editions(self):
+        books = {book['slug']: book for book in self.books}
+        self.assertEqual({b['slug'] for b in self.books if b['guide_date'] == '2026-10-07'},
+                         set(OCTOBER_SEVENTH_APPROVED))
+        for slug, digest in OCTOBER_SEVENTH_APPROVED.items():
+            with self.subTest(slug=slug):
+                book = books[slug]
+                self.assertEqual(hashlib.sha256(book['zh_body'].encode()).hexdigest(), digest)
+                self.assertNotIn('updated_date', book)
+                self.assertIn('未通读全书', book['zh_notice'])
+                zh_sections = re.findall(r'^## ', book['zh_body'], re.M)
+                self.assertEqual(len(zh_sections), len(re.findall(r'^## ', book['en_body'], re.M)))
+                self.assertGreater(len(book['en_body'].split()), 1200)
+                self.assertNotRegex(book['zh_body'] + book['en_body'], r'https?://|TODO|TBD')
+        self.assertEqual(books['the-years']['book_language'], 'fr')
+        self.assertEqual(books['the-years']['book_date'], '2008')
+        self.assertIn('2010', books['seeing-voices']['zh_body'])
+        self.assertIn('1990年的书评', books['seeing-voices']['zh_body'])
+        self.assertIn('2006', books['the-gift']['zh_notice'])
+        self.assertEqual(books['paying-the-land']['book_date'], '2020')
+        self.assertEqual(books['the-shepherds-life']['book_date'], '2015')
+        ledger = json.loads((build.ROOT / 'data/site-updates.json').read_text(encoding='utf-8'))
+        update = next(x for x in ledger['updates'] if x['id'] == '2026-10-07-nonfiction-ten-guides')
+        self.assertEqual(update['kind'], 'new')
+        self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
+        self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
 
     def test_october_batch_uses_revised_manuscripts_and_complete_editions(self):
         books = {book['slug']: book for book in self.books}

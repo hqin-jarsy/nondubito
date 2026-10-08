@@ -49,6 +49,10 @@ def relative(path, current):
 def url(path):
     return SITE + path.relative_to(ROOT).as_posix()
 
+def canonical_url(path):
+    # Discovery URLs use directory form; ordinary navigation stays unchanged.
+    return url(path).removesuffix('index.html') if path.name == 'index.html' else url(path)
+
 def original(ep, lang):
     item = json.loads((DATA / 'sources' / f'{stem(ep)}.{lang}.json').read_text())
     assert hashlib.sha256(item['original'].encode()).hexdigest() == item['sha256']
@@ -98,9 +102,9 @@ def language_menu(lang, ep, path):
     return f'<details class="language-menu"><summary aria-label="{esc(UI[lang]["language"])}">{esc(UI[lang]["label"])} <span aria-hidden="true">⌄</span></summary><nav aria-label="{esc(UI[lang]["language"])}">{links}</nav></details>'
 
 def shell(lang, ep, title, description, content):
-    ui = UI[lang]; path = destination(lang, ep); canonical = url(path)
-    aliases = ''.join(f'<link rel="alternate" hreflang="{l}" href="{url(destination(l, ep))}">\n' for l in LANGS)
-    aliases += f'<link rel="alternate" hreflang="x-default" href="{url(destination("en", ep))}">'
+    ui = UI[lang]; path = destination(lang, ep); canonical = canonical_url(path)
+    aliases = ''.join(f'<link rel="alternate" hreflang="{l}" href="{canonical_url(destination(l, ep))}">\n' for l in LANGS)
+    aliases += f'<link rel="alternate" hreflang="x-default" href="{canonical_url(destination("en", ep))}">'
     schema = {'@context': 'https://schema.org', '@type': 'Article' if ep else 'CollectionPage',
               'name': title, 'headline': title, 'description': description, 'url': canonical,
               'inLanguage': lang, 'datePublished': publication_date(ep),
