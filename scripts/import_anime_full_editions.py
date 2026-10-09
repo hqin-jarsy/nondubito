@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+"""Import delivered anime manuscripts without modifying the delivery packages."""
+import hashlib
+import json
+import re
+import subprocess
+from pathlib import Path, PurePosixPath
+from zipfile import ZipFile
+
+ROOT = Path(__file__).resolve().parents[1]
+DATA = ROOT / 'data/anime-full'
+SOURCE = Path('/Users/hanqin/Documents/SAE旗舰系列多语言/动漫解读')
+LANGS = ('de', 'fr', 'es', 'ja', 'ko')
+PACKAGES = {
+    'kimetsu': 'Demon_Slayer_Five_Languages.zip',
+    'frieren': 'Frieren_Five_Languages.zip',
+    'aot': 'Attack_on_Titan_Five_Languages.zip',
+    'geass': 'A04_Code_Geass_DE_FR_ES_JA_KO.zip',
+    'monster': 'Monster_five_languages.zip',
+}
+
+def sha(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+def main():
+    receipt = DATA / 'batch01-received.json'
+    assert not receipt.exists(), 'Do not overwrite reviewed copies.'
+    result = {'baseline_commit': subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT, text=True).strip(),
+              'series': [], 'protected': {}, 'files': {}, 'packages': {}}
+    for slug, name in PACKAGES.items():
+        package = SOURCE / name
+        result['packages'][name] = sha(package.read_bytes())
+        root = ROOT / 'essays/literature' / slug
+        chapters = [p.stem for p in sorted(root.glob('[1-9]*.html'))]
+        result['series'].append({'slug': slug, 'route': str(root.relative_to(ROOT)), 'chapters': chapters})
+        for p in sorted(root.rglob('*')):
+            if not p.is_file(): continue
+            relative = p.relative_to(root)
+            if relative.parts[0] in LANGS:
+                if p.suffix == '.html':
+                    dest = DATA / 'templates' / slug / relative
+                    dest.parent.mkdir(parents=True, exist_ok=True)
+                    dest.write_bytes(p.read_bytes())
+            else:
+                result['protected'][str(p.relative_to(ROOT))] = sha(p.read_bytes())
+        with ZipFile(package) as z:
+            names = set(z.namelist())
+            for n in sorted(names):
+                if PurePosixPath(n).name != 'SHA256SUMS.txt': continue
+                for line in z.read(n).decode().splitlines():
+                    m = re.fullmatch(r'([0-9a-f]{64})\s+\*?(.+)', line)
+                    assert m, (name, line)
+                    choices = [m[2], str(PurePosixPath(n).parent / m[2])]
+                    target = next(v for v in choices if v in names)
+                    assert sha(z.read(target)) == m[1], (name, target)
+            for n in sorted(names):
+                parts = PurePosixPath(n).parts
+                assert not n.startswith('/') and '..' not in parts
+                if not n.endswith('.md'): continue
+                raw = z.read(n)
+                dest = DATA / 'received' / slug / n
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.write_bytes(raw)
+                result['files'][str(dest.relative_to(DATA))] = sha(raw)
+                lang = next((p.lower() for p in parts[:-1] if p.lower() in LANGS), None)
+                if lang:
+                    match = re.match(r'(?:EP)?(\d+)', parts[-1], re.I)
+                    assert match, n
+                    ep = int(match[1])
+                    assert 1 <= ep <= len(chapters), n
+                    target = DATA / 'reviewed' / slug / lang / f'EP{ep:02}.md'
+                    assert not target.exists(), target
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(raw)
+        for lang in LANGS:
+            assert len(list((DATA/'reviewed'/slug/lang).glob('EP*.md'))) == len(chapters)
+    receipt.write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')
+    print('Imported 5 series, 120 manuscripts; received copies and original editions protected.')
+
+if __name__ == '__main__': main()
