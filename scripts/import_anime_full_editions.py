@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Import delivered anime manuscripts without modifying the delivery packages."""
 import hashlib
+import os
 import json
 import re
 import subprocess
@@ -11,6 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/anime-full'
 SOURCE = Path('/Users/hanqin/Documents/SAE旗舰系列多语言/动漫解读')
 LANGS = ('de', 'fr', 'es', 'ja', 'ko')
+BATCH = os.environ.get('ANIME_BATCH', '01')
+assert BATCH in ('01', '02'), BATCH
 PACKAGES = {
     'kimetsu': 'Demon_Slayer_Five_Languages.zip',
     'frieren': 'Frieren_Five_Languages.zip',
@@ -18,19 +21,28 @@ PACKAGES = {
     'geass': 'A04_Code_Geass_DE_FR_ES_JA_KO.zip',
     'monster': 'Monster_five_languages.zip',
 }
+if BATCH == '02':
+    PACKAGES = {
+        'psycho-pass': 'A06_PSYCHO-PASS_DE-FR-ES-JA-KO.zip',
+        'run-with-the-wind': 'A07_Run_with_the_Wind_DE_FR_ES_JA_KO.zip',
+        'parasyte': 'A08_Parasyte_DE_FR_ES_JA_KO.zip',
+        'chainsaw-man': 'A09_chainsaw-man_five-language.zip',
+        'legend-of-the-galactic-heroes': 'A10_legend-of-the-galactic-heroes_five_languages.zip',
+    }
 
 def sha(raw):
     return hashlib.sha256(raw).hexdigest()
 
 def main():
-    receipt = DATA / 'batch01-received.json'
+    receipt = DATA / f'batch{BATCH}-received.json'
     assert not receipt.exists(), 'Do not overwrite reviewed copies.'
     result = {'baseline_commit': subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT, text=True).strip(),
               'series': [], 'protected': {}, 'files': {}, 'packages': {}}
     for slug, name in PACKAGES.items():
         package = SOURCE / name
         result['packages'][name] = sha(package.read_bytes())
-        root = ROOT / 'essays/literature' / slug
+        category = 'anime' if slug in ('parasyte','chainsaw-man','legend-of-the-galactic-heroes') else 'literature'
+        root = ROOT / 'essays' / category / slug
         chapters = [p.stem for p in sorted(root.glob('[1-9]*.html'))]
         result['series'].append({'slug': slug, 'route': str(root.relative_to(ROOT)), 'chapters': chapters})
         for p in sorted(root.rglob('*')):
@@ -43,6 +55,10 @@ def main():
                     dest.write_bytes(p.read_bytes())
             else:
                 result['protected'][str(p.relative_to(ROOT))] = sha(p.read_bytes())
+                if BATCH == '02' and p.suffix == '.html':
+                    dest = DATA / 'templates' / slug / relative
+                    dest.parent.mkdir(parents=True, exist_ok=True)
+                    dest.write_bytes(p.read_bytes())
         with ZipFile(package) as z:
             names = set(z.namelist())
             for n in sorted(names):
@@ -75,6 +91,6 @@ def main():
         for lang in LANGS:
             assert len(list((DATA/'reviewed'/slug/lang).glob('EP*.md'))) == len(chapters)
     receipt.write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')
-    print('Imported 5 series, 120 manuscripts; received copies and original editions protected.')
+    print('Imported',len(result['series']),'series;',sum(len(s['chapters'])*len(LANGS) for s in result['series']),'manuscripts; received copies and original editions protected.')
 
 if __name__ == '__main__': main()

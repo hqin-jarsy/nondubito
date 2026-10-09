@@ -19,9 +19,18 @@ class Anime(unittest.TestCase):
         for name,digest in b.RECEIPT['files'].items():
             self.assertEqual(hashlib.sha256((b.DATA/name).read_bytes()).hexdigest(),digest,name)
         for name,digest in b.RECEIPT['protected'].items():
-            self.assertEqual(hashlib.sha256((b.ROOT/name).read_bytes()).hexdigest(),digest,name)
+            p=b.ROOT/name
+            if b.BATCH=='02' and p in self.pages:
+                series=next(f for f in b.SERIES if name.startswith(f['route']+'/'))
+                old=(b.DATA/'templates'/series['slug']/p.name).read_text()
+                self.assertEqual(hashlib.sha256(old.encode()).hexdigest(),digest,name)
+                def normalize(s):
+                    s=re.sub(r'<!-- anime-full-head -->.*?<!-- /anime-full-head -->','',s,flags=re.S)
+                    return re.sub(r'<div class="lang-toggle"[^>]*>.*?</div>','',s,count=1,flags=re.S)
+                self.assertEqual(normalize(old),normalize(p.read_text()),name)
+            else:self.assertEqual(hashlib.sha256(p.read_bytes()).hexdigest(),digest,name)
     def test_generated_pages_and_links(self):
-        self.assertEqual(len(self.pages),145)
+        self.assertEqual(len(self.pages),180 if b.BATCH=='02' else 145)
         for p,s in self.pages.items():
             self.assertEqual(p.read_text(),s,p)
             parser=Nodes();parser.feed(s)
@@ -31,6 +40,7 @@ class Anime(unittest.TestCase):
                 if not value or u.scheme or not u.path: continue
                 target=(p.parent/unquote(u.path)).resolve()
                 self.assertTrue(target.exists(),(p,value))
+            if p.parent.name not in b.LANGS:continue
             self.assertEqual(len(re.findall('<h1[ >]',s)),1,p)
             self.assertEqual(s.count('hreflang='),6,p)
             self.assertNotRegex(s,r'href="[^"]+\.md(?:["#])',p)
@@ -48,7 +58,7 @@ class Anime(unittest.TestCase):
                     self.assertIn('href="'+name+'.html"',index)
                     self.assertIn(b.E(copy['title']),index)
     def test_editorial_changes(self):
-        changes=json.loads((b.DATA/'batch01-corrections.json').read_text())['changes']
+        changes=json.loads((b.DATA/f'batch{b.BATCH}-corrections.json').read_text())['changes']
         for c in changes:
             s=(b.ROOT/c['path']).read_text()
             self.assertIn(c['after'],s,c['path']);self.assertNotIn(c['before'],s,c['path'])

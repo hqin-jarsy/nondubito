@@ -4,10 +4,12 @@ import json
 import xml.etree.ElementTree as ET
 import build_search_index as search
 from build_sitemap import parse_page, sitemap_xml
-from build_anime_full_editions import outputs, DATE, ROOT
+from build_anime_full_editions import outputs, DATE, ROOT, BATCH
 
 def refresh():
-    paths=list(outputs());scope={str(p.relative_to(ROOT)) for p in paths}
+    paths=list(outputs())
+    if BATCH=='02': paths += [ROOT/'essays/anime/index.html']+[ROOT/'essays'/lang/'index.html' for lang in ('de','fr','es','ja','ko')]
+    scope={str(p.relative_to(ROOT)) for p in paths}
     previous=search.collect_pages
     try:
         search.collect_pages=lambda: paths

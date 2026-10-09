@@ -6,11 +6,11 @@ import json
 import re
 from urllib.parse import urlsplit
 import markdown
-from import_anime_full_editions import ROOT, DATA, LANGS
+from import_anime_full_editions import ROOT, DATA, LANGS, BATCH
 
-DATE = '2026-10-08'
+DATE = '2026-10-09' if BATCH == '02' else '2026-10-08'
 EDITION_LABELS={'de':'Über diese Ausgabe','fr':'À propos de cette édition','es':'Sobre esta edición','ja':'この版について','ko':'이 판본에 관하여'}
-RECEIPT = json.loads((DATA/'batch01-received.json').read_text())
+RECEIPT = json.loads((DATA/f'batch{BATCH}-received.json').read_text())
 SERIES = RECEIPT['series']
 E = lambda s: html.escape(s, quote=True)
 
@@ -46,10 +46,20 @@ def copy(series, lang, ep):
     md=re.sub(r'\[([^\]]+)\]\(([^)]+)\)',link,md)
     body=markdown.markdown(md)
     note=r'(<p><strong>(?:Zur Ausgabe|Zur Textgrundlage|Note[^<]*|Nota[^<]*|原文の版について|この[^<]*版について|판본 안내|원문 판본 안내)[^<]*</strong>.*?</p>)'
+    if BATCH=='02':
+        note=r'(<p><strong>(?:Zur [^<]*|Note[^<]*|Nota[^<]*|Sobre esta edición|日本語版について|原文の版について|この[^<]*版について|판본 안내|원문 판본 안내)[^<]*</strong>.*?</p>)'
     body=re.sub(note,lambda m:'<details class="edition-note"><summary>'+EDITION_LABELS[lang]+'</summary>'+m[1]+'</details>',body,flags=re.S)
     # Use prose, not a delivery/edition note, for the search-result excerpt.
     candidates=[plain(p) for p in kept if not p.startswith(('*','#','[','原文：','中国語原文','중국어')) and len(plain(p))>55]
     desc=(candidates[0] if candidates else title)[:230]
+    if BATCH=='02':
+        lead=[]
+        for p in kept:
+            if p.startswith('#'):break
+            if p.startswith(('**','[','中国語原文','原文：','중국어 원문')):continue
+            lead.append(plain(p))
+            if len(' '.join(lead))>=150:break
+        if lead:desc=' '.join(lead)[:230]
     return {'title':title,'body':body,'description':desc,'markdown':md}
 
 def metadata(s, series, lang, filename, title, desc):
@@ -72,6 +82,9 @@ def metadata(s, series, lang, filename, title, desc):
     return s.replace('</head>',extra+'</head>',1)
 
 def outputs():
+    if BATCH == '02':
+        from build_anime_batch02 import outputs as batch_outputs
+        return batch_outputs()
     result={}
     for series in SERIES:
         for lang in LANGS:
@@ -104,5 +117,7 @@ if __name__=='__main__':
     pages=outputs()
     for path,s in pages.items():
         if args.check: assert path.read_text()==s,path
-        else: path.write_text(s)
+        else:
+            path.parent.mkdir(parents=True,exist_ok=True)
+            path.write_text(s)
     print(('Verified' if args.check else 'Built'),len(pages),'anime article/index pages')
