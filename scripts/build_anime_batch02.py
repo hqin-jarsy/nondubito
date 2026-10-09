@@ -22,6 +22,9 @@ TITLES={
 }
 
 def index_copy(series,lang):
+    if b.BATCH == '04':
+        from build_anime_batch04 import index_copy as fourth_index
+        return fourth_index(series,lang)
     if b.BATCH == '03':
         from build_anime_batch03 import index_copy as third_index
         return third_index(series,lang)

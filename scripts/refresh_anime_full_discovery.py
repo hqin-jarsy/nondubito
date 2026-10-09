@@ -8,7 +8,7 @@ from build_anime_full_editions import outputs, DATE, ROOT, BATCH
 
 def refresh():
     paths=list(outputs())
-    if BATCH in ('02', '03'): paths += [ROOT/'essays/anime/index.html']+[ROOT/'essays'/lang/'index.html' for lang in ('de','fr','es','ja','ko')]
+    if BATCH in ('02', '03', '04'): paths += [ROOT/'essays/anime/index.html']+[ROOT/'essays'/lang/'index.html' for lang in ('de','fr','es','ja','ko')]
     scope={str(p.relative_to(ROOT)) for p in paths}
     previous=search.collect_pages
     try:

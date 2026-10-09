@@ -13,7 +13,7 @@ DATA = ROOT / 'data/anime-full'
 SOURCE = Path('/Users/hanqin/Documents/SAE旗舰系列多语言/动漫解读')
 LANGS = ('de', 'fr', 'es', 'ja', 'ko')
 BATCH = os.environ.get('ANIME_BATCH', '01')
-assert BATCH in ('01', '02', '03'), BATCH
+assert BATCH in ('01', '02', '03', '04'), BATCH
 PACKAGES = {
     'kimetsu': 'Demon_Slayer_Five_Languages.zip',
     'frieren': 'Frieren_Five_Languages.zip',
@@ -39,6 +39,15 @@ if BATCH == '03':
         'the-tatami-galaxy': 'A15_the-tatami-galaxy_5lang.zip',
     }
 
+if BATCH == '04':
+    PACKAGES = {
+        'showa-genroku-rakugo-shinju': 'A16_Showa_Genroku_Rakugo_Shinju_DE-FR-ES-JA-KO.zip',
+        'mobile-suit-gundam': 'A17_mobile-suit-gundam_5languages.zip',
+        'from-the-new-world': 'A18_from-the-new-world_5languages.zip',
+        'super-dimension-fortress-macross': 'A19_super-dimension-fortress-macross_5languages.zip',
+        'revolutionary-girl-utena': 'A20_revolutionary-girl-utena_DE-FR-ES-JA-KO.zip',
+    }
+
 def sha(raw):
     return hashlib.sha256(raw).hexdigest()
 
@@ -50,7 +59,7 @@ def main():
     for slug, name in PACKAGES.items():
         package = SOURCE / name
         result['packages'][name] = sha(package.read_bytes())
-        category = 'anime' if BATCH == '03' or slug in ('parasyte','chainsaw-man','legend-of-the-galactic-heroes') else 'literature'
+        category = 'anime' if BATCH in ('03', '04') or slug in ('parasyte','chainsaw-man','legend-of-the-galactic-heroes') else 'literature'
         root = ROOT / 'essays' / category / slug
         chapters = [p.stem for p in sorted(root.glob('[1-9]*.html'))]
         assert len(chapters) == {'frieren':4,'in-this-corner-of-the-world':3,'the-tatami-galaxy':4}.get(slug,5), (slug, chapters)
@@ -65,7 +74,7 @@ def main():
                     dest.write_bytes(p.read_bytes())
             else:
                 result['protected'][str(p.relative_to(ROOT))] = sha(p.read_bytes())
-                if BATCH in ('02', '03') and p.suffix == '.html':
+                if BATCH in ('02', '03', '04') and p.suffix == '.html':
                     dest = DATA / 'templates' / slug / relative
                     dest.parent.mkdir(parents=True, exist_ok=True)
                     dest.write_bytes(p.read_bytes())

@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const base=process.argv[2]||'http://127.0.0.1:8787';
 const batch=process.env.ANIME_BATCH||'01';
-assert(['01','02','03'].includes(batch));
+assert(['01','02','03','04'].includes(batch));
 const series=JSON.parse(fs.readFileSync(path.join(__dirname,`../data/anime-full/batch${batch}-received.json`))).series;
 const langs=['de','fr','es','ja','ko'];
 (async()=>{const browser=await chromium.launch({headless:true,channel:'chrome'});try{
@@ -33,7 +33,7 @@ const langs=['de','fr','es','ja','ko'];
   await page.selectOption('.lang-select',{label:'日本語'});await page.waitForURL(`**/${f.slug}/ja/${f.chapters[0]}.html`);
   await page.selectOption('.lang-select',{label:'繁體'});await page.waitForURL(`**/${f.slug}/${f.chapters[0]}.html`);
   assert.equal(await page.locator('html').getAttribute('data-lang'),'zh-hant');
-  if(batch==='02'){
+  if(['02','03','04'].includes(batch)){
    await page.selectOption('.lang-select',{label:'Français'});await page.waitForURL(`**/${f.slug}/fr/${f.chapters[0]}.html`);
   }
  }

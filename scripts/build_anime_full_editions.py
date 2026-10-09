@@ -8,7 +8,7 @@ from urllib.parse import urlsplit
 import markdown
 from import_anime_full_editions import ROOT, DATA, LANGS, BATCH
 
-DATE = '2026-10-09' if BATCH in ('02', '03') else '2026-10-08'
+DATE = '2026-10-09' if BATCH in ('02', '03', '04') else '2026-10-08'
 EDITION_LABELS={'de':'Über diese Ausgabe','fr':'À propos de cette édition','es':'Sobre esta edición','ja':'この版について','ko':'이 판본에 관하여'}
 RECEIPT = json.loads((DATA/f'batch{BATCH}-received.json').read_text())
 SERIES = RECEIPT['series']
@@ -46,23 +46,35 @@ def copy(series, lang, ep):
     md=re.sub(r'\[([^\]]+)\]\(([^)]+)\)',link,md)
     body=markdown.markdown(md)
     note=r'(<p><strong>(?:Zur Ausgabe|Zur Textgrundlage|Note[^<]*|Nota[^<]*|原文の版について|この[^<]*版について|판본 안내|원문 판본 안내)[^<]*</strong>.*?</p>)'
-    if BATCH in ('02', '03'):
+    if BATCH in ('02', '03', '04'):
         note=r'(<p><strong>(?:Zur [^<]*|Note[^<]*|Nota[^<]*|Sobre esta edición|日本語版について|原文の版について|この[^<]*版について|판본 안내|원문 판본 안내)[^<]*</strong>.*?</p>)'
     body=re.sub(note,lambda m:'<details class="edition-note"><summary>'+EDITION_LABELS[lang]+'</summary>'+m[1]+'</details>',body,flags=re.S)
-    if BATCH=='03':
+    if BATCH in ('03','04'):
         body=re.sub(r'(<p>(?:<strong>)?(?:版について|판본에 관하여)[^<]*(?:</strong>)?.*?</p>)',lambda m:'<details class="edition-note"><summary>'+EDITION_LABELS[lang]+'</summary>'+m[1]+'</details>',body,flags=re.S)
+    if BATCH == '04':
+        body=re.sub(r'(<p>(?:<strong>(?:Édition française|本版について|이 판본에 대하여|한국어판 안내)[^<]*</strong>|中国語原作をもとに、).*?</p>)',lambda m:'<details class="edition-note"><summary>'+EDITION_LABELS[lang]+'</summary>'+m[1]+'</details>',body,flags=re.S)
     # Use prose, not a delivery/edition note, for the search-result excerpt.
     candidates=[plain(p) for p in kept if not p.startswith(('*','#','[','原文：','中国語原文','중국어')) and len(plain(p))>55]
     desc=(candidates[0] if candidates else title)[:230]
-    if BATCH in ('02', '03'):
+    if BATCH in ('02', '03', '04'):
         lead=[]
         for p in kept:
             if p.startswith('#'):break
             if p.startswith(('**','[','中国語原文','原文：','중국어 원문')):continue
-            if BATCH=='03' and p.startswith(('版について','판본에 관하여')):continue
+            if BATCH in ('03','04') and p.startswith(('版について','판본에 관하여')):continue
+            if BATCH == '04' and p.startswith(('中国語原作をもとに、','Enthält Spoiler')):continue
             lead.append(plain(p))
             if len(' '.join(lead))>=150:break
         if lead:desc=' '.join(lead)[:230]
+        if BATCH == '04' and lead:
+            full=' '.join(lead)
+            if len(full)>230:
+                ends=list(re.finditer(r'[。！？.!?](?:\s|$)',full[:231]))
+                if ends and ends[-1].start()>55:
+                    desc=full[:ends[-1].start()+1]
+                elif lang in ('de','fr','es','ko'):
+                    desc=full[:220].rsplit(' ',1)[0]+'…'
+                else:desc=full[:220]+'…'
     return {'title':title,'body':body,'description':desc,'markdown':md}
 
 def metadata(s, series, lang, filename, title, desc):
@@ -82,10 +94,12 @@ def metadata(s, series, lang, filename, title, desc):
     if 'language-select.js' not in s: extra+='<script defer src="../../../../language-select.js"></script>'
     extra+='<style>.culture-page .essay-header{max-width:900px;margin:0 auto;padding:110px 2rem 0}.culture-page .essay-header h1{font-size:clamp(2rem,5vw,3.1rem)}.culture-page .series-container{max-width:900px;margin:0 auto;padding:110px 2rem 60px}.essay-body{overflow-wrap:anywhere}.essay-body blockquote{margin:1.5rem 0;padding-left:1.25rem;border-left:2px solid var(--gold)}.essay-body ul,.essay-body ol{padding-left:1.5rem}.lang-toggle:not(.lang-select-menu){flex-wrap:wrap;max-width:100%}.edition-note{font-size:.85rem;color:var(--ink-muted);margin-bottom:2rem}.edition-note summary{cursor:pointer;font-family:var(--sans)}@media(max-width:620px){.culture-page .essay-header{padding:90px 1.5rem 0}.culture-page .series-container{padding:90px 1.5rem 60px}}</style>'
     extra+='<style>.culture-page .essay-header .lang-toggle.lang-select-menu{display:inline-flex;width:fit-content;margin-left:0;margin-right:0}.culture-page .essay-header .lang-select{color:var(--ink);background:#fff;border-color:var(--cream-border)}.culture-page .essay-header .lang-select-chevron{color:var(--ink-muted)}</style>'
+    if BATCH == '04':
+        extra += '<style>.culture-page .essay-header h1,.culture-page .series-container h1{overflow-wrap:anywhere;hyphens:auto}</style>'
     return s.replace('</head>',extra+'</head>',1)
 
 def outputs():
-    if BATCH in ('02', '03'):
+    if BATCH in ('02', '03', '04'):
         from build_anime_batch02 import outputs as batch_outputs
         return batch_outputs()
     result={}
