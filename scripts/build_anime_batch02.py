@@ -22,6 +22,9 @@ TITLES={
 }
 
 def index_copy(series,lang):
+    if b.BATCH == '03':
+        from build_anime_batch03 import index_copy as third_index
+        return third_index(series,lang)
     # All packages carry five localized introductions in their README. Keep the
     # prose before the article list; render cards from the reviewed article copy.
     s=next((b.DATA/'received'/series['slug']).rglob('README.md')).read_text()
@@ -57,6 +60,9 @@ def menu(filename,lang=None):
 
 def page(series,lang,copies,ep=None):
     u=UI[lang];intro=index_copy(series,lang);c=copies[ep-1] if ep else intro
+    if b.BATCH == '03':
+        label={'de':'Alle Essays','fr':'Tous les essais','es':'Todos los ensayos','ja':'全篇の目次','ko':'전체 목차'}[lang]
+        u=(u[0],label,*u[2:])
     name=series['chapters'][ep-1]+'.html' if ep else 'index.html'
     # Reuse the established visual shell, never the old abbreviated article.
     template=(b.DATA/'templates/psycho-pass'/lang/'1-harmed-then-reclassified.html').read_text()

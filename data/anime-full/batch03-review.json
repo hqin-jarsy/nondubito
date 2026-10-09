@@ -1,0 +1,141 @@
+{
+  "batch": "03",
+  "date": "2026-10-09",
+  "baseline_commit": "8349916301b2ea76b53af821775d8bec6361e645",
+  "series": [
+    {
+      "slug": "in-this-corner-of-the-world",
+      "route": "essays/anime/in-this-corner-of-the-world",
+      "chapters": [
+        "1-she-kept-cooking",
+        "2-the-right-hand",
+        "3-it-flew-away"
+      ]
+    },
+    {
+      "slug": "ghost-in-the-shell-sac",
+      "route": "essays/anime/ghost-in-the-shell-sac",
+      "chapters": [
+        "1-copies-without-an-original",
+        "2-manufactured-spontaneity",
+        "3-the-device-that-kept-them-alike",
+        "4-she-kept-one-unlike-person",
+        "5-no-external-test"
+      ]
+    },
+    {
+      "slug": "neon-genesis-evangelion",
+      "route": "essays/anime/neon-genesis-evangelion",
+      "chapters": [
+        "1-why-he-pilots",
+        "2-the-person-with-spares",
+        "3-that-number",
+        "4-he-wanted-one-person",
+        "5-that-wall"
+      ]
+    },
+    {
+      "slug": "march-comes-in-like-a-lion",
+      "route": "essays/anime/march-comes-in-like-a-lion",
+      "chapters": [
+        "1-the-unspoken-condition",
+        "2-he-lost-on-purpose",
+        "3-they-want-nothing",
+        "4-she-stood-in-that-place",
+        "5-is-it-his-own"
+      ]
+    },
+    {
+      "slug": "the-tatami-galaxy",
+      "route": "essays/anime/the-tatami-galaxy",
+      "chapters": [
+        "1-looking-for-a-self-that-does-not-exist",
+        "2-every-road-produces-the-same-person",
+        "3-ozu",
+        "4-the-bear-on-the-wall"
+      ]
+    }
+  ],
+  "coverage": {
+    "source_essays": 22,
+    "complete_five_language_articles": 110,
+    "localized_series_indexes": 25,
+    "root_navigation_updates": 27,
+    "traditional_chinese_assets_preserved": 27,
+    "received_markdown_files": 122,
+    "corrections": 94,
+    "corrected_manuscripts": 40
+  },
+  "review_scope": [
+    "All 110 manuscripts inventoried; article sequence, section coverage and complete HTML rendering checked against all 22 Chinese chapter structures.",
+    "Targeted manual review of delivery notes, introductions, conclusions and high-risk passages across the five languages; this is not a claim of exhaustive native-speaker line editing or shot-by-shot verification.",
+    "Preserved existing Chinese, Traditional Chinese and English prose. The 27 root HTML pages change only their language menu and marked head metadata; all 27 Traditional Chinese assets remain byte-identical.",
+    "Received manuscripts and source ZIPs are immutable; editorial changes are separately recorded with exact before/after text."
+  ],
+  "editorial_decisions": [
+    "Corner EP01: distinguish Shusaku’s identity from the fantasy/memory ambiguity; retain already-corrected proposal date and family names.",
+    "Ghost EP03: preserve individuation argument but identify causal reconstruction as interpretation; remove false assertion that each unit reliably knows the owner of synchronized memories; do not exclude Section 9 from the people saved on Dejima.",
+    "Ghost EP04: verified delivered separation of 1995-film examples from SAC against official essays; retain it.",
+    "Evangelion EP02: precise memory-backup timestamp, complete erasure and step-by-step manufacturing were not established. Preserve spare-body and relational-discontinuity argument without presenting reconstruction as confirmed mechanism. Carry correction through EP04.",
+    "March EP04: retain corrected teacher chronology; restore Hinata’s affirmation, Chiho’s later letter and Rei’s response. Support does not undo the original harm.",
+    "Tatami EP02/03/04: qualify repeated episode structure, restore shared Black Cupid reputation and label river/world convergence as interpretive reading. Retain delivered corrections about Akashi’s letter writing and explicit final narration."
+  ],
+  "evidence_quality": {
+    "primary_checked": [
+      "https://konosekai.jp/",
+      "https://konosekai.jp/timeline/",
+      "https://theghostintheshell.jp/en/mma/column/column12",
+      "https://theghostintheshell.jp/en/mma/column/column10",
+      "https://theghostintheshell.jp/mma/column/column23",
+      "https://yojouhan.noitamina.tv/story.html",
+      "https://yojouhan.noitamina.tv/blog/archives/530.html",
+      "https://3lion-anime.com/story/26.html",
+      "https://3lion-anime.com/story/27.html",
+      "https://www.aniplex.co.jp/lineup/3lion/story/?p=3"
+    ],
+    "secondary_used_with_limits": [
+      "https://www.geocities.ws/gatatsu/eva23.htm (unofficial episode transcription; not an official subtitle)",
+      "https://en.wikipedia.org/wiki/Rei_III (secondary cross-check, not a source for declaring a canonical backup mechanism)",
+      "Contemporary March episode-26 accounts corroborate affirmation and Rei’s reaction; no purported verbatim subtitle added."
+    ],
+    "remaining_uncertainties": [
+      "Corner EP02 family-news chronology and EP03 orphan/mother chronology were not independently checked frame by frame; delivery notes flag these details.",
+      "Ghost paper-crane memory, Kuze’s relationship to the virus and Togusa’s clothing are retained as supplied; no full audiovisual rewatch was performed.",
+      "Evangelion exact earlier father-son contact chronology remains a follow-up issue in the preserved originals and supplied prose; Rebuild is explicitly excluded.",
+      "Tatami supporting episode accounts are secondary; this pass did not independently watch every closing shot."
+    ]
+  },
+  "verification": {
+    "python_batches_01_02_03": "passed (five tests each; full rerun before commit)",
+    "publication_ledger": "passed",
+    "responsive": {
+      "engine": "Codex in-app browser",
+      "widths": [
+        375,
+        768,
+        1440
+      ],
+      "localized_page_checks": 405,
+      "root_page_checks": 81,
+      "failures": 0,
+      "criteria": [
+        "one visible main title",
+        "eight language options",
+        "no horizontal overflow",
+        "localized selector arrow within selector",
+        "article text present and series navigation exists"
+      ]
+    },
+    "language_roundtrips": {
+      "count": 5,
+      "path": "German → Japanese → Traditional Chinese → French",
+      "result": "all passed; expected article and zh-hant DOM state verified"
+    },
+    "screenshots_inspected": [
+      "desktop Korean Tatami EP04",
+      "375px French Tatami EP01"
+    ],
+    "javascript_disabled": "Not separately browser-tested; full article prose and fallback language links verified in static HTML."
+  },
+  "deployment": "Local commit only. User pushes/deploys."
+}

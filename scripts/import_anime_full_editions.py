@@ -13,7 +13,7 @@ DATA = ROOT / 'data/anime-full'
 SOURCE = Path('/Users/hanqin/Documents/SAE旗舰系列多语言/动漫解读')
 LANGS = ('de', 'fr', 'es', 'ja', 'ko')
 BATCH = os.environ.get('ANIME_BATCH', '01')
-assert BATCH in ('01', '02'), BATCH
+assert BATCH in ('01', '02', '03'), BATCH
 PACKAGES = {
     'kimetsu': 'Demon_Slayer_Five_Languages.zip',
     'frieren': 'Frieren_Five_Languages.zip',
@@ -30,6 +30,15 @@ if BATCH == '02':
         'legend-of-the-galactic-heroes': 'A10_legend-of-the-galactic-heroes_five_languages.zip',
     }
 
+if BATCH == '03':
+    PACKAGES = {
+        'in-this-corner-of-the-world': 'A11_in-this-corner-of-the-world_five_languages.zip',
+        'ghost-in-the-shell-sac': 'A12_ghost-in-the-shell-sac_five_languages.zip',
+        'neon-genesis-evangelion': 'A13_neon-genesis-evangelion_5lang.zip',
+        'march-comes-in-like-a-lion': 'A14_march-comes-in-like-a-lion_5lang.zip',
+        'the-tatami-galaxy': 'A15_the-tatami-galaxy_5lang.zip',
+    }
+
 def sha(raw):
     return hashlib.sha256(raw).hexdigest()
 
@@ -41,9 +50,10 @@ def main():
     for slug, name in PACKAGES.items():
         package = SOURCE / name
         result['packages'][name] = sha(package.read_bytes())
-        category = 'anime' if slug in ('parasyte','chainsaw-man','legend-of-the-galactic-heroes') else 'literature'
+        category = 'anime' if BATCH == '03' or slug in ('parasyte','chainsaw-man','legend-of-the-galactic-heroes') else 'literature'
         root = ROOT / 'essays' / category / slug
         chapters = [p.stem for p in sorted(root.glob('[1-9]*.html'))]
+        assert len(chapters) == {'frieren':4,'in-this-corner-of-the-world':3,'the-tatami-galaxy':4}.get(slug,5), (slug, chapters)
         result['series'].append({'slug': slug, 'route': str(root.relative_to(ROOT)), 'chapters': chapters})
         for p in sorted(root.rglob('*')):
             if not p.is_file(): continue
@@ -55,7 +65,7 @@ def main():
                     dest.write_bytes(p.read_bytes())
             else:
                 result['protected'][str(p.relative_to(ROOT))] = sha(p.read_bytes())
-                if BATCH == '02' and p.suffix == '.html':
+                if BATCH in ('02', '03') and p.suffix == '.html':
                     dest = DATA / 'templates' / slug / relative
                     dest.parent.mkdir(parents=True, exist_ok=True)
                     dest.write_bytes(p.read_bytes())

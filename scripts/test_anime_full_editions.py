@@ -20,7 +20,7 @@ class Anime(unittest.TestCase):
             self.assertEqual(hashlib.sha256((b.DATA/name).read_bytes()).hexdigest(),digest,name)
         for name,digest in b.RECEIPT['protected'].items():
             p=b.ROOT/name
-            if b.BATCH=='02' and p in self.pages:
+            if b.BATCH in ('02', '03') and p in self.pages:
                 series=next(f for f in b.SERIES if name.startswith(f['route']+'/'))
                 old=(b.DATA/'templates'/series['slug']/p.name).read_text()
                 self.assertEqual(hashlib.sha256(old.encode()).hexdigest(),digest,name)
@@ -30,7 +30,7 @@ class Anime(unittest.TestCase):
                 self.assertEqual(normalize(old),normalize(p.read_text()),name)
             else:self.assertEqual(hashlib.sha256(p.read_bytes()).hexdigest(),digest,name)
     def test_generated_pages_and_links(self):
-        self.assertEqual(len(self.pages),180 if b.BATCH=='02' else 145)
+        self.assertEqual(len(self.pages),{'01':145,'02':180,'03':162}[b.BATCH])
         for p,s in self.pages.items():
             self.assertEqual(p.read_text(),s,p)
             parser=Nodes();parser.feed(s)
@@ -57,6 +57,11 @@ class Anime(unittest.TestCase):
                     self.assertGreater(len(b.plain(copy['body'])),len(b.plain(source))*.80,(series['slug'],lang,ep))
                     self.assertIn('href="'+name+'.html"',index)
                     self.assertIn(b.E(copy['title']),index)
+                    if b.BATCH=='03':
+                        original=(b.DATA/'templates'/series['slug']/(name+'.html')).read_text()
+                        headings=re.findall(r'<h2[^>]*>(.*?)</h2>',original,re.S)
+                        chinese=[h for h in headings if re.search(r'[\u4e00-\u9fff]',h)]
+                        self.assertEqual(copy['body'].count('<h2'),len(chinese),(series['slug'],lang,ep))
     def test_editorial_changes(self):
         changes=json.loads((b.DATA/f'batch{b.BATCH}-corrections.json').read_text())['changes']
         for c in changes:
