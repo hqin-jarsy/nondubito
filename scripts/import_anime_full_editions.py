@@ -13,7 +13,7 @@ DATA = ROOT / 'data/anime-full'
 SOURCE = Path('/Users/hanqin/Documents/SAE旗舰系列多语言/动漫解读')
 LANGS = ('de', 'fr', 'es', 'ja', 'ko')
 BATCH = os.environ.get('ANIME_BATCH', '01')
-assert BATCH in ('01', '02', '03', '04'), BATCH
+assert BATCH in ('01', '02', '03', '04', '05'), BATCH
 PACKAGES = {
     'kimetsu': 'Demon_Slayer_Five_Languages.zip',
     'frieren': 'Frieren_Five_Languages.zip',
@@ -48,6 +48,12 @@ if BATCH == '04':
         'revolutionary-girl-utena': 'A20_revolutionary-girl-utena_DE-FR-ES-JA-KO.zip',
     }
 
+if BATCH == '05':
+    PACKAGES = {
+        'puella-magi-madoka-magica': 'A21_puella-magi-madoka-magica_DE-FR-ES-JA-KO.zip',
+        'the-apothecary-diaries': 'A22_the-apothecary-diaries_5languages.zip',
+    }
+
 def sha(raw):
     return hashlib.sha256(raw).hexdigest()
 
@@ -59,7 +65,7 @@ def main():
     for slug, name in PACKAGES.items():
         package = SOURCE / name
         result['packages'][name] = sha(package.read_bytes())
-        category = 'anime' if BATCH in ('03', '04') or slug in ('parasyte','chainsaw-man','legend-of-the-galactic-heroes') else 'literature'
+        category = 'anime' if BATCH in ('03', '04', '05') or slug in ('parasyte','chainsaw-man','legend-of-the-galactic-heroes') else 'literature'
         root = ROOT / 'essays' / category / slug
         chapters = [p.stem for p in sorted(root.glob('[1-9]*.html'))]
         assert len(chapters) == {'frieren':4,'in-this-corner-of-the-world':3,'the-tatami-galaxy':4}.get(slug,5), (slug, chapters)
@@ -74,7 +80,7 @@ def main():
                     dest.write_bytes(p.read_bytes())
             else:
                 result['protected'][str(p.relative_to(ROOT))] = sha(p.read_bytes())
-                if BATCH in ('02', '03', '04') and p.suffix == '.html':
+                if BATCH in ('02', '03', '04', '05') and p.suffix == '.html':
                     dest = DATA / 'templates' / slug / relative
                     dest.parent.mkdir(parents=True, exist_ok=True)
                     dest.write_bytes(p.read_bytes())
@@ -98,6 +104,12 @@ def main():
                 dest.write_bytes(raw)
                 result['files'][str(dest.relative_to(DATA))] = sha(raw)
                 lang = next((p.lower() for p in parts[:-1] if p.lower() in LANGS), None)
+                if lang and parts[-1] == 'INDEX.md':
+                    target = DATA / 'reviewed' / slug / lang / 'INDEX.md'
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    assert not target.exists(), target
+                    target.write_bytes(raw)
+                    continue
                 if lang:
                     match = re.match(r'(?:EP)?(\d+)', parts[-1], re.I)
                     assert match, n

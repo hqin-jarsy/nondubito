@@ -1,0 +1,98 @@
+{
+  "batch": "05",
+  "date": "2026-10-09",
+  "baseline_commit": "e0db2de501f583aee049918ea580ec7872d3435d",
+  "series": [
+    "puella-magi-madoka-magica",
+    "the-apothecary-diaries"
+  ],
+  "coverage": {
+    "source_essays": 10,
+    "complete_five_language_articles": 50,
+    "localized_series_indexes": 10,
+    "root_navigation_updates": 12,
+    "traditional_chinese_assets_preserved": 12,
+    "received_markdown_files": 59,
+    "corrections": 116,
+    "corrected_manuscripts": 44
+  },
+  "review_scope": [
+    "All fifty supplied manuscripts inventoried. Section counts and rendered body completeness verified against the ten Chinese chapter structures.",
+    "Targeted manual review of Japanese manuscripts, delivery notes, and risk passages across German, French, Spanish, Japanese and Korean. This is not exhaustive native-speaker proofreading or a full audiovisual rewatch.",
+    "Existing Simplified Chinese, Traditional Chinese and English article prose remains unchanged. Twelve root HTML files change only their language selector and marked head metadata; twelve Traditional Chinese assets remain byte-identical.",
+    "Original packages and received Markdown are preserved; exact editorial replacements are recorded in batch05-corrections.json."
+  ],
+  "editorial_decisions": [
+    "Madoka: replace categorical never-lies headings with the information-asymmetry claim; avoid treating Kyubey's defense as verified or justified. Specify that dead/witch predecessors have reached the end of the contract, not that all signatories are already dead.",
+    "Madoka: mark the EP02 closing return to the earlier Soul Gem revelation explicitly; remove unsupported uniform years-long fighting intervals; preserve Kyoko as the survivor of the family murder.",
+    "Madoka: Soul Gems are not merely magical equipment, rather than not a source of magic at all. Homura's early warning is not presented as her literal first words.",
+    "Madoka: preserve Homura's complete memory and the family's residual traces in EP05 conclusions. The operator survives the new rules, but energy efficiency is not claimed unchanged.",
+    "Apothecary: distinguish Maomao's initial wish to leave from her episode 12 desire to stay. An outside footing is not an unchanging exit plan. Correct the initial infant illness chronology.",
+    "Apothecary: replace Xiaolan's purported complete immunity/safe outside with the need to build an actual future through learning and relationships. Align the conclusion accordingly.",
+    "Apothecary: keep infant-swap and parentage clues hypothetical within the first 48 episodes, not confirmed joint planning by the two mothers. Distinguish publicly acknowledged emperor-brother rank from biological parentage in EP05.",
+    "Keep supplied corrections concerning white-powder illness, Lihua's treatment, Lakan's provocative value remark and the wine-wager/Fengxian-song chronology.",
+    "Presentation: remove duplicated standalone site-footer motto from article prose, fold edition notices, retain spoiler/scope notes, add five localized indexes and complete language menus, and avoid mid-word truncation in new index descriptions."
+  ],
+  "evidence_quality": {
+    "primary_checked": [
+      "https://www.aniplex.co.jp/lineup/madokamagica/story/",
+      "https://www.madoka-magica.com/tv/youtube-streaming/story/?id=ep07",
+      "https://kusuriyanohitorigoto.jp/season1/episodes/1.html",
+      "https://kusuriyanohitorigoto.jp/season1/episodes/4.html",
+      "https://kusuriyanohitorigoto.jp/season1/episodes/11.html",
+      "https://kusuriyanohitorigoto.jp/season1/episodes/12.html",
+      "https://kusuriyanohitorigoto.jp/news/2287/",
+      "https://kusuriyanohitorigoto.jp/season2/episodes/48.php"
+    ],
+    "supporting_report": "https://seigura.com/news/175289/",
+    "remaining_uncertainties": [
+      "Official synopses provide episode anchors, not line-by-line verification of every visual detail. Dialogue remains paraphrase, not official subtitles.",
+      "Detailed Madoka energy and memory mechanics rely partly on supplied narrative and targeted internal consistency review; no frame-by-frame rewatch was performed.",
+      "Apothecary's sociological conclusions remain the author's interpretive argument, not literal descriptions of every woman's circumstances. The potentially misleading Xiaolan and birth-swap claims have been narrowed.",
+      "The source scope notes include later-season/film scheduling, excluded from the argument; this review concentrates on the first 48 episodes.",
+      "Preserved Chinese/English editions retain some issues discussed in the delivery notes. They were not silently rewritten in this five-language batch."
+    ]
+  },
+  "verification": {
+    "python_batches_01_through_05": "Passed: five tests per batch, 25 total.",
+    "publication_ledger": "Passed",
+    "responsive": {
+      "engine": "Codex in-app browser",
+      "widths": [
+        375,
+        768,
+        1440
+      ],
+      "localized_page_checks": 180,
+      "root_page_checks": 36,
+      "failures": 0,
+      "criteria": [
+        "Single visible main title",
+        "Eight language options",
+        "No horizontal overflow",
+        "Localized selector arrow within its selector",
+        "Full article text and series navigation present"
+      ]
+    },
+    "language_roundtrips": {
+      "count": 2,
+      "path": "German → Japanese → Traditional Chinese → French",
+      "result": "Passed: URLs and zh-hant DOM state verified"
+    },
+    "screenshots_inspected": [
+      "375px Korean Apothecary EP05",
+      "1440px French Apothecary index"
+    ],
+    "latest_entry": "First update card inside main; Traditional Chinese text present.",
+    "final_rebuild": "Reloaded final version; Japanese public-rank/parentage scope sentence verified.",
+    "browser_errors": "None in the inspected final browser log.",
+    "javascript_disabled": "Not separately browser-tested. Full prose and fallback language anchors verified in generated static HTML.",
+    "browser_cli": "Supports batch05 for future runs. Actual browser checks in this turn used CUA."
+  },
+  "delivery_total": {
+    "series": 22,
+    "source_essays": 106,
+    "five_language_articles": 530
+  },
+  "deployment": "Local commit only; user pushes/deploys."
+}

@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const base=process.argv[2]||'http://127.0.0.1:8787';
 const batch=process.env.ANIME_BATCH||'01';
-assert(['01','02','03','04'].includes(batch));
+assert(['01','02','03','04','05'].includes(batch));
 const series=JSON.parse(fs.readFileSync(path.join(__dirname,`../data/anime-full/batch${batch}-received.json`))).series;
 const langs=['de','fr','es','ja','ko'];
 (async()=>{const browser=await chromium.launch({headless:true,channel:'chrome'});try{
@@ -33,11 +33,12 @@ const langs=['de','fr','es','ja','ko'];
   await page.selectOption('.lang-select',{label:'日本語'});await page.waitForURL(`**/${f.slug}/ja/${f.chapters[0]}.html`);
   await page.selectOption('.lang-select',{label:'繁體'});await page.waitForURL(`**/${f.slug}/${f.chapters[0]}.html`);
   assert.equal(await page.locator('html').getAttribute('data-lang'),'zh-hant');
-  if(['02','03','04'].includes(batch)){
+  if(['02','03','04','05'].includes(batch)){
    await page.selectOption('.lang-select',{label:'Français'});await page.waitForURL(`**/${f.slug}/fr/${f.chapters[0]}.html`);
   }
  }
- await page.setViewportSize({width:1440,height:1000});await page.goto(`${base}/${series[4].route}/fr/${series[4].chapters[2]}.html`);
+ const preview=series[Math.min(4,series.length-1)];
+ await page.setViewportSize({width:1440,height:1000});await page.goto(`${base}/${preview.route}/fr/${preview.chapters[2]}.html`);
  await page.screenshot({path:'/tmp/anime-full-desktop.png'});
  await page.setViewportSize({width:375,height:844});await page.goto(`${base}/${series[1].route}/ko/${series[1].chapters[3]}.html`);
  await page.screenshot({path:'/tmp/anime-full-mobile.png'});
@@ -45,5 +46,5 @@ const langs=['de','fr','es','ja','ko'];
  await p.goto(`${base}/${series[0].route}/ja/${series[0].chapters[0]}.html`);
  assert(await p.locator('.essay-body p').count()>20);
  await p.getByRole('link',{name:'Français',exact:true}).click();await p.waitForURL(`**/${series[0].slug}/fr/${series[0].chapters[0]}.html`);
- assert.deepEqual(errors,[]);console.log(`PASS: ${count} responsive checks, all five series language routes, full text and no-JS reading.`);
+ assert.deepEqual(errors,[]);console.log(`PASS: ${count} responsive checks, all ${series.length} series language routes, full text and no-JS reading.`);
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1});
