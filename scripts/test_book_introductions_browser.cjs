@@ -213,6 +213,26 @@ async function assertMobileMenu(page) {
     }
 
     const localizedTitles = {
+      'ichiju-issai': {zh: '一汁一菜就好', 'zh-hant': '一汁一菜就好'},
+      'the-lonely-city': {zh: '孤独的城市', 'zh-hant': '孤獨的城市'},
+      'other-minds': {zh: '章鱼的心灵', 'zh-hant': '章魚的心靈'},
+      'how-to-say-babylon': {zh: 'How to Say Babylon', 'zh-hant': 'How to Say Babylon'},
+      'the-lost-pianos-of-siberia': {zh: '西伯利亚失落的钢琴', 'zh-hant': '西伯利亞失落的鋼琴'},
+      'the-address-book': {zh: '地址的故事', 'zh-hant': '地址的故事'},
+      'the-art-of-repair': {zh: 'The Art of Repair', 'zh-hant': 'The Art of Repair'},
+      'tokyo-eight-square-meters': {zh: '东京八平米', 'zh-hant': '東京八平米'},
+      'invisible-women': {zh: '看不见的女性', 'zh-hant': '看不見的女性'},
+      'm-train': {zh: '时光列车', 'zh-hant': '時光列車'},
+      'i-deliver-parcels-in-beijing': {zh: '我在北京送快递', 'zh-hant': '我在北京送快遞'},
+      'the-forest-unseen': {zh: '看不见的森林', 'zh-hant': '看不見的森林'},
+      'the-cost-of-living': {zh: '生活的代价', 'zh-hant': '生活的代價'},
+      'the-presentation-of-self-in-everyday-life': {zh: '日常生活中的自我呈现', 'zh-hant': '日常生活中的自我呈現'},
+      'a-paradise-built-in-hell': {zh: 'A Paradise Built in Hell', 'zh-hant': 'A Paradise Built in Hell'},
+      'a-swim-in-a-pond-in-the-rain': {zh: '漫游在雨中池塘', 'zh-hant': '漫遊在雨中池塘'},
+      'taste': {zh: 'Taste', 'zh-hant': 'Taste'},
+      'all-that-she-carried': {zh: '她所承载的一切', 'zh-hant': '她所承載的一切'},
+      'the-book-of-eels': {zh: '鳗鱼的旅行', 'zh-hant': '鰻魚的旅行'},
+      'the-soul-of-a-new-machine': {zh: '新机器的灵魂', 'zh-hant': '新機器的靈魂'},
       'the-year-of-magical-thinking': {zh: '奇想之年', 'zh-hant': '奇想之年'},
       'the-library-book': {zh: '亲爱的图书馆', 'zh-hant': '親愛的圖書館'},
       'working': {zh: '工作', 'zh-hant': '工作'},
@@ -278,6 +298,19 @@ async function assertMobileMenu(page) {
       await page.locator('article.rf-prose:visible h2').first().scrollIntoViewIfNeeded();
       await page.screenshot({path: path.join(output, 'friendship-mobile-prose-zh-hant.png')});
       console.log(`Screenshots: ${output}`);
+      for (const view of [
+        {slug: 'index', lang: 'zh', width: 1440},
+        {slug: 'a-swim-in-a-pond-in-the-rain', lang: 'en', width: 320},
+        {slug: 'i-deliver-parcels-in-beijing', lang: 'zh-hant', width: 390},
+        {slug: 'the-book-of-eels', lang: 'zh', width: 390},
+        {slug: 'all-that-she-carried', lang: 'en', width: 1440},
+        {slug: 'the-soul-of-a-new-machine', lang: 'zh', width: 1440}
+      ]) {
+        await page.setViewportSize({width: view.width, height: 1000});
+        await visit(page, `/essays/nonfiction/${view.slug}.html`, view.lang);
+        if (view.slug !== 'index') await page.locator('article.rf-prose:visible').scrollIntoViewIfNeeded();
+        await page.screenshot({path: path.join(output, `oct10-${view.slug}-${view.lang}-${view.width}.png`)});
+      }
     }
     await check('no JavaScript errors', () => assert.deepEqual(runtimeErrors, []));
     await check('no failed local resources', () => assert.deepEqual([...new Set(httpErrors)], []));

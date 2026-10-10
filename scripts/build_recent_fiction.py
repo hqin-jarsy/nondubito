@@ -89,6 +89,7 @@ BOOK_LANGUAGES = {
     "es": ("Spanish", "西班牙语"), "ja": ("Japanese", "日语"),
     "ko": ("Korean", "韩语"),
     "zh": ("Chinese", "中文"),
+    "sv": ("Swedish", "瑞典语"),
 }
 
 

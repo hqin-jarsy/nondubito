@@ -82,6 +82,12 @@ class BookIntroductionsTests(unittest.TestCase):
             self.assertEqual(set(record['languages']), {'en', 'zh-Hans', 'zh-Hant'})
             self.assertEqual(record['domain'], 'stories')
 
+    def test_search_excludes_source_templates(self):
+        paths = {path.relative_to(build.ROOT).as_posix() for path in search.collect_pages()}
+        self.assertFalse(any(path.startswith('data/anime-full/templates/') for path in paths))
+        for book in self.books:
+            self.assertIn('essays/nonfiction/' + book['slug'] + '.html', paths)
+
     def test_no_fiction_only_source_requirements(self):
         book = next(book for book in self.books if book['slug'] == 'small-is-beautiful')
         self.assertEqual(book['reading_basis'], 'excerpts-and-research')
@@ -152,7 +158,7 @@ class BookIntroductionsTests(unittest.TestCase):
         self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
         self.assertEqual(update['kind'], 'new')
         self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
-        self.assertEqual(len(self.books), 32)
+        self.assertEqual(len(self.books), 52)
 
     def test_october_seventh_preserves_reviewed_texts_and_editions(self):
         books = {book['slug']: book for book in self.books}
@@ -204,6 +210,40 @@ class BookIntroductionsTests(unittest.TestCase):
         self.assertEqual(update['kind'], 'new')
         self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
         self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
+
+    def test_october_tenth_preserves_twenty_approved_manuscripts(self):
+        approved = json.loads((build.ROOT / 'scripts/fixtures/nonfiction-2026-10-10-approved.json').read_text(encoding='utf-8'))
+        batch = {b['slug']: b for b in self.books if b['guide_date'] == '2026-10-10'}
+        self.assertEqual(len(approved), 20)
+        self.assertEqual(set(batch), set(approved))
+        for slug, expected in approved.items():
+            with self.subTest(slug=slug):
+                book = batch[slug]
+                self.assertEqual(hashlib.sha256(book['zh_body'].encode()).hexdigest(), expected['sha256'])
+                self.assertEqual(book['book_date'], expected['book_date'])
+                self.assertEqual(book['book_language'], expected['book_language'])
+                self.assertNotIn('updated_date', book)
+                self.assertIn('未通读全书', book['zh_notice'])
+                self.assertGreater(len(book['en_body'].split()), 1100)
+                for language in ('en', 'zh'):
+                    self.assertEqual(len(re.findall(r'^## ', book[f'{language}_body'], re.M)), expected['sections'])
+                    self.assertNotRegex(book[f'{language}_body'], r'https?://|TODO|TBD')
+        self.assertEqual(batch['the-book-of-eels']['book_language'], 'sv')
+        self.assertEqual(batch['tokyo-eight-square-meters']['book_language'], 'zh')
+        self.assertIn('2022', batch['the-book-of-eels']['en_body'])
+        self.assertIn('2025', batch['other-minds']['en_body'])
+        self.assertIn('Rasala', batch['the-soul-of-a-new-machine']['en_body'])
+        self.assertIn('granddaughter', batch['all-that-she-carried']['en_body'])
+
+    def test_october_tenth_publication_and_discovery(self):
+        ledger = json.loads((build.ROOT / 'data/site-updates.json').read_text(encoding='utf-8'))
+        update = next(x for x in ledger['updates'] if x['id'] == '2026-10-10-nonfiction-twenty-guides')
+        self.assertEqual(update['date'], '2026-10-10')
+        self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
+        self.assertEqual(update['kind'], 'new')
+        self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
+        self.assertIn('Ninety-five books', (build.ROOT / 'explore.html').read_text(encoding='utf-8'))
+        self.assertIn('Twenty new guides', (build.ROOT / 'index.html').read_text(encoding='utf-8'))
 
     def test_generated_bodies_use_independent_editions(self):
         converter = build.TraditionalConverter()

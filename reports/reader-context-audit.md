@@ -10,17 +10,17 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 11,052 | 10,026 | 1,026 | 328 | 122 | 541 |
-| Canonical-root pages | 3,878 | 3,463 | 415 | 303 | 122 | 286 |
-| Independent language editions | 7,174 | 6,563 | 611 | 25 | 0 | 255 |
+| All physical editions | 11,469 | 10,376 | 1,093 | 361 | 134 | 561 |
+| Canonical-root pages | 3,920 | 3,503 | 417 | 336 | 134 | 306 |
+| Independent language editions | 7,549 | 6,873 | 676 | 25 | 0 | 255 |
 
 ## Existing article navigation
 
 | Scope | Series position | Legacy previous / next |
 | --- | ---: | ---: |
-| All physical editions | 4,229 | 5,749 |
-| Canonical-root pages | 753 | 2,151 |
-| Independent language editions | 3,476 | 3,598 |
+| All physical editions | 4,559 | 6,079 |
+| Canonical-root pages | 773 | 2,171 |
+| Independent language editions | 3,786 | 3,908 |
 
 ## Canonical-root articles by collection
 
@@ -41,12 +41,12 @@ separately from the newer three-route continuation pattern.
 | `games` | 66 | 0 | 0 | 0 | 0 |
 | `wuxia` | 66 | 0 | 0 | 0 | 0 |
 | `blockchain` | 63 | 63 | 42 | 63 | 63 |
+| `nonfiction` | 52 | 52 | 0 | 0 | 0 |
 | `analects` | 50 | 0 | 0 | 50 | 50 |
 | `(standalone essays)` | 49 | 4 | 4 | 0 | 25 |
 | `hlm` | 48 | 0 | 0 | 0 | 0 |
 | `humor` | 46 | 0 | 0 | 0 | 0 |
 | `recent-fiction` | 43 | 43 | 0 | 0 | 0 |
-| `nonfiction` | 32 | 32 | 0 | 0 | 0 |
 | `ouya` | 26 | 0 | 0 | 22 | 26 |
 | `president` | 26 | 0 | 0 | 26 | 26 |
 | `emperor` | 25 | 0 | 0 | 25 | 25 |
@@ -61,11 +61,13 @@ separately from the newer three-route continuation pattern.
 | `sae-nicomachean` | 13 | 13 | 13 | 13 | 13 |
 | `sae-republic` | 13 | 13 | 13 | 13 | 13 |
 | `sae-first-critique` | 12 | 12 | 12 | 12 | 12 |
+| `sae-second-critique` | 12 | 12 | 12 | 12 | 12 |
 | `action` | 11 | 0 | 0 | 11 | 11 |
 | `sae-spinoza` | 11 | 0 | 0 | 0 | 0 |
 | `yinan` | 9 | 0 | 0 | 0 | 9 |
 | `ai-work` | 8 | 8 | 0 | 0 | 8 |
 | `daode` | 8 | 0 | 0 | 8 | 8 |
+| `institution` | 8 | 0 | 0 | 8 | 8 |
 | `meaning` | 8 | 0 | 0 | 8 | 8 |
 | `sae-value` | 8 | 0 | 0 | 8 | 8 |
 | `conflict` | 7 | 0 | 0 | 7 | 7 |
