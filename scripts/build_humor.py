@@ -66,6 +66,8 @@ def render_pages():
                 value = value.replace('佔吉凶', '占吉凶').replace('裡程碑', '里程碑').replace('旅人不乾了', '旅人不幹了')
                 value = value.replace('兩只手', '兩隻手').replace('竪起來', '豎起來')
                 value = value.replace('有只老虎', '有隻老虎')
+                value = value.replace('才兩英裡', '才兩英里').replace('穆裡亞利', '穆里亞利').replace('余下這一路', '餘下這一路')
+                value = value.replace('野乾', '野干').replace('這只鳥真好看', '這隻鳥真好看')
             return html.escape(value)
 
         def page(filename, title, description, content, article=False):
