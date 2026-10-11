@@ -29,13 +29,13 @@ class HumorTests(unittest.TestCase):
 
     def test_curated_inventory(self):
         issues = self.data['issues']
-        self.assertEqual(len(issues), 29)
-        self.assertEqual([len(x['jokes']) for x in issues], [6] * 29)
+        self.assertEqual(len(issues), 35)
+        self.assertEqual([len(x['jokes']) for x in issues], [6] * 35)
         jokes = [j for issue in issues for j in issue['jokes']]
-        self.assertEqual(len({j['id'] for j in jokes}), 174)
-        self.assertEqual(len({j['origin'] for j in jokes}), 174)
-        self.assertEqual([j['id'] for j in jokes], [f'h{i:03}' for i in range(1, 175)])
-        self.assertEqual(len({i['slug'] for i in issues}), 29)
+        self.assertEqual(len({j['id'] for j in jokes}), 210)
+        self.assertEqual(len({j['origin'] for j in jokes}), 210)
+        self.assertEqual([j['id'] for j in jokes], [f'h{i:03}' for i in range(1, 211)])
+        self.assertEqual(len({i['slug'] for i in issues}), 35)
         for joke in jokes:
             self.assertIn(joke['source'], self.data['sources'])
             self.assertTrue(joke['locator'])
@@ -44,7 +44,7 @@ class HumorTests(unittest.TestCase):
             self.assertNotRegex(''.join(joke['paragraphs']), r'SAE|\d+DD|殖民|主体性|结构读法')
 
     def test_generated_files_and_language(self):
-        self.assertEqual(len(self.outputs), 60)
+        self.assertEqual(len(self.outputs), 72)
         for path, text in self.outputs.items():
             with self.subTest(path=path):
                 self.assertEqual(path.read_text(), text)
@@ -79,6 +79,8 @@ class HumorTests(unittest.TestCase):
                     self.assertNotIn('”', body)
                     self.assertNotIn('乾活', body)
                     self.assertNotIn('復述', body)
+                    for mistake in ('道格伯裡', '謝裡丹', '彈得不准', '彈准', '瞄准', '捨下一個粗月亮', '邊挨打邊贊嘆', '客人抬頭贊嘆'):
+                        self.assertNotIn(mistake, body)
                     for mistake in ('德米特裡', '土整松', '把松土', '兩只腳', '這只生狗', '一整只狗', '這幾只吃'):
                         self.assertNotIn(mistake, body)
                     for mistake in ('輕輕鬆松', '包扎', '鬥篷', '准是', '乾完活', '該乾的事', '乾得疲憊', '阿裡斯提卜', '望瞭望', '系著紅帶子', '沈下臉'):
@@ -103,9 +105,9 @@ class HumorTests(unittest.TestCase):
         issues = self.data['issues']
         for directory in (build.TARGET, build.TARGET / 'zh-hant'):
             index = self.outputs[directory / 'index.html']
-            self.assertIn('174', index)
-            self.assertIn(f'class="humor-start" href="{issues[23]["slug"]}.html"', index)
-            for first, last in [(1, 5), (6, 10), (11, 15), (16, 23), (24, 29)]:
+            self.assertIn('210', index)
+            self.assertIn(f'class="humor-start" href="{issues[29]["slug"]}.html"', index)
+            for first, last in [(1, 5), (6, 10), (11, 15), (16, 23), (24, 29), (30, 35)]:
                 self.assertIn(f'href="#issues-{first:02}-{last:02}"', index)
             for n, issue in enumerate(issues):
                 text = self.outputs[directory / (issue['slug'] + '.html')]
@@ -128,7 +130,7 @@ class HumorTests(unittest.TestCase):
             if 'humor/' in attrs.get('href', ''):
                 self.assertTrue((stories.parent / attrs['href']).resolve().is_file())
         item = next(x for x in json.loads((build.ROOT / 'data/site-updates.json').read_text())['updates']
-                    if x['id'] == '2026-10-10-humor-fifth-selection')
+                    if x['id'] == '2026-10-10-humor-sixth-selection')
         self.assertEqual(item['languages'], ['zh', 'zh-hant'])
 
     def test_optional_philosophy_links(self):
@@ -157,7 +159,7 @@ class HumorTests(unittest.TestCase):
         for lang in ('zh-hans', 'zh-hant'):
             records = json.loads((build.ROOT / f'data/search/{lang}.json').read_text())['records']
             humor = [r for r in records if r['u'].startswith('essays/humor/')]
-            self.assertEqual(len(humor), 30)
+            self.assertEqual(len(humor), 36)
             self.assertTrue(all(r['d'] == 'stories' for r in humor))
         english = json.loads((build.ROOT / 'data/search/en.json').read_text())['records']
         self.assertFalse(any(r['u'].startswith('essays/humor/') for r in english))

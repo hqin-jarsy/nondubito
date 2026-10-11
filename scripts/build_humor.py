@@ -58,6 +58,8 @@ def render_pages():
                 value = value.replace('阿裡斯提卜', '阿里斯提卜').replace('望瞭望', '望了望').replace('系著紅帶子', '繫著紅帶子').replace('沈下臉', '沉下臉')
                 value = value.replace('德米特裡', '德米特里').replace('土整松', '土整鬆').replace('把松土', '把鬆土')
                 value = value.replace('兩只腳', '兩隻腳').replace('這只生狗', '這隻生狗').replace('一整只狗', '一整隻狗').replace('這幾只吃', '這幾隻吃')
+                value = value.replace('道格伯裡', '道格伯里').replace('謝裡丹', '謝里丹').replace('彈得不准', '彈得不準').replace('彈准', '彈準').replace('瞄准', '瞄準')
+                value = value.replace('捨下一個粗月亮', '舍下一個粗月亮').replace('邊挨打邊贊嘆', '邊挨打邊讚嘆').replace('客人抬頭贊嘆', '客人抬頭讚嘆')
             return html.escape(value)
 
         def page(filename, title, description, content, article=False):
