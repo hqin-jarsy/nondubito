@@ -27,6 +27,8 @@ const base = process.argv[2] || 'http://127.0.0.1:8776';
           assert.equal(await page.locator('h1:visible').count(), 1);
           assert.equal(await page.locator('.humor-header').count(), 1);
           assert.equal(await page.locator('.humor-main-nav a:visible').count(), 4);
+          assert.equal(await page.locator('.humor-afterword a:visible').count(), 1);
+          assert.ok((await page.locator('.humor-afterword a').getAttribute('href')).endsWith(`laughter/index.html?lang=${lang}`));
           const geometry = await page.evaluate(() => ({
             width: innerWidth, page: document.documentElement.scrollWidth,
             header: document.querySelector('header').getBoundingClientRect().bottom,
@@ -67,12 +69,37 @@ const base = process.argv[2] || 'http://127.0.0.1:8776';
     await page.goto(`${base}/essays/humor/01-children-have-a-point.html?lang=zh`);
     await page.locator('a[rel="next"]').click();
     assert.equal(await page.locator('html').getAttribute('lang'), 'zh-Hans');
+    // Cross-reading links preserve the chosen Chinese edition, even when the
+    // stored preference disagrees. The English link labels its destination.
+    for (const width of [1440, 390, 320]) {
+      await page.setViewportSize({width, height: 920});
+      for (const lang of ['zh', 'zh-hant', 'en']) {
+        for (const file of ['index', 'overview', 'ep01', 'ep02', 'ep03', 'ep04']) {
+          await page.evaluate(() => localStorage.setItem('nd_lang', 'en'));
+          await page.goto(`${base}/essays/laughter/${file}.html?lang=${lang}`);
+          assert.equal(await page.locator('html').getAttribute('data-lang'), lang);
+          const link = page.locator('.laughter-relax a:visible');
+          assert.equal(await link.count(), 1);
+          const rect = await link.boundingBox();
+          assert.ok(rect.x >= 0 && rect.x + rect.width <= width + 1, `reading link overflow: ${width} ${lang} ${file}`);
+          if (lang === 'en') assert.match(await link.innerText(), /in Chinese/);
+          await link.click();
+          assert.equal(await page.locator('html').getAttribute('lang'), lang === 'zh-hant' ? 'zh-Hant' : 'zh-Hans');
+          await page.locator('.humor-afterword a').click();
+          assert.equal(await page.locator('html').getAttribute('data-lang'), lang === 'zh-hant' ? 'zh-hant' : 'zh');
+        }
+      }
+    }
     if (process.env.HUMOR_SCREENSHOTS) {
       for (const [name, width, file] of [['desktop', 1440, 'index'], ['mobile', 390, data.issues[15].slug]]) {
         await page.setViewportSize({width, height: 920});
         await page.goto(`${base}/essays/humor/${file}.html?lang=zh`);
         await page.screenshot({path: path.join(process.env.HUMOR_SCREENSHOTS, name+'.png'), fullPage: true});
       }
+      await page.setViewportSize({width: 390, height: 920});
+      await page.goto(`${base}/essays/laughter/index.html?lang=zh-hant`);
+      await page.locator('.laughter-relax').scrollIntoViewIfNeeded();
+      await page.screenshot({path: path.join(process.env.HUMOR_SCREENSHOTS, 'laughter-mobile.png')});
     }
     const nojs = await browser.newContext({javaScriptEnabled: false, viewport: {width: 390, height: 850}});
     const plain = await nojs.newPage();

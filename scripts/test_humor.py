@@ -117,7 +117,9 @@ class HumorTests(unittest.TestCase):
         self.assertNotIn('不咸', hant)
 
     def test_discovery_entries(self):
-        for filename in ['index.html', 'library.html', 'explore.html', 'latest.html']:
+        # The redesigned home page leads to the full Library, not every series.
+        self.assertIn('href="library.html"', (build.ROOT / 'index.html').read_text())
+        for filename in ['library.html', 'explore.html', 'latest.html']:
             self.assertIn('essays/humor/index.html', (build.ROOT / filename).read_text())
         stories = build.ROOT / 'essays/everyday/stories/index.html'
         for tag, attrs in Page(stories.read_text()).tags:
@@ -126,6 +128,28 @@ class HumorTests(unittest.TestCase):
         item = next(x for x in json.loads((build.ROOT / 'data/site-updates.json').read_text())['updates']
                     if x['id'] == '2026-09-28-humor-fourth-selection')
         self.assertEqual(item['languages'], ['zh', 'zh-hant'])
+
+    def test_optional_philosophy_links(self):
+        for path, text in self.outputs.items():
+            with self.subTest(path=path):
+                self.assertEqual(text.count('<aside class="humor-afterword">'), 1)
+                hant = path.parent.name == 'zh-hant'
+                lang = 'zh-hant' if hant else 'zh'
+                base = '../../../' if hant else '../../'
+                self.assertIn(f'href="{base}essays/laughter/index.html?lang={lang}"', text)
+                if path.name == 'index.html':
+                    self.assertLess(text.index('class="humor-afterword"'), text.index('class="humor-jump"'))
+                else:
+                    self.assertGreater(text.index('class="humor-afterword"'), text.rindex('</article>'))
+        for path in (build.ROOT / 'essays/laughter').glob('*.html'):
+            text = path.read_text()
+            self.assertEqual(text.count('<aside class="laughter-relax">'), 1)
+            self.assertIn('先不想那么多，去读几则笑话。', text)
+            self.assertIn('先不想那麼多，去讀幾則笑話。', text)
+            self.assertIn('Browse the joke collection (in Chinese)', text)
+            self.assertIn('href="../humor/index.html?lang=zh"', text)
+            self.assertIn('href="../humor/zh-hant/index.html"', text)
+            self.assertIn('new URLSearchParams(location.search)', text)
 
     def test_search_and_sitemap(self):
         for lang in ('zh-hans', 'zh-hant'):

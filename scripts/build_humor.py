@@ -103,6 +103,7 @@ def render_pages():
 </body></html>
 '''
 
+        philosophy_link = f'''<aside class="humor-afterword"><p>{t('笑过之后，也可以想一想：我们为什么会笑？')}</p><a href="{base}essays/laughter/index.html?lang={lang}">{t('读《判断力与笑》')} →</a></aside>'''
         groups, jumps = [], []
         start = 1
         for batch in data['batches']:
@@ -117,6 +118,7 @@ def render_pages():
             start = end + 1
         introduction = f'''<div class="humor-breadcrumb"><a href="{base}library.html?lang={lang}">← {t('书库')}</a></div>
 <section class="humor-hero"><p class="humor-kicker">NON DUBITO · {t('笑话选')}</p><h1>{t('笑话选')}</h1><p class="humor-deck">{t('从不同地方传来的笑话，关于我们怎样生活，又怎样把自己绕进去。')}</p><p class="humor-welcome">{t('先笑一会儿。想查来处，每则后面都有；不想查，就接着读。')}</p><p class="humor-meta">{t(f"{len(data['issues'])} 个短辑 · {total} 则 · 简体 / 繁体")}</p><a class="humor-start" href="{data['batches'][-1][0]['slug']}.html">{t('读最新一批')} →</a><p class="humor-meta"><a href="{data['issues'][0]['slug']}.html">{t('也可以从第一辑读起')} →</a></p></section>
+{philosophy_link}
 <nav class="humor-jump" aria-label="{t('按辑数跳转')}"><span>{t('跳到')}</span>{''.join(jumps)}</nav>
 <div class="humor-issues">{''.join(groups)}</div>
 <details class="humor-editorial"><summary>{t('关于这份选本')}</summary><div><p>{t('这里收录旧笑话、诙谐轶事和少量带有喜剧意味的故事，不是原创小说，也不把书中轶事当作已证实的历史。中文根据所列版本译述或改写，题目多为编选时另拟。')}</p><p>{t('出处标明我们读到的版本，不声称已经找到了故事最早的源头。工作稿中的理论分类与分析留在编辑档案里；这里不逐则讲道理。')}</p><p>{t('目前提供简体与繁体中文。英文将另行打磨，不以机器直译替代笑话的节奏。第三辑末则写到临终与天堂。')}</p></div></details>'''
@@ -135,7 +137,7 @@ def render_pages():
             content = f'''<div class="humor-breadcrumb"><a href="index.html">← {t('笑话选')}</a><span>{t('第')} {index+1:02} {t('辑 / 六则')}</span></div>
 <section class="humor-hero humor-reading-hero"><p class="humor-kicker">{t('笑话选')} · {index+1:02}</p><h1>{t(issue['title'])}</h1><p class="humor-deck">{t(issue['deck'])}</p><p class="humor-meta">{t('编选与中文译写：秦汉 · 约两三分钟')}</p></section>
 <details class="humor-contents"><summary>{t('这一辑的六则')}</summary><nav aria-label="{t('本辑目录')}">{contents}</nav></details>
-{''.join(articles)}<nav class="humor-next" aria-label="{t('前后短辑')}">{prev_link}{next_link}</nav><p class="humor-end"><a href="index.html">{t('全部短辑')}</a> · <a href="#main">{t('回到页首')}</a></p>'''
+{''.join(articles)}<nav class="humor-next" aria-label="{t('前后短辑')}">{prev_link}{next_link}</nav>{philosophy_link}<p class="humor-end"><a href="index.html">{t('全部短辑')}</a> · <a href="#main">{t('回到页首')}</a></p>'''
             outputs[folder / (issue['slug'] + '.html')] = page(issue['slug'] + '.html', issue['title'] + ' · 笑话选', issue['deck'], content, issue)
     return outputs
 
