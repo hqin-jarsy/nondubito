@@ -37,12 +37,12 @@ const base = process.argv[2] || 'http://127.0.0.1:8776';
           assert.ok(geometry.page <= geometry.width + 1, `overflow ${width} ${lang} ${slug}`);
           assert.equal(await page.locator('.humor-footer').evaluate(el => getComputedStyle(el).backgroundColor), 'rgba(0, 0, 0, 0)');
           if (slug === 'index') {
-            assert.equal(await page.locator('.humor-group').count(), 4);
-            assert.equal(await page.locator('.humor-issue').count(), 23);
+            assert.equal(await page.locator('.humor-group').count(), 5);
+            assert.equal(await page.locator('.humor-issue').count(), 29);
             await page.locator('.humor-jump a').last().click();
-            await page.locator('#issues-16-23').scrollIntoViewIfNeeded();
-            assert.ok(page.url().endsWith('#issues-16-23'));
-            assert.equal(await page.locator('#issues-16-23 .humor-issue').count(), 8);
+            await page.locator('#issues-24-29').scrollIntoViewIfNeeded();
+            assert.ok(page.url().endsWith('#issues-24-29'));
+            assert.equal(await page.locator('#issues-24-29 .humor-issue').count(), 6);
           }
           if (slug !== 'index') {
             assert.equal(await page.locator('.humor-source[open]').count(), 0);
@@ -91,7 +91,7 @@ const base = process.argv[2] || 'http://127.0.0.1:8776';
       }
     }
     if (process.env.HUMOR_SCREENSHOTS) {
-      for (const [name, width, file] of [['desktop', 1440, 'index'], ['mobile', 390, data.issues[15].slug]]) {
+      for (const [name, width, file] of [['desktop', 1440, 'index'], ['mobile', 390, data.issues[23].slug]]) {
         await page.setViewportSize({width, height: 920});
         await page.goto(`${base}/essays/humor/${file}.html?lang=zh`);
         await page.screenshot({path: path.join(process.env.HUMOR_SCREENSHOTS, name+'.png'), fullPage: true});
