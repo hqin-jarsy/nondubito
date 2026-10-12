@@ -101,10 +101,38 @@ git diff --check
 ```
 
 All build commands support `--check`. Browser QA covers the two entrances, all
-22 articles, the three reading languages, the mobile menu, source anchors, and search
+registered nonfiction articles, the three reading languages, the mobile menu, source anchors, and search
 by title/author. Search uses localized visible decks and preserves the selected
 language on result links for both new paths.
 
 Rendering reuses the safe prose helpers, language script, typography and document
 shell from Recent Fiction. Only `head()` has collection parameters; the novel
 builder's editorial content, source rules, date ordering and 43 URLs remain separate.
+
+## 2026-10-12 publication
+
+Twenty introductions from the four latest manuscript batches enter the website
+after a joint editorial review. Eight Chinese manuscripts received targeted
+revisions; twelve were retained. The shelf now holds 72 nonfiction books and the
+combined entrance 115 books. Winter Pasture and The Country of the Blind lead
+the shelf. All twenty guides have complete English, Simplified Chinese, and
+Traditional Chinese bodies; English totals 26,045 words.
+
+The fixed fixture `scripts/fixtures/nonfiction-2026-10-12-approved.json` protects
+both English and Chinese body hashes, section counts, original publication years,
+and original languages. The twenty Chinese bodies match the reviewed Markdown
+manuscripts, with only their main headings moved to page-title fields. Russian is
+added as an original-book language label, not a reading edition. Starting from
+the Limits is explicitly a working English translation of the title. Reading
+notices distinguish excerpts, interviews, reviews, and the complete public-domain
+English text of The Book of Tea. Publication dates are not translation dates.
+
+The collection-local TraditionalConverter corrects the full title 色彩的履歷書
+after CoreFoundation conversion, which otherwise produces 履曆書. This was found
+by the Traditional Chinese title-search test; the global conversion rules remain
+unchanged. The title has a dedicated regression test.
+
+The pre-existing 52 data records must remain untouched; regenerated older pages
+may gain related-reading links but not changed article bodies. See
+`reports/nonfiction-2026-10-12-publication-qa.md` for the verification results.
+This integration does not itself commit, push, or establish remote deployment.

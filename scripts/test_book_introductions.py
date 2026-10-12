@@ -158,7 +158,7 @@ class BookIntroductionsTests(unittest.TestCase):
         self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
         self.assertEqual(update['kind'], 'new')
         self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
-        self.assertEqual(len(self.books), 52)
+        self.assertEqual(len(self.books), 72)
 
     def test_october_seventh_preserves_reviewed_texts_and_editions(self):
         books = {book['slug']: book for book in self.books}
@@ -242,8 +242,50 @@ class BookIntroductionsTests(unittest.TestCase):
         self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
         self.assertEqual(update['kind'], 'new')
         self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
-        self.assertIn('Ninety-five books', (build.ROOT / 'explore.html').read_text(encoding='utf-8'))
+        self.assertIn('One hundred fifteen books', (build.ROOT / 'explore.html').read_text(encoding='utf-8'))
         self.assertIn('Twenty new guides', (build.ROOT / 'index.html').read_text(encoding='utf-8'))
+
+    def test_october_twelfth_preserves_reviewed_twenty_in_both_languages(self):
+        approved = json.loads((build.ROOT / 'scripts/fixtures/nonfiction-2026-10-12-approved.json').read_text(encoding='utf-8'))
+        batch = {b['slug']: b for b in self.books if b['guide_date'] == '2026-10-12'}
+        self.assertEqual(len(approved), 20)
+        self.assertEqual(set(batch), set(approved))
+        for slug, expected in approved.items():
+            with self.subTest(slug=slug):
+                book = batch[slug]
+                self.assertEqual(book['book_date'], expected['book_date'])
+                self.assertEqual(book['book_language'], expected['book_language'])
+                self.assertNotIn('updated_date', book)
+                for language, key in (('zh', 'sha256'), ('en', 'en_sha256')):
+                    body = book[f'{language}_body']
+                    self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), expected[key])
+                    self.assertEqual(len(re.findall(r'^## ', body, re.M)), expected['sections'])
+                    self.assertNotRegex(body, r'https?://|TODO|TBD')
+                self.assertGreater(len(book['en_body'].split()), 1100)
+                if slug != 'the-book-of-tea':
+                    self.assertIn('未通读全书', book['zh_notice'])
+        self.assertIn('七章全文', batch['the-book-of-tea']['zh_notice'])
+        self.assertEqual(batch['the-unwomanly-face-of-war']['book_language'], 'ru')
+        self.assertEqual(batch['the-unwomanly-face-of-war']['book_date'], '1985')
+        self.assertIn('working translation', batch['starting-from-the-limits']['en_notice'])
+        for slug in ('84-charing-cross-road', 'how-buildings-learn', 'word-by-word', 'on-immunity'):
+            self.assertEqual(batch[slug]['reading_basis'], 'interviews-and-research')
+        ledger = json.loads((build.ROOT / 'data/site-updates.json').read_text(encoding='utf-8'))
+        update = next(x for x in ledger['updates'] if x['id'] == '2026-10-12-nonfiction-twenty-guides')
+        self.assertEqual(update['date'], '2026-10-12')
+        self.assertEqual(update['languages'], ['en', 'zh', 'zh-hant'])
+        self.assertEqual(update['kind'], 'new')
+        self.assertIn(update['id'], (build.ROOT / 'latest.html').read_text(encoding='utf-8'))
+
+    def test_traditional_colour_title_is_not_calendar_character(self):
+        converter = build.TraditionalConverter()
+        try:
+            self.assertEqual(converter.convert('色彩的履历书'), '色彩的履歷書')
+        finally:
+            converter.close()
+        page = (build.TARGET / 'the-secret-lives-of-colour.html').read_text(encoding='utf-8')
+        self.assertIn('色彩的履歷書', page)
+        self.assertNotIn('色彩的履曆書', page)
 
     def test_generated_bodies_use_independent_editions(self):
         converter = build.TraditionalConverter()

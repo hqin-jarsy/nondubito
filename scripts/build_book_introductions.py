@@ -13,14 +13,34 @@ from datetime import date
 from urllib.parse import urlsplit
 
 import build_recent_fiction as fiction
-from build_recent_fiction import TraditionalConverter, esc, localized, prose
+from build_recent_fiction import TraditionalConverter as BaseTraditionalConverter, esc, localized, prose
 
 ROOT = fiction.ROOT
 SOURCE = ROOT / 'data/nonfiction'
 TARGET = ROOT / 'essays/nonfiction'
 HUB = ROOT / 'essays/books/index.html'
 PUBLISHED = '2026-09-13'
-ORDER = ('a-swim-in-a-pond-in-the-rain',
+ORDER = ('winter-pasture',
+         'the-country-of-the-blind',
+         'the-art-thief',
+         'the-invention-of-nature',
+         'starting-from-the-limits',
+         'the-cooking-gene',
+         'what-an-owl-knows',
+         'just-mercy',
+         'the-secret-lives-of-colour',
+         'the-art-of-noticing',
+         'how-buildings-learn',
+         'word-by-word',
+         'on-immunity',
+         'the-memory-chalet',
+         'the-argonauts',
+         'lab-girl',
+         '84-charing-cross-road',
+         'a-still-life',
+         'the-unwomanly-face-of-war',
+         'the-book-of-tea',
+         'a-swim-in-a-pond-in-the-rain',
          'taste',
          'all-that-she-carried',
          'the-book-of-eels',
@@ -59,6 +79,13 @@ SOURCE_LABELS = {
     'research': ('Research & discussion', '研究与讨论'),
     'institution': ('Institutional sources', '机构资料'),
 }
+
+
+class TraditionalConverter(BaseTraditionalConverter):
+    def convert(self, value: str) -> str:
+        # CoreFoundation chooses the calendar character in this book title.
+        # Keep this bibliographic correction local to the nonfiction collection.
+        return super().convert(value).replace('色彩的履曆書', '色彩的履歷書')
 
 
 def validate_book(book: dict, slug: str) -> None:

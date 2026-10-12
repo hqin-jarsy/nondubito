@@ -90,6 +90,7 @@ BOOK_LANGUAGES = {
     "ko": ("Korean", "韩语"),
     "zh": ("Chinese", "中文"),
     "sv": ("Swedish", "瑞典语"),
+    "ru": ("Russian", "俄语"),
 }
 
 
