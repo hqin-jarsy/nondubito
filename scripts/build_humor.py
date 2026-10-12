@@ -73,6 +73,9 @@ def render_pages():
                 value = value.replace('譯者表示贊賞', '譯者表示讚賞').replace('十分贊賞', '十分讚賞').replace('行善稱贊', '行善稱讚')
                 value = value.replace('重復口令', '重複口令').replace('發聲重復', '發聲重複')
                 value = value.replace('我和我的表', '我和我的錶').replace('您的表，讓我們', '您的錶，讓我們').replace('不補贈表情節', '不補贈錶情節')
+                value = value.replace('特別稱贊一位', '特別稱讚一位').replace('贊嘆它們長得', '讚嘆它們長得')
+                value = value.replace('做煙鬥的人', '做煙斗的人').replace('發明瞭一種新酵母', '發明了一種新酵母')
+                value = value.replace('篩面', '篩麵').replace('把面袋伸出', '把麵袋伸出').replace('鄰家面團', '鄰家麵團')
             return html.escape(value)
 
         def page(filename, title, description, content, article=False):

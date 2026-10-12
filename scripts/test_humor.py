@@ -29,13 +29,13 @@ class HumorTests(unittest.TestCase):
 
     def test_curated_inventory(self):
         issues = self.data['issues']
-        self.assertEqual(len(issues), 71)
-        self.assertEqual([len(x['jokes']) for x in issues], [6] * 71)
+        self.assertEqual(len(issues), 77)
+        self.assertEqual([len(x['jokes']) for x in issues], [6] * 77)
         jokes = [j for issue in issues for j in issue['jokes']]
-        self.assertEqual(len({j['id'] for j in jokes}), 426)
-        self.assertEqual(len({j['origin'] for j in jokes}), 426)
-        self.assertEqual([j['id'] for j in jokes], [f'h{i:03}' for i in range(1, 427)])
-        self.assertEqual(len({i['slug'] for i in issues}), 71)
+        self.assertEqual(len({j['id'] for j in jokes}), 462)
+        self.assertEqual(len({j['origin'] for j in jokes}), 462)
+        self.assertEqual([j['id'] for j in jokes], [f'h{i:03}' for i in range(1, 463)])
+        self.assertEqual(len({i['slug'] for i in issues}), 77)
         for joke in jokes:
             self.assertIn(joke['source'], self.data['sources'])
             self.assertTrue(joke['locator'])
@@ -46,7 +46,7 @@ class HumorTests(unittest.TestCase):
             self.assertNotRegex(''.join(joke['paragraphs']), r'SAE|\d+DD|殖民|主体性|结构读法')
 
     def test_generated_files_and_language(self):
-        self.assertEqual(len(self.outputs), 144)
+        self.assertEqual(len(self.outputs), 156)
         for path, text in self.outputs.items():
             with self.subTest(path=path):
                 self.assertEqual(path.read_text(), text)
@@ -81,6 +81,8 @@ class HumorTests(unittest.TestCase):
                     self.assertNotIn('”', body)
                     self.assertNotIn('乾活', body)
                     self.assertNotIn('復述', body)
+                    for mistake in ('特別稱贊一位', '贊嘆它們長得', '做煙鬥的人', '發明瞭一種新酵母', '篩面', '把面袋伸出', '鄰家面團'):
+                        self.assertNotIn(mistake, body)
                     for mistake in ('譯者表示贊賞', '十分贊賞', '行善稱贊', '重復口令', '發聲重復', '我和我的表', '不補贈表情節'):
                         self.assertNotIn(mistake, body)
                     for mistake in ('有一個准的', '叫得不准', '倒是准的', '准能考中', '咸魚', '咸死他', '乾過這種事', '雞捨', '試題一髮下來', 'Fingers』 Ends'):
@@ -117,9 +119,9 @@ class HumorTests(unittest.TestCase):
         issues = self.data['issues']
         for directory in (build.TARGET, build.TARGET / 'zh-hant'):
             index = self.outputs[directory / 'index.html']
-            self.assertIn('426', index)
-            self.assertIn(f'class="humor-start" href="{issues[65]["slug"]}.html"', index)
-            for first, last in [(1, 5), (6, 10), (11, 15), (16, 23), (24, 29), (30, 35), (36, 41), (42, 47), (48, 53), (54, 59), (60, 65), (66, 71)]:
+            self.assertIn('462', index)
+            self.assertIn(f'class="humor-start" href="{issues[71]["slug"]}.html"', index)
+            for first, last in [(1, 5), (6, 10), (11, 15), (16, 23), (24, 29), (30, 35), (36, 41), (42, 47), (48, 53), (54, 59), (60, 65), (66, 71), (72, 77)]:
                 self.assertIn(f'href="#issues-{first:02}-{last:02}"', index)
             for n, issue in enumerate(issues):
                 text = self.outputs[directory / (issue['slug'] + '.html')]
@@ -138,19 +140,19 @@ class HumorTests(unittest.TestCase):
         for filename in ['library.html', 'explore.html', 'latest.html']:
             self.assertIn('essays/humor/index.html', (build.ROOT / filename).read_text())
         stories = build.ROOT / 'essays/everyday/stories/index.html'
-        self.assertIn('71 个短辑，426 则', stories.read_text())
-        self.assertIn('71 個短輯，426 則', stories.read_text())
+        self.assertIn('77 个短辑，462 则', stories.read_text())
+        self.assertIn('77 個短輯，462 則', stories.read_text())
         for filename in ('library.html', 'explore.html'):
             shelf = (build.ROOT / filename).read_text()
-            self.assertIn('71 short collections', shelf)
-            self.assertIn('71 个短辑', shelf)
-            self.assertIn('71 個短輯', shelf)
-            self.assertIn('426', shelf)
+            self.assertIn('77 short collections', shelf)
+            self.assertIn('77 个短辑', shelf)
+            self.assertIn('77 個短輯', shelf)
+            self.assertIn('462', shelf)
         for tag, attrs in Page(stories.read_text()).tags:
             if 'humor/' in attrs.get('href', ''):
                 self.assertTrue((stories.parent / attrs['href']).resolve().is_file())
         item = next(x for x in json.loads((build.ROOT / 'data/site-updates.json').read_text())['updates']
-                    if x['id'] == '2026-10-12-humor-twelfth-selection')
+                    if x['id'] == '2026-10-12-humor-thirteenth-selection')
         self.assertEqual(item['languages'], ['zh', 'zh-hant'])
 
     def test_optional_philosophy_links(self):
@@ -179,7 +181,7 @@ class HumorTests(unittest.TestCase):
         for lang in ('zh-hans', 'zh-hant'):
             records = json.loads((build.ROOT / f'data/search/{lang}.json').read_text())['records']
             humor = [r for r in records if r['u'].startswith('essays/humor/')]
-            self.assertEqual(len(humor), 72)
+            self.assertEqual(len(humor), 78)
             self.assertTrue(all(r['d'] == 'stories' for r in humor))
         english = json.loads((build.ROOT / 'data/search/en.json').read_text())['records']
         self.assertFalse(any(r['u'].startswith('essays/humor/') for r in english))
