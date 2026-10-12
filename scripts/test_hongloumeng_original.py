@@ -8,6 +8,15 @@ import build_hongloumeng_original as build
 import build_search_index as search
 
 class OriginalTests(unittest.TestCase):
+    def test_author_revision_20261012(self):
+        source = '\n'.join(build.manuscript('ch081'))
+        for phrase in ('他母亲的孝已满了', '竟是鱼眼睛了', '还是我替他说破的', '紫檀堡的房子，还是我当日说出来的', '忘不了灯前替我缝衣袖，', '说不出别样心思大马猴', '两人才笑了一时'):
+            self.assertIn(phrase, source)
+        self.assertNotIn('抛红豆，滴相思。', source)
+        publication = json.loads((build.ROOT / 'data/originals/hongloumeng/publication.json').read_text())
+        self.assertEqual(publication['source_sha256'], build.CHAPTERS['ch081']['sha256'])
+        self.assertEqual(publication['source_bytes'], (build.ROOT / 'data/originals/hongloumeng/ch081.zh.txt').stat().st_size)
+
     def test_final_manuscript_and_generated_pages(self):
         for p,s in build.render().items():
             self.assertEqual(p.read_text(),s)
@@ -39,6 +48,7 @@ class OriginalTests(unittest.TestCase):
             self.assertEqual(schema['inLanguage'],'zh-Hant' if p.parent.name=='zh-hant' else 'zh-Hans')
             if p.stem in build.CHAPTERS:
                 self.assertEqual(schema['datePublished'],build.CHAPTERS[p.stem]['published'])
+                self.assertEqual(schema['dateModified'], build.CHAPTERS[p.stem].get('modified', build.DATE))
                 nav=s.split('<nav class="chapter-nav"')[1].split('</nav>')[0]
                 self.assertIn('ch082.html' if p.stem=='ch081' else 'ch081.html',nav)
             else:

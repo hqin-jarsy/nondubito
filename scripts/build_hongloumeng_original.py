@@ -11,9 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'originals/hongloumeng'
 DATE = '2026-10-07'
 CHAPTERS = {
-    'ch081': {'sha256': '17b576513dcd1b234b8043cf62cf624b376bb9c0e490014d2103941743dca131',
-              'published': '2026-10-05', 'number': '第八十一回',
-              'verse': ('抛红豆，滴相思。', '任凭风雨误花期。')},
+    'ch081': {'sha256': 'bdca959b24eb0fb3ef2531ebf73e9db4d58ed3c001c4c952c0760b78653c9351',
+              'published': '2026-10-05', 'modified': '2026-10-12', 'number': '第八十一回',
+              'verse': ('忘不了灯前替我缝衣袖，', '才叫声好姐姐，忽又住了口。')},
     'ch082': {'sha256': '1fb3f88c945d4e6fea5eabaf7bff1cff01f1c370b968a2c5487d604e175806d0',
               'published': DATE, 'number': '第八十二回',
               'verse': ('淡粉新妆，藕丝衫子迎风软。晚凉初转，相约莲塘玩。',
@@ -64,7 +64,7 @@ def render():
                 alternatives = ''.join(f'<link rel="alternate" hreflang="{c}" href="{ORIGIN+d+(filename if story else "")}">' for d,c,_ in EDITIONS.values())
                 alternatives += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN+(filename if story else "")}">'
                 languages = ''.join(f'<a href="{up+d+filename}" lang="{c}"'+(' aria-current="page"' if k == lang else '')+f'>{name}</a>' for k,(d,c,name) in EDITIONS.items())
-                schema = {'@context':'https://schema.org','@type':'Chapter' if story else 'CollectionPage','name':t(title),'url':canonical,'inLanguage':code,'author':{'@type':'Person','name':'Han Qin (秦汉)'},'datePublished':published,'dateModified':DATE}
+                schema = {'@context':'https://schema.org','@type':'Chapter' if story else 'CollectionPage','name':t(title),'url':canonical,'inLanguage':code,'author':{'@type':'Person','name':'Han Qin (秦汉)'},'datePublished':published,'dateModified':CHAPTERS[stem].get('modified', DATE) if story else DATE}
                 if story:
                     schema['isPartOf'] = {'@type':'CreativeWork','name':t('红楼梦·后三十回'),'url':ORIGIN+directory}
                     schema['position'] = int(stem[2:])
