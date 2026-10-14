@@ -105,7 +105,7 @@ def render_pages():
                 schema.update(headline=title,datePublished=date,author={'@type':'Person','name':'Han Qin'},
                               citation=citation or PAPERS+'sae-judgment-aesthetics.html')
             else:
-                schema['dateModified'] = max([DATE, entries[0]['date']]+[r['date'] for r in rays])
+                schema['dateModified'] = max([DATE, '2026-10-14', entries[0]['date']]+[r['date'] for r in rays])
             return f'''<!doctype html>
 <html lang="{langcode}" data-lang="{lang}" data-editions="{langcode}">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -125,12 +125,13 @@ def render_pages():
 '''
 
         title = text('美学：喜欢之外，还看见了什么？','Beauty: Beyond What We Like')
-        desc = text('从喜欢与美的区别开始，读一篇总导读，看看十三条美学射线，再去日常作品中寻找。','An opening essay on liking and beauty, thirteen directions of inquiry, and a journal of daily discoveries.')
+        desc = text('从喜欢与美的区别开始，读总导读与十三条美学射线，再进入艺术作品细读和日常发现。','An opening essay on liking and beauty, thirteen directions of inquiry, close readings of art, and daily discoveries.')
         guide_title = text('我不喜欢它，但我看得出它的美','I Don’t Like It. But I Can See Its Beauty.')
         guide_deck = text('一本不想重读的小说，一只已经做好的杯子。喜欢、美与判断，不必挤在同一句话里。','A novel we won’t read again. A cup that is finished. Liking, beauty and judgment need not all fit inside the same verdict.')
         body = f'''<section class="hero"><p class="kicker">NON DUBITO · {t('美学','AESTHETICS')}</p><h1>{html.escape(title)}</h1><p class="deck">{t('我们可以各有所爱，也可以在同一个地方相遇。从作品和生活出发，不必先记住一套术语。','Our tastes can remain our own even when we see something together. Begin with works and ordinary life, not a vocabulary test.')}</p></section>
-<nav class="jump" aria-label="{t('本页导航','On this page')}">{a('#begin',t('从这里开始','Start here'))}{a('#rays',t('十三条射线','Thirteen rays'))}{a('#feed',t('日常发现','Daily discoveries'))}</nav>
+<nav class="jump" aria-label="{t('本页导航','On this page')}">{a('#begin',t('从这里开始','Start here'))}{a('#art',t('艺术作品细读','Looking closely at art'))}{a('#rays',t('十三条射线','Thirteen rays'))}{a('#feed',t('日常发现','Daily discoveries'))}</nav>
 <section id="begin" class="hub-section"><p class="kicker">01 · {t('总导读 · 简中 / 繁中 / 英文','OPENING ESSAY · THREE LANGUAGES')}</p><h2>{html.escape(guide_title)}</h2><p>{html.escape(guide_deck)}</p>{a('seeing-beauty.html?lang='+lang,t('读总导读 →','Read the opening essay →'),'class="button"')}</section>
+<section id="art" class="hub-section"><p class="kicker">{t('从作品出发 · 八语阅读','BEGIN WITH A WORK · EIGHT EDITIONS')}</p><h2>{t('艺术作品细读','Looking Closely at Art')}</h2><p>{t('两只空秤盘，桌上的首饰，身后的审判。从维米尔《持天平的女人》开始，慢慢看见作品怎样让一个问题显现。先看画，不必先学术语。','Two empty pans, jewelry on a table, a judgment behind her. Begin with Vermeer’s Woman Holding a Balance and look at how a painting makes a question visible. No theoretical vocabulary required.')}</p>{a(up+'../art/'+directory+'index.html?lang='+lang,t('进入艺术作品细读 →','Explore the art readings →'),'class="button"')}</section>
 <section id="rays" class="hub-section"><p class="kicker">02 · {t('看见美的不同方向','DIRECTIONS OF ATTENTION')}</p><h2>{t('十三条射线，不是一架梯子','Thirteen rays, not a ladder')}</h2><p>{t('同一片星空，可以从不同方向去看。射线不是给事物分箱，也不是把人的趣味分高低。每篇散文都可以单独读，不必先读原论文。','The same night sky can be approached in several ways. These rays are not bins for objects or ranks for people’s tastes. Each essay stands on its own; the papers are not prerequisites.')}</p><p class="edition-note">{t(f'射线散文已发布 {len(rays)} / 13 篇，均有简中、繁中与英文。'+(f'其余 {13-len(rays)} 篇尚未发布。' if len(rays)<13 else '十三篇现已齐备，可以从任意一篇开始。')+'十三篇中英双语原论文均可在下方展开查看。',f'{len(rays)} of 13 companion essays are published, each in English and both Chinese editions. '+(f'The remaining {13-len(rays)} are not yet published. ' if len(rays)<13 else 'The collection is complete; begin with any essay. ')+'All thirteen bilingual academic papers are linked in the expandable map below.')}</p><div class="ray-essays">'''
         for r in rays:
             body+=f'''<article class="ray-card"><p class="kicker">{r['number']:02d} · {t(*RAYS[r['number']-1])}</p><h3>{a(r['slug']+'.html?lang='+lang,t(r['title_zh'],r['title_en']))}</h3><p>{t(r['deck_zh'],r['deck_en'])}</p></article>'''

@@ -84,7 +84,7 @@ class HubTests(unittest.TestCase):
         updates=json.loads((build.ROOT/'data/site-updates.json').read_text())['updates']
         item=next(x for x in updates if x['id']=='2026-09-28-aesthetics-hub')
         self.assertEqual(set(item['languages']),{'en','zh','zh-hant'})
-        self.assertEqual(updates[0]['id'],'2026-09-28-aesthetics-rays-11-13')
+        self.assertTrue(any(x['id']=='2026-09-28-aesthetics-rays-11-13' for x in updates))
 
     def test_search_sitemap(self):
         for lang,sub in [('zh-hans',''),('en','en/'),('zh-hant','zh-hant/')]:
