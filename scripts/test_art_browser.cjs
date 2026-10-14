@@ -1,8 +1,10 @@
 const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
+const works=require('../data/art/works.json');
 const base=process.argv[2]||'http://127.0.0.1:8776';
 const langs=['zh','zh-hant','en','ja','fr','de','es','ko'];
 const article='western-painting/vermeer-woman-holding-a-balance.html';
+const files=['index.html',...works.map(w=>`${w.category}/${w.slug}.html`)];
 const url=(lang,file)=>`${base}/essays/art/${lang==='zh'?'':lang+'/'}${file}?lang=${lang}`;
 (async()=>{
  const browser=await chromium.launch({headless:true,channel:'chrome'});
@@ -11,7 +13,7 @@ const url=(lang,file)=>`${base}/essays/art/${lang==='zh'?'':lang+'/'}${file}?lan
   await context.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());
   const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   let checks=0;
-  for(const width of [1440,768,390,320]) for(const lang of langs) for(const file of ['index.html',article]){
+  for(const width of [1440,768,390,320]) for(const lang of langs) for(const file of files){
    await page.setViewportSize({width,height:950});await page.goto(url(lang,file));
    assert.equal(await page.locator('h1:visible').count(),1);
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${lang} ${file} ${width}`);
@@ -19,13 +21,15 @@ const url=(lang,file)=>`${base}/essays/art/${lang==='zh'?'':lang+'/'}${file}?lan
    assert.equal(await page.locator('[data-edition]:visible').count(),8);
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
    await page.keyboard.press('Escape');assert.equal(await page.locator('.language-menu[open]').count(),0);
-   if(file===article){
-    assert.equal(await page.locator('figure').count(),4);
+   if(file!=='index.html'){
+    const work=works.find(w=>file===`${w.category}/${w.slug}.html`);
+    assert.equal(await page.locator('figure').count(),work.id==='vermeer'||work.id==='turner'?4:5);
+    assert.equal(await page.locator('.optional-reading h2').count(),0,'Image notes must remain outside optional theory');
     for(const img of await page.locator('figure img').all()){
      await img.scrollIntoViewIfNeeded();await img.evaluate(i=>i.decode());assert.ok(await img.evaluate(i=>i.naturalWidth>0));
     }
     await page.locator('.optional-reading summary').click();assert.ok(await page.locator('.optional-reading .source-note').isVisible());
-   }
+   } else { assert.equal(await page.locator('.art-card').count(),works.length); }
    checks++;
   }
   await page.goto(url('zh',article)+'#section-4');await page.locator('.language-menu summary').click();await page.locator('[data-edition="fr"]').click();

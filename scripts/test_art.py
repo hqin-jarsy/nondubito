@@ -45,8 +45,9 @@ class ArtTests(unittest.TestCase):
                     if block.startswith(('## ','![')): continue
                     self.assertIn(b.inline(block),s,(lang,block[:60]))
                 tags=Parse(s).tags
-                self.assertEqual(sum(t=='figure' for t,a in tags),4)
-                self.assertEqual(sum(t=='figcaption' for t,a in tags),4)
+                image_count=sum(block.startswith('![') for block in b.load(w,lang))
+                self.assertEqual(sum(t=='figure' for t,a in tags),image_count)
+                self.assertEqual(sum(t=='figcaption' for t,a in tags),image_count)
                 self.assertEqual(sum(t=='details' and a.get('class')=='optional-reading' for t,a in tags),1)
                 self.assertIn(b.guide(lang,b.location(lang,w)),s)
 
@@ -78,6 +79,20 @@ class ArtTests(unittest.TestCase):
                 if name.startswith('images/'):
                     path=b.TARGET/'images'/w['id']/name.removeprefix('images/')
                     self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),digest)
+
+    def test_reviewed_manuscripts_and_structure(self):
+        audit=json.loads((b.DATA/'publication-02-08.json').read_text())
+        for entry in audit['works']:
+            work=next(w for w in self.works if w['id']==entry['work'])
+            for edition in entry['editions']:
+                code=edition['language']
+                source=b.DATA/work['id']/f"{work['source_prefix']}_{code}.md"
+                self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(),edition['published_sha256'])
+                self.assertGreater(edition['character_ratio'],.95)
+                lang=next(k for k,v in b.LANGS.items() if v[0]==code)
+                blocks=b.load(work,lang)
+                self.assertEqual(sum(p.startswith('## ') for p in blocks),work['main_sections']+2)
+                self.assertNotRegex(source.read_text(),r'\]\((README|QUALITY_NOTE|QUALITY_REVIEW)\.md\)')
 
     def test_discovery(self):
         sitemap=(b.ROOT/'sitemap.xml').read_text()

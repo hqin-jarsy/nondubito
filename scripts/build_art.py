@@ -51,7 +51,7 @@ def location(lang, work=None):
 
 
 def load(work, lang):
-    return (DATA/work['id']/f"{work['source_prefix']}_{LANGS[lang][0]}.md").read_text().strip().split('\n\n')
+    return re.split(r'\n\s*\n', (DATA/work['id']/f"{work['source_prefix']}_{LANGS[lang][0]}.md").read_text().strip())
 
 
 def inline(text):
@@ -68,6 +68,7 @@ def inline(text):
         else:
             value = esc(part)
             value = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', value)
+            value = re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'<em>\1</em>', value)
             result.append(value)
     return ''.join(result)
 
@@ -97,7 +98,13 @@ def documents(work, lang):
     for filename, anchor, label in [('REFERENCES.md','references',UI[lang][11]),('IMAGE_CREDITS.md','image-credits',UI[lang][12])]:
         source=(DATA/work['id']/'source'/filename).read_text()
         marker='## English'
-        source = source.split(marker)[0] if lang in ('zh','zh-hant') else marker+source.split(marker,1)[1]
+        bilingual = marker not in source
+        if not bilingual:
+            source = source.split(marker)[0] if lang in ('zh','zh-hant') else marker+source.split(marker,1)[1]
+        elif lang not in ('zh','zh-hant'):
+            # Later source dossiers interleave Chinese and English rather than
+            # providing two separate sections. Label them honestly; keep both.
+            label = label.split(' (')[0].split('（')[0] + ' · 中文 / English'
         rendered=[]
         for block in source.strip().split('\n\n'):
             if block.startswith('#'):
@@ -105,21 +112,26 @@ def documents(work, lang):
             else:
                 rendered.append('<p>'+inline(block).replace('\n','<br>')+'</p>')
         # Source records are archival Chinese or English, not silently translated.
-        code='zh-Hans' if lang in ('zh','zh-hant') else 'en'
+        code='mul' if bilingual else ('zh-Hans' if lang in ('zh','zh-hant') else 'en')
         blocks.append(f'<details class="source-details" id="{anchor}"><summary>{esc(label)}</summary><div lang="{code}">'+''.join(rendered)+'</div></details>')
     return ''.join(blocks)
 
 
 def article(work, lang, path):
     blocks=load(work,lang); body=[]; headings=[]; i=2; n=0
+    heading_count=sum(block.startswith('## ') for block in blocks)
+    # Every manuscript ends in an optional reading and image/source notes;
+    # the number of preceding close-reading sections belongs to the essay.
+    optional=work.get('main_sections', 5)+1
+    assert heading_count == optional+1, (work['id'],lang,heading_count)
     while i<len(blocks):
         b=blocks[i]
         if b.startswith('## '):
             n+=1; label=b[3:]; anchor='section-'+str(n); headings.append((anchor,label))
-            if n==6:
+            if n==optional:
                 body.append(f'<details class="optional-reading" id="{anchor}"><summary>{esc(label)}</summary>{bridge(lang,path)}<div>')
             else:
-                if n==7: body.append('</div></details>')
+                if n==optional+1: body.append('</div></details>')
                 body.append(f'<h2 id="{anchor}">{esc(label)}</h2>')
         elif b.startswith('!['):
             m=re.fullmatch(r'!\[([^\]]*)\]\(images/([^)]+)\)',b); assert m,b
@@ -128,7 +140,7 @@ def article(work, lang, path):
             i+=1
         else: body.append('<p>'+inline(b)+'</p>')
         i+=1
-    assert n==7
+    assert n==heading_count
     toc='<details class="contents"><summary>'+esc(UI[lang][8])+'</summary><nav>'+''.join(f'<a href="#{a}">{esc(h)}</a>' for a,h in headings)+'</nav></details>'
     return toc+'<article class="prose">'+''.join(body)+'</article>'+documents(work,lang)
 
@@ -178,7 +190,7 @@ def outputs():
                 title=load(work,lang)[0].removeprefix('# '); path=location(lang,work)
                 out[path]=page(lang,path,title,work['deck'][lang],article(work,lang,path),work)
                 href=rel(index,path)+'?lang='+lang
-                cards.append(f'<article class="art-card"><a href="{href}">{image_tag(index,work,work["image"],title,False)}</a><div><p class="kicker">{esc(work["artist"])} · {esc(work["year"])}</p><h3><a href="{href}">{esc(title)}</a></h3><p class="deck">{esc(work["deck"][lang])}</p><a href="{href}">{esc(UI[lang][7])}</a><p class="edition-note">简 · 繁 · EN · 日本語 · FR · DE · ES · 한국어</p></div></article>')
+                cards.append(f'<article class="art-card"><a href="{href}">{image_tag(index,work,work["image"],title,work!=works[0])}</a><div><p class="kicker">{esc(work["artist"])} · {esc(work["year"])}</p><h3><a href="{href}">{esc(title)}</a></h3><p class="deck">{esc(work["deck"][lang])}</p><a href="{href}">{esc(UI[lang][7])}</a><p class="edition-note">简 · 繁 · EN · 日本語 · FR · DE · ES · 한국어</p></div></article>')
             cards.append('</section>')
         out[index]=page(lang,index,UI[lang][0],UI[lang][2],''.join(cards)+bridge(lang,index))
     return out
