@@ -76,6 +76,10 @@ def render_pages():
                 value = value.replace('特別稱贊一位', '特別稱讚一位').replace('贊嘆它們長得', '讚嘆它們長得')
                 value = value.replace('做煙鬥的人', '做煙斗的人').replace('發明瞭一種新酵母', '發明了一種新酵母')
                 value = value.replace('篩面', '篩麵').replace('把面袋伸出', '把麵袋伸出').replace('鄰家面團', '鄰家麵團')
+                value = value.replace('束發用品', '束髮用品').replace('制鞋用的', '製鞋用的')
+                value = value.replace('千裡', '千里').replace('九百裡', '九百里').replace('一百裡', '一百里').replace('二百裡', '二百里')
+                value = value.replace('先松開尾巴', '先鬆開尾巴').replace('胡狼一松口', '胡狼一鬆口').replace('與松尾', '與鬆尾')
+                value = value.replace('吃掉好幾只', '吃掉好幾隻')
             return html.escape(value)
 
         def page(filename, title, description, content, article=False):
