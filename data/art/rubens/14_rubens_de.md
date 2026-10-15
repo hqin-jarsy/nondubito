@@ -1,0 +1,91 @@
+# Rubens und Werkstatt Wolfs- und Fuchsjagd
+
+Westliche Malerei genau betrachtet 14
+
+Betrachten wir zunächst die gesamte Breite des Bildes. Über einem niedrigen Horizont öffnet sich ein weiter Himmel. Eigentlich wäre genug Platz, um Pferde durch die Landschaft galoppieren zu lassen. Doch links richtet ein Pferd seine angehobenen Vorderbeine beinahe frontal auf uns. Der große Schimmel rechts wendet uns die Hinterhand zu, während Kopf und Vorderbeine nach links weisen. Dazwischen drängen sich zwei Wölfe, Jagdhunde, lange Stangen und menschliche Gesichter. Das breite Format verleiht der Bewegung Wucht, lässt den Tieren in der Mitte aber kaum einen freien Weg.
+
+![Gesamtansicht der Wolfs- und Fuchsjagd von Rubens und Werkstatt. Reiter und Jäger zu Fuß umringen Wölfe, Hunde und Füchse. Links steht das Pferd fast frontal, rechts wendet sich ein Schimmel mit angehobenen Vorderbeinen zur Mitte. Darüber liegt ein weiter Himmel.](images/rubens_wolf_fox_hunt_full.jpg)
+
+Abb. 1. Peter Paul Rubens und Werkstatt, Wolfs- und Fuchsjagd, um 1616. Öl auf Leinwand, 245,4 × 376,2 cm. The Metropolitan Museum of Art, New York, John Stewart Kennedy Fund, 1910, Inventarnummer 10.73. Bild: The Metropolitan Museum of Art, gemeinfrei, Open Access / CC0. [Sammlungseintrag](https://www.metmuseum.org/art/collection/search/437536)
+
+Im Mittelpunkt dieser Betrachtung stehen Einkreisung und Widerstand. Kräfte kommen aus unterschiedlichen Richtungen und treffen auf kürzestem Raum auf Gegenkräfte. Die Verfolgung liefert die Handlung; die Zusammenstöße bestimmen das sichtbare Gefüge.
+
+Um 1616 begann Rubens mit den großen Jagdbildern dieser Schaffensphase. Das Metropolitan Museum stellt dieses Werk an deren Anfang. Solche monumentalen Gemälde boten fürstlichen Innenräumen eine Alternative zu Jagdteppichen, deren Herstellung erheblich mehr Zeit und Geld kostete. Jagdrechte waren mit großem Landbesitz verbunden. Kostbare Pferde, reiche Kleidung und ein umfangreiches Jagdgefolge führten möglichen Käufern eine Tätigkeit vor Augen, die ihren gesellschaftlichen Rang ausdrückte. So wird auch das Format anschaulich: Fast 3,8 Meter breit und höher als ein erwachsener Mensch, verwandelt die Leinwand eine standesgebundene Beschäftigung in eine wandfüllende Erscheinung von Macht. [Museumskatalog](https://www.metmuseum.org/art/collection/search/437536)
+
+## Zwei Pferde drängen den Raum zur Mitte
+
+Über das Gesicht des linken Pferdes läuft eine helle Blesse. Gesicht und Brust sind weitgehend auf uns gerichtet. Beide Vorderbeine sind angewinkelt; ihr helles Fell hebt sich deutlich vom dunkleren Körper ab. Das Volumen scheint aus dem Bild herauszutreten. Wir sehen die Breite eines entgegenkommenden Tieres, nicht den langen Umriss eines Pferdes, das seitlich vorbeizieht. Darüber streckt der Reiter einen Arm mit einer langen Waffe nach links. Dunkle Kleidung und wehende Mähne verbreitern die obere Gruppe. Die angezogenen Beine sammeln diese ausgreifende Bewegung wieder vor der Brust.
+
+Der Schimmel rechts ist anders angelegt. Seine mächtige, runde Hinterhand liegt nahe der unteren rechten Ecke. Der Rumpf erstreckt sich quer durch das Bild, der Hals biegt sich nach links, das Maul senkt sich. Beide Vorderbeine sind angezogen, die Hufe den Männern in der Mitte nahe. Folgen wir dem Pferd von der breiten hellen Flanke über den gebogenen Hals zum Kopf, gelangen wir über den Wölfen und Jägern wieder in die Mitte. Das auffälligste Tier hält den Blick also nicht einfach bei sich fest.
+
+Die beiden Pferde bilden kein symmetrisches Paar. Links erscheint das Tier schmal und frontal, rechts breit und schräg von der Seite. Die Vorderbeine des linken Pferdes liegen hinter dem aufgerichteten Wolf; jene des rechten schieben sich über Menschen und Hunde. Gerade diese Verschiebung ist entscheidend. Zwei nebeneinander in dieselbe Richtung laufende Pferde würden den Blick mitziehen. Hier treffen unterschiedliche Ausrichtungen aufeinander. Um weiterzusehen, müssen wir die Richtung wechseln. Geschwindigkeit sammelt sich an einem Ort, den man nicht glatt durchqueren kann.
+
+![Ausschnitt der linken Begegnung. Vor einem frontal gesehenen Pferd führt ein Jäger eine Stange von links zum aufgerichteten Wolf. Dessen Vorderpfoten liegen am Schaft, das offene Maul trifft auf die Metallklinge. Darunter sind ein zweiter Wolf und ein dunkler Hund ineinander verschränkt.](images/detail_left_encounter.png)
+
+Abb. 2. Ausschnitt aus der Originaldatei. Vergleichen Sie die frontale Masse des Pferdes, den seitlich eindringenden Schaft und den aufgerichteten Wolf. Das Rote neben seiner Pfote ist eine Quaste am Schaft. Bild: The Metropolitan Museum of Art, CC0.
+
+Beide Pferde heben ihre Vorderkörper, doch ihr Gewicht wird verschieden erfahrbar. Die hellen Beine links wirken, als halte ein plötzliches Hindernis sie auf. Der große Körper rechts drückt den mittleren Raum nach unten und macht ihn enger. Die Vorderhufe beider Pferde schweben nahe an anderen Körpern. So verstärken sie das Gefühl eines Kontakts, der unmittelbar bevorsteht oder schon stattfindet.
+
+## Der kurze Weg zwischen Klinge und Wolfsmaul
+
+Etwas links der Mitte richtet ein Wolf seinen Oberkörper auf. Brust und Bauch sind lang nach oben gestreckt, die Vorderpfoten reichen nach links. Vom rot gekleideten Jäger kommt ein Schaft quer ins Bild. Seine Metallklinge dringt in das geöffnete Maul. Kiefer, Pfoten, Schaft und rote Quaste liegen dicht beieinander. Die gewaltige Jagdszene zieht sich plötzlich auf eine messbare Entfernung zusammen. Gefahr entsteht nicht allein durch das Erkennen eines wilden Tieres: Hartes Metall und verletzlicher Körper sind bereits aufeinandergetroffen.
+
+Die geraden, hellen Kanten der Klinge schneiden durch den dunklen Mundraum. Zwischen den Kiefern stehen die Zähne hervor. Der Schaft verlängert die Handlung des Jägers und überträgt eine von links kommende Kraft bis zum Kopf des Wolfes. Der aufgerichtete Körper unterbricht diesen horizontalen Druck. Nase, Brauen, Zähne und angehobene Pfoten versammeln sich um denselben Widerstandspunkt. So erhält die Verdrehung des Körpers einen sichtbaren Zusammenhang.
+
+Die Linien in dieser Zone erfüllen unterschiedliche Aufgaben. Ein tiefer liegender Schaft verläuft nahezu waagerecht. Die Waffe des Reiters zieht schräg durch die obere linke Bildpartie. Dahinter stehen ein fast senkrechter Speer und eine erhobene Keule. Das sind Bewegungen von verschiedener Länge und Richtung, deren Verlauf zwischen geschwungenen Mähnen, Ärmeln und Tierkörpern nachvollziehbar bleibt. Die Geraden machen das Gedränge lesbar; zugleich lassen sie die gebogenen Formen stärker unter Spannung erscheinen.
+
+Darunter hebt der zweite Wolf seinen offenen Rachen nach rechts oben, während der Körper schräg nach rechts unten abfällt. Hinter ihm drängt ein dunkler Hund heran. Kopf und Pfote treten neben dem Umriss des Wolfes hervor. Weiter rechts senkt ein heller Hund seinen Kopf in das Gewirr; knapp darüber erscheint ein weiterer schmaler, grauer Hundekopf. Nicht jedes Tier lässt sich als vollständige Silhouette herauslösen. Dennoch können wir die Folge von Köpfen, Rücken und Pfoten verfolgen und erkennen, wie aus einzelnen Berührungen ein ganzer Knoten von Körpern wird.
+
+Die Überlagerungen lassen nicht alle Formen verschwimmen. Am aufwärts gerichteten Wolfsmaul setzen Zähne und heller Nasenrücken deutliche Akzente; das Gesicht des dunklen Hundes liegt in verschattetem Fell. Eine Vorderpfote schiebt sich quer über einen anderen Körper und wird durch Zehen und Krallen kenntlich. Kaum hat das Auge einen Körper erfasst, unterbricht ein anderer seinen Verlauf. Wir setzen die Szene abschnittsweise zusammen. Das entspricht den Handlungen im Bild, die immer wieder auf Widerstand stoßen.
+
+## Wie die größte Helligkeit den Blick zurückführt
+
+Der Schimmel bildet die größte helle Fläche des Bildes. Hals und Schulter nähern sich einem cremigen Weiß, die Hinterhand verdunkelt sich zu gesprenkeltem Grau. Die lange Halskurve, der runde Bauch und die schlanken Konturen der Hinterbeine gliedern diese helle Masse von innen. Das Licht liegt nicht als gleichmäßiger Fleck auf der Fläche. Es folgt den Wendungen des Körpers und macht ein erhebliches Volumen sichtbar.
+
+Schwarze Zügel laufen über den hellen Hals zur Hand des grün gekleideten Reiters. Sein Oberkörper dreht sich nach links, sein Gesicht ist nach unten gerichtet. Ein Bein führt an der Pferdeflanke hinab und verbindet das grüne Wams mit dem weit tiefer liegenden, hellbraunen Stiefel. Pferdehaltung, schräge Zügel und Blickrichtung des Mannes greifen ineinander. Auch wenn uns zuerst das helle Tier auffällt, führen mehrere sichtbare Wege zur Mitte zurück.
+
+![Ausschnitt des rechten Pferdes. Gebogener Hals, gesenkter Kopf und angezogene Vorderbeine weisen zur Mitte. Schwarze Zügel führen zum grün gekleideten Reiter, der sich umwendet und hinabsieht. Neben der Frau hinter ihm erscheint ein Falke; unter dem Pferd sind ein heller Hund und ein umgestürzter Fuchs zu sehen.](images/detail_right_horse.png)
+
+Abb. 3. Ausschnitt aus der Originaldatei. Folgen Sie der hellen Pferdegestalt zum Kopf und dann den Zügeln zum Reiter. Die Vorderhufe schweben weiter über dem zentralen Kampf. Bild: The Metropolitan Museum of Art, CC0.
+
+Über den grünen Ärmel läuft ein heller Streifen, der an der Biegung einer Falte rasch ins Dunkle übergeht. Die glatten Übergänge lassen den Stoff wie Satin wirken. Daneben teilen und kräuseln sich helle Mähnensträhnen; ihre äußeren Enden lösen sich vor dem Himmel auf. Das Wolfsfell ist dichter und kürzer, sein Umriss fein ausgefranst. Auf benachbarten Oberflächen wird Licht jeweils zur Faltenfläche, zur Wölbung der Pferdehaut oder zur Haarspitze. Bei allem Getümmel bleiben die Stofflichkeiten unterscheidbar.
+
+Auch die Gesichter wiederholen nicht einfach einen einzigen Ausdruck. In der Mitte bläst ein Mann mit aufgeblähten Wangen ins Horn, dessen Schalltrichter sich nach links und vorn öffnet. Dahinter erscheinen weitere Gesichter zwischen Pferdehals, Wolfsrücken und Waffen. Sie nehmen wenig Fläche ein. Doch die Lichter auf Stirn, Nase und Wangen verbinden menschliche Anwesenheit durch die großen Tiermassen hindurch. Das Horn kann in uns eine Vorstellung von Klang hervorrufen. Sichtbar gemalt sind die Verbindung von Mund, Händen und Instrument sowie eine runde Öffnung zwischen dicht gedrängten Konturen.
+
+Die beiden berittenen Figuren oben rechts befinden sich höher als die Jäger zu Fuß. Kleidung und Haltung verstärken den Abstand. Die Wendung des Mannes in Grün verbindet seine erhöhte Position mit dem Kampf; die aufrechtere Frau hinter ihm beruhigt die Bewegung vorübergehend. Zuschauen, Lenken, Herankommen und Kämpfen erscheinen gleichzeitig, ohne dass alle denselben heftigen Gestus ausführen. Die Blicke der erhöht sitzenden Reiter vermitteln damit zwischen uns und dem Kampf: Wir sehen zunächst ihre gewendeten Köpfe und folgen dann ihrem Blick zu den tiefer liegenden Tieren.
+
+## Offene Ferne und versperrter Vordergrund
+
+Zwischen den großen Gruppen tritt abschnittsweise ein niedriger Horizont hervor. Durch eine Lücke links unten sehen wir einen winzigen Reiter und Hunde auf grünen Feldern. Kühlere, ruhigere Blaugrüntöne erschließen die Ferne; vorn drängen sich Braun, Ocker, Rot, Schwarz und kräftiges Grauweiß. Größenverhältnisse und Farben öffnen gemeinsam Distanz. Dort kann sich die Landschaft seitlich ausdehnen, hier liegen Körper fast übereinander.
+
+Diese entfernte Szene verdient Aufmerksamkeit. Sie zeigt, dass das Bild offenes Gelände geben kann, und macht die Sperre im Vordergrund umso deutlicher. Auch der Himmel nimmt viel Platz ein; Wolken breiten sich über den Köpfen aus. Offenheit ist also vorhanden. Sie wird nur nicht zu einem nutzbaren Durchgang unter den Füßen der Wölfe und Hunde. Unser Blick überquert den Himmel mühelos. Durch das Gedränge darunter findet sich kein ebenso leichter Weg.
+
+Die Füchse am unteren Rand verändern den Rhythmus noch einmal. Links steht einer mit abgewandtem Körper und zurückgewendetem Kopf. Nahe der unteren Mitte liegt ein anderer umgestürzt, mit heller Unterseite und bodennahem Kopf; neben dem Maul sind rote Spuren zu sehen. Rechts unten liegt ein weiterer auf dem Rücken, seine angewinkelten Beine nahe einem Huf. Stehen, Liegen und Umkippen geben dem unteren Bereich einen anderen Rhythmus als die aufgerichteten Körper darüber. Auch die waagerecht ausgestreckten und gekrümmten Fuchskörper halten den Blick am Boden fest. Dort wird sichtbar, wie viele Körper sich unter den angehobenen Hufen drängen.
+
+Je länger wir diese untere Zone betrachten, desto schwerer fällt es, die ganze Szene als unbeschwerte Bewegung zu sehen. Historische adelige Betrachter konnten sie mit Rang, Mut und Jagderfahrung verbinden. Heutige Betrachter mögen zuerst die Bedrohung der Beutetiere wahrnehmen. Die starke Lenkung unseres Sehens setzt keine Zustimmung zum Töten voraus. Beide Haltungen müssen sich an derselben Anordnung bewähren: Oben können Menschen noch zuschauen, unten geraten Tiere dicht an Erde und Hufe.
+
+## Auch die heutigen Bildränder haben Geschichte
+
+Die erhaltene Leinwand ist etwa 3,8 Meter breit. Nach der gegenwärtigen Darstellung des Museums war sie ursprünglich größer: ungefähr elf oder zwölf Fuß hoch und achtzehn Fuß breit. Sie wurde demnach hauptsächlich oben und links beschnitten; die beiden Wölfe hätten näher an der ursprünglichen Bildmitte gestanden. Der Katalog hält eine Verkleinerung schon in Rubens' Werkstatt für möglich, nachdem Interessenten das Format zu groß fanden. Die Umstände bleiben ungewiss. [Museumskatalog](https://www.metmuseum.org/art/collection/search/437536)
+
+Die Forschung beantwortete diese Frage nicht immer gleich. In der Bibliografie des Museums wird festgehalten, dass eine Untersuchung von 1984 aufgrund technischer Befunde eine erhebliche Beschneidung ablehnte. Der auf 2011 datierte Katalogtext und die heutige Museumsdarstellung gehen dagegen von einer ursprünglich größeren Leinwand aus. Wir können also beschreiben, wie die jetzigen Grenzen die Enge steigern, ohne exakt zu behaupten, wie viel entfernt wurde, wann dies geschah oder wie jeder verlorene Teil aussah. Die links angeschnittenen Figuren und die Kopfbedeckungen dicht am oberen Rand gehören zunächst zu den Bedingungen des heute sichtbaren Objekts.
+
+Auch die vollständige Zuschreibung „Rubens und Werkstatt“ ist wichtig. Das Museum beschreibt, wie Assistenten bei großen Bildern Entwurf, Hintergrund und untergeordnete Einzelheiten anlegten; Rubens verstärkte danach Konturen, Licht, Schatten und Oberflächenwirkungen. In der durch Toby Matthew an Dudley Carleton vermittelten Korrespondenz betonte Rubens seine eigene Ausführung der Wölfe und Füchse. Das ist ein dokumentarisches Zeugnis. Es erlaubt uns nicht, anhand einer digitalen Fotografie jedes Haar und jedes Glanzlicht einer bestimmten Hand zuzuweisen.
+
+Die Leistung des erhaltenen Bildes bleibt dennoch am Sichtbaren überprüfbar. Der riesige helle Pferdekörper, die seitlich eindringende Klinge, der aufgerichtete Wolf und die teilweise untrennbaren Tiere darunter halten verschiedene Richtungen in einem einzigen Feld fest. Wir spüren Geschwindigkeit und begegnen zugleich immer wieder Stellen, an denen sie nicht frei weiterkommt. Einkreisung und Widerstand verwandeln die weiträumige Jagdszene in eine unmittelbar bevorstehende Begegnung.
+
+## Optionale Lektüre Richtung und Erscheinung mit SAE prüfen
+
+Die folgende Übung greift die Wahrnehmung als eine Betrachtungsrichtung innerhalb von Han Qins SAE-Ästhetik (Self-as-an-End) auf. Sie ist eine heutige Betrachtungsweise und kein Beleg für die Absichten des Malers. [SAE Judgment and Aesthetics](https://self-as-an-end.net/papers/sae-judgment-aesthetics.html); [The Beauty of Perception](https://self-as-an-end.net/papers/sae-aesthetics-ray-8.html)
+
+Lassen wir Bezeichnungen und Wertungen wie „Jagd“, „Mut“ oder „Grausamkeit“ kurz beiseite. Zeichnen Sie mit der Hand einige sichtbare Richtungen in die Luft: Wohin zeigt die Brust des linken Pferdes? Wohin wendet sich der Kopf des Schimmels? Woher kommt der waagerechte Schaft, und wie fängt ihn der aufgerichtete Wolf ab? Verfolgen Sie dann Ihren eigenen Blick. Welche Ränder, Zügel oder Gesichter führen ihn von der größten hellen Fläche zurück in die Mitte? Die angedeutete Bewegungsrichtung eines Körpers und der tatsächliche Weg unserer Aufmerksamkeit sind verschiedene Dinge.
+
+So wird aus „voller Bewegung“ ein Gefüge überprüfbarer Beziehungen. Falls Sie vor allem einen fließenden Kreislauf statt einer Blockierung sehen, suchen Sie einen durchgängigen Weg. Bleibt er am Wolfsmaul, an den Hufen und den überlagerten Körpern ungehindert? Umgekehrt muss auch die hier vorgeschlagene Deutung den weiten Himmel und die wehende Mähne berücksichtigen. Fließen und Widerstand sind beide sichtbar. Eine tragfähige Lesart erklärt, wie sie zusammenkommen.
+
+Nehmen wir nun die Begriffe und die Geschichte wieder hinzu: Die Positionen von Reitern, Jägern zu Fuß und Beutetieren geben der adeligen Jagd ihre sichtbare Gestalt. Die unterschiedliche Belastung der Körper bietet auch einer ethischen Beurteilung konkrete Anhaltspunkte. Die Übung soll den nächsten Blick genauer machen: Entlang einer einzigen Blickbahn sollte sich zeigen lassen, wo Bewegung weiterläuft, wo sie abbiegt und wo ein anderer Körper sie aufhält.
+
+## Hinweise zu Bildern und Quellen
+
+Die Bildbeschreibung beruht auf der 4000 × 2672 Pixel großen Museumsdatei. Das vollständige offizielle JPEG bleibt einschließlich schwarzer Umgebung und Bildrändern unverändert. Die beiden Details wurden direkt ausgeschnitten und als PNG gespeichert. Die Pixel innerhalb des Ausschnitts und das eingebettete ICC-Farbprofil sind erhalten; es erfolgten keine Skalierung, Farbänderung, Retusche, Rekonstruktion oder Bildgenerierung. Die Bildschirmbedingungen beeinflussen weiterhin Farbe und wahrgenommene Größe.
+
+Für die Bilder gelten die CC0-Bedingungen der [Open-Access-Richtlinie des Museums](https://www.metmuseum.org/hubs/open-access). Der Text ist eine eigenständige Bildbetrachtung. Historische Angaben stützen sich auf den Museumskatalog und dessen Literatur; Interpretation und SAE-Anwendung stellen keine Stellungnahme des Museums dar. Weitere Angaben in den beigefügten [Quellen](REFERENCES.md) und [Bildnachweisen](IMAGE_CREDITS.md).

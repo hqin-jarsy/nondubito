@@ -54,7 +54,7 @@ def load(work, lang):
     return re.split(r'\n\s*\n', (DATA/work['id']/f"{work['source_prefix']}_{LANGS[lang][0]}.md").read_text().strip())
 
 
-def inline(text):
+def inline(text, local_links=None):
     """Escaped prose plus the reviewed Markdown's links and emphasis."""
     parts = re.split(r'(\[[^\]]+\]\([^\s)]+\))', text)
     result = []
@@ -63,7 +63,10 @@ def inline(text):
         if match:
             label, url = match.groups()
             url = {'REFERENCES.md':'#references','IMAGE_CREDITS.md':'#image-credits'}.get(url,url)
-            assert url.startswith(('https://','#')), url
+            if local_links and url in local_links:
+                url=local_links[url]
+            else:
+                assert url.startswith(('https://','#')), url
             result.append(f'<a href="{esc(url)}">{esc(label)}</a>')
         else:
             value = esc(part)
@@ -97,6 +100,9 @@ def documents(work, lang):
     blocks=[]
     for filename, anchor, label in [('REFERENCES.md','references',UI[lang][11]),('IMAGE_CREDITS.md','image-credits',UI[lang][12])]:
         source=(DATA/work['id']/'source'/filename).read_text()
+        if work.get('restored_images'):
+            # Keep package delivery instructions in the archive, not on the reader's page.
+            source='\n\n'.join(block for block in source.split('\n\n') if not block.startswith(('R1文字更新说明：','Text-update R1:')))
         marker='## English'
         bilingual = marker not in source
         if not bilingual:
@@ -106,11 +112,23 @@ def documents(work, lang):
             # providing two separate sections. Label them honestly; keep both.
             label = label.split(' (')[0].split('（')[0] + ' · 中文 / English'
         rendered=[]
+        if work.get('restored_images') and filename=='IMAGE_CREDITS.md':
+            notes={
+                'zh':'本站图片说明：全图重新取自馆方，文件校验值与底稿登记一致；局部按登记坐标重新裁切，保留原像素与色彩配置。PNG文件编码可能与原包不同，以下登记保留原包信息；网页另提供轻量预览图，点击可看全尺寸图片。',
+                'zh-hant':'本站圖片說明：全圖重新取自館方，檔案校驗值與底稿登記一致；局部按登記座標重新裁切，保留原像素與色彩設定檔。PNG檔案編碼可能與原包不同，以下登記保留原包資訊；網頁另提供輕量預覽圖，點擊可看完整尺寸圖片。',
+                'en':'Site image note: full images were restored from the museums with hashes matching the supplied records. Details were recropped at the recorded coordinates, preserving source pixels and colour profiles. PNG encoding may differ from the original package, whose records are retained below. Lightweight web previews link to full-size files.',
+                'ja':'掲載画像について：全図は美術館から再取得し、提供記録とハッシュが一致することを確認しました。部分図は記録された座標で再切り出しし、元の画素とカラープロファイルを保持しています。PNGの符号化は元のパッケージと異なる場合があります。以下は元の記録です。軽量な表示画像をクリックすると原寸画像を開けます。',
+                'fr':'Note du site : les vues complètes ont été récupérées auprès des musées, avec des empreintes numériques identiques aux fichiers enregistrés. Les détails ont été recadrés aux coordonnées indiquées, sans modifier les pixels ni les profils colorimétriques. L’encodage PNG peut différer du dossier original, dont les données sont conservées ci-dessous. Les aperçus allégés donnent accès aux fichiers en pleine résolution.',
+                'de':'Bildhinweis: Die Gesamtansichten wurden erneut von den Museen bezogen; ihre Prüfsummen stimmen mit den gelieferten Angaben überein. Die Ausschnitte wurden anhand der dokumentierten Koordinaten neu erstellt, ohne Quellpixel oder Farbprofile zu verändern. Die PNG-Kodierung kann vom ursprünglichen Paket abweichen, dessen Angaben unten erhalten bleiben. Die komprimierten Vorschaubilder verlinken auf Dateien in voller Auflösung.',
+                'es':'Nota del sitio: las vistas completas se recuperaron de los museos y sus hashes coinciden con los registros recibidos. Los detalles se recortaron de nuevo en las coordenadas registradas, conservando píxeles y perfiles de color. La codificación PNG puede diferir del paquete original, cuyos datos se conservan abajo. Las vistas ligeras enlazan con los archivos a resolución completa.',
+                'ko':'사이트 이미지 안내: 전체 이미지는 미술관에서 다시 받아 원고 기록과 해시가 일치함을 확인했습니다. 세부 이미지는 기록된 좌표로 다시 잘라 원본 픽셀과 색상 프로파일을 보존했습니다. PNG 인코딩은 원래 패키지와 다를 수 있으며 아래에는 원래 기록을 남겼습니다. 가벼운 미리보기 이미지를 누르면 전체 크기 파일을 볼 수 있습니다.'}
+            rendered.append('<p lang="'+LANGS[lang][0]+'">'+esc(notes[lang])+'</p>')
         for block in source.strip().split('\n\n'):
             if block.startswith('#'):
                 rendered.append('<h3>'+esc(block.lstrip('# '))+'</h3>')
             else:
-                rendered.append('<p>'+inline(block).replace('\n','<br>')+'</p>')
+                local_links={p.name:rel(location(lang,work),p) for p in (DATA/work['id']/'source').iterdir() if p.is_file()}
+                rendered.append('<p>'+inline(block,local_links).replace('\n','<br>')+'</p>')
         # Source records are archival Chinese or English, not silently translated.
         code='mul' if bilingual else ('zh-Hans' if lang in ('zh','zh-hant') else 'en')
         blocks.append(f'<details class="source-details" id="{anchor}"><summary>{esc(label)}</summary><div lang="{code}">'+''.join(rendered)+'</div></details>')

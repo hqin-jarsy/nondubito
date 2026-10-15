@@ -1,5 +1,7 @@
 const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
 const works=require('../data/art/works.json');
 const base=process.argv[2]||'http://127.0.0.1:8776';
 const langs=['zh','zh-hant','en','ja','fr','de','es','ko'];
@@ -23,7 +25,8 @@ const url=(lang,file)=>`${base}/essays/art/${lang==='zh'?'':lang+'/'}${file}?lan
    await page.keyboard.press('Escape');assert.equal(await page.locator('.language-menu[open]').count(),0);
    if(file!=='index.html'){
     const work=works.find(w=>file===`${w.category}/${w.slug}.html`);
-    assert.equal(await page.locator('figure').count(),work.id==='vermeer'||work.id==='turner'?4:5);
+    const source=fs.readFileSync(path.join(__dirname,'../data/art',work.id,`${work.source_prefix}_zh-Hans.md`),'utf8');
+    assert.equal(await page.locator('figure').count(),(source.match(/^!\[/gm)||[]).length);
     assert.equal(await page.locator('.optional-reading h2').count(),0,'Image notes must remain outside optional theory');
     for(const img of await page.locator('figure img').all()){
      await img.scrollIntoViewIfNeeded();await img.evaluate(i=>i.decode());assert.ok(await img.evaluate(i=>i.naturalWidth>0));
@@ -35,6 +38,16 @@ const url=(lang,file)=>`${base}/essays/art/${lang==='zh'?'':lang+'/'}${file}?lan
   await page.goto(url('zh',article)+'#section-4');await page.locator('.language-menu summary').click();await page.locator('[data-edition="fr"]').click();
   await page.waitForURL('**/fr/'+article+'?lang=fr#section-4');
   await page.goto(url('ko',article)+'#section-6');assert.equal(await page.locator('.optional-reading[open]').count(),1);
+  for(const id of ['giotto','monet','mondrian']){
+   const work=works.find(w=>w.id===id);if(!work)continue;
+   const file=`${work.category}/${work.slug}.html`;
+   await page.goto(url('zh',file)+'#section-2');await page.locator('.language-menu summary').click();await page.locator('[data-edition="de"]').click();
+   await page.waitForURL('**/de/'+file+'?lang=de#section-2');
+   await page.goto(url('ko',file)+`#section-${work.main_sections+1}`);assert.equal(await page.locator('.optional-reading[open]').count(),1);
+   await page.setViewportSize({width:id==='monet'?1440:390,height:1000});await page.goto(url(id==='mondrian'?'ko':'zh',file));
+   await page.screenshot({path:`/tmp/art-${id}.png`});
+  }
+  await page.setViewportSize({width:1440,height:1000});await page.goto(url('en','index.html'));await page.screenshot({path:'/tmp/art-shelf.png'});
   for(const [lang,width,name] of [['zh',1440,'desktop'],['ko',390,'mobile'],['en',390,'english']]){
    await page.setViewportSize({width,height:1000});await page.goto(url(lang,article));
    await page.screenshot({path:`/tmp/art-${name}.png`});

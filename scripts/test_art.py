@@ -4,6 +4,7 @@ import hashlib
 import html
 from html.parser import HTMLParser
 import json
+from pathlib import Path
 import re
 import unittest
 from urllib.parse import urlsplit, unquote
@@ -73,16 +74,30 @@ class ArtTests(unittest.TestCase):
 
     def test_originals_unchanged(self):
         for w in self.works:
+            recovered={}
+            if w.get('restored_images'):
+                recovered={r['path']:r for r in json.loads((b.DATA/w['id']/'source/site-image-recovery.json').read_text())}
             sums=(b.DATA/w['id']/'source/SHA256SUMS.txt').read_text().splitlines()
             for line in sums:
                 digest,name=line.split(maxsplit=1)
                 if name.startswith('images/'):
                     path=b.TARGET/'images'/w['id']/name.removeprefix('images/')
-                    self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),digest)
+                    record=recovered.get(name)
+                    if record and 'crop_box' in record:
+                        from PIL import Image
+                        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),record['sha256'])
+                        with Image.open(path) as detail, Image.open(b.TARGET/'images'/w['id']/Path(record['source_image']).name) as full:
+                            crop=full.crop(tuple(record['crop_box']))
+                            self.assertEqual(detail.size,crop.size)
+                            self.assertEqual(detail.tobytes(),crop.tobytes())
+                            self.assertEqual(detail.info.get('icc_profile'),full.info.get('icc_profile'))
+                    else:
+                        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),digest)
 
     def test_reviewed_manuscripts_and_structure(self):
-        audit=json.loads((b.DATA/'publication-02-08.json').read_text())
-        for entry in audit['works']:
+        entries=[e for p in b.DATA.glob('publication-*.json') for e in json.loads(p.read_text()).get('works',[])]
+        self.assertEqual({e['work'] for e in entries},{w['id'] for w in self.works if w['id']!='vermeer'})
+        for entry in entries:
             work=next(w for w in self.works if w['id']==entry['work'])
             for edition in entry['editions']:
                 code=edition['language']
