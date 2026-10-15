@@ -34,6 +34,16 @@ UI = {
 }
 
 
+CATEGORIES = {
+    'western-painting': {lang: UI[lang][1] for lang in LANGS},
+    'western-sculpture': dict(zip(LANGS, [
+        '雕塑 · 西方雕塑', '雕塑 · 西方雕塑', 'Sculpture · Western sculpture',
+        '彫刻 · 西洋彫刻', 'Sculpture · Sculpture occidentale',
+        'Skulptur · Westliche Skulptur', 'Escultura · Escultura occidental', '조각 · 서양 조각'
+    ])),
+}
+
+
 def esc(value): return html.escape(str(value), quote=True)
 
 
@@ -177,7 +187,7 @@ def page(lang, path, title, deck, content, work=None):
         home=rel(path,ROOT/f'essays/{lang}/index.html')
     search_url=rel(path,ROOT/'search.html')+'?lang='+search_lang+'&amp;in='+code
     if lang in ('ja','fr','de','es','ko'): search_url+='&amp;ui='+lang
-    back=rel(path,location(lang))+'?lang='+lang if work else guide(lang,path)
+    back=rel(path,location(lang))+'?lang='+lang+'#'+work['category'] if work else guide(lang,path)
     backlabel=u[0] if work else u[3]+(' · '+u[4] if lang not in ('zh','zh-hant','en') else '')
     heroimage=f'<meta property="og:image" content="{schema["image"]}">' if work else ''
     return f'''<!doctype html>
@@ -190,7 +200,7 @@ def page(lang, path, title, deck, content, work=None):
 <script type="application/ld+json">{json.dumps(schema,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script></head>
 <body class="aesthetics-site art-page"><a class="skip" href="#main">↓ {esc(title)}</a>
 <header class="aesthetics-header"><a class="brand" href="{home}">Non <span>Dubito</span></a><nav aria-label="{esc(u[5])}"><a href="{rel(path,ROOT/'library.html')}?lang={search_lang}">{esc(u[5])}</a><a href="{search_url}">{esc(u[6])}</a></nav><details class="language-menu"><summary>{label} <span aria-hidden="true">⌄</span></summary><nav aria-label="Language">{switch}</nav></details></header>
-<main id="main" class="{'guide-main' if work else 'hub-main'}"><a class="back" href="{back}">← {esc(backlabel)}</a><header class="hero"><p class="kicker">NON DUBITO · {esc(u[1] if work else u[0])}</p><h1>{esc(title)}</h1><p class="deck">{esc(deck)}</p>{f'<p class="byline">Han Qin · <time datetime="{work["date"]}">{work["date"]}</time></p>' if work else ''}</header>{content}<nav class="end-links"><a href="{back}">← {esc(backlabel)}</a><a href="#main">{esc(u[13])}</a></nav></main>
+<main id="main" class="{'guide-main' if work else 'hub-main'}"><a class="back" href="{back}">← {esc(backlabel)}</a><header class="hero"><p class="kicker">NON DUBITO · {esc(CATEGORIES[work['category']][lang] if work else u[0])}</p><h1>{esc(title)}</h1><p class="deck">{esc(deck)}</p>{f'<p class="byline">Han Qin · <time datetime="{work["date"]}">{work["date"]}</time></p>' if work else ''}</header>{content}<nav class="end-links"><a href="{back}">← {esc(backlabel)}</a><a href="#main">{esc(u[13])}</a></nav></main>
 <footer class="aesthetics-footer">Non Dubito · Han Qin</footer><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token":"1c920752456e42b5b5469641245a07c2"}}'></script></body></html>
 '''
 
@@ -200,10 +210,12 @@ def outputs():
     for lang in LANGS:
         index=location(lang); cards=[]
         categories=list(dict.fromkeys(w['category'] for w in works))
-        # Add localized category names here when the first work in a new medium is ready.
-        assert set(categories)<= {'western-painting'}
+        assert set(categories) <= CATEGORIES.keys()
+        cards.append('<nav class="jump" aria-label="'+esc(UI[lang][0])+'">'+''.join(
+            f'<a href="#{category}">{esc(CATEGORIES[category][lang])}</a>' for category in categories
+        )+'</nav>')
         for category in categories:
-            cards.append(f'<section class="hub-section" id="{category}"><h2>{esc(UI[lang][1])}</h2>')
+            cards.append(f'<section class="hub-section" id="{category}"><h2>{esc(CATEGORIES[category][lang])}</h2>')
             for work in [w for w in works if w['category']==category]:
                 title=load(work,lang)[0].removeprefix('# '); path=location(lang,work)
                 out[path]=page(lang,path,title,work['deck'][lang],article(work,lang,path),work)
@@ -214,10 +226,11 @@ def outputs():
     return out
 
 
-def prepare_images():
+def prepare_images(only=None):
     from PIL import Image
-    info={}
+    info=json.loads((DATA/'images.json').read_text()) if only else {}
     for work in json.loads((DATA/'works.json').read_text()):
+        if only and work['id'] != only: continue
         for path in sorted((TARGET/'images'/work['id']).iterdir()):
             if path.suffix not in ('.jpg','.png'): continue
             with Image.open(path) as im:
@@ -229,8 +242,10 @@ def prepare_images():
 
 
 def main():
-    parser=argparse.ArgumentParser(); parser.add_argument('--check',action='store_true'); parser.add_argument('--images',action='store_true'); args=parser.parse_args()
-    if args.images: prepare_images()
+    parser=argparse.ArgumentParser(); parser.add_argument('--check',action='store_true'); parser.add_argument('--images',action='store_true'); parser.add_argument('--image-work',help='Generate previews only for this work ID'); args=parser.parse_args()
+    if args.image_work:
+        assert args.image_work in {w['id'] for w in json.loads((DATA/'works.json').read_text())}, args.image_work
+    if args.images or args.image_work: prepare_images(args.image_work)
     pages=outputs()
     for path, content in pages.items():
         if args.check: assert path.exists() and path.read_text()==content, path

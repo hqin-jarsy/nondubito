@@ -120,5 +120,19 @@ class ArtTests(unittest.TestCase):
         for folder in ('','en/','zh-hant/'):
             self.assertIn('id="art"',(b.ROOT/f'essays/aesthetics/{folder}index.html').read_text())
 
+    def test_sculpture_category(self):
+        work=next(w for w in self.works if w['id']=='degas')
+        for lang in b.LANGS:
+            shelf=self.pages[b.location(lang)]
+            self.assertIn('href="#western-painting"',shelf)
+            self.assertIn('href="#western-sculpture"',shelf)
+            source=self.pages[b.location(lang,work)]
+            self.assertIn(b.CATEGORIES['western-sculpture'][lang],source)
+            self.assertNotIn(b.CATEGORIES['western-painting'][lang],source)
+            self.assertIn('?lang='+lang+'#western-sculpture',source)
+            schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)[1])
+            self.assertEqual(schema['about']['@type'],'Sculpture')
+            self.assertEqual(sum(t=='figure' for t,a in Parse(source).tags),5)
+
 
 if __name__=='__main__': unittest.main()
