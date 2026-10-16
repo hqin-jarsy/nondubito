@@ -24,6 +24,9 @@ class ArtTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.pages=b.outputs(); cls.works=json.loads((b.DATA/'works.json').read_text())
+        ledger=json.loads((b.DATA/'web-images.json').read_text())
+        cls.image_urls={b.preview_url({'id':key.split('/')[0]},key.split('/')[1],width)
+                        for key in ledger for width in (640,1280)}
 
     def test_editions(self):
         self.assertEqual(len(self.pages),8*(len(self.works)+1))
@@ -71,11 +74,11 @@ class ArtTests(unittest.TestCase):
                         self.assertIn(url.fragment,destids,(path,a[key]))
                 if tag=='img':
                     self.assertTrue(a.get('alt')); self.assertIn('width',a); self.assertIn('height',a)
+                    self.assertIn(a['src'],self.image_urls)
                     for item in a['srcset'].split(','):
-                        self.assertTrue((path.parent/item.strip().split()[0]).is_file())
+                        self.assertIn(item.strip().split()[0],self.image_urls)
 
     def test_archived_originals_and_preserved_previews(self):
-        from PIL import Image
         ledger=json.loads((b.DATA/'web-images.json').read_text())
         sizes=json.loads((b.DATA/'images.json').read_text())
         self.assertEqual(set(ledger),set(sizes))
@@ -98,15 +101,17 @@ class ArtTests(unittest.TestCase):
                     self.assertEqual(entry['original_sha256'],digest)
                     self.assertEqual(entry['dimensions'],sizes[w['id']+'/'+filename])
                     for width in (640,1280):
-                        path=b.preview_path(w,filename,width)
-                        expected_previews.add(path)
+                        url=b.preview_url(w,filename,width)
+                        self.assertNotIn(url,expected_previews)
+                        expected_previews.add(url)
                         preview=entry['previews'][str(width)]
-                        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),preview['sha256'])
-                        self.assertEqual(path.stat().st_size,preview['bytes'])
-                        with Image.open(path) as im:
-                            self.assertEqual(list(im.size),preview['dimensions'])
-                            self.assertEqual(im.width,min(width,entry['dimensions'][0]))
-        self.assertEqual(expected_previews,set((b.TARGET/'images').rglob('*.webp')))
+                        self.assertRegex(preview['sha256'],r'^[0-9a-f]{64}$')
+                        self.assertGreater(preview['bytes'],0)
+                        self.assertEqual(preview['dimensions'][0],min(width,entry['dimensions'][0]))
+        self.assertEqual(expected_previews,self.image_urls)
+        # Live bytes are checked separately by verify_art_images.py, not during
+        # deterministic offline tests. Image binaries no longer belong in Git.
+        self.assertFalse(list((b.TARGET/'images').rglob('*.webp')))
 
     def test_museum_links_and_social_images(self):
         for w in self.works:
@@ -126,14 +131,29 @@ class ArtTests(unittest.TestCase):
                     self.assertIn(b.IMAGE_LINK_LABELS[lang],figure)
                 self.assertIn(b.IMAGE_STORAGE_NOTES[lang],source)
                 schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)[1])
-                self.assertEqual(schema['image'],b.ORIGIN+b.preview_path(w,w['image']).relative_to(b.ROOT).as_posix())
-                self.assertTrue(b.preview_path(w,w['image']).is_file())
+                self.assertEqual(schema['image'],b.preview_url(w,w['image']))
+                self.assertIn(schema['image'],self.image_urls)
                 self.assertIn(f'property="og:image" content="{schema["image"]}"',source)
 
     def test_image_regeneration_requires_offline_archive(self):
         with self.assertRaises(ValueError): b.prepare_images('vermeer')
         with self.assertRaises(FileNotFoundError):
             b.prepare_images('vermeer',b.DATA/'nonexistent-offline-archive')
+
+    def test_legacy_images_migrated(self):
+        records=json.loads((b.ROOT/'data/legacy-image-hosting.json').read_text())
+        pages=[b.ROOT/'about.html',b.ROOT/'essays/artist_dead.html',
+               *list((b.ROOT/'essays/aesthetics').glob('*.html'))]
+        sources='\n'.join(p.read_text() for p in pages)
+        self.assertEqual(len(records),13)
+        for old,record in records.items():
+            self.assertFalse((b.ROOT/old).exists())
+            self.assertEqual(record['url'],'https://images.nondubito.net/legacy/'+record['filename'])
+            if not record.get('archived_unused'):
+                self.assertTrue(record['url'] in sources,record['url'])
+            self.assertRegex(record['sha256'],r'^[0-9a-f]{64}$')
+        self.assertTrue((b.ROOT/'favicon.svg').is_file())
+        self.assertTrue((b.ROOT/'apple-touch-icon.png').is_file())
 
     def test_image_regeneration_from_offline_archive(self):
         from PIL import Image
@@ -151,12 +171,13 @@ class ArtTests(unittest.TestCase):
             Image.new('RGB',(1500,1000),(100,120,140)).save(original)
             digest=hashlib.sha256(original.read_bytes()).hexdigest()
             with patch.object(b,'DATA',data), patch.object(b,'TARGET',target):
-                b.prepare_images('fixture',originals)
+                previews=root/'upload/art'
+                b.prepare_images('fixture',originals,previews)
                 ledger=json.loads((data/'web-images.json').read_text())
                 self.assertEqual(ledger['fixture/detail.png']['original_sha256'],digest)
                 self.assertEqual(json.loads((data/'images.json').read_text())['fixture/detail.png'],[1500,1000])
-                self.assertTrue(b.preview_path(work,'detail.png',640).exists())
-                self.assertTrue(b.preview_path(work,'detail.png',1280).exists())
+                self.assertTrue((previews/b.preview_filename(work,'detail.png',640)).exists())
+                self.assertTrue((previews/b.preview_filename(work,'detail.png',1280)).exists())
                 self.assertFalse((target/'images/fixture/detail.png').exists())
             self.assertEqual(hashlib.sha256(original.read_bytes()).hexdigest(),digest)
 

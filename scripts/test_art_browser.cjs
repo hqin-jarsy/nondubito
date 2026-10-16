@@ -4,6 +4,8 @@ const fs=require('node:fs');
 const path=require('node:path');
 const works=require('../data/art/works.json');
 const base=process.argv[2]||'http://127.0.0.1:8776';
+const imageOrigin=new URL(require('../data/art/image-hosting.json').base_url).origin;
+const allowedOrigin=u=>[new URL(base).origin,imageOrigin].includes(new URL(u).origin);
 const langs=['zh','zh-hant','en','ja','fr','de','es','ko'];
 const article='western-painting/vermeer-woman-holding-a-balance.html';
 const selected=process.argv[3];
@@ -17,7 +19,7 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
  const browser=await chromium.launch({headless:true,channel:'chrome'});
  try {
   const context=await browser.newContext();
-  await context.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());
+  await context.route('**/*',r=>allowedOrigin(r.request().url())?r.continue():r.abort());
   const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   let checks=0;
   for(const width of navigationOnly?[]:[1440,768,390,320]) for(const lang of langs) for(const file of files){
@@ -75,7 +77,7 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
    await page.screenshot({path:`/tmp/art-${name}.png`});
   }
   const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:850}});
-  await nojs.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());
+  await nojs.route('**/*',r=>allowedOrigin(r.request().url())?r.continue():r.abort());
   const p=await nojs.newPage();await p.goto(url('zh',article));await p.locator('.language-menu summary').click();await p.locator('[data-edition="ja"]').click();
   assert.equal(await p.locator('html').getAttribute('lang'),'ja');
   // Decode lazy images before scrolling to the final disclosure: their heights

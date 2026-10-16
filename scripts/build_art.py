@@ -2,8 +2,8 @@
 """Build the expandable eight-edition art shelf from reviewed manuscripts.
 
 Add published works to data/art/works.json; do not edit generated HTML.
-Run --image-work ID --originals-dir /path/to/offline/images to prepare WebP
-previews (requires Pillow; originals stay outside the website), then build.
+Run --image-work ID --originals-dir /path/to/offline/images --previews-dir
+/path/to/upload/art to prepare WebP previews, upload and verify them, then build.
 The offline directory contains ID/filename.jpg (or .png). No translation service is used.
 """
 import argparse
@@ -45,7 +45,7 @@ CATEGORIES = {
     ])),
 }
 
-# The museum page is more stable than an image CDN URL. Local detail crops and
+# The museum page is more stable than an image CDN URL. Hosted detail crops and
 # alternate views remain available as WebP; originals are kept in offline archives.
 IMAGE_LINK_LABELS = dict(zip(LANGS, [
     '前往馆方作品页查看原图 ↗', '前往館方作品頁查看原圖 ↗',
@@ -66,18 +66,23 @@ IMAGE_STORAGE_NOTES = dict(zip(LANGS, [
 ]))
 
 
-def preview_path(work, name, width=1280):
-    return TARGET/'images'/work['id']/(Path(name).stem+f'-{width}.webp')
+def preview_filename(work, name, width=1280):
+    return work['id']+'--'+Path(name).stem+f'-{width}.webp'
 
 
-def preview_record(original, work):
+def preview_url(work, name, width=1280):
+    hosting=json.loads((DATA/'image-hosting.json').read_text())
+    return hosting['base_url'].rstrip('/')+'/'+hosting['prefix'].strip('/')+'/'+preview_filename(work,name,width)
+
+
+def preview_record(original, work, previews_dir):
     """Record source provenance and the exact lightweight files being published."""
     from PIL import Image
     with Image.open(original) as im:
         size = list(im.size)
     previews = {}
     for width in (640, 1280):
-        path = preview_path(work, original.name, width)
+        path = Path(previews_dir)/preview_filename(work, original.name, width)
         with Image.open(path) as im:
             dimensions = list(im.size)
         previews[str(width)] = dict(sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
@@ -141,11 +146,11 @@ def bridge(lang, path):
 
 def image_tag(path, work, name, alt, lazy=True):
     info=json.loads((DATA/'images.json').read_text())[work['id']+'/'+name]
-    original=TARGET/'images'/work['id']/name
-    stem=original.with_suffix('')
-    src=rel(path,Path(str(stem)+'-640.webp'))
-    larger=rel(path,Path(str(stem)+'-1280.webp'))
-    return f'<img src="{src}" srcset="{src} 640w, {larger} {min(1280,info[0])}w" sizes="(max-width: 600px) calc(100vw - 46px), 760px" width="{info[0]}" height="{info[1]}" alt="{esc(alt)}" loading="{"lazy" if lazy else "eager"}" decoding="async">'
+    src=preview_url(work,name,640)
+    larger=preview_url(work,name,1280)
+    candidates=f'{src} {min(640,info[0])}w'
+    if info[0]>640: candidates+=f', {larger} {min(1280,info[0])}w'
+    return f'<img src="{src}" srcset="{candidates}" sizes="(max-width: 600px) calc(100vw - 46px), 760px" width="{info[0]}" height="{info[1]}" alt="{esc(alt)}" loading="{"lazy" if lazy else "eager"}" decoding="async">'
 
 
 def documents(work, lang):
@@ -213,7 +218,7 @@ def page(lang, path, title, deck, content, work=None):
     switch=''.join(f'<a href="{rel(path,location(k,work))}?lang={k}" lang="{c}" data-edition="{k}"'+(' aria-current="page"' if k==lang else '')+f'>{esc(name)}</a>' for k,(c,_,name) in LANGS.items())
     schema={'@context':'https://schema.org','@type':'Article' if work else 'CollectionPage','name':title,'description':deck,'url':url,'inLanguage':code,'isPartOf':{'@type':'WebSite','name':'Non Dubito','url':ORIGIN}}
     if work:
-        schema.update(headline=title,datePublished=work['date'],dateModified=work['date'],author={'@type':'Person','name':'Han Qin'},image=ORIGIN+preview_path(work,work['image']).relative_to(ROOT).as_posix(),about={'@type':work['schema_type'],'name':work['work_name'],'creator':{'@type':'Person','name':work['artist']},'sameAs':work['about']})
+        schema.update(headline=title,datePublished=work['date'],dateModified=work['date'],author={'@type':'Person','name':'Han Qin'},image=preview_url(work,work['image']),about={'@type':work['schema_type'],'name':work['work_name'],'creator':{'@type':'Person','name':work['artist']},'sameAs':work['about']})
     search_lang=lang if lang in ('zh','en','zh-hant') else 'en'
     home=rel(path,ROOT/'index.html')+'?lang='+search_lang
     if lang in ('ja','fr','de','es','ko'):
@@ -259,7 +264,7 @@ def outputs():
     return out
 
 
-def prepare_images(only=None, originals_dir=None):
+def prepare_images(only=None, originals_dir=None, previews_dir=None):
     from PIL import Image
     if originals_dir is None:
         raise ValueError('Supply --originals-dir with the offline archive directory (containing work-ID folders).')
@@ -276,23 +281,32 @@ def prepare_images(only=None, originals_dir=None):
             path=Path(originals_dir)/work['id']/name
             if not path.is_file(): raise FileNotFoundError(path)
             inputs.append((work,path))
+    if previews_dir is None:
+        raise ValueError('Supply --previews-dir outside the repository; upload previews to R2 before publishing.')
+    previews_dir=Path(previews_dir).resolve()
+    if previews_dir.is_relative_to(ROOT):
+        raise ValueError('The preview upload directory must be outside the repository.')
+    previews_dir.mkdir(parents=True,exist_ok=True)
     for work,path in inputs:
-        (TARGET/'images'/work['id']).mkdir(parents=True,exist_ok=True)
         with Image.open(path) as im:
             info[work['id']+'/'+path.name]=list(im.size)
             for width in (640,1280):
                 copy=im.copy(); copy.thumbnail((width,10000),Image.Resampling.LANCZOS)
-                copy.save(preview_path(work,path.name,width),format='WEBP',quality=88,icc_profile=im.info.get('icc_profile',b''))
-        ledger[work['id']+'/'+path.name]=preview_record(path,work)
+                copy.save(previews_dir/preview_filename(work,path.name,width),format='WEBP',quality=88,icc_profile=im.info.get('icc_profile',b''))
+        ledger[work['id']+'/'+path.name]=preview_record(path,work,previews_dir)
     (DATA/'images.json').write_text(json.dumps(info,indent=2)+'\n')
     ledger_path.write_text(json.dumps(ledger,indent=2)+'\n')
 
 
 def main():
-    parser=argparse.ArgumentParser(); parser.add_argument('--check',action='store_true'); parser.add_argument('--images',action='store_true'); parser.add_argument('--image-work',help='Generate previews only for this work ID'); parser.add_argument('--originals-dir',type=Path,help='Offline originals directory, containing work-ID folders'); args=parser.parse_args()
+    parser=argparse.ArgumentParser(); parser.add_argument('--check',action='store_true'); parser.add_argument('--images',action='store_true'); parser.add_argument('--image-work',help='Generate previews only for this work ID'); parser.add_argument('--originals-dir',type=Path,help='Offline originals directory, containing work-ID folders'); parser.add_argument('--previews-dir',type=Path,help='Outside-repository upload directory for R2 art/ objects'); parser.add_argument('--prepare-only',action='store_true',help='Prepare images and metadata without rebuilding HTML'); args=parser.parse_args()
+    if args.prepare_only and not (args.images or args.image_work): parser.error('--prepare-only requires --images or --image-work')
     if args.image_work:
         assert args.image_work in {w['id'] for w in json.loads((DATA/'works.json').read_text())}, args.image_work
-    if args.images or args.image_work: prepare_images(args.image_work,args.originals_dir)
+    if args.images or args.image_work: prepare_images(args.image_work,args.originals_dir,args.previews_dir)
+    if args.prepare_only:
+        print('Previews prepared. Upload to R2 art/ and run verify_art_images.py before building pages.')
+        return
     pages=outputs()
     for path, content in pages.items():
         if args.check: assert path.exists() and path.read_text()==content, path

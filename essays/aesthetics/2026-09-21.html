@@ -46,7 +46,7 @@
       </header>
 
       <div class="essay-body lang-zh" style="font-family:var(--cjk),var(--serif);">
-        <img src="img/2026-09-21-1.png" alt="ZX Desk 的桌面：1982 年 48K ZX Spectrum 上的 256×192 图形桌面，带菜单栏与可重叠窗口" class="aesthetics-img pixel">
+        <img src="https://images.nondubito.net/legacy/2026-09-21-1.png" alt="ZX Desk 的桌面：1982 年 48K ZX Spectrum 上的 256×192 图形桌面，带菜单栏与可重叠窗口" class="aesthetics-img pixel">
 
         <p>mindbox77 用 Z80 汇编，为 1982 年的 48K ZX Spectrum 写了一整套图形桌面。可重叠的窗口、z 序与焦点、常驻菜单栏和下拉菜单、十六槽事件环、带 owner 字节的堆、两窗格文件管理器、记事本、时钟、日历，以及一个真的会改变东西的设置面板。全部塞进 48K，并且能在一帧 69,888 个 T 状态之内把一个窗口拖完。跑在真机上，不是模拟器。</p>
 
@@ -64,7 +64,7 @@
 
         <p>于是填充现在全程开着中断。DI 当初保护的是 SP，所以真正的修法是保证中断压进去的那两个字节返回地址，一定落在一块马上就要被覆盖掉的地方。PUSH 链被做得比一行短一次，最左边那两个字节被<strong>欠着</strong>——等到下一行、SP 已经移开再也够不着它们的时候才还。中断不再被排除，它被给了一个可以落脚的地方。凿削变成涵育。代价是每行 48 个 T 状态，他说值。</p>
 
-        <img src="img/2026-09-21-2.png" alt="ZX Desk 的时序测量表：在真机上用机器自己的时钟量出的各项开销" class="aesthetics-img">
+        <img src="https://images.nondubito.net/legacy/2026-09-21-2.png" alt="ZX Desk 的时序测量表：在真机上用机器自己的时钟量出的各项开销" class="aesthetics-img">
 
         <p>同样形状的东西在这份仓库里还有一串。他为了抓掉帧写了个看门狗，结果看门狗被它要抓的那个东西抓住了：<code>INC (IX+0)</code> 会改标志位，而填充例程跨行时手里正握着一个活的进位；中断落在那个缝里偷走进位，行地址就走错。路线图本来预言"看门狗会更早抓到中断那个 bug"，实际发生的是中断测试抓到了看门狗。仪器不在系统外面。</p>
 
@@ -80,7 +80,7 @@
       </div>
 
       <div class="essay-body lang-en">
-        <img src="img/2026-09-21-1.png" alt="The ZX Desk desktop: a 256×192 graphical desktop with menu bar and overlapping windows, on a 48K ZX Spectrum from 1982" class="aesthetics-img pixel">
+        <img src="https://images.nondubito.net/legacy/2026-09-21-1.png" alt="The ZX Desk desktop: a 256×192 graphical desktop with menu bar and overlapping windows, on a 48K ZX Spectrum from 1982" class="aesthetics-img pixel">
 
         <p>mindbox77 has written a complete graphical desktop for the 48K ZX Spectrum, in Z80 assembly, for a machine from 1982. Overlapping windows with a z-order and focus, a permanent menu bar with pull-downs, a sixteen-slot event ring, a heap with an owner byte, a two-pane file manager, a notepad, a clock, a calendar, and a settings panel that actually changes things. All of it fits in 48K, and it can drag a window to completion inside a single 69,888 T-state frame. It runs on the real machine, not an emulator.</p>
 
@@ -98,7 +98,7 @@
 
         <p>So the fills now run with interrupts enabled throughout. What DI was protecting was SP, so the real fix is to guarantee that the two bytes of return address an interrupt pushes always land somewhere that is about to be overwritten anyway. The push chain is made one push shorter than the row, and the leftmost two bytes are <strong>owed</strong> — paid one row later, once SP has moved on and can no longer reach them. The interrupt is no longer excluded. It is given somewhere to land. Severing becomes cultivation. It costs 48 T states a row, and he says it is worth it.</p>
 
-        <img src="img/2026-09-21-2.png" alt="ZX Desk's timing table: costs measured on real hardware against the machine's own clock" class="aesthetics-img">
+        <img src="https://images.nondubito.net/legacy/2026-09-21-2.png" alt="ZX Desk's timing table: costs measured on real hardware against the machine's own clock" class="aesthetics-img">
 
         <p>The repository holds a run of other things with the same shape. He built a frame watchdog to catch dropped frames, and the watchdog was caught by the thing it was built to catch: <code>INC (IX+0)</code> sets the flags, and a fill holds a live carry across the test that decides whether a row has crossed a cell boundary. An interrupt landing in that gap stole the carry and the row stepped to the wrong address. The roadmap had predicted the watchdog would catch the interrupt bug earlier. What happened is that the interrupt test caught the watchdog. The instrument is not outside the system.</p>
 

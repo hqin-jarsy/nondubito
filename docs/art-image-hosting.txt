@@ -1,0 +1,80 @@
+ART IMAGE HOSTING — 2026-10-16
+
+Website HTML remains on GitHub Pages. Art preview images are served from
+https://images.nondubito.net (Cloudflare R2 bucket nondubito-images).
+Only this image subdomain uses Cloudflare delivery; the main site stays DNS-only.
+Museum attribution, source links and offline original-file provenance are unchanged.
+
+Object keys: art/<work-id>--<original-stem>-640.webp and -1280.webp.
+All eight editions share these same image objects. data/art/image-hosting.json
+is the single hosting configuration. data/art/web-images.json records SHA-256,
+byte length and dimensions of the exact published files; keep it in Git.
+Never put credentials in this repository. The public r2.dev pilot URL is not
+used by generated pages. No CORS policy is needed for ordinary <img> display.
+
+The 13 older illustrations from About, the artist essay and aesthetics essays
+are under legacy/<filename>. data/legacy-image-hosting.json preserves their
+original paths, checksums, dimensions and new URLs. One unused older PNG is
+preserved as an archive, not added to a page. Verify these files with:
+
+   python3 scripts/verify_art_images.py --work legacy
+
+Browser icons (favicon.svg and apple-touch-icon.png) remain in the site root.
+
+FUTURE ART IMPORTS (run commands from the repository root)
+
+1. Retain the full-resolution originals OUTSIDE Git, in <archive>/<work-id>/.
+   Review source licenses/attributions as before. Register the work and manuscripts.
+2. Generate lightweight previews into a separate OUTSIDE-repository upload folder:
+
+   python3 scripts/build_art.py --image-work WORK_ID \
+     --originals-dir /absolute/offline/archive \
+     --previews-dir /absolute/upload/art --prepare-only
+
+3. Check staging files:
+
+   python3 scripts/verify_art_images.py --work WORK_ID \
+     --local-dir /absolute/upload/art
+
+4. In Cloudflare: R2 > nondubito-images > Objects > art/ > Upload > Files.
+   Upload only the new work's .webp files, at most 100 per batch. This keeps the
+   art/ prefix exactly once; do not accidentally upload into art/art/.
+   Wait for "All files were successfully uploaded" before testing public URLs.
+5. Validate the actual public image bytes (network access + Pillow required):
+
+   python3 scripts/verify_art_images.py --work WORK_ID
+
+   All images must pass. If an image was requested before upload completed,
+   a temporary cached 404 can persist: let it expire or purge those exact URLs,
+   then verify again. Do not publish broken links.
+6. Build, check and publish HTML via the normal Git workflow:
+
+   python3 scripts/build_art.py
+   python3 scripts/build_art.py --check
+   python3 scripts/test_art.py
+
+   The browser smoke test also allows images.nondubito.net. Offline tests check
+   the complete object manifest and HTML references; the verifier checks remote
+   bytes, dimensions and content type separately. Review before committing.
+
+For replacements, prefer a new source filename/object key to avoid stale caches.
+If keeping an existing key, purge that exact URL in Cloudflare and verify again.
+Keep an offline copy of every uploaded image; R2 is serving storage, not your
+only archival backup. Different future categories can use different prefixes.
+
+MIGRATION BACKUPS ON HAN'S MAC
+
+Original high-resolution files:
+/Users/hanqin/Documents/Codex/2026-08-22/qin/art-originals-backup-20261015
+
+228 original WebP previews, preserving the old work-ID directory structure:
+/Users/hanqin/Documents/Codex/2026-08-22/qin/art-web-images-backup-20261016/images
+
+Exact flat upload files under art/:
+/Users/hanqin/Documents/Codex/2026-08-22/qin/r2-art-upload-20261016/art
+
+Old illustration backups (with original repository paths):
+/Users/hanqin/Documents/Codex/2026-08-22/qin/legacy-images-retired-20261016
+
+Removing image files from the current checkout does not shrink old Git history.
+This migration does not rewrite history or force-push.
