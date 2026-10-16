@@ -134,5 +134,23 @@ class ArtTests(unittest.TestCase):
             self.assertEqual(schema['about']['@type'],'Sculpture')
             self.assertEqual(sum(t=='figure' for t,a in Parse(source).tags),5)
 
+    def test_sculpture_expansion(self):
+        counts = {'rodin':3, 'canova':4, 'satyr':3, 'eros':3, 'jonah':3,
+                  'madonna':6, 'dragon':1, 'messerschmidt':4, 'shaw':1}
+        sculptures = [w for w in self.works if w['category']=='western-sculpture']
+        self.assertEqual(len(sculptures),10)
+        for w in sculptures:
+            if w['id'] not in counts: continue
+            for lang in b.LANGS:
+                source=self.pages[b.location(lang,w)]
+                self.assertEqual(sum(t=='figure' for t,a in Parse(source).tags),counts[w['id']])
+                self.assertIn('?lang='+lang+'#western-sculpture',source)
+                self.assertIn(b.canonical(b.location(lang,w)),self.pages[b.location(lang,w)])
+                self.assertIn('lang="en"',source)
+        # There is no implied local frontal image of the Shaw model.
+        shaw=next(w for w in sculptures if w['id']=='shaw')
+        for lang in b.LANGS:
+            self.assertIn(shaw['about'],self.pages[b.location(lang,shaw)])
+
 
 if __name__=='__main__': unittest.main()

@@ -7,7 +7,9 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
 const langs=['zh','zh-hant','en','ja','fr','de','es','ko'];
 const article='western-painting/vermeer-woman-holding-a-balance.html';
 const selected=process.argv[3];
-const files=['index.html',...works.filter(w=>!selected||w.id===selected).map(w=>`${w.category}/${w.slug}.html`)];
+const selectedIds=selected?selected.split(','):null;
+if(selectedIds) for(const id of selectedIds) assert.ok(works.some(w=>w.id===id),`Unknown work: ${id}`);
+const files=['index.html',...works.filter(w=>!selectedIds||selectedIds.includes(w.id)).map(w=>`${w.category}/${w.slug}.html`)];
 const url=(lang,file)=>`${base}/essays/art/${lang==='zh'?'':lang+'/'}${file}?lang=${lang}`;
 const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout(()=>reject(new Error('Image did not decode: '+i.currentSrc)),10000))]);
 (async()=>{
@@ -48,7 +50,7 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
   await page.goto(url('zh',article)+'#section-4');await page.locator('.language-menu summary').click();await page.locator('[data-edition="fr"]').click();
   await page.waitForURL('**/fr/'+article+'?lang=fr#section-4');
   await page.goto(url('ko',article)+'#section-6');assert.equal(await page.locator('.optional-reading[open]').count(),1);
-  for(const id of selected?[selected]:['giotto','monet','mondrian','degas']){
+  for(const id of selectedIds||['giotto','monet','mondrian','degas']){
    const work=works.find(w=>w.id===id);if(!work)continue;
    const file=`${work.category}/${work.slug}.html`;
    await page.goto(url('zh',file)+'#section-2');await page.locator('.language-menu summary').click();await page.locator('[data-edition="de"]').click();
@@ -60,8 +62,8 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
   await page.setViewportSize({width:1440,height:1000});await page.goto(url('en','index.html'));
   await page.locator('.art-card img').first().evaluate(decodeImage);await page.screenshot({path:'/tmp/art-shelf.png'});
   await page.locator('.jump a[href="#western-sculpture"]').click();
-  await page.locator('#western-sculpture img').scrollIntoViewIfNeeded();
-  await page.locator('#western-sculpture img').evaluate(decodeImage);await page.screenshot({path:'/tmp/art-sculpture-shelf.png'});
+  await page.locator('#western-sculpture img').first().scrollIntoViewIfNeeded();
+  await page.locator('#western-sculpture img').first().evaluate(decodeImage);await page.screenshot({path:'/tmp/art-sculpture-shelf.png'});
   for(const [lang,width,name] of [['zh',1440,'desktop'],['ko',390,'mobile'],['en',390,'english']]){
    await page.setViewportSize({width,height:1000});await page.goto(url(lang,article));
    await page.screenshot({path:`/tmp/art-${name}.png`});
