@@ -111,6 +111,10 @@ def load(work, lang):
     return re.split(r'\n\s*\n', (DATA/work['id']/f"{work['source_prefix']}_{LANGS[lang][0]}.md").read_text().strip())
 
 
+def plain_title(work, lang):
+    return load(work, lang)[0].removeprefix('# ').replace('*', '')
+
+
 def inline(text, local_links=None):
     """Escaped prose plus the reviewed Markdown's links and emphasis."""
     parts = re.split(r'(\[[^\]]+\]\([^\s)]+\))', text)
@@ -119,7 +123,7 @@ def inline(text, local_links=None):
         match = re.fullmatch(r'\[([^\]]+)\]\(([^\s)]+)\)', part)
         if match:
             label, url = match.groups()
-            url = {'REFERENCES.md':'#references','IMAGE_CREDITS.md':'#image-credits'}.get(url,url)
+            url = {'REFERENCES.md':'#references','IMAGE_CREDITS.md':'#image-credits','IMAGE_LINKS.md':'#image-credits'}.get(url,url)
             if local_links and url in local_links:
                 url=local_links[url]
             else:
@@ -155,7 +159,8 @@ def image_tag(path, work, name, alt, lazy=True):
 
 def documents(work, lang):
     blocks=[]
-    for filename, anchor, label in [('REFERENCES.md','references',UI[lang][11]),('IMAGE_CREDITS.md','image-credits',UI[lang][12])]:
+    image_doc='IMAGE_CREDITS.md' if work.get('image') else 'IMAGE_LINKS.md'
+    for filename, anchor, label in [('REFERENCES.md','references',UI[lang][11]),(image_doc,'image-credits',UI[lang][12])]:
         source=(DATA/work['id']/'source'/filename).read_text()
         if work.get('restored_images'):
             # Keep package delivery instructions in the archive, not on the reader's page.
@@ -199,6 +204,10 @@ def article(work, lang, path):
             else:
                 if n==optional+1: body.append('</div></details>')
                 body.append(f'<h2 id="{anchor}">{esc(label)}</h2>')
+                if n==optional+1 and work.get('archival_image_note'):
+                    body.append('<aside class="image-publication-note">'+esc(IMAGE_STORAGE_NOTES[lang])+'</aside>')
+        elif b.startswith('### '):
+            body.append('<h3>'+esc(b[4:])+'</h3>')
         elif b.startswith('!['):
             m=re.fullmatch(r'!\[([^\]]*)\]\(images/([^)]+)\)',b); assert m,b
             alt,name=m.groups(); caption=blocks[i+1]; assert not caption.startswith(('#','!'))
@@ -208,7 +217,10 @@ def article(work, lang, path):
         i+=1
     assert n==heading_count
     toc='<details class="contents"><summary>'+esc(UI[lang][8])+'</summary><nav>'+''.join(f'<a href="#{a}">{esc(h)}</a>' for a,h in headings)+'</nav></details>'
-    return toc+'<article class="prose">'+''.join(body)+'</article>'+documents(work,lang)
+    viewing=''
+    if not work.get('image'):
+        viewing=f'<aside class="art-viewing"><a href="{esc(work["about"])}" target="_blank" rel="noopener noreferrer">{esc(IMAGE_LINK_LABELS[lang])}</a></aside>'
+    return viewing+toc+'<article class="prose">'+''.join(body)+'</article>'+documents(work,lang)
 
 
 def page(lang, path, title, deck, content, work=None):
@@ -218,7 +230,9 @@ def page(lang, path, title, deck, content, work=None):
     switch=''.join(f'<a href="{rel(path,location(k,work))}?lang={k}" lang="{c}" data-edition="{k}"'+(' aria-current="page"' if k==lang else '')+f'>{esc(name)}</a>' for k,(c,_,name) in LANGS.items())
     schema={'@context':'https://schema.org','@type':'Article' if work else 'CollectionPage','name':title,'description':deck,'url':url,'inLanguage':code,'isPartOf':{'@type':'WebSite','name':'Non Dubito','url':ORIGIN}}
     if work:
-        schema.update(headline=title,datePublished=work['date'],dateModified=work['date'],author={'@type':'Person','name':'Han Qin'},image=preview_url(work,work['image']),about={'@type':work['schema_type'],'name':work['work_name'],'creator':{'@type':'Person','name':work['artist']},'sameAs':work['about']})
+        schema.update(headline=title,datePublished=work['date'],dateModified=work['date'],author={'@type':'Person','name':'Han Qin'})
+        if work.get('image'): schema['image']=preview_url(work,work['image'])
+        schema['about']={'@type':work['schema_type'],'name':work['work_name'],'creator':{'@type':'Person','name':work['artist']},'sameAs':work['about']}
     search_lang=lang if lang in ('zh','en','zh-hant') else 'en'
     home=rel(path,ROOT/'index.html')+'?lang='+search_lang
     if lang in ('ja','fr','de','es','ko'):
@@ -227,12 +241,12 @@ def page(lang, path, title, deck, content, work=None):
     if lang in ('ja','fr','de','es','ko'): search_url+='&amp;ui='+lang
     back=rel(path,location(lang))+'?lang='+lang+'#'+work['category'] if work else guide(lang,path)
     backlabel=u[0] if work else u[3]+(' · '+u[4] if lang not in ('zh','zh-hant','en') else '')
-    heroimage=f'<meta property="og:image" content="{schema["image"]}">' if work else ''
+    heroimage=f'<meta property="og:image" content="{schema["image"]}">' if 'image' in schema else ''
     return f'''<!doctype html>
 <html lang="{code}" data-lang="{lang}" data-editions="{code}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)} — Non Dubito</title><meta name="description" content="{esc(deck)}"><meta name="author" content="Han Qin (秦汉)">
-<link rel="canonical" href="{url}">{alternates}<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(deck)}"><meta property="og:type" content="{'article' if work else 'website'}"><meta property="og:url" content="{url}">{heroimage}<meta name="twitter:card" content="{'summary_large_image' if work else 'summary'}">
+<link rel="canonical" href="{url}">{alternates}<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(deck)}"><meta property="og:type" content="{'article' if work else 'website'}"><meta property="og:url" content="{url}">{heroimage}<meta name="twitter:card" content="{'summary_large_image' if heroimage else 'summary'}">
 <link rel="icon" href="{rel(path,ROOT/'favicon.svg')}"><link rel="stylesheet" href="{rel(path,ROOT/'essays/aesthetics/aesthetics-hub.css')}"><link rel="stylesheet" href="{rel(path,TARGET/'art.css')}">
 <script defer src="{rel(path,ROOT/'essays/aesthetics/aesthetics-hub.js')}"></script><script defer src="{rel(path,TARGET/'art.js')}"></script>
 <script type="application/ld+json">{json.dumps(schema,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script></head>
@@ -255,10 +269,13 @@ def outputs():
         for category in categories:
             cards.append(f'<section class="hub-section" id="{category}"><h2>{esc(CATEGORIES[category][lang])}</h2>')
             for work in [w for w in works if w['category']==category]:
-                title=load(work,lang)[0].removeprefix('# '); path=location(lang,work)
+                title=plain_title(work,lang); path=location(lang,work)
                 out[path]=page(lang,path,title,work['deck'][lang],article(work,lang,path),work)
                 href=rel(index,path)+'?lang='+lang
-                cards.append(f'<article class="art-card"><a href="{href}">{image_tag(index,work,work["image"],title,work!=works[0])}</a><div><p class="kicker">{esc(work["artist"])} · {esc(work["year"])}</p><h3><a href="{href}">{esc(title)}</a></h3><p class="deck">{esc(work["deck"][lang])}</p><a href="{href}">{esc(UI[lang][7])}</a><p class="edition-note">简 · 繁 · EN · 日本語 · FR · DE · ES · 한국어</p></div></article>')
+                thumbnail=f'<a href="{href}">{image_tag(index,work,work["image"],title,work!=works[0])}</a>' if work.get('image') else ''
+                viewing='' if thumbnail else f'<p class="image-hint"><a href="{esc(work["about"])}" target="_blank" rel="noopener noreferrer">{esc(IMAGE_LINK_LABELS[lang])}</a></p>'
+                cardclass='art-card' if thumbnail else 'art-card art-card-text'
+                cards.append(f'<article class="{cardclass}">{thumbnail}<div><p class="kicker">{esc(work["artist"])} · {esc(work["year"])}</p><h3><a href="{href}">{esc(title)}</a></h3><p class="deck">{esc(work["deck"][lang])}</p><a href="{href}">{esc(UI[lang][7])}</a>{viewing}<p class="edition-note">简 · 繁 · EN · 日本語 · FR · DE · ES · 한국어</p></div></article>')
             cards.append('</section>')
         out[index]=page(lang,index,UI[lang][0],UI[lang][2],''.join(cards)+bridge(lang,index))
     return out
@@ -277,6 +294,10 @@ def prepare_images(only=None, originals_dir=None, previews_dir=None):
     for work in selected:
         names={re.fullmatch(r'!\[[^\]]*\]\(images/([^)]+)\)', b)[1]
                for lang in LANGS for b in load(work,lang) if b.startswith('![')}
+        sums=DATA/work['id']/'source/SHA256SUMS.txt'
+        if sums.exists():
+            names.update(line.split(maxsplit=1)[1].removeprefix('images/') for line in sums.read_text().splitlines()
+                         if line.split(maxsplit=1)[1].startswith('images/'))
         for name in sorted(names):
             path=Path(originals_dir)/work['id']/name
             if not path.is_file(): raise FileNotFoundError(path)

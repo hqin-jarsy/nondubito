@@ -43,7 +43,13 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
      assert.ok(await img.evaluate(i=>new URL(i.currentSrc).pathname.endsWith('.webp')));
     }
     for(const link of await page.locator('figure .image-hint').all()) assert.equal(await link.getAttribute('href'),work.about);
-    assert.ok((await page.locator('meta[property="og:image"]').getAttribute('content')).endsWith('-1280.webp'));
+    if(work.image) {
+     assert.ok((await page.locator('meta[property="og:image"]').getAttribute('content')).endsWith('-1280.webp'));
+    } else {
+     assert.equal(await page.locator('meta[property="og:image"]').count(),0);
+     assert.equal(await page.locator('.art-viewing a').getAttribute('href'),work.about);
+     assert.ok(await page.locator('.art-viewing').isVisible());
+    }
     await page.locator('.optional-reading summary').click();assert.ok(await page.locator('.optional-reading .source-note').isVisible());
    } else {
     assert.equal(await page.locator('.art-card').count(),works.length);

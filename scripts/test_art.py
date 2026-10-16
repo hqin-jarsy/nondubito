@@ -48,7 +48,7 @@ class ArtTests(unittest.TestCase):
             for lang in b.LANGS:
                 s=self.pages[b.location(lang,w)]
                 for block in b.load(w,lang)[2:]:
-                    if block.startswith(('## ','![')): continue
+                    if block.startswith(('## ','### ','![')): continue
                     self.assertIn(b.inline(block),s,(lang,block[:60]))
                 tags=Parse(s).tags
                 image_count=sum(block.startswith('![') for block in b.load(w,lang))
@@ -115,7 +115,8 @@ class ArtTests(unittest.TestCase):
 
     def test_museum_links_and_social_images(self):
         for w in self.works:
-            self.assertIn(w['about'],(b.DATA/w['id']/'source/IMAGE_CREDITS.md').read_text())
+            doc='IMAGE_CREDITS.md' if w.get('image') else 'IMAGE_LINKS.md'
+            self.assertIn(w['about'],(b.DATA/w['id']/'source'/doc).read_text())
             self.assertTrue(w['about'].startswith('https://'))
             for lang in b.LANGS:
                 source=self.pages[b.location(lang,w)]
@@ -129,8 +130,17 @@ class ArtTests(unittest.TestCase):
                         self.assertEqual(link['target'],'_blank')
                         self.assertIn('noopener',link['rel'])
                     self.assertIn(b.IMAGE_LINK_LABELS[lang],figure)
-                self.assertIn(b.IMAGE_STORAGE_NOTES[lang],source)
                 schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)[1])
+                if not w.get('image'):
+                    self.assertEqual(w['image_mode'],'external-links')
+                    self.assertNotIn('<img ',source)
+                    self.assertNotIn('og:image',source)
+                    self.assertNotIn('image',schema)
+                    self.assertIn('class="art-viewing"',source)
+                    self.assertIn(b.IMAGE_LINK_LABELS[lang],source)
+                    self.assertIn('id="image-credits"',source)
+                    continue
+                self.assertIn(b.IMAGE_STORAGE_NOTES[lang],source)
                 self.assertEqual(schema['image'],b.preview_url(w,w['image']))
                 self.assertIn(schema['image'],self.image_urls)
                 self.assertIn(f'property="og:image" content="{schema["image"]}"',source)
@@ -225,7 +235,9 @@ class ArtTests(unittest.TestCase):
         counts = {'rodin':3, 'canova':4, 'satyr':3, 'eros':3, 'jonah':3,
                   'madonna':6, 'dragon':1, 'messerschmidt':4, 'shaw':1}
         sculptures = [w for w in self.works if w['category']=='western-sculpture']
-        self.assertEqual(len(sculptures),10)
+        self.assertEqual(len(sculptures),20)
+        counts.update({'girl-stele':2,'mourner':5,'voltaire':5,'horse':1,'ugolino':7,
+                       'michelangelo-david':0,'apollo-daphne':0,'winged-victory':0,'bird-space':0,'hepworth':0})
         for w in sculptures:
             if w['id'] not in counts: continue
             for lang in b.LANGS:
@@ -238,6 +250,22 @@ class ArtTests(unittest.TestCase):
         shaw=next(w for w in sculptures if w['id']=='shaw')
         for lang in b.LANGS:
             self.assertIn(shaw['about'],self.pages[b.location(lang,shaw)])
+
+    def test_nested_headings_and_link_only_cards(self):
+        for lang in b.LANGS:
+            index=self.pages[b.location(lang)]
+            self.assertEqual(index.count('class="art-card art-card-text"'),5)
+            for w in self.works:
+                source=self.pages[b.location(lang,w)]
+                self.assertNotIn('*',b.plain_title(w,lang))
+                self.assertIn('<h1>'+b.esc(b.plain_title(w,lang))+'</h1>',source)
+                headings=[p[4:] for p in b.load(w,lang) if p.startswith('### ')]
+                for heading in headings:
+                    self.assertIn('<h3>'+b.esc(heading)+'</h3>',source)
+                self.assertNotIn('<p>### ',source)
+                self.assertNotIn('](IMAGE_LINKS.md)',source)
+                if w.get('archival_image_note'):
+                    self.assertIn('class="image-publication-note"',source)
 
 
 if __name__=='__main__': unittest.main()

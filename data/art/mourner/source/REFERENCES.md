@@ -1,0 +1,31 @@
+# 第12篇参考资料
+
+核查日期：2026-10-16。
+
+1. 克利夫兰艺术博物馆，藏品1940.129，《Mourner from the Tomb of John the Fearless and Margaret of Bavaria》。
+   https://www.clevelandart.org/art/1940.129
+   用于作品身份、Jean de la Huerta归属、1443–45年年代、Salins alabaster材料、41 × 20.3 × 12.4厘米尺寸、购藏信息与CC0许可。馆方正文说明它原属尚莫尔修道院的无畏者约翰与巴伐利亚的玛格丽特墓，是拱廊下四十名哀悼者之一；好人菲利普委托建墓，参照更早的大胆者菲利普墓。馆方明确指出今日第戎墓上的该人物为石膏翻模。材料说明涉及衣料、皮毛与书页的细刻。馆方来源栏列1940年由Jacques Seligmann售予该馆。
+
+2. 秦汉，《天暗下来，花园换了一种样子》，Non Dubito，美学射线08：感知之美，2026-09-28。
+   https://nondubito.net/essays/aesthetics/ray08.html?lang=zh
+   已阅读全文。附读采用其中“出现条件”与“感觉不止于辨认/实用提示”的区分，以本作颈前短纹、衣袍宽面及照明造成的暗处为具体观察点，不把舒服等同于美。
+
+3. 秦汉，《那个音还没响，你已经在等了》，Non Dubito，美学射线09：认知之美，2026-09-28。
+   https://nondubito.net/essays/aesthetics/ray09.html?lang=zh
+   已阅读全文。附读采用记忆向前形成预期、预期需可被检验和修正的讨论，区分“可见的持书与侧望”及“观者补出的阅读刚被打断”。并未据此断言人物心理或艺术家意图。
+
+## 阅读边界
+
+本篇依据馆方照片与现行馆藏记录，不是现场或材料检测报告。未逐项鉴定石纹、裂缝、修复痕迹，也未复原这名人物在原墓中的精确次序与朝向。正文涉及方向、体积、衣褶节奏及动作时间的判断，均为本篇提出的读法，而非馆方结论。
+
+## English
+
+Cleveland 1940.129, Salins alabaster, 1443–1445, 41 × 20.3 × 12.4 cm. The original is in Cleveland; the figure on the Dijon tomb today is a plaster cast.
+
+The linked institutional records supply identification and historical context. The close reading and optional SAE connections are the essay’s interpretation, not claims attributed to the artist.
+
+[1. www.clevelandart.org](https://www.clevelandart.org/art/1940.129)
+
+[2. nondubito.net](https://nondubito.net/essays/aesthetics/ray08.html?lang=zh)
+
+[3. nondubito.net](https://nondubito.net/essays/aesthetics/ray09.html?lang=zh)
