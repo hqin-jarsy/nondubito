@@ -7,6 +7,7 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
 const langs=['zh','zh-hant','en','ja','fr','de','es','ko'];
 const article='western-painting/vermeer-woman-holding-a-balance.html';
 const selected=process.argv[3];
+const navigationOnly=process.argv.includes('--navigation-only');
 const selectedIds=selected?selected.split(','):null;
 if(selectedIds) for(const id of selectedIds) assert.ok(works.some(w=>w.id===id),`Unknown work: ${id}`);
 const files=['index.html',...works.filter(w=>!selectedIds||selectedIds.includes(w.id)).map(w=>`${w.category}/${w.slug}.html`)];
@@ -19,7 +20,7 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
   await context.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());
   const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   let checks=0;
-  for(const width of [1440,768,390,320]) for(const lang of langs) for(const file of files){
+  for(const width of navigationOnly?[]:[1440,768,390,320]) for(const lang of langs) for(const file of files){
    if(selected) console.log(`Checking ${width} ${lang} ${file}`);
    await page.setViewportSize({width,height:950});await page.goto(url(lang,file));
    assert.equal(await page.locator('h1:visible').count(),1);
@@ -35,7 +36,12 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
     assert.equal(await page.locator('.optional-reading h2').count(),0,'Image notes must remain outside optional theory');
     for(const img of await page.locator('figure img').all()){
      await img.scrollIntoViewIfNeeded();await img.evaluate(decodeImage);assert.ok(await img.evaluate(i=>i.naturalWidth>0));
+     assert.equal(await img.evaluate(i=>i.parentElement.href),work.about);
+     assert.equal(await img.evaluate(i=>i.parentElement.target),'_blank');
+     assert.ok(await img.evaluate(i=>new URL(i.currentSrc).pathname.endsWith('.webp')));
     }
+    for(const link of await page.locator('figure .image-hint').all()) assert.equal(await link.getAttribute('href'),work.about);
+    assert.ok((await page.locator('meta[property="og:image"]').getAttribute('content')).endsWith('-1280.webp'));
     await page.locator('.optional-reading summary').click();assert.ok(await page.locator('.optional-reading .source-note').isVisible());
    } else {
     assert.equal(await page.locator('.art-card').count(),works.length);
@@ -55,7 +61,7 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
    const file=`${work.category}/${work.slug}.html`;
    await page.goto(url('zh',file)+'#section-2');await page.locator('.language-menu summary').click();await page.locator('[data-edition="de"]').click();
    await page.waitForURL('**/de/'+file+'?lang=de#section-2');
-   await page.goto(url('ko',file)+`#section-${work.main_sections+1}`);assert.equal(await page.locator('.optional-reading[open]').count(),1);
+   await page.goto(url('ko',file)+`#section-${(work.main_sections??5)+1}`);assert.equal(await page.locator('.optional-reading[open]').count(),1);
    await page.setViewportSize({width:id==='monet'?1440:390,height:1000});await page.goto(url(id==='mondrian'?'ko':'zh',file));
    await page.screenshot({path:`/tmp/art-${id}.png`});
   }
@@ -71,7 +77,13 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
   const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:850}});
   await nojs.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());
   const p=await nojs.newPage();await p.goto(url('zh',article));await p.locator('.language-menu summary').click();await p.locator('[data-edition="ja"]').click();
-  assert.equal(await p.locator('html').getAttribute('lang'),'ja');await p.locator('.optional-reading summary').click();assert.ok(await p.locator('.optional-reading .source-note').isVisible());
+  assert.equal(await p.locator('html').getAttribute('lang'),'ja');
+  // Decode lazy images before scrolling to the final disclosure: their heights
+  // can otherwise shift the target during a no-JS pointer interaction.
+  for(const img of await p.locator('figure img').all()){
+   await img.scrollIntoViewIfNeeded();await img.evaluate(decodeImage);
+  }
+  await p.locator('.optional-reading summary').click();assert.ok(await p.locator('.optional-reading .source-note').isVisible());
   assert.deepEqual(errors,[]);console.log(`OK: ${checks} viewport/edition/page checks; images, dropdown, Escape, anchors and no-JS reading`);
  } finally { await browser.close(); }
 })().catch(e=>{console.error(e);process.exit(1)});

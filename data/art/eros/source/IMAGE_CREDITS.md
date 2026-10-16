@@ -40,7 +40,7 @@
 
 The Metropolitan Museum of Art, New York; Rogers Fund, 1943 (43.11.4).
 
-The supplied photographs show the same object described in the [collection record](https://www.metmuseum.org/art/collection/search/254502). Public Domain / CC0; [museum image policy](https://www.metmuseum.org/hubs/open-access). Their use does not imply museum endorsement. The supplied original files are preserved unchanged. The site provides lightweight WebP previews; clicking an image opens its full-resolution original.
+The supplied photographs show the same object described in the [collection record](https://www.metmuseum.org/art/collection/search/254502). Public Domain / CC0; [museum image policy](https://www.metmuseum.org/hubs/open-access). Their use does not imply museum endorsement. The supplied originals are preserved in an offline archive. The site provides lightweight WebP images; clicking an image opens the museum’s collection page.
 
 [01_front.jpg: official image](https://images.metmuseum.org/CRDImages/gr/original/DP123903.jpg) · 4000 × 3000 pixels.
 

@@ -42,7 +42,7 @@ Images downloaded directly from museum services on 2026-10-15. Bytes preserved u
 
 The J. Paul Getty Museum, Los Angeles (2008.4).
 
-The supplied photographs show the same object described in the [collection record](https://www.getty.edu/art/collection/object/103QTJ). Public Domain / CC0; [museum image policy](https://www.getty.edu/about/opencontent.html). Their use does not imply museum endorsement. The supplied original files are preserved unchanged. The site provides lightweight WebP previews; clicking an image opens its full-resolution original.
+The supplied photographs show the same object described in the [collection record](https://www.getty.edu/art/collection/object/103QTJ). Public Domain / CC0; [museum image policy](https://www.getty.edu/about/opencontent.html). Their use does not imply museum endorsement. The supplied originals are preserved in an offline archive. The site provides lightweight WebP images; clicking an image opens the museum’s collection page.
 
 [01_full_front.jpg: official image](https://media.getty.edu/iiif/image/673d3dc2-a4e4-427b-bc46-e2371784404a/full/max/0/default.jpg) · 5428 × 7230 pixels.
 

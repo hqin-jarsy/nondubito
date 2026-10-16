@@ -20,7 +20,7 @@ Only the download-enabled second slide is reproduced: this slide is explicitly m
 
 Courtesy National Gallery of Art, Washington. U.S. Department of the Interior, National Park Service, Saint-Gaudens National Historic Site, Cornish, New Hampshire (X.15232).
 
-The supplied photographs show the same object described in the [collection record](https://www.nga.gov/artworks/102493-preliminary-study-shaw-54th-regiment-memorial). Public Domain / CC0; [museum image policy](https://www.nga.gov/terms-and-notices). Their use does not imply museum endorsement. The supplied original files are preserved unchanged. The site provides lightweight WebP previews; clicking an image opens its full-resolution original.
+The supplied photographs show the same object described in the [collection record](https://www.nga.gov/artworks/102493-preliminary-study-shaw-54th-regiment-memorial). Public Domain / CC0; [museum image policy](https://www.nga.gov/terms-and-notices). Their use does not imply museum endorsement. The supplied originals are preserved in an offline archive. The site provides lightweight WebP images; clicking an image opens the museum’s collection page.
 
 Only the download-enabled oblique view is reproduced. The frontal image remains available through the collection-page link; it is not included among the site’s image files.
 

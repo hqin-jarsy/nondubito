@@ -6,7 +6,9 @@ from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
+import tempfile
 import unittest
+from unittest.mock import patch
 from urllib.parse import urlsplit, unquote
 import build_art as b
 from build_content_registry import scan_page
@@ -72,7 +74,14 @@ class ArtTests(unittest.TestCase):
                     for item in a['srcset'].split(','):
                         self.assertTrue((path.parent/item.strip().split()[0]).is_file())
 
-    def test_originals_unchanged(self):
+    def test_archived_originals_and_preserved_previews(self):
+        from PIL import Image
+        ledger=json.loads((b.DATA/'web-images.json').read_text())
+        sizes=json.loads((b.DATA/'images.json').read_text())
+        self.assertEqual(set(ledger),set(sizes))
+        self.assertFalse(list((b.TARGET/'images').rglob('*.jpg')))
+        self.assertFalse(list((b.TARGET/'images').rglob('*.png')))
+        expected_previews=set()
         for w in self.works:
             recovered={}
             if w.get('restored_images'):
@@ -81,18 +90,75 @@ class ArtTests(unittest.TestCase):
             for line in sums:
                 digest,name=line.split(maxsplit=1)
                 if name.startswith('images/'):
-                    path=b.TARGET/'images'/w['id']/name.removeprefix('images/')
+                    filename=name.removeprefix('images/')
+                    entry=ledger[w['id']+'/'+filename]
                     record=recovered.get(name)
                     if record and 'crop_box' in record:
-                        from PIL import Image
-                        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),record['sha256'])
-                        with Image.open(path) as detail, Image.open(b.TARGET/'images'/w['id']/Path(record['source_image']).name) as full:
-                            crop=full.crop(tuple(record['crop_box']))
-                            self.assertEqual(detail.size,crop.size)
-                            self.assertEqual(detail.tobytes(),crop.tobytes())
-                            self.assertEqual(detail.info.get('icc_profile'),full.info.get('icc_profile'))
-                    else:
-                        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),digest)
+                        digest=record['sha256']
+                    self.assertEqual(entry['original_sha256'],digest)
+                    self.assertEqual(entry['dimensions'],sizes[w['id']+'/'+filename])
+                    for width in (640,1280):
+                        path=b.preview_path(w,filename,width)
+                        expected_previews.add(path)
+                        preview=entry['previews'][str(width)]
+                        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),preview['sha256'])
+                        self.assertEqual(path.stat().st_size,preview['bytes'])
+                        with Image.open(path) as im:
+                            self.assertEqual(list(im.size),preview['dimensions'])
+                            self.assertEqual(im.width,min(width,entry['dimensions'][0]))
+        self.assertEqual(expected_previews,set((b.TARGET/'images').rglob('*.webp')))
+
+    def test_museum_links_and_social_images(self):
+        for w in self.works:
+            self.assertIn(w['about'],(b.DATA/w['id']/'source/IMAGE_CREDITS.md').read_text())
+            self.assertTrue(w['about'].startswith('https://'))
+            for lang in b.LANGS:
+                source=self.pages[b.location(lang,w)]
+                figures=re.findall(r'<figure>(.*?)</figure>',source,re.S)
+                for figure in figures:
+                    tags=Parse(figure).tags
+                    links=[a for t,a in tags if t=='a' and a.get('target')=='_blank']
+                    self.assertEqual(len(links),2)
+                    for link in links:
+                        self.assertEqual(link['href'],w['about'])
+                        self.assertEqual(link['target'],'_blank')
+                        self.assertIn('noopener',link['rel'])
+                    self.assertIn(b.IMAGE_LINK_LABELS[lang],figure)
+                self.assertIn(b.IMAGE_STORAGE_NOTES[lang],source)
+                schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)[1])
+                self.assertEqual(schema['image'],b.ORIGIN+b.preview_path(w,w['image']).relative_to(b.ROOT).as_posix())
+                self.assertTrue(b.preview_path(w,w['image']).is_file())
+                self.assertIn(f'property="og:image" content="{schema["image"]}"',source)
+
+    def test_image_regeneration_requires_offline_archive(self):
+        with self.assertRaises(ValueError): b.prepare_images('vermeer')
+        with self.assertRaises(FileNotFoundError):
+            b.prepare_images('vermeer',b.DATA/'nonexistent-offline-archive')
+
+    def test_image_regeneration_from_offline_archive(self):
+        from PIL import Image
+        # A tiny isolated fixture proves future imports need not put originals
+        # into the deployment tree. It never overwrites published previews.
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder); data=root/'data'; target=root/'site'; originals=root/'offline'
+            work={'id':'fixture','source_prefix':'fixture'}
+            (data/'fixture').mkdir(parents=True); (originals/'fixture').mkdir(parents=True)
+            (data/'works.json').write_text(json.dumps([work]))
+            (data/'images.json').write_text('{}')
+            for code,_,_ in b.LANGS.values():
+                (data/'fixture'/f'fixture_{code}.md').write_text('# Test\n\n![Detail](images/detail.png)')
+            original=originals/'fixture/detail.png'
+            Image.new('RGB',(1500,1000),(100,120,140)).save(original)
+            digest=hashlib.sha256(original.read_bytes()).hexdigest()
+            with patch.object(b,'DATA',data), patch.object(b,'TARGET',target):
+                b.prepare_images('fixture',originals)
+                ledger=json.loads((data/'web-images.json').read_text())
+                self.assertEqual(ledger['fixture/detail.png']['original_sha256'],digest)
+                self.assertEqual(json.loads((data/'images.json').read_text())['fixture/detail.png'],[1500,1000])
+                self.assertTrue(b.preview_path(work,'detail.png',640).exists())
+                self.assertTrue(b.preview_path(work,'detail.png',1280).exists())
+                self.assertFalse((target/'images/fixture/detail.png').exists())
+            self.assertEqual(hashlib.sha256(original.read_bytes()).hexdigest(),digest)
 
     def test_reviewed_manuscripts_and_structure(self):
         entries=[e for p in b.DATA.glob('publication-*.json') for e in json.loads(p.read_text()).get('works',[])]

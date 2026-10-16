@@ -58,7 +58,7 @@ Images downloaded directly from museum services on 2026-10-15. Bytes preserved u
 
 The Metropolitan Museum of Art, New York; Gift of J. Pierpont Morgan, 1916 (16.32.194a, b).
 
-The supplied photographs show the same object described in the [collection record](https://www.metmuseum.org/art/collection/search/463795). Public Domain / CC0; [museum image policy](https://www.metmuseum.org/hubs/open-access). Their use does not imply museum endorsement. The supplied original files are preserved unchanged. The site provides lightweight WebP previews; clicking an image opens its full-resolution original.
+The supplied photographs show the same object described in the [collection record](https://www.metmuseum.org/art/collection/search/463795). Public Domain / CC0; [museum image policy](https://www.metmuseum.org/hubs/open-access). Their use does not imply museum endorsement. The supplied originals are preserved in an offline archive. The site provides lightweight WebP images; clicking an image opens the museum’s collection page.
 
 [DP212267.jpg: official image](https://images.metmuseum.org/CRDImages/md/original/DP212267.jpg) · 3001 × 4000 pixels.
 

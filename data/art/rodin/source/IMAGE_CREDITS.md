@@ -45,7 +45,7 @@
 
 The Metropolitan Museum of Art, New York; Gift of Miss G. Louise Robinson, in memory of Mrs. Nelson Robinson, 1940 (40.12.4).
 
-The supplied photographs show the same object described in the [collection record](https://www.metmuseum.org/art/collection/search/198565). Public Domain / CC0; [museum image policy](https://www.metmuseum.org/hubs/open-access). Their use does not imply museum endorsement. The supplied original files are preserved unchanged. The site provides lightweight WebP previews; clicking an image opens its full-resolution original.
+The supplied photographs show the same object described in the [collection record](https://www.metmuseum.org/art/collection/search/198565). Public Domain / CC0; [museum image policy](https://www.metmuseum.org/hubs/open-access). Their use does not imply museum endorsement. The supplied originals are preserved in an offline archive. The site provides lightweight WebP images; clicking an image opens the museum’s collection page.
 
 [01_front_oblique.jpg: official image](https://images.metmuseum.org/CRDImages/es/original/DP-13617-088.jpg) · 2878 × 4000 pixels.
 

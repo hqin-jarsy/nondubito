@@ -34,7 +34,7 @@ Images downloaded directly from museum services on 2026-10-15. Bytes preserved u
 
 The Cleveland Museum of Art; John L. Severance Fund (1965.237).
 
-The supplied photographs show the same object described in the [collection record](https://www.clevelandart.org/art/1965.237). Public Domain / CC0; [museum image policy](https://www.clevelandart.org/open-access). Their use does not imply museum endorsement. The supplied original files are preserved unchanged. The site provides lightweight WebP previews; clicking an image opens its full-resolution original.
+The supplied photographs show the same object described in the [collection record](https://www.clevelandart.org/art/1965.237). Public Domain / CC0; [museum image policy](https://www.clevelandart.org/open-access). Their use does not imply museum endorsement. The supplied originals are preserved in an offline archive. The site provides lightweight WebP images; clicking an image opens the museum’s collection page.
 
 [1965.237_alt0_print.jpg: official image](https://openaccess-cdn.clevelandart.org/1965.237/1965.237_alt0_print.jpg) · 2627 × 3400 pixels.
 

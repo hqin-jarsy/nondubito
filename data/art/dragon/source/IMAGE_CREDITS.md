@@ -16,7 +16,7 @@
 
 The J. Paul Getty Museum, Los Angeles (87.SA.42).
 
-The supplied photographs show the same object described in the [collection record](https://www.getty.edu/art/collection/object/103RRC). Public Domain / CC0; [museum image policy](https://www.getty.edu/about/opencontent.html). Their use does not imply museum endorsement. The supplied original files are preserved unchanged. The site provides lightweight WebP previews; clicking an image opens its full-resolution original.
+The supplied photographs show the same object described in the [collection record](https://www.getty.edu/art/collection/object/103RRC). Public Domain / CC0; [museum image policy](https://www.getty.edu/about/opencontent.html). Their use does not imply museum endorsement. The supplied originals are preserved in an offline archive. The site provides lightweight WebP images; clicking an image opens the museum’s collection page.
 
 [01_front_high_angle_post-cons.jpg: official image](https://media.getty.edu/iiif/image/7047782f-d03f-46a9-b4f5-a67be62f1df3/full/max/0/default.jpg) · 3561 × 4500 pixels.
 

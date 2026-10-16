@@ -16,7 +16,7 @@
 
 完整下载来源与SHA256见image_manifest.json。核查日期：2026-10-15。
 
-网站显示说明：页面另提供轻量WebP预览，点击图片可打开上述保持原样的JPEG。原包SHA256SUMS.txt用于留存来稿与原图记录；本地终校后的八语稿校验值另记于publication-sculpture-01.json。
+网站显示说明：页面保留轻量WebP配图，点击图片可前往馆方作品页；上述JPEG原图另行存档，不随网站发布。原包SHA256SUMS.txt用于留存来稿与原图记录；本地终校后的八语稿校验值另记于publication-sculpture-01.json。
 
 ## English
 
@@ -24,7 +24,7 @@ Edgar Degas, Little Dancer Aged Fourteen, 1878–1881, NGA 1999.80.28. The origi
 
 All photographs: Courtesy National Gallery of Art, Washington; Collection of Mr. and Mrs. Paul Mellon. The [collection gallery](https://www.nga.gov/artworks/110292-little-dancer-aged-fourteen) marks these images as public domain; the museum’s [open-access terms](https://www.nga.gov/terms-and-notices) provide them under CC0. Their use does not imply museum endorsement.
 
-The original JPEG files were supplied by the museum’s IIIF service at a longest side of 4,000 pixels and are preserved unchanged. Figure 4 is a museum photograph of a detail, not a crop made for this essay. All five photographs show the same wax sculpture; no bronze or plaster casts are mixed in. Museum gallery numbers differ from the essay’s figure numbers. The website also supplies lightweight WebP previews; clicking a photograph opens the unchanged JPEG.
+The original JPEG files were supplied by the museum’s IIIF service at a longest side of 4,000 pixels and are preserved unchanged. Figure 4 is a museum photograph of a detail, not a crop made for this essay. All five photographs show the same wax sculpture; no bronze or plaster casts are mixed in. Museum gallery numbers differ from the essay’s figure numbers. The website supplies lightweight WebP images; clicking a photograph opens the museum’s collection page. The unchanged JPEGs are archived offline, not hosted on the website.
 
 - Figure 1: three-quarter front view, 2822 × 4000 pixels. [Original image](https://api.nga.gov/iiif/7653abc0-4ae1-4f47-a10c-e58182106c4a/full/!4000,4000/0/default.jpg). File: images/01_three_quarter.jpg; museum gallery image 1.
 - Figure 5: oblique front view with overlapping legs, 2902 × 4000 pixels. [Original image](https://api.nga.gov/iiif/efce105e-a285-4fc4-8712-44c409081b6e/full/!4000,4000/0/default.jpg). File: images/02_oblique.jpg; museum gallery image 4.
