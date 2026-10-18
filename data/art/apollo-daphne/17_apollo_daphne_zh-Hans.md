@@ -2,6 +2,12 @@
 
 西方雕塑细读 17
 
+本版新增小图为同件原作的补充照片。正文针对特定背景与角度的细读，仍对应文中保留的官方链接。点击小图打开馆方作品页。
+
+![贝尔尼尼《阿波罗与达芙妮》，博尔盖塞美术馆原作；馆内全貌补充图。](images/17_apollo_daphne_overview.jpg)
+
+贝尔尼尼《阿波罗与达芙妮》，博尔盖塞美术馆原作；馆内全貌补充图。 摄影: Architas, 2018-06-01. [图片来源与许可](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). 已缩小尺寸；未改变构图.
+
 阿波罗还有一只脚悬在空中。达芙妮的脚却已经接上了树根。
 
 先看这两处，再往上看。男子身上的布向后翻卷，腰和肩仍带着向前的势头；女子的躯干向上拉长，双臂越过头顶，末端却散成一簇簇叶子。她的脸还在回转，嘴仍张着，腿边已有大片树皮。奔跑、回头、扎根、抽枝，全挤在这一个身体周围，彼此没有等候。
@@ -30,6 +36,10 @@
 
 ## 二 树皮没有均匀地包住她
 
+![同图局部：躯干、树皮与腿部。](images/17_apollo_daphne_bark_detail.jpg)
+
+同图局部：躯干、树皮与腿部。 摄影: Architas, 2018-06-01. [图片来源与许可](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). 由上方同一照片裁切，并非另一拍摄角度.
+
 再看那片树皮。
 
 它不是一件从腰部整齐垂下的长裙。上缘参差，高处接近腰际，低处露出长长的腿；边界有突起，也有向下陷入的缺口。这道交界没有围成一个可以拆开的接口。树皮不是完整套在外面的一层，里面也没有一具能原样取出的身体。
@@ -47,6 +57,10 @@
 “晚”不是钟表上可以量出的几秒，而是由两种表面之间的交界造成的。在身体其他部分还明显属于人的时候，接触处已经先改变。形变若到处以相同程度发生，这种错开的感觉反而会减弱。
 
 ## 三 手臂还在伸，轮廓已经分枝
+
+![同图局部：抬起的手臂、头发与枝叶。](images/17_apollo_daphne_foliage_detail.jpg)
+
+同图局部：抬起的手臂、头发与枝叶。 摄影: Architas, 2018-06-01. [图片来源与许可](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). 由上方同一照片裁切，并非另一拍摄角度.
 
 树皮使目光变慢，头顶的叶子却让它忽然分散。
 

@@ -2,6 +2,12 @@
 
 Westliche Skulptur genau betrachtet 19
 
+Die folgenden kleinen Bilder entsprechen den in diesem Text analysierten Fotografien. Eine Genehmigung zur Reproduktion wurde nicht eingeholt; das Urheberrecht verbleibt bei den jeweiligen Rechteinhabern. Ein Klick führt zur offiziellen Quelle.
+
+![Brâncuși, Vogel im Raum, 1927, National Gallery of Art 1989.31.3: Messingvogel, Kalksteinzylinder und Holzsockel. Bildquelle: National Gallery of Art.](images/19_bird_space_commentary.jpg)
+
+Brâncuși, Vogel im Raum, 1927, National Gallery of Art 1989.31.3: Messingvogel, Kalksteinzylinder und Holzsockel. Bildquelle: National Gallery of Art. Keine Genehmigung zur Reproduktion eingeholt. Nur zur Werkbesprechung in diesem Text aufgenommen; das Urheberrecht verbleibt bei den jeweiligen Rechteinhabern. [Bildquelle](https://www.nga.gov/artworks/71073-bird-space). Kein Beschnitt, keine Vergrößerung oder inhaltliche Veränderung.
+
 Suchen wir zunächst die schmalste Stelle.
 
 Die lange goldene Form zieht sich nach unten zusammen, beinahe zu einer Linie. Darunter öffnet sie sich jedoch wieder zu einem schmalen kegelförmigen Fuß, der auf einem hellen Zylinder ruht. Die dünnste Stelle berührt nicht den Boden. Über dieser schmalen Taille ist ein sehr langer Körper angeordnet.

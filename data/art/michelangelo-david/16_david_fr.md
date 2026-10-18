@@ -2,6 +2,12 @@
 
 Regarder de près la sculpture occidentale 16
 
+Les petites images ajoutées sont des photographies complémentaires de la même sculpture originale. Les analyses portant sur un fond ou un angle précis renvoient toujours aux images officielles liées dans le texte. Cliquer sur une image ouvre la notice du musée.
+
+![David de Michel-Ange, l’original conservé à l’Accademia ; vue complémentaire en pied.](images/16_david_overview.jpg)
+
+David de Michel-Ange, l’original conservé à l’Accademia ; vue complémentaire en pied. Photographie: Maksim Sokolov (maxergon.com), 2019-07-18. [Source de l’image et licence](https://commons.wikimedia.org/wiki/File:David_by_Michelangelo_(Academia_Gallery).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Dimensions réduites ; cadrage inchangé.
+
 Sa main droite est déjà descendue près de la cuisse, mais les doigts ne se sont pas entièrement desserrés.
 
 L’autre main se lève près de l’épaule ; le pouce et les doigts repliés retiennent quelque chose de peu visible. Un bras s’allonge, l’autre se plie : le droit entraîne le regard vers le genou, le gauche le ramène vers la tête. Le torse fait à peu près face, tandis que le visage est déjà tourné vers la gauche du personnage. Nous rencontrons d’abord un homme debout ; puis nous découvrons que les différentes parties de son corps exercent leur force dans plusieurs directions.

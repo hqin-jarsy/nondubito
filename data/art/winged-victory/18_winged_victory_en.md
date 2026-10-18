@@ -2,6 +2,12 @@
 
 Looking Closely at Western Sculpture 18
 
+The added thumbnails are supplementary photographs of the same original sculpture. Close readings of a particular background or viewpoint still refer to the official images linked in the essay. Click a thumbnail to open the museum’s work page.
+
+![Winged Victory of Samothrace, Louvre Ma 2369. Oblique overall view, 2015: goddess, ship’s prow, stone base and display platform.](images/18_winged_victory_ship.jpg)
+
+Winged Victory of Samothrace, Louvre Ma 2369. Oblique overall view, 2015: goddess, ship’s prow, stone base and display platform. Photograph: Lyokoï88, 2015-03-21. [Image source and license](https://commons.wikimedia.org/wiki/File:Victoire_de_Samothrace_-_vue_de_gauche_%282%29.JPG); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Resized; composition unchanged.
+
 Follow the chest and abdomen downward. Cloth gathers at the waist, then suddenly crosses diagonally over the thighs, clinging on one side while already swelling behind the body on the other. Above, two wings push the outline outward. She has not been scattered by the wind. Her chest faces forward, and forces moving in several directions meet in the same body.
 
 Look farther down and we discover that she stands on a ship’s prow. The prow is dark gray, with broad, substantial elements extending sideways and a ridge facing us at the front. Above, the goddess opens her wings; below, the ship also spreads to either side. This is more than a delicate figure placed on a heavy pedestal. Both upper and lower parts expand and claim space outward, one dividing into layers of feathers, the other fixing its direction through a sharply defined hull.
@@ -11,6 +17,10 @@ Look farther down and we discover that she stands on a ship’s prow. The prow i
 The sculptor’s name is unknown. The Louvre’s current record dates the work to 200–175 BCE, in the Hellenistic period. She is Nike, the goddess announcing victory. The monument originally stood in the Sanctuary of the Great Gods on Samothrace in the Aegean, dedicated to a naval victory. Which battle and which patron remain debated; a proposed victor cannot be treated as her established owner. We face a dedication that made victory appear in a religious space. Ship, wings, and human body give an abstract noun the posture of arrival. [Collection record](https://collections.louvre.fr/ark:/53355/cl010252531); [Louvre introduction to the work and original site](https://www.louvre.fr/en/explore/the-palace/a-stairway-to-victory)
 
 ## 1. The Wind Does Not Blow Every Fold the Same Way
+
+![Winged Victory of Samothrace, Louvre Ma 2369. Supplementary photograph from 2007, before the 2013–2014 restoration: torso, drapery and near wing; the complete prow is not shown.](images/18_winged_victory_drapery.jpg)
+
+Winged Victory of Samothrace, Louvre Ma 2369. Supplementary photograph from 2007, before the 2013–2014 restoration: torso, drapery and near wing; the complete prow is not shown. Photograph: Marie-Lan Nguyen, 2007. [Image source and license](https://commons.wikimedia.org/wiki/File:Nike_of_Samothrake_Louvre_Ma2369_n4.jpg); [Public domain dedication by photographer (PD-self)](https://commons.wikimedia.org/wiki/File:Nike_of_Samothrake_Louvre_Ma2369_n4.jpg#Licensing). Resized; composition unchanged.
 
 From an oblique frontal position on the goddess’s own left, we can see her abdomen and the cloth billowing behind her together. The close-fitting long garment and the mantle wrapped around the lower body offer different impressions of thickness.
 

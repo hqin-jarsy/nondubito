@@ -2,6 +2,12 @@
 
 Una mirada cercana a la escultura occidental 17
 
+Las imágenes pequeñas añadidas son fotografías complementarias de la misma escultura original. Las lecturas de un fondo o ángulo concreto siguen remitiendo a las imágenes oficiales enlazadas en el texto. Al pulsar una imagen se abre la ficha del museo.
+
+![Apolo y Dafne de Bernini, el original de la Galería Borghese; vista complementaria en el museo.](images/17_apollo_daphne_overview.jpg)
+
+Apolo y Dafne de Bernini, el original de la Galería Borghese; vista complementaria en el museo. Fotografía: Architas, 2018-06-01. [Fuente de la imagen y licencia](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Tamaño reducido; encuadre sin cambios.
+
 Apolo aún tiene un pie en el aire. Los de Dafne ya se unen a raíces.
 
 Miremos primero esos dos lugares y subamos después. La tela del hombre se vuelve hacia atrás; cintura y hombros conservan el impulso hacia delante. El tronco de la mujer se alarga hacia arriba, los brazos superan la cabeza, pero sus extremos se dispersan en grupos de hojas. La cara todavía gira, la boca sigue abierta y junto a las piernas hay ya amplias zonas de corteza. Correr, volverse, arraigar y echar ramas se agolpan alrededor del mismo cuerpo sin esperarse.
@@ -30,6 +36,10 @@ Podemos imaginar dónde caerá el pie de Apolo siguiendo la carrera. El próximo
 
 ## 2. La corteza no la envuelve por igual
 
+![Detalle de la misma fotografía: torso, corteza y piernas.](images/17_apollo_daphne_bark_detail.jpg)
+
+Detalle de la misma fotografía: torso, corteza y piernas. Fotografía: Architas, 2018-06-01. [Fuente de la imagen y licencia](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Recorte de la misma fotografía de arriba, no otro ángulo de toma.
+
 Volvamos a la corteza.
 
 No es una falda larga que caiga ordenadamente desde la cintura. El borde irregular sube casi hasta ella en unas zonas y deja visible una larga pierna en otras; tiene salientes y entrantes. Esa frontera no forma una unión desmontable. La corteza no es una cubierta completa por fuera ni dentro hay un cuerpo que pueda extraerse intacto.
@@ -47,6 +57,10 @@ No hace falta tallar dedos más crispados para aumentar el drama. La mano ha lle
 Ese retraso no son unos segundos medibles: lo produce la frontera entre dos superficies. Mientras otras partes siguen siendo claramente humanas, el contacto ya se ha transformado. Si la metamorfosis avanzara por igual en todas partes, esa sensación de desfase sería menor.
 
 ## 3. Los brazos siguen extendiéndose; el contorno ya echa ramas
+
+![Detalle de la misma fotografía: brazos alzados, cabello y follaje.](images/17_apollo_daphne_foliage_detail.jpg)
+
+Detalle de la misma fotografía: brazos alzados, cabello y follaje. Fotografía: Architas, 2018-06-01. [Fuente de la imagen y licencia](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Recorte de la misma fotografía de arriba, no otro ángulo de toma.
 
 La corteza ralentiza la mirada y las hojas sobre la cabeza la dispersan de pronto.
 

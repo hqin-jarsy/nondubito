@@ -1,0 +1,97 @@
+# Santa Sofía: cómo se despliega un centro hacia sus dos extremos
+
+Lecturas atentas de la arquitectura occidental 06
+
+![Cúpula central, semicúpula y columnatas de dos niveles de Santa Sofía; interior publicado en el folleto del museo de 2019.](images/01_interior_2019.jpg)
+
+Cúpula central, semicúpula y columnatas de dos niveles de Santa Sofía; interior publicado en el folleto del museo de 2019. Crédito: La fuente citada no identifica al fotógrafo. [Fuente / imagen completa](https://muze.gov.tr/s3/MysFileLibrary/IstanbulAyasofyaMuzesi-ca7842f8-b9a3-48e8-9265-c54d8e9128dd.pdf#page=1). No se ha obtenido permiso de reproducción.
+
+Miremos primero debajo de la cúpula central, en lugar de dirigirnos a su punto más alto.
+
+En una fotografía interior del antiguo folleto del museo, publicado por el Ministerio de Cultura y Turismo de Turquía, la gran cúpula ocupa el centro de la parte superior, con un anillo de ventanas luminosas en su base. Si miramos hacia el fondo, debajo de ese anillo aparece un gran arco y, más allá, una semicúpula que prolonga el espacio en profundidad. Cuando la superficie curva desciende, el espacio aún no termina: otros arcos menores, superficies curvas y el ábside continúan extendiéndose hacia el fondo. A izquierda y derecha ocurre algo distinto. Sobre las columnatas de dos niveles se levantan altos muros con ventanas, encajados dentro de los grandes arcos, sin las amplias semicúpulas que se abomban hacia fuera. [Ver el interior en la primera página del antiguo folleto](https://muze.gov.tr/s3/MysFileLibrary/IstanbulAyasofyaMuzesi-ca7842f8-b9a3-48e8-9265-c54d8e9128dd.pdf#page=1)
+
+Santa Sofía plantea así una pregunta espacial muy concreta: si la cúpula central destaca tanto, ¿por qué conserva el conjunto una dirección longitudinal tan fuerte? La respuesta está a su alrededor. Los cuatro grandes arcos bajo la cúpula no enlazan de la misma manera con la periferia. El edificio marca límites relativamente claros a ambos lados y, al mismo tiempo, prolonga el centro hacia sus dos extremos a lo largo del eje mayor.
+
+El edificio está en la actual Estambul. Fue una iglesia de Constantinopla, capital del Imperio romano de Oriente, y pertenece a lo que suele llamarse arquitectura bizantina. El cuerpo principal conservado fue encargado por Justiniano I, diseñado por Antemio e Isidoro y construido entre 532 y 537. Tras la conquista otomana de Constantinopla en 1453 se convirtió en mezquita; en 1935 abrió como museo y en 2020 recuperó el uso de mezquita. El folleto con el que comienza este texto se produjo en 2019 y documenta, por tanto, la etapa museística anterior. [Historia arquitectónica del Metropolitan Museum of Art](https://www.metmuseum.org/essays/hagia-sophia-532-37); [historia del Ministerio de Cultura y Turismo de Turquía](https://www.ktb.gov.tr/EN-113776/ayasofya-hagia-sophia.html); [informe de la misión de UNESCO e ICOMOS, página 35](https://whc.unesco.org/document/220840#page=35)
+
+## Cuatro grandes arcos, dos formas de desplegarse
+
+La planta de la segunda página del folleto revela las relaciones que la decoración y la perspectiva esconden en la fotografía. La entrada y los dos vestíbulos transversales están abajo; el ábside, arriba. En el centro, cuatro gruesos pilares representados en negro delimitan un gran espacio bajo la cúpula central. Más allá de ellos hay naves laterales más estrechas a izquierda y derecha. Aquí se sigue la denominación convencional de la arquitectura eclesiástica: llamamos extremo occidental al de la entrada y extremo oriental al del ábside. [Ver la planta en la segunda página del antiguo folleto](https://muze.gov.tr/s3/MysFileLibrary/IstanbulAyasofyaMuzesi-ca7842f8-b9a3-48e8-9265-c54d8e9128dd.pdf#page=2)
+
+![Planta de Santa Sofía en el folleto de 2019: entrada abajo, ábside arriba.](images/02_brochure_plan.jpg)
+
+Planta de Santa Sofía en el folleto de 2019: entrada abajo, ábside arriba. Crédito: Autor del dibujo no identificado. [Fuente / imagen completa](https://muze.gov.tr/s3/MysFileLibrary/IstanbulAyasofyaMuzesi-ca7842f8-b9a3-48e8-9265-c54d8e9128dd.pdf#page=2). No se ha obtenido permiso de reproducción.
+
+Conviene reconocer primero los cuatro grandes pilares de la planta. En las vistas interiores, las numerosas columnas esbeltas atraen fácilmente la atención; sin embargo, los elementos fundamentales que sostienen el sistema central son esos pilares mucho más gruesos y los grandes arcos que los unen. Las columnas pequeñas organizan los huecos de las naves laterales y las tribunas; los grandes pilares definen la amplia luz del centro. Ambos se entrelazan en una misma escena interior, pero actúan a escalas muy distintas.
+
+Entre los grandes pilares se forma un marco casi cuadrado que debe recibir arriba una cúpula circular. Volvamos a los cuatro ángulos bajo la gran cúpula: las zonas con figuras aladas no son paneles planos. Desde su extremo inferior, más estrecho, se ensanchan hacia arriba y forman superficies triangulares cóncavas, hasta enlazar por el borde superior con la circunferencia de la base de la cúpula. Estas superficies curvas se llaman pechinas. Permiten unir de manera continua la parte cuadrada inferior y la circular superior, sin dejar cuatro techos planos y abruptos en las esquinas. [Metropolitan Museum of Art: explicación de las pechinas](https://www.metmuseum.org/exhibitions/listings/2012/byzantium-and-islam/blog/where-in-the-world/posts/hagia-sophia)
+
+Lo importante no es solo esa transición del cuadrado al círculo. Los cuatro grandes arcos delimitan el espacio central a una misma altura, pero su contenido se divide en dos grupos. Al norte y al sur, dentro de los arcos hay paredes con ventanas que se abren más abajo mediante columnatas; al este y al oeste, tras los grandes arcos se prolongan espacios cubiertos por semicúpulas. Hacia los lados, la mirada encuentra planos verticales superpuestos; a lo largo del eje mayor, puede atravesar el gran arco y seguir otra porción descendente de la cubierta.
+
+Por eso pueden existir a la vez una cúpula central y una gran sala longitudinal. El centro tiene un ámbito definido, pero también cuenta delante y detrás con aberturas suficientemente amplias que lo conectan. El centro no se borra y el recorrido longitudinal no necesita rodearlo.
+
+## Las semicúpulas convierten la altura en una secuencia
+
+Es fácil considerar la «semicúpula» un pequeño accesorio junto a la gran cúpula. En la vista interior, sin embargo, ocupa una parte considerable del campo visual.
+
+Recorramos primero el contorno del gran arco del fondo. Su clave se aproxima al borde inferior de la cúpula central; sus arranques descienden cerca de los grandes pilares laterales. Toda la abertura que delimita continúa hacia atrás. La superficie curva de la semicúpula posterior se despliega desde arriba y luego se abre hacia abajo y hacia los lados. Las bandas decorativas radiales de la fotografía facilitan seguir ese desarrollo: se separan desde lo alto y conducen poco a poco la atención hacia las ventanas y los arcos más bajos.
+
+Debajo de la semicúpula tampoco hay un muro recto de cierre. Los huecos curvos de ambos lados siguen retrocediendo hacia fuera, cubiertos por superficies menores; en el centro, el espacio avanza hacia el ábside. La gran superficie curva extiende el espacio por todo el extremo, y las menores dividen después sus bordes en varios lugares con profundidad. La «longitud» no depende solo de estirar un pasillo sobre el suelo, sino también de que la cubierta cambie continuamente de altura y anchura.
+
+Entender esta sala de oeste a este permite seguir una oscilación clara: las cubiertas más bajas del oeste ascienden hacia el centro, la cúpula central alcanza el punto más alto y luego la semicúpula oriental desciende hacia el ábside. El eje mayor tiene así una cima, en lugar de mantener un techo uniforme desde la entrada hasta el fondo. La continuidad del suelo reúne las partes; las variaciones de la cubierta las ordenan en una secuencia. El tramo central es especialmente ancho, pero sigue perteneciendo a una serie que puede leerse hacia ambos extremos.
+
+Los extremos tienen también funciones diferentes. El occidental conecta con la entrada y los vestíbulos; el oriental se cierra con el ábside. En la fotografía cercana del ábside del folleto se ve a la Virgen con el Niño en el centro de una superficie curva dorada, sobre una fila de ventanas dispuestas en arco. La imagen se concentra en lo alto del extremo y establece un acento distinto al de la amplia cubierta central: la cúpula reúne la sala en las alturas; la imagen del ábside conduce el eje longitudinal hacia un final con contenido. Este mosaico figurativo pertenece a una fase decorativa posterior y no debe considerarse, junto con el edificio del siglo VI, un conjunto realizado de una sola vez. [Ver la fotografía del ábside en la segunda página del folleto](https://muze.gov.tr/s3/MysFileLibrary/IstanbulAyasofyaMuzesi-ca7842f8-b9a3-48e8-9265-c54d8e9128dd.pdf#page=2)
+
+![Mosaico de la Virgen con el Niño sobre las ventanas curvas del ábside; vista de la etapa de museo publicada en 2019.](images/03_apse_2019.jpg)
+
+Mosaico de la Virgen con el Niño sobre las ventanas curvas del ábside; vista de la etapa de museo publicada en 2019. Crédito: La fuente citada no identifica al fotógrafo. [Fuente / imagen completa](https://muze.gov.tr/s3/MysFileLibrary/IstanbulAyasofyaMuzesi-ca7842f8-b9a3-48e8-9265-c54d8e9128dd.pdf#page=2). No se ha obtenido permiso de reproducción.
+
+Por tanto, llamar a Santa Sofía una combinación de espacio centralizado y basílica longitudinal puede tener un contenido bastante preciso. Esa combinación ocurre cuando un mismo gran arco delimita el centro y a la vez se abre hacia el fondo; también ocurre cuando las semicúpulas transmiten la altura central a los extremos. No consiste en superponer sin más dos tipos de planta.
+
+## Las naves laterales dan al centro un borde con profundidad
+
+Si solo dibujamos la cúpula central y las semicúpulas de los extremos, aún dejamos fuera una gran parte del edificio que muestra la fotografía: las columnatas de dos niveles de ambos lados.
+
+Las arcadas entre columnas del nivel inferior son mayores; arriba hay una hilera de huecos más apretados. Una cornisa horizontal separa los dos pisos y evita que las columnas se confundan en una serie de líneas verticales difíciles de distinguir. Más arriba, los grandes muros con ventanas introducen una tercera escala. Arcos pequeños, arcos grandes y muros con ventanas se superponen y dividen la altura de la sala central en niveles comparables.
+
+Estas columnatas también dan espesor al «límite». En los huecos de las arcadas inferiores del lado derecho de la fotografía todavía se ven las bóvedas y la decoración de la propia nave lateral; entre las columnas superiores también quedan espacios retranqueados. El borde central tiene, por tanto, columnas cercanas, intervalos entre ellas y superficies posteriores. Delimita la gran sala y al mismo tiempo permite saber que hay otros espacios junto a ella.
+
+Esta disposición es muy distinta de la función de las semicúpulas de los extremos. Estas prolongan la gran escala central; las naves laterales la descomponen en una sucesión de intervalos menores. A lo largo del eje mayor, el ojo puede seguir los ascensos y descensos de la cubierta; al girar hacia los lados, empieza a reconocer columnas, antepechos, capiteles y arcadas repetidos. La sala no exige que todas las direcciones sigan un mismo ritmo.
+
+Dentro de ese borde denso y articulado, los grandes pilares tienen un peso especial. Sus caras más anchas interrumpen las columnatas y reciben arriba los grandes arcos. La decoración evita que la interrupción resulte brusca: los revestimientos de piedra y las molduras horizontales atraviesan los pilares y relacionan las partes contiguas. El sistema portante puede localizarse, pero no queda completamente desnudo como un esqueleto independiente. La observación requiere reconocer a la vez esos nudos pesados y los pequeños huecos que se extienden a su alrededor.
+
+En lo alto, el anillo de ventanas al pie de la cúpula vuelve a cambiar esas relaciones. Las ventanas luminosas dividen su borde inferior en muchos segmentos pequeños y los nervios convergen hacia arriba. Debajo hay grandes pilares y arcos pesados; encima, la superficie curva parece continua y ligera. La descripción de Procopio, autor del siglo VI, según la cual la cúpula parecía suspendida del cielo, tiene una base visual reconocible. Para la mirada actual, lo más interesante es que los apoyos no han desaparecido: el edificio hace que soporte y cubierta presenten pesos aparentes distintos. Su texto elogiaba la arquitectura de Justiniano, y la cúpula que describía era anterior a las reconstrucciones posteriores. El efecto de la fotografía y esa descripción histórica pueden leerse juntos, pero cada uno pertenece a su propio momento. [Descripción de Procopio citada por el Metropolitan Museum of Art](https://www.metmuseum.org/exhibitions/listings/2012/byzantium-and-islam/blog/cultural-connections/posts/saint-anselm)
+
+## Superficies continuas, una larga construcción
+
+La continuidad interior es tan fluida que invita a imaginar todas las partes como un proyecto logrado de una sola vez. La historia de la cúpula es mucho más compleja.
+
+La primera cúpula, terminada en 537, sufrió un derrumbe en 558; en 562 se completó una reconstrucción más alta. Después, terremotos, reparaciones y refuerzos siguieron modificando el edificio. La cúpula actual prolonga el sistema temprano, pero incluye también los resultados de reconstrucciones y mantenimientos posteriores. Llamarla «cúpula del siglo VI» señala su origen en la historia de la arquitectura; no permite atribuir a 537 toda la fábrica y todas las superficies conservadas. [Metropolitan Museum of Art: fechas de la reconstrucción](https://www.metmuseum.org/essays/hagia-sophia-532-37)
+
+El exterior ofrece otra cara que el interior no deja ver tan fácilmente. En la fotografía izquierda de la segunda página del antiguo folleto, bajo la gran cúpula aparece un arco ancho; la pared con ventanas, retranqueada entre los arcos, queda encajada entre gruesas masas laterales. La superficie perforada que dentro parece ligera adquiere aquí un perímetro alto y sólido. Una fotografía exterior cercana de 2006, conservada por UNESCO, permite ver también los bordes superpuestos de las cubiertas y las ventanas al pie de la cúpula. Las superficies curvas pueden enlazarse de forma continua por dentro, pero fuera hay muchas juntas, cambios de dirección y tejados de distintas alturas que requieren atención. [Ver la fotografía exterior cercana de UNESCO](https://whc.unesco.org/en/documents/110717)
+
+La época otomana también modeló la Santa Sofía que conocemos. Los refuerzos, las ampliaciones y los elementos de la mezquita no son una capa que pueda retirarse sin más de la historia del edificio. El folleto recoge que los hermanos Fossati dirigieron una restauración entre 1847 y 1849; la llamativa caligrafía árabe de la cúpula central también se relaciona con los trabajos de ese periodo. El interior de la fotografía, formado por dorados, tonos oscuros, piedra y caligrafía, ya ha atravesado las decisiones de varias épocas.
+
+Estos cambios no pertenecen solo a un pasado lejano. Durante su misión de 2024, UNESCO e ICOMOS tomaron dos fotografías ante el ábside desde posiciones diferentes: una desde el nivel inferior y otra desde la tribuna. En la primera, el suelo del espacio de oración está cubierto con una alfombra verde y hay cortinas suspendidas delante de la imagen del ábside; en la segunda aparecen cerca el antepecho de la tribuna y bóvedas mucho más bajas. Las dos imágenes hacen visible algo fácil de pasar por alto en el antiguo folleto: el edificio contiene puntos de observación a distintas alturas, y el uso y la gestión también afectan a qué partes pueden verse. [Informe de la misión, página 36, fotografías 17 y 18](https://whc.unesco.org/document/220840#page=36)
+
+![Ábside visto desde la planta baja, con alfombra verde y cortinas suspendidas; fotografía 17 de la misión de 2024.](images/04_apse_ground_2024.jpg)
+
+Ábside visto desde la planta baja, con alfombra verde y cortinas suspendidas; fotografía 17 de la misión de 2024. Crédito: La fuente citada no identifica al fotógrafo. [Fuente / imagen completa](https://whc.unesco.org/document/220840#page=36). No se ha obtenido permiso de reproducción.
+
+![Ábside visto desde la galería, con antepecho y bóveda baja en primer plano; fotografía 18 de la misión de 2024.](images/05_apse_gallery_2024.jpg)
+
+Ábside visto desde la galería, con antepecho y bóveda baja en primer plano; fotografía 18 de la misión de 2024. Crédito: La fuente citada no identifica al fotógrafo. [Fuente / imagen completa](https://whc.unesco.org/document/220840#page=36). No se ha obtenido permiso de reproducción.
+
+El centro de Santa Sofía puede entenderse, por tanto, como un lugar de enlace. Cuatro grandes pilares y sus arcos lo definen; las semicúpulas oriental y occidental lo prolongan hacia ambos extremos; las columnatas norte y sur lo conectan con espacios más pequeños y bajos. La fuerza de la cúpula central procede de esas continuidades diferentes. El gran arco central es a la vez el final de un tramo y el comienzo de la siguiente cubierta.
+
+---
+
+### Imágenes y fuentes
+
+Esta lectura atenta se basa en el folleto oficial, fotografías e informes de conservación; no es un relato de visita. El PDF del folleto se produjo en septiembre de 2019, pero no indica las fechas de toma de las fotografías concretas. Las imágenes y la planta sirven para reconocer relaciones arquitectónicas, no representan la disposición del lugar en 2026. Las fotografías de la misión de 2024 también se utilizan con referencia a ese momento. La perspectiva y el encuadre modifican la apariencia de las formas; no se usan para calcular dimensiones.
+
+- [Ministerio de Cultura y Turismo de Turquía: folleto del Museo de Santa Sofía](https://muze.gov.tr/s3/MysFileLibrary/IstanbulAyasofyaMuzesi-ca7842f8-b9a3-48e8-9265-c54d8e9128dd.pdf): vista interior panorámica en la primera página; planta, exterior, fotografía del ábside y explicación de la restauración en la segunda. La esquina superior izquierda de la primera página anuncia otro museo, no Santa Sofía.
+- [Metropolitan Museum of Art: Santa Sofía, 532–537](https://www.metmuseum.org/essays/hagia-sophia-532-37): construcción principal, reconstrucción de la cúpula y fases decorativas. La página se escribió en 2004; la identificación como museo debe completarse con fuentes más recientes.
+- [UNESCO: registro fotográfico de la cúpula de Santa Sofía](https://whc.unesco.org/en/documents/110717): autoría de Junaid Sorosh-Wali, con fecha indicada del 8 de abril de 2006. Aquí se utiliza para observar las cubiertas exteriores y la base de la cúpula.
+- [Informe de la misión de UNESCO e ICOMOS a las zonas históricas de Estambul](https://whc.unesco.org/document/220840): misión realizada del 24 al 27 de junio de 2024. Las páginas 35–38 tratan el uso, la visibilidad y la conservación de Santa Sofía; la página 36 incluye las fotografías 17 y 18.
+- [Decisión del Comité del Patrimonio Mundial de 2025](https://whc.unesco.org/en/decisions/8855/): sigue solicitando mejoras en la gestión de visitas, los estudios de humedad y la planificación general de conservación de Santa Sofía. Muestra que la conservación continúa, en vez de constituir una restitución ya terminada.

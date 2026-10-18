@@ -2,6 +2,12 @@
 
 Looking Closely at Western Sculpture 20
 
+The small images below correspond to the photographs analyzed in this essay. Reproduction permission has not been obtained; copyright remains with the respective rights holders. Click to view the official source.
+
+![Hepworth, Pelagos, 1946, Tate T00699 / BH133: wooden form, pale interior, strings and wooden base against a gray-white background. © Bowness. Photo: Tate. Presented by The Hepworth Wakefield / Google Arts & Culture.](images/20_pelagos_studio_commentary.jpg)
+
+Hepworth, Pelagos, 1946, Tate T00699 / BH133: wooden form, pale interior, strings and wooden base against a gray-white background. © Bowness. Photo: Tate. Presented by The Hepworth Wakefield / Google Arts & Culture. Reproduction permission has not been obtained. Included only for commentary in this essay; copyright remains with the respective rights holders. [Image source](https://artsandculture.google.com/asset/pelagos-barbara-hepworth/DwGCt8iMA9mMAw?hl=en). No cropping, enlargement or content alteration.
+
 A few fine strings cross the opening diagonally, while the wood turns at either end.
 
 Start by opening the photograph credited to Tate. At the upper right, a golden-brown wooden edge reaches inward, its tip resembling a curled tongue. A little lower and to the left, another curved surface, painted a pale color, turns upward. Strings join one end to the other, crossing the distance between them. Following the broad wooden contour, the eye travels around; following the strings, it can cross directly. Both routes belong to a sculpture less than half a meter high.
@@ -73,6 +79,10 @@ Scale produces an interesting contrast here. Our arms cannot encircle a bay, but
 This also helps explain why it needs no carved figure. The body can play a role without appearing as a human outline. Looking inward, I am close; looking through the opening toward the background, I become aware of somewhere farther away. The sculpture gives the viewer no face, yet gives viewing itself the direction of “looking over there from here.”
 
 ## 5. A Garden Appears Through the Opening
+
+![The same Pelagos photographed in a garden: pale interior and plants beyond the opening. Source: the artist’s estate website; artwork © Bowness. No photographer is explicitly credited on the consulted work page.](images/20_pelagos_garden_commentary.jpg)
+
+The same Pelagos photographed in a garden: pale interior and plants beyond the opening. Source: the artist’s estate website; artwork © Bowness. No photographer is explicitly credited on the consulted work page. Reproduction permission has not been obtained. Included only for commentary in this essay; copyright remains with the respective rights holders. [Image source](https://www.barbarahepworth.org.uk/sculptures/1946/pelagos/index.php?sort=catalogue). No cropping, enlargement or content alteration.
 
 [Another official photograph: the garden view on the artist’s estate website](https://www.barbarahepworth.org.uk/sculptures/1946/pelagos/index.php?sort=catalogue)
 

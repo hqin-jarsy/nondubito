@@ -33,16 +33,17 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
    await page.keyboard.press('Escape');assert.equal(await page.locator('.language-menu[open]').count(),0);
    if(file!=='index.html'){
     const work=works.find(w=>file===`${w.category}/${w.slug}.html`);
+    const imageTargets=new Set(work.inline_images?Object.values(work.inline_images).map(i=>i.click_target):[work.about]);
     const source=fs.readFileSync(path.join(__dirname,'../data/art',work.id,`${work.source_prefix}_zh-Hans.md`),'utf8');
     assert.equal(await page.locator('figure').count(),(source.match(/^!\[/gm)||[]).length);
     assert.equal(await page.locator('.optional-reading h2').count(),0,'Image notes must remain outside optional theory');
     for(const img of await page.locator('figure img').all()){
      await img.scrollIntoViewIfNeeded();await img.evaluate(decodeImage);assert.ok(await img.evaluate(i=>i.naturalWidth>0));
-     assert.equal(await img.evaluate(i=>i.parentElement.href),work.about);
+     assert.ok(imageTargets.has(await img.evaluate(i=>i.parentElement.href)));
      assert.equal(await img.evaluate(i=>i.parentElement.target),'_blank');
      assert.ok(await img.evaluate(i=>new URL(i.currentSrc).pathname.endsWith('.webp')));
     }
-    for(const link of await page.locator('figure .image-hint').all()) assert.equal(await link.getAttribute('href'),work.about);
+    for(const link of await page.locator('figure .image-hint').all()) assert.ok(imageTargets.has(await link.getAttribute('href')));
     if(work.image) {
      assert.ok((await page.locator('meta[property="og:image"]').getAttribute('content')).endsWith('-1280.webp'));
     } else {
@@ -50,7 +51,9 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
      assert.equal(await page.locator('.art-viewing a').getAttribute('href'),work.about);
      assert.ok(await page.locator('.art-viewing').isVisible());
     }
-    await page.locator('.optional-reading summary').click();assert.ok(await page.locator('.optional-reading .source-note').isVisible());
+    if(work.has_optional!==false) {
+     await page.locator('.optional-reading summary').click();assert.ok(await page.locator('.optional-reading .source-note').isVisible());
+    } else assert.equal(await page.locator('.optional-reading').count(),0);
    } else {
     assert.equal(await page.locator('.art-card').count(),works.length);
     await page.locator('.jump a[href="#western-sculpture"]').click();
@@ -69,7 +72,9 @@ const decodeImage=i=>Promise.race([i.decode(),new Promise((_,reject)=>setTimeout
    const file=`${work.category}/${work.slug}.html`;
    await page.goto(url('zh',file)+'#section-2');await page.locator('.language-menu summary').click();await page.locator('[data-edition="de"]').click();
    await page.waitForURL('**/de/'+file+'?lang=de#section-2');
-   await page.goto(url('ko',file)+`#section-${(work.main_sections??5)+1}`);assert.equal(await page.locator('.optional-reading[open]').count(),1);
+   if(work.has_optional!==false) {
+    await page.goto(url('ko',file)+`#section-${(work.main_sections??5)+1}`);assert.equal(await page.locator('.optional-reading[open]').count(),1);
+   }
    await page.setViewportSize({width:id==='monet'?1440:390,height:1000});await page.goto(url(id==='mondrian'?'ko':'zh',file));
    await page.screenshot({path:`/tmp/art-${id}.png`});
   }

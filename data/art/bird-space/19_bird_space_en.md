@@ -2,6 +2,12 @@
 
 Looking Closely at Western Sculpture 19
 
+The small images below correspond to the photographs analyzed in this essay. Reproduction permission has not been obtained; copyright remains with the respective rights holders. Click to view the official source.
+
+![Brâncuși, Bird in Space, 1927, National Gallery of Art 1989.31.3: brass bird, limestone cylinder and wooden base. Image source: National Gallery of Art.](images/19_bird_space_commentary.jpg)
+
+Brâncuși, Bird in Space, 1927, National Gallery of Art 1989.31.3: brass bird, limestone cylinder and wooden base. Image source: National Gallery of Art. Reproduction permission has not been obtained. Included only for commentary in this essay; copyright remains with the respective rights holders. [Image source](https://www.nga.gov/artworks/71073-bird-space). No cropping, enlargement or content alteration.
+
 First find the narrowest part.
 
 The long golden form gathers inward as it descends, almost shrinking to a line. Farther down, however, it opens again into a narrow conical foot resting on a pale cylinder. Its thinnest point does not touch the ground. A very long body is arranged above this slender waist.

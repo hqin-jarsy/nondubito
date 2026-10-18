@@ -1,0 +1,9 @@
+# Italian cultural-heritage image-use caution
+
+Checked 18 October 2026. These statements distinguish the photographer copyright license from any separate cultural-heritage permissions. They are not individualized legal advice.
+
+- Accademia official permissions page: https://www.galleriaaccademiafirenze.it/concessioni/ . Its office issues permissions for photographs and reproduction of images of works in its collection. It says private personal-use reproductions carry no fee and provides forms for other image uses. Do not equate no fee with universal permission.
+- Borghese official photo/video rules: https://galleriaborghese.cultura.gov.it/info/foto-e-video/ . They describe free reproduction/dissemination for qualifying non-profit study, research, free expression, creativity and promotion of heritage knowledge, with non-intrusive capture and no further profit-making reproduction. Other uses require a concession, sometimes free and sometimes fee-based.
+- Public legal source: https://www.normattiva.it/atto/caricaDettaglioAtto?atto.articolo.numero=12&atto.articolo.sottoArticolo=1&atto.articolo.tipoArticolo=0&atto.codiceRedazionale=14G00095&atto.dataPubblicazioneGazzetta=2014-05-31 . This shows the 2014 introduction of Article 108(3-bis). For a publication decision use current law and the relevant institution's rules; this historical amendment is explanatory, not a comprehensive current-law clearance.
+
+Both selected Italian photographs carry CC BY-SA 4.0 from their named photographer. Attribute creator, link source and license, identify resizing/crops, and keep derivative images under that license. The selected local research/commentary package is not being externally published. Do not promise unrestricted commercial or cross-jurisdiction self-hosting from CC status alone. Official images linked by the essays are not covered by the third-party photo licenses.

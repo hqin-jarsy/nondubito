@@ -2,6 +2,12 @@
 
 Una mirada cercana a la escultura occidental 20
 
+Las imágenes pequeñas que siguen corresponden a las fotografías analizadas en este ensayo. No se ha obtenido permiso de reproducción; los derechos pertenecen a sus respectivos titulares. Pulse para consultar la fuente oficial.
+
+![Hepworth, Pelagos, 1946, Tate T00699 / BH133: forma de madera, interior claro, hilos y base de madera sobre fondo gris blanquecino. © Bowness. Photo: Tate. Presentación: The Hepworth Wakefield / Google Arts & Culture.](images/20_pelagos_studio_commentary.jpg)
+
+Hepworth, Pelagos, 1946, Tate T00699 / BH133: forma de madera, interior claro, hilos y base de madera sobre fondo gris blanquecino. © Bowness. Photo: Tate. Presentación: The Hepworth Wakefield / Google Arts & Culture. No se ha obtenido permiso de reproducción. Imagen incluida únicamente para comentar la obra en este ensayo; derechos reservados a sus respectivos titulares. [Fuente de la imagen](https://artsandculture.google.com/asset/pelagos-barbara-hepworth/DwGCt8iMA9mMAw?hl=en). Sin recorte, ampliación ni alteración del contenido.
+
 Unos hilos cruzan el vacío en diagonal; en ambos extremos, la madera cambia de dirección.
 
 Abramos primero la fotografía de la obra tomada por la Tate. Arriba a la derecha, un borde de madera marrón dorada avanza hacia dentro y termina como una punta de lengua recogida; algo más abajo a la izquierda, otra superficie curva, pintada de color claro, se vuelve hacia arriba. Los hilos unen ambos extremos y atraviesan la distancia entre ellos. Si seguimos el contorno grande de la madera, la mirada da un rodeo; si seguimos los hilos, puede cruzar directamente. Ambos recorridos caben en una escultura de menos de medio metro de altura.
@@ -73,6 +79,10 @@ El tamaño produce un contraste interesante. No podemos abrazar una bahía, pero
 Eso explica también por qué no necesita una figura humana tallada. El papel del cuerpo puede aparecer sin el contorno de un cuerpo humano. Al mirar la pared interior, estoy cerca; al mirar el fondo por la abertura, advierto que hay otro lugar detrás. La escultura no da un rostro al espectador, pero hace que el propio mirar tenga la dirección de un «ver desde aquí hacia allí».
 
 ## 5. El jardín aparece por el hueco
+
+![El mismo Pelagos fotografiado en un jardín: interior claro y plantas detrás de la abertura. Fuente: web oficial del legado de la artista; obra © Bowness. La ficha consultada no identifica expresamente al fotógrafo.](images/20_pelagos_garden_commentary.jpg)
+
+El mismo Pelagos fotografiado en un jardín: interior claro y plantas detrás de la abertura. Fuente: web oficial del legado de la artista; obra © Bowness. La ficha consultada no identifica expresamente al fotógrafo. No se ha obtenido permiso de reproducción. Imagen incluida únicamente para comentar la obra en este ensayo; derechos reservados a sus respectivos titulares. [Fuente de la imagen](https://www.barbarahepworth.org.uk/sculptures/1946/pelagos/index.php?sort=catalogue). Sin recorte, ampliación ni alteración del contenido.
 
 [Otra fotografía oficial: vista del jardín en la web del legado de la artista](https://www.barbarahepworth.org.uk/sculptures/1946/pelagos/index.php?sort=catalogue)
 

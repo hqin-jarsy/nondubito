@@ -1,0 +1,25 @@
+# 正文所用资料与图像索引
+
+以下按正文首次出现排列，页码锚点保留。建筑资料与图像来自官方机构；SAE文章来自作者网站。引用的身份、时间与观察限制以正文末尾说明为准。
+
+1. [看官方节点近照](https://www.centrepompidou.fr/fileadmin/user_upload/gerberette-detail.jpg)
+2. [建筑师事务所项目资料](https://www.rpbw.com/project/centre-georges-pompidou)
+3. [外围骨架照片](https://www.centrepompidou.fr/fileadmin/user_upload/structure-detail.jpg)
+4. [罗杰斯事务所：结构说明](https://rshp.com/projects/culture-and-leisure/centre-pompidou/)
+5. [工厂照片](https://www.centrepompidou.fr/fileadmin/user_upload/detail-structure.jpg)
+6. [局部剖面图](https://cdn.sanity.io/images/zi3g9jaq/production/6aa7295ee25a1fba0ab412ee1a2ed095e4cb7c65-1331x948.jpg)
+7. [整体剖面图](https://cdn.sanity.io/images/zi3g9jaq/production/18d43af1dfad7753233e2851fa02ffff95bb7e52-1400x700.jpg)
+8. [公共图书馆照片](https://cdn.sanity.io/images/zi3g9jaq/production/c866e3a1650bba8b55f2f7b6094d791e0f3503eb-1400x930.jpg)
+9. [另一张展厅照片](https://cdn.sanity.io/images/zi3g9jaq/production/18f806b83b315e83726e6a89d6e5b96edcfbe11b-1400x934.jpg)
+10. [馆方：空间与用途的变化](https://www.centrepompidou.fr/fr/offre-aux-professionnels/enseignants/dossiers-ressources-sur-lart/larchitecture-du-centre-pompidou/espaces-et-usages)
+11. [设备立面的正面照片](https://www.centrepompidou.fr/fileadmin/_processed_/c/9/csm_dossier_architecture-centre-pompidou_structure-10_b01f48df12.jpg)
+12. [馆方建筑介绍](https://www.centrepompidou.fr/en/centre-pompidou-is-transforming-itself/an-iconic-architecture)
+13. [曼努埃尔·布劳恩2016年的照片](https://www.centrepompidou.fr/fileadmin/user_upload/archi_11_copyright_manuel-braun_2016.jpg)
+14. [官方更新计划](https://www.centrepompidou.fr/en/centre-pompidou-is-transforming-itself/renovation-project-centre-pompidou-2030)
+15. [《再漂亮的想法，也要等世界回答》](https://nondubito.net/essays/aesthetics/ray04.html?lang=zh)
+16. [1974年的吊装照片](https://www.centrepompidou.fr/fileadmin/user_upload/structure-noeud.jpg)
+17. [1974年活动报告，印页21（PDF第17页）](https://www.centrepompidou.fr/fileadmin/user_upload/Bilans_d_activite/bilan-activite-1974.pdf#page=17)
+18. [蓬皮杜中心：金属外骨架](https://www.centrepompidou.fr/en/pompidou-plus/magazine/article/secrets-darchi-lexosquelette-metallique-du-centre-pompidou)
+19. [蓬皮杜中心：结构与模块](https://www.centrepompidou.fr/fr/offre-aux-professionnels/enseignants/dossiers-ressources-sur-lart/larchitecture-du-centre-pompidou/structure-et-modules)
+20. [奥雅纳1973年工程专刊](https://www.arup.com/globalassets/downloads/arup-journal/the-arup-journal-1973-issue-2.pdf)
+21. [馆方广场专题](https://www.centrepompidou.fr/en/pompidou-plus/magazine/article/architectural-secrets-the-piazza-of-the-centre-pompidou)

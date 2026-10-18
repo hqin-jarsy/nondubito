@@ -2,6 +2,12 @@
 
 西方雕塑细读 20
 
+以下小图对应本文分析的照片；未取得转载许可，版权归相关权利人。点击查看官方来源。
+
+![赫普沃斯《Pelagos》，1946，Tate T00699／BH133；灰白背景中的木雕、浅色内壁、细线与木座。© Bowness. Photo: Tate；机构展示：The Hepworth Wakefield／Google Arts & Culture。](images/20_pelagos_studio_commentary.jpg)
+
+赫普沃斯《Pelagos》，1946，Tate T00699／BH133；灰白背景中的木雕、浅色内壁、细线与木座。© Bowness. Photo: Tate；机构展示：The Hepworth Wakefield／Google Arts & Culture。 未取得转载许可，仅供本篇作品评论；版权归相关权利人。 [图像来源](https://artsandculture.google.com/asset/pelagos-barbara-hepworth/DwGCt8iMA9mMAw?hl=en). 未裁切、未放大或改变图像内容.
+
 几根细线斜斜跨过空处，木头却在两端转弯。
 
 先打开泰特摄影的作品图。右上方，一片金棕色的木质边缘向内伸出，末端像一只收拢的舌尖；稍偏左下，另一片涂成浅色的弧面向上翻。细线从这一端接到另一端，穿过两者之间的距离。顺着木头的大轮廓看，眼睛会绕行；顺着细线看，眼睛可以直接横越。两种走法，都发生在一件不到半米高的雕塑里。
@@ -73,6 +79,10 @@
 这也说明它为什么不需要一个被雕出的人物。身体的作用可以不以人体轮廓出现。看向内侧时，我在近处；透过开口看背景时，我又意识到后面还有地方。雕塑没有替观者塑出一张脸，却让观看本身带着“从这里看过去”的方向。
 
 ## 五 花园从孔隙里露出来
+
+![同一件《Pelagos》的花园角度：近白内壁与开口后方的植物。来源：艺术家遗产官网；作品版权© Bowness，摄影者未在所查作品页明确署名。](images/20_pelagos_garden_commentary.jpg)
+
+同一件《Pelagos》的花园角度：近白内壁与开口后方的植物。来源：艺术家遗产官网；作品版权© Bowness，摄影者未在所查作品页明确署名。 未取得转载许可，仅供本篇作品评论；版权归相关权利人。 [图像来源](https://www.barbarahepworth.org.uk/sculptures/1946/pelagos/index.php?sort=catalogue). 未裁切、未放大或改变图像内容.
 
 [另一张官方照片：艺术家遗产官网的花园角度](https://www.barbarahepworth.org.uk/sculptures/1946/pelagos/index.php?sort=catalogue)
 

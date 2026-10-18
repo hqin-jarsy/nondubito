@@ -2,6 +2,12 @@
 
 Westliche Skulptur genau betrachtet 17
 
+Die neu eingefügten kleinen Bilder sind ergänzende Aufnahmen derselben Originalskulptur. Bildanalysen eines bestimmten Hintergrunds oder Blickwinkels beziehen sich weiterhin auf die im Text verlinkten offiziellen Bilder. Ein Klick öffnet die Werkseite des Museums.
+
+![Berninis Apollo und Daphne, das Original in der Galleria Borghese; ergänzende Ansicht im Museum.](images/17_apollo_daphne_overview.jpg)
+
+Berninis Apollo und Daphne, das Original in der Galleria Borghese; ergänzende Ansicht im Museum. Foto: Architas, 2018-06-01. [Bildquelle und Lizenz](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Verkleinert; Bildausschnitt unverändert.
+
 Ein Fuß Apollos schwebt noch in der Luft. Daphnes Füße sind bereits mit Wurzeln verbunden.
 
 Sehen wir zuerst auf diese beiden Stellen, dann nach oben. Das Tuch des Mannes schlägt nach hinten um; Hüfte und Schultern tragen ihn noch vorwärts. Der Rumpf der Frau streckt sich nach oben, die Arme reichen über den Kopf, doch ihre Enden zerstreuen sich in Blätterbüscheln. Ihr Gesicht dreht sich noch, der Mund steht offen, neben den Beinen liegen schon große Rindenflächen. Laufen, Zurückblicken, Wurzeln und Verzweigen drängen sich um denselben Körper, ohne aufeinander zu warten.
@@ -30,6 +36,10 @@ Wo Apollos Fuß aufsetzen wird, können wir uns entlang seiner Bewegung vorstell
 
 ## 2. Die Rinde umschließt sie nicht gleichmäßig
 
+![Ausschnitt aus derselben Aufnahme: Rumpf, Rinde und Beine.](images/17_apollo_daphne_bark_detail.jpg)
+
+Ausschnitt aus derselben Aufnahme: Rumpf, Rinde und Beine. Foto: Architas, 2018-06-01. [Bildquelle und Lizenz](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Ausschnitt aus derselben Aufnahme oben, kein anderer Blickwinkel.
+
 Betrachten wir die Rinde erneut.
 
 Sie ist kein langer Rock, der ordentlich von der Taille fällt. Ihr oberer Rand ist unregelmäßig: Hoch reichende Stellen nähern sich der Taille, niedrigere geben lange Beinpartien frei. Vorsprünge wechseln mit abwärts führenden Kerben. Diese Grenze bildet keine ablösbare Naht. Die Rinde ist keine vollständige äußere Hülle, aus der sich ein unversehrter Körper herausnehmen ließe.
@@ -47,6 +57,10 @@ Hier müssen die Finger nicht kraftvoller zugreifen, um das Drama zu steigern. D
 „Spät“ meint keine mit der Uhr messbaren Sekunden, sondern entsteht an der Grenze zweier Oberflächen. Während andere Körperteile noch deutlich menschlich sind, hat sich die Berührungsstelle schon verändert. Geschähe die Verwandlung überall im selben Maß, wäre dieses Gefühl des zeitlichen Versatzes schwächer.
 
 ## 3. Die Arme strecken sich noch, ihre Umrisse verzweigen sich schon
+
+![Ausschnitt aus derselben Aufnahme: erhobene Arme, Haare und Laub.](images/17_apollo_daphne_foliage_detail.jpg)
+
+Ausschnitt aus derselben Aufnahme: erhobene Arme, Haare und Laub. Foto: Architas, 2018-06-01. [Bildquelle und Lizenz](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Ausschnitt aus derselben Aufnahme oben, kein anderer Blickwinkel.
 
 Die Rinde verlangsamt den Blick, die Blätter über dem Kopf zerstreuen ihn plötzlich.
 

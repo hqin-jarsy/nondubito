@@ -2,6 +2,12 @@
 
 Una mirada cercana a la escultura occidental 18
 
+Las imágenes pequeñas añadidas son fotografías complementarias de la misma escultura original. Las lecturas de un fondo o ángulo concreto siguen remitiendo a las imágenes oficiales enlazadas en el texto. Al pulsar una imagen se abre la ficha del museo.
+
+![Victoria de Samotracia, Louvre Ma 2369. Vista general oblicua, 2015: diosa, proa, base de piedra y plataforma expositiva.](images/18_winged_victory_ship.jpg)
+
+Victoria de Samotracia, Louvre Ma 2369. Vista general oblicua, 2015: diosa, proa, base de piedra y plataforma expositiva. Fotografía: Lyokoï88, 2015-03-21. [Fuente de la imagen y licencia](https://commons.wikimedia.org/wiki/File:Victoire_de_Samothrace_-_vue_de_gauche_%282%29.JPG); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Tamaño reducido; encuadre sin cambios.
+
 Bajemos del pecho al abdomen: la ropa se recoge en la cintura y se dobla de pronto en diagonal ante el muslo. A un lado se pega al cuerpo; al otro ya se hincha detrás. Arriba, las alas alejan el contorno. El viento no la dispersa. El pecho mira al frente y varias fuerzas de direcciones distintas se encuentran en un mismo cuerpo.
 
 Al seguir bajando descubrimos que está sobre una proa. La nave es gris oscura, con piezas anchas y gruesas que salen a los lados y una arista frontal orientada hacia nosotros. Arriba, la diosa abre las alas; abajo, la nave también se ensancha. No es simplemente una figura ligera sobre una base pesada: ambas partes se expanden y ocupan espacio hacia fuera, una mediante capas de plumas y la otra fijando direcciones con la firmeza del casco.
@@ -11,6 +17,10 @@ Al seguir bajando descubrimos que está sobre una proa. La nave es gris oscura, 
 No se conoce el nombre del escultor. El registro actual del Louvre fecha la obra entre 200 y 175 a. C., en época helenística. Es Niké, la diosa que anuncia la victoria. El monumento se levantaba en el santuario de los Grandes Dioses de la isla egea de Samotracia como ofrenda por una victoria naval. Qué batalla fue y quién hizo el encargo siguen debatiéndose; no podemos atribuirla con certeza a un vencedor hipotético. Estamos ante una ofrenda que hace aparecer la victoria en un espacio religioso. Nave, alas y cuerpo humano dan a una palabra abstracta la postura de una llegada. [Registro de colección](https://collections.louvre.fr/ark:/53355/cl010252531); [Presentación de la obra y del lugar original por el Louvre](https://www.louvre.fr/en/explore/the-palace/a-stairway-to-victory)
 
 ## 1. El viento no empuja todos los pliegues hacia el mismo lado
+
+![Victoria de Samotracia, Louvre Ma 2369. Fotografía complementaria de 2007, anterior a la restauración de 2013–2014: torso, paños y ala cercana; no muestra la proa completa.](images/18_winged_victory_drapery.jpg)
+
+Victoria de Samotracia, Louvre Ma 2369. Fotografía complementaria de 2007, anterior a la restauración de 2013–2014: torso, paños y ala cercana; no muestra la proa completa. Fotografía: Marie-Lan Nguyen, 2007. [Fuente de la imagen y licencia](https://commons.wikimedia.org/wiki/File:Nike_of_Samothrake_Louvre_Ma2369_n4.jpg); [Public domain dedication by photographer (PD-self)](https://commons.wikimedia.org/wiki/File:Nike_of_Samothrake_Louvre_Ma2369_n4.jpg#Licensing). Tamaño reducido; encuadre sin cambios.
 
 Desde tres cuartos por la izquierda de la diosa vemos a la vez abdomen y tela impulsada hacia atrás. La túnica ajustada y el manto que envuelve la parte inferior producen espesores distintos.
 

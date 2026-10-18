@@ -2,6 +2,12 @@
 
 Looking Closely at Western Sculpture 17
 
+The added thumbnails are supplementary photographs of the same original sculpture. Close readings of a particular background or viewpoint still refer to the official images linked in the essay. Click a thumbnail to open the museum’s work page.
+
+![Bernini’s Apollo and Daphne, the original in the Galleria Borghese; supplementary gallery view.](images/17_apollo_daphne_overview.jpg)
+
+Bernini’s Apollo and Daphne, the original in the Galleria Borghese; supplementary gallery view. Photograph: Architas, 2018-06-01. [Image source and license](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Resized; composition unchanged.
+
 One of Apollo’s feet is still in the air. Daphne’s feet have already joined the roots.
 
 Begin with those two places, then look upward. The man’s drapery curls backward, his waist and shoulders still carrying him forward. The woman’s torso stretches upward, her arms reaching over her head, but their ends disperse into clusters of leaves. Her face is still turning, her mouth still open; broad areas of bark already rise beside her legs. Running, turning, rooting, and branching crowd around this one body without waiting for one another.
@@ -30,6 +36,10 @@ We can imagine where Apollo’s foot will land by following his run. Daphne’s 
 
 ## 2. The Bark Does Not Enclose Her Evenly
 
+![Detail from the same photograph: torso, bark and legs.](images/17_apollo_daphne_bark_detail.jpg)
+
+Detail from the same photograph: torso, bark and legs. Photograph: Architas, 2018-06-01. [Image source and license](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Cropped from the same photograph above, not a different viewpoint.
+
 Look again at the bark.
 
 It is not a long skirt falling neatly from the waist. Its upper edge is uneven, rising near the waist in some places and exposing a long stretch of leg in others, with projections and downward notches. This border does not form a detachable seam. The bark is not a complete outer casing with an intact body waiting to be lifted out.
@@ -47,6 +57,10 @@ No more forcefully carved fingers are needed to intensify the drama. The hand ar
 “Late” is not a few seconds measured on a clock. It is produced by the boundary between two surfaces. While other parts remain unmistakably human, the point of contact has already changed. If metamorphosis occurred everywhere to the same degree, this sense of misalignment would weaken.
 
 ## 3. The Arms Still Reach; Their Contours Already Branch
+
+![Detail from the same photograph: raised arms, hair and foliage.](images/17_apollo_daphne_foliage_detail.jpg)
+
+Detail from the same photograph: raised arms, hair and foliage. Photograph: Architas, 2018-06-01. [Image source and license](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Cropped from the same photograph above, not a different viewpoint.
 
 The bark slows our gaze; the leaves overhead suddenly scatter it.
 

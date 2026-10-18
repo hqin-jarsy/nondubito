@@ -1,0 +1,27 @@
+# 正文所用资料与图像索引
+
+以下按正文首次出现排列，页码锚点保留。建筑资料与图像来自官方机构；SAE文章来自作者网站。引用的身份、时间与观察限制以正文末尾说明为准。
+
+1. [看这张官方照片](https://www.alhambra-patronato.es/wp-content/uploads/2018/07/Patio-de-los-Leones-2.jpg)
+2. [管理机构建筑介绍](https://www.alhambra-patronato.es/en/edificios-lugares/the-court-of-the-lions)
+3. [2012年修复说明](https://www.alhambra-patronato.es/en/notas-prensa/grinan-presides-over-the-reopening-of-the-court-of-the-lions-which-recovers-its-historical-image-and-which-will-be-open-to-the-public)
+4. [看柱头与拱廊的关系](https://www.alhambra-patronato.es/wp-content/uploads/2018/07/Patio-de-los-Leones-1.jpg)
+5. [柱廊斜向照片，册内第64页，PDF第66页](https://www.alhambra-patronato.es/wp-content/uploads/2020/04/El-espacio-la-luz-las-formas-2020-web.pdf#page=66)
+6. [亭廊侧向照片，册内第58页，PDF第60页](https://www.alhambra-patronato.es/wp-content/uploads/2020/04/El-espacio-la-luz-las-formas-2020-web.pdf#page=60)
+7. [官方档案平面与图纸说明](https://www.alhambra-patronato.es/ria/handle/10514/3669)
+8. [官方国王厅说明](https://www.alhambra-patronato.es/edificios-lugares/sala-de-los-reyes)
+9. [宫殿布局说明](https://www.alhambra-patronato.es/edificios-lugares/sala-de-los-mocarabes)
+10. [官方示意平面，册内第53页，PDF第55页](https://www.alhambra-patronato.es/wp-content/uploads/2020/04/El-espacio-la-luz-las-formas-2020-web.pdf#page=55)
+11. [官方水路修复记录](https://www.alhambra-patronato.es/en/notas-prensa/grinan-visits-restoration-works-at-court-of-the-lions-to-be-reopened-to-the-public-in-the-spring)
+12. [厅内水盆与侧室，册内第66页，PDF第68页](https://www.alhambra-patronato.es/wp-content/uploads/2020/04/El-espacio-la-luz-las-formas-2020-web.pdf#page=68)
+13. [官方喷泉修复资料](https://www.alhambra-patronato.es/proyectos/restauracion-de-la-fuente-de-los-leones)
+14. [厅内上部照片](https://www.alhambra-patronato.es/wp-content/uploads/2018/07/abencerrajes1.jpg)
+15. [官方厅室说明](https://www.alhambra-patronato.es/edificios-lugares/sala-de-los-abencerrajes)
+16. [南北向的厅室联系，册内第68页，PDF第70页](https://www.alhambra-patronato.es/wp-content/uploads/2020/04/El-espacio-la-luz-las-formas-2020-web.pdf#page=70)
+17. [两姐妹厅顶部近照](https://www.alhambra-patronato.es/wp-content/uploads/2018/07/MOCARABES-DOS-HERMANAS.jpg)
+18. [两姐妹厅仰视，册内第74页，PDF第76页](https://www.alhambra-patronato.es/wp-content/uploads/2020/04/El-espacio-la-luz-las-formas-2020-web.pdf#page=76)
+19. [官方诗文说明](https://www.alhambra-patronato.es/disfrutar/descifrando-el-patio-de-los-leones)
+20. [阿拉伯语原文及西班牙语译文，PDF第4页](https://www.alhambra-patronato.es/wp-content/uploads/2019/02/Folleto_VEA2018_web.pdf#page=4)
+21. [《认出了星座，天空也没有被说完》](https://nondubito.net/essays/aesthetics/ray01.html?lang=zh)
+22. [完整喷泉照片](https://www.alhambra-patronato.es/wp-content/uploads/2019/12/restauracion-fuente-leones8.jpg)
+23. [移走狮雕后的官方修复照片](https://www.alhambra-patronato.es/wp-content/uploads/2019/12/restauracion-fuente-leones4.jpg)

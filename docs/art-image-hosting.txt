@@ -78,3 +78,22 @@ Old illustration backups (with original repository paths):
 
 Removing image files from the current checkout does not shrink old Git history.
 This migration does not rewrite history or force-push.
+
+ARCHITECTURE AND SCULPTURE UPDATE — 2026-10-18
+
+Architecture 01–20 and sculpture 16–20 now use 119 shared inline pictures,
+served as 238 verified WebP objects (19,147,816 bytes) from the same art/ prefix.
+Every public object was checked for content type, SHA-256, byte length, format
+and pixel dimensions before the HTML was generated. No image binaries were
+added to Git. Eight editions reuse the same objects.
+
+The supplied reading-size JPEG sources, not full-resolution originals, remain at:
+/Users/hanqin/Documents/Codex/2026-08-22/qin/art-image-originals-20261018
+Exact uploaded WebP files:
+/Users/hanqin/Documents/Codex/2026-08-22/qin/art-image-stage-20261018/all/upload/art
+
+Per-image click targets and bilingual source/rights records are preserved.
+The author explicitly approved publication of the supplied commentary pictures,
+including the 111 records marked as lacking reproduction permission. This
+approval does not change their license status or establish legal clearance.
+See data/art/image-update-2026-10-18.json and each work's source records.

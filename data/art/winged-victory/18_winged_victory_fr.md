@@ -2,6 +2,12 @@
 
 Regarder de près la sculpture occidentale 18
 
+Les petites images ajoutées sont des photographies complémentaires de la même sculpture originale. Les analyses portant sur un fond ou un angle précis renvoient toujours aux images officielles liées dans le texte. Cliquer sur une image ouvre la notice du musée.
+
+![Victoire de Samothrace, Louvre Ma 2369. Vue générale oblique, 2015 : déesse, proue, socle de pierre et support d’exposition.](images/18_winged_victory_ship.jpg)
+
+Victoire de Samothrace, Louvre Ma 2369. Vue générale oblique, 2015 : déesse, proue, socle de pierre et support d’exposition. Photographie: Lyokoï88, 2015-03-21. [Source de l’image et licence](https://commons.wikimedia.org/wiki/File:Victoire_de_Samothrace_-_vue_de_gauche_%282%29.JPG); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Dimensions réduites ; cadrage inchangé.
+
 Descendons du torse vers l’abdomen : le vêtement se resserre à la taille, puis se replie brusquement en diagonale devant la cuisse. Il colle au corps d’un côté et se gonfle déjà derrière de l’autre. Plus haut, les deux ailes repoussent le contour au loin. Le vent ne la disperse pas. La poitrine fait face à l’avant ; plusieurs forces de directions différentes se rencontrent dans un même corps.
 
 En descendant encore, nous découvrons qu’elle se tient sur une proue. Sombre, celle-ci déploie sur les côtés de larges éléments épais ; à l’avant, une arête vient vers nous. Au-dessus, la déesse ouvre ses ailes ; au-dessous, le navire s’étend lui aussi latéralement. Il ne s’agit pas simplement d’une figure légère sur un socle lourd. Haut et bas prennent tous deux de l’espace vers l’extérieur, mais les plumes le divisent en couches tandis que la coque ferme en fixe les directions.
@@ -11,6 +17,10 @@ En descendant encore, nous découvrons qu’elle se tient sur une proue. Sombre,
 Le nom du sculpteur n’est pas connu. La notice actuelle du Louvre date l’œuvre de 200–175 avant notre ère, à l’époque hellénistique. Elle représente Nikè, déesse annonçant la victoire. Le monument se dressait dans le sanctuaire des Grands Dieux, sur l’île égéenne de Samothrace, en offrande pour une victoire navale. La bataille précise et le commanditaire restent discutés : un vainqueur supposé ne peut devenir son propriétaire certain. Nous regardons une offrande qui rend la victoire présente dans un lieu religieux. Navire, ailes et corps humain donnent ensemble à un nom abstrait la forme d’une arrivée. [Notice de collection](https://collections.louvre.fr/ark:/53355/cl010252531) ; [Présentation de l’œuvre et du site d’origine par le Louvre](https://www.louvre.fr/en/explore/the-palace/a-stairway-to-victory)
 
 ## 1. Le vent ne pousse pas tous les plis du même côté
+
+![Victoire de Samothrace, Louvre Ma 2369. Photographie complémentaire de 2007, antérieure à la restauration de 2013–2014 : torse, drapé et aile proche ; la proue n’est pas entièrement visible.](images/18_winged_victory_drapery.jpg)
+
+Victoire de Samothrace, Louvre Ma 2369. Photographie complémentaire de 2007, antérieure à la restauration de 2013–2014 : torse, drapé et aile proche ; la proue n’est pas entièrement visible. Photographie: Marie-Lan Nguyen, 2007. [Source de l’image et licence](https://commons.wikimedia.org/wiki/File:Nike_of_Samothrake_Louvre_Ma2369_n4.jpg); [Public domain dedication by photographer (PD-self)](https://commons.wikimedia.org/wiki/File:Nike_of_Samothrake_Louvre_Ma2369_n4.jpg#Licensing). Dimensions réduites ; cadrage inchangé.
 
 Une vue de trois quarts depuis la gauche de la déesse permet de voir ensemble l’abdomen et le tissu rejeté derrière. La tunique ajustée et le manteau enveloppant le bas du corps produisent des impressions d’épaisseur différentes.
 

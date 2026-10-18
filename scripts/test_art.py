@@ -48,14 +48,17 @@ class ArtTests(unittest.TestCase):
             for lang in b.LANGS:
                 s=self.pages[b.location(lang,w)]
                 for block in b.load(w,lang)[2:]:
-                    if block.startswith(('## ','### ','![')): continue
-                    self.assertIn(b.inline(block),s,(lang,block[:60]))
+                    if block.startswith(('## ','### ','![')) or block=='---': continue
+                    if w.get('source_tail') and block.startswith('- '):
+                        for line in block.splitlines(): self.assertIn(b.inline(line.removeprefix('- ')),s)
+                    else: self.assertIn(b.inline(block),s,(lang,block[:60]))
                 tags=Parse(s).tags
                 image_count=sum(block.startswith('![') for block in b.load(w,lang))
                 self.assertEqual(sum(t=='figure' for t,a in tags),image_count)
                 self.assertEqual(sum(t=='figcaption' for t,a in tags),image_count)
-                self.assertEqual(sum(t=='details' and a.get('class')=='optional-reading' for t,a in tags),1)
-                self.assertIn(b.guide(lang,b.location(lang,w)),s)
+                expected=int(w.get('has_optional',True))
+                self.assertEqual(sum(t=='details' and a.get('class')=='optional-reading' for t,a in tags),expected)
+                if expected: self.assertIn(b.guide(lang,b.location(lang,w)),s)
 
     def test_targets_and_anchors(self):
         for path,s in self.pages.items():
@@ -125,11 +128,14 @@ class ArtTests(unittest.TestCase):
                     tags=Parse(figure).tags
                     links=[a for t,a in tags if t=='a' and a.get('target')=='_blank']
                     self.assertEqual(len(links),2)
+                    image=next(a for t,a in tags if t=='img')
+                    name=next(name for name in w.get('inline_images',{}) if image['src']==b.preview_url(w,name,640)) if w.get('inline_images') else None
+                    target=b.image_click_target(w,name) if name else w['about']
                     for link in links:
-                        self.assertEqual(link['href'],w['about'])
+                        self.assertEqual(link['href'],target)
                         self.assertEqual(link['target'],'_blank')
                         self.assertIn('noopener',link['rel'])
-                    self.assertIn(b.IMAGE_LINK_LABELS[lang],figure)
+                    self.assertIn(b.image_link_label(w,lang),figure)
                 schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)[1])
                 if not w.get('image'):
                     self.assertEqual(w['image_mode'],'external-links')
@@ -137,7 +143,7 @@ class ArtTests(unittest.TestCase):
                     self.assertNotIn('og:image',source)
                     self.assertNotIn('image',schema)
                     self.assertIn('class="art-viewing"',source)
-                    self.assertIn(b.IMAGE_LINK_LABELS[lang],source)
+                    self.assertIn(b.image_link_label(w,lang),source)
                     self.assertIn('id="image-credits"',source)
                     continue
                 self.assertIn(b.IMAGE_STORAGE_NOTES[lang],source)
@@ -203,7 +209,8 @@ class ArtTests(unittest.TestCase):
                 self.assertGreater(edition['character_ratio'],.95)
                 lang=next(k for k,v in b.LANGS.items() if v[0]==code)
                 blocks=b.load(work,lang)
-                self.assertEqual(sum(p.startswith('## ') for p in blocks),work['main_sections']+2)
+                additional=int(work.get('has_optional',True)) if work.get('source_tail') else 2
+                self.assertEqual(sum(p.startswith('## ') for p in blocks),work['main_sections']+additional)
                 self.assertNotRegex(source.read_text(),r'\]\((README|QUALITY_NOTE|QUALITY_REVIEW)\.md\)')
 
     def test_discovery(self):
@@ -242,7 +249,7 @@ class ArtTests(unittest.TestCase):
             if w['id'] not in counts: continue
             for lang in b.LANGS:
                 source=self.pages[b.location(lang,w)]
-                self.assertEqual(sum(t=='figure' for t,a in Parse(source).tags),counts[w['id']])
+                self.assertEqual(sum(t=='figure' for t,a in Parse(source).tags),len(w['inline_images']) if w.get('inline_images') else counts[w['id']])
                 self.assertIn('?lang='+lang+'#western-sculpture',source)
                 self.assertIn(b.canonical(b.location(lang,w)),self.pages[b.location(lang,w)])
                 self.assertIn('lang="en"',source)
@@ -254,18 +261,69 @@ class ArtTests(unittest.TestCase):
     def test_nested_headings_and_link_only_cards(self):
         for lang in b.LANGS:
             index=self.pages[b.location(lang)]
-            self.assertEqual(index.count('class="art-card art-card-text"'),5)
+            self.assertEqual(index.count('class="art-card art-card-text"'),sum(not w.get('image') for w in self.works))
+            for tag,attrs in Parse(index).tags:
+                if tag=='img': self.assertTrue(attrs['sizes'].endswith(', 240px'))
             for w in self.works:
                 source=self.pages[b.location(lang,w)]
                 self.assertNotIn('*',b.plain_title(w,lang))
                 self.assertIn('<h1>'+b.esc(b.plain_title(w,lang))+'</h1>',source)
-                headings=[p[4:] for p in b.load(w,lang) if p.startswith('### ')]
+                headings=[p[4:] for p in b.load(w,lang) if p.startswith('### ') and not w.get('source_tail')]
                 for heading in headings:
                     self.assertIn('<h3>'+b.esc(heading)+'</h3>',source)
                 self.assertNotIn('<p>### ',source)
                 self.assertNotIn('](IMAGE_LINKS.md)',source)
                 if w.get('archival_image_note'):
                     self.assertIn('class="image-publication-note"',source)
+
+    def test_architecture_sources_and_no_forced_optional_reading(self):
+        works=[w for w in self.works if w['category']=='western-architecture']
+        self.assertEqual(len(works),20)
+        for lang in b.LANGS:
+            index=self.pages[b.location(lang)]
+            self.assertIn('href="#western-architecture"',index)
+            for w in works:
+                source=self.pages[b.location(lang,w)]
+                self.assertIn('id="viewing-sources"',source)
+                optional=re.search(r'<details class="optional-reading".*?</details>',source,re.S)
+                if optional: self.assertNotIn('id="viewing-sources"',optional[0])
+                self.assertNotIn('<p>---</p>',source)
+                self.assertNotIn('<p>- [',source)
+                self.assertNotIn('[*',source)
+                schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)[1])
+                self.assertEqual(schema['about']['@type'],'LandmarksOrHistoricalBuildings')
+                self.assertNotIn('creator',schema['about'])
+                self.assertEqual(len(schema['about'].get('architect',[])),len(w['architects']))
+        hagia=next(w for w in works if w['slug']=='hagia-sophia')
+        self.assertFalse(hagia['has_optional'])
+
+    def test_per_image_source_links_and_rights(self):
+        commons='https://commons.wikimedia.org/wiki/File:David_by_Michelangelo_(Academia_Gallery).jpg'
+        self.assertEqual(b.inline('[Photo license]('+commons+')'),'<a href="'+commons+'">Photo license</a>')
+        self.assertEqual(b.inline('[*A work*](https://example.org/a)'),'<a href="https://example.org/a"><em>A work</em></a>')
+        fixture={'id':'example','about':'https://example.org/building',
+                 'inline_images':{'view.jpg':{'click_target':'https://example.org/photo.jpg'}}}
+        self.assertEqual(b.image_click_target(fixture,'view.jpg'),'https://example.org/photo.jpg')
+        self.assertEqual(b.image_click_target(fixture,'other.jpg'),fixture['about'])
+        with self.assertRaises(AssertionError):
+            b.image_click_target({'about':'javascript:alert(1)'},'view.jpg')
+        for work in self.works:
+            if not work.get('inline_images'): continue
+            records=json.loads((b.DATA/work['id']/'source/published-images.json').read_text())
+            self.assertEqual({Path(a['local_path']).name for a in records},set(work['inline_images']))
+            for lang in b.LANGS:
+                source=self.pages[b.location(lang,work)]
+                self.assertNotIn('INLINE-IMAGE-UPDATE-',source)
+                self.assertNotIn('](assets/',source)
+                self.assertEqual(source.count('<figure>'),len(records))
+                for asset in records:
+                    self.assertIn(b.esc(asset['click_target']),source)
+                    if asset.get('license_url'):
+                        self.assertIn(b.esc(asset['license_url']),source)
+                    if asset.get('permission_status')=='explicitly_unlicensed':
+                        # The bilingual dossier must not silently turn a reserved
+                        # image into an open-license image in any edition.
+                        self.assertIn('Reproduction permission has not been obtained' if lang not in ('zh','zh-hant') else '未取得转载许可',source)
 
 
 if __name__=='__main__': unittest.main()

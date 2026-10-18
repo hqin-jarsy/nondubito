@@ -2,6 +2,12 @@
 
 Looking Closely at Western Sculpture 16
 
+The added thumbnails are supplementary photographs of the same original sculpture. Close readings of a particular background or viewpoint still refer to the official images linked in the essay. Click a thumbnail to open the museum’s work page.
+
+![Michelangelo’s David, the original in the Accademia; supplementary full-length view.](images/16_david_overview.jpg)
+
+Michelangelo’s David, the original in the Accademia; supplementary full-length view. Photograph: Maksim Sokolov (maxergon.com), 2019-07-18. [Image source and license](https://commons.wikimedia.org/wiki/File:David_by_Michelangelo_(Academia_Gallery).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Resized; composition unchanged.
+
 His right hand hangs beside his thigh, but the fingers have not quite relaxed.
 
 His other hand is raised beside his shoulder, its thumb and curled fingers holding something unobtrusive. One arm extends while the other bends: the hanging right arm leads our eyes toward the knees, the bent left arm brings them back to the head. The chest faces largely forward, but the face has already turned to his own left. We first encounter a standing man, then discover that the parts of his body direct their effort in different ways.

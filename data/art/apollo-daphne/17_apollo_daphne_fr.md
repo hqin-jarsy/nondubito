@@ -2,6 +2,12 @@
 
 Regarder de près la sculpture occidentale 17
 
+Les petites images ajoutées sont des photographies complémentaires de la même sculpture originale. Les analyses portant sur un fond ou un angle précis renvoient toujours aux images officielles liées dans le texte. Cliquer sur une image ouvre la notice du musée.
+
+![Apollon et Daphné du Bernin, l’original de la Galerie Borghèse ; vue complémentaire dans le musée.](images/17_apollo_daphne_overview.jpg)
+
+Apollon et Daphné du Bernin, l’original de la Galerie Borghèse ; vue complémentaire dans le musée. Photographie: Architas, 2018-06-01. [Source de l’image et licence](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Dimensions réduites ; cadrage inchangé.
+
 Apollon a encore un pied en l’air. Ceux de Daphné rejoignent déjà des racines.
 
 Regardons d’abord ces deux endroits, puis remontons. Le tissu du jeune homme se retourne vers l’arrière ; taille et épaules conservent leur élan en avant. Le torse de la jeune femme s’allonge vers le haut, ses bras dépassent sa tête, mais leurs extrémités se dispersent en bouquets de feuilles. Son visage tourne encore, sa bouche reste ouverte ; de grandes plaques d’écorce bordent déjà ses jambes. Courir, se retourner, prendre racine et pousser des branches se pressent autour du même corps, sans s’attendre.
@@ -30,6 +36,10 @@ Nous pouvons imaginer où le pied d’Apollon va se poser en poursuivant la cour
 
 ## 2. L’écorce ne l’enveloppe pas uniformément
 
+![Détail de la même photographie : torse, écorce et jambes.](images/17_apollo_daphne_bark_detail.jpg)
+
+Détail de la même photographie : torse, écorce et jambes. Photographie: Architas, 2018-06-01. [Source de l’image et licence](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Détail recadré de la même photographie ci-dessus, et non un autre point de vue.
+
 Revenons à cette écorce.
 
 Elle n’est pas une longue jupe tombant régulièrement depuis la taille. Son bord irrégulier monte presque jusqu’à la taille et descend ailleurs pour laisser une longue portion de jambe ; il présente saillies et échancrures. Cette jonction ne forme pas une interface démontable. L’écorce n’est pas une enveloppe complète posée à l’extérieur ; dedans, aucun corps ne pourrait ressortir intact.
@@ -47,6 +57,10 @@ Nul besoin de sculpter des doigts plus crispés pour renforcer le drame. La main
 Ce retard ne se mesure pas en secondes : il vient de la rencontre entre deux surfaces. Alors que d’autres parties restent manifestement humaines, le point de contact a déjà changé. Une transformation partout également avancée atténuerait ce décalage.
 
 ## 3. Les bras s’étendent encore, le contour se ramifie déjà
+
+![Détail de la même photographie : bras levés, cheveux et feuillage.](images/17_apollo_daphne_foliage_detail.jpg)
+
+Détail de la même photographie : bras levés, cheveux et feuillage. Photographie: Architas, 2018-06-01. [Source de l’image et licence](https://commons.wikimedia.org/wiki/File:Apollo_and_Daphne_(Bernini).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Détail recadré de la même photographie ci-dessus, et non un autre point de vue.
 
 L’écorce ralentit le regard ; les feuilles au-dessus de la tête le dispersent soudain.
 

@@ -2,6 +2,12 @@
 
 Westliche Skulptur genau betrachtet 18
 
+Die neu eingefügten kleinen Bilder sind ergänzende Aufnahmen derselben Originalskulptur. Bildanalysen eines bestimmten Hintergrunds oder Blickwinkels beziehen sich weiterhin auf die im Text verlinkten offiziellen Bilder. Ein Klick öffnet die Werkseite des Museums.
+
+![Nike von Samothrake, Louvre Ma 2369. Schräge Gesamtansicht, 2015: Göttin, Schiffsbug, Steinsockel und Ausstellungsplattform.](images/18_winged_victory_ship.jpg)
+
+Nike von Samothrake, Louvre Ma 2369. Schräge Gesamtansicht, 2015: Göttin, Schiffsbug, Steinsockel und Ausstellungsplattform. Foto: Lyokoï88, 2015-03-21. [Bildquelle und Lizenz](https://commons.wikimedia.org/wiki/File:Victoire_de_Samothrace_-_vue_de_gauche_%282%29.JPG); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Verkleinert; Bildausschnitt unverändert.
+
 Folgen wir Brust und Bauch nach unten, zieht sich das Gewand an der Taille zusammen und schlägt vor den Oberschenkeln plötzlich schräg um. Auf einer Seite liegt es am Körper, auf der anderen wölbt es sich bereits hinter ihm. Oben treiben zwei Flügel den Umriss in die Ferne. Der Wind hat sie nicht auseinandergetragen. Die Brust weist nach vorn; mehrere unterschiedlich gerichtete Kräfte treffen im selben Körper zusammen.
 
 Erst weiter unten entdecken wir, dass sie auf einem Schiffsbug steht. Der Bug ist dunkelgrau, an den Seiten ragen breite, kräftige Bauteile hervor, ganz vorn richtet sich eine Kante auf uns. Oben öffnet die Göttin ihre Flügel, unten breitet sich auch das Schiff seitlich aus. Das Ganze ist mehr als eine leichte Figur auf einem schweren Sockel. Oben wie unten liegt Ausdehnung, ein Anspruch auf äußeren Raum. Einmal gliedern Federn diese Ausdehnung in Schichten, einmal legt ein kantiger Schiffskörper ihre Richtung fest.
@@ -11,6 +17,10 @@ Erst weiter unten entdecken wir, dass sie auf einem Schiffsbug steht. Der Bug is
 Der Name des Bildhauers ist unbekannt. Der aktuelle Louvre-Eintrag datiert das Werk auf 200–175 v. Chr., in die hellenistische Zeit. Dargestellt ist Nike, die Siegesbotin. Das Monument stand ursprünglich im Heiligtum der Großen Götter auf der Ägäisinsel Samothrake und wurde für einen Seesieg geweiht. Welche Schlacht und welcher Auftraggeber gemeint sind, bleibt umstritten; ein vermuteter Sieger darf nicht zum gesicherten Besitzer erklärt werden. Vor uns steht eine Weihgabe, die den Sieg in einem religiösen Raum erscheinen ließ. Schiff, Flügel und menschlicher Körper verleihen einem abstrakten Wort die Haltung des Ankommens. [Sammlungseintrag](https://collections.louvre.fr/ark:/53355/cl010252531); [Louvre-Einführung zu Werk und ursprünglichem Standort](https://www.louvre.fr/en/explore/the-palace/a-stairway-to-victory)
 
 ## 1. Der Wind weht nicht jede Falte in dieselbe Richtung
+
+![Nike von Samothrake, Louvre Ma 2369. Ergänzende Aufnahme von 2007, vor der Restaurierung 2013–2014: Rumpf, Gewandfalten und naher Flügel; der Schiffsbug ist nicht vollständig zu sehen.](images/18_winged_victory_drapery.jpg)
+
+Nike von Samothrake, Louvre Ma 2369. Ergänzende Aufnahme von 2007, vor der Restaurierung 2013–2014: Rumpf, Gewandfalten und naher Flügel; der Schiffsbug ist nicht vollständig zu sehen. Foto: Marie-Lan Nguyen, 2007. [Bildquelle und Lizenz](https://commons.wikimedia.org/wiki/File:Nike_of_Samothrake_Louvre_Ma2369_n4.jpg); [Public domain dedication by photographer (PD-self)](https://commons.wikimedia.org/wiki/File:Nike_of_Samothrake_Louvre_Ma2369_n4.jpg#Licensing). Verkleinert; Bildausschnitt unverändert.
 
 Von schräg vorn auf der eigenen linken Seite der Göttin werden Bauch und rückwärts gebauschtes Gewand zugleich sichtbar. Das anliegende lange Kleid und der um den Unterkörper geschlungene Mantel vermitteln unterschiedliche Stoffstärken.
 

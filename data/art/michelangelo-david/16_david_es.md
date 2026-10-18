@@ -2,6 +2,12 @@
 
 Una mirada cercana a la escultura occidental 16
 
+Las imágenes pequeñas añadidas son fotografías complementarias de la misma escultura original. Las lecturas de un fondo o ángulo concreto siguen remitiendo a las imágenes oficiales enlazadas en el texto. Al pulsar una imagen se abre la ficha del museo.
+
+![David de Miguel Ángel, el original de la Accademia; vista complementaria de cuerpo entero.](images/16_david_overview.jpg)
+
+David de Miguel Ángel, el original de la Accademia; vista complementaria de cuerpo entero. Fotografía: Maksim Sokolov (maxergon.com), 2019-07-18. [Fuente de la imagen y licencia](https://commons.wikimedia.org/wiki/File:David_by_Michelangelo_(Academia_Gallery).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Tamaño reducido; encuadre sin cambios.
+
 La mano derecha ya ha bajado junto al muslo, pero los dedos no se han soltado del todo.
 
 La otra mano se levanta junto al hombro; el pulgar y los dedos doblados sujetan algo poco visible. Un brazo se alarga y el otro se flexiona: el derecho lleva la mirada hacia la rodilla; el izquierdo la devuelve a la cabeza. El pecho se orienta más o menos al frente, pero la cara ya gira hacia la izquierda del personaje. Primero encontramos a alguien de pie; después descubrimos que las partes de ese cuerpo ejercen fuerza en distintas direcciones.

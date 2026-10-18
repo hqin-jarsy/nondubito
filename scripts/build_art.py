@@ -43,7 +43,30 @@ CATEGORIES = {
         '彫刻 · 西洋彫刻', 'Sculpture · Sculpture occidentale',
         'Skulptur · Westliche Skulptur', 'Escultura · Escultura occidental', '조각 · 서양 조각'
     ])),
+    'western-architecture': dict(zip(LANGS, [
+        '建筑 · 西方建筑', '建築 · 西方建築', 'Architecture · Western architecture',
+        '建築 · 西洋建築', 'Architecture · Architecture occidentale',
+        'Architektur · Westliche Architektur', 'Arquitectura · Arquitectura occidental', '건축 · 서양 건축'
+    ])),
 }
+
+ARCHITECTURE_LINK_LABELS = dict(zip(LANGS, [
+    '前往官方建筑与看图页面 ↗', '前往官方建築與看圖頁面 ↗',
+    'Explore the building on its official source page ↗', '公式の建築紹介・図版ページを見る ↗',
+    'Voir le bâtiment et ses images sur le site officiel ↗',
+    'Gebäude und Abbildungen auf der offiziellen Seite ansehen ↗',
+    'Ver el edificio y las imágenes en la página oficial ↗', '공식 건축 소개와 이미지 페이지 보기 ↗',
+]))
+
+
+def image_link_label(work, lang):
+    return (ARCHITECTURE_LINK_LABELS if work['category']=='western-architecture' else IMAGE_LINK_LABELS)[lang]
+
+
+def image_click_target(work, name):
+    target=work.get('inline_images',{}).get(name,{}).get('click_target',work['about'])
+    assert target.startswith('https://'), target
+    return target
 
 # The museum page is more stable than an image CDN URL. Hosted detail crops and
 # alternate views remain available as WebP; originals are kept in offline archives.
@@ -117,10 +140,12 @@ def plain_title(work, lang):
 
 def inline(text, local_links=None):
     """Escaped prose plus the reviewed Markdown's links and emphasis."""
-    parts = re.split(r'(\[[^\]]+\]\([^\s)]+\))', text)
+    # Commons file URLs can contain balanced parentheses in the filename.
+    # Do not stop the link at the first closing parenthesis inside its URL.
+    parts = re.split(r'(\[[^\]]+\]\((?:[^()\s]|\([^()\s]*\))+\))', text)
     result = []
     for part in parts:
-        match = re.fullmatch(r'\[([^\]]+)\]\(([^\s)]+)\)', part)
+        match = re.fullmatch(r'\[([^\]]+)\]\(((?:[^()\s]|\([^()\s]*\))+)\)', part)
         if match:
             label, url = match.groups()
             url = {'REFERENCES.md':'#references','IMAGE_CREDITS.md':'#image-credits','IMAGE_LINKS.md':'#image-credits'}.get(url,url)
@@ -128,7 +153,10 @@ def inline(text, local_links=None):
                 url=local_links[url]
             else:
                 assert url.startswith(('https://','#')), url
-            result.append(f'<a href="{esc(url)}">{esc(label)}</a>')
+            label=esc(label)
+            label=re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', label)
+            label=re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'<em>\1</em>', label)
+            result.append(f'<a href="{esc(url)}">{label}</a>')
         else:
             value = esc(part)
             value = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', value)
@@ -148,13 +176,14 @@ def bridge(lang, path):
     return f'<aside class="source-note"><p>{esc(u[10])}</p><a href="{guide(lang,path)}">{esc(u[3])} →</a><p class="edition-note">{esc(u[4])}</p></aside>'
 
 
-def image_tag(path, work, name, alt, lazy=True):
+def image_tag(path, work, name, alt, lazy=True, thumbnail=False):
     info=json.loads((DATA/'images.json').read_text())[work['id']+'/'+name]
     src=preview_url(work,name,640)
     larger=preview_url(work,name,1280)
     candidates=f'{src} {min(640,info[0])}w'
     if info[0]>640: candidates+=f', {larger} {min(1280,info[0])}w'
-    return f'<img src="{src}" srcset="{candidates}" sizes="(max-width: 600px) calc(100vw - 46px), 760px" width="{info[0]}" height="{info[1]}" alt="{esc(alt)}" loading="{"lazy" if lazy else "eager"}" decoding="async">'
+    sizes='(max-width: 600px) calc(100vw - 46px), '+('240px' if thumbnail else '760px')
+    return f'<img src="{src}" srcset="{candidates}" sizes="{sizes}" width="{info[0]}" height="{info[1]}" alt="{esc(alt)}" loading="{"lazy" if lazy else "eager"}" decoding="async">'
 
 
 def documents(work, lang):
@@ -193,33 +222,53 @@ def article(work, lang, path):
     heading_count=sum(block.startswith('## ') for block in blocks)
     # Every manuscript ends in an optional reading and image/source notes;
     # the number of preceding close-reading sections belongs to the essay.
-    optional=work.get('main_sections', 5)+1
-    assert heading_count == optional+1, (work['id'],lang,heading_count)
+    source_tail=work.get('source_tail',False)
+    optional=work.get('main_sections', 5)+1 if work.get('has_optional',True) else None
+    expected=work['main_sections']+int(optional is not None) if source_tail else optional+1
+    assert heading_count == expected, (work['id'],lang,heading_count)
+    optional_open=False
+    in_sources=False
     while i<len(blocks):
         b=blocks[i]
-        if b.startswith('## '):
+        if source_tail and (b=='---' or b.startswith('### ')):
+            if optional_open:
+                body.append('</div></details>'); optional_open=False
+            in_sources=True
+            if b=='---':
+                body.append('<hr>')
+            else:
+                label=b[4:]; headings.append(('viewing-sources',label))
+                body.append('<h2 id="viewing-sources">'+inline(label)+'</h2>')
+        elif b.startswith('## '):
             n+=1; label=b[3:]; anchor='section-'+str(n); headings.append((anchor,label))
             if n==optional:
                 body.append(f'<details class="optional-reading" id="{anchor}"><summary>{esc(label)}</summary>{bridge(lang,path)}<div>')
+                optional_open=True
             else:
-                if n==optional+1: body.append('</div></details>')
+                if optional is not None and n==optional+1:
+                    body.append('</div></details>'); optional_open=False
                 body.append(f'<h2 id="{anchor}">{esc(label)}</h2>')
-                if n==optional+1 and work.get('archival_image_note'):
+                if optional is not None and n==optional+1 and work.get('archival_image_note'):
                     body.append('<aside class="image-publication-note">'+esc(IMAGE_STORAGE_NOTES[lang])+'</aside>')
         elif b.startswith('### '):
             body.append('<h3>'+esc(b[4:])+'</h3>')
         elif b.startswith('!['):
             m=re.fullmatch(r'!\[([^\]]*)\]\(images/([^)]+)\)',b); assert m,b
             alt,name=m.groups(); caption=blocks[i+1]; assert not caption.startswith(('#','!'))
-            body.append(f'<figure><a href="{esc(work["about"])}" target="_blank" rel="noopener noreferrer" aria-label="{esc(IMAGE_LINK_LABELS[lang])}">{image_tag(path,work,name,alt,name!=work["image"])}</a><figcaption>{inline(caption)}<a class="image-hint" href="{esc(work["about"])}" target="_blank" rel="noopener noreferrer">{esc(IMAGE_LINK_LABELS[lang])}</a></figcaption></figure>')
+            target=image_click_target(work,name); label=image_link_label(work,lang)
+            body.append(f'<figure><a href="{esc(target)}" target="_blank" rel="noopener noreferrer" aria-label="{esc(label)}">{image_tag(path,work,name,alt,name!=work["image"])}</a><figcaption>{inline(caption)}<a class="image-hint" href="{esc(target)}" target="_blank" rel="noopener noreferrer">{esc(label)}</a></figcaption></figure>')
             i+=1
+        elif source_tail and b.startswith('- '):
+            body.append('<ul>'+''.join('<li>'+inline(line.removeprefix('- '))+'</li>' for line in b.splitlines())+'</ul>')
         else: body.append('<p>'+inline(b)+'</p>')
         i+=1
+    if optional_open: body.append('</div></details>')
     assert n==heading_count
+    if source_tail: assert in_sources, (work['id'],lang,'Missing source tail')
     toc='<details class="contents"><summary>'+esc(UI[lang][8])+'</summary><nav>'+''.join(f'<a href="#{a}">{esc(h)}</a>' for a,h in headings)+'</nav></details>'
     viewing=''
     if not work.get('image'):
-        viewing=f'<aside class="art-viewing"><a href="{esc(work["about"])}" target="_blank" rel="noopener noreferrer">{esc(IMAGE_LINK_LABELS[lang])}</a></aside>'
+        viewing=f'<aside class="art-viewing"><a href="{esc(work["about"])}" target="_blank" rel="noopener noreferrer">{esc(image_link_label(work,lang))}</a></aside>'
     return viewing+toc+'<article class="prose">'+''.join(body)+'</article>'+documents(work,lang)
 
 
@@ -230,9 +279,15 @@ def page(lang, path, title, deck, content, work=None):
     switch=''.join(f'<a href="{rel(path,location(k,work))}?lang={k}" lang="{c}" data-edition="{k}"'+(' aria-current="page"' if k==lang else '')+f'>{esc(name)}</a>' for k,(c,_,name) in LANGS.items())
     schema={'@context':'https://schema.org','@type':'Article' if work else 'CollectionPage','name':title,'description':deck,'url':url,'inLanguage':code,'isPartOf':{'@type':'WebSite','name':'Non Dubito','url':ORIGIN}}
     if work:
-        schema.update(headline=title,datePublished=work['date'],dateModified=work['date'],author={'@type':'Person','name':'Han Qin'})
+        schema.update(headline=title,datePublished=work['date'],dateModified=work.get('date_modified',work['date']),author={'@type':'Person','name':'Han Qin'})
         if work.get('image'): schema['image']=preview_url(work,work['image'])
-        schema['about']={'@type':work['schema_type'],'name':work['work_name'],'creator':{'@type':'Person','name':work['artist']},'sameAs':work['about']}
+        schema['about']={'@type':work['schema_type'],'name':work['work_name']}
+        if work['category']=='western-architecture':
+            if work.get('architects'):
+                schema['about']['architect']=[{'@type':'Person','name':name} for name in work['architects']]
+        else:
+            schema['about']['creator']={'@type':'Person','name':work['artist']}
+        schema['about']['sameAs']=work['about']
     search_lang=lang if lang in ('zh','en','zh-hant') else 'en'
     home=rel(path,ROOT/'index.html')+'?lang='+search_lang
     if lang in ('ja','fr','de','es','ko'):
@@ -272,8 +327,8 @@ def outputs():
                 title=plain_title(work,lang); path=location(lang,work)
                 out[path]=page(lang,path,title,work['deck'][lang],article(work,lang,path),work)
                 href=rel(index,path)+'?lang='+lang
-                thumbnail=f'<a href="{href}">{image_tag(index,work,work["image"],title,work!=works[0])}</a>' if work.get('image') else ''
-                viewing='' if thumbnail else f'<p class="image-hint"><a href="{esc(work["about"])}" target="_blank" rel="noopener noreferrer">{esc(IMAGE_LINK_LABELS[lang])}</a></p>'
+                thumbnail=f'<a href="{href}">{image_tag(index,work,work["image"],title,work!=works[0],thumbnail=True)}</a>' if work.get('image') else ''
+                viewing='' if thumbnail else f'<p class="image-hint"><a href="{esc(work["about"])}" target="_blank" rel="noopener noreferrer">{esc(image_link_label(work,lang))}</a></p>'
                 cardclass='art-card' if thumbnail else 'art-card art-card-text'
                 cards.append(f'<article class="{cardclass}">{thumbnail}<div><p class="kicker">{esc(work["artist"])} · {esc(work["year"])}</p><h3><a href="{href}">{esc(title)}</a></h3><p class="deck">{esc(work["deck"][lang])}</p><a href="{href}">{esc(UI[lang][7])}</a>{viewing}<p class="edition-note">简 · 繁 · EN · 日本語 · FR · DE · ES · 한국어</p></div></article>')
             cards.append('</section>')

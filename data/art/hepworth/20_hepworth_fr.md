@@ -2,6 +2,12 @@
 
 Regarder de près la sculpture occidentale 20
 
+Les petites images ci-dessous correspondent aux photographies analysées dans cet essai. Aucune autorisation de reproduction n’a été obtenue ; les droits restent réservés à leurs titulaires respectifs. Cliquer pour consulter la source officielle.
+
+![Hepworth, Pelagos, 1946, Tate T00699 / BH133 : forme en bois, intérieur clair, fils et socle de bois sur fond gris-blanc. © Bowness. Photo: Tate. Présentation : The Hepworth Wakefield / Google Arts & Culture.](images/20_pelagos_studio_commentary.jpg)
+
+Hepworth, Pelagos, 1946, Tate T00699 / BH133 : forme en bois, intérieur clair, fils et socle de bois sur fond gris-blanc. © Bowness. Photo: Tate. Présentation : The Hepworth Wakefield / Google Arts & Culture. Autorisation de reproduction non obtenue. Image incluse uniquement pour le commentaire de l’œuvre dans cet essai ; droits réservés à leurs titulaires respectifs. [Source de l’image](https://artsandculture.google.com/asset/pelagos-barbara-hepworth/DwGCt8iMA9mMAw?hl=en). Ni recadrage, ni agrandissement, ni modification du contenu.
+
 Quelques fils traversent obliquement le vide ; à leurs deux extrémités, le bois prend un tournant.
 
 Ouvrons d’abord la photographie de l’œuvre réalisée par la Tate. En haut à droite, un bord de bois brun doré s’avance vers l’intérieur ; son extrémité ressemble au bout d’une langue repliée. Un peu plus bas à gauche, une autre surface courbe, peinte d’une couleur claire, se relève. Les fils relient ces deux extrémités et franchissent la distance qui les sépare. En suivant le grand contour du bois, le regard fait le tour ; en suivant les fils, il peut traverser directement. Ces deux parcours tiennent dans une sculpture de moins d’un demi-mètre de haut.
@@ -73,6 +79,10 @@ La taille crée ici un contraste intéressant. Une baie ne peut pas être entour
 Voilà aussi pourquoi aucune figure humaine sculptée n’est nécessaire. Le rôle du corps peut apparaître sans contour de corps humain. Quand je regarde la paroi intérieure, je suis tout près ; quand je regarde le fond à travers l’ouverture, je prends conscience qu’il existe encore un lieu derrière. La sculpture ne donne pas un visage au spectateur, mais elle donne à l’acte de regarder la direction d’un « voir là-bas depuis ici ».
 
 ## 5. Le jardin apparaît dans l’ouverture
+
+![Le même Pelagos photographié dans un jardin : intérieur clair et plantes derrière l’ouverture. Source : site officiel de la succession de l’artiste ; œuvre © Bowness. Aucun photographe n’est explicitement crédité sur la notice consultée.](images/20_pelagos_garden_commentary.jpg)
+
+Le même Pelagos photographié dans un jardin : intérieur clair et plantes derrière l’ouverture. Source : site officiel de la succession de l’artiste ; œuvre © Bowness. Aucun photographe n’est explicitement crédité sur la notice consultée. Autorisation de reproduction non obtenue. Image incluse uniquement pour le commentaire de l’œuvre dans cet essai ; droits réservés à leurs titulaires respectifs. [Source de l’image](https://www.barbarahepworth.org.uk/sculptures/1946/pelagos/index.php?sort=catalogue). Ni recadrage, ni agrandissement, ni modification du contenu.
 
 [Autre photographie officielle : vue dans le jardin sur le site de la succession de l’artiste](https://www.barbarahepworth.org.uk/sculptures/1946/pelagos/index.php?sort=catalogue)
 

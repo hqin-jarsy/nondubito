@@ -2,6 +2,12 @@
 
 Una mirada cercana a la escultura occidental 19
 
+Las imágenes pequeñas que siguen corresponden a las fotografías analizadas en este ensayo. No se ha obtenido permiso de reproducción; los derechos pertenecen a sus respectivos titulares. Pulse para consultar la fuente oficial.
+
+![Brâncuși, Pájaro en el espacio, 1927, National Gallery of Art 1989.31.3: ave de latón, cilindro de piedra caliza y base de madera. Fuente de la imagen: National Gallery of Art.](images/19_bird_space_commentary.jpg)
+
+Brâncuși, Pájaro en el espacio, 1927, National Gallery of Art 1989.31.3: ave de latón, cilindro de piedra caliza y base de madera. Fuente de la imagen: National Gallery of Art. No se ha obtenido permiso de reproducción. Imagen incluida únicamente para comentar la obra en este ensayo; derechos reservados a sus respectivos titulares. [Fuente de la imagen](https://www.nga.gov/artworks/71073-bird-space). Sin recorte, ampliación ni alteración del contenido.
+
 Busquemos primero la parte más fina.
 
 La forma dorada se recoge hacia abajo hasta casi convertirse en una línea; más abajo vuelve a abrirse en un pie cónico estrecho que descansa sobre un cilindro claro. El lugar más delgado no toca el suelo. Un cuerpo muy largo se dispone sobre ese estrechamiento.

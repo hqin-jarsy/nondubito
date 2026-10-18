@@ -2,6 +2,12 @@
 
 Westliche Skulptur genau betrachtet 16
 
+Die neu eingefügten kleinen Bilder sind ergänzende Aufnahmen derselben Originalskulptur. Bildanalysen eines bestimmten Hintergrunds oder Blickwinkels beziehen sich weiterhin auf die im Text verlinkten offiziellen Bilder. Ein Klick öffnet die Werkseite des Museums.
+
+![Michelangelos David, das Original in der Accademia; ergänzende Ganzkörperaufnahme.](images/16_david_overview.jpg)
+
+Michelangelos David, das Original in der Accademia; ergänzende Ganzkörperaufnahme. Foto: Maksim Sokolov (maxergon.com), 2019-07-18. [Bildquelle und Lizenz](https://commons.wikimedia.org/wiki/File:David_by_Michelangelo_(Academia_Gallery).jpg); [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Verkleinert; Bildausschnitt unverändert.
+
 Seine rechte Hand hängt bereits neben dem Oberschenkel, doch die Finger haben sich nicht ganz entspannt.
 
 Die andere Hand liegt angehoben neben der Schulter. Daumen und gekrümmte Finger halten etwas wenig Auffälliges fest. Ein Arm ist gestreckt, der andere angewinkelt: Der hängende rechte Arm führt den Blick zum Knie, der gebeugte linke zurück zum Kopf. Die Brust zeigt weitgehend nach vorn, das Gesicht ist aus seiner Sicht bereits nach links gedreht. Zunächst begegnen wir einem stehenden Menschen. Erst danach bemerken wir, dass seine Körperteile ihre Kräfte in unterschiedliche Richtungen lenken.

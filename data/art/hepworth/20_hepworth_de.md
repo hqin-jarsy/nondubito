@@ -2,6 +2,12 @@
 
 Westliche Skulptur genau betrachtet 20
 
+Die folgenden kleinen Bilder entsprechen den in diesem Text analysierten Fotografien. Eine Genehmigung zur Reproduktion wurde nicht eingeholt; das Urheberrecht verbleibt bei den jeweiligen Rechteinhabern. Ein Klick führt zur offiziellen Quelle.
+
+![Hepworth, Pelagos, 1946, Tate T00699 / BH133: Holzkörper, heller Innenraum, Fäden und Holzsockel vor grauweißem Hintergrund. © Bowness. Photo: Tate. Präsentation: The Hepworth Wakefield / Google Arts & Culture.](images/20_pelagos_studio_commentary.jpg)
+
+Hepworth, Pelagos, 1946, Tate T00699 / BH133: Holzkörper, heller Innenraum, Fäden und Holzsockel vor grauweißem Hintergrund. © Bowness. Photo: Tate. Präsentation: The Hepworth Wakefield / Google Arts & Culture. Keine Genehmigung zur Reproduktion eingeholt. Nur zur Werkbesprechung in diesem Text aufgenommen; das Urheberrecht verbleibt bei den jeweiligen Rechteinhabern. [Bildquelle](https://artsandculture.google.com/asset/pelagos-barbara-hepworth/DwGCt8iMA9mMAw?hl=en). Kein Beschnitt, keine Vergrößerung oder inhaltliche Veränderung.
+
 Einige dünne Fäden überspannen schräg den leeren Raum, während sich das Holz an beiden Enden wendet.
 
 Öffnen wir zunächst die Werkfotografie mit dem Bildnachweis „Tate“. Oben rechts schiebt sich ein goldbrauner Holzrand nach innen; seine Spitze erinnert an eine eingerollte Zunge. Etwas weiter links und tiefer biegt sich eine zweite, hell bemalte Fläche nach oben. Fäden verbinden die beiden Enden und durchqueren den Abstand zwischen ihnen. Folgt das Auge dem großen Umriss des Holzes, nimmt es einen Umweg; folgt es den Fäden, gelangt es unmittelbar hinüber. Beide Wege liegen in einer Skulptur, die weniger als einen halben Meter hoch ist.
@@ -73,6 +79,10 @@ Die Maße erzeugen dabei einen reizvollen Gegensatz. Eine Bucht lässt sich nich
 Daran zeigt sich auch, weshalb kein menschliches Bildnis nötig ist. Der Körper kann eine Rolle spielen, ohne als menschlicher Umriss aufzutreten. Beim Blick nach innen bin ich nahe; beim Blick durch die Öffnung auf den Hintergrund wird mir ein Ort dahinter bewusst. Die Skulptur gibt den Betrachtenden kein Gesicht, verleiht aber dem Sehen selbst die Richtung eines „von hier nach dort“.
 
 ## 5. Durch die Öffnung erscheint ein Garten
+
+![Dasselbe Pelagos im Garten: helle Innenfläche und Pflanzen hinter der Öffnung. Quelle: Website des Künstlernachlasses; Werk © Bowness. Auf der eingesehenen Werkseite wird kein Fotograf ausdrücklich genannt.](images/20_pelagos_garden_commentary.jpg)
+
+Dasselbe Pelagos im Garten: helle Innenfläche und Pflanzen hinter der Öffnung. Quelle: Website des Künstlernachlasses; Werk © Bowness. Auf der eingesehenen Werkseite wird kein Fotograf ausdrücklich genannt. Keine Genehmigung zur Reproduktion eingeholt. Nur zur Werkbesprechung in diesem Text aufgenommen; das Urheberrecht verbleibt bei den jeweiligen Rechteinhabern. [Bildquelle](https://www.barbarahepworth.org.uk/sculptures/1946/pelagos/index.php?sort=catalogue). Kein Beschnitt, keine Vergrößerung oder inhaltliche Veränderung.
 
 [Eine weitere offizielle Fotografie: Gartenansicht auf der Nachlasswebsite](https://www.barbarahepworth.org.uk/sculptures/1946/pelagos/index.php?sort=catalogue)
 

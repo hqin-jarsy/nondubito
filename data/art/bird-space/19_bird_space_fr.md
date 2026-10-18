@@ -2,6 +2,12 @@
 
 Regarder de près la sculpture occidentale 19
 
+Les petites images ci-dessous correspondent aux photographies analysées dans cet essai. Aucune autorisation de reproduction n’a été obtenue ; les droits restent réservés à leurs titulaires respectifs. Cliquer pour consulter la source officielle.
+
+![Brâncuși, L’Oiseau dans l’espace, 1927, National Gallery of Art 1989.31.3 : oiseau en laiton, cylindre de calcaire et socle en bois. Source de l’image : National Gallery of Art.](images/19_bird_space_commentary.jpg)
+
+Brâncuși, L’Oiseau dans l’espace, 1927, National Gallery of Art 1989.31.3 : oiseau en laiton, cylindre de calcaire et socle en bois. Source de l’image : National Gallery of Art. Autorisation de reproduction non obtenue. Image incluse uniquement pour le commentaire de l’œuvre dans cet essai ; droits réservés à leurs titulaires respectifs. [Source de l’image](https://www.nga.gov/artworks/71073-bird-space). Ni recadrage, ni agrandissement, ni modification du contenu.
+
 Cherchons d’abord l’endroit le plus mince.
 
 La longue forme dorée se resserre vers le bas, presque jusqu’à devenir une ligne ; plus bas encore, elle s’ouvre à nouveau en un étroit pied conique posé sur un cylindre clair. Le point le plus fin ne touche pas le sol. Un corps très long est installé au-dessus de cet étranglement.
