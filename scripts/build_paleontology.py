@@ -12,6 +12,7 @@ import math
 import os
 import re
 import markdown
+from web_analytics import tracked_html
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/paleontology'
@@ -101,6 +102,7 @@ def language_menu(lang, ep, path):
                     + (' aria-current="page"' if l == lang else '') + f'>{esc(UI[l]["label"])}</a>' for l in LANGS)
     return f'<details class="language-menu"><summary aria-label="{esc(UI[lang]["language"])}">{esc(UI[lang]["label"])} <span aria-hidden="true">⌄</span></summary><nav aria-label="{esc(UI[lang]["language"])}">{links}</nav></details>'
 
+@tracked_html
 def shell(lang, ep, title, description, content):
     ui = UI[lang]; path = destination(lang, ep); canonical = canonical_url(path)
     aliases = ''.join(f'<link rel="alternate" hreflang="{l}" href="{canonical_url(destination(l, ep))}">\n' for l in LANGS)

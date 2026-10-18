@@ -3,6 +3,7 @@
 import json
 import re
 import unittest
+from daodejing_review_checks import after_analytics
 from urllib.parse import unquote, urlsplit
 
 import build_daodejing_batch14 as build
@@ -34,7 +35,7 @@ class Batch14(unittest.TestCase):
         for path, content in outputs.items():
             self.assertEqual(path.read_text(), content, str(path))
         for path, record in self.receipt['page_edits'].items():
-            self.assertEqual(build.digest((build.ROOT / path).read_bytes()), record['after_sha256'], path)
+            self.assertEqual(build.digest((build.ROOT / path).read_bytes()), after_analytics(build.DATA, path, record['after_sha256']), path)
             self.assertEqual(build.digest(build.baseline(build.ROOT / path, self.receipt['baseline_commit']).encode()), record['before_sha256'], path)
 
     def test_pages_metadata_structure_links(self):

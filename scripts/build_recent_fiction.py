@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from build_ai_work_series import TraditionalConverter, shell_header, tri
+from web_analytics import tracked_html
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -232,6 +233,7 @@ def card(book: dict, converter: TraditionalConverter) -> str:
 </a>'''
 
 
+@tracked_html
 def render_index(books: list[dict], converter: TraditionalConverter) -> str:
     shelf = []
     for year in sorted({book['book_date'][:4] for book in books}, reverse=True):
@@ -271,6 +273,7 @@ def source_section(book: dict, converter: TraditionalConverter) -> str:
     return f'''<section class="rf-sources" id="sources" aria-labelledby="source-heading"><h2 id="source-heading">{localized('Beyond this introduction', '读完这里，还可以去哪里', converter)}</h2>{localized(esc(book['en_source_note']), esc(book['zh_source_note']), converter, 'p', 'rf-source-note')}{localized('The linked conversations, excerpts, and reviews may discuss more of the story than this introduction does.', '外部访谈、试读与评论可能谈到本文尚未展开的情节。', converter, 'p', 'rf-source-spoilers')}<div class="rf-source-grid">{''.join(cards)}</div></section>'''
 
 
+@tracked_html
 def render_article(book: dict, books: list[dict], converter: TraditionalConverter) -> str:
     published = date.fromisoformat(book['guide_date'])
     display_date = f"{published.strftime('%b')} {published.day}, {published.year}"

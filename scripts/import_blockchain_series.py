@@ -15,6 +15,7 @@ import re
 from pathlib import Path
 
 from blockchain_navigation import VERSION, upgrade_page
+from web_analytics import tracked_html
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -206,6 +207,7 @@ def footer() -> str:
     return '''<footer class="blockchain-footer"><div><a href="../../index.html" class="blockchain-brand"><span>NON</span><span>DUBITO</span></a><p>Essays in the Self-as-an-End Tradition</p></div><nav aria-label="页脚导航"><a href="../../explore.html">探索</a><a href="../../latest.html">最近更新</a><a href="../../library.html">完整书库</a><a href="../../about.html">关于</a></nav></footer>'''
 
 
+@tracked_html
 def render_article(source: Path, number: int, title: str, description: str) -> str:
     source_h1, sections = parse_markdown(source)
     if title not in source_h1:
@@ -300,6 +302,7 @@ def index_json_ld() -> str:
     return json.dumps(data, ensure_ascii=False, indent=2)
 
 
+@tracked_html
 def render_index() -> str:
     description = "二十一篇从比特币披萨、挖矿与交易所，走到稳定币、跨链桥、L2 与真实世界资产，追问链能精确结算什么，又把什么留在账外。"
     groups: list[str] = []

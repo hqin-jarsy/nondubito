@@ -10,6 +10,7 @@ from urllib.parse import urlsplit
 import build_president_full_editions as build
 from import_president_full_editions import body_fragment, sha
 from test_daodejing_sources import Page
+from web_analytics import ensure_analytics
 
 BATCH=os.environ.get('PRESIDENT_BATCH','batch01')
 
@@ -108,7 +109,7 @@ class PresidentsBatchTests(unittest.TestCase):
             for lang in ('',*build.LANGS):
                 path=build.SERIES/lang/f'ep{ep:02}.html'
                 original=subprocess.check_output(['git','show',f'{baseline}:{path.relative_to(build.ROOT)}'],cwd=build.ROOT)
-                self.assertEqual(path.read_bytes(),original,path)
+                self.assertEqual(path.read_bytes(),ensure_analytics(original.decode()).encode(),path)
 
     def test_previous_batch_bodies_preserved(self):
         baseline=self.received['baseline_commit']
@@ -116,7 +117,9 @@ class PresidentsBatchTests(unittest.TestCase):
             for lang in ('',*build.LANGS):
                 path=build.SERIES/lang/f'ep{ep:02}.html'
                 original=subprocess.check_output(['git','show',f'{baseline}:{path.relative_to(build.ROOT)}'],cwd=build.ROOT,text=True)
-                if lang:self.assertEqual(path.read_text(),original,path)
+                if lang:
+                    # Analytics maintenance may add a beacon, never alter prose.
+                    self.assertEqual(path.read_text(),ensure_analytics(original),path)
                 else:
                     for code in ('zh','en'):self.assertEqual(body_fragment(path.read_text(),code),body_fragment(original,code),path)
 

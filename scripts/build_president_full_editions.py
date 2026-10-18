@@ -16,6 +16,7 @@ from import_president_full_editions import ROOT, DATA, LANGS, sha, body_fragment
 from test_daodejing_sources import Page
 from build_worldcup_full_editions import render
 from build_emperor_traditional import TraditionalConverter, TextCollector, reading_script
+from web_analytics import tracked_html
 
 SERIES = ROOT / 'essays/president'
 LABELS = {'en':'English','zh':'简体中文','zh-hant':'繁體中文','ja':'日本語','fr':'Français','de':'Deutsch','es':'Español','ko':'한국어'}
@@ -124,6 +125,7 @@ def navigation_fallbacks(page, available):
     return re.sub(r'<a\b[^>]*href="((?:index|ep\d{2}))\.html"[^>]*>',fallback,page)
 
 
+@tracked_html
 def outputs(batch):
     receipt=json.loads((DATA/f'{batch}-review.json').read_text())
     assert sha((DATA/f'{batch}-received.json').read_bytes())==receipt['received_sha256']

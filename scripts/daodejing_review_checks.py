@@ -15,7 +15,19 @@ def _after_batch(data, path, approved_digest, batch):
 
 
 def after_batch14(data, path, approved_digest):
-    return _after_batch(data, path, approved_digest, 'batch14')
+    return after_analytics(data, path, _after_batch(data, path, approved_digest, 'batch14'))
+
+
+def after_analytics(data, path, approved_digest):
+    receipt = data / 'analytics-review-2026-10-18.json'
+    if not receipt.exists():
+        return approved_digest
+    edit = json.loads(receipt.read_text())['page_edits'].get(path)
+    if not edit:
+        return approved_digest
+    if edit['before_sha256'] != approved_digest:
+        raise ValueError(f'{path}: analytics maintenance does not continue the approved digest')
+    return edit['after_sha256']
 
 
 def after_batch13(data, path, approved_digest):

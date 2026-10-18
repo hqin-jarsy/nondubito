@@ -11,6 +11,7 @@ import json
 import re
 from pathlib import Path
 from build_ai_work_series import shell_header, footer, tri
+from web_analytics import tracked_html
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/zhuangzi'
@@ -170,6 +171,7 @@ def head(name, deck, file, kind, date, modified=None):
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>
 </head>'''
 
+@tracked_html
 def page(body, name, description, file, date, kind, modified=None):
     return f'''<!DOCTYPE html>
 <html lang="en" data-lang="en" data-editions="en zh zh-hant">

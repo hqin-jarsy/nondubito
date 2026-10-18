@@ -14,6 +14,7 @@ from urllib.parse import urlsplit
 
 import build_recent_fiction as fiction
 from build_recent_fiction import TraditionalConverter as BaseTraditionalConverter, esc, localized, prose
+from web_analytics import tracked_html
 
 ROOT = fiction.ROOT
 SOURCE = ROOT / 'data/nonfiction'
@@ -189,6 +190,7 @@ def source_section(book: dict, converter: TraditionalConverter) -> str:
 <div class="rf-source-grid">{''.join(cards)}</div></section>'''
 
 
+@tracked_html
 def render_article(book: dict, books: list[dict], converter: TraditionalConverter) -> str:
     published = date.fromisoformat(book['guide_date'])
     display_date = f"{published.strftime('%b')} {published.day}, {published.year}"
@@ -226,6 +228,7 @@ def render_article(book: dict, books: list[dict], converter: TraditionalConverte
 </main>{fiction.footer(converter)}</body></html>'''
 
 
+@tracked_html
 def render_index(books: list[dict], converter: TraditionalConverter) -> str:
     return f'''<!DOCTYPE html>
 <html lang="en" data-lang="en" data-editions="en zh zh-hant">
@@ -243,6 +246,7 @@ def render_index(books: list[dict], converter: TraditionalConverter) -> str:
 </main>{fiction.footer(converter)}</body></html>'''
 
 
+@tracked_html
 def render_hub(books: list[dict], novels: list[dict], converter: TraditionalConverter) -> str:
     count = len(books) + len(novels)
     modified = max(book.get('updated_date', book['guide_date']) for book in books + novels)

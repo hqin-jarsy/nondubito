@@ -9,6 +9,7 @@ import html
 import json
 import re
 from pathlib import Path
+from web_analytics import tracked_html
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -420,6 +421,7 @@ def supporting_pages() -> dict[Path, str]:
     return outputs
 
 
+@tracked_html
 def render() -> dict[Path, str]:
     copy = load_copy()
     outputs = supporting_pages()

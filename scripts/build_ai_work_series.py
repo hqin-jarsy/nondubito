@@ -8,6 +8,7 @@ import html
 import json
 import re
 from pathlib import Path
+from web_analytics import tracked_html
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -191,6 +192,7 @@ def tri(en: str, zh: str, hant: str, tag: str = "span", classes: str = "") -> st
     return f'<{tag} class="lang-en{base}">{en}</{tag}><{tag} class="lang-zh{base}">{zh}</{tag}><{tag} class="lang-hant{base}">{hant}</{tag}>'
 
 
+@tracked_html
 def render_index(articles: list[dict], converter: TraditionalConverter) -> str:
     hant_title = converter.convert(SERIES["zh_title"])
     hant_deck = converter.convert(SERIES["zh_deck"])
@@ -203,6 +205,7 @@ def render_index(articles: list[dict], converter: TraditionalConverter) -> str:
     return f'''<!DOCTYPE html><html lang="en" data-lang="en" data-editions="en zh zh-hant">{head(SERIES['en_title'] + ' · ' + SERIES['zh_title'], description, 'index.html', 'CollectionPage')}<body class="site-shell-page explicit-hant">{shell_header()}<main class="series-wrap"><nav class="reading-breadcrumbs"><a href="../../explore.html">{tri('Explore','探索','探索')}</a><span>/</span><a href="../../explore.html#mind">{tri('Mind, AI &amp; Technology','心灵、AI 与技术','心靈、AI 與技術')}</a></nav><section class="series-hero"><p class="eyebrow">{tri('New flagship · Eight essays','新旗舰 · 八篇','新旗艦 · 八篇')}</p>{tri(esc(SERIES['en_title']), esc(SERIES['zh_title']), esc(hant_title), 'h1', 'cjk-switch')}{tri(esc(SERIES['en_deck']), esc(SERIES['zh_deck']), esc(hant_deck), 'p', 'series-deck cjk-switch')}<div class="series-promise">{tri('AI can take over tasks. It should not quietly take over the place from which you decide what the task is for.','AI 可以接管任务，却不该悄悄接管那个决定“任务为了什么”的位置。','AI 可以接管任務，卻不該悄悄接管那個決定「任務為了什麼」的位置。','p','cjk-switch')}</div></section><section class="series-map"><div class="map-label">{tri('The route','阅读路线','閱讀路線')}</div><div class="map-steps"><span>Draft</span><i>→</i><span>Judge</span><i>→</i><span>Choose</span><i>→</i><span>Answer</span></div></section><section class="series-grid">{''.join(cards)}</section><aside class="series-afterword">{tri('These are reader essays, not summaries of technical papers. They bring the Self-as-an-End framework into ordinary work without requiring its vocabulary first.','这不是八篇论文摘要，而是一条面向普通读者的入口：先从每天已经发生的工作经验出发，再看见工具与主体之间真正的分界。','這不是八篇論文摘要，而是一條面向普通讀者的入口：先從每天已經發生的工作經驗出發，再看見工具與主體之間真正的分界。','p','cjk-switch')}<a href="https://self-as-an-end.net/papers/sae-methodology-8.html">{tri('Read the theoretical interface ↗','进入理论接口 ↗','進入理論介面 ↗')}</a></aside></main>{footer()}</body></html>'''
 
 
+@tracked_html
 def render_article(article: dict, index: int, articles: list[dict], converter: TraditionalConverter) -> str:
     filename = article["slug"] + ".html"
     zh_title = article["zh_title"]

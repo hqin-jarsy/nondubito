@@ -6,6 +6,7 @@ import html
 import json
 from pathlib import Path
 from import_fairy_tales import TraditionalConverter
+from web_analytics import tracked_html
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'originals/hongloumeng'
@@ -29,6 +30,7 @@ ORIGIN = 'https://nondubito.net/originals/hongloumeng/'
 EDITIONS = {'zh': ('', 'zh-Hans', '简体中文'), 'zh-hant': ('zh-hant/', 'zh-Hant', '繁體中文')}
 
 
+@tracked_html
 def render():
     manuscripts = {stem: manuscript(stem) for stem in CHAPTERS}
     converter = TraditionalConverter()

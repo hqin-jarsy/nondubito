@@ -15,6 +15,7 @@ import re
 from pathlib import Path
 
 from import_analects_series import ITEMS, MOVEMENTS, RESEARCH, serialize_updates
+from web_analytics import tracked_html
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -303,6 +304,7 @@ def shared_hubs() -> dict[Path, str]:
     }
 
 
+@tracked_html
 def render() -> dict[Path, str]:
     copy = load_copy()
     outputs: dict[Path, str] = shared_hubs()

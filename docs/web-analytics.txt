@@ -1,0 +1,37 @@
+Cloudflare Web Analytics maintenance
+===================================
+
+nondubito.net is served by GitHub Pages. Its Cloudflare Web Analytics property
+uses manual JavaScript installation (confirmed in Manage site, 2026-10-18).
+The site token in scripts/web_analytics.py is public, not an API credential.
+
+After any content build/import:
+  python3 -B scripts/check_web_analytics.py --fix
+  python3 -B scripts/check_web_analytics.py
+  python3 -B -m unittest discover -s scripts -p test_web_analytics.py
+  python3 -B scripts/build_search_index.py
+  python3 -B scripts/build_search_index.py --check
+
+When public URLs or article content change, also rebuild/check sitemap.xml.
+Analytics-only changes do not justify refreshing every article's lastmod date;
+the 2026-10-18 repair deliberately preserves the existing sitemap dates/URLs.
+
+The checker parses real script elements (not comments or strings) and requires
+exactly one deferred/async/module beacon with the correct site token on every
+public HTML page. Internal data/templates, redirects, noindex pages and
+external-canonical pages are excluded. Numbered filesystem conflict copies are
+not published content and must not be introduced into Git or search results.
+
+Use @tracked_html on complete HTML renderers or dictionaries mapping paths to
+generated text. Mixed JS/JSON/CSS outputs are left unchanged. The final whole-
+site checker remains necessary for manually maintained/legacy HTML pages.
+GitHub Actions runs the analytics checker on pushes and pull requests, without
+changing the existing Pages deployment or any Cloudflare settings.
+
+This checks installed configuration, not delivery from every visitor. Blocking
+extensions, JavaScript disabled, network failures and provider filtering may
+still prevent individual events. Historical missed page views cannot be
+recovered by installing a beacon later.
+
+Cloudflare documentation:
+https://developers.cloudflare.com/web-analytics/get-started/

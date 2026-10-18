@@ -12,6 +12,7 @@ import json
 from pathlib import Path
 
 from import_fairy_tales import TraditionalConverter
+from web_analytics import tracked_html
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'essays/humor'
@@ -37,6 +38,7 @@ def load_data():
     return data
 
 
+@tracked_html
 def render_pages():
     data = load_data()
     total = sum(len(i['jokes']) for i in data['issues'])

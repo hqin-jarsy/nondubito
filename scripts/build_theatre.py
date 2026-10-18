@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 
 from build_recent_fiction import TraditionalConverter, esc, localized, prose, head, navigation, footer
+from web_analytics import tracked_html
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE = '2026-10-13'
@@ -37,6 +38,7 @@ def page_head(title, deck, filename, article=False):
     return result
 
 
+@tracked_html
 def wrap(content, title, deck, filename, converter, article=False):
     return f'''<!DOCTYPE html>
 <html lang="en" data-lang="en" data-editions="en zh zh-hant">

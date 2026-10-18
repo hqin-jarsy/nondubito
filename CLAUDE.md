@@ -108,6 +108,26 @@ git apply --cached /tmp/mine.patch
 
 ## Site conventions
 
+### Public-page analytics and final publishing checks
+
+- Cloudflare Web Analytics is installed manually on this GitHub Pages site.
+  The public site token is `1c920752456e42b5b5469641245a07c2`; other tokens
+  do not belong to the nondubito.net property. DNS hosting does not inject it.
+- New complete-page renderers should use `tracked_html` from
+  `scripts/web_analytics.py`. It preserves valid existing beacons and adds only
+  a missing/incorrect beacon, never article copy. Do not add tracking to
+  redirects, noindex pages, archived templates or internal build inputs.
+- After generating or importing pages, run:
+  `python3 -B scripts/check_web_analytics.py --fix`, then
+  `python3 -B scripts/check_web_analytics.py`.
+  The Public-page integrity GitHub Actions check independently catches omissions.
+- Never publish filesystem conflict copies such as `name 2.html`. Keep the
+  canonical, linked article; back up any differing copy outside the repository
+  before removing it. The search collector excludes these collision names.
+- Do not remove received/reviewed manuscripts, build templates, source hashes,
+  image rights records or referenced QA reports just because browsers do not
+  fetch them: many remain necessary for reproducible builds and provenance.
+
 - Never translate "Self-as-an-End" into any other language, anywhere on the
   site.
 - SAE's Chinese term for *cultivation* is **涵育**, never 培育. The pair is

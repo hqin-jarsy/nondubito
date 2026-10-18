@@ -15,6 +15,7 @@ import re
 from pathlib import Path
 
 from build_content_registry import attr_value, clean_text, scan_page
+from web_analytics import COLLISION_NAME
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +32,8 @@ def collect_pages() -> list[Path]:
     for path in ROOT.rglob("*.html"):
         relative = path.relative_to(ROOT)
         if relative.parts[0] in EXCLUDED_TOP_LEVEL:
+            continue
+        if COLLISION_NAME.search(relative.name):
             continue
         if any(relative.is_relative_to(prefix) for prefix in EXCLUDED_PREFIXES):
             continue

@@ -16,6 +16,7 @@ import os
 import re
 from html.parser import HTMLParser
 from pathlib import Path
+from web_analytics import tracked_html
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -363,6 +364,7 @@ def extract_title(path: Path) -> str:
     return re.sub(r"<[^>]+>", "", match.group(1)).strip()
 
 
+@tracked_html
 def article_html(lang: str, entry: dict[str, object], order: list[dict[str, object]], available: set[str], all_copy: dict[str, dict[str, object]]) -> str:
     slug = str(entry["slug"])
     number = int(entry["number"])
@@ -446,6 +448,7 @@ def article_html(lang: str, entry: dict[str, object], order: list[dict[str, obje
 '''
 
 
+@tracked_html
 def index_html(lang: str, order: list[dict[str, object]], available: set[str], all_copy: dict[str, dict[str, object]]) -> str:
     count = len(available)
     full_count = sum(e.get("edition", {}).get("status") == "full" for e in all_copy.values())

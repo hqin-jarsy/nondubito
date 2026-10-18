@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 import markdown
 from import_film_full_editions import ROOT, DATA, LANGS
+from web_analytics import tracked_html
 
 DATE='2026-10-07'
 NAMES={'en':'English','zh':'简体中文','zh-hant':'繁體中文','de':'Deutsch','fr':'Français','es':'Español','ja':'日本語','ko':'한국어'}
@@ -105,6 +106,7 @@ def alternate_links(slug,filename,hub=False):
     suffix='' if filename=='index.html' else filename
     return ''.join(f'<link rel="alternate" hreflang="{l}" href="{base+l+"/"+suffix}">' for l in LANGS)+f'<link rel="alternate" hreflang="x-default" href="{base+suffix}">'
 
+@tracked_html
 def page(film,lang,copy,ep=None,hub=False):
     u=UI[lang];slug=film['slug'];filename=film['chapters'][ep-1]+'.html' if ep else 'index.html'
     depth='../../../' if hub else '../../../../'
