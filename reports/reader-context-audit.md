@@ -10,29 +10,30 @@ separately from the newer three-route continuation pattern.
 
 | Scope | Pages | Articles | Series / collection pages | Breadcrumbs | Three-route continuation | New site shell |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| All physical editions | 11,591 | 10,497 | 1,094 | 381 | 134 | 581 |
-| Canonical-root pages | 4,042 | 3,624 | 418 | 356 | 134 | 326 |
-| Independent language editions | 7,549 | 6,873 | 676 | 25 | 0 | 255 |
+| All physical editions | 11,988 | 10,885 | 1,103 | 402 | 134 | 602 |
+| Canonical-root pages | 4,134 | 3,712 | 422 | 377 | 134 | 347 |
+| Independent language editions | 7,854 | 7,173 | 681 | 25 | 0 | 255 |
 
 ## Existing article navigation
 
 | Scope | Series position | Legacy previous / next |
 | --- | ---: | ---: |
-| All physical editions | 4,564 | 6,084 |
-| Canonical-root pages | 778 | 2,176 |
+| All physical editions | 4,564 | 5,974 |
+| Canonical-root pages | 778 | 2,066 |
 | Independent language editions | 3,786 | 3,908 |
 
 ## Canonical-root articles by collection
 
 | Collection | Articles | Breadcrumbs | Three-route continuation | Series position | Legacy previous / next |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| `science-fiction` | 784 | 1 | 1 | 0 | 679 |
+| `science-fiction` | 648 | 1 | 1 | 0 | 569 |
 | `everyday` | 385 | 1 | 1 | 362 | 362 |
 | `literature` | 302 | 0 | 0 | 0 | 190 |
 | `mingren` | 212 | 0 | 0 | 0 | 104 |
 | `aesthetics` | 198 | 0 | 0 | 0 | 0 |
+| `art` | 180 | 0 | 0 | 0 | 0 |
 | `film` | 177 | 0 | 0 | 0 | 60 |
-| `humor` | 142 | 0 | 0 | 0 | 0 |
+| `humor` | 166 | 0 | 0 | 0 | 0 |
 | `jiaoyi` | 110 | 0 | 0 | 0 | 109 |
 | `daodejing` | 82 | 0 | 0 | 0 | 0 |
 | `tv` | 82 | 0 | 0 | 0 | 82 |
@@ -55,6 +56,7 @@ separately from the newer three-route continuation pattern.
 | `economy` | 23 | 0 | 0 | 23 | 23 |
 | `xiyou` | 23 | 0 | 0 | 0 | 0 |
 | `worldcup` | 22 | 0 | 0 | 22 | 22 |
+| `theatre` | 20 | 20 | 0 | 0 | 0 |
 | `sae-foundations` | 16 | 15 | 15 | 15 | 15 |
 | `war` | 16 | 0 | 0 | 16 | 16 |
 | `method` | 13 | 0 | 0 | 0 | 13 |

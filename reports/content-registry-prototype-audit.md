@@ -7,17 +7,17 @@ read-only with respect to published pages.
 
 | Measure | Count |
 | --- | ---: |
-| Scanned HTML pages | 1369 |
-| Canonical candidate records | 465 |
+| Scanned HTML pages | 1388 |
+| Canonical candidate records | 484 |
 | Library categories parsed | 18 |
-| Library series cards parsed | 359 |
+| Library series cards parsed | 378 |
 
 ## Record types
 
 | Type | Count |
 | --- | ---: |
 | collection-index | 9 |
-| essay | 436 |
+| essay | 455 |
 | series-index | 11 |
 | site-page | 4 |
 | story | 5 |
@@ -30,20 +30,20 @@ HTML files.
 | Language | Records |
 | --- | ---: |
 | de | 183 |
-| en | 330 |
+| en | 349 |
 | es | 183 |
 | fr | 183 |
 | ja | 183 |
 | ko | 183 |
-| zh-Hans | 331 |
-| zh-Hant | 336 |
+| zh-Hans | 350 |
+| zh-Hant | 355 |
 
 ## Editions per canonical record
 
 | Edition count | Records |
 | ---: | ---: |
 | 1 | 137 |
-| 3 | 149 |
+| 3 | 168 |
 | 7 | 104 |
 | 8 | 75 |
 
@@ -89,7 +89,7 @@ None in prototype scope.
 - `essays/everyday/relationships/23-forgiveness-does-not-erase-harm.html`
 - `essays/everyday/relationships/24-reconciliation-is-not-resolution.html`
 - `essays/everyday/relationships/25-does-calmness-make-you-right.html`
-- … 251 additional paths in the generated audit JSON
+- … 270 additional paths in the generated audit JSON
 
 ## Unmapped primary domains
 

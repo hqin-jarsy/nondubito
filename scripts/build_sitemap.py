@@ -7,6 +7,7 @@ import argparse
 import html
 import re
 import subprocess
+import xml.etree.ElementTree as ET
 from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
@@ -100,6 +101,31 @@ def sitemap_xml(entries: list[tuple[str, str]]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def parse_recorded_dates(source: str) -> dict[str, str]:
+    """Keep reviewed dates across later analytics/formatting-only commits."""
+    try:
+        document = ET.fromstring(source)
+    except ET.ParseError:
+        return {}
+    ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+    result = {}
+    for entry in document.findall('s:url', ns):
+        url, modified = entry.findtext('s:loc', '', ns), entry.findtext('s:lastmod', '', ns)
+        try:
+            date.fromisoformat(modified)
+        except ValueError:
+            continue
+        if url:
+            result[url] = modified
+    return result
+
+
+def recorded_dates() -> dict[str, str]:
+    result = subprocess.run(['git', 'show', 'HEAD:sitemap.xml'], cwd=ROOT,
+                            capture_output=True, text=True)
+    return parse_recorded_dates(result.stdout) if result.returncode == 0 else {}
+
+
 def build() -> tuple[str, list[str], int]:
     parsed_pages: dict[Path, PageParser] = {}
     candidates: set[str] = set()
@@ -141,11 +167,12 @@ def build() -> tuple[str, list[str], int]:
         target_by_url[url] = target
 
     dates, dirty = git_dates()
+    recorded = recorded_dates()
     today = date.today().isoformat()
     entries: list[tuple[str, str]] = []
     for url in sorted(target_by_url, key=lambda item: (urlsplit(item).path != "/", urlsplit(item).path)):
         relative = target_by_url[url].relative_to(ROOT).as_posix()
-        modified = today if relative in dirty else dates.get(relative, today)
+        modified = today if relative in dirty else recorded.get(url, dates.get(relative, today))
         entries.append((url, modified))
     return sitemap_xml(entries), errors, ignored_external
 
