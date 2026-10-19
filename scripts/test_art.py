@@ -47,11 +47,16 @@ class ArtTests(unittest.TestCase):
         for w in self.works:
             for lang in b.LANGS:
                 s=self.pages[b.location(lang,w)]
+                links=b.manuscript_links(w) if w.get('manuscript_details') else None
                 for block in b.load(w,lang)[2:]:
                     if block.startswith(('## ','### ','![')) or block=='---': continue
+                    if w.get('manuscript_details') and block.startswith(('<details>','</details>')): continue
                     if w.get('source_tail') and block.startswith('- '):
-                        for line in block.splitlines(): self.assertIn(b.inline(line.removeprefix('- ')),s)
-                    else: self.assertIn(b.inline(block),s,(lang,block[:60]))
+                        for line in block.splitlines(): self.assertIn(b.inline(line.removeprefix('- '),links),s)
+                    else:
+                        rendered=b.inline(block,links)
+                        if w.get('manuscript_details'): rendered=rendered.replace('  \n','<br>\n')
+                        self.assertIn(rendered,s,(lang,block[:60]))
                 tags=Parse(s).tags
                 image_count=sum(block.startswith('![') for block in b.load(w,lang))
                 self.assertEqual(sum(t=='figure' for t,a in tags),image_count)
@@ -237,6 +242,31 @@ class ArtTests(unittest.TestCase):
             schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)[1])
             self.assertEqual(schema['about']['@type'],'Sculpture')
             self.assertEqual(sum(t=='figure' for t,a in Parse(source).tags),5)
+
+    def test_calligraphy_full_text_and_separate_image_guide(self):
+        work=next(w for w in self.works if w['id']=='calligraphy-su-shi-hanshi')
+        for lang in b.LANGS:
+            source=self.pages[b.location(lang,work)]
+            self.assertIn('href="#chinese-calligraphy"',self.pages[b.location(lang)])
+            self.assertIn(b.CATEGORIES['chinese-calligraphy'][lang],source)
+            self.assertEqual(source.count('<figure>'),5)
+            self.assertNotIn('&lt;details&gt;',source)
+            self.assertNotIn('href="IMAGE_NOTES.',source)
+            self.assertIn('id="viewing-notes"',source)
+            if lang in ('ja','ko'): self.assertIn('href="#image-credits"',source)
+            # The image/textual notes must not be trapped in the theory foldout.
+            theory=source.index('class="optional-reading"')
+            notes=source.index('id="viewing-notes"')
+            self.assertIn('</div></details>',source[theory:notes])
+            self.assertIn('<br>\n',source)  # Preserve the poems’ deliberate verse lines.
+            for number,stem in [(0,'su_text_overview'),(6,'full_scroll_gallery_index')]:
+                self.assertIn(b.preview_url(work,f'{number:02d}_{stem}.jpg'),source)
+            schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)[1])
+            self.assertEqual(schema['about']['@type'],'VisualArtwork')
+            self.assertIn('National Palace Museum',source)
+        traditional=(b.DATA/work['id']/'01_hanshi_zh-Hant.md').read_text()
+        self.assertIn('九重墳墓在万里也擬',traditional)
+        self.assertIn('墳墓在萬里',traditional)  # Normalized poem text remains Traditional.
 
     def test_sculpture_expansion(self):
         counts = {'rodin':3, 'canova':4, 'satyr':3, 'eros':3, 'jonah':3,

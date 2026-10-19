@@ -48,6 +48,11 @@ CATEGORIES = {
         '建築 · 西洋建築', 'Architecture · Architecture occidentale',
         'Architektur · Westliche Architektur', 'Arquitectura · Arquitectura occidental', '건축 · 서양 건축'
     ])),
+    'chinese-calligraphy': dict(zip(LANGS, [
+        '书法 · 中国书法', '書法 · 中國書法', 'Calligraphy · Chinese calligraphy',
+        '書道 · 中国書道', 'Calligraphie · Calligraphie chinoise',
+        'Kalligrafie · Chinesische Kalligrafie', 'Caligrafía · Caligrafía china', '서예 · 중국 서예'
+    ])),
 }
 
 ARCHITECTURE_LINK_LABELS = dict(zip(LANGS, [
@@ -191,11 +196,13 @@ def documents(work, lang):
     image_doc='IMAGE_CREDITS.md' if work.get('image') else 'IMAGE_LINKS.md'
     for filename, anchor, label in [('REFERENCES.md','references',UI[lang][11]),(image_doc,'image-credits',UI[lang][12])]:
         source=(DATA/work['id']/'source'/filename).read_text()
+        if filename=='IMAGE_CREDITS.md' and work.get('image_notes'):
+            source+='\n\n'+(DATA/work['id']/'source'/work['image_notes']).read_text()
         if work.get('restored_images'):
             # Keep package delivery instructions in the archive, not on the reader's page.
             source='\n\n'.join(block for block in source.split('\n\n') if not block.startswith(('R1文字更新说明：','Text-update R1:')))
         marker='## English'
-        bilingual = marker not in source
+        bilingual = marker not in source or bool(work.get('image_notes') and filename=='IMAGE_CREDITS.md')
         if not bilingual:
             source = source.split(marker)[0] if lang in ('zh','zh-hant') else marker+source.split(marker,1)[1]
         elif lang not in ('zh','zh-hant'):
@@ -210,6 +217,8 @@ def documents(work, lang):
                 rendered.append('<h3>'+esc(block.lstrip('# '))+'</h3>')
             else:
                 local_links={p.name:rel(location(lang,work),p) for p in (DATA/work['id']/'source').iterdir() if p.is_file()}
+                if work.get('manuscript_details'):
+                    local_links.update(manuscript_links(work))
                 rendered.append('<p>'+inline(block,local_links).replace('\n','<br>')+'</p>')
         # Source records are archival Chinese or English, not silently translated.
         code='mul' if bilingual else ('zh-Hans' if lang in ('zh','zh-hant') else 'en')
@@ -217,7 +226,66 @@ def documents(work, lang):
     return ''.join(blocks)
 
 
+def manuscript_links(work):
+    """Route package-only reading aids to hosted previews or rendered notes."""
+    links={name:anchor for name,anchor in (
+        ('IMAGE_NOTES.md','#image-credits'),('IMAGE_NOTES.html','#image-credits'),
+        ('SOURCES.md','#references'),('LICENSE_AND_CREDITS.md','#image-credits'))}
+    for name in json.loads((DATA/'images.json').read_text()):
+        if name.startswith(work['id']+'/'):
+            filename=name.split('/',1)[1]
+            links['images/'+filename]=preview_url(work,filename,1280)
+    return links
+
+
+def detailed_article(work, lang, path):
+    """Preserve the supplied reading guide without nesting it inside theory."""
+    blocks=load(work,lang); body=[]; headings=[]; n=0; i=2
+    optional_open=False; notes_open=False; links=manuscript_links(work)
+    while i<len(blocks):
+        block=blocks[i]
+        if block.startswith('## '):
+            n+=1; label=block[3:]; anchor='section-'+str(n)
+            headings.append((anchor,label))
+            if n==work['main_sections']+1:
+                body.append(f'<details class="optional-reading" id="{anchor}"><summary>{esc(label)}</summary>{bridge(lang,path)}<div>')
+                optional_open=True
+            else:
+                body.append(f'<h2 id="{anchor}">{esc(label)}</h2>')
+        elif block.startswith('<details>\n<summary>'):
+            if optional_open:
+                body.append('</div></details>'); optional_open=False
+            match=re.fullmatch(r'<details>\n<summary>([^<]+)</summary>',block)
+            assert match, block
+            body.append('<details class="source-details" id="viewing-notes"><summary>'+esc(match[1])+'</summary><div>')
+            notes_open=True
+            headings.append(('viewing-notes',match[1]))
+        elif block=='</details>':
+            assert notes_open
+            body.append('</div></details>'); notes_open=False
+        elif block.startswith('### '):
+            body.append('<h3>'+esc(block[4:])+'</h3>')
+        elif block.startswith('!['):
+            match=re.fullmatch(r'!\[([^\]]*)\]\(images/([^)]+)\)',block)
+            assert match,block
+            alt,name=match.groups(); caption=blocks[i+1]
+            target=image_click_target(work,name); label=image_link_label(work,lang)
+            body.append(f'<figure><a href="{esc(target)}" target="_blank" rel="noopener noreferrer" aria-label="{esc(label)}">{image_tag(path,work,name,alt,name!=work["image"])}</a><figcaption>{inline(caption,links)}<a class="image-hint" href="{esc(target)}" target="_blank" rel="noopener noreferrer">{esc(label)}</a></figcaption></figure>')
+            i+=1
+        elif block.startswith('- '):
+            body.append('<ul>'+''.join('<li>'+inline(line.removeprefix('- '),links)+'</li>' for line in block.splitlines())+'</ul>')
+        else:
+            assert not block.startswith('<'),block
+            body.append('<p>'+inline(block,links).replace('  \n','<br>\n')+'</p>')
+        i+=1
+    assert n==work['main_sections']+1 and not notes_open and not optional_open
+    toc='<details class="contents"><summary>'+esc(UI[lang][8])+'</summary><nav>'+''.join(f'<a href="#{a}">{esc(h)}</a>' for a,h in headings)+'</nav></details>'
+    return toc+'<article class="prose">'+''.join(body)+'</article>'+documents(work,lang)
+
+
 def article(work, lang, path):
+    if work.get('manuscript_details'):
+        return detailed_article(work,lang,path)
     blocks=load(work,lang); body=[]; headings=[]; i=2; n=0
     heading_count=sum(block.startswith('## ') for block in blocks)
     # Every manuscript ends in an optional reading and image/source notes;
@@ -330,7 +398,9 @@ def outputs():
                 thumbnail=f'<a href="{href}">{image_tag(index,work,work["image"],title,work!=works[0],thumbnail=True)}</a>' if work.get('image') else ''
                 viewing='' if thumbnail else f'<p class="image-hint"><a href="{esc(work["about"])}" target="_blank" rel="noopener noreferrer">{esc(image_link_label(work,lang))}</a></p>'
                 cardclass='art-card' if thumbnail else 'art-card art-card-text'
-                cards.append(f'<article class="{cardclass}">{thumbnail}<div><p class="kicker">{esc(work["artist"])} · {esc(work["year"])}</p><h3><a href="{href}">{esc(title)}</a></h3><p class="deck">{esc(work["deck"][lang])}</p><a href="{href}">{esc(UI[lang][7])}</a>{viewing}<p class="edition-note">简 · 繁 · EN · 日本語 · FR · DE · ES · 한국어</p></div></article>')
+                artist=work.get('artist_by_lang',{}).get(lang,work['artist'])
+                year=work.get('year_by_lang',{}).get(lang,work['year'])
+                cards.append(f'<article class="{cardclass}">{thumbnail}<div><p class="kicker">{esc(artist)} · {esc(year)}</p><h3><a href="{href}">{esc(title)}</a></h3><p class="deck">{esc(work["deck"][lang])}</p><a href="{href}">{esc(UI[lang][7])}</a>{viewing}<p class="edition-note">简 · 繁 · EN · 日本語 · FR · DE · ES · 한국어</p></div></article>')
             cards.append('</section>')
         out[index]=page(lang,index,UI[lang][0],UI[lang][2],''.join(cards)+bridge(lang,index))
     return out
