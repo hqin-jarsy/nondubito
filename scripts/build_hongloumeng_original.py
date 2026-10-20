@@ -12,11 +12,11 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'originals/hongloumeng'
 DATE = '2026-10-07'
 CHAPTERS = {
-    'ch081': {'sha256': 'bdca959b24eb0fb3ef2531ebf73e9db4d58ed3c001c4c952c0760b78653c9351',
-              'published': '2026-10-05', 'modified': '2026-10-12', 'number': '第八十一回',
+    'ch081': {'sha256': 'c30b86a317dcf6246743480d96e0267d00247c4314b6da54fb8a0146c9b67cfa',
+              'published': '2026-10-05', 'modified': '2026-10-19', 'number': '第八十一回',
               'verse': ('忘不了灯前替我缝衣袖，', '才叫声好姐姐，忽又住了口。')},
-    'ch082': {'sha256': '1fb3f88c945d4e6fea5eabaf7bff1cff01f1c370b968a2c5487d604e175806d0',
-              'published': DATE, 'number': '第八十二回',
+    'ch082': {'sha256': '6ca8c8c89cc8f1250078832f5321f4e167b25af905c12cbea31c15c841ccfa44',
+              'published': DATE, 'modified': '2026-10-19', 'number': '第八十二回',
               'verse': ('淡粉新妆，藕丝衫子迎风软。晚凉初转，相约莲塘玩。',
                         '一棹轻舟，影共莲花乱。回头晚，藕花深浅，只载闲愁返。')},
 }
@@ -46,7 +46,7 @@ def render():
                 if stem == 'ch081':
                     choices.update({'我系了這幾年了':'我繫了這幾年了', '鄰捨':'鄰舍'})
                 if stem == 'ch082':
-                    choices.update({'腰系青絲':'腰繫青絲', '系一條淡':'繫一條淡', '帕子松了':'帕子鬆了', '拿不准':'拿不準', '參須':'參鬚'})
+                    choices.update({'腰系青絲':'腰繫青絲', '系一條淡':'繫一條淡', '帕子松了':'帕子鬆了', '拿不准':'拿不準', '作得准':'作得準', '參須':'參鬚'})
                 for before, after in choices.items():
                     value = value.replace(before, after)
                 return value
@@ -66,7 +66,7 @@ def render():
                 alternatives = ''.join(f'<link rel="alternate" hreflang="{c}" href="{ORIGIN+d+(filename if story else "")}">' for d,c,_ in EDITIONS.values())
                 alternatives += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN+(filename if story else "")}">'
                 languages = ''.join(f'<a href="{up+d+filename}" lang="{c}"'+(' aria-current="page"' if k == lang else '')+f'>{name}</a>' for k,(d,c,name) in EDITIONS.items())
-                schema = {'@context':'https://schema.org','@type':'Chapter' if story else 'CollectionPage','name':t(title),'url':canonical,'inLanguage':code,'author':{'@type':'Person','name':'Han Qin (秦汉)'},'datePublished':published,'dateModified':CHAPTERS[stem].get('modified', DATE) if story else DATE}
+                schema = {'@context':'https://schema.org','@type':'Chapter' if story else 'CollectionPage','name':t(title),'url':canonical,'inLanguage':code,'author':{'@type':'Person','name':'Han Qin (秦汉)'},'datePublished':published,'dateModified':CHAPTERS[stem].get('modified', CHAPTERS[stem]['published']) if story else max(ch.get('modified',ch['published']) for ch in CHAPTERS.values())}
                 if story:
                     schema['isPartOf'] = {'@type':'CreativeWork','name':t('红楼梦·后三十回'),'url':ORIGIN+directory}
                     schema['position'] = int(stem[2:])
