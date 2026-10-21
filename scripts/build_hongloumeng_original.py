@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from import_fairy_tales import TraditionalConverter
 from web_analytics import tracked_html
+from hongloumeng_translations import FOREIGN, render_foreign
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'originals/hongloumeng'
@@ -27,7 +28,14 @@ def manuscript(stem):
     assert hashlib.sha256(raw).hexdigest() == CHAPTERS[stem]['sha256'], 'Final manuscript changed: obtain author approval first.'
     return raw.decode().splitlines()
 ORIGIN = 'https://nondubito.net/originals/hongloumeng/'
-EDITIONS = {'zh': ('', 'zh-Hans', '简体中文'), 'zh-hant': ('zh-hant/', 'zh-Hant', '繁體中文')}
+EDITIONS = {'zh': ('', 'zh-Hans', '简体中文'), 'zh-hant': ('zh-hant/', 'zh-Hant', '繁體中文'),
+            **{lang:(lang+'/',lang,ui[0]) for lang,ui in FOREIGN.items()}}
+
+
+def language_menu(lang, filename):
+    up = '' if lang == 'zh' else '../'
+    links = ''.join(f'<a href="{up+d+filename}" lang="{code}"'+(' aria-current="page"' if key==lang else '')+f'>{label}</a>' for key,(d,code,label) in EDITIONS.items())
+    return f'<details class="language-menu"><summary>{EDITIONS[lang][2]} <span aria-hidden="true">⌄</span></summary><nav class="languages" aria-label="Languages">{links}</nav></details>'
 
 
 @tracked_html
@@ -37,6 +45,8 @@ def render():
     pages = {}
     try:
         for lang, (directory, code, label) in EDITIONS.items():
+            if lang in FOREIGN:
+                continue
             def t(value):
                 if not directory:
                     return value
@@ -62,10 +72,10 @@ def render():
                 published = CHAPTERS[stem]['published'] if story else '2026-10-05'
                 title = lines[0] if story else '红楼梦·后三十回'
                 canonical = ORIGIN + directory + (filename if story else '')
-                description = '秦汉原创《红楼梦》续写，第八十一至第一百一十回。目前公开第八十一、八十二回定稿，提供简体原文与繁体阅读版；不是曹雪芹佚稿。'
+                description = '秦汉原创《红楼梦》续写，第八十一至第一百一十回。目前公开第八十一、八十二回定稿，提供八语阅读版；不是曹雪芹佚稿。'
                 alternatives = ''.join(f'<link rel="alternate" hreflang="{c}" href="{ORIGIN+d+(filename if story else "")}">' for d,c,_ in EDITIONS.values())
                 alternatives += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN+(filename if story else "")}">'
-                languages = ''.join(f'<a href="{up+d+filename}" lang="{c}"'+(' aria-current="page"' if k == lang else '')+f'>{name}</a>' for k,(d,c,name) in EDITIONS.items())
+                languages = language_menu(lang, filename)
                 schema = {'@context':'https://schema.org','@type':'Chapter' if story else 'CollectionPage','name':t(title),'url':canonical,'inLanguage':code,'author':{'@type':'Person','name':'Han Qin (秦汉)'},'datePublished':published,'dateModified':CHAPTERS[stem].get('modified', CHAPTERS[stem]['published']) if story else max(ch.get('modified',ch['published']) for ch in CHAPTERS.values())}
                 if story:
                     schema['isPartOf'] = {'@type':'CreativeWork','name':t('红楼梦·后三十回'),'url':ORIGIN+directory}
@@ -90,13 +100,14 @@ def render():
                                           'url': ORIGIN+directory+key+'.html'} for key in CHAPTERS]
                     cards = ''.join(f'<a class="chapter-card" href="{key}.html"><span>{e(manuscripts[key][0])}</span><small>{e("定稿 · 阅读正文 →")}</small></a>' for key in CHAPTERS)
                     content = f'''<header class="collection-head"><p class="eyebrow">{e('秦汉原创 · 第八十一至第一百一十回')}</p><h1>{e(title)}</h1><p class="deck">{e('从八十回以后，接着写这些人的故事。')}</p></header>
-<section class="introduction"><h2>{e('关于这部续写')}</h2><p>{e('后三十回已完成，正在逐回打磨与发布。目前可读第八十一、八十二回定稿，提供简体原文与繁体阅读版。第八十三至第一百一十回尚未公开。')}</p><p>{e('这三十回是秦汉的原创小说，不是曹雪芹的佚稿，也不是对已有续书的整理；不声称恢复了曹雪芹原稿。')}</p><p>{e('可以直接开始读小说。若想了解写作背后的阅读与研究，可另访红楼梦专题；其中的论文含后续情节与结局，请按自己的阅读顺序选择。')}</p></section>
+<section class="introduction"><h2>{e('关于这部续写')}</h2><p>{e('后三十回已完成，正在逐回打磨与发布。目前可读第八十一、八十二回定稿，提供八语阅读版。第八十三至第一百一十回尚未公开。')}</p><p>{e('这三十回是秦汉的原创小说，不是曹雪芹的佚稿，也不是对已有续书的整理；不声称恢复了曹雪芹原稿。')}</p><p>{e('可以直接开始读小说。若想了解写作背后的阅读与研究，可另访红楼梦专题；其中的论文含后续情节与结局，请按自己的阅读顺序选择。')}</p></section>
 <section class="contents"><h2>{e('已发布回目')}</h2>{cards}<p class="edition-note">{e('后续回目将在定稿发布后加入。')}</p></section>'''
                 pages[TARGET/directory/filename] = f'''<!DOCTYPE html>
-<html lang="{code}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title)} — Non Dubito</title><meta name="description" content="{e(description)}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{canonical}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="{base}favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{up}novel.css?v=20261005"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e('跳到正文')}</a><header class="site-header"><a class="brand" href="{base}index.html">Non <span>Dubito</span></a><nav aria-label="{e('网站导航')}"><a href="{base}originals/index.html">{e('原创作品')}</a><a href="{hub}">{e('红楼梦专题')}</a><a href="{base}library.html">{e('书库')}</a></nav><nav class="languages" aria-label="{e('阅读版本')}">{languages}</nav></header><main id="main">{content}</main><footer><a href="{hub}">{e('返回红楼梦专题')}</a><p>© 2026 {e('秦汉')} · Non Dubito</p></footer></body></html>
+<html lang="{code}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title)} — Non Dubito</title><meta name="description" content="{e(description)}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{canonical}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="{base}favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{up}novel.css?v=20261020"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e('跳到正文')}</a><header class="site-header"><a class="brand" href="{base}index.html">Non <span>Dubito</span></a><nav aria-label="{e('网站导航')}"><a href="{base}originals/index.html">{e('原创作品')}</a><a href="{hub}">{e('红楼梦专题')}</a><a href="{base}library.html">{e('书库')}</a></nav>{languages}</header><main id="main">{content}</main><footer><a href="{hub}">{e('返回红楼梦专题')}</a><p>© 2026 {e('秦汉')} · Non Dubito</p></footer></body></html>
 '''
     finally:
         converter.close()
+    pages.update(render_foreign(EDITIONS, language_menu, ORIGIN, TARGET))
     return pages
 
 
