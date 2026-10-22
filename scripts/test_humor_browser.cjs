@@ -74,7 +74,7 @@ const base = process.argv[2] || 'http://127.0.0.1:8776';
     for (const width of [1440, 390, 320]) {
       await page.setViewportSize({width, height: 920});
       for (const lang of ['zh', 'zh-hant', 'en']) {
-        for (const file of ['index', 'overview', 'ep01', 'ep02', 'ep03', 'ep04']) {
+        for (const file of ['index', 'overview', 'ep01', 'ep02', 'ep03', 'ep04', 'ep05']) {
           await page.evaluate(() => localStorage.setItem('nd_lang', 'en'));
           await page.goto(`${base}/essays/laughter/${file}.html?lang=${lang}`);
           assert.equal(await page.locator('html').getAttribute('data-lang'), lang);
