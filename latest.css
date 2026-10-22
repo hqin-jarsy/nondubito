@@ -216,3 +216,104 @@
     flex-direction: column;
   }
 }
+
+/* Earlier updates, folded by month (scripts/fold_latest.py). */
+.updates-earlier {
+  padding: 5.5rem 0 1.6rem;
+  border-top: 1px solid var(--cream-border);
+}
+
+.updates-earlier h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.updates-earlier p {
+  margin-top: 0.6rem;
+  color: var(--ink-light);
+}
+
+.updates-month {
+  border-bottom: 1px solid var(--cream-border);
+}
+
+.updates-earlier + .updates-month {
+  border-top: 1px solid var(--cream-border);
+}
+
+.updates-month > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.updates-month > summary::-webkit-details-marker {
+  display: none;
+}
+
+.updates-month-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding: 1.45rem 0;
+}
+
+.updates-month-title {
+  font-size: 1.55rem;
+  line-height: 1.3;
+}
+
+.updates-month-count {
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.updates-month-row::after {
+  content: "+";
+  margin-left: auto;
+  font-family: var(--sans);
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--green);
+}
+
+.updates-month[open] > summary .updates-month-row::after {
+  content: "\2212";
+}
+
+.updates-month > summary:hover .updates-month-title {
+  color: var(--gold);
+}
+
+.updates-month > summary:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+}
+
+.updates-month .updates-section {
+  padding: 3.5rem 0 4.5rem;
+}
+
+[data-lang="zh"] .updates-earlier,
+[data-lang="zh-hant"] .updates-earlier,
+[data-lang="zh"] .updates-month-summary,
+[data-lang="zh-hant"] .updates-month-summary {
+  font-family: var(--reading-cjk), serif;
+}
+
+@media (max-width: 760px) {
+  .updates-earlier {
+    padding: 4rem 0 1.2rem;
+  }
+
+  .updates-month-row {
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+  }
+
+  .updates-month-title {
+    font-size: 1.3rem;
+  }
+}
