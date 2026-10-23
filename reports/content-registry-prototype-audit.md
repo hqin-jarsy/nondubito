@@ -10,7 +10,7 @@ read-only with respect to published pages.
 | Scanned HTML pages | 1388 |
 | Canonical candidate records | 484 |
 | Library categories parsed | 18 |
-| Library series cards parsed | 378 |
+| Library series cards parsed | 379 |
 
 ## Record types
 
