@@ -1,0 +1,128 @@
+# El Shupu de Sun Guoting: los caracteres que enuncian las reglas no tienen la misma forma
+
+Lecturas de caligrafía china 10 · Edición española v1.0
+
+«Un punto establece la medida de un carácter; un carácter fija la referencia de toda la composición». En esta frase sobre las reglas, dos 字, «carácter», coinciden en una misma columna. El primero, debajo de 成, «formar», tiene un cuerpo más redondeado y una pequeña curva que vuelve sobre sí en la parte inferior. El segundo ya está al pie de la columna y presenta un contorno más estrecho. Se reconoce el mismo carácter, pero ninguno reproduce la figura del otro.
+
+Entre ambos aparecen 之, «de», 規, «medida» o «regla», y el trazo horizontal 一, «uno». Después del segundo 字 hay que cambiar de columna y continuar arriba a la izquierda con 乃, «entonces». Una teoría sobre «un carácter» se sostiene en muchos caracteres de tamaños desiguales.
+
+![Dos 字 en la misma columna, dentro de la frase sobre el carácter como referencia](images/01_one_character.jpg)
+
+*Figura 1. La columna algo a la izquierda del centro dice 為體互乖一點成一字之規一字: «sus formas difieren; un punto establece la medida de un carácter; un carácter…». A su izquierda sigue 乃終篇之準, «fija la referencia de toda la composición». Un 字 está en la mitad inferior y el otro cerca del borde de abajo. Las columnas se leen hacia abajo y se suceden de derecha a izquierda. National Palace Museum, Taipéi; fotografía del museo recortada.* [Original oficial en alta resolución](https://theme.npm.edu.tw/selection/att/collection/04001002/17010567.jpg)
+
+Es fácil leer el Shupu, o Tratado de caligrafía, como una colección de frases memorables. También es fácil contemplarlo como un bello rollo cursivo cuyas palabras no hace falta comprender. Prefiero que ambas lecturas se interroguen. El texto explica cómo aprender y juzgar; la tinta vuelve concretas esas explicaciones. Si 規 y 準, «medida» y «referencia», significaran tan solo un contorno uniformemente ordenado, no explicarían los dos 字 diferentes que tenemos delante.
+
+Leemos el rollo a tinta conservado en el National Palace Museum de Taipéi, número 故書000058, no una estampación de una versión grabada. Al comienzo el autor se identifica como «Sun Guoting, de la comandancia de Wu»; la fecha final es el tercer año de Chuigong, 687. Sun desarrolló su actividad a finales del siglo VII. Antes que completar una biografía sin lagunas, podemos atender a algo más firme: este rollo conserva su reflexión sobre la caligrafía y, a la vez, una obra concreta de escritura cursiva. [Ficha y transcripción del museo, en chino](https://digitalarchive.npm.gov.tw/opendata/Pub/Detail/14900?dep=P&mode=full)
+
+## Cuando un carácter se convierte en medida
+
+La frase de la figura 1 necesita los giros del argumento que la sigue. Esta es la unidad completa de 至若 a 筌蹄, en caracteres tradicionales habituales y con puntuación moderna. Los párrafos impresos no reproducen las columnas del manuscrito. Cada pasaje chino se acompaña de una traducción íntegra.
+
+> 至若數畫並施，其形各異；眾點齊列，為體互乖。一點成一字之規，一字乃終篇之準。違而不犯，和而不同；留不常遲，遣不恆疾；帶燥方潤，將濃遂枯。泯規矩於方圓，遁鉤繩之曲直；乍顯乍晦，若行若藏。窮變態於毫端，合情調於紙上；無間心手，忘懷楷則。自可背羲獻而無失，違鍾張而尚工。譬夫絳樹青琴，殊姿共豔；隨珠和璧，異質同妍。何必刻鶴圖龍，竟慚真體；得魚獲兔，猶吝筌蹄。
+
+Cuando se disponen varios trazos juntos, sus formas difieren; cuando muchos puntos se alinean, cada uno adopta una figura distinta. Un punto establece la medida de un carácter; un carácter fija la referencia de toda la composición. Divergen sin chocar, armonizan sin hacerse idénticos. Retener no siempre es ir despacio; liberar no siempre es ir deprisa. La sequedad acompaña a la humedad; la densidad da paso a lo seco. Las reglas se integran en las formas cuadradas y redondas; el gancho y la cuerda de medir desaparecen en curvas y rectas. El movimiento se muestra y se oculta, parece avanzar y luego recogerse. En la punta del pincel se despliegan todas las transformaciones; sobre el papel se concierta la expresión. Mente y mano ya no están separadas, y las reglas dejan de ocupar constantemente la conciencia. Así es posible apartarse de Wang Xizhi y Wang Xianzhi sin errar, diferir de Zhong Yao y Zhang Zhi y seguir escribiendo con maestría. Como Jiangshu y Qingqin, bellas de maneras diferentes, o la perla de Sui y el jade de He, de materias distintas e igualmente hermosos. ¿Por qué tallar una grulla o dibujar un dragón para acabar avergonzado ante la forma verdadera? Una vez capturado el pez o la liebre, ¿por qué seguir aferrado a la nasa o a la trampa?
+
+Jiangshu y Qingqin son nombres de bellezas ejemplares, no dos colores del papel. La perla y el jade son tesoros célebres. Los aparejos remiten a «Las cosas externas», del Zhuangzi: obtenido el pez o la liebre, puede olvidarse el medio. La cuestión es no convertir un medio en fin. Sun no empieza rechazando las reglas. Primero establece medidas y referencias; después habla de una práctica madura en la que los instrumentos de medición no necesitan seguir mostrándose. [Zhuangzi, «Las cosas externas», texto chino](https://zh.wikisource.org/wiki/莊子/外物)
+
+Volvamos a los dos 字. El superior recoge más su pequeña curva inferior y todavía está dentro de la columna. El inferior alcanza el final y prolonga su terminación hacia abajo. Tampoco los 一 que los preceden son iguales: el de 一點, «un punto», se extiende horizontalmente, mientras los trazos cortos ante 字 encuentran sus propias posiciones. El carácter sigue siendo reconocible y la columna se puede seguir leyendo. Pero resulta difícil extraer una figura como plantilla y llamar a las demás desviaciones defectuosas.
+
+Esto no demuestra que Sun diseñara deliberadamente dos 字 distintos para ilustrar su frase. Lo relevante es el encuentro de dos clases de evidencia: el argumento pide relaciones que se mantengan a través de la variación; el papel ofrece formas que exigen comparaciones concretas. Decir que «armonizan sin ser idénticas» todavía nos obliga a señalar en qué difieren y cómo siguen funcionando juntas.
+
+Al avanzar hacia la izquierda llegamos a 留不常遲，遣不恆疾: «retener no siempre es ir despacio; liberar no siempre es ir deprisa». Estas proposiciones nos piden devolver las palabras sobre el movimiento del pincel a la tinta efectiva.
+
+![Columnas contiguas, desde retener y liberar hasta concertar la expresión sobre el papel](images/02_dry_moist.jpg)
+
+*Figura 2. La columna derecha comienza 同留不常遲: final de «no idénticos» e inicio de «retener no siempre es ir despacio». La segunda desde la derecha dice 燥方潤將濃遂枯泯規矩於. 潤, «húmedo», es compacto; 將, «estar a punto de», y 濃, «denso», son más oscuros; 遂, «entonces», se afina; 枯, «seco», vuelve a abrirse con claridad. La columna derecha se solapa con la izquierda de la figura 1. National Palace Museum, Taipéi; fotografía del museo recortada.* [Original oficial en alta resolución](https://theme.npm.edu.tw/selection/att/collection/04001002/17010568.jpg)
+
+將濃遂枯, «la densidad da paso a lo seco», invita a buscar una demostración que vaya de negro a blanco. En la segunda columna desde la derecha, 將 y 濃 son relativamente oscuros. Sin embargo, tras el fino 遂, 枯 no se disuelve en una huella casi invisible. Sus dos lados siguen definidos; el trazo horizontal izquierdo se extiende hacia fuera. La palabra «seco» y la tinta que la escribe no tienen que corresponderse como una etiqueta y su muestra.
+
+Es más interesante recorrer la columna entera. Arriba, 燥, «seco», 方, «justo» o «entonces», y 潤, «húmedo», tienen figuras distintas. El negro se concentra en el centro y después reaparecen líneas más finas. En la columna vecina, que comienza 方圓遁鉤繩之曲直, se distinguen los giros de 圓, «redondo», y la marcada curva inferior de 遁, «desaparecer». El cambio abarca más que un adjetivo. Hay que devolver cada trazo a su columna y esta a sus vecinas para juzgar si una zona oscura aplasta otra o cómo una línea fina deja que el siguiente carácter reaparezca con claridad.
+
+La «referencia» se parece aquí a unas relaciones que se ajustan mutuamente. Mover o agrandar arbitrariamente un carácter cambia las relaciones cercanas. Eso no exige cuadrados iguales para todos. La escritura del Shupu hace de «tener reglas» algo más preciso que «parecerse».
+
+## Volver al equilibrio no es volver al punto de partida
+
+¿Cómo se aprende esa medida? Antes, Sun describe un proceso que a menudo se separa en tres lemas:
+
+> 若思通楷則，少不如老；學成規矩，老不如少。思則老而逾妙，學乃少而可勉。勉之不已，抑有三時；時然一變，極其分矣。至如初學分布，但求平正；既知平正，務追險絕；既能險絕，復歸平正。初謂未及，中則過之，後乃通會。通會之際，人書俱老。仲尼云：“五十知命，七十從心。”故以達夷險之情，體權變之道，亦猶謀而後動，動不失宜；時然後言，言必中理矣。
+
+Al comprender mediante la reflexión los principios de la escritura, los jóvenes no igualan a los mayores; al adquirir sus reglas mediante la práctica, los mayores no igualan a los jóvenes. La reflexión puede afinarse con la edad; el aprendizaje requiere esfuerzo en la juventud. Perseverar implica aproximadamente tres etapas; cada una aporta un cambio y desarrolla plenamente sus posibilidades. Al empezar a aprender la disposición, buscar solo equilibrio y corrección. Una vez comprendidos, perseguir los extremos arriesgados. Una vez dominados estos, volver al equilibrio y la corrección. Al principio no se llega; en medio se sobrepasa; al final se alcanza una comprensión integrada. Entonces la persona y su escritura han madurado juntas. Confucio dijo: «A los cincuenta conocí el mandato del Cielo; a los setenta seguí mi corazón». Así se comprenden facilidad y riesgo, y la adaptación a las circunstancias: como quien reflexiona antes de actuar y actúa de modo adecuado, habla en el momento oportuno y sus palabras concuerdan con la razón.
+
+«Mayor» incluye aquí madurez y experiencia. Estas observaciones sobre la edad pertenecen a la enseñanza de Sun; no son leyes modernas para evaluar la capacidad de aprendizaje de cada persona. Tampoco puede extraerse 平正, «equilibrio y corrección», de las tres etapas como si solo admitiera una manera recta de escribir. El proceso ya incluye 險絕, «extremos arriesgados», y termina en 通會, comprensión integrada.
+
+![Las tres apariciones de 平正 entre las columnas sobre extremos y comprensión integrada](images/03_returning_balance.jpg)
+
+*Figura 3. Algo a la derecha del centro aparece 分布但求平正既知平: «al disponer, buscar solo equilibrio y corrección; una vez comprendido el equilibrio…». A su izquierda, 正務追險絕既能險絕復歸 completa la frase y pasa por los extremos hasta el «retorno». La siguiente empieza 平正初謂未及. El primer 平正 permanece en una columna, el segundo cruza a otra y el tercero abre una nueva. National Palace Museum, Taipéi; fotografía del museo recortada.* [Original oficial en alta resolución](https://theme.npm.edu.tw/selection/att/collection/04001002/17010563.jpg)
+
+Sigamos los tres 平正. Las etapas del argumento tienen ahora un lugar en el papel. El primer par está bajo 但求, «buscar solo», dentro de una columna. Después de 既知, «una vez comprendido», 平 llega al pie y 正 debe buscarse arriba a la izquierda. El tercer par aparece al comienzo de la columna siguiente.
+
+Comparemos los tres 正, «correcto» o «recto». El primero es relativamente cuadrado y conserva elementos horizontales claros. El segundo, en lo alto de una columna, organiza de otra manera sus giros y su cierre. El tercero sigue al 平 que encabeza la columna siguiente y se contrae otra vez. No representan «principio», «después de los extremos» e «integración» como tres estilos de escritura distintos. Son repeticiones dentro de un mismo rollo cursivo; el desgaste de la tinta también afecta a lo que hoy conservamos. Pero repetir no es copiar. La identidad del concepto puede coexistir con la diferencia de las figuras.
+
+Este pasaje dificulta una conclusión cómoda: «Escribe sobre equilibrio, así que todos los caracteres deberían estar rectos». El argumento de Sun ya se opone a quedarse en la primera etapa. La tinta muestra cómo la misma palabra vuelve a tomar forma en posiciones diferentes. El equilibrio final no es un vacío tras borrar los extremos; contiene la capacidad de acoger variaciones.
+
+Posición, forma y continuidad dan concreción visible a la enseñanza. No hace falta asignar cada carácter a la juventud, la madurez o la vejez.
+
+## También la teoría se corrige sobre el papel
+
+Otro pasaje distingue con mayor rigor rapidez y lentitud. Sigue a una advertencia sobre observación e imitación:
+
+> 至有未悟淹留，偏追勁疾；不能迅速，翻效遲重。夫勁速者，超逸之機；遲留者，賞會之致。將反其速，行臻會美之方；專溺於遲，終爽絕倫之妙。能速不速，所謂淹留；因遲就遲，詎名賞會！非夫心閒手敏，難以兼通者焉。
+
+Algunos todavía no entienden cómo demorarse y solo persiguen una rapidez vigorosa; otros, incapaces de escribir deprisa, imitan en cambio lentitud y peso. La rapidez vigorosa abre una posibilidad de libertad elevada; la demora puede manifestar una comprensión atenta. Poder regresar desde la rapidez permite acercarse al camino donde se encuentran las bellezas; hundirse únicamente en la lentitud hace perder la excelencia excepcional. Poder ser rápido sin serlo siempre es lo que se llama demorarse. Seguir siendo lento porque solo se puede ser lento: ¿cómo llamarlo comprensión atenta? Sin una mente serena y una mano ágil, cuesta dominar ambas posibilidades.
+
+Ni «rápido» ni «lento» se convierte en criterio supremo. Sun distingue dos lentitudes de apariencia semejante: una puede variar y elige detenerse; la otra carece de alternativas. Nombrar el tempo no basta. Hay que preguntar de qué capacidades y relaciones procede.
+
+![La repetición anulada de 專溺於遲 y 能速不速 en la columna contigua](images/04_deleted_delay.jpg)
+
+*Figura 4. En la columna algo a la izquierda del centro, que empieza 方, 專溺於遲, «hundirse solo en la lentitud», aparece dos veces. Unos puntos junto a la segunda aparición la anulan; debajo sigue 終, «finalmente». A la izquierda continúa 爽絕倫之妙能速不速: «perder la excelencia excepcional; poder ser rápido sin serlo». La anulación se coteja con la transcripción detallada del museo; los puntos no son puntuación moderna. National Palace Museum, Taipéi; fotografía del museo recortada.* [Original oficial en alta resolución](https://theme.npm.edu.tw/selection/att/collection/04001002/17010565.jpg)
+
+Aquí se escribió 專溺於遲 dos veces y se anuló la segunda. Una transcripción impresa puede conservar solo una; el papel mantiene la longitud de ambas. Al bajar por la columna, el primer 溺, «hundirse», aparece más concentrado; junto a la segunda secuencia surgen pequeños puntos. En la siguiente columna, los dos 速, «rápido», de 能速不速 giran de maneras próximas y diferentes. Los caracteres conservados, los rechazados que siguen visibles y los puntos de anulación ocupan juntos el papel.
+
+La repetición y los puntos guardan una corrección. Su causa puede ser desconocida, pero su lugar permanece visible. Esto da a la teoría una concreción ausente de una edición impresa limpia: quien habla de dominio y comprensión también escribe sobre un papel que no recupera automáticamente su estado anterior.
+
+Ahora conviene releer la indicación previa 察之者尚精, «la observación requiere precisión». La advertencia completa dice:
+
+> 然消息多方，性情不一。乍剛柔以合體，忽勞逸而分驅。或恬澹雍容，內涵筋骨；或折挫槎椊，外曜鋒芒。察之者尚精，擬之者貴似。況擬不能似，察不能精，分布猶疏，形骸未檢，躍泉之態，未睹其妍；窺井之談，已聞其醜。縱欲唐突羲獻，誣罔鍾張，安能掩當年之目，杜將來之口！慕習之輩，尤宜慎諸。
+
+Los ajustes y los cambios admiten muchas vías; las expresiones del carácter no son uniformes. A veces firmeza y suavidad se reúnen en una forma; otras, esfuerzo y facilidad siguen caminos separados. Una escritura puede ser tranquila y amplia y contener dentro tendones y huesos; otra quiebra y gira como ramas desiguales y muestra su filo hacia fuera. Observar exige precisión; imitar aprecia la semejanza. Si la imitación no se parece al modelo y la observación no es precisa, si la disposición sigue siendo deficiente y la forma no está dominada, aún no se ha visto la belleza de un movimiento semejante a un salto desde el agua, mientras ya se oye la fealdad de una charla estrecha, como la de alguien que mira desde un pozo. Aunque se quisiera menospreciar a Wang Xizhi y Wang Xianzhi o falsear a Zhong Yao y Zhang Zhi, ¿cómo tapar los ojos de los contemporáneos o silenciar los juicios futuros? Quienes admiran y estudian la escritura deben tener especial cuidado.
+
+![La precisión al observar y la semejanza al imitar, con las columnas vecinas](images/05_looking_precisely.jpg)
+
+*Figura 5. La columna algo a la izquierda del centro dice 芒察之者尚精擬之者貴: final de «filo», seguido de «observar exige precisión; imitar aprecia…». 似, «semejanza», continúa arriba a la izquierda. A la derecha se conserva 或折挫槎椊外曜鋒…, sobre formas quebradas y vueltas como ramas y sobre el filo exterior. Se ven modificaciones cerca de 鋒, «filo». National Palace Museum, Taipéi; fotografía del museo recortada.* [Original oficial en alta resolución](https://theme.npm.edu.tw/selection/att/collection/04001002/17010564.jpg)
+
+En la figura 5, 察, «observar», no es especialmente grande ni 精, «preciso», aparece elevado y aislado. Comparten la sucesión desigual de la columna con 之, 者, 尚 y 擬. A la derecha, 折挫, «quebrar y girar», tiene líneas más fuertes; a la izquierda, 況擬不能似, «si imitar no puede parecerse», se contrae en caracteres pequeños. La frase que pide observar con precisión requiere ella misma una mirada precisa para ser leída entre sus vecinas.
+
+Sun no declara arbitrario todo juicio ni retira las exigencias del aprendizaje porque la escritura admita variaciones. Su tono ante la crítica descuidada es severo. Esa severidad es compatible con «armonizar sin ser idénticos». Precisamente porque diferencia no significa arbitrariedad, el juicio no puede terminar en «bueno» o «ajustado a las reglas».
+
+Mi lectura debe someterse a la misma exigencia. La diferencia entre los dos 字 ha de poder localizarse en la figura 1. La figura 2 debe permitir comprobar que 枯 no se vuelve una huella pálida. Si unos puntos anulan texto, imagen y transcripción han de dar testimonio juntas. La teoría de la caligrafía no puede convertirse solo en vocabulario para elogiar a su autor.
+
+El Shupu deja a los lectores una forma exigente de mirar. Aprendido un concepto, hay que probar cómo se aplica aquí. Vista una diferencia, hay que explicar por qué no deshace las relaciones. Los dos 字 siguen en su columna original. No tienen la misma figura y la teoría no ha fracasado por ello. Empieza a exigir que precisemos qué significa «reglas».
+
+## Lectura opcional: también la pregunta puede ponerse a prueba
+
+«¿Están equilibrados estos caracteres?» es una pregunta que puede responderse, pero también puede cerrar demasiado pronto la mirada. Si «equilibrado» significa de antemano tamaños idénticos y columnas perfectamente alineadas, la respuesta está decidida antes de explorar la figura 3.
+
+En [«La casa sigue sin venderse. La discusión ha cambiado.»](https://nondubito.net/essays/aesthetics/en/ray02.html?lang=en) describo cómo una familia pasa de oponer precio y recuerdos a preguntar quién paga las reparaciones y quién teme perder un lugar al que volver. Lo decisivo no es solo la nueva pregunta: después interrogan también la distinción entre «dinero» y «hogar», en vez de fijarla en dos casillas definitivas. El enlace lleva a la versión inglesa.
+
+La «belleza de la filosofía» en SAE, Self-as-an-End, ofrece aquí una ocasión para examinar nuestras preguntas. No sustituye los criterios caligráficos de Sun ni deduce un carácter moral de la escritura. «¿Por qué no es más regular?» puede convertirse en «¿Qué relaciones hacen que estos caracteres se sostengan?». Después hay que comprobar que la nueva pregunta no disculpe indiscriminadamente cualquier inclinación, pesadez u omisión.
+
+Lo útil es precisamente la capacidad de la pregunta para volver sobre sí. Si decimos que el equilibrio final acoge variaciones, miremos cómo están escritos los tres 平正. Si un detalle no sostiene la explicación, cambiemos la explicación. Comprender sigue siendo posible; una máxima famosa ya no exime de verificar.
+
+Esta lectura no tiene por qué producir acuerdo. Alguien preferirá el 字 bajo 規; otra persona se demorará en 能速不速, «poder ser rápido sin serlo». Al menos, la discrepancia puede llevarse al mismo lugar del papel: cada cual señala lo que ve y deja abierta la comprobación ajena. Una pregunta que aclara la escritura sin hablar por adelantado en nombre del próximo encuentro ha hecho algo real.
+
+<details>
+<summary>Notas sobre las imágenes y el texto</summary>
+
+- Objeto: 故書000058N000000000, ficha 14900; rollo a tinta, no estampación homónima. La página del museo indica papel, 26,5 × 900,8 cm. Se traducen íntegramente las cuatro unidades comentadas, no los más de tres mil caracteres de todo el rollo.
+- Las citas usan caracteres tradicionales habituales y puntuación añadida. Se excluyen las supresiones del texto corregido; la repetición de la figura 4 se comenta aparte. 槎椊 sigue al museo. 分布猶疏, «disposición deficiente», sigue la figura visible en el margen izquierdo de la figura 5 y la [transcripción de una estampación de un grabado Song, ficha 32071](https://digitalarchive.npm.gov.tw/Collection/Detail/32071?dep=P), que da 猶疎. La ficha 14900 imprime 踩; no se interpreta como «pisotear». La estampación sirve solo para cotejar el texto, nunca como fuente visual. 將反其速，行臻會美之方 mantiene la lectura del museo. Los caracteres impresos orientan la localización; no calcan los contornos manuscritos.
+- Figuras 1–5: recortes rectangulares y reducciones proporcionales de fotografías de 3056 × 2018 píxeles del museo. No se alteraron trazos, sellos ni colores; no se aplicó enfoque ni se generó escritura. Las figuras 1 y 2 se solapan en una columna y no constituyen una reconstrucción continua medible. Coordenadas y sumas de comprobación constan en el manifiesto.
+- La lectura se basa en fotos digitales. Desgaste, fotografía y pantalla afectan a los detalles; velocidad, fuerza y emociones instantáneas no se miden directamente en ellas. Sellos de colección y montaje no equivalen al estado del papel al escribir. El rollo presenta lagunas y fragmentos mal colocados; los pasajes elegidos se cotejan con la transcripción, sin reconstruir todo su montaje original.
+- Uso documentado según la fuente efectiva y la [declaración de apertura del sitio del museo](https://www.npm.edu.tw/Articles.aspx?l=2&sno=02002157), con atribución y recorte señalados. La etiqueta CC BY 4.0 de otra vía de descarga no se aplica automáticamente a estos JPEG. La atribución no implica aprobación del museo. Véase el archivo adjunto de permisos.
+
+</details>
+
+### Imágenes y lecturas
+
+- [National Palace Museum: Shupu y fotografías en alta resolución](https://theme.npm.edu.tw/selection/Article.aspx?sNo=04001002)
+- [Ficha 14900: transcripción e información sobre descargas abiertas](https://digitalarchive.npm.gov.tw/opendata/Pub/Detail/14900?dep=P&mode=full)
+- [Han Qin, «The House Is Still Unsold. The Argument Has Changed.», versión inglesa](https://nondubito.net/essays/aesthetics/en/ray02.html?lang=en)
