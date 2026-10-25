@@ -20,6 +20,10 @@ CHAPTERS = {
               'published': DATE, 'modified': '2026-10-19', 'number': '第八十二回',
               'verse': ('淡粉新妆，藕丝衫子迎风软。晚凉初转，相约莲塘玩。',
                         '一棹轻舟，影共莲花乱。回头晚，藕花深浅，只载闲愁返。')},
+    'ch083': {'sha256': '6486aac1927a9e446ea6f85f653769428b142d540556f0cc07342c7fb1d34dcc',
+              'published': '2026-10-24', 'modified': '2026-10-24', 'number': '第八十三回',
+              'verse': ('正是：慈云一去群芳冷，寿烛才残满院昏。',
+                        '正是：慈云一去群芳冷，寿烛才残满院昏。')},
 }
 
 
@@ -57,6 +61,12 @@ def render():
                     choices.update({'我系了這幾年了':'我繫了這幾年了', '鄰捨':'鄰舍'})
                 if stem == 'ch082':
                     choices.update({'腰系青絲':'腰繫青絲', '系一條淡':'繫一條淡', '帕子松了':'帕子鬆了', '拿不准':'拿不準', '作得准':'作得準', '參須':'參鬚'})
+                if stem == 'ch083':
+                    choices.update({'閤眼':'合眼', '閤家':'合家', '閤府':'合府', '那捲書':'那卷書',
+                                    '茶飯一髮':'茶飯一發', '只托你傳':'只託你傳', '方松開':'方鬆開',
+                                    '紙扎':'紙紮', '能省的划去':'能省的劃去', '兩只手':'兩隻手',
+                                    '人數估准':'人數估準', '托了熟人':'託了熟人', '桌幾裡頭':'桌几裡頭',
+                                    '余下的銀封':'餘下的銀封', '准信':'準信'})
                 for before, after in choices.items():
                     value = value.replace(before, after)
                 return value
@@ -72,7 +82,7 @@ def render():
                 published = CHAPTERS[stem]['published'] if story else '2026-10-05'
                 title = lines[0] if story else '红楼梦·后三十回'
                 canonical = ORIGIN + directory + (filename if story else '')
-                description = '秦汉原创《红楼梦》续写，第八十一至第一百一十回。目前公开第八十一、八十二回定稿，提供八语阅读版；不是曹雪芹佚稿。'
+                description = '秦汉原创《红楼梦》续写，第八十一至第一百一十回。目前公开第八十一至八十三回定稿，提供八语阅读版；不是曹雪芹佚稿。'
                 alternatives = ''.join(f'<link rel="alternate" hreflang="{c}" href="{ORIGIN+d+(filename if story else "")}">' for d,c,_ in EDITIONS.values())
                 alternatives += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN+(filename if story else "")}">'
                 languages = language_menu(lang, filename)
@@ -86,12 +96,15 @@ def render():
                     for number, line in enumerate(lines[1:], 2):
                         if not line: continue
                         if line == verse_start: paragraphs.append('<div class="verse">')
-                        paragraphs.append(f'<p data-source-line="{number}">{e(line)}</p>')
+                        text = e(line)
+                        if stem == 'ch083' and line == verse_start:
+                            text = text.replace('，', '，<br>', 1)
+                        paragraphs.append(f'<p data-source-line="{number}">{text}</p>')
                         if line == verse_end: paragraphs.append('</div>')
                     keys = list(CHAPTERS)
                     position = keys.index(stem)
                     previous = (f'<a href="{keys[position-1]}.html">{e("← " + CHAPTERS[keys[position-1]]["number"])}</a>' if position else '')
-                    following = (f'<a href="{keys[position+1]}.html">{e(CHAPTERS[keys[position+1]]["number"] + " →")}</a>' if position+1 < len(keys) else f'<span>{e("第八十三回 · 待发布")}</span>')
+                    following = (f'<a href="{keys[position+1]}.html">{e(CHAPTERS[keys[position+1]]["number"] + " →")}</a>' if position+1 < len(keys) else f'<span>{e("第八十四回 · 待发布")}</span>')
                     title_parts = title.split('　')
                     heading = ''.join(f'<span class="{"chapter-number" if i==0 else "chapter-couplet"}">{e(part)}'+('　' if i<len(title_parts)-1 else '')+'</span>' for i,part in enumerate(title_parts))
                     content = f'<article><header class="chapter-head"><p class="eyebrow">{e("秦汉原创 · 红楼梦后三十回")}</p><h1>{heading}</h1><p class="edition-note">{e("定稿原文" if not directory else "定稿繁体阅读版")} · <time datetime="{published}">{published}</time></p><p class="authorship">{e("本篇是秦汉的原创续写，不是曹雪芹佚稿。")}</p></header><div class="novel-text">'+ '\n'.join(paragraphs) +f'</div></article><nav class="chapter-nav" aria-label="{e("章节导航")}">{previous}<a href="index.html">{e("返回回目")}</a>{following}</nav>'
@@ -100,7 +113,7 @@ def render():
                                           'url': ORIGIN+directory+key+'.html'} for key in CHAPTERS]
                     cards = ''.join(f'<a class="chapter-card" href="{key}.html"><span>{e(manuscripts[key][0])}</span><small>{e("定稿 · 阅读正文 →")}</small></a>' for key in CHAPTERS)
                     content = f'''<header class="collection-head"><p class="eyebrow">{e('秦汉原创 · 第八十一至第一百一十回')}</p><h1>{e(title)}</h1><p class="deck">{e('从八十回以后，接着写这些人的故事。')}</p></header>
-<section class="introduction"><h2>{e('关于这部续写')}</h2><p>{e('后三十回已完成，正在逐回打磨与发布。目前可读第八十一、八十二回定稿，提供八语阅读版。第八十三至第一百一十回尚未公开。')}</p><p>{e('这三十回是秦汉的原创小说，不是曹雪芹的佚稿，也不是对已有续书的整理；不声称恢复了曹雪芹原稿。')}</p><p>{e('可以直接开始读小说。若想了解写作背后的阅读与研究，可另访红楼梦专题；其中的论文含后续情节与结局，请按自己的阅读顺序选择。')}</p></section>
+<section class="introduction"><h2>{e('关于这部续写')}</h2><p>{e('后三十回已完成，正在逐回打磨与发布。目前可读第八十一至八十三回定稿，提供八语阅读版。第八十四至第一百一十回尚未公开。')}</p><p>{e('这三十回是秦汉的原创小说，不是曹雪芹的佚稿，也不是对已有续书的整理；不声称恢复了曹雪芹原稿。')}</p><p>{e('可以直接开始读小说。若想了解写作背后的阅读与研究，可另访红楼梦专题；其中的论文含后续情节与结局，请按自己的阅读顺序选择。')}</p></section>
 <section class="contents"><h2>{e('已发布回目')}</h2>{cards}<p class="edition-note">{e('后续回目将在定稿发布后加入。')}</p></section>'''
                 pages[TARGET/directory/filename] = f'''<!DOCTYPE html>
 <html lang="{code}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title)} — Non Dubito</title><meta name="description" content="{e(description)}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{canonical}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="{base}favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{up}novel.css?v=20261020"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e('跳到正文')}</a><header class="site-header"><a class="brand" href="{base}index.html">Non <span>Dubito</span></a><nav aria-label="{e('网站导航')}"><a href="{base}originals/index.html">{e('原创作品')}</a><a href="{hub}">{e('红楼梦专题')}</a><a href="{base}library.html">{e('书库')}</a></nav>{languages}</header><main id="main">{content}</main><footer><a href="{hub}">{e('返回红楼梦专题')}</a><p>© 2026 {e('秦汉')} · Non Dubito</p></footer></body></html>

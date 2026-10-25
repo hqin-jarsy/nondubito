@@ -3,8 +3,10 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const base=process.argv[2]||'http://127.0.0.1:8786';
-const chapter=process.argv[3]||'ch082';
-assert.ok(['ch081','ch082'].includes(chapter));
+const chapter=process.argv[3]||'ch083';
+const chapters=['ch081','ch082','ch083'];
+const editions=['','zh-hant/','en/','de/','fr/','es/','ja/','ko/'];
+assert.ok(chapters.includes(chapter));
 (async()=>{
  const browser=await chromium.launch({headless:true,channel:'chrome'});
  try{
@@ -15,25 +17,32 @@ assert.ok(['ch081','ch082'].includes(chapter));
   let checks=0;
   for(const width of [1440,768,390,320]){
    await page.setViewportSize({width,height:900});
-   for(const dir of ['','zh-hant/'])for(const filename of ['index.html','ch081.html','ch082.html']){
+   for(const dir of editions)for(const filename of ['index.html',...chapters.map(c=>c+'.html')]){
     await page.goto(`${base}/originals/hongloumeng/${dir}${filename}`);
     assert.equal(await page.locator('h1:visible').count(),1);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-    assert.equal(await page.locator('a[href*="ch083"]').count(),0);
+    assert.equal(await page.locator('a[href*="ch084"]').count(),0);
+    assert.equal(await page.locator('.language-menu a').count(),8);
     if(filename!=='index.html'){
      const lines=fs.readFileSync(path.join(__dirname,`../data/originals/hongloumeng/${filename.replace('.html','.zh.txt')}`),'utf8').split('\n');
-     assert.equal(await page.locator('.verse p').count(),filename==='ch081.html'?8:2);
-     assert.equal(await page.locator('.novel-text p').count(),lines.slice(1).filter(Boolean).length);
-     if(!dir)assert.deepEqual(await page.locator('.novel-text p').allTextContents(),lines.slice(1).filter(Boolean));
+     if(!dir||dir==='zh-hant/'){
+      assert.equal(await page.locator('.verse p').count(),{'ch081.html':8,'ch082.html':2,'ch083.html':1}[filename]);
+      assert.equal(await page.locator('.novel-text p').count(),lines.slice(1).filter(Boolean).length);
+      if(!dir)assert.deepEqual(await page.locator('.novel-text p').allTextContents(),lines.slice(1).filter(Boolean));
+     }else{
+      assert.equal(await page.locator('.novel-text [data-source-unit]').count(),{'ch081.html':101,'ch082.html':67,'ch083.html':32}[filename]);
+     }
      await page.locator('.novel-text p').last().scrollIntoViewIfNeeded();
-     assert.ok((await page.locator('.novel-text p').last().textContent()).includes('下回分解'));
+     if(!dir||dir==='zh-hant/')assert.ok((await page.locator('.novel-text').textContent()).includes('下回分解'));
     }
     checks++;
    }
   }
   await page.goto(`${base}/originals/hongloumeng/${chapter}.html`);
+  await page.locator('.language-menu summary').click();
   await page.getByRole('link',{name:'繁體中文',exact:true}).click();
   await page.waitForURL(`**/zh-hant/${chapter}.html`);
+  await page.locator('.language-menu summary').click();
   await page.getByRole('link',{name:'简体中文',exact:true}).click();
   await page.waitForURL(`**/hongloumeng/${chapter}.html`);
   await page.setViewportSize({width:1440,height:1000});
