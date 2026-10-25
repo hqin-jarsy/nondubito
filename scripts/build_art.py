@@ -64,8 +64,32 @@ ARCHITECTURE_LINK_LABELS = dict(zip(LANGS, [
 ]))
 
 
+RESEARCH_SOURCE_WORDING = dict(zip(LANGS, [
+    ('馆方作品页','图像与研究资料来源页'),
+    ('館方作品頁','圖像與研究資料來源頁'),
+    ('museum’s artwork page','image and research source page'),
+    ('美術館の作品ページ','図版と研究資料の出典ページ'),
+    ('page de l’œuvre au musée','page source des images et de l’étude'),
+    ('Werkseite des Museums','Quellenseite für Bilder und Forschung'),
+    ('página de la obra del museo','página de origen de las imágenes y el estudio'),
+    ('미술관 작품 페이지','이미지와 연구 자료의 출처 페이지'),
+]))
+
+
+def source_page_wording(text, work, lang):
+    # Some images are documented by a research institute, not a museum page.
+    if work.get('image_source_kind')=='research':
+        text=text.replace(*RESEARCH_SOURCE_WORDING[lang])
+    return text
+
+
 def image_link_label(work, lang):
-    return (ARCHITECTURE_LINK_LABELS if work['category']=='western-architecture' else IMAGE_LINK_LABELS)[lang]
+    label=(ARCHITECTURE_LINK_LABELS if work['category']=='western-architecture' else IMAGE_LINK_LABELS)[lang]
+    return source_page_wording(label,work,lang)
+
+
+def image_storage_note(work, lang):
+    return source_page_wording(IMAGE_STORAGE_NOTES[lang],work,lang)
 
 
 def image_click_target(work, name):
@@ -211,7 +235,7 @@ def documents(work, lang):
             label = label.split(' (')[0].split('（')[0] + ' · 中文 / English'
         rendered=[]
         if filename=='IMAGE_CREDITS.md':
-            rendered.append('<p lang="'+LANGS[lang][0]+'">'+esc(IMAGE_STORAGE_NOTES[lang])+'</p>')
+            rendered.append('<p lang="'+LANGS[lang][0]+'">'+esc(image_storage_note(work,lang))+'</p>')
         for block in source.strip().split('\n\n'):
             if block.startswith('#'):
                 rendered.append('<h3>'+esc(block.lstrip('# '))+'</h3>')
@@ -330,7 +354,7 @@ def article(work, lang, path):
                     body.append('</div></details>'); optional_open=False
                 body.append(f'<h2 id="{anchor}">{esc(label)}</h2>')
                 if optional is not None and n==optional+1 and work.get('archival_image_note'):
-                    body.append('<aside class="image-publication-note">'+esc(IMAGE_STORAGE_NOTES[lang])+'</aside>')
+                    body.append('<aside class="image-publication-note">'+esc(image_storage_note(work,lang))+'</aside>')
         elif b.startswith('### '):
             body.append('<h3>'+esc(b[4:])+'</h3>')
         elif b.startswith('!['):

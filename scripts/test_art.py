@@ -57,6 +57,10 @@ class ArtTests(unittest.TestCase):
                 if work.get('unknown_creator'):
                     schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',page,re.S)[1])
                     self.assertNotIn('creator',schema['about'])
+                if work.get('image_source_kind')=='research':
+                    old,new=b.RESEARCH_SOURCE_WORDING[lang]
+                    self.assertIn(new,b.image_link_label(work,lang))
+                    self.assertNotIn(old,b.image_storage_note(work,lang))
 
     def test_every_paragraph_preserved(self):
         for w in self.works:
@@ -171,7 +175,7 @@ class ArtTests(unittest.TestCase):
                     self.assertIn(b.image_link_label(w,lang),source)
                     self.assertIn('id="image-credits"',source)
                     continue
-                self.assertIn(b.IMAGE_STORAGE_NOTES[lang],source)
+                self.assertIn(b.image_storage_note(w,lang),source)
                 self.assertEqual(schema['image'],b.preview_url(w,w['image']))
                 self.assertIn(schema['image'],self.image_urls)
                 self.assertIn(f'property="og:image" content="{schema["image"]}"',source)
