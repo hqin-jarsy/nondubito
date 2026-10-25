@@ -235,6 +235,15 @@ def manuscript_links(work):
         if name.startswith(work['id']+'/'):
             filename=name.split('/',1)[1]
             links['images/'+filename]=preview_url(work,filename,1280)
+    # Reading packages use both .md and standalone .html companion links.
+    # The site renders those notes in-page; JSON provenance remains downloadable.
+    for path in (DATA/work['id']/'source').iterdir():
+        if path.is_file():
+            links.setdefault(path.name, ORIGIN+path.relative_to(ROOT).as_posix())
+    for stem,anchor in [('SOURCES','#references'),('IMAGE_NOTES','#image-credits'),
+                        ('LICENSE_AND_CREDITS','#image-credits')]:
+        for suffix in ('.md','.html'):
+            links[stem+suffix]=anchor
     return links
 
 
@@ -274,6 +283,10 @@ def detailed_article(work, lang, path):
             i+=1
         elif block.startswith('- '):
             body.append('<ul>'+''.join('<li>'+inline(line.removeprefix('- '),links)+'</li>' for line in block.splitlines())+'</ul>')
+        elif block.startswith('> '):
+            quote='\n'.join(line[1:].removeprefix(' ') if line.startswith('>') else line for line in block.splitlines())
+            paragraphs=quote.split('\n\n')
+            body.append('<blockquote>'+''.join('<p>'+inline(p,links).replace('  \n','<br>\n')+'</p>' for p in paragraphs)+'</blockquote>')
         else:
             assert not block.startswith('<'),block
             body.append('<p>'+inline(block,links).replace('  \n','<br>\n')+'</p>')
@@ -353,7 +366,7 @@ def page(lang, path, title, deck, content, work=None):
         if work['category']=='western-architecture':
             if work.get('architects'):
                 schema['about']['architect']=[{'@type':'Person','name':name} for name in work['architects']]
-        else:
+        elif not work.get('unknown_creator'):
             schema['about']['creator']={'@type':'Person','name':work['artist']}
         schema['about']['sameAs']=work['about']
     search_lang=lang if lang in ('zh','en','zh-hant') else 'en'

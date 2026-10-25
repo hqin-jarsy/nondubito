@@ -43,6 +43,21 @@ class ArtTests(unittest.TestCase):
             self.assertEqual(scanned['languages'],[schema['inLanguage']])
             self.assertEqual(scanned['domain'],'sae-philosophy')
 
+    def test_calligraphy_publication_markup(self):
+        for work in self.works:
+            if not work['id'].startswith('calligraphy-'): continue
+            for lang in b.LANGS:
+                page=self.pages[b.location(lang,work)]
+                self.assertNotRegex(page,r'\[[^\]\n]+\]\[[^\]\n]+\]')
+                self.assertNotIn('<p>&gt; ',page)
+                tags=Parse(page).tags
+                for tag,attrs in tags:
+                    if tag=='a' and attrs.get('href','').endswith('.md'):
+                        self.assertTrue(attrs['href'].startswith('https://nondubito.net/data/art/'),attrs)
+                if work.get('unknown_creator'):
+                    schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',page,re.S)[1])
+                    self.assertNotIn('creator',schema['about'])
+
     def test_every_paragraph_preserved(self):
         for w in self.works:
             for lang in b.LANGS:
@@ -55,6 +70,11 @@ class ArtTests(unittest.TestCase):
                         for line in block.splitlines(): self.assertIn(b.inline(line.removeprefix('- '),links),s)
                     else:
                         rendered=b.inline(block,links)
+                        if w.get('manuscript_details') and block.startswith('> '):
+                            quote='\n'.join(line[1:].removeprefix(' ') if line.startswith('>') else line for line in block.splitlines())
+                            for paragraph in quote.split('\n\n'):
+                                self.assertIn(b.inline(paragraph,links).replace('  \n','<br>\n'),s)
+                            continue
                         if w.get('manuscript_details'): rendered=rendered.replace('  \n','<br>\n')
                         self.assertIn(rendered,s,(lang,block[:60]))
                 tags=Parse(s).tags
