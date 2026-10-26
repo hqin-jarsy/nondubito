@@ -135,6 +135,7 @@ DOMAIN_PREFIXES = (
     ("essays/action/", "sae-philosophy"),
     ("essays/institution/", "sae-philosophy"),
     ("essays/government/", "sae-philosophy"),
+    ("essays/state/", "sae-philosophy"),
     ("essays/laughter/", "sae-philosophy"),
     ("essays/epistemology/", "sae-philosophy"),
     ("essays/law/", "sae-philosophy"),

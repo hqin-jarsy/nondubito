@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-25",
+  "entry": "essays/state/index.html",
+  "scope": {"reader_essays":8,"html_pages":9,"complete_reading_modes":["en","zh-Hans","zh-Hant"]},
+  "source_receipts": "data/state/publication.json",
+  "editorial_review": {
+    "all_eight_papers_read": true,
+    "all_chinese_and_english_essays_read_against_sources": true,
+    "notes": [
+      "Keep the recorded dissent distinct from institutional decisions and collective unanimity.",
+      "Distinguish procedural validity, practical effect and normative justification. A constitutional vote does not create basic rights from nothing.",
+      "Distinguish a binding judgment not executed from a seven-judge view falling short of an eight-vote threshold. Do not call the latter an operative invalidation.",
+      "Keep pre-service refusal, existing proceedings and desertion distinct; acquired-citizenship fraud is not later dissent. Statelessness does not justify indefinite suspension.",
+      "Separate military command from independent confirmation; war-dependent authority ends with the defensive necessity, not merely a later formal announcement.",
+      "Keep the sanctions' demonstrated mechanisms separate from unverified total causal attribution. A diplomatic reply is not itself a personally usable complaint channel.",
+      "Keep military necessity distinct from individual harm; prisoners and non-fighting wounded combatants are not treated as active targets. Occupation does not confer control over another population's direction.",
+      "Do not turn postwar accountability into retrospective invention of an offence or automatic blame for everyone on a council. A temporary hearing is not a standing remedy."
+    ]
+  },
+  "automated_checks": {
+    "scripts/test_state_series.py": "5 tests passed: reproducible output; front-door entries; metadata, analytics and local links/fragments; three modes/search/headings; provenance receipts",
+    "scripts/build_state_series.py --check": "9 pages current",
+    "scripts/build_search_index.py --check": "11938 source records; state has 9 localized records in each of en, zh-Hans and zh-Hant, all in sae-philosophy",
+    "scripts/build_sitemap.py --check": "11922 canonical URLs; 9 new state URLs",
+    "scripts/check_site_updates.py": "ledger and rendered Latest agree",
+    "scripts/check_web_analytics.py --fix": "0 repairs required",
+    "scripts/check_web_analytics.py": "11941 public pages, 0 tracking errors, 0 conflict copies",
+    "scripts/build_content_registry.py --check": "490 canonical records from 1414 prototype pages; 18 Library categories",
+    "received_source_hashes": "all 8 SHA-256 receipts match the downloaded published-paper snapshot"
+  },
+  "browser_qa": {
+    "method": "Local HTTP preview in the in-app browser, desktop viewport",
+    "observed": [
+      "Chinese landing page renders without header or title overlap.",
+      "Language dropdown opens; Traditional Chinese changes headings, decks, cards and document title, and updates the existing lang query.",
+      "English mode displays English headings and copy rather than bilingual stacked titles.",
+      "Opening ep02 from the index preserves English mode, displays the complete English body and correct previous/next links."
+    ],
+    "limit": "Mobile breakpoint rules and local targets were checked statically; no mobile-device browser emulation was performed."
+  },
+  "deployment": "Local files and local commit only; the user pushes. No remote publication is asserted."
+}
