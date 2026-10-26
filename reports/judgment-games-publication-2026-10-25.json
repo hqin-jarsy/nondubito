@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-25",
+  "entry": "essays/judgment-games/index.html",
+  "scope": {"reader_essays":4,"html_pages":5,"complete_reading_modes":["en","zh-Hans","zh-Hant"]},
+  "source_receipts": "data/judgment-games/publication.json",
+  "review": {
+    "all_four_papers_read_in_full": true,
+    "all_chinese_and_english_text_reviewed": true,
+    "word_counts": {
+      "overview":{"han_characters":2276,"english_words":1350},
+      "ep01":{"han_characters":2189,"english_words":1163},
+      "ep02":{"han_characters":2044,"english_words":1206},
+      "ep03":{"han_characters":2601,"english_words":1580}
+    },
+    "editorial_decisions": [
+      "Four complete essays rather than an outline of definitions or a course assigning moral levels to players.",
+      "Explain a possibility not exhausted by a rule, without suggesting that discovering it means breaking that rule.",
+      "Keep judging, predicting, acting and withdrawing a judgment distinct; revision can itself be mistaken.",
+      "Preserve the distinction between a game's arrangement and a person's stance. Goals can coexist with recognition; successful coordination does not prove it.",
+      "Keep the cooperation opportunity separate from coercion, self-coercion and using a partner as material for moral improvement.",
+      "Retain unresolved boundaries rather than supply a proof the papers do not offer: cheating and rule changes, pooled prizes, pure chance, diaries, and the point at which writing constitutes a cooperative game.",
+      "The optional closing observations do not score readers, promise benefits or require them to arrange an exercise.",
+      "The collection is placed beside aesthetics and laughter under SAE philosophy, not merged with the video-game interpretation shelf."
+    ]
+  },
+  "automated_checks": {
+    "scripts/test_judgment_games_series.py":"5 tests passed: reproducible pages; source/discovery entries; metadata/tracking; complete three-mode prose; local links and fragments",
+    "scripts/test_state_series.py":"5 existing State-series tests passed",
+    "scripts/build_search_index.py --check":"11943 source records; five judgment-games records in each of en, zh-Hans and zh-Hant, all classified sae-philosophy",
+    "scripts/build_sitemap.py --check":"11927 canonical URLs, including five new judgment-games URLs",
+    "scripts/check_site_updates.py":"Latest and the publication ledger agree",
+    "scripts/check_web_analytics.py --fix":"0 repairs required",
+    "scripts/check_web_analytics.py":"11946 public pages, 0 tracking errors, 0 conflict copies",
+    "scripts/build_content_registry.py --check":"490 canonical records from 1414 prototype pages, 18 Library categories",
+    "source_hashes":"All four receipts match the downloaded published bytes"
+  },
+  "browser_qa": {
+    "method":"Desktop local HTTP preview in the in-app browser",
+    "observed":[
+      "Chinese landing page and three-mode dropdown render normally.",
+      "Traditional Chinese updates headings, descriptions, cards and document title; entering the cooperation essay retains Traditional Chinese.",
+      "The article heading initially inherited the global fixed-header layout. Replaced the inner header element with a div, regenerated, visually verified the correction, and added a regression assertion allowing only the site-shell header.",
+      "English cooperation essay shows English title, deck and body without Chinese title stacking."
+    ],
+    "limit":"Responsive rules checked statically; no mobile-device browser emulation performed."
+  },
+  "deployment":"Local files and local commit only. No push or live deployment asserted."
+}

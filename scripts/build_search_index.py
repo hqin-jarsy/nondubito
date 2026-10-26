@@ -71,7 +71,7 @@ def extract_recent_fiction_descriptions(source: str) -> dict[str, str]:
     language_classes = {"lang-en": "en", "lang-zh": "zh-Hans", "lang-hant": "zh-Hant"}
     for match in re.finditer(r"<p\b([^>]*)>(.*?)</p>", source, flags=re.I | re.S):
         classes = set((attr_value(match.group(1), "class") or "").split())
-        if not classes.intersection({"rf-article-deck", "rf-hero-deck", "nf-article-deck", "nf-hero-deck", "books-hero-deck", "drama-search-deck", "western-search-deck", "method-search-deck", "zhuangzi-search-deck", "math-search-deck", "state-search-deck"}):
+        if not classes.intersection({"rf-article-deck", "rf-hero-deck", "nf-article-deck", "nf-hero-deck", "books-hero-deck", "drama-search-deck", "western-search-deck", "method-search-deck", "zhuangzi-search-deck", "math-search-deck", "state-search-deck", "jg-search-deck"}):
             continue
         description = clean_text(match.group(2))
         if not description:

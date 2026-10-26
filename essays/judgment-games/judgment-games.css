@@ -1,0 +1,55 @@
+/* Leave room for play; no scoreboards or levels on the reading shelf. */
+.jg-page { --jg-muted: #66685e; }
+[data-lang="en"] .jg-page .lang-hant,
+[data-lang="zh"] .jg-page .lang-hant { display: none !important; }
+.jg-page .lang-zh { font-family: var(--cjk); }
+.jg-page .lang-hant { font-family: var(--tc); }
+.jg-wrap { max-width: 1120px; margin: 64px auto 0; padding: 2.5rem 2.5rem 6rem; }
+.jg-breadcrumbs { display: flex; flex-wrap: wrap; gap: .6rem; font-family: var(--sans); font-size: .85rem; color: var(--jg-muted); }
+.jg-breadcrumbs a { color: inherit; text-decoration: none; }
+.jg-hero { padding: 3.2rem 0 1.5rem; max-width: 900px; }
+.jg-kicker { font-family: var(--sans); font-size: .78rem; color: var(--green); letter-spacing: .06em; margin-bottom: 1.1rem; }
+.jg-hero h1 { font-size: clamp(3.4rem, 7vw, 6rem); line-height: 1.2; font-weight: 400; margin-bottom: 1.4rem; }
+.jg-deck { max-width: 820px; font-size: 1.22rem; line-height: 1.9; color: var(--ink-light); }
+.jg-meta { font-family: var(--sans); font-size: .8rem; color: var(--jg-muted); margin: 1.4rem 0 1rem; }
+.jg-note { color: var(--jg-muted); font-size: .88rem; line-height: 1.85; }
+.jg-opening { background: var(--cream-dark); padding: 1.4rem 1.6rem; border-left: 2px solid var(--gold); margin: 1rem 0 2rem; }
+.jg-opening > p:not(.jg-note) { font-size: 1.12rem; line-height: 1.9; margin-bottom: .5rem; }
+.jg-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 2.6rem; }
+.jg-card { padding: 1.9rem 0; border-bottom: 1px solid var(--cream-border); color: var(--ink); text-decoration: none; }
+.jg-card h2 { font-size: 1.4rem; font-weight: 400; line-height: 1.6; margin-bottom: .9rem; }
+.jg-card p:not(.jg-kicker) { color: var(--ink-light); font-size: 1rem; line-height: 1.85; margin-bottom: 1rem; }
+.jg-card:hover h2 { color: var(--green); }
+.jg-read { color: var(--green); font-size: .88rem; }
+.jg-map { margin-top: 3rem; max-width: 820px; }
+.jg-map h2, .jg-related h2, .jg-pause h2 { font-size: 1.2rem; font-weight: 500; line-height: 1.65; margin-bottom: .7rem; }
+.jg-map p { font-size: 1.04rem; line-height: 1.9; color: var(--ink-light); }
+.jg-related { border-top: 1px solid var(--cream-border); padding-top: 1.4rem; margin-top: 2.8rem; line-height: 1.8; }
+.jg-related a { display: inline-block; margin: .3rem 1.2rem .3rem 0; }
+.jg-related a, .jg-return a, .jg-sources a { color: var(--green); text-underline-offset: .2em; }
+.jg-sources { border-top: 1px solid var(--cream-border); padding-top: 1.2rem; margin-top: 2.2rem; font-size: .94rem; line-height: 1.9; }
+.jg-sources p { margin: 1rem 0; }
+.jg-sources summary { cursor: pointer; color: var(--green); }
+.jg-article { max-width: 820px; margin: 0 auto; }
+.jg-head { padding: 2.8rem 0 2rem; border-bottom: 1px solid var(--cream-border); }
+.jg-head h1 { font-size: clamp(2.1rem,4.2vw,3.5rem); font-weight: 400; line-height: 1.4; margin-bottom: 1.2rem; overflow-wrap: break-word; }
+.essay-body.jg-prose { max-width: 740px; padding: 2.8rem 0 0; }
+.essay-body.jg-prose p { font-size: 1.12rem; line-height: 2; }
+.essay-body.jg-prose.lang-en p { font-size: 1.24rem; line-height: 1.9; }
+.essay-body.jg-prose h2 { line-height: 1.65; }
+.jg-pause { margin-top: 2rem; padding: 1.4rem 1.6rem; background: var(--cream-dark); border-left: 2px solid var(--gold); }
+.jg-pause p { font-size: 1.02rem; line-height: 1.95; margin-bottom: .7rem; }
+.jg-pause p.jg-note { font-size: .85rem; margin-bottom: 0; }
+.jg-series-nav { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-top: 2.8rem; }
+.jg-series-nav a { padding: 1.1rem; border: 1px solid var(--cream-border); color: var(--green); text-decoration: none; line-height: 1.7; font-size: 1rem; }
+.jg-series-nav small { display: block; color: var(--jg-muted); font-size: .8rem; margin-bottom: .5rem; }
+.jg-return { margin-top: 1.4rem; font-size: .94rem; }
+.jg-page :is(a,button,summary):focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+@media (max-width: 760px) {
+  .jg-wrap { margin-top: 58px; padding: 1.6rem 1.2rem 4rem; }
+  .jg-hero, .jg-head { padding-top: 2.3rem; }
+  .jg-grid, .jg-series-nav { grid-template-columns: 1fr; }
+  .jg-opening, .jg-pause { padding: 1.1rem; }
+  .essay-body.jg-prose p { font-size: 1.07rem; }
+  .essay-body.jg-prose.lang-en p { font-size: 1.16rem; }
+}
