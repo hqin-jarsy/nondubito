@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-25",
+  "series": "爱情论：为什么偏偏是你 / Why This Person? A Philosophy of Love",
+  "status": "Prepared and verified locally; no push or remote deployment performed.",
+  "entry": "essays/love/index.html",
+  "scope": {
+    "reader_essays": 8,
+    "optional_guide": 1,
+    "perspective_essays": 6,
+    "closing_story_essay": 1,
+    "html_pages": 9,
+    "complete_reading_modes": ["en", "zh-Hans", "zh-Hant"],
+    "simplified_han_characters": 21448,
+    "english_word_tokens": 12788,
+    "counting_note": "Bodies and subheadings only; titles and decks excluded. Han range U+3400–U+9FFF; English word tokens keep internal apostrophes and hyphens. Traditional Chinese retains the complete Simplified Chinese argument with contextual lexical corrections."
+  },
+  "articles": [
+    {"slug":"overview","zh_han":2423,"en_words":1408},
+    {"slug":"ep01","zh_han":2491,"en_words":1551},
+    {"slug":"ep02","zh_han":2499,"en_words":1578},
+    {"slug":"ep03","zh_han":2472,"en_words":1538},
+    {"slug":"ep04","zh_han":3152,"en_words":1840},
+    {"slug":"ep05","zh_han":2409,"en_words":1444},
+    {"slug":"ep06","zh_han":2594,"en_words":1498},
+    {"slug":"ep07","zh_han":3408,"en_words":1931}
+  ],
+  "editorial_review": {
+    "parallel_work": "Three agents explicitly authorized by the user drafted papers 1–2, 3–4 and 5–6. Lead wrote the guide and six-story closing essay, reviewed all Chinese manuscripts and checked source propositions, scope, cases and key boundaries.",
+    "independent_second_pass": "Guide and closing essay checked against papers 0 and 7; all eight English manuscripts checked for naturalness and ambiguity; all Traditional Chinese bodies checked for lexical drift.",
+    "local_corrections": [
+      "Kept six perspectives distinct from stages, ranks and guarantees; separated wavering between occurrences from interchangeability in one occurrence.",
+      "Required actual words or effects reaching the beloved before assigning an outward interpersonal direction to private expectations.",
+      "Clarified mistaken judgment versus deception, self-acknowledgment versus ownership, and exclusivity as an explicit source position rather than a deduction from respect alone.",
+      "Distinguished obstacles, broken promises, silently abandoned undertakings and acknowledged departure; preserved original applicable conditions and safe, intelligible exit without demanding permission or unlimited explanations.",
+      "Retained Casablanca's open question of entrusted judgment and later objection; followed Waller's novel rather than the film in The Bridges of Madison County.",
+      "Removed an unsupported expansion of unresolved AI bearer questions to fictional characters.",
+      "Repaired English pronoun ambiguity and several unnatural formulations; corrected Traditional Chinese names and contextual forms including 亞里士多德, 舍勒, 里克, 髮色 and 反覆 without changing 日復一日."
+    ]
+  },
+  "provenance": {
+    "receipt_file": "data/love/publication.json",
+    "published_source_snapshots": 8,
+    "sha256_verified": 8,
+    "byte_identical_to_author_source_checkout": 8,
+    "author_papers_modified": false,
+    "translation_service_used": false
+  },
+  "checks": {
+    "scripts/build_love_series.py --check": "9 pages current",
+    "scripts/test_love_series.py": "8 tests passed",
+    "scripts/test_relation_series.py": "8 regression tests passed",
+    "scripts/build_search_index.py --check": "11961 source records; 9 love records in each of the three reading modes, all in sae-philosophy",
+    "scripts/build_sitemap.py --check": "11945 canonical URLs, including all 9 love pages",
+    "scripts/check_web_analytics.py --fix": "0 repairs required; 11964 public pages checked; 0 tracking errors; 0 conflict copies",
+    "scripts/check_site_updates.py": "ledger and latest.html agree",
+    "scripts/build_content_registry.py --check": "490 prototype canonical records from 1414 pages; 18 Library categories",
+    "git diff --check": "passed"
+  },
+  "browser_review": {
+    "environment": "Local HTTP preview in the in-app browser, desktop viewport",
+    "verified": [
+      "Simplified Chinese landing title, deck and navigation render without overlap",
+      "Landing accessibility tree contains six main cards, optional guide and distinct six-story closing link",
+      "Language dropdown changes the landing to English and updates its title and existing lang query",
+      "Entering the first essay retains English; article title, deck and prose remain in normal flow",
+      "Switching to Traditional Chinese updates the article and retains the choice on the next essay"
+    ],
+    "screenshots": ["preview-zh.png", "preview-en-article.png", "preview-hant-article.png"],
+    "evidence_location": "love-publication-20261025 in the task workspace, outside the publication repository",
+    "limits": "Desktop visual preview only; mobile breakpoints inspected in CSS, without device emulation or a physical mobile-browser claim."
+  },
+  "discovery": ["index.html", "explore.html#sae", "library.html", "latest.html", "search indexes", "sitemap.xml"],
+  "related_series": "Added a reciprocal related link to the Relation builder and its nine generated pages; existing Relation prose and the Everyday Relationships shelf remain unchanged."
+}

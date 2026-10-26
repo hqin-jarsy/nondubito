@@ -127,6 +127,7 @@ def breadcrumb(converter: TraditionalConverter, article: bool = False) -> str:
 
 def related(converter: TraditionalConverter) -> str:
     links = ''.join(f'<a href="../{path}/index.html">{loc(en, zh, converter)}</a>' for path, en, zh in (
+        ('love','A Philosophy of Love','爱情论：为什么偏偏是你'),
         ('everyday/relationships','Everyday essays · Relationships','日常散文 · 关系里的结构'),
         ('conflict','On conflict','冲突论'), ('meaning','On meaning','意义论'), ('action','On action','行动论')))
     return '<aside class="rel-related">' + loc('Keep exploring', '继续逛逛', converter, 'h2') + links + '</aside>'
