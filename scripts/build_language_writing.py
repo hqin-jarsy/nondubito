@@ -63,11 +63,12 @@ def load_items() -> list[dict]:
 
 
 @tracked_html
-def page(content: str, title: str, deck: str, path: str, conv, source: str | None = None) -> str:
+def page(content: str, title: str, deck: str, path: str, conv, source: str | None = None, collection: tuple[str,str] | None = None) -> str:
     url = 'https://nondubito.net/' + path.removesuffix('index.html')
     schema = {'@context':'https://schema.org','@type':'Article' if source else 'CollectionPage','name':title,'description':deck,'url':url,'inLanguage':['en','zh-Hans','zh-Hant']}
     if source:
-        schema.update(headline=title,author={'@type':'Person','name':'Han Qin (秦汉)'},datePublished=DATE,dateModified=DATE,citation=source,mainEntityOfPage=url,isPartOf={'@type':'CollectionPage','url':'https://nondubito.net/essays/language-writing/','name':TITLE[0]})
+        collection_url,collection_name = collection or ('https://nondubito.net/essays/language-writing/',TITLE[0])
+        schema.update(headline=title,author={'@type':'Person','name':'Han Qin (秦汉)'},datePublished=DATE,dateModified=DATE,citation=source,mainEntityOfPage=url,isPartOf={'@type':'CollectionPage','url':collection_url,'name':collection_name})
     schema_text = json.dumps(schema,ensure_ascii=False).replace('</','<\\/')
     header = shell_header().replace('data-site-shell-menu aria-controls','data-site-shell-menu aria-label="Menu" aria-controls')
     foot = footer()
