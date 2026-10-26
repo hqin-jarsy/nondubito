@@ -1,0 +1,54 @@
+/* A reading shelf, not a relationship scorecard. */
+.relation-page { --rel-muted: #66685e; }
+[data-lang="en"] .relation-page .lang-hant,
+[data-lang="zh"] .relation-page .lang-hant { display: none !important; }
+.relation-page .lang-zh { font-family: var(--cjk); }
+.relation-page .lang-hant { font-family: var(--tc); }
+.rel-wrap { max-width: 1120px; margin: 64px auto 0; padding: 2.5rem 2.5rem 6rem; }
+.rel-breadcrumbs { display: flex; flex-wrap: wrap; gap: .6rem; font-family: var(--sans); font-size: .85rem; color: var(--rel-muted); }
+.rel-breadcrumbs a { color: inherit; text-decoration: none; }
+.rel-hero { padding: 3.2rem 0 1.5rem; max-width: 960px; }
+.rel-kicker { font-family: var(--sans); font-size: .78rem; color: var(--green); letter-spacing: .06em; margin-bottom: 1.1rem; }
+.rel-hero h1 { font-size: clamp(3.2rem, 6.5vw, 5.6rem); line-height: 1.3; font-weight: 400; margin-bottom: 1.4rem; overflow-wrap: break-word; }
+.rel-deck { max-width: 820px; font-size: 1.22rem; line-height: 1.9; color: var(--ink-light); }
+.rel-meta { font-family: var(--sans); font-size: .8rem; color: var(--rel-muted); margin: 1.4rem 0 1rem; }
+.rel-note { color: var(--rel-muted); font-size: .88rem; line-height: 1.85; }
+.rel-opening { background: var(--cream-dark); padding: 1.4rem 1.6rem; border-left: 2px solid var(--gold); margin: 1rem 0 2rem; }
+.rel-opening > p:not(.rel-note) { font-size: 1.12rem; line-height: 1.9; margin-bottom: .8rem; }
+.rel-start { display: inline-block; margin-bottom: 1rem; color: var(--green); text-underline-offset: .2em; }
+.rel-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 2.6rem; }
+.rel-card, .rel-guide { padding: 1.9rem 0; border-bottom: 1px solid var(--cream-border); color: var(--ink); text-decoration: none; }
+.rel-guide { display: block; max-width: 820px; margin-bottom: .8rem; }
+.rel-card h2, .rel-guide h2 { font-size: 1.4rem; font-weight: 400; line-height: 1.6; margin-bottom: .9rem; }
+.rel-card p:not(.rel-kicker), .rel-guide p:not(.rel-kicker) { color: var(--ink-light); font-size: 1rem; line-height: 1.85; margin-bottom: 1rem; }
+.rel-card:hover h2, .rel-guide:hover h2 { color: var(--green); }
+.rel-read { color: var(--green); font-size: .88rem; }
+.rel-map { margin-top: 3rem; max-width: 820px; }
+.rel-map h2, .rel-related h2 { font-size: 1.2rem; font-weight: 500; line-height: 1.65; margin-bottom: .7rem; }
+.rel-map p { font-size: 1.04rem; line-height: 1.9; color: var(--ink-light); }
+.rel-related { border-top: 1px solid var(--cream-border); padding-top: 1.4rem; margin-top: 2.8rem; line-height: 1.8; }
+.rel-related a { display: inline-block; margin: .3rem 1.2rem .3rem 0; }
+.rel-related a, .rel-return a, .rel-sources a { color: var(--green); text-underline-offset: .2em; }
+.rel-sources { border-top: 1px solid var(--cream-border); padding-top: 1.2rem; margin-top: 2.2rem; font-size: .94rem; line-height: 1.9; }
+.rel-sources p { margin: 1rem 0; }
+.rel-sources summary { cursor: pointer; color: var(--green); }
+.rel-article { max-width: 820px; margin: 0 auto; }
+.rel-head { padding: 2.8rem 0 2rem; border-bottom: 1px solid var(--cream-border); }
+.rel-head h1 { font-size: clamp(2.1rem,4.2vw,3.5rem); font-weight: 400; line-height: 1.4; margin-bottom: 1.2rem; overflow-wrap: break-word; }
+.essay-body.rel-prose { max-width: 740px; padding: 2.8rem 0 0; }
+.essay-body.rel-prose p { font-size: 1.12rem; line-height: 2; }
+.essay-body.rel-prose.lang-en p { font-size: 1.24rem; line-height: 1.9; }
+.essay-body.rel-prose h2 { line-height: 1.65; }
+.rel-series-nav { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-top: 2.8rem; }
+.rel-series-nav a { padding: 1.1rem; border: 1px solid var(--cream-border); color: var(--green); text-decoration: none; line-height: 1.7; font-size: 1rem; }
+.rel-series-nav small { display: block; color: var(--rel-muted); font-size: .8rem; margin-bottom: .5rem; }
+.rel-return { margin-top: 1.4rem; font-size: .94rem; }
+.relation-page :is(a,button,summary):focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+@media (max-width: 760px) {
+  .rel-wrap { margin-top: 58px; padding: 1.6rem 1.2rem 4rem; }
+  .rel-hero, .rel-head { padding-top: 2.3rem; }
+  .rel-grid, .rel-series-nav { grid-template-columns: 1fr; }
+  .rel-opening { padding: 1.1rem; }
+  .essay-body.rel-prose p { font-size: 1.07rem; }
+  .essay-body.rel-prose.lang-en p { font-size: 1.16rem; }
+}

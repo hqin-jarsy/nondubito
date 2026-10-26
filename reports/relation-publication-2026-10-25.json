@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-25",
+  "series": "在关系里，仍是自己 / What Passes Between Us",
+  "status": "Locally prepared and verified; no push or remote deployment performed.",
+  "entry": "essays/relation/index.html",
+  "scope": {
+    "reader_essays": 8,
+    "main_essays": 7,
+    "optional_guide": 1,
+    "html_pages": 9,
+    "complete_reading_modes": ["en", "zh-Hans", "zh-Hant"],
+    "simplified_han_characters": 20211,
+    "english_whitespace_words": 12036,
+    "counting_note": "Body paragraphs and subheadings only; excludes titles and decks. Traditional text has the same complete argument as Simplified Chinese, with contextual lexical corrections."
+  },
+  "articles": [
+    {"slug":"overview","zh_han":2523,"en_words":1505},
+    {"slug":"ep01","zh_han":2734,"en_words":1611},
+    {"slug":"ep02","zh_han":2545,"en_words":1512},
+    {"slug":"ep03","zh_han":2455,"en_words":1554},
+    {"slug":"ep04","zh_han":2476,"en_words":1534},
+    {"slug":"ep05","zh_han":2531,"en_words":1473},
+    {"slug":"ep06","zh_han":2498,"en_words":1437},
+    {"slug":"ep07","zh_han":2449,"en_words":1410}
+  ],
+  "editorial_review": {
+    "parallel_work": "Three agents explicitly authorized by the user; papers 1–2, 3–4 and 5–7 drafted separately. Lead wrote the guide, reviewed all manuscripts against the source arguments and integrated them.",
+    "independent_second_pass": "Guide checked against paper 0; all eight English texts checked for naturalness; all Traditional Chinese bodies checked for lexical drift.",
+    "local_corrections": [
+      "Made the promise account's normative-source choice explicit without claiming that other accounts of directed obligation were disproved.",
+      "Kept the direction of an earlier action distinct from later openness or outcomes; clarified factory procedure versus personally added pressure.",
+      "Preserved the conditional force of turning toward another without claiming a universal duty or an inevitable act of searching.",
+      "Removed intention qualifiers where the source reads the structure of an outward operation; clarified the trainer's own work and the evening-noise example.",
+      "Corrected several English quotation boundaries and two unnatural phrases.",
+      "Added contextual Traditional Chinese corrections for 默認, 文件, 沉默, 沉積, 回覆, 發現, 複述, 幹活 and 那隻手, preserving the name 老沈."
+    ]
+  },
+  "provenance": {
+    "receipt_file": "data/relation/publication.json",
+    "published_source_snapshots": 8,
+    "sha256_verified": 8,
+    "byte_identical_to_author_source_checkout": 8,
+    "author_papers_modified": false,
+    "translation_service_used": false
+  },
+  "checks": {
+    "scripts/build_relation_series.py --check": "9 pages current",
+    "scripts/test_relation_series.py": "8 tests passed",
+    "scripts/test_judgment_games_series.py": "5 regression tests passed",
+    "scripts/test_state_series.py": "5 regression tests passed",
+    "scripts/build_search_index.py --check": "11952 source records; 9 relation records in each of English, Simplified Chinese and Traditional Chinese, all in sae-philosophy",
+    "scripts/build_sitemap.py --check": "11936 canonical URLs, including all 9 relation pages",
+    "scripts/check_web_analytics.py --fix": "0 repairs required",
+    "scripts/check_web_analytics.py": "11955 public pages; 0 tracking errors; 0 conflict copies",
+    "scripts/check_site_updates.py": "ledger and latest.html agree",
+    "scripts/build_content_registry.py --check": "490 prototype canonical records from 1414 pages; 18 Library categories",
+    "git diff --check": "passed"
+  },
+  "browser_review": {
+    "environment": "Local HTTP preview through the in-app browser, desktop viewport",
+    "verified": [
+      "Simplified Chinese landing layout, seven main cards and an optional guide",
+      "Language dropdown switching from Chinese to English",
+      "English article title, deck and complete body without mixed-language body content",
+      "Switching to Traditional Chinese and retaining that choice on the next essay",
+      "Localized Traditional Chinese corrections visible after reload",
+      "Article headings remain in normal flow rather than becoming fixed navigation"
+    ],
+    "screenshots": ["preview-zh.png", "preview-en.png", "preview-hant.png"],
+    "evidence_location": "relation-publication-20261025 in the task workspace, outside the publication repository",
+    "limits": "Mobile breakpoints inspected in CSS only; no device emulation or physical mobile-browser claim. Direct file-protocol navigation was unavailable, so visual checks use the local HTTP preview."
+  },
+  "discovery": ["index.html", "explore.html#sae", "library.html", "latest.html", "search indexes", "sitemap.xml"],
+  "separate_existing_shelf": "essays/everyday/relationships/index.html remains intact and is linked from every new relation page."
+}
