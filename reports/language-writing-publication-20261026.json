@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-26",
+  "result": "passed",
+  "scope": "Language & Writing in three complete reading modes, and SAE reading/navigation regrouping",
+  "checks": [
+    {
+      "name": "Language & Writing publication, complete prose, links, source receipts, metadata, three reading modes and exact Library card preservation",
+      "tests": 8,
+      "result": "passed"
+    },
+    {
+      "name": "Existing series regression tests (love, relations, state, judgment/play and other matching series tests)",
+      "tests": 31,
+      "result": "passed"
+    },
+    {
+      "name": "SAE Western philosophy collection and navigation regressions",
+      "tests": 15,
+      "result": "passed"
+    },
+    {
+      "name": "Aesthetics hub regressions",
+      "tests": 9,
+      "result": "passed"
+    },
+    {
+      "name": "Standalone Action Theory adversity essay regression",
+      "tests": 6,
+      "result": "passed"
+    },
+    {
+      "name": "Sitemap recorded-date regressions",
+      "tests": 2,
+      "result": "passed"
+    },
+    {
+      "name": "Complete renderer and navigation --check",
+      "result": "passed"
+    },
+    {
+      "name": "Search index --check",
+      "result": "passed",
+      "source_records": 11967
+    },
+    {
+      "name": "Sitemap --check",
+      "result": "passed",
+      "canonical_urls": 11951
+    },
+    {
+      "name": "Content registry model --check",
+      "result": "passed",
+      "canonical_records_in_prototype_scope": 490,
+      "library_categories": 18
+    },
+    {
+      "name": "Public web analytics --fix then --check",
+      "result": "passed",
+      "public_pages": 11970,
+      "repaired_pages": 0,
+      "tracking_errors": 0,
+      "conflict_html_copies": 0
+    },
+    {
+      "name": "Update ledger and Latest month-fold consistency",
+      "result": "passed",
+      "ledger_cards": 182
+    },
+    {
+      "name": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "browser": {
+    "method": "In-app browser, localhost preview; actual desktop rendering and UI interactions",
+    "verified": [
+      "Chinese reading-map first screen displays all six topic choices before newcomer note",
+      "Header language dropdown switched the map from Simplified Chinese to English, changing visible headings and URL language",
+      "Traditional Chinese article ep02 displays only the complete Traditional reading body",
+      "English ep03 displays only the English body, with no horizontal overflow",
+      "English Library shows zero visible Chinese card titles in the SAE section",
+      "Library SAE section contains six groups and 30 cards, with no horizontal overflow",
+      "Clicking Knowing group anchors to the expected section below the fixed navigation (top approximately 95px)",
+      "Explore SAE section contains six topic entrances, each pointing to the corresponding reading-map group"
+    ],
+    "screenshot": "sae-reading-map-20261026.png (editorial task workspace; not a site asset)",
+    "limit": "Desktop UI tested. Mobile responsive rules are present, but a mobile viewport was not separately emulated."
+  },
+  "editorial_notes": [
+    "The prior Western-navigation test still expected 17 Library categories; the site already had 18 before this task. The assertion now matches the existing 18 categories.",
+    "Previous tests that required a direct series card on Explore now check the reading-map destination; new route tests independently verify all six Explore-to-map links and every series link in the map.",
+    "No existing essay URL was moved, and all 29 original SAE Library series-card anchors retain their exact prior SHA-256."
+  ],
+  "deployment": "Local commit only; author will push."
+}

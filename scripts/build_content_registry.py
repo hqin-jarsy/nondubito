@@ -93,6 +93,8 @@ ROOT_PAGES = (
 )
 
 DOMAIN_PREFIXES = (
+    ("essays/language-writing/", "sae-philosophy"),
+    ("essays/sae/", "sae-philosophy"),
     ("essays/art/", "sae-philosophy"),
     ("essays/aesthetics/", "sae-philosophy"),
     ("essays/humor/", "stories"),

@@ -79,7 +79,7 @@ class HubTests(unittest.TestCase):
             self.assertIn('artist_dead.html',s)
 
     def test_discovery(self):
-        for name in ['index.html','library.html','explore.html','latest.html']:
+        for name in ['index.html','library.html','essays/sae/index.html','latest.html']:
             self.assertIn('essays/aesthetics/index.html',(build.ROOT/name).read_text())
         updates=json.loads((build.ROOT/'data/site-updates.json').read_text())['updates']
         item=next(x for x in updates if x['id']=='2026-09-28-aesthetics-hub')

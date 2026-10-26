@@ -36,7 +36,7 @@ class WesternPhilosophyNavigationTests(unittest.TestCase):
 
     def test_library_has_one_category_with_exactly_six_series(self):
         categories = registry.parse_library_categories(ROOT / "library.html")
-        self.assertEqual([category["number"] for category in categories], list(range(1, 18)))
+        self.assertEqual([category["number"] for category in categories], list(range(1, 19)))
         western = next(
             category for category in categories
             if category["href"] == "essays/sae-western/index.html"
@@ -56,9 +56,11 @@ class WesternPhilosophyNavigationTests(unittest.TestCase):
 
     def test_explore_uses_the_shelf_instead_of_a_single_series(self):
         source = (ROOT / "explore.html").read_text(encoding="utf-8")
-        self.assertIn('class="shelf-link" href="essays/sae-western/index.html"', source)
+        self.assertIn('class="shelf-link" href="essays/sae/index.html#traditions"', source)
+        hub = (ROOT / "essays/sae/index.html").read_text(encoding="utf-8")
+        self.assertIn('href="../../essays/sae-western/index.html"', hub)
         self.assertNotIn('class="shelf-link" href="essays/sae-republic/index.html"', source)
-        self.assertIn('<h3 class="lang-hant">SAE西哲</h3>', source)
+        self.assertIn('SAE 西哲：六部經典的對讀', hub)
 
     def test_existing_indexes_return_to_the_new_shelf(self):
         for series in SERIES[:3]:

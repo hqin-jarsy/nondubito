@@ -318,6 +318,19 @@
     [data-lang="zh-hant"] .cl-zh { display: none !important; }
     [data-lang="zh-hant"] .cl-hant { display: block; }
 
+    /* SAE groups keep every series visible and work without JavaScript. */
+    .sae-library-jump { display:flex; flex-wrap:wrap; gap:.6rem; margin:0 0 2rem; }
+    .sae-library-jump a { border:1px solid var(--cream-border); padding:.6rem .9rem; color:var(--green); text-decoration:none; font-size:.85rem; line-height:1.6; }
+    .sae-library-group { border-top:1px solid var(--cream-border); padding:2rem 0; scroll-margin-top:95px; }
+    .sae-library-group h2 { font-size:1.2rem; font-weight:500; line-height:1.7; margin-bottom:.5rem; }
+    .sae-library-question { color:var(--ink-light); font-size:.95rem; line-height:1.8; margin-bottom:1.5rem; }
+    .sae-library-note { margin-top:1.2rem; font-size:.9rem; line-height:1.8; color:var(--ink-light); }
+    .sae-library-map a,.sae-library-note a,.sae-library-back { color:var(--green); text-underline-offset:.2em; }
+    .sae-library-map { margin-top:1rem; font-size:.95rem; }
+    .sae-library-back { display:inline-block; margin-top:1.2rem; font-size:.8rem; }
+    #sae-theory { scroll-margin-top:90px; }
+    .sae-library-jump :focus-visible { outline:2px solid var(--green); outline-offset:3px; }
+
     /* ── DIVIDER ─────────────────────────────────────────────────────── */
     .lib-divider {
       border: none;
@@ -415,18 +428,7 @@
      CATEGORY 1 · AI & 人的问题
      ══════════════════════════════════════════════════════════════════════ -->
 <hr class="lib-divider">
-<section class="lib-section">
-  <div class="lib-section-header">
-    <span class="lib-section-tag">Category 02</span>
-    <div class="lib-section-name">
-      <span class="zh">SAE 理论</span>
-      <span class="en">SAE Theory</span>
-    </div>
-    <p class="lib-section-desc lang-zh">框架本体——从面向普通读者的 SAE 基础、第一批判、方法论、认知论、法学与经济学，到权力、权利、战争和道德律。各系列在共同术语与明确依赖关系中展开。</p>
-    <p class="lib-section-desc lang-en">The framework itself — beginning with a reader-facing SAE foundation, then the First Critique, methodology, epistemology, law, economics, power, rights, war, and the moral law. The series share a vocabulary while keeping their dependencies explicit.</p>
-  </div>
-  <div class="series-grid">
-    <a href="essays/sae-foundations/index.html" class="series-card">
+<section class="lib-section" id="sae-theory"><div class="lib-section-header"><span class="lib-section-tag">Category 02</span><a href="essays/sae/index.html" class="lib-section-name" style="text-decoration:none"><span class="zh cl-zh">SAE 散文</span><span class="zh cl-hant">SAE 散文</span><span class="en">SAE Reader Essays</span></a><p class="lang-en lib-section-desc">Choose a question, not a syllabus. Six groups keep the complete series list easy to browse; the reading map offers a lighter way in.</p><p class="lang-zh cl-zh lib-section-desc">先选一个问题，不必把全目录当成课程表。这里按六组保留完整系列；想轻一点地开始，可以先看阅读地图。</p><p class="lang-zh cl-hant lib-section-desc">先選一個問題，不必把全目錄當成課程表。這裡按六組保留完整系列；想輕一點地開始，可以先看閱讀地圖。</p><p class="sae-library-map"><a href="essays/sae/index.html"><span class="lang-en">Open the SAE reading map →</span><span class="lang-zh cl-zh">打开 SAE 散文阅读地图 →</span><span class="lang-zh cl-hant">打開 SAE 散文閱讀地圖 →</span></a></p></div><nav class="sae-library-jump" aria-label="SAE reading groups"><a href="#sae-foundations"><span class="lang-en">Foundations &amp; starting points</span><span class="lang-zh cl-zh">入门与基础</span><span class="lang-zh cl-hant">入門與基礎</span></a><a href="#sae-knowing"><span class="lang-en">Knowing, learning &amp; expression</span><span class="lang-zh cl-zh">认识与表达</span><span class="lang-zh cl-hant">認識與表達</span></a><a href="#sae-living"><span class="lang-en">Value, living &amp; relating</span><span class="lang-zh cl-zh">价值与关系</span><span class="lang-zh cl-hant">價值與關係</span></a><a href="#sae-shared-life"><span class="lang-en">Shared life &amp; institutions</span><span class="lang-zh cl-zh">共同生活与制度</span><span class="lang-zh cl-hant">共同生活與制度</span></a><a href="#sae-beauty-play"><span class="lang-en">Beauty, laughter &amp; play</span><span class="lang-zh cl-zh">美与游戏</span><span class="lang-zh cl-hant">美與遊戲</span></a><a href="#sae-traditions"><span class="lang-en">In dialogue with traditions</span><span class="lang-zh cl-zh">与思想传统对读</span><span class="lang-zh cl-hant">與思想傳統對讀</span></a></nav><div class="sae-library-group" id="sae-foundations"><h2 class="lang-en">01 · Foundations &amp; starting points</h2><h2 class="lang-zh cl-zh">01 · 入门与基础</h2><h2 class="lang-zh cl-hant">01 · 入門與基礎</h2><p class="lang-en sae-library-question">New here? Where does this way of thinking begin?</p><p class="lang-zh cl-zh sae-library-question">第一次来，怎样读懂这套想法？</p><p class="lang-zh cl-hant sae-library-question">第一次來，怎樣讀懂這套想法？</p><div class="series-grid"><a href="essays/sae-foundations/index.html" class="series-card">
       <span class="series-card-count">15 essays · Start here</span>
       <div class="series-card-title-zh">SAE基础：人如何成为目的</div>
       <div class="series-card-title-en">SAE Foundations: How a Person Becomes an End</div>
@@ -435,7 +437,7 @@
       <span class="series-card-arrow lang-en">Start here</span>
       <span class="series-card-arrow lang-zh">从这里开始</span>
     </a>
-    <a href="essays/sae-first-critique/index.html" class="series-card">
+<a href="essays/sae-first-critique/index.html" class="series-card">
       <span class="series-card-count">12 essays</span>
       <div class="series-card-title-zh">SAE第一批判：十二讲</div>
       <div class="series-card-title-en">The SAE First Critique</div>
@@ -444,7 +446,7 @@
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/sae-second-critique/index.html" class="series-card">
+<a href="essays/sae-second-critique/index.html" class="series-card">
       <span class="series-card-count"><span class="lang-en">12 essays · 3 reading modes</span><span class="lang-zh">12 篇 · 英 / 简 / 繁</span></span>
       <div class="series-card-title-zh">SAE第二批判：十二讲</div>
       <div class="series-card-title-en">The SAE Second Critique</div>
@@ -452,19 +454,7 @@
       <p class="series-card-desc-en lang-en">The critique on the practical side: by what a law a person gives himself binds him, how far, and how it lives alongside the cannot-nots of others. Concession is unavoidable; adoption can be refused. It rests on where one stands. Overlap, not unity.</p>
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
-    </a>
-    <a href="essays/sae-buddhist/index.html" class="series-card">
-      <span class="series-card-count">6 essays</span>
-      <div class="series-card-title-zh">SAE佛学：六个接口</div>
-      <div class="series-card-title-en">SAE and Buddhist Thought</div>
-      <p class="series-card-desc-zh lang-zh">从唯识、禅与中观，到天台、华严与净土：六个对应与不可翻译的接口 · 六篇 · 八种语言</p>
-      <p class="series-card-desc-en lang-en">Six interfaces with Yogācāra, Chan, Madhyamaka, Tiantai, Huayan, and Pure Land · 6 essays · Eight languages</p>
-      <span class="series-card-arrow lang-en">Read series</span>
-      <span class="series-card-arrow lang-zh">阅读系列</span>
-    </a>
-
-
-    <a href="essays/method/index.html" class="series-card">
+    </a></div><a class="sae-library-back" href="#sae-theory"><span class="lang-en">↑ Back to SAE shelves</span><span class="lang-zh cl-zh">↑ 回到 SAE 分组</span><span class="lang-zh cl-hant">↑ 回到 SAE 分組</span></a></div><div class="sae-library-group" id="sae-knowing"><h2 class="lang-en">02 · Knowing, learning &amp; expression</h2><h2 class="lang-zh cl-zh">02 · 认识与表达</h2><h2 class="lang-zh cl-hant">02 · 認識與表達</h2><p class="lang-en sae-library-question">How do we know—and find words for what we mean?</p><p class="lang-zh cl-zh sae-library-question">怎样知道，又怎样把想法说出来？</p><p class="lang-zh cl-hant sae-library-question">怎樣知道，又怎樣把想法說出來？</p><div class="series-grid"><a href="essays/method/index.html" class="series-card">
       <span class="series-card-count"><span class="lang-en">12 papers + 1 introduction</span><span class="lang-zh">12 篇论文 + 1 篇入门文章</span></span>
       <div class="series-card-title-zh">方法论系列</div>
       <div class="series-card-title-en">Methodology Series</div>
@@ -473,7 +463,7 @@
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/epistemology/index.html" class="series-card">
+<a href="essays/epistemology/index.html" class="series-card">
       <span class="series-card-count">4 essays · 8 languages</span>
       <div class="series-card-title-zh">认知论系列</div>
       <div class="series-card-title-en">Epistemology Series</div>
@@ -482,7 +472,7 @@
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/learning/index.html" class="series-card">
+<a href="essays/learning/index.html" class="series-card">
       <span class="series-card-count">4 essays · 8 languages</span>
       <div class="series-card-title-zh">SAE 学习系列</div>
       <div class="series-card-title-en">SAE Learning Series</div>
@@ -491,25 +481,43 @@
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/law/index.html" class="series-card">
+<a href="essays/language-writing/index.html" class="series-card"><span class="series-card-count"><span class="lang-en">3 essays · English &amp; both Chinese scripts</span><span class="lang-zh cl-zh">3 篇 · 英文与简繁中文</span><span class="lang-zh cl-hant">3 篇 · 英文與簡繁中文</span></span><div class="series-card-title-zh cl-zh">语言与写作：把话说成自己的</div><div class="series-card-title-zh cl-hant">語言與寫作：把話說成自己的</div><div class="series-card-title-en">Language &amp; Writing: Finding Words of Our Own</div><p class="lang-en series-card-desc">Naming, words that still feel wrong, and a writer’s growing voice: three complete reader essays, with independent English rewrites.</p><p class="lang-zh cl-zh series-card-desc">命名、总觉得没说对的话，以及写着写着长出来的声音。三篇完整散文，英文独立重写。</p><p class="lang-zh cl-hant series-card-desc">命名、總覺得沒說對的話，以及寫著寫著長出來的聲音。三篇完整散文，英文獨立重寫。</p><span class="lang-en series-card-arrow">Read series →</span><span class="lang-zh cl-zh series-card-arrow">阅读系列 →</span><span class="lang-zh cl-hant series-card-arrow">閱讀系列 →</span></a>
+<a href="essays/bio/index.html" class="series-card">
       <span class="series-card-count">5 essays</span>
-      <div class="series-card-title-zh">法学系列</div>
-      <div class="series-card-title-en">Law Series</div>
-      <p class="series-card-desc-zh lang-zh">从 14DD 对赌到星际收束：法的先验推导。两个 14DD 相遇，自然状态是对赌——法就是从这里长出来的。四篇正传 + 一篇后续篇 · 八种语言。</p>
-      <p class="series-card-desc-en lang-en">From the 14DD showdown to interstellar closure: an a priori derivation of law. Where two 14DDs meet, the state of nature is a wager — and law grows out of exactly that. Four papers plus a supplement · Eight languages.</p>
+      <div class="series-card-title-zh">生物学与演化</div>
+      <div class="series-card-title-en">Biology &amp; Evolution</div>
+      <p class="series-card-desc-zh lang-zh">凿构循环与生命结构 · 五篇</p>
+      <p class="series-card-desc-en lang-en">Chisel-construct cycle &amp; the structure of life · Five essays</p>
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/quanli/index.html" class="series-card">
-      <span class="series-card-count"><span class="lang-en">7 essays · 8 languages</span><span class="lang-zh">7 篇 · 8 种语言</span></span>
-      <div class="series-card-title-zh">权力论 · Shi</div>
-      <div class="series-card-title-en">Power Theory · Shi</div>
-      <p class="series-card-desc-zh lang-zh">权力不是恶，也不是德——它是结构。这个系列从一个不寻常的地方出发：不问权力对不对，问权力是什么。当两个相互承认彼此主体性的人处在不对等的位置上，会涌现出什么？这个不对等从哪里来，以什么形态运作，遇到什么限度，走向哪两条截然不同的路，又如何消解？</p>
-      <p class="series-card-desc-en lang-en">Power is neither evil nor virtue — it is structure. This series begins somewhere unusual: not asking whether power is justified, but asking what power is. When two people who recognize each other as subjects occupy unequal positions, what emerges? Where does that asymmetry come from, what shapes does it take, where does it hit its limits, what two very different paths can it follow, and how does it dissolve?</p>
+<a href="essays/anthro/index.html" class="series-card">
+      <span class="series-card-count">5 essays</span>
+      <div class="series-card-title-zh">人类学系列</div>
+      <div class="series-card-title-en">Anthropology Series</div>
+      <p class="series-card-desc-zh lang-zh">从宇宙背景到地球文明 Self 的涌现——为什么太阳系内只能长出一个行星级文明，以及这个结论如何分形地推广到物种竞争。前置篇 + 四篇 · 双语。</p>
+      <p class="series-card-desc-en lang-en">From cosmic background to the emergence of Earth civilization&#x27;s self — why only one planet-scale civilization can arise within a solar system, and how that conclusion generalizes fractally to competition among species. Prequel plus four essays · Bilingual.</p>
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/sae-value/index.html" class="series-card">
+<a href="essays/psycho/index.html" class="series-card">
+      <span class="series-card-count">4 essays</span>
+      <div class="series-card-title-zh">精神分析系列</div>
+      <div class="series-card-title-en">Psychoanalysis Series</div>
+      <p class="series-card-desc-zh lang-zh">从本我到 Cert：主体性的四层结构。四篇 · 双语。</p>
+      <p class="series-card-desc-en lang-en">From Id to Cert: the four-layer structure of subjecthood. Four papers · Bilingual.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+<a href="essays/yinan/index.html" class="series-card">
+      <span class="series-card-count">9 essays</span>
+      <div class="series-card-title-zh">疑难杂症</div>
+      <div class="series-card-title-en">Difficult Cases</div>
+      <p class="series-card-desc-zh lang-zh">让传统框架犯难的临床现象 · 九篇</p>
+      <p class="series-card-desc-en lang-en">Clinical phenomena that resist conventional frameworks · Nine essays</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a></div><a class="sae-library-back" href="#sae-theory"><span class="lang-en">↑ Back to SAE shelves</span><span class="lang-zh cl-zh">↑ 回到 SAE 分组</span><span class="lang-zh cl-hant">↑ 回到 SAE 分組</span></a></div><div class="sae-library-group" id="sae-living"><h2 class="lang-en">03 · Value, living &amp; relating</h2><h2 class="lang-zh cl-zh">03 · 价值与关系</h2><h2 class="lang-zh cl-hant">03 · 價值與關係</h2><p class="lang-en sae-library-question">What is worth doing—and how do we leave room for another person?</p><p class="lang-zh cl-zh sae-library-question">什么值得我去做，又怎样不吞掉另一个人？</p><p class="lang-zh cl-hant sae-library-question">什麼值得我去做，又怎樣不吞掉另一個人？</p><div class="series-grid"><a href="essays/sae-value/index.html" class="series-card">
       <span class="series-card-count">8 essays · 8 languages</span>
       <div class="series-card-title-zh">价值论</div>
       <div class="series-card-title-en">SAE Value Theory</div>
@@ -518,7 +526,7 @@
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/meaning/index.html" class="series-card">
+<a href="essays/meaning/index.html" class="series-card">
       <span class="series-card-count"><span class="lang-en">8 essays · 8 languages</span><span class="lang-zh">8 篇 · 8 种语言</span></span>
       <div class="series-card-title-zh">意义论</div>
       <div class="series-card-title-en">SAE Meaning Theory</div>
@@ -527,7 +535,7 @@
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/action/index.html" class="series-card">
+<a href="essays/action/index.html" class="series-card">
       <span class="series-card-count"><span class="lang-en">11 essays + 1 special study · EN / 简 / 繁</span><span class="lang-zh">11 篇主线 + 1 篇专论 · 英 / 简 / 繁</span></span>
       <div class="series-card-title-zh">行动论</div>
       <div class="series-card-title-en">SAE Action Theory</div>
@@ -536,7 +544,60 @@
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/institution/index.html" class="series-card">
+<a href="essays/daode/index.html" class="series-card">
+      <span class="series-card-count">8 essays · 8 languages</span>
+      <div class="series-card-title-zh">道德律</div>
+      <div class="series-card-title-en">The Moral Law</div>
+      <p class="series-card-desc-zh lang-zh">道德律系列从一个不寻常的地方出发：不问善恶，问结构。当多个真正意义上的自我立法主体共处一个共同体时，他们之间会涌现出什么样的形态？这个问题的答案不是一套从外部施加的规则，而是一组构成性条件——你在这个模式下运作，就必然如此。</p>
+      <p class="series-card-desc-en lang-en">The Moral Law series begins somewhere unusual: not from good and evil, but from structure. When multiple genuine self-legislating subjects share a community, what form naturally emerges among them? The answer is not a set of rules imposed from outside, but a set of constitutive conditions — operate within this mode, and these conditions necessarily hold.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+<a href="essays/relation/index.html" class="series-card">
+      <span class="series-card-count"><span class="lang-en">8 essays · 3 reading modes</span><span class="lang-zh cl-zh">8 篇 · 英 / 简 / 繁</span><span class="lang-zh cl-hant">8 篇 · 英 / 簡 / 繁</span></span>
+      <div class="series-card-title-zh cl-zh">关系论：在关系里，仍是自己</div><div class="series-card-title-zh cl-hant">關係論：在關係裡，仍是自己</div>
+      <div class="series-card-title-en">What Passes Between Us: A Philosophy of Relations</div>
+      <p class="series-card-desc-zh lang-zh cl-zh">承诺怎样有分量，却不锁住明天？期待怎样从来往里长出来，离开以后又有什么仍在？七篇正文与一篇导读，把人与人之间留下的作用讲清楚；日常区《关系里的结构》仍保留自己的入口。</p>
+      <p class="series-card-desc-zh lang-zh cl-hant">承諾怎樣有分量，卻不鎖住明天？期待怎樣從來往裡長出來，離開以後又有什麼仍在？七篇正文與一篇導讀，把人與人之間留下的作用講清楚；日常區《關係裡的結構》仍保留自己的入口。</p>
+      <p class="series-card-desc-en lang-en">A promise, an awaited letter, a habit carried for years, a departure. Seven main essays and a guide follow what passes between people and remains over time. Distinct from the Everyday shelf’s Relationships series.</p>
+      <span class="series-card-arrow lang-en">Read series</span><span class="series-card-arrow lang-zh cl-zh">阅读系列</span><span class="series-card-arrow lang-zh cl-hant">閱讀系列</span>
+    </a>
+<a href="essays/love/index.html" class="series-card">
+      <span class="series-card-count"><span class="lang-en">8 essays · 3 reading modes</span><span class="lang-zh cl-zh">8 篇 · 英 / 简 / 繁</span><span class="lang-zh cl-hant">8 篇 · 英 / 簡 / 繁</span></span>
+      <div class="series-card-title-zh cl-zh">爱情论：为什么偏偏是你</div><div class="series-card-title-zh cl-hant">愛情論：為什麼偏偏是你</div>
+      <div class="series-card-title-en">Why This Person? A Philosophy of Love</div>
+      <p class="series-card-desc-zh lang-zh cl-zh">初见、相思、看错、持续的方向、不索取的爱与彼此相遇。六种角度不是六级台阶；导读之后，六个经典故事再来追问，承诺、拒绝与放手究竟意味着什么。</p>
+      <p class="series-card-desc-zh lang-zh cl-hant">初見、相思、看錯、持續的方向、不索取的愛與彼此相遇。六種角度不是六級台階；導讀之後，六個經典故事再來追問，承諾、拒絕與放手究竟意味著什麼。</p>
+      <p class="series-card-desc-en lang-en">Six perspectives, not stages: the first pull, absence, mistaken judgment, lasting direction, love without demanding a return, and a mutual meeting. A guide and six enduring stories keep the questions open.</p>
+      <span class="series-card-arrow lang-en">Read series</span><span class="series-card-arrow lang-zh cl-zh">阅读系列</span><span class="series-card-arrow lang-zh cl-hant">閱讀系列</span>
+    </a></div><a class="sae-library-back" href="#sae-theory"><span class="lang-en">↑ Back to SAE shelves</span><span class="lang-zh cl-zh">↑ 回到 SAE 分组</span><span class="lang-zh cl-hant">↑ 回到 SAE 分組</span></a></div><div class="sae-library-group" id="sae-shared-life"><h2 class="lang-en">04 · Shared life &amp; institutions</h2><h2 class="lang-zh cl-zh">04 · 共同生活与制度</h2><h2 class="lang-zh cl-hant">04 · 共同生活與制度</h2><p class="lang-en sae-library-question">When our lives meet, what should our rules protect?</p><p class="lang-zh cl-zh sae-library-question">许多人的生活放在一起，规则应该保护什么？</p><p class="lang-zh cl-hant sae-library-question">許多人的生活放在一起，規則應該保護什麼？</p><div class="series-grid"><a href="essays/quanli/index.html" class="series-card">
+      <span class="series-card-count"><span class="lang-en">7 essays · 8 languages</span><span class="lang-zh">7 篇 · 8 种语言</span></span>
+      <div class="series-card-title-zh">权力论 · Shi</div>
+      <div class="series-card-title-en">Power Theory · Shi</div>
+      <p class="series-card-desc-zh lang-zh">权力不是恶，也不是德——它是结构。这个系列从一个不寻常的地方出发：不问权力对不对，问权力是什么。当两个相互承认彼此主体性的人处在不对等的位置上，会涌现出什么？这个不对等从哪里来，以什么形态运作，遇到什么限度，走向哪两条截然不同的路，又如何消解？</p>
+      <p class="series-card-desc-en lang-en">Power is neither evil nor virtue — it is structure. This series begins somewhere unusual: not asking whether power is justified, but asking what power is. When two people who recognize each other as subjects occupy unequal positions, what emerges? Where does that asymmetry come from, what shapes does it take, where does it hit its limits, what two very different paths can it follow, and how does it dissolve?</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+<a href="essays/rights/index.html" class="series-card">
+      <span class="series-card-count"><span class="lang-en">7 essays · 8 languages</span><span class="lang-zh">7 篇 · 8 种语言</span></span>
+      <div class="series-card-title-zh">权利论</div>
+      <div class="series-card-title-en">Rights Theory</div>
+      <p class="series-card-desc-zh lang-zh">&quot;权利&quot;常常被裹挟在恩赐、许可、律法条文，或者&quot;权力愿意留给你的余地&quot;这些说法里，很少有人问：权利本身究竟是什么。这个系列从清理这些误认开始，逐步搭建一套结构性的权利理论——权利来自一个以自身为目的的主体如何为自己立法，从最基础的生命与身体层面的权利，一路展开成一整条通向承认性权利的谱系。</p>
+      <p class="series-card-desc-en lang-en">Rights are usually wrapped in language borrowed from gift-giving, permission, statute, or &quot;whatever space power is willing to leave you&quot; — rarely does anyone ask what a right actually is. This series begins by clearing away those misidentifications, then builds a structural theory from the ground up: rights arise from how a being that is an end in itself legislates for itself, unfolding from the most basic rights of life and body into a full spectrum reaching toward recognition-based rights.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+<a href="essays/law/index.html" class="series-card">
+      <span class="series-card-count">5 essays</span>
+      <div class="series-card-title-zh">法学系列</div>
+      <div class="series-card-title-en">Law Series</div>
+      <p class="series-card-desc-zh lang-zh">从 14DD 对赌到星际收束：法的先验推导。两个 14DD 相遇，自然状态是对赌——法就是从这里长出来的。四篇正传 + 一篇后续篇 · 八种语言。</p>
+      <p class="series-card-desc-en lang-en">From the 14DD showdown to interstellar closure: an a priori derivation of law. Where two 14DDs meet, the state of nature is a wager — and law grows out of exactly that. Four papers plus a supplement · Eight languages.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a>
+<a href="essays/institution/index.html" class="series-card">
       <span class="series-card-count"><span class="lang-en">8 essays · 3 reading modes</span><span class="lang-zh">8 篇 · 英 / 简 / 繁</span></span>
       <div class="series-card-title-zh">制度论</div>
       <div class="series-card-title-en">SAE Institution Theory</div>
@@ -545,7 +606,7 @@
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/government/index.html" class="series-card">
+<a href="essays/government/index.html" class="series-card">
       <span class="series-card-count"><span class="lang-en">7 essays · 3 reading modes</span><span class="lang-zh">7 篇 · 英 / 简 / 繁</span></span>
       <div class="series-card-title-zh">政府论</div>
       <div class="series-card-title-en">SAE Theory of Government</div>
@@ -554,8 +615,7 @@
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-
-    <a href="essays/state/index.html" class="series-card">
+<a href="essays/state/index.html" class="series-card">
       <span class="series-card-count"><span class="lang-en">8 essays · 3 reading modes</span><span class="lang-zh">8 篇 · EN / 简 / 繁</span></span>
       <div class="series-card-title-zh cl-zh">国家论：到了国家这一层，还能问吗？</div>
       <div class="series-card-title-zh cl-hant">國家論：到了國家這一層，還能問嗎？</div>
@@ -565,87 +625,7 @@
       <p class="series-card-desc-en lang-en">Fifty-seven dissenting votes, a judgment no one implements, a passport its holder cannot relinquish. Eight essays follow three fictional neighbours to the places where there is no higher authority—and the questions cannot stop.</p>
       <span class="series-card-arrow lang-en">Read series</span><span class="series-card-arrow lang-zh cl-zh">阅读系列</span><span class="series-card-arrow lang-zh cl-hant">閱讀系列</span>
     </a>
-    <a href="essays/rights/index.html" class="series-card">
-      <span class="series-card-count"><span class="lang-en">7 essays · 8 languages</span><span class="lang-zh">7 篇 · 8 种语言</span></span>
-      <div class="series-card-title-zh">权利论</div>
-      <div class="series-card-title-en">Rights Theory</div>
-      <p class="series-card-desc-zh lang-zh">&quot;权利&quot;常常被裹挟在恩赐、许可、律法条文，或者&quot;权力愿意留给你的余地&quot;这些说法里，很少有人问：权利本身究竟是什么。这个系列从清理这些误认开始，逐步搭建一套结构性的权利理论——权利来自一个以自身为目的的主体如何为自己立法，从最基础的生命与身体层面的权利，一路展开成一整条通向承认性权利的谱系。</p>
-      <p class="series-card-desc-en lang-en">Rights are usually wrapped in language borrowed from gift-giving, permission, statute, or &quot;whatever space power is willing to leave you&quot; — rarely does anyone ask what a right actually is. This series begins by clearing away those misidentifications, then builds a structural theory from the ground up: rights arise from how a being that is an end in itself legislates for itself, unfolding from the most basic rights of life and body into a full spectrum reaching toward recognition-based rights.</p>
-      <span class="series-card-arrow lang-en">Read series</span>
-      <span class="series-card-arrow lang-zh">阅读系列</span>
-    </a>
-    <a href="essays/war/index.html" class="series-card">
-      <span class="series-card-count">16 essays</span>
-      <div class="series-card-title-zh">战争论</div>
-      <div class="series-card-title-en">War Theory</div>
-      <p class="series-card-desc-zh lang-zh">战争是目的王国必须处理、却最不希望发生的那件事。对它保持沉默，等于把这个场域整个让给别的话语去主宰。而一旦要说，就得先说清楚一件事：这个系列真正的主角不是战争，是涵育——主体性在时间中持续深化、互相生长的那个过程。战争在这张地图上位置很低，它是涵育被打断时不得不启用的兜底。正篇七篇之后是<strong>兵法接口</strong>九篇，两组现均有八种语言：让 14DD 那一侧的战争哲学自己说话——康德，克劳塞维茨与《论持久战》，老子与《司马法》与《墨子》，正义战争论传统与卢梭，孙子，甘地，新渡户——问它们与 SAE 在哪里同行，在哪里分开，在哪里必须批评，在哪里说不上话，最后结账。</p>
-      <p class="series-card-desc-en lang-en">War is the thing the Kingdom of Ends must handle and least wants to happen. Staying silent about it hands the whole field over to other discourses. And once you do speak, one thing has to be settled first: the protagonist of this series is not war but cultivation — the process by which subjectivity deepens and grows into other subjectivity over time. War sits very low on that map. It is the backstop invoked only when cultivation has been broken. The seven-part main sequence is followed by nine <strong>interface</strong> essays, with both groups now available in all eight languages: the war philosophy of the other side speaking for itself — Kant; Clausewitz and <em>On Protracted War</em>; Laozi, the <em>Sima Fa</em> and the <em>Mozi</em>; the just war tradition and Rousseau; Sunzi; Gandhi; Nitobe — and then the reckoning.</p>
-      <span class="series-card-arrow lang-en">Read series</span>
-      <span class="series-card-arrow lang-zh">阅读系列</span>
-    </a>
-    <a href="essays/conflict/index.html" class="series-card">
-      <span class="series-card-count"><span class="lang-en">7 essays · 8 languages</span><span class="lang-zh">7 篇 · 8 种语言</span></span>
-      <div class="series-card-title-zh">冲突论</div>
-      <div class="series-card-title-en">Conflict Treatise</div>
-      <p class="series-card-desc-zh lang-zh">两个人各自持着一件多年来自己走到的事，而每一件都在真实地组织着那个人的生活。某一个星期，两边要求的行动不能同时做到——而三件事同时成立：没有一把尺可以说哪一条更真，谁也不能替对方立法，谁也不能靠走开把它结清。七篇写的是一个人在那里做什么。不是怎么把话说得更好，不是怎么妥协，不是怎么谈成；是这件事要怎么处理，才不至于处理本身把一个人持有一条法的那个位置拿走。与战争论同属补充层：那一篇是体系目的压迫下的极端状态，这一篇是个人尺度上两条法的相遇。八种语言。</p>
-      <p class="series-card-desc-en lang-en">Two people, each holding something arrived at over years, each of which actually organises how that person lives. One week the two require actions that cannot both be taken — and three things hold at once: no ruler exists on which one could be shown truer than the other, neither may legislate for the other, and neither can settle it by walking out. Seven essays on what a person does there. Not how to argue better, not how to compromise, not how to get to yes: what handling it takes, so that the handling itself does not take away the position from which a person holds a law at all. A companion to the War Treatise — that one the extreme state under systemic ends, this one two laws meeting at personal scale. Eight languages.</p>
-      <span class="series-card-arrow lang-en">Read series</span>
-      <span class="series-card-arrow lang-zh">阅读系列</span>
-    </a>
-    <a href="essays/relation/index.html" class="series-card">
-      <span class="series-card-count"><span class="lang-en">8 essays · 3 reading modes</span><span class="lang-zh cl-zh">8 篇 · 英 / 简 / 繁</span><span class="lang-zh cl-hant">8 篇 · 英 / 簡 / 繁</span></span>
-      <div class="series-card-title-zh cl-zh">关系论：在关系里，仍是自己</div><div class="series-card-title-zh cl-hant">關係論：在關係裡，仍是自己</div>
-      <div class="series-card-title-en">What Passes Between Us: A Philosophy of Relations</div>
-      <p class="series-card-desc-zh lang-zh cl-zh">承诺怎样有分量，却不锁住明天？期待怎样从来往里长出来，离开以后又有什么仍在？七篇正文与一篇导读，把人与人之间留下的作用讲清楚；日常区《关系里的结构》仍保留自己的入口。</p>
-      <p class="series-card-desc-zh lang-zh cl-hant">承諾怎樣有分量，卻不鎖住明天？期待怎樣從來往裡長出來，離開以後又有什麼仍在？七篇正文與一篇導讀，把人與人之間留下的作用講清楚；日常區《關係裡的結構》仍保留自己的入口。</p>
-      <p class="series-card-desc-en lang-en">A promise, an awaited letter, a habit carried for years, a departure. Seven main essays and a guide follow what passes between people and remains over time. Distinct from the Everyday shelf’s Relationships series.</p>
-      <span class="series-card-arrow lang-en">Read series</span><span class="series-card-arrow lang-zh cl-zh">阅读系列</span><span class="series-card-arrow lang-zh cl-hant">閱讀系列</span>
-    </a>
-    <a href="essays/love/index.html" class="series-card">
-      <span class="series-card-count"><span class="lang-en">8 essays · 3 reading modes</span><span class="lang-zh cl-zh">8 篇 · 英 / 简 / 繁</span><span class="lang-zh cl-hant">8 篇 · 英 / 簡 / 繁</span></span>
-      <div class="series-card-title-zh cl-zh">爱情论：为什么偏偏是你</div><div class="series-card-title-zh cl-hant">愛情論：為什麼偏偏是你</div>
-      <div class="series-card-title-en">Why This Person? A Philosophy of Love</div>
-      <p class="series-card-desc-zh lang-zh cl-zh">初见、相思、看错、持续的方向、不索取的爱与彼此相遇。六种角度不是六级台阶；导读之后，六个经典故事再来追问，承诺、拒绝与放手究竟意味着什么。</p>
-      <p class="series-card-desc-zh lang-zh cl-hant">初見、相思、看錯、持續的方向、不索取的愛與彼此相遇。六種角度不是六級台階；導讀之後，六個經典故事再來追問，承諾、拒絕與放手究竟意味著什麼。</p>
-      <p class="series-card-desc-en lang-en">Six perspectives, not stages: the first pull, absence, mistaken judgment, lasting direction, love without demanding a return, and a mutual meeting. A guide and six enduring stories keep the questions open.</p>
-      <span class="series-card-arrow lang-en">Read series</span><span class="series-card-arrow lang-zh cl-zh">阅读系列</span><span class="series-card-arrow lang-zh cl-hant">閱讀系列</span>
-    </a>
-    <a href="essays/daode/index.html" class="series-card">
-      <span class="series-card-count">8 essays · 8 languages</span>
-      <div class="series-card-title-zh">道德律</div>
-      <div class="series-card-title-en">The Moral Law</div>
-      <p class="series-card-desc-zh lang-zh">道德律系列从一个不寻常的地方出发：不问善恶，问结构。当多个真正意义上的自我立法主体共处一个共同体时，他们之间会涌现出什么样的形态？这个问题的答案不是一套从外部施加的规则，而是一组构成性条件——你在这个模式下运作，就必然如此。</p>
-      <p class="series-card-desc-en lang-en">The Moral Law series begins somewhere unusual: not from good and evil, but from structure. When multiple genuine self-legislating subjects share a community, what form naturally emerges among them? The answer is not a set of rules imposed from outside, but a set of constitutive conditions — operate within this mode, and these conditions necessarily hold.</p>
-      <span class="series-card-arrow lang-en">Read series</span>
-      <span class="series-card-arrow lang-zh">阅读系列</span>
-    </a>
-    <a href="essays/aesthetics/index.html" class="series-card">
-      <span class="series-card-count"><span class="lang-en">Guide + 13 ray essays · 150 daily discoveries</span><span class="lang-zh cl-zh">总导读＋13 篇射线散文 · 150 篇日常发现</span><span class="lang-zh cl-hant">總導讀＋13 篇射線散文 · 150 篇日常發現</span></span>
-      <div class="series-card-title-zh cl-zh">美学：喜欢之外，还看见了什么？</div><div class="series-card-title-zh cl-hant">美學：喜歡之外，還看見了什麼？</div>
-      <div class="series-card-title-en">Beauty: Beyond What We Like</div>
-      <p class="series-card-desc-zh lang-zh cl-zh">从喜欢与美的区别进入。总导读、完整十三篇射线散文与日常发现；绘画、雕塑与建筑各二十篇，并新增中国书法《寒食帖》细读，八语完整，可以从任何一部作品开始。</p><p class="series-card-desc-zh lang-zh cl-hant">從喜歡與美的區別進入。總導讀、完整十三篇射線散文與日常發現；繪畫、雕塑與建築各二十篇，並新增中國書法《寒食帖》細讀，八語完整，可以從任何一部作品開始。</p>
-      <p class="series-card-desc-en lang-en">An opening essay, thirteen ray essays and daily discoveries. Twenty paintings, twenty sculptures and twenty buildings, now joined by Chinese calligraphy through Su Shi’s Cold Food Scroll. Eight complete editions; begin with any work.</p>
-      <span class="series-card-arrow lang-en">Explore aesthetics</span><span class="series-card-arrow lang-zh cl-zh">进入美学</span><span class="series-card-arrow lang-zh cl-hant">進入美學</span>
-    </a>
-    <a href="essays/laughter/index.html" class="series-card">
-      <span class="series-card-count"><span class="lang-en">6 essays · 3 reading modes</span><span class="lang-zh">6 篇 · 英 / 简 / 繁</span></span>
-      <div class="series-card-title-zh">笑论：判断力与笑</div>
-      <div class="series-card-title-en">SAE Laughter: Judgment and Laughter</div>
-      <p class="series-card-desc-zh lang-zh">一瓶啤酒，一双捂住脸的手，三处贬所，一枝花，守灵的一夜。六篇哲学散文问人为什么笑：笑是判断力的表现，笑判的是“构还有这么一个余项”；笑的那一刻，谁都没输。专论转过身来看哭。它是美学系列的背面。</p>
-      <p class="series-card-desc-en lang-en">A bottle of beer, a pair of hands over a face, three places of exile, a raised flower, a night of mourning. Six essays ask why we laugh: laughter is an expression of the power of judgment, and it judges that “the construct still has such a remainder”; at the moment of laughter, no one loses. A special study turns to weeping. The reverse side of the aesthetics series.</p>
-      <span class="series-card-arrow lang-en">Read series</span>
-      <span class="series-card-arrow lang-zh">阅读系列</span>
-    </a>
-    <a href="essays/judgment-games/index.html" class="series-card">
-      <span class="series-card-count"><span class="lang-en">4 essays · 3 reading modes</span><span class="lang-zh cl-zh">4 篇 · 英 / 简 / 繁</span><span class="lang-zh cl-hant">4 篇 · 英 / 簡 / 繁</span></span>
-      <div class="series-card-title-zh cl-zh">再来一局：判断力练习与游戏</div><div class="series-card-title-zh cl-hant">再來一局：判斷力練習與遊戲</div>
-      <div class="series-card-title-en">Play Again: Exercises in Judgment &amp; Play</div>
-      <p class="series-card-desc-zh lang-zh cl-zh">为什么熟悉的故事还想再听，独自拼图仍有新发现，争胜不必抹掉对手，合作也不能替伙伴决定？总导读与三篇散文，不评分，不承诺升级。</p>
-      <p class="series-card-desc-zh lang-zh cl-hant">為什麼熟悉的故事還想再聽，獨自拼圖仍有新發現，爭勝不必抹掉對手，合作也不能替夥伴決定？總導讀與三篇散文，不評分，不承諾升級。</p>
-      <p class="series-card-desc-en lang-en">A familiar story, a solitary discovery, an opponent’s good move, a partner’s unexpected step. Four essays on play and judgment, without scores or promises of improvement.</p>
-      <span class="series-card-arrow lang-en">Read series</span><span class="series-card-arrow lang-zh cl-zh">阅读系列</span><span class="series-card-arrow lang-zh cl-hant">閱讀系列</span>
-    </a>
-    <a href="essays/econ/index.html" class="series-card">
+<a href="essays/econ/index.html" class="series-card">
       <span class="series-card-count">6 essays · 8 languages</span>
       <div class="series-card-title-zh">经济学系列</div>
       <div class="series-card-title-en">Economics Series</div>
@@ -654,44 +634,57 @@
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/bio/index.html" class="series-card">
-      <span class="series-card-count">5 essays</span>
-      <div class="series-card-title-zh">生物学与演化</div>
-      <div class="series-card-title-en">Biology &amp; Evolution</div>
-      <p class="series-card-desc-zh lang-zh">凿构循环与生命结构 · 五篇</p>
-      <p class="series-card-desc-en lang-en">Chisel-construct cycle &amp; the structure of life · Five essays</p>
+<a href="essays/conflict/index.html" class="series-card">
+      <span class="series-card-count"><span class="lang-en">7 essays · 8 languages</span><span class="lang-zh">7 篇 · 8 种语言</span></span>
+      <div class="series-card-title-zh">冲突论</div>
+      <div class="series-card-title-en">Conflict Treatise</div>
+      <p class="series-card-desc-zh lang-zh">两个人各自持着一件多年来自己走到的事，而每一件都在真实地组织着那个人的生活。某一个星期，两边要求的行动不能同时做到——而三件事同时成立：没有一把尺可以说哪一条更真，谁也不能替对方立法，谁也不能靠走开把它结清。七篇写的是一个人在那里做什么。不是怎么把话说得更好，不是怎么妥协，不是怎么谈成；是这件事要怎么处理，才不至于处理本身把一个人持有一条法的那个位置拿走。与战争论同属补充层：那一篇是体系目的压迫下的极端状态，这一篇是个人尺度上两条法的相遇。八种语言。</p>
+      <p class="series-card-desc-en lang-en">Two people, each holding something arrived at over years, each of which actually organises how that person lives. One week the two require actions that cannot both be taken — and three things hold at once: no ruler exists on which one could be shown truer than the other, neither may legislate for the other, and neither can settle it by walking out. Seven essays on what a person does there. Not how to argue better, not how to compromise, not how to get to yes: what handling it takes, so that the handling itself does not take away the position from which a person holds a law at all. A companion to the War Treatise — that one the extreme state under systemic ends, this one two laws meeting at personal scale. Eight languages.</p>
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/anthro/index.html" class="series-card">
-      <span class="series-card-count">5 essays</span>
-      <div class="series-card-title-zh">人类学系列</div>
-      <div class="series-card-title-en">Anthropology Series</div>
-      <p class="series-card-desc-zh lang-zh">从宇宙背景到地球文明 Self 的涌现——为什么太阳系内只能长出一个行星级文明，以及这个结论如何分形地推广到物种竞争。前置篇 + 四篇 · 双语。</p>
-      <p class="series-card-desc-en lang-en">From cosmic background to the emergence of Earth civilization&#x27;s self — why only one planet-scale civilization can arise within a solar system, and how that conclusion generalizes fractally to competition among species. Prequel plus four essays · Bilingual.</p>
+<a href="essays/war/index.html" class="series-card">
+      <span class="series-card-count">16 essays</span>
+      <div class="series-card-title-zh">战争论</div>
+      <div class="series-card-title-en">War Theory</div>
+      <p class="series-card-desc-zh lang-zh">战争是目的王国必须处理、却最不希望发生的那件事。对它保持沉默，等于把这个场域整个让给别的话语去主宰。而一旦要说，就得先说清楚一件事：这个系列真正的主角不是战争，是涵育——主体性在时间中持续深化、互相生长的那个过程。战争在这张地图上位置很低，它是涵育被打断时不得不启用的兜底。正篇七篇之后是<strong>兵法接口</strong>九篇，两组现均有八种语言：让 14DD 那一侧的战争哲学自己说话——康德，克劳塞维茨与《论持久战》，老子与《司马法》与《墨子》，正义战争论传统与卢梭，孙子，甘地，新渡户——问它们与 SAE 在哪里同行，在哪里分开，在哪里必须批评，在哪里说不上话，最后结账。</p>
+      <p class="series-card-desc-en lang-en">War is the thing the Kingdom of Ends must handle and least wants to happen. Staying silent about it hands the whole field over to other discourses. And once you do speak, one thing has to be settled first: the protagonist of this series is not war but cultivation — the process by which subjectivity deepens and grows into other subjectivity over time. War sits very low on that map. It is the backstop invoked only when cultivation has been broken. The seven-part main sequence is followed by nine <strong>interface</strong> essays, with both groups now available in all eight languages: the war philosophy of the other side speaking for itself — Kant; Clausewitz and <em>On Protracted War</em>; Laozi, the <em>Sima Fa</em> and the <em>Mozi</em>; the just war tradition and Rousseau; Sunzi; Gandhi; Nitobe — and then the reckoning.</p>
+      <span class="series-card-arrow lang-en">Read series</span>
+      <span class="series-card-arrow lang-zh">阅读系列</span>
+    </a></div><a class="sae-library-back" href="#sae-theory"><span class="lang-en">↑ Back to SAE shelves</span><span class="lang-zh cl-zh">↑ 回到 SAE 分组</span><span class="lang-zh cl-hant">↑ 回到 SAE 分組</span></a></div><div class="sae-library-group" id="sae-beauty-play"><h2 class="lang-en">05 · Beauty, laughter &amp; play</h2><h2 class="lang-zh cl-zh">05 · 美与游戏</h2><h2 class="lang-zh cl-hant">05 · 美與遊戲</h2><p class="lang-en sae-library-question">What is happening when we like, laugh, or play again?</p><p class="lang-zh cl-zh sae-library-question">喜欢、笑出来、再来一局，里面有什么值得想？</p><p class="lang-zh cl-hant sae-library-question">喜歡、笑出來、再來一局，裡面有什麼值得想？</p><div class="series-grid"><a href="essays/aesthetics/index.html" class="series-card">
+      <span class="series-card-count"><span class="lang-en">Guide + 13 ray essays · 150 daily discoveries</span><span class="lang-zh cl-zh">总导读＋13 篇射线散文 · 150 篇日常发现</span><span class="lang-zh cl-hant">總導讀＋13 篇射線散文 · 150 篇日常發現</span></span>
+      <div class="series-card-title-zh cl-zh">美学：喜欢之外，还看见了什么？</div><div class="series-card-title-zh cl-hant">美學：喜歡之外，還看見了什麼？</div>
+      <div class="series-card-title-en">Beauty: Beyond What We Like</div>
+      <p class="series-card-desc-zh lang-zh cl-zh">从喜欢与美的区别进入。总导读、完整十三篇射线散文与日常发现；绘画、雕塑与建筑各二十篇，并新增中国书法《寒食帖》细读，八语完整，可以从任何一部作品开始。</p><p class="series-card-desc-zh lang-zh cl-hant">從喜歡與美的區別進入。總導讀、完整十三篇射線散文與日常發現；繪畫、雕塑與建築各二十篇，並新增中國書法《寒食帖》細讀，八語完整，可以從任何一部作品開始。</p>
+      <p class="series-card-desc-en lang-en">An opening essay, thirteen ray essays and daily discoveries. Twenty paintings, twenty sculptures and twenty buildings, now joined by Chinese calligraphy through Su Shi’s Cold Food Scroll. Eight complete editions; begin with any work.</p>
+      <span class="series-card-arrow lang-en">Explore aesthetics</span><span class="series-card-arrow lang-zh cl-zh">进入美学</span><span class="series-card-arrow lang-zh cl-hant">進入美學</span>
+    </a>
+<a href="essays/laughter/index.html" class="series-card">
+      <span class="series-card-count"><span class="lang-en">6 essays · 3 reading modes</span><span class="lang-zh">6 篇 · 英 / 简 / 繁</span></span>
+      <div class="series-card-title-zh">笑论：判断力与笑</div>
+      <div class="series-card-title-en">SAE Laughter: Judgment and Laughter</div>
+      <p class="series-card-desc-zh lang-zh">一瓶啤酒，一双捂住脸的手，三处贬所，一枝花，守灵的一夜。六篇哲学散文问人为什么笑：笑是判断力的表现，笑判的是“构还有这么一个余项”；笑的那一刻，谁都没输。专论转过身来看哭。它是美学系列的背面。</p>
+      <p class="series-card-desc-en lang-en">A bottle of beer, a pair of hands over a face, three places of exile, a raised flower, a night of mourning. Six essays ask why we laugh: laughter is an expression of the power of judgment, and it judges that “the construct still has such a remainder”; at the moment of laughter, no one loses. A special study turns to weeping. The reverse side of the aesthetics series.</p>
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
     </a>
-    <a href="essays/psycho/index.html" class="series-card">
-      <span class="series-card-count">4 essays</span>
-      <div class="series-card-title-zh">精神分析系列</div>
-      <div class="series-card-title-en">Psychoanalysis Series</div>
-      <p class="series-card-desc-zh lang-zh">从本我到 Cert：主体性的四层结构。四篇 · 双语。</p>
-      <p class="series-card-desc-en lang-en">From Id to Cert: the four-layer structure of subjecthood. Four papers · Bilingual.</p>
+<a href="essays/judgment-games/index.html" class="series-card">
+      <span class="series-card-count"><span class="lang-en">4 essays · 3 reading modes</span><span class="lang-zh cl-zh">4 篇 · 英 / 简 / 繁</span><span class="lang-zh cl-hant">4 篇 · 英 / 簡 / 繁</span></span>
+      <div class="series-card-title-zh cl-zh">再来一局：判断力练习与游戏</div><div class="series-card-title-zh cl-hant">再來一局：判斷力練習與遊戲</div>
+      <div class="series-card-title-en">Play Again: Exercises in Judgment &amp; Play</div>
+      <p class="series-card-desc-zh lang-zh cl-zh">为什么熟悉的故事还想再听，独自拼图仍有新发现，争胜不必抹掉对手，合作也不能替伙伴决定？总导读与三篇散文，不评分，不承诺升级。</p>
+      <p class="series-card-desc-zh lang-zh cl-hant">為什麼熟悉的故事還想再聽，獨自拼圖仍有新發現，爭勝不必抹掉對手，合作也不能替夥伴決定？總導讀與三篇散文，不評分，不承諾升級。</p>
+      <p class="series-card-desc-en lang-en">A familiar story, a solitary discovery, an opponent’s good move, a partner’s unexpected step. Four essays on play and judgment, without scores or promises of improvement.</p>
+      <span class="series-card-arrow lang-en">Read series</span><span class="series-card-arrow lang-zh cl-zh">阅读系列</span><span class="series-card-arrow lang-zh cl-hant">閱讀系列</span>
+    </a></div><a class="sae-library-back" href="#sae-theory"><span class="lang-en">↑ Back to SAE shelves</span><span class="lang-zh cl-zh">↑ 回到 SAE 分组</span><span class="lang-zh cl-hant">↑ 回到 SAE 分組</span></a></div><div class="sae-library-group" id="sae-traditions"><h2 class="lang-en">06 · In dialogue with traditions</h2><h2 class="lang-zh cl-zh">06 · 与思想传统对读</h2><h2 class="lang-zh cl-hant">06 · 與思想傳統對讀</h2><p class="lang-en sae-library-question">Can two traditions meet without being made to say the same thing?</p><p class="lang-zh cl-zh sae-library-question">让两种想法相遇，而不急着说它们其实一样？</p><p class="lang-zh cl-hant sae-library-question">讓兩種想法相遇，而不急著說它們其實一樣？</p><div class="series-grid"><a href="essays/sae-buddhist/index.html" class="series-card">
+      <span class="series-card-count">6 essays</span>
+      <div class="series-card-title-zh">SAE佛学：六个接口</div>
+      <div class="series-card-title-en">SAE and Buddhist Thought</div>
+      <p class="series-card-desc-zh lang-zh">从唯识、禅与中观，到天台、华严与净土：六个对应与不可翻译的接口 · 六篇 · 八种语言</p>
+      <p class="series-card-desc-en lang-en">Six interfaces with Yogācāra, Chan, Madhyamaka, Tiantai, Huayan, and Pure Land · 6 essays · Eight languages</p>
       <span class="series-card-arrow lang-en">Read series</span>
       <span class="series-card-arrow lang-zh">阅读系列</span>
-    </a>
-    <a href="essays/yinan/index.html" class="series-card">
-      <span class="series-card-count">9 essays</span>
-      <div class="series-card-title-zh">疑难杂症</div>
-      <div class="series-card-title-en">Difficult Cases</div>
-      <p class="series-card-desc-zh lang-zh">让传统框架犯难的临床现象 · 九篇</p>
-      <p class="series-card-desc-en lang-en">Clinical phenomena that resist conventional frameworks · Nine essays</p>
-      <span class="series-card-arrow lang-en">Read series</span>
-      <span class="series-card-arrow lang-zh">阅读系列</span>
-    </a>
-  </div>
-</section>
+    </a></div><p class="sae-library-note"><span class="lang-en">Western philosophy and the Chinese classics keep their topic shelves; the reading map brings their entrances together.</span><span class="lang-zh cl-zh">西哲与中国经典仍保留原有专题；阅读地图把这些入口放在一起。</span><span class="lang-zh cl-hant">西哲與中國經典仍保留原有專題；閱讀地圖把這些入口放在一起。</span> <a href="essays/sae/index.html#traditions"><span class="lang-en">See the encounters →</span><span class="lang-zh cl-zh">去看对读入口 →</span><span class="lang-zh cl-hant">去看對讀入口 →</span></a></p><a class="sae-library-back" href="#sae-theory"><span class="lang-en">↑ Back to SAE shelves</span><span class="lang-zh cl-zh">↑ 回到 SAE 分组</span><span class="lang-zh cl-hant">↑ 回到 SAE 分組</span></a></div></section>
 
 <hr class="lib-divider">
 <section class="lib-section" id="sae-western">

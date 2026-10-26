@@ -87,7 +87,7 @@ class StatePublication(unittest.TestCase):
                     self.assertNotIn('公裡', next(body for lang, body in bodies if lang == 'hant'))
 
     def test_front_door_entries(self):
-        for name in ('index.html', 'explore.html', 'library.html', 'latest.html'):
+        for name in ('index.html', 'essays/sae/index.html', 'library.html', 'latest.html'):
             self.assertIn('essays/state/index.html', (ROOT / name).read_text())
         updates = json.loads((ROOT / 'data/site-updates.json').read_text())['updates']
         entries = [item for item in updates if item['id'] == '2026-10-25-state-series']

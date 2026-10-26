@@ -85,7 +85,7 @@ class JudgmentGamesPublication(unittest.TestCase):
                     self.assertIn('The closing invitations are optional', text)
 
     def test_discovery_and_source_receipts(self):
-        for name in ('index.html','explore.html','library.html','latest.html'):
+        for name in ('index.html','essays/sae/index.html','library.html','latest.html'):
             self.assertIn('essays/judgment-games/index.html', (ROOT/name).read_text())
         updates = json.loads((ROOT/'data/site-updates.json').read_text())['updates']
         matching = [u for u in updates if u['id'] == '2026-10-25-judgment-games']

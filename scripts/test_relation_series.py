@@ -90,7 +90,7 @@ class RelationPublication(unittest.TestCase):
                     self.assertNotRegex(text, r'<(?:input|select)\b')
 
     def test_routes_and_distinct_everyday_shelf(self):
-        for name in ('index.html','explore.html','library.html','latest.html'):
+        for name in ('index.html','essays/sae/index.html','library.html','latest.html'):
             self.assertIn('essays/relation/index.html', (ROOT/name).read_text())
         landing = self.pages[ROOT/'essays/relation/index.html']
         self.assertEqual(len(re.findall(r'class="rel-card"', landing)),7)
