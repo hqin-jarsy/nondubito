@@ -8,6 +8,7 @@ import re
 from pathlib import Path
 from build_language_writing import WritingTraditionalConverter, loc
 from build_accountability import library_card
+from build_long_consensus import library_card as consensus_card
 
 ROOT = Path(__file__).resolve().parents[1]
 CARD = re.compile(r'<a\b(?=[^>]*\bclass="series-card")[^>]*>.*?</a>',re.S)
@@ -30,6 +31,9 @@ def render_library(source,groups,conv):
     accountability_path='essays/accountability/index.html'
     if accountability_path not in cards:
         cards[accountability_path]=library_card(conv)
+    consensus_path='essays/long-consensus/index.html'
+    if consensus_path not in cards:
+        cards[consensus_path]=consensus_card(conv)
     path = 'essays/language-writing/index.html'
     if path not in cards:
         cards[path] = f'<a href="{path}" class="series-card"><span class="series-card-count">{tri_library("3 essays · English & both Chinese scripts","3 篇 · 英文与简繁中文",conv)}</span><div class="series-card-title-zh cl-zh">语言与写作：把话说成自己的</div><div class="series-card-title-zh cl-hant">語言與寫作：把話說成自己的</div><div class="series-card-title-en">Language &amp; Writing: Finding Words of Our Own</div>{tri_library("Naming, words that still feel wrong, and a writer’s growing voice: three complete reader essays, with independent English rewrites.","命名、总觉得没说对的话，以及写着写着长出来的声音。三篇完整散文，英文独立重写。",conv,"p","series-card-desc")}{tri_library("Read series →","阅读系列 →",conv,"span","series-card-arrow")}</a>'

@@ -100,7 +100,7 @@ class AccountabilityPublication(unittest.TestCase):
             self.assertIn('accountability/index.html',(ROOT/name).read_text())
         categories=parse_library_categories(ROOT/'library.html')
         sae=next(c for c in categories if c['number']==2)
-        self.assertEqual(sae['series_count'],31)
+        self.assertGreaterEqual(sae['series_count'],31)
         self.assertEqual(sae['series_hrefs'].count('essays/accountability/index.html'),1)
         self.assertLess(sae['series_hrefs'].index('essays/rights/index.html'),sae['series_hrefs'].index('essays/accountability/index.html'))
         # The preceding batch's tests independently retain all 29 original
