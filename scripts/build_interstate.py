@@ -9,6 +9,7 @@ import re
 
 from build_language_writing import ROOT, loc, page, prose
 from build_state_reversal import ReversalTraditionalConverter
+from build_cooperation_histories import companion_entry as real_world_entry
 
 DATE = '2026-10-30'
 DATA = ROOT / 'data/interstate'
@@ -118,6 +119,7 @@ def landing(items, conv):
     pending = ''.join('<li>' + loc(en, zh, conv) + '</li>' for en, zh in PLAN[len(items):])
     roadmap = '<section class="lw-note" id="next-readings">' + loc('Still to come', '后续计划 · 尚未发布', conv, 'h2') + loc('Trust, checks, defense, receiving people, exit and a closing return to ordinary life. The titles below are the reading plan, not links to finished essays.', '后续继续读信任、牵制、防御、接纳、退出，再回到普通人的生活。下面是阅读计划，不是已经完成的正文。', conv, 'p') + '<ol class="is-roadmap" start="' + str(len(items) + 1) + '">' + pending + '</ol></section>' if pending else ''
     content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Interstate Cooperation', '国家间协作论', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('A nine-essay project · First three published · English, Simplified & Traditional Chinese', '九篇散文计划 · 已发布首批三篇 · 英文、简体中文与繁体中文', conv, 'p', 'lw-meta') + '</section>' + notice(conv) + '<aside class="lw-opening">' + loc('No prerequisite reading. Start with the people living under a shared decision, not a list of institutions. The State essays are an optional companion, not an entrance examination.', '不用先读完国家论。从共同决定之下的人开始，不从机构清单开始。国家论可以放在旁边读，不是进入本系列的先修课。', conv, 'p') + '<a href="ep01.html">' + loc('Begin at the old customs house →', '从旧海关楼读起 →', conv) + '</a></aside><section class="lw-grid" aria-label="Published essays">' + cards + '</section>' + roadmap + source_note(conv) + related(conv) + '</main>'
+    content = content.replace(source_note(conv), real_world_entry(conv) + source_note(conv), 1)
     return document(content, TITLE[0] + ' · 国家间协作论', DECK[0], 'index.html', conv, items)
 
 
