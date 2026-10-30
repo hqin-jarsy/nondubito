@@ -22,7 +22,7 @@ class StateHistories(unittest.TestCase):
         cls.pages = render()
 
     def test_rebuild_and_navigation_are_current(self):
-        self.assertEqual(len(self.pages), 5)
+        self.assertEqual(len(self.pages), 7)
         for path, text in {**self.pages, **navigation()}.items():
             self.assertEqual(path.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -38,7 +38,7 @@ class StateHistories(unittest.TestCase):
                 self.assertEqual(body.count('<h2>'), 3)
                 self.assertNotRegex(body, r'\b\d{2}DD\b|正相变|逆相变|phase transition')
             self.assertNotRegex(bodies['en'], r'[\u3400-\u9fff]')
-            self.assertNotRegex(bodies['hant'], r'覈實|覈對|余項|復核|裡貝羅|限製|划定|瞄准|樸鐘哲|全鬥煥')
+            self.assertNotRegex(bodies['hant'], r'覈實|覈對|余項|復核|裡貝羅|限製|划定|瞄准|樸鐘哲|全鬥煥|喬杜裡')
             self.assertEqual(receipt['counts'][item['slug']]['zh_han'], len(re.findall(r'[\u3400-\u9fff]', ''.join(item['body_zh']))))
             self.assertEqual(receipt['counts'][item['slug']]['en_words'], len(' '.join(item['body_en']).split()))
 
@@ -74,12 +74,12 @@ class StateHistories(unittest.TestCase):
             self.assertEqual(schema['dateModified'], DATE)
             self.assertEqual(schema['inLanguage'], ['en', 'zh-Hans', 'zh-Hant'])
             if path.name == 'index.html':
-                self.assertEqual(len(schema['hasPart']), 4)
+                self.assertEqual(len(schema['hasPart']), 6)
             else:
                 item = next(d for d in self.items if d['slug'] == path.stem)
                 self.assertEqual(schema['citation'], [s['url'] for s in item['sources']])
                 self.assertEqual(schema['isPartOf']['url'], BASE)
-                self.assertEqual(schema['temporalCoverage'], {'india-1975-1979':'1975/1979', 'south-africa-1990-1997':'1990/1997', 'germany-1933':'1933/1933', 'south-korea-1987-1988':'1987/1988'}[item['slug']])
+                self.assertEqual(schema['temporalCoverage'], {'india-1975-1979':'1975/1979', 'south-africa-1990-1997':'1990/1997', 'germany-1933':'1933/1933', 'south-korea-1987-1988':'1987/1988', 'england-1688-1701':'1688/1701', 'pakistan-2007-2009':'2007/2009'}[item['slug']])
 
     def test_first_pair_is_unchanged(self):
         qa = json.loads((ROOT/'reports/state-histories-batch02-20261029.json').read_text())
@@ -88,7 +88,7 @@ class StateHistories(unittest.TestCase):
             self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(), expected, relative)
 
     def test_new_historical_distinctions(self):
-        german, korean = self.items[2:]
+        german, korean = self.items[2:4]
         self.assertEqual([german['slug'], korean['slug']], ['germany-1933', 'south-korea-1987-1988'])
         de = '\n'.join(german['body_zh'])
         ko = '\n'.join(korean['body_zh'])
@@ -103,9 +103,28 @@ class StateHistories(unittest.TestCase):
     def test_latest_expansion_is_recorded_separately(self):
         updates = json.loads((ROOT/'data/site-updates.json').read_text())['updates']
         history = [u for u in updates if u['id'].startswith('2026-10-29-state-histories')]
-        self.assertEqual([u['kind'] for u in history], ['expanded', 'new'])
-        self.assertEqual(history[0]['title']['zh'], '国家的进退：德国与韩国')
-        self.assertIn('四篇', (ROOT/'library.html').read_text().split('<!-- STATE HISTORIES LIBRARY START -->')[1].split('<!-- STATE HISTORIES LIBRARY END -->')[0])
+        self.assertEqual([u['kind'] for u in history], ['expanded', 'expanded', 'new'])
+        self.assertEqual(history[0]['title']['zh'], '国家的进退：英格兰与巴基斯坦')
+        self.assertIn('六篇', (ROOT/'library.html').read_text().split('<!-- STATE HISTORIES LIBRARY START -->')[1].split('<!-- STATE HISTORIES LIBRARY END -->')[0])
+
+    def test_previous_four_are_unchanged(self):
+        qa = json.loads((ROOT/'reports/state-histories-batch03-20261029.json').read_text())
+        self.assertEqual(len(qa['original_sha256']), 8)
+        for relative, expected in qa['original_sha256'].items():
+            self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(), expected, relative)
+
+    def test_third_pair_distinctions_and_source_provenance(self):
+        england, pakistan = self.items[4:]
+        en_zh, pk_zh = '\n'.join(england['body_zh']), '\n'.join(pakistan['body_zh'])
+        for fact in ('2月13日', '12月16日', '4月11日', '不是一张先签字', '三年的限制', '双倍税负', '1701年'):
+            self.assertIn(fact, en_zh)
+        for fact in ('7月20日', '10月5日', '11月3日', '3月16日', '22日重新履职', '三千名', '法律判断', '其他当事人'):
+            self.assertIn(fact, pk_zh)
+        sources = json.dumps(england['sources'] + pakistan['sources'], ensure_ascii=False)
+        self.assertNotIn('g03.pdf', sources)
+        self.assertIn('November 15 amendment', sources)
+        self.assertIn('judgment text mirror', sources)
+        self.assertIn('喬杜里', self.pages[ROOT/'essays/state-transitions/pakistan-2007-2009.html'])
 
     def test_links_ids_and_search_taxonomy(self):
         for path, text in self.pages.items():

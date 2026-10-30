@@ -18,17 +18,17 @@ BASE = 'https://nondubito.net/essays/state-transitions/'
 TITLE = ('States in Motion', '国家的进退')
 SUBTITLE = ('Power, questioning, and the place of persons', '权力、追问与人的位置')
 DECK = (
-    'A detention challenged, a constitution returned, an opposition vote and a street demanding change. Four histories follow what becomes possible for people when ways of questioning power close or open. Read India, South Africa, Germany and South Korea; the shelf remains open.',
-    '一次拘留的追问，一部被退回的宪法，一张反对票，一条要求改变的街。从印度、南非、德国与韩国的四段历史，看人怎样获得、失去，又重新争取说话的资格。专题仍将继续展开。',
+    'A detention challenged, a constitution returned, an opposition vote, a street demanding change, a limited crown and displaced judges. Six histories ask who can question power, and what an answer can change. The shelf remains open.',
+    '一次拘留的追问，一部被退回的宪法，一张反对票，一条要求改变的街，一个受约束的王位，一批被排除的法官。沿六段历史，看人怎样获得、失去，又重新争取说话的资格。专题仍将继续展开。',
 )
-SLUGS = ('india-1975-1979', 'south-africa-1990-1997', 'germany-1933', 'south-korea-1987-1988')
+SLUGS = ('india-1975-1979', 'south-africa-1990-1997', 'germany-1933', 'south-korea-1987-1988', 'england-1688-1701', 'pakistan-2007-2009')
 FRAMEWORK = 'https://self-as-an-end.net/papers/sae-state-reverse-phase-transition.html'
 
 
 class HistoryTraditionalConverter(ReversalTraditionalConverter):
     def convert(self, text):
         result = super().convert(text)
-        for old, new in (('裡貝羅', '里貝羅'), ('划定', '劃定'), ('瞄准', '瞄準'), ('限製', '限制'), ('樸鐘哲', '朴鍾哲'), ('全鬥煥', '全斗煥')):
+        for old, new in (('裡貝羅', '里貝羅'), ('划定', '劃定'), ('瞄准', '瞄準'), ('限製', '限制'), ('樸鐘哲', '朴鍾哲'), ('全鬥煥', '全斗煥'), ('喬杜裡', '喬杜里')):
             result = result.replace(old, new)
         return result
 
@@ -73,7 +73,7 @@ def related(conv):
 
 def history_entry(conv):
     """Used by the original State landing page, without changing its essay count."""
-    return '<!-- STATE HISTORIES START --><section class="state-group" id="historical-readings"><p class="state-kicker">' + loc('A separate historical series · four essays', '独立历史专题 · 四篇', conv) + '</p>' + loc(*TITLE, conv, 'h2') + loc('India, South Africa, Germany and South Korea: real events, public records and different routes through which decisions can be questioned. These histories do not continue the fictional cases or assign countries a permanent verdict.', '印度、南非、德国与韩国：沿真实事件与史料，看决定怎样受到追问，哪些路打开，哪些仍受限。不是虚构案例的续篇，也不给国家盖一枚永远不变的章。', conv, 'p', 'state-deck') + '<p class="state-return"><a href="../state-transitions/index.html">' + loc('Read the histories →', '进入历史专题 →', conv) + '</a></p></section><!-- STATE HISTORIES END -->'
+    return '<!-- STATE HISTORIES START --><section class="state-group" id="historical-readings"><p class="state-kicker">' + loc('A separate historical series · six essays', '独立历史专题 · 六篇', conv) + '</p>' + loc(*TITLE, conv, 'h2') + loc('India, South Africa, Germany, South Korea, England and Pakistan: real events, public records and different routes through which decisions can be questioned. These histories do not continue the fictional cases or assign countries a permanent verdict.', '印度、南非、德国、韩国、英格兰与巴基斯坦：沿真实事件与史料，看决定怎样受到追问，哪些路打开，哪些仍受限。不是虚构案例的续篇，也不给国家盖一枚永远不变的章。', conv, 'p', 'state-deck') + '<p class="state-return"><a href="../state-transitions/index.html">' + loc('Read the histories →', '进入历史专题 →', conv) + '</a></p></section><!-- STATE HISTORIES END -->'
 
 
 def reading_note(conv, item=None):
@@ -105,7 +105,7 @@ def document(content, title, deck, filename, conv, item=None):
 
 def landing(items, conv):
     cards = ''.join('<a class="lw-card" href="' + d['slug'] + '.html"><p class="lw-kicker">' + loc(d['place_en'], d['place_zh'], conv) + '</p>' + loc(d['title_en'], d['title_zh'], conv, 'h2') + loc(d['deck_en'], d['deck_zh'], conv, 'p') + loc('Read essay →', '阅读全文 →', conv, 'span', 'lw-read') + '</a>' for d in items)
-    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Historical readings', '历史细读', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*SUBTITLE, conv, 'p', 'lw-deck') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('Four essays · English, Simplified & Traditional Chinese · an ongoing series', '四篇 · 英文、简体中文与繁体中文 · 持续展开的专题', conv, 'p', 'lw-meta') + '</section><aside class="lw-opening">' + loc('Start with a person, not a verdict on a country. Who can ask? Who has to answer? Can the answer change what happens? The histories may enlarge or complicate the questions; they are not required to prove a theory.', '先看一个人的处境，不急着给国家定性。谁能问，谁须回答，回答以后能不能改变什么？历史可以把这些问题改得更细，不必负责证明一套理论。', conv, 'p') + '<a href="india-1975-1979.html">' + loc('Begin in India →', '从印度读起 →', conv) + '</a></aside><section class="lw-grid">' + cards + '</section><section class="lw-note">' + loc('Put the histories beside each other', '把这些历史放在旁边读', conv, 'h2') + loc('India and South Africa ask what elections, constitutional review and repair leave unresolved. Germany and South Korea look at the conditions of participation: whether an opposition can return after a vote, and whether an individual can still ask after the crowd goes home. These are comparisons of particular changes, not four positions on a single ladder.', '印度与南非问，选举、制宪审查和修复之后，还留下什么。德国与韩国再看参与的条件：投过反对票的人以后还能不能回来，街头人群散去以后，一个人还能不能问。这里对读具体变化，不把四个国家排在同一架阶梯上。', conv, 'p') + '</section>' + reading_note(conv) + related(conv) + '</main>'
+    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Historical readings', '历史细读', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*SUBTITLE, conv, 'p', 'lw-deck') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('Six essays · English, Simplified & Traditional Chinese · an ongoing series', '六篇 · 英文、简体中文与繁体中文 · 持续展开的专题', conv, 'p', 'lw-meta') + '</section><aside class="lw-opening">' + loc('Start with a person, not a verdict on a country. Who can ask? Who has to answer? Can the answer change what happens? The histories may enlarge or complicate the questions; they are not required to prove a theory.', '先看一个人的处境，不急着给国家定性。谁能问，谁须回答，回答以后能不能改变什么？历史可以把这些问题改得更细，不必负责证明一套理论。', conv, 'p') + '<a href="india-1975-1979.html">' + loc('Begin in India →', '从印度读起 →', conv) + '</a></aside><section class="lw-grid">' + cards + '</section><section class="lw-note">' + loc('Put the histories beside each other', '把这些历史放在旁边读', conv, 'h2') + loc('Read the pairs alongside each other: India and South Africa follow elections, review and repair; Germany and South Korea examine the conditions of participation; England and Pakistan ask who may consent and who may remain to review. These are comparisons of particular changes, not six positions on one ladder.', '把三组放在旁边读：印度与南非追选举、审查与修复；德国与韩国看参与能不能继续；英格兰与巴基斯坦问，谁的同意算数，谁能留在审查的位置上。对读具体变化，不把六段历史排在同一架阶梯上。', conv, 'p') + '</section>' + reading_note(conv) + related(conv) + '</main>'
     return document(content, TITLE[0] + ' · 国家的进退', DECK[0], 'index.html', conv)
 
 
@@ -123,8 +123,8 @@ def prose(body, sources):
 
 def article(item, items, conv):
     bodies = ''.join('<div class="essay-body lw-prose lang-' + lang + '" lang="' + native + '">' + prose([conv.convert(p) for p in item['body_zh']] if lang == 'hant' else item['body_' + lang], item['sources']) + '</div>' for lang, native in (('en', 'en'), ('zh', 'zh-Hans'), ('hant', 'zh-Hant')))
-    # Keep the first published pair byte-for-byte stable when adding a new pair.
-    partner = {1:2, 2:1, 3:4, 4:3}[item['id']]
+    # Keep previously published pairs byte-for-byte stable when adding a pair.
+    partner = item['id'] + (1 if item['id'] % 2 else -1)
     others = [d for d in items if d['id'] == partner]
     nav = '<a href="index.html">' + loc('The ongoing series', '持续展开的专题', conv, 'small') + loc(*TITLE, conv) + '</a>'
     nav += ''.join('<a href="' + d['slug'] + '.html">' + loc('Read alongside this essay', '放在旁边读', conv, 'small') + loc(d['title_en'], d['title_zh'], conv) + '</a>' for d in others)
