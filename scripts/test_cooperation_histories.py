@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Publication checks for real histories distinct from the fictional Interstate essays."""
 import json
+import hashlib
 import re
 import unittest
 import xml.etree.ElementTree as ET
@@ -19,9 +20,11 @@ class CooperationHistories(unittest.TestCase):
         cls.items = load_items()
         cls.pages = render()
         cls.receipt = json.loads((DATA/'publication.json').read_text())
+        cls.batch2 = json.loads((DATA/'publication-batch02.json').read_text())
+        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts']}
 
     def test_complete_rebuild(self):
-        self.assertEqual(len(self.pages), 3)
+        self.assertEqual(len(self.pages), 5)
         for path, text in {**self.pages, **entrances()}.items():
             self.assertEqual(path.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -37,12 +40,12 @@ class CooperationHistories(unittest.TestCase):
                 self.assertNotRegex(body, r'\b\d{2}DD\b|\bXZ\d+\b|\b[NGZ]\d+\b||turn\d+(?:view|search)')
             self.assertEqual(bodies['zh'].count('<p>'), bodies['hant'].count('<p>'))
             self.assertNotRegex(bodies['en'], r'[\u3400-\u9fff]')
-            self.assertNotRegex(bodies['hant'], r'覈實|覈對|余項|復核|限製|划定|開啓|寫准|稱贊')
-            self.assertEqual(self.receipt['counts'][d['slug']]['zh_han'], len(re.findall(r'[\u3400-\u9fff]', ''.join(d['body_zh']))))
-            self.assertEqual(self.receipt['counts'][d['slug']]['en_words'], len(' '.join(d['body_en']).split()))
+            self.assertNotRegex(bodies['hant'], r'覈實|覈對|余項|復核|限製|划定|開啓|寫准|稱贊|啓用|阿裡')
+            self.assertEqual(self.counts[d['slug']]['zh_han'], len(re.findall(r'[\u3400-\u9fff]', ''.join(d['body_zh']))))
+            self.assertEqual(self.counts[d['slug']]['en_words'], len(' '.join(d['body_en']).split()))
 
     def test_numbered_sources_in_both_editions(self):
-        self.assertEqual([len(d['sources']) for d in self.items], [6, 8])
+        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7])
         for d in self.items:
             numbers = {s['id'] for s in d['sources']}
             text = self.pages[ROOT/('essays/cooperation-histories/' + d['slug'] + '.html')]
@@ -67,7 +70,7 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(schema['datePublished'], DATE)
             self.assertEqual(schema['inLanguage'], ['en', 'zh-Hans', 'zh-Hant'])
             if path.name == 'index.html':
-                self.assertEqual(len(schema['hasPart']), 2)
+                self.assertEqual(len(schema['hasPart']), 4)
             else:
                 d = next(d for d in self.items if d['slug'] == path.stem)
                 self.assertEqual(schema['citation'], [s['url'] for s in d['sources']])
@@ -117,9 +120,13 @@ class CooperationHistories(unittest.TestCase):
         self.assertIn('../cooperation-histories/index.html', fictional)
         self.assertEqual(fictional.count('class="lw-card"'), 3)
         landing = self.pages[ROOT/'essays/cooperation-histories/index.html']
-        self.assertEqual(landing.count('class="lw-card"'), 2)
+        self.assertEqual(landing.count('class="lw-card"'), 4)
         self.assertIn('An ongoing series', landing)
         self.assertIn('责任来源不同，不是两个相反的评分', landing)
+        self.assertIn('制裁、名字与复审', landing)
+        self.assertIn('水流、损害与请求', landing)
+        self.assertNotIn('First two essays', landing)
+        self.assertEqual(landing.count('<h3 class="lang-en">'), 4)
         library = (ROOT/'library.html').read_text()
         self.assertGreater(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 06'))
         self.assertLess(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 07'))
@@ -141,6 +148,37 @@ class CooperationHistories(unittest.TestCase):
         selected = [u for u in updates if u['id'] == '2026-10-30-cooperation-histories']
         self.assertEqual(len(selected), 1)
         self.assertEqual(selected[0]['domain'], 'history')
+        new_update = [u for u in updates if u['id'] == '2026-10-30-cooperation-histories-batch02']
+        self.assertEqual(len(new_update), 1)
+        self.assertEqual(new_update[0]['kind'], 'expanded')
+
+    def test_iraq_causation_implementation_and_access(self):
+        d = self.items[2]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for phrase in ('伊拉克入侵科威特', '保留严格医疗用途物资的例外', '伊拉克政府没有接受', '2002年新程序', '2017年', '不是把外部捐来的粮食', '没有因此成为', '并非宣布世界上不存在其他声音'):
+            self.assertIn(phrase, zh)
+        self.assertNotRegex(zh, r'五十万|五十萬|50万|500,?000')
+        self.assertIn('principally financed by the sale of Iraqi oil', en)
+        self.assertIn('not a judicial finding', en)
+        self.assertIn('not a collection of named entries', en)
+        self.assertIn('repetition of 1999 mortality estimates is not adopted', d['sources'][3]['note_en'])
+
+    def test_kadi_review_is_not_a_world_court_or_acquittal(self):
+        d = self.items[3]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for phrase in ('不是一份已经由刑事法庭定罪', '2008年9月3日', '最多维持三个月', '2013年7月18日', '并未接受普通法院的全部分析', '保密的理由本身需要接受检查', '2012年10月5日', '这发生在2013年欧洲法院判决之前', '早在当年6月通过'):
+            self.assertIn(phrase, zh)
+        for phrase in ('not a criminal conviction', 'one sufficiently specific, substantiated ground', 'sixty days after the committee', 'A focal-point route had existed before', 'not a judge’s final order', 'preceded the 2013 European judgment'):
+            self.assertIn(phrase, en)
+        self.assertTrue(d['sources'][1]['url'].startswith('https://eur-lex.europa.eu/'))
+
+    def test_first_pair_is_byte_preserved(self):
+        self.assertEqual(self.receipt['published_essays'], 2)
+        self.assertEqual(self.batch2['published_essays'], 4)
+        self.assertEqual(self.batch2['new_essays'], ['iraq-sanctions', 'kadi-listing'])
+        hashes = json.loads((ROOT/'reports/cooperation-histories-batch02-20261030.json').read_text())['preserved_first_pair_sha256']
+        for slug, expected in hashes.items():
+            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
 
 
 if __name__ == '__main__':
