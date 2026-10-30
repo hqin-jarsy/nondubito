@@ -16,6 +16,7 @@ from build_ai_work_series import TraditionalConverter, shell_header, footer, tri
 from web_analytics import tracked_html
 from build_state_reversal import companion_entry
 from build_state_transitions import history_entry
+from build_interstate import state_entry as interstate_entry
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/state'
@@ -159,6 +160,7 @@ def render_index(items: list[dict], converter: TraditionalConverter) -> str:
 <nav class="state-topics" aria-label="Reading route">{navigation}<a href="#reverse-phase-transition">{loc('Companion: sliding back', '专论：国家怎样往回滑', converter)}</a></nav>{''.join(groups)}
 {companion_entry(converter)}
 {history_entry(converter)}
+{interstate_entry(converter)}
 <details class="state-context"><summary>{loc('The three fictional neighbours', '先认识这三个虚构的邻国', converter)}</summary>{loc('The United City-States of Ends (UCSE) is the main setting: Apple City, familiar from the government essays, is one of its cities. To the north is the Nation Union of Telos (NUT); to the west, the Democratic Republic of Purposes (DRP). None is a stand-in for a particular country. None gets a moral verdict from its name: each action has to be examined on its own.', '故事主要发生在目的联合城邦（UCSE），政府论里的苹果城就在其中。北邻是目的民族联盟（NUT），西邻是目的民主共和国（DRP）。它们不影射某个现实国家，也不因名字里都有“目的”就自动合格；要看的始终是一件一件做下来的事。', converter, 'p')}</details>
 {related(converter)}<aside class="state-sources">{loc('For the full argument', '想深入时，再读论文', converter, 'h2')}{loc('Each essay links to its source paper. The papers set out the definitions, qualifications and engagements with political philosophy; these readings follow the people caught in the decisions.', '每篇文末都通向对应论文。概念界定、完整限定与政治哲学对话留在论文里；这里先跟着被决定影响的人，把问题看清楚。', converter, 'p')}<a href="https://self-as-an-end.net/papers/sae-state-prequel.html">{loc('Begin with the theoretical prequel ↗', '从国家论前置篇进入 ↗', converter)}</a></aside></main>'''
     return shell(content, head(TITLE[0] + ' · SAE 国家论', DECK[0], 'index.html'), converter)

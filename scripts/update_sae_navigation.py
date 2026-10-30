@@ -9,6 +9,7 @@ from pathlib import Path
 from build_language_writing import WritingTraditionalConverter, loc
 from build_accountability import library_card
 from build_long_consensus import library_card as consensus_card
+from build_interstate import library_card as interstate_card
 
 ROOT = Path(__file__).resolve().parents[1]
 CARD = re.compile(r'<a\b(?=[^>]*\bclass="series-card")[^>]*>.*?</a>',re.S)
@@ -28,6 +29,7 @@ def tri_library(en,zh,conv,tag='span',css=''):
 def render_library(source,groups,conv):
     start,end,old = library_block(source)
     cards = {re.search(r'href="([^"]+)"',m[0])[1]:m[0] for m in CARD.finditer(old)}
+    cards['essays/interstate/index.html'] = interstate_card(conv)
     accountability_path='essays/accountability/index.html'
     if accountability_path not in cards:
         cards[accountability_path]=library_card(conv)
