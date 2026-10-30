@@ -17,10 +17,10 @@ TARGET = ROOT / 'essays/cooperation-histories'
 BASE = 'https://nondubito.net/essays/cooperation-histories/'
 TITLE = ('After the Shared Decision', '共同决定之后')
 DECK = (
-    'Water crosses a border. Food passes through sanctions. A name enters a list. Real histories of shared decisions, their consequences, and the routes by which people can ask for another look.',
-    '水流越过国界，食品穿过制裁，一个名字进入名单。沿真实历史，看共同决定怎样改变生活，又有没有一条路，让受到影响的人要求再看一次。',
+    'Water, sanctions, an airstrike, and the border after exit. Real histories of shared decisions, their consequences, and the routes by which people can ask for another look.',
+    '水流、制裁、一次空袭，和退出后的边界。沿真实历史，看共同决定怎样改变生活，又有没有一条路，让受到影响的人要求再看一次。',
 )
-SLUGS = ('rhine-sandoz', 'haiti-cholera', 'iraq-sanctions', 'kadi-listing')
+SLUGS = ('rhine-sandoz', 'haiti-cholera', 'iraq-sanctions', 'kadi-listing', 'kunduz-hanan', 'northern-ireland-windsor')
 FRAMEWORK = 'https://self-as-an-end.net/papers/sae-interstate-prequel.html'
 
 
@@ -29,7 +29,7 @@ class CooperationTraditionalConverter(HistoryTraditionalConverter):
         return (super().convert(text).replace('開啓', '開啟')
                 .replace('寫准', '寫準').replace('稱贊', '稱讚')
                 .replace('啓用', '啟用').replace('阿裡', '阿里')
-                .replace('復審', '複審'))
+                .replace('復審', '複審').replace('咨詢', '諮詢'))
 
 
 def load_items():
@@ -80,7 +80,7 @@ def source_note(conv, item=None):
 
 def companion_entry(conv):
     """For the fictional series landing only; leave its three essays untouched."""
-    return '<!-- COOPERATION HISTORIES COMPANION START --><section class="lw-note" id="real-world-readings">' + loc('A separate shelf of real histories', '另读真实世界 · 独立专题', conv, 'p', 'lw-kicker') + loc(*TITLE, conv, 'h2') + loc('From the Rhine and Haiti to comprehensive sanctions on Iraq and Kadi’s challenges to his listing. Different powers, responsibilities and routes to review—not continuations of Three Borders, not a ranking of successful and failed cooperation.', '从莱茵河、海地，到伊拉克全面制裁与卡迪的名单复审。真实机构的权限、责任和追问途径分别交代，不是三界镇的续篇，也不把案例排成合作成功与失败的榜单。', conv, 'p') + '<a class="lw-read" href="../cooperation-histories/index.html">' + loc('Read the histories →', '进入真实案例专题 →', conv) + '</a></section><!-- COOPERATION HISTORIES COMPANION END -->'
+    return '<!-- COOPERATION HISTORIES COMPANION START --><section class="lw-note" id="real-world-readings">' + loc('A separate shelf of real histories', '另读真实世界 · 独立专题', conv, 'p', 'lw-kicker') + loc(*TITLE, conv, 'h2') + loc('Six histories: the Rhine, Haiti, Iraq, Kadi, Kunduz and Northern Ireland after Brexit. Different powers, responsibilities and routes to review—not continuations of Three Borders, not a ranking of successful and failed cooperation.', '六篇历史：莱茵河、海地、伊拉克、卡迪、昆都士，以及脱欧后的北爱。真实机构的权限、责任和追问途径分别交代，不是三界镇的续篇，也不把案例排成合作成功与失败的榜单。', conv, 'p') + '<a class="lw-read" href="../cooperation-histories/index.html">' + loc('Read the histories →', '进入真实案例专题 →', conv) + '</a></section><!-- COOPERATION HISTORIES COMPANION END -->'
 
 
 def document(content, title, deck, filename, conv, items, item=None):
@@ -100,10 +100,11 @@ def landing(items, conv):
     cards = ''
     for pair, en, zh, deck_en, deck_zh in (
         (items[:2], 'Water, harm, and a request', '水流、损害与请求', 'The Rhine and Haiti: different sources of responsibility, different routes to repair.', '莱茵河与海地：不同的责任来源，不同的修复道路。'),
-        (items[2:], 'Sanctions, names, and review', '制裁、名字与复审', 'Iraq and Kadi: a broad restriction and a named target do not ask the same question.', '伊拉克与卡迪：全面限制与直接列名，带来的不是同一道问题。'),
+        (items[2:4], 'Sanctions, names, and review', '制裁、名字与复审', 'Iraq and Kadi: a broad restriction and a named target do not ask the same question.', '伊拉克与卡迪：全面限制与直接列名，带来的不是同一道问题。'),
+        (items[4:], 'An investigation, an exit, and the next question', '调查、退出与下一次追问', 'Kunduz and Northern Ireland: who investigates a shared operation, and what remains to decide after departure? These are different kinds of responsibility, not equivalent harms.', '昆都士与北爱：多国行动由谁调查，退出之后还有什么要共同决定？追问途径值得并读，伤害与责任不能等同。'),
     ):
         cards += '<section class="lw-note">' + loc(en, zh, conv, 'h2') + loc(deck_en, deck_zh, conv, 'p') + '</section><section class="lw-grid">' + ''.join('<a class="lw-card" href="' + d['slug'] + '.html"><p class="lw-kicker">' + loc(d['place_en'], d['place_zh'], conv) + '</p>' + loc(d['title_en'], d['title_zh'], conv, 'h3') + loc(d['deck_en'], d['deck_zh'], conv, 'p') + loc('Read essay →', '阅读全文 →', conv, 'span', 'lw-read') + '</a>' for d in pair) + '</section>'
-    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Historical readings of cooperation', '协作的真实历史细读', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('An ongoing series · Four essays · English, Simplified & Traditional Chinese', '持续展开的专题 · 四篇 · 英文、简体中文与繁体中文', conv, 'p', 'lw-meta') + '</section><aside class="lw-opening">' + loc('Begin with a river, a request for a hearing, a food delivery or a name on a list. No theory is required before reading. Who decides, who implements, who is affected, and who can initiate another look?', '可以从水流、听证请求、食品到货或一个被列名的人读起。不必先补理论。谁决定，谁实施，谁受到影响，又由谁来启动再一次审查？', conv, 'p') + '<a href="rhine-sandoz.html">' + loc('Follow the river →', '先跟着河水走 →', conv) + '</a></aside>' + cards + '<section class="lw-note">' + loc('Different responsibilities, not opposite grades', '责任来源不同，不是两个相反的评分', conv, 'h2') + loc('A company accident, an international operation implicated in harm, a comprehensive trade regime and a targeted asset freeze. These do not confer identical powers or offer identical remedies. Improvements do not retrospectively justify every earlier decision; a gap does not erase useful work. The differences are why the histories belong together.', '企业事故、国际行动自身被指带来的伤害、全面贸易限制与针对个人的财产冻结，权限和救济不能揉成一团。后来的改进不追认此前每项决定，存在缺口也不抹去真实工作。保留不同，才值得并列阅读。', conv, 'p') + '</section>' + source_note(conv) + related(conv) + '</main>'
+    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Historical readings of cooperation', '协作的真实历史细读', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('An ongoing series · Six essays · English, Simplified & Traditional Chinese', '持续展开的专题 · 六篇 · 英文、简体中文与繁体中文', conv, 'p', 'lw-meta') + '</section><aside class="lw-opening">' + loc('Begin with a river, a name on a list, a father’s complaint or goods crossing a sea. No theory is required before reading. Who decides, who implements, who is affected, and who can initiate another look?', '可以从河水、名单、父亲的控告或过海的货物读起。不必先补理论。谁决定，谁实施，谁受到影响，又由谁来启动再一次审查？', conv, 'p') + '<a href="rhine-sandoz.html">' + loc('Follow the river →', '先跟着河水走 →', conv) + '</a></aside>' + cards + '<section class="lw-note">' + loc('Different responsibilities, not opposite grades', '责任来源不同，不是两个相反的评分', conv, 'h2') + loc('An accident, an international operation implicated in harm, sanctions, an airstrike, and post-exit arrangements. These do not confer identical powers or offer identical remedies. Improvements do not retrospectively justify every earlier decision; a gap does not erase useful work. The differences are why the histories belong together.', '事故、国际行动自身被指带来的伤害、制裁、空袭与退出后的安排，权限和救济不能揉成一团。后来的改进不追认此前每项决定，存在缺口也不抹去真实工作。保留不同，才值得并列阅读。', conv, 'p') + '</section>' + source_note(conv) + related(conv) + '</main>'
     return document(content, TITLE[0] + ' · 共同决定之后', DECK[0], 'index.html', conv, items).replace('</head>', '<link rel="stylesheet" href="reading.css?v=20261030"></head>')
 
 
@@ -113,6 +114,8 @@ def article(item, items, conv):
     nav = '<a href="index.html">' + loc('The ongoing series', '持续展开的专题', conv, 'small') + loc(*TITLE, conv) + '</a>'
     nav += ''.join('<a href="' + d['slug'] + '.html">' + loc('Read alongside this essay', '放在旁边读', conv, 'small') + loc(d['title_en'], d['title_zh'], conv) + '</a>' for d in items if d['id'] == partner)
     content = '<main class="lw-wrap">' + breadcrumb(conv, True) + '<article class="lw-article"><div class="lw-head"><p class="lw-kicker">' + loc(item['place_en'], item['place_zh'], conv) + ' · ' + loc(*TITLE, conv) + '</p>' + loc(item['title_en'], item['title_zh'], conv, 'h1') + loc(item['deck_en'], item['deck_zh'], conv, 'p', 'lw-deck lw-search-deck') + '<p class="lw-meta">Han Qin · <time datetime="' + DATE + '">' + DATE + '</time> · ' + loc('Historical essay · English independently written', '历史散文 · 英文独立重写', conv) + '</p></div>' + bodies + source_note(conv, item) + '<nav class="lw-series-nav" aria-label="Series navigation">' + nav + '</nav>' + related(conv) + '</article></main>'
+    if item.get('search_labels'):
+        content = content.replace('<article class="lw-article">', '<article class="lw-article" data-search="' + html.escape(item['search_labels'], quote=True) + '">', 1)
     return document(content, item['title_en'], item['deck_en'], item['slug'] + '.html', conv, items, item)
 
 
@@ -135,7 +138,7 @@ def main():
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(text)
-    print(('Checked' if args.check else 'Wrote') + ' After the Shared Decision · four histories · three complete modes')
+    print(('Checked' if args.check else 'Wrote') + ' After the Shared Decision · six histories · three complete modes')
 
 
 if __name__ == '__main__':

@@ -21,10 +21,11 @@ class CooperationHistories(unittest.TestCase):
         cls.pages = render()
         cls.receipt = json.loads((DATA/'publication.json').read_text())
         cls.batch2 = json.loads((DATA/'publication-batch02.json').read_text())
-        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts']}
+        cls.batch3 = json.loads((DATA/'publication-batch03.json').read_text())
+        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts'], **cls.batch3['counts']}
 
     def test_complete_rebuild(self):
-        self.assertEqual(len(self.pages), 5)
+        self.assertEqual(len(self.pages), 7)
         for path, text in {**self.pages, **entrances()}.items():
             self.assertEqual(path.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -45,7 +46,7 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(self.counts[d['slug']]['en_words'], len(' '.join(d['body_en']).split()))
 
     def test_numbered_sources_in_both_editions(self):
-        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7])
+        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7, 5, 9])
         for d in self.items:
             numbers = {s['id'] for s in d['sources']}
             text = self.pages[ROOT/('essays/cooperation-histories/' + d['slug'] + '.html')]
@@ -70,7 +71,7 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(schema['datePublished'], DATE)
             self.assertEqual(schema['inLanguage'], ['en', 'zh-Hans', 'zh-Hant'])
             if path.name == 'index.html':
-                self.assertEqual(len(schema['hasPart']), 4)
+                self.assertEqual(len(schema['hasPart']), 6)
             else:
                 d = next(d for d in self.items if d['slug'] == path.stem)
                 self.assertEqual(schema['citation'], [s['url'] for s in d['sources']])
@@ -120,13 +121,14 @@ class CooperationHistories(unittest.TestCase):
         self.assertIn('../cooperation-histories/index.html', fictional)
         self.assertEqual(fictional.count('class="lw-card"'), 3)
         landing = self.pages[ROOT/'essays/cooperation-histories/index.html']
-        self.assertEqual(landing.count('class="lw-card"'), 4)
+        self.assertEqual(landing.count('class="lw-card"'), 6)
         self.assertIn('An ongoing series', landing)
         self.assertIn('责任来源不同，不是两个相反的评分', landing)
         self.assertIn('制裁、名字与复审', landing)
         self.assertIn('水流、损害与请求', landing)
+        self.assertIn('调查、退出与下一次追问', landing)
         self.assertNotIn('First two essays', landing)
-        self.assertEqual(landing.count('<h3 class="lang-en">'), 4)
+        self.assertEqual(landing.count('<h3 class="lang-en">'), 6)
         library = (ROOT/'library.html').read_text()
         self.assertGreater(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 06'))
         self.assertLess(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 07'))
@@ -141,6 +143,13 @@ class CooperationHistories(unittest.TestCase):
                 self.assertEqual(scan_page(ROOT,path)['domain'], 'history')
             if lang != 'en':
                 self.assertIn('道歉', records['essays/cooperation-histories/haiti-cholera.html']['x'])
+            for slug, labels in (
+                ('kunduz-hanan', ('Kunduz','Hanan','昆都士','哈南')),
+                ('northern-ireland-windsor', ('Brexit','Northern Ireland','Windsor','北爱尔兰','北愛爾蘭','溫莎框架')),
+            ):
+                record = records['essays/cooperation-histories/' + slug + '.html']
+                for label in labels:
+                    self.assertIn(label, record['q'])
         urls = {e.text for e in ET.fromstring((ROOT/'sitemap.xml').read_text()).findall('{*}url/{*}loc')}
         for path in self.pages:
             self.assertIn(BASE + ('' if path.name == 'index.html' else path.name), urls)
@@ -151,6 +160,10 @@ class CooperationHistories(unittest.TestCase):
         new_update = [u for u in updates if u['id'] == '2026-10-30-cooperation-histories-batch02']
         self.assertEqual(len(new_update), 1)
         self.assertEqual(new_update[0]['kind'], 'expanded')
+        newest = [u for u in updates if u['id'] == '2026-10-30-cooperation-histories-batch03']
+        self.assertEqual(len(newest), 1)
+        self.assertEqual(newest[0]['kind'], 'expanded')
+        self.assertEqual(updates[0]['id'], newest[0]['id'])
 
     def test_iraq_causation_implementation_and_access(self):
         d = self.items[2]
@@ -177,6 +190,34 @@ class CooperationHistories(unittest.TestCase):
         self.assertEqual(self.batch2['published_essays'], 4)
         self.assertEqual(self.batch2['new_essays'], ['iraq-sanctions', 'kadi-listing'])
         hashes = json.loads((ROOT/'reports/cooperation-histories-batch02-20261030.json').read_text())['preserved_first_pair_sha256']
+        for slug, expected in hashes.items():
+            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+
+    def test_hanan_investigation_is_not_a_substantive_airstrike_verdict(self):
+        d = self.items[4]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for phrase in ('四天后', '没有违反', '特殊条件的结合', '不是一张可以盖在所有战争上的通行证', '文职检察机关', '未先听取哈南', '明显缺乏根据', '没有最终裁定', '不是同一种批评', '也没有借此完成有关空袭行为归属的全部判断', '不是同一层级的上诉法庭', '2021年'):
+            self.assertIn(phrase, zh)
+        for phrase in ('not a general rule', 'manifestly ill-founded', 'left open', 'not a guarantee of prosecution', 'did not thereby rule', 'including civilians', 'not an order to prosecute'):
+            self.assertIn(phrase, en)
+        self.assertNotRegex(zh, r'一百四十人|140人|第五条已被启动')
+        self.assertIn('exhaustion was left open', d['sources'][0]['note_en'])
+
+    def test_northern_ireland_exit_brake_consent_and_cutoff(self):
+        d = self.items[5]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for phrase in ('不是某位司机的一段现场记录', '大不列颠', '英国议会制定的法律', '至少来自两个政党的30名议员', '不是对所有新欧盟法律的普遍否决权', '30个签名因此不是一份自动生效的停止令', '48票对36票', '不是跨社群支持', '不是决定北爱留在英国还是加入统一爱尔兰', '2025年底', '不提供2026年的通关操作指南'):
+            self.assertIn(phrase, zh)
+        for phrase in ('Thirty signatures therefore do not automatically stop a law', 'applicability motions', 'written reasons', 'simple majority but not cross-community support', 'not evidence that every recommendation has been implemented', 'not make Northern Ireland an EU member'):
+            self.assertIn(phrase, en)
+        self.assertEqual(d['coverage'], '2020/2025')
+
+    def test_prior_two_pairs_and_receipts_are_preserved(self):
+        self.assertEqual(self.batch3['published_essays'], 6)
+        self.assertEqual(self.batch3['new_essays'], ['kunduz-hanan','northern-ireland-windsor'])
+        report = json.loads((ROOT/'reports/cooperation-histories-batch03-20261030.json').read_text())
+        hashes = report['preserved_prior_article_sha256']
+        self.assertEqual(len(hashes), 4)
         for slug, expected in hashes.items():
             self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
 
