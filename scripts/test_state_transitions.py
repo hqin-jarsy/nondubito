@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Publication checks for the historical series and its separation from fictional cases."""
+import hashlib
 import json
 import re
 import unittest
@@ -21,7 +22,7 @@ class StateHistories(unittest.TestCase):
         cls.pages = render()
 
     def test_rebuild_and_navigation_are_current(self):
-        self.assertEqual(len(self.pages), 3)
+        self.assertEqual(len(self.pages), 5)
         for path, text in {**self.pages, **navigation()}.items():
             self.assertEqual(path.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -37,7 +38,7 @@ class StateHistories(unittest.TestCase):
                 self.assertEqual(body.count('<h2>'), 3)
                 self.assertNotRegex(body, r'\b\d{2}DD\b|正相变|逆相变|phase transition')
             self.assertNotRegex(bodies['en'], r'[\u3400-\u9fff]')
-            self.assertNotRegex(bodies['hant'], r'覈實|覈對|余項|復核|裡貝羅|限製|划定|瞄准')
+            self.assertNotRegex(bodies['hant'], r'覈實|覈對|余項|復核|裡貝羅|限製|划定|瞄准|樸鐘哲|全鬥煥')
             self.assertEqual(receipt['counts'][item['slug']]['zh_han'], len(re.findall(r'[\u3400-\u9fff]', ''.join(item['body_zh']))))
             self.assertEqual(receipt['counts'][item['slug']]['en_words'], len(' '.join(item['body_en']).split()))
 
@@ -53,7 +54,7 @@ class StateHistories(unittest.TestCase):
             if item['id'] == 1:
                 self.assertIn('text mirror', text)
                 self.assertIn('1979年4月30日', text)
-            else:
+            elif item['id'] == 2:
                 self.assertIn('第71', text)
                 self.assertIn('第38', text)
                 self.assertIn('AZAPO', text)
@@ -73,11 +74,38 @@ class StateHistories(unittest.TestCase):
             self.assertEqual(schema['dateModified'], DATE)
             self.assertEqual(schema['inLanguage'], ['en', 'zh-Hans', 'zh-Hant'])
             if path.name == 'index.html':
-                self.assertEqual(len(schema['hasPart']), 2)
+                self.assertEqual(len(schema['hasPart']), 4)
             else:
                 item = next(d for d in self.items if d['slug'] == path.stem)
                 self.assertEqual(schema['citation'], [s['url'] for s in item['sources']])
                 self.assertEqual(schema['isPartOf']['url'], BASE)
+                self.assertEqual(schema['temporalCoverage'], {'india-1975-1979':'1975/1979', 'south-africa-1990-1997':'1990/1997', 'germany-1933':'1933/1933', 'south-korea-1987-1988':'1987/1988'}[item['slug']])
+
+    def test_first_pair_is_unchanged(self):
+        qa = json.loads((ROOT/'reports/state-histories-batch02-20261029.json').read_text())
+        self.assertEqual(len(qa['original_sha256']), 4)
+        for relative, expected in qa['original_sha256'].items():
+            self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(), expected, relative)
+
+    def test_new_historical_distinctions(self):
+        german, korean = self.items[2:]
+        self.assertEqual([german['slug'], korean['slug']], ['germany-1933', 'south-korea-1987-1988'])
+        de = '\n'.join(german['body_zh'])
+        ko = '\n'.join(korean['body_zh'])
+        for fact in ('3月23日', '3月24日', '九十四', '帝国政府', '第二条', '1937年4月1日', '5月2日', '6月22日', '7月14日'):
+            self.assertIn(fact, de)
+        for fact in ('6月9日', '7月5日', '6月29日', '二百五十四', '四票反对', '百分之三十六点六', '1988年2月25日', '9月1日', '15日'):
+            self.assertIn(fact, ko)
+        self.assertIn('did not give the opposition an immediate victory', '\n'.join(korean['body_en']))
+        self.assertIn('The declaration did not itself complete constitutional revision.', '\n'.join(korean['body_en']))
+        self.assertNotIn('webarchiv.bundestag.de', json.dumps(german['sources']))
+
+    def test_latest_expansion_is_recorded_separately(self):
+        updates = json.loads((ROOT/'data/site-updates.json').read_text())['updates']
+        history = [u for u in updates if u['id'].startswith('2026-10-29-state-histories')]
+        self.assertEqual([u['kind'] for u in history], ['expanded', 'new'])
+        self.assertEqual(history[0]['title']['zh'], '国家的进退：德国与韩国')
+        self.assertIn('四篇', (ROOT/'library.html').read_text().split('<!-- STATE HISTORIES LIBRARY START -->')[1].split('<!-- STATE HISTORIES LIBRARY END -->')[0])
 
     def test_links_ids_and_search_taxonomy(self):
         for path, text in self.pages.items():
