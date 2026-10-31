@@ -24,10 +24,11 @@ class CooperationHistories(unittest.TestCase):
         cls.batch3 = json.loads((DATA/'publication-batch03.json').read_text())
         cls.batch4 = json.loads((DATA/'publication-batch04.json').read_text())
         cls.batch5 = json.loads((DATA/'publication-batch05.json').read_text())
-        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts'], **cls.batch3['counts'], **cls.batch4['counts'], **cls.batch5['counts']}
+        cls.batch6 = json.loads((DATA/'publication-batch06.json').read_text())
+        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts'], **cls.batch3['counts'], **cls.batch4['counts'], **cls.batch5['counts'], **cls.batch6['counts']}
 
     def test_complete_rebuild(self):
-        self.assertEqual(len(self.pages), 11)
+        self.assertEqual(len(self.pages), 13)
         for path, text in {**self.pages, **entrances()}.items():
             self.assertEqual(path.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -43,12 +44,12 @@ class CooperationHistories(unittest.TestCase):
                 self.assertNotRegex(body, r'\b\d{2}DD\b|\bXZ\d+\b|\b[NGZ]\d+\b||turn\d+(?:view|search)')
             self.assertEqual(bodies['zh'].count('<p>'), bodies['hant'].count('<p>'))
             self.assertNotRegex(bodies['en'], r'[\u3400-\u9fff]')
-            self.assertNotRegex(bodies['hant'], r'覈實|覈對|余項|復核|限製|划定|開啓|寫准|稱贊|啓用|阿裡|一傢具體|索馬裡|巴塔查裡亞')
+            self.assertNotRegex(bodies['hant'], r'覈實|覈對|覈算|說准|失准|加納|余項|復核|限製|划定|開啓|寫准|稱贊|啓用|阿裡|一傢具體|索馬裡|巴塔查裡亞')
             self.assertEqual(self.counts[d['slug']]['zh_han'], len(re.findall(r'[\u3400-\u9fff]', ''.join(d['body_zh']))))
             self.assertEqual(self.counts[d['slug']]['en_words'], len(' '.join(d['body_en']).split()))
 
     def test_numbered_sources_in_both_editions(self):
-        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7, 5, 9, 7, 5, 8, 6])
+        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7, 5, 9, 7, 5, 8, 6, 6, 8])
         for d in self.items:
             numbers = {s['id'] for s in d['sources']}
             text = self.pages[ROOT/('essays/cooperation-histories/' + d['slug'] + '.html')]
@@ -74,7 +75,7 @@ class CooperationHistories(unittest.TestCase):
             if path.name == 'index.html':
                 self.assertEqual(schema['datePublished'], DATE)
                 self.assertEqual(schema['dateModified'], UPDATE_DATE)
-                self.assertEqual(len(schema['hasPart']), 10)
+                self.assertEqual(len(schema['hasPart']), 12)
             else:
                 d = next(d for d in self.items if d['slug'] == path.stem)
                 self.assertEqual(schema['datePublished'], d.get('date', DATE))
@@ -126,18 +127,19 @@ class CooperationHistories(unittest.TestCase):
         self.assertIn('../cooperation-histories/index.html', fictional)
         self.assertEqual(fictional.count('class="lw-card"'), 9)
         landing = self.pages[ROOT/'essays/cooperation-histories/index.html']
-        self.assertEqual(landing.count('class="lw-card"'), 10)
-        self.assertEqual(landing.count('class="ch-group"'), 5)
+        self.assertEqual(landing.count('class="lw-card"'), 12)
+        self.assertEqual(landing.count('class="ch-group"'), 6)
         self.assertIn('id="reading-route"', landing)
         self.assertIn('href="#conditions-and-limits"', landing)
         self.assertIn('href="#capacity-and-evidence"', landing)
+        self.assertIn('href="#allocation-and-choice"', landing)
         self.assertIn('An ongoing series', landing)
         self.assertIn('责任来源不同，不是两个相反的评分', landing)
         self.assertIn('制裁、名字与复审', landing)
         self.assertIn('水流、损害与请求', landing)
         self.assertIn('调查、退出与下一次追问', landing)
         self.assertNotIn('First two essays', landing)
-        self.assertEqual(landing.count('<h3 class="lang-en">'), 10)
+        self.assertEqual(landing.count('<h3 class="lang-en">'), 12)
         library = (ROOT/'library.html').read_text()
         self.assertGreater(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 06'))
         self.assertLess(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 07'))
@@ -159,6 +161,8 @@ class CooperationHistories(unittest.TestCase):
                 ('kishenganga-water', ('Indus Waters Treaty', 'Kishenganga', 'Neelum', '基申甘加', '印度河水條約')),
                 ('montreal-fund', ('Montreal Protocol', 'Multilateral Fund', 'CFC', '蒙特利尔', '蒙特利爾', '多邊基金')),
                 ('smallpox-eradication', ('smallpox', 'WHO', 'rumour register', '天花', '世界衛生組織')),
+                ('covax-delivery', ('COVAX', 'Ghana', 'AMC', '疫苗', '迦納')),
+                ('greece-bailout', ('Greece', 'OXI', 'Koufaki', '希腊', '希臘')),
             ):
                 record = records['essays/cooperation-histories/' + slug + '.html']
                 for label in labels:
@@ -183,7 +187,10 @@ class CooperationHistories(unittest.TestCase):
         fifth = [u for u in updates if u['id'] == '2026-10-31-cooperation-histories-batch05']
         self.assertEqual(len(fifth), 1)
         self.assertEqual(fifth[0]['kind'], 'expanded')
-        self.assertEqual(updates[0]['id'], fifth[0]['id'])
+        sixth = [u for u in updates if u['id'] == '2026-10-31-cooperation-histories-batch06']
+        self.assertEqual(len(sixth), 1)
+        self.assertEqual(sixth[0]['kind'], 'expanded')
+        self.assertEqual(updates[0]['id'], sixth[0]['id'])
         home = (ROOT/'index.html').read_text()
         self.assertLess(home.index('<!-- COOPERATION HISTORIES HOME START -->'), home.index('<!-- INTERSTATE HOME START -->'))
 
@@ -311,8 +318,45 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
         for slug, partner in (('montreal-fund', 'smallpox-eradication'), ('smallpox-eradication', 'montreal-fund')):
             self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
-        self.assertIn('#capacity-and-evidence', entrances()[ROOT/'index.html'])
+        self.assertIn('#allocation-and-choice', entrances()[ROOT/'index.html'])
         self.assertIn('family=Noto+Serif+TC', entrances()[ROOT/'library.html'])
+
+    def test_covax_allocations_forecasts_delivery_and_personal_redress(self):
+        d = self.items[10]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for term in ('2021年2月24日', '六十万剂', '不是一个世界卫生政府', '3%', '20%',
+                     '不是后来核算出的全年实际交付量', '不能精确结算，不是不用回答',
+                     '2020年预想的第二阶段', '无过错补偿机制', '不是二十亿人已经完成接种'):
+            self.assertIn(term, zh)
+        for term in ('1.425 billion', 'not a permanent ceiling', 'not an adjudication',
+                     'not a subsequently audited total', 'no-fault compensation',
+                     'not two billion people', 'informed agreement'):
+            self.assertIn(term, en)
+        self.assertEqual(d['coverage'], '2020/2023')
+        self.assertNotRegex(zh, r'避免了?270万|拯救了?270万')
+
+    def test_greece_ballot_liquidity_lenders_and_court_remit(self):
+        d = self.items[11]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for term in ('61.31%', '有效票', '不是一张直接询问是否退出欧元',
+                     '6月30日到期', '7月8日', '8月19日', '维持上限与切断一切资金',
+                     '双边贷款', '实际由欧洲稳定机制拨出的贷款为六百一十九亿',
+                     '不是欧盟法院', '明显缺乏根据', '不是一份宣布所有损失只有一个原因的判决'):
+            self.assertIn(term, zh)
+        for term in ('not a direct vote on leaving the euro', 'not the same as withdrawing all',
+                     '€61.9 billion', 'manifestly ill-founded', 'not a finding that all losses had a single cause',
+                     'A signature records a decision'):
+            self.assertIn(term, en)
+        self.assertEqual(d['coverage'], '2010/2018')
+
+    def test_prior_ten_preserved_and_sixth_pair_linked(self):
+        self.assertEqual(self.batch6['published_essays'], 12)
+        self.assertEqual(self.batch6['new_essays'], ['covax-delivery', 'greece-bailout'])
+        self.assertEqual(len(self.batch6['preserved_prior_article_sha256']), 10)
+        for slug, expected in self.batch6['preserved_prior_article_sha256'].items():
+            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+        for slug, partner in (('covax-delivery', 'greece-bailout'), ('greece-bailout', 'covax-delivery')):
+            self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
 
 
 if __name__ == '__main__':
