@@ -1,0 +1,29 @@
+{
+  "date":"2026-10-31",
+  "baseline_commit":"9ac3833",
+  "scope":"Library typography only; no essay, card copy, URL, ordering or global stylesheet changes.",
+  "cause":"Seven recent cards used series-card-desc with a language class, but the Library only styled the older series-card-desc-en/zh classes. Their descriptions inherited the 17px body type instead of the original card scale.",
+  "affected_cards":["language-writing","marriage","accountability","long-consensus","interstate","cooperation-histories","state-transitions"],
+  "changes":[
+    "Both description formats share the original Chinese 0.82rem/1.65 and English 0.8rem/1.6 typography, color and flexible bottom spacing.",
+    "Explicit lang-hant descriptions are supported as well as the existing lang-zh cl-hant format.",
+    "Chinese Library, section and card titles use the active script's reading font, with the matching Traditional font family requested alongside Simplified.",
+    "Flagship cards retain their separate display scale, including either description format."
+  ],
+  "verification":{
+    "unit_tests_passed":78,
+    "new_typography_tests":8,
+    "offline_css_cascade_comparisons_passed":11,
+    "offline_cascade_modes":["en","zh","zh-hant"],
+    "library_cards_preserved":390,
+    "body_markup_byte_preserved":true,
+    "body_sha256":"e256a4714f2160bb693aeb371def7ba0f638781a1a111325b338239c4ad72b69",
+    "sae_navigation_and_historical_connector_rebuilds":"Passed",
+    "sitemap_check":"Current: 12001 canonical URLs; no rebuild needed.",
+    "search_check":"Current: 12017 records; no rebuild needed.",
+    "browser_baseline":"The live Chinese Library confirmed recent descriptions at 17px/29.75px and older descriptions at 13.94px/23.001px, with different font stacks.",
+    "browser_after_change":"Not performed. The browser disallowed local file URLs. No workaround or claim of post-change browser verification was made; local source checks and offline CSS-cascade comparisons were used instead.",
+    "diff_whitespace_check":"Passed"
+  },
+  "deployment":"Local commit only; user pushes."
+}

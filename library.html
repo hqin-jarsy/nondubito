@@ -17,7 +17,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>
 (function(){
@@ -65,7 +65,7 @@
     }
     .library-hero-title .zh {
       display: block;
-      font-family: var(--cjk), serif;
+      font-family: var(--reading-cjk, var(--cjk)), serif;
       font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 600;
       color: var(--ink);
@@ -152,7 +152,7 @@
       flex-wrap: wrap;
     }
     .lib-section-name .zh {
-      font-family: var(--cjk), serif;
+      font-family: var(--reading-cjk, var(--cjk)), serif;
       font-size: 1.4rem;
       font-weight: 600;
       color: var(--ink);
@@ -202,7 +202,7 @@
       font-style: italic;
     }
     .series-card-title-zh {
-      font-family: var(--cjk), serif;
+      font-family: var(--reading-cjk, var(--cjk)), serif;
       font-size: 1.05rem;
       font-weight: 600;
       color: var(--ink);
@@ -216,14 +216,19 @@
       color: var(--ink-muted);
       margin-bottom: 0.85rem;
     }
-    .series-card-desc-zh {
-      font-family: var(--cjk), serif;
+    /* Older cards use language-specific role names; recent generators use
+       one description role plus a language class. Keep both on the same scale. */
+    .series-card-desc-zh,
+    .series-card-desc.lang-zh,
+    .series-card-desc.lang-hant {
+      font-family: var(--reading-cjk, var(--cjk)), serif;
       font-size: 0.82rem;
       color: var(--ink-muted);
       line-height: 1.65;
       margin-bottom: auto;
     }
-    .series-card-desc-en {
+    .series-card-desc-en,
+    .series-card-desc.lang-en {
       font-family: var(--sans);
       font-size: 0.8rem;
       color: var(--ink-muted);
@@ -260,7 +265,8 @@
     .series-card-flagship .series-card-title-zh { font-size: 1.5rem; }
     .series-card-flagship .series-card-title-en { font-size: 1.35rem; }
     .series-card-flagship .series-card-desc-zh,
-    .series-card-flagship .series-card-desc-en { max-width: 720px; font-size: 0.9rem; }
+    .series-card-flagship .series-card-desc-en,
+    .series-card-flagship .series-card-desc { max-width: 720px; font-size: 0.9rem; }
 
     /* Coming soon card */
     .series-card.coming-soon {
