@@ -119,7 +119,7 @@ class CooperationHistories(unittest.TestCase):
             self.assertIn('essays/cooperation-histories/index.html', (ROOT/name).read_text())
         fictional = (ROOT/'essays/interstate/index.html').read_text()
         self.assertIn('../cooperation-histories/index.html', fictional)
-        self.assertEqual(fictional.count('class="lw-card"'), 3)
+        self.assertEqual(fictional.count('class="lw-card"'), 9)
         landing = self.pages[ROOT/'essays/cooperation-histories/index.html']
         self.assertEqual(landing.count('class="lw-card"'), 6)
         self.assertIn('An ongoing series', landing)

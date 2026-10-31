@@ -100,7 +100,7 @@ def head(title: str, deck: str, name: str, item: dict | None = None) -> str:
         '@context': 'https://schema.org', '@type': 'Article' if item else 'CollectionPage',
         'name': title, 'description': deck, 'url': url, 'inLanguage': ['en', 'zh-Hans', 'zh-Hant'],
         'author': {'@type': 'Person', 'name': 'Han Qin (秦汉)'},
-        'datePublished': DATE, 'dateModified': '2026-10-29' if name == 'index.html' else DATE,
+        'datePublished': DATE, 'dateModified': '2026-10-31' if name == 'index.html' else DATE,
     }
     if item:
         schema.update(headline=item['title_en'], mainEntityOfPage=url,

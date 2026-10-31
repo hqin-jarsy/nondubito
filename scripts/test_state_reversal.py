@@ -92,7 +92,8 @@ class StateReversalPublication(unittest.TestCase):
         self.assertEqual(landing.count('class="state-card"'),8)
         schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',landing,re.S)[1])
         self.assertEqual(schema['datePublished'],'2026-10-25')
-        self.assertEqual(schema['dateModified'],DATE)
+        # The index now includes the completed nine-essay Interstate entrance.
+        self.assertEqual(schema['dateModified'],'2026-10-31')
 
     def test_discovery_and_receipts(self):
         for lang in ('en','zh-hans','zh-hant'):
