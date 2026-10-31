@@ -7,7 +7,7 @@ import unittest
 import xml.etree.ElementTree as ET
 from urllib.parse import unquote, urlsplit
 
-from build_cooperation_histories import ROOT, DATA, BASE, DATE, load_items, render
+from build_cooperation_histories import ROOT, DATA, BASE, DATE, UPDATE_DATE, load_items, render
 from connect_cooperation_histories import render as entrances
 from build_content_registry import scan_page
 from test_language_writing import Tags
@@ -22,10 +22,11 @@ class CooperationHistories(unittest.TestCase):
         cls.receipt = json.loads((DATA/'publication.json').read_text())
         cls.batch2 = json.loads((DATA/'publication-batch02.json').read_text())
         cls.batch3 = json.loads((DATA/'publication-batch03.json').read_text())
-        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts'], **cls.batch3['counts']}
+        cls.batch4 = json.loads((DATA/'publication-batch04.json').read_text())
+        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts'], **cls.batch3['counts'], **cls.batch4['counts']}
 
     def test_complete_rebuild(self):
-        self.assertEqual(len(self.pages), 7)
+        self.assertEqual(len(self.pages), 9)
         for path, text in {**self.pages, **entrances()}.items():
             self.assertEqual(path.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -46,7 +47,7 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(self.counts[d['slug']]['en_words'], len(' '.join(d['body_en']).split()))
 
     def test_numbered_sources_in_both_editions(self):
-        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7, 5, 9])
+        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7, 5, 9, 7, 5])
         for d in self.items:
             numbers = {s['id'] for s in d['sources']}
             text = self.pages[ROOT/('essays/cooperation-histories/' + d['slug'] + '.html')]
@@ -68,12 +69,15 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(len(beacons), 1)
             self.assertEqual(json.loads(beacons[0]['data-cf-beacon'])['token'], TOKEN)
             schema = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)[1])
-            self.assertEqual(schema['datePublished'], DATE)
             self.assertEqual(schema['inLanguage'], ['en', 'zh-Hans', 'zh-Hant'])
             if path.name == 'index.html':
-                self.assertEqual(len(schema['hasPart']), 6)
+                self.assertEqual(schema['datePublished'], DATE)
+                self.assertEqual(schema['dateModified'], UPDATE_DATE)
+                self.assertEqual(len(schema['hasPart']), 8)
             else:
                 d = next(d for d in self.items if d['slug'] == path.stem)
+                self.assertEqual(schema['datePublished'], d.get('date', DATE))
+                self.assertEqual(schema['dateModified'], d.get('date', DATE))
                 self.assertEqual(schema['citation'], [s['url'] for s in d['sources']])
                 self.assertEqual(schema['isPartOf']['url'], BASE)
                 self.assertEqual(schema['temporalCoverage'], d['coverage'])
@@ -121,14 +125,17 @@ class CooperationHistories(unittest.TestCase):
         self.assertIn('../cooperation-histories/index.html', fictional)
         self.assertEqual(fictional.count('class="lw-card"'), 9)
         landing = self.pages[ROOT/'essays/cooperation-histories/index.html']
-        self.assertEqual(landing.count('class="lw-card"'), 6)
+        self.assertEqual(landing.count('class="lw-card"'), 8)
+        self.assertEqual(landing.count('class="ch-group"'), 4)
+        self.assertIn('id="reading-route"', landing)
+        self.assertIn('href="#conditions-and-limits"', landing)
         self.assertIn('An ongoing series', landing)
         self.assertIn('责任来源不同，不是两个相反的评分', landing)
         self.assertIn('制裁、名字与复审', landing)
         self.assertIn('水流、损害与请求', landing)
         self.assertIn('调查、退出与下一次追问', landing)
         self.assertNotIn('First two essays', landing)
-        self.assertEqual(landing.count('<h3 class="lang-en">'), 6)
+        self.assertEqual(landing.count('<h3 class="lang-en">'), 8)
         library = (ROOT/'library.html').read_text()
         self.assertGreater(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 06'))
         self.assertLess(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 07'))
@@ -146,6 +153,8 @@ class CooperationHistories(unittest.TestCase):
             for slug, labels in (
                 ('kunduz-hanan', ('Kunduz','Hanan','昆都士','哈南')),
                 ('northern-ireland-windsor', ('Brexit','Northern Ireland','Windsor','北爱尔兰','北愛爾蘭','溫莎框架')),
+                ('us-shrimp-turtle', ('WTO', 'DS58', '海龟', '海龜')),
+                ('kishenganga-water', ('Indus Waters Treaty', 'Kishenganga', 'Neelum', '基申甘加', '印度河水條約')),
             ):
                 record = records['essays/cooperation-histories/' + slug + '.html']
                 for label in labels:
@@ -164,6 +173,11 @@ class CooperationHistories(unittest.TestCase):
         self.assertEqual(len(newest), 1)
         self.assertEqual(newest[0]['kind'], 'expanded')
         self.assertEqual(next(u for u in updates if u['id'].startswith('2026-10-30-cooperation-histories'))['id'], newest[0]['id'])
+        fourth = [u for u in updates if u['id'] == '2026-10-31-cooperation-histories-batch04']
+        self.assertEqual(len(fourth), 1)
+        self.assertEqual(fourth[0]['kind'], 'expanded')
+        home = (ROOT/'index.html').read_text()
+        self.assertLess(home.index('<!-- COOPERATION HISTORIES HOME START -->'), home.index('<!-- INTERSTATE HOME START -->'))
 
     def test_iraq_causation_implementation_and_access(self):
         d = self.items[2]
@@ -220,6 +234,35 @@ class CooperationHistories(unittest.TestCase):
         self.assertEqual(len(hashes), 4)
         for slug, expected in hashes.items():
             self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+
+    def test_shrimp_goal_implementation_and_personal_access(self):
+        d = self.items[6]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for term in ('初步的正当化', '三年的过渡', '四个月', '善意地谈判', '保证一定谈成', '保护效果可以比较', '不能直接启动', '不编出一位失业渔民', '1996至2001年'):
+            self.assertIn(term, zh)
+        for term in ('continuing effort', 'not a permanent certificate', 'nor an instruction to lower every standard', 'not a turtle’s lawsuit', 'not presented as a description of the WTO’s operation today'):
+            self.assertIn(term, en)
+        self.assertEqual(d['coverage'], '1996/2001')
+        self.assertIn('Current performance percentages', d['sources'][0]['note_en'])
+
+    def test_kishenganga_conditions_roles_review_and_cutoff(self):
+        d = self.items[7]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for term in ('日平均', '全部放行', '不是从2013年裁决日', '不等于海牙', '国际法院', '不是叫全部工程立刻停止', '不是愿意听就听的建议', '没有另建', '没有因此自动获得', '停在2013年'):
+            self.assertIn(term, zh)
+        for term in ('all of that inflow', 'not simply start with the award in 2013', 'not the International Court of Justice', 'not automatically make the requirement expire', 'Absence of individual standing', 'not proof that every later day complied'):
+            self.assertIn(term, en)
+        self.assertEqual(d['coverage'], '1960/2013')
+        self.assertIn('Seven years runs from diversion', d['sources'][2]['note_en'])
+
+    def test_prior_six_articles_are_byte_preserved_and_new_pair_linked(self):
+        self.assertEqual(self.batch4['published_essays'], 8)
+        self.assertEqual(self.batch4['new_essays'], ['us-shrimp-turtle', 'kishenganga-water'])
+        self.assertEqual(len(self.batch4['preserved_prior_article_sha256']), 6)
+        for slug, expected in self.batch4['preserved_prior_article_sha256'].items():
+            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+        for slug, partner in (('us-shrimp-turtle', 'kishenganga-water'), ('kishenganga-water', 'us-shrimp-turtle')):
+            self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
 
 
 if __name__ == '__main__':

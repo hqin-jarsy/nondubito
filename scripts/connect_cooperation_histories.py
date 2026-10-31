@@ -3,8 +3,9 @@
 """Connect the real-history companion while preserving existing shelves and updates."""
 import argparse
 import json
+import re
 
-from build_cooperation_histories import ROOT, DATE, TITLE, DECK, loc, CooperationTraditionalConverter
+from build_cooperation_histories import ROOT, DATE, UPDATE_DATE, TITLE, DECK, loc, CooperationTraditionalConverter
 from connect_state_transitions import block
 
 
@@ -14,10 +15,10 @@ def render():
         def ll(en, zh, tag='span', css=''):
             return loc(en, zh, conv, tag, css).replace('lang-zh', 'lang-zh cl-zh').replace('lang-hant', 'lang-zh cl-hant')
 
-        card = '<a href="essays/cooperation-histories/index.html" class="series-card"><span class="series-card-count">' + ll('Ongoing historical series · Six essays · EN / 简 / 繁', '持续历史专题 · 六篇 · 英简繁') + '</span><div class="series-card-title-zh cl-zh">共同决定之后</div><div class="series-card-title-zh cl-hant">共同決定之後</div><div class="series-card-title-en">After the Shared Decision</div>' + ll(DECK[0], DECK[1], 'p', 'series-card-desc') + ll('Read the histories →', '进入真实案例专题 →', 'span', 'series-card-arrow') + '</a>'
+        card = '<a href="essays/cooperation-histories/index.html" class="series-card"><span class="series-card-count">' + ll('Ongoing historical series · Eight essays · EN / 简 / 繁', '持续历史专题 · 八篇 · 英简繁') + '</span><div class="series-card-title-zh cl-zh">共同决定之后</div><div class="series-card-title-zh cl-hant">共同決定之後</div><div class="series-card-title-en">After the Shared Decision</div>' + ll(DECK[0], DECK[1], 'p', 'series-card-desc') + ll('Read the histories →', '进入真实案例专题 →', 'span', 'series-card-arrow') + '</a>'
         library = block((ROOT/'library.html').read_text(), 'COOPERATION HISTORIES LIBRARY', card, '<!-- STATE HISTORIES LIBRARY START -->')
 
-        shelf = '<a class="shelf-link" href="essays/cooperation-histories/index.html">' + loc('Real histories · Cooperation', '真实历史 · 国家间协作', conv, 'span', 'shelf-label') + loc(*TITLE, conv, 'h3') + loc('Six histories: water, sanctions, investigation and exit. Who can ask, and what does an answer change?', '六段历史读水流、制裁、调查与退出。谁能问，回答又改变了什么？', conv, 'p') + '<span class="shelf-arrow">→</span></a>'
+        shelf = '<a class="shelf-link" href="essays/cooperation-histories/index.html">' + loc('Real histories · Cooperation', '真实历史 · 国家间协作', conv, 'span', 'shelf-label') + loc(*TITLE, conv, 'h3') + loc('Eight histories: water, sanctions, investigation, exit and the limits of a good purpose. Who can ask, and what does an answer change?', '八段历史读水流、制裁、调查、退出与好目标的边界。谁能问，回答又改变了什么？', conv, 'p') + '<span class="shelf-arrow">→</span></a>'
         explore = block((ROOT/'explore.html').read_text(), 'COOPERATION HISTORIES EXPLORE', shelf, '<!-- STATE HISTORIES EXPLORE START -->')
 
         update = next(u for u in json.loads((ROOT/'data/site-updates.json').read_text())['updates'] if u['id'] == '2026-10-30-cooperation-histories')
@@ -32,8 +33,15 @@ def render():
         latest_card3 = '<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-cooperation-histories-batch03"><header class="updates-date"><h2 id="date-cooperation-histories-batch03"><time datetime="' + DATE + '">' + DATE + '</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="' + update3['id'] + '"><div class="update-meta"><span class="update-kind">' + loc('Historical series · Kunduz & Northern Ireland', '历史专题 · 昆都士与北爱', conv) + '</span><span>EN / 简 / 繁</span></div>' + loc(update3['title']['en'], update3['title']['zh'], conv, 'h3') + loc(update3['summary']['en'], update3['summary']['zh'], conv, 'p') + '<a href="essays/cooperation-histories/index.html">' + loc('Read the histories →', '进入真实案例专题 →', conv) + '</a></article></div></section></div></section>'
         latest = block(latest, 'COOPERATION HISTORIES BATCH03 LATEST', latest_card3, '<!-- COOPERATION HISTORIES BATCH02 LATEST START -->')
 
-        home_card = '<a class="home-update-row" href="essays/cooperation-histories/index.html"><time datetime="' + DATE + '">Oct 30</time><div>' + loc('More histories · Kunduz & Northern Ireland · EN / 简 / 繁', '历史专题更新 · 昆都士与北爱 · 英简繁', conv, 'span', 'home-update-kind') + loc(*TITLE, conv, 'h3') + '</div></a>'
-        home = block((ROOT/'index.html').read_text(), 'COOPERATION HISTORIES HOME', home_card, '<!-- INTERSTATE HOME START -->')
+        update4 = next(u for u in json.loads((ROOT/'data/site-updates.json').read_text())['updates'] if u['id'] == '2026-10-31-cooperation-histories-batch04')
+        latest_card4 = '<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-cooperation-histories-batch04"><header class="updates-date"><h2 id="date-cooperation-histories-batch04"><time datetime="' + UPDATE_DATE + '">' + UPDATE_DATE + '</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="' + update4['id'] + '"><div class="update-meta"><span class="update-kind">' + loc('Historical series · Turtles & a river', '历史专题 · 海龟与一条河', conv) + '</span><span>EN / 简 / 繁</span></div>' + loc(update4['title']['en'], update4['title']['zh'], conv, 'h3') + loc(update4['summary']['en'], update4['summary']['zh'], conv, 'p') + '<a href="essays/cooperation-histories/index.html#conditions-and-limits">' + loc('Read the new pair →', '阅读新增两篇 →', conv) + '</a></article></div></section></div></section>'
+        latest = block(latest, 'COOPERATION HISTORIES BATCH04 LATEST', latest_card4, '<!-- INTERSTATE COMPLETE LATEST START -->')
+
+        home_card = '<a class="home-update-row" href="essays/cooperation-histories/index.html#conditions-and-limits"><time datetime="' + UPDATE_DATE + '">Oct 31</time><div>' + loc('More histories · US — Shrimp & Kishenganga · EN / 简 / 繁', '历史专题更新 · 美国—虾案与基申甘加 · 英简繁', conv, 'span', 'home-update-kind') + loc(*TITLE, conv, 'h3') + '</div></a>'
+        home_source = (ROOT/'index.html').read_text()
+        assert home_source.count('<!-- COOPERATION HISTORIES HOME START -->') == 1
+        home_source = re.sub(r'<!-- COOPERATION HISTORIES HOME START -->.*?<!-- COOPERATION HISTORIES HOME END -->\n?', '', home_source, flags=re.S)
+        home = block(home_source, 'COOPERATION HISTORIES HOME', home_card, '<!-- INTERSTATE HOME START -->')
         return {ROOT/'library.html':library, ROOT/'explore.html':explore, ROOT/'latest.html':latest, ROOT/'index.html':home}
     finally:
         conv.close()
