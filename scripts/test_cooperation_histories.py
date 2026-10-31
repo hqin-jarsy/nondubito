@@ -163,7 +163,7 @@ class CooperationHistories(unittest.TestCase):
         newest = [u for u in updates if u['id'] == '2026-10-30-cooperation-histories-batch03']
         self.assertEqual(len(newest), 1)
         self.assertEqual(newest[0]['kind'], 'expanded')
-        self.assertEqual(updates[0]['id'], newest[0]['id'])
+        self.assertEqual(next(u for u in updates if u['id'].startswith('2026-10-30-cooperation-histories'))['id'], newest[0]['id'])
 
     def test_iraq_causation_implementation_and_access(self):
         d = self.items[2]
