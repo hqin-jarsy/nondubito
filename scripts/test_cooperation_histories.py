@@ -23,10 +23,11 @@ class CooperationHistories(unittest.TestCase):
         cls.batch2 = json.loads((DATA/'publication-batch02.json').read_text())
         cls.batch3 = json.loads((DATA/'publication-batch03.json').read_text())
         cls.batch4 = json.loads((DATA/'publication-batch04.json').read_text())
-        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts'], **cls.batch3['counts'], **cls.batch4['counts']}
+        cls.batch5 = json.loads((DATA/'publication-batch05.json').read_text())
+        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts'], **cls.batch3['counts'], **cls.batch4['counts'], **cls.batch5['counts']}
 
     def test_complete_rebuild(self):
-        self.assertEqual(len(self.pages), 9)
+        self.assertEqual(len(self.pages), 11)
         for path, text in {**self.pages, **entrances()}.items():
             self.assertEqual(path.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -42,12 +43,12 @@ class CooperationHistories(unittest.TestCase):
                 self.assertNotRegex(body, r'\b\d{2}DD\b|\bXZ\d+\b|\b[NGZ]\d+\b||turn\d+(?:view|search)')
             self.assertEqual(bodies['zh'].count('<p>'), bodies['hant'].count('<p>'))
             self.assertNotRegex(bodies['en'], r'[\u3400-\u9fff]')
-            self.assertNotRegex(bodies['hant'], r'覈實|覈對|余項|復核|限製|划定|開啓|寫准|稱贊|啓用|阿裡')
+            self.assertNotRegex(bodies['hant'], r'覈實|覈對|余項|復核|限製|划定|開啓|寫准|稱贊|啓用|阿裡|一傢具體|索馬裡|巴塔查裡亞')
             self.assertEqual(self.counts[d['slug']]['zh_han'], len(re.findall(r'[\u3400-\u9fff]', ''.join(d['body_zh']))))
             self.assertEqual(self.counts[d['slug']]['en_words'], len(' '.join(d['body_en']).split()))
 
     def test_numbered_sources_in_both_editions(self):
-        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7, 5, 9, 7, 5])
+        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7, 5, 9, 7, 5, 8, 6])
         for d in self.items:
             numbers = {s['id'] for s in d['sources']}
             text = self.pages[ROOT/('essays/cooperation-histories/' + d['slug'] + '.html')]
@@ -73,7 +74,7 @@ class CooperationHistories(unittest.TestCase):
             if path.name == 'index.html':
                 self.assertEqual(schema['datePublished'], DATE)
                 self.assertEqual(schema['dateModified'], UPDATE_DATE)
-                self.assertEqual(len(schema['hasPart']), 8)
+                self.assertEqual(len(schema['hasPart']), 10)
             else:
                 d = next(d for d in self.items if d['slug'] == path.stem)
                 self.assertEqual(schema['datePublished'], d.get('date', DATE))
@@ -125,17 +126,18 @@ class CooperationHistories(unittest.TestCase):
         self.assertIn('../cooperation-histories/index.html', fictional)
         self.assertEqual(fictional.count('class="lw-card"'), 9)
         landing = self.pages[ROOT/'essays/cooperation-histories/index.html']
-        self.assertEqual(landing.count('class="lw-card"'), 8)
-        self.assertEqual(landing.count('class="ch-group"'), 4)
+        self.assertEqual(landing.count('class="lw-card"'), 10)
+        self.assertEqual(landing.count('class="ch-group"'), 5)
         self.assertIn('id="reading-route"', landing)
         self.assertIn('href="#conditions-and-limits"', landing)
+        self.assertIn('href="#capacity-and-evidence"', landing)
         self.assertIn('An ongoing series', landing)
         self.assertIn('责任来源不同，不是两个相反的评分', landing)
         self.assertIn('制裁、名字与复审', landing)
         self.assertIn('水流、损害与请求', landing)
         self.assertIn('调查、退出与下一次追问', landing)
         self.assertNotIn('First two essays', landing)
-        self.assertEqual(landing.count('<h3 class="lang-en">'), 8)
+        self.assertEqual(landing.count('<h3 class="lang-en">'), 10)
         library = (ROOT/'library.html').read_text()
         self.assertGreater(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 06'))
         self.assertLess(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 07'))
@@ -155,6 +157,8 @@ class CooperationHistories(unittest.TestCase):
                 ('northern-ireland-windsor', ('Brexit','Northern Ireland','Windsor','北爱尔兰','北愛爾蘭','溫莎框架')),
                 ('us-shrimp-turtle', ('WTO', 'DS58', '海龟', '海龜')),
                 ('kishenganga-water', ('Indus Waters Treaty', 'Kishenganga', 'Neelum', '基申甘加', '印度河水條約')),
+                ('montreal-fund', ('Montreal Protocol', 'Multilateral Fund', 'CFC', '蒙特利尔', '蒙特利爾', '多邊基金')),
+                ('smallpox-eradication', ('smallpox', 'WHO', 'rumour register', '天花', '世界衛生組織')),
             ):
                 record = records['essays/cooperation-histories/' + slug + '.html']
                 for label in labels:
@@ -176,6 +180,10 @@ class CooperationHistories(unittest.TestCase):
         fourth = [u for u in updates if u['id'] == '2026-10-31-cooperation-histories-batch04']
         self.assertEqual(len(fourth), 1)
         self.assertEqual(fourth[0]['kind'], 'expanded')
+        fifth = [u for u in updates if u['id'] == '2026-10-31-cooperation-histories-batch05']
+        self.assertEqual(len(fifth), 1)
+        self.assertEqual(fifth[0]['kind'], 'expanded')
+        self.assertEqual(updates[0]['id'], fifth[0]['id'])
         home = (ROOT/'index.html').read_text()
         self.assertLess(home.index('<!-- COOPERATION HISTORIES HOME START -->'), home.index('<!-- INTERSTATE HOME START -->'))
 
@@ -263,6 +271,48 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
         for slug, partner in (('us-shrimp-turtle', 'kishenganga-water'), ('kishenganga-water', 'us-shrimp-turtle')):
             self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
+
+    def test_montreal_funding_dates_conditions_and_outcomes(self):
+        d = self.items[8]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for term in ('1992年8月', '1991年1月', '经议定的增量成本', '三分之二',
+                     '四家CFC生产商', '十七个月', '药用吸入器', '不是多边基金每笔拨款',
+                     '不是一条必须', '2012年', '不替后来每笔资金'):
+            self.assertIn(term, zh)
+        for term in ('not every expense', 'Two separate simple majorities alone',
+                     'authorized essential production', 'not the fund’s procedure',
+                     'does not invent the later settlement'):
+            self.assertIn(term, en)
+        self.assertEqual(d['coverage'], '1987/2012')
+        self.assertIn('§§101–103', d['sources'][4]['title_en'])
+        self.assertIn('not an independent adjudication', d['sources'][3]['note_en'])
+
+    def test_smallpox_zero_certification_knowledge_and_methods(self):
+        d = self.items[9]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for term in ('一百零四条传闻', '不是全世界所有地方报告的总数', '至少两年',
+                     '1967年的操作手册', '尼日利亚东部', '伯明翰', '1980年5月8日',
+                     '不能被扩大成所有地区', '国家间的合作文件替个人补一声赞成'):
+            self.assertIn(term, zh)
+        for term in ('neither 104 confirmed cases', 'Two calendar years were not an automatic certificate',
+                     'Last naturally occurring case', 'selected episodes cannot establish how frequently',
+                     'not an individual’s agreement'):
+            self.assertIn(term, en)
+        self.assertEqual(d['coverage'], '1967/1980')
+        self.assertIn('mirror', d['sources'][0]['title_en'])
+        self.assertIn('Accessible abstract', d['sources'][3]['note_en'])
+        self.assertNotRegex(zh, r'超过一半|超過一半|百分之五十|52条')
+
+    def test_prior_eight_articles_preserved_and_latest_pair_linked(self):
+        self.assertEqual(self.batch5['published_essays'], 10)
+        self.assertEqual(self.batch5['new_essays'], ['montreal-fund', 'smallpox-eradication'])
+        self.assertEqual(len(self.batch5['preserved_prior_article_sha256']), 8)
+        for slug, expected in self.batch5['preserved_prior_article_sha256'].items():
+            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+        for slug, partner in (('montreal-fund', 'smallpox-eradication'), ('smallpox-eradication', 'montreal-fund')):
+            self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
+        self.assertIn('#capacity-and-evidence', entrances()[ROOT/'index.html'])
+        self.assertIn('family=Noto+Serif+TC', entrances()[ROOT/'library.html'])
 
 
 if __name__ == '__main__':

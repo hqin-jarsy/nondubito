@@ -18,15 +18,16 @@ TARGET = ROOT / 'essays/cooperation-histories'
 BASE = 'https://nondubito.net/essays/cooperation-histories/'
 TITLE = ('After the Shared Decision', '共同决定之后')
 DECK = (
-    'Water, sanctions, an airstrike, a border after exit, and the conditions imposed in conservation’s name. Real histories of shared decisions and the routes by which people can ask for another look.',
-    '水流、制裁、空袭、退出后的边界，以及以保护为名提出的要求。沿真实历史，看共同决定怎样改变生活，又有没有一条路，让受到影响的人要求再看一次。',
+    'Water, sanctions, borders, changing production and finding the last case. Real histories of what shared decisions make possible, what they cost and how they remain open to questions.',
+    '水流、制裁、边界、生产线与最后一个病例。沿真实历史，看共同决定怎样成为做得到的事，怎样改变生活，又怎样继续接受追问。',
 )
-SLUGS = ('rhine-sandoz', 'haiti-cholera', 'iraq-sanctions', 'kadi-listing', 'kunduz-hanan', 'northern-ireland-windsor', 'us-shrimp-turtle', 'kishenganga-water')
+SLUGS = ('rhine-sandoz', 'haiti-cholera', 'iraq-sanctions', 'kadi-listing', 'kunduz-hanan', 'northern-ireland-windsor', 'us-shrimp-turtle', 'kishenganga-water', 'montreal-fund', 'smallpox-eradication')
 GROUPS = (
     ('water-and-harm', (0, 2), 'Water, harm, and a request', '水流、损害与请求', 'The Rhine and Haiti: different sources of responsibility, different routes to repair.', '莱茵河与海地：不同的责任来源，不同的修复道路。'),
     ('sanctions-and-review', (2, 4), 'Sanctions, names, and review', '制裁、名字与复审', 'Iraq and Kadi: a broad restriction and a named target do not ask the same question.', '伊拉克与卡迪：全面限制与直接列名，带来的不是同一道问题。'),
     ('investigation-and-exit', (4, 6), 'An investigation, an exit, and the next question', '调查、退出与下一次追问', 'Kunduz and Northern Ireland: who investigates a shared operation, and what remains to decide after departure? These are different kinds of responsibility, not equivalent harms.', '昆都士与北爱：多国行动由谁调查，退出之后还有什么要共同决定？追问途径值得并读，伤害与责任不能等同。'),
     ('conditions-and-limits', (6, 8), 'A good purpose, a specific limit', '好的目标，也要具体划界', 'Turtle protection and a river diversion: who may prescribe the method, how is a limit reviewed, and who remains outside the interstate procedure?', '从保护海龟到河水引流：谁能要求照哪一种办法做，具体边界怎样重看，个人又站在国家间程序的哪里？'),
+    ('capacity-and-evidence', (8, 10), 'Making change possible, making evidence credible', '改变怎样成为可能，结果怎样值得相信', 'Montreal and smallpox: support must reach a production line, and zero cases must mean more than not looking. Achievements and unfinished questions can belong in the same history.', '蒙特利尔与天花：支持怎样走到生产线上，报表上的零怎样经得起核查。做成了什么，与还有什么没做完，可以一起写进历史。'),
 )
 FRAMEWORK = 'https://self-as-an-end.net/papers/sae-interstate-prequel.html'
 
@@ -36,7 +37,8 @@ class CooperationTraditionalConverter(HistoryTraditionalConverter):
         return (super().convert(text).replace('開啓', '開啟')
                 .replace('寫准', '寫準').replace('稱贊', '稱讚')
                 .replace('啓用', '啟用').replace('阿裡', '阿里')
-                .replace('復審', '複審').replace('咨詢', '諮詢'))
+                .replace('復審', '複審').replace('咨詢', '諮詢')
+                .replace('索馬裡', '索馬里').replace('巴塔查裡亞', '巴塔查里亞'))
 
 
 def load_items():
@@ -88,7 +90,7 @@ def source_note(conv, item=None):
 
 def companion_entry(conv):
     """For the fictional series landing only; leave its nine essays untouched."""
-    return '<!-- COOPERATION HISTORIES COMPANION START --><section class="lw-note" id="real-world-readings">' + loc('A separate shelf of real histories', '另读真实世界 · 独立专题', conv, 'p', 'lw-kicker') + loc(*TITLE, conv, 'h2') + loc('Eight histories: the Rhine, Haiti, Iraq, Kadi, Kunduz, Northern Ireland, the shrimp dispute and Kishenganga. Different powers, responsibilities and routes to review—not continuations of Three Borders, not a ranking of successful and failed cooperation.', '八篇历史：莱茵河、海地、伊拉克、卡迪、昆都士、北爱、美国—虾案与基申甘加。真实机构的权限、责任和追问途径分别交代，不是三界镇的续篇，也不把案例排成合作成功与失败的榜单。', conv, 'p') + '<a class="lw-read" href="../cooperation-histories/index.html">' + loc('Read the histories →', '进入真实案例专题 →', conv) + '</a></section><!-- COOPERATION HISTORIES COMPANION END -->'
+    return '<!-- COOPERATION HISTORIES COMPANION START --><section class="lw-note" id="real-world-readings">' + loc('A separate shelf of real histories', '另读真实世界 · 独立专题', conv, 'p', 'lw-kicker') + loc(*TITLE, conv, 'h2') + loc('Ten histories: rivers, sanctions, investigation, borders, conservation, a production change and smallpox eradication. Different capacities, powers and routes to review—not continuations of Three Borders, not a ranking of successful and failed cooperation.', '十篇历史：河水、制裁、调查、边界、保护要求、生产转型与消灭天花。真实机构的能力、权限和追问途径分别交代，不是三界镇的续篇，也不把案例排成合作成功与失败的榜单。', conv, 'p') + '<a class="lw-read" href="../cooperation-histories/index.html">' + loc('Read the histories →', '进入真实案例专题 →', conv) + '</a></section><!-- COOPERATION HISTORIES COMPANION END -->'
 
 
 def document(content, title, deck, filename, conv, items, item=None):
@@ -111,8 +113,8 @@ def landing(items, conv):
         pair = items[bounds[0]:bounds[1]]
         cards += '<section class="ch-group" id="' + key + '"><div class="lw-note">' + loc(en, zh, conv, 'h2') + loc(deck_en, deck_zh, conv, 'p') + '</div><div class="lw-grid">' + ''.join('<a class="lw-card" href="' + d['slug'] + '.html"><p class="lw-kicker">' + loc(d['place_en'], d['place_zh'], conv) + '</p>' + loc(d['title_en'], d['title_zh'], conv, 'h3') + loc(d['deck_en'], d['deck_zh'], conv, 'p') + loc('Read essay →', '阅读全文 →', conv, 'span', 'lw-read') + '</a>' for d in pair) + '</div><a class="lw-read ch-back" href="#reading-route">' + loc('↑ Reading routes', '↑ 回到阅读导航', conv) + '</a></section>'
     jump = '<nav class="ch-jump" id="reading-route" aria-label="Historical reading routes">' + ''.join('<a href="#' + key + '">' + loc(en, zh, conv) + '</a>' for key, bounds, en, zh, deck_en, deck_zh in GROUPS) + '</nav>'
-    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Historical readings of cooperation', '协作的真实历史细读', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('An ongoing series · Eight essays · English, Simplified & Traditional Chinese', '持续展开的专题 · 八篇 · 英文、简体中文与繁体中文', conv, 'p', 'lw-meta') + '</section>' + jump + '<aside class="lw-opening">' + loc('Begin with a river, a name on a list, a father’s complaint or a fishing net. No theory is required before reading. Choose a route above, or follow the histories in order. Who decides, who implements, who is affected, and who can initiate another look?', '可以从河水、名单、父亲的控告或一张渔网读起。不必先补理论。选上面的一个方向，也可以顺序往下读：谁决定，谁实施，谁受到影响，又由谁来启动再一次审查？', conv, 'p') + '<a href="rhine-sandoz.html">' + loc('Follow the river →', '先跟着河水走 →', conv) + '</a></aside>' + cards + '<section class="lw-note">' + loc('Different responsibilities, not opposite grades', '责任来源不同，不是两个相反的评分', conv, 'h2') + loc('Accidents, sanctions, military action, post-exit arrangements, trade conditions and water arbitration do not confer identical powers or offer identical remedies. Improvements do not retrospectively justify every earlier decision; a gap does not erase useful work. The differences are why the histories belong together.', '事故、制裁、军事行动、退出后的安排、贸易条件与水流仲裁，权限和救济不能揉成一团。后来的改进不追认此前每项决定，存在缺口也不抹去真实工作。保留不同，才值得并列阅读。', conv, 'p') + '</section>' + source_note(conv) + related(conv) + '</main>'
-    return document(content, TITLE[0] + ' · 共同决定之后', DECK[0], 'index.html', conv, items).replace('</head>', '<link rel="stylesheet" href="reading.css?v=20261031"></head>')
+    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Historical readings of cooperation', '协作的真实历史细读', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('An ongoing series · Ten essays · English, Simplified & Traditional Chinese', '持续展开的专题 · 十篇 · 英文、简体中文与繁体中文', conv, 'p', 'lw-meta') + '</section>' + jump + '<aside class="lw-opening">' + loc('Begin with a river, a name on a list, a fishing net or a register of suspected disease. No theory is required before reading. Choose a route above, or follow the histories in order. What makes action possible, who bears its costs, and who can initiate another look?', '可以从河水、名单、渔网或一本疑似病例登记簿读起。不必先补理论。选上面的一个方向，也可以顺序往下读：行动靠什么成为可能，代价由谁承担，又由谁来启动再一次审查？', conv, 'p') + '<a href="rhine-sandoz.html">' + loc('Follow the river →', '先跟着河水走 →', conv) + '</a></aside>' + cards + '<section class="lw-note">' + loc('Different responsibilities, not opposite grades', '责任来源不同，不是两个相反的评分', conv, 'h2') + loc('Accidents, sanctions, military action, post-exit arrangements, trade conditions, water arbitration and health or environmental programmes do not confer identical powers or offer identical remedies. Improvements do not retrospectively justify every earlier decision; a gap does not erase useful work. The differences are why the histories belong together.', '事故、制裁、军事行动、退出后的安排、贸易条件、水流仲裁与卫生环保计划，权限和救济不能揉成一团。后来的改进不追认此前每项决定，存在缺口也不抹去真实工作。保留不同，才值得并列阅读。', conv, 'p') + '</section>' + source_note(conv) + related(conv) + '</main>'
+    return document(content, TITLE[0] + ' · 共同决定之后', DECK[0], 'index.html', conv, items).replace('</head>', '<link rel="stylesheet" href="reading.css?v=20261031b"></head>')
 
 
 def article(item, items, conv):
@@ -146,7 +148,7 @@ def main():
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(text)
-    print(('Checked' if args.check else 'Wrote') + ' After the Shared Decision · eight histories · three complete modes')
+    print(('Checked' if args.check else 'Wrote') + ' After the Shared Decision · ten histories · three complete modes')
 
 
 if __name__ == '__main__':
