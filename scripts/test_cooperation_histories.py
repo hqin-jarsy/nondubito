@@ -25,10 +25,11 @@ class CooperationHistories(unittest.TestCase):
         cls.batch4 = json.loads((DATA/'publication-batch04.json').read_text())
         cls.batch5 = json.loads((DATA/'publication-batch05.json').read_text())
         cls.batch6 = json.loads((DATA/'publication-batch06.json').read_text())
-        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts'], **cls.batch3['counts'], **cls.batch4['counts'], **cls.batch5['counts'], **cls.batch6['counts']}
+        cls.batch7 = json.loads((DATA/'publication-batch07.json').read_text())
+        cls.counts = {**cls.receipt['counts'], **cls.batch2['counts'], **cls.batch3['counts'], **cls.batch4['counts'], **cls.batch5['counts'], **cls.batch6['counts'], **cls.batch7['counts']}
 
     def test_complete_rebuild(self):
-        self.assertEqual(len(self.pages), 13)
+        self.assertEqual(len(self.pages), 15)
         for path, text in {**self.pages, **entrances()}.items():
             self.assertEqual(path.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -49,7 +50,7 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(self.counts[d['slug']]['en_words'], len(' '.join(d['body_en']).split()))
 
     def test_numbered_sources_in_both_editions(self):
-        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7, 5, 9, 7, 5, 8, 6, 6, 8])
+        self.assertEqual([len(d['sources']) for d in self.items], [6, 8, 7, 7, 5, 9, 7, 5, 8, 6, 6, 8, 6, 8])
         for d in self.items:
             numbers = {s['id'] for s in d['sources']}
             text = self.pages[ROOT/('essays/cooperation-histories/' + d['slug'] + '.html')]
@@ -75,7 +76,7 @@ class CooperationHistories(unittest.TestCase):
             if path.name == 'index.html':
                 self.assertEqual(schema['datePublished'], DATE)
                 self.assertEqual(schema['dateModified'], UPDATE_DATE)
-                self.assertEqual(len(schema['hasPart']), 12)
+                self.assertEqual(len(schema['hasPart']), 14)
             else:
                 d = next(d for d in self.items if d['slug'] == path.stem)
                 self.assertEqual(schema['datePublished'], d.get('date', DATE))
@@ -127,19 +128,20 @@ class CooperationHistories(unittest.TestCase):
         self.assertIn('../cooperation-histories/index.html', fictional)
         self.assertEqual(fictional.count('class="lw-card"'), 9)
         landing = self.pages[ROOT/'essays/cooperation-histories/index.html']
-        self.assertEqual(landing.count('class="lw-card"'), 12)
-        self.assertEqual(landing.count('class="ch-group"'), 6)
+        self.assertEqual(landing.count('class="lw-card"'), 14)
+        self.assertEqual(landing.count('class="ch-group"'), 7)
         self.assertIn('id="reading-route"', landing)
         self.assertIn('href="#conditions-and-limits"', landing)
         self.assertIn('href="#capacity-and-evidence"', landing)
         self.assertIn('href="#allocation-and-choice"', landing)
+        self.assertIn('href="#inspection-and-judgment"', landing)
         self.assertIn('An ongoing series', landing)
         self.assertIn('责任来源不同，不是两个相反的评分', landing)
         self.assertIn('制裁、名字与复审', landing)
         self.assertIn('水流、损害与请求', landing)
         self.assertIn('调查、退出与下一次追问', landing)
         self.assertNotIn('First two essays', landing)
-        self.assertEqual(landing.count('<h3 class="lang-en">'), 12)
+        self.assertEqual(landing.count('<h3 class="lang-en">'), 14)
         library = (ROOT/'library.html').read_text()
         self.assertGreater(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 06'))
         self.assertLess(library.index('<!-- COOPERATION HISTORIES LIBRARY START -->'), library.index('Category 07'))
@@ -163,6 +165,8 @@ class CooperationHistories(unittest.TestCase):
                 ('smallpox-eradication', ('smallpox', 'WHO', 'rumour register', '天花', '世界衛生組織')),
                 ('covax-delivery', ('COVAX', 'Ghana', 'AMC', '疫苗', '迦納')),
                 ('greece-bailout', ('Greece', 'OXI', 'Koufaki', '希腊', '希臘')),
+                ('antarctic-inspections', ('Antarctic Treaty', 'Dumont', '南极', '南極', '排污')),
+                ('jcpoa-verification', ('JCPOA', 'IAEA', '130.1', '伊朗', '核查')),
             ):
                 record = records['essays/cooperation-histories/' + slug + '.html']
                 for label in labels:
@@ -190,7 +194,10 @@ class CooperationHistories(unittest.TestCase):
         sixth = [u for u in updates if u['id'] == '2026-10-31-cooperation-histories-batch06']
         self.assertEqual(len(sixth), 1)
         self.assertEqual(sixth[0]['kind'], 'expanded')
-        self.assertEqual(updates[0]['id'], sixth[0]['id'])
+        seventh = [u for u in updates if u['id'] == '2026-11-01-cooperation-histories-batch07']
+        self.assertEqual(len(seventh), 1)
+        self.assertEqual(seventh[0]['kind'], 'expanded')
+        self.assertEqual(updates[0]['id'], seventh[0]['id'])
         home = (ROOT/'index.html').read_text()
         self.assertLess(home.index('<!-- COOPERATION HISTORIES HOME START -->'), home.index('<!-- INTERSTATE HOME START -->'))
 
@@ -318,7 +325,7 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
         for slug, partner in (('montreal-fund', 'smallpox-eradication'), ('smallpox-eradication', 'montreal-fund')):
             self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
-        self.assertIn('#allocation-and-choice', entrances()[ROOT/'index.html'])
+        self.assertIn('#inspection-and-judgment', entrances()[ROOT/'index.html'])
         self.assertIn('family=Noto+Serif+TC', entrances()[ROOT/'library.html'])
 
     def test_covax_allocations_forecasts_delivery_and_personal_redress(self):
@@ -357,6 +364,52 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
         for slug, partner in (('covax-delivery', 'greece-bailout'), ('greece-bailout', 'covax-delivery')):
             self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
+
+
+    def test_antarctic_access_findings_followup_and_limits(self):
+        d = self.items[12]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for term in ('不符合', '附件III', '12日至15日', '1995年', '指定国国民',
+                     '并未因此放弃全部主张', '不是强制性的', '独立准备报告',
+                     '不是处理系统后来已经安装', '争端解决', '一些旧检查报告', '2024年'):
+            self.assertIn(term, zh)
+        for term in ('Macerated', 'did not comply', '12 to 15 December',
+                     'not evidence of twenty-eight years of wrongdoing', 'non-mandatory',
+                     'separate dispute-settlement', 'not an automatic conclusion'):
+            self.assertIn(term, en)
+        self.assertNotIn('三天', zh)
+        self.assertEqual(d['coverage'], '1959/2024')
+
+    def test_jcpoa_quantity_units_dates_and_policy_remit(self):
+        d = self.items[13]
+        zh, en = '\n'.join(d['body_zh']), '\n'.join(d['body_en'])
+        for term in ('130.1', '11月19日', '12月6日', '需求估计', '1月10日',
+                     '2月19日', '六氟化铀等值', '评价仍在进行',
+                     '不是所有制裁一齐消失', '不能代替判断', '2015至2018年'):
+            self.assertIn(term, zh + '\n' + d['deck_zh'])
+        for term in ('19 February', 'uranium hexafluoride', 'significant non-performance',
+                     'not itself a discovery of secret activity', '2015–2018',
+                     'not remove every sanction', 'not a technical judgment'):
+            self.assertIn(term, en)
+        self.assertNotIn('a supposedly subsequent January decision', en)
+        hant = self.pages[ROOT/'essays/cooperation-histories/jcpoa-verification.html']
+        self.assertIn('鈾的質量', hant)
+        self.assertNotIn('鈾的品質', hant)
+        self.assertEqual(d['coverage'], '2015/2018')
+
+    def test_prior_twelve_preserved_and_seventh_pair_linked(self):
+        self.assertEqual(self.batch7['published_essays'], 14)
+        self.assertEqual(self.batch7['new_essays'], ['antarctic-inspections', 'jcpoa-verification'])
+        self.assertEqual(len(self.batch7['preserved_prior_article_sha256']), 12)
+        for slug, expected in self.batch7['preserved_prior_article_sha256'].items():
+            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+        for slug, partner in (('antarctic-inspections', 'jcpoa-verification'), ('jcpoa-verification', 'antarctic-inspections')):
+            self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
+        latest = (ROOT/'latest.html').read_text()
+        for number in (4, 5, 6):
+            section = re.search(r'<!-- COOPERATION HISTORIES BATCH0' + str(number) + r' LATEST START -->(.*?)<!-- COOPERATION HISTORIES BATCH0' + str(number) + r' LATEST END -->', latest, re.S)[1]
+            self.assertIn('datetime="2026-10-31"', section)
+            self.assertNotIn('2026-11-01', section)
 
 
 if __name__ == '__main__':
