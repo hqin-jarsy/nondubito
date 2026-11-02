@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check complete editions, evidence boundaries and durable discovery routes."""
+import html
 import json
 import re
 import unittest
@@ -19,9 +20,10 @@ class PoliticalEconomyTests(unittest.TestCase):
         cls.items = load_items()
         cls.pages = render()
         cls.receipt = json.loads((DATA/'publication-batch01.json').read_text())
+        cls.receipt['counts'].update(json.loads((DATA/'publication-batch02.json').read_text())['counts'])
 
     def test_reproducible_pages_and_entrances(self):
-        self.assertEqual(len(self.pages), 4)
+        self.assertEqual(len(self.pages), 6)
         for p, text in {**self.pages, **entrances()}.items():
             self.assertEqual(p.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -39,7 +41,7 @@ class PoliticalEconomyTests(unittest.TestCase):
                 self.assertEqual(body.count('<h2>'), 2 if d['id'] == 1 else 3)
                 self.assertNotRegex(body, r'\b\d{2}DD\b|\b[EFGZ]\d+\b||turn\d+(?:view|search)')
             self.assertNotRegex(bodies['en'], r'[\u3400-\u9fff]')
-            self.assertNotRegex(bodies['hant'], r'覈實|覈對|復核|標簽|髮款|被系在|余項|籤償還|籤下|籤了和解')
+            self.assertNotRegex(bodies['hant'], r'覈實|覈對|復核|標簽|髮款|被系在|余項|籤償還|籤下|籤了和解|看准|失准|准入')
 
     def test_intro_stays_short_and_distinguishes_voice_from_exit(self):
         d = self.items[0]
@@ -51,7 +53,7 @@ class PoliticalEconomyTests(unittest.TestCase):
         self.assertNotIn('Crossways', ''.join(d['body_en']))
 
     def test_numbered_original_sources(self):
-        self.assertEqual([len(d['sources']) for d in self.items], [5, 3, 6])
+        self.assertEqual([len(d['sources']) for d in self.items], [5, 3, 6, 4, 4])
         for d in self.items:
             for lang in ('en', 'zh'):
                 self.assertEqual(set(map(int, re.findall(r'\[(\d+)\]', '\n'.join(d['body_' + lang])))), {s['id'] for s in d['sources']})
@@ -92,7 +94,7 @@ class PoliticalEconomyTests(unittest.TestCase):
             self.assertEqual(schema['datePublished'], DATE)
             self.assertEqual(schema['dateModified'], DATE)
             if p.name == 'index.html':
-                self.assertEqual(len(schema['hasPart']), 3)
+                self.assertEqual(len(schema['hasPart']), 5)
             else:
                 d = next(d for d in self.items if d['slug'] == p.stem)
                 self.assertEqual(schema['citation'], [s['url'] for s in d['sources']])
@@ -116,7 +118,7 @@ class PoliticalEconomyTests(unittest.TestCase):
 
     def test_open_ended_landing_and_navigation(self):
         text = self.pages[ROOT/'essays/political-economy/index.html']
-        self.assertEqual(text.count('class="lw-card"'), 2)
+        self.assertEqual(text.count('class="lw-card"'), 4)
         self.assertIn('href="introduction.html"', text)
         self.assertIn('An ongoing series', text)
         for name in ('library.html','explore.html','index.html','latest.html','essays/sae/index.html'):
@@ -148,6 +150,36 @@ class PoliticalEconomyTests(unittest.TestCase):
         u = next(u for u in updates if u['id'] == '2026-11-01-political-economy-batch01')
         self.assertEqual(set(u['languages']), {'en','zh','zh-hant'})
         self.assertEqual(u['kind'], 'new')
+        expansion = next(u for u in updates if u['id'] == '2026-11-01-political-economy-batch02')
+        self.assertEqual(expansion['kind'], 'expanded')
+        self.assertEqual(set(expansion['languages']), {'en','zh','zh-hant'})
+
+    def test_hospital_financing_and_historical_boundaries(self):
+        d = self.items[3]
+        zh, en = ''.join(d['body_zh']), ' '.join(d['body_en'])
+        for phrase in ('五家医院的房产', '四家医院房产', '4.9%', '经营管理权', '10月3日', '十五年', '五年的监测', '八年', '2024年5月6日', '不是保证所有医院此后都一直开着'):
+            self.assertIn(phrase, zh)
+        for phrase in ('fifteen-year', 'first-mortgage', '4.9%', '3 October', 'five years of monitoring', 'not a claim that every facility subsequently stayed open', 'not a judicial determination'):
+            self.assertIn(phrase, en)
+        self.assertEqual(d['coverage'], '2010/2024-05-06')
+        self.assertIn('subsequent sales', d['historical_note_en'])
+
+    def test_ratings_units_actions_and_settlement(self):
+        d = self.items[4]
+        zh, en = ''.join(d['body_zh']), ' '.join(d['body_en'])
+        for phrase in ('三十笔', '二十笔', '十一笔交易中的十八个', '负面观察不等于已经降级', '612个', '7月12日', '2015年2月3日', '不能被叫作刑事定罪'):
+            self.assertIn(phrase, zh)
+        for phrase in ('thirty RMBS transactions', 'twenty more', 'eighteen tranches from eleven transactions', '10 July', '12 July', '$1.375 billion', 'nineteen states', 'not an admission by Moody', 'not a criminal conviction'):
+            self.assertIn(phrase, en)
+        self.assertEqual(d['coverage'], '2007/2015-02-03')
+        self.assertIn('2017 SEC', d['historical_note_en'])
+
+    def test_new_cases_do_not_claim_current_proceedings(self):
+        for d in self.items[3:]:
+            page = self.pages[ROOT/('essays/political-economy/' + d['slug'] + '.html')]
+            self.assertIn(d['historical_note_en'], html.unescape(page))
+            self.assertNotIn('Case status is checked to 1 November 2026', page)
+            self.assertIn('English independently written', page)
 
 
 if __name__ == '__main__':
