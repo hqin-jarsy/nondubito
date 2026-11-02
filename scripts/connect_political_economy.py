@@ -7,16 +7,26 @@ from build_political_economy import ROOT, DATE, TITLE, loc, PoliticalTraditional
 from connect_state_transitions import block
 
 
+def dated_card(text, date):
+    """Earlier update cards keep their publication dates as the shelf grows."""
+    current = '<time datetime="' + DATE + '">' + DATE + '</time>'
+    assert text.count(current) == 1
+    return text.replace(current, '<time datetime="' + date + '">' + date + '</time>')
+
+
 def render():
     conv = PoliticalTraditionalConverter()
     try:
         update = next(u for u in json.loads((ROOT/'data/site-updates.json').read_text())['updates'] if u['id'] == '2026-11-01-political-economy-batch01')
         latest_card = '<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-political-economy"><header class="updates-date"><h2 id="date-political-economy"><time datetime="' + DATE + '">' + DATE + '</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="' + update['id'] + '"><div class="update-meta"><span class="update-kind">' + loc('New series · Political economy · Real cases', '新专题 · 政治经济学真实案例', conv) + '</span><span>EN / 简 / 繁</span></div>' + loc(*TITLE, conv, 'h3') + loc(update['summary']['en'], update['summary']['zh'], conv, 'p') + '<a href="essays/political-economy/index.html">' + loc('Read the introduction and cases →', '读导读与真实案例 →', conv) + '</a></article></div></section></div></section>'
-        latest = block((ROOT/'latest.html').read_text(), 'POLITICAL ECONOMY BATCH01 LATEST', latest_card, '<!-- COOPERATION HISTORIES BATCH07 LATEST START -->')
+        latest = block((ROOT/'latest.html').read_text(), 'POLITICAL ECONOMY BATCH01 LATEST', dated_card(latest_card, update['date']), '<!-- COOPERATION HISTORIES BATCH07 LATEST START -->')
         expansion = next(u for u in json.loads((ROOT/'data/site-updates.json').read_text())['updates'] if u['id'] == '2026-11-01-political-economy-batch02')
         expansion_card = '<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-political-economy-batch02"><header class="updates-date"><h2 id="date-political-economy-batch02"><time datetime="' + DATE + '">' + DATE + '</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="' + expansion['id'] + '"><div class="update-meta"><span class="update-kind">' + loc('Expanded · Political economy · Real cases', '专题扩展 · 政治经济学真实案例', conv) + '</span><span>EN / 简 / 繁</span></div>' + loc(expansion['title']['en'], expansion['title']['zh'], conv, 'h3') + loc(expansion['summary']['en'], expansion['summary']['zh'], conv, 'p') + '<a href="essays/political-economy/steward-hospitals.html">' + loc('Read the hospital essay →', '从医院篇读起 →', conv) + '</a></article></div></section></div></section>'
-        latest = block(latest, 'POLITICAL ECONOMY BATCH02 LATEST', expansion_card, '<!-- POLITICAL ECONOMY BATCH01 LATEST START -->')
-        home_row = '<a class="home-update-row" href="essays/political-economy/index.html#cases"><time datetime="' + DATE + '">Nov 1</time><div>' + loc('Two new cases · Political economy · EN / 简 / 繁', '新增两篇案例 · 政治经济学 · 英简繁', conv, 'span', 'home-update-kind') + loc('Hospitals, ratings and who can ask', '医院、评级与谁能追问', conv, 'h3') + '</div></a>'
+        latest = block(latest, 'POLITICAL ECONOMY BATCH02 LATEST', dated_card(expansion_card, expansion['date']), '<!-- POLITICAL ECONOMY BATCH01 LATEST START -->')
+        batch03 = next(u for u in json.loads((ROOT/'data/site-updates.json').read_text())['updates'] if u['id'] == '2026-11-02-political-economy-batch03')
+        batch03_card = '<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-political-economy-batch03"><header class="updates-date"><h2 id="date-political-economy-batch03"><time datetime="' + DATE + '">' + DATE + '</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="' + batch03['id'] + '"><div class="update-meta"><span class="update-kind">' + loc('Expanded · Political economy · Real cases', '专题扩展 · 政治经济学真实案例', conv) + '</span><span>EN / 简 / 繁</span></div>' + loc(batch03['title']['en'], batch03['title']['zh'], conv, 'h3') + loc(batch03['summary']['en'], batch03['summary']['zh'], conv, 'p') + '<a href="essays/political-economy/google-adtech.html">' + loc('Read the ad auction essay →', '从广告竞价篇读起 →', conv) + '</a></article></div></section></div></section>'
+        latest = block(latest, 'POLITICAL ECONOMY BATCH03 LATEST', dated_card(batch03_card, batch03['date']), '<!-- POLITICAL ECONOMY BATCH02 LATEST START -->')
+        home_row = '<a class="home-update-row" href="essays/political-economy/index.html#cases"><time datetime="' + DATE + '">Nov 2</time><div>' + loc('Two new cases · Political economy · EN / 简 / 繁', '新增两篇案例 · 政治经济学 · 英简繁', conv, 'span', 'home-update-kind') + loc('Ad auctions and water services', '广告竞价与水务监管', conv, 'h3') + '</div></a>'
         home = block((ROOT/'index.html').read_text(), 'POLITICAL ECONOMY HOME', home_row, '<!-- COOPERATION HISTORIES HOME START -->')
         explore_source = (ROOT/'explore.html').read_text()
         start = explore_source.index('<section class="domain-section" id="sae">')

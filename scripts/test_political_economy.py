@@ -21,9 +21,10 @@ class PoliticalEconomyTests(unittest.TestCase):
         cls.pages = render()
         cls.receipt = json.loads((DATA/'publication-batch01.json').read_text())
         cls.receipt['counts'].update(json.loads((DATA/'publication-batch02.json').read_text())['counts'])
+        cls.receipt['counts'].update(json.loads((DATA/'publication-batch03.json').read_text())['counts'])
 
     def test_reproducible_pages_and_entrances(self):
-        self.assertEqual(len(self.pages), 6)
+        self.assertEqual(len(self.pages), 8)
         for p, text in {**self.pages, **entrances()}.items():
             self.assertEqual(p.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -53,7 +54,7 @@ class PoliticalEconomyTests(unittest.TestCase):
         self.assertNotIn('Crossways', ''.join(d['body_en']))
 
     def test_numbered_original_sources(self):
-        self.assertEqual([len(d['sources']) for d in self.items], [5, 3, 6, 4, 4])
+        self.assertEqual([len(d['sources']) for d in self.items], [5, 3, 6, 4, 4, 4, 5])
         for d in self.items:
             for lang in ('en', 'zh'):
                 self.assertEqual(set(map(int, re.findall(r'\[(\d+)\]', '\n'.join(d['body_' + lang])))), {s['id'] for s in d['sources']})
@@ -91,12 +92,14 @@ class PoliticalEconomyTests(unittest.TestCase):
             self.assertEqual(json.loads(beacons[0]['data-cf-beacon'])['token'], TOKEN)
             schema = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)[1])
             self.assertEqual(schema['inLanguage'], ['en', 'zh-Hans', 'zh-Hant'])
-            self.assertEqual(schema['datePublished'], DATE)
-            self.assertEqual(schema['dateModified'], DATE)
             if p.name == 'index.html':
-                self.assertEqual(len(schema['hasPart']), 5)
+                self.assertEqual(schema['datePublished'], self.items[0]['date'])
+                self.assertEqual(schema['dateModified'], DATE)
+                self.assertEqual(len(schema['hasPart']), 7)
             else:
                 d = next(d for d in self.items if d['slug'] == p.stem)
+                self.assertEqual(schema['datePublished'], d['date'])
+                self.assertEqual(schema['dateModified'], d.get('modified', d['date']))
                 self.assertEqual(schema['citation'], [s['url'] for s in d['sources']])
                 self.assertEqual(schema['isPartOf']['url'], BASE)
 
@@ -118,7 +121,7 @@ class PoliticalEconomyTests(unittest.TestCase):
 
     def test_open_ended_landing_and_navigation(self):
         text = self.pages[ROOT/'essays/political-economy/index.html']
-        self.assertEqual(text.count('class="lw-card"'), 4)
+        self.assertEqual(text.count('class="lw-card"'), 6)
         self.assertIn('href="introduction.html"', text)
         self.assertIn('An ongoing series', text)
         for name in ('library.html','explore.html','index.html','latest.html','essays/sae/index.html'):
@@ -145,7 +148,10 @@ class PoliticalEconomyTests(unittest.TestCase):
         root = ET.fromstring((ROOT/'sitemap.xml').read_text())
         urls = {x.find('{*}loc').text:x.find('{*}lastmod').text for x in root.findall('{*}url')}
         for p in self.pages:
-            self.assertEqual(urls[BASE + ('' if p.name == 'index.html' else p.name)], DATE)
+            expected = DATE if p.name == 'index.html' else next(d for d in self.items if d['slug'] == p.stem)['date']
+            if p.name == 'credit-ratings.html':
+                expected = '2026-11-02'  # Forward navigation refreshed; original publication remains 1 November.
+            self.assertEqual(urls[BASE + ('' if p.name == 'index.html' else p.name)], expected)
         updates = json.loads((ROOT/'data/site-updates.json').read_text())['updates']
         u = next(u for u in updates if u['id'] == '2026-11-01-political-economy-batch01')
         self.assertEqual(set(u['languages']), {'en','zh','zh-hant'})
@@ -153,6 +159,9 @@ class PoliticalEconomyTests(unittest.TestCase):
         expansion = next(u for u in updates if u['id'] == '2026-11-01-political-economy-batch02')
         self.assertEqual(expansion['kind'], 'expanded')
         self.assertEqual(set(expansion['languages']), {'en','zh','zh-hant'})
+        newest = next(u for u in updates if u['id'] == '2026-11-02-political-economy-batch03')
+        self.assertEqual(newest['kind'], 'expanded')
+        self.assertEqual(newest['date'], DATE)
 
     def test_hospital_financing_and_historical_boundaries(self):
         d = self.items[3]
@@ -180,6 +189,39 @@ class PoliticalEconomyTests(unittest.TestCase):
             self.assertIn(d['historical_note_en'], html.unescape(page))
             self.assertNotIn('Case status is checked to 1 November 2026', page)
             self.assertIn('English independently written', page)
+
+    def test_google_markets_historical_practice_and_remedy_scope(self):
+        d = self.items[5]
+        zh, en = ''.join(d['body_zh']), ' '.join(d['body_en'])
+        for phrase in ('Last Look', '不同位置', '原告没有证明', '不是另一起 Google 搜索案', '2026年9月2日', '六年', '不等于所要求的接口当天全部建好'):
+            self.assertIn(phrase, zh)
+        for phrase in ('after trial', 'advertiser-ad-network claim failed', 'separate Google Search case', 'six-year', 'not evidence that every integration already worked'):
+            self.assertIn(phrase, en)
+        self.assertIn('Historical Last Look', d['historical_note_en'])
+        self.assertIn('reproduced by FindLaw', d['sources'][2]['title_en'])
+
+    def test_thames_value_cash_and_payment_triggers(self):
+        d = self.items[6]
+        zh, en = ''.join(d['body_zh']), ' '.join(d['body_en'])
+        for phrase in ('没有现金净流出', '养老金', '不能像更换电力或手机服务', '2023年5月17日', '不是一笔股息招来了全部罚款', '2030年3月31日', '不是本篇已经核实收到款项'):
+            self.assertIn(phrase, zh)
+        for phrase in ('£131.3 million', '£37.5 million', '£104.5 million', '£18.2 million', 'earliest of three events', '31 March 2030', 'not evidence reviewed here that the money had arrived'):
+            self.assertIn(phrase, en)
+        self.assertEqual(d['coverage'], '2023/2025-08-27')
+        self.assertIn('final-decision PDF', d['sources'][0]['note_en'])
+
+    def test_earlier_publication_and_update_dates_are_not_rewritten(self):
+        self.assertEqual([d['date'] for d in self.items[:5]], ['2026-11-01'] * 5)
+        self.assertEqual([d['date'] for d in self.items[5:]], [DATE] * 2)
+        for d in self.items:
+            page = self.pages[ROOT/('essays/political-economy/' + d['slug'] + '.html')]
+            self.assertIn('<time datetime="' + d['date'] + '">' + d['date'] + '</time>', page)
+        latest = (ROOT/'latest.html').read_text()
+        for batch in ('BATCH01', 'BATCH02'):
+            marker = 'POLITICAL ECONOMY ' + batch + ' LATEST'
+            text = re.search('<!-- ' + marker + ' START -->(.*?)<!-- ' + marker + ' END -->', latest, re.S)[1]
+            self.assertIn('<time datetime="2026-11-01">2026-11-01</time>', text)
+            self.assertNotIn('<time datetime="' + DATE, text)
 
 
 if __name__ == '__main__':
