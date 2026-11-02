@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+"""Add current discovery entries without rewriting old update blocks."""
+import argparse
+import json
+
+from build_political_economy import ROOT, DATE, TITLE, loc, PoliticalTraditionalConverter
+from connect_state_transitions import block
+
+
+def render():
+    conv = PoliticalTraditionalConverter()
+    try:
+        update = next(u for u in json.loads((ROOT/'data/site-updates.json').read_text())['updates'] if u['id'] == '2026-11-01-political-economy-batch01')
+        latest_card = '<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-political-economy"><header class="updates-date"><h2 id="date-political-economy"><time datetime="' + DATE + '">' + DATE + '</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="' + update['id'] + '"><div class="update-meta"><span class="update-kind">' + loc('New series · Political economy · Real cases', '新专题 · 政治经济学真实案例', conv) + '</span><span>EN / 简 / 繁</span></div>' + loc(*TITLE, conv, 'h3') + loc(update['summary']['en'], update['summary']['zh'], conv, 'p') + '<a href="essays/political-economy/index.html">' + loc('Read the introduction and cases →', '读导读与真实案例 →', conv) + '</a></article></div></section></div></section>'
+        latest = block((ROOT/'latest.html').read_text(), 'POLITICAL ECONOMY BATCH01 LATEST', latest_card, '<!-- COOPERATION HISTORIES BATCH07 LATEST START -->')
+        home_row = '<a class="home-update-row" href="essays/political-economy/index.html"><time datetime="' + DATE + '">Nov 1</time><div>' + loc('New series · Political economy · EN / 简 / 繁', '新专题 · 政治经济学 · 英简繁', conv, 'span', 'home-update-kind') + loc(*TITLE, conv, 'h3') + '</div></a>'
+        home = block((ROOT/'index.html').read_text(), 'POLITICAL ECONOMY HOME', home_row, '<!-- COOPERATION HISTORIES HOME START -->')
+        explore_source = (ROOT/'explore.html').read_text()
+        start = explore_source.index('<section class="domain-section" id="sae">')
+        end = explore_source.index('</section>', start) + len('</section>')
+        section = explore_source[start:end]
+        direct = '<p class="sae-map-link"><a href="essays/political-economy/index.html">' + loc('New real-case readings: Money, Power, and Room to Move →', '新增真实案例：钱、权力与我们的路 →', conv) + '</a></p>'
+        section = block(section, 'POLITICAL ECONOMY EXPLORE', direct, '<div class="shelf-grid">')
+        explore = explore_source[:start] + section + explore_source[end:]
+        return {ROOT/'index.html':home, ROOT/'latest.html':latest, ROOT/'explore.html':explore}
+    finally:
+        conv.close()
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true')
+    args = parser.parse_args()
+    for path, text in render().items():
+        if args.check:
+            assert path.read_text() == text, f'Stale entrance: {path}'
+        else:
+            path.write_text(text)
+    print(('Checked' if args.check else 'Connected') + ' Political Economy · Home / Latest / Explore')
+
+
+if __name__ == '__main__':
+    main()

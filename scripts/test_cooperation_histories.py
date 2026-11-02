@@ -197,7 +197,7 @@ class CooperationHistories(unittest.TestCase):
         seventh = [u for u in updates if u['id'] == '2026-11-01-cooperation-histories-batch07']
         self.assertEqual(len(seventh), 1)
         self.assertEqual(seventh[0]['kind'], 'expanded')
-        self.assertEqual(updates[0]['id'], seventh[0]['id'])
+        self.assertEqual(next(u for u in updates if 'cooperation-histories' in u['id'])['id'], seventh[0]['id'])
         home = (ROOT/'index.html').read_text()
         self.assertLess(home.index('<!-- COOPERATION HISTORIES HOME START -->'), home.index('<!-- INTERSTATE HOME START -->'))
 
