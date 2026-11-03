@@ -12,16 +12,16 @@ from build_language_writing import ROOT, loc, page
 from build_cooperation_histories import CooperationTraditionalConverter
 from build_state_transitions import prose
 
-DATE = '2026-11-02'
+DATE = '2026-11-03'
 DATA = ROOT / 'data/political-economy'
 TARGET = ROOT / 'essays/political-economy'
 BASE = 'https://nondubito.net/essays/political-economy/'
 TITLE = ('Money, Power, and Room to Move', '钱、权力与我们的路')
 DECK = (
-    'From training and marketplaces to hospitals, ratings, digital advertising and water services. Real cases ask what money makes possible, who acquires control, and how a decision can be questioned.',
-    '从培训、平台、医院、评级、广告与供水读起：钱使什么成为可能，谁因此取得了决定权，受到决定影响的人又怎样继续追问。',
+    'Real cases from work, trade and public services: what money makes possible, who acquires control, and how the people affected can question a decision.',
+    '从工作、交易与公共服务中的真实案例读起：钱使什么成为可能，谁因此取得了决定权，受到决定影响的人又怎样继续追问。',
 )
-SLUGS = ('introduction', 'petsmart-training', 'amazon-marketplace', 'steward-hospitals', 'credit-ratings', 'google-adtech', 'thames-water')
+SLUGS = ('introduction', 'petsmart-training', 'amazon-marketplace', 'steward-hospitals', 'credit-ratings', 'google-adtech', 'thames-water', 'foxconn-wisconsin', 'apple-app-store')
 
 
 class PoliticalTraditionalConverter(CooperationTraditionalConverter):
@@ -61,7 +61,7 @@ def library_card(conv):
     def ll(en, zh, tag='span', css=''):
         return loc(en, zh, conv, tag, css).replace('lang-zh', 'lang-zh cl-zh').replace('lang-hant', 'lang-zh cl-hant')
     return ('<a href="essays/political-economy/index.html" class="series-card"><span class="series-card-count">'
-            + ll('Political economy · Introduction + 6 cases · EN / 简 / 繁', '政治经济学 · 导读＋六篇真实案例 · 英简繁')
+            + ll('Political economy · Introduction + 8 cases · EN / 简 / 繁', '政治经济学 · 导读＋八篇真实案例 · 英简繁')
             + '</span><div class="series-card-title-zh cl-zh">钱、权力与我们的路</div><div class="series-card-title-zh cl-hant">錢、權力與我們的路</div><div class="series-card-title-en">Money, Power, and Room to Move</div>'
             + ll(DECK[0], DECK[1], 'p', 'series-card-desc')
             + ll('Read the cases →', '进入真实案例专题 →', 'span', 'series-card-arrow') + '</a>')
@@ -118,7 +118,7 @@ def document(content, title, deck, filename, conv, items, item=None):
 def landing(items, conv):
     intro = items[0]
     cards = ''.join('<a class="lw-card" href="' + d['slug'] + '.html"><p class="lw-kicker">' + loc(d['place_en'], d['place_zh'], conv) + '</p>' + loc(d['title_en'], d['title_zh'], conv, 'h2') + loc(d['deck_en'], d['deck_zh'], conv, 'p') + loc('Read essay →', '阅读全文 →', conv, 'span', 'lw-read') + '</a>' for d in items[1:])
-    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Political economy · Real cases', '政治经济学 · 真实案例', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('An ongoing series · A short introduction + six cases · English, Simplified & Traditional Chinese', '持续展开的专题 · 短导读＋六篇案例 · 英文、简体中文与繁体中文', conv, 'p', 'lw-meta') + '</section><aside class="lw-opening">' + loc(intro['title_en'], intro['title_zh'], conv, 'h2') + loc('Can someone leave? Can they stay and object? Begin with these questions, or go straight to a case below. No prior reading is required.', '走得了，也能留下来提出异议吗？可以先读短导读，也可以直接进入下面任一案例，不必先读论文。', conv, 'p') + '<a href="introduction.html">' + loc('Read the short introduction →', '读短导读 →', conv) + '</a></aside><section class="lw-grid" id="cases" aria-label="Real case readings">' + cards + '</section><section class="lw-note">' + loc('Not a list of guilty companies', '不为公司排一张好坏榜', conv, 'h2') + loc('A course can open a profession and attach an obligation to departure. A marketplace can create demand and shape the alternatives to itself. Financing can sustain care and commit future resources; an expert opinion can help a judgment without replacing it. Follow the particular decisions, benefits, costs and routes to review. The cases can complicate the questions; they are not required to deliver one verdict.', '培训可以打开一种职业，也可能给离开附上条件。平台可以创造需求，也会影响替代之路。融资能够支持照护，也会形成未来负担；专业意见可以帮助判断，不必替代判断。逐项读贡献、代价、决定与复核途径；案例可以使问题更复杂，不必得出同一种判词。', conv, 'p') + '</section>' + reading_note(conv) + related(conv) + '</main>'
+    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Political economy · Real cases', '政治经济学 · 真实案例', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('An ongoing series · A short introduction + eight cases · English, Simplified & Traditional Chinese', '持续展开的专题 · 短导读＋八篇案例 · 英文、简体中文与繁体中文', conv, 'p', 'lw-meta') + '</section><aside class="lw-opening">' + loc(intro['title_en'], intro['title_zh'], conv, 'h2') + loc('Can someone leave? Can they stay and object? Begin with these questions, or go straight to a case below. No prior reading is required.', '走得了，也能留下来提出异议吗？可以先读短导读，也可以直接进入下面任一案例，不必先读论文。', conv, 'p') + '<a href="introduction.html">' + loc('Read the short introduction →', '读短导读 →', conv) + '</a></aside><section class="lw-grid" id="cases" aria-label="Real case readings">' + cards + '</section><section class="lw-note">' + loc('Not a list of guilty companies', '不为公司排一张好坏榜', conv, 'h2') + loc('A course can open a profession and attach an obligation to departure. A marketplace can create demand and shape the alternatives to itself. Financing can sustain care and commit future resources; an expert opinion can help a judgment without replacing it. Follow the particular decisions, benefits, costs and routes to review. The cases can complicate the questions; they are not required to deliver one verdict.', '培训可以打开一种职业，也可能给离开附上条件。平台可以创造需求，也会影响替代之路。融资能够支持照护，也会形成未来负担；专业意见可以帮助判断，不必替代判断。逐项读贡献、代价、决定与复核途径；案例可以使问题更复杂，不必得出同一种判词。', conv, 'p') + '</section>' + reading_note(conv) + related(conv) + '</main>'
     return document(content, TITLE[0], DECK[0], 'index.html', conv, items)
 
 
@@ -156,7 +156,7 @@ def main():
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(text)
-    print(('Checked' if args.check else 'Wrote') + ' Political Economy · short introduction + six cases · three complete modes')
+    print(('Checked' if args.check else 'Wrote') + ' Political Economy · short introduction + eight cases · three complete modes')
 
 
 if __name__ == '__main__':
