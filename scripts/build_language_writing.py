@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Build three complete reader essays, and a six-shelf SAE reading map."""
 from __future__ import annotations
 
@@ -11,6 +12,7 @@ from pathlib import Path
 from build_ai_work_series import shell_header, footer, tri
 from build_love_series import LoveTraditionalConverter
 from web_analytics import tracked_html
+from language_writing_languages import alternatives, legacy_header, render_foreign
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE = '2026-10-26'
@@ -71,15 +73,20 @@ def page(content: str, title: str, deck: str, path: str, conv, source: str | Non
         schema.update(headline=title,author={'@type':'Person','name':'Han Qin (秦汉)'},datePublished=publication_date,dateModified=publication_date,citation=source,mainEntityOfPage=url,isPartOf={'@type':'CollectionPage','url':collection_url,'name':collection_name})
     schema_text = json.dumps(schema,ensure_ascii=False).replace('</','<\\/')
     header = shell_header().replace('data-site-shell-menu aria-controls','data-site-shell-menu aria-label="Menu" aria-controls')
+    multilingual = path.startswith('essays/language-writing/')
+    if multilingual:
+        header = legacy_header(header,Path(path).stem)
+    alternates = alternatives(Path(path).stem) if multilingual else ''
+    version = '20261103' if multilingual else '20261026'
     foot = footer()
     for en,zh in (('Explore','探索'),('Library','书架'),('SAE Theory ↗','SAE 理论 ↗')):
         foot = foot.replace('>'+en+'</a>','>'+loc(en,zh,conv)+'</a>')
     return f'''<!DOCTYPE html>
 <html lang="en" data-lang="en" data-editions="en zh zh-hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>{esc(title)} — Non Dubito</title><meta name="description" content="{esc(deck)}"><meta name="author" content="Han Qin (秦汉)">
-<link rel="canonical" href="{url}"><meta property="og:type" content="{'article' if source else 'website'}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(deck)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary">
+<link rel="canonical" href="{url}">{alternates}<meta property="og:type" content="{'article' if source else 'website'}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(deck)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@300;400;500&amp;family=Noto+Serif+SC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../style.css"><link rel="stylesheet" href="../../site-shell.css?v=20260905b"><link rel="stylesheet" href="../language-writing/reading.css?v=20261026"><script src="../../site-shell.js?v=20260905b"></script><script defer src="../language-writing/reading.js?v=20261026"></script><script type="application/ld+json">{schema_text}</script></head><body class="site-shell-page explicit-hant lw-page">{header}{content}{foot}</body></html>
+<link rel="stylesheet" href="../../style.css"><link rel="stylesheet" href="../../site-shell.css?v=20260905b"><link rel="stylesheet" href="../language-writing/reading.css?v={version}"><script src="../../site-shell.js?v=20260905b"></script><script defer src="../language-writing/reading.js?v={version}"></script><script type="application/ld+json">{schema_text}</script></head><body class="site-shell-page explicit-hant lw-page">{header}{content}{foot}</body></html>
 '''
 
 
@@ -97,7 +104,7 @@ def related(conv):
 
 def index(items,conv):
     cards = ''.join(f'<a class="lw-card" href="{item["slug"]}.html"><p class="lw-kicker">0{item["id"]}</p>{loc(item["title_en"],item["title_zh"],conv,"h2")}{loc(item["deck_en"],item["deck_zh"],conv,"p")}{loc("Read essay →","阅读全文 →",conv,"span","lw-read")}</a>' for item in items)
-    content = f'''<main class="lw-wrap">{crumb(conv)}<section class="lw-hero"><p class="lw-kicker">Non Dubito · {loc('Language & Writing','语言与写作',conv)}</p>{loc(*TITLE,conv,'h1')}{loc(*DECK,conv,'p','lw-deck lw-search-deck')}{loc('Three complete essays · English, Simplified & Traditional Chinese','三篇完整散文 · 英文、简体中文与繁体中文',conv,'p','lw-meta')}</section>
+    content = f'''<main class="lw-wrap">{crumb(conv)}<section class="lw-hero"><p class="lw-kicker">Non Dubito · {loc('Language & Writing','语言与写作',conv)}</p>{loc(*TITLE,conv,'h1')}{loc(*DECK,conv,'p','lw-deck lw-search-deck')}{loc('Three complete essays · Eight languages','三篇完整散文 · 八语全文',conv,'p','lw-meta')}</section>
 <aside class="lw-opening">{loc('You do not have to learn a theory of language before reading. Begin with the thing you want to say.','不必先学一套语言理论。从你想说的一句话开始就好。',conv,'p')}<a href="ep01.html">{loc('Start with a name →','从一个名字开始 →',conv)}</a></aside><section class="lw-grid">{cards}</section><section class="lw-note">{loc('What this series asks','这三篇在问什么',conv,'h2')}{loc('Shared words make thought possible, yet no wording settles every experience. AI can help us compare, revise and discover; whether a sentence is truly what we mean remains a question we have to meet. The examples here are imagined ordinary situations, not documented cases. Technical hypotheses in the papers are not treated as established findings about every model or every writer.','共同的词让想法得以传递，但没有一句话能把经历全说尽。AI 可以帮忙展开、比较与修改，却不能仅凭文字漂亮，就决定那是不是我们真正想说的。本系列使用虚构的日常场景，不当作真实案例；论文里的技术假说也不写成对所有模型、所有写作者都已证实的结论。',conv,'p')}</section>{related(conv)}</main>'''
     return page(content,TITLE[0] + ' · 语言与写作',DECK[0],'essays/language-writing/index.html',conv)
 
@@ -145,6 +152,7 @@ def render():
     try:
         pages = {ROOT/'essays/language-writing/index.html':index(items,conv),ROOT/'essays/sae/index.html':reading_map(conv)}
         pages.update({ROOT/f'essays/language-writing/{item["slug"]}.html':article(item,items,conv) for item in items})
+        pages.update(render_foreign())
         return pages
     finally:
         conv.close()
@@ -160,7 +168,7 @@ def main():
         else:
             path.parent.mkdir(parents=True,exist_ok=True)
             path.write_text(text)
-    print(('Checked' if args.check else 'Wrote')+' five pages · three complete reading modes · six reading shelves')
+    print(('Checked' if args.check else 'Wrote')+' 25 pages · eight complete language editions · six reading shelves retained')
 
 
 if __name__ == '__main__':

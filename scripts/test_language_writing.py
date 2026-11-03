@@ -28,14 +28,16 @@ class LanguageWritingPublication(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.items=load_items()
-        cls.pages=render()
+        cls.all_pages=render()
+        cls.pages={p:s for p,s in cls.all_pages.items() if p.parent.name not in ('de','fr','es','ja','ko')}
         cls.report=json.loads((ROOT/'data/language-writing/publication.json').read_text())
         cls.groups=json.loads((ROOT/'data/sae-reading-map.json').read_text())['groups']
 
     def test_complete_rebuild(self):
         self.assertEqual(len(self.items),3)
         self.assertEqual(len(self.pages),5)
-        for path,text in self.pages.items():
+        self.assertEqual(len(self.all_pages),25)
+        for path,text in self.all_pages.items():
             self.assertEqual(path.read_text(),text)
             self.assertNotIn('TODO',text)
 
