@@ -4,10 +4,11 @@ import json
 import re
 import unittest
 import hashlib
+import subprocess
 from urllib.parse import urlsplit,unquote
 import build_hongloumeng_original as build
 import build_search_index as search
-from hongloumeng_translations import edition, FOREIGN, DATA, DATE
+from hongloumeng_translations import edition, FOREIGN, DATA, DATE, received_path
 
 class OriginalTests(unittest.TestCase):
     def test_author_revision_20261019(self):
@@ -46,7 +47,8 @@ class OriginalTests(unittest.TestCase):
                 lines=build.manuscript(p.stem)
                 actual=[(int(n),html.unescape(re.sub('<[^>]+>','',v))) for n,v in re.findall(r'<p data-source-line="(\d+)">(.*?)</p>',s)]
                 self.assertEqual([n for n,v in actual],[i for i,v in enumerate(lines,1) if i>1 and v])
-                self.assertEqual(len(re.findall('data-source-line=',s.split('<div class="verse">')[1].split('</div>')[0])),{'ch081':8,'ch082':2,'ch083':1}[p.stem])
+                verses = s.split('<div class="verse">')
+                self.assertEqual(len(re.findall('data-source-line=',verses[1].split('</div>')[0])) if len(verses)>1 else 0,{'ch081':8,'ch082':2,'ch083':1,'ch084':0}[p.stem])
                 if p.parent==build.TARGET:
                     self.assertEqual(actual,[(i,v) for i,v in enumerate(lines,1) if i>1 and v])
                     self.assertEqual(html.unescape(re.sub('<[^>]+>','',re.search('<h1>(.*?)</h1>',s)[1])),lines[0])
@@ -55,9 +57,12 @@ class OriginalTests(unittest.TestCase):
                     for bad in ('城東二十裡','一乾人','對不准針眼'):self.assertNotIn(bad,s)
                 elif p.stem=='ch082':
                     for good in ('腰繫青絲','繫一條淡','帕子鬆了','拿不準','參鬚','如何作得準'):self.assertIn(good,s)
-                else:
+                elif p.stem=='ch083':
                     for good in ('茶飯一發','方鬆開','紙紮','兩隻手','人數估準','桌几裡頭','餘下的銀封','準信'):self.assertIn(good,s)
                     for bad in ('茶飯一髮','桌幾裡頭','准信'):self.assertNotIn(bad,s)
+                elif p.stem=='ch084':
+                    for good in ('準信','準話','背著人','發黃','血症','繫了一條暗','沒精打采','捲了包','一干婆子','只餘幾件','挽著個纂兒','經摺裡'):self.assertIn(good,s)
+                    for bad in ('一乾婆子','精打採','髮黃','准信','混唚','輓著個纂兒'):self.assertNotIn(bad,s)
 
     def test_navigation_and_metadata(self):
         for p,s in build.render().items():
@@ -65,7 +70,7 @@ class OriginalTests(unittest.TestCase):
                 u=urlsplit(html.unescape(href))
                 if u.scheme or not u.path:continue
                 self.assertTrue((p.parent/unquote(u.path)).resolve().exists(),href)
-            self.assertNotIn('ch084.html',s)
+            self.assertNotIn('ch085.html',s)
             self.assertEqual(len(re.findall(r'rel="alternate" hreflang=',s)),9)
             for directory,code,_ in build.EDITIONS.values():
                 self.assertIn(f'hreflang="{code}" href="{build.ORIGIN+directory+(p.name if p.stem in build.CHAPTERS else "")}"',s)
@@ -78,7 +83,7 @@ class OriginalTests(unittest.TestCase):
             self.assertEqual(schema['@type'],'Chapter' if p.stem in build.CHAPTERS else 'CollectionPage')
             self.assertEqual(schema['inLanguage'],p.parent.name if foreign else 'zh-Hant' if p.parent.name=='zh-hant' else 'zh-Hans')
             if p.stem in build.CHAPTERS:
-                translation_date='2026-10-24' if p.stem=='ch083' else DATE
+                translation_date={'ch083':'2026-10-24','ch084':'2026-11-03'}.get(p.stem,DATE)
                 self.assertEqual(schema['datePublished'],translation_date if foreign else build.CHAPTERS[p.stem]['published'])
                 self.assertEqual(schema['dateModified'], translation_date if foreign else build.CHAPTERS[p.stem].get('modified', build.DATE))
                 if foreign:self.assertEqual(schema['translationOfWork']['url'],build.ORIGIN+p.stem+'.html')
@@ -88,7 +93,7 @@ class OriginalTests(unittest.TestCase):
                     if 0<=position+step<len(keys):self.assertIn(keys[position+step]+'.html',nav)
             else:
                 self.assertEqual(len(schema['hasPart']),len(build.CHAPTERS))
-                self.assertEqual(schema['dateModified'],'2026-10-24' if foreign else max(ch.get('modified',ch['published']) for ch in build.CHAPTERS.values()))
+                self.assertEqual(schema['dateModified'],max(ch.get('modified',ch['published']) for ch in build.CHAPTERS.values()))
 
     def test_discovery(self):
         for lang,d in [('zh-hans',''),('zh-hant','zh-hant/'),*((lang,lang+'/') for lang in FOREIGN)]:
@@ -102,7 +107,7 @@ class OriginalTests(unittest.TestCase):
         for path,sha in publication['multilingual_publication']['received_files'].items():
             self.assertEqual(hashlib.sha256((DATA.parent/path).read_bytes()).hexdigest(),sha,path)
         for stem in build.CHAPTERS:
-            received=(DATA/'received'/stem/(stem+'_zh-Hans.md')).read_text()
+            received=received_path(stem,'zh-Hans').read_text()
             normalize=lambda value: re.sub(r'\s+','',value.lstrip('# '))
             self.assertEqual(normalize(received),normalize('\n'.join(build.manuscript(stem))))
 
@@ -116,9 +121,9 @@ class OriginalTests(unittest.TestCase):
                 # Reconstruct all source units, including the eight distinct song lines.
                 pieces=re.split(r'<div data-source-unit="(\d+)"[^>]*>',body)[1:]
                 actual=[(int(pieces[i]),html.unescape(re.sub('<[^>]*>','',pieces[i+1]))) for i in range(0,len(pieces),2)]
-                self.assertEqual([n for n,_ in actual],list(range(1,{'ch081':102,'ch082':68,'ch083':33}[stem])))
+                self.assertEqual([n for n,_ in actual],list(range(1,{'ch081':102,'ch082':68,'ch083':33,'ch084':52}[stem])))
                 self.assertEqual([(n,normalize(v)) for n,v in actual],[(n,normalize(v)) for n,v in units])
-                self.assertEqual(len(re.findall(r'data-source-unit="\d+" class="verse"',page)),{'ch081':8,'ch082':2,'ch083':1}[stem])
+                self.assertEqual(len(re.findall(r'data-source-unit="\d+" class="verse"',page)),{'ch081':8,'ch082':2,'ch083':1,'ch084':0}[stem])
                 self.assertNotIn('<!-- P',body)
                 if lang=='es' and stem=='ch081':
                     self.assertNotIn('Nota 1.',body)
@@ -135,6 +140,69 @@ class OriginalTests(unittest.TestCase):
         self.assertNotIn('Grande Grande',french)
         japanese='\n'.join(v for _,v in edition('ch082','ja')[1])
         self.assertNotIn('玉釧児児',japanese)
+
+    def test_ch084_immutable_author_text_and_local_fixes(self):
+        source=(DATA.parent/'ch084.zh.txt').read_bytes()
+        raw=received_path('ch084','zh-Hans').read_bytes()
+        self.assertEqual(source,raw[2:].rstrip(b'\n')+b'\n')
+        self.assertEqual(len(source),20307)
+        self.assertEqual(len([v for v in source.decode().splitlines()[1:] if v]),51)
+        fixes=[f for f in json.loads((DATA/'corrections.json').read_text()) if f['chapter']=='ch084']
+        self.assertEqual(len(fixes),7)
+        for lang in FOREIGN:
+            text=received_path('ch084',lang).read_text()
+            for fix in fixes:
+                if fix['language']==lang:
+                    self.assertEqual(text.count(fix['before']),1)
+                    text=text.replace(fix['before'],fix['after'])
+            title,units,notes=edition('ch084',lang)
+            self.assertEqual(len(units),51)
+            self.assertEqual(notes,[])
+            # Apart from title markup, every unit is exactly the received text
+            # with the seven approved, explicitly recorded replacements.
+            blocks=re.split(r'\n\s*\n',text.strip())
+            while blocks and blocks[0].startswith('#'):blocks.pop(0)
+            self.assertEqual([v for _,v in units],blocks)
+        self.assertIn('von den anderen unbemerkt',edition('ch084','de')[1][18][1])
+        self.assertIn('mit der Sänfte, in der',edition('ch084','de')[1][45][1])
+        self.assertIn('Kleider und Reisvorräte',edition('ch084','de')[1][47][1])
+        self.assertIn('Word’s all over the place now:',edition('ch084','en')[1][33][1])
+        self.assertIn('Fuera ya corre la voz:',edition('ch084','es')[1][33][1])
+        self.assertIn('人目を避けて',edition('ch084','ja')[1][18][1])
+        self.assertIn('남들 눈에 띄지 않게',edition('ch084','ko')[1][18][1])
+
+    def test_ch084_continuity_and_narrative_restraint(self):
+        registry=json.loads((DATA/'continuity.json').read_text())['languages']
+        for lang,rules in registry.items():
+            title,units,_=edition('ch084',lang)
+            text=title+'\n'+'\n'.join(v for _,v in units)
+            for rule in rules:
+                check=text.replace(rule['preferred'],'') if rule['retired'] in rule['preferred'] else text
+                self.assertNotIn(rule['retired'],check,(lang,rule['identity']))
+        # The final paragraph does not name the bride; do not insert a solution.
+        names={'en':['Dai-yu','Bao-chai'],'de':['Blaujuwel','Pao Tschai'],
+               'fr':['Jade Sombre','Grande Sœur Joyau'],'es':['Daiyu','Baochai'],
+               'ja':['黛玉','宝釵'],'ko':['대옥','보채']}
+        for lang,people in names.items():
+            final=edition('ch084',lang)[1][-1][1]
+            for name in people:self.assertNotIn(name,final)
+        source='\n'.join(build.manuscript('ch084'))
+        for phrase in ('旧日的一件藕合色绢衫','那件藕合色的绫袄','有的说回了南边，有的说病死在外省，没个准信',
+                       '过了这三年再挪过去','只等过了百日扶柩回籍','如今七七未满','日子就在这百日里挑'):
+            self.assertIn(phrase,source)
+
+    def test_ch084_publication_preserves_previous_narratives(self):
+        baseline='763c742'  # Before chapter 84; navigation and metadata may change.
+        for directory,_,_ in build.EDITIONS.values():
+            for stem in ('ch081','ch082','ch083'):
+                path=build.TARGET/directory/(stem+'.html')
+                prior=subprocess.check_output(['git','show',baseline+':'+str(path.relative_to(build.ROOT))],cwd=build.ROOT,text=True)
+                body=lambda text:text.split('<div class="novel-text">')[1].split('</article>')[0]
+                self.assertEqual(body(path.read_text()),body(prior),str(path))
+        received=DATA/'received/ch084'
+        files=[p for p in received.rglob('*') if p.is_file()]
+        self.assertEqual(len(files),32)
+        self.assertFalse(any(p.suffix=='.html' for p in files))
 
     def test_ch083_immutable_author_text(self):
         source=(DATA.parent/'ch083.zh.txt').read_bytes()
