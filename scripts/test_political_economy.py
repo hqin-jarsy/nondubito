@@ -101,7 +101,7 @@ class PoliticalEconomyTests(unittest.TestCase):
             else:
                 d = next(d for d in self.items if d['slug'] == p.stem)
                 self.assertEqual(schema['datePublished'], d['date'])
-                self.assertEqual(schema['dateModified'], d.get('modified', d['date']))
+                self.assertEqual(schema['dateModified'], DATE)  # New theory companion links; publication unchanged.
                 self.assertEqual(schema['citation'], [s['url'] for s in d['sources']])
                 self.assertEqual(schema['isPartOf']['url'], BASE)
 
@@ -127,7 +127,8 @@ class PoliticalEconomyTests(unittest.TestCase):
         self.assertIn('href="introduction.html"', text)
         self.assertIn('An ongoing series', text)
         for name in ('library.html','explore.html','index.html','latest.html','essays/sae/index.html'):
-            self.assertIn('essays/political-economy/index.html', (ROOT/name).read_text())
+            route = 'essays/political-economy/theory/index.html' if name == 'index.html' else 'essays/political-economy/index.html'
+            self.assertIn(route, (ROOT/name).read_text())
         groups = json.loads((ROOT/'data/sae-reading-map.json').read_text())['groups']
         self.assertEqual(len(groups), 6)
         shared = next(g for g in groups if g['id'] == 'shared-life')
@@ -150,11 +151,7 @@ class PoliticalEconomyTests(unittest.TestCase):
         root = ET.fromstring((ROOT/'sitemap.xml').read_text())
         urls = {x.find('{*}loc').text:x.find('{*}lastmod').text for x in root.findall('{*}url')}
         for p in self.pages:
-            expected = DATE if p.name == 'index.html' else next(d for d in self.items if d['slug'] == p.stem)['date']
-            if p.name == 'credit-ratings.html':
-                expected = '2026-11-02'  # Forward navigation refreshed; original publication remains 1 November.
-            if p.name == 'thames-water.html':
-                expected = DATE  # Navigation now reaches Foxconn; publication remains 2 November.
+            expected = DATE  # All case pages gained theory companion navigation, not new publication dates.
             self.assertEqual(urls[BASE + ('' if p.name == 'index.html' else p.name)], expected)
         updates = json.loads((ROOT/'data/site-updates.json').read_text())['updates']
         u = next(u for u in updates if u['id'] == '2026-11-01-political-economy-batch01')

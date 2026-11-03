@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Build an open real-case shelf, not a parallel retelling of fictional papers."""
+"""Build a shared political economy hub and its unchanged real-case readings."""
 from __future__ import annotations
 
 import argparse
@@ -12,6 +12,7 @@ from datetime import date
 from build_language_writing import ROOT, loc, page
 from build_cooperation_histories import CooperationTraditionalConverter
 from build_state_transitions import prose
+from political_economy_routes import theory_companion
 
 DATE = '2026-11-03'
 DATA = ROOT / 'data/political-economy'
@@ -19,8 +20,8 @@ TARGET = ROOT / 'essays/political-economy'
 BASE = 'https://nondubito.net/essays/political-economy/'
 TITLE = ('Money, Power, and Room to Move', '钱、权力与我们的路')
 DECK = (
-    'Real cases from work, trade and public services: what money makes possible, who acquires control, and how the people affected can question a decision.',
-    '从工作、交易与公共服务中的真实案例读起：钱使什么成为可能，谁因此取得了决定权，受到决定影响的人又怎样继续追问。',
+    'Understand SAE political economy through eight reader essays, then explore real cases from work, trade and public services. Productive capacity, control over a life, and the ability to challenge a decision.',
+    '先用八篇散文读懂 SAE 政治经济学，再进入工作、交易与公共服务中的真实案例。保留积累的能力，检查它怎样影响人的去路与追问。',
 )
 SLUGS = ('introduction', 'petsmart-training', 'amazon-marketplace', 'steward-hospitals', 'credit-ratings', 'google-adtech', 'thames-water', 'foxconn-wisconsin', 'apple-app-store', 'jimmy-johns')
 
@@ -63,10 +64,10 @@ def library_card(conv):
     def ll(en, zh, tag='span', css=''):
         return loc(en, zh, conv, tag, css).replace('lang-zh', 'lang-zh cl-zh').replace('lang-hant', 'lang-zh cl-hant')
     return ('<a href="essays/political-economy/index.html" class="series-card"><span class="series-card-count">'
-            + ll('Political economy · 8 cases + closing interlude · EN / 简 / 繁', '政治经济学 · 八篇案例＋收尾间奏 · 英简繁')
+            + ll('SAE political economy · Theory & real cases · EN / 简 / 繁', 'SAE 政治经济学 · 理论导读与真实案例 · 英简繁')
             + '</span><div class="series-card-title-zh cl-zh">钱、权力与我们的路</div><div class="series-card-title-zh cl-hant">錢、權力與我們的路</div><div class="series-card-title-en">Money, Power, and Room to Move</div>'
             + ll(DECK[0], DECK[1], 'p', 'series-card-desc')
-            + ll('Read the cases →', '进入真实案例专题 →', 'span', 'series-card-arrow') + '</a>')
+            + ll('Choose a reading path →', '选择一条阅读路线 →', 'span', 'series-card-arrow') + '</a>')
 
 
 def breadcrumb(conv, article=False):
@@ -102,7 +103,7 @@ def reading_note(conv, item=None):
 def document(content, title, deck, filename, conv, items, item=None):
     source = item['sources'][0]['url'] if item else None
     published = item['date'] if item else items[0]['date']
-    modified = item.get('modified', published) if item else DATE
+    modified = DATE  # Companion navigation added; original publication dates stay intact.
     text = page(content, title, deck, 'essays/political-economy/' + filename, conv, source, (BASE, TITLE[0]), publication_date=published)
     match = re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
     schema = json.loads(match[1])
@@ -114,6 +115,7 @@ def document(content, title, deck, filename, conv, items, item=None):
         schema['about'] = {'@type':'Thing', 'name':item['place_en']}
     else:
         schema['hasPart'] = [{'@type':'Article','name':d['title_en'],'url':BASE + d['slug'] + '.html'} for d in items]
+        schema['relatedLink'] = BASE + 'theory/'
     return (text[:match.start(1)] + json.dumps(schema, ensure_ascii=False).replace('</', '<\\/') + text[match.end(1):]).replace('</head>', '<link rel="stylesheet" href="../state-transitions/reading.css?v=20261029"></head>')
 
 
@@ -122,7 +124,11 @@ def landing(items, conv):
     ending = next(d for d in items if d['kind'] == 'interlude')
     closing = '<aside class="lw-opening" id="group-one-ending" style="scroll-margin-top:6rem"><p class="lw-kicker">' + loc('Group one · Closing interlude', '第一组收尾 · 短篇间奏', conv) + '</p>' + loc(ending['title_en'], ending['title_zh'], conv, 'h2') + loc(ending['deck_en'], ending['deck_zh'], conv, 'p') + '<a href="' + ending['slug'] + '.html">' + loc('Read the closing interlude →', '读收尾间奏 →', conv) + '</a></aside>'
     cards = ''.join('<a class="lw-card" href="' + d['slug'] + '.html"><p class="lw-kicker">' + loc(d['place_en'], d['place_zh'], conv) + '</p>' + loc(d['title_en'], d['title_zh'], conv, 'h2') + loc(d['deck_en'], d['deck_zh'], conv, 'p') + loc('Read essay →', '阅读全文 →', conv, 'span', 'lw-read') + '</a>' for d in items if d['kind'] == 'case')
-    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Political economy · Real cases', '政治经济学 · 真实案例', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('An ongoing series · Group one: introduction, eight cases & closing interlude · English, Simplified & Traditional Chinese', '持续展开的专题 · 第一组：短导读＋八篇案例＋收尾间奏 · 英文、简体中文与繁体中文', conv, 'p', 'lw-meta') + '</section><aside class="lw-opening">' + loc(intro['title_en'], intro['title_zh'], conv, 'h2') + loc('Can someone leave? Can they stay and object? Begin with these questions, or go straight to a case below. No prior reading is required.', '走得了，也能留下来提出异议吗？可以先读短导读，也可以直接进入下面任一案例，不必先读论文。', conv, 'p') + '<a href="introduction.html">' + loc('Read the short introduction →', '读短导读 →', conv) + '</a></aside><section class="lw-grid" id="cases" aria-label="Real case readings">' + cards + '</section>' + closing + '<section class="lw-note">' + loc('Not a list of guilty companies', '不为公司排一张好坏榜', conv, 'h2') + loc('A course can open a profession and attach an obligation to departure. A marketplace can create demand and shape the alternatives to itself. Financing can sustain care and commit future resources; an expert opinion can help a judgment without replacing it. Follow the particular decisions, benefits, costs and routes to review. The cases can complicate the questions; they are not required to deliver one verdict.', '培训可以打开一种职业，也可能给离开附上条件。平台可以创造需求，也会影响替代之路。融资能够支持照护，也会形成未来负担；专业意见可以帮助判断，不必替代判断。逐项读贡献、代价、决定与复核途径；案例可以使问题更复杂，不必得出同一种判词。', conv, 'p') + '</section>' + reading_note(conv) + related(conv) + '</main>'
+    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('SAE Political Economy', 'SAE 政治经济学', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('An ongoing series · Eight theoretical readings + eight cases & closing interlude · English, Simplified & Traditional Chinese', '持续展开的专题 · 八篇理论散文＋八篇案例与收尾间奏 · 英文、简体中文与繁体中文', conv, 'p', 'lw-meta') + '</section>'
+    content += '<nav class="lw-crumb" aria-label="Reading paths"><a href="theory/index.html">' + loc('01 · Understand the argument', '01 · 先读懂理论', conv) + '</a><a href="#cases">' + loc('02 · Explore real cases', '02 · 进入真实案例', conv) + '</a></nav>'
+    content += '<aside class="lw-opening" id="theory"><p class="lw-kicker">' + loc('The main line · Seven readings + optional deeper dialogue', '理论主线 · 七篇导读＋一篇选读深潜', conv) + '</p>' + loc('Understanding SAE Political Economy', '读懂 SAE 政治经济学', conv, 'h2') + loc('What does wealth entitle us to decide? Why does accumulation need checks, and what can it never purchase? Eight essays explain the principles and their reasons through the papers’ fictional world. No academic preparation is required.', '有钱以后可以决定什么？积累为什么需要制衡，又不能兑换成什么？八篇散文借论文的虚构场景，讲清主张与理由，不必有学术准备。', conv, 'p') + '<a href="theory/index.html">' + loc('Start the theoretical reading path →', '进入理论导读路线 →', conv) + '</a></aside>'
+    content += '<section class="lw-note" id="cases" style="scroll-margin-top:6rem">' + loc('Real cases · Read alongside the theory', '真实案例 · 放在理论旁边读', conv, 'h2') + loc('Begin with the short case introduction, or choose a case directly. Every essay links back to the relevant argument. These records can complicate the framework; they are not required to deliver one verdict.', '可以先读案例短导读，也可以直接挑一篇。每个案例都能回到对应理论散文；史实可以使理论受到追问，不必交出同一种判词。', conv, 'p') + '<a href="introduction.html">' + loc('Read the short case introduction →', '读案例短导读 →', conv) + '</a></section><section class="lw-grid" aria-label="Real case readings">' + cards + '</section>' + closing
+    content += '<section class="lw-note">' + loc('Not a list of guilty companies', '不为公司排一张好坏榜', conv, 'h2') + loc('A course can open a profession and attach an obligation to departure. A marketplace can create demand and shape the alternatives to itself. Financing can sustain care and commit future resources; an expert opinion can help a judgment without replacing it. Follow the particular decisions, benefits, costs and routes to review.', '培训可以打开一种职业，也可能给离开附上条件。平台可以创造需求，也会影响替代之路。融资能够支持照护，也会形成未来负担；专业意见可以帮助判断，不必替代判断。逐项读贡献、代价、决定与复核途径。', conv, 'p') + '</section>' + reading_note(conv) + related(conv) + '</main>'
     return document(content, TITLE[0], DECK[0], 'index.html', conv, items)
 
 
@@ -142,6 +148,7 @@ def article(item, items, conv):
         note = ('Closing interlude · English independently written', '收尾间奏 · 英文独立重写')
         companion = '<aside class="lw-related">' + loc('Read alongside this interlude', '放在旁边读', conv, 'h2') + '<a href="petsmart-training.html">' + loc('PetSmart · When training becomes a departure condition →', 'PetSmart · 培训怎样变成离职条件 →', conv) + '</a><a href="introduction.html">' + loc('Return to the opening question →', '回到导读的提问 →', conv) + '</a></aside>'
     content = '<main class="lw-wrap">' + breadcrumb(conv, True) + '<article class="lw-article" data-search="' + html.escape(item['search_labels'], quote=True) + '"><div class="lw-head"><p class="lw-kicker">' + loc(item['place_en'], item['place_zh'], conv) + '</p>' + loc(item['title_en'], item['title_zh'], conv, 'h1') + loc(item['deck_en'], item['deck_zh'], conv, 'p', 'lw-deck lw-search-deck') + '<p class="lw-meta">Han Qin · <time datetime="' + item['date'] + '">' + item['date'] + '</time> · ' + loc(*note, conv) + '</p></div>' + bodies + companion + reading_note(conv, item) + '<nav class="lw-series-nav" aria-label="Series navigation">' + nav + '</nav>' + related(conv) + '</article></main>'
+    content = content.replace(companion + reading_note(conv, item), companion + theory_companion(item['slug'], conv, loc) + reading_note(conv, item), 1)
     return document(content, item['title_en'], item['deck_en'], item['slug'] + '.html', conv, items, item)
 
 
