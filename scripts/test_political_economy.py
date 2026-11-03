@@ -23,9 +23,10 @@ class PoliticalEconomyTests(unittest.TestCase):
         cls.receipt['counts'].update(json.loads((DATA/'publication-batch02.json').read_text())['counts'])
         cls.receipt['counts'].update(json.loads((DATA/'publication-batch03.json').read_text())['counts'])
         cls.receipt['counts'].update(json.loads((DATA/'publication-batch04.json').read_text())['counts'])
+        cls.receipt['counts'].update(json.loads((DATA/'publication-batch05.json').read_text())['counts'])
 
     def test_reproducible_pages_and_entrances(self):
-        self.assertEqual(len(self.pages), 10)
+        self.assertEqual(len(self.pages), 11)
         for p, text in {**self.pages, **entrances()}.items():
             self.assertEqual(p.read_text(), text)
             self.assertNotIn('TODO', text)
@@ -39,8 +40,8 @@ class PoliticalEconomyTests(unittest.TestCase):
             self.assertEqual(set(bodies), {'en', 'zh', 'hant'})
             self.assertEqual(bodies['zh'].count('<p>'), bodies['hant'].count('<p>'))
             for body in bodies.values():
-                self.assertGreaterEqual(body.count('<p>'), 16 if d['id'] == 1 else 22)
-                self.assertEqual(body.count('<h2>'), 2 if d['id'] == 1 else 3)
+                self.assertGreaterEqual(body.count('<p>'), {'introduction':16, 'interlude':18, 'case':22}[d['kind']])
+                self.assertEqual(body.count('<h2>'), 3 if d['kind'] == 'case' else 2)
                 self.assertNotRegex(body, r'\b\d{2}DD\b|\b[EFGZ]\d+\b||turn\d+(?:view|search)')
             self.assertNotRegex(bodies['en'], r'[\u3400-\u9fff]')
             self.assertNotRegex(bodies['hant'], r'覈實|覈對|復核|標簽|髮款|被系在|余項|籤償還|籤下|籤了和解|看准|失准|准入')
@@ -55,7 +56,7 @@ class PoliticalEconomyTests(unittest.TestCase):
         self.assertNotIn('Crossways', ''.join(d['body_en']))
 
     def test_numbered_original_sources(self):
-        self.assertEqual([len(d['sources']) for d in self.items], [5, 3, 6, 4, 4, 4, 5, 4, 4])
+        self.assertEqual([len(d['sources']) for d in self.items], [5, 3, 6, 4, 4, 4, 5, 4, 4, 3])
         for d in self.items:
             for lang in ('en', 'zh'):
                 self.assertEqual(set(map(int, re.findall(r'\[(\d+)\]', '\n'.join(d['body_' + lang])))), {s['id'] for s in d['sources']})
@@ -96,7 +97,7 @@ class PoliticalEconomyTests(unittest.TestCase):
             if p.name == 'index.html':
                 self.assertEqual(schema['datePublished'], self.items[0]['date'])
                 self.assertEqual(schema['dateModified'], DATE)
-                self.assertEqual(len(schema['hasPart']), 9)
+                self.assertEqual(len(schema['hasPart']), 10)
             else:
                 d = next(d for d in self.items if d['slug'] == p.stem)
                 self.assertEqual(schema['datePublished'], d['date'])
@@ -169,6 +170,10 @@ class PoliticalEconomyTests(unittest.TestCase):
         self.assertEqual(newest['kind'], 'expanded')
         self.assertEqual(newest['date'], DATE)
         self.assertEqual(set(newest['languages']), {'en','zh','zh-hant'})
+        ending = next(u for u in updates if u['id'] == '2026-11-03-political-economy-batch05')
+        self.assertEqual(ending['url'], 'essays/political-economy/jimmy-johns.html')
+        self.assertEqual(ending['date'], DATE)
+        self.assertEqual(set(ending['languages']), {'en','zh','zh-hant'})
 
     def test_hospital_financing_and_historical_boundaries(self):
         d = self.items[3]
@@ -220,7 +225,7 @@ class PoliticalEconomyTests(unittest.TestCase):
     def test_earlier_publication_and_update_dates_are_not_rewritten(self):
         self.assertEqual([d['date'] for d in self.items[:5]], ['2026-11-01'] * 5)
         self.assertEqual([d['date'] for d in self.items[5:7]], ['2026-11-02'] * 2)
-        self.assertEqual([d['date'] for d in self.items[7:]], [DATE] * 2)
+        self.assertEqual([d['date'] for d in self.items[7:]], [DATE] * 3)
         for d in self.items:
             page = self.pages[ROOT/('essays/political-economy/' + d['slug'] + '.html')]
             self.assertIn('<time datetime="' + d['date'] + '">' + d['date'] + '</time>', page)
@@ -253,6 +258,40 @@ class PoliticalEconomyTests(unittest.TestCase):
             self.assertIn(phrase, en)
         self.assertIn('direct PDF retrieval was blocked', d['historical_note_en'])
         self.assertIn('not represented as elimination of every service commission', d['sources'][3]['note_en'])
+
+    def test_closing_interlude_is_short_complete_and_separate(self):
+        d = self.items[9]
+        self.assertEqual(d['kind'], 'interlude')
+        self.assertTrue(1700 <= len(re.findall(r'[\u3400-\u9fff]', ''.join(d['body_zh']))) < 2300)
+        self.assertTrue(950 <= len(' '.join(d['body_en']).split()) < 1450)
+        self.assertEqual(sum(x['kind'] == 'case' for x in self.items), 8)
+        self.assertEqual(sum(x['kind'] == 'interlude' for x in self.items), 1)
+        for case in (x for x in self.items if x['kind'] == 'case'):
+            self.assertGreaterEqual(len(re.findall(r'[\u3400-\u9fff]', ''.join(case['body_zh']))), 2300)
+            self.assertGreaterEqual(len(' '.join(case['body_en']).split()), 1450)
+        landing = self.pages[ROOT/'essays/political-economy/index.html']
+        self.assertEqual(landing.count('class="lw-card"'), 8)
+        self.assertIn('id="group-one-ending"', landing)
+        self.assertIn('href="jimmy-johns.html"', landing)
+        page = self.pages[ROOT/'essays/political-economy/jimmy-johns.html']
+        self.assertIn('Closing interlude · English independently written', page)
+        self.assertIn('href="petsmart-training.html"', page)
+        self.assertIn('href="introduction.html"', page)
+
+    def test_jimmy_johns_scope_allegations_notice_and_response(self):
+        d = self.items[9]
+        zh, en = ''.join(d['body_zh']), ' '.join(d['body_en'])
+        for phrase in ('三英里', '两英里', '全国任一家', '超过百分之十', '实际试图执行', '不是本篇已经逐个调查', '请他们撤销', '十万美元赔偿', '每一份通知'):
+            self.assertIn(phrase, zh)
+        for phrase in ('three-mile', 'two miles', 'nationwide', 'more than ten per cent', "state's allegations", 'Associated Press', 'not findings from an employee survey', 'asking them to rescind', 'not an announcement of $100,000 in employee compensation'):
+            self.assertIn(phrase, en)
+        self.assertEqual(d['coverage'], '2007/2016-12-07')
+        self.assertIn('not an independently obtained full consent decree', d['historical_note_en'])
+        self.assertIn('2023 header is a print date', d['sources'][1]['note_en'])
+        self.assertIn('indexed article text was readable', d['sources'][2]['note_en'])
+        page = self.pages[ROOT/'essays/political-economy/jimmy-johns.html']
+        self.assertNotIn('John」s', page)
+        self.assertNotIn('英裡', page)
 
 
 if __name__ == '__main__':
