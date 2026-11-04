@@ -27,6 +27,9 @@ class ReviewedSeriesLanguages(unittest.TestCase):
             receipt=json.loads((base/'publication.json').read_text())
             self.assertEqual(receipt['result'],'passed')
             self.assertEqual(receipt['unresolved'],[])
+            self.assertEqual(set(receipt['language_data_sha256']),set(spec['languages']))
+            for language,digest in receipt['language_data_sha256'].items():
+                self.assertEqual(hashlib.sha256((base/(language+'.json')).read_bytes()).hexdigest(),digest)
             self.assertEqual(len(receipt['received_files']),len(spec['slugs'])*5)
             for path, expected in receipt['received_files'].items():
                 self.assertEqual(hashlib.sha256((base/path).read_bytes()).hexdigest(),expected)

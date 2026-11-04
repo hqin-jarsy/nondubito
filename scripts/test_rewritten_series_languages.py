@@ -36,7 +36,8 @@ class RewrittenSeriesLanguages(unittest.TestCase):
             receipt=json.loads((ROOT/'data'/series/'multilingual/publication.json').read_text())
             self.assertEqual(receipt['result'],'passed')
             self.assertEqual(receipt['unresolved'],[])
-            for lang,digest in receipt.get('language_data_sha256',{}).items():
+            self.assertEqual(set(receipt['language_data_sha256']),set(spec['languages']))
+            for lang,digest in receipt['language_data_sha256'].items():
                 self.assertEqual(hashlib.sha256((ROOT/'data'/series/'multilingual'/(lang+'.json')).read_bytes()).hexdigest(),digest)
             for fix in receipt['resolved_issues']:
                 _,data=load_language(series,fix['language'])

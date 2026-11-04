@@ -157,6 +157,7 @@ def prepare(series):
     receipt = {'date':spec['date'],'result':'passed','scope':'Full manuscript reading, source-snapshot comparison and counted local corrections; not native-speaker certification.',
                'package_name':package.name,'package_sha256':hashlib.sha256(package.read_bytes()).hexdigest(),
                'languages':spec['languages'],'slugs':spec['slugs'],'resolved_issues':fixes,'unresolved':[],
+               'language_data_sha256':{code:hashlib.sha256(outputs[base/(code+'.json')].encode()).hexdigest() for code in spec['languages']},
                'received_files':{str(p.relative_to(base)):hashlib.sha256(t.encode()).hexdigest() for p,t in outputs.items() if p.parent.name=='received'}}
     outputs[base/'publication.json'] = json.dumps(receipt,ensure_ascii=False,indent=2)+'\n'
     return outputs
