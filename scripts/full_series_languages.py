@@ -17,6 +17,17 @@ ROOT = Path(__file__).resolve().parents[1]
 LABELS = {'en': 'English', 'zh': '简体中文', 'zh-hant': '繁體中文',
           'de': 'Deutsch', 'fr': 'Français', 'es': 'Español', 'ja': '日本語', 'ko': '한국어'}
 E = html.escape
+GUIDE = {'de':'Einführung','fr':'Introduction','es':'Introducción','ja':'はじめに','ko':'들어가며'}
+SUPPLEMENT = {'de':'Ergänzung','fr':'Complément','es':'Complemento','ja':'補論','ko':'보론'}
+
+
+def essay_label(article,index,language):
+    """A prequel must not silently turn source essay 01 into foreign essay 02."""
+    match=re.fullmatch(r'ep(\d+)',article['slug'])
+    if match:return f'{int(match[1]):02d}'
+    if article['slug'] in ('overview','prequel'):return GUIDE[language]
+    if article['slug']=='interface':return SUPPLEMENT[language]
+    return f'{index+1:02d}'
 
 
 def profile(series):
@@ -167,7 +178,7 @@ def render(series):
     for language in spec['languages']:
         _, data = load_language(series, language)
         ui, title = data['ui'], data['series']
-        cards = ''.join(f'<a class="lw-card" href="{a["slug"]}.html"><p class="lw-kicker">{n:02}</p><h2>{E(a["title"])}</h2><p>{E(a["deck"])}</p><span class="lw-read">{E(ui["read"])} →</span></a>' for n, a in enumerate(data['articles'], 1))
+        cards = ''.join(f'<a class="lw-card" href="{a["slug"]}.html"><p class="lw-kicker">{E(essay_label(a,n,language))}</p><h2>{E(a["title"])}</h2><p>{E(a["deck"])}</p><span class="lw-read">{E(ui["read"])} →</span></a>' for n, a in enumerate(data['articles']))
         count = f'{len(data["articles"])} · ' + ' / '.join(LABELS.values())
         content = f'<section class="lw-hero"><p class="lw-kicker">Non Dubito · {E(ui["series"])}</p><h1>{E(title["title"])}</h1><p class="lw-deck">{E(title["deck"])}</p><p class="lw-meta">{E(count)}</p></section><aside class="lw-opening"><p>{E(title["intro"])}</p><a href="{data["articles"][0]["slug"]}.html">{E(ui["read"])} →</a></aside><section class="lw-grid">{cards}</section><section class="lw-note"><p>{E(title["scope"])}</p></section>'+sources(spec, data)+related(spec, data)
         target = ROOT/spec['directory']/language
@@ -181,7 +192,7 @@ def render(series):
                 other = data['articles'][k] if 0 <= k < len(data['articles']) else None
                 href = other['slug']+'.html' if other else 'index.html'
                 nav.append(f'<a href="{href}"><small>{E(ui[label] if other else ui["contents"])}</small>{E(other["title"] if other else title["title"])}</a>')
-            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(ui["series"])} · {n+1:02}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p></div><div class="essay-body lw-prose" lang="{language}">{body}</div>{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
+            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(ui["series"])} · {E(essay_label(article,n,language))}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p></div><div class="essay-body lw-prose" lang="{language}">{body}</div>{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
             pages[target/(article['slug']+'.html')] = document(spec, data, article['slug'], content, article)
     return pages
 

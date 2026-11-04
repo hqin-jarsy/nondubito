@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Build five reader essays from Long-τ Consensus, in three reading modes."""
 from __future__ import annotations
 import argparse
@@ -6,6 +7,7 @@ import json
 import re
 
 from build_language_writing import ROOT,DATE,WritingTraditionalConverter,page,loc,prose
+from full_series_languages import upgrade_primary
 
 TARGET=ROOT/'essays/long-consensus'
 DATA=ROOT/'data/long-consensus'
@@ -62,7 +64,8 @@ def reading_note(conv):
 def landing(items,conv):
     cards=''.join(f'<a class="lw-card" href="{item["slug"]}.html"><p class="lw-kicker">0{item["id"]}</p>{loc(item["title_en"],item["title_zh"],conv,"h2")}{loc(item["deck_en"],item["deck_zh"],conv,"p")}{loc("Read essay →","阅读全文 →",conv,"span","lw-read")}</a>' for item in items)
     content='<main class="lw-wrap">'+breadcrumb(conv)+'<section class="lw-hero"><p class="lw-kicker">Non Dubito · '+loc('Lasting consensus','长存共识',conv)+'</p>'+loc(*TITLE,conv,'h1')+loc(*DECK,conv,'p','lw-deck lw-search-deck')+loc('Five essays · English, Simplified & Traditional Chinese','五篇 · 英文、简体中文与繁体中文',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc('You need not learn a social theory before beginning. Start with a room whose key still belongs to one person.','不必先学社会理论。从一间钥匙仍握在一个人手里的资料室开始。',conv,'p')+'<a href="ep01.html">'+loc('When the founder steps away →','从创办者离开以后读起 →',conv)+'</a></aside><section class="lw-grid">'+cards+'</section><section class="lw-note">'+loc('Continuation, not a promise of eternity','接着做，不是保证永远',conv,'h2')+loc('A name, an audience, an archive and a living practice are different things. This series follows the work of passing understanding to people who can judge for themselves. It also leaves room for questioning, departure and a meaningful undertaking that does not become a tradition. The final essay turns the same questions back on SAE.','一个名字、一群听众、一箱档案和一种活着的实践，不是同一件事。这五篇沿着“后来的人能不能独立理解、判断并接着做”展开，也给质疑、离开，以及没有成为传统却仍有意义的相遇留出位置。最后一篇把这些问题转向 SAE 自己。',conv,'p')+'</section>'+reading_note(conv)+related(conv)+'</main>'
-    return page(content,TITLE[0]+' · 长存共识',DECK[0],'essays/long-consensus/index.html',conv)
+    content=content.replace(loc('Five essays · English, Simplified & Traditional Chinese','五篇 · 英文、简体中文与繁体中文',conv,'p','lw-meta'),loc('Five complete essays · Eight languages','五篇完整散文 · 八语全文',conv,'p','lw-meta'))
+    return upgrade_primary(page(content,TITLE[0]+' · 长存共识',DECK[0],'essays/long-consensus/index.html',conv),'long-consensus','index')
 
 
 def article(item,items,conv):
@@ -75,13 +78,13 @@ def article(item,items,conv):
             neighbors.append(f'<a href="{other["slug"]}.html">{loc(en,zh,conv,"small")}{loc(other["title_en"],other["title_zh"],conv)}</a>')
         else:neighbors.append('<a href="index.html">'+loc('All five essays','全部五篇',conv,'small')+loc(*TITLE,conv)+'</a>')
     content=f'<main class="lw-wrap">{breadcrumb(conv,True)}<article class="lw-article"><div class="lw-head"><p class="lw-kicker">{loc(*TITLE,conv)} · 0{item["id"]}</p>{loc(item["title_en"],item["title_zh"],conv,"h1")}{loc(item["deck_en"],item["deck_zh"],conv,"p","lw-deck lw-search-deck")}<p class="lw-meta">Han Qin · <time datetime="{DATE}">{DATE}</time></p></div>{bodies}{reading_note(conv)}<nav class="lw-series-nav" aria-label="Series navigation">'+''.join(neighbors)+'</nav>'+related(conv)+'</article></main>'
-    return page(content,item['title_en'],item['deck_en'],'essays/long-consensus/'+item['slug']+'.html',conv,SOURCE,(BASE,TITLE[0]))
+    return upgrade_primary(page(content,item['title_en'],item['deck_en'],'essays/long-consensus/'+item['slug']+'.html',conv,SOURCE,(BASE,TITLE[0])),'long-consensus',item['slug'])
 
 
 def library_card(conv):
     def t(en,zh,tag='span',css=''):
         return loc(en,zh,conv,tag,css).replace('lang-zh','lang-zh cl-zh').replace('lang-hant','lang-zh cl-hant')
-    return '<a href="essays/long-consensus/index.html" class="series-card"><span class="series-card-count">'+t('5 essays · EN / 简 / 繁','5 篇 · 英简繁')+'</span><div class="series-card-title-zh cl-zh">长存共识</div><div class="series-card-title-zh cl-hant">長存共識</div><div class="series-card-title-en">What Can Outlast Us?</div>'+t('A founder leaves, a manual survives, and later people try to understand. Continuation is not immortality, obedience, or proof of being right.','创办者离开，手册留下，后来的人怎样理解、判断并接着做。长存不是永生、服从或正确的证明。','p','series-card-desc')+t('Read series →','阅读系列 →','span','series-card-arrow')+'</a>'
+    return '<a href="essays/long-consensus/index.html" class="series-card"><span class="series-card-count">'+t('5 essays · Eight languages','5 篇 · 八语全文')+'</span><div class="series-card-title-zh cl-zh">长存共识</div><div class="series-card-title-zh cl-hant">長存共識</div><div class="series-card-title-en">What Can Outlast Us?</div>'+t('A founder leaves, a manual survives, and later people try to understand. Continuation is not immortality, obedience, or proof of being right.','创办者离开，手册留下，后来的人怎样理解、判断并接着做。长存不是永生、服从或正确的证明。','p','series-card-desc')+t('Read series →','阅读系列 →','span','series-card-arrow')+'</a>'
 
 
 def render():

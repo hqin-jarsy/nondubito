@@ -6,7 +6,7 @@ import re
 import unittest
 from urllib.parse import unquote, urlsplit
 
-from full_series_languages import ROOT, load_language, profile, render
+from full_series_languages import ROOT, load_language, profile, render, essay_label
 from prepare_reviewed_series_package import plain
 from web_analytics import TOKEN
 
@@ -14,6 +14,12 @@ SERIES = ('marriage','institution','government')
 
 
 class ReviewedSeriesLanguages(unittest.TestCase):
+    def test_numbering_does_not_count_prequels_as_essay_one(self):
+        for language in ('de','fr','es','ja','ko'):
+            self.assertEqual(essay_label({'slug':'ep01'},1,language),'01')
+            self.assertEqual(essay_label({'slug':'ep06'},6,language),'06')
+            self.assertNotEqual(essay_label({'slug':'prequel'},0,language),'01')
+            self.assertNotEqual(essay_label({'slug':'overview'},0,language),'01')
     def test_full_manuscripts_and_reviewed_corrections(self):
         for series in SERIES:
             spec=profile(series)
