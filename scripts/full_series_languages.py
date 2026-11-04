@@ -47,7 +47,7 @@ def essay_label(article,index,language):
     """A prequel must not silently turn source essay 01 into foreign essay 02."""
     match=re.fullmatch(r'ep(\d+)',article['slug'])
     if match:return f'{int(match[1]):02d}'
-    if article['slug'] in ('overview','prequel'):return GUIDE[language]
+    if article['slug'] in ('overview','prequel','intro'):return GUIDE[language]
     if article['slug']=='interface':return SUPPLEMENT[language]
     if article['slug']=='adversity':return SPECIAL_STUDY[language]
     return f'{index+1:02d}'
@@ -74,13 +74,18 @@ def source_file(series, spec, slug):
         return path
     extension = spec.get('source_extension', '.json')
     assert extension in ('.json', '.md'), extension
-    return source_directory(series, spec)/(slug+extension)
+    filename=spec.get('source_filenames',{}).get(slug,slug+extension)
+    assert re.fullmatch(r'[a-zA-Z0-9-]+\.(json|md)',filename)
+    return source_directory(series, spec)/filename
 
 
 def original_article(series, spec, slug):
     """Read the canonical source directly; Markdown is never a parallel JSON copy."""
     if spec.get('source_adapter')=='published-html':
         from published_html_source import load_article
+        return load_article(spec,slug)
+    if spec.get('source_adapter')=='structured-western-book':
+        from western_book_source import load_article
         return load_article(spec,slug)
     path = source_file(series, spec, slug)
     if path.suffix == '.md':
@@ -173,6 +178,14 @@ def load_language(series, language):
             if spec.get('preserve_emphasis'):
                 for tag in ('strong','em'):
                     assert inline_markdown(p).count('<'+tag+'>')==inline_markdown(q).count('<'+tag+'>'),(language,article['slug'],'changed emphasis count',tag,p[:40])
+        if spec.get('book_material'):
+            assert bool(article.get('aside'))==bool(original.get('aside_zh')),(language,article['slug'],'lost or invented optional aside')
+            if article.get('aside'):assert '<' not in article['aside'] and article['aside'].strip()
+            assert len(article['notes'])==len(original['notes_zh'])
+            assert len(article['notes_coverage'])==len(original['notes_zh'])
+            assert all(isinstance(v,str) and v.strip() and '<' not in v for v in article['notes']+article['notes_coverage'])
+            assert [s['url'] for s in article['sources']]==[s['url'] for s in original['sources_zh']],(language,article['slug'],'changed historical source URLs or order')
+            assert all(isinstance(s['title'],str) and s['title'].strip() and '<' not in s['title'] for s in article['sources'])
         article['source_url'] = original.get('source_url', spec['source'])
         if spec.get('optional_pause'):
             assert isinstance(original.get('pause_zh'), str) and original['pause_zh'].strip()
@@ -242,6 +255,8 @@ def render_prose(units, citations=None, source_label=''):
 
 
 def primary_bodies(spec,text):
+    if spec.get('primary_format')=='western-prose':
+        return ''.join(re.findall(r'<div class="western-prose[^>]*>.*?</div>',text,re.S))
     if spec.get('primary_format')=='article-bodies':
         return ''.join(re.findall(r'<article\b(?=[^>]*class="[^"]*\bessay-body\b)[^>]*>.*?</article>',text,re.S))
     if spec.get('primary_format')=='foundations-bridge':
@@ -346,6 +361,10 @@ def sources(spec, data, article=None):
     url = article['source_url'] if article else spec['source']
     note = article.get('source_note', data['series']['source_note']) if article else data['series']['source_note']
     paragraphs = ''.join('<p>'+inline_markdown(p)+'</p>' for p in re.split(r'\n\s*\n',note.strip()))
+    if article and spec.get('book_material'):
+        notes='<h2>'+E(ui['edition_notes'])+'</h2>'+''.join('<p>'+inline_markdown(p)+'</p>' for p in article['notes'])
+        refs='<ul>'+''.join('<li><a href="'+E(s['url'])+'">'+E(s['title'])+'</a></li>' for s in article['sources'])+'</ul>'
+        return f'<details class="lw-sources"><summary>{E(ui["sources"])}</summary>{paragraphs}{notes}{refs}</details>'
     if article and spec.get('numbered_sources'):
         refs='<ol class="st-source-list">'+''.join('<li><a href="'+E(s['url'])+'">'+E(s['title'])+'</a><p>'+inline_markdown(s['note'])+'</p></li>' for s in article['sources'])+'</ol>'
         return f'<details class="lw-sources"><summary>{E(ui["sources"])}</summary>{paragraphs}{refs}<p><a href="{E(spec["source"])}">{E(ui["paper"])} ↗</a></p></details>'
@@ -430,6 +449,17 @@ def closing_invitation(spec, data, article):
             +'</h2><p>'+E(article['pause'])+'</p><p>'+E(data['ui']['pause_note'])+'</p></aside>')
 
 
+def optional_book_aside(spec,data,article):
+    if not spec.get('book_material') or not article.get('aside'):return ''
+    path=spec['aside_routes'][article['slug']].format(language=data['language'])
+    target=(ROOT/path).resolve()
+    assert target.is_relative_to((ROOT/'essays').resolve()) and target.is_file(),path
+    root='../'*(len(Path(spec['directory']).parts)+1)
+    return ('<details class="lw-sources western-aside"><summary>'+E(data['ui']['aside_heading'])
+            +'</summary><p>'+inline_markdown(article['aside'])+'</p><a href="'+E(root+path)+'">'
+            +E(data['ui']['aside_read'])+'</a></details>')
+
+
 @tracked_html
 def document(spec, data, slug, content, article=None):
     language = data['language']
@@ -449,6 +479,8 @@ def document(spec, data, slug, content, article=None):
             schema['citation'] = [s['url'] for s in article['sources']]
             if article.get('_temporal_coverage'):
                 schema['temporalCoverage'] = article['_temporal_coverage']
+        if spec.get('book_material'):
+            schema['citation']=[s['url'] for s in article['sources']]
     else:
         schema['hasPart'] = [{'@type':'Article', 'name':a['title'], 'url':origin(spec)+language+'/'+a['slug']+'.html'} for a in data['articles']]
     structured = json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')
@@ -525,7 +557,7 @@ def render(series):
                     nav.append(f'<a href="{slug}.html"><small>{E(ui[direction])}</small>{E(heading)}</a>')
                 if len(nav)<2:nav.append(f'<a href="index.html"><small>{E(ui["contents"])}</small>{E(title["title"])}</a>')
             kicker = label if label == ui["series"] or label.startswith(ui["series"]+" · ") else ui["series"]+" · "+label
-            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(kicker)}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p>{notice}</div><div class="essay-body lw-prose" lang="{language}">{body}</div>{closing_invitation(spec,data,article)}{theory_companions(spec,data,article)}{case_theory_route(spec,data,article)}{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
+            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(kicker)}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p>{notice}</div><div class="essay-body lw-prose" lang="{language}">{body}</div>{optional_book_aside(spec,data,article)}{closing_invitation(spec,data,article)}{theory_companions(spec,data,article)}{case_theory_route(spec,data,article)}{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
             pages[target/(article['slug']+'.html')] = document(spec, data, article['slug'], content, article)
     return pages
 

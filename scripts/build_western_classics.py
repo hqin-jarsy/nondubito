@@ -120,6 +120,11 @@ def build():
             outputs[path/'index.html'] = index(slug,items,c)
             for item in items:
                 outputs[path/(item['slug']+'.html')] = article(slug,item,items,c)
+            if (ROOT/'data'/slug/'multilingual/publication.json').exists():
+                from full_series_languages import upgrade_primary,profile,require_review_seal
+                require_review_seal(slug,profile(slug))
+                for target in [p for p in outputs if p.parent==path]:
+                    outputs[target]=upgrade_primary(outputs[target],slug,target.stem)
         return outputs
     finally:
         c.close()

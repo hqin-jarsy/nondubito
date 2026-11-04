@@ -1,0 +1,79 @@
+{
+  "reviewer": "Independent read-only code review by accountability_es_audit",
+  "date": "2026-11-04",
+  "baseline_commit": "57e7b5eaf38f4fabf716c71a1742bfd7505876a9",
+  "code_review_passed": true,
+  "scope": [
+    "Actually read scripts/western_book_source.py and scripts/test_western_book_source.py in full.",
+    "Read the changes since baseline in scripts/full_series_languages.py, scripts/prepare_original_series_review.py and scripts/build_western_classics.py, and surrounding source-loading, seal-checking, primary protection, details/source rendering and citation code.",
+    "Read the complete current Descartes multilingual profile and primary-before-expansion baseline.",
+    "Executed tests and in-memory preservation checks without changing any implementation, data, source HTML or publication state."
+  ],
+  "findings": [
+    {
+      "area": "Canonical structured source",
+      "result": "Numbered filenames are explicitly mapped from published slugs. The adapter resolves inside data, verifies number/slug, flattens every heading/paragraph in order, and keeps the optional aside, both edition notes and all historical source mappings outside the main body. Unexpected Chinese reading keys or section keys fail closed. Source digests use the complete original JSON bytes, not a duplicate corpus."
+    },
+    {
+      "area": "Native manuscript validation",
+      "result": "The opt-in book_material checks preserve the presence or absence of the optional aside, complete note/coverage counts, and exact historical source URLs in their original order. Titles and reading material must be nonempty and cannot inject raw HTML. These are structural guards, not a claim of literary or semantic review."
+    },
+    {
+      "area": "Native presentation",
+      "result": "Optional asides are closed details after the complete body, with generic localized related-SAE labels and existing native destinations. Edition notes and real historical source links are included together in their own details. Article JSON-LD uses the complete historical citation URL array, not an invented shared SAE paper. Schema citation-array handling was verified by actual code reading; no unapproved complete draft page was rendered to exercise it."
+    },
+    {
+      "area": "Original primary protection",
+      "result": "western-prose extraction matches the actual three div reading modes, whose nested content uses sections/paragraphs rather than nested divs. Complete-main protection independently includes optional asides, edition notes and historical references. Existing primary pages and canonical JSON match the pre-expansion baseline."
+    },
+    {
+      "area": "Publication gate",
+      "result": "The western builder adds new language header links only if a real publication receipt exists and require_review_seal succeeds. The Descartes profile requires explicit approval and a review seal. The foreign renderer checks the seal before creating its page mapping. No receipt or approval was mocked for this audit; the unsealed Descartes foreign page renderer was not invoked."
+    },
+    {
+      "area": "Review issue resolution",
+      "result": "The review-preparation helper now resolves body and notes by zero-based unit index, aside by the complete string, sources.title by zero-based source index, and other metadata as before. It verifies each issue.after against the saved target before sealing. No seal was prepared or written in this audit."
+    }
+  ],
+  "tests": {
+    "command": "PYTHONPATH=scripts python3 -m unittest scripts.test_western_book_source -v",
+    "tests_run": 5,
+    "result": "All five passed.",
+    "covered": [
+      "Direct canonical units and every separated optional/source item",
+      "Complete original reading bodies and main hashes against baseline",
+      "Idempotent language controls without modifying main/body",
+      "Unknown reading material and missing optional-aside handling fail closed",
+      "Existing genuinely sealed foreign pages unchanged"
+    ],
+    "actual_existing_foreign_pages_byte_equal": 695
+  },
+  "independent_in_memory_build": {
+    "function": "build_western_classics.build()",
+    "outputs": 20,
+    "descartes_pages": 8,
+    "descartes_complete_main_areas_equal": 8,
+    "descartes_original_reading_bodies_equal": 21,
+    "spinoza_complete_pages_byte_equal": 12,
+    "all_20_complete_outputs_byte_equal": true,
+    "canonical_data_files_equal_to_baseline_commit": 7,
+    "descartes_original_html_files_equal_to_baseline_commit": 8,
+    "result": "All checks passed. Only an in-memory output mapping was built; no output was written."
+  },
+  "isolated_helper_checks": {
+    "description": "Called optional_book_aside and sources on complete saved ES data, not document or render for unsealed drafts.",
+    "optional_closed_details": 6,
+    "all_native_aside_destinations_exist": true,
+    "complete_edition_notes_present": 14,
+    "exact_historical_link_title_url_pairs_present": 11,
+    "intro_has_no_invented_aside": true,
+    "result": "Passed."
+  },
+  "issues": [],
+  "remaining": [],
+  "limits": [
+    "This code audit does not authorize publication, certify any foreign essay's quality or replace the separately assigned complete editorial reviews.",
+    "No approval/seal creation, source edits, HTML writes, navigation updates or commits were performed.",
+    "The test suite uses a temporary read-text patch to verify rejection of malformed source reading material; this is not an approval mock and no approval gate was bypassed."
+  ]
+}
