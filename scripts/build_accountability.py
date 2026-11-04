@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Build a three-essay companion to Rights Theory from On Accountability."""
 from __future__ import annotations
 import argparse
@@ -7,6 +8,7 @@ import re
 from pathlib import Path
 
 from build_language_writing import ROOT,DATE,WritingTraditionalConverter,page,loc,prose
+from full_series_languages import upgrade_primary
 
 TARGET = ROOT/'essays/accountability'
 DATA = ROOT/'data/accountability'
@@ -59,7 +61,8 @@ def reading_note(conv):
 def landing(items,conv):
     cards=''.join(f'<a class="lw-card" href="{item["slug"]}.html"><p class="lw-kicker">0{item["id"]}</p>{loc(item["title_en"],item["title_zh"],conv,"h2")}{loc(item["deck_en"],item["deck_zh"],conv,"p")}{loc("Read essay →","阅读全文 →",conv,"span","lw-read")}</a>' for item in items)
     content=f'<main class="lw-wrap">{breadcrumb(conv)}<section class="lw-hero"><p class="lw-kicker">Non Dubito · '+loc('A Rights Theory companion','权利论 · 专论散文',conv)+f'</p>{loc(*TITLE,conv,"h1")}{loc(*DECK,conv,"p","lw-deck lw-search-deck")}'+loc('Three essays · English, Simplified & Traditional Chinese','三篇 · 英文、简体中文与繁体中文',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc('You need not read all of Rights Theory first. Begin with an ordinary instruction that someone calls your responsibility.','不必先读完权利论。从一句“这是你的职责”开始就好。',conv,'p')+'<a href="ep01.html">'+loc('Start with the demand →','先问要求从哪里来 →',conv)+'</a></aside><section class="lw-grid">'+cards+'</section><section class="lw-note">'+loc('A new question beside the original route','在原有主线旁，再补一个问题',conv,'h2')+loc('The original seven essays retain their own route and language editions. This companion develops the later paper’s finer distinction between an external demand attached to a position, one’s own undertaking, the exposure of a position to change, and actual performance. Here, an operative demand is not automatically a moral command. Nor does the end of a role settle every question about its history.','原有七篇及其语言版本保留。本组三篇展开后出的专论，对外部落在位置上的要求、自己愿意承担的方向、位置可以被改变，以及实际兑现，作进一步区分。这里不把一项正在运行的要求直接等同于道德命令，也不以岗位的结束，替全部历史问题结账。',conv,'p')+'</section>'+reading_note(conv)+related(conv)+'</main>'
-    return page(content,TITLE[0]+' · 职责与承担',DECK[0],'essays/accountability/index.html',conv)
+    content=content.replace(loc('Three essays · English, Simplified & Traditional Chinese','三篇 · 英文、简体中文与繁体中文',conv,'p','lw-meta'),loc('Three complete essays · Eight languages','三篇完整散文 · 八语全文',conv,'p','lw-meta'))
+    return upgrade_primary(page(content,TITLE[0]+' · 职责与承担',DECK[0],'essays/accountability/index.html',conv),'accountability','index')
 
 
 def article(item,items,conv):
@@ -72,13 +75,13 @@ def article(item,items,conv):
             neighbors.append(f'<a href="{other["slug"]}.html">{loc(en,zh,conv,"small")}{loc(other["title_en"],other["title_zh"],conv)}</a>')
         else:neighbors.append('<a href="index.html">'+loc('All three essays','全部三篇',conv,'small')+loc(*TITLE,conv)+'</a>')
     content=f'<main class="lw-wrap">{breadcrumb(conv,True)}<article class="lw-article"><div class="lw-head"><p class="lw-kicker">{loc(*TITLE,conv)} · 0{item["id"]}</p>{loc(item["title_en"],item["title_zh"],conv,"h1")}{loc(item["deck_en"],item["deck_zh"],conv,"p","lw-deck lw-search-deck")}<p class="lw-meta">Han Qin · <time datetime="{DATE}">{DATE}</time></p></div>{bodies}{reading_note(conv)}<nav class="lw-series-nav" aria-label="Series navigation">'+''.join(neighbors)+'</nav>'+related(conv)+'</article></main>'
-    return page(content,item['title_en'],item['deck_en'],'essays/accountability/'+item['slug']+'.html',conv,SOURCE,(BASE,TITLE[0]))
+    return upgrade_primary(page(content,item['title_en'],item['deck_en'],'essays/accountability/'+item['slug']+'.html',conv,SOURCE,(BASE,TITLE[0])),'accountability',item['slug'])
 
 
 def library_card(conv):
     def t(en,zh,tag='span',css=''):
         return loc(en,zh,conv,tag,css).replace('lang-zh','lang-zh cl-zh').replace('lang-hant','lang-zh cl-hant')
-    return '<a href="essays/accountability/index.html" class="series-card"><span class="series-card-count">'+t('Rights companion · 3 essays · EN / 简 / 繁','权利论专论 · 3 篇 · 英简繁')+'</span><div class="series-card-title-zh cl-zh">职责与承担</div><div class="series-card-title-zh cl-hant">職責與承擔</div><div class="series-card-title-en">What Is Yours to Answer For?</div>'+t('How a demand becomes yours, why an operative requirement can still be wrong, and what ends when you leave.','要求怎样落到自己身上，为什么成立不等于正当，又怎样让一份承担真正结束。','p','series-card-desc')+t('Read companion','阅读专论','span','series-card-arrow')+'</a>'
+    return '<a href="essays/accountability/index.html" class="series-card"><span class="series-card-count">'+t('Rights companion · 3 essays · Eight languages','权利论专论 · 3 篇 · 八语全文')+'</span><div class="series-card-title-zh cl-zh">职责与承担</div><div class="series-card-title-zh cl-hant">職責與承擔</div><div class="series-card-title-en">What Is Yours to Answer For?</div>'+t('How a demand becomes yours, why an operative requirement can still be wrong, and what ends when you leave.','要求怎样落到自己身上，为什么成立不等于正当，又怎样让一份承担真正结束。','p','series-card-desc')+t('Read companion','阅读专论','span','series-card-arrow')+'</a>'
 
 
 def rights_entry(conv):

@@ -1,0 +1,162 @@
+#!/usr/bin/env python3
+"""Render complete, editorially reviewed rewrites; never generate translations.
+
+Primary prose is kept separate. New language data carries a per-source-paragraph
+coverage record, which supports human review but is not itself a quality score.
+"""
+from __future__ import annotations
+import argparse
+import html
+import json
+import re
+from pathlib import Path
+
+from web_analytics import tracked_html
+
+ROOT = Path(__file__).resolve().parents[1]
+LABELS = {'en': 'English', 'zh': '简体中文', 'zh-hant': '繁體中文',
+          'de': 'Deutsch', 'fr': 'Français', 'es': 'Español', 'ja': '日本語', 'ko': '한국어'}
+E = html.escape
+
+
+def profile(series):
+    assert re.fullmatch(r'[a-z0-9-]+', series), series
+    return json.loads((ROOT/'data'/series/'multilingual/profile.json').read_text())
+
+
+def load_language(series, language):
+    spec = profile(series)
+    assert language in spec['languages']
+    data = json.loads((ROOT/'data'/series/'multilingual'/f'{language}.json').read_text())
+    assert data['language'] == language
+    assert [a['slug'] for a in data['articles']] == spec['slugs']
+    assert data['review']['unresolved'] == [], (series, language, 'unresolved editorial issues')
+    for article in data['articles']:
+        original = json.loads((ROOT/'data'/series/(article['slug']+'.json')).read_text())
+        source = original['body_zh']
+        assert len(article['body']) == len(source), (language, article['slug'], 'missing argument units')
+        assert len(article['coverage']) == len(source)
+        for p, q, note in zip(source, article['body'], article['coverage']):
+            assert isinstance(q, str) and q.strip() and '<' not in q and '�' not in q
+            assert p.startswith('## ') == q.startswith('## '), (language, article['slug'], p[:40])
+            assert isinstance(note, str) and note.strip()
+        article['source_url'] = original.get('source_url', spec['source'])
+    return spec, data
+
+
+def origin(spec):
+    return 'https://nondubito.net/' + spec['directory'] + '/'
+
+
+def alternatives(spec, slug):
+    suffix = '' if slug == 'index' else slug+'.html'
+    pairs = [('x-default', origin(spec)+suffix), ('zh-Hans', origin(spec)+suffix)]
+    pairs += [(code, origin(spec)+code+'/'+suffix) for code in spec['languages']]
+    # EN / Hant are reading modes of one legacy canonical, not fabricated URLs.
+    return ''.join(f'<link rel="alternate" hreflang="{lang}" href="{url}">' for lang, url in pairs)
+
+
+def upgrade_primary(text, series, slug):
+    spec = profile(series)
+    links = ''.join(f'<a href="{code}/{slug}.html" lang="{code}">{LABELS[code]}</a>' for code in spec['languages'])
+    for label in ('繁體中文', '繁體'):
+        anchor = f'<button type="button" data-set-language="zh-hant">{label}</button>'
+        assert text.count(anchor) == 1, (series, slug, label)
+        # Source builders pass fresh primary markup, not a previously patched file.
+        text = text.replace(anchor, anchor+links)
+    assert not re.search(r'<link[^>]*rel="alternate"', text)
+    return text.replace('</head>', alternatives(spec, slug)+'</head>', 1)
+
+
+def language_links(spec, slug, language):
+    rows = []
+    for code, label in LABELS.items():
+        href = '../'+slug+'.html?lang='+code if code in ('en', 'zh', 'zh-hant') else '../'+code+'/'+slug+'.html'
+        current = ' aria-current="page"' if code == language else ''
+        rows.append(f'<a href="{E(href)}" lang="{code if code != "zh" else "zh-Hans"}"{current}>{E(label)}</a>')
+    return ''.join(rows)
+
+
+def header(spec, data, slug):
+    ui, lang = data['ui'], data['language']
+    root = '../' * (len(Path(spec['directory']).parts)+1)
+    nav = f'<a href="{root}essays/{lang}/index.html">{E(ui["home"])}</a><a href="index.html">{E(ui["contents"])}</a><a href="{root}library.html?lang=en">{E(ui["library"])}</a>'
+    return f'''<header class="site-shell-header"><div class="header-inner"><a href="{root}essays/{lang}/index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span></a><nav class="site-shell-nav">{nav}</nav><div class="site-shell-tools"><details class="site-shell-language"><summary class="site-shell-language-summary">{LABELS[lang]} <span aria-hidden="true">⌄</span></summary><div class="site-shell-language-options">{language_links(spec,slug,lang)}</div></details><button class="site-shell-menu-button" type="button" data-site-shell-menu aria-label="{E(ui['menu'])}" aria-controls="site-shell-drawer" aria-expanded="false"><span aria-hidden="true">☰</span></button></div></div></header><div class="site-shell-drawer" id="site-shell-drawer" data-site-shell-drawer><nav>{nav}<a href="{root}search.html?lang=en&amp;ui={lang}&amp;in={lang}">{E(ui['search'])}</a></nav></div>'''
+
+
+def sources(spec, data, article=None):
+    ui = data['ui']
+    url = article['source_url'] if article else spec['source']
+    return f'<details class="lw-sources"><summary>{E(ui["sources"])}</summary><p>{E(data["series"]["source_note"])}</p><p><a href="{E(url)}">{E(ui["paper"])} ↗</a></p></details>'
+
+
+def related(spec, data):
+    root = '../' * (len(Path(spec['directory']).parts)+1)
+    # The map is explicitly the existing EN/Chinese map; don't imply translation.
+    return f'<aside class="lw-related"><h2>{E(data["ui"]["related"])}</h2><a href="{root}essays/sae/index.html?lang=en">{E(data["ui"]["map"])} · EN / 中文</a></aside>'
+
+
+@tracked_html
+def document(spec, data, slug, content, article=None):
+    language = data['language']
+    title = article['title'] if article else data['series']['title']
+    deck = article['deck'] if article else data['series']['deck']
+    url = origin(spec)+language+'/'+('' if slug == 'index' else slug+'.html')
+    root = '../' * (len(Path(spec['directory']).parts)+1)
+    schema = {'@context': 'https://schema.org', '@type': 'Article' if article else 'CollectionPage',
+              'name': title, 'description': deck, 'inLanguage': language, 'url': url,
+              'author': {'@type': 'Person', 'name': 'Han Qin (秦汉)'},
+              'datePublished': spec['date'], 'dateModified': spec['date']}
+    if article:
+        schema.update(headline=title, mainEntityOfPage=url, citation=article['source_url'],
+                      isPartOf={'@type':'CollectionPage', 'url':origin(spec)+language+'/', 'name':data['series']['title']},
+                      translationOfWork={'@type':'Article', 'url':origin(spec)+slug+'.html'})
+    else:
+        schema['hasPart'] = [{'@type':'Article', 'name':a['title'], 'url':origin(spec)+language+'/'+a['slug']+'.html'} for a in data['articles']]
+    structured = json.dumps(schema, ensure_ascii=False).replace('<', chr(92)+'u003c')
+    return f'''<!doctype html>
+<html lang="{language}" data-lang="{language}" data-editions="{language}" data-foreign-edition="true"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{E(title)} — Non Dubito</title><meta name="description" content="{E(deck)}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{url}">{alternatives(spec,slug)}<meta property="og:type" content="{'article' if article else 'website'}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(deck)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="{root}favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{root}style.css"><link rel="stylesheet" href="{root}site-shell.css?v=20260905b"><link rel="stylesheet" href="{root}essays/language-writing/reading.css?v=20261103"><script defer src="{root}essays/language-writing/reading.js?v=20261103"></script><script type="application/ld+json">{structured}</script></head><body class="site-shell-page lw-page lw-foreign"><a class="lw-skip" href="#main">{E(data['ui']['read'])}</a>{header(spec,data,slug)}<main id="main" class="lw-wrap">{content}</main><footer class="site-shell-footer"><div class="site-shell-footer-inner"><div class="site-shell-footer-mark">Non <span>Dubito</span></div><div class="site-shell-footer-links"><a href="{root}essays/{language}/index.html">{E(data['ui']['home'])}</a><a href="https://self-as-an-end.net/">{E(data['ui']['theory'])} ↗</a></div></div></footer></body></html>
+'''
+
+
+def render(series):
+    spec = profile(series)
+    pages = {}
+    for language in spec['languages']:
+        _, data = load_language(series, language)
+        ui, title = data['ui'], data['series']
+        cards = ''.join(f'<a class="lw-card" href="{a["slug"]}.html"><p class="lw-kicker">{n:02}</p><h2>{E(a["title"])}</h2><p>{E(a["deck"])}</p><span class="lw-read">{E(ui["read"])} →</span></a>' for n, a in enumerate(data['articles'], 1))
+        count = f'{len(data["articles"])} · ' + ' / '.join(LABELS.values())
+        content = f'<section class="lw-hero"><p class="lw-kicker">Non Dubito · {E(ui["series"])}</p><h1>{E(title["title"])}</h1><p class="lw-deck">{E(title["deck"])}</p><p class="lw-meta">{E(count)}</p></section><aside class="lw-opening"><p>{E(title["intro"])}</p><a href="{data["articles"][0]["slug"]}.html">{E(ui["read"])} →</a></aside><section class="lw-grid">{cards}</section><section class="lw-note"><p>{E(title["scope"])}</p></section>'+sources(spec, data)+related(spec, data)
+        target = ROOT/spec['directory']/language
+        pages[target/'index.html'] = document(spec, data, 'index', content)
+        for n, article in enumerate(data['articles']):
+            body = '\n'.join('<h2>'+E(p[3:])+'</h2>' if p.startswith('## ') else '<p>'+E(p)+'</p>' for p in article['body'])
+            nav = []
+            for offset, label in ((-1, 'previous'), (1, 'next')):
+                k = n + offset
+                other = data['articles'][k] if 0 <= k < len(data['articles']) else None
+                href = other['slug']+'.html' if other else 'index.html'
+                nav.append(f'<a href="{href}"><small>{E(ui[label] if other else ui["contents"])}</small>{E(other["title"] if other else title["title"])}</a>')
+            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(ui["series"])} · {n+1:02}</p><h1>{E(article["title"])}</h1><p class="lw-deck">{E(article["deck"])}</p><p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p></div><div class="essay-body lw-prose" lang="{language}">{body}</div>{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
+            pages[target/(article['slug']+'.html')] = document(spec, data, article['slug'], content, article)
+    return pages
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('series')
+    parser.add_argument('--check', action='store_true')
+    args = parser.parse_args()
+    pages = render(args.series)
+    for path, text in pages.items():
+        if args.check:
+            assert path.read_text() == text, path
+        else:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text)
+    print(f'{args.series}: {len(pages)} complete language pages '+('checked' if args.check else 'rendered'))
+
+
+if __name__ == '__main__':
+    main()
