@@ -13,10 +13,10 @@
   <meta property="og:url" content="https://nondubito.net/essays/method/00e.html">
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://nondubito.net/essays/method/00e.html">
-  <link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/method/00e.html">
-<link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/method/00e.html">
-<link rel="alternate" hreflang="zh-Hant" href="https://nondubito.net/essays/method/00e.html">
-<link rel="alternate" hreflang="en" href="https://nondubito.net/essays/method/00e.html">
+
+
+
+
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <link rel="stylesheet" href="../../style.css">
   <style>
@@ -46,7 +46,8 @@
   'use strict';
   var codes = {'zh':'zh-Hans', 'zh-hant':'zh-Hant', 'en':'en'};
   var saved = 'zh';
-  try { saved = localStorage.getItem('nd_lang') || localStorage.getItem('nondubito-lang') || 'zh'; } catch (error) {}
+  var requested = new URLSearchParams(location.search).get('lang');
+  try { saved = requested || localStorage.getItem('nd_lang') || localStorage.getItem('nondubito-lang') || 'zh'; } catch (error) { saved = requested || 'zh'; }
   if (!Object.prototype.hasOwnProperty.call(codes, saved)) saved = 'zh';
   document.documentElement.setAttribute('data-lang', saved);
   document.documentElement.lang = codes[saved];
@@ -73,11 +74,16 @@
         try { localStorage.setItem('nd_lang', lang); localStorage.setItem('nondubito-lang', lang); } catch (error) {}
       });
     });
+    document.addEventListener('change', function(event) {
+      if (!event.target.matches('.lang-toggle .lang-select')) return;
+      var option = event.target.options[event.target.selectedIndex];
+      if (Object.prototype.hasOwnProperty.call(codes, option.dataset.inlineLanguage)) update(option.dataset.inlineLanguage);
+    });
     update(saved);
   });
 })();
 </script>
-</head>
+<!-- COMPANION ALTERNATES START --><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/method/00e.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/method/00e.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/method/de/00e.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/method/fr/00e.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/method/es/00e.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/method/ja/00e.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/method/ko/00e.html"><!-- COMPANION ALTERNATES END --><script id="companion-language-state">(function(){function sync(language){if(['en','zh','zh-hant'].indexOf(language)<0)return;document.documentElement.setAttribute('data-lang',language);document.documentElement.lang=language==='zh'?'zh-Hans':language==='zh-hant'?'zh-Hant':'en';var url=new URL(location.href);url.searchParams.set('lang',language);history.replaceState(null,'',url);localStorage.setItem('nd_lang',language);localStorage.setItem('nondubito-lang',language);var select=document.querySelector('.lang-toggle .lang-select');if(select){Array.prototype.forEach.call(select.options,function(option,index){if(option.dataset.inlineLanguage===language)select.selectedIndex=index;});}var suffix=language==='zh-hant'?'hant':language;var heading=document.querySelector('h1.lang-'+suffix);if(heading)document.title=heading.textContent+' — Non Dubito';}document.addEventListener('DOMContentLoaded',function(){sync(document.documentElement.getAttribute('data-lang'));});document.addEventListener('change',function(event){if(!event.target.matches('.lang-toggle .lang-select'))return;var option=event.target.options[event.target.selectedIndex];sync(option.dataset.inlineLanguage);});})();</script><script defer src="../../language-select.js?v=20261103"></script><style id="companion-language-layout">.lang-toggle.lang-select-menu{display:inline-flex;width:max-content;max-width:100%;}</style></head>
 <body class="method-intro">
   <header>
     <div class="header-inner">
@@ -95,7 +101,7 @@
           <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button><span class="lang-sep" aria-hidden="true">|</span>
           <button type="button" class="lang-btn active" data-lang="zh" aria-pressed="true">中文</button><span class="lang-sep" aria-hidden="true">|</span>
           <button type="button" class="lang-btn" data-lang="zh-hant" aria-pressed="false">繁體</button>
-        </div>
+        <!-- COMPANION LANGUAGE LINKS START --><span class="lang-sep">|</span><a class="lang-btn" href="de/00e.html" lang="de">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/00e.html" lang="fr">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="es/00e.html" lang="es">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ja/00e.html" lang="ja">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/00e.html" lang="ko">한국어</a><!-- COMPANION LANGUAGE LINKS END --></div>
         <a class="back-link lang-zh" data-reading-lang="zh" href="index.html">← 方法论系列</a>
 <a class="back-link lang-hant" data-reading-lang="zh-hant" href="index.html">← 方法論系列</a>
 <a class="back-link lang-en" data-reading-lang="en" href="index.html">← Methodology Series</a>

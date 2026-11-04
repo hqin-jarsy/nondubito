@@ -22,7 +22,7 @@ SUPPLEMENT = {'de':'Ergänzung','fr':'Complément','es':'Complemento','ja':'補�
 
 
 def article_count(language,n):
-    return {'de':f'{n} Essays','fr':f'{n} essais','es':f'{n} ensayos','ja':f'{n}篇','ko':f'글 {n}편'}[language]
+    return {'de':f'{n} '+('Essay' if n==1 else 'Essays'),'fr':f'{n} '+('essai' if n==1 else 'essais'),'es':f'{n} '+('ensayo' if n==1 else 'ensayos'),'ja':f'{n}篇','ko':f'글 {n}편'}[language]
 
 
 def edition_count(language,n):
@@ -60,8 +60,43 @@ def load_language(series, language):
             assert isinstance(q, str) and q.strip() and '<' not in q and '�' not in q
             assert p.startswith('## ') == q.startswith('## '), (language, article['slug'], p[:40])
             assert isinstance(note, str) and note.strip()
+            if spec.get('append_only'):
+                assert block_kind(p)==block_kind(q),(language,article['slug'],'changed block type',p[:40])
         article['source_url'] = original.get('source_url', spec['source'])
     return spec, data
+
+
+def block_kind(text):
+    if text.startswith('## '):return 'heading'
+    if text.startswith('> '):return 'quote'
+    match=re.match(r'([1-9])\. ',text)
+    if match:return 'item:'+match[1]
+    match=re.match(r'\*\*(1[3-6]DD)\*\* ',text)
+    if match:return match[1]
+    return 'paragraph'
+
+
+def render_prose(units):
+    blocks=[]
+    items=[]
+    def flush():
+        if items:
+            blocks.append('<ol>'+''.join('<li>'+inline_markdown(x)+'</li>' for x in items)+'</ol>')
+            items.clear()
+    for text in units:
+        if re.match(r'^[1-9]\. ',text):items.append(text[3:]);continue
+        flush()
+        if text.startswith('## '):blocks.append('<h2>'+inline_markdown(text[3:])+'</h2>')
+        elif text.startswith('> '):blocks.append('<blockquote>'+inline_markdown(text[2:])+'</blockquote>')
+        else:blocks.append('<p>'+inline_markdown(text)+'</p>')
+    flush()
+    return '\n'.join(blocks)
+
+
+def primary_bodies(spec,text):
+    if spec.get('primary_format')=='foundations-bridge':
+        return ''.join(re.findall(r'<article class="bridge-body[^>]*>.*?</article>',text,re.S))
+    return ''.join(re.findall(r'<div class="essay-body[^>]*>.*?</div>',text,re.S))
 
 
 def origin(spec):
@@ -196,9 +231,10 @@ def render(series):
         count = article_count(language,len(data['articles']))+' · '+' / '.join(LABELS.values())
         content = f'<section class="lw-hero"><p class="lw-kicker">Non Dubito · {E(ui["series"])}</p><h1>{E(title["title"])}</h1><p class="lw-deck">{E(title["deck"])}</p><p class="lw-meta">{E(count)}</p></section><aside class="lw-opening"><p>{E(title["intro"])}</p><a href="{data["articles"][0]["slug"]}.html">{E(ui["read"])} →</a></aside><section class="lw-grid">{cards}</section><section class="lw-note"><p>{E(title["scope"])}</p></section>'+sources(spec, data)+related(spec, data)
         target = ROOT/spec['directory']/language
-        pages[target/'index.html'] = document(spec, data, 'index', content)
+        if not spec.get('append_only'):
+            pages[target/'index.html'] = document(spec, data, 'index', content)
         for n, article in enumerate(data['articles']):
-            body = '\n'.join('<h2>'+inline_markdown(p[3:])+'</h2>' if p.startswith('## ') else '<p>'+inline_markdown(p)+'</p>' for p in article['body'])
+            body = render_prose(article['body'])
             deck = '<p class="lw-deck">'+E(article['deck'])+'</p>' if article.get('show_deck',True) else ''
             nav = []
             for offset, label in ((-1, 'previous'), (1, 'next')):
@@ -206,7 +242,17 @@ def render(series):
                 other = data['articles'][k] if 0 <= k < len(data['articles']) else None
                 href = other['slug']+'.html' if other else 'index.html'
                 nav.append(f'<a href="{href}"><small>{E(ui[label] if other else ui["contents"])}</small>{E(other["title"] if other else title["title"])}</a>')
-            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(ui["series"])} · {E(essay_label(article,n,language))}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p></div><div class="essay-body lw-prose" lang="{language}">{body}</div>{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
+            label=essay_label(article,n,language)
+            if spec.get('append_only'):
+                label=SUPPLEMENT[language] if spec['article_label']=='supplement' else spec['article_label']
+                nav=[]
+                for direction,slug in spec.get('neighbors',{}).items():
+                    neighbor=(target/(slug+'.html')).read_text()
+                    heading=re.search(r'<h1\b[^>]*>(.*?)</h1>',neighbor,re.S)[1]
+                    heading=html.unescape(re.sub(r'<[^>]+>','',heading))
+                    nav.append(f'<a href="{slug}.html"><small>{E(ui[direction])}</small>{E(heading)}</a>')
+                if len(nav)<2:nav.append(f'<a href="index.html"><small>{E(ui["contents"])}</small>{E(title["title"])}</a>')
+            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(ui["series"])} · {E(label)}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p></div><div class="essay-body lw-prose" lang="{language}">{body}</div>{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
             pages[target/(article['slug']+'.html')] = document(spec, data, article['slug'], content, article)
     return pages
 

@@ -72,9 +72,11 @@ class MethodIntroductionTests(unittest.TestCase):
         self.assertEqual(len(info.buttons), 3)
         self.assertEqual(dict(info.bodies), {lang: config[0] for lang, config in LANGUAGES.items()})
         alternates = re.findall(r'hreflang="([^"]+)" href="([^"]+)"', self.source)
-        self.assertEqual(set(alternates), {(code, CANONICAL) for code in ["en", "zh-Hans", "zh-Hant", "x-default"]})
+        expected = {("x-default", CANONICAL), ("zh-Hans", CANONICAL)}
+        expected.update((code, CANONICAL.rsplit('/', 1)[0] + '/' + code + '/00e.html') for code in ["ja", "fr", "de", "es", "ko"])
+        self.assertEqual(set(alternates), expected)
         for lang in ["ja", "fr", "de", "es", "ko"]:
-            self.assertFalse((PAGE.parent / lang / PAGE.name).exists())
+            self.assertTrue((PAGE.parent / lang / PAGE.name).exists())
 
     def test_local_targets_and_source(self):
         for filename in ["00e.html", "index.html", "00.html", "viii.html", "x.html"]:
@@ -137,8 +139,13 @@ class MethodIntroductionTests(unittest.TestCase):
         self.assertEqual(check_updates(), [])
         entries = json.loads((ROOT / "data" / "site-updates.json").read_text())["updates"]
         matching = [entry for entry in entries if entry["url"] == PAGE.relative_to(ROOT).as_posix()]
-        self.assertEqual(len(matching), 1)
-        self.assertEqual(set(matching[0]["languages"]), set(LANGUAGES))
+        self.assertEqual(len(matching), 2)
+        original = [entry for entry in matching if len(entry['languages']) == 3]
+        expanded = [entry for entry in matching if len(entry['languages']) == 8]
+        self.assertEqual(len(original), 1)
+        self.assertEqual(len(expanded), 1)
+        self.assertEqual(set(original[0]["languages"]), set(LANGUAGES))
+        self.assertEqual(set(expanded[0]["languages"]), set(LANGUAGES) | {'ja', 'ko', 'de', 'fr', 'es'})
         library = (ROOT / "library.html").read_text()
         self.assertIn('href="essays/method/index.html" class="series-card"', library)
         self.assertIn('12 papers + 1 introduction', library)

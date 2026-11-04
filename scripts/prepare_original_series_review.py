@@ -6,7 +6,7 @@ import json
 import re
 import subprocess
 
-from full_series_languages import ROOT, load_language, profile
+from full_series_languages import ROOT, load_language, profile, primary_bodies
 
 
 def prepare(series):
@@ -51,17 +51,23 @@ def prepare(series):
         sources[slug]=hashlib.sha256(path.read_bytes()).hexdigest()
         counts.append(len(json.loads(path.read_text())['body_zh']))
         source=(ROOT/spec['directory']/(slug+'.html')).read_text()
-        body=''.join(re.findall(r'<div class="essay-body[^>]*>.*?</div>',source,re.S))
+        body=primary_bodies(spec,source)
         assert body, (series,slug)
         primary[slug]=hashlib.sha256(body.encode()).hexdigest()
     outputs={}
     snapshot=base/'preservation.json'
+    route_protection=None
+    if spec.get('append_only'):
+        from companion_languages import route_snapshot
+        route_protection=route_snapshot(series)
     if not snapshot.exists():
         outputs[snapshot]={'baseline_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
                            'source_data':sources,'primary_bodies':primary}
+        if route_protection:outputs[snapshot]['existing_route']=route_protection
     else:
         saved=json.loads(snapshot.read_text())
         assert saved['source_data']==sources and saved['primary_bodies']==primary, 'Primary content changed'
+        if route_protection:assert saved['existing_route']==route_protection,'Existing route changed'
     outputs[base/'publication.json']={
         'date':spec['date'],'result':'passed',
         'scope':'Complete independent foreign rewrites of the published Chinese reader essays, not shortened translations of their academic sources.',

@@ -27,7 +27,7 @@ def render(series):
     entry = json.loads((ROOT/'data'/series/'multilingual/discovery.json').read_text())
     ledger = json.loads((ROOT/'data/site-updates.json').read_text())
     old_ids = [u['id'] for u in ledger['updates']]
-    public_entry = {k:v for k,v in entry.items() if k != 'library_count'}
+    public_entry = {k:v for k,v in entry.items() if k not in ('library_count','library_url')}
     if entry['id'] in old_ids:
         ledger['updates'][old_ids.index(entry['id'])] = public_entry
     else:
@@ -53,11 +53,14 @@ def render(series):
         path = ROOT/f'essays/{language}/index.html'
         source = path.read_text()
         anchor = '<div id="language-library" class="language-channel-library-anchor" aria-hidden="true"></div>'
-        card = f'<section class="essays-section" style="padding:2rem 0"><a href="../{series}/{language}/index.html" class="essay-card" style="display:block;text-decoration:none;border-left:3px solid var(--gold);padding:2rem"><p style="font-family:var(--sans);font-size:.8rem;color:var(--green)">{html.escape(data["ui"]["series"])}</p><h2 style="font-size:1.6rem;font-weight:400">{html.escape(data["series"]["title"])}</h2><p>{html.escape(data["series"]["deck"])}</p><p>{edition_count(language,len(data["articles"]))}</p></a></section>'
+        item=data['articles'][0] if spec.get('append_only') else data['series']
+        suffix=(data['articles'][0]['slug']+'.html') if spec.get('append_only') else 'index.html'
+        href='../'+spec['directory'].removeprefix('essays/')+'/'+language+'/'+suffix
+        card = f'<section class="essays-section" style="padding:2rem 0"><a href="{href}" class="essay-card" style="display:block;text-decoration:none;border-left:3px solid var(--gold);padding:2rem"><p style="font-family:var(--sans);font-size:.8rem;color:var(--green)">{html.escape(data["ui"]["series"])}</p><h2 style="font-size:1.6rem;font-weight:400">{html.escape(item["title"])}</h2><p>{html.escape(item["deck"])}</p><p>{edition_count(language,len(data["articles"]))}</p></a></section>'
         pages[path] = block(source,'FULL SERIES '+series.upper()+' CHANNEL',card,anchor)
     path = ROOT/'library.html'
     source = path.read_text()
-    pattern = r'(<a href="'+re.escape(entry['url'])+r'" class="series-card">\s*<span class="series-card-count">).*?(</span>\s*<div class="series-card-title-zh)'
+    pattern = r'(<a href="'+re.escape(entry.get('library_url',entry['url']))+r'" class="series-card">\s*<span class="series-card-count">).*?(</span>\s*<div class="series-card-title-zh)'
     def count(match):
         values = entry['library_count']
         labels = ''.join(f'<span class="lang-{suffix}{" cl-"+suffix if suffix in ("zh","hant") else ""}">{html.escape(values[code])}</span>' for code,suffix in [('en','en'),('zh','zh'),('zh-hant','hant')])
