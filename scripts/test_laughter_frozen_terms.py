@@ -7,6 +7,7 @@ import unittest
 from prepare_action_sources import Document
 from build_emperor_traditional import TextCollector
 from full_series_languages import ROOT
+from laughter_primary import strip_additions
 
 
 class FrozenLaughterTerms(unittest.TestCase):
@@ -21,7 +22,7 @@ class FrozenLaughterTerms(unittest.TestCase):
     def test_only_authorized_prose_blocks_and_previews_changed(self):
         for slug in ('index','overview','ep04','ep05'):
             path=ROOT/'essays/laughter'/(slug+'.html')
-            old=Document(self.original(path));new=Document(path.read_text())
+            old=Document(self.original(path));new=Document(strip_additions(path.read_text()))
             def blocks(doc):
                 return [n.text() for n in doc.root.walk() if (n.tag in ('p','h1','h2','h3') or n.has('entry-desc')) and not n.has('laughter-definition-note')]
             expected=blocks(old)
@@ -67,7 +68,8 @@ class FrozenLaughterTerms(unittest.TestCase):
             for key in old.keys() & new.keys():self.assertEqual(old[key],new[key],(slug,key))
         for slug in ('ep01','ep02','ep03'):
             for path in (ROOT/'essays/laughter'/(slug+'.html'),ROOT/'essays/laughter/zh-hant-data'/(slug+'.js')):
-                self.assertEqual(path.read_text(),self.original(path))
+                current=strip_additions(path.read_text()) if path.suffix=='.html' else path.read_text()
+                self.assertEqual(current,self.original(path))
 
     def test_frozen_entry_definitions_and_three_reading_modes_remain(self):
         self.assertEqual(len(self.report['changes']),20)

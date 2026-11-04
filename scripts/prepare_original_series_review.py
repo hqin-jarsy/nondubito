@@ -10,6 +10,125 @@ from full_series_languages import (ROOT, load_language, profile, primary_bodies,
                                    source_digest, original_article)
 
 
+def review_value_sha256(value):
+    """Stable object identity used by the actual complete-reading reports."""
+    return hashlib.sha256(json.dumps(value,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
+
+
+def review_field(data, item):
+    field=item.get('field','body')
+    if field.startswith(('series.','ui.')):
+        group,key=field.split('.',1)
+        value=data[group][key]
+        return value[item['paragraph']] if isinstance(value,list) and 'paragraph' in item else value
+    article=next(a for a in data['articles'] if a['slug']==item['slug'])
+    if field.startswith(('sources.','case_links.')):
+        group,key=field.split('.',1)
+        return article[group][item['paragraph']][key]
+    value=article[field]
+    return value[item['paragraph']] if field in ('body','notes','notes_coverage') else value
+
+
+def saved_field_matches(value, digest):
+    # Earlier genuine reports use raw UTF-8 for strings, later ones stable JSON.
+    accepted={review_value_sha256(value)}
+    if isinstance(value,str):accepted.add(hashlib.sha256(value.encode()).hexdigest())
+    return digest in accepted
+
+
+def verify_article_reading(article, record, current):
+    """Bind a completed reading to this whole article, not only edited snippets."""
+    original=record.get('reading_article_sha256',record.get('article_sha256'))
+    assert isinstance(original,str) and re.fullmatch(r'[0-9a-f]{64}',original),'Missing reading-time fingerprint'
+    assert record.get('units_read',record.get('body_units'))==len(article['body'])
+    assert record.get('notes_read',record.get('writing_notes_read'))==len(article.get('notes',[]))
+    assert record.get('source_links_read',record.get('sources_read'))==len(article.get('sources',[]))
+    assert current==review_value_sha256(article),(record['slug'],'manuscript differs from final actual reading')
+
+
+def verify_saved_readbacks(data, report):
+    fields=[]
+    for key in ('post_application','post_application_readback'):
+        post=report.get(key,{})
+        if post.get('passed') is True:
+            assert post.get('reader') and post.get('scope'),'Unattributed saved-field readback'
+            fields.extend(post.get('fields_read',[]))
+            fields.extend(post.get('fields',[]))
+    for issue in [*report.get('issues',[]),*report.get('metadata_issues',[])]:
+        value=review_field(data,issue)
+        assert isinstance(value,str) and issue['after'] in value,('Accepted correction missing',issue)
+        assert any(f.get('slug')==issue.get('slug')
+                   and f.get('field','body')==issue.get('field','body')
+                   and f.get('paragraph')==issue.get('paragraph')
+                   and saved_field_matches(value,f.get('saved_field_sha256'))
+                   for f in fields),('Actual complete saved-field readback missing or stale',issue)
+
+
+def verify_shared_reading(data, evidence):
+    assert evidence['language']==data['language']
+    for group in ('series','ui'):
+        assert evidence[group+'_sha256']==review_value_sha256(data[group]),(group,'shared object changed since reading')
+    fields=evidence['fields']
+    expected={group+'.'+key for group in ('series','ui') for key in data[group]}
+    assert len(fields)==len(expected) and {f['field'] for f in fields}==expected,'Incomplete shared-field reading record'
+    for field in fields:
+        value=review_field(data,field)
+        assert field['value']==value and saved_field_matches(value,field['saved_field_sha256']),(field['field'],'shared field changed since reading')
+
+
+def read_evidence_report(base, name, digest):
+    assert isinstance(name,str) and name==name.rsplit('/',1)[-1] and '\\' not in name,'Evidence must be a local report filename'
+    path=base/name
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==digest,(name,'evidence report changed after consolidation')
+    return json.loads(path.read_text())
+
+
+def require_strict_reading_evidence(series, spec, base, reports):
+    """Opt-in mechanical binding, not a claim to automate prose quality.
+
+    No report, reading or approval is synthesized. Only already completed,
+    independently recorded readings can authorize the exact current payload.
+    """
+    if not spec.get('strict_reading_evidence'):return
+    raw={language:json.loads((base/(language+'.json')).read_text()) for language in spec['languages']}
+    # Validate every manuscript even if that language has no listed corrections.
+    for language in spec['languages']:load_language(series,language)
+    for name,report in reports:
+        if not name.startswith('cross-review-'):continue
+        evidence_names=report['evidence_reports']
+        manifest=report['evidence_report_sha256']
+        assert len(evidence_names)==len(set(evidence_names)) and set(evidence_names)==set(manifest),'Incomplete evidence manifest'
+        evidence={n:read_evidence_report(base,n,manifest[n]) for n in evidence_names}
+        expected={(language,slug) for language in report['languages'] for slug in spec['slugs']}
+        seen=set()
+        for record in report['articles_reviewed']:
+            language,slug=record['language'],record['slug']
+            assert (language,slug) in expected and (language,slug) not in seen
+            seen.add((language,slug))
+            data=raw[language]
+            article=next(a for a in data['articles'] if a['slug']==slug)
+            verify_article_reading(article,record,record['current_article_sha256'])
+            individual=evidence[record['reading_report']]
+            assert individual['batch_ready'] is True and individual.get('batch_remaining',[])==[],'Unfinished reading batch'
+            originals=[a for a in individual['articles_reviewed'] if a['language']==language and a['slug']==slug]
+            assert len(originals)==1,'Missing unique original reading record'
+            original=originals[0]
+            verify_article_reading(article,original,individual['current_batch_article_sha256'][slug])
+            assert record.get('reading_article_sha256',record.get('article_sha256'))==original.get('reading_article_sha256',original.get('article_sha256')),'Reading-time fingerprint changed during consolidation'
+            verify_saved_readbacks(data,individual)
+        assert seen==expected,'Incomplete actual article evidence'
+        shared=report['complete_shared_metadata_evidence']
+        assert set(shared)==set(report['languages']),'Missing full shared metadata evidence'
+        for language in report['languages']:
+            individual=evidence['cross-review-'+language+'-shared.json']
+            assert individual['metadata_ready'] is True and individual.get('metadata_remaining',[])==[] and individual.get('remaining',[])==[],'Unfinished shared reading'
+            current=individual.get('current_objects_read',individual['objects_read'])
+            matches=[item for item in current if item['language']==language]
+            assert len(matches)==1 and shared[language]==matches[0],'Shared evidence differs from actual final reading'
+            verify_shared_reading(raw[language],shared[language])
+            verify_saved_readbacks(raw[language],individual)
+
+
 def primary_main_hashes(spec):
     """Protect all primary reading content, allowing only its language controls."""
     result={}
@@ -63,6 +182,7 @@ def prepare(series):
             report=json.loads(path.read_text())
             assert not report['remaining']
             reports.append((path.name,report))
+    require_strict_reading_evidence(series,spec,base,reports)
     # Keep validated manuscripts local to this preparation call. A large series
     # can have hundreds of resolved findings; rereading and revalidating all of
     # its articles once per finding adds no protection. Never cache across calls,

@@ -68,7 +68,7 @@ def source_directory(series, spec=None):
 
 
 def source_file(series, spec, slug):
-    if spec.get('source_adapter')=='published-html':
+    if spec.get('source_adapter') in ('published-html','laughter-html'):
         directory=(ROOT/spec['directory']).resolve()
         path=(directory/(slug+'.html')).resolve()
         assert directory.is_relative_to((ROOT/'essays').resolve()) and path.parent==directory
@@ -82,10 +82,13 @@ def source_file(series, spec, slug):
 
 def original_article(series, spec, slug):
     """Read the canonical source directly; Markdown is never a parallel JSON copy."""
+    if spec.get('source_adapter')=='laughter-html':
+        from laughter_source import load_article
+        return load_article(spec,slug)
     if spec.get('source_adapter')=='aesthetics-markdown':
         from aesthetics_source import load_article
         return load_article(spec,slug)
-    if spec.get('source_adapter')=='published-html':
+    if spec.get('source_adapter') in ('published-html','laughter-html'):
         from published_html_source import load_article
         return load_article(spec,slug)
     if spec.get('source_adapter')=='structured-western-book':
@@ -115,6 +118,11 @@ def original_article(series, spec, slug):
 
 
 def source_digest(series,spec,slug):
+    if spec.get('source_adapter')=='laughter-html':
+        # Only the explicitly reversible language additions may be excluded.
+        # Retain the original raw-file fingerprint and protect all prose/scripts.
+        from laughter_primary import strip_additions
+        return hashlib.sha256(strip_additions(source_file(series,spec,slug).read_text()).encode()).hexdigest()
     if spec.get('source_adapter')=='aesthetics-markdown':
         from aesthetics_source import source_digest as aesthetics_digest
         return aesthetics_digest(spec,slug)
@@ -188,8 +196,12 @@ def load_language(series, language):
         assert set(pairs)==set(spec['slugs'])
         assert all(a!=b and pairs.get(b)==a for a,b in pairs.items())
         assert data['ui']['read_alongside'].strip()
-    if spec.get('index_context_source'):
-        context=json.loads((ROOT/spec['index_context_source']).read_text())['body_zh']
+    if spec.get('index_context_source') or spec.get('published_index_context'):
+        if spec.get('published_index_context'):
+            from published_html_source import index_context
+            context=index_context(spec)
+        else:
+            context=json.loads((ROOT/spec['index_context_source']).read_text())['body_zh']
         assert len(data['series']['index_context'])==len(context)
         assert len(data['series']['index_context_coverage'])==len(context)
         for p,q,note in zip(context,data['series']['index_context'],data['series']['index_context_coverage']):
@@ -331,6 +343,9 @@ def alternatives(spec, slug):
 
 def upgrade_primary(text, series, slug):
     spec = profile(series)
+    if spec.get('source_adapter')=='laughter-html':
+        from laughter_primary import upgrade
+        return upgrade(text,spec,slug)
     if spec.get('source_adapter')=='aesthetics-markdown':
         from aesthetics_primary import upgrade
         return upgrade(text,spec,slug)
@@ -520,8 +535,12 @@ def closing_invitation(spec, data, article):
     """An optional observation is ancillary prose, never a questionnaire."""
     if not spec.get('optional_pause'):
         return ''
+    link=''
+    if spec.get('relax_collection'):
+        root='../'*(len(Path(spec['directory']).parts)+1)
+        link='<p><a href="'+E(root+spec['relax_collection'])+'">'+E(data['ui']['pause_note'])+' →</a></p>'
     return ('<aside class="lw-note jg-pause"><h2>'+E(data['ui']['pause_heading'])
-            +'</h2><p>'+E(article['pause'])+'</p><p>'+E(data['ui']['pause_note'])+'</p></aside>')
+            +'</h2><p>'+E(article['pause'])+'</p>'+(link or '<p>'+E(data['ui']['pause_note'])+'</p>')+'</aside>')
 
 
 def optional_book_aside(spec,data,article):
@@ -586,7 +605,7 @@ def render(series):
         notice=('<p class="lw-meta" style="max-width:70ch;line-height:1.75">'+E(title['notice'])+'</p>') if spec.get('visible_notice') else ''
         card_rows=[]
         for n,a in enumerate(data['articles']):
-            card_label=a['place'] if spec.get('historical_places') else a.get('kicker',essay_label(a,n,language))
+            card_label=a['place'] if spec.get('historical_places') else a.get('kicker',SPECIAL_STUDY[language] if spec.get('label_standalone_studies') and a['slug'] in spec.get('standalone_slugs',[]) else essay_label(a,n,language))
             card=f'<a class="lw-card" href="{a["slug"]}.html"><p class="lw-kicker">{E(card_label)}</p><h2>{E(a["title"])}</h2><p>{E(a["deck"])}</p><span class="lw-read">{E(ui["read"])} →</span></a>'
             card_rows.append((a['slug'],card))
         standalone=set(spec.get('standalone_slugs',[]))
@@ -635,7 +654,7 @@ def render(series):
                 other=next(a for a in data['articles'] if a['slug']==spec['article_pairs'][article['slug']])
                 nav=[f'<a href="index.html"><small>{E(ui["contents"])}</small>{E(title["title"])}</a>',
                      f'<a href="{E(other["slug"])}.html"><small>{E(ui["read_alongside"])}</small>{E(other["title"])}</a>']
-            label=article.get('kicker',essay_label(article,n,language))
+            label=article.get('kicker',SPECIAL_STUDY[language] if spec.get('label_standalone_studies') and article['slug'] in spec.get('standalone_slugs',[]) else essay_label(article,n,language))
             if spec.get('append_only'):
                 label=SUPPLEMENT[language] if spec['article_label']=='supplement' else spec['article_label']
                 nav=[]
