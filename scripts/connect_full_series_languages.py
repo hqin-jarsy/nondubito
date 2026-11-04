@@ -56,7 +56,7 @@ def render(series):
         item=data['articles'][0] if spec.get('append_only') else data['series']
         suffix=(data['articles'][0]['slug']+'.html') if spec.get('append_only') else 'index.html'
         href='../'+spec['directory'].removeprefix('essays/')+'/'+language+'/'+suffix
-        card = f'<section class="essays-section" style="padding:2rem 0"><a href="{href}" class="essay-card" style="display:block;text-decoration:none;border-left:3px solid var(--gold);padding:2rem"><p style="font-family:var(--sans);font-size:.8rem;color:var(--green)">{html.escape(data["ui"]["series"])}</p><h2 style="font-size:1.6rem;font-weight:400">{html.escape(item["title"])}</h2><p>{html.escape(item["deck"])}</p><p>{edition_count(language,len(data["articles"]))}</p></a></section>'
+        card = f'<section class="essays-section" style="padding:2rem 0"><a href="{href}" class="essay-card" style="display:block;text-decoration:none;border-left:3px solid var(--gold);padding:2rem"><p style="font-family:var(--sans);font-size:.8rem;color:var(--green)">{html.escape(data["ui"]["series"])}</p><h2 style="font-size:1.6rem;font-weight:400">{html.escape(item["title"])}</h2><p>{html.escape(item["deck"])}</p><p>{edition_count(language,len(data["articles"]),spec)}</p></a></section>'
         pages[path] = block(source,'FULL SERIES '+series.upper()+' CHANNEL',card,anchor)
     path = ROOT/'library.html'
     source = path.read_text()

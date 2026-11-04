@@ -10,6 +10,7 @@ from pathlib import Path
 
 from build_ai_work_series import TraditionalConverter, shell_header, footer, tri
 from web_analytics import tracked_html
+from full_series_languages import upgrade_primary
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'essays/action'
@@ -91,7 +92,8 @@ def render_article(item: dict, converter: TraditionalConverter) -> str:
     foot = footer()
     for en, zh in (('Explore','探索'), ('Library','书架'), ('SAE Theory ↗','SAE 理论 ↗')):
         foot = foot.replace('>' + en + '</a>', '>' + loc(en,zh) + '</a>')
-    return '<!DOCTYPE html>\n<html lang="en" data-lang="en" data-editions="en zh zh-hant">' + head + '<body class="site-shell-page explicit-hant adversity-page">' + header + content + foot + '</body></html>\n'
+    page = '<!DOCTYPE html>\n<html lang="en" data-lang="en" data-editions="en zh zh-hant">' + head + '<body class="site-shell-page explicit-hant adversity-page">' + header + content + foot + '</body></html>\n'
+    return upgrade_primary(page,'action','adversity')
 
 
 def index_entries(item: dict, converter: TraditionalConverter) -> tuple[list[str],dict]:
@@ -136,7 +138,7 @@ def render() -> dict[Path,str]:
         old_variants = json.loads(match[1])
         old_variants.update(variants)
         js = js[:match.start(1)] + json.dumps(old_variants,ensure_ascii=False) + js[match.end(1):]
-        return {TARGET/'adversity.html':render_article(item,converter),index_path:index,js_path:js}
+        return {TARGET/'adversity.html':render_article(item,converter),index_path:upgrade_primary(index,'action','index'),js_path:js}
     finally:
         converter.close()
 

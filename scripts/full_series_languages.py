@@ -6,6 +6,7 @@ coverage record, which supports human review but is not itself a quality score.
 """
 from __future__ import annotations
 import argparse
+import hashlib
 import html
 import json
 import re
@@ -19,14 +20,26 @@ LABELS = {'en': 'English', 'zh': '简体中文', 'zh-hant': '繁體中文',
 E = html.escape
 GUIDE = {'de':'Einführung','fr':'Introduction','es':'Introducción','ja':'はじめに','ko':'들어가며'}
 SUPPLEMENT = {'de':'Ergänzung','fr':'Complément','es':'Complemento','ja':'補論','ko':'보론'}
+SPECIAL_STUDY = {'de':'Eigenständige Studie','fr':'Étude indépendante','es':'Estudio independiente','ja':'独立した特論','ko':'독립 특론'}
 
 
 def article_count(language,n):
     return {'de':f'{n} '+('Essay' if n==1 else 'Essays'),'fr':f'{n} '+('essai' if n==1 else 'essais'),'es':f'{n} '+('ensayo' if n==1 else 'ensayos'),'ja':f'{n}篇','ko':f'글 {n}편'}[language]
 
 
-def edition_count(language,n):
-    return article_count(language,n)+' · '+{'de':'8 Sprachen','fr':'8 langues','es':'8 idiomas','ja':'8言語','ko':'8개 언어'}[language]
+def collection_count(spec,language,n):
+    separate=len(spec.get('standalone_slugs',[]))
+    if not separate:return article_count(language,n)
+    studies={'de':f'{separate} eigenständige '+('Studie' if separate==1 else 'Studien'),
+             'fr':f'{separate} étude'+('' if separate==1 else 's')+' indépendante'+('' if separate==1 else 's'),
+             'es':f'{separate} estudio'+('' if separate==1 else 's')+' independiente'+('' if separate==1 else 's'),
+             'ja':f'独立特論{separate}篇','ko':f'독립 특론 {separate}편'}
+    return article_count(language,n-separate)+' + '+studies[language]
+
+
+def edition_count(language,n,spec=None):
+    count=collection_count(spec,language,n) if spec else article_count(language,n)
+    return count+' · '+{'de':'8 Sprachen','fr':'8 langues','es':'8 idiomas','ja':'8言語','ko':'8개 언어'}[language]
 
 
 def essay_label(article,index,language):
@@ -35,12 +48,38 @@ def essay_label(article,index,language):
     if match:return f'{int(match[1]):02d}'
     if article['slug'] in ('overview','prequel'):return GUIDE[language]
     if article['slug']=='interface':return SUPPLEMENT[language]
+    if article['slug']=='adversity':return SPECIAL_STUDY[language]
     return f'{index+1:02d}'
 
 
 def profile(series):
     assert re.fullmatch(r'[a-z0-9-]+', series), series
     return json.loads((ROOT/'data'/series/'multilingual/profile.json').read_text())
+
+
+def require_review_seal(series,spec):
+    """A structural match is not editorial approval; require the frozen review."""
+    if not spec.get('require_review_seal'):return
+    base=ROOT/'data'/series/'multilingual'
+    receipt=json.loads((base/'publication.json').read_text())
+    assert receipt['result']=='passed' and receipt['unresolved']==[]
+    assert receipt['languages']==spec['languages'] and receipt['slugs']==spec['slugs']
+    for name in ('cross-review-de-fr.json','cross-review-ja-ko.json','cross-review-es.json'):
+        assert name in receipt['reports']
+        assert json.loads((base/name).read_text())['remaining']==[],(series,name,'unfinished review')
+    for name in receipt['reports']:
+        actual=hashlib.sha256((base/name).read_bytes()).hexdigest()
+        assert receipt['review_report_sha256'][name]==actual,(series,name,'review changed after seal')
+    for language in spec['languages']:
+        actual=hashlib.sha256((base/(language+'.json')).read_bytes()).hexdigest()
+        assert receipt['language_data_sha256'][language]==actual,(series,language,'draft changed after review')
+    preservation=json.loads((base/'preservation.json').read_text())
+    for name,digest in preservation.get('protected_files',{}).items():
+        actual=hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
+        assert digest==actual,(series,name,'protected primary source changed after review')
+    for slug in spec['slugs']:
+        actual=hashlib.sha256((ROOT/'data'/series/(slug+'.json')).read_bytes()).hexdigest()
+        assert preservation['source_data'][slug]==actual,(series,slug,'source changed after review')
 
 
 def load_language(series, language):
@@ -50,6 +89,16 @@ def load_language(series, language):
     assert data['language'] == language
     assert [a['slug'] for a in data['articles']] == spec['slugs']
     assert data['review']['unresolved'] == [], (series, language, 'unresolved editorial issues')
+    if spec.get('visible_notice'):
+        assert isinstance(data['series']['notice'],str) and data['series']['notice'].strip()
+    if spec.get('index_context_source'):
+        context=json.loads((ROOT/spec['index_context_source']).read_text())['body_zh']
+        assert len(data['series']['index_context'])==len(context)
+        assert len(data['series']['index_context_coverage'])==len(context)
+        for p,q,note in zip(context,data['series']['index_context'],data['series']['index_context_coverage']):
+            assert isinstance(q,str) and q.strip() and '<' not in q
+            assert block_kind(p)==block_kind(q)
+            assert isinstance(note,str) and note.strip()
     for article in data['articles']:
         source_path = ROOT/'data'/series/(article['slug']+'.json')
         original = json.loads(source_path.read_text()) if source_path.exists() else json.loads((ROOT/'data'/series/'multilingual/source-baseline.json').read_text())[article['slug']]
@@ -60,7 +109,7 @@ def load_language(series, language):
             assert isinstance(q, str) and q.strip() and '<' not in q and '�' not in q
             assert p.startswith('## ') == q.startswith('## '), (language, article['slug'], p[:40])
             assert isinstance(note, str) and note.strip()
-            if spec.get('append_only'):
+            if spec.get('append_only') or spec.get('preserve_block_types'):
                 assert block_kind(p)==block_kind(q),(language,article['slug'],'changed block type',p[:40])
         article['source_url'] = original.get('source_url', spec['source'])
     return spec, data
@@ -113,6 +162,8 @@ def alternatives(spec, slug):
 
 def upgrade_primary(text, series, slug):
     spec = profile(series)
+    if slug in spec.get('modern_slugs',[]):
+        return upgrade_mixed_modern_primary(text,spec,slug)
     if spec.get('source_format') == 'legacy-html':
         return upgrade_legacy_primary(text,spec,slug)
     links = ''.join(f'<a href="{code}/{slug}.html" lang="{code}">{LABELS[code]}</a>' for code in spec['languages'])
@@ -125,6 +176,20 @@ def upgrade_primary(text, series, slug):
         text = text.replace(anchor, anchor+links)
     assert not re.search(r'<link[^>]*rel="alternate"', text)
     return text.replace('</head>', alternatives(spec, slug)+'</head>', 1)
+
+
+def upgrade_mixed_modern_primary(text,spec,slug):
+    """Add routes to a newer standalone page inside a legacy series, idempotently."""
+    start,end='<!-- MIXED SERIES LANGUAGE LINKS START -->','<!-- MIXED SERIES LANGUAGE LINKS END -->'
+    text=re.sub(re.escape(start)+r'.*?'+re.escape(end),'',text,flags=re.S)
+    links=''.join(f'<a href="{code}/{slug}.html" lang="{code}">{LABELS[code]}</a>' for code in spec['languages'])
+    pattern=r'<button\b(?=[^>]*data-set-language="zh-hant")[^>]*>.*?</button>'
+    text,n=re.subn(pattern,lambda m:m[0]+start+links+end,text,flags=re.S)
+    assert n==2,(spec['id'],slug,'desktop and drawer language controls required')
+    a,b='<!-- MIXED SERIES ALTERNATES START -->','<!-- MIXED SERIES ALTERNATES END -->'
+    text=re.sub(re.escape(a)+r'.*?'+re.escape(b),'',text,flags=re.S)
+    assert not re.search(r'<link[^>]*rel="alternate"',text)
+    return text.replace('</head>',a+alternatives(spec,slug)+b+'</head>',1)
 
 
 def upgrade_legacy_primary(text,spec,slug):
@@ -223,13 +288,25 @@ def document(spec, data, slug, content, article=None):
 
 def render(series):
     spec = profile(series)
+    require_review_seal(series,spec)
     pages = {}
     for language in spec['languages']:
         _, data = load_language(series, language)
         ui, title = data['ui'], data['series']
-        cards = ''.join(f'<a class="lw-card" href="{a["slug"]}.html"><p class="lw-kicker">{E(essay_label(a,n,language))}</p><h2>{E(a["title"])}</h2><p>{E(a["deck"])}</p><span class="lw-read">{E(ui["read"])} →</span></a>' for n, a in enumerate(data['articles']))
-        count = article_count(language,len(data['articles']))+' · '+' / '.join(LABELS.values())
-        content = f'<section class="lw-hero"><p class="lw-kicker">Non Dubito · {E(ui["series"])}</p><h1>{E(title["title"])}</h1><p class="lw-deck">{E(title["deck"])}</p><p class="lw-meta">{E(count)}</p></section><aside class="lw-opening"><p>{E(title["intro"])}</p><a href="{data["articles"][0]["slug"]}.html">{E(ui["read"])} →</a></aside><section class="lw-grid">{cards}</section><section class="lw-note"><p>{E(title["scope"])}</p></section>'+sources(spec, data)+related(spec, data)
+        notice=('<p class="lw-meta" style="max-width:70ch;line-height:1.75">'+E(title['notice'])+'</p>') if spec.get('visible_notice') else ''
+        card_rows=[]
+        for n,a in enumerate(data['articles']):
+            card=f'<a class="lw-card" href="{a["slug"]}.html"><p class="lw-kicker">{E(essay_label(a,n,language))}</p><h2>{E(a["title"])}</h2><p>{E(a["deck"])}</p><span class="lw-read">{E(ui["read"])} →</span></a>'
+            card_rows.append((a['slug'],card))
+        standalone=set(spec.get('standalone_slugs',[]))
+        grid='<section class="lw-grid">'+''.join(card for slug,card in card_rows if slug not in standalone)+'</section>'
+        if standalone:
+            grid+='<section class="lw-note"><h2>'+E(SPECIAL_STUDY[language])+'</h2></section><section class="lw-grid">'+''.join(card for slug,card in card_rows if slug in standalone)+'</section>'
+        count = collection_count(spec,language,len(data['articles']))+' · '+' / '.join(LABELS.values())
+        context=title.get('index_context',[])
+        assert isinstance(context,list) and all(isinstance(p,str) and p.strip() for p in context)
+        index_context='<section class="lw-note">'+render_prose(context)+'</section>' if context else ''
+        content = f'<section class="lw-hero"><p class="lw-kicker">Non Dubito · {E(ui["series"])}</p><h1>{E(title["title"])}</h1><p class="lw-deck">{E(title["deck"])}</p><p class="lw-meta">{E(count)}</p>{notice}</section><aside class="lw-opening"><p>{E(title["intro"])}</p><a href="{data["articles"][0]["slug"]}.html">{E(ui["read"])} →</a></aside>{grid}<section class="lw-note"><p>{E(title["scope"])}</p></section>'+index_context+sources(spec, data)+related(spec, data)
         target = ROOT/spec['directory']/language
         if not spec.get('append_only'):
             pages[target/'index.html'] = document(spec, data, 'index', content)
@@ -240,8 +317,12 @@ def render(series):
             for offset, label in ((-1, 'previous'), (1, 'next')):
                 k = n + offset
                 other = data['articles'][k] if 0 <= k < len(data['articles']) else None
+                if standalone and (article['slug'] in standalone or (other and other['slug'] in standalone)):
+                    other=None
                 href = other['slug']+'.html' if other else 'index.html'
                 nav.append(f'<a href="{href}"><small>{E(ui[label] if other else ui["contents"])}</small>{E(other["title"] if other else title["title"])}</a>')
+            if article['slug'] in standalone:
+                nav=nav[:1]
             label=essay_label(article,n,language)
             if spec.get('append_only'):
                 label=SUPPLEMENT[language] if spec['article_label']=='supplement' else spec['article_label']
@@ -252,7 +333,7 @@ def render(series):
                     heading=html.unescape(re.sub(r'<[^>]+>','',heading))
                     nav.append(f'<a href="{slug}.html"><small>{E(ui[direction])}</small>{E(heading)}</a>')
                 if len(nav)<2:nav.append(f'<a href="index.html"><small>{E(ui["contents"])}</small>{E(title["title"])}</a>')
-            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(ui["series"])} · {E(label)}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p></div><div class="essay-body lw-prose" lang="{language}">{body}</div>{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
+            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(ui["series"])} · {E(label)}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p>{notice}</div><div class="essay-body lw-prose" lang="{language}">{body}</div>{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
             pages[target/(article['slug']+'.html')] = document(spec, data, article['slug'], content, article)
     return pages
 
@@ -261,12 +342,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('series')
     parser.add_argument('--check', action='store_true')
-    parser.add_argument('--primary', action='store_true', help='also connect preserved legacy primary-page language controls')
+    parser.add_argument('--primary', action='store_true', help='also connect preserved primary-page language controls')
     args = parser.parse_args()
     pages = render(args.series)
     if args.primary:
         spec=profile(args.series)
-        assert spec.get('source_format')=='legacy-html'
+        assert spec.get('source_format') in ('legacy-html','modern-html')
         for slug in ['index',*spec['slugs']]:
             path=ROOT/spec['directory']/(slug+'.html')
             pages[path]=upgrade_primary(path.read_text(),args.series,slug)

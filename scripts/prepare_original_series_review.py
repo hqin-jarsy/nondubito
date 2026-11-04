@@ -9,6 +9,21 @@ import subprocess
 from full_series_languages import ROOT, load_language, profile, primary_bodies
 
 
+def primary_main_hashes(spec):
+    """Protect all primary reading content, allowing only its language controls."""
+    result={}
+    for slug in ['index',*spec['slugs']]:
+        path=ROOT/spec['directory']/(slug+'.html')
+        match=re.search(r'<main\b[^>]*>.*?</main>',path.read_text(),re.S)
+        assert match,(slug,'missing primary main')
+        content=re.sub(r'<div class="lang-toggle"[^>]*>.*?</div>','',match[0],flags=re.S)
+        for css in spec.get('main_mutable_classes',[]):
+            assert re.fullmatch(r'[a-z][a-z0-9-]*',css)
+            content=re.sub(r'<p\b(?=[^>]*class="[^"]*\b'+re.escape(css)+r'\b)[^>]*>.*?</p>','',content,flags=re.S)
+        result[str(path.relative_to(ROOT))]=hashlib.sha256(content.encode()).hexdigest()
+    return result
+
+
 def prepare(series):
     spec=profile(series)
     base=ROOT/'data'/series/'multilingual'
@@ -36,9 +51,10 @@ def prepare(series):
             if field.startswith(('ui.','series.')):
                 group,key=field.split('.',1)
                 value=data[group][key]
+                if isinstance(value,list):value=value[issue['paragraph']]
             else:
                 a=next(a for a in data['articles'] if a['slug']==issue['slug'])
-                assert field in ('body','title','deck'), (name,field)
+                assert field in ('body','title','deck','source_note'), (name,field)
                 value=a['body'][issue['paragraph']] if field=='body' else a[field]
             assert issue['after'] in value, (name,issue)
             issue['review_report']=name
@@ -57,6 +73,9 @@ def prepare(series):
     outputs={}
     snapshot=base/'preservation.json'
     route_protection=None
+    protected_files={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
+                     for pattern in spec.get('protected_files',[]) for p in sorted(ROOT.glob(pattern))}
+    primary_main=primary_main_hashes(spec) if spec.get('preserve_primary_main') else None
     if spec.get('append_only'):
         from companion_languages import route_snapshot
         route_protection=route_snapshot(series)
@@ -64,10 +83,14 @@ def prepare(series):
         outputs[snapshot]={'baseline_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
                            'source_data':sources,'primary_bodies':primary}
         if route_protection:outputs[snapshot]['existing_route']=route_protection
+        if protected_files:outputs[snapshot]['protected_files']=protected_files
+        if primary_main:outputs[snapshot]['primary_main']=primary_main
     else:
         saved=json.loads(snapshot.read_text())
         assert saved['source_data']==sources and saved['primary_bodies']==primary, 'Primary content changed'
         if route_protection:assert saved['existing_route']==route_protection,'Existing route changed'
+        if protected_files:assert saved['protected_files']==protected_files,'Protected primary files changed'
+        if primary_main:assert saved['primary_main']==primary_main,'Primary reading content changed'
     outputs[base/'publication.json']={
         'date':spec['date'],'result':'passed',
         'scope':'Complete independent foreign rewrites of the published Chinese reader essays, not shortened translations of their academic sources.',
@@ -80,6 +103,9 @@ def prepare(series):
         'reports':[name for name,_ in reports],'resolved_issues':resolved,'unresolved':[],
         'limits':['AI-assisted writing and editorial cross-review, not certification by a human native speaker.'],
         'deployment':'Local commit only; author pushes.'}
+    if spec.get('require_review_seal'):
+        outputs[base/'publication.json']['review_report_sha256']={
+            name:hashlib.sha256((base/name).read_bytes()).hexdigest() for name,_ in reports}
     return {path:json.dumps(data,ensure_ascii=False,indent=2)+'\n' for path,data in outputs.items()}
 
 
