@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-04",
+  "reviewer": "accountability_ja_ko",
+  "audit_type": "Independent read-only editorial evidence, identity and preservation check",
+  "proof_ready": true,
+  "scope": "This audit checks the truth and identity of the consolidated editorial proof against original batch reports, current language article objects, final shared-metadata reports and preserved original baseline. It is not another reading of 340 essays. The audit itself made no protected-file changes, did not run prepare/render or issue a publication seal, and did not commit. A separate genuine seal was produced by the lead; this new unprotected report records the completed read-only proof checks.",
+  "counts": {
+    "languages": 5,
+    "articles_per_language": 68,
+    "unique_canonical_language_slug_records": 340,
+    "original_batch_reports": 60,
+    "original_reading_records_compared": 340,
+    "reading_time_article_hashes_preserved_in_both_individual_and_canonical_reports": 340,
+    "individual_current_article_maps_matched": 340,
+    "original_batch_current_article_maps_matched": 340,
+    "accepted_after_texts_found_in_current_corresponding_fields": 361,
+    "final_shared_metadata_reports": 3,
+    "complete_current_shared_objects": 10,
+    "current_shared_fields_matched": 156
+  },
+  "checks": [
+    {
+      "item": "Canonical coverage and provenance",
+      "result": "The canonical cross-review-de-fr, cross-review-ja-ko and cross-review-es reports cover exactly the 340 distinct language/slug identities. Every canonical and individual reading record refers to the correct original batch filename. All five individual reports contain exactly68reading records and68current hashes."
+    },
+    {
+      "item": "Read-time identity kept, not overwritten by final state",
+      "result": "For every original batch record, the original article_sha256 or reading_time_article_sha256 key and value are preserved in both its individual language report and canonical report. In particular32French records retain their reading_time_article_sha256 key. Current corrected hashes are stored separately, not substituted for the historically read version."
+    },
+    {
+      "item": "Current article identity",
+      "result": "Every original batch current_batch_article_sha256 entry and every individual current_article_sha256 entry matches the corresponding current saved article object. Across all five languages there are no missing slugs, duplicate reading identities, mismatches or stale current hashes."
+    },
+    {
+      "item": "Accepted corrections",
+      "result": "All361accepted after strings from the three canonical reports are present in the actual corresponding current fields. This is a replacement/identity check, not another semantic evaluation or a claim to have reread every surrounding essay in this audit."
+    },
+    {
+      "item": "Authorship and reader roles",
+      "result": "The split original batch provenance remains available and accords with the actual assignments: lead independently read DE/JA and ESguide–58; reviewer B independently read FRincluding lead/A/C-authored ranges; reviewer A independently read KOguide–10, lead read KO11–67; reviewer C independently read lead-authored ES59–67. Final metadata is independently assigned C forDE/ES,B forFR,A forJA/KO. Consolidation does not falsely label a single person as having independently read their own whole-language manuscript."
+    },
+    {
+      "item": "Final shared metadata identity",
+      "result": "All ten current series/UI objects and156complete fields in the three final metadata reports match the current language files. Field values and hashes were checked, including all group, label and route-note list contents, without replacing the independent actual-reading records already recorded there."
+    },
+    {
+      "item": "French original/current distinction",
+      "result": "The French final metadata report intentionally preserves the original series.scope field value and original series-object SHA from its actual initial reading. Its post_application and current_objects separately identify the saved revised scope and new current series SHA. Verification used that explicit post-read override rather than incorrectly demanding the historical scope hash equal the current value."
+    },
+    {
+      "item": "Preserved original baseline",
+      "result": "All204canonical reading Markdown files,68canonical source digests,68original multilingual body hashes,69original primary-main hashes,the canonical manifest and two distinct legacy page byte hashes match primary-before-expansion.json. Baseline commit is31c627b79436bc81381a6f23b2ad4258a3274913."
+    },
+    {
+      "item": "Test-file coverage inspection",
+      "result": "Read scripts/test_zhuangzi_languages.py without executing its positive checks. It requires genuine approvals/seal, preserved original bodies/main/source files, actual quoted body/apparatus/source URLs,native non-linear index groups,metadata/citations/language links/analytics/IDs/local fragments,negative corruptions and discovery/search/sitemap. This audit did not render or prepare merely to exercise those tests."
+    }
+  ],
+  "hash_algorithms": {
+    "article_and_complete_series_ui_objects": "SHA256 of UTF-8 json.dumps(value,ensure_ascii=False,sort_keys=True) with Python default separators, including spaces. These stable object hashes are used by the original article/current-map and final shared-object identity checks.",
+    "de_es_final_metadata_string_fields": "SHA256 of the raw UTF-8 string; arrays/objects use the same sorted JSON serialization with default separators.",
+    "ja_ko_fr_final_metadata_fields": "SHA256 of UTF-8 sorted JSON serialization of the value, including quotation marks for string values. The JSON-value convention, not the raw-string convention, was verified for all these fields.",
+    "file_hashes": "SHA256 of actual current file bytes. Current file SHAs below identify evidence checked, not a newly manufactured approval or receipt."
+  },
+  "baseline": {
+    "baseline_commit": "31c627b79436bc81381a6f23b2ad4258a3274913",
+    "canonical_reading_files": 204,
+    "source_data": 68,
+    "primary_bodies": 68,
+    "primary_main": 69,
+    "distinct_legacy_pages": 2,
+    "canonical_manifest_matches": true,
+    "all_original_identity_checks_passed": true
+  },
+  "reviewed_file_sha256": {
+    "cross-review-de-fr.json": "70425023bfee816b24a094e9c4f08bbbc8769819d2ea893c9def38cf15f00420",
+    "cross-review-ja-ko.json": "a632533710422d0071ace050cc4169706deccbac1f441ad72809a22365d0fd1c",
+    "cross-review-es.json": "5458713e429f43826957622880363f05a9b0212c9b98d47f6e1057e5ccf68d25",
+    "cross-review-de.json": "214bfc73939642b30f8661ad46bc08dfc6ae9178dafecc7e77d7aec3c51d7b86",
+    "cross-review-fr.json": "33ee6a3ee3deff917b2aed9b866f6d034ae9e732600a2db1e074a2d7bc2642a3",
+    "cross-review-ja.json": "c0e41f69ea3909655b30ab29050fa9c5564e1d912da904701cac52e0e59f7b7b",
+    "cross-review-ko.json": "306d7838d83a0ac39e9e241816d53d55685556caa683e6a200781221f2a23719",
+    "cross-review-de-batch01.json": "3ad3eb12e6a5ccc1750be93e8dc76d693954d892567ddaf38995fcc077a68d01",
+    "cross-review-de-batch02.json": "91e914fa507a6f94b9044213736db881a2c282b63854cf4579b75838334cbc83",
+    "cross-review-de-batch03.json": "6f15bc030fd0ba9522dd581105e333efe3a8cce80de9d5c4f0d31c5212204252",
+    "cross-review-de-batch04.json": "53c9e656e0428d4acaf060a0f4d4361cc44a124f7461a50b13f24709e5fd1fd3",
+    "cross-review-de-batch05.json": "21f340533e8ae3ff11106ad19b9e549848b98ed1158a615e62248704ee1ece20",
+    "cross-review-de-batch06.json": "089952f1948f4019ffff993acf80f55e9742bdd44c91fb2e8242fafe0a483976",
+    "cross-review-de-batch07.json": "e63a9e13b348240727167e1c790349733cb09693e9fb8620f6e226768f2324b4",
+    "cross-review-de-batch08.json": "b317b8186848d422766b8e4797a48aad17b8c016f3884781fe5b5053f832ad15",
+    "cross-review-de-batch09.json": "ab0aa8722838c66fa676478182123fc32f792aa7fc976a2a3be605f995b6578b",
+    "cross-review-de-batch10.json": "5014a24105c65ea93ed173487880fb5351faa57d744a17974d0d254f8ba74cd9",
+    "cross-review-de-batch11.json": "69ba750d4fbbcb61866677ee70607026284239a27c2b4a119b3fab0c4667efd3",
+    "cross-review-de-batch12.json": "4bfcd8daacae68281ed0a4242bd03d8e5d5d05b97d33fbfa7e69d28eaacdfc23",
+    "cross-review-fr-batch01.json": "c55e0d50ef836ff3a09a014f535bba6ce781a28ee2deaae8adb3efdc5d6bc5c6",
+    "cross-review-fr-batch02.json": "def4da02caca4113698107a499661df17c53cdc1ce3011a6c4cb420546130a2c",
+    "cross-review-fr-batch03.json": "988700f2d2459c095e3d403ce9f1363b707e932a2a1a95d54254351a8fb3f737",
+    "cross-review-fr-batch04.json": "4f00381fd61ed4919212181bf0f69f62ac9fc69d8dc5e2234d976763e4a2a0ae",
+    "cross-review-fr-batch05.json": "e43191092d3c80f47db6d553bcf6037073565688000480b4184f4fcf8aff0df4",
+    "cross-review-fr-batch06.json": "8c5fc7dcbeba183beead065a6fd758784aa01ef7cab5d8bd6038c86d99d522a4",
+    "cross-review-fr-batch07.json": "1daa62a9d4b5ada232013e76cb0a2876c444d04abf70e547f10174161d45f8d6",
+    "cross-review-fr-batch08.json": "b4610465ff5faf75dba5d018ec87f731d8889a636e9f400d2b0b8fc0098560ef",
+    "cross-review-fr-batch09.json": "2553fea23e48ebd685c42e213d4b7d15944797304a7c212e2d80faa73a2270dc",
+    "cross-review-fr-batch10.json": "6d92c1901371d523b5cfbc2329390f87f1017aafe91aa52577678b32a7d78114",
+    "cross-review-fr-batch11.json": "6150530f84cc127fdcc9b7b74a291df36dbdf999b9501791835f5ece6aa865db",
+    "cross-review-fr-batch12.json": "93784641c9001cf0ff1f7c3d55396545c170d72ddbe63dab9346e76bac213a2d",
+    "cross-review-es-batch01.json": "269e4aebdd0076f5fbe9b2674d8b7a556fb80ef708a3ad38f559d213e69b37b5",
+    "cross-review-es-batch02.json": "2a481f450558572f987fcf29a20774efa398d70e8836fd9a779a2c39f9edbc28",
+    "cross-review-es-batch03.json": "adaaccfb62a6625c908c6a558fffddc2b79e66217f3e36d016272db9d47252d2",
+    "cross-review-es-batch04.json": "95c3b525973f7ba378ea8e42110b7ea4233287ab7a2ba109311d5ae928cdade6",
+    "cross-review-es-batch05.json": "9533d671cab6797287167e51ca1fbfaa9cfd692b7a053db987022ab486dc8854",
+    "cross-review-es-batch06.json": "c7a57a340196265b62fb9e6d676c1afa66522e758e1e99272d7aca62e37f976f",
+    "cross-review-es-batch07.json": "bdce83376568bea23c9428b219ae7565d6be9713fe43eabfc941dd76a996b177",
+    "cross-review-es-batch08.json": "d4433048faba9629ada3847aacb5c61b35bc293e49d5e6a2bcbfb8289dce897d",
+    "cross-review-es-batch09.json": "94c924a54d377b398f9f2b179dd8b0ee91301c2c1bb0f4e96c85bc5b1f646fb8",
+    "cross-review-es-batch10.json": "94f28d1dfd4973d60600ba63ffbef978e47cc9bf821ad9bc0b2deaf82234efbe",
+    "cross-review-es-batch11.json": "4cd76d07a2b28a231fe6bdfac2f7121d8bdbb1e0f20b87e5eddf0fcd75494c3a",
+    "cross-review-es-batch12.json": "238369043ae872d7caf708b14d04a3bbd744fc86fba505668ee4e5a47089f62f",
+    "cross-review-ja-batch01.json": "e64c376dd27f2102fef394073a286db8cb7f12cd0a782f2f67013a296634fc19",
+    "cross-review-ja-batch02.json": "c7c9e36abd5b839a17313611c326d8558361cf640ad0c7deca72924ef706f8ed",
+    "cross-review-ja-batch03.json": "befd31d98ce31ccebd9a06a1cf2446bc4cc34becfbece7c4d7f567684de18849",
+    "cross-review-ja-batch04.json": "05b46bbbd78dcc8108fe52942accfae113875d667f0826c48c4e86342b740ec3",
+    "cross-review-ja-batch05.json": "5fc390142b73dce6b140d5bf84abf9a01646daefdb19313cf07fd1db0d26c5bf",
+    "cross-review-ja-batch06.json": "4be251a05a847556a2395898f7dcd1ae237abf0bd9fae0e6ae68e90fec2ade89",
+    "cross-review-ja-batch07.json": "e78ab567bf2cd5a3b59e472a36ebab37bfc94dc5e566fbe37ae9420cccb8cc97",
+    "cross-review-ja-batch08.json": "01cbf179a7ab56ba25ce62fdea43f690f7d4763c13f4e8e0271854f68084cb2a",
+    "cross-review-ja-batch09.json": "82af127aadd2649b9934376b9fd97c21687e3240427ef9c3b9ca01f29a84d33f",
+    "cross-review-ja-batch10.json": "1dabd64366f706634c6d5073d72c73f454d7953e1f4b004e44928a50247ebd9e",
+    "cross-review-ja-batch11.json": "ded9d69f8b094d8ddbf2bb702fc0565ba9ace66409d12569e5ef2428983544db",
+    "cross-review-ja-batch12.json": "4d7f44610074e0cd5b99de0a00703da62f02a8d99f09d9bb908f20947060c210",
+    "cross-review-ko-batch01.json": "5919162ce4dee093fd864e0329a3772ed5f45e45a728dce067ed79e725d0debd",
+    "cross-review-ko-batch02.json": "5ffd784da7cf930d6ea7b31ce38d63d7e85451dd87bb57b7592fca632132f22e",
+    "cross-review-ko-batch03.json": "52b86181c18cb39238c926b586cb6b8f687db19a11132b63fd4e71e5e026af1f",
+    "cross-review-ko-batch04.json": "57df96013b68546e0ef6e4cd5e5b56ca0f5af31dba498649eaf82e2b231b2752",
+    "cross-review-ko-batch05.json": "14721151c645d1844c1d455d8e608b6064732ca9afd1c41b371027b4e26dd924",
+    "cross-review-ko-batch06.json": "8184d2b1a96d41faf1379d44482d42ee732a6f7f98b8f87faf14c0bb5de11258",
+    "cross-review-ko-batch07.json": "25d8b0aa541d4c077b7b36d0b4d943fff5a3101c4ad2ec83bfe7ef91987b7da8",
+    "cross-review-ko-batch08.json": "4b698bf2f12a45eb5db62fc59bd1a7dc5d5c593de719ed862551cd5d44cf44b0",
+    "cross-review-ko-batch09.json": "293e2a88aa3cb20999b03892536395fe5770a296b55b5aad93dc864e43caee0e",
+    "cross-review-ko-batch10.json": "d47a91dfb0d792366412387a7cb3bf0111321a099685d9c1208bb5eda2958afd",
+    "cross-review-ko-batch11.json": "e5453c503b0475a1035e6e0d3d0fd8c5e05efd505b8f7b1491d9b2c13c49a576",
+    "cross-review-ko-batch12.json": "a8fb11560189c69b0af8678939473e5e9f142710b8f3829fe052724d42e3317e",
+    "index-metadata-final-de-es.json": "8b1b399e43acdd0646528b07309c56bb4bf99c4baec7e8f42ceaeaa05a4cb9e2",
+    "index-metadata-final-ja-ko.json": "5bb3ce776d2f81bf1beb3ddde1e7eca684bce551a5500fb42fdad8e520b497a5",
+    "index-metadata-final-fr.json": "797da6dc7689706e769ae1656cd963ecc6e609d9957fd6b4c2ccf61f53a7067d",
+    "primary-before-expansion.json": "83e9905570dcd34dc4b4c3a094baca12825e17cb02b2a8d0afcf96a9f9672add"
+  },
+  "issues": [],
+  "remaining": [],
+  "limitations": [
+    "No new complete prose reading of340essays was performed or claimed in this proof audit.",
+    "This does not independently certify mother-tongue identity, native-human proofreading, literary quality or the truth of every historical interpretation.",
+    "Existing actual article readings, source adjudications and full saved-field post-application records retain their own original scopes and dates.",
+    "No protected report, manuscript, source, page, profile or seal was edited; only this new unprotected proof report was created."
+  ]
+}

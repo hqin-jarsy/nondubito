@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-04",
+  "result": "passed",
+  "scope": "One guide plus67 full reader essays in five new languages;345 new public pages and69 preserved primary pages with reversible language controls.",
+  "editorial": {
+    "actual_complete_non_author_article_readings": 340,
+    "accepted_local_corrections_including_metadata": 361,
+    "independent_proof_audit": "editorial-proof-check.json",
+    "limits": "Full AI-assisted editorial reading, not human native-speaker certification. Counts and fingerprints track reading identity and preservation, not prose quality scores."
+  },
+  "preservation": {
+    "canonical_primary_markdown_files": 204,
+    "unchanged_raw_primary_reading_bodies": 204,
+    "unchanged_primary_main_areas": 69,
+    "unchanged_distinct_legacy_pages": 2,
+    "per_foreign_edition": {"body_units":1901,"headings":507,"whole_quotes":129,"full_notes":175,"ordered_references":178},
+    "baseline": "primary-before-expansion.json",
+    "historical_rebaseline": false
+  },
+  "tests": [
+    {"command":"python3 -m unittest discover -s scripts -p 'test_zhuangzi*.py'","tests":44,"result":"passed","seconds":13.563},
+    {"command":"python3 -m unittest discover -s scripts -p 'test_*languages.py'","tests":119,"result":"passed","seconds":22.922,"note":"Includes six Zhuangzi publication tests already counted in the44 above; not163 distinct tests."},
+    {"command":"git diff --check","result":"passed"},
+    {"scope":"Genuine prepare output identity for Montaigne, Spinoza, Descartes and Zhuangzi after per-call validation reuse","result":"All existing publication/preservation outputs reproduced byte-for-byte. No cross-call cache or negative-check bypass."}
+  ],
+  "testing_history": "Initial publication tests ran before search generation finished and the source-only control test still read already-upgraded pages as its pre-upgrade fixture. Search finished; source test now invokes actual unchanged original production render functions, preserving the same captured-source/main assertions rather than rebasing them. Full44 then passed. Earlier historical suite failures remain disclosed in work-plan.json; no claim that all1022 historical tests pass.",
+  "discovery": {
+    "search_records":13246,
+    "sitemap_canonical_urls":13230,
+    "new_native_index_and_article_records":345,
+    "old_fourteen_series_updates":"unchanged captured aggregate fingerprint",
+    "connections":"Library, five language channels, Latest ledger and bounded Home"
+  },
+  "analytics": {"public_pages_checked":13249,"tracking_errors":0,"conflict_copies":0},
+  "browser": {
+    "method":"Actual local IAB DOM interaction and screenshot inspection, not source-only layout assertions.",
+    "desktop":"1280px: German and French native directories visually inspected; five grouped lists and optional sequence retained. French optional sequence actually expanded and67 links observed. Spanish native entry loaded; English then Traditional modes reached by actual language menu interaction.",
+    "mobile":"390×844: Japanese directory visually inspected, one-column route layout, no horizontal overflow (scrollWidth375). Eight-language menu opened and all choices observed; menu bounds83–318 within390px. Korean directory reached by menu then66 full article/source disclosure tested, no horizontal overflow.",
+    "article":"Korean66 source disclosure actually expanded; all four complete notes, three precise references, optional-background language limits and previous/next retained.",
+    "screenshots":["/Users/hanqin/Documents/Codex/2026-08-22/qin/zhuangzi-fr-desktop.png","/Users/hanqin/Documents/Codex/2026-08-22/qin/zhuangzi-ja-mobile.png"],
+    "viewport":"Temporary mobile override reset; fresh reading confirmed1280px restored."
+  },
+  "deployment":"Local series commit only; author pushes. No remote deployment or push performed."
+}

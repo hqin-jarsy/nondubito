@@ -1,0 +1,92 @@
+{
+  "reviewer": "Read-only implementation review by accountability_es_audit, the author of the first six Spanish essays; not independent certification of that author's Spanish prose",
+  "series": "zhuangzi",
+  "baseline_commit": "31c627b79436bc81381a6f23b2ad4258a3274913",
+  "code_review_passed": true,
+  "publication_validated": false,
+  "actual_reading_scope": [
+    "Complete scripts/zhuangzi_source.py and scripts/zhuangzi_language_index.py",
+    "Complete original scripts/build_zhuangzi.py, all manifest entries and the original index Chinese reading map and research apparatus",
+    "Complete new scripts/test_zhuangzi_source.py, including the five-group source-route test",
+    "The current full_series_languages.py and build_zhuangzi.py changes against 31c627b, their source dispatch/fingerprint/seal/index integration and the new foreign-index.css",
+    "The actual complete Chinese Markdown of guide and essays01–05 and their real original-renderer source apparatus; no claim to have substantively read the remaining62 essays",
+    "Primary baseline field policy and table inventory, with actual automated checks against all saved main hashes, source fingerprints,204 canonical reading files and two legacy pages"
+  ],
+  "positive_findings": [
+    {
+      "area": "Canonical reading units",
+      "result": "reading_units derives its units from the actual original Chinese prose renderer, rather than treating raw Markdown blank lines as final paragraph boundaries. It preserves p/h2/blockquote classes and rejects unexpected top-level blocks, attributes and unsupported reading syntax. Essay05 remains one quoted unit with two internal line breaks. Source-only tests exercise all68 articles:1265 paragraphs,507 headings and129 quotations,1901 units total. This mechanical reading contract is not a substantive review of all68 essays."
+    },
+    {
+      "area": "Apparatus and bibliography currently present",
+      "result": "The current adapter obtains real per-article source notes and citations from original.render_article in memory, keeping Chinese text and exact absolute URLs, rather than replacing every article with a common-paper reference. It preserves the existing175 note paragraphs and178 ordered references, including distinct commentary cautions and the four research DOIs. The currently present source apparatus is fully captured by the actual tests. The initially discovered unexpected-container weakness below has now been fixed by the lead editor and independently read and retested."
+    },
+    {
+      "area": "Fingerprint and source protection",
+      "result": "The opted-in digest includes raw current Chinese Markdown bytes, raw entire manifest bytes with explicit byte lengths and a stable serialization of the canonical article bundle. The canonical bundle includes actual selected note text and ordered source titles/URLs. Canonical English and traditional-Chinese Markdown are separately protected with all204 reading files and the unchanged three-mode article bodies. The manifest's historical source_sha256 is not misused as the current edited Markdown fingerprint."
+    },
+    {
+      "area": "Original69-page gate",
+      "result": "The original builder adds marked language controls only when an actual publication.json exists and require_review_seal passes. It does not treat a partial first batch as complete. No Zhuangzi receipt exists during this audit. Source-only tests show all69 primary-control upgrades are idempotent, preserve complete main areas and all three bodies, and reverse to exact original bytes when only the known controls and alternates are handled."
+    },
+    {
+      "area": "Non-linear native index",
+      "result": "The new helper reads the five real groups from the original GROUPS and manifest. It retains encounters01–10, inner11–29, discernment30–41 plus59–65, outer42–58 and closing66–67 rather than forcing a false numerical partition. It also preserves the original numerical sequence in a closed details element, a separate guide card, five route entries, group anchors and the real four-source research section. It validates all68 article slugs and required native metadata; partial manuscripts cannot pass that validator. Source-controlled slugs/IDs and escaped native text are used. The CSS provides a narrow-screen single-column route layout and visible keyboard focus. No unapproved foreign index was rendered to test appearance."
+    }
+  ],
+  "tests_executed": {
+    "command": "PYTHONPATH=scripts python3 -m unittest test_zhuangzi_source test_zhuangzi",
+    "passed": 36,
+    "failed": 0,
+    "breakdown": {"new_source_only": 7, "existing_original_series": 29},
+    "limits": "These source and existing-primary tests do not approve unpublished foreign manuscripts or certify prose quality."
+  },
+  "actual_additional_checks": {
+    "original_in_memory_outputs": "All69 original pages, generated only with original render_index/render_article, equal their saved read_bytes() in UTF-8.",
+    "primary_main": "All69 main hashes equal the captured before baseline.",
+    "primary_bodies": "All68 combined original three-language reading-body hashes equal the baseline.",
+    "canonical_sources": "All204 canonical Markdown file bytes equal both the captured hashes and git show31c627b; the actual manifest bytes also equal that commit.",
+    "legacy_pages": "Both distinct legacy standalone pages match their before hashes.",
+    "foreign_rendering": "None for Zhuangzi. No fake approval, fake receipt, seal or successful publication was manufactured."
+  },
+  "issues": [
+    {
+      "id": "apparatus-unknown-container",
+      "severity": "source-guard completeness; no current source paragraph is missing",
+      "file": "scripts/zhuangzi_source.py",
+      "area": "load_article notes extraction and source_digest",
+      "finding": "Notes are selected only from direct apparatus.children whose tag is p. Unexpected non-link reading material inside an extra container is silently ignored. Since source_digest serializes the selected canonical bundle rather than the whole apparatus, that newly ignored material also leaves the fingerprint unchanged.",
+      "actual_reproduction": "In a source-only in-memory negative probe, wrapped original.render_article to append <div><p>新增但未被adapter收录的来源说明</p></div> inside the actual essay01 source aside. original_article did not raise, the new paragraph did not occur in notes_zh, and source_digest was exactly unchanged. No file or foreign page was modified.",
+      "suggested_resolution": "Reject any unhandled direct apparatus structure and validate the expected containers as references-only, or explicitly protect and extract the complete Chinese apparatus. Add a source-only negative test showing that a new nested reading paragraph cannot be silently lost or bypass the fingerprint. Existing real p/h2/ul/a layouts and original references must continue to pass.",
+      "status": "Resolved by the lead editor. This reviewer actually read the complete saved apparatus-enumeration branch and the complete new negative test, reran the original nested-paragraph probe against both original_article and source_digest, and reran all source-only and existing-primary tests successfully. No implementation edit by this reviewer."
+    }
+  ],
+  "post_fix_readback": {
+    "date": "2026-11-04",
+    "scope": "Actually read every line of the saved new load_article apparatus-disposition branch and the entire test_new_apparatus_wrapper_heading_or_bibliography_prose_cannot_disappear method. The adapter now rejects unknown direct wrappers and loose prose, accepts only the known research heading, constrains the guide reference list to single-link entries with no extra reading prose, and allows only the existing standalone research route in essays.",
+    "original_negative_probe": "Repeated the exact previously successful nested div/p injection in source-only memory. Both original_article and source_digest now raise 'New source-apparatus block, div'; the explanation can no longer disappear while retaining the old fingerprint.",
+    "tests": {"command": "PYTHONPATH=scripts python3 -m unittest test_zhuangzi_source test_zhuangzi", "passed": 37, "failed": 0, "new_source_only": 8, "existing_original_series": 29},
+    "history": "The initial36-test successful run remains recorded above; the actual guard gap was discovered by an additional independent negative probe, fixed by lead, and then verified by this later37-test run. No claim is made that the first suite had covered it.",
+    "saved_code_sha256": {
+      "scripts/zhuangzi_source.py": "03031a358a6b980ee2ed2b9d7074dccd19fb2187e6c59d6f90e6aac7e8d5040e",
+      "scripts/test_zhuangzi_source.py": "4bb17a30c1cf93190c49c553d86dadc60e535763b23ccd12fd1dff236f5693f0"
+    },
+    "result": "Implementation audit passes after the actual correction and independent saved-code/test readback. Original source fingerprints, all69 complete main hashes and original reading-file protections still pass. No unapproved foreign rendering, fake approval, manuscript write or publication seal was performed."
+  },
+  "second_adaptation_readback": {
+    "date": "2026-11-04",
+    "trigger": "The lead editor found that the real Lin Xiyi commentary URL in the original essay18/19 apparatus contains parentheses, which the shared narrow Markdown destination parser would stop at too early. This issue was found by actual reading of the later source apparatus, not by the original first-six manuscript review.",
+    "code_actually_read": [
+      "Complete zhuangzi_language_index.apparatus_inline implementation and its exact-reference-only replacement rule",
+      "The full sources() integration branch: formatter opt-in is limited to book material with source_adapter zhuangzi-markdown; the legacy formatter for every other published series is unchanged",
+      "Complete test_actual_commentary_link_parentheses_survive_narrow_markdown, using the actual essay18 canonical note and further actual guide/01/19 note fragments"
+    ],
+    "judgment": "The helper percent-encodes only literal parentheses inside exact ](full reference URL) destinations already present in the article's real source array, then delegates to the old escaped formatter. It does not change any source Markdown, canonical note, reference-array raw URL, fingerprint or original page. The test parses the actual inline source fragment, compares both decoded target URLs with the full original references, checks the encoded parentheses and rejects the characteristic truncated trailing suffix. No unapproved foreign page is rendered for this test.",
+    "tests": {"command": "PYTHONPATH=scripts python3 -m unittest test_zhuangzi_source test_zhuangzi", "passed": 38, "failed": 0, "new_source_only": 9, "existing_original_series": 29},
+    "existing_publication_regression": "Rendered only the21 series with genuine existing publication receipts in memory. All830 saved foreign page read_bytes() equal the generated UTF-8 bytes, including the already published Montaigne series. No Zhuangzi publication receipt exists and no Zhuangzi foreign page was rendered.",
+    "result": "The second narrow adaptation is correct and regression-safe in the actually executed scope. The previous37-test correction history remains intact; it is not retroactively described as covering this later URL issue. Publication of unfinished Zhuangzi translations remains unvalidated."
+  },
+  "remaining": [
+    "All five language manuscripts, final native metadata and independent full reading reviews remain an unfinished later workflow. No Zhuangzi foreign publication has been validated or authorized by this code report."
+  ]
+}

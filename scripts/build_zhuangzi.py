@@ -316,6 +316,12 @@ def main():
     expected={'index.html':render_index(manifest)}
     for item in manifest['items']:
         if item['number'] in manifest['published']: expected[filename(item['number'])]=render_article(item,manifest)
+    if (DATA/'multilingual/publication.json').exists():
+        from full_series_languages import profile, require_review_seal, upgrade_primary
+        spec = profile('zhuangzi')
+        require_review_seal('zhuangzi', spec)
+        expected = {name: upgrade_primary(text, 'zhuangzi', Path(name).stem)
+                    for name, text in expected.items()}
     stale=[name for name,text in expected.items() if not (TARGET/name).exists() or (TARGET/name).read_text()!=text]
     if args.check:
         if stale: raise SystemExit('Stale pages: '+', '.join(stale))

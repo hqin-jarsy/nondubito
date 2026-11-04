@@ -62,12 +62,20 @@ def prepare(series):
             report=json.loads(path.read_text())
             assert not report['remaining']
             reports.append((path.name,report))
+    # Keep validated manuscripts local to this preparation call. A large series
+    # can have hundreds of resolved findings; rereading and revalidating all of
+    # its articles once per finding adds no protection. Never cache across calls,
+    # so later edits and the negative-corruption checks still receive fresh data.
+    manuscripts={}
     resolved=[]
     for name,report in reports:
         for issue in [*report['issues'],*report.get('metadata_issues',[])]:
             issue=issue.copy()
             issue.setdefault('language',report.get('language'))
-            _,data=load_language(series,issue['language'])
+            language=issue['language']
+            if language not in manuscripts:
+                manuscripts[language]=load_language(series,language)[1]
+            data=manuscripts[language]
             field=issue.get('field','body')
             if field.startswith(('ui.','series.')):
                 group,key=field.split('.',1)

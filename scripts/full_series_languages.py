@@ -87,6 +87,9 @@ def original_article(series, spec, slug):
     if spec.get('source_adapter')=='structured-western-book':
         from western_book_source import load_article
         return load_article(spec,slug)
+    if spec.get('source_adapter')=='zhuangzi-markdown':
+        from zhuangzi_source import load_article
+        return load_article(spec,slug)
     path = source_file(series, spec, slug)
     if path.suffix == '.md':
         assert spec.get('source_adapter') == 'ai-work-markdown'
@@ -108,6 +111,9 @@ def original_article(series, spec, slug):
 
 
 def source_digest(series,spec,slug):
+    if spec.get('source_adapter')=='zhuangzi-markdown':
+        from zhuangzi_source import source_digest as zhuangzi_digest
+        return zhuangzi_digest(spec,slug)
     if spec.get('source_adapter')=='published-html':
         # Whole-file bytes contain the very language controls we are adding.
         # Fingerprint the canonical Chinese reading bundle; raw original EN/ZH
@@ -163,6 +169,9 @@ def load_language(series, language):
     assert [a['slug'] for a in data['articles']] == spec['slugs']
     assert data['review']['unresolved'] == [], (series, language, 'unresolved editorial issues')
     validate_groups(spec, data)
+    if spec.get('source_adapter')=='zhuangzi-markdown':
+        from zhuangzi_language_index import validate_index
+        validate_index(spec, data)
     if spec.get('visible_notice'):
         assert isinstance(data['series']['notice'],str) and data['series']['notice'].strip()
     if spec.get('index_context_source'):
@@ -371,7 +380,12 @@ def sources(spec, data, article=None):
     note = article.get('source_note', data['series']['source_note']) if article else data['series']['source_note']
     paragraphs = ''.join('<p>'+inline_markdown(p)+'</p>' for p in re.split(r'\n\s*\n',note.strip()))
     if article and spec.get('book_material'):
-        notes='<h2>'+E(ui['edition_notes'])+'</h2>'+''.join('<p>'+inline_markdown(p)+'</p>' for p in article['notes'])
+        formatter = inline_markdown
+        if spec.get('source_adapter')=='zhuangzi-markdown':
+            from zhuangzi_language_index import apparatus_inline
+            formatter = lambda p: apparatus_inline(p, article['sources'])
+            paragraphs = ''.join('<p>'+formatter(p)+'</p>' for p in re.split(r'\n\s*\n',note.strip()))
+        notes='<h2>'+E(ui['edition_notes'])+'</h2>'+''.join('<p>'+formatter(p)+'</p>' for p in article['notes'])
         refs='<ul>'+''.join('<li><a href="'+E(s['url'])+'">'+E(s['title'])+'</a></li>' for s in article['sources'])+'</ul>'
         return f'<details class="lw-sources"><summary>{E(ui["sources"])}</summary>{paragraphs}{notes}{refs}</details>'
     if article and spec.get('numbered_sources'):
@@ -498,6 +512,8 @@ def document(spec, data, slug, content, article=None):
         font_href+='&family=Noto+Serif+'+('JP' if language=='ja' else 'KR')+':wght@400;500;600'
     fonts='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="'+E(font_href+'&display=swap')+'" rel="stylesheet">'
     grouped_css = f'<link rel="stylesheet" href="{root}essays/language-writing/grouped-reading.css?v=20261103b">' if spec.get('index_groups') and slug == 'index' else ''
+    if spec.get('source_adapter')=='zhuangzi-markdown' and slug=='index':
+        grouped_css += f'<link rel="stylesheet" href="{root}essays/zhuangzi/foreign-index.css?v=20261104">'
     if spec.get('numbered_sources'):
         grouped_css += f'<link rel="stylesheet" href="{root}essays/state-transitions/reading.css?v=20261029">'
     return f'''<!doctype html>
@@ -523,7 +539,10 @@ def render(series):
             grid+='<section class="lw-note"><h2>'+E(SPECIAL_STUDY[language])+'</h2></section><section class="lw-grid">'+''.join(card for slug,card in card_rows if slug in standalone)+'</section>'
         if spec.get('index_groups'):
             grid = grouped_index(spec, data, card_rows)
-        if spec.get('entry_slugs'):
+        if spec.get('source_adapter')=='zhuangzi-markdown':
+            from zhuangzi_language_index import reading_index
+            grid = reading_index(spec,data,card_rows)
+        if spec.get('entry_slugs') and spec.get('source_adapter')!='zhuangzi-markdown':
             entries=spec['entry_slugs']
             assert len(title['entry_labels'])==len(entries) and set(entries)<=set(spec['slugs'])
             route_links=' · '.join('<a href="'+E(slug)+'.html">'+E(label)+'</a>' for slug,label in zip(entries,title['entry_labels']))
