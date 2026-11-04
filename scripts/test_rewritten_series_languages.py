@@ -7,7 +7,7 @@ import unittest
 
 from full_series_languages import ROOT, load_language, profile, render
 
-SERIES=('accountability','long-consensus')
+SERIES=('accountability','long-consensus','relation')
 
 
 class RewrittenSeriesLanguages(unittest.TestCase):
@@ -36,10 +36,18 @@ class RewrittenSeriesLanguages(unittest.TestCase):
             receipt=json.loads((ROOT/'data'/series/'multilingual/publication.json').read_text())
             self.assertEqual(receipt['result'],'passed')
             self.assertEqual(receipt['unresolved'],[])
+            for lang,digest in receipt.get('language_data_sha256',{}).items():
+                self.assertEqual(hashlib.sha256((ROOT/'data'/series/'multilingual'/(lang+'.json')).read_bytes()).hexdigest(),digest)
             for fix in receipt['resolved_issues']:
                 _,data=load_language(series,fix['language'])
-                article=next(a for a in data['articles'] if a['slug']==fix['slug'])
-                self.assertIn(fix['after'],article['body'][fix['paragraph']])
+                field=fix.get('field','body')
+                if field.startswith(('ui.','series.')):
+                    group,key=field.split('.',1)
+                    value=data[group][key]
+                else:
+                    article=next(a for a in data['articles'] if a['slug']==fix['slug'])
+                    value=article['body'][fix['paragraph']] if field=='body' else article[field]
+                self.assertIn(fix['after'],value)
             for lang in spec['languages']:
                 _,data=load_language(series,lang)
                 for article in data['articles']:

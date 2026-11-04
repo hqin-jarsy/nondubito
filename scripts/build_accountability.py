@@ -87,8 +87,8 @@ def library_card(conv):
 def rights_entry(conv):
     # Use explicit scripts only inside this added block. The legacy page's
     # text-node dictionary must not reconvert these already localized nodes.
-    en='<section class="accountability-entry lang-en"><p class="entry-num">New companion · Three essays · EN / 简 / 繁</p><h2>What Is Yours to Answer For?</h2><p>The original seven essays remain a complete route. A later special study asks where a demand comes from, why its being operative does not make it right, and what changes when an appointment ends.</p><a href="../accountability/index.html?lang=en">Read the three companion essays →</a></section>'
-    zh='<section class="accountability-entry lang-zh account-zh"><p class="entry-num">新增专论 · 三篇 · 英简繁</p><h2>职责与承担</h2><p>原有七篇仍是一条完整主线。本组根据后出的《论职责》，追问要求怎样落在身上、为什么成立不等于正当，以及一次任职结束以后，哪些事情需要分开看。</p><a href="../accountability/index.html?lang=zh">阅读三篇专论散文 →</a></section>'
+    en='<section class="accountability-entry lang-en"><p class="entry-num">New companion · Three essays · Eight languages</p><h2>What Is Yours to Answer For?</h2><p>The original seven essays remain a complete route. A later special study asks where a demand comes from, why its being operative does not make it right, and what changes when an appointment ends.</p><a href="../accountability/index.html?lang=en">Read the three companion essays →</a></section>'
+    zh='<section class="accountability-entry lang-zh account-zh"><p class="entry-num">新增专论 · 三篇 · 八语全文</p><h2>职责与承担</h2><p>原有七篇仍是一条完整主线。本组根据后出的《论职责》，追问要求怎样落在身上、为什么成立不等于正当，以及一次任职结束以后，哪些事情需要分开看。</p><a href="../accountability/index.html?lang=zh">阅读三篇专论散文 →</a></section>'
     hant=conv.convert(zh).replace('account-zh','account-hant').replace('?lang=zh"','?lang=zh-hant"')
     return '<!-- ACCOUNTABILITY COMPANION START -->\n'+en+zh+hant+'\n<!-- ACCOUNTABILITY COMPANION END -->'
 

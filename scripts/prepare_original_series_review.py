@@ -20,19 +20,27 @@ def prepare(series):
         covered.extend(report['languages'])
         reports.append((name,report))
     assert sorted(covered)==sorted(spec['languages'])
-    final_fr=base/'final-fr-language-review.json'
-    if final_fr.exists():
-        report=json.loads(final_fr.read_text())
-        assert not report['remaining']
-        reports.append((final_fr.name,report))
+    for optional in ('final-fr-language-review.json','lead-final-review.json'):
+        path=base/optional
+        if path.exists():
+            report=json.loads(path.read_text())
+            assert not report['remaining']
+            reports.append((path.name,report))
     resolved=[]
     for name,report in reports:
-        for issue in report['issues']:
+        for issue in [*report['issues'],*report.get('metadata_issues',[])]:
             issue=issue.copy()
             issue.setdefault('language',report.get('language'))
             _,data=load_language(series,issue['language'])
-            a=next(a for a in data['articles'] if a['slug']==issue['slug'])
-            assert issue['after'] in a['body'][issue['paragraph']], (name,issue)
+            field=issue.get('field','body')
+            if field.startswith(('ui.','series.')):
+                group,key=field.split('.',1)
+                value=data[group][key]
+            else:
+                a=next(a for a in data['articles'] if a['slug']==issue['slug'])
+                assert field in ('body','title','deck'), (name,field)
+                value=a['body'][issue['paragraph']] if field=='body' else a[field]
+            assert issue['after'] in value, (name,issue)
             issue['review_report']=name
             resolved.append(issue)
     sources={}
@@ -58,6 +66,7 @@ def prepare(series):
         'date':spec['date'],'result':'passed',
         'scope':'Complete independent foreign rewrites of the published Chinese reader essays, not shortened translations of their academic sources.',
         'languages':spec['languages'],'slugs':spec['slugs'],'source_units':counts,
+        'language_data_sha256':{code:hashlib.sha256((base/(code+'.json')).read_bytes()).hexdigest() for code in spec['languages']},
         'new_article_editions':len(spec['languages'])*len(spec['slugs']),
         'review_method':['Chinese originals read in full; every argument unit, example and qualification retained.',
                          'Each writer self-edited; a different agent independently read every foreign article against Chinese.',

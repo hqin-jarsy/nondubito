@@ -74,8 +74,10 @@ def upgrade_primary(text, series, slug):
         return upgrade_legacy_primary(text,spec,slug)
     links = ''.join(f'<a href="{code}/{slug}.html" lang="{code}">{LABELS[code]}</a>' for code in spec['languages'])
     for label in ('繁體中文', '繁體'):
-        anchor = f'<button type="button" data-set-language="zh-hant">{label}</button>'
-        assert text.count(anchor) == 1, (series, slug, label)
+        pattern = r'<button\b(?=[^>]*data-set-language="zh-hant")[^>]*>'+label+r'</button>'
+        anchors = re.findall(pattern,text)
+        assert len(anchors) == 1, (series, slug, label)
+        anchor = anchors[0]
         # Source builders pass fresh primary markup, not a previously patched file.
         text = text.replace(anchor, anchor+links)
     assert not re.search(r'<link[^>]*rel="alternate"', text)
