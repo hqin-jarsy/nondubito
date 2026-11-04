@@ -21,6 +21,14 @@ GUIDE = {'de':'Einführung','fr':'Introduction','es':'Introducción','ja':'は�
 SUPPLEMENT = {'de':'Ergänzung','fr':'Complément','es':'Complemento','ja':'補論','ko':'보론'}
 
 
+def article_count(language,n):
+    return {'de':f'{n} Essays','fr':f'{n} essais','es':f'{n} ensayos','ja':f'{n}篇','ko':f'글 {n}편'}[language]
+
+
+def edition_count(language,n):
+    return article_count(language,n)+' · '+{'de':'8 Sprachen','fr':'8 langues','es':'8 idiomas','ja':'8言語','ko':'8개 언어'}[language]
+
+
 def essay_label(article,index,language):
     """A prequel must not silently turn source essay 01 into foreign essay 02."""
     match=re.fullmatch(r'ep(\d+)',article['slug'])
@@ -144,7 +152,11 @@ def inline_markdown(text):
 def related(spec, data):
     root = '../' * (len(Path(spec['directory']).parts)+1)
     # The map is explicitly the existing EN/Chinese map; don't imply translation.
-    return f'<aside class="lw-related"><h2>{E(data["ui"]["related"])}</h2><a href="{root}essays/sae/index.html?lang=en">{E(data["ui"]["map"])} · EN / 中文</a></aside>'
+    links=f'<a href="{root}essays/sae/index.html?lang=en">{E(data["ui"]["map"])} · EN / 中文</a>'
+    for target in spec.get('related_series',[]):
+        target_spec,target_data=load_language(target,data['language'])
+        links+=f'<a href="{root}{target_spec["directory"]}/{data["language"]}/index.html">{E(target_data["series"]["title"])}</a>'
+    return f'<aside class="lw-related"><h2>{E(data["ui"]["related"])}</h2>{links}</aside>'
 
 
 @tracked_html
@@ -181,7 +193,7 @@ def render(series):
         _, data = load_language(series, language)
         ui, title = data['ui'], data['series']
         cards = ''.join(f'<a class="lw-card" href="{a["slug"]}.html"><p class="lw-kicker">{E(essay_label(a,n,language))}</p><h2>{E(a["title"])}</h2><p>{E(a["deck"])}</p><span class="lw-read">{E(ui["read"])} →</span></a>' for n, a in enumerate(data['articles']))
-        count = f'{len(data["articles"])} · ' + ' / '.join(LABELS.values())
+        count = article_count(language,len(data['articles']))+' · '+' / '.join(LABELS.values())
         content = f'<section class="lw-hero"><p class="lw-kicker">Non Dubito · {E(ui["series"])}</p><h1>{E(title["title"])}</h1><p class="lw-deck">{E(title["deck"])}</p><p class="lw-meta">{E(count)}</p></section><aside class="lw-opening"><p>{E(title["intro"])}</p><a href="{data["articles"][0]["slug"]}.html">{E(ui["read"])} →</a></aside><section class="lw-grid">{cards}</section><section class="lw-note"><p>{E(title["scope"])}</p></section>'+sources(spec, data)+related(spec, data)
         target = ROOT/spec['directory']/language
         pages[target/'index.html'] = document(spec, data, 'index', content)

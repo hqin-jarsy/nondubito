@@ -5,7 +5,7 @@ import html
 import json
 import re
 
-from full_series_languages import ROOT, load_language, profile
+from full_series_languages import ROOT, load_language, profile, edition_count
 from build_home_updates import render_section, replace_section
 
 
@@ -53,7 +53,7 @@ def render(series):
         path = ROOT/f'essays/{language}/index.html'
         source = path.read_text()
         anchor = '<div id="language-library" class="language-channel-library-anchor" aria-hidden="true"></div>'
-        card = f'<section class="essays-section" style="padding:2rem 0"><a href="../{series}/{language}/index.html" class="essay-card" style="display:block;text-decoration:none;border-left:3px solid var(--gold);padding:2rem"><p style="font-family:var(--sans);font-size:.8rem;color:var(--green)">{html.escape(data["ui"]["series"])}</p><h2 style="font-size:1.6rem;font-weight:400">{html.escape(data["series"]["title"])}</h2><p>{html.escape(data["series"]["deck"])}</p><p>{len(data["articles"])} · 8</p></a></section>'
+        card = f'<section class="essays-section" style="padding:2rem 0"><a href="../{series}/{language}/index.html" class="essay-card" style="display:block;text-decoration:none;border-left:3px solid var(--gold);padding:2rem"><p style="font-family:var(--sans);font-size:.8rem;color:var(--green)">{html.escape(data["ui"]["series"])}</p><h2 style="font-size:1.6rem;font-weight:400">{html.escape(data["series"]["title"])}</h2><p>{html.escape(data["series"]["deck"])}</p><p>{edition_count(language,len(data["articles"]))}</p></a></section>'
         pages[path] = block(source,'FULL SERIES '+series.upper()+' CHANNEL',card,anchor)
     path = ROOT/'library.html'
     source = path.read_text()

@@ -10,6 +10,7 @@ from pathlib import Path
 
 from build_ai_work_series import TraditionalConverter, shell_header, footer, tri
 from web_analytics import tracked_html
+from full_series_languages import upgrade_primary
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/love'
@@ -143,7 +144,7 @@ def render_index(items: list[dict], converter: TraditionalConverter) -> str:
     guide, stories = items[0], items[7]
     content = f'''<main class="love-wrap" data-search="爱情论 愛情論 为什么偏偏是你 為什麼偏偏是你 philosophy love romance longing promises stories">
 {breadcrumb(converter)}<section class="love-hero"><p class="love-kicker">Non Dubito · {loc(*SUBTITLE, converter)}</p>{loc(*TITLE, converter, 'h1')}{loc(*DECK, converter, 'p', 'love-deck love-search-deck')}
-{loc('Eight essays · English, Simplified & Traditional Chinese', '八篇 · 英文、简体中文与繁体中文', converter, 'p', 'love-meta')}</section>
+{loc('Eight complete essays · Eight languages', '八篇完整散文 · 八语全文', converter, 'p', 'love-meta')}</section>
 <aside class="love-opening">{loc('You need not convince the world that this person is irreplaceable. You cannot decide their answer for them either.', '你不必说服全世界也非他不可，却也不能替他回答爱不爱你。', converter, 'p')}<a class="love-start" href="ep01.html">{loc('Start with the first essay →', '从第一篇开始 →', converter)}</a>{loc(*NOTE, converter, 'p', 'love-note')}</aside>
 <a class="love-guide" href="overview.html"><p class="love-kicker">00 · {loc(*KINDS[0], converter)}</p>{loc(guide['title_en'], guide['title_zh'], converter, 'h2')}{loc(guide['deck_en'], guide['deck_zh'], converter, 'p')}{loc('Read the guide →', '阅读导读 →', converter, 'span', 'love-read')}</a>
 <section class="love-grid" aria-label="Six perspectives, not stages">{''.join(cards)}</section>
@@ -186,7 +187,8 @@ def render() -> dict[Path,str]:
     items = load_items()
     converter = LoveTraditionalConverter()
     try:
-        return {TARGET/'index.html':render_index(items, converter), **{TARGET/(item['slug']+'.html'):render_article(item,items,converter) for item in items}}
+        pages={TARGET/'index.html':render_index(items, converter), **{TARGET/(item['slug']+'.html'):render_article(item,items,converter) for item in items}}
+        return {path:upgrade_primary(text,'love',path.stem) for path,text in pages.items()}
     finally:
         converter.close()
 

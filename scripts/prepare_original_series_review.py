@@ -20,7 +20,7 @@ def prepare(series):
         covered.extend(report['languages'])
         reports.append((name,report))
     assert sorted(covered)==sorted(spec['languages'])
-    for optional in ('final-fr-language-review.json','lead-final-review.json'):
+    for optional in ('final-de-language-review.json','final-fr-language-review.json','lead-final-review.json'):
         path=base/optional
         if path.exists():
             report=json.loads(path.read_text())

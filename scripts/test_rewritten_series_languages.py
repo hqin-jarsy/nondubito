@@ -4,10 +4,11 @@ import html
 import json
 import re
 import unittest
+from urllib.parse import unquote, urlsplit
 
 from full_series_languages import ROOT, load_language, profile, render
 
-SERIES=('accountability','long-consensus','relation')
+SERIES=('accountability','long-consensus','relation','love')
 
 
 class RewrittenSeriesLanguages(unittest.TestCase):
@@ -71,6 +72,23 @@ class RewrittenSeriesLanguages(unittest.TestCase):
                     path=spec['directory']+'/'+lang+'/'+slug+'.html'
                     self.assertIn(path,urls)
                     self.assertIn('https://nondubito.net/'+path.removesuffix('index.html'),sitemap)
+
+    def test_native_reading_routes(self):
+        for series in SERIES:
+            spec=profile(series)
+            for path,text in render(series).items():
+                menu=re.search(r'<div class="site-shell-language-options">(.*?)</div>',text)[1]
+                self.assertEqual(menu.count('<a '),8)
+                self.assertEqual(menu.count('aria-current="page"'),1)
+                for lang in spec['languages']:
+                    self.assertIn(f'../{lang}/{path.name}',menu)
+                for href in re.findall(r'href="([^"]+)"',text):
+                    url=urlsplit(html.unescape(href))
+                    if url.scheme or not url.path:continue
+                    self.assertTrue((path.parent/unquote(url.path)).resolve().is_file(),(path,href))
+                for target in spec.get('related_series',[]):
+                    directory=profile(target)['directory']
+                    self.assertIn(directory+'/'+path.parent.name+'/index.html',text)
 
 
 if __name__=='__main__':unittest.main()
