@@ -43,7 +43,8 @@
   </style>
   <script>
     (function(){
-      var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'en';
+      var requested=new URLSearchParams(location.search).get('lang');
+      var saved=requested||localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'en';
       if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='en';
       document.documentElement.setAttribute('data-lang',saved);
       document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='zh'?'zh-Hans':'en');
@@ -56,7 +57,7 @@
     })();
   </script>
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
-</head>
+<!-- COMPANION ALTERNATES START --><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/sae-foundations/remainder-and-subject.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/sae-foundations/remainder-and-subject.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/sae-foundations/de/remainder-and-subject.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/sae-foundations/fr/remainder-and-subject.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/sae-foundations/es/remainder-and-subject.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/sae-foundations/ja/remainder-and-subject.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/sae-foundations/ko/remainder-and-subject.html"><!-- COMPANION ALTERNATES END --><script id="companion-language-state">(function(){function sync(language){if(['en','zh','zh-hant'].indexOf(language)<0)return;document.documentElement.setAttribute('data-lang',language);document.documentElement.lang=language==='zh'?'zh-Hans':language==='zh-hant'?'zh-Hant':'en';var url=new URL(location.href);url.searchParams.set('lang',language);history.replaceState(null,'',url);localStorage.setItem('nd_lang',language);localStorage.setItem('nondubito-lang',language);var select=document.querySelector('.lang-toggle .lang-select');if(select){Array.prototype.forEach.call(select.options,function(option,index){if(option.dataset.inlineLanguage===language)select.selectedIndex=index;});}var suffix=language==='zh-hant'?'hant':language;var heading=document.querySelector('h1.lang-'+suffix);if(heading)document.title=heading.textContent+' — Non Dubito';}document.addEventListener('DOMContentLoaded',function(){sync(document.documentElement.getAttribute('data-lang'));});document.addEventListener('change',function(event){if(!event.target.matches('.lang-toggle .lang-select'))return;var option=event.target.options[event.target.selectedIndex];sync(option.dataset.inlineLanguage);});})();</script><script defer src="../../language-select.js?v=20261103"></script><style id="companion-language-layout">.lang-toggle.lang-select-menu{display:inline-flex;width:max-content;max-width:100%;}</style></head>
 <body>
   <header>
     <div class="header-inner">
@@ -67,7 +68,7 @@
 
   <main class="bridge-main">
     <section class="bridge-hero">
-      <div class="lang-toggle"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button></div>
+      <div class="lang-toggle"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><!-- COMPANION LANGUAGE LINKS START --><span class="lang-sep">|</span><a class="lang-btn" href="de/remainder-and-subject.html" lang="de">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/remainder-and-subject.html" lang="fr">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="es/remainder-and-subject.html" lang="es">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ja/remainder-and-subject.html" lang="ja">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/remainder-and-subject.html" lang="ko">한국어</a><!-- COMPANION LANGUAGE LINKS END --></div>
       <p class="bridge-eyebrow"><span class="lang-en">The SAE path · Step 2</span><span class="lang-zh">SAE 入门路径 · 第 2 步</span><span class="lang-hant">SAE 入門路徑 · 第 2 步</span></p>
       <h1 class="lang-en">When a Remainder Becomes Mine</h1>
       <h1 class="lang-zh">余项怎样成为“我的余项”</h1>

@@ -29,7 +29,7 @@ from publish_companion_languages import render as render_connections
 from web_analytics import Document, issue as analytics_issue
 
 
-COMPANIONS = ("method-companion",)
+COMPANIONS = ("method-companion", "foundations-companion")
 FOREIGN = ("de", "fr", "es", "ja", "ko")
 LAYOUTS = {
     "method-companion": {
