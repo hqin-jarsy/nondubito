@@ -96,7 +96,7 @@ class LongConsensusPublication(unittest.TestCase):
         self.assertGreaterEqual(sae['series_count'],32)
         self.assertEqual(sae['series_hrefs'].count('essays/long-consensus/index.html'),1)
         self.assertLess(sae['series_hrefs'].index('essays/institution/index.html'),sae['series_hrefs'].index('essays/long-consensus/index.html'))
-        for name in ('index.html','library.html','latest.html','essays/sae/index.html'):
+        for name in ('library.html','latest.html','essays/sae/index.html'):
             self.assertIn('long-consensus/index.html',(ROOT/name).read_text())
 
     def test_search_sitemap_and_receipt(self):

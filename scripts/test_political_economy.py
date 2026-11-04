@@ -126,9 +126,8 @@ class PoliticalEconomyTests(unittest.TestCase):
         self.assertEqual(text.count('class="lw-card"'), 8)
         self.assertIn('href="introduction.html"', text)
         self.assertIn('An ongoing series', text)
-        for name in ('library.html','explore.html','index.html','latest.html','essays/sae/index.html'):
-            route = 'essays/political-economy/theory/index.html' if name == 'index.html' else 'essays/political-economy/index.html'
-            self.assertIn(route, (ROOT/name).read_text())
+        for name in ('library.html','explore.html','latest.html','essays/sae/index.html'):
+            self.assertIn('essays/political-economy/index.html', (ROOT/name).read_text())
         groups = json.loads((ROOT/'data/sae-reading-map.json').read_text())['groups']
         self.assertEqual(len(groups), 6)
         shared = next(g for g in groups if g['id'] == 'shared-life')

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Connect the completed Interstate series while preserving its first announcement."""
 import argparse
+from build_home_updates import render_home
 import json
 import re
 
@@ -17,12 +18,7 @@ def render():
         complete = next(u for u in json.loads((ROOT/'data/site-updates.json').read_text())['updates'] if u['id'] == '2026-10-31-interstate-complete')
         complete_card = '<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-interstate-complete"><header class="updates-date"><h2 id="date-interstate-complete"><time datetime="' + COMPLETE_DATE + '">' + COMPLETE_DATE + '</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="' + complete['id'] + '"><div class="update-meta"><span class="update-kind">' + loc('Series completed · Six new essays', '系列补齐 · 新增六篇', conv) + '</span><span>EN / 简 / 繁</span></div>' + loc(*TITLE, conv, 'h3') + loc(complete['summary']['en'], complete['summary']['zh'], conv, 'p') + '<a href="essays/interstate/index.html">' + loc('Read all nine →', '阅读全部九篇 →', conv) + '</a></article></div></section></div></section>'
         latest = block(latest, 'INTERSTATE COMPLETE LATEST', complete_card, '<!-- MARRIAGE SERIES LATEST START -->')
-        home_row = '<a class="home-update-row" href="essays/interstate/index.html"><time datetime="' + COMPLETE_DATE + '">Oct 31</time><div>' + loc('Six new essays · All nine available · EN / 简 / 繁', '新增六篇 · 九篇补齐 · 英简繁', conv, 'span', 'home-update-kind') + loc(*TITLE, conv, 'h3') + '</div></a>'
-        # Keep a single current home row, moving it above the older releases.
-        home_source = (ROOT/'index.html').read_text()
-        assert home_source.count('<!-- INTERSTATE HOME START -->') == 1
-        home_source = re.sub(r'<!-- INTERSTATE HOME START -->.*?<!-- INTERSTATE HOME END -->\n?', '', home_source, flags=re.S)
-        home = block(home_source, 'INTERSTATE HOME', home_row, '<!-- MARRIAGE SERIES HOME START -->')
+        home = render_home()
         return {ROOT/'latest.html': latest, ROOT/'index.html': home}
     finally:
         conv.close()

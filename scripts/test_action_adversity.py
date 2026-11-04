@@ -94,7 +94,7 @@ class AdversityPublication(unittest.TestCase):
             c.close()
 
     def test_discovery(self):
-        for name in ['index.html','latest.html']:
+        for name in ['latest.html']:
             self.assertIn('essays/action/adversity.html',(ROOT/name).read_text())
         self.assertIn('11 essays + 1 special study',(ROOT/'library.html').read_text())
         for language in ['en','zh-hans','zh-hant']:

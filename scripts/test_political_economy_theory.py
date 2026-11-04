@@ -133,7 +133,7 @@ class PoliticalEconomyTheoryTests(unittest.TestCase):
         updates = json.loads((ROOT/'data/site-updates.json').read_text())['updates']
         u = next(u for u in updates if u['id'] == '2026-11-03-political-economy-theory')
         self.assertEqual(u['languages'], ['en','zh','zh-hant'])
-        for path in ('index.html','latest.html','explore.html','library.html','essays/sae/index.html'):
+        for path in ('latest.html','explore.html','library.html','essays/sae/index.html'):
             self.assertIn('political-economy/', (ROOT/path).read_text())
         for batch in range(1,6):
             self.assertIn(f'POLITICAL ECONOMY BATCH{batch:02d} LATEST START', (ROOT/'latest.html').read_text())

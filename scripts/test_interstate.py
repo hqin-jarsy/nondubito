@@ -167,7 +167,7 @@ class InterstatePublication(unittest.TestCase):
             self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/name).read_bytes()).hexdigest(), expected)
 
     def test_shelves_updates_search_and_sitemap(self):
-        for name in ('index.html', 'library.html', 'latest.html', 'essays/sae/index.html'):
+        for name in ('library.html', 'latest.html', 'essays/sae/index.html'):
             self.assertIn('essays/interstate/index.html', (ROOT/name).read_text())
         state = (ROOT/'essays/state/index.html').read_text()
         self.assertIn('../interstate/index.html', state)
@@ -182,7 +182,8 @@ class InterstatePublication(unittest.TestCase):
         latest = (ROOT/'latest.html').read_text()
         self.assertEqual(latest.count('data-update-id="2026-10-31-interstate-complete"'), 1)
         home = (ROOT/'index.html').read_text()
-        self.assertLess(home.index('<!-- INTERSTATE HOME START -->'), home.index('<!-- MARRIAGE SERIES HOME START -->'))
+        self.assertEqual(home, entrances()[ROOT/'index.html'])
+        self.assertEqual(home.count('class="home-update-row"'), 4)
         for lang in ('en', 'zh-hans', 'zh-hant'):
             records = {d['u']:d for d in json.loads((ROOT/f'data/search/{lang}.json').read_text())['records']}
             for path in self.pages:

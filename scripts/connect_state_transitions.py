@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """Keep the historical shelf discoverable without renumbering existing collections."""
 import argparse
+from build_home_updates import render_home
 import json
 import re
 
@@ -42,8 +43,7 @@ def render():
             latest_card = '<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="' + date_id + '"><header class="updates-date"><h2 id="' + date_id + '"><time datetime="' + update['date'] + '">' + update['date'] + '</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="' + update['id'] + '"><div class="update-meta"><span class="update-kind">' + loc(en, zh, conv) + '</span><span>EN / 简 / 繁</span></div>' + loc(update['title']['en'], update['title']['zh'], conv, 'h3') + deck + '<a href="essays/state-transitions/index.html">' + loc('Read the histories →', '进入历史专题 →', conv) + '</a></article></div></section></div></section>'
             latest = block(latest, marker, latest_card, anchor)
 
-        home_row = '<a class="home-update-row" href="essays/state-transitions/index.html"><time datetime="' + DATE + '">Oct 29</time><div>' + loc('Historical series · Six essays · EN / 简 / 繁', '历史专题 · 六篇 · 英简繁', conv, 'span', 'home-update-kind') + loc(*TITLE, conv, 'h3') + '</div></a>'
-        home = block((ROOT/'index.html').read_text(), 'STATE HISTORIES HOME', home_row, '          <a class="home-update-row" href="essays/state-reversal/index.html">')
+        home = render_home()
         return {ROOT/'library.html': library, ROOT/'explore.html': explore, ROOT/'latest.html': latest, ROOT/'index.html': home}
     finally:
         conv.close()

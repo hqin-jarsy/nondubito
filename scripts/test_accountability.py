@@ -96,7 +96,7 @@ class AccountabilityPublication(unittest.TestCase):
                     self.assertRegex(source,r'\bid=["\']'+re.escape(parts.fragment)+r'["\']')
 
     def test_discovery_and_existing_card_copy(self):
-        for name in ('index.html','library.html','latest.html','essays/sae/index.html','essays/rights/index.html'):
+        for name in ('library.html','latest.html','essays/sae/index.html','essays/rights/index.html'):
             self.assertIn('accountability/index.html',(ROOT/name).read_text())
         categories=parse_library_categories(ROOT/'library.html')
         sae=next(c for c in categories if c['number']==2)

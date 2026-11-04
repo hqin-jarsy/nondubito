@@ -101,7 +101,7 @@ class StateReversalPublication(unittest.TestCase):
             for p in self.pages:self.assertTrue(p.relative_to(ROOT).as_posix() in urls,f'{lang}: missing {p.name}')
         urls={e.text for e in ET.fromstring((ROOT/'sitemap.xml').read_text()).findall('{*}url/{*}loc')}
         for p in self.pages:self.assertIn(BASE+('' if p.name=='index.html' else p.name),urls)
-        for name in ('index.html','latest.html','essays/state/index.html'):
+        for name in ('latest.html','essays/state/index.html'):
             self.assertIn('state-reversal/index.html',(ROOT/name).read_text())
         self.assertIn('含逆相变专论',(ROOT/'essays/sae/index.html').read_text())
         source=self.receipt['source']

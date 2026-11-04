@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """Connect the real-history companion while preserving existing shelves and updates."""
 import argparse
+from build_home_updates import render_home
 import json
 import re
 
@@ -49,11 +50,7 @@ def render():
         latest_card7 = '<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-cooperation-histories-batch07"><header class="updates-date"><h2 id="date-cooperation-histories-batch07"><time datetime="' + update7['date'] + '">' + update7['date'] + '</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="' + update7['id'] + '"><div class="update-meta"><span class="update-kind">' + loc('Historical series · Antarctica & the Iran nuclear agreement', '历史专题 · 南极检查与伊核协议', conv) + '</span><span>EN / 简 / 繁</span></div>' + loc(update7['title']['en'], update7['title']['zh'], conv, 'h3') + loc(update7['summary']['en'], update7['summary']['zh'], conv, 'p') + '<a href="essays/cooperation-histories/index.html#inspection-and-judgment">' + loc('Read the new pair →', '阅读新增两篇 →', conv) + '</a></article></div></section></div></section>'
         latest = block(latest, 'COOPERATION HISTORIES BATCH07 LATEST', latest_card7, '<!-- COOPERATION HISTORIES BATCH06 LATEST START -->')
 
-        home_card = '<a class="home-update-row" href="essays/cooperation-histories/index.html#inspection-and-judgment"><time datetime="' + UPDATE_DATE + '">Nov 1</time><div>' + loc('More histories · Inspection & judgment · EN / 简 / 繁', '历史专题更新 · 检查与判断 · 英简繁', conv, 'span', 'home-update-kind') + loc(*TITLE, conv, 'h3') + '</div></a>'
-        home_source = (ROOT/'index.html').read_text()
-        assert home_source.count('<!-- COOPERATION HISTORIES HOME START -->') == 1
-        home_source = re.sub(r'<!-- COOPERATION HISTORIES HOME START -->.*?<!-- COOPERATION HISTORIES HOME END -->\n?', '', home_source, flags=re.S)
-        home = block(home_source, 'COOPERATION HISTORIES HOME', home_card, '<!-- INTERSTATE HOME START -->')
+        home = render_home()
         return {ROOT/'library.html':library, ROOT/'explore.html':explore, ROOT/'latest.html':latest, ROOT/'index.html':home}
     finally:
         conv.close()

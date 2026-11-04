@@ -122,7 +122,7 @@ class CooperationHistories(unittest.TestCase):
         self.assertIn('not assert that this court found a Section 29 breach', d['sources'][5]['note_en'])
 
     def test_discovery_and_open_ended_shelf(self):
-        for name in ('library.html','explore.html','index.html','latest.html','essays/sae/index.html'):
+        for name in ('library.html','explore.html','latest.html','essays/sae/index.html'):
             self.assertIn('essays/cooperation-histories/index.html', (ROOT/name).read_text())
         fictional = (ROOT/'essays/interstate/index.html').read_text()
         self.assertIn('../cooperation-histories/index.html', fictional)
@@ -199,7 +199,7 @@ class CooperationHistories(unittest.TestCase):
         self.assertEqual(seventh[0]['kind'], 'expanded')
         self.assertEqual(next(u for u in updates if 'cooperation-histories' in u['id'])['id'], seventh[0]['id'])
         home = (ROOT/'index.html').read_text()
-        self.assertLess(home.index('<!-- COOPERATION HISTORIES HOME START -->'), home.index('<!-- INTERSTATE HOME START -->'))
+        self.assertEqual(home, entrances()[ROOT/'index.html'])
 
     def test_iraq_causation_implementation_and_access(self):
         d = self.items[2]
@@ -325,7 +325,7 @@ class CooperationHistories(unittest.TestCase):
             self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
         for slug, partner in (('montreal-fund', 'smallpox-eradication'), ('smallpox-eradication', 'montreal-fund')):
             self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
-        self.assertIn('#inspection-and-judgment', entrances()[ROOT/'index.html'])
+        self.assertIn('#inspection-and-judgment', entrances()[ROOT/'latest.html'])
         self.assertIn('family=Noto+Serif+TC', entrances()[ROOT/'library.html'])
 
     def test_covax_allocations_forecasts_delivery_and_personal_redress(self):

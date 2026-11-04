@@ -156,7 +156,7 @@ class StateHistories(unittest.TestCase):
         urls = {e.text for e in ET.fromstring((ROOT/'sitemap.xml').read_text()).findall('{*}url/{*}loc')}
         for path in self.pages:
             self.assertIn(BASE + ('' if path.name == 'index.html' else path.name), urls)
-        for name in ('library.html', 'explore.html', 'index.html', 'latest.html', 'essays/sae/index.html', 'essays/state/index.html'):
+        for name in ('library.html', 'explore.html', 'latest.html', 'essays/sae/index.html', 'essays/state/index.html'):
             self.assertIn('state-transitions/index.html', (ROOT/name).read_text())
         library = (ROOT/'library.html').read_text()
         self.assertGreater(library.index('<!-- STATE HISTORIES LIBRARY START -->'), library.index('Category 06'))

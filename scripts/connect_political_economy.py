@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """Add current discovery entries without rewriting old update blocks."""
 import argparse
+from build_home_updates import render_home
 import json
 
 from build_political_economy import ROOT, DATE, TITLE, loc, PoliticalTraditionalConverter
@@ -36,8 +37,7 @@ def render():
         theory = next(u for u in json.loads((ROOT/'data/site-updates.json').read_text())['updates'] if u['id'] == '2026-11-03-political-economy-theory')
         theory_card = '<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-political-economy-theory"><header class="updates-date"><h2 id="date-political-economy-theory"><time datetime="' + DATE + '">' + DATE + '</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="' + theory['id'] + '"><div class="update-meta"><span class="update-kind">' + loc('Political economy · Eight theoretical readings', '政治经济学 · 八篇理论导读', conv) + '</span><span>EN / 简 / 繁</span></div>' + loc(theory['title']['en'], theory['title']['zh'], conv, 'h3') + loc(theory['summary']['en'], theory['summary']['zh'], conv, 'p') + '<a href="essays/political-economy/theory/index.html">' + loc('Understand the argument →', '进入理论导读 →', conv) + '</a></article></div></section></div></section>'
         latest = block(latest, 'POLITICAL ECONOMY THEORY LATEST', theory_card, '<!-- POLITICAL ECONOMY BATCH05 LATEST START -->')
-        home_row = '<a class="home-update-row" href="essays/political-economy/theory/index.html"><time datetime="' + DATE + '">Nov 3</time><div>' + loc('SAE political economy · Eight readings · EN / 简 / 繁', 'SAE 政治经济学 · 八篇导读 · 英简繁', conv, 'span', 'home-update-kind') + loc(theory['title']['en'], theory['title']['zh'], conv, 'h3') + '</div></a>'
-        home = block((ROOT/'index.html').read_text(), 'POLITICAL ECONOMY HOME', home_row, '<!-- COOPERATION HISTORIES HOME START -->')
+        home = render_home()
         explore_source = (ROOT/'explore.html').read_text()
         start = explore_source.index('<section class="domain-section" id="sae">')
         end = explore_source.index('</section>', start) + len('</section>')

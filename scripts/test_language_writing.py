@@ -141,7 +141,7 @@ class LanguageWritingPublication(unittest.TestCase):
         for paper in self.report['papers']:
             self.assertTrue(paper['matches_author_local'])
             self.assertRegex(paper['sha256'],r'^[0-9a-f]{64}$')
-        for name in ('index.html','library.html','latest.html'):
+        for name in ('library.html','latest.html'):
             self.assertIn('essays/language-writing/index.html',(ROOT/name).read_text())
         updates=json.loads((ROOT/'data/site-updates.json').read_text())['updates']
         self.assertEqual(len([u for u in updates if u['id']=='2026-10-26-language-writing']),1)

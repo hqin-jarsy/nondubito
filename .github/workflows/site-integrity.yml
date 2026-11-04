@@ -15,3 +15,6 @@ jobs:
           python-version: '3.12'
       - run: python -B -m unittest discover -s scripts -p test_web_analytics.py
       - run: python -B scripts/check_web_analytics.py
+      - run: python -B scripts/check_site_updates.py
+      - run: python -B -m unittest discover -s scripts -p test_home_updates.py
+      - run: python -B scripts/build_home_updates.py --check
