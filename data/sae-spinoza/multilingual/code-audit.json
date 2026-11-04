@@ -1,0 +1,86 @@
+{
+  "reviewer": "Independent read-only technical review, accountability_es_audit",
+  "date": "2026-11-04",
+  "baseline_commit": "a4c53f492ced9a8c35ea35b3493f6a19f9b54064",
+  "code_review_passed": true,
+  "publication_validated": false,
+  "actual_read_scope": [
+    "Complete current scripts/western_book_source.py and its aside_slugs change against baseline",
+    "Complete scripts/test_western_book_source.py including both new tests",
+    "Complete six-test scripts/test_spinoza_languages.py, reread in smaller outputs after the first combined output was truncated",
+    "Changed historical whole-page protection in scripts/test_descartes_languages.py, surrounding real-publication gate, and seventh quotation-evidence test",
+    "Spinoza source profile and pre-expansion baseline; current language-control marker implementation",
+    "Complete newly added test_marked_header_upgrade_reverses_to_exact_original_bytes, followed by an actual rerun of the latest source eight plus Descartes seven tests."
+  ],
+  "findings": [
+    {
+      "area": "Explicit optional material",
+      "result": "aside_slugs is an explicit unique list restricted to real article slugs and excluding intro. The adapter verifies exact Chinese reading keys and aside presence. Spinoza intro and ep10 remain without an aside; ep01–ep09 retain nine complete asides. The absence of the new option preserves Descartes' prior contract. No reading material is copied to a second source corpus."
+    },
+    {
+      "area": "Two new source tests",
+      "result": "Actually read both tests. The positive source test checks all 198 units, 45 H2 units, nine asides, 22 notes, 23 source mappings and original source/main/body hashes. The negative test rejects invented intro/closing asides, loss of a real middle aside, duplicate/out-of-range/non-list contracts. These are mechanical source/preservation guards, not quality claims."
+    },
+    {
+      "area": "Six future publication tests",
+      "result": "All six were read completely and AST-parsed, not run without genuine publication. They require real reviews and seal, complete DOM bodies and optional details, historical sources/citations, rejection of altered data/reports, eleven cards/two entries, honest parent languages, canonical/hreflang/eight-mode routes/analytics/local links, and exact discovery/search/sitemap plus old-update preservation. Their mocks corrupt real inputs to prove rejection; none manufactures approval."
+    },
+    {
+      "area": "Later expansion preserves earlier history",
+      "result": "The Descartes preservation test retains its original whole-page Spinoza SHA. Only after the later genuine publication receipt and require_review_seal does it strip exactly two marked LANGUAGE LINKS blocks and one ALTERNATES block. All remaining original page content is compared against the unchanged historical hash. Marker names were cross-checked with the actual upgrade_mixed_modern_primary implementation."
+    },
+    {
+      "area": "Executable primary-marker reversal and byte distinction",
+      "result": "The new eighth source test was actually read and executed. It upgrades only current original primary markup in memory, strips exactly two LANGUAGE LINKS and one ALTERNATES block, compares the remaining entire UTF-8 bytes with the original, and checks that a genuine CRLF variant does not compare equal. It neither renders foreign drafts nor fabricates approval. This directly exercises marker spelling and reversal before publication, while the receipt-dependent later-publication branch itself still awaits a genuine receipt."
+    }
+  ],
+  "issues": [
+    {
+      "file": "scripts/test_descartes_languages.py",
+      "before": "text = path.read_text()",
+      "after": "text = path.read_bytes().decode('utf-8')",
+      "reason": "The new historical-byte hash path must strip only marked controls. Universal-newline normalization in read_text could hide LF-to-CRLF changes elsewhere. Independently reproduced this in memory; lead accepted and saved the byte-preserving decode. Actual corrected code was reread.",
+      "status": "resolved_by_lead_and_read_back"
+    },
+    {
+      "file": "scripts/test_descartes_languages.py",
+      "before": "[('LINKS', 2), ('ALTERNATES', 1)]",
+      "after": "[('LANGUAGE LINKS', 2), ('ALTERNATES', 1)]",
+      "reason": "Lead independently found the shorter marker did not match the runtime's actual LANGUAGE LINKS marker. Reviewer reread the saved correction and checked runtime source. The later-publication conditional branch still awaits genuine publication before executable validation.",
+      "status": "resolved_by_lead_and_read_back; future branch not yet executed"
+    }
+  ],
+  "executed_checks": {
+    "command": "PYTHONPATH=scripts python3 -m unittest scripts.test_western_book_source scripts.test_descartes_languages -v",
+    "tests_run": 15,
+    "result": "All latest fifteen tests passed: eight source tests plus seven genuinely published Descartes tests. No failed run was represented as passed.",
+    "source_tests": 8,
+    "real_descartes_publication_tests": 7,
+    "ast_checks": [
+      "western_book_source.py",
+      "test_western_book_source.py",
+      "test_descartes_languages.py",
+      "test_spinoza_languages.py"
+    ],
+    "spinoza_future_test_methods_ast_parsed": 6,
+    "in_memory_build_outputs": 20,
+    "all_20_current_primary_outputs_exact_byte_equal": true,
+    "spinoza_complete_primary_main_areas_equal_to_baseline": 12,
+    "spinoza_original_reading_bodies_equal_to_baseline": 33,
+    "no_spinoza_publication_receipt": true,
+    "previous_actual_run": {
+      "tests": 14,
+      "result": "Passed before the new marker-reversal test was added."
+    }
+  },
+  "not_executed": [
+    "No Spinoza complete foreign page was rendered. The six Spinoza publication tests were not falsely made to pass without a genuine seal, generated pages and discovery outputs.",
+    "The corrected receipt-dependent later-Spinoza-publication branch of the Descartes historical hash test still awaits actual Spinoza publication. Its marker stripping/reversal and non-normalization logic are now separately exercised by the real eighth source test using primary markup only; no approval was mocked."
+  ],
+  "remaining": [],
+  "limits": [
+    "This pre-publication technical review passes the current implementation; it is not editorial approval or certification of any foreign prose.",
+    "No implementation, original data, HTML, seal or approval file was edited by this reviewer. Only this audit report was written for the technical task.",
+    "A test that has only been read and AST-checked is not reported as having passed execution. No fake seal or approval mock was used."
+  ]
+}

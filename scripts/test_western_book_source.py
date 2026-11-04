@@ -1,6 +1,7 @@
 """Canonical book-source and primary preservation checks, before drafting seals."""
 import hashlib
 import json
+import re
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -69,6 +70,71 @@ class WesternBookSource(unittest.TestCase):
                     return json.dumps(item)
                 return value
             with patch.object(Path,'read_text',changed),self.assertRaises(AssertionError):original_article(SERIES,spec,'ep01')
+
+    def test_explicit_book_aside_contract_keeps_unannotated_closing(self):
+        series='sae-spinoza';spec=profile(series)
+        expected=[18,26,22,19,17,19,16,13,16,16,16]
+        articles=[original_article(series,spec,slug) for slug in spec['slugs']]
+        self.assertEqual([len(a['body_zh']) for a in articles],expected)
+        self.assertEqual(sum(bool(a['aside_zh']) for a in articles),9)
+        self.assertIsNone(articles[0]['aside_zh'])
+        self.assertIsNone(articles[-1]['aside_zh'])
+        self.assertEqual(sum(len(a['notes_zh']) for a in articles),22)
+        self.assertEqual(sum(len(a['sources_zh']) for a in articles),23)
+        self.assertEqual(sum(p.startswith('## ') for a in articles for p in a['body_zh']),45)
+        before=json.loads((ROOT/spec['primary_baseline']).read_text())
+        self.assertEqual(primary_main_hashes(spec),before['primary_main'])
+        for slug in spec['slugs']:
+            self.assertEqual(source_digest(series,spec,slug),before['source_data'][slug])
+            text=(ROOT/spec['directory']/(slug+'.html')).read_text()
+            self.assertEqual(hashlib.sha256(primary_bodies(spec,text).encode()).hexdigest(),before['primary_bodies'][slug])
+
+    def test_explicit_aside_contract_rejects_invention_loss_or_bad_routes(self):
+        series='sae-spinoza';spec=profile(series);old=Path.read_text
+        for mode in ('invent-closing','lose-middle','invent-intro'):
+            slug={'invent-closing':'ep10','lose-middle':'ep01','invent-intro':'intro'}[mode]
+            path=source_file(series,spec,slug)
+            def changed(p,*args,**kwargs):
+                text=old(p,*args,**kwargs)
+                if p==path:
+                    item=json.loads(text)
+                    if mode=='lose-middle':del item['zh']['aside']
+                    else:item['zh']['aside']='An invented optional comparison'
+                    return json.dumps(item)
+                return text
+            with self.subTest(mode=mode),patch.object(Path,'read_text',changed),self.assertRaises(AssertionError):
+                original_article(series,spec,slug)
+        for value in (['intro'],['ep01','ep01'],['missing'],{}):
+            bad={**spec,'aside_slugs':value}
+            with self.subTest(contract=value),self.assertRaises(AssertionError):
+                original_article(series,bad,'ep01')
+
+    def test_marked_header_upgrade_reverses_to_exact_original_bytes(self):
+        # Only existing primary markup is exercised here, never an unapproved
+        # foreign draft page or a fabricated positive publication receipt.
+        series='sae-spinoza';spec=profile(series)
+        def remove_controls(text):
+            for label,expected in [('LANGUAGE LINKS',2),('ALTERNATES',1)]:
+                pattern=(r'<!-- MIXED SERIES '+label+r' START -->.*?'
+                         r'<!-- MIXED SERIES '+label+r' END -->')
+                text,count=re.subn(pattern,'',text,flags=re.S)
+                self.assertEqual(count,expected,label)
+            return text.encode('utf-8')
+        for slug in ['index',*spec['slugs']]:
+            path=ROOT/spec['directory']/(slug+'.html')
+            original=path.read_bytes()
+            text=original.decode('utf-8')
+            upgraded=upgrade_primary(text,series,slug)
+            # After genuine publication these controls are already present;
+            # either way, stripping them must yield the original historical
+            # whole-page bytes captured before expansion.
+            clean=remove_controls(upgraded)
+            old=text
+            if '<!-- MIXED SERIES LANGUAGE LINKS START -->' in old:
+                old=remove_controls(old).decode('utf-8')
+            self.assertEqual(clean,old.encode('utf-8'))
+            self.assertNotEqual(remove_controls(upgraded.replace('\n','\r\n')),
+                                old.encode('utf-8'))
 
     def test_existing_sealed_foreign_pages_unchanged_by_opt_in_features(self):
         total=0

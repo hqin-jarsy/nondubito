@@ -94,7 +94,22 @@ class DescartesLanguages(unittest.TestCase):
             self.assertEqual(path.read_text(), text, path)
         spinoza = sorted((ROOT/'essays/sae-spinoza').glob('*.html'))
         self.assertEqual(len(spinoza), 12)
-        snapshot = {str(p.relative_to(ROOT)): digest(p.read_bytes()) for p in spinoza}
+        # A later genuinely reviewed expansion may add only its marked language
+        # controls. Retain the original whole-page hash, not a new baseline.
+        later_receipt = ROOT/'data/sae-spinoza/multilingual/publication.json'
+        snapshot = {}
+        if later_receipt.exists():
+            from full_series_languages import require_review_seal
+            require_review_seal('sae-spinoza', profile('sae-spinoza'))
+        for path in spinoza:
+            text = path.read_bytes().decode('utf-8')
+            if later_receipt.exists():
+                for label, expected_count in [('LANGUAGE LINKS', 2), ('ALTERNATES', 1)]:
+                    pattern = (r'<!-- MIXED SERIES '+label+r' START -->.*?'
+                               r'<!-- MIXED SERIES '+label+r' END -->')
+                    text, count = re.subn(pattern, '', text, flags=re.S)
+                    self.assertEqual(count, expected_count, (path, label))
+            snapshot[str(path.relative_to(ROOT))] = digest(text)
         self.assertEqual(digest(stable(snapshot)), SPINOZA_SHA)
 
     def test_full_body_optional_asides_notes_and_individual_historical_sources(self):

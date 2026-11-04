@@ -15,7 +15,12 @@ def load_article(spec,slug):
     assert item['slug']==slug
     assert item['number']==int(name[:2])
     copy=item['zh']
-    assert set(copy)=={'title','deck','sections','notes'}|({'aside'} if item['number'] else set()),(slug,'New reading material needs explicit handling')
+    aside_slugs=spec.get('aside_slugs')
+    if aside_slugs is not None:
+        assert isinstance(aside_slugs,list) and len(set(aside_slugs))==len(aside_slugs)
+        assert set(aside_slugs)<=set(spec['slugs']) and 'intro' not in aside_slugs
+    expects_aside=slug in aside_slugs if aside_slugs is not None else bool(item['number'])
+    assert set(copy)=={'title','deck','sections','notes'}|({'aside'} if expects_aside else set()),(slug,'New reading material needs explicit handling')
     units=[]
     for section in copy['sections']:
         assert set(section)=={'heading','paragraphs'},(slug,'Unknown section content')
@@ -27,7 +32,7 @@ def load_article(spec,slug):
     notes=copy['notes']
     assert notes and all(isinstance(n,str) and n.strip() for n in notes)
     aside=copy.get('aside')
-    assert bool(aside)==bool(item['number']),(slug,'Introduction has no invented aside')
+    assert bool(aside)==expects_aside,(slug,'Optional aside presence differs from the explicit source contract')
     sources=[{'title':s['title']['zh'],'url':s['url']} for s in item['sources']]
     assert sources and all(s['title'] and s['url'].startswith('https://') for s in sources)
     return {'slug':slug,'title_zh':copy['title'],'deck_zh':copy['deck'],
