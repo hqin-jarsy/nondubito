@@ -79,7 +79,7 @@ def prepare(series):
                     assert key in ('title','note'),(name,field)
                     value=a[group][issue['paragraph']][key]
                 else:
-                    assert field in ('body','title','deck','source_note','takeaway','kicker'), (name,field)
+                    assert field in ('body','title','deck','source_note','takeaway','kicker','pause'), (name,field)
                     value=a['body'][issue['paragraph']] if field=='body' else a[field]
             assert issue['after'] in value, (name,issue)
             issue['review_report']=name

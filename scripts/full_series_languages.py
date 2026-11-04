@@ -125,6 +125,12 @@ def load_language(series, language):
             if spec.get('append_only') or spec.get('preserve_block_types'):
                 assert block_kind(p)==block_kind(q),(language,article['slug'],'changed block type',p[:40])
         article['source_url'] = original.get('source_url', spec['source'])
+        if spec.get('optional_pause'):
+            assert isinstance(original.get('pause_zh'), str) and original['pause_zh'].strip()
+            assert isinstance(article.get('pause'), str) and article['pause'].strip()
+            assert '<' not in article['pause'] and '�' not in article['pause']
+            for key in ('pause_heading', 'pause_note'):
+                assert isinstance(data['ui'].get(key), str) and data['ui'][key].strip()
         if spec.get('numbered_sources'):
             assert [(x['id'],x['url']) for x in article['sources']] == [(x['id'],x['url']) for x in original['sources']]
             assert all(x['title'].strip() and x['note'].strip() for x in article['sources'])
@@ -343,6 +349,14 @@ def case_theory_route(spec, data, article=None):
             +'</h2><p>'+E(data['ui']['theory_note'])+'</p>'+links+'</aside>')
 
 
+def closing_invitation(spec, data, article):
+    """An optional observation is ancillary prose, never a questionnaire."""
+    if not spec.get('optional_pause'):
+        return ''
+    return ('<aside class="lw-note jg-pause"><h2>'+E(data['ui']['pause_heading'])
+            +'</h2><p>'+E(article['pause'])+'</p><p>'+E(data['ui']['pause_note'])+'</p></aside>')
+
+
 @tracked_html
 def document(spec, data, slug, content, article=None):
     language = data['language']
@@ -429,7 +443,8 @@ def render(series):
                     heading=html.unescape(re.sub(r'<[^>]+>','',heading))
                     nav.append(f'<a href="{slug}.html"><small>{E(ui[direction])}</small>{E(heading)}</a>')
                 if len(nav)<2:nav.append(f'<a href="index.html"><small>{E(ui["contents"])}</small>{E(title["title"])}</a>')
-            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(ui["series"])} · {E(label)}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p>{notice}</div><div class="essay-body lw-prose" lang="{language}">{body}</div>{theory_companions(spec,data,article)}{case_theory_route(spec,data,article)}{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
+            kicker = label if label == ui["series"] or label.startswith(ui["series"]+" · ") else ui["series"]+" · "+label
+            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(kicker)}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p>{notice}</div><div class="essay-body lw-prose" lang="{language}">{body}</div>{closing_invitation(spec,data,article)}{theory_companions(spec,data,article)}{case_theory_route(spec,data,article)}{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
             pages[target/(article['slug']+'.html')] = document(spec, data, article['slug'], content, article)
     return pages
 

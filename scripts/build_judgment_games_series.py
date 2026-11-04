@@ -155,7 +155,11 @@ def render() -> dict[Path,str]:
     items = load_items()
     converter = GameTraditionalConverter()
     try:
-        return {TARGET/'index.html':render_index(items, converter), **{TARGET/(item['slug']+'.html'):render_article(item,items,converter) for item in items}}
+        pages = {TARGET/'index.html':render_index(items, converter), **{TARGET/(item['slug']+'.html'):render_article(item,items,converter) for item in items}}
+        if (DATA/'multilingual/profile.json').exists():
+            from full_series_languages import upgrade_primary
+            pages = {path:upgrade_primary(text, 'judgment-games', path.stem) for path,text in pages.items()}
+        return pages
     finally:
         converter.close()
 
