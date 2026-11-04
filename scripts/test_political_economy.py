@@ -5,6 +5,7 @@ import json
 import re
 import unittest
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
 from urllib.parse import unquote, urlsplit
 
 from build_political_economy import ROOT, DATA, BASE, DATE, load_items, render
@@ -149,9 +150,14 @@ class PoliticalEconomyTests(unittest.TestCase):
     def test_sitemap_and_update_ledger(self):
         root = ET.fromstring((ROOT/'sitemap.xml').read_text())
         urls = {x.find('{*}loc').text:x.find('{*}lastmod').text for x in root.findall('{*}url')}
+        expansion_profile = DATA/'multilingual/profile.json'
+        minimum = max(DATE, json.loads(expansion_profile.read_text())['date']) if expansion_profile.exists() else DATE
         for p in self.pages:
-            expected = DATE  # All case pages gained theory companion navigation, not new publication dates.
-            self.assertEqual(urls[BASE + ('' if p.name == 'index.html' else p.name)], expected)
+            # lastmod includes later language navigation; original publication
+            # dates remain checked separately in test_metadata_and_analytics.
+            modified = urls[BASE + ('' if p.name == 'index.html' else p.name)]
+            self.assertGreaterEqual(modified, minimum)
+            self.assertLessEqual(modified, datetime.now(timezone.utc).date().isoformat())
         updates = json.loads((ROOT/'data/site-updates.json').read_text())['updates']
         u = next(u for u in updates if u['id'] == '2026-11-01-political-economy-batch01')
         self.assertEqual(set(u['languages']), {'en','zh','zh-hant'})

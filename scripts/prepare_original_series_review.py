@@ -6,7 +6,7 @@ import json
 import re
 import subprocess
 
-from full_series_languages import ROOT, load_language, profile, primary_bodies
+from full_series_languages import ROOT, load_language, profile, primary_bodies, source_directory
 
 
 def primary_main_hashes(spec):
@@ -74,8 +74,13 @@ def prepare(series):
                 if isinstance(value,list):value=value[issue['paragraph']]
             else:
                 a=next(a for a in data['articles'] if a['slug']==issue['slug'])
-                assert field in ('body','title','deck','source_note'), (name,field)
-                value=a['body'][issue['paragraph']] if field=='body' else a[field]
+                if field.startswith(('sources.','case_links.')):
+                    group,key=field.split('.',1)
+                    assert key in ('title','note'),(name,field)
+                    value=a[group][issue['paragraph']][key]
+                else:
+                    assert field in ('body','title','deck','source_note','takeaway','kicker'), (name,field)
+                    value=a['body'][issue['paragraph']] if field=='body' else a[field]
             assert issue['after'] in value, (name,issue)
             issue['review_report']=name
             resolved.append(issue)
@@ -84,7 +89,7 @@ def prepare(series):
     primary={}
     counts=[]
     for slug in spec['slugs']:
-        path=ROOT/'data'/series/(slug+'.json')
+        path=source_directory(series,spec)/(slug+'.json')
         sources[slug]=hashlib.sha256(path.read_bytes()).hexdigest()
         counts.append(len(json.loads(path.read_text())['body_zh']))
         source=(ROOT/spec['directory']/(slug+'.html')).read_text()

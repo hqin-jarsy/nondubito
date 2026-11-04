@@ -86,7 +86,7 @@ def build():
                      'quality_status': 'not_assessed_by_this_inventory',
                      'articles': articles})
     return {
-        'date': '2026-11-03',
+        'date': '2026-11-04',
         'scope': 'Published Chinese-source articles discoverable through the current Library; index pages are not counted as articles.',
         'method': 'Current search language chunks, normalized edition identities, active Library roots and canonical relocation links. Missing counts cover JA/FR/DE/ES/KO only; English/Hant reading modes not recognized by search require manual verification, not automatic rewriting. Route presence is not an editorial quality verdict.',
         'excluded': ['unlisted legacy URLs', 'drafts and unpublished continuation chapters', 'navigation-only pages'],

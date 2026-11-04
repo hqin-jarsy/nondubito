@@ -156,7 +156,11 @@ def render():
     items = load_items()
     conv = PoliticalTraditionalConverter()
     try:
-        return {TARGET/'index.html':landing(items, conv), **{TARGET/(d['slug'] + '.html'):article(d, items, conv) for d in items}}
+        pages = {TARGET/'index.html':landing(items, conv), **{TARGET/(d['slug'] + '.html'):article(d, items, conv) for d in items}}
+        if (ROOT/'data/political-economy/multilingual/profile.json').exists():
+            from full_series_languages import upgrade_primary
+            pages = {path:upgrade_primary(text,'political-economy',path.stem) for path,text in pages.items()}
+        return pages
     finally:
         conv.close()
 

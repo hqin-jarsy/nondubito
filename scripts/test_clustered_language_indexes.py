@@ -36,6 +36,20 @@ class GroupedLanguageIndexes(unittest.TestCase):
         self.assertIn('&lt;script&gt;',text)
         self.assertIsNone(grouped_index({'slugs':self.spec['slugs']},self.data,self.cards))
 
+    def test_main_group_does_not_reuse_the_page_landmark(self):
+        self.spec['index_groups'][0]['id']='main'
+        self.data['series']['index_groups'][0]['id']='main'
+        text='<main id="main">'+grouped_index(self.spec,self.data,self.cards)+'</main>'
+        page=Parsed(text)
+        ids=[n.attrs['id'] for n in page.root.walk() if 'id' in n.attrs]
+        self.assertEqual(len(ids),len(set(ids)))
+        self.assertIn('href="#reading-main"',text)
+        self.assertIn('id="reading-main"',text)
+        self.spec['index_groups'][1]['id']='reading-main'
+        self.data['series']['index_groups'][1]['id']='reading-main'
+        with self.assertRaisesRegex(AssertionError,'anchors must not collide'):
+            grouped_index(self.spec,self.data,self.cards)
+
     def test_omitted_duplicate_reordered_and_mismatched_routes_are_rejected(self):
         cases=[]
         for field,value in [('slugs',['ep01']),('slugs',['ep01','ep01']),('id','not-a-group')]:

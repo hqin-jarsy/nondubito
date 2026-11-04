@@ -49,7 +49,9 @@ class HomeUpdates(unittest.TestCase):
         self.assertEqual(feature['id'], self.config['feature_id'])
         keys = [series_key(u) for u in [feature, *recent]]
         self.assertEqual(len(set(keys)), 5)
-        self.assertEqual(recent[0]['id'], self.updates[0]['id'])
+        newest_other_series = next(u for u in sorted(self.updates, key=lambda u:u['date'], reverse=True)
+                                   if series_key(u) != series_key(feature))
+        self.assertEqual(recent[0]['id'], newest_other_series['id'])
         self.assertEqual([u['date'] for u in recent], sorted([u['date'] for u in recent], reverse=True))
 
     def test_hundreds_of_updates_cannot_expand_home(self):
@@ -63,6 +65,16 @@ class HomeUpdates(unittest.TestCase):
         self.assertEqual(recent[0]['id'], 'future-0')
         self.assertEqual(sum(series_key(u) == 'essays/future' for u in recent), 1)
         self.assertEqual(render_section(items + self.updates, self.config).count('class="home-update-row"'), 4)
+
+    def test_newest_translation_of_featured_series_does_not_repeat_its_card(self):
+        feature, _ = select_updates(self.updates, self.config)
+        newer = copy.deepcopy(feature)
+        newer.update(id='future-feature-translation', date='2026-12-02')
+        selected, recent = select_updates([newer, *self.updates], self.config)
+        self.assertEqual(selected['id'], feature['id'])
+        self.assertNotIn(newer['id'], [u['id'] for u in recent])
+        self.assertTrue(all(series_key(u) != series_key(feature) for u in recent))
+        self.assertEqual(len(recent), RECENT_LIMIT)
 
     def test_series_boundaries(self):
         key = lambda url: series_key({'url': url})

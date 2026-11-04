@@ -5,6 +5,7 @@ import json
 import re
 import unittest
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
 from urllib.parse import unquote, urlsplit
 
 from build_political_economy_theory import ROOT, BASE, DATE, load_items, render, counts
@@ -118,9 +119,14 @@ class PoliticalEconomyTheoryTests(unittest.TestCase):
 
     def test_analytics_search_and_sitemap(self):
         urls = {x.find('{*}loc').text:x.find('{*}lastmod').text for x in ET.fromstring((ROOT/'sitemap.xml').read_text()).findall('{*}url')}
+        expansion_profile = ROOT/'data/political-economy-theory/multilingual/profile.json'
+        minimum = max(DATE, json.loads(expansion_profile.read_text())['date']) if expansion_profile.exists() else DATE
         for path, text in self.pages.items():
             self.assertEqual(text.count(TOKEN), 1)
-            self.assertEqual(urls[BASE + ('' if path.name == 'index.html' else path.name)], DATE)
+            # A later navigation update changes lastmod, not datePublished.
+            modified = urls[BASE + ('' if path.name == 'index.html' else path.name)]
+            self.assertGreaterEqual(modified, minimum)
+            self.assertLessEqual(modified, datetime.now(timezone.utc).date().isoformat())
         for lang in ('en','zh-hans','zh-hant'):
             records = {r['u']:r for r in json.loads((ROOT/f'data/search/{lang}.json').read_text())['records']}
             for path in self.pages:

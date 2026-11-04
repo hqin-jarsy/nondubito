@@ -122,7 +122,13 @@ def render():
     cases = {d['slug']:d for d in load_cases()}
     conv = TheoryTraditionalConverter()
     try:
-        return {TARGET/'index.html':landing(items, conv), **{TARGET/(d['slug'] + '.html'):article(d, items, conv, cases) for d in items}}
+        pages = {TARGET/'index.html':landing(items, conv), **{TARGET/(d['slug'] + '.html'):article(d, items, conv, cases) for d in items}}
+        multilingual = ROOT/'data/political-economy-theory/multilingual/profile.json'
+        if multilingual.exists():
+            from full_series_languages import upgrade_primary
+            pages = {path:upgrade_primary(text, 'political-economy-theory', path.stem)
+                     for path,text in pages.items()}
+        return pages
     finally:
         conv.close()
 
