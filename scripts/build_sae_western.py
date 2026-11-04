@@ -173,7 +173,16 @@ def build() -> dict[Path, str]:
     items = load_copy()
     c = Converter()
     try:
-        return {SHELF/'index.html': render_shelf(c), SERIES/'index.html': render_index(items,c), **{SERIES/(x['slug']+'.html'): render_article(x,items,c) for x in items}}
+        outputs={SHELF/'index.html': render_shelf(c), SERIES/'index.html': render_index(items,c), **{SERIES/(x['slug']+'.html'): render_article(x,items,c) for x in items}}
+        receipt=ROOT/'data/sae-montaigne/multilingual/publication.json'
+        if receipt.exists():
+            from full_series_languages import profile,require_review_seal,upgrade_primary
+            spec=profile('sae-montaigne')
+            require_review_seal('sae-montaigne',spec)
+            for path,value in list(outputs.items()):
+                if path.parent==SERIES:
+                    outputs[path]=upgrade_primary(value,'sae-montaigne',path.stem)
+        return outputs
     finally:
         c.close()
 

@@ -51,8 +51,26 @@ class WesternPhilosophyNavigationTests(unittest.TestCase):
         shelf = re.search(r'<section class="lib-section" id="sae-western">(.*?)</section>', library, re.S).group(1)
         self.assertNotIn("中英双语", shelf)
         self.assertNotIn("Chinese and English", shelf)
-        self.assertIn("小引＋5 篇正文 · 英／简／繁", shelf)
-        self.assertIn("小引＋5 篇正文 · 英／簡／繁", shelf)
+        card = re.search(r'<a href="essays/sae-montaigne/index.html" class="series-card">(.*?)</a>', shelf, re.S).group(1)
+        receipt = ROOT / "data/sae-montaigne/multilingual/publication.json"
+        if receipt.exists():
+            from full_series_languages import profile, require_review_seal, render
+            spec = profile("sae-montaigne")
+            require_review_seal("sae-montaigne", spec)
+            # A count update needs genuinely approved, actually saved complete
+            # native pages; a profile or receipt's mere existence is not enough.
+            for path, text in render("sae-montaigne").items():
+                self.assertEqual(path.read_bytes(), text.encode("utf-8"), path)
+            expected_counts = {
+                "lang-en": "Introduction + 5 essays · Eight languages",
+                "lang-zh cl-zh": "小引＋5篇正文 · 八语全文",
+                "lang-zh cl-hant": "小引＋5篇正文 · 八語全文",
+            }
+            count = re.search(r'<span class="series-card-count">(.*?)</span></span>', card, re.S).group(1) + "</span>"
+            self.assertEqual(dict(re.findall(r'<span class="([^"]+)">([^<]+)</span>', count)), expected_counts)
+        else:
+            self.assertIn("小引＋5 篇正文 · 英／简／繁", card)
+            self.assertIn("小引＋5 篇正文 · 英／簡／繁", card)
 
     def test_explore_uses_the_shelf_instead_of_a_single_series(self):
         source = (ROOT / "explore.html").read_text(encoding="utf-8")

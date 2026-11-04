@@ -113,6 +113,15 @@ def source_digest(series,spec,slug):
         # Fingerprint the canonical Chinese reading bundle; raw original EN/ZH
         # bodies, full main areas and Hant dictionaries are separately protected.
         content=json.dumps(original_article(series,spec,slug),ensure_ascii=False,sort_keys=True).encode()
+    elif spec.get('source_references'):
+        # Montaigne's complete canonical prose is one original JSON; its actual
+        # bibliography lives in the original builder. Protect both without
+        # copying either table or coupling source hashes to unrelated code.
+        assert spec.get('source_adapter')=='structured-western-book'
+        from western_book_source import reference_bundle
+        raw=source_file(series,spec,slug).read_bytes()
+        references=json.dumps(reference_bundle(spec),ensure_ascii=False,sort_keys=True).encode()
+        content=b'western-book-and-references\0'+len(raw).to_bytes(8,'big')+raw+references
     else:
         content=source_file(series,spec,slug).read_bytes()
     return hashlib.sha256(content).hexdigest()

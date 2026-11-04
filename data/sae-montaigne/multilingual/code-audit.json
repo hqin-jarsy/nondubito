@@ -1,0 +1,78 @@
+{
+  "reviewer": "Read-only independent implementation audit by the Spanish manuscript author; not an independent review of that author's Spanish prose",
+  "series": "sae-montaigne",
+  "baseline_commit": "82b034749c44f662e567c41fdd4555a7165efbef",
+  "code_review_passed": true,
+  "publication_validated": false,
+  "files_actually_read": [
+    "scripts/western_book_source.py",
+    "scripts/full_series_languages.py: source_file, original_article, source_digest, require_review_seal, and the complete current change against 82b0347",
+    "scripts/build_sae_western.py: original bibliography, source mappings, original index/article rendering and the new gated build path",
+    "scripts/test_montaigne_source.py: all five tests",
+    "scripts/test_montaigne_languages.py: all six future genuine-publication tests",
+    "data/sae-montaigne/multilingual/profile.json",
+    "data/sae-montaigne/multilingual/primary-before-expansion.json",
+    "scripts/build_western_classics.py: existing genuine-seal build branch",
+    "scripts/test_western_book_source.py: existing sealed-render regression and exact reversible primary controls"
+  ],
+  "implementation_findings": [
+    {
+      "area": "Canonical aggregate adapter",
+      "result": "The new explicit montaigne-entries branch reads the existing data/sae-montaigne.json directly. It checks the aggregate root, ordered slugs and numbering, the Chinese material schema and each section. It retains all 159 body units and 31 headings, five optional asides and the variable note counts 1/1/1/1/1/2. No duplicate Chinese corpus is introduced. The pre-existing numbered-file path for Descartes and Spinoza remains separate."
+    },
+    {
+      "area": "Historical bibliography",
+      "result": "reference_bundle imports the original build_sae_western.SOURCES and SOURCE_KEYS. Article titles and precise URLs are selected from that actual mapping in its original order, for eighteen mapped references. A separate copied reference table is not used."
+    },
+    {
+      "area": "Source fingerprint",
+      "result": "The opted-in source_digest protects the full original aggregate JSON bytes, including the original English content, together with a stable sorted-key serialization of both actual source dictionaries. The prefix and explicit byte length separate the original JSON from the reference serialization. All six articles intentionally share this whole-source fingerprint. The current five source tests prove that a raw JSON-byte change, an actual reference URL change, or a reference-order change invalidates it. Existing source-digest branches are not changed."
+    },
+    {
+      "area": "Original builder and publication gate",
+      "result": "build_sae_western first produces its original eight outputs. It upgrades only the seven pages whose parent is the Montaigne directory, and only if a real publication receipt exists and require_review_seal succeeds. The parent shelf is not accidentally passed to upgrade_primary. No receipt exists during this audit. A receipt's mere existence is not treated as approval."
+    },
+    {
+      "area": "Primary-page protection",
+      "result": "The new source tests compare all seven complete primary main-area hashes, the six combined primary reading-body hashes and the complete canonical source hash to the captured baseline. The primary-only control test uses actual existing primary pages, adds the real marked controls in memory, verifies idempotence and exact byte reversibility after removing only those controls, and verifies a CRLF modification is not falsely accepted. It does not render a draft foreign page or fake an approval."
+    },
+    {
+      "area": "Future-publication tests",
+      "result": "All six methods were read in full and AST-parsed. Their positive paths require actual reviews, a genuine receipt and rendered files; corrupt-input mocks are negative rejection checks only. They cover complete body blocks, optional asides, all notes and historical citation arrays, the two entries, native routes, original primary content, metadata, analytics, local links and discovery. They have not been run for this unsealed series."
+    }
+  ],
+  "tests_executed": {
+    "command": "PYTHONPATH=scripts python3 -m unittest test_montaigne_source test_western_book_source test_descartes_languages test_spinoza_languages",
+    "passed": 26,
+    "failed": 0,
+    "breakdown": {"montaigne_source": 5, "western_book_source": 8, "descartes_languages": 7, "spinoza_languages": 6},
+    "invocation_history": "The initial module invocation from the repository root omitted scripts from the import path and failed to import four modules before running any real tests. Re-running with the explicit PYTHONPATH above ran all twenty-six tests successfully. This was an invocation correction, not a source-code change."
+  },
+  "additional_actual_checks": {
+    "genuinely_published_foreign_pages": {
+      "series_count": 20,
+      "page_count": 795,
+      "comparison": "Only series with existing real publication.json were rendered in memory. Every saved file's read_bytes() was compared with its generated UTF-8 bytes; all were byte-identical."
+    },
+    "original_builders": [
+      {"builder": "build_sae_western.build", "pages": 8, "result": "Every in-memory UTF-8 result equals the saved file's raw bytes."},
+      {"builder": "build_western_classics.build", "pages": 20, "result": "Every existing Descartes/Spinoza in-memory UTF-8 result equals the saved file's raw bytes."}
+    ],
+    "original_aggregate": {
+      "comparison": "Raw working-tree bytes equal git show 82b0347:data/sae-montaigne.json.",
+      "sha256": "438de57fef944649f8dd7fed08d56f511fb8c6e4a71d725703a998dc8729edfc"
+    },
+    "original_reference_tables": "Executed the original builder module from git show 82b0347 in a separate in-memory namespace without calling build. Both SOURCES and SOURCE_KEYS compare equal to the current original-builder tables, including titles, URLs and ordered per-article lists.",
+    "future_tests_ast_methods": 6
+  },
+  "issues": [],
+  "not_performed": [
+    "No positive Montaigne approval or publication receipt was mocked or manufactured.",
+    "No unapproved Montaigne foreign page was rendered, written or published.",
+    "No implementation, primary page, canonical source, review seal or global discovery file was edited by this audit.",
+    "This code audit does not certify the literary or interpretive quality of any manuscript."
+  ],
+  "remaining": [
+    "Run the six Montaigne language-publication tests only after all independent manuscript reviews, adjudicated fixes and actual readbacks have passed and a genuine publication seal has been created. The current implementation checks have passed; publication is not yet validated."
+  ]
+}
