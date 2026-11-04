@@ -14,6 +14,7 @@ from pathlib import Path
 
 from build_ai_work_series import TraditionalConverter, shell_header, footer, tri
 from web_analytics import tracked_html
+from full_series_languages import upgrade_primary
 from build_state_reversal import companion_entry
 from build_state_transitions import history_entry
 from build_interstate import state_entry as interstate_entry
@@ -100,7 +101,7 @@ def head(title: str, deck: str, name: str, item: dict | None = None) -> str:
         '@context': 'https://schema.org', '@type': 'Article' if item else 'CollectionPage',
         'name': title, 'description': deck, 'url': url, 'inLanguage': ['en', 'zh-Hans', 'zh-Hant'],
         'author': {'@type': 'Person', 'name': 'Han Qin (秦汉)'},
-        'datePublished': DATE, 'dateModified': '2026-10-31' if name == 'index.html' else DATE,
+        'datePublished': DATE, 'dateModified': '2026-11-03' if name in ('index.html','ep01.html') else DATE,
     }
     if item:
         schema.update(headline=item['title_en'], mainEntityOfPage=url,
@@ -154,7 +155,7 @@ def render_index(items: list[dict], converter: TraditionalConverter) -> str:
     content = f'''<main class="state-wrap" data-search="SAE 国家论 國家論 Theory of the State 宪法 终审 国籍 退出 战争 constitutional review citizenship sovereignty accountability">
 {breadcrumb(converter)}<section class="state-hero"><p class="state-kicker">Non Dubito · {loc('SAE Theory of the State', 'SAE 国家论', converter)}</p>
 {loc(*TITLE, converter, 'h1')}{loc(*DECK, converter, 'p', 'state-deck state-search-deck')}
-{loc('Eight main essays + three companion readings · English, Simplified & Traditional Chinese', '八篇主线＋三篇专论散文 · 英文、简体中文与繁体中文', converter, 'p', 'state-meta')}
+{loc('Eight main essays + three companion readings · Eight languages', '八篇主线＋三篇专论散文 · 八语全文', converter, 'p', 'state-meta')}
 {loc(*NOTICE, converter, 'p', 'state-notice')}</section>
 <div class="state-orientation">{loc('Government asks how public decisions answer to the people they affect. This series goes to the places with no higher domestic level: the constitution, final judgment, citizenship, armed force and relations between states. You can start here without reading the earlier series.', '政府论问具体的公共判断向谁作答；国家论走到上面没有更高一级的地方：宪法、终审、国籍、军队，以及国与国之间。可以直接从这里开始，不必先补完前一系列。', converter, 'p')}</div>
 <nav class="state-topics" aria-label="Reading route">{navigation}<a href="#reverse-phase-transition">{loc('Companion: sliding back', '专论：国家怎样往回滑', converter)}</a></nav>{''.join(groups)}
@@ -200,7 +201,8 @@ def render() -> dict[Path, str]:
     items = load_items()
     converter = StateTraditionalConverter()
     try:
-        return {TARGET / 'index.html': render_index(items, converter), **{TARGET / (item['slug'] + '.html'): render_article(item, items, converter) for item in items}}
+        pages = {TARGET / 'index.html': render_index(items, converter), **{TARGET / (item['slug'] + '.html'): render_article(item, items, converter) for item in items}}
+        return {path:upgrade_primary(text,'state',path.stem) for path,text in pages.items()}
     finally:
         converter.close()
 

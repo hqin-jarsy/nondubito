@@ -24,6 +24,20 @@ def primary_main_hashes(spec):
     return result
 
 
+def require_rebuilt_primary_sources(spec):
+    """Do not seal old HTML after approving a correction to its source JSON."""
+    if not spec.get('source_corrections'):return
+    receipt=json.loads((ROOT/spec['source_corrections']).read_text())
+    proofs=[receipt['primary_body_change'],*receipt.get('additional_primary_body_changes',[])]
+    for proof in proofs:
+        source=(ROOT/proof['path']).read_text()
+        bodies=dict(re.findall(r'<div class="essay-body [^"]*lang-(en|zh|hant)" lang="[^"]+">(.*?)</div>',source,re.S))
+        assert set(bodies)=={'en','zh','hant'},(proof['path'],'missing primary reading mode')
+        for language,body in bodies.items():
+            actual=hashlib.sha256(body.encode()).hexdigest()
+            assert actual==proof['after_sha256'][language],(proof['path'],language,'approved source correction not rebuilt in primary modes')
+
+
 def prepare(series):
     spec=profile(series)
     base=ROOT/'data'/series/'multilingual'
@@ -32,6 +46,12 @@ def prepare(series):
     for name in ('cross-review-de-fr.json','cross-review-ja-ko.json','cross-review-es.json'):
         report=json.loads((base/name).read_text())
         assert not report['remaining'], (series,name,'incomplete review')
+        if spec.get('require_explicit_publication_approval'):
+            assert report.get('publication_ready') is True,(series,name,'not approved for publication')
+        if spec.get('require_review_seal'):
+            expected={(language,slug) for language in report['languages'] for slug in spec['slugs']}
+            reviewed=[(item['language'],item['slug']) for item in report['articles_reviewed']]
+            assert len(reviewed)==len(expected) and set(reviewed)==expected,(series,name,'incomplete article reading record')
         covered.extend(report['languages'])
         reports.append((name,report))
     assert sorted(covered)==sorted(spec['languages'])
@@ -59,6 +79,7 @@ def prepare(series):
             assert issue['after'] in value, (name,issue)
             issue['review_report']=name
             resolved.append(issue)
+    require_rebuilt_primary_sources(spec)
     sources={}
     primary={}
     counts=[]

@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Build three companion readings to State Theory without extending its numbering."""
 from __future__ import annotations
 import argparse
 import json
 import re
 from build_language_writing import ROOT,WritingTraditionalConverter,page,loc,prose
+from full_series_languages import upgrade_primary
 
 DATE='2026-10-29'
 DATA=ROOT/'data/state-reversal'
@@ -65,12 +67,12 @@ def classics(conv):
 
 def companion_entry(conv):
     cards=''.join(f'<a href="../state-reversal/ep{i:02d}.html">{loc(en,zh,conv)}</a>' for i,en,zh in ((1,'When the doors no longer open','门还在，为什么问不动了？'),(2,'An election is not a reset','选举回来了，事情却没有回到原点'),(3,'Withdraw cooperation, not the way out','不再配合，不是把门关在人身上')))
-    return '<!-- STATE REVERSAL COMPANION START --><section class="state-group state-reversal-entry" id="reverse-phase-transition"><p class="state-kicker">'+loc('New companion · Three essays · EN / 简 / 繁','新增专论 · 三篇 · 英简繁',conv)+'</p>'+loc(*TITLE,conv,'h2')+loc('The original eight essays remain a complete route. This companion follows a slide through institutions that still appear intact, an interrupted slide that leaves tools behind, and a counterfactual question about a neighbor’s response.','原有八篇仍是一条完整主线。这三篇另读：机构仍在时怎样往回滑，滑落停住以后还留下什么，以及设若没有停住，邻国怎样回应。',conv,'p','state-deck')+'<div class="state-related">'+cards+'</div><p class="state-return"><a href="../state-reversal/index.html">'+loc('Open the companion →','进入三篇专论 →',conv)+'</a></p></section><!-- STATE REVERSAL COMPANION END -->'
+    return '<!-- STATE REVERSAL COMPANION START --><section class="state-group state-reversal-entry" id="reverse-phase-transition"><p class="state-kicker">'+loc('Companion · Three essays · Eight languages','专论 · 三篇 · 八语全文',conv)+'</p>'+loc(*TITLE,conv,'h2')+loc('The original eight essays remain a complete route. This companion follows a slide through institutions that still appear intact, an interrupted slide that leaves tools behind, and a counterfactual question about a neighbor’s response.','原有八篇仍是一条完整主线。这三篇另读：机构仍在时怎样往回滑，滑落停住以后还留下什么，以及设若没有停住，邻国怎样回应。',conv,'p','state-deck')+'<div class="state-related">'+cards+'</div><p class="state-return"><a href="../state-reversal/index.html">'+loc('Open the companion →','进入三篇专论 →',conv)+'</a></p></section><!-- STATE REVERSAL COMPANION END -->'
 
 
 def landing(items,conv):
     cards=''.join(f'<a class="lw-card" href="{d["slug"]}.html"><p class="lw-kicker">0{d["id"]}</p>{loc(d["title_en"],d["title_zh"],conv,"h2")}{loc(d["deck_en"],d["deck_zh"],conv,"p")}{loc("Read essay →","阅读全文 →",conv,"span","lw-read")}</a>' for d in items)
-    content='<main class="lw-wrap">'+breadcrumb(conv)+'<section class="lw-hero"><p class="lw-kicker">Non Dubito · '+loc('A State Theory companion','国家论 · 逆相变专论',conv)+'</p>'+loc(*TITLE,conv,'h1')+loc(*DECK,conv,'p','lw-deck lw-search-deck')+loc('Three essays · English, Simplified & Traditional Chinese','三篇 · 英文、简体中文与繁体中文',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc('The original eight essays ask where the last authority must still answer. These three follow what happens when those ways of questioning begin to close. You can begin here; the fictional cases are introduced as needed.','原有八篇问：到了最后一层，仍要向谁作答？这三篇往下追：那些问的路，怎样一条条被挪到决定者手里？可以直接读，所需的虚构案例会随文交代。',conv,'p')+'<a href="ep01.html">'+loc('Begin with the doors →','从那些还在的门读起 →',conv)+'</a></aside><section class="lw-grid">'+cards+'</section><section class="lw-note">'+loc('Two routes, not two historical outcomes','两条路线，不是两段历史',conv,'h2')+loc('In the source’s original case, the slide stops. The first two readings stay with that record. The third explicitly asks what would follow if particular safeguards had failed instead. The distinction matters: what one could judge in spring cannot borrow evidence from the following summer, and a hypothetical government action is not a fact about the original case.','原案例里的滑落停住了。前两篇沿这份记录读；第三篇明确另设：如果几处关口没有守住，会怎样？这一区分也约束判断：春天作决定，不能借用夏天才发生的事；设想分支里的行动，不是原案例里已经发生的事实。',conv,'p')+'</section>'+classics(conv)+reading_note(conv)+related(conv)+'</main>'
+    content='<main class="lw-wrap">'+breadcrumb(conv)+'<section class="lw-hero"><p class="lw-kicker">Non Dubito · '+loc('A State Theory companion','国家论 · 逆相变专论',conv)+'</p>'+loc(*TITLE,conv,'h1')+loc(*DECK,conv,'p','lw-deck lw-search-deck')+loc('Three essays · Eight languages','三篇 · 八语全文',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc('The original eight essays ask where the last authority must still answer. These three follow what happens when those ways of questioning begin to close. You can begin here; the fictional cases are introduced as needed.','原有八篇问：到了最后一层，仍要向谁作答？这三篇往下追：那些问的路，怎样一条条被挪到决定者手里？可以直接读，所需的虚构案例会随文交代。',conv,'p')+'<a href="ep01.html">'+loc('Begin with the doors →','从那些还在的门读起 →',conv)+'</a></aside><section class="lw-grid">'+cards+'</section><section class="lw-note">'+loc('Two routes, not two historical outcomes','两条路线，不是两段历史',conv,'h2')+loc('In the source’s original case, the slide stops. The first two readings stay with that record. The third explicitly asks what would follow if particular safeguards had failed instead. The distinction matters: what one could judge in spring cannot borrow evidence from the following summer, and a hypothetical government action is not a fact about the original case.','原案例里的滑落停住了。前两篇沿这份记录读；第三篇明确另设：如果几处关口没有守住，会怎样？这一区分也约束判断：春天作决定，不能借用夏天才发生的事；设想分支里的行动，不是原案例里已经发生的事实。',conv,'p')+'</section>'+classics(conv)+reading_note(conv)+related(conv)+'</main>'
     return page(content,TITLE[0]+' · 国家论逆相变专论',DECK[0],'essays/state-reversal/index.html',conv)
 
 
@@ -84,7 +86,7 @@ def article(item,items,conv):
             navigation.append(f'<a href="{d["slug"]}.html">{loc(en,zh,conv,"small")}{loc(d["title_en"],d["title_zh"],conv)}</a>')
         else:navigation.append('<a href="index.html">'+loc('All three companion essays','全部三篇专论',conv,'small')+loc(*TITLE,conv)+'</a>')
     content=f'<main class="lw-wrap">{breadcrumb(conv,True)}<article class="lw-article"><div class="lw-head"><p class="lw-kicker">{loc("A State Theory companion","国家论 · 逆相变专论",conv)} · 0{item["id"]}</p>{loc(item["title_en"],item["title_zh"],conv,"h1")}{loc(item["deck_en"],item["deck_zh"],conv,"p","lw-deck lw-search-deck")}<p class="lw-meta">Han Qin · <time datetime="{DATE}">{DATE}</time></p></div>{bodies}{reading_note(conv)}<nav class="lw-series-nav" aria-label="Series navigation">'+''.join(navigation)+'</nav>'+related(conv)+'</article></main>'
-    return page(content,item['title_en'],item['deck_en'],'essays/state-reversal/'+item['slug']+'.html',conv,SOURCE,(STATE_BASE,'Theory of the State'),publication_date=DATE)
+    return page(content,item['title_en'],item['deck_en'],'essays/state-reversal/'+item['slug']+'.html',conv,SOURCE,(STATE_BASE,'Theory of the State'),publication_date=DATE,modification_date='2026-11-03' if item['slug'] in ('ep01','ep02') else DATE)
 
 
 def render():
@@ -93,7 +95,7 @@ def render():
     try:
         pages={TARGET/'index.html':landing(items,conv)}
         pages.update({TARGET/(i['slug']+'.html'):article(i,items,conv) for i in items})
-        return pages
+        return {path:upgrade_primary(text,'state-reversal',path.stem) for path,text in pages.items()}
     finally:conv.close()
 
 

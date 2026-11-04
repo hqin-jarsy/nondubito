@@ -12,6 +12,8 @@ from build_content_registry import scan_page
 from build_search_index import extract_recent_fiction_descriptions
 from test_language_writing import Tags
 from web_analytics import TOKEN
+from full_series_languages import profile
+from prepare_original_series_review import primary_main_hashes
 
 
 class StateReversalPublication(unittest.TestCase):
@@ -44,7 +46,7 @@ class StateReversalPublication(unittest.TestCase):
             self.assertEqual(schema['inLanguage'],['en','zh-Hans','zh-Hant'])
             if path.name!='index.html':
                 self.assertEqual(schema['datePublished'],DATE)
-                self.assertEqual(schema['dateModified'],DATE)
+                self.assertEqual(schema['dateModified'],'2026-11-03' if path.stem in ('ep01','ep02') else DATE)
                 self.assertEqual(schema['citation'],SOURCE)
                 self.assertEqual(schema['isPartOf']['url'],STATE_BASE)
 
@@ -79,11 +81,18 @@ class StateReversalPublication(unittest.TestCase):
 
     def test_main_route_and_source_files_preserved(self):
         self.assertEqual(len(self.qa['original_article_sha256']),8)
-        for name,digest in self.qa['original_article_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/'essays/state'/name).read_bytes()).hexdigest(),digest)
+        # The language menus legitimately change the full HTML. Protect the
+        # actual original reading content instead of blessing new whole files.
+        receipt=json.loads((ROOT/'data/state/multilingual/preservation.json').read_text())
+        self.assertEqual(primary_main_hashes(profile('state')),receipt['primary_main'])
         self.assertEqual(len(self.qa['original_data_sha256']),8)
         for name,digest in self.qa['original_data_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/'data/state'/name).read_bytes()).hexdigest(),digest)
+            raw=(ROOT/'data/state'/name).read_text()
+            for change in json.loads((ROOT/'data/state/multilingual/source-corrections.json').read_text())['issues']:
+                if name==change['slug']+'.json':
+                    self.assertEqual(raw.count(change['correction_zh']),1)
+                    raw=raw.replace(change['correction_zh'],change['before_zh'],1)
+            self.assertEqual(hashlib.sha256(raw.encode()).hexdigest(),digest)
         self.assertFalse((ROOT/'essays/state/ep08.html').exists())
         for path,text in state_render().items():self.assertEqual(path.read_text(),text)
         landing=(ROOT/'essays/state/index.html').read_text()
@@ -92,8 +101,8 @@ class StateReversalPublication(unittest.TestCase):
         self.assertEqual(landing.count('class="state-card"'),8)
         schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',landing,re.S)[1])
         self.assertEqual(schema['datePublished'],'2026-10-25')
-        # The index now includes the completed nine-essay Interstate entrance.
-        self.assertEqual(schema['dateModified'],'2026-10-31')
+        # New language routes do not change the original publication date.
+        self.assertEqual(schema['dateModified'],'2026-11-03')
 
     def test_discovery_and_receipts(self):
         for lang in ('en','zh-hans','zh-hant'):
@@ -111,8 +120,19 @@ class StateReversalPublication(unittest.TestCase):
         self.assertRegex(source['sha256'],r'^[0-9a-f]{64}$')
         for d in self.items:
             counts=self.qa['counts'][d['slug']]
-            self.assertEqual(counts['zh_han'],len(re.findall(r'[\u3400-\u9fff]',''.join(d['body_zh']))))
-            self.assertEqual(counts['en_words'],len(' '.join(d['body_en']).split()))
+            zh=list(d['body_zh']);en=list(d['body_en'])
+            # Retain the historical QA receipt; reconstruct its input using
+            # the separately recorded, paper-verified source corrections.
+            for change in json.loads((DATA/'multilingual/source-corrections.json').read_text())['issues']:
+                if d['slug']!=change['slug']:continue
+                index=change['paragraph']
+                self.assertEqual(zh[index].count(change['correction_zh']),1)
+                zh[index]=zh[index].replace(change['correction_zh'],change['before_zh'],1)
+                if 'correction_en' in change:
+                    self.assertEqual(en[index].count(change['correction_en']),1)
+                    en[index]=en[index].replace(change['correction_en'],change['before_en'],1)
+            self.assertEqual(counts['zh_han'],len(re.findall(r'[\u3400-\u9fff]',''.join(zh))))
+            self.assertEqual(counts['en_words'],len(' '.join(en).split()))
         entries=[u for u in json.loads((ROOT/'data/site-updates.json').read_text())['updates'] if u['id']=='2026-10-29-state-reversal']
         self.assertEqual(len(entries),1)
         self.assertEqual(set(entries[0]['languages']),{'en','zh','zh-hant'})

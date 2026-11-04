@@ -66,7 +66,10 @@ def require_review_seal(series,spec):
     assert receipt['languages']==spec['languages'] and receipt['slugs']==spec['slugs']
     for name in ('cross-review-de-fr.json','cross-review-ja-ko.json','cross-review-es.json'):
         assert name in receipt['reports']
-        assert json.loads((base/name).read_text())['remaining']==[],(series,name,'unfinished review')
+        report=json.loads((base/name).read_text())
+        assert report['remaining']==[],(series,name,'unfinished review')
+        if spec.get('require_explicit_publication_approval'):
+            assert report.get('publication_ready') is True,(series,name,'not approved for publication')
     for name in receipt['reports']:
         actual=hashlib.sha256((base/name).read_bytes()).hexdigest()
         assert receipt['review_report_sha256'][name]==actual,(series,name,'review changed after seal')
