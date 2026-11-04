@@ -11,6 +11,7 @@ import html
 import json
 import re
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from web_analytics import tracked_html
 from clustered_language_indexes import grouped_index, validate_groups
@@ -81,6 +82,9 @@ def source_file(series, spec, slug):
 
 def original_article(series, spec, slug):
     """Read the canonical source directly; Markdown is never a parallel JSON copy."""
+    if spec.get('source_adapter')=='aesthetics-markdown':
+        from aesthetics_source import load_article
+        return load_article(spec,slug)
     if spec.get('source_adapter')=='published-html':
         from published_html_source import load_article
         return load_article(spec,slug)
@@ -111,6 +115,9 @@ def original_article(series, spec, slug):
 
 
 def source_digest(series,spec,slug):
+    if spec.get('source_adapter')=='aesthetics-markdown':
+        from aesthetics_source import source_digest as aesthetics_digest
+        return aesthetics_digest(spec,slug)
     if spec.get('source_adapter')=='zhuangzi-markdown':
         from zhuangzi_source import source_digest as zhuangzi_digest
         return zhuangzi_digest(spec,slug)
@@ -284,6 +291,17 @@ def render_prose(units, citations=None, source_label=''):
 
 
 def primary_bodies(spec,text):
+    if spec.get('primary_format')=='aesthetics-prose':
+        canonical=re.search(r'<link rel="canonical" href="([^"]+)"',text)[1]
+        slug=canonical.rsplit('/',1)[-1]
+        assert canonical==origin(spec)+slug and slug.endswith('.html')
+        bodies=[]
+        for sub in spec['primary_editions'].values():
+            page=(ROOT/spec['directory']/sub/slug).read_text() if sub else text
+            matches=re.findall(r'<article class="prose">.*?</article>',page,re.S)
+            assert len(matches)==1,(slug,sub,'missing primary reading body')
+            bodies.extend(matches)
+        return ''.join(bodies)
     if spec.get('primary_format')=='western-prose':
         return ''.join(re.findall(r'<div class="western-prose[^>]*>.*?</div>',text,re.S))
     if spec.get('primary_format')=='article-bodies':
@@ -300,6 +318,10 @@ def origin(spec):
 def alternatives(spec, slug):
     suffix = '' if slug == 'index' else slug+'.html'
     pairs = [('x-default', origin(spec)+suffix), ('zh-Hans', origin(spec)+suffix)]
+    if spec.get('primary_editions'):
+        pairs=[('x-default',origin(spec)+suffix)]
+        pairs += [(('zh-Hans' if code=='zh' else 'zh-Hant' if code=='zh-hant' else code),origin(spec)+sub+suffix)
+                  for code,sub in spec['primary_editions'].items()]
     pairs += [(code, origin(spec)+code+'/'+suffix) for code in spec['languages']]
     # EN / Hant are reading modes of one legacy canonical, not fabricated URLs.
     return ''.join(f'<link rel="alternate" hreflang="{lang}" href="{url}">' for lang, url in pairs)
@@ -307,6 +329,9 @@ def alternatives(spec, slug):
 
 def upgrade_primary(text, series, slug):
     spec = profile(series)
+    if spec.get('source_adapter')=='aesthetics-markdown':
+        from aesthetics_primary import upgrade
+        return upgrade(text,spec,slug)
     if slug in spec.get('modern_slugs',[]):
         return upgrade_mixed_modern_primary(text,spec,slug)
     if spec.get('source_format') == 'legacy-html':
@@ -373,6 +398,10 @@ def language_links(spec, slug, language):
     rows = []
     for code, label in LABELS.items():
         href = '../'+slug+'.html?lang='+code if code in ('en', 'zh', 'zh-hant') else '../'+code+'/'+slug+'.html'
+        if code in spec.get('primary_editions',{}):
+            # The original Chinese controller otherwise honors a saved EN/Hant
+            # preference even after an explicit click on Simplified Chinese.
+            href='../'+spec['primary_editions'][code]+slug+'.html?lang='+code
         current = ' aria-current="page"' if code == language else ''
         rows.append(f'<a href="{E(href)}" lang="{code if code != "zh" else "zh-Hans"}"{current}>{E(label)}</a>')
     return ''.join(rows)
@@ -423,7 +452,9 @@ def related(spec, data):
         links+=f'<a href="{root}{target_spec["directory"]}/{data["language"]}/index.html">{E(target_data["series"]["title"])}</a>'
     for target in spec.get('reader_routes',[]):
         path=target['path'].format(language=data['language'])
-        resolved=(ROOT/path).resolve()
+        destination=urlsplit(path)
+        assert not destination.scheme and not destination.netloc,path
+        resolved=(ROOT/destination.path).resolve()
         assert resolved.is_relative_to((ROOT/'essays').resolve()) and resolved.is_file(),path
         links+=f'<a href="{E(root+path)}">{E(data["ui"][target["label_key"]])}</a>'
     return f'<aside class="lw-related"><h2>{E(data["ui"]["related"])}</h2>{links}</aside>'
@@ -541,7 +572,7 @@ def render(series):
     for language in spec['languages']:
         _, data = load_language(series, language)
         ui, title = data['ui'], data['series']
-        heading_style=' style="text-wrap:balance"' if spec.get('historical_places') else ''
+        heading_style=' style="text-wrap:balance"' if spec.get('historical_places') or spec.get('balanced_headings') else ''
         notice=('<p class="lw-meta" style="max-width:70ch;line-height:1.75">'+E(title['notice'])+'</p>') if spec.get('visible_notice') else ''
         card_rows=[]
         for n,a in enumerate(data['articles']):
@@ -621,9 +652,10 @@ def main():
     if args.primary:
         spec=profile(args.series)
         assert spec.get('source_format') in ('legacy-html','modern-html')
-        for slug in ['index',*spec['slugs']]:
-            path=ROOT/spec['directory']/(slug+'.html')
-            pages[path]=upgrade_primary(path.read_text(),args.series,slug)
+        for sub in spec.get('primary_editions',{'zh':''}).values():
+            for slug in ['index',*spec['slugs']]:
+                path=ROOT/spec['directory']/sub/(slug+'.html')
+                pages[path]=upgrade_primary(path.read_text(),args.series,slug)
     for path, text in pages.items():
         if args.check:
             assert path.read_text() == text, path

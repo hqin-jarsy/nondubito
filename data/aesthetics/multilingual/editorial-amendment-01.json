@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-04",
+  "status": "Genuine bounded pre-commit editorial reapproval, not primary rebaselining",
+  "finding": {
+    "language": "ja",
+    "slug": "ray03",
+    "field": "body",
+    "paragraph": 38,
+    "before": "テーブルにいた人は二枚目の紙を回し、一枚目を書いた人にペンを渡す。相手は1と100の間に線を引き、もう一本引く。",
+    "after": "テーブルにいた人は二枚目の紙を回し、一枚目を書いた人に渡す。相手はペンを取り、1と100の間に線を引き、もう一本引く。",
+    "source_issue": "The actual Chinese scene passes the second sheet to the other person, who picks up the pen. Pre-commit UI reading found that Japanese instead passed a pen. Restore the paper as the passed object and the recipient picking up the pen, without changing any mathematics or the non-shaming/open conclusion.",
+    "severity": "scene-fidelity",
+    "count": 1
+  },
+  "chinese_complete_field": "桌边的人把第二张纸转过去，递给写第一张纸的人。对方拿起笔，给 1 和 100 之间画了一条线，又画了一条。",
+  "saved_japanese_complete_field": "テーブルにいた人は二枚目の紙を回し、一枚目を書いた人に渡す。相手はペンを取り、1と100の間に線を引き、もう一本引く。",
+  "actual_nonauthor_complete_saved_field_readback": {
+    "reader": "Lead independent non-author full reader",
+    "scope": "Actual pre-commit UI recheck and full Chinese comparison identified the exchanged object. Entire corrected saved paragraph actually read back: second sheet passed, recipient picks up pen. All other previously fully read content is unchanged; original reading-time hashes and initial verdict remain historical.",
+    "fields": [
+      {
+        "slug": "ray03",
+        "field": "body",
+        "saved_field_sha256": "97735fe90b3ea48d4a4c7cee46b8a10a0bf0e40dc48ea587d32945335fea7354",
+        "paragraph": 38
+      }
+    ],
+    "passed": true
+  },
+  "prior_publication_sha256": "1913b3eea498597a257f72920b19e1da88519c2bb69664d9d321b4c5bca4724b",
+  "prior_preservation_sha256": "cc8b1669e9fc28cca6f6779ce676cb1b9c442c1f549fc61d556b2cdb756e0013",
+  "prior_ja_manuscript_sha256": "efb90a31728b186d1cd51d3bb6b2eb814b956fda9b75319af36bf205a9b50b2a",
+  "current_ja_manuscript_sha256": "51c0c96aee658b61bd324b1e5f312b99f80decb152cbf593d31d236201c41b96",
+  "approved_review_record_changes": {
+    "data/aesthetics/multilingual/cross-review-ja-batch02.json": {
+      "before": "3081538fee543d9f31045f40152d6ef268b72ea04ac3306646102dbd4b7b466b",
+      "after": "4eb481f7bebf846547123338feb593058d9ff91026ee4c81d0f95d5b62d5acfd"
+    },
+    "data/aesthetics/multilingual/cross-review-ja-ko.json": {
+      "before": "134442b832d4dd1134fad4a0c9f110319e92767e4f2ad46defd931469fafd41b",
+      "after": "1ddf2d08c06ff00136a331571222ecee2466ae3090e5f59aa7a88896e4713c3c"
+    }
+  },
+  "preservation": "Only the two genuinely amended review-record hashes are advanced; every original primary source/body/main hash and all other protected bytes remain the original pre-expansion baseline. Restoring this one Japanese field reconstructs the complete prior Japanese manuscript hash. Other four manuscripts unchanged. No claim of seventy new full readings: earlier actual full readings remain, plus this actual complete changed-field reading.",
+  "result": "passed",
+  "remaining": []
+}

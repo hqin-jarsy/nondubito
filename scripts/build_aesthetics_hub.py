@@ -178,6 +178,10 @@ def render_pages():
 <aside class="source-note"><h2>{t('写作说明与原论文','About this essay and its source')}</h2><p>{t(r['note_zh'],r['note_en'])}</p><p>{a(paper,t('读原论文：','Read the source paper: ')+t(*RAYS[r['number']-1])+' ↗')}</p>{extra}</aside>
 <nav class="chapter-links" aria-label="{t('前后篇','Previous and next essays')}">{prev_link}{next_link}</nav>{pending}<nav class="end-links" aria-label="{t('继续阅读','Continue reading')}">{a('index.html?lang='+lang,t('美学首页','Aesthetics home'))}{a('#main',t('回到页首','Back to top'))}</nav>'''
             outputs[folder/(r['slug']+'.html')]=page(r['slug']+'.html',title,deck,body,True,paper,r['date'])
+    if (DATA/'multilingual/publication.json').exists():
+        from full_series_languages import profile, require_review_seal, upgrade_primary
+        require_review_seal('aesthetics',profile('aesthetics'))
+        outputs={path:upgrade_primary(source,'aesthetics',path.stem) for path,source in outputs.items()}
     return outputs
 
 

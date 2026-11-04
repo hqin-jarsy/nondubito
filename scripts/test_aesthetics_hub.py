@@ -35,7 +35,10 @@ class HubTests(unittest.TestCase):
                 self.assertEqual(record['domain'],'sae-philosophy')
                 expected=build.ORIGIN+path.relative_to(build.ROOT).as_posix().removesuffix('index.html')
                 self.assertEqual([a['href'] for t,a in tags if t=='link' and a.get('rel')=='canonical'],[expected])
-                self.assertEqual({a.get('hreflang') for t,a in tags if t=='link' and a.get('rel')=='alternate'},{'en','zh-Hans','zh-Hant'})
+                expected_languages={'en','zh-Hans','zh-Hant'}
+                if (build.DATA/'multilingual/publication.json').exists():
+                    expected_languages|={'x-default','de','fr','es','ja','ko'}
+                self.assertEqual({a.get('hreflang') for t,a in tags if t=='link' and a.get('rel')=='alternate'},expected_languages)
                 schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',s,re.S)[1])
                 self.assertEqual(schema['inLanguage'],lang)
                 self.assertEqual(schema['@type'],'CollectionPage' if path.name=='index.html' else 'Article')

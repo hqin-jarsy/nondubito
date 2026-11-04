@@ -13,15 +13,16 @@ from full_series_languages import (ROOT, load_language, profile, primary_bodies,
 def primary_main_hashes(spec):
     """Protect all primary reading content, allowing only its language controls."""
     result={}
-    for slug in ['index',*spec['slugs']]:
-        path=ROOT/spec['directory']/(slug+'.html')
-        match=re.search(r'<main\b[^>]*>.*?</main>',path.read_text(),re.S)
-        assert match,(slug,'missing primary main')
-        content=re.sub(r'<div class="lang-toggle"[^>]*>.*?</div>','',match[0],flags=re.S)
-        for css in spec.get('main_mutable_classes',[]):
-            assert re.fullmatch(r'[a-z][a-z0-9-]*',css)
-            content=re.sub(r'<p\b(?=[^>]*class="[^"]*\b'+re.escape(css)+r'\b)[^>]*>.*?</p>','',content,flags=re.S)
-        result[str(path.relative_to(ROOT))]=hashlib.sha256(content.encode()).hexdigest()
+    for sub in spec.get('primary_editions',{'zh':''}).values():
+        for slug in ['index',*spec['slugs']]:
+            path=ROOT/spec['directory']/sub/(slug+'.html')
+            match=re.search(r'<main\b[^>]*>.*?</main>',path.read_text(),re.S)
+            assert match,(slug,'missing primary main')
+            content=re.sub(r'<div class="lang-toggle"[^>]*>.*?</div>','',match[0],flags=re.S)
+            for css in spec.get('main_mutable_classes',[]):
+                assert re.fullmatch(r'[a-z][a-z0-9-]*',css)
+                content=re.sub(r'<p\b(?=[^>]*class="[^"]*\b'+re.escape(css)+r'\b)[^>]*>.*?</p>','',content,flags=re.S)
+            result[str(path.relative_to(ROOT))]=hashlib.sha256(content.encode()).hexdigest()
     return result
 
 
@@ -88,8 +89,8 @@ def prepare(series):
                     assert key in ('title','note'),(name,field)
                     value=a[group][issue['paragraph']][key]
                 else:
-                    assert field in ('body','notes','aside','title','deck','source_note','takeaway','kicker','pause'), (name,field)
-                    value=a[field][issue['paragraph']] if field in ('body','notes') else a[field]
+                    assert field in ('body','notes','notes_coverage','aside','title','deck','source_note','takeaway','kicker','pause'), (name,field)
+                    value=a[field][issue['paragraph']] if field in ('body','notes','notes_coverage') else a[field]
             assert issue['after'] in value, (name,issue)
             issue['review_report']=name
             resolved.append(issue)
