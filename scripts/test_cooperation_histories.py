@@ -14,6 +14,21 @@ from test_language_writing import Tags
 from web_analytics import TOKEN
 
 
+def original_publication_bytes(path):
+    """Retain historical whole-file hashes; strip only reversible menu additions.
+
+    Never replace the old hash with the current output. Exact recovery, original
+    source data, all reading bodies, main areas and schemas have separate tests.
+    """
+    text=path.read_bytes().decode('utf-8')
+    for name,count in (('MIXED SERIES LANGUAGE LINKS',2),('MIXED SERIES ALTERNATES',1),('MIXED SERIES EDITION NOTICE',1)):
+        start,end=f'<!-- {name} START -->',f'<!-- {name} END -->'
+        if start in text:
+            assert text.count(start)==text.count(end)==count
+            text=re.sub(re.escape(start)+r'.*?'+re.escape(end),'',text,flags=re.S)
+    return text.encode('utf-8')
+
+
 class CooperationHistories(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -197,7 +212,9 @@ class CooperationHistories(unittest.TestCase):
         seventh = [u for u in updates if u['id'] == '2026-11-01-cooperation-histories-batch07']
         self.assertEqual(len(seventh), 1)
         self.assertEqual(seventh[0]['kind'], 'expanded')
-        self.assertEqual(next(u for u in updates if 'cooperation-histories' in u['id'])['id'], seventh[0]['id'])
+        original_ids={u['id'] for u in updates if u['id'].startswith(('2026-10-30-cooperation-histories','2026-10-31-cooperation-histories','2026-11-01-cooperation-histories'))}
+        self.assertEqual(len(original_ids),7)
+        self.assertEqual(next(u for u in updates if u['id'] in original_ids)['id'], seventh[0]['id'])
         home = (ROOT/'index.html').read_text()
         self.assertEqual(home, entrances()[ROOT/'index.html'])
 
@@ -227,7 +244,7 @@ class CooperationHistories(unittest.TestCase):
         self.assertEqual(self.batch2['new_essays'], ['iraq-sanctions', 'kadi-listing'])
         hashes = json.loads((ROOT/'reports/cooperation-histories-batch02-20261030.json').read_text())['preserved_first_pair_sha256']
         for slug, expected in hashes.items():
-            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+            self.assertEqual(hashlib.sha256(original_publication_bytes(ROOT/'essays/cooperation-histories'/f'{slug}.html')).hexdigest(), expected)
 
     def test_hanan_investigation_is_not_a_substantive_airstrike_verdict(self):
         d = self.items[4]
@@ -255,7 +272,7 @@ class CooperationHistories(unittest.TestCase):
         hashes = report['preserved_prior_article_sha256']
         self.assertEqual(len(hashes), 4)
         for slug, expected in hashes.items():
-            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+            self.assertEqual(hashlib.sha256(original_publication_bytes(ROOT/'essays/cooperation-histories'/f'{slug}.html')).hexdigest(), expected)
 
     def test_shrimp_goal_implementation_and_personal_access(self):
         d = self.items[6]
@@ -282,7 +299,7 @@ class CooperationHistories(unittest.TestCase):
         self.assertEqual(self.batch4['new_essays'], ['us-shrimp-turtle', 'kishenganga-water'])
         self.assertEqual(len(self.batch4['preserved_prior_article_sha256']), 6)
         for slug, expected in self.batch4['preserved_prior_article_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+            self.assertEqual(hashlib.sha256(original_publication_bytes(ROOT/'essays/cooperation-histories'/f'{slug}.html')).hexdigest(), expected)
         for slug, partner in (('us-shrimp-turtle', 'kishenganga-water'), ('kishenganga-water', 'us-shrimp-turtle')):
             self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
 
@@ -322,7 +339,7 @@ class CooperationHistories(unittest.TestCase):
         self.assertEqual(self.batch5['new_essays'], ['montreal-fund', 'smallpox-eradication'])
         self.assertEqual(len(self.batch5['preserved_prior_article_sha256']), 8)
         for slug, expected in self.batch5['preserved_prior_article_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+            self.assertEqual(hashlib.sha256(original_publication_bytes(ROOT/'essays/cooperation-histories'/f'{slug}.html')).hexdigest(), expected)
         for slug, partner in (('montreal-fund', 'smallpox-eradication'), ('smallpox-eradication', 'montreal-fund')):
             self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
         self.assertIn('#inspection-and-judgment', entrances()[ROOT/'latest.html'])
@@ -361,7 +378,7 @@ class CooperationHistories(unittest.TestCase):
         self.assertEqual(self.batch6['new_essays'], ['covax-delivery', 'greece-bailout'])
         self.assertEqual(len(self.batch6['preserved_prior_article_sha256']), 10)
         for slug, expected in self.batch6['preserved_prior_article_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+            self.assertEqual(hashlib.sha256(original_publication_bytes(ROOT/'essays/cooperation-histories'/f'{slug}.html')).hexdigest(), expected)
         for slug, partner in (('covax-delivery', 'greece-bailout'), ('greece-bailout', 'covax-delivery')):
             self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
 
@@ -402,7 +419,7 @@ class CooperationHistories(unittest.TestCase):
         self.assertEqual(self.batch7['new_essays'], ['antarctic-inspections', 'jcpoa-verification'])
         self.assertEqual(len(self.batch7['preserved_prior_article_sha256']), 12)
         for slug, expected in self.batch7['preserved_prior_article_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/'essays/cooperation-histories'/f'{slug}.html').read_bytes()).hexdigest(), expected)
+            self.assertEqual(hashlib.sha256(original_publication_bytes(ROOT/'essays/cooperation-histories'/f'{slug}.html')).hexdigest(), expected)
         for slug, partner in (('antarctic-inspections', 'jcpoa-verification'), ('jcpoa-verification', 'antarctic-inspections')):
             self.assertIn(f'href="{partner}.html"', self.pages[ROOT/f'essays/cooperation-histories/{slug}.html'])
         latest = (ROOT/'latest.html').read_text()

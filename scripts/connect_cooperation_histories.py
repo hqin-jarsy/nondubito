@@ -16,7 +16,14 @@ def render():
         def ll(en, zh, tag='span', css=''):
             return loc(en, zh, conv, tag, css).replace('lang-zh', 'lang-zh cl-zh').replace('lang-hant', 'lang-zh cl-hant')
 
-        card = '<a href="essays/cooperation-histories/index.html" class="series-card"><span class="series-card-count">' + ll('Ongoing historical series · Fourteen essays · EN / 简 / 繁', '持续历史专题 · 十四篇 · 英简繁') + '</span><div class="series-card-title-zh cl-zh">共同决定之后</div><div class="series-card-title-zh cl-hant">共同決定之後</div><div class="series-card-title-en">After the Shared Decision</div>' + ll(DECK[0], DECK[1], 'p', 'series-card-desc') + ll('Read the histories →', '进入真实案例专题 →', 'span', 'series-card-arrow') + '</a>'
+        counts=('Ongoing historical series · Fourteen essays · EN / 简 / 繁', '持续历史专题 · 十四篇 · 英简繁')
+        multilingual=ROOT/'data/cooperation-histories/multilingual'
+        if (multilingual/'publication.json').exists():
+            from full_series_languages import profile, require_review_seal
+            require_review_seal('cooperation-histories',profile('cooperation-histories'))
+            labels=json.loads((multilingual/'discovery.json').read_text())['library_count']
+            counts=(labels['en'],labels['zh'])
+        card = '<a href="essays/cooperation-histories/index.html" class="series-card"><span class="series-card-count">' + ll(*counts) + '</span><div class="series-card-title-zh cl-zh">共同决定之后</div><div class="series-card-title-zh cl-hant">共同決定之後</div><div class="series-card-title-en">After the Shared Decision</div>' + ll(DECK[0], DECK[1], 'p', 'series-card-desc') + ll('Read the histories →', '进入真实案例专题 →', 'span', 'series-card-arrow') + '</a>'
         library = block((ROOT/'library.html').read_text(), 'COOPERATION HISTORIES LIBRARY', card, '<!-- STATE HISTORIES LIBRARY START -->')
 
         shelf = '<a class="shelf-link" href="essays/cooperation-histories/index.html">' + loc('Real histories · Cooperation', '真实历史 · 国家间协作', conv, 'span', 'shelf-label') + loc(*TITLE, conv, 'h3') + loc('Fourteen histories: water, sanctions, borders, production change, vaccination, financial assistance and inspection. What makes action possible, and who can ask for another look?', '十四段历史读水流、制裁、边界、生产转型、疫苗、金融援助与现场检查。行动靠什么成为可能，又由谁来要求再看一次？', conv, 'p') + '<span class="shelf-arrow">→</span></a>'

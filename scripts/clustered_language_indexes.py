@@ -29,6 +29,8 @@ def validate_groups(spec, data):
         assert re.fullmatch(r'[a-z][a-z0-9-]*',group['id'])
         assert group['slugs']
         assert isinstance(title['title'],str) and title['title'].strip()
+        if spec.get('index_group_decks'):
+            assert isinstance(title['deck'],str) and title['deck'].strip() and '<' not in title['deck']
 
 
 def grouped_index(spec, data, card_rows):
@@ -47,6 +49,9 @@ def grouped_index(spec, data, card_rows):
         key=group['id']
         anchor=group_anchor(key)
         heading=f'<div class="lw-note"><h2 id="{anchor}-title">{e(labels[key])}</h2></div>'
+        if spec.get('index_group_decks'):
+            title=next(g for g in data['series']['index_groups'] if g['id']==key)
+            heading=heading.removesuffix('</div>')+'<p>'+e(title['deck'])+'</p></div>'
         # Group headings remain h2; the original card titles become h3 without
         # changing the card content or its source order.
         grouped_cards=[cards[slug].replace('<h2>','<h3>',1).replace('</h2>','</h3>',1) for slug in group['slugs']]

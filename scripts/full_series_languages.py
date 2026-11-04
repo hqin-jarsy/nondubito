@@ -198,6 +198,8 @@ def load_language(series, language):
             assert isinstance(note,str) and note.strip()
     for article in data['articles']:
         original = original_article(series,spec,article['slug'])
+        if spec.get('complete_article_source_note'):
+            assert isinstance(article.get('source_note'),str) and article['source_note'].strip(), (language,article['slug'],'missing full individual reading note')
         source = original['body_zh']
         assert len(article['body']) == len(source), (language, article['slug'], 'missing argument units')
         assert len(article['coverage']) == len(source)
@@ -367,7 +369,15 @@ def upgrade_mixed_modern_primary(text,spec,slug):
             assert sorted(actual)==sorted(expected),(spec['id'],slug,'unexpected primary alternates')
             for tag in old:text=text.replace(tag,'',1)
     assert not re.search(r'<link[^>]*rel="alternate"',text)
-    return text.replace('</head>',a+alternatives(spec,slug)+b+'</head>',1)
+    text=text.replace('</head>',a+alternatives(spec,slug)+b+'</head>',1)
+    if spec.get('primary_notice'):
+        start,end='<!-- MIXED SERIES EDITION NOTICE START -->','<!-- MIXED SERIES EDITION NOTICE END -->'
+        text=re.sub(re.escape(start)+r'.*?'+re.escape(end),'',text,flags=re.S)
+        labels=spec['primary_notice'];assert set(labels)=={'en','zh','zh-hant'}
+        notice='<aside class="lw-note" style="max-width:1080px;margin:1rem auto;padding:0 1.5rem">'+''.join('<p class="lang-'+suffix+'">'+E(labels[code])+'</p>' for code,suffix in (('en','en'),('zh','zh'),('zh-hant','hant')))+'</aside>'
+        assert text.count('</header>')==1
+        text=text.replace('</header>','</header>'+start+notice+end,1)
+    return text
 
 
 def upgrade_legacy_primary(text,spec,slug):

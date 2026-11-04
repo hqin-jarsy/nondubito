@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-04",
+  "result": "passed",
+  "scope": "Fourteen complete historical reader essays, DE/FR/ES/JA/KO, not translations or confirmations of the mother theory's academic papers.",
+  "new_article_editions": 70,
+  "new_native_pages": 75,
+  "primary_pages_with_only_reversible_language_alternate_and_notice_additions": 15,
+  "per_language_preserved": {
+    "source_units": 460,
+    "headings": 42,
+    "complete_individual_reading_notes": 14,
+    "complete_numbered_source_title_note_url_records": 96,
+    "parallel_pairs_with_full_native_title_and_deck": 7
+  },
+  "editorial_acceptance": {
+    "actual_complete_independent_article_readings": 70,
+    "actual_complete_shared_metadata_readings": 5,
+    "accepted_source_adjudicated_and_whole_saved_field_reread_corrections": 56,
+    "per_language": {"de": 10, "fr": 26, "es": 4, "ja": 3, "ko": 13},
+    "actual_readers": {
+      "de": "B, not DE author",
+      "fr": "A first eight; C last six and all shared metadata; neither is FR author",
+      "es": "Lead, not ES author",
+      "ja": "Lead, not JA author",
+      "ko": "Lead first six; A last eight and all shared metadata; neither is KO author"
+    },
+    "limits": "AI-assisted independent editorial reading, not human native-speaker certification. Structure and fingerprints identify actual saved prose and preserve evidence; they do not score literary quality. Original source access and abstract/mirror/retrospective limits are retained; no claim of newly reading every linked historical PDF in full."
+  },
+  "primary_preservation": {
+    "genuine_pre_expansion_baseline_commit": "883fe44",
+    "original_data_and_publication_json_files_byte_unchanged": 21,
+    "complete_original_primary_pages_exactly_recovered_by_stripping_only_generated_blocks": 15,
+    "original_main_blocks_unchanged": 15,
+    "raw_primary_reading_bodies_unchanged": 42,
+    "raw_primary_source_apparatus_unchanged": 15,
+    "raw_primary_jsonld_unchanged": 15,
+    "preexisting_update_entries_unchanged": 229,
+    "earlier_twenty_generic_series_review_and_render_outputs_byte_identical": true
+  },
+  "checks": [
+    {"command": "python3 -m unittest discover -s scripts -p test_cooperation*.py", "result": "39 tests passed, including all27 original history tests,5 source-preservation tests and7 actual-release tests"},
+    {"command": "python3 -m unittest discover -s scripts -p test_aesthetics*.py", "result": "21 tests passed after this integration"},
+    {"command": "python3 -m unittest discover -s scripts -p test_*languages.py", "result": "125 existing language tests passed after final saved outputs"},
+    {"command": "Twenty previous generic series: prepare and render identity", "result": "All20 passed; no earlier reviewed prose or saved native outputs changed"},
+    {"command": "build_cooperation_histories.py --check", "result": "All15 upgraded primary pages match source builder"},
+    {"command": "connect_cooperation_histories.py --check", "result": "Library/Explore/Latest/bounded Home connector remains idempotent"},
+    {"command": "build_search_index.py --check", "result": "13431 source records current"},
+    {"command": "build_sitemap.py --check", "result": "13415 canonical URLs current"},
+    {"command": "check_web_analytics.py", "result": "13434 public pages; zero tracking errors; zero conflict copies"}
+  ],
+  "actual_browser_acceptance": {
+    "desktop": {"viewport": [1280,720], "document_width":1265, "native_groups":7, "article_cards":14, "jump_links":7, "language_menu_choices":8},
+    "mobile": {"viewport":[390,844], "document_width":375, "all_eight_menu_choices_within_viewport":true, "settled_last_group_anchor_top":102.109375},
+    "observed_routes": [
+      "French index seven parallel group titles/decks and last-pair jump; settled German mobile jump at inspection-and-judgment verified in a later observation.",
+      "French Antarctic article to the same Korean article through its native language menu; all33 Korean body units present.",
+      "Korean full source panel opens, with all6 detailed source records, complete individual reading note and optional EN/Chinese philosophical link.",
+      "Same article to explicit Simplified Chinese: Chinese body and only Chinese version notice visible; eight options present in primary mobile drawer.",
+      "Primary mobile English control changes URL to lang=en, shows original English body and only English version notice."
+    ],
+    "console_errors": [],
+    "temporary_viewport_override_reset_and_remeasured": [1280,720],
+    "proof_images_workspace_only": ["cooperation-histories-desktop-20261104.png", "cooperation-histories-mobile-menu-20261104.png"]
+  },
+  "remaining": [],
+  "deployment": "Second and final authorized series. Separate local commit; author pushes. No other series or backlog started."
+}
