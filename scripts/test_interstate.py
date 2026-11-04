@@ -82,7 +82,7 @@ class InterstatePublication(unittest.TestCase):
             self.assertEqual(schema['inLanguage'], ['en', 'zh-Hans', 'zh-Hant'])
             if path.name == 'index.html':
                 self.assertEqual(schema['datePublished'], DATE)
-                self.assertEqual(schema['dateModified'], COMPLETE_DATE)
+                self.assertEqual(schema['dateModified'], '2026-11-03')
                 self.assertEqual([p['url'] for p in schema['hasPart']], [BASE + d['slug'] + '.html' for d in self.items])
             else:
                 d = next(d for d in self.items if d['slug'] == path.stem)

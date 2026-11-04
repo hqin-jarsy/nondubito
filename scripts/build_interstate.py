@@ -10,6 +10,7 @@ import re
 from build_language_writing import ROOT, loc, page, prose
 from build_state_reversal import ReversalTraditionalConverter
 from build_cooperation_histories import companion_entry as real_world_entry
+from full_series_languages import upgrade_primary
 
 DATE = '2026-10-30'
 COMPLETE_DATE = '2026-10-31'
@@ -107,7 +108,7 @@ def state_entry(conv):
 def library_card(conv):
     def ll(en, zh, tag='span', css=''):
         return loc(en, zh, conv, tag, css).replace('lang-zh', 'lang-zh cl-zh').replace('lang-hant', 'lang-zh cl-hant')
-    return '<a href="essays/interstate/index.html" class="series-card"><span class="series-card-count">' + ll('Nine complete essays · EN / 简 / 繁', '九篇完整散文 · 英简繁') + '</span><div class="series-card-title-zh cl-zh">国家之间，谁来回答？</div><div class="series-card-title-zh cl-hant">國家之間，誰來回答？</div><div class="series-card-title-en">Between States, Who Answers?</div>' + ll(DECK[0], DECK[1], 'p', 'series-card-desc') + ll('Read all nine →', '阅读全部九篇 →', 'span', 'series-card-arrow') + '</a>'
+    return '<a href="essays/interstate/index.html" class="series-card"><span class="series-card-count">' + ll('Nine complete essays · Eight languages', '九篇完整散文 · 八语全文') + '</span><div class="series-card-title-zh cl-zh">国家之间，谁来回答？</div><div class="series-card-title-zh cl-hant">國家之間，誰來回答？</div><div class="series-card-title-en">Between States, Who Answers?</div>' + ll(DECK[0], DECK[1], 'p', 'series-card-desc') + ll('Read all nine →', '阅读全部九篇 →', 'span', 'series-card-arrow') + '</a>'
 
 
 def document(content, title, deck, filename, conv, items, item=None):
@@ -116,7 +117,7 @@ def document(content, title, deck, filename, conv, items, item=None):
     match = re.search(r'<script type="application/ld\+json">(.*?)</script>', result, re.S)
     schema = json.loads(match[1])
     if not item:
-        schema.update(datePublished=DATE, dateModified=COMPLETE_DATE, hasPart=[
+        schema.update(datePublished=DATE, dateModified='2026-11-03', hasPart=[
             {'@type': 'Article', 'name': d['title_en'], 'url': BASE + d['slug'] + '.html'} for d in items])
     return (result[:match.start(1)] + json.dumps(schema, ensure_ascii=False).replace('</', '<\\/') + result[match.end(1):]).replace('</head>', '<link rel="stylesheet" href="reading.css?v=20261031"></head>')
 
@@ -127,7 +128,7 @@ def landing(items, conv):
         cards = ''.join('<a class="lw-card" href="' + d['slug'] + '.html"><p class="lw-kicker">' + f'{d["id"]:02d}' + '</p>' + loc(d['title_en'], d['title_zh'], conv, 'h3') + loc(d['deck_en'], d['deck_zh'], conv, 'p') + loc('Read essay →', '阅读全文 →', conv, 'span', 'lw-read') + '</a>' for d in items if d['id'] in ids)
         sections.append('<section class="is-group" id="' + key + '">' + loc(en, zh, conv, 'h2') + '<div class="lw-grid">' + cards + '</div><a class="lw-read is-back" href="#reading-route">' + loc('↑ Back to reading route', '↑ 回到阅读导航', conv) + '</a></section>')
     jump = '<nav class="is-jump" id="reading-route" aria-label="Reading route">' + ''.join('<a href="#' + key + '">' + loc(en, zh, conv) + '</a>' for key, en, zh, ids in GROUPS) + '</nav>'
-    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Interstate Cooperation', '国家间协作论', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('Nine complete essays · English, Simplified & Traditional Chinese', '九篇完整散文 · 英文、简体中文与繁体中文', conv, 'p', 'lw-meta') + '</section>' + jump + notice(conv) + '<aside class="lw-opening">' + loc('No prerequisite reading. Follow all nine in order, or choose a question above. The State essays are an optional companion, not an entrance examination. The real histories have a separate entrance below.', '不用先读完国家论。可以按顺序读九篇，也可以从上面的一个问题进入。国家论可以放在旁边读，不是先修课；真实历史在下方另设入口。', conv, 'p') + '<a href="ep01.html">' + loc('Begin at the old customs house →', '从旧海关楼读起 →', conv) + '</a></aside>' + ''.join(sections) + source_note(conv) + related(conv) + '</main>'
+    content = '<main class="lw-wrap">' + breadcrumb(conv) + '<section class="lw-hero"><p class="lw-kicker">Non Dubito · ' + loc('Interstate Cooperation', '国家间协作论', conv) + '</p>' + loc(*TITLE, conv, 'h1') + loc(*DECK, conv, 'p', 'lw-deck lw-search-deck') + loc('Nine complete essays · Eight languages', '九篇完整散文 · 八语全文', conv, 'p', 'lw-meta') + '</section>' + jump + notice(conv) + '<aside class="lw-opening">' + loc('No prerequisite reading. Follow all nine in order, or choose a question above. The State essays are an optional companion, not an entrance examination. The real histories have a separate entrance below.', '不用先读完国家论。可以按顺序读九篇，也可以从上面的一个问题进入。国家论可以放在旁边读，不是先修课；真实历史在下方另设入口。', conv, 'p') + '<a href="ep01.html">' + loc('Begin at the old customs house →', '从旧海关楼读起 →', conv) + '</a></aside>' + ''.join(sections) + source_note(conv) + related(conv) + '</main>'
     content = content.replace(source_note(conv), real_world_entry(conv) + source_note(conv), 1)
     return document(content, TITLE[0] + ' · 国家间协作论', DECK[0], 'index.html', conv, items)
 
@@ -151,7 +152,8 @@ def render():
     items = load_items()
     conv = InterstateTraditionalConverter()
     try:
-        return {TARGET / 'index.html': landing(items, conv), **{TARGET / (d['slug'] + '.html'): article(d, items, conv) for d in items}}
+        pages = {TARGET / 'index.html': landing(items, conv), **{TARGET / (d['slug'] + '.html'): article(d, items, conv) for d in items}}
+        return {path: upgrade_primary(text, 'interstate', path.stem) for path, text in pages.items()}
     finally:
         conv.close()
 

@@ -13,6 +13,7 @@ import re
 from pathlib import Path
 
 from web_analytics import tracked_html
+from clustered_language_indexes import grouped_index, validate_groups
 
 ROOT = Path(__file__).resolve().parents[1]
 LABELS = {'en': 'English', 'zh': '简体中文', 'zh-hant': '繁體中文',
@@ -92,6 +93,7 @@ def load_language(series, language):
     assert data['language'] == language
     assert [a['slug'] for a in data['articles']] == spec['slugs']
     assert data['review']['unresolved'] == [], (series, language, 'unresolved editorial issues')
+    validate_groups(spec, data)
     if spec.get('visible_notice'):
         assert isinstance(data['series']['notice'],str) and data['series']['notice'].strip()
     if spec.get('index_context_source'):
@@ -284,8 +286,9 @@ def document(spec, data, slug, content, article=None):
     if language in ('ja','ko'):
         font_href+='&family=Noto+Serif+'+('JP' if language=='ja' else 'KR')+':wght@400;500;600'
     fonts='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="'+E(font_href+'&display=swap')+'" rel="stylesheet">'
+    grouped_css = f'<link rel="stylesheet" href="{root}essays/language-writing/grouped-reading.css?v=20261103b">' if spec.get('index_groups') and slug == 'index' else ''
     return f'''<!doctype html>
-<html lang="{language}" data-lang="{language}" data-editions="{language}" data-foreign-edition="true"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{E(title)} — Non Dubito</title><meta name="description" content="{E(deck)}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{url}">{alternatives(spec,slug)}<meta property="og:type" content="{'article' if article else 'website'}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(deck)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="{root}favicon.svg" type="image/svg+xml">{fonts}<link rel="stylesheet" href="{root}style.css"><link rel="stylesheet" href="{root}site-shell.css?v=20260905b"><link rel="stylesheet" href="{root}essays/language-writing/reading.css?v=20261103"><script defer src="{root}essays/language-writing/reading.js?v=20261103"></script><script type="application/ld+json">{structured}</script></head><body class="site-shell-page lw-page lw-foreign"><a class="lw-skip" href="#main">{E(data['ui']['read'])}</a>{header(spec,data,slug)}<main id="main" class="lw-wrap">{content}</main><footer class="site-shell-footer"><div class="site-shell-footer-inner"><div class="site-shell-footer-mark">Non <span>Dubito</span></div><div class="site-shell-footer-links"><a href="{root}essays/{language}/index.html">{E(data['ui']['home'])}</a><a href="https://self-as-an-end.net/">{E(data['ui']['theory'])} ↗</a></div></div></footer></body></html>
+<html lang="{language}" data-lang="{language}" data-editions="{language}" data-foreign-edition="true"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{E(title)} — Non Dubito</title><meta name="description" content="{E(deck)}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{url}">{alternatives(spec,slug)}<meta property="og:type" content="{'article' if article else 'website'}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(deck)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="{root}favicon.svg" type="image/svg+xml">{fonts}<link rel="stylesheet" href="{root}style.css"><link rel="stylesheet" href="{root}site-shell.css?v=20260905b"><link rel="stylesheet" href="{root}essays/language-writing/reading.css?v=20261103">{grouped_css}<script defer src="{root}essays/language-writing/reading.js?v=20261103"></script><script type="application/ld+json">{structured}</script></head><body class="site-shell-page lw-page lw-foreign"><a class="lw-skip" href="#main">{E(data['ui']['read'])}</a>{header(spec,data,slug)}<main id="main" class="lw-wrap">{content}</main><footer class="site-shell-footer"><div class="site-shell-footer-inner"><div class="site-shell-footer-mark">Non <span>Dubito</span></div><div class="site-shell-footer-links"><a href="{root}essays/{language}/index.html">{E(data['ui']['home'])}</a><a href="https://self-as-an-end.net/">{E(data['ui']['theory'])} ↗</a></div></div></footer></body></html>
 '''
 
 
@@ -305,6 +308,8 @@ def render(series):
         grid='<section class="lw-grid">'+''.join(card for slug,card in card_rows if slug not in standalone)+'</section>'
         if standalone:
             grid+='<section class="lw-note"><h2>'+E(SPECIAL_STUDY[language])+'</h2></section><section class="lw-grid">'+''.join(card for slug,card in card_rows if slug in standalone)+'</section>'
+        if spec.get('index_groups'):
+            grid = grouped_index(spec, data, card_rows)
         count = collection_count(spec,language,len(data['articles']))+' · '+' / '.join(LABELS.values())
         context=title.get('index_context',[])
         assert isinstance(context,list) and all(isinstance(p,str) and p.strip() for p in context)
@@ -323,6 +328,8 @@ def render(series):
                 if standalone and (article['slug'] in standalone or (other and other['slug'] in standalone)):
                     other=None
                 href = other['slug']+'.html' if other else 'index.html'
+                if not other and spec.get('index_groups'):
+                    href += '#reading-route'
                 nav.append(f'<a href="{href}"><small>{E(ui[label] if other else ui["contents"])}</small>{E(other["title"] if other else title["title"])}</a>')
             if article['slug'] in standalone:
                 nav=nav[:1]

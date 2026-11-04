@@ -97,6 +97,11 @@ def prepare(series):
     protected_files={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
                      for pattern in spec.get('protected_files',[]) for p in sorted(ROOT.glob(pattern))}
     primary_main=primary_main_hashes(spec) if spec.get('preserve_primary_main') else None
+    if spec.get('primary_baseline'):
+        before=json.loads((ROOT/spec['primary_baseline']).read_text())
+        assert before['source_data']==sources, 'Primary source differs from pre-expansion baseline'
+        assert before['primary_bodies']==primary, 'Primary bodies differ from pre-expansion baseline'
+        assert before['primary_main']==primary_main, 'Primary reading content differs from pre-expansion baseline'
     if spec.get('append_only'):
         from companion_languages import route_snapshot
         route_protection=route_snapshot(series)
