@@ -90,6 +90,9 @@ def prepare(series):
             current = ROOT/'data'/series/(slug+'.json')
             original = json.loads(current.read_text()) if current.exists() else {'slug':slug, 'body_zh':legacy_units(primary), 'source_url':re.findall(r'https://self-as-an-end.net/papers/[^"\s<]+',primary)[0]}
             zh = blocks(md(slug,'zh-Hans'))
+            if 'title_zh' in original:
+                assert plain(zh[0].removeprefix('# ')) == plain(original['title_zh']), (series,slug,'Chinese title changed')
+                assert plain(zh[1]) == plain(original['deck_zh']), (series,slug,'Chinese deck changed')
             n = len(original['body_zh'])
             offsets = [i for i in (1,2) if len(zh)>=i+n and [plain(x) for x in zh[i:i+n]] == [plain(x) for x in original['body_zh']]]
             assert len(offsets)==1, ('Chinese snapshot differs from current essay',series,slug)
