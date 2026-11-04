@@ -60,11 +60,40 @@ def load_items():
     return items
 
 
+def published_library_count():
+    """Use the combined eight-language label only after both routes are sealed."""
+    from full_series_languages import profile, require_review_seal
+    for series in ('political-economy', 'political-economy-theory'):
+        base = ROOT / 'data' / series / 'multilingual'
+        receipt_path = base / 'publication.json'
+        if not receipt_path.is_file():
+            return None
+        receipt = json.loads(receipt_path.read_text())
+        if receipt.get('result') != 'passed' or receipt.get('unresolved') != []:
+            return None
+        spec = profile(series)
+        assert spec.get('require_review_seal'), (series, 'Combined count needs a review seal')
+        # A broken published seal is an error, not permission to silently
+        # downgrade an already published count to the legacy three modes.
+        require_review_seal(series, spec)
+    entry = json.loads((DATA / 'multilingual/discovery.json').read_text())
+    return entry['library_count']
+
+
 def library_card(conv):
     def ll(en, zh, tag='span', css=''):
         return loc(en, zh, conv, tag, css).replace('lang-zh', 'lang-zh cl-zh').replace('lang-hant', 'lang-zh cl-hant')
+    counts = published_library_count()
+    if counts is None:
+        count = ll('SAE political economy · Theory & real cases · EN / 简 / 繁', 'SAE 政治经济学 · 理论导读与真实案例 · 英简繁')
+    else:
+        # Match the discovery connector byte for byte, including the supplied
+        # Traditional Chinese label rather than deriving a new count string.
+        count = ''.join('<span class="' + css + '">' + html.escape(counts[code]) + '</span>'
+                        for code, css in (('en', 'lang-en'), ('zh', 'lang-zh cl-zh'),
+                                          ('zh-hant', 'lang-zh cl-hant')))
     return ('<a href="essays/political-economy/index.html" class="series-card"><span class="series-card-count">'
-            + ll('SAE political economy · Theory & real cases · EN / 简 / 繁', 'SAE 政治经济学 · 理论导读与真实案例 · 英简繁')
+            + count
             + '</span><div class="series-card-title-zh cl-zh">钱、权力与我们的路</div><div class="series-card-title-zh cl-hant">錢、權力與我們的路</div><div class="series-card-title-en">Money, Power, and Room to Move</div>'
             + ll(DECK[0], DECK[1], 'p', 'series-card-desc')
             + ll('Choose a reading path →', '选择一条阅读路线 →', 'span', 'series-card-arrow') + '</a>')

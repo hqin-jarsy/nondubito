@@ -29,7 +29,8 @@
   </style>
   <script>
 (function(){
-  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
+  var requested=new URLSearchParams(location.search).get('lang');
+  var saved=requested||localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
   if(['zh','zh-hant','en'].indexOf(saved)===-1) saved='zh';
   document.documentElement.setAttribute('data-lang',saved);
   document.documentElement.lang=saved==='zh-hant'?'zh-Hant':(saved==='en'?'en':'zh-Hans');
@@ -43,7 +44,7 @@
   </script>
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
   <script defer src="zh-hant-data/ep03.js"></script>
-</head>
+<!-- FULL SERIES ALTERNATES START --><link rel="alternate" hreflang="x-default" href="https://nondubito.net/essays/sae-second-critique/ep03.html"><link rel="alternate" hreflang="zh-Hans" href="https://nondubito.net/essays/sae-second-critique/ep03.html"><link rel="alternate" hreflang="de" href="https://nondubito.net/essays/sae-second-critique/de/ep03.html"><link rel="alternate" hreflang="fr" href="https://nondubito.net/essays/sae-second-critique/fr/ep03.html"><link rel="alternate" hreflang="es" href="https://nondubito.net/essays/sae-second-critique/es/ep03.html"><link rel="alternate" hreflang="ja" href="https://nondubito.net/essays/sae-second-critique/ja/ep03.html"><link rel="alternate" hreflang="ko" href="https://nondubito.net/essays/sae-second-critique/ko/ep03.html"><!-- FULL SERIES ALTERNATES END --><script defer src="../../language-select.js?v=20261103"></script><style id="full-series-language-layout">body .lang-toggle.lang-select-menu{display:inline-flex;width:max-content;max-width:100%;}</style><script id="full-series-language-state">document.addEventListener('change',function(event){var select=event.target;if(!select.matches('.lang-select'))return;var option=select.options[select.selectedIndex];var language=option&&option.dataset.inlineLanguage;if(!language)return;var url=new URL(location.href);url.searchParams.set('lang',language);history.replaceState(null,'',url);localStorage.setItem('nondubito-lang',language);});</script></head>
 <body>
   <header>
     <div class="header-inner">
@@ -73,7 +74,7 @@
       <span aria-current="page">03 / 12</span>
     </nav>
     <header class="essay-header">
-      <div class="lang-toggle"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button></div>
+      <div class="lang-toggle"><button class="lang-btn" data-lang="en">EN</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh">中文</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="zh-hant">繁體</button><!-- FULL SERIES LANGUAGE LINKS START --><span class="lang-sep">|</span><a class="lang-btn" href="de/ep03.html" lang="de">Deutsch</a><span class="lang-sep">|</span><a class="lang-btn" href="fr/ep03.html" lang="fr">Français</a><span class="lang-sep">|</span><a class="lang-btn" href="es/ep03.html" lang="es">Español</a><span class="lang-sep">|</span><a class="lang-btn" href="ja/ep03.html" lang="ja">日本語</a><span class="lang-sep">|</span><a class="lang-btn" href="ko/ep03.html" lang="ko">한국어</a><!-- FULL SERIES LANGUAGE LINKS END --></div>
       <a href="index.html" class="back-link lang-zh">← SAE第二批判</a><a href="index.html" class="back-link lang-en">← The SAE Second Critique</a>
       <div class="essay-titles">
         <div class="essay-series lang-zh">SAE 基础文本 · 第二批判</div><div class="essay-series lang-en">SAE Foundational Text · The Second Critique</div>

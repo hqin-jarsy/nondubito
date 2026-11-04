@@ -1,0 +1,75 @@
+{
+  "reviewer": "Independent DE/FR writing agent, read-only implementation reviewer",
+  "date": "2026-11-04",
+  "comparison_base": "4e74139",
+  "scope": [
+    "Complete new scripts/published_html_source.py and scripts/test_published_html_source.py.",
+    "Changes to scripts/full_series_languages.py and scripts/prepare_original_series_review.py against comparison base, with relevant source/loader/seal/primary-upgrade/renderer context read.",
+    "Complete new scripts/test_second_critique_languages.py, including the corrected Article-only citation assertion and subsequent Hant-baseline fix.",
+    "New profile, original primary baseline shape and hashes, and index-context source compared to direct extraction."
+  ],
+  "findings": [
+    {
+      "topic": "One canonical prose source",
+      "result": "The adapter reads current original HTML directly. It creates no parallel canonical article JSON. Direct Chinese p/h2 children, inline strong/em and whitespace-normalized textual equality are checked. Loose text or unknown blocks fail closed. The memoization key contains actual article and index text and results are deep-copied."
+    },
+    {
+      "topic": "Source fingerprint and primary reading protection",
+      "result": "source_digest hashes the normalized source bundle, which also contains complete article-main and index-main SHA256 values. Those main hashes include original Chinese and English reading content, source/related passages and index prose, excluding the permitted legacy language-toggle div. The existing primary body hashes remain separately checked. Four source tests actually passed, including English-only and index mutation detection and permitted-controller idempotence."
+    },
+    {
+      "topic": "Traditional Chinese dictionaries",
+      "initial_issue": "At first sealing, protected_files was captured from current files without comparison to the pre-expansion baseline's hant_dictionaries. Existing source tests detected drift, but prepare itself could otherwise adopt pre-seal drift into its new preservation record.",
+      "resolution": "Lead editor added per-file baseline comparisons in prepare and baseline/preservation/current-byte assertions plus a mutation regression in the final test. The reviewer read this saved change and confirmed the check occurs before first preservation capture. No production code was edited by the reviewer.",
+      "current_evidence": "The baseline contains 13 Hant dictionaries. The four read-only source tests passed again after the fix."
+    },
+    {
+      "topic": "Navigation and metadata",
+      "result": "All 15 native foundations/first-critique/action reader-route targets were actually checked to exist. Profile entry slugs are ep01/ep05/ep11; rendering places their labeled navigation before the twelve-card grid. The three saved source index-context units equal direct index extraction. Final DOM tests check native related routes, all cards, entries, complete source/DOI notes, canonical/hreflang, eight language choices, one analytics beacon and local targets. CollectionPage hasPart versus Article citation handling is correct in the current test. Existing 13 primary pages were actually checked to have unique IDs."
+    },
+    {
+      "topic": "Previously published output regression",
+      "result": "Actual read-only render results for every previously sealed profile were compared byte-for-byte to the current saved HTML. All 630 pages from 17 existing collections matched; no generators or page writes were executed. New rendering behavior is profile-opt-in."
+    }
+  ],
+  "executed_checks": [
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_published_html_source.py -v",
+      "runs": 2,
+      "result": "Both runs passed all four tests, including the run after the Hant first-seal correction."
+    },
+    {
+      "command_description": "Read all existing */multilingual/profile.json having publication.json; call render(id) in memory and compare every returned path with saved text.",
+      "collections": {
+        "accountability": 20,
+        "action": 65,
+        "ai-work": 45,
+        "foundations-companion": 5,
+        "government": 40,
+        "institution": 45,
+        "interstate": 50,
+        "judgment-games": 25,
+        "long-consensus": 30,
+        "love": 45,
+        "marriage": 45,
+        "method-companion": 5,
+        "political-economy": 55,
+        "political-economy-theory": 45,
+        "relation": 45,
+        "state": 45,
+        "state-reversal": 20
+      },
+      "total_pages": 630,
+      "result": "All unchanged; no errors."
+    },
+    {
+      "command_description": "Direct read-only checks of adapter index_context versus saved source context, profile native reader targets and primary-page IDs.",
+      "result": "Three source context units identical; 15 native targets exist; all 13 primary pages have unique IDs."
+    }
+  ],
+  "unexecuted_checks": [
+    "The six complete-edition tests in test_second_critique_languages.py still require genuine completed independent reviews, a real editorial seal, generated native pages and discovery updates. They were read but not represented as passing. No approval or seal was mocked to bypass the gate."
+  ],
+  "remaining": [],
+  "conclusion": "No remaining identified implementation defect after the Hant baseline correction. This is a code/source-preservation audit, not publication approval of unfinished Korean prose or certification of linguistic quality."
+}

@@ -5,6 +5,7 @@ import json
 import re
 import unittest
 import xml.etree.ElementTree as ET
+from unittest.mock import patch
 from html.parser import HTMLParser
 from urllib.parse import unquote,urlsplit
 
@@ -13,6 +14,39 @@ from update_sae_navigation import CARD,library_block,render_library,render_explo
 from build_content_registry import scan_page,parse_library_categories
 from build_search_index import extract_recent_fiction_descriptions
 from web_analytics import TOKEN
+from prepare_action_sources import Document,one
+from full_series_languages import (profile as language_profile, load_language,
+                                   require_review_seal, render as render_languages)
+from connect_full_series_languages import render as render_connections
+from companion_languages import availability
+from build_political_economy import (library_card as political_economy_card,
+                                     published_library_count)
+from publish_companion_languages import render as render_companion_connections
+
+
+ORIGINAL_CARDS = ROOT/'data/language-writing/original-category02-cards.json'
+METHOD_URL = 'essays/method/index.html'
+# The already published 00E companion authorized these two precise availability
+# changes, not arbitrary rewriting of the Methodology description.
+METHOD_AVAILABILITY_EDITS = (
+    ('00E 提供简体中文、英文与繁体中文','00E 同样提供八语全文'),
+    ('Twelve original papers in eight languages, plus the new introduction 00E in Simplified Chinese, English, and Traditional Chinese.',
+     'Twelve original papers and the introduction 00E, all in eight languages.'),
+)
+
+
+def separate_card_count(card):
+    """Remove exactly one complete count element, including its nested spans."""
+    doc=Document(card)
+    anchor=one(doc.root.walk(),lambda n:n.tag=='a','One complete original card')
+    count=one(anchor.walk(),lambda n:n.has('series-card-count'),'One card count')
+    assert count.tag=='span' and count in anchor.children
+    return card[:count.start]+card[count.end:],doc.raw(count)
+
+
+def card_map(source):
+    return {re.search(r'href="([^"]+)"',m[0])[1]:m[0]
+            for m in CARD.finditer(library_block(source)[2])}
 
 
 class Tags(HTMLParser):
@@ -99,10 +133,30 @@ class LanguageWritingPublication(unittest.TestCase):
     def test_card_copy_preserved_and_groups_reproducible(self):
         source=(ROOT/'library.html').read_text()
         _,_,block=library_block(source)
-        cards={re.search(r'href="([^"]+)"',m[0])[1]:m[0] for m in CARD.finditer(block)}
+        cards=card_map(source)
         self.assertGreaterEqual(len(cards),30)
+        fixture=json.loads(ORIGINAL_CARDS.read_text())
+        self.assertEqual(fixture['source_commit'],'dc74a14')
+        self.assertEqual(fixture['source_path'],'library.html')
+        self.assertEqual(fixture['receipt_path'],'data/language-writing/publication.json')
+        self.assertEqual(set(fixture['cards']),set(self.report['navigation']['old_category02_card_sha256']))
         for url,digest in self.report['navigation']['old_category02_card_sha256'].items():
-            self.assertEqual(hashlib.sha256(cards[url].encode()).hexdigest(),digest,url)
+            original=fixture['cards'][url]
+            # Never replace the old receipt with today's card hash. The full
+            # recovered evidence must still match that immutable receipt.
+            self.assertEqual(hashlib.sha256(original.encode()).hexdigest(),digest,url)
+            expected,_=separate_card_count(original)
+            if url==METHOD_URL:
+                before=expected
+                for old,new in METHOD_AVAILABILITY_EDITS:
+                    self.assertEqual(expected.count(old),1)
+                    expected=expected.replace(old,new)
+                self.assertEqual(availability(before),expected)
+            actual,_=separate_card_count(cards[url])
+            # This compares every remaining byte: titles, descriptions, hrefs,
+            # classes and whitespace. Only the count and the two explicit 00E
+            # availability sentences above are allowed to differ.
+            self.assertEqual(actual,expected,url)
         self.assertEqual(len(self.groups),6)
         self.assertEqual(block.count('class="sae-library-group"'),6)
         categories=parse_library_categories(ROOT/'library.html')
@@ -114,6 +168,109 @@ class LanguageWritingPublication(unittest.TestCase):
             explore=(ROOT/'explore.html').read_text()
             self.assertEqual(render_explore(explore,self.groups,conv),explore)
         finally:conv.close()
+
+    def test_current_card_counts_require_real_published_editions(self):
+        source=(ROOT/'library.html').read_text()
+        cards=card_map(source)
+        fixture=json.loads(ORIGINAL_CARDS.read_text())['cards']
+        authorized={}
+        for path in sorted((ROOT/'data').glob('*/multilingual/profile.json')):
+            base=path.parent
+            # Draft profiles, including an unsealed Second Critique expansion,
+            # do not authorize changing the preserved three-language count.
+            if not (base/'publication.json').is_file():continue
+            if not (base/'discovery.json').is_file():continue
+            entry=json.loads((base/'discovery.json').read_text())
+            url=entry.get('library_url',entry['url'])
+            # This regression protects the recovered 29 cards and the one
+            # separately regenerated PE card, not unrelated receipt formats.
+            if url not in fixture and url!='essays/political-economy/index.html':continue
+            series=path.parent.parent.name
+            spec=language_profile(series)
+            receipt=json.loads((base/'publication.json').read_text())
+            self.assertEqual(receipt['result'],'passed',series)
+            self.assertEqual(receipt['unresolved'],[],series)
+            self.assertEqual(set(receipt['languages']),{'de','fr','es','ja','ko'},series)
+            self.assertEqual(receipt['languages'],spec['languages'],series)
+            self.assertEqual(receipt['slugs'],spec['slugs'],series)
+            if 'new_article_editions' in receipt:
+                self.assertEqual(receipt['new_article_editions'],5*len(spec['slugs']),series)
+            else:
+                # These two original package-review receipts predate the
+                # generated edition-count field; do not invent a new receipt.
+                self.assertIn(series,('government','institution'))
+                self.assertEqual(receipt['package_name'],series+'-8-languages.zip')
+                self.assertRegex(receipt['package_sha256'],r'^[0-9a-f]{64}$')
+                self.assertTrue(receipt['received_files'])
+            require_review_seal(series,spec)
+            # A receipt/count string alone is insufficient: the actual sealed
+            # reader editions must still be reproducible and present on disk.
+            for language in spec['languages']:
+                self.assertEqual(hashlib.sha256((base/(language+'.json')).read_bytes()).hexdigest(),
+                                 receipt['language_data_sha256'][language],(series,language))
+                load_language(series,language)
+            for target,text in render_languages(series).items():
+                self.assertEqual(target.read_text(),text,(series,target))
+            connected=card_map(render_connections(series)[ROOT/'library.html'])
+            expected=separate_card_count(connected[url])[1]
+            self.assertEqual(separate_card_count(cards[url])[1],expected,(series,url))
+            authorized.setdefault(url,[]).append(series)
+        self.assertIn('method-companion',authorized.get(METHOD_URL,[]))
+        # The only non-count exception in the preservation test must be backed
+        # by the actual append-only companion, including its old-route checks.
+        self.assertEqual(language_profile('method-companion')['slugs'],['00e'])
+        for target,text in render_companion_connections('method-companion').items():
+            self.assertEqual(target.read_text(),text,('method-companion',target))
+        for url,original in fixture.items():
+            if url not in authorized:
+                self.assertEqual(separate_card_count(cards[url])[1],
+                                 separate_card_count(original)[1],
+                                 (url,'No published profile authorizes a count change'))
+
+    def test_political_economy_builder_preserves_published_count(self):
+        source=(ROOT/'library.html').read_text()
+        url='essays/political-economy/index.html'
+        conv=WritingTraditionalConverter()
+        try:
+            actual=political_economy_card(conv)
+            # Full card equality, not just a count substring, protects the
+            # unchanged title, description, links and surrounding markup.
+            self.assertEqual(actual,card_map(source)[url])
+            connected=card_map(render_connections('political-economy')[ROOT/'library.html'])
+            self.assertEqual(separate_card_count(actual)[1],separate_card_count(connected[url])[1])
+            with patch('build_political_economy.published_library_count',return_value=None):
+                legacy=political_economy_card(conv)
+            self.assertEqual(separate_card_count(legacy)[0],separate_card_count(actual)[0])
+            self.assertIn('Theory &amp; real cases · EN / 简 / 繁',legacy)
+            self.assertNotEqual(separate_card_count(legacy)[1],separate_card_count(actual)[1])
+        finally:conv.close()
+
+    def test_political_economy_count_cannot_bypass_publication(self):
+        # Only negative guards are simulated. The positive path above uses
+        # both real published receipts, real review hashes and saved editions.
+        with patch.object(type(ROOT),'is_file',return_value=False):
+            self.assertIsNone(published_library_count())
+        with patch('build_political_economy.json.loads',
+                   return_value={'result':'pending','unresolved':[]}):
+            self.assertIsNone(published_library_count())
+        with patch('full_series_languages.require_review_seal',
+                   side_effect=AssertionError('review seal mismatch')):
+            with self.assertRaisesRegex(AssertionError,'review seal mismatch'):
+                published_library_count()
+
+    def test_count_exception_does_not_hide_other_card_changes(self):
+        original=json.loads(ORIGINAL_CARDS.read_text())['cards']['essays/sae-foundations/index.html']
+        baseline,count=separate_card_count(original)
+        changed=original.replace(count,'<span class="series-card-count">authorized-count-placeholder</span>',1)
+        self.assertEqual(separate_card_count(changed)[0],baseline)
+        for before,after in (
+            ('href="essays/sae-foundations/index.html"','href="essays/changed/index.html"'),
+            ('class="series-card"','class="series-card changed"'),
+            ('series-card-title-zh','changed-title-class'),
+            ('series-card-desc','changed-description-class'),
+        ):
+            self.assertIn(before,original)
+            self.assertNotEqual(separate_card_count(original.replace(before,after,1))[0],baseline)
 
     def test_six_explore_routes_and_full_hub(self):
         explore=(ROOT/'explore.html').read_text()

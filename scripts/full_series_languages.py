@@ -67,6 +67,11 @@ def source_directory(series, spec=None):
 
 
 def source_file(series, spec, slug):
+    if spec.get('source_adapter')=='published-html':
+        directory=(ROOT/spec['directory']).resolve()
+        path=(directory/(slug+'.html')).resolve()
+        assert directory.is_relative_to((ROOT/'essays').resolve()) and path.parent==directory
+        return path
     extension = spec.get('source_extension', '.json')
     assert extension in ('.json', '.md'), extension
     return source_directory(series, spec)/(slug+extension)
@@ -74,6 +79,9 @@ def source_file(series, spec, slug):
 
 def original_article(series, spec, slug):
     """Read the canonical source directly; Markdown is never a parallel JSON copy."""
+    if spec.get('source_adapter')=='published-html':
+        from published_html_source import load_article
+        return load_article(spec,slug)
     path = source_file(series, spec, slug)
     if path.suffix == '.md':
         assert spec.get('source_adapter') == 'ai-work-markdown'
@@ -92,6 +100,17 @@ def original_article(series, spec, slug):
     if path.exists():
         return json.loads(path.read_text())
     return json.loads((ROOT/'data'/series/'multilingual/source-baseline.json').read_text())[slug]
+
+
+def source_digest(series,spec,slug):
+    if spec.get('source_adapter')=='published-html':
+        # Whole-file bytes contain the very language controls we are adding.
+        # Fingerprint the canonical Chinese reading bundle; raw original EN/ZH
+        # bodies, full main areas and Hant dictionaries are separately protected.
+        content=json.dumps(original_article(series,spec,slug),ensure_ascii=False,sort_keys=True).encode()
+    else:
+        content=source_file(series,spec,slug).read_bytes()
+    return hashlib.sha256(content).hexdigest()
 
 
 def require_review_seal(series,spec):
@@ -118,7 +137,7 @@ def require_review_seal(series,spec):
         actual=hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
         assert digest==actual,(series,name,'protected primary source changed after review')
     for slug in spec['slugs']:
-        actual=hashlib.sha256(source_file(series,spec,slug).read_bytes()).hexdigest()
+        actual=source_digest(series,spec,slug)
         assert preservation['source_data'][slug]==actual,(series,slug,'source changed after review')
 
 
@@ -151,6 +170,9 @@ def load_language(series, language):
             assert isinstance(note, str) and note.strip()
             if spec.get('append_only') or spec.get('preserve_block_types'):
                 assert block_kind(p)==block_kind(q),(language,article['slug'],'changed block type',p[:40])
+            if spec.get('preserve_emphasis'):
+                for tag in ('strong','em'):
+                    assert inline_markdown(p).count('<'+tag+'>')==inline_markdown(q).count('<'+tag+'>'),(language,article['slug'],'changed emphasis count',tag,p[:40])
         article['source_url'] = original.get('source_url', spec['source'])
         if spec.get('optional_pause'):
             assert isinstance(original.get('pause_zh'), str) and original['pause_zh'].strip()
@@ -346,6 +368,11 @@ def related(spec, data):
     for target in spec.get('related_series',[]):
         target_spec,target_data=load_language(target,data['language'])
         links+=f'<a href="{root}{target_spec["directory"]}/{data["language"]}/index.html">{E(target_data["series"]["title"])}</a>'
+    for target in spec.get('reader_routes',[]):
+        path=target['path'].format(language=data['language'])
+        resolved=(ROOT/path).resolve()
+        assert resolved.is_relative_to((ROOT/'essays').resolve()) and resolved.is_file(),path
+        links+=f'<a href="{E(root+path)}">{E(data["ui"][target["label_key"]])}</a>'
     return f'<aside class="lw-related"><h2>{E(data["ui"]["related"])}</h2>{links}</aside>'
 
 
@@ -455,6 +482,11 @@ def render(series):
             grid+='<section class="lw-note"><h2>'+E(SPECIAL_STUDY[language])+'</h2></section><section class="lw-grid">'+''.join(card for slug,card in card_rows if slug in standalone)+'</section>'
         if spec.get('index_groups'):
             grid = grouped_index(spec, data, card_rows)
+        if spec.get('entry_slugs'):
+            entries=spec['entry_slugs']
+            assert len(title['entry_labels'])==len(entries) and set(entries)<=set(spec['slugs'])
+            route_links=' · '.join('<a href="'+E(slug)+'.html">'+E(label)+'</a>' for slug,label in zip(entries,title['entry_labels']))
+            grid='<nav class="lw-note"><h2>'+E(ui['entry_routes'])+'</h2><p>'+route_links+'</p></nav>'+grid
         count = title.get('count_label',collection_count(spec,language,len(data['articles'])))+' · '+' / '.join(LABELS.values())
         context=title.get('index_context',[])
         assert isinstance(context,list) and all(isinstance(p,str) and p.strip() for p in context)

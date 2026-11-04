@@ -7,7 +7,7 @@ import re
 import subprocess
 
 from full_series_languages import (ROOT, load_language, profile, primary_bodies,
-                                   source_file, original_article)
+                                   source_digest, original_article)
 
 
 def primary_main_hashes(spec):
@@ -90,8 +90,7 @@ def prepare(series):
     primary={}
     counts=[]
     for slug in spec['slugs']:
-        path=source_file(series,spec,slug)
-        sources[slug]=hashlib.sha256(path.read_bytes()).hexdigest()
+        sources[slug]=source_digest(series,spec,slug)
         counts.append(len(original_article(series,spec,slug)['body_zh']))
         source=(ROOT/spec['directory']/(slug+'.html')).read_text()
         body=primary_bodies(spec,source)
@@ -108,6 +107,8 @@ def prepare(series):
         assert before['source_data']==sources, 'Primary source differs from pre-expansion baseline'
         assert before['primary_bodies']==primary, 'Primary bodies differ from pre-expansion baseline'
         assert before['primary_main']==primary_main, 'Primary reading content differs from pre-expansion baseline'
+        for name,digest in before.get('hant_dictionaries',{}).items():
+            assert protected_files.get(name)==digest, 'Traditional Chinese dictionary differs from pre-expansion baseline: '+name
     if spec.get('append_only'):
         from companion_languages import route_snapshot
         route_protection=route_snapshot(series)
