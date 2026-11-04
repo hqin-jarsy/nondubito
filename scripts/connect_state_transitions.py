@@ -25,7 +25,15 @@ def render():
         def library_loc(en, zh, tag='span', css=''):
             return loc(en, zh, conv, tag, css).replace('lang-zh', 'lang-zh cl-zh').replace('lang-hant', 'lang-zh cl-hant')
 
-        lib_card = '<a href="essays/state-transitions/index.html" class="series-card"><span class="series-card-count">' + library_loc('Ongoing series · Six essays · EN / 简 / 繁', '持续专题 · 六篇 · 英简繁') + '</span><div class="series-card-title-zh cl-zh">国家的进退：权力、追问与人的位置</div><div class="series-card-title-zh cl-hant">國家的進退：權力、追問與人的位置</div><div class="series-card-title-en">States in Motion: Power, Questioning, and the Place of Persons</div>' + library_loc('Six histories, from India and South Africa to Germany, South Korea, England and Pakistan: voting, rule-making, exclusion and routes to an answer. Linked records, not a ranking of countries.', '从印度、南非到德国、韩国、英格兰与巴基斯坦，六段历史读选票、规则、排除，以及仍能追问的路。附可回查史料，不为国家排名，也不把人的处境平均成一个分数。', 'p', 'series-card-desc') + library_loc('Read the histories →', '进入历史专题 →', 'span', 'series-card-arrow') + '</a>'
+        counts=('Ongoing series · Six essays · EN / 简 / 繁', '持续专题 · 六篇 · 英简繁')
+        multilingual=ROOT/'data/state-transitions/multilingual'
+        if (multilingual/'publication.json').exists():
+            from full_series_languages import profile, require_review_seal
+            require_review_seal('state-transitions',profile('state-transitions'))
+            labels=json.loads((multilingual/'discovery.json').read_text())['library_count']
+            counts=(labels['en'],labels['zh'])
+
+        lib_card = '<a href="essays/state-transitions/index.html" class="series-card"><span class="series-card-count">' + library_loc(*counts) + '</span><div class="series-card-title-zh cl-zh">国家的进退：权力、追问与人的位置</div><div class="series-card-title-zh cl-hant">國家的進退：權力、追問與人的位置</div><div class="series-card-title-en">States in Motion: Power, Questioning, and the Place of Persons</div>' + library_loc('Six histories, from India and South Africa to Germany, South Korea, England and Pakistan: voting, rule-making, exclusion and routes to an answer. Linked records, not a ranking of countries.', '从印度、南非到德国、韩国、英格兰与巴基斯坦，六段历史读选票、规则、排除，以及仍能追问的路。附可回查史料，不为国家排名，也不把人的处境平均成一个分数。', 'p', 'series-card-desc') + library_loc('Read the histories →', '进入历史专题 →', 'span', 'series-card-arrow') + '</a>'
         library = block((ROOT/'library.html').read_text(), 'STATE HISTORIES LIBRARY', lib_card, '    <a href="essays/mingren/index.html" class="series-card series-card-flagship">')
 
         explore_card = '<a class="shelf-link" href="essays/state-transitions/index.html">' + loc('Historical readings · Ongoing', '历史细读 · 持续展开', conv, 'span', 'shelf-label') + loc(*TITLE, conv, 'h3') + loc('Who can question power, and what can a question change?', '谁能追问权力，追问以后又能改变什么？', conv, 'p') + '<span class="shelf-arrow">→</span></a>'

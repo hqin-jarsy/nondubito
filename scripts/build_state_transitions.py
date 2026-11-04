@@ -136,7 +136,12 @@ def render():
     items = load_items()
     conv = HistoryTraditionalConverter()
     try:
-        return {TARGET / 'index.html': landing(items, conv), **{TARGET / (d['slug'] + '.html'): article(d, items, conv) for d in items}}
+        pages = {TARGET / 'index.html': landing(items, conv), **{TARGET / (d['slug'] + '.html'): article(d, items, conv) for d in items}}
+        if (DATA/'multilingual/publication.json').exists():
+            from full_series_languages import profile, require_review_seal, upgrade_primary
+            require_review_seal('state-transitions',profile('state-transitions'))
+            pages={path:upgrade_primary(text,'state-transitions',path.stem) for path,text in pages.items()}
+        return pages
     finally:
         conv.close()
 

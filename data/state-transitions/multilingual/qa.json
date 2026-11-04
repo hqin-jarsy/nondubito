@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-04",
+  "result": "passed",
+  "scope": "Six historical reader essays in five complete new languages;35 new native pages and7 preserved primary pages with reversible language controls.",
+  "editorial": {
+    "actual_complete_non_author_article_readings": 30,
+    "complete_shared_metadata_readings": 5,
+    "accepted_local_corrections": {"de": 3, "fr": 7, "es": 1, "ja": 2, "ko": 3},
+    "complete_saved_field_readbacks": 16,
+    "independent_evidence_audit": "editorial-proof-check.json",
+    "limits": "AI-assisted writing and editorial cross-review, not certification by human native speakers. Alignment and fingerprints record identities and preservation, not literary quality scores."
+  },
+  "preservation": {
+    "baseline": "primary-before-expansion.json",
+    "captured_before_expansion_at_commit": "585bdc5",
+    "canonical_original_json_files": 7,
+    "unchanged_individual_primary_reading_bodies": 18,
+    "unchanged_primary_main_areas": 7,
+    "unchanged_original_structured_data_objects": 7,
+    "whole_primary_pages": "Removing only the two generated language-link blocks and one alternate-link block reproduces each original complete page byte-for-byte. Historical baseline hashes were not replaced.",
+    "per_foreign_edition": {"body_units": 208, "headings": 18, "complete_numbered_sources": 44},
+    "historical_rebaseline": false
+  },
+  "tests": [
+    {"command": "python3 -m unittest discover -s scripts -p 'test_*languages.py'", "tests": 125, "result": "passed", "seconds": 24.356},
+    {"command": "python3 -m unittest discover -s scripts -p 'test_state_transition*.py'", "tests": 22, "result": "passed", "seconds": 0.693, "note": "Six publication tests overlap with the125 language tests; these are not147 distinct tests."},
+    {"command": "python3 scripts/prepare_original_series_review.py state-transitions --check", "result": "passed"},
+    {"command": "python3 scripts/build_state_transitions.py --check", "result": "passed"},
+    {"command": "python3 scripts/connect_state_transitions.py --check", "result": "passed"},
+    {"command": "python3 scripts/build_search_index.py --check", "result": "passed"},
+    {"command": "python3 scripts/build_sitemap.py --check", "result": "passed"}
+  ],
+  "testing_history": "An early overbroad test glob included the unapproved new publication class, which correctly refused to run without a real review seal;119 existing language tests ran then. After all real full readings, genuine approval, build and completed discovery generation,125 language tests passed. The original historical tests initially treated the known menu additions as whole-file mutations, and the old entrance builder reverted the language count. Historical expected hashes are retained; only exactly two generated menu blocks and one alternate block are reversed for the old whole-file checks, alongside additional unchanged raw-body/main/schema/source checks. The production connector now respects a genuine eight-language publication. All22 State tests then passed; no historical rebaseline or positive-test mock approval was used.",
+  "discovery": {
+    "search_records": 13281,
+    "sitemap_canonical_urls": 13265,
+    "new_native_directory_and_article_records": 35,
+    "pre_existing_update_entries_preserved": 227,
+    "connections": "Library, five language channels, Latest ledger and bounded Home; three explicit historical pairs, not a compulsory six-step ladder.",
+    "source_scope": "All44 full source notes per language, precise country and time windows, visible historical limitations and optional EN/Chinese philosophy kept separate from evidence."
+  },
+  "analytics": {"public_pages_checked": 13284, "tracking_errors": 0, "conflict_copies": 0, "limit": "Checks installed tracking markup, not receipt of live telemetry."},
+  "browser": {
+    "method": "Actual local browser interaction and screenshot inspection, not source-only layout assertions.",
+    "desktop": "1280px German directory visually checked; all three paired sections and six country/time labels retained. Participation anchor actually clicked and its final position observed below the fixed header.",
+    "mobile": "390x844 Japanese directory and eight-choice dropdown actually inspected. Menu left83/right318 within390px, scrollWidth375. Final balanced heading style removes an isolated final Japanese character without changing wording. Korean directory and Pakistan essay reached by actual links, no horizontal overflow.",
+    "article": "Korean Pakistan sources actually expanded; all six complete records, evidence limits, optional EN/Chinese philosophy and index-plus-England-only navigation observed. English primary reached through dropdown, then original mobile menu opened and Traditional Chinese selected; original heading/body displayed correctly.",
+    "screenshots": ["/Users/hanqin/Documents/Codex/2026-08-22/qin/state-transitions-de-desktop.png", "/Users/hanqin/Documents/Codex/2026-08-22/qin/state-transitions-ja-mobile.png"],
+    "viewport": "Temporary mobile override reset; fresh later reading confirmed1280px restored."
+  },
+  "deployment": "Local series commit only; author pushes. Explicit stop after this series for progress review and next-step discussion; no next series started."
+}

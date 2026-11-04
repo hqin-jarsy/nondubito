@@ -15,6 +15,24 @@ from test_language_writing import Tags
 from web_analytics import TOKEN
 
 
+def original_publication_bytes(path):
+    """Keep historical whole-file hashes; remove only the reversible menu add-on.
+
+    The original baseline is never replaced with today's hash. Source/main/body
+    preservation and exact upgrade reversibility have additional dedicated tests.
+    """
+    raw=path.read_bytes()
+    if path.suffix!='.html':return raw
+    text=raw.decode('utf-8')
+    for name in ('MIXED SERIES LANGUAGE LINKS','MIXED SERIES ALTERNATES'):
+        start,end=f'<!-- {name} START -->',f'<!-- {name} END -->'
+        if start in text:
+            expected=2 if name=='MIXED SERIES LANGUAGE LINKS' else 1
+            assert text.count(start)==text.count(end)==expected
+            text=re.sub(re.escape(start)+r'.*?'+re.escape(end),'',text,flags=re.S)
+    return text.encode('utf-8')
+
+
 class StateHistories(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -85,7 +103,7 @@ class StateHistories(unittest.TestCase):
         qa = json.loads((ROOT/'reports/state-histories-batch02-20261029.json').read_text())
         self.assertEqual(len(qa['original_sha256']), 4)
         for relative, expected in qa['original_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(), expected, relative)
+            self.assertEqual(hashlib.sha256(original_publication_bytes(ROOT/relative)).hexdigest(), expected, relative)
 
     def test_new_historical_distinctions(self):
         german, korean = self.items[2:4]
@@ -111,7 +129,7 @@ class StateHistories(unittest.TestCase):
         qa = json.loads((ROOT/'reports/state-histories-batch03-20261029.json').read_text())
         self.assertEqual(len(qa['original_sha256']), 8)
         for relative, expected in qa['original_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(), expected, relative)
+            self.assertEqual(hashlib.sha256(original_publication_bytes(ROOT/relative)).hexdigest(), expected, relative)
 
     def test_third_pair_distinctions_and_source_provenance(self):
         england, pakistan = self.items[4:]

@@ -174,6 +174,13 @@ def load_language(series, language):
         validate_index(spec, data)
     if spec.get('visible_notice'):
         assert isinstance(data['series']['notice'],str) and data['series']['notice'].strip()
+    if spec.get('index_subtitle'):
+        assert isinstance(data['series']['subtitle'],str) and data['series']['subtitle'].strip()
+    if spec.get('article_pairs'):
+        pairs=spec['article_pairs']
+        assert set(pairs)==set(spec['slugs'])
+        assert all(a!=b and pairs.get(b)==a for a,b in pairs.items())
+        assert data['ui']['read_alongside'].strip()
     if spec.get('index_context_source'):
         context=json.loads((ROOT/spec['index_context_source']).read_text())['body_zh']
         assert len(data['series']['index_context'])==len(context)
@@ -218,9 +225,13 @@ def load_language(series, language):
                 assert re.findall(r'\[(\d+)\]',p)==re.findall(r'\[(\d+)\]',q), (language,article['slug'],'reference moved or lost')
             assert article['kicker'].strip()
             article['source_url'] = original['sources'][0]['url']
-            article['_temporal_coverage'] = original.get('coverage')
-            for key in ('theory_heading','theory_note'):
-                assert data['ui'][key].strip()
+            article['_temporal_coverage'] = original.get('coverage') or spec.get('coverage_fallback',{}).get(article['slug'])
+            if spec.get('historical_places'):
+                assert isinstance(article.get('place'),str) and article['place'].strip()
+                assert article['_temporal_coverage'],(series,article['slug'],'missing historical window')
+            if spec.get('case_theory_series'):
+                for key in ('theory_heading','theory_note'):
+                    assert data['ui'][key].strip()
             assert data['series']['count_label'].strip()
         if spec.get('theory_companions'):
             assert isinstance(article.get('takeaway'), str) and article['takeaway'].strip()
@@ -502,6 +513,8 @@ def document(spec, data, slug, content, article=None):
             schema['citation'] = [s['url'] for s in article['sources']]
             if article.get('_temporal_coverage'):
                 schema['temporalCoverage'] = article['_temporal_coverage']
+            if spec.get('historical_places'):
+                schema['about']={'@type':'Thing','name':article['place']}
         if spec.get('book_material'):
             schema['citation']=[s['url'] for s in article['sources']]
     else:
@@ -528,10 +541,12 @@ def render(series):
     for language in spec['languages']:
         _, data = load_language(series, language)
         ui, title = data['ui'], data['series']
+        heading_style=' style="text-wrap:balance"' if spec.get('historical_places') else ''
         notice=('<p class="lw-meta" style="max-width:70ch;line-height:1.75">'+E(title['notice'])+'</p>') if spec.get('visible_notice') else ''
         card_rows=[]
         for n,a in enumerate(data['articles']):
-            card=f'<a class="lw-card" href="{a["slug"]}.html"><p class="lw-kicker">{E(a.get("kicker",essay_label(a,n,language)))}</p><h2>{E(a["title"])}</h2><p>{E(a["deck"])}</p><span class="lw-read">{E(ui["read"])} →</span></a>'
+            card_label=a['place'] if spec.get('historical_places') else a.get('kicker',essay_label(a,n,language))
+            card=f'<a class="lw-card" href="{a["slug"]}.html"><p class="lw-kicker">{E(card_label)}</p><h2>{E(a["title"])}</h2><p>{E(a["deck"])}</p><span class="lw-read">{E(ui["read"])} →</span></a>'
             card_rows.append((a['slug'],card))
         standalone=set(spec.get('standalone_slugs',[]))
         grid='<section class="lw-grid">'+''.join(card for slug,card in card_rows if slug not in standalone)+'</section>'
@@ -554,7 +569,8 @@ def render(series):
         assert isinstance(lead_units,int) and 0 <= lead_units <= len(context)
         index_lead='<section class="lw-note">'+render_prose(context[:lead_units])+'</section>' if lead_units else ''
         index_context='<section class="lw-note">'+render_prose(context[lead_units:])+'</section>' if context[lead_units:] else ''
-        content = f'<section class="lw-hero"><p class="lw-kicker">Non Dubito · {E(ui["series"])}</p><h1>{E(title["title"])}</h1><p class="lw-deck">{E(title["deck"])}</p><p class="lw-meta">{E(count)}</p>{notice}</section>'+case_theory_route(spec,data)+f'<aside class="lw-opening"><p>{E(title["intro"])}</p><a href="{data["articles"][0]["slug"]}.html">{E(ui["read"])} →</a></aside>{index_lead}{grid}<section class="lw-note"><p>{E(title["scope"])}</p></section>'+index_context+theory_case_route(spec,data)+sources(spec, data)+related(spec, data)
+        subtitle=('<p class="lw-deck">'+E(title['subtitle'])+'</p>') if spec.get('index_subtitle') else ''
+        content = f'<section class="lw-hero"><p class="lw-kicker">Non Dubito · {E(ui["series"])}</p><h1{heading_style}>{E(title["title"])}</h1>{subtitle}<p class="lw-deck">{E(title["deck"])}</p><p class="lw-meta">{E(count)}</p>{notice}</section>'+case_theory_route(spec,data)+f'<aside class="lw-opening"><p>{E(title["intro"])}</p><a href="{data["articles"][0]["slug"]}.html">{E(ui["read"])} →</a></aside>{index_lead}{grid}<section class="lw-note"><p>{E(title["scope"])}</p></section>'+index_context+theory_case_route(spec,data)+sources(spec, data)+related(spec, data)
         target = ROOT/spec['directory']/language
         if not spec.get('append_only'):
             pages[target/'index.html'] = document(spec, data, 'index', content)
@@ -574,6 +590,10 @@ def render(series):
                 nav.append(f'<a href="{href}"><small>{E(ui[label] if other else ui["contents"])}</small>{E(other["title"] if other else title["title"])}</a>')
             if article['slug'] in standalone:
                 nav=nav[:1]
+            if spec.get('article_pairs'):
+                other=next(a for a in data['articles'] if a['slug']==spec['article_pairs'][article['slug']])
+                nav=[f'<a href="index.html"><small>{E(ui["contents"])}</small>{E(title["title"])}</a>',
+                     f'<a href="{E(other["slug"])}.html"><small>{E(ui["read_alongside"])}</small>{E(other["title"])}</a>']
             label=article.get('kicker',essay_label(article,n,language))
             if spec.get('append_only'):
                 label=SUPPLEMENT[language] if spec['article_label']=='supplement' else spec['article_label']
@@ -585,7 +605,8 @@ def render(series):
                     nav.append(f'<a href="{slug}.html"><small>{E(ui[direction])}</small>{E(heading)}</a>')
                 if len(nav)<2:nav.append(f'<a href="index.html"><small>{E(ui["contents"])}</small>{E(title["title"])}</a>')
             kicker = label if label == ui["series"] or label.startswith(ui["series"]+" · ") else ui["series"]+" · "+label
-            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(kicker)}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p>{notice}</div><div class="essay-body lw-prose" lang="{language}">{body}</div>{optional_book_aside(spec,data,article)}{closing_invitation(spec,data,article)}{theory_companions(spec,data,article)}{case_theory_route(spec,data,article)}{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
+            place=('<p class="lw-meta st-history-place">'+E(article['place'])+'</p>') if spec.get('historical_places') else ''
+            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(kicker)}</p><h1{heading_style}>{E(article["title"])}</h1>{place}{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p>{notice}</div><div class="essay-body lw-prose" lang="{language}">{body}</div>{optional_book_aside(spec,data,article)}{closing_invitation(spec,data,article)}{theory_companions(spec,data,article)}{case_theory_route(spec,data,article)}{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
             pages[target/(article['slug']+'.html')] = document(spec, data, article['slug'], content, article)
     return pages
 
