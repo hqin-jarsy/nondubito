@@ -6,7 +6,8 @@ import json
 import re
 import subprocess
 
-from full_series_languages import ROOT, load_language, profile, primary_bodies, source_directory
+from full_series_languages import (ROOT, load_language, profile, primary_bodies,
+                                   source_file, original_article)
 
 
 def primary_main_hashes(spec):
@@ -89,9 +90,9 @@ def prepare(series):
     primary={}
     counts=[]
     for slug in spec['slugs']:
-        path=source_directory(series,spec)/(slug+'.json')
+        path=source_file(series,spec,slug)
         sources[slug]=hashlib.sha256(path.read_bytes()).hexdigest()
-        counts.append(len(json.loads(path.read_text())['body_zh']))
+        counts.append(len(original_article(series,spec,slug)['body_zh']))
         source=(ROOT/spec['directory']/(slug+'.html')).read_text()
         body=primary_bodies(spec,source)
         assert body, (series,slug)

@@ -66,6 +66,34 @@ def source_directory(series, spec=None):
     return path
 
 
+def source_file(series, spec, slug):
+    extension = spec.get('source_extension', '.json')
+    assert extension in ('.json', '.md'), extension
+    return source_directory(series, spec)/(slug+extension)
+
+
+def original_article(series, spec, slug):
+    """Read the canonical source directly; Markdown is never a parallel JSON copy."""
+    path = source_file(series, spec, slug)
+    if path.suffix == '.md':
+        assert spec.get('source_adapter') == 'ai-work-markdown'
+        from build_ai_work_series import load_article
+        article = load_article(path)
+        assert article['slug'] == slug
+        units = []
+        for block in re.split(r'\n\s*\n', article['zh_body'].strip()):
+            lines = block.strip().splitlines()
+            if lines[0].startswith('- '):
+                assert all(line.startswith('- ') for line in lines)
+                units.extend(lines)
+            else:
+                units.append(' '.join(lines))
+        return {'body_zh': units, 'source_url': spec['source']}
+    if path.exists():
+        return json.loads(path.read_text())
+    return json.loads((ROOT/'data'/series/'multilingual/source-baseline.json').read_text())[slug]
+
+
 def require_review_seal(series,spec):
     """A structural match is not editorial approval; require the frozen review."""
     if not spec.get('require_review_seal'):return
@@ -90,7 +118,7 @@ def require_review_seal(series,spec):
         actual=hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
         assert digest==actual,(series,name,'protected primary source changed after review')
     for slug in spec['slugs']:
-        actual=hashlib.sha256((source_directory(series,spec)/(slug+'.json')).read_bytes()).hexdigest()
+        actual=hashlib.sha256(source_file(series,spec,slug).read_bytes()).hexdigest()
         assert preservation['source_data'][slug]==actual,(series,slug,'source changed after review')
 
 
@@ -113,8 +141,7 @@ def load_language(series, language):
             assert block_kind(p)==block_kind(q)
             assert isinstance(note,str) and note.strip()
     for article in data['articles']:
-        source_path = source_directory(series,spec)/(article['slug']+'.json')
-        original = json.loads(source_path.read_text()) if source_path.exists() else json.loads((ROOT/'data'/series/'multilingual/source-baseline.json').read_text())[article['slug']]
+        original = original_article(series,spec,article['slug'])
         source = original['body_zh']
         assert len(article['body']) == len(source), (language, article['slug'], 'missing argument units')
         assert len(article['coverage']) == len(source)
@@ -152,7 +179,9 @@ def load_language(series, language):
 
 
 def block_kind(text):
+    if text.startswith('### '):return 'subheading'
     if text.startswith('## '):return 'heading'
+    if text.startswith('- '):return 'unordered-item'
     if text.startswith('> '):return 'quote'
     match=re.match(r'([1-9])\. ',text)
     if match:return 'item:'+match[1]
@@ -164,6 +193,7 @@ def block_kind(text):
 def render_prose(units, citations=None, source_label=''):
     blocks=[]
     items=[]
+    list_tag='ol'
     def inline(text):
         result=inline_markdown(text)
         if citations:
@@ -171,12 +201,18 @@ def render_prose(units, citations=None, source_label=''):
         return result
     def flush():
         if items:
-            blocks.append('<ol>'+''.join('<li>'+inline(x)+'</li>' for x in items)+'</ol>')
+            blocks.append('<'+list_tag+'>'+''.join('<li>'+inline(x)+'</li>' for x in items)+'</'+list_tag+'>')
             items.clear()
     for text in units:
-        if re.match(r'^[1-9]\. ',text):items.append(text[3:]);continue
+        kind='ul' if text.startswith('- ') else 'ol' if re.match(r'^[1-9]\. ',text) else None
+        if kind:
+            if kind != list_tag:flush()
+            list_tag=kind
+            items.append(text[2:] if kind=='ul' else text[3:])
+            continue
         flush()
-        if text.startswith('## '):blocks.append('<h2>'+inline(text[3:])+'</h2>')
+        if text.startswith('### '):blocks.append('<h3>'+inline(text[4:])+'</h3>')
+        elif text.startswith('## '):blocks.append('<h2>'+inline(text[3:])+'</h2>')
         elif text.startswith('> '):blocks.append('<blockquote>'+inline(text[2:])+'</blockquote>')
         else:blocks.append('<p>'+inline(text)+'</p>')
     flush()
@@ -184,6 +220,8 @@ def render_prose(units, citations=None, source_label=''):
 
 
 def primary_bodies(spec,text):
+    if spec.get('primary_format')=='article-bodies':
+        return ''.join(re.findall(r'<article\b(?=[^>]*class="[^"]*\bessay-body\b)[^>]*>.*?</article>',text,re.S))
     if spec.get('primary_format')=='foundations-bridge':
         return ''.join(re.findall(r'<article class="bridge-body[^>]*>.*?</article>',text,re.S))
     return ''.join(re.findall(r'<div class="essay-body[^>]*>.*?</div>',text,re.S))
@@ -229,6 +267,14 @@ def upgrade_mixed_modern_primary(text,spec,slug):
     assert n==2,(spec['id'],slug,'desktop and drawer language controls required')
     a,b='<!-- MIXED SERIES ALTERNATES START -->','<!-- MIXED SERIES ALTERNATES END -->'
     text=re.sub(re.escape(a)+r'.*?'+re.escape(b),'',text,flags=re.S)
+    if spec.get('replace_primary_alternates'):
+        old=re.findall(r'<link\b[^>]*rel="alternate"[^>]*>',text)
+        if old:
+            suffix='' if slug=='index' else slug+'.html'
+            actual=[(re.search(r'hreflang="([^"]+)"',tag)[1],re.search(r'href="([^"]+)"',tag)[1]) for tag in old]
+            expected=[(code,origin(spec)+suffix) for code in spec['replace_primary_alternates']]
+            assert sorted(actual)==sorted(expected),(spec['id'],slug,'unexpected primary alternates')
+            for tag in old:text=text.replace(tag,'',1)
     assert not re.search(r'<link[^>]*rel="alternate"',text)
     return text.replace('</head>',a+alternatives(spec,slug)+b+'</head>',1)
 
@@ -412,8 +458,11 @@ def render(series):
         count = title.get('count_label',collection_count(spec,language,len(data['articles'])))+' · '+' / '.join(LABELS.values())
         context=title.get('index_context',[])
         assert isinstance(context,list) and all(isinstance(p,str) and p.strip() for p in context)
-        index_context='<section class="lw-note">'+render_prose(context)+'</section>' if context else ''
-        content = f'<section class="lw-hero"><p class="lw-kicker">Non Dubito · {E(ui["series"])}</p><h1>{E(title["title"])}</h1><p class="lw-deck">{E(title["deck"])}</p><p class="lw-meta">{E(count)}</p>{notice}</section>'+case_theory_route(spec,data)+f'<aside class="lw-opening"><p>{E(title["intro"])}</p><a href="{data["articles"][0]["slug"]}.html">{E(ui["read"])} →</a></aside>{grid}<section class="lw-note"><p>{E(title["scope"])}</p></section>'+index_context+theory_case_route(spec,data)+sources(spec, data)+related(spec, data)
+        lead_units=spec.get('index_context_lead_units',0)
+        assert isinstance(lead_units,int) and 0 <= lead_units <= len(context)
+        index_lead='<section class="lw-note">'+render_prose(context[:lead_units])+'</section>' if lead_units else ''
+        index_context='<section class="lw-note">'+render_prose(context[lead_units:])+'</section>' if context[lead_units:] else ''
+        content = f'<section class="lw-hero"><p class="lw-kicker">Non Dubito · {E(ui["series"])}</p><h1>{E(title["title"])}</h1><p class="lw-deck">{E(title["deck"])}</p><p class="lw-meta">{E(count)}</p>{notice}</section>'+case_theory_route(spec,data)+f'<aside class="lw-opening"><p>{E(title["intro"])}</p><a href="{data["articles"][0]["slug"]}.html">{E(ui["read"])} →</a></aside>{index_lead}{grid}<section class="lw-note"><p>{E(title["scope"])}</p></section>'+index_context+theory_case_route(spec,data)+sources(spec, data)+related(spec, data)
         target = ROOT/spec['directory']/language
         if not spec.get('append_only'):
             pages[target/'index.html'] = document(spec, data, 'index', content)

@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-04",
+  "reviewer": "accountability_ja_ko, independent read-only integration-code review",
+  "scope": "Markdown runtime adapter, unordered lists and subheadings, exact recognition of existing primary alternates, complete article-body protection, primary-builder reproducibility, flagship discovery matching and new regressions. Not a substitute for independent foreign-prose reading.",
+  "finding": "One deterministic test defect found and corrected by the lead; no other substantiated functional, content-loss, review-gate or old-output regression found.",
+  "resolved": [
+    {
+      "file": "scripts/test_ai_work_languages.py",
+      "issue": "The new test incorrectly demanded Article citation from native CollectionPage indexes.",
+      "correction": "Indexes now require CollectionPage, eight correctly ordered hasPart routes and the visible shared source link; only articles require citation.",
+      "verified": "Reviewer reread the saved conditional branches after correction."
+    }
+  ],
+  "actual_checks": [
+    "All 209 normalized Markdown Chinese units compared with the published Chinese HTML; all match.",
+    "All 24 original reading bodies and nine complete main-area hashes match the pre-expansion snapshot.",
+    "Nine primary-page alternate normalizations, byte-idempotent repeats and unknown-hreflang negative controls passed.",
+    "Old and new prose renderers compared across all 515 previously completed foreign essays; zero output differences. Mixed unordered/ordered lists and subheadings passed focused checks.",
+    "27 previous regressions passed: companion six, clustered-index four, political-economy theory eight and judgment-games nine.",
+    "Library flagship count regex matches exactly one intended card and preserves the title boundary."
+  ],
+  "reviewed_code_sha256": {
+    "scripts/full_series_languages.py": "2f9bfbeefd00e9ebef3e3afa759b4d39fe442dec70b9fbfefe1dc0a1783e165d",
+    "scripts/prepare_original_series_review.py": "4646695d49ba3e2ac5c97bfe4810d9fc03fa3105e6b50122a17d4ad80022ec39",
+    "scripts/build_ai_work_series.py": "8e50686043bf783c2e118ecae18c39cce065af23c2cb2e3b13494e3f00e1cfb9",
+    "scripts/connect_full_series_languages.py": "16af24d8206ec81afc7595672cac74df50fc2e99cfb48cf5330d033de0e7df2d",
+    "scripts/test_ai_work_languages.py": "ee8fd9f8adc06f64f4ffe2757ab8b871e9db50298552230f0b2b673882f64dd9"
+  },
+  "limits": [
+    "Read-only code review; final AI-work publication tests await the genuine complete prose-review seal. No approval or seal was mocked."
+  ],
+  "remaining": []
+}

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import ctypes
 import html
 import json
@@ -220,22 +221,36 @@ def render_article(article: dict, index: int, articles: list[dict], converter: T
     return f'''<!DOCTYPE html><html lang="en" data-lang="en" data-editions="en zh zh-hant">{head(article['en_title'] + ' · ' + zh_title, article['en_deck'], filename, 'Article')}<body class="site-shell-page explicit-hant">{shell_header()}<main class="article-wrap"><nav class="reading-breadcrumbs"><a href="index.html">{tri('Working with AI','与AI共事','與AI共事')}</a><span>/</span><span>{index:02d} / {len(articles):02d}</span></nav><section class="aiw-article-hero"><p class="eyebrow">{tri('Working with AI · Reader essay','与AI共事 · 读者散文','與AI共事 · 讀者散文')}</p>{tri(esc(article['en_title']), esc(zh_title), esc(hant_title), 'h1', 'cjk-switch')}{tri(esc(article['en_deck']), esc(zh_deck), esc(hant_deck), 'p', 'article-deck cjk-switch')}<p class="article-meta">Han Qin (秦汉) · 10 Sep 2026 · {index:02d} / 08</p></section><article class="essay-body lang-en">{en_body}</article><article class="essay-body cjk lang-zh">{zh_body}</article><article class="essay-body cjk tc lang-hant">{hant_body}</article><aside class="source-note">{tri('This reader essay is an independent public-facing application of the Self-as-an-End framework.','本文是自我目的论框架面向普通读者的一次独立应用。','本文是自我目的論框架面向普通讀者的一次獨立應用。')} <a href="https://self-as-an-end.net/papers/sae-methodology-8.html">Human–AI Collaboration ↗</a></aside><nav class="article-nav">{prev_link}<a href="index.html">{tri('All eight essays','全部八篇','全部八篇')}</a>{next_link}</nav></main>{footer()}</body></html>'''
 
 
-def main() -> None:
+def render() -> dict[Path, str]:
     articles = [load_article(path) for path in sorted(SOURCE.glob("*.md"))]
     if len(articles) != 8:
         raise ValueError(f"Expected 8 source essays, found {len(articles)}")
     converter = TraditionalConverter()
     try:
-        TARGET.mkdir(parents=True, exist_ok=True)
-        (TARGET / "series.css").write_text(CSS.strip() + "\n", encoding="utf-8")
-        (TARGET / "index.html").write_text(render_index(articles, converter), encoding="utf-8")
+        pages = {TARGET / "series.css": CSS.strip() + "\n",
+                 TARGET / "index.html": render_index(articles, converter)}
         for index, article in enumerate(articles, 1):
-            (TARGET / f"{article['slug']}.html").write_text(
-                render_article(article, index, articles, converter), encoding="utf-8"
-            )
+            pages[TARGET / f"{article['slug']}.html"] = render_article(article, index, articles, converter)
     finally:
         converter.close()
-    print(f"Built {len(articles)} essays in {TARGET.relative_to(ROOT)}")
+    if (SOURCE / 'multilingual/profile.json').exists():
+        from full_series_languages import upgrade_primary
+        pages = {path: upgrade_primary(text, 'ai-work', path.stem)
+                 if path.suffix == '.html' else text for path, text in pages.items()}
+    return pages
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true')
+    args = parser.parse_args()
+    for path, text in render().items():
+        if args.check:
+            assert path.read_text() == text, path
+        else:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding='utf-8')
+    print('AI-work primary pages '+('checked' if args.check else 'built'))
 
 
 CSS = r'''
