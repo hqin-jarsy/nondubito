@@ -10,7 +10,7 @@ from full_series_languages import ROOT, load_language, profile, render
 from prepare_reviewed_series_package import plain
 from web_analytics import TOKEN
 
-SERIES = ('marriage',)
+SERIES = ('marriage','institution')
 
 
 class ReviewedSeriesLanguages(unittest.TestCase):

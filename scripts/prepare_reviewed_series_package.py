@@ -22,6 +22,22 @@ UI_SERIES = {
 }
 CONTENTS = {'de':'Alle Essays', 'fr':'Tous les essais', 'es':'Todos los ensayos', 'ja':'全篇の目次', 'ko':'전체 글'}
 PAPER = {'de':'Originalabhandlung', 'fr':'Texte théorique d’origine', 'es':'Artículo teórico de origen', 'ja':'原論文', 'ko':'원 논문'}
+INDEX_DECKS = {
+    'institution': {
+        'de':'Eine Papierfabrik, ein Fluss und die Frage, was Institutionen für Menschen leisten sollen.',
+        'fr':'Une papeterie, une rivière, et la question de ce que les institutions doivent faire pour les personnes.',
+        'es':'Una papelera, un río y la pregunta por lo que las instituciones deben hacer por las personas.',
+        'ja':'製紙工場と一本の川から、制度は人のために何をなすべきかを考える。',
+        'ko':'제지공장과 강을 통해, 제도는 사람을 위해 무엇을 해야 하는지 묻는다.',
+    },
+    'government': {
+        'de':'Sieben Essays darüber, was Regierungen schützen sollen und was sie nicht an unserer Stelle entscheiden können.',
+        'fr':'Sept essais sur ce qu’un gouvernement doit protéger et ce qu’il ne peut décider à notre place.',
+        'es':'Siete ensayos sobre lo que un gobierno debe proteger y lo que no puede decidir en nuestro lugar.',
+        'ja':'政府は何を守るべきで、どこから先を人に委ねるべきなのか。七篇で考える。',
+        'ko':'정부는 무엇을 보호해야 하며 무엇을 우리 대신 정할 수 없는가. 일곱 편의 글로 묻는다.',
+    },
+}
 STATUS = {
     'de':'Diese Fassung wurde mit KI-Unterstützung aus dem chinesischen Text erarbeitet und für diese Veröffentlichung redaktionell korrigiert. Eine Prüfung durch einen menschlichen Muttersprachler wird nicht behauptet.',
     'fr':'Cette version a été élaborée avec l’aide de l’IA à partir du texte chinois, puis corrigée pour cette publication. Aucune révision par une personne de langue maternelle n’est revendiquée.',
@@ -111,7 +127,7 @@ def prepare(series):
                         continue
                     if 'https://self-as-an-end.net/' in paragraph and len(paragraph)<140:
                         continue
-                    if re.search(r'未经|未获|尚未|nicht.*freigegeben|pas.*approuv|aprobada por el autor|承認.*受けて|승인.*않|No es una versión aprobada|未取得|Nicht vom Autor',paragraph,re.I):
+                    if re.search(r'未经|未获|尚未|nicht.*freigegeben|pas.*approuv|aprobada por el autor|承認.*受けて|著者の承認版|公式サイトの公開版ではありません|승인.*않|No es una versión aprobada|未取得|Nicht vom Autor',paragraph,re.I):
                         tail.append(STATUS[code])
                     else:
                         tail.append(paragraph)
@@ -122,11 +138,13 @@ def prepare(series):
                 articles.append({'slug':slug,'title':parts[0].removeprefix('# '),'deck':deck,'body':body,
                                  'source_note':'\n\n'.join(tail),'source_url':original['source_url'],
                                  'coverage':[f'{i:02}: '+p[:80] for i,p in enumerate(original['body_zh'])]})
+                if offset==1:
+                    articles[-1]['show_deck']=False
             ui = json.loads((ROOT/'data/accountability/multilingual'/f'{code}.json').read_text())['ui'].copy()
             ui.update(series=UI_SERIES[series][code],contents=CONTENTS[code],paper=PAPER[code])
             first = articles[0]
             series_title = first['title'] if series=='marriage' else UI_SERIES[series][code]
-            data = {'language':code,'series':{'title':series_title,'deck':first['deck'],'intro':next(p for p in first['body'] if not p.startswith('## ')),'scope':first['body'][-2],'source_note':first['source_note']},'ui':ui,'articles':articles,
+            data = {'language':code,'series':{'title':series_title,'deck':INDEX_DECKS.get(series,{}).get(code,first['deck']),'intro':next(p for p in first['body'] if not p.startswith('## ')),'scope':first['body'][-2],'source_note':first['source_note']},'ui':ui,'articles':articles,
                     'review':{'source':'Author-supplied foreign manuscript, checked against current Chinese essays.','issues_checked':['Complete per-essay reading','Chinese snapshot matches current source','Exact counted editorial corrections'], 'unresolved':[]}}
             outputs[base/(code+'.json')] = json.dumps(data,ensure_ascii=False,indent=2)+'\n'
     outputs[base/'source-baseline.json'] = json.dumps(sources,ensure_ascii=False,indent=2)+'\n'

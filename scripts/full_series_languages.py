@@ -88,7 +88,9 @@ def upgrade_legacy_primary(text,spec,slug):
     text=re.sub(re.escape(alt_start)+r'.*?'+re.escape(alt_end),'',text,flags=re.S)
     script='<script defer src="../../language-select.js?v=20261103"></script>'
     text=text.replace(script,'')
-    return text.replace('</head>',alt_start+alternatives(spec,slug)+alt_end+script+'</head>',1)
+    text=re.sub(r'<style id="full-series-language-layout">.*?</style>','',text,flags=re.S)
+    layout='<style id="full-series-language-layout">body .lang-toggle.lang-select-menu{display:inline-flex;width:max-content;max-width:100%;}</style>'
+    return text.replace('</head>',alt_start+alternatives(spec,slug)+alt_end+script+layout+'</head>',1)
 
 
 def language_links(spec, slug, language):
@@ -166,13 +168,14 @@ def render(series):
         pages[target/'index.html'] = document(spec, data, 'index', content)
         for n, article in enumerate(data['articles']):
             body = '\n'.join('<h2>'+inline_markdown(p[3:])+'</h2>' if p.startswith('## ') else '<p>'+inline_markdown(p)+'</p>' for p in article['body'])
+            deck = '<p class="lw-deck">'+E(article['deck'])+'</p>' if article.get('show_deck',True) else ''
             nav = []
             for offset, label in ((-1, 'previous'), (1, 'next')):
                 k = n + offset
                 other = data['articles'][k] if 0 <= k < len(data['articles']) else None
                 href = other['slug']+'.html' if other else 'index.html'
                 nav.append(f'<a href="{href}"><small>{E(ui[label] if other else ui["contents"])}</small>{E(other["title"] if other else title["title"])}</a>')
-            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(ui["series"])} · {n+1:02}</p><h1>{E(article["title"])}</h1><p class="lw-deck">{E(article["deck"])}</p><p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p></div><div class="essay-body lw-prose" lang="{language}">{body}</div>{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
+            content = f'<nav class="lw-crumb"><a href="index.html">← {E(title["title"])}</a></nav><article class="lw-article"><div class="lw-head"><p class="lw-kicker">{E(ui["series"])} · {n+1:02}</p><h1>{E(article["title"])}</h1>{deck}<p class="lw-meta">Han Qin · <time datetime="{spec["date"]}">{spec["date"]}</time></p></div><div class="essay-body lw-prose" lang="{language}">{body}</div>{sources(spec,data,article)}<nav class="lw-series-nav">'+''.join(nav)+'</nav>'+related(spec,data)+'</article>'
             pages[target/(article['slug']+'.html')] = document(spec, data, article['slug'], content, article)
     return pages
 

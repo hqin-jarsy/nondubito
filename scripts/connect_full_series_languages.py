@@ -57,7 +57,7 @@ def render(series):
         pages[path] = block(source,'FULL SERIES '+series.upper()+' CHANNEL',card,anchor)
     path = ROOT/'library.html'
     source = path.read_text()
-    pattern = r'(<a href="'+re.escape(entry['url'])+r'" class="series-card"><span class="series-card-count">).*?(</span><div class="series-card-title-zh)'
+    pattern = r'(<a href="'+re.escape(entry['url'])+r'" class="series-card">\s*<span class="series-card-count">).*?(</span>\s*<div class="series-card-title-zh)'
     def count(match):
         values = entry['library_count']
         labels = ''.join(f'<span class="lang-{suffix}{" cl-"+suffix if suffix in ("zh","hant") else ""}">{html.escape(values[code])}</span>' for code,suffix in [('en','en'),('zh','zh'),('zh-hant','hant')])
