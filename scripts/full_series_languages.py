@@ -32,7 +32,8 @@ def load_language(series, language):
     assert [a['slug'] for a in data['articles']] == spec['slugs']
     assert data['review']['unresolved'] == [], (series, language, 'unresolved editorial issues')
     for article in data['articles']:
-        original = json.loads((ROOT/'data'/series/(article['slug']+'.json')).read_text())
+        source_path = ROOT/'data'/series/(article['slug']+'.json')
+        original = json.loads(source_path.read_text()) if source_path.exists() else json.loads((ROOT/'data'/series/'multilingual/source-baseline.json').read_text())[article['slug']]
         source = original['body_zh']
         assert len(article['body']) == len(source), (language, article['slug'], 'missing argument units')
         assert len(article['coverage']) == len(source)
@@ -58,6 +59,8 @@ def alternatives(spec, slug):
 
 def upgrade_primary(text, series, slug):
     spec = profile(series)
+    if spec.get('source_format') == 'legacy-html':
+        return upgrade_legacy_primary(text,spec,slug)
     links = ''.join(f'<a href="{code}/{slug}.html" lang="{code}">{LABELS[code]}</a>' for code in spec['languages'])
     for label in ('繁體中文', '繁體'):
         anchor = f'<button type="button" data-set-language="zh-hant">{label}</button>'
@@ -66,6 +69,26 @@ def upgrade_primary(text, series, slug):
         text = text.replace(anchor, anchor+links)
     assert not re.search(r'<link[^>]*rel="alternate"', text)
     return text.replace('</head>', alternatives(spec, slug)+'</head>', 1)
+
+
+def upgrade_legacy_primary(text,spec,slug):
+    """Keep legacy English/Chinese bodies and Hant dictionaries byte-for-byte."""
+    start,end='<!-- FULL SERIES LANGUAGE LINKS START -->','<!-- FULL SERIES LANGUAGE LINKS END -->'
+    text=re.sub(re.escape(start)+r'.*?'+re.escape(end),'',text,flags=re.S)
+    links=''.join(f'<span class="lang-sep">|</span><a class="lang-btn" href="{code}/{slug}.html" lang="{code}">{LABELS[code]}</a>' for code in spec['languages'])
+    pattern=r'(<div class="lang-toggle"[^>]*>)(.*?)(</div>)'
+    text,n=re.subn(pattern,lambda m:m[1]+m[2]+start+links+end+m[3],text,count=1,flags=re.S)
+    assert n==1, (spec['id'],slug,'missing legacy language toggle')
+    # Respect explicit same-article links before the saved three-language mode.
+    old="var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';"
+    new="var requested=new URLSearchParams(location.search).get('lang');\n  var saved=requested||localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';"
+    if old in text:text=text.replace(old,new,1)
+    assert new in text, (spec['id'],slug,'unknown primary language controller')
+    alt_start,alt_end='<!-- FULL SERIES ALTERNATES START -->','<!-- FULL SERIES ALTERNATES END -->'
+    text=re.sub(re.escape(alt_start)+r'.*?'+re.escape(alt_end),'',text,flags=re.S)
+    script='<script defer src="../../language-select.js?v=20261103"></script>'
+    text=text.replace(script,'')
+    return text.replace('</head>',alt_start+alternatives(spec,slug)+alt_end+script+'</head>',1)
 
 
 def language_links(spec, slug, language):
@@ -87,7 +110,18 @@ def header(spec, data, slug):
 def sources(spec, data, article=None):
     ui = data['ui']
     url = article['source_url'] if article else spec['source']
-    return f'<details class="lw-sources"><summary>{E(ui["sources"])}</summary><p>{E(data["series"]["source_note"])}</p><p><a href="{E(url)}">{E(ui["paper"])} ↗</a></p></details>'
+    note = article.get('source_note', data['series']['source_note']) if article else data['series']['source_note']
+    paragraphs = ''.join('<p>'+inline_markdown(p)+'</p>' for p in re.split(r'\n\s*\n',note.strip()))
+    return f'<details class="lw-sources"><summary>{E(ui["sources"])}</summary>{paragraphs}<p><a href="{E(url)}">{E(ui["paper"])} ↗</a></p></details>'
+
+
+def inline_markdown(text):
+    """Keep the supplied emphasis/citations without accepting arbitrary HTML."""
+    text = E(text)
+    text = re.sub(r'\[([^\]]+)\]\((https://[^\s)]+)\)', r'<a href="\2">\1</a>', text)
+    text = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', text)
+    text = re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'<em>\1</em>', text)
+    return text
 
 
 def related(spec, data):
@@ -131,7 +165,7 @@ def render(series):
         target = ROOT/spec['directory']/language
         pages[target/'index.html'] = document(spec, data, 'index', content)
         for n, article in enumerate(data['articles']):
-            body = '\n'.join('<h2>'+E(p[3:])+'</h2>' if p.startswith('## ') else '<p>'+E(p)+'</p>' for p in article['body'])
+            body = '\n'.join('<h2>'+inline_markdown(p[3:])+'</h2>' if p.startswith('## ') else '<p>'+inline_markdown(p)+'</p>' for p in article['body'])
             nav = []
             for offset, label in ((-1, 'previous'), (1, 'next')):
                 k = n + offset
@@ -147,8 +181,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('series')
     parser.add_argument('--check', action='store_true')
+    parser.add_argument('--primary', action='store_true', help='also connect preserved legacy primary-page language controls')
     args = parser.parse_args()
     pages = render(args.series)
+    if args.primary:
+        spec=profile(args.series)
+        assert spec.get('source_format')=='legacy-html'
+        for slug in ['index',*spec['slugs']]:
+            path=ROOT/spec['directory']/(slug+'.html')
+            pages[path]=upgrade_primary(path.read_text(),args.series,slug)
     for path, text in pages.items():
         if args.check:
             assert path.read_text() == text, path

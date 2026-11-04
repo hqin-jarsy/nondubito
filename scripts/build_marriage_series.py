@@ -9,6 +9,7 @@ import json
 import re
 
 from build_language_writing import ROOT, WritingTraditionalConverter, loc, page, prose
+from full_series_languages import upgrade_primary
 
 DATE = '2026-10-30'
 DATA = ROOT / 'data/marriage'
@@ -100,13 +101,14 @@ def document(content, title, deck, filename, conv, items, item=None):
         schema = json.loads(match[1])
         schema.update(datePublished=DATE,dateModified=DATE,hasPart=[{'@type':'Article','name':d['title_en'],'url':BASE+d['slug']+'.html'} for d in items])
         result = result[:match.start(1)]+json.dumps(schema,ensure_ascii=False).replace('</','<\\/')+result[match.end(1):]
-    return result
+    return upgrade_primary(result,'marriage',filename.removesuffix('.html'))
 
 
 def landing(items,conv):
     def cards(selected):
         return '<div class="lw-grid">'+''.join('<a class="lw-card" href="'+d['slug']+'.html"><p class="lw-kicker">'+f'{d["id"]:02d} · '+loc(*KINDS[d['id']],conv)+'</p>'+loc(d['title_en'],d['title_zh'],conv,'h2')+loc(d['deck_en'],d['deck_zh'],conv,'p')+loc('Read essay →','阅读全文 →',conv,'span','lw-read')+'</a>' for d in selected)+'</div>'
     content = '<main class="lw-wrap" data-search="婚姻论 婚姻論 Marriage spouse marriage parenting promises separation bereavement 结婚 結婚 离婚 離婚 丧偶 喪偶"><div>'+crumb(conv)+'</div><section class="lw-hero"><p class="lw-kicker">Non Dubito · '+loc(*SUBTITLE,conv)+'</p>'+loc(*TITLE,conv,'h1')+loc(*DECK,conv,'p','lw-deck lw-search-deck')+loc('Seven essays & a short guide · English, Simplified & Traditional Chinese','七篇正文与一篇短导读 · 英文、简体中文与繁体中文',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc('Two keys can open the same door. They need not become one key.','两把钥匙可以开同一扇门，不必熔成一把。',conv,'p')+'<a href="overview.html">'+loc('Begin with the short guide →','从短导读开始 →',conv)+'</a>'+loc('Read wherever a question meets your life. These are not stages every marriage must complete.','从与你有关的那一篇读起。这不是每段婚姻必须走完的路线。',conv,'p','lw-meta')+'</aside>'+cards(items[:1])+'<section class="lw-note">'+loc('Two people, over time','两个人，和日子',conv,'h2')+'</section>'+cards(items[1:5])+'<section class="lw-note">'+loc('A newcomer, and different endings','迎来一个人，也面对不同的结束',conv,'h2')+loc('Parenthood is not an obligation; separation is not a final grade. These questions have their own entrances.','有孩子不是义务，分开不是总评。这几个问题，各有自己的入口。',conv,'p')+'</section>'+cards(items[5:])+reading_note(conv)+related(conv)+'</main>'
+    content=content.replace(loc('Seven essays & a short guide · English, Simplified & Traditional Chinese','七篇正文与一篇短导读 · 英文、简体中文与繁体中文',conv,'p','lw-meta'),loc('Seven essays & a short guide · Eight languages','七篇正文与一篇短导读 · 八语全文',conv,'p','lw-meta'))
     return document(content,TITLE[0]+': A Philosophy of Marriage · 婚姻论',DECK[0],'index.html',conv,items)
 
 
@@ -124,7 +126,7 @@ def article(item,items,conv):
 def library_card(conv):
     def ll(en,zh,tag='span',css=''):
         return loc(en,zh,conv,tag,css).replace('lang-zh','lang-zh cl-zh').replace('lang-hant','lang-zh cl-hant')
-    return '<a href="essays/marriage/index.html" class="series-card"><span class="series-card-count">'+ll('8 essays · English & both Chinese scripts','8 篇 · 英文与简繁中文')+'</span><div class="series-card-title-zh cl-zh">婚姻论：结婚以后，仍然是两个人</div><div class="series-card-title-zh cl-hant">婚姻論：結婚以後，仍然是兩個人</div><div class="series-card-title-en">Marriage: Still Two People</div>'+ll(DECK[0],DECK[1],'p','series-card-desc')+ll('Read series →','阅读系列 →','span','series-card-arrow')+'</a>'
+    return '<a href="essays/marriage/index.html" class="series-card"><span class="series-card-count">'+ll('8 essays · Eight languages','8 篇 · 八语全文')+'</span><div class="series-card-title-zh cl-zh">婚姻论：结婚以后，仍然是两个人</div><div class="series-card-title-zh cl-hant">婚姻論：結婚以後，仍然是兩個人</div><div class="series-card-title-en">Marriage: Still Two People</div>'+ll(DECK[0],DECK[1],'p','series-card-desc')+ll('Read series →','阅读系列 →','span','series-card-arrow')+'</a>'
 
 
 def render():
