@@ -50,3 +50,25 @@ English/native/Hant/summary drift and an unresolved failed-reading check; legacy
 85 English paragraphs and revised section headings, Traditional switching, the
 five corrected index cards, and no horizontal document overflow at 320×780.
 Temporary viewport reset. Search and sitemap regenerated for this batch.
+
+Batch 03 (EP11–15): 436 complete English body paragraphs. Javelin chronology,
+arithmetic and design testimony; laboratory economy versus race time; legal
+proof versus direct observation; eligibility criteria versus single biological
+markers; and closed causal stories received bounded corrections. The EP11 title
+now says the old ledger is sealed, not destroyed, consistently in all eight
+languages and navigation. All article URLs remain unchanged.
+
+Actual non-author native reading covered237 complete changed paragraphs. Lead
+independently read all15 saved native title/deck changes and all77 new Hant fields;
+14 contextual Hant character edits were read again. Two German counterfactual
+terms were corrected and independently read after saving, with C's original
+failed report and explicit resolution both retained. English/source proposal
+adjudication and exact saved identity verification remain distinguished from
+actual full saved-field reading in the root record.
+
+Batch03 verification: nine English regression tests (including approved title
+matching), all115 foreign full-text/source-replay checks, idempotent rendering,
+and regenerated search/sitemap. Browser readback confirmed the new English and
+German EP11 titles,90 complete English body paragraphs, eight language options,
+and EP14 Traditional reading at390×844 without horizontal document overflow.
+Temporary viewport reset.

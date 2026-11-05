@@ -81,6 +81,9 @@ def saved_value(edit,language=None):
     field=edit.get('field','paragraph')
     if field=='deck':
         return json.loads((ROOT/'data/athletics-full/review.json').read_text())['manuscripts'][ep+'.'+language]['deck']
+    if field=='title':
+        if language=='en':return (DATA/(ep+'.md')).read_text().splitlines()[0].removeprefix('# ')
+        return json.loads((ROOT/'data/athletics-full/review.json').read_text())['manuscripts'][ep+'.'+language]['title']
     if language=='zh-hant':
         text=(SERIES/'zh-hant-data'/(ep+'.js')).read_text()
         variants=json.loads(re.search(r'var variants = (\{.*?\});\s*\n\s*var originals',text,re.S)[1])

@@ -21,6 +21,7 @@ class AthleticsEnglish(unittest.TestCase):
         for ep,record in self.publication['articles'].items():
             r,md=read_manuscript(ep);path=SERIES/(ep+'.html')
             self.assertEqual(path.read_text(),self.pages[path])
+            self.assertEqual(Parsed(path.read_text()).nodes('h1','lang-en')[0].text(),md.splitlines()[0].removeprefix('# '))
             self.assertEqual(section_counts(md),r['paragraphs_by_section'])
             node=Parsed(body_inner(path.read_text(),'en')).nodes('div','athletics-english')[0]
             paras=[n.text() for n in node.walk() if n.tag=='p']
