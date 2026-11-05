@@ -72,3 +72,24 @@ and regenerated search/sitemap. Browser readback confirmed the new English and
 German EP11 titles,90 complete English body paragraphs, eight language options,
 and EP14 Traditional reading at390×844 without horizontal document overflow.
 Temporary viewport reset.
+
+Batch 04 (EP16–20): 426 complete English body paragraphs. Corrections distinguish
+false-start alarms from adjudication, a lawful shared first place from an
+unfinished result, race organization from record categories, road measurement
+requirements from inherent uncertainty, and result disqualification from bans.
+The EP18 seven-record/225-final example now states its editorial reconstruction,
+1912–2025 event scope and retrospective-record definition. Official progression
+pages and the historical Kolehmainen/Bouin correction were independently checked;
+the evidence report explicitly limits what was and was not read.
+
+Actual independent native reading covered459 complete changed body/heading
+fields; the lead read all10 changed native decks and98 new saved Hant fields.
+Seventeen contextual Hant fixes and four small native wording changes were read
+again after saving. Original cross-reader hashes remain intact; separate polish
+plans and final lead proofs bind the final versions.
+
+Batch04 verification: nine English regression tests, all115 foreign full-text
+and original-baseline source/Hant replay checks, idempotent rendering, updated
+search/sitemap. Browser checks confirmed EP18's86 English paragraphs, expanded
+ten-section contents, eight language options, Traditional switching, and390×844
+reading without horizontal document overflow. Temporary viewport reset.
