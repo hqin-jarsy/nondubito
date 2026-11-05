@@ -29,3 +29,24 @@ English conclusion were read back in the browser. Temporary viewport reset.
 
 The remaining episodes are not approved merely because the package is complete.
 Unpublished English bodies stay unchanged until their own batch is reviewed.
+
+Batch 02 (EP06–10): 481 complete English body paragraphs. Existing correct native
+fields were left in place; synchronized edits concern statistical scope, scoring
+conventions, technique comparisons and documentary limits. Source index and
+metadata descriptions for EP01/05/08/09/10 were aligned with their revised bodies.
+Fourteen newly generated Hant fields received contextual character corrections.
+
+C's initially failing cross-reading remains intact. It found one qualifier
+repeated in six corresponding paragraphs; the lead applied the narrowed wording
+and actually read the six final saved paragraphs. The sealed batch explicitly
+binds that resolution rather than relabelling the original report as a pass.
+Two further native grammar improvements were independently read after saving.
+Root reading modes distinguish actual complete saved-field reading from reading
+the full proposal followed by exact saved-byte verification.
+
+Verification: nine English regression tests, including deliberate unreviewed
+English/native/Hant/summary drift and an unresolved failed-reading check; legacy
+115-edition source replay and body checks. Browser readback confirmed EP10's
+85 English paragraphs and revised section headings, Traditional switching, the
+five corrected index cards, and no horizontal document overflow at 320×780.
+Temporary viewport reset. Search and sitemap regenerated for this batch.

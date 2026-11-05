@@ -100,6 +100,22 @@ def validate_review(path):
     """Bind actual completed readings and saved-field checks, not prose quality."""
     review=json.loads(path.read_text())
     assert review['publication_ready'] is True and review['remaining']==[]
+    for name,digest in review.get('additional_plans_sha256',{}).items():
+        assert sha((ROOT/name).read_bytes())==digest
+    for name,digest in review.get('surface_reading_report_sha256',{}).items():
+        proof_path=ROOT/name
+        assert sha(proof_path.read_bytes())==digest
+        surface_proof=json.loads(proof_path.read_text());assert surface_proof['passed'] is True
+        for f in surface_proof['fields']:
+            assert sha(f['saved_field'])==f['saved_field_sha256']
+            text=(ROOT/f['path']).read_text()
+            if 'source_key' in f:
+                variants=json.loads(re.search(r'var variants = (\{.*?\});\s*\n\s*var originals',text,re.S)[1])
+                assert variants[f['source_key']]==f['saved_field']
+            elif not f['saved_field'].startswith('<'):
+                descriptions=[html.unescape(s) for s in re.findall(r'<p class="entry-desc">(.*?)</p>',text,re.S)]
+                assert descriptions.count(html.unescape(f['saved_field']))==1,('Changed reviewed card',f['path'])
+            else:assert text.count(f['saved_field'])==1,('Changed reviewed summary',f['path'])
     superseding={}
     for name,digest in review.get('supplementary_reviews',{}).items():
         assert sha((ROOT/name).read_bytes())==digest
@@ -115,11 +131,20 @@ def validate_review(path):
     plan=json.loads(raw);fields={}
     for name,digest in review['saved_reading_report_sha256'].items():
         path=ROOT/name;assert sha(path.read_bytes())==digest,('Changed saved reading',name)
-        proof=json.loads(path.read_text());assert proof['passed'] is True
+        proof=json.loads(path.read_text())
+        if proof['passed'] is not True:
+            resolution=review.get('resolved_saved_readings',{}).get(name)
+            assert resolution,('Unresolved saved-reading finding',name)
+            resolved_path=ROOT/resolution['resolution_report']
+            assert sha(resolved_path.read_bytes())==resolution['resolution_sha256']
+            final_reading=json.loads(resolved_path.read_text())
+            assert final_reading['passed'] is True and final_reading['plan_sha256']==sha(raw)
         assert proof['plan_sha256']==sha(raw)
         for field in proof['fields']:
             key=tuple(field[k] for k in ('episode','language','section','paragraph'))
-            fields.setdefault(key,[]).append(field['saved_field_sha256'])
+            digest=field.get('saved_field_sha256',field.get('saved_sha256'))
+            assert digest
+            fields.setdefault(key,[]).append(digest)
     polishes={tuple(e[k] for k in ('episode','language','section','paragraph')):e for e in review.get('final_polish',[])}
     for e in plan['edits']:
         key=tuple(e[k] for k in ('episode','language','section','paragraph'))

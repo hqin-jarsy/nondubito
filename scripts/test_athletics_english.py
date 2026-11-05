@@ -74,6 +74,44 @@ class AthleticsEnglish(unittest.TestCase):
             self.assertEqual(text.count('src="athletics-language.js"'),1)
             self.assertEqual(text.count('src="../../language-select.js"'),1)
 
+    def test_unreviewed_summary_drift_is_rejected(self):
+        name=next((r['review_report'] for r in self.publication['articles'].values()
+                   if json.loads((ROOT/r['review_report']).read_text()).get('surface_reading_report_sha256')),None)
+        if not name:self.skipTest('No summary-edit batch approved yet')
+        review=json.loads((ROOT/name).read_text())
+        proof=json.loads((ROOT/next(iter(review['surface_reading_report_sha256']))).read_text())
+        field=next(f for f in proof['fields'] if 'source_key' not in f)
+        target=ROOT/field['path'];read_text=Path.read_text
+        def changed(path,*args,**kwargs):
+            raw=read_text(path,*args,**kwargs)
+            return raw.replace(field['saved_field'],field['saved_field']+'!',1) if path==target else raw
+        with patch.object(Path,'read_text',changed),self.assertRaises(AssertionError):validate_review(ROOT/name)
+
+    def test_unreviewed_traditional_field_drift_is_rejected(self):
+        name=next(iter(self.publication['articles'].values()))['review_report']
+        review=json.loads((ROOT/name).read_text())
+        plan=json.loads((ROOT/review['copyedit_plan']).read_text())
+        edit=next(e for e in plan['edits'] if e['language']=='zh')
+        target=SERIES/'zh-hant-data'/(edit['episode']+'.js');read_text=Path.read_text
+        from athletics_english import saved_value
+        value=saved_value(edit,'zh-hant')
+        def changed(path,*args,**kwargs):
+            raw=read_text(path,*args,**kwargs)
+            return raw.replace(value,value+'!',1) if path==target else raw
+        with patch.object(Path,'read_text',changed),self.assertRaises(AssertionError):validate_review(ROOT/name)
+
+    def test_failed_reading_requires_explicit_bound_resolution(self):
+        name=next((r['review_report'] for r in self.publication['articles'].values()
+                   if json.loads((ROOT/r['review_report']).read_text()).get('resolved_saved_readings')),None)
+        if not name:self.skipTest('No resolved failed reading in approved batches')
+        target=ROOT/name;read_text=Path.read_text
+        def changed(path,*args,**kwargs):
+            raw=read_text(path,*args,**kwargs)
+            if path==target:
+                data=json.loads(raw);data.pop('resolved_saved_readings');raw=json.dumps(data)
+            return raw
+        with patch.object(Path,'read_text',changed),self.assertRaises(AssertionError):validate_review(target)
+
     def test_unpublished_english_and_urls_are_not_silently_replaced(self):
         base=self.publication['initial_baseline_commit']
         for i in range(1,24):
