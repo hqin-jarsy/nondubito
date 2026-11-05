@@ -44,6 +44,13 @@ class StrictReadingEvidence(unittest.TestCase):
         review.verify_saved_readbacks(self.data,self.batch)
         review.verify_saved_readbacks(self.data,self.shared)
 
+    def test_absent_optional_earlier_readback_does_not_hide_final_evidence(self):
+        report=copy.deepcopy(self.batch)
+        report['post_application']=None
+        review.verify_saved_readbacks(self.data,report)
+        report['post_application_readback']=None
+        with self.assertRaises(AssertionError):review.verify_saved_readbacks(self.data,report)
+
     def test_same_shape_same_length_unreviewed_body_drift_is_rejected(self):
         article=copy.deepcopy(self.article)
         old=article['body'][1]

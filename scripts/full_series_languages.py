@@ -68,7 +68,7 @@ def source_directory(series, spec=None):
 
 
 def source_file(series, spec, slug):
-    if spec.get('source_adapter') in ('published-html','laughter-html'):
+    if spec.get('source_adapter') in ('published-html','laughter-html','fairy-tales-html'):
         directory=(ROOT/spec['directory']).resolve()
         path=(directory/(slug+'.html')).resolve()
         assert directory.is_relative_to((ROOT/'essays').resolve()) and path.parent==directory
@@ -82,6 +82,9 @@ def source_file(series, spec, slug):
 
 def original_article(series, spec, slug):
     """Read the canonical source directly; Markdown is never a parallel JSON copy."""
+    if spec.get('source_adapter')=='fairy-tales-html':
+        from fairy_tales_source import load_article
+        return load_article(spec,slug)
     if spec.get('source_adapter')=='laughter-html':
         from laughter_source import load_article
         return load_article(spec,slug)
@@ -118,6 +121,9 @@ def original_article(series, spec, slug):
 
 
 def source_digest(series,spec,slug):
+    if spec.get('source_adapter')=='fairy-tales-html':
+        from fairy_tales_source import source_digest as fairy_digest
+        return fairy_digest(spec,slug)
     if spec.get('source_adapter')=='laughter-html':
         # Only the explicitly reversible language additions may be excluded.
         # Retain the original raw-file fingerprint and protect all prose/scripts.
@@ -155,7 +161,7 @@ def require_review_seal(series,spec):
     receipt=json.loads((base/'publication.json').read_text())
     assert receipt['result']=='passed' and receipt['unresolved']==[]
     assert receipt['languages']==spec['languages'] and receipt['slugs']==spec['slugs']
-    for name in ('cross-review-de-fr.json','cross-review-ja-ko.json','cross-review-es.json'):
+    for name in ('cross-review-de-fr.json','cross-review-ja-ko.json','cross-review-es.json',*spec.get('additional_review_reports',[])):
         assert name in receipt['reports']
         report=json.loads((base/name).read_text())
         assert report['remaining']==[],(series,name,'unfinished review')
@@ -164,7 +170,8 @@ def require_review_seal(series,spec):
     for name in receipt['reports']:
         actual=hashlib.sha256((base/name).read_bytes()).hexdigest()
         assert receipt['review_report_sha256'][name]==actual,(series,name,'review changed after seal')
-    for language in spec['languages']:
+    assert receipt.get('auxiliary_languages',[])==spec.get('auxiliary_languages',[])
+    for language in [*spec['languages'],*spec.get('auxiliary_languages',[])]:
         actual=hashlib.sha256((base/(language+'.json')).read_bytes()).hexdigest()
         assert receipt['language_data_sha256'][language]==actual,(series,language,'draft changed after review')
     preservation=json.loads((base/'preservation.json').read_text())
@@ -178,10 +185,12 @@ def require_review_seal(series,spec):
 
 def load_language(series, language):
     spec = profile(series)
-    assert language in spec['languages']
+    assert language in [*spec['languages'],*spec.get('auxiliary_languages',[])]
     data = json.loads((ROOT/'data'/series/'multilingual'/f'{language}.json').read_text())
     assert data['language'] == language
     assert [a['slug'] for a in data['articles']] == spec['slugs']
+    if spec.get('book_material'):
+        assert isinstance(data['ui'].get('edition_notes'),str) and data['ui']['edition_notes'].strip(), (language,'missing complete-version-note UI label')
     assert data['review']['unresolved'] == [], (series, language, 'unresolved editorial issues')
     validate_groups(spec, data)
     if spec.get('source_adapter')=='zhuangzi-markdown':
@@ -198,7 +207,10 @@ def load_language(series, language):
         assert data['ui']['read_alongside'].strip()
     if spec.get('index_context_source') or spec.get('published_index_context'):
         if spec.get('published_index_context'):
-            from published_html_source import index_context
+            if spec.get('source_adapter')=='fairy-tales-html':
+                from fairy_tales_source import index_context
+            else:
+                from published_html_source import index_context
             context=index_context(spec)
         else:
             context=json.loads((ROOT/spec['index_context_source']).read_text())['body_zh']
@@ -232,6 +244,14 @@ def load_language(series, language):
             assert all(isinstance(v,str) and v.strip() and '<' not in v for v in article['notes']+article['notes_coverage'])
             assert [s['url'] for s in article['sources']]==[s['url'] for s in original['sources_zh']],(language,article['slug'],'changed historical source URLs or order')
             assert all(isinstance(s['title'],str) and s['title'].strip() and '<' not in s['title'] for s in article['sources'])
+        if spec.get('source_adapter')=='fairy-tales-html':
+            from fairy_tales_source import apparatus_inline
+            for value in [article['source_note'],*article['notes']]:
+                apparatus_inline(value,article['sources'])
+            assert all('](' not in value for value in article['body']), (language,article['slug'],'keep new reference links in the complete source apparatus')
+            if language=='en':
+                from fairy_tales_primary import english_title
+                assert article['title']==english_title(source_file(series,spec,article['slug']).read_text()), (article['slug'],'English upgrade must retain existing primary title')
         article['source_url'] = original.get('source_url', spec['source'])
         if spec.get('optional_pause'):
             assert isinstance(original.get('pause_zh'), str) and original['pause_zh'].strip()
@@ -305,6 +325,9 @@ def render_prose(units, citations=None, source_label=''):
 
 
 def primary_bodies(spec,text):
+    if spec.get('primary_format')=='fairy-tales-local':
+        from fairy_tales_primary import protected_bodies
+        return protected_bodies(text)
     if spec.get('primary_format')=='aesthetics-prose':
         canonical=re.search(r'<link rel="canonical" href="([^"]+)"',text)[1]
         slug=canonical.rsplit('/',1)[-1]
@@ -343,6 +366,9 @@ def alternatives(spec, slug):
 
 def upgrade_primary(text, series, slug):
     spec = profile(series)
+    if spec.get('source_adapter')=='fairy-tales-html':
+        from fairy_tales_primary import upgrade
+        return upgrade(text,spec,slug)
     if spec.get('source_adapter')=='laughter-html':
         from laughter_primary import upgrade
         return upgrade(text,spec,slug)
@@ -446,6 +472,10 @@ def sources(spec, data, article=None):
     paragraphs = ''.join('<p>'+inline_markdown(p)+'</p>' for p in re.split(r'\n\s*\n',note.strip()))
     if article and spec.get('book_material'):
         formatter = inline_markdown
+        if spec.get('source_adapter')=='fairy-tales-html':
+            from fairy_tales_source import apparatus_inline
+            formatter = lambda p: apparatus_inline(p,article['sources'])
+            paragraphs = ''.join('<p>'+formatter(p)+'</p>' for p in re.split(r'\n\s*\n',note.strip()))
         if spec.get('source_adapter')=='zhuangzi-markdown':
             from zhuangzi_language_index import apparatus_inline
             formatter = lambda p: apparatus_inline(p, article['sources'])
@@ -619,8 +649,13 @@ def render(series):
             grid = reading_index(spec,data,card_rows)
         if spec.get('entry_slugs') and spec.get('source_adapter')!='zhuangzi-markdown':
             entries=spec['entry_slugs']
-            assert len(title['entry_labels'])==len(entries) and set(entries)<=set(spec['slugs'])
-            route_links=' · '.join('<a href="'+E(slug)+'.html">'+E(label)+'</a>' for slug,label in zip(entries,title['entry_labels']))
+            labels=title['entry_labels']
+            assert len(labels)==len(entries) and set(entries)<=set(spec['slugs'])
+            if isinstance(labels,dict):
+                assert set(labels)==set(entries),'Entry-label mappings must name exactly the six source doors'
+                labels=[labels[slug] for slug in entries]
+            assert all(isinstance(label,str) and label.strip() for label in labels)
+            route_links=' · '.join('<a href="'+E(slug)+'.html">'+E(label)+'</a>' for slug,label in zip(entries,labels))
             grid='<nav class="lw-note"><h2>'+E(ui['entry_routes'])+'</h2><p>'+route_links+'</p></nav>'+grid
         count = title.get('count_label',collection_count(spec,language,len(data['articles'])))+' · '+' / '.join(LABELS.values())
         context=title.get('index_context',[])

@@ -20,7 +20,11 @@ def review_field(data, item):
     if field.startswith(('series.','ui.')):
         group,key=field.split('.',1)
         value=data[group][key]
-        return value[item['paragraph']] if isinstance(value,list) and 'paragraph' in item else value
+        if isinstance(value,list) and 'paragraph' in item:value=value[item['paragraph']]
+        if 'subfield' in item:
+            assert isinstance(value,dict) and item['subfield'] in ('title','deck')
+            value=value[item['subfield']]
+        return value
     article=next(a for a in data['articles'] if a['slug']==item['slug'])
     if field.startswith(('sources.','case_links.')):
         group,key=field.split('.',1)
@@ -49,7 +53,7 @@ def verify_article_reading(article, record, current):
 def verify_saved_readbacks(data, report):
     fields=[]
     for key in ('post_application','post_application_readback'):
-        post=report.get(key,{})
+        post=report.get(key) or {}
         if post.get('passed') is True:
             assert post.get('reader') and post.get('scope'),'Unattributed saved-field readback'
             fields.extend(post.get('fields_read',[]))
@@ -60,6 +64,7 @@ def verify_saved_readbacks(data, report):
         assert any(f.get('slug')==issue.get('slug')
                    and f.get('field','body')==issue.get('field','body')
                    and f.get('paragraph')==issue.get('paragraph')
+                   and f.get('subfield')==issue.get('subfield')
                    and saved_field_matches(value,f.get('saved_field_sha256'))
                    for f in fields),('Actual complete saved-field readback missing or stale',issue)
 
@@ -90,9 +95,10 @@ def require_strict_reading_evidence(series, spec, base, reports):
     independently recorded readings can authorize the exact current payload.
     """
     if not spec.get('strict_reading_evidence'):return
-    raw={language:json.loads((base/(language+'.json')).read_text()) for language in spec['languages']}
+    all_languages=[*spec['languages'],*spec.get('auxiliary_languages',[])]
+    raw={language:json.loads((base/(language+'.json')).read_text()) for language in all_languages}
     # Validate every manuscript even if that language has no listed corrections.
-    for language in spec['languages']:load_language(series,language)
+    for language in all_languages:load_language(series,language)
     for name,report in reports:
         if not name.startswith('cross-review-'):continue
         evidence_names=report['evidence_reports']
@@ -135,7 +141,11 @@ def primary_main_hashes(spec):
     for sub in spec.get('primary_editions',{'zh':''}).values():
         for slug in ['index',*spec['slugs']]:
             path=ROOT/spec['directory']/sub/(slug+'.html')
-            match=re.search(r'<main\b[^>]*>.*?</main>',path.read_text(),re.S)
+            source=path.read_text()
+            if spec.get('source_adapter')=='fairy-tales-html':
+                from fairy_tales_primary import restore_original
+                source=restore_original(source,spec,slug)
+            match=re.search(r'<main\b[^>]*>.*?</main>',source,re.S)
             assert match,(slug,'missing primary main')
             content=re.sub(r'<div class="lang-toggle"[^>]*>.*?</div>','',match[0],flags=re.S)
             for css in spec.get('main_mutable_classes',[]):
@@ -164,7 +174,7 @@ def prepare(series):
     base=ROOT/'data'/series/'multilingual'
     reports=[]
     covered=[]
-    for name in ('cross-review-de-fr.json','cross-review-ja-ko.json','cross-review-es.json'):
+    for name in ('cross-review-de-fr.json','cross-review-ja-ko.json','cross-review-es.json',*spec.get('additional_review_reports',[])):
         report=json.loads((base/name).read_text())
         assert not report['remaining'], (series,name,'incomplete review')
         if spec.get('require_explicit_publication_approval'):
@@ -175,7 +185,7 @@ def prepare(series):
             assert len(reviewed)==len(expected) and set(reviewed)==expected,(series,name,'incomplete article reading record')
         covered.extend(report['languages'])
         reports.append((name,report))
-    assert sorted(covered)==sorted(spec['languages'])
+    assert sorted(covered)==sorted([*spec['languages'],*spec.get('auxiliary_languages',[])])
     for optional in ('final-de-language-review.json','final-fr-language-review.json','lead-final-review.json'):
         path=base/optional
         if path.exists():
@@ -202,6 +212,9 @@ def prepare(series):
                 group,key=field.split('.',1)
                 value=data[group][key]
                 if isinstance(value,list):value=value[issue['paragraph']]
+                if 'subfield' in issue:
+                    assert isinstance(value,dict) and issue['subfield'] in ('title','deck')
+                    value=value[issue['subfield']]
             else:
                 a=next(a for a in data['articles'] if a['slug']==issue['slug'])
                 if field.startswith(('sources.','case_links.')):
@@ -257,7 +270,7 @@ def prepare(series):
         'date':spec['date'],'result':'passed',
         'scope':'Complete independent foreign rewrites of the published Chinese reader essays, not shortened translations of their academic sources.',
         'languages':spec['languages'],'slugs':spec['slugs'],'source_units':counts,
-        'language_data_sha256':{code:hashlib.sha256((base/(code+'.json')).read_bytes()).hexdigest() for code in spec['languages']},
+        'language_data_sha256':{code:hashlib.sha256((base/(code+'.json')).read_bytes()).hexdigest() for code in [*spec['languages'],*spec.get('auxiliary_languages',[])]},
         'new_article_editions':len(spec['languages'])*len(spec['slugs']),
         'review_method':['Chinese originals read in full; every argument unit, example and qualification retained.',
                          'Each writer self-edited; a different agent independently read every foreign article against Chinese.',
@@ -268,6 +281,9 @@ def prepare(series):
     if spec.get('require_review_seal'):
         outputs[base/'publication.json']['review_report_sha256']={
             name:hashlib.sha256((base/name).read_bytes()).hexdigest() for name,_ in reports}
+    if spec.get('auxiliary_languages'):
+        outputs[base/'publication.json']['auxiliary_languages']=spec['auxiliary_languages']
+        outputs[base/'publication.json']['upgraded_primary_article_editions']=len(spec['auxiliary_languages'])*len(spec['slugs'])
     return {path:json.dumps(data,ensure_ascii=False,indent=2)+'\n' for path,data in outputs.items()}
 
 

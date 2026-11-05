@@ -346,13 +346,43 @@ class TraditionalConverter:
         self.cf.CFRelease(self.transform)
 
 
+def markdown_links(value: str):
+    """Recognize the source-note links, including balanced URL parentheses.
+
+    This deliberately small parser does not interpret titles or arbitrary HTML.
+    A failed/unbalanced link stays visible rather than becoming a truncated href.
+    """
+    consumed = 0
+    for match in re.finditer(r"\[([^\]\n]+)\]\((https?://)", value):
+        if match.start() < consumed:
+            continue
+        start = match.start(2)
+        depth, position = 1, start
+        while position < len(value):
+            char = value[position]
+            if char.isspace():
+                break
+            if char == "(":
+                depth += 1
+            elif char == ")":
+                depth -= 1
+                if depth == 0:
+                    consumed = position + 1
+                    yield match.start(), consumed, match.group(1), value[start:position]
+                    break
+            position += 1
+
+
 def inline_markdown(value: str) -> str:
-    escaped = html.escape(value, quote=True)
-    return re.sub(
-        r"\[([^\]]+)\]\((https?://[^)]+)\)",
-        r'<a href="\2" target="_blank" rel="noopener">\1</a>',
-        escaped,
-    )
+    pieces, position = [], 0
+    for start, end, label, url in markdown_links(value):
+        pieces.append(html.escape(value[position:start], quote=True))
+        pieces.append('<a href="' + html.escape(url, quote=True)
+                      + '" target="_blank" rel="noopener">'
+                      + html.escape(label, quote=True) + '</a>')
+        position = end
+    pieces.append(html.escape(value[position:], quote=True))
+    return ''.join(pieces)
 
 
 def source_copy(item: dict[str, str]) -> tuple[str, list[str], str, str]:
@@ -362,10 +392,10 @@ def source_copy(item: dict[str, str]) -> tuple[str, list[str], str, str]:
     divider = blocks.index("---")
     body = blocks[1:divider]
     note = blocks[divider + 1].strip("*")
-    match = re.search(r"\]\((https?://[^)]+)\)", note)
-    if not match:
+    first_link = next(markdown_links(note), None)
+    if first_link is None:
         raise ValueError(f"Missing source link in {item['file']}")
-    return title, body, note, match.group(1)
+    return title, body, note, first_link[3]
 
 
 def paragraph(value: str, *, italic: bool = False) -> str:
@@ -611,6 +641,14 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
+    if (ROOT / 'data/fairy-tales/multilingual/publication.json').exists():
+        raise SystemExit(
+            'Legacy fairy-tale importer is locked after multilingual publication. '
+            'The current published Chinese essays are canonical; do not rebuild '
+            'them or the complete English edition from older Markdown/ENGLISH. '
+            'Use scripts/full_series_languages.py fairy-tales --primary for '
+            'reviewed editions.'
+        )
     outputs = render()
     stale = [path for path, text in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != text]
     if args.check:

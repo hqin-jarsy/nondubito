@@ -1,0 +1,1972 @@
+{
+  "date": "2026-11-04",
+  "scope": "Authorized repair of 38 damaged selected-version source hrefs in 13 existing published fairy-tale pages, plus 26 URL-tail spill removals. apply_patch also added a single missing terminal LF to each of those 13 HTML files, explicitly accepted and recorded separately. No argument, translation, selected-version prose, route, index, controller, schema or analytics rewrite.",
+  "before_commit": "6d664ff",
+  "canonical_source": "Current complete published Chinese HTML, not original external Markdown and not abbreviated existing English.",
+  "totals": {
+    "html_pages_examined": 31,
+    "html_pages_changed": 13,
+    "href_repairs": 38,
+    "spill_removals": 26,
+    "chinese_argument_units": 595,
+    "selected_version_notes": 30,
+    "chinese_source_mappings": 46,
+    "terminal_lf_additions": 13
+  },
+  "root_cause": {
+    "file": "scripts/import_fairy_tales.py",
+    "functions": [
+      "inline_markdown",
+      "source_copy"
+    ],
+    "before": "Both regexes used https?://[^)]+ and stopped at the first URL-internal closing parenthesis. inline_markdown left the remaining URL tail outside the anchor; source_copy passed an already-truncated first URL to the short English note, which therefore had no visible spill.",
+    "fix": "One balanced-parenthesis source-link scanner is used by both functions. Rendering escapes text, label and complete href separately. Malformed/unbalanced links remain visible instead of producing incomplete anchors. No importer render or old Markdown reconstruction performed."
+  },
+  "changes": [
+    {
+      "slug": "03-frog-king",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/03-frog-king.html",
+      "original_file_sha256": "f36cf33a29d3a2cc4f28c9ab5a1b18f75e90620360fefac61b91267bff8088e2",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5799,
+      "selected_note_end": 6138,
+      "edits": [
+        {
+          "start": 6001,
+          "end": 6079,
+          "before": "https://de.wikisource.org/wiki/Der_Froschkönig_oder_der_eiserne_Heinrich_(1857",
+          "after": "https://de.wikisource.org/wiki/Der_Froschkönig_oder_der_eiserne_Heinrich_(1857)",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "03-frog-king",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/03-frog-king.html",
+      "original_file_sha256": "f36cf33a29d3a2cc4f28c9ab5a1b18f75e90620360fefac61b91267bff8088e2",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文写定本",
+      "selected_note_start": 10201,
+      "selected_note_end": 10616,
+      "edits": [
+        {
+          "start": 10260,
+          "end": 10338,
+          "before": "https://de.wikisource.org/wiki/Der_Froschkönig_oder_der_eiserne_Heinrich_(1857",
+          "after": "https://de.wikisource.org/wiki/Der_Froschkönig_oder_der_eiserne_Heinrich_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 10380,
+          "end": 10381,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "03-frog-king",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/03-frog-king.html",
+      "original_file_sha256": "f36cf33a29d3a2cc4f28c9ab5a1b18f75e90620360fefac61b91267bff8088e2",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文寫定本",
+      "selected_note_start": 14465,
+      "selected_note_end": 14880,
+      "edits": [
+        {
+          "start": 14524,
+          "end": 14602,
+          "before": "https://de.wikisource.org/wiki/Der_Froschkönig_oder_der_eiserne_Heinrich_(1857",
+          "after": "https://de.wikisource.org/wiki/Der_Froschkönig_oder_der_eiserne_Heinrich_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 14644,
+          "end": 14645,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "04-bluebeard",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/04-bluebeard.html",
+      "original_file_sha256": "43e0db00a7d7f8d524ec3a00eb36ce5588f563aedec8d80d38eb0a0ec920ebda",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5925,
+      "selected_note_end": 6250,
+      "edits": [
+        {
+          "start": 6120,
+          "end": 6191,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_passé_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_passé_(1697)/Original/La_Barbe_bleue",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "04-bluebeard",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/04-bluebeard.html",
+      "original_file_sha256": "43e0db00a7d7f8d524ec3a00eb36ce5588f563aedec8d80d38eb0a0ec920ebda",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "法文原文",
+      "selected_note_start": 10288,
+      "selected_note_end": 10712,
+      "edits": [
+        {
+          "start": 10343,
+          "end": 10414,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_passé_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_passé_(1697)/Original/La_Barbe_bleue",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 10455,
+          "end": 10480,
+          "before": "/Original/La_Barbe_bleue)",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "04-bluebeard",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/04-bluebeard.html",
+      "original_file_sha256": "43e0db00a7d7f8d524ec3a00eb36ce5588f563aedec8d80d38eb0a0ec920ebda",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "法文原文",
+      "selected_note_start": 14537,
+      "selected_note_end": 14961,
+      "edits": [
+        {
+          "start": 14592,
+          "end": 14663,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_passé_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_passé_(1697)/Original/La_Barbe_bleue",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 14704,
+          "end": 14729,
+          "before": "/Original/La_Barbe_bleue)",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "06-girl-without-hands",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/06-girl-without-hands.html",
+      "original_file_sha256": "be3fd74688073d38cc0cac81b4162a2cc45661e43b9500706d0b84720bc66380",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5982,
+      "selected_note_end": 6300,
+      "edits": [
+        {
+          "start": 6182,
+          "end": 6241,
+          "before": "https://de.wikisource.org/wiki/Das_Mädchen_ohne_Hände_(1857",
+          "after": "https://de.wikisource.org/wiki/Das_Mädchen_ohne_Hände_(1857)",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "06-girl-without-hands",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/06-girl-without-hands.html",
+      "original_file_sha256": "be3fd74688073d38cc0cac81b4162a2cc45661e43b9500706d0b84720bc66380",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文写定本",
+      "selected_note_start": 10557,
+      "selected_note_end": 10967,
+      "edits": [
+        {
+          "start": 10612,
+          "end": 10671,
+          "before": "https://de.wikisource.org/wiki/Das_Mädchen_ohne_Hände_(1857",
+          "after": "https://de.wikisource.org/wiki/Das_Mädchen_ohne_Hände_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 10713,
+          "end": 10714,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "06-girl-without-hands",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/06-girl-without-hands.html",
+      "original_file_sha256": "be3fd74688073d38cc0cac81b4162a2cc45661e43b9500706d0b84720bc66380",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文寫定本",
+      "selected_note_start": 15000,
+      "selected_note_end": 15410,
+      "edits": [
+        {
+          "start": 15055,
+          "end": 15114,
+          "before": "https://de.wikisource.org/wiki/Das_Mädchen_ohne_Hände_(1857",
+          "after": "https://de.wikisource.org/wiki/Das_Mädchen_ohne_Hände_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 15156,
+          "end": 15157,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "09-goose-girl",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/09-goose-girl.html",
+      "original_file_sha256": "5e3826c34b64f5b074cdfe40862b5de5671fd49209dcc88792d3f5a7e8af9f1b",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 6000,
+      "selected_note_end": 6318,
+      "edits": [
+        {
+          "start": 6209,
+          "end": 6259,
+          "before": "https://de.wikisource.org/wiki/Die_Gänsemagd_(1857",
+          "after": "https://de.wikisource.org/wiki/Die_Gänsemagd_(1857)",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "09-goose-girl",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/09-goose-girl.html",
+      "original_file_sha256": "5e3826c34b64f5b074cdfe40862b5de5671fd49209dcc88792d3f5a7e8af9f1b",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文文本",
+      "selected_note_start": 10460,
+      "selected_note_end": 10867,
+      "edits": [
+        {
+          "start": 10530,
+          "end": 10580,
+          "before": "https://de.wikisource.org/wiki/Die_Gänsemagd_(1857",
+          "after": "https://de.wikisource.org/wiki/Die_Gänsemagd_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 10621,
+          "end": 10622,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "09-goose-girl",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/09-goose-girl.html",
+      "original_file_sha256": "5e3826c34b64f5b074cdfe40862b5de5671fd49209dcc88792d3f5a7e8af9f1b",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文文本",
+      "selected_note_start": 14771,
+      "selected_note_end": 15178,
+      "edits": [
+        {
+          "start": 14841,
+          "end": 14891,
+          "before": "https://de.wikisource.org/wiki/Die_Gänsemagd_(1857",
+          "after": "https://de.wikisource.org/wiki/Die_Gänsemagd_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 14932,
+          "end": 14933,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "11-three-spinners",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/11-three-spinners.html",
+      "original_file_sha256": "db8c4f3c4af7ab14acb5a7d1f5ace3ca11ecc4d0907a4f4571212b0bf8556f00",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5789,
+      "selected_note_end": 6127,
+      "edits": [
+        {
+          "start": 6010,
+          "end": 6068,
+          "before": "https://de.wikisource.org/wiki/Die_drei_Spinnerinnen_(1857",
+          "after": "https://de.wikisource.org/wiki/Die_drei_Spinnerinnen_(1857)",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "11-three-spinners",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/11-three-spinners.html",
+      "original_file_sha256": "db8c4f3c4af7ab14acb5a7d1f5ace3ca11ecc4d0907a4f4571212b0bf8556f00",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "1857年德文在线转录",
+      "selected_note_start": 9786,
+      "selected_note_end": 10238,
+      "edits": [
+        {
+          "start": 9858,
+          "end": 9916,
+          "before": "https://de.wikisource.org/wiki/Die_drei_Spinnerinnen_(1857",
+          "after": "https://de.wikisource.org/wiki/Die_drei_Spinnerinnen_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 9964,
+          "end": 9965,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "11-three-spinners",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/11-three-spinners.html",
+      "original_file_sha256": "db8c4f3c4af7ab14acb5a7d1f5ace3ca11ecc4d0907a4f4571212b0bf8556f00",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "1857年德文在線轉錄",
+      "selected_note_start": 13689,
+      "selected_note_end": 14141,
+      "edits": [
+        {
+          "start": 13761,
+          "end": 13819,
+          "before": "https://de.wikisource.org/wiki/Die_drei_Spinnerinnen_(1857",
+          "after": "https://de.wikisource.org/wiki/Die_drei_Spinnerinnen_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 13867,
+          "end": 13868,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "12-rapunzel",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/12-rapunzel.html",
+      "original_file_sha256": "eb20ad8d4deab425ebe95752d2f4845083b2667ab015843a8843ca97d9b12b6d",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5614,
+      "selected_note_end": 5940,
+      "edits": [
+        {
+          "start": 5836,
+          "end": 5881,
+          "before": "https://de.wikisource.org/wiki/Rapunzel_(1857",
+          "after": "https://de.wikisource.org/wiki/Rapunzel_(1857)",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "12-rapunzel",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/12-rapunzel.html",
+      "original_file_sha256": "eb20ad8d4deab425ebe95752d2f4845083b2667ab015843a8843ca97d9b12b6d",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文写定本转录",
+      "selected_note_start": 9598,
+      "selected_note_end": 9956,
+      "edits": [
+        {
+          "start": 9646,
+          "end": 9691,
+          "before": "https://de.wikisource.org/wiki/Rapunzel_(1857",
+          "after": "https://de.wikisource.org/wiki/Rapunzel_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 9735,
+          "end": 9736,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "12-rapunzel",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/12-rapunzel.html",
+      "original_file_sha256": "eb20ad8d4deab425ebe95752d2f4845083b2667ab015843a8843ca97d9b12b6d",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文寫定本轉錄",
+      "selected_note_start": 13394,
+      "selected_note_end": 13752,
+      "edits": [
+        {
+          "start": 13442,
+          "end": 13487,
+          "before": "https://de.wikisource.org/wiki/Rapunzel_(1857",
+          "after": "https://de.wikisource.org/wiki/Rapunzel_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 13531,
+          "end": 13532,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "13-cinderella",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/13-cinderella.html",
+      "original_file_sha256": "04072bfb81f05f849c52848422b8544c099469d0138f4965ed76a16aab3cae76",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5630,
+      "selected_note_end": 6001,
+      "edits": [
+        {
+          "start": 5866,
+          "end": 5942,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Cendrillon",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "13-cinderella",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/13-cinderella.html",
+      "original_file_sha256": "04072bfb81f05f849c52848422b8544c099469d0138f4965ed76a16aab3cae76",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "法文在线转录",
+      "selected_note_start": 9759,
+      "selected_note_end": 10199,
+      "edits": [
+        {
+          "start": 9835,
+          "end": 9911,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Cendrillon",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 9954,
+          "end": 9975,
+          "before": "/Original/Cendrillon)",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "13-cinderella",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/13-cinderella.html",
+      "original_file_sha256": "04072bfb81f05f849c52848422b8544c099469d0138f4965ed76a16aab3cae76",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "法文在線轉錄",
+      "selected_note_start": 13744,
+      "selected_note_end": 14184,
+      "edits": [
+        {
+          "start": 13820,
+          "end": 13896,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Cendrillon",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 13939,
+          "end": 13960,
+          "before": "/Original/Cendrillon)",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "16-puss-in-boots",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/16-puss-in-boots.html",
+      "original_file_sha256": "5803333a87d307b5135062724932c85c5efd0418893599f27643722643d2c176",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5716,
+      "selected_note_end": 6070,
+      "edits": [
+        {
+          "start": 5935,
+          "end": 6011,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Le_Maistre_Chat",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "16-puss-in-boots",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/16-puss-in-boots.html",
+      "original_file_sha256": "5803333a87d307b5135062724932c85c5efd0418893599f27643722643d2c176",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "法文在线转录及两则道德",
+      "selected_note_start": 9876,
+      "selected_note_end": 10220,
+      "edits": [
+        {
+          "start": 9946,
+          "end": 10022,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Le_Maistre_Chat",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 10070,
+          "end": 10096,
+          "before": "/Original/Le_Maistre_Chat)",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "16-puss-in-boots",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/16-puss-in-boots.html",
+      "original_file_sha256": "5803333a87d307b5135062724932c85c5efd0418893599f27643722643d2c176",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "法文在線轉錄及兩則道德",
+      "selected_note_start": 13790,
+      "selected_note_end": 14134,
+      "edits": [
+        {
+          "start": 13860,
+          "end": 13936,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Le_Maistre_Chat",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 13984,
+          "end": 14010,
+          "before": "/Original/Le_Maistre_Chat)",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "20-riquet-with-tuft",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/20-riquet-with-tuft.html",
+      "original_file_sha256": "3a11400c16e2def549fa3af5ad79cb2018b6ccb05aed32c6b1a349ecc6f3e916",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5922,
+      "selected_note_end": 6299,
+      "edits": [
+        {
+          "start": 6164,
+          "end": 6240,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Riquet_%C3%A0_la_Houppe",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "20-riquet-with-tuft",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/20-riquet-with-tuft.html",
+      "original_file_sha256": "3a11400c16e2def549fa3af5ad79cb2018b6ccb05aed32c6b1a349ecc6f3e916",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "所据法文",
+      "selected_note_start": 10095,
+      "selected_note_end": 10450,
+      "edits": [
+        {
+          "start": 10289,
+          "end": 10365,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Riquet_%C3%A0_la_Houppe",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 10406,
+          "end": 10440,
+          "before": "/Original/Riquet_%C3%A0_la_Houppe)",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "20-riquet-with-tuft",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/20-riquet-with-tuft.html",
+      "original_file_sha256": "3a11400c16e2def549fa3af5ad79cb2018b6ccb05aed32c6b1a349ecc6f3e916",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "所據法文",
+      "selected_note_start": 14013,
+      "selected_note_end": 14368,
+      "edits": [
+        {
+          "start": 14207,
+          "end": 14283,
+          "before": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697",
+          "after": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Riquet_%C3%A0_la_Houppe",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 14324,
+          "end": 14358,
+          "before": "/Original/Riquet_%C3%A0_la_Houppe)",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "23-gretel-opens-cage",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/23-gretel-opens-cage.html",
+      "original_file_sha256": "e2ec6a69feaa0b5e831a378444295c12567edf88cf7183c48970ab0ce566d9cc",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5561,
+      "selected_note_end": 5904,
+      "edits": [
+        {
+          "start": 5785,
+          "end": 5845,
+          "before": "https://de.wikisource.org/wiki/H%C3%A4nsel_und_Grethel_(1857",
+          "after": "https://de.wikisource.org/wiki/H%C3%A4nsel_und_Grethel_(1857)",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "23-gretel-opens-cage",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/23-gretel-opens-cage.html",
+      "original_file_sha256": "e2ec6a69feaa0b5e831a378444295c12567edf88cf7183c48970ab0ce566d9cc",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文转录",
+      "selected_note_start": 9819,
+      "selected_note_end": 10174,
+      "edits": [
+        {
+          "start": 9877,
+          "end": 9937,
+          "before": "https://de.wikisource.org/wiki/H%C3%A4nsel_und_Grethel_(1857",
+          "after": "https://de.wikisource.org/wiki/H%C3%A4nsel_und_Grethel_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 9978,
+          "end": 9979,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "23-gretel-opens-cage",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/23-gretel-opens-cage.html",
+      "original_file_sha256": "e2ec6a69feaa0b5e831a378444295c12567edf88cf7183c48970ab0ce566d9cc",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文轉錄",
+      "selected_note_start": 13862,
+      "selected_note_end": 14217,
+      "edits": [
+        {
+          "start": 13920,
+          "end": 13980,
+          "before": "https://de.wikisource.org/wiki/H%C3%A4nsel_und_Grethel_(1857",
+          "after": "https://de.wikisource.org/wiki/H%C3%A4nsel_und_Grethel_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 14021,
+          "end": 14022,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "24-fisherman-and-wife",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/24-fisherman-and-wife.html",
+      "original_file_sha256": "b5733fa9a35752aa656e9550e3de2354654fa18d603e6801bad5f11e3f7f5557",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "低地德语转录",
+      "selected_note_start": 10188,
+      "selected_note_end": 10567,
+      "edits": [
+        {
+          "start": 10354,
+          "end": 10419,
+          "before": "https://de.wikisource.org/wiki/Von_dem_Fischer_un_syner_Fru_(1857",
+          "after": "https://de.wikisource.org/wiki/Von_dem_Fischer_un_syner_Fru_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 10462,
+          "end": 10463,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "24-fisherman-and-wife",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/24-fisherman-and-wife.html",
+      "original_file_sha256": "b5733fa9a35752aa656e9550e3de2354654fa18d603e6801bad5f11e3f7f5557",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "低地德語轉錄",
+      "selected_note_start": 14410,
+      "selected_note_end": 14789,
+      "edits": [
+        {
+          "start": 14576,
+          "end": 14641,
+          "before": "https://de.wikisource.org/wiki/Von_dem_Fischer_un_syner_Fru_(1857",
+          "after": "https://de.wikisource.org/wiki/Von_dem_Fischer_un_syner_Fru_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 14684,
+          "end": 14685,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "25-brave-little-tailor",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/25-brave-little-tailor.html",
+      "original_file_sha256": "8e67e892fb01812ae873e868e6f6b21e13fc9441705d3c7e8d3f3d4878f01430",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5749,
+      "selected_note_end": 6099,
+      "edits": [
+        {
+          "start": 5978,
+          "end": 6040,
+          "before": "https://de.wikisource.org/wiki/Das_tapfere_Schneiderlein_(1857",
+          "after": "https://de.wikisource.org/wiki/Das_tapfere_Schneiderlein_(1857)",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "25-brave-little-tailor",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/25-brave-little-tailor.html",
+      "original_file_sha256": "8e67e892fb01812ae873e868e6f6b21e13fc9441705d3c7e8d3f3d4878f01430",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文转录",
+      "selected_note_start": 10050,
+      "selected_note_end": 10423,
+      "edits": [
+        {
+          "start": 10115,
+          "end": 10177,
+          "before": "https://de.wikisource.org/wiki/Das_tapfere_Schneiderlein_(1857",
+          "after": "https://de.wikisource.org/wiki/Das_tapfere_Schneiderlein_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 10218,
+          "end": 10219,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "25-brave-little-tailor",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/25-brave-little-tailor.html",
+      "original_file_sha256": "8e67e892fb01812ae873e868e6f6b21e13fc9441705d3c7e8d3f3d4878f01430",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "德文轉錄",
+      "selected_note_start": 14138,
+      "selected_note_end": 14511,
+      "edits": [
+        {
+          "start": 14203,
+          "end": 14265,
+          "before": "https://de.wikisource.org/wiki/Das_tapfere_Schneiderlein_(1857",
+          "after": "https://de.wikisource.org/wiki/Das_tapfere_Schneiderlein_(1857)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 14306,
+          "end": 14307,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "26-donkeyskin",
+      "mode": "lang-en",
+      "path": "essays/everyday/stories/fairy-tales/26-donkeyskin.html",
+      "original_file_sha256": "97fbad659fe409789f58b4a87817f63873b84d01a7c900dc4b9f972a91a9a685",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "Source text ↗",
+      "selected_note_start": 5862,
+      "selected_note_end": 6337,
+      "edits": [
+        {
+          "start": 6118,
+          "end": 6278,
+          "before": "https://fr.wikisource.org/wiki/%C5%92uvres_choisies_de_Charles_Perrault,_%C3%A9dition_1826/Contes_de_ma_m%C3%A8re_l%E2%80%99Oye/Peau-d%E2%80%99%C3%82ne_(en_vers",
+          "after": "https://fr.wikisource.org/wiki/%C5%92uvres_choisies_de_Charles_Perrault,_%C3%A9dition_1826/Contes_de_ma_m%C3%A8re_l%E2%80%99Oye/Peau-d%E2%80%99%C3%82ne_(en_vers)",
+          "kind": "href-attribute-value"
+        }
+      ]
+    },
+    {
+      "slug": "26-donkeyskin",
+      "mode": "lang-zh",
+      "path": "essays/everyday/stories/fairy-tales/26-donkeyskin.html",
+      "original_file_sha256": "97fbad659fe409789f58b4a87817f63873b84d01a7c900dc4b9f972a91a9a685",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "在线转录",
+      "selected_note_start": 10430,
+      "selected_note_end": 10864,
+      "edits": [
+        {
+          "start": 10557,
+          "end": 10717,
+          "before": "https://fr.wikisource.org/wiki/%C5%92uvres_choisies_de_Charles_Perrault,_%C3%A9dition_1826/Contes_de_ma_m%C3%A8re_l%E2%80%99Oye/Peau-d%E2%80%99%C3%82ne_(en_vers",
+          "after": "https://fr.wikisource.org/wiki/%C5%92uvres_choisies_de_Charles_Perrault,_%C3%A9dition_1826/Contes_de_ma_m%C3%A8re_l%E2%80%99Oye/Peau-d%E2%80%99%C3%82ne_(en_vers)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 10758,
+          "end": 10759,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    },
+    {
+      "slug": "26-donkeyskin",
+      "mode": "lang-hant",
+      "path": "essays/everyday/stories/fairy-tales/26-donkeyskin.html",
+      "original_file_sha256": "97fbad659fe409789f58b4a87817f63873b84d01a7c900dc4b9f972a91a9a685",
+      "offset_unit": "Unicode code-point offsets in decoded UTF-8 HTML, not byte offsets",
+      "source_label": "在線轉錄",
+      "selected_note_start": 14746,
+      "selected_note_end": 15180,
+      "edits": [
+        {
+          "start": 14873,
+          "end": 15033,
+          "before": "https://fr.wikisource.org/wiki/%C5%92uvres_choisies_de_Charles_Perrault,_%C3%A9dition_1826/Contes_de_ma_m%C3%A8re_l%E2%80%99Oye/Peau-d%E2%80%99%C3%82ne_(en_vers",
+          "after": "https://fr.wikisource.org/wiki/%C5%92uvres_choisies_de_Charles_Perrault,_%C3%A9dition_1826/Contes_de_ma_m%C3%A8re_l%E2%80%99Oye/Peau-d%E2%80%99%C3%82ne_(en_vers)",
+          "kind": "href-attribute-value"
+        },
+        {
+          "start": 15074,
+          "end": 15075,
+          "before": ")",
+          "after": "",
+          "kind": "remove-parser-spill"
+        }
+      ]
+    }
+  ],
+  "post_application": {
+    "method": "Actual saved files parsed again. Replaying all reported href attribute spans, immediately following malformed URL-tail removals and the separately recorded terminal LF additions reproduces the exact saved full-file SHA. Offsets are original decoded UTF-8 Unicode code-point positions, not byte positions. All argument p blocks compared as original raw HTML, not only normalized prose.",
+    "files": [
+      {
+        "path": "essays/everyday/stories/fairy-tales/01-rumpelstiltskin.html",
+        "before_raw_sha256": "add459f394f1dc883b9315e837036f2b5e10e877cd280b7dd1b800248d10ff6f",
+        "after_raw_sha256": "add459f394f1dc883b9315e837036f2b5e10e877cd280b7dd1b800248d10ff6f",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "bc3810e5fe76e198bfef5e2bf3eca559aae494766066f65cecc50c99507beb59",
+            "after_argument_sha256": "bc3810e5fe76e198bfef5e2bf3eca559aae494766066f65cecc50c99507beb59",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 18,
+            "before_argument_sha256": "14e4b4ba68cf0524175e3b74c14a6ddf09f755fd8890ef880f010b0c5c6863d7",
+            "after_argument_sha256": "14e4b4ba68cf0524175e3b74c14a6ddf09f755fd8890ef880f010b0c5c6863d7",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 18,
+            "before_argument_sha256": "df634d726b118977d353bee92f410a6756acfae00e861b2a73eabe7b00976304",
+            "after_argument_sha256": "df634d726b118977d353bee92f410a6756acfae00e861b2a73eabe7b00976304",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/02-little-mermaid.html",
+        "before_raw_sha256": "ae132b23661f08490af81f41b96402a9ef1967916e4350ec8c79457a25a430f0",
+        "after_raw_sha256": "ae132b23661f08490af81f41b96402a9ef1967916e4350ec8c79457a25a430f0",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "dae71178a44817619e00dc94948946706c1a8e7936998e0ee19182024c4efd4b",
+            "after_argument_sha256": "dae71178a44817619e00dc94948946706c1a8e7936998e0ee19182024c4efd4b",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 24,
+            "before_argument_sha256": "fdeba9f9a86f180004332c1d3a65168614dfefd42160fd909f6f7f0a64881ad3",
+            "after_argument_sha256": "fdeba9f9a86f180004332c1d3a65168614dfefd42160fd909f6f7f0a64881ad3",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 24,
+            "before_argument_sha256": "2f405c2925b3772c1e8b8e9d42a5ac4405c76e32aa241aee4817b589a6dadf2f",
+            "after_argument_sha256": "2f405c2925b3772c1e8b8e9d42a5ac4405c76e32aa241aee4817b589a6dadf2f",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/03-frog-king.html",
+        "before_raw_sha256": "f36cf33a29d3a2cc4f28c9ab5a1b18f75e90620360fefac61b91267bff8088e2",
+        "after_raw_sha256": "2c0477e06bfd647c851bba4927a94671435f50de63c331c53f7435018b84db1c",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "eb490ad1b9836f90eaf70b25f0de3a5a7e84beeb4e587a5379a561e3e61da02b",
+            "after_argument_sha256": "eb490ad1b9836f90eaf70b25f0de3a5a7e84beeb4e587a5379a561e3e61da02b",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "0df91945a44ecd439dfc9d04c6cc684c5917598cea9ffd33a340b17e86a333ea",
+            "after_argument_sha256": "0df91945a44ecd439dfc9d04c6cc684c5917598cea9ffd33a340b17e86a333ea",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "5caee7f9d5443c50b5d13e69207f9b3607e343d5af16f2cf6d1159e1265af733",
+            "after_argument_sha256": "5caee7f9d5443c50b5d13e69207f9b3607e343d5af16f2cf6d1159e1265af733",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/04-bluebeard.html",
+        "before_raw_sha256": "43e0db00a7d7f8d524ec3a00eb36ce5588f563aedec8d80d38eb0a0ec920ebda",
+        "after_raw_sha256": "134e14286e7751f22e9daa8f045ae12c2307285fa069f946274c08397220fc5b",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "f2328f69140d7961b49c5e75be345af9c0662345b344a01ce73ca57453db881b",
+            "after_argument_sha256": "f2328f69140d7961b49c5e75be345af9c0662345b344a01ce73ca57453db881b",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "ffe412bff4654abba9397725b3902aacf1b82eb1f648ef0e1469d9d662549d58",
+            "after_argument_sha256": "ffe412bff4654abba9397725b3902aacf1b82eb1f648ef0e1469d9d662549d58",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "9a2f5047d7727a69b9244be492cfebaed6101c1b65c0acd7f7da6b2a76d03d2e",
+            "after_argument_sha256": "9a2f5047d7727a69b9244be492cfebaed6101c1b65c0acd7f7da6b2a76d03d2e",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/05-beauty-and-beast.html",
+        "before_raw_sha256": "0340875736a4a859e23e3043b4f668999542888e02b18fcff41f58352b921814",
+        "after_raw_sha256": "0340875736a4a859e23e3043b4f668999542888e02b18fcff41f58352b921814",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "7ba0c3f353f541a2fab1121d4306631a8144c414fa317ad0d48fee6fe2067c15",
+            "after_argument_sha256": "7ba0c3f353f541a2fab1121d4306631a8144c414fa317ad0d48fee6fe2067c15",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 23,
+            "before_argument_sha256": "9fe871edb4161a9721083604ade3dea95bc2dfc9d67c9bed1d2f1571043b7f60",
+            "after_argument_sha256": "9fe871edb4161a9721083604ade3dea95bc2dfc9d67c9bed1d2f1571043b7f60",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 23,
+            "before_argument_sha256": "d6eb05ccfc71bf5bdd2c0c19b7ef25dc3a1cea2bdf8d18ac33fe3c7497c3ebc1",
+            "after_argument_sha256": "d6eb05ccfc71bf5bdd2c0c19b7ef25dc3a1cea2bdf8d18ac33fe3c7497c3ebc1",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/06-girl-without-hands.html",
+        "before_raw_sha256": "be3fd74688073d38cc0cac81b4162a2cc45661e43b9500706d0b84720bc66380",
+        "after_raw_sha256": "ba694ebf32cca1c6ba4268c4fb88c802278902ac8678abcd76e5a5df1327726d",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "8039bb8dd49f3f3e66c61b5e8ed492e7bf4e018ead5eb7876fc74da1da207a03",
+            "after_argument_sha256": "8039bb8dd49f3f3e66c61b5e8ed492e7bf4e018ead5eb7876fc74da1da207a03",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 22,
+            "before_argument_sha256": "3e022d37d7621f11ac6f2e5dff366b8316e7a4f835c84f4a4b082598a789b172",
+            "after_argument_sha256": "3e022d37d7621f11ac6f2e5dff366b8316e7a4f835c84f4a4b082598a789b172",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 22,
+            "before_argument_sha256": "96d42b3d96f4443e1e8e5fbb03634e7a010b7395c9c39bb2f93874ac1ca56162",
+            "after_argument_sha256": "96d42b3d96f4443e1e8e5fbb03634e7a010b7395c9c39bb2f93874ac1ca56162",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/07-snow-queen.html",
+        "before_raw_sha256": "b58719942fe9b48d5b6580acc9b6f2e972c2fde74b961be489e5da187edf9d0d",
+        "after_raw_sha256": "b58719942fe9b48d5b6580acc9b6f2e972c2fde74b961be489e5da187edf9d0d",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "77e56f28ba2a5a453896e07bc8d43f30a2ae1f6a9c24d15245dc78f3548586c2",
+            "after_argument_sha256": "77e56f28ba2a5a453896e07bc8d43f30a2ae1f6a9c24d15245dc78f3548586c2",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "92615a999e6b9c53e750d0008e3fbe5b3f023b38177bbe4c052bd714fe38bd4f",
+            "after_argument_sha256": "92615a999e6b9c53e750d0008e3fbe5b3f023b38177bbe4c052bd714fe38bd4f",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "ee194c04b0532b52cc001d3ffd56d00f0904f1e9ed12e1013311d5181b45e43c",
+            "after_argument_sha256": "ee194c04b0532b52cc001d3ffd56d00f0904f1e9ed12e1013311d5181b45e43c",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/08-nightingale.html",
+        "before_raw_sha256": "4df08853022425e489cf0993911d358864442cc894b768bc6d8931cd2a4bf99b",
+        "after_raw_sha256": "4df08853022425e489cf0993911d358864442cc894b768bc6d8931cd2a4bf99b",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "29e7972261d29eb67dd1928e95f3ba100da1b4471869280cff289d1b21ba7bc6",
+            "after_argument_sha256": "29e7972261d29eb67dd1928e95f3ba100da1b4471869280cff289d1b21ba7bc6",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "da0317df3f7a718b82d1ec8e0bc988642c313685e21b2a1c0b0e9c4b33487814",
+            "after_argument_sha256": "da0317df3f7a718b82d1ec8e0bc988642c313685e21b2a1c0b0e9c4b33487814",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "7c0770200c50c79f0ec7be7d1a9ff6db6dbcf2193e2682f09514cd3591bac216",
+            "after_argument_sha256": "7c0770200c50c79f0ec7be7d1a9ff6db6dbcf2193e2682f09514cd3591bac216",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/09-goose-girl.html",
+        "before_raw_sha256": "5e3826c34b64f5b074cdfe40862b5de5671fd49209dcc88792d3f5a7e8af9f1b",
+        "after_raw_sha256": "e9066a3ad895ff7f99cebac0366e08346d4b3c7bddefa52005e066ebda9b61d8",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "ebbff2c26552a8990ef6fb22624684b42baef575a7b2cc1917cfb8f558090f9c",
+            "after_argument_sha256": "ebbff2c26552a8990ef6fb22624684b42baef575a7b2cc1917cfb8f558090f9c",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "6a8e1af28d37c7a1803c53df8c59fe5a675169bdc58f4a6898acf59ea291a133",
+            "after_argument_sha256": "6a8e1af28d37c7a1803c53df8c59fe5a675169bdc58f4a6898acf59ea291a133",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "4d37a9514ac5d45eaf74bb76b348ee7e2c25492b427e953f8485dd01aec3ddd7",
+            "after_argument_sha256": "4d37a9514ac5d45eaf74bb76b348ee7e2c25492b427e953f8485dd01aec3ddd7",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/10-hunter-and-tortoise.html",
+        "before_raw_sha256": "afe5377108cc7a1652d40a50798ec6318d31f46804f728fba1a80406bea3183a",
+        "after_raw_sha256": "afe5377108cc7a1652d40a50798ec6318d31f46804f728fba1a80406bea3183a",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "e4e719ca395b31a2a757d797ce4302cef5029fd40229d3b9f43350f95d6e5957",
+            "after_argument_sha256": "e4e719ca395b31a2a757d797ce4302cef5029fd40229d3b9f43350f95d6e5957",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 19,
+            "before_argument_sha256": "76c5a8f4b8afc57387435211188cffa8bce1df0ee112119ee39a0386f038d741",
+            "after_argument_sha256": "76c5a8f4b8afc57387435211188cffa8bce1df0ee112119ee39a0386f038d741",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 19,
+            "before_argument_sha256": "428aea570c936898b53bbaacd02e504a4539b1a7dc123619600c46ae6182c4e5",
+            "after_argument_sha256": "428aea570c936898b53bbaacd02e504a4539b1a7dc123619600c46ae6182c4e5",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/11-three-spinners.html",
+        "before_raw_sha256": "db8c4f3c4af7ab14acb5a7d1f5ace3ca11ecc4d0907a4f4571212b0bf8556f00",
+        "after_raw_sha256": "5a4ced3ef4d79fcacb57dd7d861938cffde48ca220d4b72a1e2807b0e1f12bdc",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "f6fbc6ca1e2b0f3d1cc77aeca4f2cf8fb71357f82fbd4fc74eecf225e4275ac4",
+            "after_argument_sha256": "f6fbc6ca1e2b0f3d1cc77aeca4f2cf8fb71357f82fbd4fc74eecf225e4275ac4",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "0dd2fe996e941724f30ffd7b4f3b4803946e2cc46e0a46258221f3eae8686421",
+            "after_argument_sha256": "0dd2fe996e941724f30ffd7b4f3b4803946e2cc46e0a46258221f3eae8686421",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "a673bfc51aa1bf0fa58af1e653b6e9c82fe9bf2c05b9724d4a4c7e86ee3c057e",
+            "after_argument_sha256": "a673bfc51aa1bf0fa58af1e653b6e9c82fe9bf2c05b9724d4a4c7e86ee3c057e",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/12-rapunzel.html",
+        "before_raw_sha256": "eb20ad8d4deab425ebe95752d2f4845083b2667ab015843a8843ca97d9b12b6d",
+        "after_raw_sha256": "2178171e0024043688b1e2cc8111e70909fe100226d022dd0ef0601907dfd396",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "e9fff61d40afa7a862d1d1b417324c20161832bfece737ed6d641945bb45ec2f",
+            "after_argument_sha256": "e9fff61d40afa7a862d1d1b417324c20161832bfece737ed6d641945bb45ec2f",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "8eb3208141c6c24bce00dd5b3b22feb59cdf361f766cba7c66a77054cf03b85c",
+            "after_argument_sha256": "8eb3208141c6c24bce00dd5b3b22feb59cdf361f766cba7c66a77054cf03b85c",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "e387a27c8b1c4c183fc7808e643a883602e336d50cda4d183860b0f5ad8378c4",
+            "after_argument_sha256": "e387a27c8b1c4c183fc7808e643a883602e336d50cda4d183860b0f5ad8378c4",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/13-cinderella.html",
+        "before_raw_sha256": "04072bfb81f05f849c52848422b8544c099469d0138f4965ed76a16aab3cae76",
+        "after_raw_sha256": "d14aa16d6dbdb71cbca26305903bb892c5938dd6f1a7597f240f088cd73d3255",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "acf16e455613531089f294ea85ca7c8027b45dd910d6c1f02ef339486c9baf78",
+            "after_argument_sha256": "acf16e455613531089f294ea85ca7c8027b45dd910d6c1f02ef339486c9baf78",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "0efb914d81289783b1e0ea1d8c523116e07c99e8c44e2abce41e176946a8082c",
+            "after_argument_sha256": "0efb914d81289783b1e0ea1d8c523116e07c99e8c44e2abce41e176946a8082c",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "901901e40b6675b66745b6979fbbb73fee51e471ee6af11a67514b5e38e2c736",
+            "after_argument_sha256": "901901e40b6675b66745b6979fbbb73fee51e471ee6af11a67514b5e38e2c736",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/14-ugly-duckling.html",
+        "before_raw_sha256": "36e8550f06b3ccfdd3432f925a5058bbb9083e46b94e838b065effc76cbbcfbb",
+        "after_raw_sha256": "36e8550f06b3ccfdd3432f925a5058bbb9083e46b94e838b065effc76cbbcfbb",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "afbfa17feef31edeca2c508661a8fd1ad445650d07bec0a2eb6a445066923445",
+            "after_argument_sha256": "afbfa17feef31edeca2c508661a8fd1ad445650d07bec0a2eb6a445066923445",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "83f8c43c2453d28f645ae377a22ea72a4c2bb3b44e43311702ff6c4422367bf9",
+            "after_argument_sha256": "83f8c43c2453d28f645ae377a22ea72a4c2bb3b44e43311702ff6c4422367bf9",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "be0031cfb078ca523e8c7cd51bbdee145c2080d8d4b6ecf249209ba0ee670389",
+            "after_argument_sha256": "be0031cfb078ca523e8c7cd51bbdee145c2080d8d4b6ecf249209ba0ee670389",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/15-shadow.html",
+        "before_raw_sha256": "0ef7031d130946cbbb77d734f1f01049f803d1b4c2dc7846a8f3829fce16d103",
+        "after_raw_sha256": "0ef7031d130946cbbb77d734f1f01049f803d1b4c2dc7846a8f3829fce16d103",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "3ca2944c68a6694524e436b34acb3f8e2d50abd1dd759c89c2c92bcf4a43f0e5",
+            "after_argument_sha256": "3ca2944c68a6694524e436b34acb3f8e2d50abd1dd759c89c2c92bcf4a43f0e5",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "2b53ea9679eff4703db17b53402983acbd166436591e037d062f4610773124ad",
+            "after_argument_sha256": "2b53ea9679eff4703db17b53402983acbd166436591e037d062f4610773124ad",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "bf6f967b33076cbb03a19aed6b2ec8ce65964fcb94cfb1543d269cb662455715",
+            "after_argument_sha256": "bf6f967b33076cbb03a19aed6b2ec8ce65964fcb94cfb1543d269cb662455715",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/16-puss-in-boots.html",
+        "before_raw_sha256": "5803333a87d307b5135062724932c85c5efd0418893599f27643722643d2c176",
+        "after_raw_sha256": "d2c679a709f49e17c8965c59e6a3ea60a8a5f9d90015a6c0b080781186cdbabf",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "a0237d794022af736f22a0026643ccf9a726f7c42ed4495cdfc4f14d6d39dc38",
+            "after_argument_sha256": "a0237d794022af736f22a0026643ccf9a726f7c42ed4495cdfc4f14d6d39dc38",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "87ac65b1621f8fab2ae44979465ab05aef71f4663cd4d42e608920034172b92e",
+            "after_argument_sha256": "87ac65b1621f8fab2ae44979465ab05aef71f4663cd4d42e608920034172b92e",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 20,
+            "before_argument_sha256": "76b0616f744fb7d8ce762b96fbd38f5024576817b541192f3c387e442d453909",
+            "after_argument_sha256": "76b0616f744fb7d8ce762b96fbd38f5024576817b541192f3c387e442d453909",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/17-east-sun-west-moon.html",
+        "before_raw_sha256": "d5e16239cea6197b3df64feac17124431083ec690fb3b6478c6b433c22ab2fd1",
+        "after_raw_sha256": "d5e16239cea6197b3df64feac17124431083ec690fb3b6478c6b433c22ab2fd1",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "4b5134e12dd3f385bc3be5be8fd465018078d0629fde73bd3444df0dfe61b705",
+            "after_argument_sha256": "4b5134e12dd3f385bc3be5be8fd465018078d0629fde73bd3444df0dfe61b705",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 21,
+            "before_argument_sha256": "783c35c06ccf5ed987c7dcac9c4da92292a841b2ada7f0032ccff2264dde2609",
+            "after_argument_sha256": "783c35c06ccf5ed987c7dcac9c4da92292a841b2ada7f0032ccff2264dde2609",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 21,
+            "before_argument_sha256": "7fda67401c440718cd3fa750a80fb034c0ea36032245cfcb818c7177db686efd",
+            "after_argument_sha256": "7fda67401c440718cd3fa750a80fb034c0ea36032245cfcb818c7177db686efd",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/18-ye-xian.html",
+        "before_raw_sha256": "7413d2930911e694c716ad7d033bfa2823471637a259f6844f0d9600d0fd1c05",
+        "after_raw_sha256": "7413d2930911e694c716ad7d033bfa2823471637a259f6844f0d9600d0fd1c05",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "1065c5e698a42d6da79663c64139dbb950cb3ef4960fab169becefd982fc1ac9",
+            "after_argument_sha256": "1065c5e698a42d6da79663c64139dbb950cb3ef4960fab169becefd982fc1ac9",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 18,
+            "before_argument_sha256": "b73c5757c371abee3db18c3957029eedfb2363b31670bf8d759d3a738764816f",
+            "after_argument_sha256": "b73c5757c371abee3db18c3957029eedfb2363b31670bf8d759d3a738764816f",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 18,
+            "before_argument_sha256": "bcce44c85a7c0e6d1425491c8091b02e8d0b38f2cdc728bff01320f070e84176",
+            "after_argument_sha256": "bcce44c85a7c0e6d1425491c8091b02e8d0b38f2cdc728bff01320f070e84176",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/19-happy-prince.html",
+        "before_raw_sha256": "b91065b1a9a3137b5f5916c5c651a87df72bbc428dfc7b7a199286f303506524",
+        "after_raw_sha256": "b91065b1a9a3137b5f5916c5c651a87df72bbc428dfc7b7a199286f303506524",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "b498c370f0a02c003fe3429644c882252e13606501f03fd1fe08f6386162bb67",
+            "after_argument_sha256": "b498c370f0a02c003fe3429644c882252e13606501f03fd1fe08f6386162bb67",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 21,
+            "before_argument_sha256": "29cfaef2a0158ad7b45e19845c2306140de27c5377873e2d3570273491fdc576",
+            "after_argument_sha256": "29cfaef2a0158ad7b45e19845c2306140de27c5377873e2d3570273491fdc576",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 21,
+            "before_argument_sha256": "2de91a8f3ab3a19ece24bdee933e1edd08106c42779520aa96ff03e0e314d5b3",
+            "after_argument_sha256": "2de91a8f3ab3a19ece24bdee933e1edd08106c42779520aa96ff03e0e314d5b3",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/20-riquet-with-tuft.html",
+        "before_raw_sha256": "3a11400c16e2def549fa3af5ad79cb2018b6ccb05aed32c6b1a349ecc6f3e916",
+        "after_raw_sha256": "a22355b4cc640a9ea90f46af1f10b3d6fd25b6c527abc2a95cc10593455c89c3",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "d1ca02d94f7f15fa310b64d2d879e40fc904c0238c6deab8b9407aa97d21ba10",
+            "after_argument_sha256": "d1ca02d94f7f15fa310b64d2d879e40fc904c0238c6deab8b9407aa97d21ba10",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 21,
+            "before_argument_sha256": "f76f441d8323097b96128d2cd58be3ec714d5e68a95aded9bc6b0f7fda3e770b",
+            "after_argument_sha256": "f76f441d8323097b96128d2cd58be3ec714d5e68a95aded9bc6b0f7fda3e770b",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 21,
+            "before_argument_sha256": "020f3fe8ae6d8d3b3673e3f48ce08466f3527b74633769ac565657f10936c246",
+            "after_argument_sha256": "020f3fe8ae6d8d3b3673e3f48ce08466f3527b74633769ac565657f10936c246",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/21-frog-princess.html",
+        "before_raw_sha256": "a86766710ab36e41adfe4646fa2c5c9573a810d9bba5d379c79d4b70f2f4ae78",
+        "after_raw_sha256": "a86766710ab36e41adfe4646fa2c5c9573a810d9bba5d379c79d4b70f2f4ae78",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "1b6a1691491291632632cf71bb3ba83ebbdba3a4df042eb036b04bab80777b26",
+            "after_argument_sha256": "1b6a1691491291632632cf71bb3ba83ebbdba3a4df042eb036b04bab80777b26",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 21,
+            "before_argument_sha256": "09f6e18ecac17b31f3882f7d5a925ad4dc18241a186682236c682bc25191b4c7",
+            "after_argument_sha256": "09f6e18ecac17b31f3882f7d5a925ad4dc18241a186682236c682bc25191b4c7",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 21,
+            "before_argument_sha256": "e19255102baf010d7f79944dd10e55d924095d089bdc7c316cb1e1ac678ab8a7",
+            "after_argument_sha256": "e19255102baf010d7f79944dd10e55d924095d089bdc7c316cb1e1ac678ab8a7",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/22-thumbelina.html",
+        "before_raw_sha256": "a748aa1b38b33d4464561da0889f4eb5081bf8ba3eaa2c5131f14d20c13f53bf",
+        "after_raw_sha256": "a748aa1b38b33d4464561da0889f4eb5081bf8ba3eaa2c5131f14d20c13f53bf",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "070f9b7c6478b6280310d7a2ae843b647d4ad417e2011f68e5c2407498400af4",
+            "after_argument_sha256": "070f9b7c6478b6280310d7a2ae843b647d4ad417e2011f68e5c2407498400af4",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 21,
+            "before_argument_sha256": "882af0fd81b3142dd23482797fb0f8410a579207f6ce7d42f73a279e597e7db9",
+            "after_argument_sha256": "882af0fd81b3142dd23482797fb0f8410a579207f6ce7d42f73a279e597e7db9",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 21,
+            "before_argument_sha256": "f7c8ace773a70370a71dc78b4bf192751014cd3224f9953a9d33bad05a1c7c94",
+            "after_argument_sha256": "f7c8ace773a70370a71dc78b4bf192751014cd3224f9953a9d33bad05a1c7c94",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/23-gretel-opens-cage.html",
+        "before_raw_sha256": "e2ec6a69feaa0b5e831a378444295c12567edf88cf7183c48970ab0ce566d9cc",
+        "after_raw_sha256": "2b8239c63b11d0438a1791d4201a90443d50f84197269d9c351c11e93e11de17",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "d22e7779bfa691e6c73f971c0840110f4da2be7b6d8eb9455ef5ab8d50104f12",
+            "after_argument_sha256": "d22e7779bfa691e6c73f971c0840110f4da2be7b6d8eb9455ef5ab8d50104f12",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 22,
+            "before_argument_sha256": "dc5644f92e6d29170ff8224c55b17f0bd597abdcaa3ad3ec1241905a9546fd7a",
+            "after_argument_sha256": "dc5644f92e6d29170ff8224c55b17f0bd597abdcaa3ad3ec1241905a9546fd7a",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 22,
+            "before_argument_sha256": "90e866aba9e17150dcb93a8329648a1f7531b49aaf2e5d71846f618e61945c94",
+            "after_argument_sha256": "90e866aba9e17150dcb93a8329648a1f7531b49aaf2e5d71846f618e61945c94",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/24-fisherman-and-wife.html",
+        "before_raw_sha256": "b5733fa9a35752aa656e9550e3de2354654fa18d603e6801bad5f11e3f7f5557",
+        "after_raw_sha256": "5c9cc222884b7863438a63c412f4712ac6e7b016ff2adf34fdebb39d3deb1a0c",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "d89d5216e11a28877e4544cd3faedfd2f619098f755f21d37e353707ba74955c",
+            "after_argument_sha256": "d89d5216e11a28877e4544cd3faedfd2f619098f755f21d37e353707ba74955c",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 22,
+            "before_argument_sha256": "7263b5512ea728e798fb8097e8f5f186d65b488ffedd0fd1cfeb4219a7827e74",
+            "after_argument_sha256": "7263b5512ea728e798fb8097e8f5f186d65b488ffedd0fd1cfeb4219a7827e74",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 22,
+            "before_argument_sha256": "bbeeb098a38b9d7622267e3e983211bd95c27db9687cea37cee5ca4ff56f507c",
+            "after_argument_sha256": "bbeeb098a38b9d7622267e3e983211bd95c27db9687cea37cee5ca4ff56f507c",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/25-brave-little-tailor.html",
+        "before_raw_sha256": "8e67e892fb01812ae873e868e6f6b21e13fc9441705d3c7e8d3f3d4878f01430",
+        "after_raw_sha256": "60dccfa0f5ff1264b85c73ee4b60778ec2f22dfd257310393c8b92b045c7af18",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "b2a1f5352ff0902d11c7c0a06086d94bdc96e60092c9b3da3226a557f14e6772",
+            "after_argument_sha256": "b2a1f5352ff0902d11c7c0a06086d94bdc96e60092c9b3da3226a557f14e6772",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 22,
+            "before_argument_sha256": "bb32d46633a0871a8b9c10c25e9f90b7bdb9db923c1506b4ba934c43c2e1ee56",
+            "after_argument_sha256": "bb32d46633a0871a8b9c10c25e9f90b7bdb9db923c1506b4ba934c43c2e1ee56",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 22,
+            "before_argument_sha256": "d4aa58e1da975327b542f094e52e99061f80aceaff744ee4b51302cdda87f53a",
+            "after_argument_sha256": "d4aa58e1da975327b542f094e52e99061f80aceaff744ee4b51302cdda87f53a",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/26-donkeyskin.html",
+        "before_raw_sha256": "97fbad659fe409789f58b4a87817f63873b84d01a7c900dc4b9f972a91a9a685",
+        "after_raw_sha256": "be62f652a807e0127c1eee167cd492f0045b7b874da316ed727c1b3f0bf857ec",
+        "changed": true,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "e6d4d97d9f41a3d868b89bba0a6b53657718346da50cd3ee9fb8a72d8160b005",
+            "after_argument_sha256": "e6d4d97d9f41a3d868b89bba0a6b53657718346da50cd3ee9fb8a72d8160b005",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 23,
+            "before_argument_sha256": "b7c814bb881230e141241443c7d7efab97dde08004e557a3e8cbea352ff377bb",
+            "after_argument_sha256": "b7c814bb881230e141241443c7d7efab97dde08004e557a3e8cbea352ff377bb",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 23,
+            "before_argument_sha256": "2b3d36f06ac415e5f1621607b369c9dddafab231b12272ccca6e4465c4f0bd3a",
+            "after_argument_sha256": "2b3d36f06ac415e5f1621607b369c9dddafab231b12272ccca6e4465c4f0bd3a",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": true
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/27-birthday-infanta.html",
+        "before_raw_sha256": "d6302ca7d88406ff6396beca4d6e79c817f6187e7c94f14d0217c81013c4506b",
+        "after_raw_sha256": "d6302ca7d88406ff6396beca4d6e79c817f6187e7c94f14d0217c81013c4506b",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 5,
+            "before_argument_sha256": "94200eebfe1866dbbb6743a16a1f7d300a600525c5b07f484b0ce56ca194ab5e",
+            "after_argument_sha256": "94200eebfe1866dbbb6743a16a1f7d300a600525c5b07f484b0ce56ca194ab5e",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 23,
+            "before_argument_sha256": "2b12982ff9a87a9ac6e926f1831086e21e2199585774d5611ae6832fdb915c71",
+            "after_argument_sha256": "2b12982ff9a87a9ac6e926f1831086e21e2199585774d5611ae6832fdb915c71",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 23,
+            "before_argument_sha256": "4368b4d13c5d088a0477725f6735c5da5f43c82a36741d6d4fa8d921707772f9",
+            "after_argument_sha256": "4368b4d13c5d088a0477725f6735c5da5f43c82a36741d6d4fa8d921707772f9",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/28-wild-swans.html",
+        "before_raw_sha256": "6af5081fab314e8c827f42b239927eabeb9732da78a40f92cd4f35bcdd23e780",
+        "after_raw_sha256": "6af5081fab314e8c827f42b239927eabeb9732da78a40f92cd4f35bcdd23e780",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 4,
+            "before_argument_sha256": "6cc047c06dc81318ae845fea48ec1bfdb35dd2630c9d2e4db17f3d7933cdf3f9",
+            "after_argument_sha256": "6cc047c06dc81318ae845fea48ec1bfdb35dd2630c9d2e4db17f3d7933cdf3f9",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 11,
+            "before_argument_sha256": "804600a7a7f90d55118213e4428a7222546b847822d04bb5b26ebb7db9dd11eb",
+            "after_argument_sha256": "804600a7a7f90d55118213e4428a7222546b847822d04bb5b26ebb7db9dd11eb",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 11,
+            "before_argument_sha256": "1df535556fb10d7181a64cd221eaade57123ef3ac4f5d6ba67098e67f7df39c9",
+            "after_argument_sha256": "1df535556fb10d7181a64cd221eaade57123ef3ac4f5d6ba67098e67f7df39c9",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/29-red-shoes.html",
+        "before_raw_sha256": "74af24893ab328e51971b5c23a26cd6357564127b2e2527a9ed622a1967f87b6",
+        "after_raw_sha256": "74af24893ab328e51971b5c23a26cd6357564127b2e2527a9ed622a1967f87b6",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 4,
+            "before_argument_sha256": "cc5592a1e00c9d079ec4aea4faca7c3004645f19acd839bab0e5a0dcfc320969",
+            "after_argument_sha256": "cc5592a1e00c9d079ec4aea4faca7c3004645f19acd839bab0e5a0dcfc320969",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 12,
+            "before_argument_sha256": "4959e9ceaa5acc0b595fa2ba5a0a7d7ba9a51200af9ea27d8f8a9aec3784fd05",
+            "after_argument_sha256": "4959e9ceaa5acc0b595fa2ba5a0a7d7ba9a51200af9ea27d8f8a9aec3784fd05",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 12,
+            "before_argument_sha256": "6f77e067964428a638cdf550d05469ee64955d59e4f63d98314a4c9e76ac3f81",
+            "after_argument_sha256": "6f77e067964428a638cdf550d05469ee64955d59e4f63d98314a4c9e76ac3f81",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/30-emperors-new-clothes.html",
+        "before_raw_sha256": "5eb06e3db6c2a73199808c0b806cc169ee690d884f0cc9087ba986e67124384c",
+        "after_raw_sha256": "5eb06e3db6c2a73199808c0b806cc169ee690d884f0cc9087ba986e67124384c",
+        "changed": false,
+        "modes": {
+          "lang-en": {
+            "argument_paragraphs": 4,
+            "before_argument_sha256": "cb2a8cf058d0b13e2ae0798600678463044f2bcb9da0b33063bce6d074db7065",
+            "after_argument_sha256": "cb2a8cf058d0b13e2ae0798600678463044f2bcb9da0b33063bce6d074db7065",
+            "identical": true
+          },
+          "lang-zh": {
+            "argument_paragraphs": 11,
+            "before_argument_sha256": "c8964d8d3797407ca23c0c7d2d3369a11638621f5f47d9bdc48179f776d1d692",
+            "after_argument_sha256": "c8964d8d3797407ca23c0c7d2d3369a11638621f5f47d9bdc48179f776d1d692",
+            "identical": true
+          },
+          "lang-hant": {
+            "argument_paragraphs": 11,
+            "before_argument_sha256": "6eca774b07e0b646fc3ef4e838b49fabb87671f04af6d8d3224eabedf0587a73",
+            "after_argument_sha256": "6eca774b07e0b646fc3ef4e838b49fabb87671f04af6d8d3224eabedf0587a73",
+            "identical": true
+          }
+        },
+        "added_terminal_lf": false
+      },
+      {
+        "path": "essays/everyday/stories/fairy-tales/index.html",
+        "before_raw_sha256": "a8bda1ddd9a1487c4e56d7d2e3ed5510a961b6d5e94a51080357af04fd66bbea",
+        "after_raw_sha256": "a8bda1ddd9a1487c4e56d7d2e3ed5510a961b6d5e94a51080357af04fd66bbea",
+        "changed": false,
+        "modes": {},
+        "added_terminal_lf": false
+      }
+    ],
+    "all_three_modes_all_thirty_argument_bodies_unchanged": true,
+    "index_unchanged": true
+  },
+  "target_verification": [
+    {
+      "url": "https://de.wikisource.org/wiki/Der_Froschkönig_oder_der_eiserne_Heinrich_(1857)",
+      "page_title": "Der Froschkönig oder der eiserne Heinrich (1857)",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_passé_(1697)/Original/La_Barbe_bleue",
+      "page_title": "Histoires ou Contes du temps passé (1697)/Original/La Barbe bleue",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://de.wikisource.org/wiki/Das_Mädchen_ohne_Hände_(1857)",
+      "page_title": "Das Mädchen ohne Hände (1857)",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://de.wikisource.org/wiki/Die_Gänsemagd_(1857)",
+      "page_title": "Die Gänsemagd (1857)",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://de.wikisource.org/wiki/Die_drei_Spinnerinnen_(1857)",
+      "page_title": "Die drei Spinnerinnen (1857)",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://de.wikisource.org/wiki/Rapunzel_(1857)",
+      "page_title": "Rapunzel (1857)",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Cendrillon",
+      "page_title": "Histoires ou Contes du temps passé (1697)/Original/Cendrillon",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Le_Maistre_Chat",
+      "page_title": "Histoires ou Contes du temps passé (1697)/Original/Le Maistre Chat",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://fr.wikisource.org/wiki/Histoires_ou_Contes_du_temps_pass%C3%A9_(1697)/Original/Riquet_%C3%A0_la_Houppe",
+      "page_title": "Histoires ou Contes du temps passé (1697)/Original/Riquet à la Houppe",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://de.wikisource.org/wiki/H%C3%A4nsel_und_Grethel_(1857)",
+      "page_title": "Hänsel und Grethel (1857)",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://de.wikisource.org/wiki/Von_dem_Fischer_un_syner_Fru_(1857)",
+      "page_title": "Von dem Fischer un syner Fru (1857)",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://de.wikisource.org/wiki/Das_tapfere_Schneiderlein_(1857)",
+      "page_title": "Das tapfere Schneiderlein (1857)",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    },
+    {
+      "url": "https://fr.wikisource.org/wiki/%C5%92uvres_choisies_de_Charles_Perrault,_%C3%A9dition_1826/Contes_de_ma_m%C3%A8re_l%E2%80%99Oye/Peau-d%E2%80%99%C3%82ne_(en_vers)",
+      "page_title": "Œuvres choisies de Charles Perrault, édition 1826/Contes de ma mère l’Oye/Peau-d’Âne (en vers)",
+      "method": "Read-only web open of the public-domain Wikisource transcription; successful page returned with corresponding title and edition path.",
+      "checked_date": "2026-11-04",
+      "full_book_read_or_new_textual_collation_claim": false
+    }
+  ],
+  "limits": [
+    "This source-link verification does not claim fresh full-book textual collation or acceptance of every essay's interpretation.",
+    "No original Documents Markdown prose was reimported; English remains unchanged at this source-repair stage. Its authorized complete expansion is a separate editorial task.",
+    "Repair report hashes preserve the fixed pre-expansion state; later authorized English replacement/control insertion must be separately and explicitly audited.",
+    "Thirteen automatically added terminal LF characters are separate, expressly accepted file-format changes; they are not counted as source-link repairs or hidden in prose normalization."
+  ],
+  "remaining": [],
+  "source_repair_complete": true,
+  "publication_ready": false,
+  "mechanical_format_changes": [
+    {
+      "path": "essays/everyday/stories/fairy-tales/03-frog-king.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/04-bluebeard.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/06-girl-without-hands.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/09-goose-girl.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/11-three-spinners.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/12-rapunzel.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/13-cinderella.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/16-puss-in-boots.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/20-riquet-with-tuft.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/23-gretel-opens-cage.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/24-fisherman-and-wife.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/25-brave-little-tailor.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    },
+    {
+      "path": "essays/everyday/stories/fairy-tales/26-donkeyskin.html",
+      "before_terminal_lf": false,
+      "after_terminal_lf": true,
+      "added": "\n",
+      "reason": "apply_patch automatically terminates the modified long final HTML line; separately disclosed to and accepted by root, not an unreported content edit."
+    }
+  ],
+  "validation": {
+    "source_test_command": "python3 scripts/test_fairy_tales_source.py",
+    "result": "passed",
+    "tests": 6,
+    "coverage": [
+      "All thirty canonical source articles:595 argument units,30 full plain-text edition notes,46 exact ordered reference mappings, both reader entry routes",
+      "Exact original6d664ff raw-file repair replay including explicitly accepted13 terminal LF additions; unchanged Chinese/Hant argument raw hashes for all30",
+      "Balanced and multiply nested parentheses plus escaping and first-source extraction regression tests",
+      "Malformed Markdown does not generate a truncated href",
+      "Semantic source digest unchanged by authorized English or outside controls, but changes when Chinese or Hant reading mode changes",
+      "Legacy importer normal/check CLI both fail closed after publication receipt exists, without rendering old Markdown"
+    ],
+    "limits": "Source-only technical checks; no linguistic or independent-publication approval. No render, prepare, seal or commit.",
+    "english_upgrade_followup": {
+      "reason": "Lead review correctly identified that the authorized complete English edition puts references in a separate list rather than necessarily in its final paragraph.",
+      "check": "Chinese/Hant repaired URLs remain checked only within their original final version-note paragraph; English repaired URLs are checked throughout its article-body. An in-memory full English example with separate references and a final editorial note is covered.",
+      "actual_command": "python3 scripts/test_fairy_tales_source.py",
+      "actual_tests": 7,
+      "result": "passed"
+    }
+  }
+}
