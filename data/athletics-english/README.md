@@ -93,3 +93,31 @@ and original-baseline source/Hant replay checks, idempotent rendering, updated
 search/sitemap. Browser checks confirmed EP18's86 English paragraphs, expanded
 ten-section contents, eight language options, Traditional switching, and390×844
 reading without horizontal document overflow. Temporary viewport reset.
+
+Batch 05 (EP21–23): 280 complete English body paragraphs. All 23 essays now have
+complete English, 2,145 prose paragraphs in total. The final group distinguishes
+statistical suspicion from evidence of doping, conditional participation from
+unconditional eligibility, and failed/unexpired/conditional predictions from
+one another. Current mile and marathon figures were checked against official
+World Athletics sources. Human worth is not inferred from measurement error.
+
+Independent saved-field reading covered 315 native body/heading fields and five
+native decks. A's initial failed report remains unchanged: the lead corrected
+the German positive/negative-test term and Korean particle, then actually read
+both final full paragraphs and bound an explicit resolution. One Spanish
+measurement qualifier was similarly corrected and read back. All 64 new Hant
+fields, 13 contextual fixes and the final Hant index summary were actually read.
+
+Final browser QA caught an unchanged opening echo in EP23 that still called all
+the predictions failures. A separate seven-language full-paragraph supplement
+and actual eight-language lead readback fix this without rewriting the original
+sealed report or its read-time hashes. The final parent review links the new
+supplement; the original batch05 review remains available unchanged.
+
+Final verification: nine complete-English tests; six companion-language tests;
+all 115 foreign full-text, original-source/Hant replay, metadata/link/search and
+sitemap checks; idempotent English/native generation. Analytics audit checked
+13,624 public pages with zero errors or conflict copies. Browser readback found
+105 complete EP23 English paragraphs and 10 sections, updated record figures,
+eight language choices, the corrected opening and no document overflow. Search
+and sitemap regenerated after the final correction; no push was performed.
