@@ -1,1 +1,311 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Die Bridge · Der Meißel-Konstrukt-Zyklus: Blockchain — Non Dubito</title><meta name="description" content="Kein Vermögenswert wandert durch die Ketten; eine Blockchain akzeptiert eine Aussage über den Zustand einer anderen."><meta name="author" content="Han Qin (秦汉)"><meta property="og:type" content="article"><meta property="og:title" content="Die Bridge"><meta property="og:description" content="Kein Vermögenswert wandert durch die Ketten; eine Blockchain akzeptiert eine Aussage über den Zustand einer anderen."><meta property="og:url" content="https://nondubito.net/essays/blockchain/de/ep15.html"><link rel="canonical" href="https://nondubito.net/essays/blockchain/de/ep15.html"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="stylesheet" href="../../../style.css"><style>.collection-page{max-width:820px;margin:0 auto;padding:92px 2rem 72px}.language-route{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin-bottom:2.2rem}.collection-back{font-family:var(--sans);font-size:.72rem;color:var(--ink-muted);text-decoration:none}.collection-kicker{font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:2rem 0 .7rem}.collection-page h1{font-size:2.35rem;line-height:1.18;margin:.2rem 0 1rem}.collection-deck{font-size:1.08rem;color:var(--ink-light);line-height:1.75;margin-bottom:2.4rem}.collection-body section{margin:0 0 2.5rem}.collection-body h2{font-size:1.28rem;margin-bottom:.8rem}.collection-body p{font-size:1.02rem;line-height:1.9;margin:0}.edition-note{margin:3rem 0 0;padding-top:1.1rem;border-top:1px solid var(--cream-border);font-size:.8rem;color:var(--ink-muted);line-height:1.7}.collection-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.4rem}.collection-nav a{padding:1rem;border:1px solid var(--cream-border);text-decoration:none;color:var(--ink);line-height:1.45}.collection-nav a:last-child{text-align:right}.collection-nav small{display:block;font-family:var(--sans);font-size:.62rem;color:var(--ink-muted);margin-bottom:.3rem}@media(max-width:620px){.collection-page{padding:76px 1.25rem 54px}.collection-nav{grid-template-columns:1fr}.collection-nav a:last-child{text-align:left}}</style><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script></head><body><header><div class="header-inner"><a href="../../../index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../index.html">Essays</a><a href="../../../start.html">Start Here</a><a href="../../../library.html" class="active">Library</a><a href="../../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a></nav></div></header><main class="collection-page"><div class="language-route" aria-label="Language selector"><span class="blockchain-language-menu" role="group" aria-label="Sprache"><a data-language="zh" href="../ep15.html">简体中文</a><a data-language="en" href="../en/ep15.html">English</a><a data-language="zh-hant" href="../zh-hant/ep15.html">繁體中文</a><a data-language="ja" href="../ja/ep15.html">日本語</a><a data-language="fr" href="../fr/ep15.html">Français</a><a data-language="de" href="ep15.html" aria-current="page">Deutsch</a><a data-language="es" href="../es/ep15.html">Español</a><a data-language="ko" href="../ko/ep15.html">한국어</a></span></div><a class="collection-back" href="index.html">← Der Meißel-Konstrukt-Zyklus: Blockchain</a><article><div class="collection-kicker">Technik, Märkte und Institutionen · 15 / 21</div><h1>Die Bridge</h1><p class="collection-deck">Kein Vermögenswert wandert durch die Ketten; eine Blockchain akzeptiert eine Aussage über den Zustand einer anderen.</p><div class="collection-body"><section><h2>Was geschah</h2><p>Getrennte Blockchains teilen ihren Zustand nicht unmittelbar. Eine Bridge sperrt einen Vermögenswert auf der einen Seite und erzeugt auf der anderen einen entsprechenden Anspruch.</p></section><section><h2>Was das Ledger erfasste</h2><p>Innerhalb jeder Kette sind Einträge überprüfbar. Erfüllen Nachricht und Signaturen die Bedingungen, führt der Zielvertrag seine Regel korrekt aus.</p></section><section><h2>Was außerhalb blieb</h2><p>Die Gefahr liegt zwischen zwei richtigen Ledgers. Werden Prüfer, Verwaltungsschlüssel oder Nachrichtenformat gebrochen, kann eine nie erfolgte Einzahlung echte Token hervorbringen.</p></section></div><p class="edition-note"><em>Diese deutsche Ausgabe wurde für deutschsprachige Leser eigenständig neu geschrieben.</em></p><nav class="collection-nav"><a href="ep14.html"><small>Voriger Essay</small>← El Salvador</a><a href="ep16.html"><small>Nächster Essay</small>Terra und Luna →</a></nav></article></main><footer><div class="footer-inner"><div class="footer-brand"><div class="footer-logo">Non <span>Dubito</span></div><div class="footer-tagline">Thought has no mother tongue</div></div><div class="footer-bottom">© 2026 Han Qin · Non Dubito</div></div></footer></body></html>
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Brücken · Blockchain — Non Dubito</title><meta name="description" content="Cross-Chain-Brücken lassen keine Assets durch Blockchains reisen. Sie lassen eine Blockchain Aussagen einer anderen akzeptieren. Vorfälle geschehen zwischen zwei überprüfbaren Rechnungsbüchern."><meta name="author" content="Han Qin (秦汉)"><meta property="og:type" content="article"><meta property="og:title" content="Brücken"><meta property="og:description" content="Cross-Chain-Brücken lassen keine Assets durch Blockchains reisen. Sie lassen eine Blockchain Aussagen einer anderen akzeptieren. Vorfälle geschehen zwischen zwei überprüfbaren Rechnungsbüchern."><meta property="og:url" content="https://nondubito.net/essays/blockchain/de/ep15.html"><link rel="canonical" href="https://nondubito.net/essays/blockchain/de/ep15.html"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="stylesheet" href="../../../style.css"><style>.collection-page{max-width:820px;margin:0 auto;padding:92px 2rem 72px}.language-route{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin-bottom:2.2rem}.collection-back{font-family:var(--sans);font-size:.72rem;color:var(--ink-muted);text-decoration:none}.collection-kicker{font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:2rem 0 .7rem}.collection-page h1{font-size:2.35rem;line-height:1.18;margin:.2rem 0 1rem}.collection-deck{font-size:1.08rem;color:var(--ink-light);line-height:1.75;margin-bottom:2.4rem}.collection-body section{margin:0 0 2.5rem}.collection-body h2{font-size:1.28rem;margin-bottom:.8rem}.collection-body p{font-size:1.02rem;line-height:1.9;margin:0}.edition-note{margin:3rem 0 0;padding-top:1.1rem;border-top:1px solid var(--cream-border);font-size:.8rem;color:var(--ink-muted);line-height:1.7}.collection-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.4rem}.collection-nav a{padding:1rem;border:1px solid var(--cream-border);text-decoration:none;color:var(--ink);line-height:1.45}.collection-nav a:last-child{text-align:right}.collection-nav small{display:block;font-family:var(--sans);font-size:.62rem;color:var(--ink-muted);margin-bottom:.3rem}@media(max-width:620px){.collection-page{padding:76px 1.25rem 54px}.collection-nav{grid-template-columns:1fr}.collection-nav a:last-child{text-align:left}}</style><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script><style id="blockchain-full-style">
+.collection-body p{margin:0 0 1.4em;overflow-wrap:break-word}
+.collection-body h2{margin:3em 0 1em;line-height:1.55;scroll-margin-top:110px}
+.collection-body .source-note{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--cream-border);color:var(--ink-muted)}
+.collection-body .source-note p{font-size:.85rem;line-height:1.8}
+.blockchain-full-toc{margin:1.5rem 0 2.5rem;padding:1rem 1.2rem;border:1px solid var(--cream-border);font-family:var(--sans)}
+.blockchain-full-toc summary{cursor:pointer;font-size:.82rem}
+.blockchain-full-toc li{margin:.6rem 0;line-height:1.6;font-size:.85rem}
+.collection-page{min-width:0;overflow-wrap:anywhere}
+html[lang="ko"] .collection-body{word-break:keep-all}
+</style>
+</head><body><header><div class="header-inner"><a href="../../../index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../index.html">Essays</a><a href="../../../start.html">Start Here</a><a href="../../../library.html" class="active">Library</a><a href="../../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a></nav></div></header><main class="collection-page"><div class="language-route" aria-label="Language selector"><span class="blockchain-language-menu" role="group" aria-label="Sprache"><a data-language="zh" href="../ep15.html">简体中文</a><a data-language="en" href="../en/ep15.html">English</a><a data-language="zh-hant" href="../zh-hant/ep15.html">繁體中文</a><a data-language="ja" href="../ja/ep15.html">日本語</a><a data-language="fr" href="../fr/ep15.html">Français</a><a data-language="de" href="ep15.html" aria-current="page">Deutsch</a><a data-language="es" href="../es/ep15.html">Español</a><a data-language="ko" href="../ko/ep15.html">한국어</a></span></div><a class="collection-back" href="index.html">← Der Meißel-Konstrukt-Zyklus: Blockchain</a><article><div class="collection-kicker">Technik, Märkte und Institutionen · 15 / 21</div><h1>Brücken</h1><p class="collection-deck">Cross-Chain-Brücken lassen keine Assets durch Blockchains reisen. Sie lassen eine Blockchain Aussagen einer anderen akzeptieren. Vorfälle geschehen zwischen zwei überprüfbaren Rechnungsbüchern.</p><div class="collection-body">
+<details class="blockchain-full-toc"><summary>In diesem Essay</summary><ol><li><a href="#section-1">I. B einen Satz akzeptieren lassen</a></li><li><a href="#section-2">II. Vier Modelle</a></li><li><a href="#section-3">III. Neun ist nicht gleich neun</a></li><li><a href="#section-4">IV. Der getäuschte Verifizierer</a></li><li><a href="#section-5">V. Die Nullwurzel</a></li><li><a href="#section-6">VI. Das Cloudkonto</a></li><li><a href="#section-7">VII. Drei Nenner</a></li><li><a href="#section-8">VIII. Zwischen zwei Blockchains</a></li></ol></details>
+<h2 id="section-1">I. B einen Satz akzeptieren lassen</h2>
+<p>Zwischen zwei unabhängigen Blockchains reist kein Coin tatsächlich durch das Netzwerk.</p>
+<p>Der Konsens von A kennt nur den Zustand von A, der Konsens von B nur den von B.</p>
+<p>Die sogenannte chainübergreifende Vermögensbewegung muss vielmehr eine bereichsübergreifende Buchungsbeziehung herstellen: Auf A sinkt verfügbares Vermögen, zugleich entstehen auf B neue Verfügungsrechte.</p>
+<p>Die Kernfrage war deshalb nie, wie man Coins hinüberschickt.</p>
+<p>Sondern warum B glaubt, auf A sei tatsächlich ein Ereignis eingetreten, das Prägung oder Auszahlung auf B erlaubt.</p>
+<p>Das wirkt wie ein technisches Detail. Tatsächlich ist es der gesamte Inhalt der folgenden sieben Abschnitte.</p>
+<p>Das eigene Hauptbuch von Chain B verzeichnet nämlich nicht automatisch, was auf A geschieht. B muss zusätzlich Nachrichten und Belege erhalten und einen Weg zu ihrer Prüfung besitzen. Ein Relayer kann die Nachricht transportieren. Ob B sie annehmen sollte, hängt von Signaturen, Zustandsbeweisen oder einer Light-Client-Prüfung ab, nicht zwingend vom Urteil eines externen Ausschusses.</p>
+<p>Übertragung und Prüfung bilden die zusätzliche Schicht, die zwischen den Hauptbüchern aufgebaut werden muss. Sie liegt nicht zwangsläufig außerhalb der Konsensausführung beider Chains.</p>
+<p>Der Konsens von A erledigt nicht automatisch die Annahmeprüfung von B. Um ein Ereignis auf A zu prüfen, braucht B einen zusätzlichen Weg über Signaturen, Zustandsbeweise, einen Light Client oder andere Mechanismen. Was B prüfen kann, von welcher Chain-Sicherheit es abhängt und wem es zusätzlich vertrauen muss, bestimmt die Gestaltung dieses Weges.</p>
+<p>Damit entsteht eine zusätzliche Sicherheitsgrenze. Sie ist für beide Seiten wichtig; dass jede Chain für sich normal läuft, beweist aber noch nicht, dass diese Grenze hinreichend abgesichert ist.</p>
+<p>Hier steht der Rest bereits an seinem Platz.</p>
+<p>Es muss kein Rechenfehler in einem der beiden Hauptbücher sein. Beide Aufzeichnungen können ihre jeweiligen Prüfregeln erfüllen, während die Entsprechung der Vermögenswerte zwischen ihnen scheitert. Der Rest liegt hier in jener Verbindung, die nicht automatisch entsteht, nur weil jedes Hauptbuch für sich aufgeht.</p>
+<p>Diese Stelle muss weder einem Unternehmen noch einem gesonderten Vertrag entsprechen. Es kann eine Signierergruppe, ein Light Client oder Code zur Beweisprüfung sein. Name und Ort ändern sich, die Aufgabe bleibt: Warum darf B eine Aufzeichnung von A als Grundlage für eine Zahlung auf seiner Seite anerkennen?</p>
+<p>Der typische Ablauf: Ein Nutzer sperrt hundert ETH in einem Brückenvertrag auf A. Eine Validierungsebene belegt dies gegenüber B. B erzeugt daraufhin hundert verpackte ETH. Zurück geht es umgekehrt: Erst werden die hundert auf B vernichtet, dann dürfen die gesperrten auf A freigegeben werden.</p>
+<p>Es wandert also keineswegs dasselbe ETH auf eine andere Blockchain.</p>
+<p>Das Objekt auf B ist ein bereichsübergreifender Anspruch auf Sicherheiten auf A.</p>
+<p>Wo Vertrauen liegt, hängt davon ab, wer die tatsächliche Sperrung belegt.</p>
+<p>Bei Multisig oder einer Validatorengruppe akzeptiert B ausreichend Signaturen. Zusätzliches Vertrauen liegt bei den Unterzeichnern, ihrer Schlüsselsicherheit und Signatursoftware.</p>
+<p>Bei Schwellenwertsignaturen akzeptiert B eine gemeinsame Signatur ausreichend vieler Schlüsselfragmente. Zusätzliches Vertrauen betrifft echte Knotenunabhängigkeit, Fragmentverwahrung und Serverberechtigungen.</p>
+<p>Bei einem Orakel oder externen Ausschuss liegt das zusätzliche Vertrauen bei diesem Ausschuss.</p>
+<p>Bei einem Light Client akzeptiert B Konsensheader und Zustandsnachweise von A. Vertrauen liegt in As Konsenssicherheit und korrekter Light-Client-Implementierung.</p>
+<p>Bei Gültigkeitsbeweisen akzeptiert B einen überprüfbaren Zustandsbeweis. Vertrauen liegt in As Sicherheit sowie korrektem Beweissystem, Schaltkreis und Verifizierer.</p>
+<p>Keine Zeile dieser Tabelle lautet „ohne Vertrauen“.</p>
+<p>Der Unterschied liegt nur darin, welche Ebene zur Fälschung des Satzes kontrolliert werden muss, was das kostet und ob jemand die Fälschung später aufzeigen kann.</p>
+<p>Schon hier erklärt sich das besondere Risiko gesperrter Brückenwerte.</p>
+<p>Die hundert auf A gesperrten Coins sind die gemeinsame Sicherheit aller hundert verpackten Assets auf B.</p>
+<p>Darf B zweihundert prägen oder ein Angreifer ohne passende Vernichtung hundert auf A freigeben, bricht die bereichsübergreifende Buchungsidentität.</p>
+<p>Im vorigen Essay brauchte ein Gesetz Menschen zum Vollzug.</p>
+<p>Diesmal geht es um den Raum zwischen zwei Chains.</p>
+<p>Im zehnten Essay gab es bereits einen Spalt: Die Blockchain weiß nicht, dass ein Preis 65.000 ist. Sie weiß, dass jemand 65.000 gesagt hat.</p>
+<p>Diesmal wechselt der Spalt seinen Ort.</p>
+<p>Er liegt nicht zwischen Blockchain und Außenwelt, sondern zwischen zwei Blockchains.</p>
+<p>Bei den hier besprochenen öffentlichen Chains sind die Aufzeichnungen beider Seiten gewöhnlich einsehbar, und beide besitzen Konsensmechanismen gegen nachträgliche Änderungen. Diese Sicherungen haben jedoch eigene Annahmen über Finalität und Reorganisationen. Sie beweisen nicht automatisch, dass sämtliche Vermögenseinträge beider Chains einander entsprechen.</p>
+<p>Zwei einzeln überprüfbare Hauptbücher brauchen weiterhin eine überprüfbare Entsprechung zwischen ihnen.</p>
+<p>Jeder Vorfall der folgenden sechs Abschnitte geschieht an diesem Spalt.</p>
+<h2 id="section-2">II. Vier Modelle</h2>
+<p>Die vier üblichen Modelle liegen eigentlich auf unterschiedlichen Ebenen. Sie als vier Brückentypen nebeneinanderzustellen verdeckt das Problem.</p>
+<p>Das zweite Modell muss nicht jedes Mal einen verpackten Anspruch erzeugen. Hat ein Liquiditätsanbieter auf beiden Seiten Stablecoins, zahlt ein Nutzer hundert an den Pool auf A. Auf B zahlt der Anbieter oder ein Relayer dem Empfänger sofort ungefähr hundert aus.</p>
+<p>Die beiden Enden: Bestand auf A steigt, auf B sinkt er. Später gleicht das Protokoll Kapital durch Rebalancing oder Nettoabwicklung wieder aus.</p>
+<p>Ein Protokoll trennt in seiner aktuellen Gebührendokumentation ausdrücklich Liquiditäts- und Relayergebühr. Erstere vergütet Liquiditätsnutzung und Ausgleichsrisiko, Letztere Transaktionskosten, Kapitalopportunitätskosten und Risiko des Relayers.</p>
+<p>Nutzerzahlungen gehen also nicht notwendig an ein Brückenunternehmen.</p>
+<p>Das Modell trennt Risiken: Sicherheitsvertrauen liegt weiterhin bei endgültiger Abwicklung und Nachrichtenprüfung. Sofortige Erfüllung hängt dagegen von Kapital und Anreizen des Liquiditätsanbieters ab. Preis- und Liquiditätsrisiko tragen die Pools beider Seiten. Scheitert der schnelle Weg, bleibt oft langsamere kanonische Abwicklung.</p>
+<p>Auch „Liquiditätsbrücken verwahren nichts“ braucht Einschränkung. Sie schaffen möglicherweise keinen dauerhaften Sicherheitenpool verpackter Assets. Liquiditätsanbieter setzen auf dem Brückenweg dennoch Kapital aufs Spiel.</p>
+<p>Beim Sperren-und-Prägen konzentriert sich das Risiko im Quellchainpool: Alle Ansprüche beruhen auf derselben Sicherheit. Beim Liquiditätsweg verteilt es sich auf die Bestände beider Seiten, verlangt dafür dauerhaft dort gebundenes Kapital.</p>
+<p>Der erste Weg kann die Deckung vieler Inhaber an einer Stelle konzentrieren und auf einmal eine große Lücke offenlegen. Der zweite verteilt Bestände auf beide Seiten, ist aber nicht von Natur aus auf kleine lokale Ausfälle begrenzt. Scheitern Endabrechnung oder Nachrichtenprüfung, kann auch ein Liquiditätsnetzwerk plötzlich hohe Verluste erleiden.</p>
+<p>Gemeinsam bleibt: Eine Seite muss stets erfahren, was auf der anderen geschah.</p>
+<p>Es wechseln nur Kapitalträger und Kapitalort.</p>
+<p>Atomic Swaps beruhen auf Hash- und Zeitsperren. Eine Partei sperrt auf A, die andere unter derselben Hashbedingung auf B. Das Offenlegen des Urbilds zur Einlösung einer Seite liefert der anderen dasselbe Geheimnis zur Einlösung. Nach Fristablauf erhalten beide ihr Geld zurück.</p>
+<p>Besonders daran ist das Fehlen einer dauerhaften großen Brückenreserve für alle Nutzer.</p>
+<p>Ein einzelner Tausch muss sein Geld damit nicht in einen dauerhaften gemeinsamen Tresor für sämtliche Nutzer geben. Bei korrekter Implementierung und erfüllten Zeitannahmen lässt sich sein Gegenparteirisiko leichter von anderen Geschäften abgrenzen. Ein gemeinsamer Implementierungsfehler kann dennoch viele gleichzeitig laufende Tauschgeschäfte treffen.</p>
+<p>Der Preis ist, dass ein einfacher Hash-Time-Locked Swap noch kein allgemeines chainübergreifendes Nachrichtensystem bildet. Auf beiden Seiten müssen passende Vermögenswerte, Liquidität und Zeitabläufe zusammenkommen. In manchen Situationen ist er nützlich, ersetzt aber nicht unmittelbar sämtliche hier besprochenen Bridges. Es geht nicht nur um Sicherheit, sondern auch darum, was er kann und wie praktisch er ist.</p>
+<p>Vertrauen liegt vorwiegend bei Finalität und Lebendigkeit beider Chains, korrekten Hash- und Zeitsperren und dem fortgesetzten Onlinebleiben der Gegenpartei innerhalb der Protokollfrist.</p>
+<p>Aus derselben Eigenschaft folgen Kosten: passende Assets und Liquidität beider Parteien, unterschiedliche Chainzeitabläufe und die Unmöglichkeit, allgemeine Nachrichten mit einem einzelnen Hash-Zeitschloss zu lösen.</p>
+<p>Der Light-Client-Weg verdient besonders genaue Betrachtung.</p>
+<p>Die Zielchain speichert den Light-Client-Zustand der anderen. Erlaubnisfreie Relayer transportieren Pakete und Beweise. Erst nach On-Chain-Prüfung des fremden Konsenszustands und Zugehörigkeitsnachweises wird ein Paket akzeptiert.</p>
+<p>Die Dokumentation trennt ausdrücklich: Relayer sorgen für Lebendigkeit, sind keine vertrauenswürdigen Sicherheitsrichter. Solange jemand weiterleitet, kann ein ausgefallener Relayer grundsätzlich ersetzt werden.</p>
+<p>„Vertrauensfrei“ heißt hier deshalb genauer nicht „ohne Vertrauen“.</p>
+<p>Es bedeutet: kein zusätzlicher unabhängiger externer Prüfungsausschuss. Sicherheit soll möglichst auf den Konsens beider Chains und die korrekte Light-Client- und Prüfcodeimplementierung zurückgeführt werden.</p>
+<p>Wissenschaftliche Entwürfe gehen weiter. Eine Arbeit schlägt knappe Beweise für fremde Chainzustände vor, vermeidet im Prototyp externe Ausschüsse und meldet Beweiserzeugung unter zwanzig Sekunden sowie On-Chain-Prüfung unter 230.000 Gas.</p>
+<p>Das ist ein Leistungsversuch in Aufsatz und Prototyp, kein Beweis gelöster Brückensicherheit im Produktivbetrieb.</p>
+<p>Trennen wir nun die Ebenen dieser vier Dinge.</p>
+<p>Sperren und Prägen ist Vermögensbuchführung.</p>
+<p>Light Clients, Multisigs und Gültigkeitsbeweise sind Prüfmethoden.</p>
+<p>Liquiditätsnetze sind Erfüllungsmethoden.</p>
+<p>Atomic Swaps sind andere Abwicklungsprimitive.</p>
+<p>Alles „vier Brückenarten“ zu nennen verdeckt leicht die Sicherheitsfrage: Wer besitzt die endgültige Befugnis, jetzt auf B zu prägen oder auf A freizugeben?</p>
+<p>Stabiler als gesperrter Wert, Geschwindigkeit oder Gebühren ist daher folgende Analyseachse: Welches Bauteil verwandelt „Auf der anderen Chain geschah etwas“ in „Hier darf jetzt ausgezahlt werden“? Und welche kleinste Gruppe kann es kontrollieren, fälschen, täuschen oder aktualisieren?</p>
+<p>Jeder folgende Vorfall ist ein Punkt auf dieser Achse.</p>
+<h2 id="section-3">III. Neun ist nicht gleich neun</h2>
+<p>Ronin zeigt, wie reine Schwellenwertzahlen falsche Sicherheit erzeugen.</p>
+<p>Nach dem eigenen Vorfallbericht gab es neun Validierungsschlüssel. Brückenabhebungen verlangten fünf Signaturen.</p>
+<p>Vier davon kontrollierte Sky Mavis selbst.</p>
+<p>Im November 2021 setzte Axie DAO wegen hoher Nutzung und gebührenfreier Anfragen einen Validator-Signaturpfad für Sky Mavis auf eine Freigabeliste. Im Dezember war die Übergangslösung unnötig geworden. Die Freigabe blieb.</p>
+<p>Nach dem Eindringen in Sky Mavis und Erwerb der vier Schlüssel nutzte der Angreifer diesen verbliebenen Weg, um den DAO-Validator die fünfte Signatur für bösartige Abhebungen liefern zu lassen.</p>
+<p>Die nominelle Schwelle war also fünf von neun.</p>
+<p>Die praktische Angriffsschwelle bestand nicht im Eindringen bei fünf unabhängigen Institutionen. Es waren vier von derselben Organisation kontrollierte Schlüssel und ein Signierweg, der hätte widerrufen werden müssen, aber wirksam geblieben war.</p>
+<p>Warum der Kanal blieb, ist schlicht: Er war vorübergehend für ein echtes Betriebsproblem geöffnet worden. Nach dessen Ende dachte niemand ans Schließen.</p>
+<p>Im sechsten Essay wurde eine provisorische Vorfalllösung zum Eintrittspunkt eines späteren Vorfalls. Hier dieselbe Gestalt: Das Vorläufige blieb, mit unverändert großer Befugnis.</p>
+<p>Der kryptografische Schwellenwert wurde nicht gebrochen.</p>
+<p>Gebrochen wurde die Unabhängigkeitsannahme.</p>
+<p>Die sauberste Größe sind die Coinmengen: 173.600 ETH und 25,5 Millionen USDC, am 23. März 2022 durch zwei Abhebungen entnommen.</p>
+<p>Drei Dollarwerte können zugleich stimmen: ungefähr 540 Millionen zum Angriffstag, etwa 615 bis 625 Millionen meist zu Preisen um die Veröffentlichung am 29. März. Das US-Finanzministerium spricht von nahezu 620 Millionen, das Unternehmen nennt die ursprünglichen Coinmengen.</p>
+<p>Eine weitere Zahl verdient einen eigenen Platz: Entnahme am 23. März, Entdeckung erst am 29.</p>
+<p>Sechs Tage.</p>
+<p>Währenddessen wurden die verpackten Assets auf der anderen Chain weiter gehandelt, als Sicherheiten verwendet und in verschiedenste gesperrte Gesamtwerte eingerechnet.</p>
+<p>Ihre Deckung war bereits verschwunden.</p>
+<p>Während dieser sechs Tage konnten beide Chains weiterhin Transaktionen normal verzeichnen. Einzeln gültige Aufzeichnungen bedeuteten nicht, dass Deckung und Ansprüche noch zusammenpassten.</p>
+<p>Die Lücke wurde erst sechs Tage später öffentlich entdeckt. Aus dieser Verzögerung allein folgt weder, dass niemand für den Abgleich zuständig war, noch, dass niemand geprüft hatte. Erkennbar ist: Die bestehenden Erkennungs- und Reaktionsabläufe brachten diese Anomalie nicht rechtzeitig ans Licht.</p>
+<p>Der dritte Essay beschrieb jahrelang unentdeckte Abflüsse einer Börse. Hier waren es sechs Tage in einem anderen Umfeld. Beide Fälle stellen dennoch dieselbe Anforderung: Auch wenn Aufzeichnungen existieren, muss ein Mensch oder Mechanismus fortlaufend die Beziehungen prüfen, die zwischen ihnen bestehen sollten.</p>
+<p>Hier braucht es nicht einmal zunächst ein privates internes Hauptbuch, um die Abgleichfrage zu stellen. Beide Seiten besitzen einsehbare Aufzeichnungen. Die Schwierigkeit liegt darin, Deckung, Ausgabe, Verbrennung und Freigabe zu einer wirksamen laufenden Kontrolle zu verbinden, statt bei der jeweils lokal bestandenen Transaktionsprüfung stehenzubleiben.</p>
+<p>Zum ersten Eintritt berichteten Medien später über mögliches gezieltes Phishing mit getarnten Bewerbungsunterlagen. Das bestätigte der ursprüngliche offizielle Bericht nicht unmittelbar. Es darf nicht mit der offiziellen Vier-plus-eins-Rekonstruktion vermischt werden.</p>
+<p>Harmony setzte die Schwelle noch niedriger.</p>
+<p>Die eigene Untersuchung nennt mindestens zwei erbeutete private Schlüssel. Öffentliche Sicherheitsrückblicke beschreiben die Brücke gewöhnlich als Zwei-von-fünf-Multisig.</p>
+<p>Diese Aussagen widersprechen sich nicht zwangsläufig. Lag die Schwelle bei zwei von fünf Schlüsseln, erklärt die Erlangung mindestens zweier Schlüssel gerade, wie sie erreicht werden konnte. Weiter zu prüfen sind Verwahrung und tatsächliche Unabhängigkeit der Schlüssel, nicht eine erfundene Definitionsdifferenz allein wegen verschiedener Zahlen in den Sätzen.</p>
+<p>Die Sieben-von-zehn-Angabe für Orbit stammt dagegen überwiegend aus späteren Analysen von Forschern und Sicherheitsfirmen. Die erste Unternehmensmitteilung bestätigte nur ungewöhnlichen Zugriff und Abflüsse, nicht abschließend diese Ursache.</p>
+<p>Sie muss deshalb als Schlussfolgerung von Sicherheitsfirmen bezeichnet werden, nicht als formelle Unternehmens- oder Regierungsfeststellung.</p>
+<p>Zusammen ergeben die drei Fälle die wirklich aufzuzeichnenden Variablen.</p>
+<p>Zahl der Unterzeichner. Schwelle. Zahl unabhängiger Organisationen. Zahl unabhängiger Ausfalldomänen bei Hardware, Cloud oder Schlüsselverwaltung. Und die Frage, ob Verwaltungs- und Upgradeschlüssel die Schwelle umgehen können.</p>
+<p>Am leichtesten veröffentlichen Projekte gewöhnlich die ersten beiden.</p>
+<p>Am schwersten prüfbar sind die letzten drei.</p>
+<p>Dies ist wieder das Problem der fünf Maßstäbe aus Essay zwei, nur konkreter.</p>
+<p>Damals hatte derselbe Gegenstand fünf Messarten. Hier ist gerade die am leichtesten veröffentlichte Zahl jene, von der die Sicherheit am wenigsten abhängt.</p>
+<p>Eine Brücke kann auf ihrer Titelseite fünf von neun schreiben, während alle neun Unterzeichner in derselben Region desselben Cloudanbieters sitzen. Das verletzt keine Offenlegungspflicht, weil niemand diese Angabe verlangt.</p>
+<p>Schwieriger noch: Selbst bei Offenlegungswillen ist es kaum einfach darzustellen.</p>
+<p>Ob zwei Unternehmen unabhängig sind, hängt von Anteilseignern, Vorständen, Büros, Betriebsteams und dem Netzwerkanschluss ihrer Rechner ab. Nichts davon lässt sich als Vertragsparameter schreiben oder On-Chain prüfen.</p>
+<p>Gerade das bestimmt jedoch den tatsächlichen Wert der Schwelle.</p>
+<h2 id="section-4">IV. Der getäuschte Verifizierer</h2>
+<p>Wormhole war das genaue Gegenstück zu Ronin.</p>
+<p>Der Kernfehler lag im Solana-Prüfpfad. Der Angreifer lieferte ein gefälschtes Instructions-Systemkonto. Die verwendete alte Funktion prüfte nicht, ob das übergebene Konto tatsächlich das vorgesehene Systemkonto war.</p>
+<p>Das Programm glaubte dadurch, die Signaturprüfung habe bereits stattgefunden, und erzeugte einen später verwendbaren geprüften Nachweis. Anschließend wurde der Abschlussweg für verpackte Assets aufgerufen und 120.000 verpackte ETH geprägt.</p>
+<p>Dieser Fall trennt zwei Angriffstypen besonders gut.</p>
+<p>Beim einen werden genügend Guardianschlüssel gestohlen und tatsächlich ausreichend bösartige Signaturen erzeugt.</p>
+<p>Beim anderen fehlen ausreichende Signaturen vollständig, aber der Prüfcode erklärt sie fälschlich für geprüft.</p>
+<p>Wormhole gehört zum zweiten Typ.</p>
+<p>„Das Schlüsselsystem der neunzehn Guardians wurde gebrochen“ ist deshalb nicht belegt. Angegriffen wurde die Grenze der Signaturprüfung.</p>
+<p>Zu damaligen Preisen nennen Quellen ungefähr 320 oder 325 Millionen US-Dollar. Gemessen wird der damalige Marktwert der 120.000 ETH, kein Dollarguthaben eines Unternehmenskontos.</p>
+<p>An beiden Enden entstand eine klare Unwucht.</p>
+<p>Auf Solana erschienen 120.000 zusätzliche Ansprüche, auf Ethereum aber keine 120.000 zusätzlichen Sicherheiten.</p>
+<p>Jump legte unmittelbar 120.000 ETH nach und stellte vollständige Deckung wieder her.</p>
+<p>Die zwei Jahre später über britische und New Yorker Gerichtsverfahren zurückgeholten angreiferkontrollierten Assets waren Rückgewinnung des Kapitalgebers, keine zweite Nutzerentschädigung.</p>
+<p>Das ist wichtig, weil davon abhängt, wessen Geld die Rückholquote von ungefähr neunzig Prozent meint.</p>
+<p>Auch das Nachschießen selbst verdient Erinnerung. Es war weder Protokolldesign noch Versicherung noch eine dokumentierte Zusage.</p>
+<p>Ein Unternehmen entschied am Vorfalltag, 120.000 ETH bereitzustellen und die gebrochene Buchungsidentität wieder auszugleichen.</p>
+<p>Ohne diesen Schritt hätten Inhaber verpackter Assets unterbesicherte Ansprüche gehalten.</p>
+<p>Derselbe Fehlertyp trat auch an einer nativen Brücke auf.</p>
+<p>Im Oktober 2022 wurde die Brücke zwischen den beiden nativen BNB-Chains ausgenutzt. Das Projekt bestätigte gefälschte chainübergreifende Beweise durch einen Fehler der zugrunde liegenden Beweisbibliothek. Zwei Millionen BNB wurden zusätzlich erzeugt und entnommen.</p>
+<p>Ihr nomineller Wert lag damals bei ungefähr 570 bis 600 Millionen US-Dollar.</p>
+<p>Vor der Chainpause konnte der Angreifer tatsächlich nur ungefähr hundert bis 110 Millionen hinausbewegen.</p>
+<p>Die Differenz von vierhundert bis fünfhundert Millionen entstand, weil Validatoren koordiniert die ganze Chain stoppten.</p>
+<p>Eine auf unterbrechungsfreien Betrieb ausgelegte Chain vermied durch Stillstand größere Verluste. Möglich wurde das gerade durch wenige Validatoren und schnelle Koordination.</p>
+<p>„570 Millionen verwahrte Kundengelder verloren“ ist deshalb ebenfalls ungenau.</p>
+<p>Grundlegend akzeptierte der Beweisverifizierer einen gefälschten Zustandsbeweis und erzeugte ohne rechtmäßige Quellchaindeckung zwei Millionen zusätzliche Coins.</p>
+<p>Das ist derselbe Fehlertyp wie Wormhole, kein Diebstahl privater Unterzeichnerschlüssel.</p>
+<p>Nebeneinander zeigen beide Fälle etwas Entscheidendes.</p>
+<p>Bei Ronin wurden die Regeln vollständig erfüllt. Fünf echte Signaturen, korrekte Prüfung, regelgerechte Ausführung. Das Problem lag außerhalb: Die fünf Schlüssel hätten nicht am selben Ort sein dürfen.</p>
+<p>Hier war es umgekehrt. Die Regeln waren nicht erfüllt, der Vertrag hielt sie aber dafür. Signaturen fehlten, Beweise waren falsch, der Prüfcode sagte trotzdem ja.</p>
+<p>Im ersten Fall prüfte der Vertrag Signaturen gestohlener Schlüssel korrekt, konnte damit aber nicht erkennen, wer sie benutzte. Im zweiten ließ die Prüfimplementierung der Bridge Material passieren, das sie hätte zurückweisen müssen. Beides darf nicht einfach als Versagen des Konsenses der Basischain beschrieben werden.</p>
+<p>Für Nutzer können beide Fehler zur gleichen dringlichen Frage werden: Ist ihr Anspruch noch voll einlösbar? Deckung kann entzogen worden sein, es können aber auch zusätzliche ungedeckte Ansprüche entstanden sein. Nicht jeder Vorfall bedeutet, dass sämtliche Deckung plötzlich verschwunden ist.</p>
+<p>Bevor das Risiko sichtbar wird, kann der verpackte Vermögenswert auf der anderen Chain weiter normal verwendbar sein: übertragbar, in Pools einsetzbar, im gebundenen Gesamtwert mitgezählt oder als Kreditsicherheit akzeptiert. Gleiche Verwendungen machen Deckungs- und Prüfungsrisiken darunter jedoch nicht identisch.</p>
+<p>Ein chainübergreifender Anspruch kann im Normalfall mit nur geringem Preisabstand zu dem beanspruchten Vermögenswert gehandelt werden.</p>
+<p>Ein Vorfall kann diesen Abstand abrupt vergrößern. Ob er sich wieder schließt, hängt von verbleibender Deckung, Auffüllung und letztlich rückholbaren Vermögenswerten ab.</p>
+<p>Gerade das erschwert die Bewertung solcher Vermögenswerte. Im Normalfall kann ihr Preis eng am zugrunde liegenden Vermögenswert liegen. Bei unzureichender Deckung oder blockierter Einlösung zählen verbleibende Sicherheiten, mögliche Auffüllung und erwartete Rückflüsse. Ein plötzlicher Abschlag bedeutet nicht, dass nur voller Wert oder null möglich wären.</p>
+<p>Nur auf vorhandene Guthaben, ausreichende Signaturzahlen oder die weitere Aufrufbarkeit des Vertrags zu sehen, lässt das Einlösungsrisiko häufig nicht frühzeitig erkennen. Deckungsabgleich, Berechtigungsänderungen und tatsächliche Kontrolle müssen ebenfalls geprüft werden. Diese Risiken erscheinen nicht immer schrittweise in einem bequemen Preisfeld.</p>
+<h2 id="section-5">V. Die Nullwurzel</h2>
+<p>Nomad war unter diesen großen Katastrophen diejenige mit dem geringsten Bedarf an fortgeschrittenen Fähigkeiten. Ein vorgelagerter Logikfehler hatte die Sicherheitsbedingung bereits entfernt.</p>
+<p>Bei der Initialisierung eines Upgrades im Juni 2022 wurde ein vertrauenswürdiger Wurzelzustand als null behandelt. Der zu null gehörende Bestätigungszeitpunkt erhielt einen akzeptablen Wert. Unbewiesene Nachrichten waren in der Zuordnung standardmäßig ebenfalls null.</p>
+<p>Die Funktion zur Annahme einer Wurzel gab deshalb für null wahr zurück.</p>
+<p>Damit konnte die Verarbeitungsfunktion auch Nachrichten ohne rechtmäßigen Beweis ausführen.</p>
+<p>Ein fehlerhaftes Upgrade der Kontrollebene veränderte unmittelbar die Prüfsemantik der Datenebene.</p>
+<p>Nachdem erste Angreifer eine funktionierende Abhebungsvorlage gezeigt hatten, brauchten Nachfolger vier Schritte: erfolgreiche Angriffsdaten kopieren, eigene Empfängeradresse einsetzen, erneut senden und auf Zahlung des Routervertrags warten.</p>
+<p>Deshalb wird dies als gemeinschaftlich kopierter Angriff bezeichnet.</p>
+<p>Nicht Hunderte entdeckten jeweils eine Lücke. Ein öffentliches Erfolgsbeispiel machte die Ausnutzung billig kopierbar.</p>
+<p>Das zeigt noch etwas anderes.</p>
+<p>2025 nahm Israel auf US-Ersuchen einen Verdächtigen fest und genehmigte das Auslieferungsverfahren. Die USA warfen ihm eine zentrale Rolle vor.</p>
+<p>Das ist ein staatlicher strafrechtlicher Vorwurf, kein gerichtlicher Nachweis, dass er alle Assets entnahm.</p>
+<p>Wichtiger noch: Strafbeweise gegen den Ersten bedeuten nicht automatisch, dass derselbe Mensch sämtliche späteren Nachahmerabhebungen kontrollierte.</p>
+<p>Das Projekt verwendete später einen Betrag von über 186 Millionen US-Dollar, Sicherheitsfirmen und Medien meist ungefähr 190 Millionen.</p>
+<p>Beide messen dasselbe Multiassetereignis mit verschiedenen Preisen und Grenzen. Beide bleiben erhalten.</p>
+<p>Dieser Vorfall hat in der Reihe einen besonderen Platz.</p>
+<p>In den ersten vierzehn Essays verlangte das Ausnutzen eines Konstrukts gewöhnlich irgendeine Fähigkeit: Hashrate, Kapital, Schlüssel oder Code, den andere nicht schreiben konnten.</p>
+<p>Hier genügte es, eine Transaktion zu verstehen, eine Adresse zu ändern und Gebühren zahlen zu wollen. Weitere Fähigkeiten waren nicht nötig.</p>
+<p>Jede On-Chain-Transaktion ist öffentlich und enthält vollständige Aufrufdaten. Darauf ist das System besonders stolz: Jeder kann überprüfen, was jede Transaktion tat.</p>
+<p>An jenem Nachmittag konnte aber auch jeder sie nachmachen.</p>
+<p>Deshalb ist die Verlustzählung hier besonders schwierig. Wie viele Adressen Angreifern, Vorbeikommenden oder ursprünglichen Nutzern gehörten, die zuerst ihr eigenes Geld retten wollten, zeigt die Blockchain nicht.</p>
+<p>Unter späteren Rückgebern waren tatsächlich Menschen der letzten Gruppe.</p>
+<p>Individuelle Verantwortlichkeit wird dadurch schwerer festzustellen. Eine Adresse einem Menschen zuzuordnen und Verhalten wie Wissen nachzuweisen, erfordert weitere Belege; zugleich reichten in jenen Stunden Hunderte Adressen ähnliche Aufrufdaten ein. Spätere Festnahme und Anklage zeigen, dass Handeln möglich war. Sie machen aber nicht jeden Aufruf zur einzigen Tat derselben Person.</p>
+<p>Ein Angriff kann Hunderte gemeinsam Handelnde haben, die einander vorher nicht kannten und später nie wiedersehen.</p>
+<p>Das ist die andere Seite von Kombinierbarkeit und Öffentlichkeit: Dieselbe Eigenschaft, die jede Transaktion für jeden prüfbar macht, macht sie auch für jeden kopierbar.</p>
+<p>Auch die Verfolgung beider Enden wird hier ungewöhnlich.</p>
+<p>Gewöhnlich entnimmt ein verfolgbarer, anklagbarer oder verhandlungsfähiger Akteur das Geld. Hier waren es Hunderte Adressen, viele davon spontan nach einer Nachricht hinzugekommen.</p>
+<p>Später wurden ungefähr 36 Millionen US-Dollar freiwillig zurückgegeben. Der Rest konnte nur anteilig nach Entschädigungsansprüchen behandelt werden.</p>
+<p>Die sonst so nützliche Frage, wer das Geld hält, ließ sich hier nicht mit einer einzigen gefundenen Adresse abschließen. Sie musste in viele Kontrollierende, viele Handlungen und viele Vermögensbestände aufgeteilt werden, von denen manche rückholbar waren und andere weiter außer Reichweite blieben.</p>
+<h2 id="section-6">VI. Das Cloudkonto</h2>
+<p>Das Gefährlichste an Multichain war nicht der Algorithmus der Schwellenwertsignatur.</p>
+<p>Es war seine reale Kontrollstruktur.</p>
+<p>Ab dem 6. Juli 2023 gab es ungewöhnliche Abhebungen. Eine Analysefirma zählte zunächst über 125 Millionen US-Dollar, davon fast 120 Millionen aus der Brücke einer Chain. Stablecoinemittenten froren später ungefähr 65 Millionen auf betroffenen Adressen ein.</p>
+<p>Nach Einbeziehung weiterer auffälliger Transfers verwendeten andere Institute mindestens 210 Millionen als Gesamtverlust.</p>
+<p>Das ist kein Richtig-oder-falsch-Konflikt. Erstere Zahl betrifft die erste große unbefugte Abhebungswelle vom 6. Juli. Letztere schließt spätere Abflüsse über mehrere Chains ein.</p>
+<p>Am 14. Juli erklärte das Projekt selbst mehrere Dinge.</p>
+<p>Der Geschäftsführer sei seit dem 21. Mai von chinesischer Polizei festgehalten worden. Die Schwellenwertknotenserver liefen unter seinem persönlichen Cloudkonto. Polizei habe Computer, Telefon, Hardwarewallets und Wiederherstellungswörter mitgenommen. Danach habe das Team widerrufene Serverzugriffe entdeckt.</p>
+<p>Weiter hieß es, seine Schwester habe später verbleibende Assets zur Sicherung bewegt und sei anschließend ebenfalls von der Polizei mitgenommen worden.</p>
+<p>Alle Aussagen über Polizeihandlungen und Zwecke der Vermögensbewegungen sind Unternehmensselbstauskünfte, keine öffentlichen gerichtlichen Feststellungen.</p>
+<p>On-Chain lässt sich beweisen, dass Assets von diesen kontrollierten Adressen wirksam autorisiert abgeflossen sind.</p>
+<p>Wer kontrollierte, externe Hacker, Mitarbeiter, Angehörige oder Behörden, beweist die Blockchain allein nicht.</p>
+<p>Auch die Analysefirma schrieb damals vorsichtig von möglichem Angriff oder Veruntreuung und möglicher Kontrolle administrativer Schlüssel.</p>
+<p>Ein Urteil des Singapore High Court von 2024 liefert wertvolles externes Material. Es dokumentiert Klägerbeweise zur Kontrollstruktur und deren Konflikt mit der in Nutzerbedingungen beworbenen dezentralen Architektur, die nicht von einer Person kontrolliert werden könne.</p>
+<p>Der Richter erklärte jedoch ausdrücklich, nicht alle materiellen Vorwürfe zu Betrug und Vermögensverschiebung als Tatsachen festgestellt zu haben, weil die Haftung zunächst auf einem Versäumnisurteil beruhte.</p>
+<p>Das Etikett Schwellensignatur ersetzt daher keine Sicherheitsprüfung der tatsächlichen Umsetzung. Dass der Algorithmus genügend Signaturanteile verlangt, ist das eine. Dass eine Person diese Anteile über ein einziges Konto kontrolliert, das andere.</p>
+<p>Zu fragen ist stattdessen: Auf welchen Rechnern liegen Fragmente? Wem gehört das Cloudkonto? Wem die Wiederherstellungsphrase? Betreiben wirklich unabhängige Einheiten die Knoten? Können Administratoren Knoten ersetzen?</p>
+<p>Bei Orbit muss ein weiterer Punkt präzise bleiben.</p>
+<p>Im Januar 2024 warf das Unternehmen einem früheren Sicherheitsverantwortlichen eigenmächtige Firewallabschwächung vor seinem Ausscheiden vor, ging rechtlich vor und bat um polizeiliche Untersuchung. Zugleich untersuche es eine andere Möglichkeit.</p>
+<p>Daraus darf insbesondere nicht werden, dieser frühere Verantwortliche habe den Angriff verursacht.</p>
+<p>Belegt sind nur Unternehmensvorwurf und Ermittlungsersuchen.</p>
+<p>Mit Abschnitt drei gelesen ergibt sich ein vollständiger Abstieg.</p>
+<p>Bei Ronin existierten neun Schlüssel tatsächlich, waren aber nicht unabhängig genug.</p>
+<p>Hier existierten die Knoten tatsächlich, liefen aber unter dem Konto eines Menschen.</p>
+<p>Eine Schwellensignatur verlangt genügend beteiligte Anteile für eine gültige Signatur. Unter den zugehörigen Sicherheitsannahmen kann ein Angreifer unterhalb der Schwelle sie nicht allein fälschen. Normales Signieren verlangt aber kein böswilliges Verhalten; mehrere Anteile können physisch, administrativ oder rechtlich derselben Person unterstehen. Aus einer algorithmischen Schwelle wird nicht automatisch eine Schwelle unabhängiger Institutionen.</p>
+<p>Die tatsächliche Kontrolle lässt sich nicht allein aus On-Chain-Signaturen erkennen. Eine gewöhnliche Multisignatur kann mehrere Signieradressen ausweisen; ein Schwellenverfahren kann dagegen wie eine einzige gültige Signatur unter einem öffentlichen Schlüssel aussehen. Die Chain zeigt womöglich nicht einmal, wie viele Nodes beteiligt waren, geschweige denn, ob sie alle unter dem Cloud-Konto einer Person liefen.</p>
+<p>Dieser Abschnitt hinterlässt außerdem eine in der Reihe seltene Lücke.</p>
+<p>Wohin das Geld ging, ist verfolgbar. Wer den Transfer autorisierte, ist bis heute nicht gerichtlich festgestellt. Das Unternehmen deutete in eine Richtung, Analysten sprachen von möglichem Angriff oder Veruntreuung, das singapurische Gericht verneinte ausdrücklich eigene Tatsachenfeststellungen zu diesen Vorwürfen.</p>
+<p>Drei Quellen, drei Beweisebenen und kein einheitlicher Schluss.</p>
+<p>Die Reihe begegnet dem nicht erstmals, aber hier am vollständigsten: Vermögen von über hundert Millionen Dollar wird bewegt, jeder On-Chain-Schritt ist prüfbar, und drei Jahre später fehlt weiterhin eine zitierbare Feststellung zur autorisierenden Person.</p>
+<p>On-Chain-Transparenz beantwortet, wohin Geld ging. Wer es dorthin schickte, beantwortet sie nicht und beansprucht es nicht.</p>
+<h2 id="section-7">VII. Drei Nenner</h2>
+<p>Rückholquoten dürfen nicht einfach in einer Tabelle rangiert werden. Es gibt mindestens drei völlig verschiedene Nenner.</p>
+<p>Vermögensrückholung: aus Angreiferkontrolle zurückerlangte Assets geteilt durch ursprünglich gestohlene Assets.</p>
+<p>Nutzerentschädigung: schließlich ausgezahlter Wert geteilt durch anerkannte Schäden.</p>
+<p>Und Wiederherstellung der Zahlungsfähigkeit des Protokolls.</p>
+<p>Diese drei können weit auseinanderliegen.</p>
+<p>Eine Brücke kann neunzig Prozent zurückholen und Nutzern nichts zahlen, weil das Geld dem nachschießenden Kapitalgeber gehört. Sie kann Nutzer vollständig entschädigen, ohne irgendetwas zurückzuholen, weil das Unternehmen selbst bezahlt.</p>
+<p>Beides in dieselbe Rückholrangliste zu stellen ergibt bedeutungslose Zahlen.</p>
+<p>Diese Vorfälle zeigen mindestens vier unterschiedliche Ergebnisse.</p>
+<p>Poly beruhte hauptsächlich auf freiwilliger Rückgabe. Auch der Angriff wird oft falsch beschrieben: Keine gestohlenen Guardianschlüssel, sondern vorgelagerte Berechtigungslogik, die das Umschreiben der Guardianliste erlaubte. Später gab der Angreifer fast alles zurück; zusätzlich fror ein Stablecoinemittent ungefähr 33 Millionen US-Dollar ein. „Nahezu hundert Prozent“ heißt deshalb: Fast alle nominell gestohlenen Assets kamen wieder unter Kontrolle, überwiegend freiwillig, nicht durch Vollstreckung.</p>
+<p>Bei Wormhole folgten auf Nachschüsse gerichtliche Anordnungen und technische Rückgewinnung.</p>
+<p>Ronin setzte auf On-Chain-Verfolgung, Handelsplattformen und grenzüberschreitendes Einfrieren. Nutzer wurden dagegen durch Unternehmensrekapitalisierung entschädigt.</p>
+<p>Multichain setzte auf Stablecoineinfrierungen und spätere Insolvenz- und Liquidationsverfahren.</p>
+<p>Nomad, Harmony, Multichain und Orbit behielten erhebliche ungedeckte Risiken.</p>
+<p>Entscheidend für Durchsetzbarkeit ist deshalb nicht die Sichtbarkeit einer Adresse.</p>
+<p>Entscheidend ist ein äußerer Zugriffspunkt: eine zentrale Börse zum Kontoeinfrieren, ein Stablecoinemittent mit Sperrliste, gerichtlich erreichbare Frontends oder Kontrollsysteme mit Mitwirkungspflicht oder eine identifizierte und festgenommene Person für Beschlagnahmen.</p>
+<p>Auch die Stärke der Zuschreibung unterscheidet sich erheblich und verlangt Einzelfalltrennung.</p>
+<p>Ronin besitzt eine formelle FBI-Zuschreibung vom April 2022, Harmony ebenfalls eine von Anfang 2023. Beides ist stärker als Ähnlichkeitsvermutungen von Medien oder Analysten.</p>
+<p>Bei Nomad bestehen strafrechtliche Vorwürfe. Das gesamte kollektive Kopieren von Abhebungen darf aber nicht einer Person zugerechnet werden.</p>
+<p>Bei Poly, Wormhole, Multichain und Orbit ist die Zuschreibung schwächer. Manche Identitäten wurden nie amtlich öffentlich zugeordnet. Manche Gerichtsverfahren betreffen Assets unbekannter Angreifer; Eigentumsfeststellung identifiziert keinen realen Menschen. Manche Behauptung staatlicher Beteiligung bleibt Verdacht von Unternehmen und Sicherheitsbranche.</p>
+<p>Ein Satz verdient einen eigenen Platz.</p>
+<p>On-Chain-Transparenz klärt einen Teil der Transaktionszuordnung, nicht die Zuordnung realer Menschen.</p>
+<p>Eine Blockchain kann stark beantworten, welche Adresse Coins erhielt, in was sie getauscht wurden, welche Börse, Brücke oder welcher Mixer durchlaufen wurde und wo sie schließlich liegen.</p>
+<p>Auch Mixer haben eine klare Grenze: Sie stören einfache Input-Output-Zuordnung, lassen frühere und spätere On-Chain-Transaktionen aber nicht verschwinden. Analysten liefern probabilistische Spuren; tatsächliches Einfrieren benötigt weiterhin Börsen, Emittenten oder Gerichte.</p>
+<p>„Das Geld bleibt auf der Blockchain sichtbar“ ist deshalb nur halb richtig.</p>
+<p>Zwischen Sichtbarkeit und Rückholung liegen nicht nur technische Belege, sondern auch erreichbare Kontrollstellen und durchsetzbare Zuständigkeit.</p>
+<p>Der chainübergreifende Mechanismus liefert diese Bedingungen außerhalb der Chain nicht automatisch mit. Um diese Lücke zu erkennen, muss nicht jedem Entwickler die Absicht unterstellt werden, sich Zuständigkeiten zu entziehen.</p>
+<p>Die erfolgreichen Rückholungen nutzten unterschiedliche Wege: freiwillige Rückgaben, Sperren durch Emittenten, Zusammenarbeit von Börsen, Gerichtsbeschlüsse oder Maßnahmen gegen identifizierbare Menschen. On-Chain-Verfolgung kann helfen, einen Weg zu finden; sie vollzieht diese Schritte nicht von selbst.</p>
+<p>Zuletzt die beiden Enden des Geschäfts selbst.</p>
+<p>Liquiditätsanbieter, Relayer und Protokollkassen erhalten kleine stetige Gebühren.</p>
+<p>Bei Brückeninsolvenz tragen dagegen Inhaber verpackter Assets, Liquiditätsanbieter, Kapitalnachschießer oder Tokeninhaber gewaltige einzelne Extremverluste.</p>
+<p>Kleine stetige Einnahmen auf einer, gewaltige einzelne Verluste auf der anderen Seite.</p>
+<p>Diese Gestalt erschien schon mehrfach. In Essay neun erhalten LPs drei Promille je Geschäft und tragen Bestandsverluste nach Preisbewegungen. In Essay zehn erhalten Orakelknoten Vorgangsgebühren, während eine Falschmeldung nachgelagert hundert Millionen kosten kann.</p>
+<p>Bei Brücken ist es am extremsten: Gebühren je Geschäft in Basispunkten, ein einzelner Ausfall in Hunderten Millionen.</p>
+<p>Ob Unternehmenskapital oder Versicherung beides wieder verbindet, ist eine Frage einzelner Verträge und Governance.</p>
+<p>Aus dem Etikett „dezentrale Brücke“ folgt es nicht.</p>
+<h2 id="section-8">VIII. Zwischen zwei Blockchains</h2>
+<p>Einige verbreitete Aussagen müssen umgeschrieben werden.</p>
+<p>Cross-Chain-Brücken sind Kryptos größte Sicherheitsschwäche.</p>
+<p>Das ist zu weit. Die meistzitierte Zahl stammt von einer Analysefirma: Im August 2022 schätzte sie bis dahin dreizehn angegriffene Brücken und ungefähr zwei Milliarden US-Dollar Diebstahl, 69 % des bis dahin gestohlenen Werts jenes Jahres.</p>
+<p>Der Nenner dieser 69 % sind die bis dahin im Angriffsdatenbestand der Firma erfassten gestohlenen Mittel, nicht gesamte Kryptomarktkapitalisierung, sämtliche Kriminalitätsschäden oder historische Sicherheitsverluste.</p>
+<p>Die Jahresstatistik verwendete später eine andere Abgrenzung: ungefähr 3,8 Milliarden Angriffsschäden 2022, davon 3,1 Milliarden bei Protokollen, davon wiederum 64 % Brücken. Der Nenner dieser 64 % sind 3,1 Milliarden. Ein direkter Vergleich mit den 69 % zur Jahresmitte ist unzulässig.</p>
+<p>2024 hatte sich die Angriffsstruktur desselben Anbieters verändert: kompromittierte private Schlüssel betrafen 43,8 % des jährlich gestohlenen Werts. Zentrale Dienste wurden in manchen Quartalen wichtigere Ziele.</p>
+<p>„Größte Schwäche“ ist also für jenen bestimmten Datensatz von 2022 gut begründet, keine jahresübergreifende Identität.</p>
+<p>Je mehr Multisig-Unterzeichner, desto sicherer die Brücke.</p>
+<p>Belegt ist enger: Sicherheit hängt von der Zahl unabhängiger Ausfalldomänen ab, die für die Schwelle überwunden werden müssen, nicht von der Länge öffentlicher Schlüssellisten.</p>
+<p>Brücken werden nur wegen schlechter Schlüsselverwaltung bestohlen.</p>
+<p>Auch das ist zu eng. Ronin, Harmony, Multichain und möglicherweise Orbit zeigen Schlüssel- und Kontrollrisiken. Wormhole war ein Signaturprüffehler, Nomad ein Initialisierungsfehler, Poly ein vertragsübergreifender Berechtigungsfehler, die native Brücke eine gescheiterte Beweisprüfung.</p>
+<p>Genauer konzentrieren sich große Brückenverluste auf die Grenze der Befugnis, eine andere Chain eine chainübergreifende Tatsache akzeptieren zu lassen. Diese Grenze kann durch Schlüsseldiebstahl, Verifizierer, Beweise, Upgrades, Berechtigungen oder Initialisierungslogik versagen.</p>
+<p>Light-Client-Brücken sind wirklich vertrauensfrei.</p>
+<p>Bedeutet das „ohne Sicherheitsannahmen“, ist es falsch. Sie vertrauen Quellchainkonsens und Finalität, Light-Client-Code und Zielchainausführung. Wird der Quellkonsens gebrochen, akzeptiert ein korrekter Light Client treu dessen bestätigten bösartigen Zustand.</p>
+<p>Bedeutet es dagegen „kein zusätzlicher externer Prüfungsausschuss“, entfällt bei diesem Entwurf tatsächlich eine Ebene des Drittvertrauens gegenüber extern geprüften Brücken.</p>
+<p>Native Chainverbindungen sind immer sicherer als Drittbrücken.</p>
+<p>Zwei Bedeutungen von nativ müssen getrennt werden. Bei Light-Client-Prüfung entfällt ein externer Ausschuss. Bedeutet nativ nur eine vom offiziellen Chainteam betriebene zusätzliche Validatorengruppe oder Multisig, beseitigt das Offizielle kein zusätzliches Vertrauen.</p>
+<p>Die betroffene native Brücke ist das unmittelbare Gegenbeispiel: Zwischen zwei nativen Chains erzeugte ein Fehler der Beweisbibliothek zwei Millionen unbesicherte Coins.</p>
+<p>Nativ beschreibt also Organisation und Produktbeziehung, keine formale Sicherheitseigenschaft.</p>
+<p>Zurück zum ersten Abschnitt.</p>
+<p>Chainübergreifende Bewegung bedeutete nie, etwas von A nach B zu tragen.</p>
+<p>Sie bedeutet, B einen Satz über A akzeptieren zu lassen.</p>
+<p>Diese Vorfälle griffen genau fünf verschiedene Teile dieses Satzes an.</p>
+<p>Poly griff an, wer den Sprecher umschreiben darf.</p>
+<p>Wormhole und die native Brücke griffen an, wie ein Beweis des Satzes erkannt wird.</p>
+<p>Ronin und Harmony griffen an, wer den Satz unterschreiben kann.</p>
+<p>Nomad griff an, welcher Satz standardmäßig als bewiesen gilt.</p>
+<p>Multichain und Orbit zeigten, wer real die Infrastruktur des Sprechens kontrolliert.</p>
+<p>Fünf Angriffstypen, fünf Teile eines Satzes.</p>
+<p>Diese fünf Fehlerstellen bedeuten nicht, dass die zugrunde liegenden Signaturalgorithmen oder Hashfunktionen gebrochen wurden. Die Probleme lagen vor allem an den Übergängen zwischen Berechtigungen, Schlüsselkontrolle und Prüfimplementierungen. Dazu gehört selbstverständlich kryptografische Technik. Nur ist die Sicherheit der Grundbausteine nicht schon die Sicherheit des ganzen Systems.</p>
+<p>Für die hier besprochenen Vorfälle zeigen die Unterlagen weder einen Bruch der zugrunde liegenden Signaturalgorithmen noch eine tatsächliche Hashkollision. Die Probleme lagen hauptsächlich nicht in den Grundbausteinen selbst, sondern in ihrer Nutzung und Prüfung.</p>
+<p>Fehlerhaft war die gesamte Anordnung, mit der der Satz erzeugt, übertragen und beurteilt wird.</p>
+<p>Das gilt für das ganze Feld. Kryptografie garantiert, dass eine Signatur von einem bestimmten privaten Schlüssel stammt. Sie garantiert weder dessen Besitzer noch korrekten Code zur Signaturprüfung.</p>
+<p>Im vorigen Essay brauchte ein Gesetz Menschen, die es auch unterlassen konnten.</p>
+<p>Hier führt der Vertrag von B seine Regeln aus, wenn eine gültige Nachricht eingegangen ist, eine Transaktion aufgenommen wurde und die nötigen Bedingungen erfüllt sind. Das bedeutet weder, dass Betreiber das System nicht pausieren können, noch, dass jede Nachricht rechtzeitig eintreffen muss.</p>
+<p>Die Frage ist, woher der Satz kam.</p>
+<p>Im zehnten Essay lag der Spalt zwischen Blockchain und Außenwelt: Sie kennt nicht die Wahrheit eines Preises, nur dessen Meldung.</p>
+<p>Diesmal wechselt der Spalt den Ort.</p>
+<p>Er liegt zwischen zwei Chains.</p>
+<p>Die öffentlichen Aufzeichnungen beider Seiten lassen sich nach ihren jeweiligen Regeln prüfen; beide besitzen Mechanismen gegen nachträgliche Änderungen.</p>
+<p>A hat Konsens. B hat Konsens.</p>
+<p>Dadurch entsteht zwischen den beiden Hauptbüchern aber nicht automatisch eine gemeinsame Aufzeichnung, die die Entsprechung ihrer Vermögenswerte beweist. Ein Light Client oder Zustandsbeweis kann B ermöglichen, A innerhalb der eigenen Konsensausführung zu prüfen. Dafür braucht es weiterhin eine korrekte Prüfimplementierung und die Sicherheit der zugrunde liegenden Chains.</p>
+<p>Dort liegt der Rest.</p>
+<p>Ein Blick allein auf A beantwortet die Frage nicht. Ob dort eine entsprechende Sperrung existiert und wie viel gesperrt ist, muss mit den tatsächlich entstandenen Ansprüchen auf der anderen Seite abgeglichen werden.</p>
+<p>Ebenso wenig genügt ein Blick allein auf B. Die dortige Ausgabeaufzeichnung kann vollkommen klar sein, während eine ausreichende Deckung auf der Quellchain noch gesondert zu prüfen bleibt.</p>
+<p>Er liegt zwischen zwei jeweils klaren Aufzeichnungen: in der Entsprechung, die noch geprüft, implementiert und fortlaufend abgeglichen werden muss.</p>
+<p>Bridges sind verschiedene Regelungen, die für diese Entsprechung gebaut werden.</p>
+<p>Seine Länge bestimmt das Geschäft selbst.</p>
+<p>Bräuchten die Chains nichts dazwischen, bräuchten sie keine Brücke. Weil etwas nötig ist, baut jemand eine. Jeder Entwurf beantwortet dieselbe Frage: Wer sagt den Satz, und warum wird ihm geglaubt?</p>
+<p>Nach fünfzehn Jahren hat kein Entwurf die Frage beseitigt. Sie lässt sich nur verlagern: zu Unterzeichnern, Prüfcode, Zustandsbeweisen oder den eigenen Konsensen beider Chains.</p>
+<p>Bei jeder Verlagerung wechselt die Fehlerstelle.</p>
+<p>Verschwunden ist sie nie.</p>
+<p>Beide Chains können weiter Blöcke produzieren und Aufzeichnungen nach ihren lokalen Implementierungen annehmen. Eine lokal bestandene Prüfung garantiert jedoch nicht, dass chainübergreifende Sperrung, Ausgabe und Deckung zusammenpassen. Bei fehlerhafter Prüfimplementierung können Belege angenommen werden, die hätten scheitern müssen.</p>
+<p>Doch die Buchungen stimmen nicht überein.</p>
+<p>Die Blockchain rechnet weiter ab. Doch worüber abgerechnet wird, darüber besteht noch kein Konsens.</p>
+<div class="source-note"><strong>Quellenhinweis</strong><p>Dieser Essay stützt sich auf öffentliche Protokolldokumentation, On-Chain-Aufzeichnungen, Gerichtsunterlagen, regulatorische Dokumente und begutachtete Forschung. Bei allen Zahlen bleiben ihre jeweiligen statistischen Bezugsgrößen erhalten. Quellenstand der Reihe: August 2026.</p><p><a href="https://github.com/cosmos/ibc/blob/main/spec/core/ics-002-client-semantics/README.md" target="_blank" rel="noopener">Cosmos IBC: client semantics specification ↗</a></p></div>
+</div><nav class="collection-nav"><a href="ep14.html"><small>Voriger Essay</small>El Salvador</a><a href="ep16.html"><small>Nächster Essay</small>Terra und Luna →</a></nav></article></main><footer><div class="footer-inner"><div class="footer-brand"><div class="footer-logo">Non <span>Dubito</span></div><div class="footer-tagline">Thought has no mother tongue</div></div><div class="footer-bottom">© 2026 Han Qin · Non Dubito</div></div></footer></body></html>

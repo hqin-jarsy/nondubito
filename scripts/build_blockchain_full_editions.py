@@ -89,6 +89,18 @@ def paragraph_html(text):
     return rendered
 
 
+def source_note_parts(tail):
+    label=re.match(r'(?:#{2,3}\s+(.+)|\*\*(.+)\*\*)\s*\n+',tail)
+    if label:
+        return label[1] or label[2],tail[label.end():].strip()
+    # A supplier's French EP14 note uses an inline label, not a heading.
+    # Recognize the precise label, never silently treat arbitrary tail text
+    # as a note or consume a missing body paragraph.
+    inline=re.match(r'Note sur les sources\.\s+(.+)',tail,re.S)
+    assert inline, ('Missing source note',tail[:100])
+    return 'Note sur les sources',inline[1].strip()
+
+
 def traditional_copy(converter, text):
     converted=converter.convert(text)
     # CoreFoundation leaves these context-sensitive forms ambiguous. Limit
@@ -101,6 +113,10 @@ def traditional_copy(converter, text):
                 ('天里','天裡'),('判決里','判決裡'),('儲備里','儲備裡'),
                 ('模型里','模型裡'),('池里','池裡'),('第七篇里','第七篇裡'),
                 ('欄里','欄裡'),('幾篇里','幾篇裡'),('卷宗里','卷宗裡'),
+                ('一句里','一句裡'),('小時里','小時裡'),('日里','日裡'),
+                ('合約里','合約裡'),('拍賣里','拍賣裡'),('調查里','調查裡'),
+                ('場景里','場景裡'),('句子里','句子裡'),('關係里','關係裡'),
+                ('事故里','事故裡'),('抵御','抵禦'),('覈實','核實'),
                 ('反復','反覆'),('重復','重複'),
                 ('看准','看準'),('量准','量準'),('說明瞭','說明了')]:
         converted=converted.replace(a,b)
@@ -193,9 +209,7 @@ def import_batch(folder, plan_path, reports):
                 assert at >= 0, ('Missing/reordered paragraph',slug,lang,p[:60])
                 position = at+len(p)
             tail = md[position:].strip()
-            label = re.match(r'(?:#{2,3}\s+(.+)|\*\*(.+)\*\*)\s*\n+',tail)
-            assert label, ('Missing source note',slug,lang,tail[:100])
-            note = tail[label.end():].strip()
+            note_label,note = source_note_parts(tail)
             assert note and '2026' in note
             sections = []
             offset = 0
@@ -203,7 +217,7 @@ def import_batch(folder, plan_path, reports):
                 sections.append(dict(heading=heading,paragraphs=paras[offset:offset+count]))
                 offset += count
             edition = dict(title=title,deck=deck,sections=sections,
-                           note_label=label[1] or label[2],note=note,
+                           note_label=note_label,note=note,
                            received_md_sha256=digest(raw),original_page_sha256=digest(page_path(lang,slug).read_bytes()))
             if lang in ('zh','zh-hant'):
                 edition['source_original_paragraphs'] = list(paras)
@@ -217,6 +231,10 @@ def import_batch(folder, plan_path, reports):
                 if (meta['ep'],meta['lang']) == (ep,lang):
                     for key in ('title','deck'):
                         if key in meta:edition[key]=meta[key]
+                    if lang in ('zh','zh-hant') and 'deck' in meta:
+                        node=re.search(r'<p class="article-deck">(.*?)</p>',snapshot,re.S)
+                        assert node, 'Missing original Chinese deck'
+                        edition['source_original_deck']=plain(node[1])
                     for key,value in meta.get('headings',{}).items():
                         sections[int(key)-1]['heading']=value
             for report in reviews:
@@ -328,14 +346,22 @@ def update_article(text,lang,slug,r):
         assert n==1
     text=re.sub(r'<style id="blockchain-full-style">.*?</style>\s*','',text,flags=re.S)
     text=text.replace('</head>',STYLE+'\n</head>',1)
-    # Only non-Chinese metadata is replaced; Chinese decks are author originals.
-    if lang not in ('zh','zh-hant'):
+    # Chinese metadata stays untouched unless an explicit reviewed deck change
+    # was recorded, with the same original-or-approved guard as body edits.
+    reviewed_chinese_deck = lang in ('zh','zh-hant') and 'source_original_deck' in edition
+    if reviewed_chinese_deck:
+        node=re.search(r'<p class="article-deck">(.*?)</p>',text,re.S)
+        assert node and plain(node[1]) in (edition['source_original_deck'],edition['deck']), 'Unreviewed Chinese deck change'
+    if lang not in ('zh','zh-hant') or reviewed_chinese_deck:
         title,deck=map(html.escape,(edition['title'],edition['deck']))
-        text=re.sub(r'<h1>.*?</h1>',lambda m:'<h1>'+title+'</h1>',text,count=1,flags=re.S)
+        if not reviewed_chinese_deck:
+            text=re.sub(r'<h1>.*?</h1>',lambda m:'<h1>'+title+'</h1>',text,count=1,flags=re.S)
         text=re.sub(r'(<p class="(?:article-deck|collection-deck)">).*?(</p>)',lambda m:m[1]+deck+m[2],text,count=1,flags=re.S)
-        text=re.sub(r'<title>.*?</title>',lambda m:'<title>'+title+' · Blockchain — Non Dubito</title>',text,count=1,flags=re.S)
+        if not reviewed_chinese_deck:
+            text=re.sub(r'<title>.*?</title>',lambda m:'<title>'+title+' · Blockchain — Non Dubito</title>',text,count=1,flags=re.S)
         text=re.sub(r'(<meta (?:name="description"|property="og:description") content=")[^"]*(")',lambda m:m[1]+deck+m[2],text)
-        text=re.sub(r'(<meta property="og:title" content=")[^"]*(")',lambda m:m[1]+title+m[2],text)
+        if not reviewed_chinese_deck:
+            text=re.sub(r'(<meta property="og:title" content=")[^"]*(")',lambda m:m[1]+title+m[2],text)
     return text
 
 
@@ -349,7 +375,6 @@ def upgrade_outputs(outputs):
             text=outputs.get(path,path.read_text())
             outputs[path]=update_article(text,lang,slug,r)
     for lang in LANGS:
-        if lang in ('zh','zh-hant'):continue
         for path in sorted(page_path(lang,'index').parent.glob('*.html')):
             if path.stem!='index' and not re.fullmatch(r'ep\d{2}',path.stem):continue
             text=outputs.get(path,path.read_text())
@@ -358,6 +383,7 @@ def upgrade_outputs(outputs):
                 target=re.search(r'href="(ep\d{2})\.html"',tag)
                 if not target or target[1] not in reviewed:return tag
                 e=reviewed[target[1]]['languages'][lang]
+                if lang in ('zh','zh-hant') and 'source_original_deck' not in e:return tag
                 if 'class="collection-card"' in tag or 'class="blockchain-card"' in tag:
                     tag=re.sub(r'(<h[23]>).*?(</h[23]>)',lambda m:m[1]+html.escape(e['title'])+m[2],tag,count=1,flags=re.S)
                     return re.sub(r'(<p>).*?(</p>)',lambda m:m[1]+html.escape(e['deck'])+m[2],tag,count=1,flags=re.S)

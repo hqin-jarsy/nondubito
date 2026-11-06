@@ -1,1 +1,311 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>El puente · El ciclo cincel–construcción: blockchain — Non Dubito</title><meta name="description" content="El activo no cruza cadenas: una cadena acepta una afirmación acerca del estado de otra."><meta name="author" content="Han Qin (秦汉)"><meta property="og:type" content="article"><meta property="og:title" content="El puente"><meta property="og:description" content="El activo no cruza cadenas: una cadena acepta una afirmación acerca del estado de otra."><meta property="og:url" content="https://nondubito.net/essays/blockchain/es/ep15.html"><link rel="canonical" href="https://nondubito.net/essays/blockchain/es/ep15.html"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="stylesheet" href="../../../style.css"><style>.collection-page{max-width:820px;margin:0 auto;padding:92px 2rem 72px}.language-route{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin-bottom:2.2rem}.collection-back{font-family:var(--sans);font-size:.72rem;color:var(--ink-muted);text-decoration:none}.collection-kicker{font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:2rem 0 .7rem}.collection-page h1{font-size:2.35rem;line-height:1.18;margin:.2rem 0 1rem}.collection-deck{font-size:1.08rem;color:var(--ink-light);line-height:1.75;margin-bottom:2.4rem}.collection-body section{margin:0 0 2.5rem}.collection-body h2{font-size:1.28rem;margin-bottom:.8rem}.collection-body p{font-size:1.02rem;line-height:1.9;margin:0}.edition-note{margin:3rem 0 0;padding-top:1.1rem;border-top:1px solid var(--cream-border);font-size:.8rem;color:var(--ink-muted);line-height:1.7}.collection-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.4rem}.collection-nav a{padding:1rem;border:1px solid var(--cream-border);text-decoration:none;color:var(--ink);line-height:1.45}.collection-nav a:last-child{text-align:right}.collection-nav small{display:block;font-family:var(--sans);font-size:.62rem;color:var(--ink-muted);margin-bottom:.3rem}@media(max-width:620px){.collection-page{padding:76px 1.25rem 54px}.collection-nav{grid-template-columns:1fr}.collection-nav a:last-child{text-align:left}}</style><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script></head><body><header><div class="header-inner"><a href="../../../index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../index.html">Essays</a><a href="../../../start.html">Start Here</a><a href="../../../library.html" class="active">Library</a><a href="../../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a></nav></div></header><main class="collection-page"><div class="language-route" aria-label="Language selector"><span class="blockchain-language-menu" role="group" aria-label="Idioma"><a data-language="zh" href="../ep15.html">简体中文</a><a data-language="en" href="../en/ep15.html">English</a><a data-language="zh-hant" href="../zh-hant/ep15.html">繁體中文</a><a data-language="ja" href="../ja/ep15.html">日本語</a><a data-language="fr" href="../fr/ep15.html">Français</a><a data-language="de" href="../de/ep15.html">Deutsch</a><a data-language="es" href="ep15.html" aria-current="page">Español</a><a data-language="ko" href="../ko/ep15.html">한국어</a></span></div><a class="collection-back" href="index.html">← El ciclo cincel–construcción: blockchain</a><article><div class="collection-kicker">Tecnología, mercados e instituciones · 15 / 21</div><h1>El puente</h1><p class="collection-deck">El activo no cruza cadenas: una cadena acepta una afirmación acerca del estado de otra.</p><div class="collection-body"><section><h2>Lo que ocurrió</h2><p>Dos blockchains no comparten directamente su estado. Un puente bloquea un activo en un lado y emite en el otro un derecho correspondiente.</p></section><section><h2>Lo que registró el libro</h2><p>Dentro de cada cadena, los registros son verificables. Si mensaje y firmas cumplen las condiciones, el contrato de destino ejecuta la regla prevista.</p></section><section><h2>Lo que quedó fuera</h2><p>El peligro vive entre dos libros correctos. Si fallan validadores, claves de administración o formato del mensaje, un depósito inexistente puede producir tokens plenamente reales.</p></section></div><p class="edition-note"><em>Esta edición en español es una reescritura independiente pensada para lectores hispanohablantes.</em></p><nav class="collection-nav"><a href="ep14.html"><small>Ensayo anterior</small>← El Salvador</a><a href="ep16.html"><small>Ensayo siguiente</small>Terra y Luna →</a></nav></article></main><footer><div class="footer-inner"><div class="footer-brand"><div class="footer-logo">Non <span>Dubito</span></div><div class="footer-tagline">Thought has no mother tongue</div></div><div class="footer-bottom">© 2026 Han Qin · Non Dubito</div></div></footer></body></html>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Puentes · Blockchain — Non Dubito</title><meta name="description" content="Los puentes entre cadenas no trasladan activos a través de ellas: hacen que una cadena acepte lo que afirma otra. Los incidentes ocurren entre dos libros contables verificables."><meta name="author" content="Han Qin (秦汉)"><meta property="og:type" content="article"><meta property="og:title" content="Puentes"><meta property="og:description" content="Los puentes entre cadenas no trasladan activos a través de ellas: hacen que una cadena acepte lo que afirma otra. Los incidentes ocurren entre dos libros contables verificables."><meta property="og:url" content="https://nondubito.net/essays/blockchain/es/ep15.html"><link rel="canonical" href="https://nondubito.net/essays/blockchain/es/ep15.html"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="stylesheet" href="../../../style.css"><style>.collection-page{max-width:820px;margin:0 auto;padding:92px 2rem 72px}.language-route{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin-bottom:2.2rem}.collection-back{font-family:var(--sans);font-size:.72rem;color:var(--ink-muted);text-decoration:none}.collection-kicker{font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:2rem 0 .7rem}.collection-page h1{font-size:2.35rem;line-height:1.18;margin:.2rem 0 1rem}.collection-deck{font-size:1.08rem;color:var(--ink-light);line-height:1.75;margin-bottom:2.4rem}.collection-body section{margin:0 0 2.5rem}.collection-body h2{font-size:1.28rem;margin-bottom:.8rem}.collection-body p{font-size:1.02rem;line-height:1.9;margin:0}.edition-note{margin:3rem 0 0;padding-top:1.1rem;border-top:1px solid var(--cream-border);font-size:.8rem;color:var(--ink-muted);line-height:1.7}.collection-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.4rem}.collection-nav a{padding:1rem;border:1px solid var(--cream-border);text-decoration:none;color:var(--ink);line-height:1.45}.collection-nav a:last-child{text-align:right}.collection-nav small{display:block;font-family:var(--sans);font-size:.62rem;color:var(--ink-muted);margin-bottom:.3rem}@media(max-width:620px){.collection-page{padding:76px 1.25rem 54px}.collection-nav{grid-template-columns:1fr}.collection-nav a:last-child{text-align:left}}</style><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script><style id="blockchain-full-style">
+.collection-body p{margin:0 0 1.4em;overflow-wrap:break-word}
+.collection-body h2{margin:3em 0 1em;line-height:1.55;scroll-margin-top:110px}
+.collection-body .source-note{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--cream-border);color:var(--ink-muted)}
+.collection-body .source-note p{font-size:.85rem;line-height:1.8}
+.blockchain-full-toc{margin:1.5rem 0 2.5rem;padding:1rem 1.2rem;border:1px solid var(--cream-border);font-family:var(--sans)}
+.blockchain-full-toc summary{cursor:pointer;font-size:.82rem}
+.blockchain-full-toc li{margin:.6rem 0;line-height:1.6;font-size:.85rem}
+.collection-page{min-width:0;overflow-wrap:anywhere}
+html[lang="ko"] .collection-body{word-break:keep-all}
+</style>
+</head><body><header><div class="header-inner"><a href="../../../index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../index.html">Essays</a><a href="../../../start.html">Start Here</a><a href="../../../library.html" class="active">Library</a><a href="../../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a></nav></div></header><main class="collection-page"><div class="language-route" aria-label="Language selector"><span class="blockchain-language-menu" role="group" aria-label="Idioma"><a data-language="zh" href="../ep15.html">简体中文</a><a data-language="en" href="../en/ep15.html">English</a><a data-language="zh-hant" href="../zh-hant/ep15.html">繁體中文</a><a data-language="ja" href="../ja/ep15.html">日本語</a><a data-language="fr" href="../fr/ep15.html">Français</a><a data-language="de" href="../de/ep15.html">Deutsch</a><a data-language="es" href="ep15.html" aria-current="page">Español</a><a data-language="ko" href="../ko/ep15.html">한국어</a></span></div><a class="collection-back" href="index.html">← El ciclo cincel–construcción: blockchain</a><article><div class="collection-kicker">Tecnología, mercados e instituciones · 15 / 21</div><h1>Puentes</h1><p class="collection-deck">Los puentes entre cadenas no trasladan activos a través de ellas: hacen que una cadena acepte lo que afirma otra. Los incidentes ocurren entre dos libros contables verificables.</p><div class="collection-body">
+<details class="blockchain-full-toc"><summary>En este ensayo</summary><ol><li><a href="#section-1">I. Hacer que B acepte una afirmación</a></li><li><a href="#section-2">II. Cuatro modelos</a></li><li><a href="#section-3">III. Nueve no equivalen a nueve</a></li><li><a href="#section-4">IV. Engañar al verificador</a></li><li><a href="#section-5">V. La raíz cero</a></li><li><a href="#section-6">VI. La cuenta de la nube</a></li><li><a href="#section-7">VII. Tres denominadores</a></li><li><a href="#section-8">VIII. Entre dos cadenas</a></li></ol></details>
+<h2 id="section-1">I. Hacer que B acepte una afirmación</h2>
+<p>Entre dos cadenas independientes no existe el acto de una moneda atravesando realmente la red.</p>
+<p>El consenso de la cadena A solo conoce el estado de A; el de B solo conoce el estado de B.</p>
+<p>El llamado traslado de activos entre cadenas exige construir una relación contable entre dominios: disminuyen los activos disponibles en A y aparecen nuevos derechos disponibles en B.</p>
+<p>La pregunta central nunca fue, por tanto, cómo enviar la moneda al otro lado.</p>
+<p>Es por qué B cree que en A ocurrió realmente un hecho que autoriza a B a emitir o pagar.</p>
+<p>Parece un detalle técnico, pero es todo el contenido de las siete secciones siguientes.</p>
+<p>Porque el propio registro de la cadena B no anota automáticamente lo que ocurre en A. Necesita recibir mensajes y pruebas, y disponer de una vía para verificarlos. Un intermediario de retransmisión puede llevar el mensaje; aceptarlo o no depende de las firmas, las pruebas de estado o la verificación mediante un cliente ligero que lo acompañen, no necesariamente del criterio de un comité externo.</p>
+<p>La transmisión y la verificación forman esa capa adicional que hay que construir entre ambos registros. No tiene por qué quedar fuera de la ejecución del consenso de las dos cadenas.</p>
+<p>El consenso de A no realiza automáticamente las comprobaciones de aceptación de B. Para verificar un hecho ocurrido en A, B necesita una vía adicional: firmas, pruebas de estado, un cliente ligero u otro mecanismo. Qué puede comprobar, de la seguridad de qué cadena depende y en quién más debe confiar son cuestiones determinadas por el diseño de esa vía.</p>
+<p>Aparece así un límite de seguridad adicional. Importa a ambos lados, pero que cada cadena funcione con normalidad no basta para dar por hecho que ese límite está bien cubierto.</p>
+<p>El resto ya ha encontrado aquí su lugar.</p>
+<p>El problema no tiene por qué ser un error de cálculo en uno de los registros. Ambos pueden superar las comprobaciones de sus respectivas reglas mientras falla la correspondencia que debería existir entre los activos de un lado y del otro. El resto está aquí en esa conexión que no se establece automáticamente solo porque cada registro cuadre por separado.</p>
+<p>Ese lugar no tiene por qué corresponder a una empresa ni a un contrato independiente. Puede ser un grupo de firmantes, un cliente ligero o código que verifica pruebas. Cambian el nombre y la ubicación, pero no la tarea: ¿por qué debe B considerar que un asiento en A justifica pagar en su propio lado?</p>
+<p>El procedimiento más típico es este: el usuario bloquea 100 ETH en el contrato del puente en A; la capa de verificación acredita el bloqueo ante B; B crea entonces 100 ETH envueltos. Para volver se invierte el orden: solo después de quemar los 100 en B pueden liberarse los bloqueados en A.</p>
+<p>No es, en absoluto, el mismo ETH viajando a otra cadena.</p>
+<p>Lo que existe en B es un derecho transdominio sobre la garantía de A.</p>
+<p>Dónde se deposita la confianza depende de quién demuestra que el bloqueo ocurrió realmente.</p>
+<p>Con multifirma o un conjunto de validadores, B acepta un número suficiente de firmas; la confianza adicional recae en los firmantes, la seguridad de sus claves privadas y el software de firma.</p>
+<p>Con firma de umbral, B acepta una firma conjunta formada por suficientes fragmentos; la confianza adicional recae en la independencia real de los nodos, la custodia de los fragmentos y quién controla los permisos de los servidores.</p>
+<p>Con un oráculo o comité externo, la confianza adicional recae en ese comité.</p>
+<p>Con un cliente ligero, B acepta cabeceras de consenso y pruebas de estado de A; se confía en la seguridad del consenso de A y en la corrección de la implementación del cliente.</p>
+<p>Con pruebas de validez, B acepta una prueba de estado verificable; se confía en la seguridad de A y en la corrección del sistema de pruebas, el circuito y el verificador.</p>
+<p>Ninguna fila de esta tabla puede describirse como exenta de confianza.</p>
+<p>Solo cambia qué capa debe controlarse para falsificar la afirmación, a qué coste y si alguien puede señalarlo después.</p>
+<p>Esto permite explicar ya por qué el valor bloqueado de un puente resulta especialmente peligroso.</p>
+<p>Los 100 bloqueados en A son la garantía común de los 100 activos envueltos de B.</p>
+<p>Si se permite a B emitir 200 o al atacante liberar 100 de A sin la quema correspondiente, se rompe la identidad contable entre dominios.</p>
+<p>El ensayo anterior trataba de una ley cuya ejecución dependía de personas.</p>
+<p>Este trata del espacio entre dos cadenas.</p>
+<p>El décimo ensayo ya mostraba una grieta: la cadena no sabe que un precio es 65.000; sabe que alguien dijo 65.000.</p>
+<p>Ahora esa grieta cambia de lugar.</p>
+<p>No está entre la cadena y el mundo exterior, sino entre dos cadenas.</p>
+<p>En las cadenas públicas de las que hablamos, los registros de ambos lados suelen poder inspeccionarse, y cada cadena cuenta con un mecanismo de consenso que resiste su modificación. Esas garantías tienen sus propios supuestos sobre finalidad y reorganizaciones. No demuestran automáticamente que cada asiento de activos corresponda al del otro lado.</p>
+<p>Dos registros verificables por separado siguen necesitando una correspondencia verificable entre ellos.</p>
+<p>Cada incidente descrito en las seis secciones siguientes ocurre en ella.</p>
+<h2 id="section-2">II. Cuatro modelos</h2>
+<p>Los cuatro modelos habituales no pertenecen realmente al mismo nivel; presentarlos como cuatro tipos de puentes oculta el problema fundamental.</p>
+<p>El segundo no necesita crear siempre un derecho envuelto. Supongamos que un proveedor tiene monedas estables en ambos lados: el usuario entrega 100 al fondo de A y el proveedor o retransmisor de B entrega inmediatamente unas 100 al destinatario.</p>
+<p>Los dos extremos son un aumento de inventario en A y una reducción en B. Después el protocolo repone el capital mediante reequilibrio o liquidación neta.</p>
+<p>La documentación actual de tarifas de un protocolo divide expresamente el coste total del usuario en comisión de liquidez y comisión de retransmisión. La primera compensa el uso de liquidez y el riesgo de reequilibrio; la segunda, los costes de transacción, el coste de oportunidad del capital y los riesgos del retransmisor.</p>
+<p>El dinero del usuario no necesariamente va, por tanto, a una empresa de puentes.</p>
+<p>La solución separa riesgos: la confianza de seguridad sigue en la liquidación final y la verificación de mensajes; la del cumplimiento inmediato pasa al capital y los incentivos del proveedor de liquidez; los fondos de ambos lados soportan riesgos de precio y liquidez; si falla la vía rápida, suele poder recurrirse a una liquidación canónica más lenta.</p>
+<p>También debe matizarse que un puente de liquidez no custodie. Puede no crear una reserva permanente de garantía para activos envueltos, pero los proveedores sí exponen capital en su recorrido.</p>
+<p>La diferencia puede verse así: en bloqueo y emisión, el riesgo se concentra en el fondo de la cadena de origen, una misma garantía respalda los derechos de todos; en la vía de liquidez se distribuye entre inventarios de ambos lados, al precio de que alguien mantenga capital inmovilizado en ambos.</p>
+<p>La primera opción concentra el respaldo de muchos titulares en un mismo lugar y puede dejar al descubierto un gran déficit de golpe. La segunda reparte las existencias entre ambos lados, pero tampoco está limitada por naturaleza a fallos pequeños y locales. Una red de liquidez puede sufrir asimismo una pérdida grande y repentina si falla la liquidación final o la verificación de mensajes.</p>
+<p>Lo común no cambia: alguien debe decir a un lado qué ocurrió en el otro.</p>
+<p>Solo cambia quién aporta el capital y dónde queda inmovilizado.</p>
+<p>Los intercambios atómicos se basan en bloqueos por hash y por tiempo. Una parte bloquea activos en A y la otra bloquea otros en B bajo la misma condición hash; revelar la preimagen para cobrar en un lado proporciona al otro el mismo secreto y permite cobrar; al vencer el plazo, cada parte recupera sus fondos.</p>
+<p>Su singularidad es que no hay una gran reserva perpetua del puente respaldando a todos los usuarios.</p>
+<p>Así, cada intercambio no necesita depositar fondos en una bóveda permanente que respalde conjuntamente a todos los usuarios. Con una implementación correcta y si se cumplen las condiciones temporales, resulta más fácil aislar de otras operaciones el riesgo de contraparte de una transacción. Pero un defecto compartido en el código puede afectar a muchos intercambios simultáneos.</p>
+<p>El coste es que un intercambio básico mediante bloqueos hash con plazos no equivale a un sistema general de mensajería entre cadenas. También exige encontrar activos, liquidez y tiempos compatibles en ambos lados. Es útil en ciertos contextos sin sustituir directamente a todos los puentes aquí descritos. La pregunta no es solo cuánta seguridad ofrece, sino qué permite hacer y con qué facilidad puede usarse.</p>
+<p>La confianza recae principalmente en la finalidad y la disponibilidad de ambas cadenas, en la implementación correcta de los bloqueos hash y temporales y en que la contraparte permanezca conectada durante los plazos del protocolo.</p>
+<p>El coste nace de la misma propiedad: ambas partes necesitan activos y liquidez emparejables, hay que resolver diferencias temporales entre cadenas y un bloqueo hash temporal aislado no resuelve la mensajería general.</p>
+<p>La vía de clientes ligeros merece especial atención.</p>
+<p>La cadena de destino guarda el estado de un cliente ligero de la otra; retransmisores sin permiso transportan paquetes y pruebas, y la cadena solo acepta el paquete tras verificar el estado de consenso y la prueba de pertenencia de la otra.</p>
+<p>La documentación distingue expresamente algo: el retransmisor aporta disponibilidad, no es un árbitro de seguridad de confianza. Si alguien está dispuesto a retransmitir, en principio puede sustituir al que falla.</p>
+<p>Así, «sin confianza» en un puente de clientes ligeros no significa exactamente ausencia de confianza.</p>
+<p>Significa dejar de confiar adicionalmente en un comité externo independiente y reducir cuanto sea posible la seguridad al consenso de ambas cadenas y a la corrección del cliente ligero y del código de verificación.</p>
+<p>Las propuestas académicas avanzan un paso más: un artículo propone verificar estados de otra cadena mediante pruebas sucintas, evita comités externos en su prototipo y obtiene generación de pruebas en menos de 20 segundos y verificación en la cadena por menos de 230.000 gas.</p>
+<p>Son experimentos de rendimiento de un artículo y un prototipo, no una demostración de que la seguridad de los puentes esté resuelta en producción.</p>
+<p>Separemos ahora los niveles de estos cuatro elementos.</p>
+<p>Bloquear y emitir es una forma de contabilidad de activos.</p>
+<p>Clientes ligeros, multifirma y pruebas de validez son formas de verificación.</p>
+<p>Las redes de liquidez son formas de cumplimiento.</p>
+<p>Los intercambios atómicos son otra primitiva de liquidación.</p>
+<p>Llamarlos a todos cuatro tipos de puentes puede ocultar la verdadera pregunta de seguridad: quién tiene la autorización final para que B pueda emitir ahora o A pueda liberar ahora.</p>
+<p>Para analizar un puente hay un eje más estable que su valor bloqueado, velocidad o comisión: identificar el componente capaz de convertir «ocurrió algo en la otra cadena» en «esta cadena permite ahora pagar», y preguntar después cuál es el conjunto mínimo de actores que puede controlarlo, falsificarlo, engañarlo o actualizarlo.</p>
+<p>Cada incidente de las siguientes secciones es un punto de ese eje.</p>
+<h2 id="section-3">III. Nueve no equivalen a nueve</h2>
+<p>Ronin muestra precisamente que mirar solo la proporción del umbral produce una falsa sensación de seguridad.</p>
+<p>Según el informe de la propia empresa, había 9 claves de validadores y retirar del puente exigía 5 firmas.</p>
+<p>Sky Mavis controlaba 4 de ellas.</p>
+<p>En noviembre de 2021, para atender el volumen de uso y las solicitudes sin comisión, Axie DAO incluyó a Sky Mavis en la lista autorizada de una ruta de firma de un validador. El acuerdo temporal dejó de ser necesario en diciembre, pero la autorización no se revocó.</p>
+<p>Tras infiltrarse en el entorno de Sky Mavis y obtener las 4 claves, el atacante utilizó esa vía residual para conseguir que el validador de la DAO aportara la quinta firma a retiradas maliciosas.</p>
+<p>El umbral nominal era, por tanto, 5 de 9.</p>
+<p>La barrera efectiva del ataque no consistía en comprometer a cinco instituciones independientes. Consistía en cuatro claves controladas por una misma organización, más una vía de firma que debería haberse revocado, pero seguía siendo válida.</p>
+<p>La explicación de que esa ruta siguiera abierta era sencilla: se había creado provisionalmente para resolver un problema operativo real y, resuelto el problema, nadie recordó cerrarla.</p>
+<p>En el sexto ensayo, un mecanismo temporal añadido para responder a un incidente se convirtió en la entrada del siguiente. Aquí reaparece la forma: lo provisional permaneció, conservando los mismos permisos originales.</p>
+<p>No se quebró el umbral criptográfico.</p>
+<p>Se quebró la premisa de independencia.</p>
+<p>Las cantidades en monedas son claras: 173.600 ETH y 25,5 millones de USDC salieron en dos retiradas el 23 de marzo de 2022.</p>
+<p>En dólares hay tres cifras compatibles: unos 540 millones al precio del día del ataque y aproximadamente entre 615 y 625 millones según precios cercanos a la revelación del 29 de marzo. El Tesoro estadounidense utiliza cerca de 620 millones; el anuncio empresarial da las cantidades originales de monedas.</p>
+<p>Otra cifra merece destacarse: se retiraron el 23 de marzo y no se descubrió hasta el 29.</p>
+<p>Seis días.</p>
+<p>Durante esos seis días, los activos envueltos siguieron negociándose, utilizándose como garantía e incluyéndose en estadísticas de valor bloqueado de la otra cadena.</p>
+<p>La garantía que los respaldaba ya no existía.</p>
+<p>Durante esos seis días, ambas cadenas podían seguir registrando transacciones con normalidad. La validez de cada registro por separado no significaba que el respaldo siguiera correspondiendo a los derechos de cobro.</p>
+<p>El déficit no se descubrió públicamente hasta seis días después. El retraso, por sí solo, no demuestra que nadie tuviera asignada la conciliación ni que nadie comprobara las cuentas. Lo que sí muestra es que los mecanismos de detección y respuesta existentes no hicieron aflorar esa anomalía a tiempo.</p>
+<p>El tercer ensayo describía salidas de fondos de una plataforma de intercambio que pasaron inadvertidas durante años. Aquí fueron seis días y el contexto era distinto, pero la exigencia es parecida: una vez que existen los registros, una persona o un mecanismo debe seguir comprobando las correspondencias que deberían mantenerse entre ellos.</p>
+<p>Aquí ni siquiera hace falta obtener primero un registro interno privado para plantear la comprobación. Hay registros consultables a ambos lados. La dificultad consiste en enlazar respaldo, acuñación, quema y desbloqueo entre cadenas en una comprobación continua y eficaz, en lugar de detenerse en que cada transacción haya superado las verificaciones locales.</p>
+<p>Sobre la entrada inicial, medios posteriores señalaron un posible phishing dirigido disfrazado de documentación de contratación. El informe oficial inicial no lo confirmó directamente y no debe mezclarse con la reconstrucción oficial de las 4 claves más 1.</p>
+<p>Harmony tenía un umbral aún menor.</p>
+<p>Su propia investigación indicó que el atacante obtuvo al menos 2 claves privadas; las reconstrucciones públicas de seguridad suelen describir el puente de entonces como una multifirma de 2 de 5.</p>
+<p>Las dos frases no tienen por qué contradecirse: si el umbral era de dos claves entre cinco, obtener al menos dos claves explica precisamente cómo se alcanzó. Queda por investigar quién custodiaba las claves y si eran realmente independientes, no inventar una discrepancia porque las frases contengan cifras distintas.</p>
+<p>La descripción de Orbit como 7 de 10 procede principalmente de reconstrucciones posteriores de investigadores y empresas de seguridad. El anuncio inicial de la empresa solo confirmó accesos anómalos y salidas de activos, sin establecer esa causa raíz.</p>
+<p>Debe identificarse, pues, como inferencia de empresas de seguridad, no como un hecho oficial de la empresa o del Gobierno.</p>
+<p>Los tres casos permiten formular las variables que realmente deberían registrarse.</p>
+<p>Número de firmantes, umbral, número de organizaciones independientes, número de dominios de fallo independientes de hardware, servicios en la nube o gestión de claves y posibilidad de que claves administrativas o de actualización eludan el umbral.</p>
+<p>Los proyectos públicos suelen divulgar con más facilidad precisamente las dos primeras.</p>
+<p>Las tres últimas son las más difíciles de comprobar.</p>
+<p>Esta sección plantea el mismo tipo de problema que las cinco reglas de medir del segundo ensayo, pero de forma más concreta.</p>
+<p>Entonces un objeto admitía cinco mediciones. Ahora la cifra más fácil de publicar es precisamente aquella de la que menos depende la seguridad.</p>
+<p>Un puente puede anunciar 5 de 9 en la portada de sus documentos mientras los nueve firmantes residen en una misma región de un mismo proveedor de nube. No infringe ninguna exigencia de divulgación porque nadie exige revelarlo.</p>
+<p>Más difícil aún: incluso queriendo revelarlo, no es fácil explicarlo con claridad.</p>
+<p>La independencia de dos empresas depende de accionistas, directores, oficinas, equipos operativos y de quién controla la red a la que están conectadas sus máquinas. Nada de ello puede convertirse en un parámetro contractual ni verificarse en la cadena.</p>
+<p>Y precisamente eso determina cuánto vale realmente el umbral.</p>
+<h2 id="section-4">IV. Engañar al verificador</h2>
+<p>La naturaleza del incidente de Wormhole es exactamente opuesta a la de Ronin.</p>
+<p>El fallo central estaba en la ruta de verificación de Solana. El atacante proporcionó una cuenta falsa del sistema de instrucciones y una función antigua no comprobó que la cuenta recibida fuera realmente la del sistema.</p>
+<p>El programa creyó así que las firmas ya se habían verificado y generó una credencial validada para usos posteriores. Después se invocó la ruta de finalización de activos envueltos y se emitieron 120.000 ETH envueltos.</p>
+<p>Este caso permite separar muy bien dos ataques.</p>
+<p>Uno roba suficientes claves de guardianes y genera realmente el número requerido de firmas maliciosas.</p>
+<p>El otro no alcanza ese número, pero el código afirma erróneamente que ya lo verificó.</p>
+<p>Wormhole pertenece al segundo.</p>
+<p>Las fuentes no respaldan, por tanto, que se comprometiera el sistema de claves privadas de los 19 guardianes. El atacante explotó el límite de la verificación de firmas.</p>
+<p>Según los precios del momento, las fuentes sitúan el valor en unos 320 o 325 millones de dólares. Ambas miden el valor de mercado de aquellas 120.000 monedas, no efectivo en dólares de una cuenta empresarial.</p>
+<p>Se produjo así un desequilibrio muy claro entre los dos extremos.</p>
+<p>En Solana aparecieron de la nada 120.000 derechos de cobro sin que en Ethereum se añadieran 120.000 monedas de garantía.</p>
+<p>Jump aportó enseguida 120.000 ETH y devolvió a esos derechos su respaldo íntegro.</p>
+<p>La recuperación, dos años después, de activos controlados por el atacante mediante procedimientos judiciales británicos y neoyorquinos fue recuperación del aportante, no una segunda indemnización para los usuarios.</p>
+<p>La distinción importa porque determina de quién es el dinero al que se refiere la recuperación cercana al noventa por ciento.</p>
+<p>La propia reposición merece anotarse. No formaba parte del diseño del protocolo, no era un seguro ni una promesa de ningún documento.</p>
+<p>Una empresa decidió aquel mismo día aportar 120.000 ETH para reparar la identidad contable rota.</p>
+<p>Sin ello, los titulares de activos envueltos habrían tenido derechos insuficientemente garantizados.</p>
+<p>Hubo otro fallo de la misma familia, esta vez en un puente nativo.</p>
+<p>En octubre de 2022 se explotó el puente entre las dos cadenas nativas de BNB. El proyecto confirmó que el atacante falsificó pruebas entre cadenas mediante un defecto de la biblioteca subyacente y generó y retiró 2 millones de BNB adicionales.</p>
+<p>Al precio de entonces, la emisión nominal valía aproximadamente entre 570 y 600 millones de dólares.</p>
+<p>Lo que el atacante logró transferir antes de la suspensión de la cadena fue de unos 100 a 110 millones.</p>
+<p>Los cuatrocientos o quinientos millones de diferencia se explican porque los validadores coordinaron la detención de toda la cadena.</p>
+<p>Una cadena diseñada para no detenerse evitó una pérdida mayor deteniéndose. Fue posible precisamente porque tenía pocos validadores y podían coordinarse rápidamente.</p>
+<p>Tampoco es exacto describirlo como la pérdida de 570 millones de activos custodiados de clientes.</p>
+<p>La acción fundamental fue que el verificador aceptó una prueba de estado falsificada y emitió 2 millones adicionales sin respaldo legítimo en la cadena de origen.</p>
+<p>Es el mismo tipo de fallo que Wormhole, no un robo de claves privadas de firmantes.</p>
+<p>Compararlos revela algo importante.</p>
+<p>En Ronin se cumplieron íntegramente las reglas del protocolo. Las cinco firmas eran reales, la verificación correcta y el contrato actuó según las reglas. El problema estaba fuera: aquellas cinco claves no debían encontrarse en el mismo lugar.</p>
+<p>En estos dos casos ocurrió lo contrario. No se cumplieron las reglas, pero el contrato creyó que sí. Las firmas no existían y las pruebas eran falsas, pero el código de verificación las aprobó.</p>
+<p>En el primer caso, el contrato verificó correctamente firmas producidas con claves robadas, pero esa comprobación no distinguía quién estaba usando las claves. En el segundo, la implementación del verificador del puente aceptó materiales que debería haber rechazado. Ninguno de los dos casos debe convertirse sin más en un fallo del consenso de la cadena subyacente.</p>
+<p>Para los usuarios, ambos fallos pueden convertirse en la misma pregunta urgente: ¿sigue pudiendo cobrarse íntegramente el derecho que poseen? Pero puede haberse retirado el respaldo o pueden haberse creado derechos adicionales sin respaldo. No todos los accidentes significan que desaparecieran de pronto todas las garantías.</p>
+<p>Antes de que el riesgo se haga visible, el activo envuelto puede seguir usándose con normalidad en la otra cadena: transferirse, entrar en un fondo de liquidez, contarse en el valor bloqueado o aceptarse como garantía de un préstamo. Esos usos pueden parecer iguales sin que por ello sean idénticos los riesgos de respaldo y verificación que hay debajo.</p>
+<p>Un derecho de cobro entre dominios puede cotizar habitualmente con una diferencia muy pequeña respecto del activo sobre el que recae.</p>
+<p>Un incidente puede ampliar de golpe esa distancia. Que vuelva a estrecharse depende del respaldo restante, de su posible reposición y de los activos que finalmente puedan recuperarse.</p>
+<p>Eso también dificulta valorar estos activos. En condiciones normales, un activo envuelto puede cotizar muy cerca de su subyacente. Cuando el respaldo es insuficiente o el reembolso se bloquea, el precio pasa a depender de las garantías que quedan, de si habrá una reposición y de cuánto podrá recuperarse. Puede sufrir un descuento brusco sin que los únicos desenlaces sean el valor íntegro o cero.</p>
+<p>Mirar únicamente si el saldo sigue ahí, si basta el número de firmas o si el contrato continúa funcionando puede no revelar de antemano ese riesgo de reembolso. También hay que examinar la conciliación del respaldo, los cambios de permisos y la estructura de control real. Esos riesgos no siempre aparecen poco a poco en un cómodo campo de precio.</p>
+<h2 id="section-5">V. La raíz cero</h2>
+<p>Nomad fue la catástrofe masiva de esta serie que menos habilidad avanzada exigió: un error lógico previo ya había eliminado las condiciones de seguridad.</p>
+<p>La inicialización de una actualización de junio de 2022 trató como cero el estado de una raíz de confianza. El momento de confirmación correspondiente a ese cero recibió así un valor aceptable; cualquier mensaje no probado también tenía cero por defecto en el mapa.</p>
+<p>El resultado fue que la función que decidía si una raíz era aceptable devolvía verdadero para cero.</p>
+<p>Así, la función de procesamiento podía ejecutar mensajes sin prueba legítima.</p>
+<p>Una actualización errónea del plano de control cambió directamente la semántica de verificación del plano de datos.</p>
+<p>Después de que los primeros atacantes demostraran que funcionaba la plantilla de retirada, los demás solo necesitaban cuatro pasos: copiar los datos de una transacción de ataque exitosa, sustituir al destinatario por sí mismos, reenviarlos y esperar el pago del contrato de encaminamiento del puente.</p>
+<p>Eso explica que se describiera como un ataque colectivo.</p>
+<p>No eran cientos de personas descubriendo independientemente una vulnerabilidad: un ejemplo público exitoso permitía reproducirla a bajo coste.</p>
+<p>También muestra otra cosa.</p>
+<p>En 2025, Israel detuvo a un sospechoso a petición estadounidense y aprobó el procedimiento de extradición; Estados Unidos lo acusaba de desempeñar un papel central en el incidente.</p>
+<p>Es una acusación penal gubernamental, no una conclusión judicial de que robara todos los activos.</p>
+<p>Más importante aún: establecer pruebas penales contra el primero no demuestra automáticamente que controlara todas las retiradas copiadas posteriormente.</p>
+<p>En importe, el proyecto utilizó después más de 186 millones de dólares, mientras empresas de seguridad y medios difundieron unos 190 millones.</p>
+<p>Son valoraciones y perímetros diferentes del mismo incidente multiactivo; ambos deben conservarse.</p>
+<p>Este caso ocupa un lugar especial en la serie.</p>
+<p>En los catorce ensayos anteriores, explotar un problema del constructo solía exigir alguna capacidad: potencia de cómputo, capital, claves o código que otros no sabían escribir.</p>
+<p>Aquí no hacía falta ninguna capacidad. Bastaba entender una transacción, cambiar una dirección y querer pagar la comisión.</p>
+<p>Cada transacción de la cadena es pública e incluye los datos completos de llamada. Es una de las propiedades de las que más se enorgullece el sistema: cualquiera puede verificar qué hizo una transacción.</p>
+<p>Aquella tarde, cualquiera también podía repetirla.</p>
+<p>Por eso es especialmente difícil calcular las pérdidas de este caso. La cadena no distingue cuántas direcciones eran atacantes, cuántas oportunistas y cuántas usuarios originales intentando rescatar primero su propio dinero.</p>
+<p>Entre quienes devolvieron fondos después hubo efectivamente personas de esa última categoría.</p>
+<p>Esto dificulta exigir responsabilidades individuales. Identificar a la persona detrás de una dirección y determinar su conducta y lo que sabía exige más pruebas; en aquellas horas, cientos de direcciones enviaron datos de llamada similares. La posterior detención y acusación muestran que sí era posible actuar, pero no convierten todas las llamadas en un único acto de una misma persona.</p>
+<p>Un ataque puede tener cientos de coautores, la mayoría desconocidos entre sí antes y que tampoco volverán a encontrarse después.</p>
+<p>Es precisamente la otra cara de la composabilidad y la publicidad: la misma propiedad que permite verificar una transacción a cualquiera permite copiarla a cualquiera.</p>
+<p>Seguir los dos extremos también se vuelve singular aquí.</p>
+<p>Normalmente quien toma el dinero es un actor rastreable, procesable o con quien negociar. Esta vez fueron cientos de direcciones, muchas de personas que se incorporaron improvisadamente tras conocer la noticia.</p>
+<p>Después se devolvieron voluntariamente unos 36 millones de dólares; el resto solo podía tratarse proporcionalmente según las reclamaciones de indemnización.</p>
+<p>Por eso, la pregunta que suele ser más útil —quién tiene el dinero— no podía resolverse aquí con solo localizar una dirección. Había que descomponerla en muchos controladores, muchas conductas y muchas partidas de activos, algunas recuperables y otras todavía fuera de alcance.</p>
+<h2 id="section-6">VI. La cuenta de la nube</h2>
+<p>Lo más peligroso en Multichain no era el algoritmo de firma de umbral.</p>
+<p>Era su estructura de control en el mundo real.</p>
+<p>Desde el 6 de julio de 2023 hubo retiradas anómalas. Una empresa de análisis contabilizó inicialmente más de 125 millones de dólares, casi 120 millones del puente de una cadena; emisores de monedas estables congelaron después unos 65 millones en direcciones relacionadas.</p>
+<p>Al incluir transferencias anómalas posteriores, otras entidades situaron las pérdidas totales en al menos 210 millones.</p>
+<p>No se trata de que una cifra sea correcta y otra no. La primera recoge la oleada principal de retiradas no autorizadas del 6 de julio; la segunda amplía el perímetro a salidas posteriores en varias cadenas.</p>
+<p>El proyecto explicó varias cosas en su relato del 14 de julio.</p>
+<p>El director ejecutivo había sido detenido por la policía china el 21 de mayo; los servidores de los nodos de firma de umbral funcionaban bajo su cuenta personal de nube; la policía había incautado ordenador, teléfono, cartera física y frases semilla; después el equipo descubrió que se había revocado el acceso a los servidores.</p>
+<p>El proyecto añadió que su hermana había movido posteriormente los activos restantes para preservarlos y que también había sido detenida.</p>
+<p>Todas estas descripciones de actuaciones policiales y motivos de los movimientos tienen el rango probatorio de declaraciones empresariales, no de resoluciones judiciales públicas.</p>
+<p>La cadena puede demostrar que los activos salieron de aquellas direcciones controladas mediante autorizaciones válidas.</p>
+<p>Sus registros no demuestran por sí solos si el controlador era un atacante externo, un empleado, un familiar o una autoridad policial.</p>
+<p>La empresa de análisis utilizó entonces un lenguaje prudente: posible ataque o fuga con los fondos, posiblemente mediante control de claves administrativas.</p>
+<p>La sentencia del Tribunal Superior de Singapur de 2024 aporta material externo muy valioso. Recoge pruebas del demandante sobre esa estructura de control y señala su contradicción con la arquitectura descentralizada, supuestamente incontrolable por una sola persona, anunciada en el acuerdo de usuario.</p>
+<p>El juez aclaró que no había establecido hechos sobre todas las alegaciones materiales de fraude y traslado de activos, porque la responsabilidad derivaba en primera instancia de una sentencia en rebeldía.</p>
+<p>La etiqueta «firma de umbral» no puede sustituir una revisión de seguridad de su despliegue real. Una cosa es cómo exige el algoritmo un número suficiente de participaciones de firma; otra, que una sola persona controle esas participaciones desde una misma cuenta.</p>
+<p>Hay que preguntar otras cinco cosas: dónde están los fragmentos, a quién pertenece la cuenta de nube, quién tiene las frases de recuperación, si entidades independientes operan realmente los nodos y si un administrador puede sustituirlos.</p>
+<p>En Orbit hay otro punto que exige precisión.</p>
+<p>En enero de 2024, la empresa acusó a un antiguo responsable de seguridad de debilitar sin permiso el cortafuegos antes de irse, presentó una acción y pidió una investigación policial; también dijo investigar otra posibilidad.</p>
+<p>No debe afirmarse aquí que el antiguo responsable causó el ataque.</p>
+<p>Las fuentes solo acreditan que la empresa formuló la acusación y solicitó una investigación.</p>
+<p>Leer esta sección junto a la tercera muestra un descenso completo.</p>
+<p>En Ronin existían nueve claves, pero no eran suficientemente independientes.</p>
+<p>Aquí los nodos existían, pero funcionaban bajo la cuenta de una sola persona.</p>
+<p>Una firma de umbral requiere suficientes participaciones para producir una firma válida; bajo los supuestos de seguridad correspondientes, un atacante que no alcance el umbral no puede falsificarla por sí solo. Pero firmar normalmente no exige que los nodos actúen de forma maliciosa, y varias participaciones pueden estar bajo el control físico, administrativo o jurídico de una sola entidad. Un umbral algorítmico no se convierte automáticamente en un umbral de instituciones independientes.</p>
+<p>Las firmas en cadena no bastan para revelar las relaciones de control reales. Una multifirma convencional puede mostrar varias direcciones firmantes; un esquema de umbral puede aparecer como una única firma válida bajo una sola clave pública. La cadena quizá no revele cuántos nodos participaron, y menos aún si todos funcionaban bajo la cuenta en la nube de una sola persona.</p>
+<p>Esta sección deja además un vacío poco habitual en la serie.</p>
+<p>Puede rastrearse adónde fue el dinero, pero todavía no existe una respuesta judicialmente establecida sobre quién autorizó su traslado. El relato empresarial apunta en una dirección, la empresa de análisis habló de posible ataque o huida con los fondos y el tribunal de Singapur dijo expresamente no establecer hechos sobre esas acusaciones.</p>
+<p>Tres fuentes, tres niveles de evidencia y ninguna conclusión común.</p>
+<p>No es la primera vez que la serie encuentra esta situación, pero aquí resulta extrema: se transfieren activos por más de cien millones de dólares, cada paso es visible y tres años después sigue sin haber una determinación citable de quién autorizó la operación.</p>
+<p>La transparencia de la cadena resuelve adónde fue el dinero. No resuelve, ni pretende resolver, quién hizo que fuera allí.</p>
+<h2 id="section-7">VII. Tres denominadores</h2>
+<p>Las tasas de recuperación no pueden ordenarse directamente en una tabla: existen al menos tres denominadores completamente distintos.</p>
+<p>Uno es la recuperación de activos: lo recuperado del control del atacante dividido por lo sustraído originalmente.</p>
+<p>Otro es la indemnización a usuarios: el valor finalmente pagado a los perjudicados dividido por las pérdidas reconocidas.</p>
+<p>El tercero es el grado de restauración de la solvencia del protocolo.</p>
+<p>Los tres pueden diferir enormemente.</p>
+<p>Un puente puede recuperar el noventa por ciento sin que los usuarios reciban nada porque el dinero pertenece a quien repuso la garantía; también puede indemnizar íntegramente sin recuperar nada, porque paga la empresa.</p>
+<p>Comparar ambos casos en una clasificación de recuperación produce cifras sin significado.</p>
+<p>Estos incidentes muestran al menos cuatro resultados diferentes.</p>
+<p>Poly dependió principalmente de devoluciones voluntarias del atacante. Su ataque también suele describirse mal: no fue una filtración de claves privadas de guardianes; el atacante obtuvo, en una lógica de autorización anterior, la capacidad de reescribir su lista. Después devolvió gradualmente la gran mayoría de los activos y un emisor de monedas estables congeló unos 33 millones de dólares. Aquel casi cien por cien debe describirse como recuperación final del control de casi todos los activos nominalmente robados, principalmente por devolución voluntaria, no por incautación policial.</p>
+<p>Wormhole recurrió primero a la reposición y después a órdenes judiciales y ejecución técnica para recuperar activos.</p>
+<p>Ronin recurrió a rastreo en la cadena, plataformas de intercambio y congelaciones policiales internacionales, mientras los usuarios fueron indemnizados mediante recapitalización empresarial.</p>
+<p>Multichain recurrió a congelaciones de emisores y posteriores litigios de liquidación concursal.</p>
+<p>Nomad, Harmony, Multichain y Orbit conservaron exposiciones importantes sin recuperar.</p>
+<p>Lo decisivo para ejecutar una recuperación no es ver una dirección en la cadena.</p>
+<p>Es encontrar un punto de apoyo externo: una plataforma centralizada que congele cuentas, un emisor que incluya direcciones en una lista de bloqueo, una interfaz o sistema de control bajo jurisdicción que deba colaborar por orden judicial o una persona identificada y detenida cuyos activos puedan incautarse.</p>
+<p>La fuerza de la atribución también varía y debe graduarse caso por caso.</p>
+<p>Ronin tiene una atribución formal del FBI de abril de 2022; Harmony, otra de comienzos de 2023. Son más fuertes que la opinión de una empresa analítica o un medio sobre a quién se parece el ataque.</p>
+<p>Nomad tiene acusaciones penales, pero no puede atribuirse a una sola persona todo el conjunto de retiradas copiadas.</p>
+<p>Las atribuciones de Poly, Wormhole, Multichain y Orbit son claramente más débiles. Algunos atacantes nunca fueron identificados públicamente de forma oficial; ciertos procedimientos se dirigen a activos controlados por desconocidos y establecer derechos de propiedad no identifica a la persona real; algunas referencias a actores estatales solo pueden describirse como sospechas de empresas y del sector de seguridad.</p>
+<p>Hay una frase que merece quedar aparte.</p>
+<p>La transparencia de la cadena resuelve parte de la atribución de transacciones, no la identidad de las personas del mundo real.</p>
+<p>La cadena puede responder con fuerza qué dirección recibió monedas, por qué se cambiaron, por qué plataforma, puente o mezclador pasaron y en qué dirección terminaron.</p>
+<p>El límite de los mezcladores también es claro: rompen correspondencias simples entre entradas y salidas, pero no borran las transacciones anteriores ni posteriores. Las empresas pueden rastrear probabilísticamente; la congelación real sigue dependiendo de plataformas, emisores o autoridades judiciales.</p>
+<p>Decir que el dinero siempre sigue visible en la cadena solo expresa media verdad.</p>
+<p>Entre ver los activos y recuperarlos no median solo pruebas técnicas, sino también puntos de control alcanzables y jurisdicciones capaces de actuar.</p>
+<p>El mecanismo entre cadenas no aporta automáticamente esas condiciones externas. Reconocer ese vacío no exige atribuir a todos los diseñadores la intención de eludir la jurisdicción.</p>
+<p>Las recuperaciones logradas recurrieron a vías distintas: devoluciones voluntarias, congelaciones del emisor, cooperación de plataformas de intercambio, órdenes judiciales o actuaciones contra personas identificables. El seguimiento en cadena puede ayudar a encontrar una vía sin ejecutar por sí mismo esos pasos.</p>
+<p>Por último están los dos extremos del propio negocio.</p>
+<p>Proveedores de liquidez, retransmisores y tesorerías de protocolos reciben comisiones pequeñas y continuas.</p>
+<p>Cuando el puente se vuelve insolvente, las pérdidas extremas, enormes y discontinuas recaen en titulares de activos envueltos, proveedores de liquidez, aportantes de rescate o titulares de tokens.</p>
+<p>Ingresos pequeños y continuos de un lado; pérdidas enormes y discontinuas del otro.</p>
+<p>La forma ya apareció varias veces en la serie. En el noveno ensayo, los proveedores de liquidez recibían tres por mil por operación y soportaban pérdidas de inventario tras los movimientos de precio; en el décimo, los nodos de oráculos cobraban por servicio y un error podía causar cien millones de pérdidas aguas abajo.</p>
+<p>Los puentes constituyen el extremo: se cobra por transacción en puntos básicos y se falla de golpe en cientos de millones.</p>
+<p>Que capital empresarial o seguros reconecten ambos lados depende de contratos y gobernanza concretos.</p>
+<p>No puede deducirse de la etiqueta puente descentralizado.</p>
+<h2 id="section-8">VIII. Entre dos cadenas</h2>
+<p>Hay afirmaciones populares que necesitan reformularse.</p>
+<p>Los puentes entre cadenas son la mayor debilidad de seguridad del ámbito cripto.</p>
+<p>Es demasiado amplio. La cifra más citada procede de una empresa de análisis: en agosto de 2022 estimó 13 ataques a puentes durante el año hasta entonces, con unos 2.000 millones de dólares sustraídos, el 69 % del valor total robado en ese periodo.</p>
+<p>El denominador de ese 69 % es el dinero sustraído incluido por la empresa en su conjunto de datos de ataques de aquel año hasta esa fecha, no la capitalización cripto total, todas las pérdidas criminales ni las pérdidas históricas acumuladas por vulnerabilidades.</p>
+<p>Su balance anual posterior adoptó otro criterio: aproximadamente 3.800 millones perdidos por ataques en 2022, unos 3.100 millones en protocolos, de los que los puentes representaban el 64 %. El denominador de ese 64 % son los 3.100 millones y no puede compararse directamente con el 69 % de mitad de año.</p>
+<p>En 2024 ya había cambiado la composición de los ataques registrados por esa empresa: el control indebido de claves privadas representaba el 43,8 % del valor anual robado y los servicios centralizados fueron objetivos más importantes en algunos trimestres.</p>
+<p>Que los puentes sean la mayor debilidad es, por tanto, una descripción bien fundada para aquel conjunto de datos de 2022, no una identidad válida para cualquier año.</p>
+<p>Cuantas más firmas, más seguro es el puente.</p>
+<p>Las fuentes solo respaldan algo más restringido: la seguridad depende del número de dominios de fallo independientes necesarios para alcanzar el umbral, no de la longitud de una lista de claves públicas.</p>
+<p>Los puentes solo sufren robos por mala gestión de claves privadas.</p>
+<p>También es demasiado estrecho. Ronin, Harmony, Multichain y posiblemente Orbit muestran riesgos de claves y control; Wormhole tuvo un defecto de verificación de firmas, Nomad de inicialización, Poly de permisos entre contratos y el puente nativo de verificación de pruebas.</p>
+<p>La formulación más ajustada es que las grandes pérdidas se concentran en el límite de quién puede hacer que otra cadena acepte un hecho externo; ese límite puede fallar por robo de claves o por verificadores, pruebas, actualizaciones, permisos e inicialización.</p>
+<p>Los puentes de clientes ligeros son realmente independientes de la confianza.</p>
+<p>Si eso significa no necesitar ninguna premisa de seguridad, es falso. Necesitan confiar en el consenso y la finalidad de la cadena de origen, en el código del cliente y en la ejecución de destino; si se compromete el consenso de origen, un cliente correcto aceptará fielmente el estado malicioso confirmado por ese consenso.</p>
+<p>Si significa no añadir un comité externo de verificación, estas arquitecturas sí reducen una capa de confianza en terceros frente a puentes de verificación externa.</p>
+<p>La interoperabilidad nativa es necesariamente más segura que un puente de terceros.</p>
+<p>Hay dos sentidos de nativa. Si significa verificación mediante clientes ligeros, la ventaja es eliminar un comité externo. Si solo significa que el equipo oficial mantiene validadores o multifirmas independientes para el puente, su carácter oficial no elimina automáticamente la confianza adicional.</p>
+<p>El puente nativo afectado es el contraejemplo más directo: unía dos cadenas nativas y, por un fallo de la biblioteca de verificación, generó 2 millones de monedas sin garantía.</p>
+<p>Nativo describe una relación organizativa y de producto, no una propiedad formal de seguridad.</p>
+<p>Volvamos a la primera sección.</p>
+<p>La esencia de cruzar cadenas nunca fue trasladar algo de A a B.</p>
+<p>Es conseguir que B acepte una afirmación sobre A.</p>
+<p>Estos incidentes atacaron precisamente cinco componentes distintos de esa afirmación.</p>
+<p>Poly atacó quién puede reescribir la identidad de quien habla.</p>
+<p>Wormhole y el puente nativo atacaron cómo se decide si la afirmación tiene prueba.</p>
+<p>Ronin y Harmony atacaron quién puede firmarla.</p>
+<p>Nomad atacó qué afirmaciones se consideran probadas por defecto.</p>
+<p>Multichain y Orbit expusieron quién controla realmente la infraestructura que habla.</p>
+<p>Cinco clases de ataque, cinco componentes de una afirmación.</p>
+<p>Estos cinco puntos de fallo no significan que se rompieran los algoritmos de firma o las funciones hash subyacentes. Aparecieron sobre todo en las conexiones entre permisos, control de claves e implementaciones de verificación. Por supuesto que hay ingeniería criptográfica en ellas; lo que no puede hacerse es confundir la seguridad de las primitivas con la del sistema entero.</p>
+<p>En los incidentes analizados aquí, los materiales no muestran que se rompieran los algoritmos de firma subyacentes ni que se produjera una colisión hash real. Los fallos estaban principalmente no en las primitivas mismas, sino en cómo se utilizaban y verificaban.</p>
+<p>Lo que falló fue todo el arreglo mediante el cual se genera, transmite y evalúa la afirmación.</p>
+<p>Esto sirve para todo el ámbito. La criptografía garantiza que una firma procede de una clave privada concreta; no garantiza quién posee la clave ni que el código que comprueba la firma esté bien escrito.</p>
+<p>El ensayo anterior trataba de una ley que dependía de personas que podían no cumplirla.</p>
+<p>Aquí el contrato de la cadena B ejecuta sus reglas cuando llega un mensaje válido, se incluye una transacción y se cumplen las condiciones previstas. Eso no significa que los operadores no puedan pausar el sistema ni que todos los mensajes lleguen necesariamente a tiempo.</p>
+<p>La pregunta es de dónde salió esa afirmación.</p>
+<p>En el décimo ensayo, la grieta estaba entre la cadena y el mundo exterior: la cadena no sabe si un precio es verdadero, solo sabe que alguien lo afirmó.</p>
+<p>Ahora la grieta cambia de lugar.</p>
+<p>Está entre dos cadenas.</p>
+<p>Los registros públicos de ambos lados pueden comprobarse conforme a sus respectivas reglas, y cada cadena tiene mecanismos que resisten su modificación.</p>
+<p>A tiene consenso. B tiene consenso.</p>
+<p>Pero eso no crea automáticamente un registro compartido que pruebe la correspondencia entre los activos. Un cliente ligero o una prueba de estado pueden permitir que B verifique A dentro de su propia ejecución del consenso. Siguen siendo necesarios un verificador correctamente implementado y la seguridad de las cadenas subyacentes.</p>
+<p>Ahí está el resto.</p>
+<p>No se responde mirando solo la cadena A. Si existe un bloqueo correspondiente en A y cuánto se ha bloqueado son cuestiones que deben contrastarse con los derechos de cobro realmente creados al otro lado.</p>
+<p>Tampoco se responde mirando solo B. Un asiento de acuñación en B puede ser perfectamente claro mientras el respaldo suficiente en la cadena de origen sigue necesitando una verificación adicional.</p>
+<p>Está entre dos registros claros por separado, en esa correspondencia que todavía hay que verificar, implementar y conciliar de forma continua.</p>
+<p>Los puentes son distintos mecanismos construidos para establecer esa correspondencia.</p>
+<p>Su longitud determina el propio negocio.</p>
+<p>Si no hiciera falta nada entre las cadenas, no harían falta puentes. Precisamente porque hace falta, alguien los construye; cada diseño responde a la misma pregunta: quién formula la afirmación y por qué debe creerse.</p>
+<p>Después de quince años, ningún diseño ha eliminado esa pregunta. Solo puede trasladarse: a un grupo de firmantes, a código de verificación, a una prueba de estado o al consenso de las propias cadenas.</p>
+<p>Cada traslado cambia la ubicación del posible fallo.</p>
+<p>Nunca lo hace desaparecer.</p>
+<p>Ambas cadenas pueden seguir produciendo bloques y aceptando registros conforme a sus implementaciones locales. Superar la verificación local no garantiza que encajen el bloqueo, la acuñación y el respaldo entre cadenas. Si la implementación del verificador tiene un defecto, puede aceptar pruebas que debería rechazar.</p>
+<p>Pero no cuadran entre sí.</p>
+<p>La cadena sigue liquidando, pero aún no hay consenso sobre qué se liquida.</p>
+<div class="source-note"><strong>Nota sobre las fuentes</strong><p>Este ensayo se basa en documentos públicos de protocolos, registros de la cadena, documentos judiciales, documentos regulatorios e investigaciones revisadas por pares; las cifras conservan sus respectivos criterios de medición. Las fuentes de la serie abarcan hasta agosto de 2026.</p><p><a href="https://github.com/cosmos/ibc/blob/main/spec/core/ics-002-client-semantics/README.md" target="_blank" rel="noopener">Cosmos IBC: client semantics specification ↗</a></p></div>
+</div><nav class="collection-nav"><a href="ep14.html"><small>Ensayo anterior</small>El Salvador</a><a href="ep16.html"><small>Ensayo siguiente</small>Terra y Luna →</a></nav></article></main><footer><div class="footer-inner"><div class="footer-brand"><div class="footer-logo">Non <span>Dubito</span></div><div class="footer-tagline">Thought has no mother tongue</div></div><div class="footer-bottom">© 2026 Han Qin · Non Dubito</div></div></footer></body></html>

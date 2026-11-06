@@ -46,7 +46,18 @@
   },
   "position": 12
 }</script>
-<link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script></head>
+<link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script><style id="blockchain-full-style">
+.collection-body p{margin:0 0 1.4em;overflow-wrap:break-word}
+.collection-body h2{margin:3em 0 1em;line-height:1.55;scroll-margin-top:110px}
+.collection-body .source-note{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--cream-border);color:var(--ink-muted)}
+.collection-body .source-note p{font-size:.85rem;line-height:1.8}
+.blockchain-full-toc{margin:1.5rem 0 2.5rem;padding:1rem 1.2rem;border:1px solid var(--cream-border);font-family:var(--sans)}
+.blockchain-full-toc summary{cursor:pointer;font-size:.82rem}
+.blockchain-full-toc li{margin:.6rem 0;line-height:1.6;font-size:.85rem}
+.collection-page{min-width:0;overflow-wrap:anywhere}
+html[lang="ko"] .collection-body{word-break:keep-all}
+</style>
+</head>
 <body class="blockchain-page blockchain-article-page">
   <a class="skip-link" href="#main-content">跳到正文</a>
   <header class="blockchain-site-header">
@@ -77,16 +88,7 @@
     </header>
     <div class="blockchain-article-layout">
       <aside class="chapter-aside">
-        <nav aria-label="本篇目錄"><p>本篇目錄</p><ol>
-          <li><a href="#section-1">一 四層</a></li>
-          <li><a href="#section-2">二 兩跳</a></li>
-          <li><a href="#section-3">三 204 條 a 款</a></li>
-          <li><a href="#section-4">四 自願</a></li>
-          <li><a href="#section-5">五 一百美元以下</a></li>
-          <li><a href="#section-6">六 兩個七十八</a></li>
-          <li><a href="#section-7">七 需要改寫的</a></li>
-          <li><a href="#section-8">八 同一種東西</a></li>
-        </ol></nav>
+        <nav aria-label="本篇目錄"><p>本篇目錄</p><ol><li><a href="#section-1">一 四層</a></li><li><a href="#section-2">二 兩跳</a></li><li><a href="#section-3">三 204 條 a 款</a></li><li><a href="#section-4">四 自願</a></li><li><a href="#section-5">五 一百美元以下</a></li><li><a href="#section-6">六 兩個七十八</a></li><li><a href="#section-7">七 需要改寫的</a></li><li><a href="#section-8">八 同一種東西</a></li></ol></nav>
       </aside>
       <article class="essay-body" data-search="區塊鏈 比特幣 以太坊 鑿構週期律">
         <h2 id="section-1">一 四層</h2>
@@ -103,15 +105,15 @@
         <p>一家數據商稱 2021 年全年約有 400 億美元的加密資產被發送到被它歸類為 NFT 市場的地址與合約；同一機構另一份口徑更寬的統計給出至少 442 億美元。而這不等同於買賣雙方最終的成交淨額。</p>
         <p>另一家機構識別出約 560 億美元的活動，而它自己強調其中很大一部分屬於不合格的部分，包括洗售，沒有項目歸屬的合約和金融抵押。</p>
         <p>四個數字，四種統計對象。</p>
-        <p>而它們各自都是準確的。問題只在於，當有人說 NFT 市場有多大的時候，他用的是哪一個。</p>
-        <p>而第六節會說明一件更麻煩的事：這幾個數裡都包含了相當一部分同一個人自己賣給自己的成交，而那個比例本身也沒有一個公認的算法。</p>
+        <p>這些數各有自己的統計範圍和清洗方法。有人說 NFT 市場有多大的時候，先要問他用的是哪一個；口徑不同，不能直接拿來互相認證精確。</p>
+        <p>而第六節會說明一件更麻煩的事：有些成交可能是同一個人自己賣給自己。各數據商怎樣識別、剔除這些成交，並不一致，那個比例也沒有一種公認的算法。</p>
         <p>前面十一篇裡，構要通約的東西都在鏈上，或者可以被搬上鏈：算力，餘額，價格，抵押品，一筆轉賬。</p>
         <p>這一次它要通約的是所有權。</p>
         <p>而所有權是一樣它夠不著的東西。</p>
-        <p>所有權不是一個物理量。它是一束權利：能不能複製，能不能改，能不能拿去賣錢，能不能不讓別人用。而這些權利存在於合同和法律裡，不存在於任何一條鏈上。</p>
+        <p>所有權不是一個物理量。它是一束權利：能不能複製，能不能改，能不能拿去賣錢，能不能不讓別人用。這些權利由合同和法律界定；相關文本或聲明可以上鏈，但一個代幣字段不自動給出或執行這整束權利。</p>
         <p>所以餘項從第一句話就已經就位。它不是某一筆沒被記下來的轉賬，而是那一整束權利。鏈能記下的只有其中最外面的一層，也就是這個編號現在歸誰。</p>
-        <p>這一層它記得極准。十年下來，沒有一枚代幣的所有者字段被記錯過。</p>
-        <p>而另外那幾層，它一個字段也沒有。</p>
+        <p>這一層可以按合約規則核驗：某個編號當前對應哪個地址，經過哪些轉移，通常都能逐筆查到。但這不是說所有實現十年來從未出錯，也不是說控制這個地址就自動獲得作品的全部法律權利。</p>
+        <p>而另外那幾層，並不是這個標準的所有者字段自動承諾的內容。</p>
         <h2 id="section-2">二 兩跳</h2>
         <p>ERC-721 的核心對象，是每一個編號有獨立的身份和所有者。標準定義了所有權查詢，轉移，授權，以及相應的事件。</p>
         <p>而帶名稱，符號和地址查詢的那部分，是一個可選的擴展。</p>
@@ -157,11 +159,11 @@
         <p>商業化使用圖像，不自動。</p>
         <p>轉售代幣，通常由合約和平台條款允許。</p>
         <p>獨佔底層圖像，未必。</p>
-        <p>上面那五個不自動，來源只有一個地方：另行成立的著作權轉讓或者許可協議。</p>
+        <p>上面那些不會自動隨代幣到手的權利，要另外找依據。可能是著作權轉讓或者許可協議；也可能涉及公有領域、法定例外，或者買家本來就享有的權利。ERC-721 的轉移本身，不替這些問題作答。</p>
         <p>而這裡有一條法律要求，是全篇最鋒利的一處。</p>
         <p>美國著作權法第 204 條 a 款，對著作權轉讓和獨佔許可有書面並且簽署的要求。</p>
         <p>而截至那份 2024 年的聯合文件，法院仍然沒有裁定僅憑一份智能合約是否滿足這一法定的書面簽署要求。</p>
-        <p>一份被設計成不需要任何人簽字的東西，撞上了一條要求籤字的法律。</p>
+        <p>鏈上交易當然可以有密碼學簽名。難點在另一層：一把私鑰對交易的簽名，是否同時滿足著作權轉讓對書面形式和權利人有效簽署的法律要求，不能只憑轉賬已經執行就下結論。</p>
         <p>主要項目的實際條款差異，大到幾乎可以說明一切。</p>
         <p>一個頭像項目當前的許可文本，不是把發行方的全部著作權轉讓給持有人，而是給持有人一項許可：在個人非商業使用之外，還給予無限制，全球範圍的許可，允許使用，複製，展示所購的作品並製作商業性的衍生作品，例如用在商品上。</p>
         <p>所以持有它可能帶來相當寬的商業使用權。而這種權利的來源是那家公司的合同條款，不是 ERC-721 本身。</p>
@@ -173,7 +175,7 @@
         <p>第四個是後加的。某個 2017 年的老項目，在 2022 年知識產權被另一家公司收購之後，官方歷史頁面把新的安排描述為向持有人授予完整的商業權利。</p>
         <p>這至少證明，那個商業權並不是由 2017 年的代幣標準自動產生的，而是在後來由權利人另行改變了許可框架。</p>
         <p>四個項目，四種模型：寬商業許可，窄的非商業許可，公共領域，以及後加的持有人商業許可。</p>
-        <p>而在鏈上，它們是同一種東西。</p>
+        <p>而在代幣標準的接口這一層，它們可以是同一類東西；許可安排與具體合約，卻不因此全部相同。</p>
         <p>法院處理了什麼，又沒有處理什麼，同樣要分清。</p>
         <p>2022 年，杭州互聯網法院在一起案件中，對未經許可將既有作品鑄成 NFT 的行為涉及複製與網絡傳播作出了認定。而它處理的是鑄造，平台責任和侵權，不是普通買家購買之後自動取得哪些著作權。</p>
         <p>美國第九巡回上訴法院 2025 年的一個判決處理了商標問題。法院認定 NFT 可以構成商標法下的商品，並確認了原告的商標優先權，而推翻了下級法院在混淆可能性等問題上的部分簡易判決。</p>
@@ -200,7 +202,7 @@
         <p>這一步的性質要點破。</p>
         <p>它試圖把版稅的執行，從市場的善意，轉成對代幣可交易性的限制。</p>
         <p>而代價是減少普通 ERC-721 式的自由可組合轉移。</p>
-        <p>也就是說：可組合性與可執行性之間，只能要一個。</p>
+        <p>也就是說，這種強制辦法在可組合性和可執行性之間作了取捨：為了讓指定的轉售付款更難繞開，它限制了原本更自由的移轉路徑。不能把這項新增限制，當成普通 ERC-721 天生就有的能力。</p>
         <p>2023 年2 月17 日，同一個市場臨時把自己的費率降到零；沒有鏈上強制的收藏改為可選的創作者收入，最低默認 0.5%。</p>
         <p>2023 年8 月31 日起，它停止對新收藏強制那套過濾，創作者費用轉向可選，舊收藏過渡到 2024 年2 月29 日。公司給出的理由是，那套機制沒有獲得整個生態的普遍配合。</p>
         <p>2024 年4 月，它增加了對一種限制性代幣設計的兼容，讓採用這種設計的創作者可以重新強制創作者收入。</p>
@@ -230,15 +232,15 @@
         <p>用成交額乘以名義費率，可以估計理論上的毛費用，而它會因為免費期，私下成交，不同鏈和協議版本，促銷和分成安排產生誤差；鏈上數據方可以測協議費，那也不等於企業的淨收入。</p>
         <p>所以那些按成交額乘以 2.5% 得出來的數字，不能冒充公司收入。</p>
         <p>發行方的收入結構至少有三層。</p>
-        <p>一級發行：初始買家把資產支付給鑄造合約或者發行地址，項目方和藝術家獲得一級銷售收入，買家獲得代幣，另有手續費流向區塊生產者。</p>
+        <p>一級發行：初始買家把資產支付給鑄造合約或者發行地址，項目方和藝術家獲得一級銷售收入，買家獲得代幣。買家還可能另付網絡手續費；在以太坊，基礎費用會被銷毀，優先費用等部分才流向區塊生產者，具體要看採用的鏈和交易機制。</p>
         <p>這裡承擔後續價格風險的是一級買家，而項目方已經把銷售收入兌現了。</p>
         <p>二級版稅：後續買家支付成交價，上一任持有人獲得主要賣價，市場截留平台費，創作者按實際執行規則取得版稅。</p>
         <p>版稅的一頭是創作者收入，而另一頭並不是區塊鏈免費創造的錢，通常是賣方淨到手的減少，或者在某些定價方式下由買賣雙方通過價格共同承擔。</p>
         <p>後續產品：收藏的品牌還可以另外銷售代幣，虛擬土地，遊戲資產，商品，活動資格或者知識產權授權。</p>
         <p>而這些經濟活動的權利主體甚至可能和原發行實體不同，所以不能把後續代幣的全部市值，土地成交額或者品牌商品銷售都叫作創作者收入。</p>
         <p>把一筆交易的兩頭同時寫出來，關係就清楚了。</p>
-        <p>一級的時候，買家少了鑄造價，發行人多了鑄造價。</p>
-        <p>二級的時候，後期買家少了成交價；舊持有人多的是成交價減去平台費和版稅之後的部分；平台多了平台費；創作者多了版稅。</p>
+        <p>一級的時候，買家支付鑄造價、獲得代幣，發行人獲得這筆一級銷售收入。</p>
+        <p>二級的時候，後期買家支付成交價、獲得代幣；舊持有人收到成交價減去平台費和版稅之後的部分；平台收到平台費；創作者收到版稅。</p>
         <p>所以舊持有人的已實現回報，不是賣價減買價，而是賣價扣掉平台費和版稅之後，再減去買價和手續費稅費。</p>
         <p>這也說明版稅的分配衝突：在成交價不變的情況下，創作者的二級收入越高，賣方的淨回款就越低；而如果買方願意把版稅成本完全計入自己的報價，它又會反饋到可接受的買價上。</p>
         <p>ERC-2981 不決定這項經濟歸宿。它只返回一個建議值。</p>
@@ -335,24 +337,24 @@
         <p>而標準本身對此一無所知。</p>
         <p>這一點值得停一下，因為它把前面七節的東西全部串起來了。</p>
         <p>標準規定的是所有權怎麼記，怎麼轉，怎麼授權。它沒有規定作品存在哪裡，所以有了第二節那三種持久性完全不同的實現。它沒有規定持有人能做什麼，所以有了第三節那四種互不相同的許可。它不知道一次轉移是不是出售，所以有了第四節那一整段版稅從慣例變成可選的歷史。</p>
-        <p>每一處空白，後來都由鏈外的某個東西填上了：一台服務器，一份合同，一家市場的結算邏輯。而這三樣都可以被它們各自的主人改掉。</p>
+        <p>每一處空白，後來都由標準之外的某種安排填上：一台服務器，一份法律合同，一家市場的結算邏輯。結算邏輯可以在鏈上運行，許可文本也可以上鏈；它們怎樣被修改，仍要分別看技術權限、既有合同和適用法律。</p>
         <p>餘項在這裡的位置因此很清楚。</p>
-        <p>它不在鏈上。鏈上那個所有者字段永遠準確，永遠可以查，永遠不會被改錯。</p>
+        <p>不是因為代幣狀態完全查不到。按相應合約的規則，所有者字段和轉移歷史通常可以核驗；只是這種可核驗性，不會自動告訴我們字段之外的作品權利是什麼。</p>
         <p>它在那個字段之外。</p>
         <p>你可以在鏈上寫清楚這個編號現在歸誰。</p>
         <p>你寫不清楚歸誰意味著什麼。</p>
-        <p>而後面這一句，要靠一份合同，一部法律，一次判決，或者一家公司哪天改了條款。</p>
-        <p>這些東西都不在鏈上，而且都可以變。</p>
-        <p>而它們變的時候，鏈上什麼也不會發生。所有者字段還是那一個，交易歷史還是那一串，合約還是那一份。</p>
-        <p>一枚代幣可以在某一天突然獲得完整的商業權利，也可以在某一天失去它，而這兩件事都不需要在鏈上留下任何痕跡。</p>
-        <p>鏈每一次都把所有者字段改對了。</p>
+        <p>而後面這一句，要靠一份合同、一部法律、一次判決，或者一項依有效條款作出的許可變更來判斷。</p>
+        <p>這些依據可以有鏈上的記錄，但它們的法律效力不只由鏈決定；有些安排也會依合同與法律發生變化。</p>
+        <p>而它們變的時候，所有者字段不一定跟著變。地址可能還是那一個，轉移歷史還是那一串，而與它們對應的法律安排已經不同。</p>
+        <p>一枚代幣所關聯的商業使用權，可能依有效許可、合同變更或法律裁判發生變化，而不一定需要改變代幣的所有者字段。這不表示發行方能隨意撤銷已經有效授予的許可。</p>
+        <p>鏈按合約的移轉規則更新那個所有者字段。</p>
         <p>它不知道那一格改完之後，這個人到底得到了什麼。</p>
         <p>鏈還在結算，而結算什麼還沒有共識。</p>
-        <div class="source-note"><strong>資料說明</strong><p>本文依據公開協議文檔、鏈上記錄、法院文書、監管文件與同行評議研究寫成；文中的數字均保留其統計口徑。系列資料截至 2026 年 8 月。</p></div>
+        <div class="source-note"><strong>資料說明</strong><p>本文依據公開協議文檔、鏈上記錄、法院文書、監管文件與同行評議研究寫成；文中的數字均保留其統計口徑。系列資料截至 2026 年 8 月。</p><p class="blockchain-review-references"><a href="https://www.copyright.gov/policy/nft-study/Joint-USPTO-USCO-Report-on-NFTs-and-Intellectual-Property.pdf" target="_blank" rel="noopener">USCO and USPTO: 2024 NFT and intellectual-property report ↗</a> · <a href="https://eips.ethereum.org/EIPS/eip-2981" target="_blank" rel="noopener">ERC-2981: NFT Royalty Standard ↗</a></p></div>
       </article>
     </div>
     <nav class="article-nav series-pagination" aria-label="系列篇章導航"><a class="page-turn previous" href="ep11.html"><span>上一篇</span><strong>清算</strong></a><a class="page-turn series-home" href="index.html"><span>全部篇章</span><strong>21 篇目錄</strong></a><a class="page-turn next" href="ep13.html"><span>下一篇</span><strong>算力遷徙</strong></a></nav>
-    <section class="reading-routes" aria-labelledby="continue-reading"><p class="route-kicker">Where next</p><h2 id="continue-reading">沿著問題繼續讀</h2><div class="reading-next-grid"><a href="ep13.html"><span>沿本系列繼續</span><strong>算力遷徙</strong><small>從這一處結算邊界，走向下一次構成。</small></a><a href="../../economy/index.html"><span>回到週期律</span><strong>鑿構週期律：經濟</strong><small>看擴張、固化、斷裂與重構怎樣在更長時間裡發生。</small></a><a href="../../../explore.html#history"><span>換一個入口</span><strong>歷史、權力與文明</strong><small>從制度、人物與文明結構繼續探索。</small></a></div></section>
+    <section class="reading-routes" aria-labelledby="continue-reading"><p class="route-kicker">Where next</p><h2 id="continue-reading">沿著問題繼續讀</h2><div class="reading-next-grid"><a href="ep13.html"><span>沿本系列繼續</span><strong>算力遷徙</strong><small>從這一處結算邊界，走向下一次構成。</small>算力遷徙</a><a href="../../economy/index.html"><span>回到週期律</span><strong>鑿構週期律：經濟</strong><small>看擴張、固化、斷裂與重構怎樣在更長時間裡發生。</small></a><a href="../../../explore.html#history"><span>換一個入口</span><strong>歷史、權力與文明</strong><small>從制度、人物與文明結構繼續探索。</small></a></div></section>
   </main>
   <footer class="blockchain-footer"><div><a href="../../../index.html" class="blockchain-brand"><span>NON</span><span>DUBITO</span></a><p>Essays in the Self-as-an-End Tradition</p></div><nav aria-label="頁腳導航"><a href="../../../explore.html">探索</a><a href="../../../latest.html">最近更新</a><a href="../../../library.html">完整書庫</a><a href="../../../about.html">關於</a></nav></footer>
 <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics --></body>

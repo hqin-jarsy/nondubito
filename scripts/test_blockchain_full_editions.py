@@ -77,5 +77,20 @@ class FullEditions(unittest.TestCase):
         build.upgrade_outputs(outputs)
         for path,text in outputs.items():self.assertEqual(path.read_text(),text,str(path))
 
+    def test_reviewed_decks_and_explicit_note_labels(self):
+        label,note=build.source_note_parts('Note sur les sources. Documents publics, août 2026.')
+        self.assertEqual(label,'Note sur les sources')
+        self.assertEqual(note,'Documents publics, août 2026.')
+        with self.assertRaises(AssertionError):
+            build.source_note_parts('An unaccounted-for body paragraph.')
+        for slug,record in self.records.items():
+            for lang in ('zh','zh-hant'):
+                e=record['languages'][lang]
+                if 'source_original_deck' not in e:continue
+                source=build.page_path(lang,slug).read_text()
+                deck=re.search(r'<p class="article-deck">(.*?)</p>',source,re.S)[1]
+                self.assertEqual(build.plain(deck),e['deck'])
+                self.assertIn(html.escape(e['deck'],quote=True),source)
+
 
 if __name__=='__main__':unittest.main()
