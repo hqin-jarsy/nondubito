@@ -97,6 +97,11 @@ def traditional_copy(converter, text):
                 ('比較里','比較裡'),('行業里','行業裡'),('材料里','材料裡'),
                 ('節里','節裡'),('倉庫里','倉庫裡'),('記錄里','記錄裡'),
                 ('代碼里','代碼裡'),('系列里','系列裡'),('第三篇里','第三篇裡'),
+                ('標準里','標準裡'),('年份里','年份裡'),('市場里','市場裡'),
+                ('天里','天裡'),('判決里','判決裡'),('儲備里','儲備裡'),
+                ('模型里','模型裡'),('池里','池裡'),('第七篇里','第七篇裡'),
+                ('欄里','欄裡'),('幾篇里','幾篇裡'),('卷宗里','卷宗裡'),
+                ('反復','反覆'),('重復','重複'),
                 ('看准','看準'),('量准','量準'),('說明瞭','說明了')]:
         converted=converted.replace(a,b)
     return converted
@@ -202,6 +207,7 @@ def import_batch(folder, plan_path, reports):
                            received_md_sha256=digest(raw),original_page_sha256=digest(page_path(lang,slug).read_bytes()))
             if lang in ('zh','zh-hant'):
                 edition['source_original_paragraphs'] = list(paras)
+                edition['source_original_headings'] = [s['heading'] for s in original]
             for report in reviews:
                 for meta in report.get('metadata',[]):
                     if (meta['ep'],meta['lang']) == (ep,lang):
@@ -272,6 +278,16 @@ def source_body(text, edition):
         assert plain(node[1]) in (plain(paragraph_html(desired)),original), 'Unreviewed Chinese paragraph change'
         if plain(node[1]) != plain(paragraph_html(desired)):
             body = body[:node.start()]+paragraph_html(desired)+body[node.end():]
+    # Explicitly reviewed heading corrections (for example a misplaced decimal)
+    # receive the same original-or-approved guard as Chinese paragraphs.
+    headings=list(re.finditer(r'(<h2\b[^>]*>)(.*?)(</h2>)',body[:body.find('<div class="source-note"')],re.S))
+    desired_headings=[s['heading'] for s in edition['sections']]
+    original_headings=edition.get('source_original_headings',desired_headings)
+    assert len(headings)==len(desired_headings)
+    for node,desired,original in reversed(list(zip(headings,desired_headings,original_headings))):
+        assert plain(node[2]) in (desired,original), 'Unreviewed Chinese heading change'
+        if plain(node[2]) != desired:
+            body=body[:node.start(2)]+html.escape(desired)+body[node.end(2):]
     return text[:match.start(2)]+body+text[match.end(2):]
 
 

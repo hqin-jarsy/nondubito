@@ -1,1 +1,275 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Oracles | The Chisel–Construct Cycle: Blockchain 10 — Non Dubito</title><meta name="description" content="Oracles let contracts accept outside prices, but no number of agreeing nodes can make a false input true."><meta name="author" content="Han Qin (秦汉)"><meta property="og:type" content="article"><meta property="og:title" content="Oracles"><meta property="og:description" content="Oracles let contracts accept outside prices, but no number of agreeing nodes can make a false input true."><meta property="og:url" content="https://nondubito.net/essays/blockchain/en/ep10.html"><link rel="canonical" href="https://nondubito.net/essays/blockchain/en/ep10.html"><link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../style.css"><link rel="stylesheet" href="../../../reading-context.css?v=20260905a"><link rel="stylesheet" href="../blockchain.css?v=20260917"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Oracles","description":"Oracles let contracts accept outside prices, but no number of agreeing nodes can make a false input true.","inLanguage":"en","author":{"@type":"Person","name":"Han Qin (秦汉)"},"datePublished":"2026-09-06","mainEntityOfPage":{"@type":"WebPage","@id":"https://nondubito.net/essays/blockchain/en/ep10.html"},"isPartOf":{"@type":"CreativeWorkSeries","name":"The Chisel–Construct Cycle: Blockchain","url":"https://nondubito.net/essays/blockchain/en/"},"position":10}</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script></head><body class="blockchain-page blockchain-article-page"><a class="skip-link" href="#main-content">Skip to the essay</a><header class="blockchain-site-header"><div class="blockchain-header-inner"><a class="blockchain-brand" href="../../../index.html"><span>NON</span><span>DUBITO</span></a><nav class="blockchain-primary-nav"><a href="../../../start.html">Start Here</a><a href="../../../explore.html">Explore</a><a href="../../../latest.html">Latest</a><a href="../../../library.html">Library</a><a href="../../../about.html">About</a></nav><div class="blockchain-header-tools"><a href="../../../search.html">Search</a><span class="blockchain-language-menu" role="group" aria-label="Language"><a data-language="zh" href="../ep10.html">简体中文</a><a data-language="en" href="ep10.html" aria-current="page">English</a><a data-language="zh-hant" href="../zh-hant/ep10.html">繁體中文</a><a data-language="ja" href="../ja/ep10.html">日本語</a><a data-language="fr" href="../fr/ep10.html">Français</a><a data-language="de" href="../de/ep10.html">Deutsch</a><a data-language="es" href="../es/ep10.html">Español</a><a data-language="ko" href="../ko/ep10.html">한국어</a></span></div></div></header><main id="main-content" class="blockchain-main"><nav class="reading-breadcrumbs"><a href="../../../explore.html#history">History, Power &amp; Civilization</a><span aria-hidden="true">/</span><a href="index.html">Blockchain Cycle</a><span aria-hidden="true">/</span><span aria-current="page">10 · Oracles</span></nav><header class="blockchain-article-header"><p class="article-kicker">The Chisel–Construct Cycle · Blockchain <span class="article-number">10 / 21</span></p><h1>Oracles</h1><p class="article-deck">Oracles let contracts accept outside prices, but no number of agreeing nodes can make a false input true.</p><p class="article-byline">Han Qin · 6 September 2026 · English rewrite</p></header><div class="blockchain-article-layout"><aside class="chapter-aside"><nav aria-label="In this essay"><p>IN THIS ESSAY</p><ol><li><a href="#section-1">The chain cannot look outside</a></li><li><a href="#section-2">Consensus is not correspondence</a></li><li><a href="#section-3">Incentives have a direction</a></li><li><a href="#section-4">The seam is the product</a></li></ol></nav></aside><article class="essay-body"><h2 id="section-1">The chain cannot look outside</h2><p class="opening">A contract can verify events in its own state. It cannot directly observe the dollar price of ether, the weather, an election result, or whether a shipment arrived. An oracle imports a statement about that world. Once imported, the contract may act with perfect consistency on information whose truth was established elsewhere.</p><h2 id="section-2">Consensus is not correspondence</h2><p>Multiple data sources and nodes can reduce dependence on one reporter. Agreement helps only if sources are sufficiently independent and resistant to manipulation. Five feeds copying the same thin market do not become five independent witnesses. Aggregation can filter outliers; it cannot guarantee that the surviving value corresponds to reality.</p><h2 id="section-3">Incentives have a direction</h2><p>Oracle systems pay operators, select markets, define update thresholds, and sometimes remain silent when fees or conditions do not justify an update. These choices determine which errors are likely and who bears them. A price is never just a number; it is a chain of observation, payment, timing, and fallback rules.</p><h2 id="section-4">The seam is the product</h2><p>An oracle is not an embarrassing compromise in an otherwise trustless system. It is an explicit institution for joining two domains that validate differently. Its quality should be judged by how clearly it exposes that seam: sources, latency, failure modes, governance, and the parties left holding a position when the reported world and the lived world diverge.</p><div class="source-note"><strong>Editorial note</strong><p>This is an independent English rewrite of the argument. Detailed documentary references and statistical definitions remain available in the <a href="../ep10.html">Chinese research edition</a>; source review is current through August 2026.</p></div></article></div><nav class="article-nav series-pagination"><a class="page-turn previous" href="ep09.html"><span>Previous</span><strong>AMMs and DeFi Summer</strong></a><a class="page-turn series-home" href="index.html"><span>All essays</span><strong>21-part index</strong></a><a class="page-turn next" href="ep11.html"><span>Next</span><strong>Liquidation</strong></a></nav></main><footer class="blockchain-footer"><div><a href="../../../index.html" class="blockchain-brand"><span>NON</span><span>DUBITO</span></a><p>Essays in the Self-as-an-End Tradition</p></div><nav><a href="../../../explore.html">Explore</a><a href="../../../latest.html">Latest</a><a href="../../../library.html">Library</a><a href="../../../about.html">About</a></nav></footer></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Oracles · Blockchain — Non Dubito</title><meta name="description" content="Oracles bring external prices on-chain, but cannot make majority agreement equal truth. Sources, nodes, and payment relationships move trust to new layers."><meta name="author" content="Han Qin (秦汉)"><meta property="og:type" content="article"><meta property="og:title" content="Oracles"><meta property="og:description" content="Oracles bring external prices on-chain, but cannot make majority agreement equal truth. Sources, nodes, and payment relationships move trust to new layers."><meta property="og:url" content="https://nondubito.net/essays/blockchain/en/ep10.html"><link rel="canonical" href="https://nondubito.net/essays/blockchain/en/ep10.html"><link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../../style.css"><link rel="stylesheet" href="../../../reading-context.css?v=20260905a"><link rel="stylesheet" href="../blockchain.css?v=20260917"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Oracles","description":"Oracles let contracts accept outside prices, but no number of agreeing nodes can make a false input true.","inLanguage":"en","author":{"@type":"Person","name":"Han Qin (秦汉)"},"datePublished":"2026-09-06","mainEntityOfPage":{"@type":"WebPage","@id":"https://nondubito.net/essays/blockchain/en/ep10.html"},"isPartOf":{"@type":"CreativeWorkSeries","name":"The Chisel–Construct Cycle: Blockchain","url":"https://nondubito.net/essays/blockchain/en/"},"position":10}</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script><style id="blockchain-full-style">
+.collection-body p{margin:0 0 1.4em;overflow-wrap:break-word}
+.collection-body h2{margin:3em 0 1em;line-height:1.55;scroll-margin-top:110px}
+.collection-body .source-note{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--cream-border);color:var(--ink-muted)}
+.collection-body .source-note p{font-size:.85rem;line-height:1.8}
+.blockchain-full-toc{margin:1.5rem 0 2.5rem;padding:1rem 1.2rem;border:1px solid var(--cream-border);font-family:var(--sans)}
+.blockchain-full-toc summary{cursor:pointer;font-size:.82rem}
+.blockchain-full-toc li{margin:.6rem 0;line-height:1.6;font-size:.85rem}
+.collection-page{min-width:0;overflow-wrap:anywhere}
+html[lang="ko"] .collection-body{word-break:keep-all}
+</style>
+</head><body class="blockchain-page blockchain-article-page"><a class="skip-link" href="#main-content">Skip to the essay</a><header class="blockchain-site-header"><div class="blockchain-header-inner"><a class="blockchain-brand" href="../../../index.html"><span>NON</span><span>DUBITO</span></a><nav class="blockchain-primary-nav"><a href="../../../start.html">Start Here</a><a href="../../../explore.html">Explore</a><a href="../../../latest.html">Latest</a><a href="../../../library.html">Library</a><a href="../../../about.html">About</a></nav><div class="blockchain-header-tools"><a href="../../../search.html">Search</a><span class="blockchain-language-menu" role="group" aria-label="Language"><a data-language="zh" href="../ep10.html">简体中文</a><a data-language="en" href="ep10.html" aria-current="page">English</a><a data-language="zh-hant" href="../zh-hant/ep10.html">繁體中文</a><a data-language="ja" href="../ja/ep10.html">日本語</a><a data-language="fr" href="../fr/ep10.html">Français</a><a data-language="de" href="../de/ep10.html">Deutsch</a><a data-language="es" href="../es/ep10.html">Español</a><a data-language="ko" href="../ko/ep10.html">한국어</a></span></div></div></header><main id="main-content" class="blockchain-main"><nav class="reading-breadcrumbs"><a href="../../../explore.html#history">History, Power &amp; Civilization</a><span aria-hidden="true">/</span><a href="index.html">Blockchain Cycle</a><span aria-hidden="true">/</span><span aria-current="page">10 · Oracles</span></nav><header class="blockchain-article-header"><p class="article-kicker">The Chisel–Construct Cycle · Blockchain <span class="article-number">10 / 21</span></p><h1>Oracles</h1><p class="article-deck">Oracles bring external prices on-chain, but cannot make majority agreement equal truth. Sources, nodes, and payment relationships move trust to new layers.</p><p class="article-byline">Han Qin · 6 September 2026 · English rewrite</p></header><div class="blockchain-article-layout"><aside class="chapter-aside"><nav aria-label="In this essay"><p>IN THIS ESSAY</p><ol><li><a href="#section-1">1. Agreement Is Not Truth</a></li><li><a href="#section-2">2. A Different Location</a></li><li><a href="#section-3">3. Five Sources</a></li><li><a href="#section-4">4. Silence</a></li><li><a href="#section-5">5. Who Pays Whom</a></li><li><a href="#section-6">6. The Order of Loss-Bearing</a></li><li><a href="#section-7">7. Six Layers</a></li><li><a href="#section-8">8. The Gap</a></li></ol></nav></aside><article class="essay-body">
+<h2 id="section-1">1. Agreement Is Not Truth</h2>
+<p>The oracle problem is best introduced through state-machine replication, rather than the metaphor of a blockchain isolated from the real world.</p>
+<p>Ethereum's official developer documentation states the technical boundary clearly: smart contracts cannot access off-chain information by default, and execution must be deterministic. The same initial state and transaction input should produce the same resulting state at every executing node.</p>
+<p>If validating nodes independently queried an exchange API, webpage, weather service, or bank server during execution, they might receive different answers. Request times, locations, network latency, temporary API faults, caching, permissions, or deliberate server differentiation could all cause this.</p>
+<p>If those differing answers entered execution directly, identical inputs in a block would no longer let nodes reproduce an identical result.</p>
+<p>This is therefore not an engineering limitation making network requests impossible on a blockchain.</p>
+<p>Nor does a cryptographic theorem declare off-chain facts unknowable.</p>
+<p>It is an interface constraint between deterministic state-machine replication and nondeterministic external inputs.</p>
+<p>An oracle first turns external information into an on-chain input consensus can process. Nodes can then compute deterministically with it.</p>
+<p>That distinction directly rewrites something almost everyone says.</p>
+<p>Strictly speaking, “the chain knows BTC is $65,000” is false.</p>
+<p>What the chain actually knows is that an address or group submitted data representing 65,000 at a particular time under a protocol, and that it passed the checks actually configured in that feed and its integration. Whether signatures, aggregation, freshness, and permissions are all checked depends on the implementation; being on-chain alone does not establish it.</p>
+<p>Whether 65,000 really is the market price is an off-chain semantic question.</p>
+<p>The chain does not know 65,000.</p>
+<p>It knows someone said 65,000.</p>
+<p>The distance between those sentences determines everything the next seven sections address.</p>
+<p>Most of the time they coincide: speakers have reasons to be truthful, data derive from actual trades, and aggregation and checks have occurred. But if they diverge even once, downstream contracts using the number will execute as usual.</p>
+<p>This also explains why the oracle problem differs from the blockchain's own fault tolerance.</p>
+<p>Consensus can answer whether a majority or specified threshold of validators agrees on a portion of on-chain state.</p>
+<p>It cannot itself answer how many millimeters of rain fell in New York yesterday, a company's closing price tonight, or whether a flight was actually canceled.</p>
+<p>Even if ten thousand validators unanimously accept an incorrect quote, agreement has not automatically become truth.</p>
+<p>Agreement is not truth.</p>
+<p>That sentence has a distinctive place in this series.</p>
+<p>In the fifth essay, the construct encountered a logically undecidable problem and priced it: unable to calculate when execution would stop, it let execution run only as far as its purchased allowance.</p>
+<p>Here, data services and incentives to correct errors can still be priced. Paying for them does not make consensus itself a guarantor of external facts.</p>
+<p>What must be achieved lies outside consensus's capabilities.</p>
+<p>The remainder therefore occupies a position absent from the preceding nine essays.</p>
+<p>It is neither among things compressed into the ruler nor among things overflowing it. It lies at the handover between the ruler and what is being measured.</p>
+<h2 id="section-2">2. A Different Location</h2>
+<p>Early approaches placed this irreducible trust in roughly four different locations.</p>
+<p>A server queries an API and writes to the chain: trust rests with its operator and data source, and controlling the server changes the input.</p>
+<p>A third party proves that a server returned particular content: provenance and transmission become more verifiable, but the source's claim is not thereby true. Trust rests in the source plus the proof system.</p>
+<p>An exchange or data vendor signs its own data for on-chain verification: provenance authentication is strong, but the original vendor must alter its publishing infrastructure, and trust still rests at the source.</p>
+<p>Several people submit facts for voting or arbitration: flexible, but slow, expensive, unsuitable for high-frequency prices, and dependent on incentives and resistance to collusion.</p>
+<p>These limitations were not later competitors' marketing summaries.</p>
+<p>Chainlink's earliest design material already discussed them individually: centralized oracles create single points of control; human oracles are resource-intensive and unsuitable for real-time data; source signatures strengthen authentication but require provider infrastructure changes.</p>
+<p>Later designs therefore did not really remove off-chain trust.</p>
+<p>More precisely, they answered three narrower questions: who observes, how observations become one result, and who has economic incentives to correct mistakes or bear their costs.</p>
+<p>Chainlink's current public feed architecture aggregates at two levels. Professional market-data providers typically collect raw quotes from several venues, clean outliers, and create data products. Independent nodes query those vendors or other APIs, exchange and sign observations, and jointly produce a report meeting the required participation threshold. One node submits the aggregate on-chain, where contracts verify signatures and configuration.</p>
+<p>This avoids every node sending an expensive on-chain transaction in every round.</p>
+<p>One layer easily blurred in promotional material deserves to be written out fully.</p>
+<p>Exchange trades, then vendor cleaning and aggregation, then node queries, then a jointly signed oracle-network report, then an on-chain aggregator contract, then a lending or derivatives protocol.</p>
+<p>Many nodes do not therefore mean many wholly independent sources of economic facts.</p>
+<p>Several nodes may buy the same vendor's service, while several vendors may rely heavily on the same venues.</p>
+<p>Chainlink's own data-quality explanation says nodes can subscribe to premium vendor APIs, and vendors can both sell to nodes and run nodes themselves.</p>
+<p>Nor does every market-price change trigger an on-chain update.</p>
+<p>Push feeds generally have two triggers: deviation from the last on-chain update beyond a configured threshold, or expiry of a maximum interval despite little movement, the heartbeat. Parameters can differ by asset and chain.</p>
+<p>In calm markets the heartbeat governs the maximum interval; in volatile markets deviation can trigger earlier updates. A particular feed's percentage or hour setting is not a network-wide constant.</p>
+<p>“Latest quote equals current market price” therefore also needs rewriting.</p>
+<p>More accurately, it is the reference accepted and written on-chain after the latest deviation or heartbeat trigger. Consumers should independently check freshness information such as update time.</p>
+<p>Administration cannot be omitted. Documentation itself tells integrators to inspect feed-contract ownership; some aggregators or proxies have multisignature owners able to change variables or function configuration.</p>
+<p>Decentralized reporting and decentralized configuration/upgrade authority are therefore different questions. One does not imply the other.</p>
+<p>Pyth follows another route, expressly restricting publishers to first-party data owners such as exchanges, market makers, and trading firms. Current official documentation says the network has more than 120 first-party providers.</p>
+<p>That is the network-wide publisher total, not 120 publishers on every feed.</p>
+<p>Aggregation does not simply favor the loudest voice: publishers vote on prices and confidence intervals, and the network uses medians and quantiles to construct aggregate prices and confidence, limiting outliers' influence.</p>
+<p>Trust has merely moved.</p>
+<p>The design reduces opaque provenance in intermediary retelling, but places more trust in publisher selection, their internal trading ledgers and pricing systems, and their actual independence.</p>
+<p>Publishers do not join automatically as arbitrary anonymous addresses; applications require acceptance.</p>
+<p>Set the two routes side by side, and trust rests as follows.</p>
+<p>For Chainlink, residual trust concerns vendor correlation, network membership, configuration, and administrative multisignatures.</p>
+<p>For Pyth, it concerns publisher identities, internal market data, and independence across publishers.</p>
+<p>Two further routes move trust elsewhere altogether. Section seven considers them alongside admission rights.</p>
+<p>None can be called trust-free.</p>
+<p>The differences are which layer an attacker must control, at what cost, and how long errors remain correctable.</p>
+<h2 id="section-3">3. Five Sources</h2>
+<p>The following six incidents span five years. Conflicting monetary definitions are deliberately retained: attacker profit, borrowed assets, bad debt, and nominal losses at event-time prices are not identical.</p>
+<p>In bZx's second 2020 attack, the attacker flash-borrowed 7,500 ETH, using about 900 through a route to distort a thin market's quote, then borrowed 6,796 ETH against approximately 1.1 million in overvalued assets. Three amounts appear: about $640,000 extracted, $633,000 in attack profit, and $800,000 in insolvency. They measure different concepts and must not become one loss figure.</p>
+<p>The weakness was not the flash loan itself. It was treating thin-market spot prices, movable by one capital shock, as collateral valuation inputs.</p>
+<p>The 2021 C.R.E.A.M. attack was different. The attacker donated assets to a vault, nearly doubling book value per share while total shares were low. The lending protocol read precisely that share price, which could be changed within the same transaction.</p>
+<p>The protocol reported a $130 million total impact; one analyst valued the assets afterward at over $136 million; another estimate cited in contemporary reporting put attacker net profit at about $117 million. These were protocol impact, subsequent asset valuation, and net attack profit respectively.</p>
+<p>The failure was treating manipulable derivative-asset NAV and share accounting as an oracle, not merely pumping an exchange spot price.</p>
+<p>In April 2022, the Inverse Finance attacker first raised a token price in a thin pool. The protocol's pricing path included a time-weighted average, but capital and cross-block operations maintained manipulation long enough for adoption.</p>
+<p>The accounting is unusually clean: later bad-debt documents listed actual withdrawals of 1,594.44 ETH, 94.95 WBTC, and 38.93 YFI instead of a dollar estimate. Contemporary secondary valuations put them at about $15.6 million.</p>
+<p>Time weighting is therefore no mathematical immunity for thin pools. Short windows are easier to move, long ones lag more, and attackers can sustain prices across blocks.</p>
+<p>In October 2022, two Mango Markets accounts established opposite perpetual positions. The attacker then heavily bought a thinly traded token in three markets supplying the oracle, raised the quote, treated inflated unrealized gains as collateral capacity, and borrowed other assets.</p>
+<p>Three amounts appear: the court opinion conservatively said over $100 million; regulators' 2023 complaint said approximately $116 million; the Justice Department's 2024 trial announcement said around $110 million. Valuation methods and legal-case definitions differ; none should be selected as uniquely true.</p>
+<p>The legal status must be exact.</p>
+<p>The court opinion clearly describes trades raising prices in the three oracle-input markets and consequently increasing collateral valuation.</p>
+<p>The 2024 jury conviction is not the current final position. On May 23, 2025, the district court vacated two commodities-related convictions and entered an acquittal on wire fraud.</p>
+<p>One therefore cannot now say a court finally determined guilt for market manipulation.</p>
+<p>Nor did the court deny that the trades occurred. It addressed venue and criminal elements.</p>
+<p>BonqDAO in 2023 failed in its own source-integration implementation. An attacker could inject abnormal quotes through a vulnerable update path, first raising prices to mint vast stablecoin quantities, then lowering them to liquidate other positions.</p>
+<p>One firm described approximately $120 million in nominal impact. Another showed 100 million tokens minted but only about 2 million swapped while liquidity remained, tracing roughly 1,105 ETH, about $1.8 million, already laundered. A third estimated converted losses at about $1.2 million.</p>
+<p>“Oracle manipulation cost it $120 million” is therefore too broad.</p>
+<p>More narrowly, an exploitable price-update flaw in its integration contract caused nominal asset and collateral effects around $120 million, while the amount the attacker could realize was far smaller.</p>
+<p>UwU Lend in June 2024 is this section's pivot.</p>
+<p>Large flash liquidity altered several pools. The protocol's oracle took the median of 11 sources.</p>
+<p>Five came from paths that the same operations could manipulate in a correlated way.</p>
+<p>Eleven sources therefore did not mean eleven independent risk factors. But five manipulable sources do not, by count alone, control the median: the result also depends on the other quotes’ values and update states and on the precise aggregation and call paths.</p>
+<p>Again, there are three amounts: over $18.89 million estimated by one firm, $19.4 million by another, and approximately $20 million in contemporary media. A second outflow of roughly $3.7 million on June 13 cannot simply be added to the first-round figure, because its mechanism differed.</p>
+<p>This exposed correlated failure beneath apparent source diversity: several sources shared the same manipulable market state.</p>
+<p>“Flash-loan attack” is the easiest label to misuse across these cases.</p>
+<p>A flash loan is usually not the oracle vulnerability. It supplies temporary access to an enormous balance sheet within one atomic transaction.</p>
+<p>Profitability depends on whether downstream protocols treat cheaply changeable states as genuine collateral value. Thin-pool spot prices, vault-share prices, liquidity balances, and highly correlated paths all qualify.</p>
+<p>Academic work on flash-loan attacks in 2020 already treated uncollateralized access to an entire available pool within one transaction as a capital amplifier, not the price-oracle defect itself.</p>
+<p>Time weighting likewise does not turn unsafe into safe as a binary switch.</p>
+<p>Analysis after Ethereum moved to proof of stake noted that validators can know in advance whether they control consecutive upcoming blocks, removing some protection previously supplied by an unknown next producer. Multiblock manipulation is technically possible, with cost and probability depending on liquidity, averaging windows, and consecutive production rights.</p>
+<p>Research in 2024 highlighted another trade-off: longer windows increase the time manipulators must sustain abnormal prices, but also increase lag and pricing error.</p>
+<p>These incidents therefore establish neither that decentralized-exchange prices are unsafe nor that time weighting has failed.</p>
+<p>They establish that manipulation cost must be measured relative to the protocol exposure available for borrowing or liquidation.</p>
+<p>A price costing $50,000 to move significantly might be sufficiently expensive for a protocol exposed to $10,000. For one permitting immediate borrowing of $100 million, it is another matter entirely.</p>
+<h2 id="section-4">4. Silence</h2>
+<p>Another class of incidents during Terra's 2022 collapse should be separated from those attacks.</p>
+<p>Venus publicly stated that after its data provider paused the LUNA feed amid extreme conditions, the protocol kept seeing the last quote, around $0.107, while external markets had fallen to roughly $0.01.</p>
+<p>Two addresses then deposited about 230 million LUNA and borrowed approximately $13.5 million in assets. The protocol estimated a shortfall of about $11.2 million and said its risk fund would cover it.</p>
+<p>Those figures respectively measure tokens deposited, nominal value borrowed, and estimated bad debt after remaining collateral.</p>
+<p>Pausing was itself protective by design. The provider stopped because extreme markets undermined confidence in its quote; continuing to publish an uncertain number might have been worse.</p>
+<p>Here is the point: upstream updates stopped protectively, while the downstream protocol still treated the old value as usable. Local rules could continue operating while end-to-end risk escaped control. That does not prove both sides were faultless or release either from duties it should bear.</p>
+<p>This is the oracle problem's hardest institutional arrangement.</p>
+<p>Upstream is a data company responsible to its customers, the nodes, not depositors in the lending pool. Between them is a network writing data under protocol rules, promising rule-compliant reporting rather than a correct price. Downstream is a contract executing code; whether it checks update time depends on whether its author thought of that three years earlier.</p>
+<p>Local actions may comply with their written procedures without connecting responsibility from source to user. Who should detect a halted feed, and who can pause the exposure, remain questions for system design and allocation of duties.</p>
+<p>An oracle ceasing updates and an oracle publishing a new wrong value are therefore different engineering events.</p>
+<p>For a contract without freshness checks or circuit breakers, they can produce similar outcomes.</p>
+<p>Another protocol's contemporary first-party retrospective likewise recorded that applications relying on a feed were affected after extreme volatility triggered minimum-price or circuit-breaker conditions.</p>
+<p>Consumers must therefore handle stale or paused feeds, not merely verify a trusted source-contract address.</p>
+<p>Oracle failure need not involve attack.</p>
+<p>It can simply stop speaking.</p>
+<p>This failure is harder to prevent for a simple reason.</p>
+<p>Cross-checking sources may reveal a false price. When a protocol keeps reading a value that was once correct, its signature and format may remain valid; checking only those can miss a halted feed. Freshness checks, fallback sources, and circuit breakers address another part of the risk.</p>
+<p>The most direct question is when the value was updated. The integration can also specify timeouts, fallback sources, anomaly checks, and pause conditions. Protections must actually enter the design; a trusted-looking source address is not enough.</p>
+<p>Responsibility therefore sits differently from the preceding attacks.</p>
+<p>In the previous section, someone actively changed a manipulable number. Here, even without anyone fabricating a new quote, failure to handle halted updates could let assets leave. Absence of an active attacker does not mean absence of design error or responsibility.</p>
+<p>These failures deserve different names: one is someone speaking falsely; the other is no one speaking again while listeners assume the previous statement still holds.</p>
+<p>The latter is easy to overlook because it may not trigger existing checks limited to signatures, format, and value ranges. The difficulty is not that prevention is impossible in principle, but whether halted updates are treated as a state the system must handle.</p>
+<h2 id="section-5">5. Who Pays Whom</h2>
+<p>The industry's money flows are not simply users buying quotes with tokens.</p>
+<p>A typical premium price feed can involve at least three payment layers: applications and chain ecosystems to oracle networks, networks to operators, and operators to upstream vendors.</p>
+<p>Chainlink's own supply-chain description is crucial: professional vendors may sell API data to operators, or run nodes themselves and sell directly to smart contracts.</p>
+<p>Does the source pay the oracle network, or the reverse? Primary material supports this narrower answer:</p>
+<p>In conventional professional market-data licensing, nodes or consumers pay or obtain licenses upstream. Exchanges and vendors do not generally pay an oracle network merely for supplying data.</p>
+<p>Vendors may also become publishers or nodes to expand distribution or pursue strategic partnerships. Individual contracts' subsidies and revenue shares lack a uniform public definition; “partner” does not establish cash-flow direction.</p>
+<p>At the other end, feed-using protocols, sponsors, or entire blockchain ecosystems may pay. Chainlink describes shared-cost feeds funded by multiple users to compensate nodes for data acquisition and on-chain operation. Other arrangements allow ecosystems to cover oracle-network gas and operating costs for a period.</p>
+<p>Some verifiable details are precise. Many aggregator contracts expose billing state: compensation per observation and transmission, a transmitter's unclaimed balance, observations owed compensation, and available payment balance.</p>
+<p>Payment obligations at a particular feed, aggregator, and transmitter can therefore in principle be verified directly on-chain.</p>
+<p>That cannot directly become a node's annual income.</p>
+<p>Aggregators are upgraded and replaced; one operator has multiple transmitter addresses and serves multiple networks and chains; ecosystem programs, subscriptions, and off-chain licenses may also cover costs.</p>
+<p>The primary material reviewed here contained no audited network-wide operator-income statement consolidating all of these.</p>
+<p>Actual contracts and budgets reveal commercial pricing, while preserving another discrepancy.</p>
+<p>In a 2025 feed proposal, Inverse Finance disclosed prior approvals of $32,800 plus $12,800, explicitly calling their combined total $44,800.</p>
+<p>But $32,800 plus $12,800 is $45,600.</p>
+<p>The source has an internal $800 inconsistency that must not be silently corrected.</p>
+<p>It also said the budget funded two feeds for a year, with invoices paid in stablecoins. Since it did not price the two vendors separately, this can only be labeled a combined budget ceiling for two services, not $44,800 annually for one feed.</p>
+<p>The same proposal said another previously approved budget had never actually been spent.</p>
+<p>Budget is not invoice, actual payment, or node income.</p>
+<p>Payment methods have changed too. Under payment abstraction launched in 2025, some users can pay in other assets, which are aggregated and converted on-chain into the protocol token, entering reserves and the service-provider economic system.</p>
+<p>“Users must first buy a particular token to use data” is therefore no longer accurate.</p>
+<p>One lending-protocol partnership also disclosed a specific revenue split: discounted arrangements for the first six months, allocating 65% of the relevant revenue to the protocol community and 35% to the oracle ecosystem.</p>
+<p>That is a split of one particular revenue stream, not a universal feed charge.</p>
+<p>Tokens do not play one uniform role across these systems.</p>
+<p>One combines settlement and economic staking; payment abstraction demonstrates that user payment assets and ultimate network settlement assets can differ.</p>
+<p>Another participates directly in final dispute voting, securing dispute resolution and governance.</p>
+<p>Another is reporter collateral and part of dispute/governance economics, with erroneous submissions potentially slashed.</p>
+<p>Another already combines on-chain products with institutional subscription data services and explicitly pitches monetizing market data to publishers.</p>
+<p>The industry therefore cannot be summarized as publishers contributing free and users consuming free forever.</p>
+<p>Nor does public material suffice to reconstruct every publisher's actual cash or incentive receipts.</p>
+<h2 id="section-6">6. The Order of Loss-Bearing</h2>
+<p>This is the layer most easily lost in oracle-incident accounts.</p>
+<p>A wrong feed quote does not itself burn money.</p>
+<p>It changes ownership only when a protocol uses it to permit borrowing, calculate collateral ratios, trigger liquidation, mint stablecoins, or settle derivatives.</p>
+<p>The 2021 incident is clearest. After collateral book value was manipulated upward, the attacker received money not from the oracle, but by borrowing real assets others had deposited in a lending market.</p>
+<p>The attacker gained withdrawable assets, leaving insufficient collateral and bad debt behind.</p>
+<p>The protocol's $130 million total impact therefore did not automatically mean the oracle provider owed it $130 million. It meant the protocol's balance sheet had a hole.</p>
+<p>Inverse's 2022 accounting was more direct: withdrawn coins were recorded as bad debt and gradually repaid through governance decisions. By an August proposal, 95.25 ETH, 5.54 WBTC, and 2.71 YFI had been repaid.</p>
+<p>These are coin quantities, not dollar losses recalculated at today's prices.</p>
+<p>At the two ends, the attacker gained borrowed assets and the original pool lost them. Governance then used future income and budgets to repay debt, redirecting funds that could have belonged to protocol stakeholders toward earlier depositors' shortfall.</p>
+<p>Bonq's second phase demonstrates something else.</p>
+<p>The attacker not only raised prices to mint stablecoins, but subsequently pushed prices extremely low, liquidating more than thirty undercollateralized positions.</p>
+<p>Not every loss fell on a protocol treasury. Owners of wrongly valued and liquidated positions lost collateral, while liquidators or the attacker could gain.</p>
+<p>This is another reason for caution with $120 million. The attacker did not put that amount of freely exchangeable assets into a wallet. The 100 million minted tokens lacked market depth for full par realization; observed conversion and laundering were on the million-dollar scale.</p>
+<p>Nominally created or revalued claims and assets actually obtained by selling into the market are different measures.</p>
+<p>Mango's court record supplies a rare real-world detail.</p>
+<p>The trial evidence described by the court showed an oracle drawing from three markets. The attacker traded heavily there to increase collateral value, then borrowed and rapidly withdrew over $100 million within about half an hour.</p>
+<p>The court also recorded a user in New York who noticed unusual volatility and tried unsuccessfully to withdraw.</p>
+<p>Among the materials consulted here on these incidents, this is one of the few records that reaches a specific individual.</p>
+<p>The two ends are therefore concrete: borrowed stablecoins and other assets came from shared liquidity. The attacker gained assets while those remaining faced shortages and unavailable withdrawals.</p>
+<p>Some assets were later returned through an arrangement between governance and the attacker. Amount extracted and final unrecovered net loss therefore also differ.</p>
+<p>Together, the incidents suggest this usual order of loss-bearing.</p>
+<p>The attacker or mistakenly favored account gains assets.</p>
+<p>The lending pool or liquidated account loses assets.</p>
+<p>If compensation is chosen, treasury assets, risk funds, or future revenue pay next.</p>
+<p>Any remaining deficit ultimately appears as depositor non-redemption or economic dilution of governance assets.</p>
+<p>Nodes, upstream exchanges, and vendors generally do not bear downstream losses one for one with the exposure.</p>
+<p>This is the most important asymmetry between oracle economic security and protocol economic exposure.</p>
+<p>A wrong price can cost a protocol $100 million.</p>
+<p>The person reporting it receives a per-service fee.</p>
+<h2 id="section-7">7. Six Layers</h2>
+<p>“Decentralized oracle” is not inherently wrong, but as a testable proposition it lacks a denominator.</p>
+<p>At least six layers require separate measurement.</p>
+<p>First, reporters per feed. Aggregators publish transmitter lists, so authorized reporting addresses for a specific contract at a specific block can be verified on-chain. Different feeds can use different networks; no single node count automatically applies everywhere.</p>
+<p>Chainlink company material in 2022 described some flagship feeds as supported by approximately 31 independent operators. Preserve its evidentiary nature: a company statement about a particular historical period, not today's live network-wide count, and not 31 for every feed.</p>
+<p>Second, whether addresses equal independent operating entities.</p>
+<p>Counting 31 transmitter addresses does not prove 31 entities independent in ownership, cloud providers, key management, upstream vendors, and controlling personnel.</p>
+<p>Operator concentration requires entity-level address consolidation and measurement of feeds and value exposure per operator. This review found no continuously published, reproducible official time series of network-wide operator concentration.</p>
+<p>Thirty-one nodes therefore do not by themselves prove thirty-one independent failure domains.</p>
+<p>Third, source correlation.</p>
+<p>The earlier case of a median across 11 sources, five correlated under the same manipulation, is the clearest counterexample.</p>
+<p>Mathematically adding sources improves security only when failure modes are sufficiently uncorrelated.</p>
+<p>Fourth, admission rights.</p>
+<p>The more-than-120 first-party publisher figure is a company-reported network total, with application and acceptance required. It describes identity-screened first-party data, not automatic production admission for any anonymous node.</p>
+<p>Two other approaches take different paths: one makes reporter admission more permissionless while shifting security to staking and subsequent disputes; another often dispenses with a preselected reporter set altogether, relying on optimistic challenges.</p>
+<p>Node counts alone therefore cannot rank them on one leaderboard.</p>
+<p>These approaches deserve explanation because they push admission toward opposite extremes.</p>
+<p>UMA uses a wholly different mechanism. A proposer submits an assertion and bond; absent challenge during a liveness window, it is treated as correct. A challenge invokes verification, with token voting resolving the dispute under the specified method. Current documentation gives a two-hour default liveness example, while dispute resolution generally takes 48–96 hours.</p>
+<p>Those measure challenge windows and dispute-resolution time, not price-update frequency.</p>
+<p>Trust therefore rests on different conditions: false assertions must be valuable enough for at least one honest observer to monitor and finance a challenge; bonds must make fabrication costlier than its gains; and final voting and resolution rules must be trusted.</p>
+<p>If no one notices or challenges are too costly, the mechanism can accept false data without positive confirmation. Its own warning is that larger bonds increase attack cost while also increasing challengers' capital requirements.</p>
+<p>Tellor more closely resembles a permissionless reporter market. Reporters stake, submit data, and can earn rewards; other holders can dispute. Current rules allow partial or complete slashing by severity, followed by a post-vote challenge phase. The process includes 48 hours of voting and 24 hours of challenge, usually 72 hours to settle a dispute.</p>
+<p>Fifth, client and implementation diversity.</p>
+<p>Publicly verifiable data here are markedly weaker than for underlying blockchain execution and consensus clients.</p>
+<p>Official operator material centers on official software and deployment. This review found no production market-share table for independently implemented, protocol-compatible clients.</p>
+<p>The accurate formulation is therefore not “high client concentration has been proved,” but that independent implementation shares lack public, versioned, reproducible data as of this review. Underlying-chain diversity metrics cannot substitute.</p>
+<p>Sixth, administrative authority.</p>
+<p>Even with quotes jointly signed by dozens of addresses, proxy/aggregator ownership, configuration powers, and emergency procedures constitute another control plane.</p>
+<p>Official documentation tells developers to inspect owners and explains that some owners or multisignatures can change variables and invoke administrative functions.</p>
+<p>“No node can forge a quote alone” is not equivalent to “no small administrator group can change feed configuration.”</p>
+<p>What lacks public measurement is not the number of projects declaring decentralization, but harder figures:</p>
+<p>Entity-level reporter concentration per feed over time; common cloud and vendor exposure; vendors' shared upstream venues; software implementation shares; entity concentration in administrative multisignatures and configuration rights; and operators' actual net income after data licenses, gas, and infrastructure.</p>
+<p>Existing material verifies transmitters, billing obligations, publisher totals, and some governance powers in considerable detail, but cannot yet combine these dimensions into a credible decentralization score.</p>
+<p>That absence reflects the current primary-evidence boundary more accurately than an undefined node total.</p>
+<h2 id="section-8">8. The Gap</h2>
+<p>Calling oracle networks data sources can conceal the actual production chain.</p>
+<p>For crypto spot prices, the typical endpoint is order books and trades at several centralized exchanges plus some on-chain venues. Vendors select venues, filter volume and quality, handle outliers, and convert currencies. Nodes receive processed APIs, not a market directly observed by blockchain cryptography.</p>
+<p>For traditional assets, the chain is clearer.</p>
+<p>Recent partnerships include an exchange supplying consolidated feed content on-chain, with the announcement saying that feed aggregates over 300 venues. That measures upstream venue coverage, not 300 oracle nodes.</p>
+<p>Institutions distribute Treasury benchmark closing prices on-chain; the benchmark observed there has already formed within traditional market-data and benchmark systems.</p>
+<p>Other exchanges introduce data from several of their markets into this distribution system.</p>
+<p>“Replacing traditional data vendors” therefore does not match the evidence.</p>
+<p>More realistically, oracle networks add signatures, aggregation, and on-chain distribution between traditional/crypto market-data infrastructure and blockchain smart contracts.</p>
+<p>They may change distribution without automatically replacing upstream exchanges, market makers, benchmark administrators, or data-cleaning firms.</p>
+<p>Regulation likewise mainly follows those upstream roles, not the word oracle.</p>
+<p>In the US National Market System, rules require exchanges to provide specified data for designated processors to consolidate and disseminate. If an on-chain quote ultimately references US-listed equities, part of its upstream chain lies inside securities-market regulation.</p>
+<p>“Data vendors are regulated,” however, needs substantial narrowing.</p>
+<p>Selling an API does not automatically make a company a regulated exchange or benchmark administrator.</p>
+<p>The UK regulator expressly says contributing inputs to a benchmark administrator is not itself a regulated activity, although supervised contributors may face governance and conduct duties under benchmark rules.</p>
+<p>If a product itself is a regulated benchmark, the position differs. That status comes from the legal role of benchmark administration, not its eventual use by an oracle.</p>
+<p>The question should therefore become two statements.</p>
+<p>For licensed, high-quality institutional data such as equities, fixed income, and FX benchmarks, many on-chain products do reconnect to existing production and licensing systems, as primary partnership announcements show.</p>
+<p>The stronger claim that the whole industry ultimately depends on a few companies requires systematic measurement of market shares, licenses, and overlapping upstream venues. The primary material reviewed here cannot support it.</p>
+<p>Real-world-impact gaps also need recording.</p>
+<p>Technical retrospectives of the incidents are rich, quantifying token flows, bad debt, liquidations, and treasuries.</p>
+<p>This search found no reliable primary study further measuring employment losses, regional price changes, or changes in financial-service access caused by them.</p>
+<p>The concrete individual-level evidence in the materials consulted includes that failed withdrawal attempt in the court record.</p>
+<p>Beyond that, projecting on-chain bad debt into employment or consumer-price losses exceeds the evidence.</p>
+<p>Return to section one.</p>
+<p>Agreement is not truth.</p>
+<p>In the previous nine essays, the construct always found a way around a difficult object: rename it, decline to ask, convert it, give it a track, demand credentials, or simply price it.</p>
+<p>Here, no method based on consensus alone can guarantee the truth of an external fact.</p>
+<p>Making a chain know what happened outside it is beyond consensus's capabilities.</p>
+<p>Every design therefore ends in the same kind of action: not making it know, but making false statements costly, increasing the number of speakers, and enabling someone to identify errors afterward.</p>
+<p>The remainder's location is therefore clear.</p>
+<p>It is not on-chain. Every submission is properly signed for anyone to verify.</p>
+<p>Nor is it off-chain. The external price really exists; exchanges execute trades every second.</p>
+<p>It lies in the gap.</p>
+<p>Between “someone said 65,000” and “it is 65,000.”</p>
+<p>No protocol can close that gap, because doing so requires something beyond consensus's capabilities.</p>
+<p>Every design does the same thing: narrow the gap, make false statements across it costly, and let someone identify them afterward.</p>
+<p>The gap remains.</p>
+<p>On-chain contracts can check signatures, participant thresholds, and update times. Which checks are performed, and whether they suffice, depend on the rules actually implemented by the feed and its users.</p>
+<p>It checks whether someone made the statement according to the rules.</p>
+<p>It does not check whether the statement is true.</p>
+<p>The chain is still settling, but there is still no consensus on what is being settled.</p>
+<div class="source-note"><strong>Sources</strong><p>This essay draws on public protocol documentation, on-chain records, court documents, regulatory filings, and peer-reviewed research. All figures retain their original measurement definitions. The series' source cutoff is August 2026.</p></div>
+</article></div><nav class="article-nav series-pagination"><a class="page-turn previous" href="ep09.html"><span>Previous</span><strong>AMMs and DeFi Summer</strong></a><a class="page-turn series-home" href="index.html"><span>All essays</span><strong>21-part index</strong></a><a class="page-turn next" href="ep11.html"><span>Next</span><strong>Liquidation</strong></a></nav></main><footer class="blockchain-footer"><div><a href="../../../index.html" class="blockchain-brand"><span>NON</span><span>DUBITO</span></a><p>Essays in the Self-as-an-End Tradition</p></div><nav><a href="../../../explore.html">Explore</a><a href="../../../latest.html">Latest</a><a href="../../../library.html">Library</a><a href="../../../about.html">About</a></nav></footer></body></html>

@@ -1,1 +1,283 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AMM et DeFi Summer · Le cycle tailler–construire : blockchain — Non Dubito</title><meta name="description" content="La courbe a automatisé l’échange, non l’équité des subventions, du pouvoir de gouvernance et des pertes."><meta name="author" content="Han Qin (秦汉)"><meta property="og:type" content="article"><meta property="og:title" content="AMM et DeFi Summer"><meta property="og:description" content="La courbe a automatisé l’échange, non l’équité des subventions, du pouvoir de gouvernance et des pertes."><meta property="og:url" content="https://nondubito.net/essays/blockchain/fr/ep09.html"><link rel="canonical" href="https://nondubito.net/essays/blockchain/fr/ep09.html"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="stylesheet" href="../../../style.css"><style>.collection-page{max-width:820px;margin:0 auto;padding:92px 2rem 72px}.language-route{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin-bottom:2.2rem}.collection-back{font-family:var(--sans);font-size:.72rem;color:var(--ink-muted);text-decoration:none}.collection-kicker{font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:2rem 0 .7rem}.collection-page h1{font-size:2.35rem;line-height:1.18;margin:.2rem 0 1rem}.collection-deck{font-size:1.08rem;color:var(--ink-light);line-height:1.75;margin-bottom:2.4rem}.collection-body section{margin:0 0 2.5rem}.collection-body h2{font-size:1.28rem;margin-bottom:.8rem}.collection-body p{font-size:1.02rem;line-height:1.9;margin:0}.edition-note{margin:3rem 0 0;padding-top:1.1rem;border-top:1px solid var(--cream-border);font-size:.8rem;color:var(--ink-muted);line-height:1.7}.collection-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.4rem}.collection-nav a{padding:1rem;border:1px solid var(--cream-border);text-decoration:none;color:var(--ink);line-height:1.45}.collection-nav a:last-child{text-align:right}.collection-nav small{display:block;font-family:var(--sans);font-size:.62rem;color:var(--ink-muted);margin-bottom:.3rem}@media(max-width:620px){.collection-page{padding:76px 1.25rem 54px}.collection-nav{grid-template-columns:1fr}.collection-nav a:last-child{text-align:left}}</style><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script></head><body><header><div class="header-inner"><a href="../../../index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../index.html">Essays</a><a href="../../../start.html">Start Here</a><a href="../../../library.html" class="active">Library</a><a href="../../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a></nav></div></header><main class="collection-page"><div class="language-route" aria-label="Language selector"><span class="blockchain-language-menu" role="group" aria-label="Langue"><a data-language="zh" href="../ep09.html">简体中文</a><a data-language="en" href="../en/ep09.html">English</a><a data-language="zh-hant" href="../zh-hant/ep09.html">繁體中文</a><a data-language="ja" href="../ja/ep09.html">日本語</a><a data-language="fr" href="ep09.html" aria-current="page">Français</a><a data-language="de" href="../de/ep09.html">Deutsch</a><a data-language="es" href="../es/ep09.html">Español</a><a data-language="ko" href="../ko/ep09.html">한국어</a></span></div><a class="collection-back" href="index.html">← Le cycle tailler–construire : blockchain</a><article><div class="collection-kicker">Technique, marchés et institutions · 09 / 21</div><h1>AMM et DeFi Summer</h1><p class="collection-deck">La courbe a automatisé l’échange, non l’équité des subventions, du pouvoir de gouvernance et des pertes.</p><div class="collection-body"><section><h2>Ce qui s’est passé</h2><p>Les AMM ont remplacé le carnet d’ordres par une réserve d’actifs et une formule. En 2020, les jetons de récompense ont attiré très vite capitaux et nouveaux protocoles.</p></section><section><h2>Ce que le registre a saisi</h2><p>Prix et quantités deviennent calculables à partir de la courbe, et le contrat applique les mêmes conditions à chacun. Le code assure ainsi un marché disponible en permanence.</p></section><section><h2>Ce qui reste hors compte</h2><p>Mais nombre de rendements venaient de nouvelles émissions, tandis que pouvoir et gains favorisaient les premiers entrants. Même la perte impermanente disparaissait derrière l’expression rassurante de fournisseur de liquidité.</p></section></div><p class="edition-note"><em>Cette édition française est une réécriture autonome destinée au lecteur francophone.</em></p><nav class="collection-nav"><a href="ep08.html"><small>Essai précédent</small>← Deux voies pour les stablecoins</a><a href="ep10.html"><small>Essai suivant</small>Oracles →</a></nav></article></main><footer><div class="footer-inner"><div class="footer-brand"><div class="footer-logo">Non <span>Dubito</span></div><div class="footer-tagline">Thought has no mother tongue</div></div><div class="footer-bottom">© 2026 Han Qin · Non Dubito</div></div></footer></body></html>
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AMM et DeFi Summer · Blockchain — Non Dubito</title><meta name="description" content="Comment les courbes AMM, le minage de liquidité et DeFi Summer automatisent les échanges tout en laissant gouvernance, subventions et pertes hors de l’interface."><meta name="author" content="Han Qin (秦汉)"><meta property="og:type" content="article"><meta property="og:title" content="AMM et DeFi Summer"><meta property="og:description" content="Comment les courbes AMM, le minage de liquidité et DeFi Summer automatisent les échanges tout en laissant gouvernance, subventions et pertes hors de l’interface."><meta property="og:url" content="https://nondubito.net/essays/blockchain/fr/ep09.html"><link rel="canonical" href="https://nondubito.net/essays/blockchain/fr/ep09.html"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="stylesheet" href="../../../style.css"><style>.collection-page{max-width:820px;margin:0 auto;padding:92px 2rem 72px}.language-route{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin-bottom:2.2rem}.collection-back{font-family:var(--sans);font-size:.72rem;color:var(--ink-muted);text-decoration:none}.collection-kicker{font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:2rem 0 .7rem}.collection-page h1{font-size:2.35rem;line-height:1.18;margin:.2rem 0 1rem}.collection-deck{font-size:1.08rem;color:var(--ink-light);line-height:1.75;margin-bottom:2.4rem}.collection-body section{margin:0 0 2.5rem}.collection-body h2{font-size:1.28rem;margin-bottom:.8rem}.collection-body p{font-size:1.02rem;line-height:1.9;margin:0}.edition-note{margin:3rem 0 0;padding-top:1.1rem;border-top:1px solid var(--cream-border);font-size:.8rem;color:var(--ink-muted);line-height:1.7}.collection-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.4rem}.collection-nav a{padding:1rem;border:1px solid var(--cream-border);text-decoration:none;color:var(--ink);line-height:1.45}.collection-nav a:last-child{text-align:right}.collection-nav small{display:block;font-family:var(--sans);font-size:.62rem;color:var(--ink-muted);margin-bottom:.3rem}@media(max-width:620px){.collection-page{padding:76px 1.25rem 54px}.collection-nav{grid-template-columns:1fr}.collection-nav a:last-child{text-align:left}}</style><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script><style id="blockchain-full-style">
+.collection-body p{margin:0 0 1.4em;overflow-wrap:break-word}
+.collection-body h2{margin:3em 0 1em;line-height:1.55;scroll-margin-top:110px}
+.collection-body .source-note{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--cream-border);color:var(--ink-muted)}
+.collection-body .source-note p{font-size:.85rem;line-height:1.8}
+.blockchain-full-toc{margin:1.5rem 0 2.5rem;padding:1rem 1.2rem;border:1px solid var(--cream-border);font-family:var(--sans)}
+.blockchain-full-toc summary{cursor:pointer;font-size:.82rem}
+.blockchain-full-toc li{margin:.6rem 0;line-height:1.6;font-size:.85rem}
+.collection-page{min-width:0;overflow-wrap:anywhere}
+html[lang="ko"] .collection-body{word-break:keep-all}
+</style>
+</head><body><header><div class="header-inner"><a href="../../../index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../index.html">Essays</a><a href="../../../start.html">Start Here</a><a href="../../../library.html" class="active">Library</a><a href="../../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a></nav></div></header><main class="collection-page"><div class="language-route" aria-label="Language selector"><span class="blockchain-language-menu" role="group" aria-label="Langue"><a data-language="zh" href="../ep09.html">简体中文</a><a data-language="en" href="../en/ep09.html">English</a><a data-language="zh-hant" href="../zh-hant/ep09.html">繁體中文</a><a data-language="ja" href="../ja/ep09.html">日本語</a><a data-language="fr" href="ep09.html" aria-current="page">Français</a><a data-language="de" href="../de/ep09.html">Deutsch</a><a data-language="es" href="../es/ep09.html">Español</a><a data-language="ko" href="../ko/ep09.html">한국어</a></span></div><a class="collection-back" href="index.html">← Le cycle tailler–construire : blockchain</a><article><div class="collection-kicker">Technique, marchés et institutions · 09 / 21</div><h1>AMM et DeFi Summer</h1><p class="collection-deck">Comment les courbes AMM, le minage de liquidité et DeFi Summer automatisent les échanges tout en laissant gouvernance, subventions et pertes hors de l’interface.</p><div class="collection-body">
+<details class="blockchain-full-toc"><summary>Dans cet essai</summary><ol><li><a href="#section-1">I. Une contrainte de stock</a></li><li><a href="#section-2">II. Cinq virgule sept cent dix-neuf</a></li><li><a href="#section-3">III. Cinq cent vingt-six mille</a></li><li><a href="#section-4">IV. Gouvernance ou droit au revenu ?</a></li><li><a href="#section-5">V. Quatre personnes</a></li><li><a href="#section-6">VI. Trois dollars</a></li><li><a href="#section-7">VII. Trois livres de comptes</a></li><li><a href="#section-8">VIII. Les rubriques absentes de l’interface</a></li></ol></details>
+<h2 id="section-1">I. Une contrainte de stock</h2>
+<p>Le produit constant ne découvre pas automatiquement le prix de marché.</p>
+<p>C’est une contrainte de stock.</p>
+<p>Dans le modèle considéré d’abord sans frais, le produit des quantités des deux actifs du pool est constant. Un négociant ajoute une certaine quantité de A ; le contrat ne le laisse retirer de B que ce qui préserve ce produit. La version facturant des frais nécessite un ajustement supplémentaire.</p>
+<p>Le prix marginal est donné par la pente de la courbe. Avant l’échange, le prix instantané est approximativement le rapport des réserves.</p>
+<p>Mais une transaction de taille finie ne s’exécute pas à ce seul prix. Elle parcourt une portion de courbe.</p>
+<p>Plus elle est grande et le pool relativement peu profond, plus son prix moyen s’écarte du prix marginal initial.</p>
+<p>C’est l’impact de prix élémentaire. Les interfaces présentent souvent ensemble frais, mouvement du marché extérieur et différence d’exécution due au passage devant la transaction comme un glissement. Le glissement pratique ne se confond donc pas exactement avec l’impact pur de la courbe.</p>
+<p>Prenons un calcul sans correspondance avec un pool historique.</p>
+<p>Un pool contient cent ETH et deux cent mille USDC, pour un prix marginal initial de deux mille.</p>
+<p>Quelqu’un apporte dix ETH. La formule Uniswap v2 lui donne environ 18 132,22 USDC.</p>
+<p>Son prix moyen est environ 1 813,22.</p>
+<p>Deux mille avant l’échange, 1 813,22 effectivement obtenu.</p>
+<p>L’écart d’environ 9 % n’est pas entièrement constitué de frais : ceux-ci ne sont que de 0,30 %. L’essentiel vient de l’impact sur le prix du déplacement le long de la courbe. La composition des stocks du pool change, mais cet écart entier ne constitue pas le bénéfice net des fournisseurs de liquidité : prix extérieurs, arbitrages ultérieurs et valorisation des stocks modifient aussi le résultat.</p>
+<p>Les frais nominaux sur les dix ETH sont de 0,03 ETH, non payés en supplément mais inclus dans les dix.</p>
+<p>Autre mécanisme souvent mal décrit : les 0,30 % ne sont pas immédiatement virés aux portefeuilles des LP. Tout l’apport entre dans le pool ; la fraction de frais reste en réserve et accroît le produit. Les LP possèdent une quote-part : les frais se traduisent par un droit sur des réserves plus grandes et sont retirés avec le capital à la sortie.</p>
+<p>L’ordre réel de l’échange est plus concret qu’un simple appel de formule.</p>
+<p>Le routeur calcule les sorties du parcours selon les réserves, vérifie le minimum de sortie et l’échéance choisis, puis envoie l’actif au premier pool. Celui-ci vérifie que la sortie est non nulle et inférieure aux réserves, puis transfère optimistement les jetons. Des données jointes non vides permettent un rappel du destinataire, base des flash swaps. Le pool relit ensuite les soldes réels, déduit l’entrée des différences avec les anciennes réserves, ajuste les frais et vérifie que le produit ajusté n’est pas inférieur à l’ancien. Alors seulement, il actualise les réserves et émet les événements ; sinon, tout est annulé.</p>
+<p>Pourquoi cela convient-il mieux au premier Ethereum qu’un carnet entièrement sur chaîne ?</p>
+<p>Un carnet à cours limité complet doit inscrire continuellement ordres, annulations, modifications et appariements. Chaque changement consomme du gas, attend un bloc et entre dans l’ordonnancement consensuel global.</p>
+<p>L’AMM réduit au contraire l’état de marché à quelques réserves et quotes-parts de LP. Il n’exige pas d’attendre l’ordre exactement correspondant d’une contrepartie.</p>
+<p>La compression est remarquable : teneur de marché, carnet, moteur d’appariement et chambre de compensation deviennent une fonction et deux nombres.</p>
+<p>Elle ne supprime pourtant pas le coût de tenue de marché.</p>
+<p>Elle le transforme en risque de stock des LP, pertes face à l’arbitrage et impact de prix des négociants sur la courbe.</p>
+<p>Le reste apparaît déjà. Ce n’est pas de l’argent oublié : chaque cent sur la courbe peut être recalculé opération par opération.</p>
+<p>C’est le coût déplacé vers de nouvelles places, sans rubrique pour l’afficher à ces places.</p>
+<p>Cette phrase fonde les sept sections suivantes.</p>
+<h2 id="section-2">II. Cinq virgule sept cent dix-neuf</h2>
+<p>La comparaison rigoureuse de la perte impermanente n’est pas la perte éventuelle du capital du LP.</p>
+<p>C’est, pour un même portefeuille initial et un même prix extérieur final, l’écart entre la valeur de la position LP et celle de la simple conservation des deux actifs.</p>
+<p>Un LP peut donc gagner en dollars tout en subissant une perte impermanente : l’ensemble des actifs monte, mais leur conservation aurait rapporté davantage.</p>
+<p>Inversement, les frais peuvent dépasser cette perte et rendre positif le gain net relatif à la conservation.</p>
+<p>Inclure les frais dans la perte impermanente confond deux grandeurs. Il vaut mieux les calculer séparément.</p>
+<p>Dans un pool cinquante-cinquante à produit constant sans frais, si le prix relatif extérieur est multiplié par un rapport donné, la valeur du LP après rééquilibrage divisée par la valeur conservée est deux fois la racine de ce rapport divisée par un plus ce rapport.</p>
+<p>Voici les chiffres, tous hors frais, gas, récompenses et impôts.</p>
+<p>Prix en baisse de 25 % : perte de 1,026 %. En hausse de 25 % : 0,619 %.</p>
+<p>Baisse de 50 % : 5,719 %. Hausse de 50 % : 2,020 %.</p>
+<p>Hausse de 100 %, donc doublement : 5,719 %.</p>
+<p>Hausse de 200 % : 13,397 %. De 300 % : 20,000 %. De 900 %, donc prix multiplié par dix : 42,504 %.</p>
+<p>Les mêmes 5,719 % pour une baisse de 50 % et une hausse de 100 % ne sont pas une erreur.</p>
+<p>Cela mérite d’être retenu : la perte mesure un rapport de prix, tandis que l’intuition quotidienne suit des pourcentages de hausse et de baisse. Deux mesures du même phénomène donnent des impressions opposées.</p>
+<p>La perte est symétrique pour un rapport et son inverse ; les variations en pourcentage ne le sont pas.</p>
+<p>« Impermanente » exige aussi une réserve.</p>
+<p>Si le prix peut revenir au rapport initial, l’écart avec la conservation peut diminuer. Mais dès que le LP sort, il est réalisé.</p>
+<p>Même sans sortie, c’est déjà un coût d’opportunité existant à la valeur de marché, non une perte encore inexistante.</p>
+<p>Les observations ne soutiennent aucune formule générale affirmant que les LP gagnent ou perdent toujours.</p>
+<p>Une étude de 2021 reconstitue les positions de dix-sept pools après le lancement de v3 : 199,3 millions de dollars de frais et 260,1 millions de pertes impermanentes estimées, soit moins 60,8 millions relativement à la conservation. Ces pools ne sont pas l’ensemble : ils sont sélectionnés par taille, actifs et disponibilité des données, pendant les débuts de v3.</p>
+<p>Une autre étude reconstitue positions, intervalles et gestion réels : les pools stables ou peu volatils peuvent donner des rendements simples mais faibles ; des rendements importants accompagnent généralement des intervalles étroits, plus de risque et une gestion active.</p>
+<p>Une troisième utilise plusieurs pools de 2022 à 2023, les événements d’échange pour les frais et les prix externes à la seconde pour simuler les pertes d’arbitrage. Plusieurs pools v3 ne couvrent pas ces pertes simulées, tandis que les v2 étudiés les couvrent plus souvent ; dans la deuxième année, leurs frais valent environ trois fois les pertes.</p>
+<p>Cette troisième étude rappelle particulièrement un problème de périmètre.</p>
+<p>Perte impermanente et perte relativement au rééquilibrage ne sont pas le même indicateur.</p>
+<p>La première compare à la conservation ; la seconde, à une stratégie continuellement rééquilibrée sans friction au prix extérieur, capturant surtout l’arbitrage contre les cotations retardées de l’AMM.</p>
+<p>Présenter une étude de la seconde catégorie comme une mesure de perte impermanente change sa référence.</p>
+<p>Le gain net réel du LP exige donc au moins une décomposition : variation propre des actifs, plus frais, plus incitations, moins perte selon la référence, moins gas, moins coût de rééquilibrage.</p>
+<p>Le rendement annualisé des frais affiché n’est pas directement le profit.</p>
+<p>Un détail mérite attention : il y a six termes à droite de l’égalité, mais l’interface n’en montre généralement qu’un, le seul nécessairement positif.</p>
+<p>C’est particulièrement vrai de la liquidité concentrée.</p>
+<p>V3 ne supprime pas la courbe : chaque intervalle actif est traité comme un pool à produit constant avec réserves virtuelles. Le même capital nominal se concentre sur une bande étroite, augmentant fortement la profondeur près du prix courant.</p>
+<p>Mais lorsque le prix sort de la bande, la position ne participe plus aux échanges, ne perçoit plus les frais du pool et devient entièrement l’un des deux actifs.</p>
+<p>Cela augmente la profondeur d’un capital donné dans un intervalle, non inconditionnellement son rendement.</p>
+<p>Plus la concentration est étroite, plus le capital reçoit de frais tant que le prix reste dedans, et plus il est facile que le prix en sorte.</p>
+<h2 id="section-3">III. Cinq cent vingt-six mille</h2>
+<p>Le minage de liquidité exige de distinguer trois dates.</p>
+<p>Le 26 février 2020, Compound Labs publie la gouvernance COMP et l’allocation initiale. Le 27 mai, une annonce précise l’extension de la distribution aux utilisateurs. Les travaux universitaires retiennent généralement le 15 juin comme lancement ; l’article contemporain de Compound Labs date le jalon du 16 juin selon sa publication.</p>
+<p>Il ne faut pas imposer une date unique : plan, bloc d’exécution et fuseau de publication suffisent à créer un jour d’écart.</p>
+<p>L’offre COMP est de dix millions. L’annonce initiale répartit 2 396 307 aux actionnaires de Compound Labs, soit 23,96307 % ; 2 226 037 aux fondateurs et à l’équipe, soit 22,26037 % ; 372 707 aux futurs membres, soit 3,72707 % ; 4 229 949 aux utilisateurs, soit 42,29949 % ; 775 000 aux autres usages de gouvernance communautaire, soit 7,75 %.</p>
+<p>Un point technique est souvent mal écrit.</p>
+<p>Le projet ne crée pas de nouveaux COMP à chaque bloc avec inflation illimitée.</p>
+<p>Le total est déjà fixé ; 4 229 949 sont réservés puis libérés en circulation par bloc.</p>
+<p>Au début, 0,50 COMP est distribué par bloc Ethereum, soit environ 2 880 par jour avec un bloc de quinze secondes.</p>
+<p>C’est une approximation fondée sur le temps de bloc, non une garantie par jour civil.</p>
+<p>Deux couches gouvernent la répartition : entre marchés selon les intérêts produits, puis moitié aux déposants et moitié aux emprunteurs de chacun, au prorata de leurs soldes.</p>
+<p>Une rétroaction apparaît vite.</p>
+<p>Les marchés à taux d’emprunt élevé reçoivent plus de COMP, et recevoir du COMP accroît l’envie d’emprunter.</p>
+<p>La gouvernance change donc la règle. La reconstitution universitaire date l’exécution du 2 juillet 2020 : les pondérations passent des intérêts accumulés à la demande d’emprunt en dollars.</p>
+<p>Ce n’est pas abstrait.</p>
+<p>L’analyse contemporaine relève, du 14 au 30 juin 2020, une dette BAT passant d’environ 209 000 à 1,1 milliard de jetons, et des dépôts d’environ 7,4 millions à 1,3 milliard.</p>
+<p>À partir de ces chiffres arrondis, l’encours final des emprunts représentait environ 5 263 fois le niveau initial, soit une hausse d’environ 526 000 %. Cela mesure des unités de BAT, pas des entrées nettes de capitaux en dollars.</p>
+<p>Ce sont des BAT, non de la valeur bloquée en dollars, et nullement une demande de crédit de l’économie réelle née de rien pour 1,1 milliard de BAT. On peut déposer, emprunter puis redéposer le même actif pour grossir les soldes récompensés.</p>
+<p>Ce qu’il faut retenir ici est l’ordre de grandeur, pas une décimale. Une telle expansion rappelle qu’un solde susceptible d’être réutilisé en boucle ne représente pas automatiquement un montant égal de capitaux extérieurs ou une demande réelle de crédit.</p>
+<p>Le parcours est ensuite reconstitué transaction par transaction.</p>
+<p>Une étude de Compound de mai 2019 à septembre 2020 identifie 2 141 comptes utilisant le levier récursif, pour plus de six cents millions de dollars d’offre, environ la moitié de l’échantillon.</p>
+<p>Le plus grand fournisseur affiche 342 millions de dollars cumulés fournis et 247 millions empruntés. Après suivi des boucles, les auteurs estiment son apport propre initial à environ cinquante-cinq millions.</p>
+<p>Soit environ 16 % de l’offre comptabilisée.</p>
+<p>342 millions dans les comptes, cinquante-cinq millions de capital.</p>
+<p>Cela répond à la question économique du mécanisme.</p>
+<p>Il ne crée pas ex nihilo des revenus de prêt ordinaires. Il ajoute aux intérêts une subvention en actifs de gouvernance préalloués.</p>
+<p>Sur une même période et une même base de capital, le rendement d’un déposant correspond approximativement aux intérêts divisés par le capital, auxquels s’ajoute la valeur de marché des COMP qui lui sont attribués sur cette période, divisée par le capital admissible. Pour annualiser, les deux composantes doivent employer la même période et la même méthode de conversion.</p>
+<p>Le taux de coût net d’un emprunteur correspond approximativement au taux d’emprunt sur une période donnée, moins la valeur de marché des récompenses reçues sur cette même période divisée par l’encours emprunté. Les périodes doivent être identiques pour permettre la comparaison.</p>
+<p>Si la seconde composante dépasse la première, emprunter a un taux net négatif : les intérêts payés sont inférieurs à la valeur des COMP reçus.</p>
+<p>Le rendement annualisé de l’interface exige donc au moins deux parties.</p>
+<p>L’une vient des frais de transaction, intérêts et frais de liquidation réellement payés par d’autres utilisateurs.</p>
+<p>L’autre vient de l’entrée en circulation de jetons de gouvernance réservés.</p>
+<p>Pour COMP, il faut particulièrement dire libération en circulation, non hausse de l’offre totale.</p>
+<p>Le bénéficiaire reçoit du COMP ; en face, ce n’est pas un emprunteur courant qui paie autant de liquidités, mais une réserve qui diminue, tandis que la rareté relative des détenteurs existants dans la circulation est diluée.</p>
+<p>Le cours décide de la valeur en dollars de la subvention : 0,50 par bloc peut donc produire des rendements annualisés très différents.</p>
+<p>Il faut conserver un contrepoint.</p>
+<p>L’étude courte relie fortement la hausse de juin au lancement COMP ; une autre, sur des données quotidiennes plus longues de mai 2019 à juin 2021, convertit les créations nettes en dollars au cours du jour et trouve peu de pouvoir explicatif supplémentaire des variables concernées sur les dépôts nets.</p>
+<p>Une hausse d’activité visible à court terme et le rôle de principale variable statistique des capitaux nets sur une longue période sont deux propositions différentes.</p>
+<p>Les études ne se contredisent pas réellement.</p>
+<h2 id="section-4">IV. Gouvernance ou droit au revenu ?</h2>
+<p>Confondre frais du protocole, valeur du jeton et droit de son détenteur au revenu est l’un des principaux nœuds du récit de cette vague.</p>
+<p>Pour Uniswap v2 en 2020, les frais effectifs sont de 0,30 %, entièrement ajoutés aux réserves des LP lorsque le prélèvement protocolaire est désactivé.</p>
+<p>V2 prévoit bien un prélèvement : la gouvernance peut capter environ un sixième des frais, souvent résumé économiquement à 0,05 % pour le protocole et 0,25 % pour les LP.</p>
+<p>Mais en 2020, l’existence du commutateur ne signifie pas que les détenteurs touchent déjà de l’argent.</p>
+<p>L’annonce UNI donne gouvernance, contrôle de trésorerie et du commutateur, lui-même soumis à cent quatre-vingts jours de verrou temporel.</p>
+<p>La suite confirme aussi la distinction entre frais protocolaires et dividendes.</p>
+<p>Les documents de gouvernance du test de 2022 précisent que celui-ci ne décide ni de l’usage ultérieur des recettes ni d’une attente de paiement aux détenteurs.</p>
+<p>Après le changement architectural adopté fin 2025, les documents officiels de 2026 indiquent un prélèvement actif sur v2 et certains v3, affecté à une destruction de jetons.</p>
+<p>La destruction est un effet indirect d’offre pour les jetons restants, non un dividende contractuel versé par compte en dollars ou autres actifs.</p>
+<p>Dans Compound v2, le flux part de l’emprunteur : sa dette croît avec l’indice d’emprunt ; le taux de conversion du titre de dépôt augmente avec les intérêts distribuables ; le facteur de réserve en retient une partie pour le protocole.</p>
+<p>Les recherches sur ce contrat précisent qu’aucun dispositif explicite de distribution automatique de ces réserves aux détenteurs COMP n’existe dans leur période.</p>
+<p>On ne peut donc qualifier COMP de droit à dividende sur les profits de Compound.</p>
+<p>Plus précisément, COMP contrôle la gouvernance qui modifie les paramètres ; intérêts conservés par le protocole et flux des détenteurs sont deux comptes distincts.</p>
+<p>SushiSwap fournit le contre-exemple : on ne peut non plus dire qu’aucun jeton de gouvernance n’a de revenu.</p>
+<p>Issu de v2, son modèle classique de staking laisse environ 0,25 % des 0,30 % aux LP et convertit environ 0,05 % en SUSHI dans le pool de staking, dont le titre s’échange contre davantage de SUSHI à mesure des revenus.</p>
+<p>Les détenteurs qui stakent activement disposent donc d’un mécanisme économique de créance sur les frais.</p>
+<p>Détenir simplement ne suffit pas : il faut staker.</p>
+<p>L’usage des frais change ensuite par gouvernance ; « 0,05 % à jamais » serait aussi inexact.</p>
+<p>Le droit au revenu doit donc être précisé protocole par protocole, époque par époque et selon l’action accomplie.</p>
+<p>Il faut placer la distribution dans le même tableau du capital.</p>
+<p>Le 16 septembre 2020, l’offre initiale UNI est d’un milliard : 60,000 % communauté, 21,266 % équipe et futurs employés, 18,044 % investisseurs, 0,690 % conseillers ; les trois dernières catégories sont annoncées comme libérées sur quatre ans.</p>
+<p>Dans les 60 % communautaires, 15 % de l’offre totale sont immédiatement réclamables par les participants historiques, et 43 % restent en trésorerie.</p>
+<p>L’airdrop compte des adresses, non des personnes : 49 192 anciennes adresses LP partagent 49 166 400 jetons ; 251 534 adresses utilisatrices partagent 100 613 600, soit quatre cents chacune si admissible.</p>
+<p>Plusieurs adresses pour une personne ou un contrat pour plusieurs personnes font diverger les comptes.</p>
+<p>Pour COMP, actionnaires, équipe fondatrice et future équipe totalisent environ la moitié, contre 42,30 % aux utilisateurs.</p>
+<p>Discipline probatoire : l’annonce ne fixe explicitement quatre ans de libération que pour fondateurs et équipe. Sans autre source primaire, on ne doit pas attribuer automatiquement quatre ans de blocage aux autres.</p>
+<p>C’est le même travail que pour les vingt-cinq projets sans restriction codée du texte précédent.</p>
+<p>Un dernier élément se trouve dans le code.</p>
+<p>Le contrat de distribution initial SushiSwap comporte explicitement un propriétaire, une adresse développeur et une fonction de migration très puissante. Le commentaire source dit même que le propriétaire détient un pouvoir énorme et prévoit de transférer ultérieurement la propriété à la gouvernance.</p>
+<p>Déployer un contrat intelligent ne signifie pas supprimer dès le premier jour tout intermédiaire administratif.</p>
+<p>L’écart est concret. La première phrase se vérifie : le code est public. La seconde concerne le pouvoir : qui détient la clé, quand compte-t-il la céder et que fait-il auparavant ?</p>
+<p>Qui contrôle réellement la clé privée, et pourquoi le pouvoir est transféré à un moment précis, ne peut pas nécessairement être établi à partir de la seule chaîne. Le transfert des droits et certaines opérations antérieures peuvent y laisser des traces ; l’identité et les motivations de la personne qui les contrôle exigent d’autres éléments.</p>
+<h2 id="section-5">V. Quatre personnes</h2>
+<p>Les flux, plutôt que la promotion, révèlent au moins quatre groupes économiques dans un échange.</p>
+<p>Le négociant donne l’actif d’entrée et supporte trois coûts distincts : frais explicites, impact de courbe, perte de prix et d’ordonnancement entre signature et exécution. L’adresse émettrice paie en outre le gas.</p>
+<p>La sortie minimale fixe seulement le moins qu’il accepte, sans garantir le prix vu à la soumission.</p>
+<p>Le LP reçoit des frais, pas une rente sans risque.</p>
+<p>L’échange modifie son stock ; après changement extérieur du prix, les arbitragistes ramènent le prix marginal vers le marché, lui faisant vendre mécaniquement l’actif qui monte relativement et acheter celui qui baisse.</p>
+<p>Face à la conservation, c’est la perte impermanente ; face au rééquilibrage continu sans friction, la perte d’arbitrage.</p>
+<p>Le même pool perçoit les frais et supporte la sélection adverse, mais recettes et pertes viennent de flux différents.</p>
+<p>De gros frais cumulés ne prouvent donc pas seuls un bénéfice net.</p>
+<p>L’arbitragiste voit, par exemple, l’ETH à 2 100 dehors et autour de 2 000 dedans. Il achète l’ETH bon marché jusqu’à disparition du gain après gas, frais et frictions.</p>
+<p>Son gain brut correspond principalement à la perte du LP relativement à une cotation immédiatement actualisée.</p>
+<p>Les arbitragistes concurrents en versent aussi une partie aux ordonnateurs et producteurs de blocs par priorité et paiements de lots.</p>
+<p>Dire que tous leurs gains viennent des négociants ordinaires est donc inexact.</p>
+<p>Le sandwich est autre chose : un chercheur d’opportunités repère un échange déplaçant le prix, achète avant et vend après, transformant le glissement accepté en marge. Le négociant subit alors une moins bonne exécution.</p>
+<p>L’article de 2020 ne consulte pas simplement un champ de revenu MEV total. Il identifie des robots d’arbitrage quantifiables, observe leurs enchères de frais pour la priorité et analyse le gas payé.</p>
+<p>Il établit d’abord une valeur économique mesurable de l’ordonnancement. Il ne voit qu’une catégorie identifiable de stratégies, non l’ensemble.</p>
+<p>Pour la taille du MEV, les différences méthodologiques font partie du résultat.</p>
+<p>Une reconstruction souvent citée identifie sandwiches, liquidations et arbitrages dans environ trente-deux mois d’Ethereum, pour quelque 540,54 millions de dollars de valeur extractible identifiée.</p>
+<p>Ce n’est pas la perte de tous les utilisateurs, mais les gains en dollars des trois opportunités classables par l’algorithme.</p>
+<p>Une nouvelle mesure de 2024 relève faux positifs et omissions des heuristiques, propose une détection par rentabilité et estime environ 675 millions de dollars de MEV extrait dans la période historique allant jusqu’à la transition de consensus de septembre 2022 et autour de celle-ci.</p>
+<p>Il ne faut pas choisir l’un contre l’autre : périodes, stratégies, visibilité des transactions privées, détection et déduction du gas ou des paiements incitatifs diffèrent.</p>
+<p>La liquidité concentrée fournit un autre contre-exemple.</p>
+<p>Une étude de liquidité juste à temps v3 identifie 36 671 événements de juin 2021 à janvier 2023. En simulant les mêmes échanges sans eux, elle trouve une amélioration moyenne du prix des négociants d’environ 0,139 %.</p>
+<p>Ces stratégies gagnent surtout en apportant temporairement du capital avant un gros échange, percevant les frais puis ressortant immédiatement.</p>
+<p>Le perdant est donc plus probablement le LP passif dilué que le négociant.</p>
+<p>Le MEV n’est pas un nombre unique de vol aux utilisateurs.</p>
+<p>L’acronyme contient au moins trois choses : arbitrage apportant le prix extérieur au pool contre les LP ; sandwich autour d’un échange contre le négociant ; capital temporaire captant les frais contre les LP passifs.</p>
+<p>Les victimes diffèrent. Les additionner masque ce fait.</p>
+<p>Voilà pourquoi les débats sont confus : l’un parle de vol aux particuliers, l’autre de coût nécessaire de l’efficacité, mais ils peuvent désigner deux catégories différentes.</p>
+<p>Pour ces quatre groupes, il faut distinguer paiements explicites et transferts de valeur. Les négociants paient frais et gas, et une exécution dégradée peut profiter aux chercheurs d’opportunités ; les gains d’arbitrage peuvent aussi correspondre à des pertes de stocks des fournisseurs de liquidité. La répartition du gas dépend du protocole du moment, et ne constitue pas entièrement un revenu des validateurs : depuis EIP-1559 sur Ethereum, les frais de base sont détruits, tandis que les frais de priorité et certains paiements supplémentaires vont au côté qui produit et ordonne les blocs.</p>
+<p>Les LP supportent en plus stock, perte selon la référence choisie, risque contractuel et gestion des intervalles concentrés.</p>
+<p>L’arbitrage rapproche le prix extérieur ; simultanément, l’incapacité du pool à retirer instantanément une cotation comme un professionnel transforme ce profit en coût de sélection adverse pour les LP.</p>
+<p>Les deux sont vrais ensemble.</p>
+<h2 id="section-6">VI. Trois dollars</h2>
+<p>Compter les adresses est facile ; identifier personnes, entreprises, revenus et géographie est difficile.</p>
+<p>Les deux ne sont pas interchangeables.</p>
+<p>Le 16 septembre 2020, Uniswap Labs annonce, en moins de deux ans, plus de vingt milliards de dollars d’échanges nominaux cumulés, plus de 250 000 adresses uniques et 8 484 actifs distincts ; plus de 49 000 adresses LP ont fourni plus d’un milliard de liquidité et reçu environ cinquante-six millions de frais.</p>
+<p>Ce sont des cumuls déclarés par le développeur. Les 250 000 adresses ne sont surtout pas 250 000 personnes.</p>
+<p>Une étude indépendante plus stricte de Compound, de mai 2019 à septembre 2020, trouve dans les flux cumulés 27,4 % de l’offre pour le premier déposant et 49 % pour les dix premiers ; 37,1 % des emprunts pour le premier et 59,9 % pour les dix premiers.</p>
+<p>Une deuxième étude, étendue au-delà de juin 2021, relève un problème plus inquiétant.</p>
+<p>Les données contiennent 356 800 adresses de dépôt.</p>
+<p>Environ 195 200 n’ont fait qu’un seul dépôt de stablecoins de trois dollars au plus.</p>
+<p>Environ 183 000 ont déposé exactement trois dollars.</p>
+<p>183 000 adresses, trois dollars chacune.</p>
+<p>Ces adresses ne peuvent pas être comptées directement comme autant d’utilisateurs indépendants. Les petits dépôts très répétitifs suggèrent une stratégie commune. L’auteur jugeait l’attente d’un éventuel airdrop l’hypothèse la plus plausible, sans avoir pour autant vérifié le nombre de personnes ni les motivations derrière chaque adresse.</p>
+<p>Le septième essai disait qu’une adresse n’est pas une personne. Ici, le constat va plus loin : une même personne peut organiser sa participation au moyen de nombreuses adresses, sans que leur simple comptage sur chaîne révèle pourquoi.</p>
+<p>Les auteurs les classent donc comme micro-adresses et les excluent de l’analyse principale.</p>
+<p>Après exclusion, il restait 161 569 adresses. La catégorie des petits portefeuilles de l’étude représentait 99,7 % des adresses, mais 16 % des dépôts en dollars ; les 256 grandes adresses représentaient 30,5 % des dépôts. Cette catégorie est distincte de celle des contrats intelligents. Toutes catégories réunies, les cent premières adresses détenaient environ 75 % des dépôts ; elles pouvaient inclure des contrats regroupant les fonds de nombreuses personnes, pas simplement cent particuliers fortunés.</p>
+<p>99,7 % des adresses, 16 % de l’argent.</p>
+<p>Cela ne signifie pas que quelqu’un trompe quelqu’un, mais qu’un récit d’inclusion par nombre d’adresses et un récit de concentration par montants peuvent être vrais dans les mêmes données.</p>
+<p>Les emprunts sont encore plus concentrés : environ 22 289 adresses distinctes, cent premières à environ 78 % des prêts, majoritairement en stablecoins, durée moyenne autour de trente et un jours.</p>
+<p>Les auteurs précisent que les propriétaires de certains grands contrats sont inconnus : autres protocoles, particuliers ou institutions possibles.</p>
+<p>Assimiler un contrat à une personne « baleine » n’est donc pas fondé.</p>
+<p>L’étude voit une partie de l’usage des fonds, non l’identité réelle des emprunteurs.</p>
+<p>Un redépôt rapide dans le même protocole ou un autre indique une agriculture de rendement à levier. On peut dire plus étroitement qu’une part importante de l’échantillon présente levier interne, arbitrage, vente à découvert ou recherche de récompenses.</p>
+<p>On ne peut en conclure qu’aucun besoin réel de liquidité n’est satisfait, puisque les usages finaux sur plateformes centralisées, de gré à gré, de consommation ou d’entreprise échappent généralement aux données.</p>
+<p>Côté LP, une classification comportementale sur 250 pools v3 trouve une part professionnelle croissant avec taille et volume. Au-delà de dix millions de dollars par jour, presque toute la liquidité et la plupart des frais relèvent des LP classés professionnels ; sous cent mille, les particuliers sont plus fréquents.</p>
+<p>L’identité est cependant inférée du comportement sur chaîne, non vérifiée professionnellement. C’est une étude de structure de marché, pas un recensement.</p>
+<p>La distribution des tailles d’échanges présente une lacune documentaire manifeste.</p>
+<p>Les sources de 2020 vérifiées sont riches en volumes cumulés, adresses et LP, mais aucune distribution trouvée ne couvre tout, soit publiquement reproductible, précise la date de conversion en dollars et relie les échanges aux personnes.</p>
+<p>Des études ultérieures reconstruisent coûts, MEV ou pools particuliers au niveau transactionnel, sans résoudre l’appartenance sociale des adresses.</p>
+<p>Surtout, les preuves hors chaîne d’une réduction des coûts financiers réels et d’un meilleur accès des non-bancarisés sont très rares.</p>
+<p>Les études observant portefeuilles, contrats, maturités, destinations et prêts récursifs ne relient pas durablement la plupart des adresses à personnes, revenus, pays, coûts de financement des entreprises ou substitution bancaire.</p>
+<p>L’accès ouvert sans autorisation est une propriété de conception annoncée, non une expérimentation aléatoire ni une mesure régionale d’inclusion.</p>
+<p>Les sources soutiennent donc assez fortement l’accès technique : une adresse avec portefeuille compatible et actifs peut appeler le contrat sans compte d’appariement traditionnel.</p>
+<p>Elles ne suffisent nettement pas à établir qu’une année donnée, la finance sur chaîne a réduit de façon empiriquement démontrée le coût du crédit pour les ménages ou petites entreprises d’une région.</p>
+<p>Il faudrait aussi compter acquisition des cryptoactifs, gas, surgarantie, accès aux stablecoins et plateformes, et sécurité du portefeuille.</p>
+<p>Pour 2020, cette recherche ne trouve aucune mesure causale hors chaîne permettant de chiffrer emplois, baisse en points de base du financement des petites entreprises ou population nouvellement desservie.</p>
+<p>Il faut conserver cette absence, non lui substituer la croissance des portefeuilles.</p>
+<h2 id="section-7">VII. Trois livres de comptes</h2>
+<p>Quelques formules courantes doivent être réécrites ; cette section les reprend.</p>
+<p>La DeFi a supprimé les intermédiaires.</p>
+<p>Plus exactement, certains protocoles convertissent en règles publiques des fonctions de moteurs d’appariement, comptes de courtage ou registres internes de prêt. Ils redistribuent les places intermédiaires sans supprimer toutes les fonctions.</p>
+<p>L’AMM n’a effectivement pas besoin d’un opérateur central de carnet pour décider chaque appariement, ni le prêt garanti d’un agent de crédit pour chaque autorisation.</p>
+<p>Mais les échanges peuvent dépendre de portefeuilles, interfaces, validateurs, constructeurs de blocs, services de nœuds, oracles, émetteurs de stablecoins, dépositaires d’actifs enveloppés, gouvernants et délégués, LP, arbitragistes, chercheurs et robots de liquidation.</p>
+<p>Le commentaire de code évoqué plus haut montre particulièrement qu’un déploiement en contrat n’implique pas l’absence de pouvoir administratif.</p>
+<p>La composabilité crée aussi de nouvelles dépendances intermédiaires.</p>
+<p>Une étude de vingt-trois protocoles étiquetés et de 10 663 881 comptes liés trouve une forte centralité des échanges et prêts dans le réseau d’appels, beaucoup d’appels imbriquant d’autres modules fondamentaux.</p>
+<p>L’utilisateur semble employer un seul protocole, mais l’opération dépend de plusieurs contrats et couches d’actifs.</p>
+<p>La TVL est le capital investi.</p>
+<p>Plus exactement, c’est la valeur totale bloquée selon une méthode, valorisant en dollars des adresses et soldes à une date. Elle varie avec les cours et peut recompter la même valeur économique sous-jacente via composition, enveloppement et emprunt-redépôt.</p>
+<p>Passer d’un à deux milliards peut donc signifier trois choses différentes : un milliard de véritables entrées nettes ; prix doublé des jetons déjà présents ; ou titres et actifs empruntés issus d’un même collatéral, redéposés ailleurs et comptés en couches.</p>
+<p>Les 342 millions comptables issus d’environ cinquante-cinq millions initiaux montrent pourquoi offre comptable et capital net extérieur diffèrent.</p>
+<p>Un document de travail de 2025 examine 939 protocoles : 10,5 % utilisent des serveurs externes ; soixante-huit méthodes dépassent la requête standard des soldes ; 240 requêtes identiques sont répétées entre protocoles. Dans une étude de cas sur quatre cents, seuls environ 46,5 % produisent des résultats identiques ou très proches des nombres publics.</p>
+<p>Cela mesure la vérifiabilité, non la fraude des 53,5 % restants.</p>
+<p>Une autre étude suit seulement la valeur sous-jacente finalement rachetable. Au pic du 2 décembre 2021, elle estime l’écart avec la TVL à environ 139,87 milliards de dollars et le rapport à environ deux.</p>
+<p>Ce n’est pas un coefficient universel de division par deux, mais le résultat historique de ce jeu de données, de ce suivi des dérivés et de cette date.</p>
+<p>Le haut rendement du minage de liquidité est un revenu créé par le protocole.</p>
+<p>Plus exactement, il additionne recettes payées par d’autres utilisateurs, frais et marges de prêt, et subventions de mise en circulation de gouvernance. Sources, durabilité et porteurs du coût diffèrent.</p>
+<p>L’opération UNI de 2020 prévoit, du 18 septembre au 17 novembre, cinq millions pour chacun de quatre pools, vingt millions au total, soit environ 83 333 par pool et par jour selon le temps de bloc alors supposé.</p>
+<p>Ce revenu LP est une allocation de trésorerie, non vingt millions supplémentaires payés par les négociants pendant ces deux mois.</p>
+<p>Le minage de liquidité serait donc seulement une subvention insoutenable achetant la croissance.</p>
+<p>Les sources permettent pourtant deux lectures, sans que le mécanisme seul tranche.</p>
+<p>La première est l’amorçage : la liquidité d’un jeune marché a des effets de réseau. Distribuer de la gouvernance compense risques contractuels, de prix et d’opportunité du capital précoce ; une fois profondeur, utilisateurs et intégrations développés, les frais réels peuvent remplacer une partie des subventions.</p>
+<p>La seconde est l’activité induite : tant que les récompenses dépassent intérêts, risque LP et gas, le capital rationnel a intérêt à déposer, emprunter et redéposer les mêmes fonds pour gonfler activité, dette et TVL. Si récompenses ou cours baissent, cette activité peut manquer de demande autonome.</p>
+<p>Les 2 141 comptes et plus de six cents millions de boucles, ainsi que l’explosion du bilan BAT en quelques semaines, prouvent directement le second mécanisme sur chaîne.</p>
+<p>Les deux lectures peuvent être vraies : la subvention amorce un réseau réel et crée aussi des boucles rentables seulement tant qu’elle existe.</p>
+<p>Les mêmes fonds peuvent même faire les deux : besoin réel de liquidité et amplification des récompenses. La chaîne montre la même suite de transferts.</p>
+<p>Pour distinguer les mécanismes, le sommet ne suffit pas. Il faut observer après réduction ou arrêt : rétention des dépôts nets, volume non incité, frais et intérêts, réutilisation, capital net débarrassé des boucles et revenus durables par unité de subvention.</p>
+<h2 id="section-8">VIII. Les rubriques absentes de l’interface</h2>
+<p>Revenons à la première phrase.</p>
+<p>Cette compression a réellement réussi, plus complètement que beaucoup de critiques ne veulent l’admettre. Elle fonctionne depuis plus de cinq ans, sans que quelqu’un ouvre chaque jour un guichet pour les échanges ordinaires. Cela ne certifie pas l’absence d’erreur de chaque implémentation.</p>
+<p>Le coût n’a pas disparu. Il a changé de place.</p>
+<p>Toutes ses nouvelles places ont un point commun : elles sont absentes de l’interface.</p>
+<p>L’interface affiche 0,30 % de frais.</p>
+<p>Mais ce seul taux ne présente pas le coût complet : impact sur le prix le long de la courbe, perte impermanente des fournisseurs de liquidité, attaques en sandwich et gas ne relèvent pas de la même colonne. Certaines interfaces affichent séparément l’impact sur le prix et le gas estimé. Même alors, un revenu de frais annualisé n’est pas un bénéfice.</p>
+<p>Ce n’est pas entièrement une dissimulation des concepteurs.</p>
+<p>Une partie peut être estimée avant la confirmation ; une autre ne sera connue qu’à l’exécution, voire à la clôture de la position. Estimation et résultat réalisé ne se situent pas au même niveau.</p>
+<p>L’impact dépend de la taille de l’échange et de la profondeur, calculables à l’instant du clic ; les bonnes interfaces le calculent.</p>
+<p>La perte impermanente dépend du prix à la sortie, donc du futur.</p>
+<p>Le sandwich dépend de quelqu’un qui vous voit dans le même bloc.</p>
+<p>Le gas dépend de la concurrence à cet instant.</p>
+<p>Ces quatre coûts n’ont pas la même temporalité. L’impact sur le prix et le gas peuvent être estimés à l’avance, mais changer avant l’inclusion et l’exécution. Les attaques en sandwich et l’ordonnancement dépendent de l’exécution réelle ; la perte impermanente dépend aussi du parcours ultérieur des prix et du moment de sortie.</p>
+<p>Une interface doit pourtant les présenter dans la même seconde pour rester utilisable.</p>
+<p>Elle ne peut afficher que les rubriques qu’elle sait calculer.</p>
+<p>Telle est ici la forme du reste.</p>
+<p>Il n’est pas caché par quelqu’un. Une interface limitée aux grandeurs calculables au présent le laisse hors de ce présent calculable.</p>
+<p>Ce point est plus général qu’il n’y paraît. Dans les essais précédents, certains restes se situaient hors du champ d’un standard, hors du code ou hors d’une mission de mesure attribuée à quelqu’un. En voici un quatrième : lorsque le devis est à l’écran, certains événements déterminant le résultat final n’ont pas encore eu lieu ; quand ce résultat peut être arrêté, la personne a déjà quitté l’écran de ce devis-là.</p>
+<p>Terminons par trois livres de comptes.</p>
+<p>Le premier est celui des échanges : frais et pertes d’exécution des négociants, frais et risques de stock des LP, extraction par arbitrage et ordonnancement.</p>
+<p>Le deuxième est celui des incitations : bénéficiaires des nouveaux jetons circulants, dilution relative et part sans rapport avec le revenu d’exploitation.</p>
+<p>Le troisième est celui des stocks de capital : apport net initial, soldes après boucles et valeur bloquée aux prix de marché.</p>
+<p>Chacun a ses unités.</p>
+<p>Le premier compte frais et pertes transaction par transaction ; le deuxième, jetons et cours du jour ; le troisième, capital initial, calculable seulement après démontage des boucles.</p>
+<p>Les fondre en un chiffre permet un récit soutenant n’importe quelle conclusion.</p>
+<p>Les séparer laisse moins de certitudes, mais chacune tient.</p>
+<p>La contrainte mathématique de la courbe elle-même peut être vérifiée clairement.</p>
+<p>Le thème revient souvent dans cette série, particulièrement nettement ici.</p>
+<p>Chacun peut recalculer les quantités entrantes et sortantes selon la règle publique. Cette contrainte reproductible est une base technique du fonctionnement continu, pas la preuve que chaque code et chaque bloc aient toujours été exempts d’erreurs.</p>
+<p>Elle calcule les réserves.</p>
+<p>Dans un échange v2 réel, les soldes sont d’abord ajustés pour les frais ; le contrat vérifie ensuite que leur produit est au moins égal au produit des anciennes réserves. Les réserves ne sont mises à jour qu’après cette vérification, sinon l’opération est annulée. C’est le cœur de ce contrôle, pas l’unique contrôle du contrat entier.</p>
+<p>Ce jugement ne demande ni qui vous êtes, ni l’origine des fonds, ni le prix extérieur. Seulement ce qui reste dans le pool.</p>
+<p>La fin du deuxième texte disait que la chaîne ne reconnaît que la puissance, pas ceux derrière. Même chose à une autre couche : seules les réserves comptent, non ce qui se passe dehors.</p>
+<p>Elle ne calcule ni votre raison de venir, ni votre situation après, ni le geste éventuel d’un autre entre votre confirmation et l’inclusion quelques secondes plus tard.</p>
+<p>La chaîne continue de régler les transactions, mais il n’existe toujours pas de consensus sur ce qu’elle règle.</p>
+<div class="source-note"><strong>Note sur les sources</strong><p>Cet essai s’appuie sur des documents publics relatifs aux protocoles, des données inscrites sur les chaînes, des pièces judiciaires, des documents réglementaires et des recherches évaluées par les pairs. Les chiffres conservent leur périmètre et leur méthode de mesure d’origine. Les sources de la série vont jusqu’à août 2026.</p><p><a href="https://tdri.or.th/wp-content/uploads/2025/03/02-Decentralized-lending-and-its-users-Insights-from-Compound.pdf" target="_blank" rel="noopener">Saengchote: Decentralized lending and its users ↗</a></p></div>
+</div><nav class="collection-nav"><a href="ep08.html"><small>Essai précédent</small>Les deux voies des stablecoins</a><a href="ep10.html"><small>Essai suivant</small>Les oracles</a></nav></article></main><footer><div class="footer-inner"><div class="footer-brand"><div class="footer-logo">Non <span>Dubito</span></div><div class="footer-tagline">Thought has no mother tongue</div></div><div class="footer-bottom">© 2026 Han Qin · Non Dubito</div></div></footer></body></html>
