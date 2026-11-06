@@ -13,13 +13,14 @@ from pathlib import Path
 from zipfile import ZipFile
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
+from daily_received import load_new_layout
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/'data/daily-full'
 LANGS=('zh','hant','en','de','fr','es','ja','ko')
 FOREIGN=('en','de','fr','es','ja','ko')
-GROUPS=('work','parenting','conflict')
-SERIES_EN={'work':'The Structure of Work','parenting':'The Structure of Parenting','conflict':'The Structure of Conflict'}
+GROUPS=('work','parenting','conflict','self','money','time','social','growth')
+SERIES_EN={'work':'The Structure of Work','parenting':'The Structure of Parenting','conflict':'The Structure of Conflict','self':'Structures Within the Self','money':'The Structure of Money','time':'Structures Within Time','social':'Structures Within Social Life','growth':'The Structure of Growth'}
 
 def digest(value):return hashlib.sha256(value if isinstance(value,bytes) else value.encode()).hexdigest()
 def serialized(value):return json.dumps(value,ensure_ascii=False,indent=2)+'\n'
@@ -69,6 +70,8 @@ def load_archive(path,group):
     with ZipFile(path) as z:
         assert z.testzip() is None
         files={n.split('/',1)[1]:z.read(n) for n in z.namelist() if '/' in n and not n.endswith('/') and not n.startswith('__MACOSX/')}
+    if group in ('self','money','time','social','growth'):
+        return load_new_layout(files,group,source_slug,clean_title)
     result={}
     for n,raw in files.items():
         if not re.fullmatch(r'batches/[^/]+/alignment/'+group+r'-\d{2}\.en\.json',n):continue
@@ -118,6 +121,20 @@ def import_batch(folder,plan_path,report_paths):
             assert e['episode'] in episodes and e['lang'] in r['languages'] and clean_title(e['title'])
     archive=folder/plan['archive'];assert digest(archive.read_bytes())==plan['archive_sha256']
     incoming=load_archive(archive,group)
+    inherited={}
+    # The Self17 correction predates this manuscript upgrade. Verify the old
+    # archived sentence explicitly, then retain the already-approved live one.
+    for correction_path in sorted((DATA/'corrections').glob('*.json')):
+        correction=json.loads(correction_path.read_text())
+        for ep in episodes:
+            item=incoming[ep]
+            if correction['path']!=f'essays/everyday/{group}/{item["slug"]}':continue
+            for change in correction['edits']:
+                edition=item['languages'][change['lang']];at=change['paragraph']-1
+                assert edition['paragraphs'][at] in (change['before'],change['after']),'Unknown inherited source correction'
+                edition.setdefault('received_paragraphs',list(edition['paragraphs']))
+                edition['paragraphs'][at]=change['after']
+                inherited.setdefault(ep,[]).append(dict(change,receipt=correction_path.name,receipt_sha256=digest(correction_path.read_bytes())))
     root_edits=plan.get('edits',[]);edits=[]
     # Source corrections are authored in both Chinese scripts and English;
     # no context-insensitive script conversion is silently accepted.
@@ -134,6 +151,7 @@ def import_batch(folder,plan_path,report_paths):
     for ep in episodes:
         path=DATA/group/f'{ep:02}.json';assert not path.exists(),('Refusing to overwrite reviewed edition',path)
         record=incoming[ep];record.update(series=group,episode=ep,archive=archive.name,archive_sha256=plan['archive_sha256'],baseline_commit=baseline,edits=[],review=dict(date=plan['date'],scope=plan['review_scope'],source_plan=plan_path.name,source_plan_sha256=digest(plan_path.read_bytes()),reports={p.name:digest(p.read_bytes()) for p in report_paths}))
+        if ep in inherited:record['inherited_corrections']=inherited[ep]
         for lang,edition in record['languages'].items():
             page=page_path(group,record['slug'],lang).read_text()
             before=body_paragraphs(page,lang if lang in ('zh','hant','en') else None)

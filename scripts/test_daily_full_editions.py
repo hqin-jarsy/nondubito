@@ -99,6 +99,11 @@ class DailyFullEditions(unittest.TestCase):
             self.assertEqual(build.digest((build.DATA/'batches'/review['source_plan']).read_bytes()),review['source_plan_sha256'])
             for name,value in review['reports'].items():
                 self.assertEqual(build.digest((build.DATA/'batches'/name).read_bytes()),value)
+            for e in r.get('inherited_corrections',[]):
+                self.assertEqual(build.digest((build.DATA/'corrections'/e['receipt']).read_bytes()),e['receipt_sha256'])
+                edition=r['languages'][e['lang']]
+                self.assertIn(edition['received_paragraphs'][e['paragraph']-1],(e['before'],e['after']))
+                self.assertEqual(edition['paragraphs'][e['paragraph']-1],e['after'])
         outputs={};build.upgrade_outputs(outputs)
         for p,t in outputs.items():self.assertEqual(p.read_text(),t,str(p))
         for path in (build.DATA/'corrections').glob('*.json'):
