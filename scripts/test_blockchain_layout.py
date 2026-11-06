@@ -303,12 +303,21 @@ class BlockchainLayoutTests(unittest.TestCase):
                         self.assertTrue(target.is_file(), href)
 
     def test_article_inner_html_is_unchanged_from_git(self):
+        from build_blockchain_full_editions import records, update_article
+        reviewed = records()
         for language in LANGUAGES:
             for slug in SLUGS[1:]:
                 path = page_path(language, slug)
                 with self.subTest(language=language, page=slug):
                     current = self.pages[path]
-                    original = Page(git_text(path, self.baseline))
+                    original_text = git_text(path, self.baseline)
+                    # Explicitly reviewed complete editions are content work,
+                    # not a navigation-only repair. Their exact expected body
+                    # comes from the sealed, paragraph-addressable record;
+                    # unreviewed episodes retain the original byte guard.
+                    if slug in reviewed:
+                        original_text = update_article(original_text, language, slug, reviewed[slug])
+                    original = Page(original_text)
                     old_body = original.inner_html(prose_node(original, language))
                     new_body = current.inner_html(prose_node(current, language))
                     self.assertTrue(old_body.strip(), "Baseline prose cannot be empty")

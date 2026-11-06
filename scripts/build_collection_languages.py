@@ -223,6 +223,9 @@ def render(spec: dict[str, object]) -> dict[Path, str]:
     if spec['id'] == 'chinese-emperors':
         from build_emperor_full_editions import upgrade_outputs as upgrade_emperor_full_editions
         upgrade_emperor_full_editions(outputs)
+    if blockchain:
+        from build_blockchain_full_editions import upgrade_outputs as upgrade_blockchain_full_editions
+        upgrade_blockchain_full_editions(outputs)
     return outputs
 
 

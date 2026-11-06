@@ -274,7 +274,11 @@ def render_article(source: Path, number: int, title: str, description: str) -> s
 </body>
 </html>
 '''
-    return upgrade_page(page, "zh", f"ep{number:02d}")
+    page = upgrade_page(page, "zh", f"ep{number:02d}")
+    from build_blockchain_full_editions import records, update_article
+    slug = f"ep{number:02d}"
+    reviewed = records().get(slug)
+    return update_article(page, "zh", slug, reviewed) if reviewed else page
 
 
 def index_json_ld() -> str:
