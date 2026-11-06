@@ -23,30 +23,19 @@
   <style>:root{--bc-serif:"Noto Serif TC",serif}</style>
   <meta property="article:published_time" content="2026-09-05">
   <meta property="article:modified_time" content="2026-09-05">
-  <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "The Merge",
-  "description": "The Merge 替換了共識機制並大幅降低鏈上能耗，同時把集中度、MEV 與審查問題搬到質押和區塊構建層。",
-  "inLanguage": "zh-Hant",
-  "author": {
-    "@type": "Person",
-    "name": "Han Qin (秦漢)"
-  },
-  "datePublished": "2026-09-05",
-  "dateModified": "2026-09-05",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://nondubito.net/essays/blockchain/zh-hant/ep18.html"
-  },
-  "isPartOf": {
-    "@type": "CreativeWorkSeries",
-    "name": "鑿構週期律：區塊鏈",
-    "url": "https://nondubito.net/essays/blockchain/zh-hant/"
-  },
-  "position": 18
-}</script>
-<link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script></head>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Merge","description":"The Merge 替換了共識機制並大幅降低鏈上能耗，同時把集中度、MEV 與審查問題搬到質押和區塊構建層。","inLanguage":"zh-Hant","author":{"@type":"Person","name":"Han Qin (秦漢)"},"datePublished":"2026-09-05","dateModified":"2026-11-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://nondubito.net/essays/blockchain/zh-hant/ep18.html"},"isPartOf":{"@type":"CreativeWorkSeries","name":"鑿構週期律：區塊鏈","url":"https://nondubito.net/essays/blockchain/zh-hant/"},"position":18}</script>
+<link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script><style id="blockchain-full-style">
+.collection-body p{margin:0 0 1.4em;overflow-wrap:break-word}
+.collection-body h2{margin:3em 0 1em;line-height:1.55;scroll-margin-top:110px}
+.collection-body .source-note{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--cream-border);color:var(--ink-muted)}
+.collection-body .source-note p{font-size:.85rem;line-height:1.8}
+.blockchain-full-toc{margin:1.5rem 0 2.5rem;padding:1rem 1.2rem;border:1px solid var(--cream-border);font-family:var(--sans)}
+.blockchain-full-toc summary{cursor:pointer;font-size:.82rem}
+.blockchain-full-toc li{margin:.6rem 0;line-height:1.6;font-size:.85rem}
+.collection-page{min-width:0;overflow-wrap:anywhere}
+html[lang="ko"] .collection-body{word-break:keep-all}
+</style>
+</head>
 <body class="blockchain-page blockchain-article-page">
   <a class="skip-link" href="#main-content">跳到正文</a>
   <header class="blockchain-site-header">
@@ -77,21 +66,12 @@
     </header>
     <div class="blockchain-article-layout">
       <aside class="chapter-aside">
-        <nav aria-label="本篇目錄"><p>本篇目錄</p><ol>
-          <li><a href="#section-1">一 前半句和後半句</a></li>
-          <li><a href="#section-2">二 換掉的那一段</a></li>
-          <li><a href="#section-3">三 炸彈被移了三次</a></li>
-          <li><a href="#section-4">四 二點六二兆瓦</a></li>
-          <li><a href="#section-5">五 三條現金流</a></li>
-          <li><a href="#section-6">六 三成和三成</a></li>
-          <li><a href="#section-7">七 六十三和九十四點八</a></li>
-          <li><a href="#section-8">八 換到哪裡去了</a></li>
-        </ol></nav>
+        <nav aria-label="本篇目錄"><p>本篇目錄</p><ol><li><a href="#section-1">一 前半句和後半句</a></li><li><a href="#section-2">二 換掉的那一段</a></li><li><a href="#section-3">三 炸彈被移了三次</a></li><li><a href="#section-4">四 二點六二兆瓦</a></li><li><a href="#section-5">五 三條現金流</a></li><li><a href="#section-6">六 三成和三成</a></li><li><a href="#section-7">七 六十三和九十四點八</a></li><li><a href="#section-8">八 換到哪裡去了</a></li></ol></nav>
       </aside>
       <article class="essay-body" data-search="區塊鏈 比特幣 以太坊 鑿構週期律">
         <h2 id="section-1">一 前半句和後半句</h2>
         <p class="opening">關於這次升級，最穩定，最少需要修辭的描述是這樣一句話：</p>
-        <p>以太坊保留了原有的執行狀態和虛擬機，把區塊生產，分叉選擇和最終確定，從工作量證明的礦工轉交給了信標鏈的驗證者；由此同時終止了原有的發行和這條鏈自身的大規模算力能耗需求，並把安全預算，最大可提取價值，資本門檻，集中度和監管爭論，轉移到質押，驗證服務和區塊構建這一組新的制度與市場結構上。</p>
+        <p>以太坊保留了原有的執行狀態和虛擬機，把區塊生產、分叉選擇和最終確定轉交給信標鏈的驗證者，結束了工作量證明礦工參與這條主鏈共識的階段；由此同時終止了原有的工作量證明挖礦發行和這條鏈自身的大規模算力能耗需求，並把安全預算、最大可提取價值、資本門檻、集中度和監管爭論，轉移到質押、驗證服務和區塊構建這一組新的制度與市場結構上。</p>
         <p>而這句話的前半和後半，證據等級完全不同。</p>
         <p>前半句說的是代碼。後半句說的是這個世界。</p>
         <p>這個系列走到第十八篇，遇到過很多次證據分層。而這一次特別乾淨，因為分層的那條線，正好落在同一句話的中間。</p>
@@ -170,7 +150,7 @@
         <p>關於能耗，最重要的不是記住 99.95% 這個數。</p>
         <p>是知道這個數不是一台電表讀出來的。</p>
         <p>基金會 2021 年那篇後來被大量引用的估算，本身就稱自己為一個大致的估算。</p>
-        <p>當時網絡上只有信標鏈。作者觀察了約 140,592 個驗證者和 16,405 個獨立存款地址，再剔除已知的交易所與服務商地址，然後假設一個家庭質押者平均運行約 5.4 個驗證者；家庭節點採用約 100 瓦除以 5.4 個驗證者的保守硬件假設，再加入托管運營商，最後估出整個權益證明網絡約 2.62 兆瓦。</p>
+        <p>當時用於估算權益證明能耗的是已經運行的信標鏈，執行交易的主網仍採用工作量證明。作者觀察了約 140,592 個驗證者和 16,405 個獨立存款地址，再剔除已知的交易所與服務商地址，然後假設一個家庭質押者平均運行約 5.4 個驗證者；家庭節點採用約 100 瓦除以 5.4 個驗證者的保守硬件假設，再加入托管運營商，最後估出整個權益證明網絡約 2.62 兆瓦。</p>
         <p>文章明確承認，無法知道每一個運營者實際用了什麼硬件。</p>
         <p>它隨後把這個數與當時另一家機構對工作量證明以太坊約 5.13 吉瓦的估計相比。</p>
         <p>用 2.62 兆瓦除以 5,130 兆瓦，再用 1 減去它，得到約 99.949%。</p>
@@ -185,13 +165,13 @@
         <p>這個區分不是吹毛求疵。一個寫成 99.95% 的數字，和一個寫成超過 99% 的數字，讀起來是兩種東西：前者像是量出來的，後者像是估出來的。</p>
         <p>而它們描述的是同一份材料。</p>
         <p>而這正是餘項的第一種形態。</p>
-        <p>工作量證明那一側的能耗，雖然也是估算，卻有一個相對硬的錨：算力可以從難度反推，礦機的功耗有廠商公佈的參數，礦場的電表是真實存在的。</p>
-        <p>權益證明這一側沒有這些。它只能靠一個假設：一個人跑幾個驗證者，一台機器多少瓦。</p>
-        <p>能耗沒有消失。它變成了一個模型。</p>
+        <p>工作量證明的能耗也一直需要估計：算力可以從區塊時間和難度推算，礦機廠商公佈設備功耗，礦場也有實際電表；但要從這些材料推到全球總量，仍然要假設機器的組合、使用率和所在地。</p>
+        <p>權益證明需要換一組假設：多少個驗證者共用一台機器，機器實際消耗多少瓦，托管與家庭節點怎樣組合。服務器同樣有功耗規格和電表，難的是把分散運行的硬件和負荷完整對應起來，而不是完全沒有可測量的基礎。</p>
+        <p>能耗沒有消失。估計它所需要的模型換了。</p>
         <p>而更準確一點說：能耗本身當然是真實下降的，而且降幅極大，這一點沒有任何爭議。</p>
-        <p>變成模型的是那個數字。原來那個數字有一個可以被外部檢驗的來源，現在它的來源是一組關於別人家裡跑著什麼機器的假設。</p>
-        <p>而這件事沒有辦法被修好。要精確量出全網驗證者的能耗，需要知道幾十萬台機器分別是什麼配置，放在哪裡，有沒有跑別的東西。而這些信息不在鏈上，也沒有哪個機構有權去收集。</p>
-        <p>所以這個數字大概會一直是一個估算。而它不會因為一直是估算就變得不重要，只是它永遠不能被當成一次測量來引用。</p>
+        <p>變了的是數字背後的推算方式。過去要估專用礦機和它們的用電，現在還要估一台通用機器承載多少驗證任務、用了多少額外電力。兩者都有可以核對的部分，也都有鏈上記錄本身不能提供的輸入。</p>
+        <p>要精確量出全網驗證者的能耗，需要知道實際運行了多少台機器、各是什麼配置、放在哪裡、有沒有跑別的任務；驗證者數量也不等於機器數量。這些信息不會自動寫在鏈上，本文所用材料沒有提供一份完整的全球硬件與用電普查。可以做調查和抽樣，卻不能把缺少這份普查說成任何機構都無權收集資料。</p>
+        <p>所以，目前引用的這個全網總量仍然是模型估計，不是一場完整的全網實測。這不會使它變得不重要；只是引用時，不能把估算寫成直接測量。</p>
         <h2 id="section-5">五 三條現金流</h2>
         <p>合併之後，驗證者的經濟收入不是一個單一的利率，而是三條不同的現金流。</p>
         <p>第一條是共識層發行。付出的是協議新發行的 ETH，而經濟上由所有現有持有人共同承擔稀釋；取得的是正確參與證明，提議和同步職責的驗證者。這是協議的安全預算，不來自交易使用者的直接付款。</p>
@@ -226,7 +206,7 @@
         <p>其次，2025 年之後單個驗證者的最大有效餘額可以提高到 2,048 枚，因此驗證者個數與控制的 ETH 數量更加不能互換。</p>
         <p>可比性有限的歷史截面是這樣的。</p>
         <p>2022 年9 月9 日，也就是合併之前幾天，按一家數據商的地址歸因，一個流動性質押協議約佔 31%，而三家中心化交易所合計約 30%。四個實體合計已經超過一半；而不能把那個協議等同於一個節點運營商。</p>
-        <p>2023 年8 月末，一家數據商把它定義的流動性質押協議相加，得到 1,130 萬枚對 2,640 萬枚，佔 43.7%。</p>
+        <p>2023 年8 月末，一家數據商把它定義的流動性質押協議相加，報道佔比為 43.7%，同時列出約 1,130 萬枚對 2,640 萬枚。後兩項約數直接相除約為 42.8%，和報道佔比並不完全一致；在原始時點和口徑沒有對齊之前，不能把三者當作同一個精確算式。</p>
         <p>2023 年末，一項學術文獻整理為 37%，同時列出交易所約 28%，質押池約 15%。</p>
         <p>2024 年4 月附近的一次地址標籤快照：那個協議約 29.6%，而列出的五家交易所合計約 22.4%。這是五家的下限，不是所有交易所。</p>
         <p>2025 年8 月14 日，那個協議降到 24.4%，而同一序列中 2023 年末的高點約 32.3%。</p>
@@ -234,7 +214,7 @@
         <p>這裡有一處衝突值得保留，而不是修掉。</p>
         <p>2023 年8 月的口徑是 43.7%，而 2023 年末的整理是 37%。</p>
         <p>時間只差幾個月，卻反而下降較多。</p>
-        <p>這不是資本在四個月裡淨流出了 6.7 個百分點。它說明的是：交易所發行的流動性代幣算不算流動性質押，質押池與流動性質押協議如何分類，不同材料的定義並不一致。</p>
+        <p>這不能直接讀成資本在四個月裡淨流出了 6.7 個百分點。交易所發行的流動性代幣算不算流動性質押，質押池與流動性質押協議如何分類，不同材料未必一致；實際份額和總質押分母也可能變化。沒有重跑原始數據，不能把差額全歸給其中一個原因。</p>
         <p>在沒有重跑兩套原始地址標籤之前，這兩個數不能被拼接成一條序列。</p>
         <p>而這類衝突在這個系列裡已經出現過很多次。差別在於，前面那些衝突大多來自不同機構量了不同的對象；這一次是同一個對象，而對象的邊界本身沒有一個公認的畫法。</p>
         <p>那個三分之一的閾值同樣需要改寫。</p>
@@ -277,7 +257,7 @@
         <p>同一天出現 63% 和 94.8%。</p>
         <p>而鏈的歷史沒有變化。</p>
         <p>變的是分母。</p>
-        <p>這是這個系列裡最乾淨的一次分母漂移。同一個日期，同一批區塊，同一份鏈上數據；而兩個頁面上的兩個數字相差三十一個百分點。</p>
+        <p>這是這個系列裡特別清楚的一次口徑漂移。同一個日期的網絡活動，在不同統計範圍和定義下，被兩個頁面寫成相差約三十二個百分點的比例。它們不宜被當成對同一個分母的精確測量。</p>
         <p>前者是當時的全部區塊指標，後者是現在重構的載荷交付指標。</p>
         <p>這個頁面還存在一個計數問題：同一個區塊或者載荷可能經過多個中繼交付，所以交付份額本身並不嚴格等於唯一區塊份額。</p>
         <p>於是那句四成三的以太坊區塊正在審查交易，是把指標擴大解釋了。</p>
@@ -296,7 +276,7 @@
         <p>監管這一條的時間線也已經改變，不能停在某個機構說質押是證券。</p>
         <p>2023 年2 月，一家交易所的質押服務被指控構成未註冊的證券發行，該公司同意停止相關的美國服務並支付 3,000 萬美元。這是一份和解決定，它證明該公司接受了和解條件，而不等於一項法院審理之後的普遍判例。</p>
         <p>2023 年6 月，另一家公司的同類服務被起訴。這是指控，不能寫成法院事實。</p>
-        <p>到 2025 年2 月，該案被撤回並最終以帶偏見的方式結案。案件結束了，而並沒有一項就實體問題作出的判決，判定那項服務當年的法律性質。</p>
+        <p>到 2025 年2 月，該案被撤回，並以不得就相同請求重新起訴的方式結案。案件結束了，而並沒有一項就實體問題作出的判決，判定那項服務當年的法律性質。</p>
         <p>2025 年5 月和 8 月，該機構的一個部門先後發佈兩份聲明，認為其文件所描述的某些協議質押活動不涉及證券的要約與銷售。這兩份當時都是部門意見，不是委員會規則；而一位委員還公開批評這些概括未必容易映射到現實中的服務。</p>
         <p>到 2026 年3 月，該機構在委員會層級發佈了正式的解釋性文件，明確把其所描述條件下的協議質押活動，視為不構成證券法意義上的要約或銷售。</p>
         <p>那份文件的效力，高於此前的部門聲明。</p>
@@ -328,30 +308,30 @@
         <p>現有的原始材料在這一點上，明顯弱於鏈上數據。</p>
         <p>而這個缺失本身應當保留。</p>
         <p>現在回到第一節。</p>
-        <p>前半句可以被確認。後半句不能。</p>
+        <p>前半句可以按協議與區塊記錄確認。後半句則必須把每一項經濟、能耗和集中度判斷拆開，分別核對它的模型、時點和口徑。</p>
         <p>而前面七節寫的每一樣東西，其實都是同一件事的不同側面：被換掉的那一樣，沒有消失。</p>
-        <p>能耗換成了一個模型。集中化的壓力換了位置。可提取價值換成了一條供應鏈。審查換成了中繼的政策。礦工的收入換成了質押者的收入。</p>
+        <p>能耗估計換了一套模型。集中壓力換了位置。最大可提取價值形成了新的區塊構建供應鏈。部分審查問題落在構建者和中繼器的政策上。主網的執行區塊收入改由驗證者領取，而原先支付給工作量證明礦工的那股發行終止了。</p>
         <p>每一樣都可以被指認換到了哪裡。</p>
-        <p>而每一樣在新的位置上，都比在舊的位置上更難被測量。</p>
-        <p>這不是有人在藏。舊位置上那些東西之所以好量，是因為它們是物理的：電，機器，算力。而新位置上那些東西是合約的，組織的，合同的，而這幾樣從來沒有一個統一的讀數。</p>
-        <p>算力可以從難度反推。而一個實體控制多少質押，要靠地址標籤。</p>
-        <p>礦場的電表可以讀。而驗證者的能耗只能靠一個假設一台機器多少瓦的模型。</p>
+        <p>而在新的位置，每一樣都要重新說明怎樣量；其中一些，也變得更難從公開記錄裡直接看清。</p>
+        <p>這不必歸因於有人隱瞞。舊系統的電、機器和算力也沒有一張天然完整的總表；新系統又多了質押服務、構建者、組織和合同。換了角色之後，原來的讀數不能直接接上，必須先問新讀數對應誰、包含什麼。</p>
+        <p>算力可以結合區塊時間和難度來估算。而一個實體控制多少質押，還要借助地址標籤等材料識別；兩種讀數都有各自的推算環節。</p>
+        <p>礦場可以讀電表，驗證節點也可以讀電表；難的是從分散的樣本推到全網，知道多少設備、承載多少任務，以及該把多少用電算給這一條鏈。</p>
         <p>礦工排序交易可以逐塊檢查。而一個區塊是不是被審查了，取決於你問的是構建者還是中繼。</p>
-        <p>礦工的收入寫在幣基交易裡。而一個質押者到手多少，要先知道他用的是哪一家服務商，抽成多少，那一年抽到了幾次提議。</p>
+        <p>以太坊工作量證明時期的區塊獎勵和費用收入，可以從區塊與狀態記錄核對，不是通過比特幣式的幣基交易發放。要看一個礦工真正到手多少，還得考慮礦池分配、費用和成本；要看一個質押者到手多少，也得看服務商抽成和提議、證明等任務的收益。鏈上總收入和人的淨收入，在兩邊都不是同一回事。</p>
         <p>餘項就在這裡。</p>
         <p>它不是被消滅的東西，也不是新出現的東西。</p>
         <p>它是同一樣東西換了位置之後，變得更難被看見的那一部分。</p>
         <p>2022 年9 月15 日約六點四十二分，第 15,537,393 號區塊之後，這條鏈換了一套共識。</p>
         <p>而它換掉的那一段，恰好是最容易被確認的一段。</p>
-        <p>鏈每 12 秒出一個時隙，每 32 個時隙結成一個紀元，每兩個紀元確定一次。這些都可以逐個核對，四年來沒有出過錯。</p>
+        <p>協議把時間劃成每 12 秒一個時隙、每 32 個時隙一個紀元；正常條件下，檢查點大約經過兩個紀元達到最終確定。時隙可以空缺，最終確定也可能延遲，不能把固定的時間結構說成四年來每次都準時完成、從未出錯。</p>
         <p>它確定的是哪一個區塊算數。</p>
         <p>它不確定那個區塊是誰構建的，裡面少了什麼，以及那些沒有進去的交易，是不是本來應該進去。</p>
         <p>鏈還在結算，而結算什麼還沒有共識。</p>
-        <div class="source-note"><strong>資料說明</strong><p>本文依據公開協議文檔、鏈上記錄、法院文書、監管文件與同行評議研究寫成；文中的數字均保留其統計口徑。系列資料截至 2026 年 8 月。</p></div>
+        <div class="source-note"><strong>資料說明</strong><p>本文依據公開協議文檔、鏈上記錄、法院文書、監管文件與同行評議研究寫成；文中的數字均保留其統計口徑。系列資料截至 2026 年 8 月。</p><p class="blockchain-review-references"><a href="https://www.sec.gov/rules-regulations/2026/03/s7-2026-09" target="_blank" rel="noopener">SEC March 2026 interpretation on crypto assets ↗</a></p></div>
       </article>
     </div>
     <nav class="article-nav series-pagination" aria-label="系列篇章導航"><a class="page-turn previous" href="ep17.html"><span>上一篇</span><strong>FTX</strong></a><a class="page-turn series-home" href="index.html"><span>全部篇章</span><strong>21 篇目錄</strong></a><a class="page-turn next" href="ep19.html"><span>下一篇</span><strong>L2</strong></a></nav>
-    <section class="reading-routes" aria-labelledby="continue-reading"><p class="route-kicker">Where next</p><h2 id="continue-reading">沿著問題繼續讀</h2><div class="reading-next-grid"><a href="ep19.html"><span>沿本系列繼續</span><strong>L2</strong><small>從這一處結算邊界，走向下一次構成。</small></a><a href="../../economy/index.html"><span>回到週期律</span><strong>鑿構週期律：經濟</strong><small>看擴張、固化、斷裂與重構怎樣在更長時間裡發生。</small></a><a href="../../../explore.html#history"><span>換一個入口</span><strong>歷史、權力與文明</strong><small>從制度、人物與文明結構繼續探索。</small></a></div></section>
+    <section class="reading-routes" aria-labelledby="continue-reading"><p class="route-kicker">Where next</p><h2 id="continue-reading">沿著問題繼續讀</h2><div class="reading-next-grid"><a href="ep19.html"><span>沿本系列繼續</span><strong>L2</strong><small>從這一處結算邊界，走向下一次構成。</small>L2</a><a href="../../economy/index.html"><span>回到週期律</span><strong>鑿構週期律：經濟</strong><small>看擴張、固化、斷裂與重構怎樣在更長時間裡發生。</small></a><a href="../../../explore.html#history"><span>換一個入口</span><strong>歷史、權力與文明</strong><small>從制度、人物與文明結構繼續探索。</small></a></div></section>
   </main>
   <footer class="blockchain-footer"><div><a href="../../../index.html" class="blockchain-brand"><span>NON</span><span>DUBITO</span></a><p>Essays in the Self-as-an-End Tradition</p></div><nav aria-label="頁腳導航"><a href="../../../explore.html">探索</a><a href="../../../latest.html">最近更新</a><a href="../../../library.html">完整書庫</a><a href="../../../about.html">關於</a></nav></footer>
 <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics --></body>

@@ -309,11 +309,16 @@ def index_json_ld() -> str:
 @tracked_html
 def render_index() -> str:
     description = "二十一篇从比特币披萨、挖矿与交易所，走到稳定币、跨链桥、L2 与真实世界资产，追问链能精确结算什么，又把什么留在账外。"
+    from build_blockchain_full_editions import records
+    reviewed = records()
     groups: list[str] = []
     for group_number, (name, deck, numbers) in enumerate(GROUPS, 1):
         cards = []
         for number in numbers:
             _, title, essay_description = ESSAYS[number - 1]
+            edition = reviewed.get(f"ep{number:02d}", {}).get("languages", {}).get("zh", {})
+            if "source_original_deck" in edition:
+                essay_description = edition["deck"]
             cards.append(f'''          <a class="blockchain-card" href="ep{number:02d}.html"><span class="card-number">{number:02d}</span><div><h3>{html.escape(title)}</h3><p>{html.escape(essay_description)}</p></div><span class="card-arrow" aria-hidden="true">→</span></a>''')
         groups.append(f'''      <section class="blockchain-group" aria-labelledby="group-{group_number}"><header><p>{group_number:02d}</p><div><h2 id="group-{group_number}">{name}</h2><p>{deck}</p></div></header><div class="blockchain-card-grid">
 {chr(10).join(cards)}

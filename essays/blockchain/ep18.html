@@ -22,30 +22,19 @@
   <link rel="stylesheet" href="blockchain.css?v=20260917">
   <meta property="article:published_time" content="2026-09-05">
   <meta property="article:modified_time" content="2026-09-05">
-  <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "The Merge",
-  "description": "The Merge 替换了共识机制并大幅降低链上能耗，同时把集中度、MEV 与审查问题搬到质押和区块构建层。",
-  "inLanguage": "zh-Hans",
-  "author": {
-    "@type": "Person",
-    "name": "Han Qin (秦汉)"
-  },
-  "datePublished": "2026-09-05",
-  "dateModified": "2026-09-05",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://nondubito.net/essays/blockchain/ep18.html"
-  },
-  "isPartOf": {
-    "@type": "CreativeWorkSeries",
-    "name": "凿构周期律：区块链",
-    "url": "https://nondubito.net/essays/blockchain/"
-  },
-  "position": 18
-}</script>
-<link rel="stylesheet" href="language-menu.css?v=20260917"><script defer src="language-menu.js?v=20260917"></script></head>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Merge","description":"The Merge 替换了共识机制并大幅降低链上能耗，同时把集中度、MEV 与审查问题搬到质押和区块构建层。","inLanguage":"zh-Hans","author":{"@type":"Person","name":"Han Qin (秦汉)"},"datePublished":"2026-09-05","dateModified":"2026-11-05","mainEntityOfPage":{"@type":"WebPage","@id":"https://nondubito.net/essays/blockchain/ep18.html"},"isPartOf":{"@type":"CreativeWorkSeries","name":"凿构周期律：区块链","url":"https://nondubito.net/essays/blockchain/"},"position":18}</script>
+<link rel="stylesheet" href="language-menu.css?v=20260917"><script defer src="language-menu.js?v=20260917"></script><style id="blockchain-full-style">
+.collection-body p{margin:0 0 1.4em;overflow-wrap:break-word}
+.collection-body h2{margin:3em 0 1em;line-height:1.55;scroll-margin-top:110px}
+.collection-body .source-note{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--cream-border);color:var(--ink-muted)}
+.collection-body .source-note p{font-size:.85rem;line-height:1.8}
+.blockchain-full-toc{margin:1.5rem 0 2.5rem;padding:1rem 1.2rem;border:1px solid var(--cream-border);font-family:var(--sans)}
+.blockchain-full-toc summary{cursor:pointer;font-size:.82rem}
+.blockchain-full-toc li{margin:.6rem 0;line-height:1.6;font-size:.85rem}
+.collection-page{min-width:0;overflow-wrap:anywhere}
+html[lang="ko"] .collection-body{word-break:keep-all}
+</style>
+</head>
 <body class="blockchain-page blockchain-article-page">
   <a class="skip-link" href="#main-content">跳到正文</a>
   <header class="blockchain-site-header">
@@ -76,21 +65,12 @@
     </header>
     <div class="blockchain-article-layout">
       <aside class="chapter-aside">
-        <nav aria-label="本篇目录"><p>本篇目录</p><ol>
-          <li><a href="#section-1">一 前半句和后半句</a></li>
-          <li><a href="#section-2">二 换掉的那一段</a></li>
-          <li><a href="#section-3">三 炸弹被移了三次</a></li>
-          <li><a href="#section-4">四 二点六二兆瓦</a></li>
-          <li><a href="#section-5">五 三条现金流</a></li>
-          <li><a href="#section-6">六 三成和三成</a></li>
-          <li><a href="#section-7">七 六十三和九十四点八</a></li>
-          <li><a href="#section-8">八 换到哪里去了</a></li>
-        </ol></nav>
+        <nav aria-label="本篇目录"><p>本篇目录</p><ol><li><a href="#section-1">一 前半句和后半句</a></li><li><a href="#section-2">二 换掉的那一段</a></li><li><a href="#section-3">三 炸弹被移了三次</a></li><li><a href="#section-4">四 二点六二兆瓦</a></li><li><a href="#section-5">五 三条现金流</a></li><li><a href="#section-6">六 三成和三成</a></li><li><a href="#section-7">七 六十三和九十四点八</a></li><li><a href="#section-8">八 换到哪里去了</a></li></ol></nav>
       </aside>
       <article class="essay-body" data-search="区块链 比特币 以太坊 凿构周期律">
         <h2 id="section-1">一 前半句和后半句</h2>
         <p class="opening">关于这次升级，最稳定，最少需要修辞的描述是这样一句话：</p>
-        <p>以太坊保留了原有的执行状态和虚拟机，把区块生产，分叉选择和最终确定，从工作量证明的矿工转交给了信标链的验证者；由此同时终止了原有的发行和这条链自身的大规模算力能耗需求，并把安全预算，最大可提取价值，资本门槛，集中度和监管争论，转移到质押，验证服务和区块构建这一组新的制度与市场结构上。</p>
+        <p>以太坊保留了原有的执行状态和虚拟机，把区块生产、分叉选择和最终确定转交给信标链的验证者，结束了工作量证明矿工参与这条主链共识的阶段；由此同时终止了原有的工作量证明挖矿发行和这条链自身的大规模算力能耗需求，并把安全预算、最大可提取价值、资本门槛、集中度和监管争论，转移到质押、验证服务和区块构建这一组新的制度与市场结构上。</p>
         <p>而这句话的前半和后半，证据等级完全不同。</p>
         <p>前半句说的是代码。后半句说的是这个世界。</p>
         <p>这个系列走到第十八篇，遇到过很多次证据分层。而这一次特别干净，因为分层的那条线，正好落在同一句话的中间。</p>
@@ -169,7 +149,7 @@
         <p>关于能耗，最重要的不是记住 99.95% 这个数。</p>
         <p>是知道这个数不是一台电表读出来的。</p>
         <p>基金会 2021 年那篇后来被大量引用的估算，本身就称自己为一个大致的估算。</p>
-        <p>当时网络上只有信标链。作者观察了约 140,592 个验证者和 16,405 个独立存款地址，再剔除已知的交易所与服务商地址，然后假设一个家庭质押者平均运行约 5.4 个验证者；家庭节点采用约 100 瓦除以 5.4 个验证者的保守硬件假设，再加入托管运营商，最后估出整个权益证明网络约 2.62 兆瓦。</p>
+        <p>当时用于估算权益证明能耗的是已经运行的信标链，执行交易的主网仍采用工作量证明。作者观察了约 140,592 个验证者和 16,405 个独立存款地址，再剔除已知的交易所与服务商地址，然后假设一个家庭质押者平均运行约 5.4 个验证者；家庭节点采用约 100 瓦除以 5.4 个验证者的保守硬件假设，再加入托管运营商，最后估出整个权益证明网络约 2.62 兆瓦。</p>
         <p>文章明确承认，无法知道每一个运营者实际用了什么硬件。</p>
         <p>它随后把这个数与当时另一家机构对工作量证明以太坊约 5.13 吉瓦的估计相比。</p>
         <p>用 2.62 兆瓦除以 5,130 兆瓦，再用 1 减去它，得到约 99.949%。</p>
@@ -184,13 +164,13 @@
         <p>这个区分不是吹毛求疵。一个写成 99.95% 的数字，和一个写成超过 99% 的数字，读起来是两种东西：前者像是量出来的，后者像是估出来的。</p>
         <p>而它们描述的是同一份材料。</p>
         <p>而这正是余项的第一种形态。</p>
-        <p>工作量证明那一侧的能耗，虽然也是估算，却有一个相对硬的锚：算力可以从难度反推，矿机的功耗有厂商公布的参数，矿场的电表是真实存在的。</p>
-        <p>权益证明这一侧没有这些。它只能靠一个假设：一个人跑几个验证者，一台机器多少瓦。</p>
-        <p>能耗没有消失。它变成了一个模型。</p>
+        <p>工作量证明的能耗也一直需要估计：算力可以从区块时间和难度推算，矿机厂商公布设备功耗，矿场也有实际电表；但要从这些材料推到全球总量，仍然要假设机器的组合、使用率和所在地。</p>
+        <p>权益证明需要换一组假设：多少个验证者共用一台机器，机器实际消耗多少瓦，托管与家庭节点怎样组合。服务器同样有功耗规格和电表，难的是把分散运行的硬件和负荷完整对应起来，而不是完全没有可测量的基础。</p>
+        <p>能耗没有消失。估计它所需要的模型换了。</p>
         <p>而更准确一点说：能耗本身当然是真实下降的，而且降幅极大，这一点没有任何争议。</p>
-        <p>变成模型的是那个数字。原来那个数字有一个可以被外部检验的来源，现在它的来源是一组关于别人家里跑着什么机器的假设。</p>
-        <p>而这件事没有办法被修好。要精确量出全网验证者的能耗，需要知道几十万台机器分别是什么配置，放在哪里，有没有跑别的东西。而这些信息不在链上，也没有哪个机构有权去收集。</p>
-        <p>所以这个数字大概会一直是一个估算。而它不会因为一直是估算就变得不重要，只是它永远不能被当成一次测量来引用。</p>
+        <p>变了的是数字背后的推算方式。过去要估专用矿机和它们的用电，现在还要估一台通用机器承载多少验证任务、用了多少额外电力。两者都有可以核对的部分，也都有链上记录本身不能提供的输入。</p>
+        <p>要精确量出全网验证者的能耗，需要知道实际运行了多少台机器、各是什么配置、放在哪里、有没有跑别的任务；验证者数量也不等于机器数量。这些信息不会自动写在链上，本文所用材料没有提供一份完整的全球硬件与用电普查。可以做调查和抽样，却不能把缺少这份普查说成任何机构都无权收集资料。</p>
+        <p>所以，目前引用的这个全网总量仍然是模型估计，不是一场完整的全网实测。这不会使它变得不重要；只是引用时，不能把估算写成直接测量。</p>
         <h2 id="section-5">五 三条现金流</h2>
         <p>合并之后，验证者的经济收入不是一个单一的利率，而是三条不同的现金流。</p>
         <p>第一条是共识层发行。付出的是协议新发行的 ETH，而经济上由所有现有持有人共同承担稀释；取得的是正确参与证明，提议和同步职责的验证者。这是协议的安全预算，不来自交易使用者的直接付款。</p>
@@ -225,7 +205,7 @@
         <p>其次，2025 年之后单个验证者的最大有效余额可以提高到 2,048 枚，因此验证者个数与控制的 ETH 数量更加不能互换。</p>
         <p>可比性有限的历史截面是这样的。</p>
         <p>2022 年9 月9 日，也就是合并之前几天，按一家数据商的地址归因，一个流动性质押协议约占 31%，而三家中心化交易所合计约 30%。四个实体合计已经超过一半；而不能把那个协议等同于一个节点运营商。</p>
-        <p>2023 年8 月末，一家数据商把它定义的流动性质押协议相加，得到 1,130 万枚对 2,640 万枚，占 43.7%。</p>
+        <p>2023 年8 月末，一家数据商把它定义的流动性质押协议相加，报道占比为 43.7%，同时列出约 1,130 万枚对 2,640 万枚。后两项约数直接相除约为 42.8%，和报道占比并不完全一致；在原始时点和口径没有对齐之前，不能把三者当作同一个精确算式。</p>
         <p>2023 年末，一项学术文献整理为 37%，同时列出交易所约 28%，质押池约 15%。</p>
         <p>2024 年4 月附近的一次地址标签快照：那个协议约 29.6%，而列出的五家交易所合计约 22.4%。这是五家的下限，不是所有交易所。</p>
         <p>2025 年8 月14 日，那个协议降到 24.4%，而同一序列中 2023 年末的高点约 32.3%。</p>
@@ -233,7 +213,7 @@
         <p>这里有一处冲突值得保留，而不是修掉。</p>
         <p>2023 年8 月的口径是 43.7%，而 2023 年末的整理是 37%。</p>
         <p>时间只差几个月，却反而下降较多。</p>
-        <p>这不是资本在四个月里净流出了 6.7 个百分点。它说明的是：交易所发行的流动性代币算不算流动性质押，质押池与流动性质押协议如何分类，不同材料的定义并不一致。</p>
+        <p>这不能直接读成资本在四个月里净流出了 6.7 个百分点。交易所发行的流动性代币算不算流动性质押，质押池与流动性质押协议如何分类，不同材料未必一致；实际份额和总质押分母也可能变化。没有重跑原始数据，不能把差额全归给其中一个原因。</p>
         <p>在没有重跑两套原始地址标签之前，这两个数不能被拼接成一条序列。</p>
         <p>而这类冲突在这个系列里已经出现过很多次。差别在于，前面那些冲突大多来自不同机构量了不同的对象；这一次是同一个对象，而对象的边界本身没有一个公认的画法。</p>
         <p>那个三分之一的阈值同样需要改写。</p>
@@ -276,7 +256,7 @@
         <p>同一天出现 63% 和 94.8%。</p>
         <p>而链的历史没有变化。</p>
         <p>变的是分母。</p>
-        <p>这是这个系列里最干净的一次分母漂移。同一个日期，同一批区块，同一份链上数据；而两个页面上的两个数字相差三十一个百分点。</p>
+        <p>这是这个系列里特别清楚的一次口径漂移。同一个日期的网络活动，在不同统计范围和定义下，被两个页面写成相差约三十二个百分点的比例。它们不宜被当成对同一个分母的精确测量。</p>
         <p>前者是当时的全部区块指标，后者是现在重构的载荷交付指标。</p>
         <p>这个页面还存在一个计数问题：同一个区块或者载荷可能经过多个中继交付，所以交付份额本身并不严格等于唯一区块份额。</p>
         <p>于是那句四成三的以太坊区块正在审查交易，是把指标扩大解释了。</p>
@@ -295,7 +275,7 @@
         <p>监管这一条的时间线也已经改变，不能停在某个机构说质押是证券。</p>
         <p>2023 年2 月，一家交易所的质押服务被指控构成未注册的证券发行，该公司同意停止相关的美国服务并支付 3,000 万美元。这是一份和解决定，它证明该公司接受了和解条件，而不等于一项法院审理之后的普遍判例。</p>
         <p>2023 年6 月，另一家公司的同类服务被起诉。这是指控，不能写成法院事实。</p>
-        <p>到 2025 年2 月，该案被撤回并最终以带偏见的方式结案。案件结束了，而并没有一项就实体问题作出的判决，判定那项服务当年的法律性质。</p>
+        <p>到 2025 年2 月，该案被撤回，并以不得就相同请求重新起诉的方式结案。案件结束了，而并没有一项就实体问题作出的判决，判定那项服务当年的法律性质。</p>
         <p>2025 年5 月和 8 月，该机构的一个部门先后发布两份声明，认为其文件所描述的某些协议质押活动不涉及证券的要约与销售。这两份当时都是部门意见，不是委员会规则；而一位委员还公开批评这些概括未必容易映射到现实中的服务。</p>
         <p>到 2026 年3 月，该机构在委员会层级发布了正式的解释性文件，明确把其所描述条件下的协议质押活动，视为不构成证券法意义上的要约或销售。</p>
         <p>那份文件的效力，高于此前的部门声明。</p>
@@ -327,30 +307,30 @@
         <p>现有的原始材料在这一点上，明显弱于链上数据。</p>
         <p>而这个缺失本身应当保留。</p>
         <p>现在回到第一节。</p>
-        <p>前半句可以被确认。后半句不能。</p>
+        <p>前半句可以按协议与区块记录确认。后半句则必须把每一项经济、能耗和集中度判断拆开，分别核对它的模型、时点和口径。</p>
         <p>而前面七节写的每一样东西，其实都是同一件事的不同侧面：被换掉的那一样，没有消失。</p>
-        <p>能耗换成了一个模型。集中化的压力换了位置。可提取价值换成了一条供应链。审查换成了中继的政策。矿工的收入换成了质押者的收入。</p>
+        <p>能耗估计换了一套模型。集中压力换了位置。最大可提取价值形成了新的区块构建供应链。部分审查问题落在构建者和中继器的政策上。主网的执行区块收入改由验证者领取，而原先支付给工作量证明矿工的那股发行终止了。</p>
         <p>每一样都可以被指认换到了哪里。</p>
-        <p>而每一样在新的位置上，都比在旧的位置上更难被测量。</p>
-        <p>这不是有人在藏。旧位置上那些东西之所以好量，是因为它们是物理的：电，机器，算力。而新位置上那些东西是合约的，组织的，合同的，而这几样从来没有一个统一的读数。</p>
-        <p>算力可以从难度反推。而一个实体控制多少质押，要靠地址标签。</p>
-        <p>矿场的电表可以读。而验证者的能耗只能靠一个假设一台机器多少瓦的模型。</p>
+        <p>而在新的位置，每一样都要重新说明怎样量；其中一些，也变得更难从公开记录里直接看清。</p>
+        <p>这不必归因于有人隐瞒。旧系统的电、机器和算力也没有一张天然完整的总表；新系统又多了质押服务、构建者、组织和合同。换了角色之后，原来的读数不能直接接上，必须先问新读数对应谁、包含什么。</p>
+        <p>算力可以结合区块时间和难度来估算。而一个实体控制多少质押，还要借助地址标签等材料识别；两种读数都有各自的推算环节。</p>
+        <p>矿场可以读电表，验证节点也可以读电表；难的是从分散的样本推到全网，知道多少设备、承载多少任务，以及该把多少用电算给这一条链。</p>
         <p>矿工排序交易可以逐块检查。而一个区块是不是被审查了，取决于你问的是构建者还是中继。</p>
-        <p>矿工的收入写在币基交易里。而一个质押者到手多少，要先知道他用的是哪一家服务商，抽成多少，那一年抽到了几次提议。</p>
+        <p>以太坊工作量证明时期的区块奖励和费用收入，可以从区块与状态记录核对，不是通过比特币式的币基交易发放。要看一个矿工真正到手多少，还得考虑矿池分配、费用和成本；要看一个质押者到手多少，也得看服务商抽成和提议、证明等任务的收益。链上总收入和人的净收入，在两边都不是同一回事。</p>
         <p>余项就在这里。</p>
         <p>它不是被消灭的东西，也不是新出现的东西。</p>
         <p>它是同一样东西换了位置之后，变得更难被看见的那一部分。</p>
         <p>2022 年9 月15 日约六点四十二分，第 15,537,393 号区块之后，这条链换了一套共识。</p>
         <p>而它换掉的那一段，恰好是最容易被确认的一段。</p>
-        <p>链每 12 秒出一个时隙，每 32 个时隙结成一个纪元，每两个纪元确定一次。这些都可以逐个核对，四年来没有出过错。</p>
+        <p>协议把时间划成每 12 秒一个时隙、每 32 个时隙一个纪元；正常条件下，检查点大约经过两个纪元达到最终确定。时隙可以空缺，最终确定也可能延迟，不能把固定的时间结构说成四年来每次都准时完成、从未出错。</p>
         <p>它确定的是哪一个区块算数。</p>
         <p>它不确定那个区块是谁构建的，里面少了什么，以及那些没有进去的交易，是不是本来应该进去。</p>
         <p>链还在结算，而结算什么还没有共识。</p>
-        <div class="source-note"><strong>资料说明</strong><p>本文依据公开协议文档、链上记录、法院文书、监管文件与同行评议研究写成；文中的数字均保留其统计口径。系列资料截至 2026 年 8 月。</p></div>
+        <div class="source-note"><strong>资料说明</strong><p>本文依据公开协议文档、链上记录、法院文书、监管文件与同行评议研究写成；文中的数字均保留其统计口径。系列资料截至 2026 年 8 月。</p><p class="blockchain-review-references"><a href="https://www.sec.gov/rules-regulations/2026/03/s7-2026-09" target="_blank" rel="noopener">SEC March 2026 interpretation on crypto assets ↗</a></p></div>
       </article>
     </div>
     <nav class="article-nav series-pagination" aria-label="系列篇章导航"><a class="page-turn previous" href="ep17.html"><span>上一篇</span><strong>FTX</strong></a><a class="page-turn series-home" href="index.html"><span>全部篇章</span><strong>21 篇目录</strong></a><a class="page-turn next" href="ep19.html"><span>下一篇</span><strong>L2</strong></a></nav>
-    <section class="reading-routes" aria-labelledby="continue-reading"><p class="route-kicker">Where next</p><h2 id="continue-reading">沿着问题继续读</h2><div class="reading-next-grid"><a href="ep19.html"><span>沿本系列继续</span><strong>L2</strong><small>从这一处结算边界，走向下一次构成。</small></a><a href="../economy/index.html"><span>回到周期律</span><strong>凿构周期律：经济</strong><small>看扩张、固化、断裂与重构怎样在更长时间里发生。</small></a><a href="../../explore.html#history"><span>换一个入口</span><strong>历史、权力与文明</strong><small>从制度、人物与文明结构继续探索。</small></a></div></section>
+    <section class="reading-routes" aria-labelledby="continue-reading"><p class="route-kicker">Where next</p><h2 id="continue-reading">沿着问题继续读</h2><div class="reading-next-grid"><a href="ep19.html"><span>沿本系列继续</span><strong>L2</strong><small>从这一处结算边界，走向下一次构成。</small>L2</a><a href="../economy/index.html"><span>回到周期律</span><strong>凿构周期律：经济</strong><small>看扩张、固化、断裂与重构怎样在更长时间里发生。</small></a><a href="../../explore.html#history"><span>换一个入口</span><strong>历史、权力与文明</strong><small>从制度、人物与文明结构继续探索。</small></a></div></section>
   </main>
   <footer class="blockchain-footer"><div><a href="../../index.html" class="blockchain-brand"><span>NON</span><span>DUBITO</span></a><p>Essays in the Self-as-an-End Tradition</p></div><nav aria-label="页脚导航"><a href="../../explore.html">探索</a><a href="../../latest.html">最近更新</a><a href="../../library.html">完整书库</a><a href="../../about.html">关于</a></nav></footer>
 <!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics --></body>

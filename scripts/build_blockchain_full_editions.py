@@ -117,6 +117,17 @@ def traditional_copy(converter, text):
                 ('合約里','合約裡'),('拍賣里','拍賣裡'),('調查里','調查裡'),
                 ('場景里','場景裡'),('句子里','句子裡'),('關係里','關係裡'),
                 ('事故里','事故裡'),('抵御','抵禦'),('覈實','核實'),
+                ('機制里','機制裡'),('體系里','體系裡'),('篇里','篇裡'),
+                ('總額里','總額裡'),('月里','月裡'),('賬戶里','賬戶裡'),
+                ('配置里','配置裡'),('系統里','系統裡'),('人里','人裡'),
+                ('參數里','參數裡'),('路線里','路線裡'),('分鐘里','分鐘裡'),
+                ('划成','劃成'),
+                ('歷史里','歷史裡'),('區塊里','區塊裡'),('文件里','文件裡'),
+                ('規則里','規則裡'),('說明書里','說明書裡'),('範圍里','範圍裡'),
+                ('結構里','結構裡'),('程序里','程序裡'),('曆史','歷史'),
+                ('合伙','合夥'),('只產品','隻產品'),('只基金','隻基金'),
+                ('組里','組裡'),('制度里','制度裡'),('年里','年裡'),
+                ('注明','註明'),
                 ('反復','反覆'),('重復','重複'),
                 ('看准','看準'),('量准','量準'),('說明瞭','說明了')]:
         converted=converted.replace(a,b)
@@ -362,6 +373,17 @@ def update_article(text,lang,slug,r):
         text=re.sub(r'(<meta (?:name="description"|property="og:description") content=")[^"]*(")',lambda m:m[1]+deck+m[2],text)
         if not reviewed_chinese_deck:
             text=re.sub(r'(<meta property="og:title" content=")[^"]*(")',lambda m:m[1]+title+m[2],text)
+    def reviewed_schema(match):
+        value=json.loads(match[2])
+        if isinstance(value,dict) and value.get('@type') in ('Article','BlogPosting'):
+            value['dateModified']=r['review']['date']
+            if lang not in ('zh','zh-hant'):
+                value['headline']=edition['title']
+            if lang not in ('zh','zh-hant') or reviewed_chinese_deck:
+                value['description']=edition['deck']
+            return match[1]+json.dumps(value,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+match[3]
+        return match[0]
+    text=re.sub(r'(<script\b[^>]*type="application/ld\+json"[^>]*>)(.*?)(</script>)',reviewed_schema,text,flags=re.S)
     return text
 
 

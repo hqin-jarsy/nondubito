@@ -51,6 +51,14 @@ class FullEditions(unittest.TestCase):
                     self.assertEqual({n.attrs.get('data-language') for n in links},set(build.LANGS))
                     self.assertNotIn('\ufffd',source)
                     self.assertEqual(source.count('static.cloudflareinsights.com/beacon.min.js'),1)
+                    for raw in re.findall(r'<script\b[^>]*type="application/ld\+json"[^>]*>(.*?)</script>',source,re.S):
+                        schema=json.loads(raw)
+                        if not isinstance(schema,dict) or schema.get('@type') not in ('Article','BlogPosting'):continue
+                        self.assertEqual(schema['dateModified'],record['review']['date'])
+                        if lang not in ('zh','zh-hant'):
+                            self.assertEqual(schema['headline'],edition['title'])
+                        if lang not in ('zh','zh-hant') or 'source_original_deck' in edition:
+                            self.assertEqual(schema['description'],edition['deck'])
 
     def test_source_corrections_are_synchronized_and_chinese_otherwise_preserved(self):
         for slug,record in self.records.items():
@@ -73,11 +81,15 @@ class FullEditions(unittest.TestCase):
         for record in self.records.values():
             for name,value in record['review']['reports'].items():
                 self.assertEqual(build.digest((build.DATA/'batches'/name).read_bytes()),value)
+            for name,value in record['review'].get('metadata_followups',{}).items():
+                self.assertEqual(build.digest((build.DATA/'batches'/name).read_bytes()),value)
         outputs={}
         build.upgrade_outputs(outputs)
         for path,text in outputs.items():self.assertEqual(path.read_text(),text,str(path))
 
     def test_reviewed_decks_and_explicit_note_labels(self):
+        from import_blockchain_series import render_index
+        rebuilt_index=render_index()
         label,note=build.source_note_parts('Note sur les sources. Documents publics, août 2026.')
         self.assertEqual(label,'Note sur les sources')
         self.assertEqual(note,'Documents publics, août 2026.')
@@ -91,6 +103,8 @@ class FullEditions(unittest.TestCase):
                 deck=re.search(r'<p class="article-deck">(.*?)</p>',source,re.S)[1]
                 self.assertEqual(build.plain(deck),e['deck'])
                 self.assertIn(html.escape(e['deck'],quote=True),source)
+                if lang=='zh':
+                    self.assertIn(html.escape(e['deck']),rebuilt_index)
 
 
 if __name__=='__main__':unittest.main()

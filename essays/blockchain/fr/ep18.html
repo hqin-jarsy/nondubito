@@ -1,1 +1,273 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>The Merge · Le cycle tailler–construire : blockchain — Non Dubito</title><meta name="description" content="La transition a fortement réduit l’énergie sans abolir concentration, MEV et censure ; elle a déplacé ces questions vers d’autres couches."><meta name="author" content="Han Qin (秦汉)"><meta property="og:type" content="article"><meta property="og:title" content="The Merge"><meta property="og:description" content="La transition a fortement réduit l’énergie sans abolir concentration, MEV et censure ; elle a déplacé ces questions vers d’autres couches."><meta property="og:url" content="https://nondubito.net/essays/blockchain/fr/ep18.html"><link rel="canonical" href="https://nondubito.net/essays/blockchain/fr/ep18.html"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="stylesheet" href="../../../style.css"><style>.collection-page{max-width:820px;margin:0 auto;padding:92px 2rem 72px}.language-route{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin-bottom:2.2rem}.collection-back{font-family:var(--sans);font-size:.72rem;color:var(--ink-muted);text-decoration:none}.collection-kicker{font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:2rem 0 .7rem}.collection-page h1{font-size:2.35rem;line-height:1.18;margin:.2rem 0 1rem}.collection-deck{font-size:1.08rem;color:var(--ink-light);line-height:1.75;margin-bottom:2.4rem}.collection-body section{margin:0 0 2.5rem}.collection-body h2{font-size:1.28rem;margin-bottom:.8rem}.collection-body p{font-size:1.02rem;line-height:1.9;margin:0}.edition-note{margin:3rem 0 0;padding-top:1.1rem;border-top:1px solid var(--cream-border);font-size:.8rem;color:var(--ink-muted);line-height:1.7}.collection-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.4rem}.collection-nav a{padding:1rem;border:1px solid var(--cream-border);text-decoration:none;color:var(--ink);line-height:1.45}.collection-nav a:last-child{text-align:right}.collection-nav small{display:block;font-family:var(--sans);font-size:.62rem;color:var(--ink-muted);margin-bottom:.3rem}@media(max-width:620px){.collection-page{padding:76px 1.25rem 54px}.collection-nav{grid-template-columns:1fr}.collection-nav a:last-child{text-align:left}}</style><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script></head><body><header><div class="header-inner"><a href="../../../index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../index.html">Essays</a><a href="../../../start.html">Start Here</a><a href="../../../library.html" class="active">Library</a><a href="../../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a></nav></div></header><main class="collection-page"><div class="language-route" aria-label="Language selector"><span class="blockchain-language-menu" role="group" aria-label="Langue"><a data-language="zh" href="../ep18.html">简体中文</a><a data-language="en" href="../en/ep18.html">English</a><a data-language="zh-hant" href="../zh-hant/ep18.html">繁體中文</a><a data-language="ja" href="../ja/ep18.html">日本語</a><a data-language="fr" href="ep18.html" aria-current="page">Français</a><a data-language="de" href="../de/ep18.html">Deutsch</a><a data-language="es" href="../es/ep18.html">Español</a><a data-language="ko" href="../ko/ep18.html">한국어</a></span></div><a class="collection-back" href="index.html">← Le cycle tailler–construire : blockchain</a><article><div class="collection-kicker">Technique, marchés et institutions · 18 / 21</div><h1>The Merge</h1><p class="collection-deck">La transition a fortement réduit l’énergie sans abolir concentration, MEV et censure ; elle a déplacé ces questions vers d’autres couches.</p><div class="collection-body"><section><h2>Ce qui s’est passé</h2><p>Ethereum a remplacé sa preuve de travail par la preuve d’enjeu tout en conservant sa couche d’exécution. C’était changer le moteur d’un réseau vivant.</p></section><section><h2>Ce que le registre a saisi</h2><p>La consommation nécessaire au consensus a chuté de façon spectaculaire et la bascule s’est faite sans arrêt général. Il n’est pas nécessaire de minimiser cette réussite.</p></section><section><h2>Ce qui reste hors compte</h2><p>Mais concentration du stake, valeur tirée de l’ordre des transactions et pouvoir des builders ou relais sont devenus centraux. Résoudre une charge ne dissout pas toutes les formes de pouvoir.</p></section></div><p class="edition-note"><em>Cette édition française est une réécriture autonome destinée au lecteur francophone.</em></p><nav class="collection-nav"><a href="ep17.html"><small>Essai précédent</small>← FTX</a><a href="ep19.html"><small>Essai suivant</small>L2 →</a></nav></article></main><footer><div class="footer-inner"><div class="footer-brand"><div class="footer-logo">Non <span>Dubito</span></div><div class="footer-tagline">Thought has no mother tongue</div></div><div class="footer-bottom">© 2026 Han Qin · Non Dubito</div></div></footer></body></html>
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>The Merge · Blockchain — Non Dubito</title><meta name="description" content="The Merge a remplacé le mécanisme de consensus et fortement réduit la consommation énergétique sur chaîne, tout en déplaçant concentration, MEV et censure vers le staking et la construction des blocs."><meta name="author" content="Han Qin (秦汉)"><meta property="og:type" content="article"><meta property="og:title" content="The Merge"><meta property="og:description" content="The Merge a remplacé le mécanisme de consensus et fortement réduit la consommation énergétique sur chaîne, tout en déplaçant concentration, MEV et censure vers le staking et la construction des blocs."><meta property="og:url" content="https://nondubito.net/essays/blockchain/fr/ep18.html"><link rel="canonical" href="https://nondubito.net/essays/blockchain/fr/ep18.html"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="stylesheet" href="../../../style.css"><style>.collection-page{max-width:820px;margin:0 auto;padding:92px 2rem 72px}.language-route{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin-bottom:2.2rem}.collection-back{font-family:var(--sans);font-size:.72rem;color:var(--ink-muted);text-decoration:none}.collection-kicker{font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:2rem 0 .7rem}.collection-page h1{font-size:2.35rem;line-height:1.18;margin:.2rem 0 1rem}.collection-deck{font-size:1.08rem;color:var(--ink-light);line-height:1.75;margin-bottom:2.4rem}.collection-body section{margin:0 0 2.5rem}.collection-body h2{font-size:1.28rem;margin-bottom:.8rem}.collection-body p{font-size:1.02rem;line-height:1.9;margin:0}.edition-note{margin:3rem 0 0;padding-top:1.1rem;border-top:1px solid var(--cream-border);font-size:.8rem;color:var(--ink-muted);line-height:1.7}.collection-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.4rem}.collection-nav a{padding:1rem;border:1px solid var(--cream-border);text-decoration:none;color:var(--ink);line-height:1.45}.collection-nav a:last-child{text-align:right}.collection-nav small{display:block;font-family:var(--sans);font-size:.62rem;color:var(--ink-muted);margin-bottom:.3rem}@media(max-width:620px){.collection-page{padding:76px 1.25rem 54px}.collection-nav{grid-template-columns:1fr}.collection-nav a:last-child{text-align:left}}</style><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"1c920752456e42b5b5469641245a07c2"}'></script><link rel="stylesheet" href="../language-menu.css?v=20260917"><script defer src="../language-menu.js?v=20260917"></script><style id="blockchain-full-style">
+.collection-body p{margin:0 0 1.4em;overflow-wrap:break-word}
+.collection-body h2{margin:3em 0 1em;line-height:1.55;scroll-margin-top:110px}
+.collection-body .source-note{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--cream-border);color:var(--ink-muted)}
+.collection-body .source-note p{font-size:.85rem;line-height:1.8}
+.blockchain-full-toc{margin:1.5rem 0 2.5rem;padding:1rem 1.2rem;border:1px solid var(--cream-border);font-family:var(--sans)}
+.blockchain-full-toc summary{cursor:pointer;font-size:.82rem}
+.blockchain-full-toc li{margin:.6rem 0;line-height:1.6;font-size:.85rem}
+.collection-page{min-width:0;overflow-wrap:anywhere}
+html[lang="ko"] .collection-body{word-break:keep-all}
+</style>
+</head><body><header><div class="header-inner"><a href="../../../index.html" class="site-title"><span class="title-latin">Non <span>Dubito</span></span><span class="title-sub">Essays in the Self-as-an-End Tradition</span></a><nav><a href="../../../index.html">Essays</a><a href="../../../start.html">Start Here</a><a href="../../../library.html" class="active">Library</a><a href="../../../about.html">About</a><a href="https://self-as-an-end.net" target="_blank" rel="noopener">SAE Theory ↗</a></nav></div></header><main class="collection-page"><div class="language-route" aria-label="Language selector"><span class="blockchain-language-menu" role="group" aria-label="Langue"><a data-language="zh" href="../ep18.html">简体中文</a><a data-language="en" href="../en/ep18.html">English</a><a data-language="zh-hant" href="../zh-hant/ep18.html">繁體中文</a><a data-language="ja" href="../ja/ep18.html">日本語</a><a data-language="fr" href="ep18.html" aria-current="page">Français</a><a data-language="de" href="../de/ep18.html">Deutsch</a><a data-language="es" href="../es/ep18.html">Español</a><a data-language="ko" href="../ko/ep18.html">한국어</a></span></div><a class="collection-back" href="index.html">← Le cycle tailler–construire : blockchain</a><article><div class="collection-kicker">Technique, marchés et institutions · 18 / 21</div><h1>The Merge</h1><p class="collection-deck">The Merge a remplacé le mécanisme de consensus et fortement réduit la consommation énergétique sur chaîne, tout en déplaçant concentration, MEV et censure vers le staking et la construction des blocs.</p><div class="collection-body">
+<details class="blockchain-full-toc"><summary>Dans cet essai</summary><ol><li><a href="#section-1">1. La première et la seconde moitié de la phrase</a></li><li><a href="#section-2">2. La partie remplacée</a></li><li><a href="#section-3">3. La bombe déplacée trois fois</a></li><li><a href="#section-4">4. 2,62 mégawatts</a></li><li><a href="#section-5">5. Trois flux de trésorerie</a></li><li><a href="#section-6">6. Trente pour cent et trente pour cent</a></li><li><a href="#section-7">7. 63 et 94,8</a></li><li><a href="#section-8">8. Vers où le déplacement a-t-il eu lieu ?</a></li></ol></details>
+<h2 id="section-1">1. La première et la seconde moitié de la phrase</h2>
+<p>La description la plus stable, exigeant le moins de rhétorique, de cette mise à niveau tient en une phrase :</p>
+<p>Ethereum a conservé l’état d’exécution et la machine virtuelle, mais confié production des blocs, choix des bifurcations et finalisation aux validateurs de la chaîne de balises. Cela a clos la participation des mineurs en preuve de travail au consensus de cette chaîne principale, ainsi que leur émission minière et le besoin propre à cette chaîne d’une forte dépense énergétique de calcul. Budget de sécurité, valeur maximale extractible, seuils de capital, concentration et controverses réglementaires se sont déplacés vers de nouvelles structures institutionnelles et marchandes : staking, services de validation et construction des blocs.</p>
+<p>Les deux moitiés de cette phrase n’ont pourtant pas du tout le même niveau de preuve.</p>
+<p>La première parle du code. La seconde, du monde.</p>
+<p>Au dix-huitième essai, la série a souvent rencontré des niveaux de preuve différents. Ici, la frontière est particulièrement nette : elle coupe une même phrase en deux.</p>
+<p>Les deux moitiés sont ensuite citées comme une seule chose. Une fois la mise à niveau achevée, les gens retiennent son nom ; sous ce nom se trouvent à moitié des faits de protocole vérifiables, à moitié plus d’une dizaine de mesures exigeant chacune son périmètre.</p>
+<p>Dans la diffusion, la seconde moitié porte généralement la certitude de la première.</p>
+<p>Les documents du protocole confirment directement la première : code remplacé, hauteur de bloc, condition de déclenchement, chacun peut vérifier.</p>
+<p>Chaque proposition économique, réglementaire ou de concentration de la seconde doit garder sa propre mesure et son niveau de preuve.</p>
+<p>La baisse d’énergie dépend des modèles utilisés aux deux extrémités. La concentration dépend du rattachement des adresses aux entités. La gravité de la censure dépend d’un dénominateur en blocs totaux ou en charges utiles livrées. Le rendement dépend de l’inclusion des frais prioritaires, de la valeur extractible, des commissions et de l’inflation.</p>
+<p>Ces débats ne sont pas de même niveau. La première moitié est vérifiable ; la seconde doit être mesurée, et chaque mesure doit déclarer son objet.</p>
+<p>Il s’agit donc ici de les séparer.</p>
+<p>La place du reste peut déjà être définie.</p>
+<p>Elle est particulièrement claire : ce qui a été remplacé n’a pas disparu.</p>
+<p>Cela change de nom, de porteur, de mesure et se déplace hors de portée du protocole.</p>
+<p>Le dernier de ces quatre changements est le plus important.</p>
+<p>Tant qu’un objet reste dans le protocole, sa définition s’impose à tous. Une fois déplacé à l’extérieur, qui le définit et selon quelle mesure deviennent des questions à débattre séparément.</p>
+<p>Les sept sections suivantes traitent essentiellement de ces débats.</p>
+<h2 id="section-2">2. La partie remplacée</h2>
+<p>La description la plus courte et exacte est que la mise à niveau ne réécrit pas comptes, contrats, machine virtuelle et exécution des transactions d’Ethereum en une autre chaîne.</p>
+<p>Elle remplace le consensus décidant quel bloc d’exécution appartient à la chaîne canonique : la preuve de travail cède à la preuve d’enjeu de Beacon, déjà indépendante depuis près de deux ans.</p>
+<p>C’est le sens pratique de la séparation entre couches d’exécution et de consensus.</p>
+<p>Le client d’exécution maintient les comptes, exécute la machine virtuelle, vérifie les transactions et exécute les charges utiles ; le client de consensus maintient l’état Beacon, vérifie les attestations, choisit les branches et finalise.</p>
+<p>Après la Fusion, un nœud complet normal doit faire fonctionner les deux en paire via une interface authentifiée ; le client validateur détient les clés de signature et utilise cet ensemble pour ses tâches.</p>
+<p>L’annonce du réseau principal avertit expressément que l’ancien modèle de nœud minier avec seul client d’exécution ne suffit plus.</p>
+<p>Beacon fonctionne d’abord, puis se raccorde.</p>
+<p>À sa genèse le 1er décembre 2020, le seuil de lancement d’au moins 16 384 validateurs de 32 ETH est atteint. Elle commence alors seule inscriptions, affectations aléatoires, attestations, choix de branche et finalisation, tandis que les mineurs continuent à traiter comptes et contrats réels du réseau principal.</p>
+<p>Entre 2020 et 2022, c’est donc déjà un véritable consensus de preuve d’enjeu opérationnel, mais pas encore le moteur des transactions du réseau principal.</p>
+<p>Le chemin de dépôt de l’époque est essentiel pour comprendre l’essor ultérieur du staking liquide.</p>
+<p>Trente-deux ETH sont envoyés de la couche d’exécution au contrat de dépôt ; Beacon reconnaît l’information et l’ajoute à la file d’activation. Jusqu’à l’activation des retraits, ce chemin est unidirectionnel au niveau du protocole.</p>
+<p>La spécification définit inscription, activation et sortie volontaire ; quitter les tâches de validation ne signifie pas restituer le principal à une adresse d’exécution dépensable.</p>
+<p>Les tâches des validateurs méritent aussi d’être précisées.</p>
+<p>Le temps est divisé en créneaux de douze secondes, trente-deux créneaux formant une époque. Un proposant est choisi parmi les validateurs actifs à chaque créneau ; les autres sont répartis en comités et attestent la tête de chaîne et les points de contrôle qu’ils observent.</p>
+<p>Le rendement normal rémunère l’accomplissement correct et rapide de ces tâches. La proposition est un tirage rare ; l’attestation constitue le travail quotidien continu de la plupart.</p>
+<p>Deux niveaux de consensus opèrent ensemble. L’un choisit principalement la tête à suivre ; l’autre donne aux points de contrôle des états justifiés puis finalisés.</p>
+<p>Dans des conditions normales, un point de contrôle est finalisé après environ deux époques, soit 12,8 minutes.</p>
+<p>La finalisation n’est pas la même notion que six confirmations en preuve de travail.</p>
+<p>La preuve de travail n’a pas de marqueur interne de finalisation. Plus une transaction est enfouie, plus la probabilité d’une réorganisation par une chaîne de travail cumulé supérieur diminue généralement : c’est un jugement économique probabiliste.</p>
+<p>Ici, le consensus produit un état protocolaire finalisé. Des finalisations contradictoires exigeraient qu’une proportion importante du poids de validation viole des conditions de confiscation démontrables.</p>
+<p>Cela ne signifie pas qu’un bloc finalisé soit physiquement impossible à changer pour toujours.</p>
+<p>Cela signifie que le franchir exige des violations massives du consensus, identifiables et punissables.</p>
+<p>Il faut distinguer pénalités ordinaires et confiscation pour faute.</p>
+<p>Une simple déconnexion ou tâche d’attestation ou de proposition manquée réduit généralement d’abord les récompenses ou entraîne des déductions ordinaires ; si la chaîne ne finalise pas longtemps, un mécanisme réduit continuellement le poids des non-participants.</p>
+<p>La véritable confiscation vise les signatures contradictoires prouvables : deux en-têtes différents signés pour le même créneau, ou attestations incompatibles. Le validateur sanctionné sort de force et subit une pénalité supplémentaire de corrélation ; si beaucoup sont sanctionnés ensemble à cause d’une défaillance commune, la perte est plus grave.</p>
+<p>Arrêt et double signature ne sont donc pas le même risque.</p>
+<p>L’opération à l’instant de la Fusion est très étroite.</p>
+<p>La couche de consensus est d’abord mise à niveau pour reconnaître sa logique ; les validateurs surveillent ensuite l’atteinte de la difficulté totale terminale par l’exécution. Sur le réseau principal, cette valeur est un nombre à vingt-trois chiffres.</p>
+<p>Une fois la difficulté cumulée atteinte ou dépassée, on n’attend plus qu’un mineur résolve la prochaine preuve de travail ; le bloc d’exécution suivant est fourni par le proposant sélectionné par Beacon.</p>
+<p>Le 15 septembre 2022 vers 06 h 42, le réseau principal atteint ce point de transition au bloc 15 537 393.</p>
+<p>Le protocole ne déplace pas les soldes, ne redéploie pas les contrats et ne réinitialise pas l’historique.</p>
+<p>Il remplace l’autorité de production des blocs et de choix de branche.</p>
+<p>L’ancien champ de difficulté perd son sens de travail ; l’opcode correspondant de la machine virtuelle fournit désormais une source d’aléa de preuve d’enjeu.</p>
+<p>Décrire la mise à niveau comme le déplacement des données d’une chaîne de preuve de travail vers une chaîne de preuve d’enjeu est donc inexact.</p>
+<p>Plus étroitement, l’état d’exécution et l’historique continuent, tandis que Beacon passe de consensus parallèle à moteur canonique de cette couche d’exécution.</p>
+<h2 id="section-3">3. La bombe déplacée trois fois</h2>
+<p>La chronologie doit séparer objectifs de recherche, transitions réelles des réseaux de test et événements protocolaires principaux, car la bombe de difficulté a été repoussée plusieurs fois.</p>
+<p>Le 1er décembre 2020, genèse de Beacon. Décembre 2021, lancement d’un réseau public de test de Fusion de plus longue durée. Mars 2022, lancement puis fusion du dernier réseau spécialement construit avant les tests publics selon l’annonce officielle. Le 8 juin, premier réseau public ancien converti ; fin juin-début juillet, deuxième ; en août, dernier grand réseau public. L’annonce du 24 août confirme toutes les transitions publiques achevées.</p>
+<p>Le 6 septembre 2022, mise à niveau du consensus principal. Le 15 septembre, transition de l’exécution.</p>
+<p>Le chemin de retrait n’est activé que le 12 avril 2023.</p>
+<p>Les reports ne devraient pas être attribués à un défaut unique.</p>
+<p>Les propositions montrent une fenêtre constamment déplacée. Celle de 2021 reporte la bombe à décembre en visant une mise à niveau avant cette date ; la suivante la reporte à juin 2022 et prévoit explicitement un nouveau report si nécessaire ; une autre la décale d’environ 700 000 blocs vers la mi-septembre, pour éviter la dégradation des blocs avant la préparation complète.</p>
+<p>Ces documents ne montrent donc pas trois échecs successifs à respecter une date fixe promise.</p>
+<p>Ils montrent l’usage de la bombe comme mécanisme imposant la sortie finale de la preuve de travail ; chaque fois qu’implémentation, interopérabilité et couverture de tests ne satisfont pas aux critères de lancement, la bombe est déplacée.</p>
+<p>Une annonce de test est explicite : en cas de problème ou de couverture insuffisante, on répare avant de passer au suivant ; l’époque et la difficulté du réseau principal ne peuvent être fixées qu’après stabilisation des tests publics.</p>
+<p>Ces réseaux ne sont donc pas des répétitions cérémonielles.</p>
+<p>Ils constituent les conditions de publication de la date principale.</p>
+<p>La mise à niveau exige notamment l’interopérabilité en paire de clients d’exécution et de consensus différents, avec deux déclencheurs, par époque et par difficulté ; elle ajoute donc à une bifurcation ordinaire monocouche une machine à états entre clients et couches.</p>
+<p>Cela explique aussi les annonces donnant des conditions plutôt qu’une heure précise. Une transition déclenchée par difficulté cumulée ne livre son heure exacte qu’en se produisant.</p>
+<p>Les retraits sont volontairement exclus de cette mise à niveau.</p>
+<p>Les annonces contemporaines expliquent que les reporter réduit le risque de la transition principale.</p>
+<p>Du dépôt à partir de 2020 jusqu’à avril 2023, pendant plus de deux ans, l’ETH peut donc entrer dans un validateur, cumuler des récompenses et demander la sortie des tâches, sans chemin protocolaire rendant principal et solde accumulé à un compte d’exécution ordinaire.</p>
+<p>Voici un suivi important des deux extrémités.</p>
+<p>L’impossibilité de retirer le principal au niveau du protocole ne signifie pas une absence totale de liquidité pour le détenteur.</p>
+<p>Un protocole de staking liquide peut émettre un actif représentatif transférable. L’utilisateur échange alors le risque de liquidité protocolaire Beacon contre des risques de contrat, gouvernance, opérateur, décote et liquidité de marché.</p>
+<p>Avec les retraits, l’ETH sous-jacent reçoit enfin un chemin de remboursement protocolaire. L’actif représentatif garde commodité et composabilité, mais l’importance de sa fonction initiale change.</p>
+<p>Ce qui s’est développé pendant ces deux ans ne disparaît pas pour autant. Les protocoles de staking liquide deviennent ensuite la plus grande composante de l’ensemble ; le protocole résout leur problème initial, mais ils sont déjà là.</p>
+<h2 id="section-4">4. 2,62 mégawatts</h2>
+<p>Pour l’énergie, le plus important n’est pas de mémoriser 99,95 %.</p>
+<p>C’est de savoir que ce chiffre ne vient pas d’un compteur.</p>
+<p>L’estimation de la Fondation en 2021, ensuite largement citée, se présente elle-même comme approximative.</p>
+<p>La consommation de la preuve d’enjeu était alors estimée à partir de la chaîne de balises déjà active ; le réseau principal exécutant les transactions utilisait toujours la preuve de travail. L’auteur observait environ 140 592 validateurs et 16 405 adresses de dépôt distinctes, retirait les adresses connues des plateformes et prestataires, puis supposait environ 5,4 validateurs par particulier. Pour les nœuds domestiques, il retenait prudemment quelque 100 watts pour 5,4 validateurs, ajoutait les opérateurs hébergés et estimait finalement le réseau de preuve d’enjeu à environ 2,62 mégawatts.</p>
+<p>L’article reconnaît explicitement ignorer le matériel réel de chaque opérateur.</p>
+<p>Il compare ensuite ce nombre à l’estimation d’un autre organisme, environ 5,13 gigawatts pour Ethereum en preuve de travail.</p>
+<p>Diviser 2,62 mégawatts par 5 130, puis soustraire à un, donne environ 99,949 %.</p>
+<p>Voilà l’origine des 99,95 % cités des dizaines de milliers de fois.</p>
+<p>Le numérateur est une estimation fondée sur des hypothèses. Le dénominateur est une autre estimation d’un autre organisme.</p>
+<p>Leur division donne un pourcentage à deux décimales.</p>
+<p>Ces deux décimales vivent ensuite leur propre vie pendant quatre ans.</p>
+<p>C’est le rapport de deux estimations.</p>
+<p>Cela ne signifie pas que la conclusion est fausse. Plusieurs modèles trouvent une baisse de l’énergie propre du réseau supérieure à 99 %, probablement au-delà de 99,8 %, voire 99,9 %.</p>
+<p>La direction n’est pas contestée.</p>
+<p>Seules le sont les deux décimales et l’impression de mesure qu’elles donnent.</p>
+<p>Ce n’est pas pinailler. 99,95 % et « plus de 99 % » ne se lisent pas pareil : le premier semble mesuré, le second estimé.</p>
+<p>Ils décrivent pourtant les mêmes documents.</p>
+<p>C’est la première forme du reste.</p>
+<p>La consommation de la preuve de travail a toujours nécessité des estimations : la puissance se déduit des temps de bloc et de la difficulté, les fabricants publient les caractéristiques électriques et les fermes ont des compteurs. Mais passer de ces éléments au total mondial suppose encore une combinaison de machines, des taux d’utilisation et des lieux.</p>
+<p>La preuve d’enjeu exige d’autres hypothèses : combien de validateurs partagent une machine, combien de watts elle consomme réellement, comment se répartissent hébergement et nœuds domestiques. Les serveurs ont aussi des spécifications et des compteurs ; la difficulté est de relier complètement matériels et charges dispersés, pas l’absence de toute base mesurable.</p>
+<p>La consommation n’a pas disparu. Le modèle nécessaire pour l’estimer a changé.</p>
+<p>Plus exactement, la consommation a bien réellement chuté, très fortement, sans contestation sur ce point.</p>
+<p>Ce qui a changé est le raisonnement derrière le chiffre. Il fallait estimer les machines minières spécialisées et leur électricité ; il faut désormais aussi estimer combien de validations porte une machine généraliste et quelle consommation supplémentaire elles entraînent. Les deux modèles ont des parties vérifiables et des données que la chaîne seule ne fournit pas.</p>
+<p>Mesurer précisément l’énergie mondiale des validateurs exigerait de connaître le nombre réel de machines, leurs configurations, leurs lieux et leurs autres tâches. Le nombre de validateurs n’est pas celui des machines. Ces informations ne sont pas automatiquement sur chaîne ; les documents utilisés ne fournissent pas de recensement mondial complet du matériel et de l’électricité. Enquêtes et échantillonnages sont possibles : leur absence ne signifie pas qu’aucune institution n’aurait le droit de recueillir ces données.</p>
+<p>Le total du réseau cité ici reste donc une estimation de modèle, pas une mesure directe et complète du réseau entier. Cela ne le rend pas négligeable ; il ne faut simplement pas citer une estimation comme une mesure directe.</p>
+<h2 id="section-5">5. Trois flux de trésorerie</h2>
+<p>Après la Fusion, le revenu économique du validateur n’est pas un taux unique, mais trois flux distincts.</p>
+<p>Le premier est l’émission de consensus : le protocole crée des ETH, dont la dilution est économiquement supportée par tous les détenteurs existants ; les validateurs correctement actifs en attestation, proposition et synchronisation les reçoivent. C’est le budget de sécurité, pas un paiement direct des utilisateurs.</p>
+<p>Le deuxième est le pourboire de priorité : l’émetteur de transaction paie, le proposant du bloc reçoit. Les frais de base n’en font pas partie : ils sont détruits.</p>
+<p>Le troisième est la valeur maximale extractible. Son origine économique peut être écarts d’arbitrage, glissement des utilisateurs d’échanges décentralisés, liquidations ou profits des chercheurs d’opportunités ; elle se répartit entre constructeurs, chercheurs et proposants.</p>
+<p>S’ajoutent les commissions de service payées par ceux qui délèguent leurs ETH à des protocoles liquides, plateformes ou opérateurs professionnels : un écart important entre rendement brut du validateur et rendement annuel net de l’utilisateur.</p>
+<p>Cela explique la baisse historique du rendement et ses hausses ponctuelles.</p>
+<p>Quand le staking actif total augmente, le rendement d’émission par unité diminue ; si l’activité, les priorités et la valeur extractible bondissent, le revenu total des validateurs peut au contraire monter sur une période.</p>
+<p>Les instantanés vérifiables ne forment pas une série parfaitement homogène ; il faut les juxtaposer plutôt qu’en choisir un.</p>
+<p>Vers janvier 2023, un prestataire estime à environ 4,16 % le rendement de consensus avec quelque cinq cents mille validateurs. En août 2023, un fournisseur donne environ 4,4 % de moyenne depuis janvier 2022 pour les huit premiers protocoles liquides. En décembre 2024, un autre indicateur donne 3,08 % nominal et 2,73 % réel après inflation de l’offre. En août 2026, une référence annualisant les récompenses nettes des dernières vingt-quatre heures donne 2,6488 %. Deux plateformes affichent simultanément environ 1,74 % et 2,36 % à leurs clients.</p>
+<p>Ces deux derniers taux sont des déclarations commerciales influencées par commissions, régions, produits et méthodes ; ils ne prouvent pas que le rendement réel du réseau est aussi bas.</p>
+<p>La valeur extractible est particulièrement inégalitaire dans les variations de rendement.</p>
+<p>Une mesure universitaire de septembre 2022 à mai 2023 trouve environ 160 000 ETH versés aux proposants via le marché de construction des blocs ; les vingt pour cent de paiements les plus élevés représentent environ 72 % de la valeur totale.</p>
+<p>L’avantage économique du staking mutualisé ne vient donc pas d’un taux nominal plus élevé accordé aux gros par le protocole.</p>
+<p>Il vient du lissage, entre de nombreux validateurs, d’une loterie extrêmement asymétrique.</p>
+<p>Le seuil d’entrée du validateur indépendant est autre chose.</p>
+<p>À la Fusion, un validateur typique doit verrouiller 32 ETH, entretenir clients d’exécution, de consensus et de validation, et assurer connexion et clés. La documentation de septembre 2022 recommande environ seize gigaoctets de mémoire et deux téraoctets de SSD pour un nœud complet.</p>
+<p>En 2026, les indications officielles minimales sont au moins deux cœurs, seize gigaoctets, deux téraoctets de SSD et plus de 25 Mbit/s, avec des recommandations plus élevées pour la validation.</p>
+<p>Le matériel évolue avec la taille de l’état et les mises à niveau ; aucun montant fixe protocolaire ne donne le prix de l’ordinateur nécessaire.</p>
+<p>« Les riches deviennent plus riches » doit être décomposé en deux niveaux.</p>
+<p>La version interne au protocole est trop large. Dans la formule de base, deux fois plus d’enjeu effectif donne, à performance égale, environ deux fois le poids et la récompense attendue, donc plus en valeur absolue. Aucun taux supérieur par ETH n’est automatiquement réservé aux gros ; au contraire, l’augmentation du staking actif total réduit le rendement d’émission par unité.</p>
+<p>Si tous obtiennent le même pourcentage avec la même performance et le même réinvestissement, rémunérer proportionnellement l’enjeu ne fait donc pas mécaniquement croître la part de richesse des plus gros.</p>
+<p>La version extérieure a en revanche un contenu substantiel : seuil indépendant de 32 ETH, coûts fixes matériels et opérationnels, économies d’échelle de disponibilité et de clés, forte variance de valeur extractible, lissage par mutualisation et avantage de taille des constructeurs sur les flux exclusifs.</p>
+<p>Cela peut donner aux grands participants un rendement ajusté du risque plus stable ou supérieur.</p>
+<p>L’argument inverse doit aussi apparaître : mutualisation et staking liquide permettent aux petits de participer bien sous 32 ETH et de rendre liquide un enjeu autrement verrouillé.</p>
+<p>Dire qu’on ne peut recevoir de rendement sous 32 ETH est donc également inexact.</p>
+<p>Le prix est qu’un petit participant confie généralement une part de contrôle, de frais et de risque au protocole, à l’opérateur ou à la plateforme.</p>
+<p>Les deux extrémités se rejoignent : le seuil baisse réellement, mais par l’introduction d’un intermédiaire.</p>
+<h2 id="section-6">6. Trente pour cent et trente pour cent</h2>
+<p>La concentration est ici le sujet le plus facilement trompé par un chiffre unique.</p>
+<p>D’abord, on compte des ETH attribués à une entité ou un protocole, pas des personnes physiques. Un protocole regroupe plusieurs opérateurs ; une entité de plateforme peut employer de nombreux validateurs.</p>
+<p>Ensuite, depuis 2025, le solde effectif maximal par validateur peut atteindre 2 048 ETH, rendant encore moins interchangeables nombre de validateurs et quantité contrôlée.</p>
+<p>Voici des instantanés historiques de comparabilité limitée.</p>
+<p>Le 9 septembre 2022, quelques jours avant la Fusion, l’attribution d’adresses d’un fournisseur donne environ 31 % à un protocole liquide et quelque 30 % cumulés à trois plateformes centralisées. Quatre entités dépassent déjà la moitié, mais le protocole ne doit pas être assimilé à un opérateur unique.</p>
+<p>Fin août 2023, un fournisseur additionnait sa catégorie de protocoles de staking liquide et annonçait 43,7 %, avec environ 11,3 millions de pièces sur 26,4 millions. Leur division directe donne près de 42,8 %, pas exactement la part annoncée. Tant que dates et périmètres ne sont pas alignés, les trois chiffres ne peuvent être présentés comme un même calcul exact.</p>
+<p>Fin 2023, une synthèse universitaire donne 37 %, avec environ 28 % pour les plateformes et 15 % pour les pools de staking.</p>
+<p>Un instantané d’étiquettes vers avril 2024 donne environ 29,6 % au protocole et 22,4 % cumulés à cinq plateformes. C’est une borne basse pour ces cinq, pas toutes les plateformes.</p>
+<p>Le 14 août 2025, le protocole descend à 24,4 %, contre un sommet d’environ 32,3 % fin 2023 dans la même série.</p>
+<p>En avril 2026, une mesure universitaire donne 38,8 millions d’ETH engagés, environ 32 % d’une offre de 121,6 millions.</p>
+<p>Une divergence mérite d’être conservée plutôt que réparée.</p>
+<p>Le chiffre d’août 2023 est 43,7 %, la synthèse de fin 2023, 37 %.</p>
+<p>Quelques mois seulement, mais une baisse apparente importante.</p>
+<p>On ne peut en déduire directement une sortie nette de 6,7 points en quatre mois. Les sources peuvent classer différemment les jetons liquides des plateformes, les pools et les protocoles de staking liquide. Les parts réelles et le total mis en jeu peuvent aussi changer. Sans recalculer les données originales, tout l’écart ne peut être attribué à une seule cause.</p>
+<p>Sans recalculer les deux ensembles originaux d’étiquettes, on ne peut les assembler en une série.</p>
+<p>La série a déjà rencontré souvent ces contradictions. Mais auparavant, elles venaient surtout d’institutions mesurant des objets différents ; ici, c’est le même objet dont la frontière n’a pas de définition consensuelle.</p>
+<p>Le seuil d’un tiers doit lui aussi être reformulé.</p>
+<p>Il compte réellement dans le consensus : un poids non coopératif suffisant peut empêcher la finalisation ; des finalisations contradictoires impliquent des actes prouvables et sanctionnables.</p>
+<p>Mais environ trente pour cent d’enjeu sous le nom d’un protocole ne signifie pas une personne détenant toutes les clés et capable de les faire agir instantanément sur ordre.</p>
+<p>Agrégation du capital, organisation de gouvernance, opérateurs et clés concrètes sont des niveaux distincts.</p>
+<p>La formulation étroite du risque systémique est que de fortes corrélations de capital, opérateurs, clients, cloud ou obligations réglementaires créent des risques communs de défaillance ou de coordination.</p>
+<p>Le point décisif n’est pas le nom sur un tableau de bord.</p>
+<p>C’est la probabilité que cette part d’enjeu agisse de la même façon lors d’une panne, d’une censure ou d’un conflit de gouvernance.</p>
+<p>Cette probabilité ne se lit pas sur chaîne. Elle dépend des contrats, structures sociales, sites, clouds, versions de clients et lois nationales applicables aux opérateurs.</p>
+<p>Une grande plateforme avec garde et personne morale unifiées ne se compare donc pas à un protocole regroupant des opérateurs simplement parce que chacun possède vingt pour cent.</p>
+<p>Les études empiriques ne donnent pas non plus de réponse unique à la question d’une preuve d’enjeu plus décentralisée que la preuve de travail.</p>
+<p>Une étude longitudinale de Beacon juge la dispersion de l’enjeu globalement comparable à celle du prédécesseur de preuve de travail, tout en soulignant l’effet majeur des services liquides et de garde.</p>
+<p>Une autre étude interchaînes, avec d’autres indicateurs sur 2022 à 2024, estime que la concentration du pouvoir de consensus augmente après la transition.</p>
+<p>Fenêtres temporelles, regroupements et indicateurs diffèrent : il faut juxtaposer les résultats plutôt qu’en choisir un comme verdict.</p>
+<p>La version étroite étayée est que la preuve d’enjeu retire des pressions de concentration liées à l’énergie et au matériel spécialisé, mais donne plus d’importance à propriété des mises, garde, pools, clients, constructeurs, relais et gouvernance.</p>
+<p>Un niveau plus dispersé ne prouve pas un système global nécessairement plus dispersé.</p>
+<h2 id="section-7">7. 63 et 94,8</h2>
+<p>Avant la Fusion, le pouvoir central sur la valeur extractible est chez les mineurs : ils gagnent la production du bloc et peuvent ordonner eux-mêmes les transactions.</p>
+<p>Après, le proposant est un validateur ordinaire tiré au sort, souvent sans infrastructure professionnelle d’arbitrage à faible latence, de flux d’ordres et de construction.</p>
+<p>Un dispositif d’externalisation apparaît donc : le validateur conserve proposition et signature finale, mais confie la charge utile d’exécution la plus rentable à des constructeurs spécialisés.</p>
+<p>On appelle généralement cela séparation du proposant et du constructeur, avec une réserve nécessaire.</p>
+<p>À la Fusion, le dispositif déployé est extérieur au protocole, pas imposé nativement par le consensus Ethereum. Le validateur peut s’en passer et construire localement.</p>
+<p>Le flux typique est : utilisateurs et chercheurs d’opportunités envoient transactions ou lots aux constructeurs ; ceux-ci construisent la charge utile complète et proposent un prix pour obtenir le bloc ; le relais vérifie charge utile et paiement, et ne montre d’abord qu’un en-tête masqué au proposant ; après choix et signature de l’offre favorable, la charge utile est révélée et diffusée.</p>
+<p>Le relais résout ainsi une partie de la confiance tout en devenant un nouvel intermédiaire d’infrastructure.</p>
+<p>Suivre les deux extrémités montre que ce revenu n’apparaît pas de nulle part.</p>
+<p>Si un constructeur verse 0,1 ETH au validateur, cela peut venir d’une offre de chercheur pour arbitrage, de frais prioritaires ou du surplus d’ordonnancement. Le constructeur en garde une part et transmet le reste au proposant par son offre.</p>
+<p>Ceux qui subissent glissement, sandwich ou liquidation ne sont souvent pas les validateurs recevant le paiement final.</p>
+<p>Le marché se spécialise rapidement après la Fusion.</p>
+<p>La même étude mesure environ neuf dixièmes des blocs couverts deux mois après lancement ; un relais dépasse soixante pour cent du marché des relais en novembre 2022, puis descend autour d’un quart en mai suivant.</p>
+<p>Une mesure un an plus tard montre une couverture toujours proche de neuf dixièmes, mais environ huit dixièmes de ces blocs construits par les trois premiers constructeurs.</p>
+<p>Plus de relais ne signifie donc pas automatiquement un marché des constructeurs dispersé. Ce sont deux niveaux de marché distincts.</p>
+<p>En août 2026, à la date de recherche, un panneau sur fenêtre glissante d’environ quatorze jours affiche quelque dix relais, trente-six constructeurs, 88,92 % des blocs utilisant le dispositif et un paiement moyen au proposant d’environ 0,00649 ETH.</p>
+<p>C’est un indicateur en temps réel sur courte fenêtre, pas un substitut aux parts historiques de 2022 à 2024.</p>
+<p>La controverse sur la censure exige tout particulièrement de réécrire le mot.</p>
+<p>Le 26 octobre 2022, les médias contemporains citent une page de surveillance classant environ 63 % des blocs Ethereum comme conformes à la liste de sanctions d’un pays.</p>
+<p>Ce chiffre circule massivement cette année-là.</p>
+<p>La même page utilise aujourd’hui un indicateur plus explicite et différent : elle étiquette comme censeurs les relais déclarant filtrer certaines transactions sanctionnées et mesure leur part des livraisons de charges utiles.</p>
+<p>Elle affiche actuellement environ 43,1 % et situe le pic historique du 26 octobre 2022 autour de 94,8 %.</p>
+<p>Pour le même jour, 63 % et 94,8 %.</p>
+<p>L’histoire de la chaîne n’a pas changé.</p>
+<p>Le dénominateur, si.</p>
+<p>C’est un cas particulièrement net de glissement de périmètre dans cette série. Deux pages décrivent l’activité du réseau d’une même date selon des couvertures et définitions différentes, avec environ trente-deux points d’écart. Ce ne sont pas des mesures précises d’un même dénominateur.</p>
+<p>Le premier mesure alors l’ensemble des blocs ; le second reconstruit aujourd’hui les livraisons de charges utiles.</p>
+<p>La page présente encore un problème de comptage : un même bloc ou chargement peut passer par plusieurs relais ; une part des livraisons n’est donc pas strictement une part de blocs uniques.</p>
+<p>Dire que quarante-trois pour cent des blocs Ethereum censurent les transactions élargit donc abusivement l’indicateur.</p>
+<p>Une seconde difficulté de vocabulaire est plus fondamentale.</p>
+<p>Un bloc produit par un constructeur et une charge utile livrée par un relais appliquant un filtre ne sont pas le même fait.</p>
+<p>Le constructeur décide du contenu ; le relais décide quels blocs accepter et à quels proposants les transmettre. Le premier débat politique étiquette souvent tout le bloc selon la politique du relais.</p>
+<p>Sans examiner directement la politique d’inclusion du constructeur et les transactions qui auraient pu entrer mais n’y sont pas, l’étiquette du relais ne prouve pas qu’il a activement censuré une transaction d’adresse sanctionnée.</p>
+<p>La formulation étroite étayée est que, pendant les mois suivant la Fusion, une grande proportion des flux de construction passe un temps par des relais déclarant filtrer certaines transactions sanctionnées ; cette proportion baisse ensuite nettement, avec davantage de relais neutres.</p>
+<p>Les 63 % historiques appartiennent à une période et une ancienne mesure précises.</p>
+<p>Ils ne signifient pas que 63 % des validateurs refusent d’attester les blocs contenant ces transactions, encore moins que 63 % des transactions Ethereum sont censurées.</p>
+<p>La distinction touche directement au risque systémique.</p>
+<p>Tant que d’autres proposants et constructeurs incluent les transactions, le filtrage des relais se traduit principalement par un retard d’inclusion.</p>
+<p>Ce n’est que lorsqu’une grande part du poids de validation refuse aussi d’attester ou de finaliser les blocs concernés que la politique de production devient censure du consensus et problème de vivacité.</p>
+<p>Les deux ne peuvent se décrire par le même pourcentage.</p>
+<h2 id="section-8">8. Vers où le déplacement a-t-il eu lieu ?</h2>
+<p>La chronologie réglementaire a aussi évolué ; elle ne peut rester figée à « une agence dit que le staking est un titre ».</p>
+<p>En février 2023, le service d’une plateforme est accusé d’offre de titres non enregistrée ; l’entreprise accepte de cesser le service américain concerné et de payer trente millions de dollars. L’accord prouve son acceptation des conditions, pas un précédent judiciaire général après procès.</p>
+<p>En juin 2023, le service similaire d’une autre société est poursuivi. Ce sont des accusations, pas des faits judiciairement établis.</p>
+<p>En février 2025, l’action a été retirée et close sans possibilité de réintroduire les mêmes demandes. L’affaire se terminait, mais sans jugement au fond qualifiant juridiquement ce service à l’époque.</p>
+<p>En mai et août 2025, un service de l’agence publie deux déclarations estimant que certaines activités de staking décrites ne constituent pas offre et vente de titres. Ce sont alors des avis de service, pas des règles de la Commission ; une commissaire critique publiquement la difficulté d’appliquer ces généralisations aux services réels.</p>
+<p>En mars 2026, l’agence publie au niveau de la Commission une interprétation officielle affirmant que le staking protocolaire dans les conditions décrites ne constitue pas offre ou vente au sens du droit des titres.</p>
+<p>Ce document a davantage d’autorité que les déclarations antérieures du service.</p>
+<p>Il ne signifie toujours pas que les États-Unis reconnaissent tous les produits de staking comme non-titres.</p>
+<p>La réserve est « selon les modalités et circonstances décrites » ; si le service ajoute promesse de rendement de l’opérateur, efforts de gestion, gestion d’actifs ou autres dispositifs, l’analyse dépasse peut-être déjà la simple validation protocolaire.</p>
+<p>L’offre monétaire exige aussi une formulation plus étroite.</p>
+<p>L’approximation officielle avant la Fusion donne environ 13 000 ETH quotidiens aux mineurs et 1 700 aux stakers. L’arrêt du premier flux réduit donc l’émission totale d’environ 88 %.</p>
+<p>La destruction des frais de base existe indépendamment depuis 2021.</p>
+<p>La variation d’offre est donc émission moins destruction, pas 1 700 par jour.</p>
+<p>À la date de recherche, un site calculant les données sur chaîne selon sa formule indique depuis la Fusion une variation positive d’environ 1,45 million d’ETH et une croissance annualisée d’environ 0,30 %.</p>
+<p>Son calcul additionne explicitement soldes d’exécution et Beacon, puis soustrait la comptabilisation des dépôts pour éviter le double compte entre couches.</p>
+<p>Le site qualifie lui-même « monnaie ultrasonique » de mème et précise que l’offre ne baisse que si la destruction dépasse l’émission.</p>
+<p>Ce n’est pas un terme de politique monétaire du protocole.</p>
+<p>Une déflation permanente après la Fusion n’est donc pas étayée par la série réelle.</p>
+<p>Des chiffres directs permettent de suivre les deux côtés.</p>
+<p>Les mineurs perdent environ 13 000 ETH quotidiens d’émission, frais prioritaires et valeur extractible des blocs ; ils n’ont plus à acheter l’électricité ni à renouveler constamment le matériel pour cette chaîne.</p>
+<p>Les validateurs gagnent proposition des blocs d’exécution principaux, frais prioritaires et valeur extractible ; l’émission Beacon préexistante continue.</p>
+<p>Les détenteurs non engagés ne reçoivent pas directement d’espèces, mais supportent moins de dilution nouvelle consacrée à la sécurité.</p>
+<p>Les utilisateurs d’un service peuvent transférer le risque opérationnel au prestataire, tandis que garde des actifs, contrat intelligent ou gouvernance restent des risques pour eux.</p>
+<p>Les mots « service de staking » ne font pas automatiquement porter risques et revenus au même acteur.</p>
+<p>Les changements hors chaîne des mineurs ont des cas concrets, non extrapolables au monde entier.</p>
+<p>Une société cotée déclare dans ses dépôts réglementaires qu’avant la Fusion son parc GPU d’environ vingt-cinq mégawatts mine Ethereum pour 120 000 à 150 000 dollars de revenu quotidien ; dans la semaine suivante, le même matériel mine d’autres monnaies de preuve de travail puis les échange, pour 20 000 à 30 000 dollars. Un autre document résume une moyenne passant de 150 000 à 30 000 et un revenu par kilowattheure d’environ 0,35 à 0,07 dollar.</p>
+<p>Cela correspond à une baisse déclarée d’environ huit dixièmes. Même déposée dans les archives du régulateur, une déclaration d’entreprise ne devient pas une validation réglementaire de son attribution économique.</p>
+<p>Le cas montre aussi que toutes les machines ne deviennent pas des déchets électroniques. Au moins ici, le matériel est d’abord réorienté vers d’autres algorithmes plutôt qu’immédiatement jeté.</p>
+<p>Aucun registre mondial ne recense combien de cartes sont revendues aux joueurs, utilisées pour l’IA ou d’autres chaînes, ou simplement arrêtées.</p>
+<p>L’emploi manque particulièrement de données.</p>
+<p>Les publications cotées mesurent capacité, production, recettes et dépréciations, mais aucune base mondiale fiable n’isole l’effet de cette mise à niveau sur les emplois miniers de 2022.</p>
+<p>Baisse des cours, durcissement du financement et retournement de tout le cycle surviennent aussi. Même trouver un licenciement ne permet pas d’attribuer sans contrôle un nombre d’emplois disparus à la Fusion.</p>
+<p>Sur ce point, les sources originales sont nettement plus faibles que les données sur chaîne.</p>
+<p>Cette lacune doit rester visible.</p>
+<p>Revenons à la première section.</p>
+<p>La première moitié peut être confirmée par le protocole et les blocs. La seconde exige de décomposer chaque jugement économique, énergétique et de concentration, puis d’en vérifier le modèle, la date et le périmètre.</p>
+<p>Tout ce qui précède est en réalité plusieurs faces du même fait : ce qui a été remplacé n’a pas disparu.</p>
+<p>L’estimation énergétique a changé de modèle. La concentration s’est déplacée. La valeur maximale extractible a créé une nouvelle chaîne de construction des blocs. Certaines questions de censure relevaient des politiques des constructeurs et relais. Les revenus des blocs d’exécution du réseau principal revenaient aux validateurs, tandis que l’émission destinée aux mineurs en preuve de travail cessait.</p>
+<p>Pour chaque objet, on peut identifier sa nouvelle place.</p>
+<p>À ces nouveaux endroits, chaque grandeur demande de réexpliquer sa mesure ; certaines sont aussi devenues moins directement lisibles dans les données publiques.</p>
+<p>Ce n’est pas nécessairement une dissimulation. L’ancien système n’avait pas non plus de tableau naturellement complet de l’électricité, des machines et de la puissance. Le nouveau ajoutait services de staking, constructeurs, organisations et contrats. Après ce changement de rôles, les anciennes lectures ne se raccordent pas directement : il faut demander à qui les nouvelles correspondent et ce qu’elles incluent.</p>
+<p>La puissance de calcul peut être estimée à partir des temps de bloc et de la difficulté. Identifier la part de staking contrôlée par une entité exige notamment des étiquettes d’adresses. Les deux lectures comportent leurs propres étapes d’inférence.</p>
+<p>Les fermes peuvent lire leurs compteurs, les nœuds de validation aussi. La difficulté est d’extrapoler des échantillons dispersés au réseau entier : combien d’appareils, pour combien de tâches, et quelle électricité attribuer à cette chaîne.</p>
+<p>On vérifie l’ordonnancement du mineur bloc par bloc. La censure d’un bloc dépend de la question posée au constructeur ou au relais.</p>
+<p>Les récompenses et frais des blocs Ethereum en preuve de travail se vérifient dans les blocs et états, non dans des transactions coinbase à la manière de Bitcoin. Pour le revenu réel d’un mineur, il faut aussi compter répartition du pool, frais et coûts ; pour celui d’un participant au staking, prélèvements du prestataire et gains des propositions, attestations et autres tâches. Revenu brut sur chaîne et revenu net d’une personne sont distincts des deux côtés.</p>
+<p>Le reste se trouve ici.</p>
+<p>Ce n’est ni un objet éliminé, ni un objet nouveau.</p>
+<p>C’est la partie du même objet devenue moins visible après déplacement.</p>
+<p>Le 15 septembre 2022 vers 06 h 42, après le bloc 15 537 393, la chaîne change de consensus.</p>
+<p>La partie remplacée est précisément celle qui se confirme le plus facilement.</p>
+<p>Le protocole découpe le temps en créneaux de douze secondes et époques de 32 créneaux. En conditions normales, les points de contrôle atteignent la finalité après environ deux époques. Des créneaux peuvent rester vides et la finalisation être retardée ; une structure temporelle fixe n’est pas la preuve de quatre années toujours ponctuelles et sans défaut.</p>
+<p>Elle détermine quel bloc compte.</p>
+<p>Elle ne détermine pas qui l’a construit, ce qui y manque et si les transactions absentes auraient dû y entrer.</p>
+<p>La chaîne continue de régler les transactions, mais il n’existe toujours pas de consensus sur ce qu’elle règle.</p>
+<div class="source-note"><strong>Note sur les sources</strong><p>Cet essai s’appuie sur des documents publics relatifs aux protocoles, des données inscrites sur les chaînes, des pièces judiciaires, des documents réglementaires et des recherches évaluées par les pairs. Les chiffres conservent leur périmètre et leur méthode de mesure d’origine. Les sources de la série vont jusqu’à août 2026.</p><p><a href="https://www.sec.gov/rules-regulations/2026/03/s7-2026-09" target="_blank" rel="noopener">SEC March 2026 interpretation on crypto assets ↗</a></p></div>
+</div><nav class="collection-nav"><a href="ep17.html"><small>Essai précédent</small>FTX</a><a href="ep19.html"><small>Essai suivant</small>L2</a></nav></article></main><footer><div class="footer-inner"><div class="footer-brand"><div class="footer-logo">Non <span>Dubito</span></div><div class="footer-tagline">Thought has no mother tongue</div></div><div class="footer-bottom">© 2026 Han Qin · Non Dubito</div></div></footer></body></html>
