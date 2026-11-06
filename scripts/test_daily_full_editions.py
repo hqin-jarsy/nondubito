@@ -12,6 +12,27 @@ class DailyFullEditions(unittest.TestCase):
         cls.records=build.records()
         assert cls.records,'No reviewed daily batches'
 
+    def test_source_view_queries_are_not_local_filenames(self):
+        url='https://nondubito.net/essays/everyday/conflict/21-when-reasons-become-attitude-problems.html'
+        expected='21-when-reasons-become-attitude-problems.html'
+        self.assertEqual(build.source_slug(url,'conflict',21),expected)
+        self.assertEqual(build.source_slug(url+'?lang=zh','conflict',21),expected)
+        for invalid in (url+'?lang=en',url+'#other',url.replace('nondubito.net','example.org'),url.replace('/conflict/','/work/'),url.replace('/21-','/22-')):
+            with self.subTest(url=invalid),self.assertRaises(AssertionError):
+                build.source_slug(invalid,'conflict',21)
+
+    def test_multi_class_regions_and_mixed_language_nav_labels(self):
+        region='<div class="lang-en local"><div>inner</div></div>'
+        a,b=build.div_span(region,'lang-en')[1:3]
+        self.assertEqual(region[a:b],'<div>inner</div>')
+        with self.assertRaises(AssertionError):build.div_span('<div class="lang-en-other">x</div>','lang-en')
+        link='<a href="01-example.html"><small class="lang-en">Next</small><span class="lang-en">Old</span><span class="lang-zh">原题</span><span class="lang-hant">原題</span></a>'
+        editions={'01-example.html':{'languages':{'en':{'title':'New & Complete'}}}}
+        rendered=build.update_links(link,editions,'en')
+        self.assertIn('<span class="lang-en">New &amp; Complete</span>',rendered)
+        self.assertIn('<span class="lang-zh">原题</span>',rendered)
+        self.assertIn('<span class="lang-hant">原題</span>',rendered)
+
     def test_all_eight_complete_editions_and_preserved_reading_doors(self):
         for (group,slug),r in self.records.items():
             for lang,e in r['languages'].items():

@@ -12,6 +12,7 @@ import argparse,hashlib,html,json,re,subprocess
 from pathlib import Path
 from zipfile import ZipFile
 from html.parser import HTMLParser
+from urllib.parse import urlsplit
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/'data/daily-full'
@@ -26,8 +27,22 @@ def plain(value):return html.unescape(re.sub(r'<[^>]+>','',value)).strip()
 def paragraph(value):return '<p>'+html.escape(value,quote=False)+'</p>'
 def clean_title(value):return re.sub(r'^\d{1,2}[.．、]\s*','',value).strip()
 
+def source_slug(url,group,episode):
+    """A Chinese-view query is provenance, never part of a local filename."""
+    parsed=urlsplit(url);slug=parsed.path.rsplit('/',1)[-1]
+    assert group in GROUPS and 1<=episode<=30
+    assert parsed.scheme=='https' and parsed.netloc=='nondubito.net',('Unexpected source host',url)
+    assert parsed.path==f'/essays/everyday/{group}/{slug}'
+    assert parsed.query in ('','lang=zh') and not parsed.fragment,('Unexpected source view',url)
+    assert re.fullmatch(f'{episode:02d}-[a-z0-9-]+\\.html',slug),('Unexpected source route',episode,url)
+    return slug
+
 def div_span(text,cls):
-    start=re.search(r'<div\b[^>]*class="'+re.escape(cls)+r'"[^>]*>',text)
+    start=None
+    for candidate in re.finditer(r'<div\b[^>]*>',text):
+        classes=re.search(r'\bclass="([^"]*)"',candidate[0])
+        if classes and cls in classes[1].split():
+            start=candidate;break
     assert start,('Missing div',cls)
     depth=1
     for tag in re.finditer(r'</?div\b[^>]*>',text[start.end():]):
@@ -57,8 +72,8 @@ def load_archive(path,group):
     result={}
     for n,raw in files.items():
         if not re.fullmatch(r'batches/[^/]+/alignment/'+group+r'-\d{2}\.en\.json',n):continue
-        source=json.loads(raw);ep=source['number'];slug=source['url'].rsplit('/',1)[1]
-        assert ep not in result and re.fullmatch(f'{ep:02d}-[a-z0-9-]+\\.html',slug),('Unexpected or duplicate source route',ep,slug)
+        source=json.loads(raw);ep=source['number'];slug=source_slug(source['url'],group,ep)
+        assert ep not in result,('Duplicate source route',ep,slug)
         snapshot=files[next(k for k in files if '/sources/' in k and k.endswith(f'/{group}-{ep:02}.html'))].decode()
         assert body_paragraphs(snapshot,'zh')==source['zh']
         result[ep]=dict(slug=slug,source_url=source['url'],languages={})
@@ -185,6 +200,9 @@ def update_links(text,editions,lang):
         title=html.escape(editions[target[1]]['languages'][lang]['title'])
         if re.search(r'<h[23]\b',node):
             return re.sub(r'(<h[23]\b[^>]*>).*?(</h[23]>)',lambda m:m[1]+title+m[2],node,count=1,flags=re.S)
+        label=r'(<span\b[^>]*class="lang-'+re.escape(lang)+r'"[^>]*>)[^<]*(</span>)'
+        if re.search(label,node):
+            return re.sub(label,lambda m:m[1]+title+m[2],node,count=1)
         if '<small>' in node:
             return re.sub(r'(</small>)[^<]*(</span>)',lambda m:m[1]+title+m[2],node,count=1)
         return re.sub(r'(<span[^>]*>\d{1,2}</span>)[^<]*(</a>)',lambda m:m[1]+title+m[2],node,count=1)
