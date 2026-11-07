@@ -96,9 +96,11 @@ def render(data):
             </article>''')
         tracks = ''.join(f'<li><span class="koe-track-number">{i:02}</span><div><h4>{escape(song[0])}</h4>{copy(song[1], "p")}</div></li>' for i, song in enumerate(group['songs'], 1))
         meeting_label = meeting
+        release = group['latest_release']
+        release_image = IMAGES[release['image']]
         sections.append(f'''<section id="{gid}" class="koe-group koe-{gid}"><div class="koe-inner">
           <div class="koe-group-top"><div><p class="koe-eyebrow">0{1 if gid == 'bloom' else 2} / {group['sound']}</p><h2>{group['name']}</h2>{copy(group['headline'], 'p', 'koe-group-headline')}{copy(group['description'], 'p', 'koe-group-copy')}<a class="koe-text-link" href="#{gid}-members">{copy(member_label)} ↓</a></div>
-          <figure class="koe-release-art"><img src="{image_url(gid + '-release.webp')}" width="1280" height="720" alt="{group['name']} — {'Unfinished Sunday' if gid == 'bloom' else 'Who Wrote the Rules?'}" loading="lazy" decoding="async"><figcaption>{'Unfinished Sunday' if gid == 'bloom' else 'Who Wrote the Rules?'}</figcaption></figure></div>
+          <figure class="koe-release-art"><img src="{image_url(release['image'])}" width="{release_image['dimensions'][0]}" height="{release_image['dimensions'][1]}" alt="{escape(group['name'])} — {escape(release['title'])}" loading="lazy" decoding="async"><figcaption>{copy('Latest release', 'p', 'koe-eyebrow')}{copy(release['title'], 'h3')}{copy(release['description'], 'p', 'koe-release-description')}</figcaption></figure></div>
           <div class="koe-members" id="{gid}-members">{''.join(cards)}</div>
           <div class="koe-group-bottom"><div class="koe-formation"><p class="koe-eyebrow">{copy(meeting_label)}</p>{copy(group['formation'], 'p')}</div><div class="koe-discography"><h3>{copy(songs_label)}</h3><ol>{tracks}</ol>{channel_link(data)}</div></div>
         </div></section>''')

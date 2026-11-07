@@ -30,8 +30,8 @@ The six performers and their biographies are fictional adults. Public copy follo
 - Jae portrait: cropped frame at 46.5 seconds of `Who-Wrote-the-Rules-MV-Final-01.mp4`.
 - Ivo portrait: cropped frame at 25.5 seconds of the same approved final MV.
 - Leon portrait: cropped frame at 37.2 seconds of the same approved final MV.
-- Bloom release artwork: `Unfinished-Sunday-Cover-Master-01.png`.
-- Pulse release artwork: `Who-Wrote-the-Rules-YouTube-Thumbnail-01.jpg`.
+- Bloom current release artwork: `Laugh-With-Me-YouTube-Thumbnail-01.jpg`.
+- Pulse current release artwork: `Before-the-Stamp-YouTube-Cover-01.jpg`.
 - `koe-social.jpg`: editorial composition of the six portraits, for link previews.
 
 These are format conversions and crops of existing approved material; no new faces were generated. Bloom's long-haired Rin canon remains distinct from Nari's bob. Outfits can change by song without rewriting identity.
@@ -51,3 +51,11 @@ python3 -B scripts/verify_koe_images.py --local-dir /absolute/outside-repo/uploa
 For publication verification, omit `--local-dir`. Never put credentials in this repository. Keep offline copies of the exact uploaded images. The first nine images were uploaded and publicly verified on 2026-10-29 (593,612 bytes total). The initial local artist-page commit had not been pushed; it was amended so these image binaries will not enter the published branch history.
 
 The artist page is English-only by owner request. `koe/koe.js` handles mobile navigation without reading or changing the site-wide language preference. The main Non Dubito homepage remains multilingual.
+
+## Catalogue update — 2026-11-06
+
+The public catalogue now contains eleven Bloom songs and five Pulse songs, all reported published by Han. Seven additions cover different budgets, the value of a past relationship, shared humour, support and control, repair after an apology, the purposes and costs of saving, and a life waiting between institutions. The six member biographies remain the approved fiction; song narrators are not new member biographies.
+
+`latest_release` in each group’s `data/koe.json` entry owns its title, image-ledger key and short description. The renderer no longer hardcodes a release title. Current spotlights are **Laugh With Me** (Bloom) and **Before the Stamp** (Pulse). Update the image ledger together with this field so cover/title/alt text stay aligned. Per-video URLs remain unspecified; the owner-supplied shared YouTube channel remains the watch destination.
+
+Two versioned WebP covers (182,854 bytes) were added to the existing R2 `koe/` prefix and all nine current public images passed byte/content-type/format/dimension verification. The page’s nine image objects now total495,672 bytes. The previous release objects are left in R2 and recorded under `previous_release_images`; images and staging remain outside Git. Public verification record: `data/koe-image-verification-2026-11-06.json`. Exact offline upload files: `/Users/hanqin/Documents/Codex/2026-10-20/wo-x20/outputs/KOE-Website-Update-2026-11-06/upload/koe`.
