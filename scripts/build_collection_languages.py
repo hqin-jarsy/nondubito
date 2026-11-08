@@ -226,6 +226,9 @@ def render(spec: dict[str, object]) -> dict[Path, str]:
     if blockchain:
         from build_blockchain_full_editions import upgrade_outputs as upgrade_blockchain_full_editions
         upgrade_blockchain_full_editions(outputs)
+    if spec['id'] == 'epic-traditions':
+        from build_epic_full_editions import upgrade_outputs as upgrade_epic_full_editions
+        upgrade_epic_full_editions(outputs)
     return outputs
 
 
