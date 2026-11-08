@@ -1,0 +1,11 @@
+# Japanese batch 01 review
+
+Scope: complete direct translations of frozen published Chinese essays 01-05, with all 685 source blocks retained in identical tag order. Reviewed each paragraph against the source while drafting, then revisited narrative sequence, names, rhetorical questions, qualifications, and next-chapter bridges before proceeding to essay 06. Structural assertions verified every block count/tag and every strong/em tag sequence; all non-divider blocks are nonempty. No existing English body was used as a translation source.
+
+Author-approved corrections applied from approved-chinese.json: removed the ten-year Prez career gap; replaced Bodie's thirteen-year elapsed timeline with years/the subsequent few years; corrected Brandon's recognition at the arcade, display of his body, police protection at Wallace's grandmother's home, and Levy's presence at D'Angelo's meeting; corrected Ziggy's shop assistant to wounded, the shipboard murder and thirteen-woman suffocation sequence, and the classroom razor incident to S4E3. These are corrected, not awaiting approval.
+
+Translation review retained the distinction between actual results and compliance certificates in 01, organizational assignment and personal willingness in 02, omission from the moral ledger versus deliberate sacrifice in 03, individually defensible decisions versus accumulated institutional drift in 04, and metrics being necessary but insufficient in 05. The social-promotion term is explained by the following source paragraph. Character names are kept consistent. Self-as-an-End remains unchanged wherever present (no instances in these five sources).
+
+Remaining source-level caution: essay 02 still says Bodie counted stock for over ten years before the now-approved elapsed-time corrections. This neighboring duration was not included in the authorized corrections, so it remains translated rather than silently changed. Essay 04 explicitly treats Carcetti's police-station recollection as uncertain; Japanese preserves that uncertainty rather than inventing a definite scene.
+
+Final chronology consistency: essay 02 block100’s remaining decade-plus inventory claim is also changed to years, as another occurrence of the already-approved Bodie timeline correction. This supersedes any earlier note preserving that occurrence.

@@ -1,0 +1,5 @@
+# English review: essays 01–05
+
+All five published Chinese bodies and independent English bodies were read in full against one another. The English already retains each of the five argumentative sections, so it is preserved as an independent English edition rather than replaced with a literal translation. Added the missing Colvin two-percent report and the individual responses to Hamsterdam; Wallace’s homework scene and the human detail of his killing; Frank’s manufacturing remark and Ziggy’s repeated attempts to win attention; Norman’s response; the concrete dice probabilities; and all five next-essay bridges. Exact before/after replacements are recorded separately.
+
+The second review checked the new passages against the frozen Chinese blocks and checked that all existing analytical qualifications and closing questions remain. The English retains cautious wording where the Chinese contains suspect chronology or shooting details. Potential factual corrections require author approval. This is source-to-edition review, not a fresh shot-by-shot viewing of the series.

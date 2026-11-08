@@ -1,0 +1,168 @@
+{
+  "date": "2026-11-08",
+  "base_commit": "c954eda06921fafc9cb18fd9d6839f4ed05912a6",
+  "workflow_commands": 33,
+  "passed": 30,
+  "pre_existing_failures": 3,
+  "wire_unit_tests": 10,
+  "browser": {
+    "views": 240,
+    "actions": 40,
+    "widths": [
+      375,
+      768,
+      1440
+    ],
+    "page_errors": 0,
+    "network": "localhost only"
+  },
+  "checks": [
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_web_analytics.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/check_web_analytics.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_epic_full_editions.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/build_epic_full_editions.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_ancient_full_editions.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/build_ancient_full_editions.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_fables_full_editions.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/build_fables_full_editions.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_analects_full_editions.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/build_analects_full_editions.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/refresh_analects_full_discovery.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/audit_drama_translations.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_drama_series.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/build_drama_series.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/refresh_drama_discovery.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_film_full_editions.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/build_film_full_editions.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_film_targeted_english.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/refresh_film_full_discovery.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_wire_full_editions.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/build_wire_full_editions.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/refresh_wire_full_discovery.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/check_site_updates.py",
+      "exit_code": 1
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_home_updates.py",
+      "exit_code": 1
+    },
+    {
+      "command": "python3 -B scripts/build_home_updates.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_reviewed_series_languages.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_rewritten_series_languages.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_companion_languages.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_method_introduction.py",
+      "exit_code": 1
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_action_languages.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_state_languages.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_interstate_languages.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_clustered_language_indexes.py",
+      "exit_code": 0
+    }
+  ],
+  "baseline_failure_reason": "Four unchanged existing publication-ledger entries lack languages. This fails check_site_updates and its assertions in test_home_updates and test_method_introduction. Baseline indexes 5–8 become 6–9 after the new Wire entry.",
+  "baseline_failure_ids": [
+    "2026-11-04-fairy-tales-eight-languages",
+    "2026-11-04-laughter-eight-languages",
+    "2026-11-04-cooperation-histories-eight-languages",
+    "2026-11-04-aesthetics-core-eight-languages"
+  ],
+  "additional_checks": [
+    "Legacy collection generator --only the-wire --check passes.",
+    "git diff --check passes.",
+    "Unrelated search records and sitemap dates preserved.",
+    "Desktop and mobile screenshots visually inspected.",
+    "Source and edited-output hash protections pass."
+  ],
+  "limits": "The three pre-existing publication-ledger failures remain outside this repair. Targeted plot verification is not an exhaustive rewatch."
+}

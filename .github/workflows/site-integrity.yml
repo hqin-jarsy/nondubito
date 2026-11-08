@@ -33,6 +33,9 @@ jobs:
       - run: python -B scripts/build_film_full_editions.py --check
       - run: python -B -m unittest discover -s scripts -p test_film_targeted_english.py
       - run: python -B scripts/refresh_film_full_discovery.py --check
+      - run: python -B -m unittest discover -s scripts -p test_wire_full_editions.py
+      - run: python -B scripts/build_wire_full_editions.py --check
+      - run: python -B scripts/refresh_wire_full_discovery.py --check
       - run: python -B scripts/check_site_updates.py
       - run: python -B -m unittest discover -s scripts -p test_home_updates.py
       - run: python -B scripts/build_home_updates.py --check
