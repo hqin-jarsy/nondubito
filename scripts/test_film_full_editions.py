@@ -42,16 +42,32 @@ class Films(unittest.TestCase):
                 self.assertEqual(hashlib.sha256((b.DATA/name).read_bytes()).hexdigest(),r['sha256'],name)
             for name,digest in receipt['protected'].items():
                 p=b.ROOT/name
-                if p.suffix=='.js':self.assertEqual(hashlib.sha256(p.read_bytes()).hexdigest(),digest,name)
+                if p.suffix=='.js':
+                    if receipt.get('scope') and p.name=='index.js':
+                        old=subprocess.check_output(['git','show',receipt['baseline_commit']+':'+name],cwd=b.ROOT).decode()
+                        x=json.loads(re.search(r'var variants\s*=\s*(\{.*?\});',old,re.S)[1]);y=json.loads(re.search(r'var variants\s*=\s*(\{.*?\});',p.read_text(),re.S)[1])
+                        self.assertTrue(all(y.get(k)==v for k,v in x.items()),name)
+                    elif receipt.get('scope') and name in json.loads((b.DATA/'review/approved-traditional.json').read_text())['files']:
+                        self.assertEqual(b.targeted.approved_traditional_outputs()[p],p.read_text(),name)
+                    else:self.assertEqual(hashlib.sha256(p.read_bytes()).hexdigest(),digest,name)
                 elif p.suffix=='.html':
                     old=subprocess.check_output(['git','show',receipt['baseline_commit']+':'+name],cwd=b.ROOT).decode()
-                    x=Nodes();x.feed(old);y=Nodes();y.feed(p.read_text());self.assertEqual(x.body,y.body,name)
+
+                    if receipt.get('scope'):
+                        from prepare_action_sources import Document,one
+                        x=Document(old);y=Document(p.read_text())
+                        bx=one(x.root.walk(),lambda n:n.tag=='div' and n.has('essay-body','lang-zh'),'Chinese body')
+                        by=one(y.root.walk(),lambda n:n.tag=='div' and n.has('essay-body','lang-zh'),'Chinese body')
+                        if p.name!='index.html':self.assertEqual(b.targeted.revised_chinese_body(x.raw(bx),p.parent.name,int(p.name[0])),y.raw(by),name)
+                        else:self.assertEqual(re.findall(r'[\u3400-\u9fff]',bx.text()),re.findall(r'[\u3400-\u9fff]',by.text()),name)
+                    else:
+                        x=Nodes();x.feed(old);y=Nodes();y.feed(p.read_text());self.assertEqual(x.body,y.body,name)
     def test_full_editions_and_seo(self):
         fresh=[(p,s) for p,s in self.pages.items() if p.parent.name in b.LANGS]
         self.assertEqual(len(fresh),len(b.FILMS)*20+5)
         for p,s in fresh:
             self.assertEqual(len(re.findall('<h1[ >]',s)),1,p)
-            self.assertEqual(len(re.findall('hreflang=',s)),6,p)
+            self.assertEqual(len(re.findall('hreflang=',s)),9 if p.parent.parent.name in b.targeted.SLUGS else 6,p)
             self.assertNotIn('.md)',s,p)
             self.assertNotIn('href="EP',s,p)
             self.assertEqual(s.count('class="lang-btn'),8,p)

@@ -112,5 +112,9 @@ def refresh_shared_traditional_data():
   converter.close()
 
 def main():
- conv=TC(); write_pages(conv); update_indexes(); refresh_shared_traditional_data(); print('Published 10 film series / 30 essays')
+ conv=TC(); write_pages(conv); update_indexes(); refresh_shared_traditional_data()
+ # Reapply checked-in complete editions; never let this legacy importer restore summaries.
+ from build_film_full_editions import outputs
+ for path,text in outputs().items():path.parent.mkdir(parents=True,exist_ok=True);path.write_text(text)
+ print('Published 10 film series / 30 essays; reapplied reviewed complete editions')
 if __name__=='__main__': main()

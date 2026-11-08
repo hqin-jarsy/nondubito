@@ -10,13 +10,14 @@ from urllib.parse import urlsplit
 import markdown
 from import_film_full_editions import ROOT, DATA, LANGS
 from web_analytics import tracked_html
+import film_targeted_editions as targeted
 
 DATE='2026-10-07'
 NAMES={'en':'English','zh':'简体中文','zh-hant':'繁體中文','de':'Deutsch','fr':'Français','es':'Español','ja':'日本語','ko':'한국어'}
 GROUPS={'de':'Deutsch','fr':'Français','es':'Español','ja':'日本語','ko':'한국어'}
 UI=json.loads((DATA/'ui.json').read_text())
 RECEIPTS=[json.loads(p.read_text()) for p in sorted(DATA.glob('batch*-received.json'))]
-FILMS=[f for r in RECEIPTS for f in r['films']]
+FILMS=sorted([f for r in RECEIPTS for f in r['films']],key=lambda f:f['number'])
 assert len({f['slug'] for f in FILMS})==len(FILMS)
 E=lambda s:html.escape(str(s),quote=True)
 
@@ -104,7 +105,8 @@ def menu(film,filename,lang=None,hub=False):
 def alternate_links(slug,filename,hub=False):
     base='https://nondubito.net/essays/film/'+(slug+'/' if slug else '')
     suffix='' if filename=='index.html' else filename
-    return ''.join(f'<link rel="alternate" hreflang="{l}" href="{base+l+"/"+suffix}">' for l in LANGS)+f'<link rel="alternate" hreflang="x-default" href="{base+suffix}">'
+    primary=''.join(f'<link rel="alternate" hreflang="{l}" href="{base+suffix}?lang={q}">' for l,q in [('en','en'),('zh-Hans','zh'),('zh-Hant','zh-hant')]) if slug in targeted.SLUGS else ''
+    return primary+''.join(f'<link rel="alternate" hreflang="{l}" href="{base+l+"/"+suffix}">' for l in LANGS)+f'<link rel="alternate" hreflang="x-default" href="{base+suffix}">'
 
 @tracked_html
 def page(film,lang,copy,ep=None,hub=False):
@@ -113,7 +115,9 @@ def page(film,lang,copy,ep=None,hub=False):
     route='essays/film/'+('' if hub else slug+'/')+lang+'/'
     canonical='https://nondubito.net/'+route+('' if filename=='index.html' else filename)
     series_href='index.html';cinema_href='index.html' if hub else '../../'+lang+'/index.html'
-    schema={'@context':'https://schema.org','@type':'Article' if ep else 'CollectionPage','headline':copy['title'],'name':copy['title'],'description':copy['description'],'url':canonical,'inLanguage':lang,'author':{'@type':'Person','name':'Han Qin (秦汉)'},'datePublished':DATE,'dateModified':DATE}
+    date=targeted.DATE if hub or slug in targeted.SLUGS else DATE
+    updated=targeted.UPDATED[lang] if hub or slug in targeted.SLUGS else u['updated']
+    schema={'@context':'https://schema.org','@type':'Article' if ep else 'CollectionPage','headline':copy['title'],'name':copy['title'],'description':copy['description'],'url':canonical,'inLanguage':lang,'author':{'@type':'Person','name':'Han Qin (秦汉)'},'datePublished':date,'dateModified':date}
     nav=''
     if ep:
         schema['isPartOf']={'@type':'CollectionPage','url':'https://nondubito.net/'+route}
@@ -128,16 +132,20 @@ def page(film,lang,copy,ep=None,hub=False):
     title=E(copy['title']);description=E(copy['description'])
     body=(f'<p class="ff-meta">{E(u["edition"])}</p>' if not hub else '')+copy['body']
     return f'''<!DOCTYPE html>
-<html lang="{lang}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title} — Non Dubito</title><meta name="description" content="{description}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{canonical}">{alternate_links('' if hub else slug,filename)}<meta property="og:title" content="{title}"><meta property="og:description" content="{description}"><meta property="og:url" content="{canonical}"><meta property="og:type" content="{'article' if ep else 'website'}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="{depth}favicon.svg"><link rel="stylesheet" href="{'../' if hub else '../../'}film-editions.css?v=20261007"><script defer src="{depth}language-select.js"></script><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="ff-skip" href="#main">↓ {E(u['read'])}</a><header class="ff-header"><a class="ff-brand" href="{depth}index.html">Non <span>Dubito</span></a><nav><a href="{cinema_href}">{E(u['cinema'])}</a><a href="{depth}essays/{lang}/index.html">{NAMES[lang]}</a><a href="{depth}library.html">{E(u['library'])}</a></nav></header><main id="main" class="ff-page">{menu(film,filename,lang,hub)}<p class="ff-kicker">NON DUBITO · {E(u['cinema'])}{' · '+str(ep)+' / 3' if ep else ''}</p><h1>{title}</h1><p class="ff-meta">Han Qin (秦汉) · {E(u['updated'])}</p>{toc}<div class="ff-body">{body}</div>{nav}</main><footer class="ff-footer"><a href="{cinema_href}">← {E(u['cinema'])}</a><p>© 2026 Han Qin (秦汉) · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Non Dubito</p></footer></body></html>
+<html lang="{lang}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title} — Non Dubito</title><meta name="description" content="{description}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{canonical}">{alternate_links('' if hub else slug,filename)}<meta property="og:title" content="{title}"><meta property="og:description" content="{description}"><meta property="og:url" content="{canonical}"><meta property="og:type" content="{'article' if ep else 'website'}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="{depth}favicon.svg"><link rel="stylesheet" href="{'../' if hub else '../../'}film-editions.css?v=20261007"><script defer src="{depth}language-select.js"></script><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="ff-skip" href="#main">↓ {E(u['read'])}</a><header class="ff-header"><a class="ff-brand" href="{depth}index.html">Non <span>Dubito</span></a><nav><a href="{cinema_href}">{E(u['cinema'])}</a><a href="{depth}essays/{lang}/index.html">{NAMES[lang]}</a><a href="{depth}library.html">{E(u['library'])}</a></nav></header><main id="main" class="ff-page">{menu(film,filename,lang,hub)}<p class="ff-kicker">NON DUBITO · {E(u['cinema'])}{' · '+str(ep)+' / 3' if ep else ''}</p><h1>{title}</h1><p class="ff-meta">Han Qin (秦汉) · {E(updated)}</p>{toc}<div class="ff-body">{body}</div>{nav}</main><footer class="ff-footer"><a href="{cinema_href}">← {E(u['cinema'])}</a><p>© 2026 Han Qin (秦汉) · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · Non Dubito</p></footer></body></html>
 '''
 
 def legacy(path,film,hub=False):
     s=path.read_text();filename=path.name
+    if not hub:s=targeted.overlay(s,film,filename)
     s,n=re.subn(r'<div class="lang-toggle"[^>]*>.*?</div>',lambda m:menu(film,filename),s,count=1,flags=re.S)
     assert n==1,path
     depth='../../' if hub else '../../../'
     s=re.sub(r'<!-- film-full-head -->.*?<!-- /film-full-head -->','',s,flags=re.S)
     extra=f'''<!-- film-full-head -->{alternate_links('' if hub else film['slug'],filename)}<style>.lang-toggle:not(.lang-select-menu){{flex-wrap:wrap;max-width:100%;gap:.4rem}}.lang-toggle .edition-link{{text-decoration:none}}</style><script>(function(){{var l=new URLSearchParams(location.search).get('lang');if(['en','zh','zh-hant'].indexOf(l)>=0){{localStorage.setItem('nd_lang',l);localStorage.setItem('nondubito-lang',l);document.documentElement.dataset.lang=l;document.documentElement.lang=l==='zh'?'zh-Hans':l;}}}})();</script><script defer src="{depth}language-select.js"></script><!-- /film-full-head -->'''
+
+    if not hub and film['slug'] in targeted.SLUGS:
+        extra=re.sub(r'<script>.*?</script>','',extra,flags=re.S)
     s=s.replace('</head>',extra+'</head>',1)
     # Update only the hero's edition label, outside all protected essay bodies.
     boundary=s.index('<div class="essay-body')
@@ -147,7 +155,9 @@ def legacy(path,film,hub=False):
         head=head.replace('五十九个系列 · 一百七十七篇 · 英 / 简 / 繁','59 个系列 · 177 篇 · 首批 5 部作品八语齐备')
         head=re.sub(r'First \d+ series in 8 languages',f'First {len(FILMS)} series in 8 languages',head)
         head=re.sub(r'首批 \d+ 部作品八语齐备',f'前 {len(FILMS)} 部作品八语齐备',head)
-        head=re.sub(r'前 \d+ 部作品八语齐备',f'前 {len(FILMS)} 部作品八语齐备',head)
+        head=re.sub(r'(?:前 |已有 )?\d+ 部作品八语齐备',f'已有 {len(FILMS)} 部作品八语齐备',head)
+        head=re.sub(r'First \d+ series in 8 languages',f'{len(FILMS)} series in 8 languages',head)
+        head=re.sub(r'(?<!\d)\d+ series in 8 languages',f'{len(FILMS)} series in 8 languages',head)
     else:
         head=head.replace('English · Simplified · Traditional','8 language editions')
         head=head.replace('英文 · 简体 · 繁体','八种语言版本')
@@ -169,6 +179,7 @@ def outputs():
         c={'title':u['cinema'],'description':u['intro'],'body':f'<p>{E(u["intro"])}</p><p class="ff-meta">{E(u["published"])}</p><div class="ff-grid">{cards}</div>'}
         out[ROOT/'essays/film'/lang/'index.html']=page({'slug':'','chapters':[]},lang,c,hub=True)
     p=ROOT/'essays/film/index.html';out[p]=legacy(p,{'slug':''},hub=True)
+    out.update(targeted.traditional_outputs(out))
     return out
 
 if __name__=='__main__':

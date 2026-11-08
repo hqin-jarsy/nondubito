@@ -77,12 +77,12 @@
       if (inlineLanguage) {
         document.documentElement.setAttribute("data-lang", inlineLanguage);
         document.documentElement.lang = inlineLanguage === "zh" ? "zh-Hans" : inlineLanguage;
-        localStorage.setItem("nd_lang", inlineLanguage);
+        try { localStorage.setItem("nd_lang", inlineLanguage); } catch (error) {}
         return;
       }
 
       if (option.dataset.storedLanguage) {
-        localStorage.setItem("nd_lang", option.dataset.storedLanguage);
+        try { localStorage.setItem("nd_lang", option.dataset.storedLanguage); } catch (error) {}
       }
       if (href) window.location.assign(href);
     });
