@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """Refresh only original-fiction publication discovery, preserving unrelated records."""
 import json
+import subprocess
 import xml.etree.ElementTree as ET
 import build_search_index as search
 from build_sitemap import parse_page, sitemap_xml
-from build_hongloumeng_original import render, DATE
+from build_hongloumeng_original import render, CHAPTERS
+DATE = max(ch['modified'] for ch in CHAPTERS.values())
 
 def refresh():
     paths=list(render())
     paths += [search.ROOT/'essays/literature/hlm'/d/'index.html' for d in ('','en','zh-hant')]
-    paths += [search.ROOT/'originals/index.html']
+    paths += [search.ROOT/name for name in ('originals/index.html','index.html','library.html')]
     scope={str(p.relative_to(search.ROOT)) for p in paths}
     previous=search.collect_pages
     try:
@@ -32,7 +34,11 @@ def refresh():
     entries={u.find(ns+'loc').text:u.find(ns+'lastmod').text for u in ET.parse(path).getroot()}
     for p in paths+[search.ROOT/'latest.html']:
         canonical=parse_page(p).canonical;assert canonical.startswith('https://nondubito.net/')
-        entries[canonical]=DATE
+        relative=str(p.relative_to(search.ROOT))
+        prior=subprocess.run(['git','show','HEAD:'+relative],cwd=search.ROOT,capture_output=True)
+        # A discovery refresh must not redate byte-identical older chapters.
+        if canonical not in entries or prior.returncode or prior.stdout != p.read_bytes():
+            entries[canonical]=DATE
     path.write_text(sitemap_xml(sorted(entries.items(),key=lambda x:(x[0]!='https://nondubito.net/',x[0]))))
     print(f'Refreshed {len(scope)} discovery pages; added {len(added)} source records')
 

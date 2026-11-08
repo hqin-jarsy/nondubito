@@ -26,13 +26,22 @@ CHAPTERS = {
                         '正是：慈云一去群芳冷，寿烛才残满院昏。')},
     'ch084': {'sha256': '68367c0b5c424717d4c26343b4086a79de663d137a3b4bcd4868a3182bf0081d',
               'published': '2026-11-03', 'modified': '2026-11-03', 'number': '第八十四回'},
+    'ch085': {'sha256': 'b398246de1a7ed12662eccca1f6a0cf3c336a36ec5d30e910fc174b9d6e495fb',
+              'published': '2026-11-08', 'modified': '2026-11-08', 'number': '第八十五回',
+              'verse_units': [[21, 24], [26, 29], [43, 44], [51, 52], [56, 57], [61, 62], [65, 66], [103, 120]]},
 }
 
 
 def manuscript(stem):
     raw = (ROOT / f'data/originals/hongloumeng/{stem}.zh.txt').read_bytes()
     assert hashlib.sha256(raw).hexdigest() == CHAPTERS[stem]['sha256'], 'Final manuscript changed: obtain author approval first.'
-    return raw.decode().splitlines()
+    lines = raw.decode().splitlines()
+    # The chapter-85 attachment is archived byte-for-byte, including its Markdown marker.
+    # Suppress only that presentation marker in the HTML heading.
+    if stem == 'ch085':
+        assert lines[0].startswith('# ')
+        lines[0] = lines[0][2:]
+    return lines
 ORIGIN = 'https://nondubito.net/originals/hongloumeng/'
 EDITIONS = {'zh': ('', 'zh-Hans', '简体中文'), 'zh-hant': ('zh-hant/', 'zh-Hant', '繁體中文'),
             **{lang:(lang+'/',lang,ui[0]) for lang,ui in FOREIGN.items()}}
@@ -74,6 +83,14 @@ def render():
                                     '沒精打採':'沒精打采', '卷了包':'捲了包', '一乾婆子':'一干婆子',
                                     '沈了':'沉了', '只余幾件':'只餘幾件', '混唚':'混吣',
                                     '輓著個纂兒':'挽著個纂兒', '經折裡':'經摺裡'})
+                if stem == 'ch085':
+                    choices.update({'剪發':'剪髮', '帶發修行':'帶髮修行', '鬥篷':'斗篷',
+                                    '三千裡':'三千里', '萬裡':'萬里', '輓天河':'挽天河',
+                                    '系上':'繫上', '又松了':'又鬆了', '又松開':'又鬆開',
+                                    '靠窗幾上':'靠窗几上', '小幾上':'小几上', '是只小船':'是隻小船',
+                                    '那只舊花匣':'那隻舊花匣', '兩只竹篩':'兩隻竹篩',
+                                    '說明瞭':'說明了', '新制的糕':'新製的糕', '卷著一半':'捲著一半',
+                                    '風卷著':'風捲著', '我托了':'我託了', '沈':'沉'})
                 for before, after in choices.items():
                     value = value.replace(before, after)
                 return value
@@ -89,7 +106,7 @@ def render():
                 published = CHAPTERS[stem]['published'] if story else '2026-10-05'
                 title = lines[0] if story else '红楼梦·后三十回'
                 canonical = ORIGIN + directory + (filename if story else '')
-                description = '秦汉原创《红楼梦》续写，第八十一至第一百一十回。目前公开第八十一至八十四回定稿，提供八语阅读版；不是曹雪芹佚稿。'
+                description = '秦汉原创《红楼梦》续写，第八十一至第一百一十回。目前公开第八十一至八十五回定稿，提供八语阅读版；不是曹雪芹佚稿。'
                 alternatives = ''.join(f'<link rel="alternate" hreflang="{c}" href="{ORIGIN+d+(filename if story else "")}">' for d,c,_ in EDITIONS.values())
                 alternatives += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN+(filename if story else "")}">'
                 languages = language_menu(lang, filename)
@@ -102,18 +119,21 @@ def render():
                     verse_start, verse_end = verse if verse else (None, None)
                     if verse:
                         assert lines.count(verse_start) == lines.count(verse_end) == 1
+                    unit = 0
+                    ranges = CHAPTERS[stem].get('verse_units', [])
                     for number, line in enumerate(lines[1:], 2):
                         if not line: continue
-                        if line == verse_start: paragraphs.append('<div class="verse">')
+                        unit += 1
+                        if line == verse_start or any(unit == start for start, _ in ranges): paragraphs.append('<div class="verse">')
                         text = e(line)
                         if stem == 'ch083' and line == verse_start:
                             text = text.replace('，', '，<br>', 1)
                         paragraphs.append(f'<p data-source-line="{number}">{text}</p>')
-                        if line == verse_end: paragraphs.append('</div>')
+                        if line == verse_end or any(unit == end for _, end in ranges): paragraphs.append('</div>')
                     keys = list(CHAPTERS)
                     position = keys.index(stem)
                     previous = (f'<a href="{keys[position-1]}.html">{e("← " + CHAPTERS[keys[position-1]]["number"])}</a>' if position else '')
-                    following = (f'<a href="{keys[position+1]}.html">{e(CHAPTERS[keys[position+1]]["number"] + " →")}</a>' if position+1 < len(keys) else f'<span>{e("第八十五回 · 待发布")}</span>')
+                    following = (f'<a href="{keys[position+1]}.html">{e(CHAPTERS[keys[position+1]]["number"] + " →")}</a>' if position+1 < len(keys) else f'<span>{e("第八十六回 · 待发布")}</span>')
                     title_parts = title.split('　')
                     heading = ''.join(f'<span class="{"chapter-number" if i==0 else "chapter-couplet"}">{e(part)}'+('　' if i<len(title_parts)-1 else '')+'</span>' for i,part in enumerate(title_parts))
                     content = f'<article><header class="chapter-head"><p class="eyebrow">{e("秦汉原创 · 红楼梦后三十回")}</p><h1>{heading}</h1><p class="edition-note">{e("定稿原文" if not directory else "定稿繁体阅读版")} · <time datetime="{published}">{published}</time></p><p class="authorship">{e("本篇是秦汉的原创续写，不是曹雪芹佚稿。")}</p></header><div class="novel-text">'+ '\n'.join(paragraphs) +f'</div></article><nav class="chapter-nav" aria-label="{e("章节导航")}">{previous}<a href="index.html">{e("返回回目")}</a>{following}</nav>'
@@ -122,7 +142,7 @@ def render():
                                           'url': ORIGIN+directory+key+'.html'} for key in CHAPTERS]
                     cards = ''.join(f'<a class="chapter-card" href="{key}.html"><span>{e(manuscripts[key][0])}</span><small>{e("定稿 · 阅读正文 →")}</small></a>' for key in CHAPTERS)
                     content = f'''<header class="collection-head"><p class="eyebrow">{e('秦汉原创 · 第八十一至第一百一十回')}</p><h1>{e(title)}</h1><p class="deck">{e('从八十回以后，接着写这些人的故事。')}</p></header>
-<section class="introduction"><h2>{e('关于这部续写')}</h2><p>{e('后三十回已完成，正在逐回打磨与发布。目前可读第八十一至八十四回定稿，提供八语阅读版。第八十五至第一百一十回尚未公开。')}</p><p>{e('这三十回是秦汉的原创小说，不是曹雪芹的佚稿，也不是对已有续书的整理；不声称恢复了曹雪芹原稿。')}</p><p>{e('可以直接开始读小说。若想了解写作背后的阅读与研究，可另访红楼梦专题；其中的论文含后续情节与结局，请按自己的阅读顺序选择。')}</p></section>
+<section class="introduction"><h2>{e('关于这部续写')}</h2><p>{e('后三十回已完成，正在逐回打磨与发布。目前可读第八十一至八十五回定稿，提供八语阅读版。第八十六至第一百一十回尚未公开。')}</p><p>{e('这三十回是秦汉的原创小说，不是曹雪芹的佚稿，也不是对已有续书的整理；不声称恢复了曹雪芹原稿。')}</p><p>{e('可以直接开始读小说。若想了解写作背后的阅读与研究，可另访红楼梦专题；其中的论文含后续情节与结局，请按自己的阅读顺序选择。')}</p></section>
 <section class="contents"><h2>{e('已发布回目')}</h2>{cards}<p class="edition-note">{e('后续回目将在定稿发布后加入。')}</p></section>'''
                 pages[TARGET/directory/filename] = f'''<!DOCTYPE html>
 <html lang="{code}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title)} — Non Dubito</title><meta name="description" content="{e(description)}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{canonical}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="{base}favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{up}novel.css?v=20261020"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e('跳到正文')}</a><header class="site-header"><a class="brand" href="{base}index.html">Non <span>Dubito</span></a><nav aria-label="{e('网站导航')}"><a href="{base}originals/index.html">{e('原创作品')}</a><a href="{hub}">{e('红楼梦专题')}</a><a href="{base}library.html">{e('书库')}</a></nav>{languages}</header><main id="main">{content}</main><footer><a href="{hub}">{e('返回红楼梦专题')}</a><p>© 2026 {e('秦汉')} · Non Dubito</p></footer></body></html>

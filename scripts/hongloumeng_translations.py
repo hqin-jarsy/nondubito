@@ -16,33 +16,33 @@ DATE = '2026-10-20'
 FOREIGN = {
     'en': ('English', 'Dream of the Red Chamber: Thirty New Chapters',
            'Original continuation by Han Qin, not a recovered manuscript by Cao Xueqin.',
-           'Chapters 81–84 are available in eight languages. Chapters 85–110 remain unpublished. The Chinese original is by Han Qin; these are independent translations, not passages reproduced from existing translations of the novel.',
-           'Original fiction', 'Red Chamber project · English', 'Library', 'Skip to content', 'Chapters', 'Read chapter', 'Chapter 85 · Forthcoming', 'A note on this edition',
+           'Chapters 81–85 are available in eight languages. Chapters 86–110 remain unpublished. The Chinese original is by Han Qin; these are independent translations, not passages reproduced from existing translations of the novel.',
+           'Original fiction', 'Red Chamber project · English', 'Library', 'Skip to content', 'Chapters', 'Read chapter', 'Chapter 86 · Forthcoming', 'A note on this edition',
            'Names follow the reader tradition established by David Hawkes where supported by the project’s references. This new continuation is translated independently from Han Qin’s Chinese, preserving dialogue, poems and narrative uncertainties.'),
     'de': ('Deutsch', 'Der Traum der Roten Kammer: Dreißig neue Kapitel',
            'Eine eigenständige Fortsetzung von Han Qin, kein wiederentdecktes Manuskript von Cao Xueqin.',
-           'Die Kapitel 81–84 sind in acht Sprachen lesbar. Die Kapitel 85–110 sind noch nicht veröffentlicht. Das chinesische Original stammt von Han Qin; die Übersetzungen sind eigenständig und übernehmen keine Passagen aus vorhandenen Romanübersetzungen.',
-           'Originalerzählungen', 'Projekt zur Roten Kammer · Englisch', 'Bibliothek', 'Zum Text', 'Kapitelübersicht', 'Kapitel lesen', 'Kapitel 85 · Noch nicht veröffentlicht', 'Zu dieser Ausgabe',
+           'Die Kapitel 81–85 sind in acht Sprachen lesbar. Die Kapitel 86–110 sind noch nicht veröffentlicht. Das chinesische Original stammt von Han Qin; die Übersetzungen sind eigenständig und übernehmen keine Passagen aus vorhandenen Romanübersetzungen.',
+           'Originalerzählungen', 'Projekt zur Roten Kammer · Englisch', 'Bibliothek', 'Zum Text', 'Kapitelübersicht', 'Kapitel lesen', 'Kapitel 86 · Noch nicht veröffentlicht', 'Zu dieser Ausgabe',
            'Die Namen knüpfen, soweit durch die Projektbelege gestützt, an die deutsche Lesertradition um Franz Kuhn an. Die Fortsetzung selbst wird ungekürzt aus Han Qins chinesischem Text übersetzt; Dialoge, Verse und Ungewissheiten bleiben erhalten.'),
     'fr': ('Français', 'Le Rêve dans le pavillon rouge : trente nouveaux récits',
            'Une suite originale de Han Qin, et non un manuscrit retrouvé de Cao Xueqin.',
-           'Les récits 81–84 sont disponibles en huit langues. Les récits 85–110 ne sont pas encore publiés. Le texte chinois est de Han Qin ; les traductions sont indépendantes et ne reproduisent aucun passage des traductions existantes du roman.',
-           'Fictions originales', 'Projet du Pavillon rouge · anglais', 'Bibliothèque', 'Aller au texte', 'Table des récits', 'Lire le récit', 'Récit 85 · À paraître', 'À propos de cette version',
+           'Les récits 81–85 sont disponibles en huit langues. Les récits 86–110 ne sont pas encore publiés. Le texte chinois est de Han Qin ; les traductions sont indépendantes et ne reproduisent aucun passage des traductions existantes du roman.',
+           'Fictions originales', 'Projet du Pavillon rouge · anglais', 'Bibliothèque', 'Aller au texte', 'Table des récits', 'Lire le récit', 'Récit 86 · À paraître', 'À propos de cette version',
            'Les noms suivent, selon les références réunies pour le projet, la tradition de Li Tche-houa et Jacqueline Alézaïs. Cette suite est traduite indépendamment du chinois de Han Qin, sans supprimer les dialogues, les poèmes ni les incertitudes du récit.'),
     'es': ('Español', 'Sueño en el pabellón rojo: treinta nuevos capítulos',
            'Continuación original de Han Qin, no un manuscrito recuperado de Cao Xueqin.',
-           'Los capítulos 81–84 están disponibles en ocho lenguas. Los capítulos 85–110 aún no se han publicado. El original chino es de Han Qin; las traducciones son independientes y no reproducen pasajes de traducciones anteriores de la novela.',
-           'Ficción original', 'Proyecto del Pabellón Rojo · inglés', 'Biblioteca', 'Ir al texto', 'Índice de capítulos', 'Leer capítulo', 'Capítulo 85 · Próximamente', 'Sobre esta versión',
+           'Los capítulos 81–85 están disponibles en ocho lenguas. Los capítulos 86–110 aún no se han publicado. El original chino es de Han Qin; las traducciones son independientes y no reproducen pasajes de traducciones anteriores de la novela.',
+           'Ficción original', 'Proyecto del Pabellón Rojo · inglés', 'Biblioteca', 'Ir al texto', 'Índice de capítulos', 'Leer capítulo', 'Capítulo 86 · Próximamente', 'Sobre esta versión',
            'Los nombres siguen la tradición de lectura de Zhao Zhenjiang, José Antonio García Sánchez y Alicia Relinque, según las referencias del proyecto. La continuación se traduce de forma independiente del chino de Han Qin, con sus diálogos, poemas y asuntos sin resolver.'),
     'ja': ('日本語', '紅楼夢・新たな三十回',
            '秦漢による創作続篇です。曹雪芹の佚稿や、その発見・復元を主張するものではありません。',
-           '第八十一〜八十四回を八言語で公開しています。第八十五〜百十回は未公開です。中国語原作は秦漢によるものです。各言語版は独立した翻訳であり、既刊の『紅楼夢』訳文の転載ではありません。',
-           '創作作品', '紅楼夢プロジェクト・英語', '書庫', '本文へ', '回目一覧', '本文を読む', '第八十五回・未公開', 'この翻訳について',
+           '第八十一〜八十五回を八言語で公開しています。第八十六〜百十回は未公開です。中国語原作は秦漢によるものです。各言語版は独立した翻訳であり、既刊の『紅楼夢』訳文の転載ではありません。',
+           '創作作品', '紅楼夢プロジェクト・英語', '書庫', '本文へ', '回目一覧', '本文を読む', '第八十六回・未公開', 'この翻訳について',
            '人名は日本語で読める漢字表記を基本とし、松枝茂夫訳を参照する際も、未確認の読みを断定しません。秦漢の中国語原作から独立して訳し、会話や詩詞、語られていないことを残しています。'),
     'ko': ('한국어', '홍루몽: 새로 쓴 서른 회',
            '진한(秦漢)이 창작한 속편이며, 조설근의 잃어버린 원고가 아닙니다.',
-           '제81~84회를 여덟 언어로 읽을 수 있습니다. 제85~110회는 아직 공개하지 않았습니다. 중국어 원작은 진한이 썼으며, 각 언어판은 기존 『홍루몽』 번역의 문장을 옮긴 것이 아닌 독립 번역입니다.',
-           '창작 소설', '홍루몽 프로젝트 · 영어', '서가', '본문으로', '회차 목록', '본문 읽기', '제85회 · 공개 예정', '이 번역에 관하여',
+           '제81~85회를 여덟 언어로 읽을 수 있습니다. 제86~110회는 아직 공개하지 않았습니다. 중국어 원작은 진한이 썼으며, 각 언어판은 기존 『홍루몽』 번역의 문장을 옮긴 것이 아닌 독립 번역입니다.',
+           '창작 소설', '홍루몽 프로젝트 · 영어', '서가', '본문으로', '회차 목록', '본문 읽기', '제86회 · 공개 예정', '이 번역에 관하여',
            '인명은 최용철·고민희 번역을 참조한 한국어 독서 전통과 프로젝트의 표기 원칙을 따릅니다. 진한의 중국어 원작에서 독립적으로 번역하여 대화와 시가, 서술의 여백을 남겼습니다.'),
 }
 
@@ -67,7 +67,7 @@ def edition(stem, lang):
     blocks = re.split(r'\n\s*\n', text.strip())
     title = []
     while blocks and (blocks[0].startswith('#') or (lang == 'en' and blocks[0].startswith('*'))):
-        title.append(re.sub(r'^#+\s*', '', blocks.pop(0)).replace('*', '').replace('  \n', '\n'))
+        title.append(re.sub(r'^#+\s*', '', blocks.pop(0), flags=re.M if stem == 'ch085' else 0).replace('*', '').replace('  \n', '\n'))
     notes = []
     if blocks[-1].startswith('Nota 1.'):
         notes.append(blocks.pop())
@@ -122,7 +122,7 @@ def render_foreign(editions, language_menu, origin, target):
                 schema.update(position=int(stem[2:]), isPartOf={'@type':'CreativeWork','name':collection,'url':origin+lang+'/'}, translationOfWork={'@type':'Chapter','url':origin+stem+'.html','inLanguage':'zh-Hans'})
                 body = []
                 for number, value in units:
-                    verse = (stem == 'ch081' and 91 <= number <= 98) or (stem == 'ch082' and number in (38,39)) or (stem == 'ch083' and number == 32)
+                    verse = (stem == 'ch081' and 91 <= number <= 98) or (stem == 'ch082' and number in (38,39)) or (stem == 'ch083' and number == 32) or (stem == 'ch085' and any(a <= number <= b for a,b in publication['chapter_sources'][stem]['verse_units']))
                     if stem == 'ch083' and number == 32:
                         if lang == 'de': value=value.replace('Wahrlich: ','Wahrlich:\n',1).replace('; ',';\n',1)
                         elif lang == 'ja': value=value.replace('まさに、','まさに、\n',1).replace('群芳は冷え、','群芳は冷え、\n',1)
@@ -148,6 +148,6 @@ def render_foreign(editions, language_menu, origin, target):
                 cards = ''.join(f'<a class="chapter-card" href="{ch}.html">{e(edition(ch,lang)[0]).replace(chr(10),"<br>")}<small>{e(read)} →</small></a>' for ch in chapters)
                 content = f'<header class="collection-head"><p class="eyebrow">Han Qin · 81–110</p><h1>{e(collection)}</h1><p class="authorship">{e(notice)}</p></header><section class="introduction"><p>{e(intro)}</p></section><section class="contents"><h2>{e(contents)}</h2>{cards}</section>'
             pages[target/lang/(stem+'.html')] = f'''<!DOCTYPE html>
-<html lang="{lang}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title.replace(chr(10),' · '))} — Non Dubito</title><meta name="description" content="{e(notice+' '+collection+' · '+('81–84' if not story else str(int(stem[2:]))))}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{url}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title.replace(chr(10),' · '))}"><meta property="og:description" content="{e(notice)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../novel.css?v=20261020"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e(skip)}</a><header class="site-header"><a class="brand" href="../../../index.html?lang=en">Non <span>Dubito</span></a><nav><a href="../../../originals/index.html?lang=en">{e(shelf)}</a><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><a href="../../../library.html?lang=en">{e(library)}</a></nav>{language_menu(lang,stem+'.html')}</header><main id="main">{content}</main><footer><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><p>© 2026 Han Qin (秦汉) · Non Dubito</p></footer></body></html>
+<html lang="{lang}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title.replace(chr(10),' · '))} — Non Dubito</title><meta name="description" content="{e(notice+' '+collection+' · '+('81–85' if not story else str(int(stem[2:]))))}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{url}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title.replace(chr(10),' · '))}"><meta property="og:description" content="{e(notice)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../novel.css?v=20261020"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e(skip)}</a><header class="site-header"><a class="brand" href="../../../index.html?lang=en">Non <span>Dubito</span></a><nav><a href="../../../originals/index.html?lang=en">{e(shelf)}</a><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><a href="../../../library.html?lang=en">{e(library)}</a></nav>{language_menu(lang,stem+'.html')}</header><main id="main">{content}</main><footer><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><p>© 2026 Han Qin (秦汉) · Non Dubito</p></footer></body></html>
 '''
     return pages

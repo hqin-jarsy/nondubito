@@ -48,7 +48,7 @@ class OriginalTests(unittest.TestCase):
                 actual=[(int(n),html.unescape(re.sub('<[^>]+>','',v))) for n,v in re.findall(r'<p data-source-line="(\d+)">(.*?)</p>',s)]
                 self.assertEqual([n for n,v in actual],[i for i,v in enumerate(lines,1) if i>1 and v])
                 verses = s.split('<div class="verse">')
-                self.assertEqual(len(re.findall('data-source-line=',verses[1].split('</div>')[0])) if len(verses)>1 else 0,{'ch081':8,'ch082':2,'ch083':1,'ch084':0}[p.stem])
+                self.assertEqual(sum(len(re.findall('data-source-line=',v.split('</div>')[0])) for v in verses[1:]),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36}[p.stem])
                 if p.parent==build.TARGET:
                     self.assertEqual(actual,[(i,v) for i,v in enumerate(lines,1) if i>1 and v])
                     self.assertEqual(html.unescape(re.sub('<[^>]+>','',re.search('<h1>(.*?)</h1>',s)[1])),lines[0])
@@ -70,7 +70,7 @@ class OriginalTests(unittest.TestCase):
                 u=urlsplit(html.unescape(href))
                 if u.scheme or not u.path:continue
                 self.assertTrue((p.parent/unquote(u.path)).resolve().exists(),href)
-            self.assertNotIn('ch085.html',s)
+            self.assertNotIn('ch086.html',s)
             self.assertEqual(len(re.findall(r'rel="alternate" hreflang=',s)),9)
             for directory,code,_ in build.EDITIONS.values():
                 self.assertIn(f'hreflang="{code}" href="{build.ORIGIN+directory+(p.name if p.stem in build.CHAPTERS else "")}"',s)
@@ -83,7 +83,7 @@ class OriginalTests(unittest.TestCase):
             self.assertEqual(schema['@type'],'Chapter' if p.stem in build.CHAPTERS else 'CollectionPage')
             self.assertEqual(schema['inLanguage'],p.parent.name if foreign else 'zh-Hant' if p.parent.name=='zh-hant' else 'zh-Hans')
             if p.stem in build.CHAPTERS:
-                translation_date={'ch083':'2026-10-24','ch084':'2026-11-03'}.get(p.stem,DATE)
+                translation_date={'ch083':'2026-10-24','ch084':'2026-11-03','ch085':'2026-11-08'}.get(p.stem,DATE)
                 self.assertEqual(schema['datePublished'],translation_date if foreign else build.CHAPTERS[p.stem]['published'])
                 self.assertEqual(schema['dateModified'], translation_date if foreign else build.CHAPTERS[p.stem].get('modified', build.DATE))
                 if foreign:self.assertEqual(schema['translationOfWork']['url'],build.ORIGIN+p.stem+'.html')
@@ -121,9 +121,9 @@ class OriginalTests(unittest.TestCase):
                 # Reconstruct all source units, including the eight distinct song lines.
                 pieces=re.split(r'<div data-source-unit="(\d+)"[^>]*>',body)[1:]
                 actual=[(int(pieces[i]),html.unescape(re.sub('<[^>]*>','',pieces[i+1]))) for i in range(0,len(pieces),2)]
-                self.assertEqual([n for n,_ in actual],list(range(1,{'ch081':102,'ch082':68,'ch083':33,'ch084':52}[stem])))
+                self.assertEqual([n for n,_ in actual],list(range(1,{'ch081':102,'ch082':68,'ch083':33,'ch084':52,'ch085':157}[stem])))
                 self.assertEqual([(n,normalize(v)) for n,v in actual],[(n,normalize(v)) for n,v in units])
-                self.assertEqual(len(re.findall(r'data-source-unit="\d+" class="verse"',page)),{'ch081':8,'ch082':2,'ch083':1,'ch084':0}[stem])
+                self.assertEqual(len(re.findall(r'data-source-unit="\d+" class="verse"',page)),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36}[stem])
                 self.assertNotIn('<!-- P',body)
                 if lang=='es' and stem=='ch081':
                     self.assertNotIn('Nota 1.',body)
@@ -203,6 +203,63 @@ class OriginalTests(unittest.TestCase):
         files=[p for p in received.rglob('*') if p.is_file()]
         self.assertEqual(len(files),32)
         self.assertFalse(any(p.suffix=='.html' for p in files))
+
+    def test_ch085_exact_attachment_and_previous_text(self):
+        source=(DATA.parent/'ch085.zh.txt').read_bytes()
+        self.assertEqual(source,received_path('ch085','zh-Hans').read_bytes())
+        self.assertEqual(hashlib.sha256(source).hexdigest(),'b398246de1a7ed12662eccca1f6a0cf3c336a36ec5d30e910fc174b9d6e495fb')
+        self.assertEqual(len(source),25917)
+        self.assertEqual(len([v for v in source.decode().splitlines()[1:] if v]),156)
+        publication=json.loads((DATA.parent/'publication.json').read_text())
+        ranges=publication['chapter_sources']['ch085']['verse_units']
+        self.assertEqual(sum(b-a+1 for a,b in ranges),36)
+        for directory,_,_ in build.EDITIONS.values():
+            for stem in ('ch081','ch082','ch083','ch084'):
+                path=build.TARGET/directory/(stem+'.html')
+                prior=subprocess.check_output(['git','show','b5a4afb:'+str(path.relative_to(build.ROOT))],cwd=build.ROOT,text=True)
+                body=lambda text:text.split('<div class="novel-text">')[1].split('</article>')[0]
+                self.assertEqual(body(path.read_text()),body(prior),str(path))
+        for lang in FOREIGN:
+            title,units,notes=edition('ch085',lang)
+            self.assertEqual(len(units),156)
+            self.assertTrue(all(v.strip() for _,v in units))
+            self.assertEqual(notes,[])
+        traditional=(build.TARGET/'zh-hant/ch085.html').read_text()
+        for phrase in ('剪髮','帶髮修行','三千里','萬里','挽天河','斗篷','繫上','又鬆了','又鬆開','兩隻竹篩','說明了'):
+            self.assertIn(phrase,traditional)
+        registry=json.loads((DATA/'continuity.json').read_text())['languages']
+        for lang,rules in registry.items():
+            text='\n'.join(v for _,v in edition('ch085',lang)[1])
+            for rule in rules:
+                check=text.replace(rule['preferred'],'') if rule['retired'] in rule['preferred'] else text
+                self.assertNotIn(rule['retired'],check,(lang,rule['identity']))
+
+    def test_ch085_reviewed_details_and_heading_markup(self):
+        for lang in FOREIGN:
+            title,units,_=edition('ch085',lang)
+            self.assertNotIn('#',title)
+            self.assertEqual(len(units),156)
+        en=dict(edition('ch085','en')[1])
+        self.assertNotIn('foreign ruler',en[78])
+        self.assertIn('pale-blue cloak',en[45])
+        self.assertIn('broadcloth cloak',en[102])
+        self.assertNotIn('died young',en[31])
+        de=dict(edition('ch085','de')[1])
+        self.assertNotIn('mondwei',de[45])
+        self.assertNotIn('Filz',de[102])
+        ja=dict(edition('ch085','ja')[1])
+        self.assertNotIn('蒲団',ja[94])
+        self.assertNotIn('毛氈',ja[102])
+        fr=dict(edition('ch085','fr')[1])
+        self.assertNotIn('Ma quatrième fille',fr[131])
+        self.assertNotIn('blanc de lune',fr[45])
+        es=dict(edition('ch085','es')[1])
+        self.assertNotIn('nadie más',es[82])
+        ko=dict(edition('ch085','ko')[1])
+        self.assertIn('양녀를',ko[78])
+        self.assertIn('양녀가 되는',ko[79])
+        self.assertNotIn('의붓딸',ko[78]+ko[79])
+
 
     def test_ch083_immutable_author_text(self):
         source=(DATA.parent/'ch083.zh.txt').read_bytes()

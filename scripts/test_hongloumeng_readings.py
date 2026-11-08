@@ -102,6 +102,6 @@ class ReadingTests(unittest.TestCase):
             source=(build.TARGET/directory/'index.html').read_text()
             fiction=source.split('<section id="continuation">')[1].split('</section>')[0]
             self.assertIn('ch081.html',fiction)
-            self.assertNotIn('ch085.html',fiction)
+            self.assertNotIn('ch086.html',fiction)
 
 if __name__=='__main__':unittest.main()

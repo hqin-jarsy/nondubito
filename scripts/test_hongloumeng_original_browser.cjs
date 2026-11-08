@@ -3,8 +3,8 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const base=process.argv[2]||'http://127.0.0.1:8786';
-const chapter=process.argv[3]||'ch084';
-const chapters=['ch081','ch082','ch083','ch084'];
+const chapter=process.argv[3]||'ch085';
+const chapters=['ch081','ch082','ch083','ch084','ch085'];
 const editions=['','zh-hant/','en/','de/','fr/','es/','ja/','ko/'];
 assert.ok(chapters.includes(chapter));
 (async()=>{
@@ -21,16 +21,16 @@ assert.ok(chapters.includes(chapter));
     await page.goto(`${base}/originals/hongloumeng/${dir}${filename}`);
     assert.equal(await page.locator('h1:visible').count(),1);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-    assert.equal(await page.locator('a[href*="ch085"]').count(),0);
+    assert.equal(await page.locator('a[href*="ch086"]').count(),0);
     assert.equal(await page.locator('.language-menu a').count(),8);
     if(filename!=='index.html'){
      const lines=fs.readFileSync(path.join(__dirname,`../data/originals/hongloumeng/${filename.replace('.html','.zh.txt')}`),'utf8').split('\n');
      if(!dir||dir==='zh-hant/'){
-      assert.equal(await page.locator('.verse p').count(),{'ch081.html':8,'ch082.html':2,'ch083.html':1,'ch084.html':0}[filename]);
+      assert.equal(await page.locator('.verse p').count(),{'ch081.html':8,'ch082.html':2,'ch083.html':1,'ch084.html':0,'ch085.html':36}[filename]);
       assert.equal(await page.locator('.novel-text p').count(),lines.slice(1).filter(Boolean).length);
       if(!dir)assert.deepEqual(await page.locator('.novel-text p').allTextContents(),lines.slice(1).filter(Boolean));
      }else{
-      assert.equal(await page.locator('.novel-text [data-source-unit]').count(),{'ch081.html':101,'ch082.html':67,'ch083.html':32,'ch084.html':51}[filename]);
+      assert.equal(await page.locator('.novel-text [data-source-unit]').count(),{'ch081.html':101,'ch082.html':67,'ch083.html':32,'ch084.html':51,'ch085.html':156}[filename]);
      }
      await page.locator('.novel-text p').last().scrollIntoViewIfNeeded();
      if(!dir||dir==='zh-hant/')assert.ok((await page.locator('.novel-text').textContent()).includes('下回分解'));
