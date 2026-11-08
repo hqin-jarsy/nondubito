@@ -24,6 +24,10 @@ jobs:
       - run: python -B -m unittest discover -s scripts -p test_analects_full_editions.py
       - run: python -B scripts/build_analects_full_editions.py --check
       - run: python -B scripts/refresh_analects_full_discovery.py --check
+      - run: python -B scripts/audit_drama_translations.py
+      - run: python -B -m unittest discover -s scripts -p test_drama_series.py
+      - run: python -B scripts/build_drama_series.py --check
+      - run: python -B scripts/refresh_drama_discovery.py --check
       - run: python -B scripts/check_site_updates.py
       - run: python -B -m unittest discover -s scripts -p test_home_updates.py
       - run: python -B scripts/build_home_updates.py --check

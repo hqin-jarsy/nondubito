@@ -34,7 +34,8 @@ def latest_card():
 def render():
     outputs={}
     path=b.ROOT/'data/site-updates.json';ledger=b.read_json(path)
-    ledger['updates']=[UPDATE]+[u for u in ledger['updates'] if u['id']!=ID]
+    # Refresh in place so later same-day releases retain their editorial order.
+    ledger['updates']=[UPDATE if u['id']==ID else u for u in ledger['updates']] if any(u['id']==ID for u in ledger['updates']) else [UPDATE]+ledger['updates']
     outputs[path]=json.dumps(ledger,ensure_ascii=False,indent=2)+'\n'
     path=b.ROOT/'latest.html';text=path.read_text();card=latest_card()
     if START in text:

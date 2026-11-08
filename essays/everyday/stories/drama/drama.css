@@ -62,3 +62,25 @@
   .drama-prose.lang-en { font-size: 1.15rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Every edition is complete; show precisely one without relying on global defaults. */
+html:not([data-lang="en"]) .drama-page .lang-en { display: none !important; }
+html:not([data-lang="zh"]) .drama-page .lang-zh { display: none !important; }
+html:not([data-lang="zh-hant"]) .drama-page .lang-hant { display: none !important; }
+html:not([data-lang="de"]) .drama-page .lang-de { display: none !important; }
+html:not([data-lang="fr"]) .drama-page .lang-fr { display: none !important; }
+html:not([data-lang="es"]) .drama-page .lang-es { display: none !important; }
+html:not([data-lang="ja"]) .drama-page .lang-ja { display: none !important; }
+html:not([data-lang="ko"]) .drama-page .lang-ko { display: none !important; }
+
+.drama-page { overflow-wrap: anywhere; }
+.drama-page .site-shell-mobile-languages { flex-wrap: wrap; gap: .5rem; }
+.drama-page .site-shell-language-options { max-height: 70vh; overflow-y: auto; }
+.drama-page .lang-ja { font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", var(--cjk), serif; }
+.drama-page .lang-ko { font-family: "Noto Serif KR", "AppleMyungjo", "Malgun Gothic", serif; word-break: keep-all; }
+.drama-prose.lang-de, .drama-prose.lang-fr, .drama-prose.lang-es { font-size: 1.22rem; line-height: 1.85; }
+.drama-page h1, .drama-card h3 { hyphens: auto; }
+.drama-group-head > :is(h2,p), .drama-card > div { min-width: 0; }
+@media(max-width:760px) {
+ .drama-prose.lang-de, .drama-prose.lang-fr, .drama-prose.lang-es { font-size: 1.15rem; }
+}

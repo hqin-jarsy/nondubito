@@ -251,6 +251,9 @@ class LocalizedHeadingParser(HTMLParser):
             return "en"
         if "lang-zh" in classes or "cl-zh" in classes:
             return "zh-Hans"
+        for lang in ("de", "fr", "es", "ja", "ko"):
+            if "lang-" + lang in classes:
+                return lang
         return None
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:

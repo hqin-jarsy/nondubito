@@ -58,6 +58,8 @@ class HomeUpdates(unittest.TestCase):
         items = []
         for n in range(200):
             item = copy.deepcopy(self.updates[0])
+            # This fixture changes series, so do not inherit an explicit override.
+            item.pop('series_key', None)
             item.update(id=f'future-{n}', date='2026-12-01', url=f'essays/future/ep{n}.html')
             items.append(item)
         feature, recent = select_updates(items + self.updates, self.config)

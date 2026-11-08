@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the edited Chinese and independent English readings of twenty-three plays.
+"""Render all eight complete language editions of twenty-three play readings.
 
 The checked-in JSON is the publication text. Manuscripts outside the repository
 are never modified or required to rebuild the published collection.
@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -17,12 +18,17 @@ from urllib.parse import urlsplit
 from build_ai_work_series import shell_header, footer, tri
 from build_recent_fiction import inline
 from import_fairy_tales import TraditionalConverter
+from drama_languages import LANGS, NATIVE, CSS, LABELS, UI, foreign_ui
+from web_analytics import tracked_html
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "drama"
 TARGET = ROOT / "essays" / "everyday" / "stories" / "drama"
 BASE = "https://nondubito.net/essays/everyday/stories/drama/"
 PUBLISHED = "2026-09-11"
+MODIFIED = "2026-11-08"
+TRANSLATIONS = ROOT / "data" / "drama-full"
+FOREIGN = ("de", "fr", "es", "ja", "ko")
 SERIES = ("Structures in Drama", "戏剧里的结构")
 DECK = (
     "A door closes. A child is taken into someone’s arms. A letter waits to be sent. Twenty-three readings stay with the moments when care, judgment, and reconciliation still need another person’s answer.",
@@ -41,7 +47,7 @@ def esc(value: str) -> str:
     return html.escape(value, quote=True)
 
 
-class DramaTraditionalConverter(TraditionalConverter):
+class MacDramaTraditionalConverter(TraditionalConverter):
     """Keep place particles traditional without changing transliterated names."""
 
     def convert(self, value: str) -> str:
@@ -57,8 +63,73 @@ class DramaTraditionalConverter(TraditionalConverter):
         return text
 
 
+class DramaTraditionalConverter:
+    """Use recorded traditional strings on every platform, including Linux CI."""
+    def __init__(self):
+        path = TRANSLATIONS / 'traditional.json'
+        manifest = json.loads((TRANSLATIONS / 'source-manifest.json').read_text())
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == manifest['traditional_dictionary_sha256'], 'Traditional dictionary changed without its receipt'
+        self.values = json.loads(path.read_text())
+    def convert(self, value):
+        if value not in self.values:
+            raise ValueError('Unrecorded Traditional Chinese text; review and run --refresh-traditional on macOS: ' + value[:80])
+        return self.values[value]
+    def close(self):
+        pass
+
+
+def refresh_traditional_dictionary():
+    """Explicit macOS-only maintenance; ordinary builds use the frozen dictionary."""
+    import ast
+    values = set()
+    for path in sorted(DATA.glob('[0-9][0-9].json')):
+        item = json.loads(path.read_text())
+        for key, value in item.items():
+            if key.endswith('_zh'):
+                values.update(value if isinstance(value,list) else [value])
+        values.add(item['work_zh'] + ' · ' + item['author_zh'])
+        values.update(source['label_zh'] for source in item['sources'])
+    # Literal interface labels and the bounded local-preview count variants.
+    for node in ast.walk(ast.parse(Path(__file__).read_text())):
+        if isinstance(node,ast.Constant) and isinstance(node.value,str) and len(node.value)<300 and re.search(r'[\u4e00-\u9fff]',node.value):
+            values.add(node.value)
+    values.update(['从这里开始','探索','最近更新','关于','搜索','菜单','完整文库','书架','SAE 理论 ↗'])
+    for count in range(1,24):
+        values.update([f'{count} 篇',f'{count} 篇 · 8 种语言',f'正在制作的戏剧系列，已有 {count} 篇完整阅读。'])
+    converter = MacDramaTraditionalConverter()
+    try: result = {value:converter.convert(value) for value in sorted(values)}
+    finally:converter.close()
+    path = TRANSLATIONS / 'traditional.json'
+    path.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+    receipt = TRANSLATIONS / 'source-manifest.json';manifest=json.loads(receipt.read_text())
+    manifest['traditional_dictionary_sha256']=hashlib.sha256(path.read_bytes()).hexdigest()
+    receipt.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+    print(f'Recorded {len(result)} frozen Traditional Chinese strings')
+
+
+def multilang(values: dict, tag: str = "span", css: str = "") -> str:
+    return ''.join(f'<{tag} class="lang-{CSS[lang]}{(" " + css) if css else ""}" lang="{NATIVE[lang]}">{esc(values[lang])}</{tag}>' for lang in LANGS)
+
+
 def localized(en: str, zh: str, converter: DramaTraditionalConverter, tag: str = "span", css: str = "") -> str:
-    return tri(esc(en), esc(zh), esc(converter.convert(zh)), tag, css)
+    foreign = foreign_ui(en)
+    if foreign is None:
+        if en == '秦汉': foreign = {lang: '秦汉' for lang in FOREIGN}
+        else: raise ValueError('Untranslated interface: ' + en)
+    return multilang({'en': en, 'zh': zh, 'zh-hant': converter.convert(zh), **foreign}, tag, css)
+
+
+def item_text(item: dict, field: str, converter: DramaTraditionalConverter, tag: str = 'span', css: str = '') -> str:
+    values = {'en': item[field + '_en'], 'zh': item[field + '_zh'], 'zh-hant': converter.convert(item[field + '_zh'])}
+    values.update({lang: item['editions'][lang][field] for lang in FOREIGN})
+    return multilang(values, tag, css)
+
+
+def work_text(item: dict, converter: DramaTraditionalConverter, css: str) -> str:
+    values = {lang: item['work_' + lang] + ' · ' + item['author_' + lang] for lang in ('en','zh')}
+    values['zh-hant'] = converter.convert(values['zh'])
+    values.update({lang: item['editions'][lang]['work'] + ' · ' + item['editions'][lang]['author'] for lang in FOREIGN})
+    return multilang(values, 'p', css)
 
 
 def filename(item: dict) -> str:
@@ -67,7 +138,9 @@ def filename(item: dict) -> str:
 
 def load_items(partial: bool = False) -> list[dict]:
     items = []
+    manifest = json.loads((TRANSLATIONS / 'source-manifest.json').read_text())
     for path in sorted(DATA.glob("[0-9][0-9].json")):
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == manifest['source_files'][str(path.relative_to(ROOT))], ('Original Chinese/English source changed', path)
         item = json.loads(path.read_text(encoding="utf-8"))
         required = (
             "source_file", "slug", "work_zh", "work_en", "author_zh", "author_en",
@@ -91,6 +164,20 @@ def load_items(partial: bool = False) -> list[dict]:
                 raise ValueError(f"Invalid source URL: {path.name}")
             if not source.get("label_en") or not source.get("label_zh"):
                 raise ValueError(f"Unlabelled source: {path.name}")
+        item['editions'] = {}
+        for lang in FOREIGN:
+            translated_path = TRANSLATIONS / lang / path.name
+            translated = json.loads(translated_path.read_text(encoding='utf-8'))
+            assert translated['id'] == item['id'] and translated['lang'] == lang, translated_path
+            assert set(translated) == {'id','lang','work','author','title','deck','body','source_note','source_labels'}, translated_path
+            assert len(translated['body']) == len(item['body_zh']), ('Missing or merged paragraph', translated_path)
+            assert len(translated['source_labels']) == len(item['sources']), translated_path
+            texts = [translated[k] for k in ('work','author','title','deck','source_note')] + translated['body'] + translated['source_labels']
+            assert all(isinstance(t,str) and t.strip() and '\ufffd' not in t and '<script' not in t and '[^' not in t for t in texts), translated_path
+            for original, target in zip(item['body_zh'], translated['body']):
+                assert original.count('Self-as-an-End') == target.count('Self-as-an-End'), translated_path
+                assert original.count('*') == target.count('*'), ('Emphasis drift',translated_path)
+            item['editions'][lang] = translated
         items.append(item)
     if not items or (not partial and [item["id"] for item in items] != list(range(1, 24))):
         raise ValueError("The complete collection requires essays 01–23; --partial is for local previews only")
@@ -102,9 +189,9 @@ def head(title: str, description: str, name: str, item: dict | None = None) -> s
     schema = {
         "@context": "https://schema.org", "@type": "Article" if item else "CollectionPage",
         "name": title, "description": description, "url": canonical,
-        "inLanguage": ["en", "zh-Hans", "zh-Hant"],
+        "inLanguage": [NATIVE[lang] for lang in LANGS],
         "author": {"@type": "Person", "name": "Han Qin (秦汉)"},
-        "datePublished": PUBLISHED, "dateModified": PUBLISHED,
+        "datePublished": PUBLISHED, "dateModified": MODIFIED,
     }
     if item:
         schema.update({
@@ -114,26 +201,39 @@ def head(title: str, description: str, name: str, item: dict | None = None) -> s
             "citation": [source["url"] for source in item["sources"]],
             "mainEntityOfPage": canonical,
         })
+    alternates = ''.join(f'<link rel="alternate" hreflang="{NATIVE[lang]}" href="{canonical}?lang={lang}">' for lang in LANGS)
     schema_json = json.dumps(schema, ensure_ascii=False).replace('</', '<\\/')
     return f'''<head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>{esc(title)} — Non Dubito</title><meta name="description" content="{esc(description)}"><meta name="author" content="Han Qin (秦汉)">
 <meta property="og:type" content="{'article' if item else 'website'}"><meta property="og:title" content="{esc(title)} — Non Dubito"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary">
-<link rel="canonical" href="{canonical}"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+<link rel="canonical" href="{canonical}">{alternates}<link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Inter:wght@300;400;500&amp;family=Noto+Serif+SC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../../style.css"><link rel="stylesheet" href="../../../../site-shell.css?v=20260905b"><link rel="stylesheet" href="drama.css?v=20260911">
-<script src="../../../../site-shell.js?v=20260905b"></script><script defer src="drama.js?v=20260911"></script>
+<link rel="stylesheet" href="../../../../style.css"><link rel="stylesheet" href="../../../../site-shell.css?v=20260905b"><link rel="stylesheet" href="drama.css?v=20261108">
+<script src="drama.js?v=20261108"></script>
 <script type="application/ld+json">{schema_json}</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token":"1c920752456e42b5b5469641245a07c2"}}'></script>
 </head>'''
 
 
+@tracked_html
 def shell(content: str, page_head: str) -> str:
-    header_html = shell_header().replace('../../', '../../../../').replace('data-site-shell-menu aria-controls', 'data-site-shell-menu aria-label="Menu" aria-controls')
-    footer_html = footer().replace('../../', '../../../../')
-    for en, zh, hant in (("Explore", "探索", "探索"), ("Library", "书架", "書架"), ("SAE Theory ↗", "SAE 理论 ↗", "SAE 理論 ↗")):
-        footer_html = footer_html.replace('>' + en + '</a>', '>' + tri(en, zh, hant) + '</a>')
-    return '<!DOCTYPE html>\n<html lang="en" data-lang="en" data-editions="en zh zh-hant">\n' + page_head + '\n<body class="site-shell-page explicit-hant drama-page">' + header_html + content + footer_html + '</body></html>\n'
+    converter = DramaTraditionalConverter()
+    try:
+        header_html = shell_header().replace('../../', '../../../../').replace('data-site-shell-menu aria-controls', 'data-site-shell-menu aria-label="Menu" aria-controls')
+        def expand(match):
+            en, zh = html.unescape(match[1]), html.unescape(match[2])
+            if en == 'Full Library': en = 'Library'
+            return localized(en, zh, converter)
+        header_html = re.sub(r'<span class="lang-en">(.*?)</span><span class="lang-zh">(.*?)</span><span class="lang-hant">.*?</span>', expand, header_html)
+        extra = ''.join(f'<button type="button" data-set-language="{lang}">{LABELS[lang]}</button>' for lang in FOREIGN)
+        header_html = re.sub(r'(<button type="button" data-set-language="zh-hant">.*?</button>)', lambda m:m[1]+extra, header_html)
+        footer_html = footer().replace('../../', '../../../../')
+        for en, zh in (("Explore", "探索"), ("Library", "书架"), ("SAE Theory ↗", "SAE 理论 ↗")):
+            footer_html = footer_html.replace('>' + en + '</a>', '>' + localized(en,zh,converter) + '</a>')
+        return '<!DOCTYPE html>\n<html lang="en" data-lang="en" data-editions="'+' '.join(LANGS)+'">\n' + page_head + '\n<body class="site-shell-page explicit-hant drama-page">' + header_html + content + footer_html + '</body></html>\n'
+    finally:
+        converter.close()
 
 
 def breadcrumbs(converter: DramaTraditionalConverter, article: bool = False) -> str:
@@ -147,9 +247,9 @@ def spoiler_note(converter: DramaTraditionalConverter) -> str:
 
 def card(item: dict, converter: DramaTraditionalConverter) -> str:
     return f'''<a class="drama-card" href="{filename(item)}"><span class="drama-number">{item['id']:02d}</span><div>
-{localized(item['work_en'] + ' · ' + item['author_en'], item['work_zh'] + ' · ' + item['author_zh'], converter, 'p', 'drama-work')}
-{localized(item['title_en'], item['title_zh'], converter, 'h3')}
-{localized(item['deck_en'], item['deck_zh'], converter, 'p', 'drama-card-deck')}
+{work_text(item, converter, 'drama-work')}
+{item_text(item, 'title', converter, 'h3')}
+{item_text(item, 'deck', converter, 'p', 'drama-card-deck')}
 {localized('Read essay →', '阅读全文 →', converter, 'span', 'drama-read')}</div></a>'''
 
 
@@ -168,7 +268,7 @@ def render_index(items: list[dict], converter: DramaTraditionalConverter) -> str
     content = f'''<main class="drama-wrap" data-search="Structures in Drama 戏剧里的结构 戲劇裡的結構 剧本 戲劇 戏剧解读">
 {breadcrumbs(converter)}<section class="drama-hero"><p class="drama-kicker">Non Dubito · {localized('Stories and Structures / 05', '故事里的结构 / 05', converter)}</p>
 {localized(*SERIES, converter, 'h1')}{localized(*deck, converter, 'p', 'drama-hero-deck drama-search-deck')}
-{localized(f'{len(items)} essays · Chinese, English & Traditional Chinese', f'{len(items)} 篇 · 简体中文、英文与繁体中文', converter, 'p', 'drama-meta')}{spoiler_note(converter)}
+{localized(f'{len(items)} essays · 8 languages', f'{len(items)} 篇 · 8 种语言', converter, 'p', 'drama-meta')}{spoiler_note(converter)}
 </section><nav class="drama-topics" aria-label="Reading themes">{''.join(nav)}</nav>{''.join(sections)}
 <div class="drama-return"><a href="../index.html">{localized('← More stories and structures', '← 回到“故事里的结构”', converter)}</a></div></main>'''
     return shell(content, head(title, deck[0], 'index.html'))
@@ -177,28 +277,31 @@ def render_index(items: list[dict], converter: DramaTraditionalConverter) -> str
 def render_article(item: dict, items: list[dict], converter: DramaTraditionalConverter) -> str:
     index = items.index(item)
     sources = []
-    for source in item['sources']:
-        sources.append(f'<li><a href="{esc(source["url"])}">{localized(source["label_en"], source["label_zh"], converter)}</a></li>')
-    source_section = f'''<details class="drama-sources"><summary>{localized('Text & sources', '文本与来源', converter)}</summary>{localized(item['source_note_en'], item['source_note_zh'], converter, 'p')}<ul>{''.join(sources)}</ul></details>'''
+    for number, source in enumerate(item['sources']):
+        labels = {'en':source['label_en'],'zh':source['label_zh'],'zh-hant':converter.convert(source['label_zh']), **{lang:item['editions'][lang]['source_labels'][number] for lang in FOREIGN}}
+        sources.append(f'<li><a href="{esc(source["url"])}">{multilang(labels)}</a></li>')
+    source_section = f'''<details class="drama-sources"><summary>{localized('Text & sources', '文本与来源', converter)}</summary>{item_text(item, 'source_note', converter, 'p')}<ul>{''.join(sources)}</ul></details>'''
     bodies = []
-    for lang, css, native in (('en', 'en', 'en'), ('zh', 'zh', 'zh-Hans'), ('hant', 'hant', 'zh-Hant')):
-        paragraphs = item['body_en' if lang == 'en' else 'body_zh']
-        if lang == 'hant':
+    for lang in LANGS:
+        css, native = CSS[lang], NATIVE[lang]
+        paragraphs = item['editions'][lang]['body'] if lang in FOREIGN else item['body_en' if lang == 'en' else 'body_zh']
+        if lang == 'zh-hant':
             paragraphs = [converter.convert(p) for p in paragraphs]
         bodies.append(f'<div class="drama-prose lang-{css}" lang="{native}">' + '\n'.join(f'<p>{inline(p)}</p>' for p in paragraphs) + '</div>')
     navigation = []
     for target_index, label_en, label_zh in ((index - 1, 'Previous essay', '上一篇'), (index + 1, 'Next essay', '下一篇')):
         if 0 <= target_index < len(items):
             target = items[target_index]
-            navigation.append(f'<a href="{filename(target)}">{localized(label_en, label_zh, converter, "small")}{localized(target["work_en"], target["work_zh"], converter)}<span aria-hidden="true"> →</span></a>')
+            navigation.append(f'<a href="{filename(target)}">{localized(label_en, label_zh, converter, "small")}{item_text(target, "work", converter)}<span aria-hidden="true"> →</span></a>')
         else:
             navigation.append(f'<a href="index.html">{localized("All twenty-three readings", "全部二十三篇", converter, "small")}{localized(*SERIES, converter)}</a>')
     labels = ' '.join((SERIES[0], SERIES[1], converter.convert(SERIES[1]), item['work_en'], item['work_zh'], converter.convert(item['work_zh']), item['author_en'], item['author_zh'], converter.convert(item['author_zh'])))
+    labels += ' ' + ' '.join(item['editions'][lang]['work'] + ' ' + item['editions'][lang]['author'] for lang in FOREIGN)
     content = f'''<main class="drama-wrap" data-search="{esc(labels)}">{breadcrumbs(converter, True)}<article class="drama-article">
 <div class="drama-head"><p class="drama-kicker">{localized(*SERIES, converter)} · {item['id']:02d} / 23</p>
-{localized(item['title_en'], item['title_zh'], converter, 'h1')}
-{localized(item['work_en'] + ' · ' + item['author_en'], item['work_zh'] + ' · ' + item['author_zh'], converter, 'p', 'drama-original-work')}
-{localized(item['deck_en'], item['deck_zh'], converter, 'p', 'drama-article-deck drama-search-deck')}
+{item_text(item, 'title', converter, 'h1')}
+{work_text(item, converter, 'drama-original-work')}
+{item_text(item, 'deck', converter, 'p', 'drama-article-deck drama-search-deck')}
 <p class="drama-meta">Han Qin ({localized('秦汉', '秦汉', converter)}) · <time datetime="{PUBLISHED}">2026</time></p>{spoiler_note(converter)}</div>
 {''.join(bodies)}{source_section}
 <aside class="drama-afterword">{localized('Further reading', '继续阅读', converter, 'p', 'drama-kicker')}<a href="index.html">{localized(*SERIES, converter)}</a><span aria-hidden="true"> · </span><a href="../../../../start.html">{localized('Five minutes to understand Non Dubito', '五分钟读懂 Non Dubito', converter)}</a></aside>
@@ -207,10 +310,20 @@ def render_article(item: dict, items: list[dict], converter: DramaTraditionalCon
 
 
 def render(partial: bool = False) -> dict[Path, str]:
+    if not partial:
+        from audit_drama_translations import audit
+        audit()
     items = load_items(partial)
     converter = DramaTraditionalConverter()
     try:
-        return {TARGET / 'index.html': render_index(items, converter), **{TARGET / filename(item): render_article(item, items, converter) for item in items}}
+        outputs = {TARGET / 'index.html': render_index(items, converter), **{TARGET / filename(item): render_article(item, items, converter) for item in items}}
+        baseline = json.loads((TRANSLATIONS / 'source-manifest.json').read_text())['published_body_sha256']
+        for path, text in outputs.items():
+            if path.name == 'index.html': continue
+            for lang, expected in baseline[path.name].items():
+                original_body = re.search(r'<div class="drama-prose lang-' + lang + r'"[^>]*>(.*?)</div>', text, re.S)[1]
+                assert hashlib.sha256(original_body.encode()).hexdigest() == expected, ('Original published body changed',path,lang)
+        return outputs
     finally:
         converter.close()
 
@@ -218,8 +331,12 @@ def render(partial: bool = False) -> dict[Path, str]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--check', action='store_true')
+    parser.add_argument('--refresh-traditional', action='store_true', help='macOS-only: explicitly refresh and review the frozen Traditional Chinese dictionary')
     parser.add_argument('--partial', action='store_true', help='local preview only; final validation requires all 23 essays')
     args = parser.parse_args()
+    if args.refresh_traditional:
+        refresh_traditional_dictionary()
+        return 0
     outputs = render(args.partial)
     stale = [path for path, value in outputs.items() if not path.exists() or path.read_text(encoding='utf-8') != value]
     if args.check:

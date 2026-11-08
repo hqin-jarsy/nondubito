@@ -1,0 +1,165 @@
+{
+  "date": "2026-11-08",
+  "environment": "MacBook-Pro-7.local, Python 3; CI commands executed locally, not on GitHub Actions",
+  "passed": 23,
+  "failed": 3,
+  "known_failures": "Three commands fail solely because four pre-existing 2026-11-04 ledger items omit languages. Verified against c7492b9. The newly exposed homepage synthetic-fixture series_key issue was corrected and its targeted test passes.",
+  "results": [
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_web_analytics.py",
+      "returncode": 0,
+      "seconds": 0.05,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.005s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/check_web_analytics.py",
+      "returncode": 0,
+      "seconds": 12.31,
+      "output": "OK: 13632 public pages checked; 0 tracking errors; 0 conflict copies\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_epic_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.03,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 1.956s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_epic_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.26,
+      "output": "OK: 20 complete eight-language essays; 126 pages up to date\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_ancient_full_editions.py",
+      "returncode": 0,
+      "seconds": 1.9,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 1.846s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_ancient_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.56,
+      "output": "OK: 19 complete six-language translations; 120 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_fables_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.63,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.570s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_fables_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.6,
+      "output": "OK: 23 complete six-language translations; 144 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_analects_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.46,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 2.396s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_analects_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.25,
+      "output": "OK: 306 complete Analects pages\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_analects_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.05,
+      "output": "OK: Analects ledger, Latest, library and five language hubs\n"
+    },
+    {
+      "command": "python3 -B scripts/audit_drama_translations.py",
+      "returncode": 0,
+      "seconds": 0.06,
+      "output": "{\"through\": 23, \"translations\": 115, \"paragraphs\": 2375, \"note\": \"Hashes and paragraph coverage verify the reviewed files; they do not themselves establish translation quality.\"}\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_drama_series.py",
+      "returncode": 0,
+      "seconds": 0.56,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.501s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_drama_series.py --check",
+      "returncode": 0,
+      "seconds": 0.19,
+      "output": "OK: 24 drama pages are current\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_drama_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.51,
+      "output": "OK: drama discovery and scoped search are current\n"
+    },
+    {
+      "command": "python3 -B scripts/check_site_updates.py",
+      "returncode": 1,
+      "seconds": 0.03,
+      "output": "ERROR: updates[4]: invalid language list\nERROR: updates[5]: invalid language list\nERROR: updates[6]: invalid language list\nERROR: updates[7]: invalid language list\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_home_updates.py",
+      "returncode": 1,
+      "seconds": 0.05,
+      "output": "...F....\n======================================================================\nFAIL: test_latest_keeps_the_whole_ledger (test_home_updates.HomeUpdates)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_home_updates.py\", line 42, in test_latest_keeps_the_whole_ledger\n    self.assertEqual(check(), [])\nAssertionError: Lists differ: ['updates[4]: invalid language list', 'upd[101 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[4]: invalid language list'\n\n+ []\n- ['updates[4]: invalid language list',\n-  'updates[5]: invalid language list',\n-  'updates[6]: invalid language list',\n-  'updates[7]: invalid language list']\n\n----------------------------------------------------------------------\nRan 8 tests in 0.011s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python3 -B scripts/build_home_updates.py --check",
+      "returncode": 0,
+      "seconds": 0.03,
+      "output": "OK: homepage has one editorial pick and four distinct recent series\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_reviewed_series_languages.py",
+      "returncode": 0,
+      "seconds": 1.09,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 1.053s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_rewritten_series_languages.py",
+      "returncode": 0,
+      "seconds": 1.14,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.099s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_companion_languages.py",
+      "returncode": 0,
+      "seconds": 0.31,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.262s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_method_introduction.py",
+      "returncode": 1,
+      "seconds": 0.12,
+      "output": ".........F\n======================================================================\nFAIL: test_update_and_library_entries (test_method_introduction.MethodIntroductionTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_method_introduction.py\", line 139, in test_update_and_library_entries\n    self.assertEqual(check_updates(), [])\nAssertionError: Lists differ: ['updates[4]: invalid language list', 'upd[101 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[4]: invalid language list'\n\n+ []\n- ['updates[4]: invalid language list',\n-  'updates[5]: invalid language list',\n-  'updates[6]: invalid language list',\n-  'updates[7]: invalid language list']\n\n----------------------------------------------------------------------\nRan 10 tests in 0.073s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_action_languages.py",
+      "returncode": 0,
+      "seconds": 0.53,
+      "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.471s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_state_languages.py",
+      "returncode": 0,
+      "seconds": 1.25,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 1.189s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_interstate_languages.py",
+      "returncode": 0,
+      "seconds": 0.56,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.505s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_clustered_language_indexes.py",
+      "returncode": 0,
+      "seconds": 0.05,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
+    }
+  ]
+}

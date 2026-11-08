@@ -1,0 +1,27 @@
+# Independent German cross-review, 01–05
+
+## Scope and actual reading
+Read all Chinese source body paragraphs for essays 01–05 and all German target body paragraphs in data/drama-full/de/01.json–05.json, not just samples. This covers 19 + 20 + 22 + 22 + 22 = 105 paragraph pairs. Also checked titles, decks, source notes and source labels. German 04 was read again separately because the combined tool output was truncated. The assessment is based on meaning, speaker attribution, staging, qualifications, argument progression and readability, not on matching word counts. No German files were edited by this reviewer.
+
+## Requested corrections reported to coordinator
+Paragraph numbers are one-based.
+
+1. **02, paragraph 15: small but meaningful subject/modal shift.** Chinese: “使女儿不必再被他按照原来的信任推向婚事”. German: “Er muss die Tochter nicht länger aufgrund seines alten Vertrauens in die Heirat treiben”. This says the father no longer has to force the marriage, rather than the daughter no longer having to suffer being pushed into it. Suggested passive/recipient-centered wording: “Die Tochter wird nun nicht mehr aufgrund seines früheren Vertrauens von ihm in diese Heirat gedrängt.” Keep the daughter as the beneficiary of the change. Parent was alerted immediately.
+
+2. **03, paragraph 1: direction of the messenger role.** Chinese: “那位一直替自己传递爱情消息的年轻侍从”. German: “der junge Diener, der ihm immer Liebesbotschaften überbrachte”. The German makes Orsino the recipient; the Chinese says the attendant carried messages on Orsino's behalf. Suggested: “der junge Diener, der in seinem Auftrag Liebesbotschaften übermittelte”. This should be corrected.
+
+3. **03, paragraph 6: understanding versus agreement.** Chinese: “他不断暗示情书，期待她会意”. German: “Er deutet immer wieder auf den Liebesbrief und erwartet ihr Einverständnis.” Einverständnis shifts recognition of the hints into consent/agreement. More faithful: “Er spielt immer wieder auf den Liebesbrief an und erwartet, dass sie seine Anspielungen versteht.” This also avoids suggesting a literal physical pointing gesture not stated in the Chinese.
+
+4. **04, paragraph 17: potentially ambiguous negation.** Chinese: “她也没有拿账目挡住话，说做完再谈”. German: “Auch sie schiebt die Rechnungen nicht zwischen sie und sagt, sie könnten nach der Arbeit reden.” The coordinated second verb can read as affirmative, as if Sonya did postpone the conversation. Make both negations explicit, for example: “Auch sie schiebt die Rechnungen nicht zwischen sie und vertröstet ihn nicht auf die Zeit nach der Arbeit.” The intended interpretation is not to postpone his pain until after work.
+
+These are local corrections, not evidence of broad abridgment. Correction implementation and verification remain with the German owner/coordinator; this note does not claim they are already applied.
+
+## Article-level results
+- **01, all 19 paragraphs:** No material omission found. Nora's responsibility for the forgery remains alongside Helmer's unilateral control. His care is not reduced to pure performance. Nora's unformed judgments, her imagined rescuer, unequal responsibility, the children and unresolved maternal obligations, no complete future plan, and no guaranteed repaired marriage or better tomorrow are retained. Scene ordering, keys/rings, and closing stage movement remain intact.
+- **02, all 20 paragraphs:** Other than the paragraph 15 wording above, the agreed stopping condition, cough/sweetwood exchange, double demand for proof, the family's fallibility, evidence versus power, document transfer, external royal rescue, and uncertain future listening all remain. No accidental claim that exposure itself restores property.
+- **03, all 22 paragraphs:** Other than paragraphs 1 and 6 above, the dark-room staging, two voices/one person, bogus test, unequal power to stop, Toby's self-interested stopping motive, Malvolio's initially mistaken accusation, differing meanings of revelation, lack of license for revenge, incomplete mediation, and the morally unresolved final song are preserved. Chinese Olivia “promised marriage” is retained despite the independent English opening using “married”; no unauthorized normalization is needed.
+- **04, all 22 paragraphs:** Apart from clarifying paragraph 17, the source's distinctions remain: judgments belong to Vanya rather than the play adjudicating scholarship; shooting still harms despite missing; medicine returned; Vanya himself initiates work; restored routine has real value without validating unequal burdens; payments unchanged; Sonya's rest is explicitly posthumous and religious; comfort is finite and not consent to injustice. The source-note difference between Eldritch/Russian and Gutenberg no. 1756 is fully preserved.
+- **05, all 22 paragraphs:** No material correction identified. Public order is a real need but does not justify unjust commands; Haemon's mediated report is worth hearing but requires judgment; tree and rigging analogies remain; authority substitutes for reasons; love can affect judgment without invalidating speech; Haemon retains responsibility; unequal means of harm remain distinct from mutual harsh words; Ismene's reprieve and Creon's real but late reversal are retained. No claim that different wording would guarantee avoiding disaster.
+
+## Overall
+Complete substantive cross-read; four local corrections requested, no broad semantic drift or omitted paragraph/argument detected. German prose is generally fluent and maintains the analytical qualifications rather than flattening the essays into morals.
