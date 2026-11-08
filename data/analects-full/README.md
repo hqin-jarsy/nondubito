@@ -37,6 +37,10 @@ All fifty English translations received a full source comparison and a five-essa
 
 The received five-language package was not retranslated. The new review read all fifty editorial notes, 54 complete target-language essays, and cross-language risk passages including essays 20, 35, 37 and 50. This is not a claim of a new line-by-line review of all 250 essays, nor a native-speaker expert final edit.
 
-Eleven source-level interpretation or evidence questions remain for the author in `review/source-issues.json`. Translation is not permission to rewrite an author's theoretical position. The surviving questions are recorded, not silently resolved or passed off as independently established philology. Classical quotations are translations of the supplied Chinese, not credited to a modern translator. This release does not claim a fresh external investigation of every historical statement, DOI destination or textual variant.
+Eight source-level interpretation or evidence questions remain for the author in `review/source-issues.json`. Translation is not permission to rewrite an author's theoretical position. The surviving questions are recorded, not silently resolved or passed off as independently established philology. Classical quotations are translations of the supplied Chinese, not credited to a modern translator. This release does not claim a fresh external investigation of every historical statement, DOI destination or textual variant.
 
 See `review/` for specific language checks, reproducibility, browser results, regression results and scoped-change evidence. File counts and hashes establish completeness and provenance, not literary quality.
+
+## Author decisions, 2026-11-08
+
+The author retained essay39 unchanged, approved narrowing essay44 to accounts about the teacher while retaining Zengzi’s own judgments, and approved presenting essay19’s ruler-addressee as a reading without adding scholarly disclaimers. The approved changes are recorded in `review/author-decisions-20261108.json`, applied to all eight reading languages, and tested explicitly. The original seventeen minor source corrections are unchanged; three short approved editorial replacements are added separately.

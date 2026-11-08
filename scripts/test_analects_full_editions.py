@@ -53,6 +53,25 @@ class AnalectsFullEditions(unittest.TestCase):
             self.assertEqual(source.count(change['markdown']['before']),1)
             self.assertTrue(change['evidence'])
 
+    def test_author_decisions_are_exact_and_essay39_remains_unchanged(self):
+        receipt=b.read_json(b.DATA/'review/author-decisions-20261108.json')
+        self.assertEqual(len(receipt['edits']),24)
+        for episode in (19,44):
+            edits=[e for e in receipt['edits'] if e['episode']==episode]
+            self.assertEqual({e['language'] for e in edits},{'zh','hant',*b.FOREIGN})
+            item=next(x for x in self.receipt['essays'] if int(x['number'])==episode)
+            for edit in edits:
+                lang=edit['language']
+                path=b.SERIES/item['file'] if lang in ('en','zh','hant') else b.SERIES/lang/item['file']
+                text=path.read_text()
+                if lang in ('en','zh','hant'):text=b.region(text,'lang-'+lang)
+                visible=Parsed(text).nodes('div','article-body')[0].text()
+                self.assertEqual(visible.count(edit['after']),1,(episode,lang))
+                self.assertNotIn(edit['before'],visible,(episode,lang))
+        self.assertEqual(len(receipt['unchanged_39']),6)
+        for rel,digest in receipt['unchanged_39'].items():
+            self.assertEqual(b.digest((b.ROOT/rel).read_bytes()),digest,rel)
+
     def test_renderers_are_portable_and_cannot_restore_abridgments(self):
         import import_analects_series as primary
         import build_analects_languages as foreign
