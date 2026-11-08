@@ -732,20 +732,9 @@ def updated_hubs() -> dict[Path, str]:
 
 @tracked_html
 def render() -> dict[Path, str]:
-    missing = [slug for _, slug, _, _ in ITEMS if slug not in ENGLISH]
-    if missing:
-        raise ValueError("Missing English rewrites: " + ", ".join(missing))
-    converter = TraditionalConverter()
-    try:
-        outputs = updated_hubs()
-        outputs[TARGET / "index.html"] = index_html(converter)
-        outputs.update({TARGET / f"{item[0]}-{item[1]}.html":article_html(item, i, converter) for i,item in enumerate(ITEMS)})
-        return {
-            path: text.replace("analects.css?v=20260909", "analects.css?v=20260909b")
-            for path, text in outputs.items()
-        }
-    finally:
-        converter.close()
+    # Fail closed if complete-edition inputs are missing; never restore summaries.
+    from build_analects_full_editions import render_primary
+    return render_primary()
 
 
 def main() -> None:
@@ -759,10 +748,9 @@ def main() -> None:
             raise SystemExit("Stale Analects pages:\n" + "\n".join(str(p.relative_to(ROOT)) for p in stale))
         print(f"OK: {len(outputs)} Analects files")
         return
-    for path,text in outputs.items():
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(text, encoding="utf-8")
-    print(f"Wrote: {len(outputs)} Analects files")
+    from build_analects_full_editions import write_outputs
+    write_outputs(outputs)
+    print(f"Wrote: {len(outputs)} complete Analects files")
 
 
 if __name__ == "__main__":

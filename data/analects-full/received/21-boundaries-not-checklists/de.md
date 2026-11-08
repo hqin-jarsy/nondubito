@@ -1,0 +1,31 @@
+# Viermal „nicht“ und neunmal „bedenke“
+
+Han Qin (秦汉) · Die Gespräche neu lesen · 21
+
+„Sieh nicht hin, wenn es dem Ritus widerspricht. Höre nicht zu, wenn es dem Ritus widerspricht. Sprich nicht, wenn es dem Ritus widerspricht. Handle nicht, wenn es dem Ritus widerspricht.“ Viele haben diese vier Sätze auswendig gelernt. Vielen gelten sie als Muster konfuzianischer Bevormundung: nicht sehen, nicht hören, nicht sprechen, sich nicht bewegen. Vier Verbote schließen einen Menschen ein. Das riecht nach einer Moral, die alles reglementiert.
+
+Diese Worte richtet Konfuzius an Yan Hui. Der fragt nach *ren*, der Menschlichkeit als sittlicher Haltung. Konfuzius antwortet: „Sich selbst überwinden und zum Ritus zurückkehren, das ist ren.“ Yan Hui bittet um nähere Angaben und erhält die vier Sätze. Seine Antwort lautet sinngemäß: Ich bin zwar nicht besonders klug, möchte mich aber daran halten.
+
+Sehen wir zunächst auf die Form. Alle vier Sätze sagen „nicht“. Keiner sagt, was Yan Hui anschauen, anhören, sagen oder tun soll. Sie ziehen lediglich eine Grenze: Gehe nicht auf die Seite dessen, was dem Ritus widerspricht. Wie er diesseits dieser Grenze schaut, hört, spricht und handelt, darüber fällt kein Wort. Das ist ein Zaun, keine Liste zum Abhaken. Der Raum innerhalb des Zauns bleibt frei. Yan Hui muss seinen Weg darin selbst gehen.
+
+Warum bekommt ausgerechnet der am weitesten fortgeschrittene Schüler vier Verbote und nicht vier positive Anweisungen? Weil Yan Hui am nächsten daran ist, selbst zum Ausgangspunkt seines Handelns zu werden. Wer dazu unterwegs ist, dem lässt sich nur eine Grenze geben, ohne seinen eigenen Raum zu verletzen: Zeige ihm, wohin er nicht gehen soll, und lasse ihn im Übrigen selbst wachsen. Eine positive Vorschriftenliste entscheidet an seiner Stelle. Eine Grenze lässt die Entscheidung bei ihm.
+
+Spätere Leser wollten sich mit dem Zaun nicht begnügen. In der Song-Zeit verfasste Cheng Yi die *Vier Ermahnungen*. Darin überführte er die vier „nicht“ einzeln in positive Vorgaben: So soll man sehen, so hören, so sprechen, so handeln. Zhu Xi nahm den Text in seinen Kommentar auf und befestigte ihn gewissermaßen unmittelbar neben dem Wortlaut der Gespräche. Wer die vier Verbote las, sah nun vier Soll-Vorschriften. **Der freie Raum innerhalb des Zauns wurde mit einer Liste gefüllt; dann heftete man die Liste an den Zaun. Später konnten Leser kaum noch unterscheiden, was davon Konfuzius gesagt hatte.**
+
+In den Gesprächen findet sich etwas, das sich zum Vergleich danebenlegen lässt. Im Buch „Ji Shi“ heißt es:
+
+> Konfuzius sagte: „Der edle Mensch bedenkt neun Dinge: beim Sehen die Klarheit, beim Hören das genaue Verstehen, beim Gesichtsausdruck die Freundlichkeit, beim Auftreten den Respekt, beim Sprechen die Aufrichtigkeit, beim Handeln die Sorgfalt; wenn er zweifelt, denkt er ans Fragen, wenn er zornig wird, an die Folgen, und wenn sich ein Gewinn anbietet, daran, ob es recht ist, ihn anzunehmen.“
+
+Neun Dinge also, an die man denken soll. Habe ich deutlich gesehen, richtig gehört? Ist mein Gesicht freundlich, mein Auftreten respektvoll? Spreche ich wahrhaftig, gehe ich meiner Aufgabe gewissenhaft nach? Frage ich, wenn ich unsicher bin? Was folgt aus meinem Zorn? Steht mir dieser Vorteil überhaupt zu?
+
+Es geht um ähnliche Tätigkeiten: sehen, hören, sprechen, handeln. Die vier Verbote sagen „nicht“, die neun Erwägungen sagen „bedenke“. An keinem dieser neun Punkte lässt sich etwas aussetzen. Dennoch unterscheiden sich die beiden Stellen grundsätzlich: Die zweite hat keinen erkennbaren Adressaten. Bei den vier Verboten ist Yan Hui da; wir hören seine Frage und seine Antwort. Wir erkennen, zu wem und bei welcher Gelegenheit gesprochen wird. Bei den neun Erwägungen ist niemand im Raum. Wir haben eine Zusammenfassung in Listenform. Wenn wir das Bild dieses Menschen rekonstruieren wollen, müssen unsere Belege erkennen lassen, auf wen seine Worte wann und wie einwirken. Die neun Erwägungen zeigen das nicht und können für diese Frage deshalb nicht als Beleg dienen. Das heißt nicht, dass sie falsch sind. Es heißt, dass sie etwas anderes sind.
+
+Hier ist eine Klarstellung nötig, die wichtigste dieses Essays. Ich behaupte nicht: Negative Sätze fördern die Eigenständigkeit, positive Sätze sind Dogmen. Die Grammatik entscheidet das nicht. Aus vier „nicht“ lassen sich eiserne Verbote machen; neun „bedenke“ können freundliche Hinweise sein. Eine Liste von Gesichtspunkten kann uns auf etwas aufmerksam machen, das wir übersehen haben. Sie kann Anfängern als Gerüst dienen. Man kann ihre Punkte hinterfragen, ändern oder verwerfen. **Die Liste selbst ist nicht das Problem. Erst wenn sie als vollständig, unveränderbar und bloß noch abzuarbeiten gilt, tritt sie an die Stelle des eigenen Urteils.** Genau den Platz für dieses Urteil sollten die vier Verbote Yan Hui überlassen. Das Problem der *Vier Ermahnungen* liegt nicht in der Zahl ihrer Punkte, sondern darin, dass sie zur verbindlichen Musterantwort wurden.
+
+Es geht also weder gegen die neun Erwägungen noch gegen Listen überhaupt. Es geht gegen einen bestimmten Gebrauch: Eine Liste wird zum Ganzen erklärt, Menschen werden daran gemessen, Änderungen sind unzulässig. Die neun Erwägungen stehen ruhig in den Gesprächen; wir haben keinen Beleg dafür, dass jemand mit ihnen einen anderen unter Druck gesetzt hätte. Die *Vier Ermahnungen* hingegen wurden neben den vier Verboten festgeschrieben und als deren richtige Auslegung behandelt. Davon sprechen wir hier.
+
+Den Aufzeichnenden ist zugutezuhalten, dass sie die vier „nicht“ als vier „nicht“ bewahrt haben. Sie hätten daraus beiläufig vier „du sollst“ machen können. Das hätte eher nach Lehrbuch ausgesehen und wäre leichter auswendig zu lernen gewesen. Sie taten es nicht. Sie hielten den Zaun fest, den der Lehrer gezogen hatte, und ließen auch den freien Raum darin bestehen.
+
+Welche der Listen mit all den Dingen, die du tun „sollst“, darfst du eigentlich noch ändern?
+
+Grundlage dieses Essays: *解论语·现场* (von „Xian Jin“ bis „Wei Ling Gong“), DOI: [10.5281/zenodo.22656232](https://doi.org/10.5281/zenodo.22656232), CC BY 4.0. Die theoretischen Grundlagen der Reihe sind im Gesamtverzeichnis aufgeführt. Besprochene Stellen: 12.1 und 16.10; ergänzend 9.4 und 15.24.

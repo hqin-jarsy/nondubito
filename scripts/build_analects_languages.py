@@ -306,18 +306,9 @@ def shared_hubs() -> dict[Path, str]:
 
 @tracked_html
 def render() -> dict[Path, str]:
-    copy = load_copy()
-    outputs: dict[Path, str] = shared_hubs()
-    for lang in LANGS:
-        outputs[SERIES / lang / "index.html"] = index_html(lang, copy[lang])
-        for position, item in enumerate(ITEMS):
-            outputs[SERIES / lang / f"{item[0]}-{item[1]}.html"] = article_html(lang, item, position, copy[lang])
-        channel = ROOT / "essays" / lang / "index.html"
-        outputs[channel] = channel_hub(lang, channel.read_text(encoding="utf-8"))
-    return {
-        path: text.replace("analects.css?v=20260909", "analects.css?v=20260909b")
-        for path, text in outputs.items()
-    }
+    # Fail closed if complete-edition inputs are missing; never restore summaries.
+    from build_analects_full_editions import render_foreign
+    return render_foreign()
 
 
 def main() -> None:
@@ -331,10 +322,9 @@ def main() -> None:
             raise SystemExit("Stale Analects language pages:\n" + "\n".join(str(path.relative_to(ROOT)) for path in stale))
         print(f"OK: {len(outputs)} Analects language files")
         return
-    for path, text in outputs.items():
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(text, encoding="utf-8")
-    print(f"Wrote: {len(outputs)} Analects language files")
+    from build_analects_full_editions import write_outputs
+    write_outputs(outputs)
+    print(f"Wrote: {len(outputs)} complete Analects files")
 
 
 if __name__ == "__main__":

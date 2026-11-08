@@ -21,6 +21,9 @@ jobs:
       - run: python -B scripts/build_ancient_full_editions.py --check
       - run: python -B -m unittest discover -s scripts -p test_fables_full_editions.py
       - run: python -B scripts/build_fables_full_editions.py --check
+      - run: python -B -m unittest discover -s scripts -p test_analects_full_editions.py
+      - run: python -B scripts/build_analects_full_editions.py --check
+      - run: python -B scripts/refresh_analects_full_discovery.py --check
       - run: python -B scripts/check_site_updates.py
       - run: python -B -m unittest discover -s scripts -p test_home_updates.py
       - run: python -B scripts/build_home_updates.py --check

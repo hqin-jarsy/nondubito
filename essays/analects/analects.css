@@ -47,3 +47,11 @@ body{background:var(--paper);color:var(--ink)}
 .analects-locale-ja .series-hero h1,.analects-locale-ja .series-deck,.analects-locale-ja .article-head h1,.analects-locale-ja .article-deck,.analects-locale-ja .article-body,.analects-locale-ja .essay-card h3,.analects-locale-ja .route-grid a{font-family:"Noto Serif JP",serif}
 .analects-locale-ko .series-hero h1,.analects-locale-ko .series-deck,.analects-locale-ko .article-head h1,.analects-locale-ko .article-deck,.analects-locale-ko .article-body,.analects-locale-ko .essay-card h3,.analects-locale-ko .route-grid a{font-family:"Noto Serif KR",serif}
 .analects-locale-ja .article-body,.analects-locale-ko .article-body{font-size:1.08rem;line-height:2}
+/* Complete editions: long scholarly links and section headings must fit mobile. */
+.analects-wrap{overflow-wrap:anywhere}
+.article-body h2{font-size:1.45em;font-weight:500;line-height:1.35;margin:2.2em 0 1em}
+.article-body hr{border:0;border-top:1px solid var(--line);margin:2.5em 0}
+.analects-locale-ko .article-body{word-break:keep-all;overflow-wrap:anywhere}
+/* The fixed site header must not cover the series-return link. */
+.article-top{padding-top:90px}
+@media(max-width:620px){.article-top{padding-top:82px}}
