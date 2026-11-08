@@ -229,6 +229,9 @@ def render(spec: dict[str, object]) -> dict[Path, str]:
     if spec['id'] == 'epic-traditions':
         from build_epic_full_editions import upgrade_outputs as upgrade_epic_full_editions
         upgrade_epic_full_editions(outputs)
+    if spec['id'] == 'ancient-stories':
+        from build_ancient_full_editions import upgrade_outputs as upgrade_ancient_full_editions
+        upgrade_ancient_full_editions(outputs)
     return outputs
 
 
