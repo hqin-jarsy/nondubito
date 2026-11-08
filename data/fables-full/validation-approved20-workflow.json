@@ -1,0 +1,104 @@
+[
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_web_analytics.py",
+    "exit_code": 0,
+    "seconds": 0.06,
+    "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n"
+  },
+  {
+    "command": "python -B scripts/check_web_analytics.py",
+    "exit_code": 0,
+    "seconds": 15.74,
+    "output": "OK: 13624 public pages checked; 0 tracking errors; 0 conflict copies\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_epic_full_editions.py",
+    "exit_code": 0,
+    "seconds": 2.35,
+    "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 2.232s\n\nOK\n"
+  },
+  {
+    "command": "python -B scripts/build_epic_full_editions.py --check",
+    "exit_code": 0,
+    "seconds": 0.29,
+    "output": "OK: 20 complete eight-language essays; 126 pages up to date\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_fables_full_editions.py",
+    "exit_code": 0,
+    "seconds": 2.91,
+    "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.837s\n\nOK\n"
+  },
+  {
+    "command": "python -B scripts/build_fables_full_editions.py --check",
+    "exit_code": 0,
+    "seconds": 0.66,
+    "output": "OK: 23 complete six-language translations; 144 pages and eight search indexes current\n"
+  },
+  {
+    "command": "python -B scripts/check_site_updates.py",
+    "exit_code": 1,
+    "seconds": 0.03,
+    "output": "ERROR: updates[1]: invalid language list\nERROR: updates[2]: invalid language list\nERROR: updates[3]: invalid language list\nERROR: updates[4]: invalid language list\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_home_updates.py",
+    "exit_code": 1,
+    "seconds": 0.05,
+    "output": "...F....\n======================================================================\nFAIL: test_latest_keeps_the_whole_ledger (test_home_updates.HomeUpdates)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_home_updates.py\", line 42, in test_latest_keeps_the_whole_ledger\n    self.assertEqual(check(), [])\nAssertionError: Lists differ: ['updates[1]: invalid language list', 'upd[101 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[1]: invalid language list'\n\n+ []\n- ['updates[1]: invalid language list',\n-  'updates[2]: invalid language list',\n-  'updates[3]: invalid language list',\n-  'updates[4]: invalid language list']\n\n----------------------------------------------------------------------\nRan 8 tests in 0.012s\n\nFAILED (failures=1)\n"
+  },
+  {
+    "command": "python -B scripts/build_home_updates.py --check",
+    "exit_code": 0,
+    "seconds": 0.03,
+    "output": "OK: homepage has one editorial pick and four distinct recent series\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_reviewed_series_languages.py",
+    "exit_code": 0,
+    "seconds": 1.28,
+    "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 1.226s\n\nOK\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_rewritten_series_languages.py",
+    "exit_code": 0,
+    "seconds": 1.4,
+    "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.353s\n\nOK\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_companion_languages.py",
+    "exit_code": 0,
+    "seconds": 0.36,
+    "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.310s\n\nOK\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_method_introduction.py",
+    "exit_code": 1,
+    "seconds": 0.16,
+    "output": ".........F\n======================================================================\nFAIL: test_update_and_library_entries (test_method_introduction.MethodIntroductionTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_method_introduction.py\", line 139, in test_update_and_library_entries\n    self.assertEqual(check_updates(), [])\nAssertionError: Lists differ: ['updates[1]: invalid language list', 'upd[101 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[1]: invalid language list'\n\n+ []\n- ['updates[1]: invalid language list',\n-  'updates[2]: invalid language list',\n-  'updates[3]: invalid language list',\n-  'updates[4]: invalid language list']\n\n----------------------------------------------------------------------\nRan 10 tests in 0.097s\n\nFAILED (failures=1)\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_action_languages.py",
+    "exit_code": 0,
+    "seconds": 0.74,
+    "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.671s\n\nOK\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_state_languages.py",
+    "exit_code": 0,
+    "seconds": 1.5,
+    "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 1.430s\n\nOK\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_interstate_languages.py",
+    "exit_code": 0,
+    "seconds": 0.67,
+    "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.603s\n\nOK\n"
+  },
+  {
+    "command": "python -B -m unittest discover -s scripts -p test_clustered_language_indexes.py",
+    "exit_code": 0,
+    "seconds": 0.05,
+    "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
+  }
+]
