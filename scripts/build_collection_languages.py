@@ -232,6 +232,9 @@ def render(spec: dict[str, object]) -> dict[Path, str]:
     if spec['id'] == 'ancient-stories':
         from build_ancient_full_editions import upgrade_outputs as upgrade_ancient_full_editions
         upgrade_ancient_full_editions(outputs)
+    if spec['id'] == 'chernobyl':
+        from build_chernobyl_full_editions import upgrade_outputs
+        outputs = upgrade_outputs(outputs)
     if spec['id'] == 'the-wire':
         from build_wire_full_editions import upgrade_outputs as upgrade_wire_full_editions
         upgrade_wire_full_editions(outputs)
