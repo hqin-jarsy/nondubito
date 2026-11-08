@@ -39,6 +39,9 @@ jobs:
       - run: python -B -m unittest discover -s scripts -p test_chernobyl_full_editions.py
       - run: python -B scripts/build_chernobyl_full_editions.py --check
       - run: python -B scripts/refresh_chernobyl_full_discovery.py --check
+      - run: python -B -m unittest discover -s scripts -p test_satc_full_editions.py
+      - run: python -B scripts/build_satc_full_editions.py --check
+      - run: python -B scripts/refresh_satc_full_discovery.py --check
       - run: python -B scripts/check_site_updates.py
       - run: python -B -m unittest discover -s scripts -p test_home_updates.py
       - run: python -B scripts/build_home_updates.py --check
