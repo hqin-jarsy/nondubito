@@ -17,7 +17,7 @@ from prepare_action_sources import Document, Node, one
 
 ROOT=Path(__file__).resolve().parents[1]
 LANGS=('en','ja','de','fr','es','ko')
-SUPPORTED=('sae-nicomachean',)
+SUPPORTED=('sae-nicomachean','sae-republic')
 LABELS={'ja':'日本語全文訳','de':'Vollständige deutsche Übersetzung',
  'fr':'Traduction française intégrale','es':'Traducción española íntegra','ko':'한국어 완역'}
 ZH_NOTE='完整版本：简体中文 · 繁體中文 · English · 日本語 · Français · Deutsch · Español · 한국어。六种外语均以中文底本逐篇对照，保留完整论证、例子与限定。'
@@ -156,8 +156,8 @@ def render(series,partial=False):
    prose=''.join('<p>'+p+'</p>' for p in shared['intro'])
    changes.append((desc.start,desc.end,'<div class="series-desc">'+prose+'</div>'))
    if lang=='en':
-    note=one(section.walk(),lambda n:n.has('edition-note'),'English edition note')
-    changes.append(inner(note,EN_NOTE))
+    for note in section.walk():
+     if note.has('edition-note'):changes.append(inner(note,EN_NOTE))
    else:
     for n in section.walk():
      if n.has('series-label'):changes.append(inner(n,html.escape(n.text().rsplit(' · ',1)[0]+' · '+LABELS[lang])))
@@ -179,8 +179,9 @@ def render(series,partial=False):
   if lang=='en' and shared:
    doc=Document(text);changes=[]
    zhsection=one(doc.root.walk(),lambda n:n.has('lang-zh') and any(c.has('series-title') for c in n.children if isinstance(c,Node)),'Chinese intro')
-   note=one(zhsection.walk(),lambda n:n.has('edition-note'),'Chinese edition note')
-   changes.append(inner(note,ZH_NOTE));text=patch(text,changes)
+   for note in zhsection.walk():
+    if note.has('edition-note'):changes.append(inner(note,ZH_NOTE))
+   text=patch(text,changes)
    for p in texts:
     if p==ip:continue
     doc=Document(texts[p]);changes=[]

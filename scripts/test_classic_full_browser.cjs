@@ -5,7 +5,7 @@ const path=require('node:path');
 const os=require('node:os');
 const {chromium}=require('playwright');
 const base=process.argv[2]||'http://127.0.0.1:8776';
-const series='sae-nicomachean';
+const series=process.env.CLASSIC_SERIES||'sae-nicomachean';
 const langs=['zh','zh-hant','en','ja','de','fr','es','ko'];
 const primary=l=>['zh','zh-hant','en'].includes(l);
 const pageURL=(l,s)=>`${base}/essays/${series}/${primary(l)?'':l+'/'}${s}.html`;
@@ -85,7 +85,7 @@ async function check(page,l,slug){
   for(const l of ['en','zh','zh-hant']){
    await setLanguage(page,l==='en'?'zh':'en');await page.goto(pageURL(l,'ep12')+'?lang='+l);
    await check(page,l,'ep12');await page.reload();await check(page,l,'ep12');
-   if(l==='zh-hant')assert.ok((await page.title()).includes('最高的那一樣'));
+   if(l==='zh-hant')assert.ok((await page.title()).includes(series==='sae-nicomachean'?'最高的那一樣':'責任在選擇者'));
   }
   const blocked=await browser.newContext({viewport:{width:375,height:900}});
   await blocked.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort());

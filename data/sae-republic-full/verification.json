@@ -1,0 +1,460 @@
+{
+  "date": "2026-11-09",
+  "series": "sae-republic",
+  "source_essay_count": 13,
+  "source_paragraph_count": 707,
+  "foreign_language_editions": 78,
+  "foreign_paragraph_count": 4242,
+  "rendered_files": 84,
+  "source_preserved": true,
+  "traditional_original_entries_preserved": 858,
+  "traditional_title_compatibility_files": 10,
+  "review_batches": [
+    5,
+    5,
+    3
+  ],
+  "independent_english_review": {
+    "paragraphs": 707,
+    "title_deck_pairs": 13,
+    "result": "pass after documented corrections"
+  },
+  "independent_other_language_review": {
+    "source_paragraphs_read": 707,
+    "foreign_paragraphs_compared": 1000,
+    "title_deck_pairs": 65,
+    "scope": "Targeted second review; exact paragraphs listed in reviews/independent-argument-review.json"
+  },
+  "structural_tests": {
+    "count": 11,
+    "result": "pass"
+  },
+  "renderer_check": "84 pages; 0 changed",
+  "scoped_discovery_check": "0 files changed",
+  "browser": {
+    "result": "pass",
+    "views": 224,
+    "viewport_widths": [
+      320,
+      1440
+    ],
+    "directed_language_transitions": 64,
+    "search_result_clicks": 16,
+    "index_neighbor_back_routes": 16,
+    "explicit_query_precedence_and_reload": true,
+    "blocked_storage_direct_reading_and_foreign_return": true,
+    "foreign_javascript_disabled": true,
+    "javascript_errors": [],
+    "visual_review": [
+      "English mobile",
+      "German mobile",
+      "Japanese desktop"
+    ]
+  },
+  "regression_commands": [
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_web_analytics.py",
+      "returncode": 0,
+      "seconds": 0.06,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/check_web_analytics.py",
+      "returncode": 0,
+      "seconds": 13.6,
+      "output": "OK: 13822 public pages checked; 0 tracking errors; 0 conflict copies\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_epic_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.26,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 2.171s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_epic_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.29,
+      "output": "OK: 20 complete eight-language essays; 126 pages up to date\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_ancient_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.12,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 2.049s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_ancient_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.59,
+      "output": "OK: 19 complete six-language translations; 120 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_fables_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.91,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.834s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_fables_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.67,
+      "output": "OK: 23 complete six-language translations; 144 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_analects_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.74,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.663s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_analects_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.29,
+      "output": "OK: 306 complete Analects pages\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_analects_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.05,
+      "output": "OK: Analects ledger, Latest, library and five language hubs\n"
+    },
+    {
+      "command": "python3 -B scripts/audit_drama_translations.py",
+      "returncode": 0,
+      "seconds": 0.07,
+      "output": "{\"through\": 23, \"translations\": 115, \"paragraphs\": 2375, \"note\": \"Hashes and paragraph coverage verify the reviewed files; they do not themselves establish translation quality.\"}\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_drama_series.py",
+      "returncode": 0,
+      "seconds": 0.56,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.491s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_drama_series.py --check",
+      "returncode": 0,
+      "seconds": 0.19,
+      "output": "OK: 24 drama pages are current\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_drama_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.58,
+      "output": "OK: drama discovery and scoped search are current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_film_full_editions.py",
+      "returncode": 0,
+      "seconds": 4.66,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 4.591s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_film_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 1.21,
+      "output": "Verified 448 film pages\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_film_targeted_english.py",
+      "returncode": 0,
+      "seconds": 0.32,
+      "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.263s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_film_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 2.35,
+      "output": "Verified film discovery, homepage, scoped search and recorded publication dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_wire_full_editions.py",
+      "returncode": 0,
+      "seconds": 0.27,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.204s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_wire_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.09,
+      "output": "Verified 60 Wire pages and 10 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_wire_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.47,
+      "output": "Verified Wire discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_chernobyl_full_editions.py",
+      "returncode": 0,
+      "seconds": 0.22,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.154s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_chernobyl_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.07,
+      "output": "Verified 42 Chernobyl pages and 7 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_chernobyl_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.41,
+      "output": "Verified Chernobyl discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_satc_full_editions.py",
+      "returncode": 0,
+      "seconds": 0.43,
+      "output": "..............\n----------------------------------------------------------------------\nRan 14 tests in 0.358s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_satc_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.1,
+      "output": "Verified 66 Sex and the City pages and 11 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_satc_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.47,
+      "output": "Verified Sex and the City discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B scripts/build_math_history_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 1.56,
+      "output": "Verified 156 pages / 208 language views\n"
+    },
+    {
+      "command": "python3 -B scripts/test_math_history_full_editions.py --release",
+      "returncode": 0,
+      "seconds": 11.11,
+      "output": "..................\n----------------------------------------------------------------------\nRan 18 tests in 11.030s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_math_history.py --check --complete",
+      "returncode": 0,
+      "seconds": 1.6,
+      "output": "Checked 156 pages / 208 language views\n"
+    },
+    {
+      "command": "python3 -B scripts/test_math_history.py --release",
+      "returncode": 0,
+      "seconds": 4.88,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 4.784s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_math_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 2.52,
+      "output": "Verified Mathematics discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_classic_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.3,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 2.231s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_classic_full_editions.py sae-nicomachean --check",
+      "returncode": 0,
+      "seconds": 0.89,
+      "output": "Checked 84 pages; 0 changed\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_classic_full_discovery.py sae-nicomachean --check",
+      "returncode": 0,
+      "seconds": 0.42,
+      "output": "Verified scoped search and sitemap; 0 files changed\n"
+    },
+    {
+      "command": "python3 -B scripts/check_site_updates.py",
+      "returncode": 1,
+      "seconds": 0.04,
+      "output": "ERROR: updates[9]: invalid language list\nERROR: updates[10]: invalid language list\nERROR: updates[11]: invalid language list\nERROR: updates[12]: invalid language list\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_home_updates.py",
+      "returncode": 1,
+      "seconds": 0.06,
+      "output": "...F....\n======================================================================\nFAIL: test_latest_keeps_the_whole_ledger (test_home_updates.HomeUpdates)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_home_updates.py\", line 42, in test_latest_keeps_the_whole_ledger\n    self.assertEqual(check(), [])\nAssertionError: Lists differ: ['updates[9]: invalid language list', 'upd[104 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[9]: invalid language list'\n\n+ []\n- ['updates[9]: invalid language list',\n-  'updates[10]: invalid language list',\n-  'updates[11]: invalid language list',\n-  'updates[12]: invalid language list']\n\n----------------------------------------------------------------------\nRan 8 tests in 0.014s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python3 -B scripts/build_home_updates.py --check",
+      "returncode": 0,
+      "seconds": 0.04,
+      "output": "OK: homepage has one editorial pick and four distinct recent series\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_reviewed_series_languages.py",
+      "returncode": 0,
+      "seconds": 1.29,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 1.229s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_rewritten_series_languages.py",
+      "returncode": 0,
+      "seconds": 1.37,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.320s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_companion_languages.py",
+      "returncode": 0,
+      "seconds": 0.36,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.301s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_method_introduction.py",
+      "returncode": 1,
+      "seconds": 0.15,
+      "output": ".........F\n======================================================================\nFAIL: test_update_and_library_entries (test_method_introduction.MethodIntroductionTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_method_introduction.py\", line 139, in test_update_and_library_entries\n    self.assertEqual(check_updates(), [])\nAssertionError: Lists differ: ['updates[9]: invalid language list', 'upd[104 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[9]: invalid language list'\n\n+ []\n- ['updates[9]: invalid language list',\n-  'updates[10]: invalid language list',\n-  'updates[11]: invalid language list',\n-  'updates[12]: invalid language list']\n\n----------------------------------------------------------------------\nRan 10 tests in 0.089s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_action_languages.py",
+      "returncode": 0,
+      "seconds": 0.6,
+      "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.525s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_state_languages.py",
+      "returncode": 0,
+      "seconds": 1.48,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 1.406s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_interstate_languages.py",
+      "returncode": 0,
+      "seconds": 0.63,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.564s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_clustered_language_indexes.py",
+      "returncode": 0,
+      "seconds": 0.06,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_sae_western_navigation.py",
+      "returncode": 0,
+      "seconds": 0.12,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.079s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_sae_western.py",
+      "returncode": 0,
+      "seconds": 0.2,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.128s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_republic_full_editions.py",
+      "returncode": 0,
+      "seconds": 6.72,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 6.481s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_classic_full_editions.py sae-republic --check",
+      "returncode": 0,
+      "seconds": 2.66,
+      "output": "Checked 84 pages; 0 changed\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_classic_full_discovery.py sae-republic --check",
+      "returncode": 0,
+      "seconds": 1.48,
+      "output": "Verified scoped search and sitemap; 0 files changed\n"
+    }
+  ],
+  "regression_summary": {
+    "commands": 52,
+    "passed": 49,
+    "pre_existing_failures": 3,
+    "explanation": "The same four invalid language lists at updates[9] through updates[12] cause three existing update-ledger checks to fail. data/site-updates.json was not modified."
+  },
+  "translation_sha256": {
+    "data/sae-republic-full/translations/de/ep01.json": "134562ac7804ae87c63cd4ac542b84bcf4d35b72c6566a430219898092edd2f5",
+    "data/sae-republic-full/translations/de/ep02.json": "754ab17ce2f5c5850732cc474d90b31026eecefeb3bea0a8678b7bb8b39ba1bd",
+    "data/sae-republic-full/translations/de/ep03.json": "996dd84c0e132f1af80a38eb72608da9923ded81d6106c71bcc28109278ad29a",
+    "data/sae-republic-full/translations/de/ep04.json": "39f8d1de2cba2fa5d1742f32959f99ee35ee9217279cf8d293a9e238010debd3",
+    "data/sae-republic-full/translations/de/ep05.json": "e664a2fb8dbc1535cec94fee2557484603a87e86941bf4f1ee3b23b7a287784c",
+    "data/sae-republic-full/translations/de/ep06.json": "22063511d8ac6bc0f054694e472bfe69525d9b05b2773544475c92f96ad7c22b",
+    "data/sae-republic-full/translations/de/ep07.json": "a7e8a73cc77170d077ee717f72d5464b86bfe89fce2c480af3b4698f0edcb4d5",
+    "data/sae-republic-full/translations/de/ep08.json": "696ea259b2abd1414a434ca7bccd49644162c0a86e63eb5b8405f4ade489f207",
+    "data/sae-republic-full/translations/de/ep09.json": "746ade6b343d8ea1f6a98c567257ca5bc206481ab344e890d69a294b57d2f715",
+    "data/sae-republic-full/translations/de/ep10.json": "7195c117956a86500b069a70d6fe91b252a0f0a902a9aa722ec94774a77282e6",
+    "data/sae-republic-full/translations/de/ep11.json": "c76e5289518a2870af79369c91fb8dd0bd98282e94d8a3285ad96ba5a9b4119c",
+    "data/sae-republic-full/translations/de/ep12.json": "ede39dc17509b8b073da7a328747a391dfaf0cf6e04b0aea23165047b41d2703",
+    "data/sae-republic-full/translations/de/ep13.json": "de304fe741eaf274a91ef1229ee445f37fc23d20e07f5ba474b87d2f2fc5aba1",
+    "data/sae-republic-full/translations/de/index.json": "59ef23e890e575f9e74ea25d37cc879a5e2948f4ddfa19dd665849be2f2bbe05",
+    "data/sae-republic-full/translations/en/ep01.json": "cd817feb513687e3ba43cc8eeb288116dd2a3328c507b24dd281c754f1f138e6",
+    "data/sae-republic-full/translations/en/ep02.json": "1eccd1aa126b5999f936a0a023a64b10ef240b5dccbc709925e51c6aa10e4b9f",
+    "data/sae-republic-full/translations/en/ep03.json": "c647eab80c648285652e0f93fad2803ff7b2f164113a01aecf323f284f99edba",
+    "data/sae-republic-full/translations/en/ep04.json": "e43aff530fadedda8a373780ffb6299bf10ff19ccaf8ca5595203bbd6d40b112",
+    "data/sae-republic-full/translations/en/ep05.json": "022154b0ed9a1eaabe2dcd7f328ae2e73700079d00dc3f45e3b42d98b1067c6a",
+    "data/sae-republic-full/translations/en/ep06.json": "146511879a6381d4316fafb3fc89d55a6a87a36e3dea00e231357d79dced2e0d",
+    "data/sae-republic-full/translations/en/ep07.json": "aae4c22628eb01507cd28a5d19a63dc034cfb2831646fdfdbab1927583d76b35",
+    "data/sae-republic-full/translations/en/ep08.json": "a3ce6f39e9c0a270a5380380672f4313cd2dbbc6078a004017177408b4441367",
+    "data/sae-republic-full/translations/en/ep09.json": "fca0898eefccce7cc42e80e76c5e0396387275934da4fa6e04b3764b7466c5c0",
+    "data/sae-republic-full/translations/en/ep10.json": "edb497622062d3d9c31259e1db12c3f276b4b32a48605c4664335bd1b7df604a",
+    "data/sae-republic-full/translations/en/ep11.json": "6a2d08578c2b53da547c3587f66c58d1e322dd6a696f12abb9155b313603414f",
+    "data/sae-republic-full/translations/en/ep12.json": "4d5b7ca5d43eb2f0c199fe72781fcd84073efbfc6d055a7cab87c032b56dbe76",
+    "data/sae-republic-full/translations/en/ep13.json": "43f7e2be80baf87048d9ce856891374526995180a7ed1fe2d96129aa76841523",
+    "data/sae-republic-full/translations/en/index.json": "434580cec5e31d46748ddd3fa56b4b277e6b93333b540b98855d472cb324278f",
+    "data/sae-republic-full/translations/es/ep01.json": "4ee972a32cf0ad2953d4d86af1ef56b65947a108d9ea584f9057dceb31bed66e",
+    "data/sae-republic-full/translations/es/ep02.json": "f69e421e04f952f3a67034da3e9be0b8fc5afb96e8d33cff43487ed7fd73aebf",
+    "data/sae-republic-full/translations/es/ep03.json": "3cd0bacf1730f1b70e9d29b19efaf860d8ff7379e39f795d7f76751c57518e01",
+    "data/sae-republic-full/translations/es/ep04.json": "14ab6d7eea023b02b3f0748ed0331f9e17723dc07f0a63bd718505a2e82009d7",
+    "data/sae-republic-full/translations/es/ep05.json": "45c50301c5ae07769764d29c84a14fba85cea9ed8253ea1c369a24403c505aba",
+    "data/sae-republic-full/translations/es/ep06.json": "57a7c2a9b720af90cb0497bf5eb6c59d45232590f61ff6680cb7d2c29029d793",
+    "data/sae-republic-full/translations/es/ep07.json": "456d694ded64a160a16de5e559f6dadf425466bbaf0a352c318fb822760f436a",
+    "data/sae-republic-full/translations/es/ep08.json": "0a90e8cb691e16ecb63b5ce7cfe85ae4c2d173eedc72e9adc8f7c954b54096da",
+    "data/sae-republic-full/translations/es/ep09.json": "a945188d9eb093033c308a32841820492780da0dd13cdba266102d041d7a9e20",
+    "data/sae-republic-full/translations/es/ep10.json": "6d7912a645ecc16a2d6d94b38bb67082c0828caaa4d17461187cf61a1573b2f5",
+    "data/sae-republic-full/translations/es/ep11.json": "af9570838b66f594a0ea9889d61d2bfbef739ac559c8005711f6072bb99c2c42",
+    "data/sae-republic-full/translations/es/ep12.json": "a9cb44b2da6ecea8855263e9ac1f392ddbc4e0684e3cf5d7780a1721c7686c5a",
+    "data/sae-republic-full/translations/es/ep13.json": "ad5635b386442a2d54b114a461aa02e6db7c82f8486f63263e1b84868b45442e",
+    "data/sae-republic-full/translations/es/index.json": "b7f20c1276609782001fdade1ff6087b816ab16e4c3b7daedaa34d4827a5111b",
+    "data/sae-republic-full/translations/fr/ep01.json": "ad467db02a89e890a892d579055ac040259fc50d6bcc33c8f04d70a6d9ae427b",
+    "data/sae-republic-full/translations/fr/ep02.json": "86a00d2ab7a94a004d3084304624bce64d00e85acdc12af0bfc412aad1684f45",
+    "data/sae-republic-full/translations/fr/ep03.json": "46f484f4f1ee9df689a20af81245f42e9fbbb3d45ed7b595341bbc8b063d681d",
+    "data/sae-republic-full/translations/fr/ep04.json": "833c5b41ac7d0ce3f52755f0f0e2590c17896728a73751aaff90ed169beb6321",
+    "data/sae-republic-full/translations/fr/ep05.json": "c8afc496ec67fe7d5704831eaaeba747080a9ca660f9785732267b04569afb9c",
+    "data/sae-republic-full/translations/fr/ep06.json": "a7866ee5281a14862584bb8bb9179c382d6509a04e3a2715b5d74d0e122509a9",
+    "data/sae-republic-full/translations/fr/ep07.json": "6526e542fbb0ecd267431dd56f80b0beae0be70dbefbbdd36d6362ca7d406aab",
+    "data/sae-republic-full/translations/fr/ep08.json": "653697835cf8b5c0556f6d2f90c57844be0f50693df6f79b460d61a96a612a62",
+    "data/sae-republic-full/translations/fr/ep09.json": "6fd0b8b871d4c145b14f15ce6951173d9cbca4c85c6fd79d7e549ef9cdf4e298",
+    "data/sae-republic-full/translations/fr/ep10.json": "29f942791919760599dbebebefa83fb0007481c8939a5eaaaafff16f7691d8ae",
+    "data/sae-republic-full/translations/fr/ep11.json": "f3821ef816c9ada4814af77592c9e492b4bd4b572a21392d2387eb5e872c6989",
+    "data/sae-republic-full/translations/fr/ep12.json": "c21492442746caa18ddb900cfd0efd2ce9c4b5e2c134305cbb91bb6b64e30e3c",
+    "data/sae-republic-full/translations/fr/ep13.json": "766eff96b8323bc593bf75e711d7df5453ae0ca6e75eb3d46cf6955a79122202",
+    "data/sae-republic-full/translations/fr/index.json": "360718cc4bbd1bb801a4441bb6f4468fd3110f6b0ffd15a997ac86add06695fe",
+    "data/sae-republic-full/translations/ja/ep01.json": "e302d80b566167f317826f086b785747e403b78d328fe9dae8a9f939888240f1",
+    "data/sae-republic-full/translations/ja/ep02.json": "5a6fb3fe0efcb4ac806db29db083e01962e5af3c18bc52b443e107537cb6784a",
+    "data/sae-republic-full/translations/ja/ep03.json": "b474346174c663d027296f6b96b6d42e92eb1702c473b7f6b6571cc73046c1d7",
+    "data/sae-republic-full/translations/ja/ep04.json": "0ddc955a0123c82e990ea3dfe08ea11ad6c382f0099ee48ec784cd411491d7d2",
+    "data/sae-republic-full/translations/ja/ep05.json": "8c245c845be20aecb1c5896cdee81b5aaf97bc72cf67b802e6373a0178909486",
+    "data/sae-republic-full/translations/ja/ep06.json": "b67c811be03ddc043c56f1f52184c6420ce46533d9b424ca4836ae0761e9f22f",
+    "data/sae-republic-full/translations/ja/ep07.json": "ceef8c2dc0f0d3dfbcaf45cd32340a2139cb068d3ac31c9a33d2fdc076eb0da3",
+    "data/sae-republic-full/translations/ja/ep08.json": "2ee317de1e4a76cd1cae86b4c4e70d5bfd26520776c5c4d49a2810fc952e700c",
+    "data/sae-republic-full/translations/ja/ep09.json": "60ab774b9460505d981bb2c6de09b0a3d641294552b14360d575e4d4968837a1",
+    "data/sae-republic-full/translations/ja/ep10.json": "6b11dc01559fd11509ef2d27e7c5f6e8272eb290e38961eeb41734dc02ff6a80",
+    "data/sae-republic-full/translations/ja/ep11.json": "895a44119dfef192e93386ff8ef5271f0c3de1b8b2b2d3989662b086159860b0",
+    "data/sae-republic-full/translations/ja/ep12.json": "a3874f817b4c5dfef4ca411f0348f0c64e53ce910c6f59221cfd2929f44ab1dc",
+    "data/sae-republic-full/translations/ja/ep13.json": "a255977de3ac0d1955abf3db21ade99a52477e498dbac4eb6cb19dcecb50c515",
+    "data/sae-republic-full/translations/ja/index.json": "76ca4e35234d2731fd43074e738ac74679a84871d202cc86c4751bc0515918b4",
+    "data/sae-republic-full/translations/ko/ep01.json": "6847ee112604d5e1f199aa65100b4c0329b9c2f5a847e5f15ccd76b8e2dde978",
+    "data/sae-republic-full/translations/ko/ep02.json": "9fdd90cc9facb5640a913aadab2b7f7e4fc37635eb91c2f7d3cdba820ad5164c",
+    "data/sae-republic-full/translations/ko/ep03.json": "93ed354fab19caeb5426b9f55f61d13c362313f2d4c9e09a4ec1ea7310b80710",
+    "data/sae-republic-full/translations/ko/ep04.json": "a2880ff989bbacd43e6c9ba7448652019da78f2b0cebc384f37304e89f3889b8",
+    "data/sae-republic-full/translations/ko/ep05.json": "b07bba136eb5d3727886f0a74309a08df1ece6c72e71347e79834c74060ac4ca",
+    "data/sae-republic-full/translations/ko/ep06.json": "1110a5358dc043be5f4a6710b43927e8da66960531587942497c81d7d77acfe2",
+    "data/sae-republic-full/translations/ko/ep07.json": "4b917cb9f5a5a68bcdf65f8e478204845d22e71492e24b87aea94bcc49c3e3de",
+    "data/sae-republic-full/translations/ko/ep08.json": "ba050d748b4479ef084a9d9da2a0c0010c51522beea2ca3d231225de6220f9ce",
+    "data/sae-republic-full/translations/ko/ep09.json": "639d1407e6a5a93998a682e94031937b5dd52496b384167d2d9ee55785acc77b",
+    "data/sae-republic-full/translations/ko/ep10.json": "bfca9531740c0951dc90f86461c455b6376890ac98123e4f7004e11bf63f9d5d",
+    "data/sae-republic-full/translations/ko/ep11.json": "e4d763bdd5e810af2c577eba95696344f4aa70d0f4ab92a82018bdae9e7e1371",
+    "data/sae-republic-full/translations/ko/ep12.json": "3bb9c97bdaafd7be7a3ed166413832688825cc0f161aadc711646f6e413c19bc",
+    "data/sae-republic-full/translations/ko/ep13.json": "9f7859ff06b460d317997e2b23ef7e7ab6f524869bf3865817346136cbd7cb2d",
+    "data/sae-republic-full/translations/ko/index.json": "44d85b315be6a867532ad03767eb0a484041fa4e3c6dfc04b45965cdd3546a08"
+  }
+}

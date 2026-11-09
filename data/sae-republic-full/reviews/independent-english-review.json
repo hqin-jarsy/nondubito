@@ -1,0 +1,303 @@
+{
+  "scope": "Independent complete paragraph-by-paragraph review of the restored English for all thirteen SAE Republic essays against the canonical Chinese snapshots, including every title and deck.",
+  "paragraphs": 707,
+  "episodes": [
+    "ep01",
+    "ep02",
+    "ep03",
+    "ep04",
+    "ep05",
+    "ep06",
+    "ep07",
+    "ep08",
+    "ep09",
+    "ep10",
+    "ep11",
+    "ep12",
+    "ep13"
+  ],
+  "reviewed_passages": "All 707 source paragraphs and their 707 saved English counterparts were read semantically, not inferred from matching counts. Every title and deck was read against Chinese, and all subsequent reported text edits were read back.",
+  "paragraphs_by_episode": {
+    "ep01": 42,
+    "ep02": 48,
+    "ep03": 48,
+    "ep04": 45,
+    "ep05": 48,
+    "ep06": 64,
+    "ep07": 47,
+    "ep08": 56,
+    "ep09": 60,
+    "ep10": 61,
+    "ep11": 66,
+    "ep12": 67,
+    "ep13": 55
+  },
+  "method": [
+    "Read CLAUDE.md, SAE-TERMINOLOGY.md, and the relevant engineering and writing guidance.",
+    "Used sources/ep01.json through sources/ep13.json as the Chinese authority. The old condensed existing_english was not treated as the translation source.",
+    "Read all paragraph pairs for examples, negation, ability and obligation, constitutive versus evaluative claims, progress without a fixed destination, concessions to Plato, and unanswered counterquestions.",
+    "Performed a focused terminology and cross-essay callback pass, then read back each accepted correction and every additional final translator edit listed in en-batch02.json.",
+    "Recorded byte hashes of the final translation files. Paragraph alignment and hash checks are supplementary integrity checks, not evidence of semantic fidelity by themselves."
+  ],
+  "resolved_findings": [
+    {
+      "slug": "ep01",
+      "severity": "minor",
+      "before": "Outside the Cave, or Another Cave?",
+      "after": "Outside the Cave, Still a Cave",
+      "reason_zh": "原题“洞穴之外，还是洞穴”是断言，英文改为选择疑问，弱化并改变标题语气。",
+      "status": "verified_resolved",
+      "location": "title"
+    },
+    {
+      "slug": "ep12",
+      "severity": "minor",
+      "before": "However many, they are numbered.",
+      "after": "However many there are, their number is finite.",
+      "reason_zh": "“数目再多，也是有数的”意为有限的预制选项，并非每个选项有编号。numbered 容易误解为编号，应直译其有限性。",
+      "status": "verified_resolved",
+      "paragraph": 32
+    },
+    {
+      "slug": "ep06",
+      "severity": "minor",
+      "before": "It calls the complete stripping of a person a person’s disposal of a thing.",
+      "after": "It calls the fully stripped-down relation a person’s handling of a thing.",
+      "reason_zh": "“处置”在这里指把他人当东西处理，不是丢弃。disposal of 常被理解为扔掉，handling 更清楚保留主体对物的关系。",
+      "status": "verified_resolved",
+      "paragraph": 50
+    },
+    {
+      "slug": "ep01",
+      "severity": "material",
+      "before": "SAE has been dismantling engines all along: attraction, necessity, every cannot-not.",
+      "after": "SAE has been dismantling engines all along: attraction and necessity.",
+      "reason_zh": "原文只列“拆掉牵引，拆掉不得不”；every cannot-not 是擅加的第三项，且把所有 cannot-not 全称排除，会与14DD主体自有的不能不混淆。应去掉扩写。",
+      "status": "verified_resolved",
+      "paragraph": 38
+    },
+    {
+      "slug": "ep13",
+      "severity": "minor",
+      "before": "the twelve essays since",
+      "after": "the twelve preceding essays",
+      "reason_zh": "“这一路十二篇”指前十二篇，包含首篇；since 会误成首篇之后另有十二篇。此项由母代理转来另五语审核发现，并已独立核对修改。",
+      "status": "verified_resolved",
+      "paragraph": 15,
+      "origin": "Cross-language review finding, independently verified."
+    },
+    {
+      "slug": "ep09",
+      "severity": "terminology",
+      "before": [
+        "but will go to it as something they cannot not do.",
+        "Not for honor or anything else. Simply a cannot-not.",
+        "Plato is concrete: they go as to something they cannot not do, not for honor, but simply because they cannot not."
+      ],
+      "after": [
+        "but will go to it as something they must do.",
+        "Not for honor or anything else. Simply because they must.",
+        "Plato is concrete: they go as to something they must do, not for honor, but simply out of necessity."
+      ],
+      "reason_zh": "原文是柏拉图强迫返回的普通“不得不”，名词化且加连字符的 a cannot-not 引入SAE的14DD专名“不能不”，模糊外在强迫与主体自身确立的方向。",
+      "status": "verified_resolved",
+      "paragraphs": [
+        21,
+        22,
+        28
+      ]
+    },
+    {
+      "slug": "ep09",
+      "severity": "minor",
+      "before": "the word compelled would return",
+      "after": "the word forced would return",
+      "reason_zh": "本段明确回指首篇的同一个词，并称词形未变；EN01段11、33使用forced，此处compelled使英文自己的回指落空。",
+      "status": "verified_resolved",
+      "paragraph": 31
+    }
+  ],
+  "additional_final_translator_edits_verified": [
+    {
+      "slug": "ep06",
+      "paragraphs": [
+        2,
+        18
+      ],
+      "note": "Read the revised interruption sentence and reward wording against Chinese; repeated interruptions and the remuneration argument remain intact."
+    },
+    {
+      "slug": "ep07",
+      "locations": [
+        "deck",
+        "paragraph 14",
+        "paragraph 31"
+      ],
+      "note": "Read the clarified self-established law, one's-own phrasing, and shortchanged statue-eyes wording against Chinese."
+    },
+    {
+      "slug": "ep08",
+      "paragraph": 32,
+      "note": "Read removal of the narrowing motives qualifier; the source separates the move generally from good/bad judgment."
+    },
+    {
+      "slug": "ep09",
+      "paragraph": 25,
+      "note": "Read keep the place they have reached to themselves; ascent is still not privatized."
+    },
+    {
+      "slug": "ep10",
+      "paragraph": 38,
+      "note": "Read the revised bedtime-story sentence; neither child nor adult is made able to identify the relevant place."
+    }
+  ],
+  "semantic_review_anchors": {
+    "ep01": [
+      "Same cut establishes a real gain and new unseen remainder at once.",
+      "Progress is retained without a fixed destination.",
+      "Outside questioning is useful without being guaranteed right.",
+      "Contingent initiative locates the act without explaining why it happens.",
+      "The SAE story, not Plato's compelled ascent, is the harder story at the ending."
+    ],
+    "ep02": [
+      "Good as source is distinguished from non as contentless, unavoidable operation.",
+      "Today's non-explanation is distinguished from an in-principle limit.",
+      "Breath and kitchen-knife examples are present.",
+      "The challenge about an empty foundation's output remains unanswered."
+    ],
+    "ep03": [
+      "Questioning premises is accepted without importing the ranking.",
+      "Unequal division is the ranking's first appearance, not its origin.",
+      "Four nonexclusive and nonexhaustive debts and wardrobe examples are complete.",
+      "Real achievement is retained; the learner's need for a ladder remains an objection."
+    ],
+    "ep04": [
+      "Both brothers' arguments and the full ring narrative are retained.",
+      "Questioning, not merely punishment, is removed.",
+      "Unreviewed reasons lower the next threshold and can feel like competence.",
+      "Driving and solo-craft examples remain.",
+      "The creditor, observable debt and uselessness-to-the-shepherd objections remain unresolved."
+    ],
+    "ep05": [
+      "Rule versus story and the full Leontius scene are preserved.",
+      "A sixteen-level ordered genesis is not an infinite list.",
+      "Refusing a proposal is distinguished from suppressing its source.",
+      "The identity of the person across cuts and pauses is not answered for the author."
+    ],
+    "ep06": [
+      "The craft argument is constitutive, not a moral evaluation.",
+      "Patient consent is a real stopping position, not merely benevolent intention.",
+      "Publicly intelligible craft conditions are not reduced to private motivation.",
+      "Intrinsic standing is distinguished from its practical handover and retractable lower level.",
+      "The objection about who relinquishes control and the waiting person's life remains."
+    ],
+    "ep07": [
+      "The productivity rule's conversion into justice and the city-directed harm are preserved.",
+      "One's own assigned by the city is distinguished from one's own established by the subject.",
+      "Statue, finger and work-team examples remain complete.",
+      "The need for continual cooking and guard duty is retained as an unanswered practical challenge."
+    ],
+    "ep08": [
+      "Shared constructed stories are not condemned merely for being constructed.",
+      "Testing gold becomes innate metal, changing whether a next question remains possible.",
+      "Social mobility can tighten the rulers' exclusive judgment rather than release people.",
+      "Company and family examples are retained.",
+      "The intergenerational cost of labeling a shared story remains an unresolved objection."
+    ],
+    "ep09": [
+      "All four rationales for compulsory return are present and separately rejected.",
+      "Ability is not equated with obligation at paragraph 42.",
+      "Ascent and descent use the same compulsion in different directions.",
+      "Village funding and teaching examples are preserved.",
+      "The origin of the first recognizer remains an unanswered counterquestion.",
+      "The blindness on return and unspecified adjustment time remain at the ending."
+    ],
+    "ep10": [
+      "Four arguments against imitation and the emotional-release mechanism remain.",
+      "Socrates' love for Homer, participant status and conditional return door are retained.",
+      "Song and repeated bedtime-story examples remain.",
+      "Silence is not equated with nonexistence.",
+      "No extra answer resolves the shared emotional route of expression and manipulation."
+    ],
+    "ep11": [
+      "The first failure is inability to calculate, not moral unwillingness.",
+      "Compromise, property threshold, battle, democracy and tyranny mechanisms are retained.",
+      "Procedural omissions compound rather than each generation merely becoming worse.",
+      "The household-floor example and democratic reexamination nuance remain.",
+      "The question of who convenes the perpetual court when it is least wanted remains unanswered."
+    ],
+    "ep12": [
+      "Responsibility belongs to the chooser; fixed packages, final locking and forgetting are distinguished.",
+      "Finite prepared options are distinct from openings produced by each new cut.",
+      "Actual gain without a final destination is retained.",
+      "The statue's conditional interpretation and challenge to always-a-little-short remain unresolved.",
+      "Odysseus' choice is preserved without an added explanation."
+    ],
+    "ep13": [
+      "Local illumination is distinguished from grounding or mutual proof.",
+      "Shared negation, recognition and external facts remain thin points of contact.",
+      "Actual gain is not a promise of eventual convergence.",
+      "The author's own measuring and possible appropriation remain challenges, not supplied answers.",
+      "The final unilluminated part belongs to the reader and cannot be lit by this book."
+    ]
+  },
+  "source_notes": [
+    {
+      "slug": "ep06",
+      "paragraph": 56,
+      "note": "The source uses 他 after the parent example before the Platonic counterquestion. The English retains he rather than inserting a new attribution. This inherited pronoun ambiguity is not a translation blocker."
+    }
+  ],
+  "unresolved_translation_issues": [],
+  "review_limits": [
+    "This is a complete comparative translation review of the thirteen essay JSON files, not an independent historical or Greek-text fact-check of the Chinese author's interpretation of Plato.",
+    "The series landing-page intro, rendered HTML, layout, navigation, and the other five translations are outside this report's semantic review scope.",
+    "No Chinese source, English translation, HTML, or batch-review file was edited by this reviewer. Only this independent review report was written; no commit or push was performed."
+  ],
+  "saved_translation_sha256": {
+    "ep01": "cd817feb513687e3ba43cc8eeb288116dd2a3328c507b24dd281c754f1f138e6",
+    "ep02": "1eccd1aa126b5999f936a0a023a64b10ef240b5dccbc709925e51c6aa10e4b9f",
+    "ep03": "c647eab80c648285652e0f93fad2803ff7b2f164113a01aecf323f284f99edba",
+    "ep04": "e43aff530fadedda8a373780ffb6299bf10ff19ccaf8ca5595203bbd6d40b112",
+    "ep05": "022154b0ed9a1eaabe2dcd7f328ae2e73700079d00dc3f45e3b42d98b1067c6a",
+    "ep06": "146511879a6381d4316fafb3fc89d55a6a87a36e3dea00e231357d79dced2e0d",
+    "ep07": "aae4c22628eb01507cd28a5d19a63dc034cfb2831646fdfdbab1927583d76b35",
+    "ep08": "a3ce6f39e9c0a270a5380380672f4313cd2dbbc6078a004017177408b4441367",
+    "ep09": "fca0898eefccce7cc42e80e76c5e0396387275934da4fa6e04b3764b7466c5c0",
+    "ep10": "edb497622062d3d9c31259e1db12c3f276b4b32a48605c4664335bd1b7df604a",
+    "ep11": "6a2d08578c2b53da547c3587f66c58d1e322dd6a696f12abb9155b313603414f",
+    "ep12": "4d5b7ca5d43eb2f0c199fe72781fcd84073efbfc6d055a7cab87c032b56dbe76",
+    "ep13": "43f7e2be80baf87048d9ce856891374526995180a7ed1fe2d96129aa76841523"
+  },
+  "saved_source_snapshot_file_sha256": {
+    "ep01": "3b98c5db3671c79f4ca36ee6d5495f52f49271772e7ae29b47016e85b49f2e77",
+    "ep02": "a2ec12dd9cd4053bf4febe1b5835d41a10eae2dfcd45c0fae35e8ddbedf366dc",
+    "ep03": "2f9f2948c439b0d4694099bf28f7db6586794c92c5f1a9e3e9a567f085c79838",
+    "ep04": "814998200a1325556045661429cd317e51da2f28833597961e0a969a41de7c65",
+    "ep05": "3d6ad821415d6ebedc9c84813568d3eafebee99382e44a7c7ead7bf7a0fafaee",
+    "ep06": "0f7ff8d8643ea1d4217f766bcee95f6d39d74a8d339987b05aae6dff784dfe81",
+    "ep07": "87f68f13cde98fcbc267a6503ae522e2dfbd99a4c7765e452fe8c33d106af29d",
+    "ep08": "bcab126fabc983b597bdf86c246421b29640105a856ac4d854ccb42f499c0b4b",
+    "ep09": "3fd66bb1e363b6a8e8e6817adfe2ff7758c3c28d06106e503d2e9c1e1b1c75d6",
+    "ep10": "d0055d2f484d0d00d0c56cdb25cb1a8d9e09e79400a15e89c8ee9f98acdfef8e",
+    "ep11": "11fe438e5edf669230c7d10c29e356d301cd99558e55cc730afaa023c0244bec",
+    "ep12": "7da082b5bf1768e4f7a4cb96c1e573432bb55ac8c531cd40249b901b219194ae",
+    "ep13": "9a5238445b84dcb1a71abbc8befc78651ac5252d81033c500c7527143cd88ce5"
+  },
+  "reviewed_title_deck_body_sha256": {
+    "ep01": "d63fc55adba32f03b5ec7ee9563a4e3c22e4bcb901cc7a5c8e7fb1787382d456",
+    "ep02": "3b6adba977e3780ebc121d311b39a83c36237e2f980d917efef2f4fe6331c218",
+    "ep03": "d48462cc7d6b8c1fe5419990967e66ebb9baca3458b1b4e313d1541667fdf3ba",
+    "ep04": "17a9b02bef2f84359117c84ff59fef9be9210cb16a99f38035e6f46f44da32a0",
+    "ep05": "dff8676d2cf8a96dedc46002781228a9345282e6d089ca796b28a3c3e64abdc4",
+    "ep06": "49b9ccc5d025097034507e4dbc7235a090e08805ddbac673c3d4b22e5bec7b05",
+    "ep07": "d195b00199ef1abd819c3488863ff8e88cd6a8c5bd909377f47cc0b3b17b560f",
+    "ep08": "770767fd40c5f07aa3ef22ea65c3438a8e07b401e85b3a9e6771ba9dda46a2b9",
+    "ep09": "781fbb39fb29fdb8357cd651dd7a9e9476d90c56ed810fe435bbef926dda1f60",
+    "ep10": "2b5d7bc339bc592ff030a9c0386f2595dcd469cf4812df7558e04d72fa281b63",
+    "ep11": "c9068e21d558867087458bbe8a95db07a91f5e5f12cc030a6a10f6e73bdbd8f5",
+    "ep12": "7d7f92e4978167b4117f104533b4a93d4f55cfe0eeb10800f5cca38c8d56513c",
+    "ep13": "18be975fdf24213bf87a90d11880fde273546423a6a3090540fe70b86cf5105a"
+  },
+  "status": "complete_no_unresolved_translation_issues_identified"
+}
