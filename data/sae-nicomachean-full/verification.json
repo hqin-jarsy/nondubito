@@ -1,0 +1,440 @@
+{
+  "date": "2026-11-09",
+  "series": "sae-nicomachean",
+  "source_essay_count": 13,
+  "source_paragraph_count": 778,
+  "foreign_language_editions": 78,
+  "rendered_files": 84,
+  "source_preserved": true,
+  "review_batches": [
+    5,
+    5,
+    3
+  ],
+  "structural_tests": {
+    "count": 11,
+    "result": "pass"
+  },
+  "renderer_check": "84 pages; 0 changed",
+  "scoped_discovery_check": "0 files changed",
+  "browser": {
+    "result": "pass",
+    "views": 224,
+    "viewport_widths": [
+      320,
+      1440
+    ],
+    "directed_language_transitions": 64,
+    "search_result_clicks": 16,
+    "index_neighbor_back_routes": 16,
+    "explicit_query_precedence_and_reload": true,
+    "blocked_storage_direct_reading_and_foreign_return": true,
+    "foreign_javascript_disabled": true,
+    "javascript_errors": [],
+    "visual_review": [
+      "English mobile",
+      "German mobile",
+      "Japanese desktop"
+    ]
+  },
+  "regression_commands": [
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_web_analytics.py",
+      "returncode": 0,
+      "seconds": 0.07,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/check_web_analytics.py",
+      "returncode": 0,
+      "seconds": 14.77,
+      "output": "OK: 13822 public pages checked; 0 tracking errors; 0 conflict copies\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_epic_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.25,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 2.167s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_epic_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.3,
+      "output": "OK: 20 complete eight-language essays; 126 pages up to date\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_ancient_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.07,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 2.005s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_ancient_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.59,
+      "output": "OK: 19 complete six-language translations; 120 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_fables_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.83,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.755s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_fables_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.66,
+      "output": "OK: 23 complete six-language translations; 144 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_analects_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.72,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.640s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_analects_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.28,
+      "output": "OK: 306 complete Analects pages\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_analects_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.05,
+      "output": "OK: Analects ledger, Latest, library and five language hubs\n"
+    },
+    {
+      "command": "python3 -B scripts/audit_drama_translations.py",
+      "returncode": 0,
+      "seconds": 0.06,
+      "output": "{\"through\": 23, \"translations\": 115, \"paragraphs\": 2375, \"note\": \"Hashes and paragraph coverage verify the reviewed files; they do not themselves establish translation quality.\"}\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_drama_series.py",
+      "returncode": 0,
+      "seconds": 0.55,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.475s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_drama_series.py --check",
+      "returncode": 0,
+      "seconds": 0.19,
+      "output": "OK: 24 drama pages are current\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_drama_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.58,
+      "output": "OK: drama discovery and scoped search are current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_film_full_editions.py",
+      "returncode": 0,
+      "seconds": 4.81,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 4.747s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_film_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 1.29,
+      "output": "Verified 448 film pages\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_film_targeted_english.py",
+      "returncode": 0,
+      "seconds": 0.34,
+      "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.279s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_film_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 2.49,
+      "output": "Verified film discovery, homepage, scoped search and recorded publication dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_wire_full_editions.py",
+      "returncode": 0,
+      "seconds": 0.27,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.205s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_wire_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.1,
+      "output": "Verified 60 Wire pages and 10 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_wire_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.48,
+      "output": "Verified Wire discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_chernobyl_full_editions.py",
+      "returncode": 0,
+      "seconds": 0.22,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.151s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_chernobyl_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.08,
+      "output": "Verified 42 Chernobyl pages and 7 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_chernobyl_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.41,
+      "output": "Verified Chernobyl discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_satc_full_editions.py",
+      "returncode": 0,
+      "seconds": 0.42,
+      "output": "..............\n----------------------------------------------------------------------\nRan 14 tests in 0.354s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_satc_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.1,
+      "output": "Verified 66 Sex and the City pages and 11 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_satc_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.48,
+      "output": "Verified Sex and the City discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B scripts/build_math_history_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 1.57,
+      "output": "Verified 156 pages / 208 language views\n"
+    },
+    {
+      "command": "python3 -B scripts/test_math_history_full_editions.py --release",
+      "returncode": 0,
+      "seconds": 11.02,
+      "output": "..................\n----------------------------------------------------------------------\nRan 18 tests in 10.936s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_math_history.py --check --complete",
+      "returncode": 0,
+      "seconds": 1.52,
+      "output": "Checked 156 pages / 208 language views\n"
+    },
+    {
+      "command": "python3 -B scripts/test_math_history.py --release",
+      "returncode": 0,
+      "seconds": 4.82,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 4.741s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_math_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 2.6,
+      "output": "Verified Mathematics discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_classic_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.3,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 2.225s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_classic_full_editions.py sae-nicomachean --check",
+      "returncode": 0,
+      "seconds": 0.88,
+      "output": "Checked 84 pages; 0 changed\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_classic_full_discovery.py sae-nicomachean --check",
+      "returncode": 0,
+      "seconds": 0.41,
+      "output": "Verified scoped search and sitemap; 0 files changed\n"
+    },
+    {
+      "command": "python3 -B scripts/check_site_updates.py",
+      "returncode": 1,
+      "seconds": 0.04,
+      "output": "ERROR: updates[9]: invalid language list\nERROR: updates[10]: invalid language list\nERROR: updates[11]: invalid language list\nERROR: updates[12]: invalid language list\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_home_updates.py",
+      "returncode": 1,
+      "seconds": 0.06,
+      "output": "...F....\n======================================================================\nFAIL: test_latest_keeps_the_whole_ledger (test_home_updates.HomeUpdates)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_home_updates.py\", line 42, in test_latest_keeps_the_whole_ledger\n    self.assertEqual(check(), [])\nAssertionError: Lists differ: ['updates[9]: invalid language list', 'upd[104 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[9]: invalid language list'\n\n+ []\n- ['updates[9]: invalid language list',\n-  'updates[10]: invalid language list',\n-  'updates[11]: invalid language list',\n-  'updates[12]: invalid language list']\n\n----------------------------------------------------------------------\nRan 8 tests in 0.012s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python3 -B scripts/build_home_updates.py --check",
+      "returncode": 0,
+      "seconds": 0.03,
+      "output": "OK: homepage has one editorial pick and four distinct recent series\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_reviewed_series_languages.py",
+      "returncode": 0,
+      "seconds": 1.27,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 1.216s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_rewritten_series_languages.py",
+      "returncode": 0,
+      "seconds": 1.31,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.267s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_companion_languages.py",
+      "returncode": 0,
+      "seconds": 0.37,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.303s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_method_introduction.py",
+      "returncode": 1,
+      "seconds": 0.15,
+      "output": ".........F\n======================================================================\nFAIL: test_update_and_library_entries (test_method_introduction.MethodIntroductionTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_method_introduction.py\", line 139, in test_update_and_library_entries\n    self.assertEqual(check_updates(), [])\nAssertionError: Lists differ: ['updates[9]: invalid language list', 'upd[104 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[9]: invalid language list'\n\n+ []\n- ['updates[9]: invalid language list',\n-  'updates[10]: invalid language list',\n-  'updates[11]: invalid language list',\n-  'updates[12]: invalid language list']\n\n----------------------------------------------------------------------\nRan 10 tests in 0.087s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_action_languages.py",
+      "returncode": 0,
+      "seconds": 0.61,
+      "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.531s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_state_languages.py",
+      "returncode": 0,
+      "seconds": 1.46,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 1.384s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_interstate_languages.py",
+      "returncode": 0,
+      "seconds": 0.65,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.577s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_clustered_language_indexes.py",
+      "returncode": 0,
+      "seconds": 0.06,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_sae_western_navigation.py",
+      "returncode": 0,
+      "seconds": 0.12,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.075s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_sae_western.py",
+      "returncode": 0,
+      "seconds": 0.2,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.130s\n\nOK\n"
+    }
+  ],
+  "baseline_issues": [
+    {
+      "issue": "The update ledger has invalid language lists at updates[9], [10], [11], [12].",
+      "present_before_work": true,
+      "affected_commands": [
+        "check_site_updates.py",
+        "test_home_updates.py",
+        "test_method_introduction.py"
+      ],
+      "resolution": "Left untouched; this repair does not edit the update ledger."
+    },
+    {
+      "issue": "Global search rebuild reports pre-existing drift outside this series.",
+      "present_before_work": true,
+      "resolution": "Refresh only records for this series; preserve unrelated records."
+    }
+  ],
+  "git_diff_check": "pass",
+  "translation_sha256": {
+    "translations/de/ep01.json": "e2bb9dfd35e40cc67de18c74cf9153633190c4223eda0cea2cb5fec9c30ebe05",
+    "translations/de/ep02.json": "4e8ca1def002698d8a6e70135f02bf4bb00fe8efd185a7a88fadbad325c49955",
+    "translations/de/ep03.json": "b665ea7e39cb88150b5262484662dc40006a8227f380e3711f7ed59d5bd3e2f3",
+    "translations/de/ep04.json": "6d111d1aec2749e5da6e839b3f44cc05ad8177b581e68bf9890a43b2e04a17a0",
+    "translations/de/ep05.json": "90a2a33f5347da4e2e714fff8ac668312c356915941f5a3196d68dabb7978739",
+    "translations/de/ep06.json": "8a0d99a5ebed0ba19fc18839c6fc20fcef9799f2357ead5467ad7c7f1649b1b8",
+    "translations/de/ep07.json": "1b8746efb2ba4a80462c6a6c07822e6f2dc99ef124b0f80edd1d4d9406f517b4",
+    "translations/de/ep08.json": "3901f84c327224ff6b1a10404083932c9e3e401e1043eae18d5967b86c8ba9cf",
+    "translations/de/ep09.json": "be27575a00f31bcf06a28523a4d03d6abf7107e0eb9b0441bf6089726b7763b5",
+    "translations/de/ep10.json": "d5f9d1eb3e357658a03e28052cae57bd3dafcdc66a8f34b0f1840c5718ee2333",
+    "translations/de/ep11.json": "cc3308f595946f2c74d7a3ec17e26f24cba72395881673bc99c478e297efc930",
+    "translations/de/ep12.json": "d0d9b08e6be1b0df1cf42b870d94bb973580e1bffb03abf9ea4f4bde1be73ee5",
+    "translations/de/ep13.json": "77bedd28d3876ec38eaf14514df0a185086032e22a000d8f8cd28e369be39c92",
+    "translations/de/index.json": "89ab843bf196bcc5f5c1b647afb1da987f0f958c0e6c2b480f72ab9d4db158f4",
+    "translations/en/ep01.json": "8d0559f53ef4110c1e603d3691657bee3a7af0f6cee69fca04312cab8ba6f6e0",
+    "translations/en/ep02.json": "981303b1bea9b2d5541200b351fca1718b4613121e55dfb874a023ea74310b09",
+    "translations/en/ep03.json": "704e900ab94ce7b2f3c1b1e9d2aafa0b47ff163c143084bb767aa07ece2697a2",
+    "translations/en/ep04.json": "d2528fb56a1b9090e8101e73b22f6dd5997de1c23b80ac415fce76bd4608cf58",
+    "translations/en/ep05.json": "c4e2ef5635c709dc8d6d58689d1787402b2a6d955c7dd7c7eb776a609165b500",
+    "translations/en/ep06.json": "492c11ff54ee742df6eb4847286e39be68c6dd8aa51099fec7440aaaad9dc82a",
+    "translations/en/ep07.json": "ef2030895523d2604109cd0de670c1022ace41d2aa2aa6847fed64d7f6e7d62f",
+    "translations/en/ep08.json": "d3baa2644e81913f5b7e17f7cb459eb06f52a0349412df008e4c27bb642be6d2",
+    "translations/en/ep09.json": "7ed480e72b356b850ae88108f334c9d518db1c8ebc6af9de5e6f2d92c407e22e",
+    "translations/en/ep10.json": "891b0af09ea3e3ab065850868f00ad4c9019943f6efab9cb95eebdeca90d67fc",
+    "translations/en/ep11.json": "cb03d62016be5ea3f40303d8f5e9d8f5eb86f1f9b6e5f5bce1b352bf623d7899",
+    "translations/en/ep12.json": "b6da29e43c0e87ebca42d84a6e9ecc5d57e18347ec6b191637139bf2f75eac86",
+    "translations/en/ep13.json": "24d6615fa72db54e58589618273398c574412594571f6e16b91e5fb44b7c9311",
+    "translations/en/index.json": "0cb1df4e380f899c456390671c835d406b353db1dd15a6bc1938b5219f88e1df",
+    "translations/es/ep01.json": "8a0b3de4aa10221a884d2778f1173fd28dd45a882bdb23e4c540eeb12ace431e",
+    "translations/es/ep02.json": "0f547288a7088ad3a1d22415f630b04ef2a0d67a2aa78de14bd10d74f0c89b63",
+    "translations/es/ep03.json": "4044ce71ea5d079bd4896b2a1e35ea3ef24a161708bf7177b9cb0f1d0c2371e1",
+    "translations/es/ep04.json": "85dd567089487c61e034358295abc3476242bd4fab051edfb35e154871b4340e",
+    "translations/es/ep05.json": "d7421ec25ec09220a9f1259d4c3998b584ee42d367a20d9f246d5da1985d7039",
+    "translations/es/ep06.json": "15e93fa460cdb113c590174dee00289b54a1762da730a8002b5812ed15af7761",
+    "translations/es/ep07.json": "b582b1a1b66e693f3c7d6650ce0bce40bf93d09792c6fe777e90206de91cdb82",
+    "translations/es/ep08.json": "5a6cef61e76865f520aba33cc27e3648d9b4e40779a58f15ad816f624dd89d0f",
+    "translations/es/ep09.json": "c4462d38f64e92500f4adb1e3415bcdf3b6e0eef7c499692a8c283c27c208bdb",
+    "translations/es/ep10.json": "07e3f9338d6a11d3c340569141a62eb57040f06e4b36929fcf16a08fba879d35",
+    "translations/es/ep11.json": "32978a5a2b08994ebb6b41b6dbec348f4b1705e6cf2b21ec0dd80defe7d736fd",
+    "translations/es/ep12.json": "042315e2dfe6d75bb62aa0eedb7052e531bad5ad6efa0a1d4e15579af34ce768",
+    "translations/es/ep13.json": "81d4d248c99c8969c83a568cbd77b4964a8c263d0ed724ba51ded1d0c25856c8",
+    "translations/es/index.json": "9894d0952a707297a81278f00906c8e2f14b6361a1c1f271e4e03369d49ceed3",
+    "translations/fr/ep01.json": "9d3826a9e4a2394812af9ff84163a1b9bc16a1ce5be91c14be43d600d0536050",
+    "translations/fr/ep02.json": "2133002a33cd0613abccb5865225d0705e97a2fca4ce0b888619fdfb9fdd1ea1",
+    "translations/fr/ep03.json": "af5404f1923186f9d9a75fae095aeb6af94be9002057c7f9f23ddd33654dc680",
+    "translations/fr/ep04.json": "3cb79f934c65fece3c05157b3395b7d1510c12d3dbc2f4d521a3bdbee53db68a",
+    "translations/fr/ep05.json": "adb29bfb4398a3c27c309a47808706f680adb32502106204dc5efaac0a3183aa",
+    "translations/fr/ep06.json": "efcd79c913e030e8e790f68f642c3d3f00af9125117592b7eac26a3ba6eafac1",
+    "translations/fr/ep07.json": "d10dadf44c9777b4992bab68bcd33221eca35595d6c96195c2625207848e742a",
+    "translations/fr/ep08.json": "e31dcbbd0ffcc2d46aaf321beb0f5d515660104c6301a177b95be0351c9b0fcd",
+    "translations/fr/ep09.json": "0af7dce091e3bd6dd97ad9a09632a22ed16ac63fa5da234d3eb064433af52060",
+    "translations/fr/ep10.json": "868a31de004ab96ef92bace10abb8efa030892a1f3cc467cd3465e09a39351e2",
+    "translations/fr/ep11.json": "3c3221664b9ac472408fbb5e6f282d8527807f3732a0806c60baa437b1abbb6a",
+    "translations/fr/ep12.json": "e2b3e614d4bc10baa662d4918bba43836def60c8d8bcf7a0309e827d1fecfdc3",
+    "translations/fr/ep13.json": "a579995a01aaf3c6aba0d40170389c8c9e44963725f7a1d14cc91ece9aac79c7",
+    "translations/fr/index.json": "ea81dcfda22ceaf0947d0843b32142ef2932f8a805e4d86cf496e65a4cc26bc3",
+    "translations/ja/ep01.json": "7019be1345d6302f666924068a9afbc8726706c6801a11845ee59248bf40cc95",
+    "translations/ja/ep02.json": "fbdba7d9895f979ddd5c48f71a86a615c4c4a3375f132ae492318c3d841eb948",
+    "translations/ja/ep03.json": "93c885fc422721c16ec90733b77e7ee3203263371cc637011f5244ad4e70e8fe",
+    "translations/ja/ep04.json": "bbcc043a1d96c5225ace463e59588302b4eedc5f8db69a6f5a0b9959e2dcbc5f",
+    "translations/ja/ep05.json": "2a9d0ff6fe3ce208be85f22b1fae233852498c0b1dcb70a26f95bac6da8e7438",
+    "translations/ja/ep06.json": "85ae6d342986c46c31632f961cf65480f25b32c2e1a06c0d57f79f3196b3194b",
+    "translations/ja/ep07.json": "4d5bbc175428ef6a886e575565c342e838a3901033ff8176b5018d6fbfcdc5cb",
+    "translations/ja/ep08.json": "0f2249e6e5c97479e437f7b8b22dad62c6bdd9c67c5407dbcead5753aebcaccc",
+    "translations/ja/ep09.json": "c8a12afe0906fda588a521085092e8a9c9a8590f50380339e4c51250e40292dd",
+    "translations/ja/ep10.json": "3af8bbe6d4672a635270301a549e4a4973c9316c5750018eb65fedcd7da498b2",
+    "translations/ja/ep11.json": "edf6df408f952e48be7f7588f159ee1dcfcffd072d719ab532ea474b1e2fd610",
+    "translations/ja/ep12.json": "7cdade6b2f81e33682dc29a177773108d477556ea955235aac5fad3a4d5a5865",
+    "translations/ja/ep13.json": "fec0a6a19b39e67fc690d899d640b13cbf2ea53f61603c1f6efe811266386630",
+    "translations/ja/index.json": "56fcd6e2844b3744fae913ccac6c674e5a91505602a444775c0438afc57e8c04",
+    "translations/ko/ep01.json": "f3b00fc1c598dad733509a2a0f8ea97bd75f9cdc8c711087d2f30489b8791a80",
+    "translations/ko/ep02.json": "c56099338f9e5b67fd135013b055b5ea8cc1653f367f78cf66dbd2b9175f39ef",
+    "translations/ko/ep03.json": "69c0c58dcc0779cbacfe1531cb34fc9d41677fc8ed9339fb66f4c305b98aa560",
+    "translations/ko/ep04.json": "e554b98f8fa8029c269b5e2d416d562c53ed1734e32916ce00ee096a6148b5b2",
+    "translations/ko/ep05.json": "f29bf28ca6e62215da217451af0377c561e55ca6f2788db012b76da46d8e9738",
+    "translations/ko/ep06.json": "95e311e11cf9d8986b5ab480c03bf461f908226ec3aaa7118e751b834dc23dfc",
+    "translations/ko/ep07.json": "085a513e47cee6e977b9b462f90d4f592f20117f338aed6e8f7d5a141e47629c",
+    "translations/ko/ep08.json": "180aaca180e712721865ddcad5137a10c34a9546005906ac5bbe9cdcb7a509d3",
+    "translations/ko/ep09.json": "326422c77410c024c94f0aea6135df16500fe46258a8f812511bb28b78ce2254",
+    "translations/ko/ep10.json": "824b85a44e2407ee923cd018a3b270a551834c3eb278ea43717eeba7ca194859",
+    "translations/ko/ep11.json": "0d08fe8703fa8875a9674acb718e869c977843e6aeb997f7845264ec7c2ded84",
+    "translations/ko/ep12.json": "ccf15bbd995a6fdcfa4c91229095328c25e4a499a8e48d311f6ba72e90f7e70d",
+    "translations/ko/ep13.json": "327957058da7baa4bd83fe3bdf00c1329d2afa3204261fee1b57cdd08478eb1d",
+    "translations/ko/index.json": "4f9ab3e2db8f9f1e2d5f5b664fe726d2e4e418ccb1a77ad74bd2510c062b796c"
+  }
+}

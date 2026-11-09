@@ -47,6 +47,9 @@ jobs:
       - run: python -B scripts/build_math_history.py --check --complete
       - run: python -B scripts/test_math_history.py --release
       - run: python -B scripts/refresh_math_full_discovery.py --check
+      - run: python -B -m unittest discover -s scripts -p test_classic_full_editions.py
+      - run: python -B scripts/build_classic_full_editions.py sae-nicomachean --check
+      - run: python -B scripts/refresh_classic_full_discovery.py sae-nicomachean --check
       - run: python -B scripts/check_site_updates.py
       - run: python -B -m unittest discover -s scripts -p test_home_updates.py
       - run: python -B scripts/build_home_updates.py --check
