@@ -43,7 +43,7 @@ def render():
         if page.suffix!='.html':continue
         canonical=parse_page(page).canonical;assert canonical.startswith('https://nondubito.net/')
         if any('/'+slug+'/' in canonical for slug in targeted.SLUGS) or page.parent.name in LANGS and page.name=='index.html' and page.parent.parent in (ROOT/'essays',ROOT/'essays/film') or page in [ROOT/'essays/film/index.html',ROOT/'latest.html',ROOT/'index.html']:
-            entries[canonical]=targeted.DATE
+            entries[canonical]=max(entries.get(canonical,targeted.DATE),targeted.DATE)
         elif canonical not in entries:entries[canonical]=DATE
     result[p]=sitemap_xml(sorted(entries.items(),key=lambda x:(x[0]!='https://nondubito.net/',x[0])))
     return result,paths

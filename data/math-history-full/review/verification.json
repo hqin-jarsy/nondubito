@@ -1,0 +1,952 @@
+{
+  "previous_commands": [
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_web_analytics.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.007s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/check_web_analytics.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 15.46,
+      "output": "OK: 13822 public pages checked; 0 tracking errors; 0 conflict copies\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_epic_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 2.61,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 2.494s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_epic_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.32,
+      "output": "OK: 20 complete eight-language essays; 126 pages up to date\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_ancient_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 2.39,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 2.321s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_ancient_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.67,
+      "output": "OK: 19 complete six-language translations; 120 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_fables_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 3.26,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 3.175s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_fables_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.79,
+      "output": "OK: 23 complete six-language translations; 144 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_analects_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 3.01,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.921s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_analects_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.32,
+      "output": "OK: 306 complete Analects pages\n"
+    },
+    {
+      "command": "python -B scripts/refresh_analects_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "output": "OK: Analects ledger, Latest, library and five language hubs\n"
+    },
+    {
+      "command": "python -B scripts/audit_drama_translations.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "output": "{\"through\": 23, \"translations\": 115, \"paragraphs\": 2375, \"note\": \"Hashes and paragraph coverage verify the reviewed files; they do not themselves establish translation quality.\"}\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_drama_series.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.61,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.538s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_drama_series.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.22,
+      "output": "OK: 24 drama pages are current\n"
+    },
+    {
+      "command": "python -B scripts/refresh_drama_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.68,
+      "output": "OK: drama discovery and scoped search are current\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_film_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 5.37,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 5.302s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_film_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.48,
+      "output": "Verified 448 film pages\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_film_targeted_english.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.37,
+      "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.311s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/refresh_film_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 1,
+      "seconds": 1.82,
+      "output": "Traceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/refresh_film_full_discovery.py\", line 74, in <module>\n    if __name__=='__main__':main()\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/refresh_film_full_discovery.py\", line 65, in main\n    assert all(p.read_text()==s for p,s in result.items()),'Stale film discovery'\nAssertionError: Stale film discovery\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_wire_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.33,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.252s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_wire_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.1,
+      "output": "Verified 60 Wire pages and 10 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python -B scripts/refresh_wire_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 1,
+      "seconds": 0.21,
+      "output": "Traceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/refresh_wire_full_discovery.py\", line 52, in <module>\n    if __name__=='__main__':main()\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/refresh_wire_full_discovery.py\", line 43, in main\n    if args.check:assert p.read_text()==s,('Stale Wire discovery',p)\nAssertionError: ('Stale Wire discovery', PosixPath('/Users/hanqin/Documents/GitHub/nondubito/sitemap.xml'))\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_chernobyl_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.26,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.183s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_chernobyl_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.08,
+      "output": "Verified 42 Chernobyl pages and 7 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python -B scripts/refresh_chernobyl_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 1,
+      "seconds": 0.19,
+      "output": "Traceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/refresh_chernobyl_full_discovery.py\", line 52, in <module>\n    if __name__=='__main__':main()\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/refresh_chernobyl_full_discovery.py\", line 43, in main\n    if args.check:assert p.read_text()==s,('Stale Chernobyl discovery',p)\nAssertionError: ('Stale Chernobyl discovery', PosixPath('/Users/hanqin/Documents/GitHub/nondubito/sitemap.xml'))\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_satc_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.52,
+      "output": "..............\n----------------------------------------------------------------------\nRan 14 tests in 0.435s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_satc_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.11,
+      "output": "Verified 66 Sex and the City pages and 11 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python -B scripts/refresh_satc_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 1,
+      "seconds": 0.21,
+      "output": "Traceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/refresh_satc_full_discovery.py\", line 52, in <module>\n    if __name__=='__main__':main()\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/refresh_satc_full_discovery.py\", line 43, in main\n    if args.check:assert p.read_text()==s,('Stale Sex and the City discovery',p)\nAssertionError: ('Stale Sex and the City discovery', PosixPath('/Users/hanqin/Documents/GitHub/nondubito/sitemap.xml'))\n"
+    },
+    {
+      "command": "python -B scripts/build_math_history_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.65,
+      "output": "Verified 156 pages / 208 language views\n"
+    },
+    {
+      "command": "python -B scripts/test_math_history_full_editions.py --release",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 7.61,
+      "output": "................\n----------------------------------------------------------------------\nRan 16 tests in 7.520s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_math_history.py --check --complete",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.64,
+      "output": "Checked 156 pages / 208 language views\n"
+    },
+    {
+      "command": "python -B scripts/test_math_history.py --release",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 5.24,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 5.133s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/refresh_math_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 2.83,
+      "output": "Verified Mathematics discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python -B scripts/check_site_updates.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 1,
+      "seconds": 0.03,
+      "output": "ERROR: updates[9]: invalid language list\nERROR: updates[10]: invalid language list\nERROR: updates[11]: invalid language list\nERROR: updates[12]: invalid language list\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_home_updates.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 1,
+      "seconds": 0.06,
+      "output": "...F....\n======================================================================\nFAIL: test_latest_keeps_the_whole_ledger (test_home_updates.HomeUpdates)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_home_updates.py\", line 42, in test_latest_keeps_the_whole_ledger\n    self.assertEqual(check(), [])\nAssertionError: Lists differ: ['updates[9]: invalid language list', 'upd[104 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[9]: invalid language list'\n\n+ []\n- ['updates[9]: invalid language list',\n-  'updates[10]: invalid language list',\n-  'updates[11]: invalid language list',\n-  'updates[12]: invalid language list']\n\n----------------------------------------------------------------------\nRan 8 tests in 0.014s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python -B scripts/build_home_updates.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.03,
+      "output": "OK: homepage has one editorial pick and four distinct recent series\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_reviewed_series_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.52,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 1.465s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_rewritten_series_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.56,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.502s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_companion_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.39,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.326s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_method_introduction.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 1,
+      "seconds": 0.17,
+      "output": ".........F\n======================================================================\nFAIL: test_update_and_library_entries (test_method_introduction.MethodIntroductionTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_method_introduction.py\", line 139, in test_update_and_library_entries\n    self.assertEqual(check_updates(), [])\nAssertionError: Lists differ: ['updates[9]: invalid language list', 'upd[104 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[9]: invalid language list'\n\n+ []\n- ['updates[9]: invalid language list',\n-  'updates[10]: invalid language list',\n-  'updates[11]: invalid language list',\n-  'updates[12]: invalid language list']\n\n----------------------------------------------------------------------\nRan 10 tests in 0.113s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_action_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.79,
+      "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.700s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_state_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.7,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 1.609s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_interstate_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.73,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.644s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_clustered_language_indexes.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/test_library_typography.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.031s\n\nOK\n"
+    }
+  ],
+  "compatibility_fix": "Preserve newer sitemap lastmod in film, wire, chernobyl, satc and math discovery; never rewrite older dates",
+  "status": "local_release_verified_with_inherited_ledger_failures",
+  "date": "2026-11-09",
+  "editorial_status": "accepted",
+  "workflow_commands": 44,
+  "commands": [
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_web_analytics.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.05,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.007s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/check_web_analytics.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 14.38,
+      "output": "OK: 13822 public pages checked; 0 tracking errors; 0 conflict copies\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_epic_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 2.38,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 2.300s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_epic_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.3,
+      "output": "OK: 20 complete eight-language essays; 126 pages up to date\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_ancient_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 2.22,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 2.156s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_ancient_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.62,
+      "output": "OK: 19 complete six-language translations; 120 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_fables_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 2.92,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.848s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_fables_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.67,
+      "output": "OK: 23 complete six-language translations; 144 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_analects_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 2.74,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.661s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_analects_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.3,
+      "output": "OK: 306 complete Analects pages\n"
+    },
+    {
+      "command": "python -B scripts/refresh_analects_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "output": "OK: Analects ledger, Latest, library and five language hubs\n"
+    },
+    {
+      "command": "python -B scripts/audit_drama_translations.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "output": "{\"through\": 23, \"translations\": 115, \"paragraphs\": 2375, \"note\": \"Hashes and paragraph coverage verify the reviewed files; they do not themselves establish translation quality.\"}\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_drama_series.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.6,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.524s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_drama_series.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.19,
+      "output": "OK: 24 drama pages are current\n"
+    },
+    {
+      "command": "python -B scripts/refresh_drama_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.6,
+      "output": "OK: drama discovery and scoped search are current\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_film_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 4.62,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 4.558s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_film_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.25,
+      "output": "Verified 448 film pages\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_film_targeted_english.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.33,
+      "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.276s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/refresh_film_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 2.4,
+      "output": "Verified film discovery, homepage, scoped search and recorded publication dates\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_wire_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.27,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.211s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_wire_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.08,
+      "output": "Verified 60 Wire pages and 10 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python -B scripts/refresh_wire_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.47,
+      "output": "Verified Wire discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_chernobyl_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.21,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.152s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_chernobyl_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.07,
+      "output": "Verified 42 Chernobyl pages and 7 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python -B scripts/refresh_chernobyl_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.41,
+      "output": "Verified Chernobyl discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_satc_full_editions.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.43,
+      "output": "..............\n----------------------------------------------------------------------\nRan 14 tests in 0.367s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_satc_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.09,
+      "output": "Verified 66 Sex and the City pages and 11 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python -B scripts/refresh_satc_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.46,
+      "output": "Verified Sex and the City discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python -B scripts/build_math_history_full_editions.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.51,
+      "output": "Verified 156 pages / 208 language views\n"
+    },
+    {
+      "command": "python -B scripts/test_math_history_full_editions.py --release",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 11.12,
+      "output": "..................\n----------------------------------------------------------------------\nRan 18 tests in 11.049s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/build_math_history.py --check --complete",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.57,
+      "output": "Checked 156 pages / 208 language views\n"
+    },
+    {
+      "command": "python -B scripts/test_math_history.py --release",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 4.93,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 4.848s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/refresh_math_full_discovery.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 2.63,
+      "output": "Verified Mathematics discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python -B scripts/check_site_updates.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 1,
+      "seconds": 0.03,
+      "output": "ERROR: updates[9]: invalid language list\nERROR: updates[10]: invalid language list\nERROR: updates[11]: invalid language list\nERROR: updates[12]: invalid language list\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_home_updates.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 1,
+      "seconds": 0.06,
+      "output": "...F....\n======================================================================\nFAIL: test_latest_keeps_the_whole_ledger (test_home_updates.HomeUpdates)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_home_updates.py\", line 42, in test_latest_keeps_the_whole_ledger\n    self.assertEqual(check(), [])\nAssertionError: Lists differ: ['updates[9]: invalid language list', 'upd[104 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[9]: invalid language list'\n\n+ []\n- ['updates[9]: invalid language list',\n-  'updates[10]: invalid language list',\n-  'updates[11]: invalid language list',\n-  'updates[12]: invalid language list']\n\n----------------------------------------------------------------------\nRan 8 tests in 0.013s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python -B scripts/build_home_updates.py --check",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.03,
+      "output": "OK: homepage has one editorial pick and four distinct recent series\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_reviewed_series_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.36,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 1.304s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_rewritten_series_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.43,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.382s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_companion_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.37,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.312s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_method_introduction.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 1,
+      "seconds": 0.16,
+      "output": ".........F\n======================================================================\nFAIL: test_update_and_library_entries (test_method_introduction.MethodIntroductionTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_method_introduction.py\", line 139, in test_update_and_library_entries\n    self.assertEqual(check_updates(), [])\nAssertionError: Lists differ: ['updates[9]: invalid language list', 'upd[104 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[9]: invalid language list'\n\n+ []\n- ['updates[9]: invalid language list',\n-  'updates[10]: invalid language list',\n-  'updates[11]: invalid language list',\n-  'updates[12]: invalid language list']\n\n----------------------------------------------------------------------\nRan 10 tests in 0.098s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_action_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.68,
+      "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.599s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_state_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 1.64,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 1.557s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_interstate_languages.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.66,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.589s\n\nOK\n"
+    },
+    {
+      "command": "python -B -m unittest discover -s scripts -p test_clustered_language_indexes.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "command": "python -B scripts/test_library_typography.py",
+      "actual_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.030s\n\nOK\n"
+    }
+  ],
+  "summary": {
+    "workflow_commands": 44,
+    "workflow_passed": 41,
+    "workflow_failed": 3,
+    "workflow_skipped": 0,
+    "new_unresolved_failures": 0,
+    "full_mathematics_release_tests": 18,
+    "full_mathematics_tests_passed": 18,
+    "old_mathematics_release_tests": 10,
+    "old_mathematics_tests_passed": 10,
+    "library_typography_tests": 8,
+    "library_typography_passed": 8,
+    "html_pages": 156,
+    "language_views": 208,
+    "committed": false,
+    "pushed": false,
+    "deployed_externally": false,
+    "git_state_scope": "Historical pre-commit verification snapshot. No Git mutation or external publication was performed during these checks."
+  },
+  "build_steps": [
+    {
+      "command": "python3 -B scripts/build_math_history_full_editions.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/build_math_history_full_editions.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/build_math_history.py --check --complete",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/refresh_math_full_discovery.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B scripts/refresh_math_full_discovery.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "git apply --check data/math-history-full/review/ci-final-proposal.patch",
+      "exit_code": 0
+    },
+    {
+      "command": "git apply data/math-history-full/review/ci-final-proposal.patch",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "baseline": {
+    "commit": "18af70366d16fb16e9d07ba41295883add3d637f",
+    "isolated_archive": "/tmp/nondubito-baseline-18af703.9Pf3Vp",
+    "reproduced_failed_commands": [
+      "python3 -B scripts/check_site_updates.py",
+      "python3 -B -m unittest discover -s scripts -p test_home_updates.py",
+      "python3 -B -m unittest discover -s scripts -p test_method_introduction.py"
+    ],
+    "cause": "Four inherited site-update entries lack languages; baseline positions 8-11 become 9-12 after adding mathematics.",
+    "unchanged_entry_ids": [
+      "2026-11-04-fairy-tales-eight-languages",
+      "2026-11-04-laughter-eight-languages",
+      "2026-11-04-cooperation-histories-eight-languages",
+      "2026-11-04-aesthetics-core-eight-languages"
+    ],
+    "all_old_ledger_records_unchanged": 239,
+    "old_record_order_unchanged": true,
+    "unrelated_search_records_unchanged": 19948,
+    "sitemap_changed_existing_urls_in_authorized_scope": 34,
+    "sitemap_new_math_urls": 130,
+    "unrelated_sitemap_entries_unchanged": true
+  },
+  "compatibility_resolution": {
+    "initial_new_failures": [
+      "refresh_film_full_discovery.py --check",
+      "refresh_wire_full_discovery.py --check",
+      "refresh_chernobyl_full_discovery.py --check",
+      "refresh_satc_full_discovery.py --check"
+    ],
+    "cause": "Earlier discovery generators attempted to lower shared sitemap dates from mathematics 2026-11-09 to their own 2026-11-08.",
+    "modified_scripts": [
+      "scripts/refresh_film_full_discovery.py",
+      "scripts/refresh_wire_full_discovery.py",
+      "scripts/refresh_chernobyl_full_discovery.py",
+      "scripts/refresh_satc_full_discovery.py",
+      "scripts/refresh_math_full_discovery.py"
+    ],
+    "fix": "max(existing lastmod, own DATE), with preserving-newer and upgrading-older regression tests.",
+    "other_series_regenerated": false,
+    "affected_checks_rerun_passed": 4,
+    "full_workflow_rerun": true
+  },
+  "browser": {
+    "accepted_real_repository": true,
+    "base_url": "http://127.0.0.1:8789",
+    "old": {
+      "command": "NODE_PATH=/Users/hanqin/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules MATH_SCREENSHOTS=/tmp/math-final-screenshots node scripts/test_math_history_browser.cjs http://127.0.0.1:8789",
+      "exit_code": 0,
+      "output": "OK: 225 article/language/viewport checks, 9 collection views, keyboard contents, edition persistence, section anchors, neighbors and no-JS English.\n"
+    },
+    "full": {
+      "command": "NODE_PATH=/Users/hanqin/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules MATH_SCREENSHOTS=/tmp/math-final-screenshots node scripts/test_math_history_full_browser.cjs http://127.0.0.1:8789",
+      "exit_code": 0,
+      "output": "Passed 832 responsive views, 64 directed switches, 16 hub/neighbor/back routes, 16 real search result clicks, no-JS and blocked-storage checks. All contexts block external requests. Screenshots: /tmp/math-final-screenshots\n"
+    },
+    "screenshots_directory": "/tmp/math-final-screenshots",
+    "screenshots_actually_viewed": [
+      "math-ep01-en-375.png",
+      "math-ep01-en-1440.png",
+      "math-ep01-de-375.png",
+      "math-ep01-de-1440.png",
+      "math-prose-en-375.png",
+      "math-prose-en-1440.png",
+      "math-prose-de-375.png",
+      "math-prose-de-1440.png",
+      "math-prose-ja-ep23-375.png",
+      "math-ep01-zh-hant-390.png"
+    ],
+    "visual_result": "Readable heading/body columns; wrapped navigation clears breadcrumbs; no horizontal clipping or overlap; Japanese mobile body and Traditional Chinese mobile contents inspected."
+  },
+  "integrity": {
+    "accepted_files": 253,
+    "acceptance_sha256": "6bcf7a63b79dd093f5aadc5a7b5c18725b039e6a56908a7a7eb03b8ca5579854",
+    "acceptance_revalidated": true,
+    "last_build_pages": 156,
+    "receipt_or_hashed_inputs_changed_by_engineering": false,
+    "analytics_fix": {
+      "command": "python3 -B scripts/check_web_analytics.py --fix",
+      "exit_code": 0,
+      "repaired_pages": 0,
+      "checked_public_pages": 13822,
+      "tracking_errors": 0,
+      "conflict_copies": 0
+    },
+    "linux_execution_note": "All commands ran locally using actual_executable recorded per command. Ubuntu CI has been configured, not executed remotely; offline-cache regression forbids CoreFoundation initialization.",
+    "analytics_final": {
+      "command": "python3 -B scripts/check_web_analytics.py",
+      "exit_code": 0,
+      "output": "OK: 13822 public pages checked; 0 tracking errors; 0 conflict copies\n"
+    },
+    "original_zip_independent_recheck": {
+      "count": 25,
+      "all_sha256_match_source_manifest": true,
+      "originals_unchanged": true,
+      "basis": "Independent final read-only review of all archives in source_directory reported on 2026-11-09."
+    }
+  },
+  "documentation_cleanup": {
+    "scope": "QA wording and historical-status annotation only; manuscript hashes unchanged",
+    "changed_documents": [
+      "data/math-history-full/review/engineering.md",
+      "data/math-history-full/review/ja-batch04.md",
+      "data/math-history-full/review/en-batch05.md",
+      "data/math-history-full/review/ja-batch05.md",
+      "data/math-history-full/review/ja-batch01.md",
+      "data/math-history-full/review/ko-batch05.md",
+      "data/math-history-full/review/ko-author-sync.md",
+      "data/math-history-full/review/ko-batch02.md",
+      "data/math-history-full/review/ko-batch03.md",
+      "data/math-history-full/review/en-batch02.md",
+      "data/math-history-full/review/ja-batch02.md",
+      "data/math-history-full/review/en-batch03.md",
+      "data/math-history-full/review/ja-batch03.md",
+      "data/math-history-full/review/preapproval-checks.json",
+      "data/math-history-full/review/approved-chinese-prose.json",
+      "data/math-history-full/review/fr-batch01.md",
+      "data/math-history-full/review/fr-batch05.md",
+      "data/math-history-full/review/fr-batch04.md",
+      "data/math-history-full/review/ko-batch01.md",
+      "data/math-history-full/review/final-engineering-plan.md",
+      "data/math-history-full/review/es-batch05.md",
+      "data/math-history-full/review/es-batch01.md",
+      "data/math-history-full/review/es-batch04.md"
+    ],
+    "updated_receipt_hashes": {
+      "data/math-history-full/review/ja-batch04.md": {
+        "before": "cf51a9c25aba5ed327f0e7c7aed5a47b4dc2674172e9c06498f3e56621ea5bb9",
+        "after": "272ff2f4bf3d258caea581d1300f558a47d785b6dbddb081efcea84415c786ef"
+      },
+      "data/math-history-full/review/en-batch05.md": {
+        "before": "9135ff3f66481c822fcc3b9d08b861dae4c78b18ce84f457620338805226e570",
+        "after": "3e3e34afd016ae45bce7c2d9c7b98f6ef47bfa3b77609a501778bd26041db128"
+      },
+      "data/math-history-full/review/ja-batch05.md": {
+        "before": "ed8c6a12c0cc940ee7eb995674a64dcc696c9973b3ed7fa2584ccd2d55647ff0",
+        "after": "30b7138b4da6a9a352cfe88b80b11fae37a0a5aa546a5b4994ed189907a1d740"
+      },
+      "data/math-history-full/review/ja-batch01.md": {
+        "before": "5f35f5a268739bf8391ac8aa7dad81c00bff248784f9d988187dcfe81a552883",
+        "after": "f6f84e13cff07836896360b2ebcbac2277ea0f6066b257367f6c8abd056dc5df"
+      },
+      "data/math-history-full/review/ko-batch05.md": {
+        "before": "7422005181ec80e53d6bd8abe19bf060e5a97e9447be4197270977f3d71fea19",
+        "after": "060ca77acb844d667df03791766e4fac5f7159c5baa9d41cd94fc9a971006e6c"
+      },
+      "data/math-history-full/review/ko-author-sync.md": {
+        "before": "807abc3f3d6755595e2f6a352cdb7d4231fd434d573e0765761384108871bf81",
+        "after": "8c63d68f0382917ab9807d5977939a4fd997fc8afcb27e008953129f40898ec7"
+      },
+      "data/math-history-full/review/ko-batch02.md": {
+        "before": "549f198e4525105f784c291a63bf43163d1d5c4ecfdc4280ada9824d77cea5bb",
+        "after": "ce57fd205df01058ef5f0800e9d1ae3d259eb5f71e207d27ecbf73879c84df85"
+      },
+      "data/math-history-full/review/ko-batch03.md": {
+        "before": "5685ae7675caa6cf6b4c743026871664c2f41b92ed444f3caea5c0dde117860a",
+        "after": "590cb74dd1fe81264bb144bf255aa92b7090ade65c7187da8124003262235efb"
+      },
+      "data/math-history-full/review/en-batch02.md": {
+        "before": "c12f717e801c0e84bd4ec789371839d01db8f6155e4be2f6a39d8a106aac7fff",
+        "after": "0403799d7626044f99f2a8ede940ffcef653e76e4e78402273ecf319b0758a6e"
+      },
+      "data/math-history-full/review/ja-batch02.md": {
+        "before": "a061fa8aeda7247c1f6210ba29e1e85f223ca4cba42c7c14ce29cc5094261693",
+        "after": "454bb194ae43c5f9e5a3bbfca8e5bb7e01e6b247d578f10ba5ee0a90dedde69b"
+      },
+      "data/math-history-full/review/en-batch03.md": {
+        "before": "8e51acd3fc2cbe5f34bee7e45b9e7fd1e938b5cafb23a97f22805c99b7d034c9",
+        "after": "aaf5a3304b19cb3b7304a095eadb6dc26218e8469822d29d0f57e0918efbb2a8"
+      },
+      "data/math-history-full/review/ja-batch03.md": {
+        "before": "5c72c00e333ead4b1866ce1a776abade38446c482c69e0fb432e3fd5c9fa03d8",
+        "after": "af0070bb7002265e936755b744ae07cd06094eaa633bc005fd5a401726053e7c"
+      },
+      "data/math-history-full/review/approved-chinese-prose.json": {
+        "before": "2e0fda36bba303ad649fd20b97c5dd5cedd447bb981c12dbf306d6e1d493fd74",
+        "after": "36700dcae6bd54e9312d2090dff4d4256b64322daf9ea59e381470b75ccfed45"
+      },
+      "data/math-history-full/review/fr-batch01.md": {
+        "before": "4edb6ce8da0ab7f3777e6528275e49e95b85c51f5009ac590f74c3684ac0a46b",
+        "after": "aad1baecad563043e166c647419eee82baa6ea28ca95d04022ccde5e2a296ba3"
+      },
+      "data/math-history-full/review/fr-batch05.md": {
+        "before": "82b1310926cdd981ca2ceb62933926bf7a189ee0a483b4f519314cbbb207a684",
+        "after": "6e368f04c85ba949cee7c9899e0e75eae819ab05ca6f7d317236d91d2dbcc12d"
+      },
+      "data/math-history-full/review/fr-batch04.md": {
+        "before": "8728a467edd660a30856137de303bfc20ea1946217e3a03df3ed3a36668bf5ac",
+        "after": "689097a3a9e9cc31463475b0078eba9bb6d392602ed7723c213110ed06687e77"
+      },
+      "data/math-history-full/review/ko-batch01.md": {
+        "before": "2eb08cde7dafbd404f18c66a7b74f43a4b0aa02576021432e33fbcabc528acd3",
+        "after": "756645385a5fc25c4157c1f38d304e7eb51318fd5d3266078fcf5b7ce85fbe81"
+      },
+      "data/math-history-full/review/es-batch05.md": {
+        "before": "8d3cbebe479f2442d1fb73118f09ff79529d8c3324ccc42fa0a72e750fd00ce5",
+        "after": "1ad4f5890ad047a66d54bb4f6e6a5425e921a7ef5fb7661d444dedd7a576f34f"
+      },
+      "data/math-history-full/review/es-batch01.md": {
+        "before": "85ee2f1fc2d1cda0c459821cf9d3ff6041d788cc7c27a41cdcf55b9b5e8a6fff",
+        "after": "0fa0fc428772adc7b23d7233c6e0b91ce07df5360d5d8ee90b3a78583b74f0a3"
+      },
+      "data/math-history-full/review/es-batch04.md": {
+        "before": "2d54405771e22d96f5dc4b3bc63c523dd366e9a4f1ac81f8cbfaf079b4d253e0",
+        "after": "7ca043cbe81a47415149a83f86dd1d5eeadff3ac76ba4169d78ed861450ed806"
+      }
+    },
+    "all_other_accepted_hashes_unchanged": true,
+    "accepted_file_count_unchanged": 253,
+    "rechecks": [
+      {
+        "command": "python3 -B scripts/test_math_history_full_editions.py --release",
+        "exit_code": 0,
+        "output": "..................\n----------------------------------------------------------------------\nRan 18 tests in 11.013s\n\nOK\n"
+      },
+      {
+        "command": "python3 -B scripts/test_math_history.py --release",
+        "exit_code": 0,
+        "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 4.698s\n\nOK\n"
+      },
+      {
+        "command": "python3 -B scripts/build_math_history_full_editions.py --check",
+        "exit_code": 0,
+        "output": "Verified 156 pages / 208 language views\n"
+      },
+      {
+        "command": "python3 -B scripts/build_math_history.py --check --complete",
+        "exit_code": 0,
+        "output": "Checked 156 pages / 208 language views\n"
+      },
+      {
+        "command": "python3 -B scripts/refresh_math_full_discovery.py --check",
+        "exit_code": 0,
+        "output": "Verified Mathematics discovery, scoped search, homepage and sitemap dates\n"
+      },
+      {
+        "command": "git diff --check",
+        "exit_code": 0,
+        "output": ""
+      }
+    ],
+    "approved_chinese_metadata_fields": [
+      "paragraph_audit_method",
+      "scope",
+      "untouched"
+    ],
+    "approved_chinese_before_after_entries_unchanged": true,
+    "status": "completed_and_reverified",
+    "accepted_qa_hashes_changed": 20
+  },
+  "temporary_servers": {
+    "stopped_task_pid": 28858,
+    "task_ports_no_longer_listening": {
+      "8787": true,
+      "8788": true,
+      "8789": true
+    },
+    "unrelated_processes_touched": false
+  }
+}

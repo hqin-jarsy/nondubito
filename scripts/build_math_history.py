@@ -11,6 +11,7 @@ import hashlib
 import html
 import json
 import re
+import sys
 from pathlib import Path
 import markdown
 from build_ai_work_series import shell_header, footer, tri, TraditionalConverter as BaseConverter, UTF8
@@ -90,8 +91,26 @@ def normalize_zh(text):
     return ''.join(p if i % 2 else prose(p) for i, p in enumerate(parts))
 
 
+HANT_CACHE = DATA / 'traditional-cache.json'
+REFRESH_HANT = False
+HANT_REGRESSION_INPUTS = ('这里的居里与黎曼，余数与余项，周期。', '欧几里得在故事里。傅里叶在论文里证明了，居里在教室里写明了。公里与里程。')
 class Converter(BaseConverter):
+    def __init__(self):
+        self.cached = json.loads(HANT_CACHE.read_text()) if HANT_CACHE.exists() and not REFRESH_HANT else None
+        self.recorded = {}
+        if self.cached is None:
+            assert sys.platform == 'darwin', 'Traditional cache missing: refresh on macOS with --refresh-hant-cache'
+            super().__init__()
+    def close(self):
+        if self.cached is None: super().close()
     def convert(self, value):
+        if self.cached is not None:
+            assert value in self.cached, 'Traditional cache stale: refresh and reaccept reviewed inputs'
+            return self.cached[value]
+        result = self.live_convert(value)
+        self.recorded[value] = result
+        return result
+    def live_convert(self, value):
         # Use Hans-Hant character conversion, not the AI-work vocabulary map:
         # that map changes all 里, including mathematicians' transliterated names.
         source = self._string(value)
@@ -271,11 +290,14 @@ def render_article(item,items,c):
     return shell(content,head(item['title_en'],item['deck_en'],f'ep{item["id"]:02d}.html',item))
 
 
-def outputs():
+def outputs(full=True):
     items=load_items();c=Converter()
     try:
         pages={TARGET/'index.html':render_index(items,c)}
         pages.update({TARGET/f'ep{i["id"]:02d}.html':render_article(i,items,c) for i in items})
+        if full:
+            from build_math_history_full_editions import upgrade_outputs
+            pages=upgrade_outputs(pages)
         return pages
     finally:c.close()
 
@@ -285,7 +307,21 @@ def main():
     parser.add_argument('--import-zh',type=Path)
     parser.add_argument('--check',action='store_true')
     parser.add_argument('--complete',action='store_true',help='require all 25 reviewed essays for release')
+    parser.add_argument('--refresh-hant-cache',action='store_true',help='explicit macOS-only refresh of reviewed offline Traditional conversion inputs')
     args=parser.parse_args()
+    if args.refresh_hant_cache:
+        global REFRESH_HANT
+        assert not args.check and sys.platform=='darwin'
+        REFRESH_HANT=True
+        items=load_items();c=Converter()
+        try:
+            render_index(items,c)
+            for item in items:render_article(item,items,c)
+            for sample in HANT_REGRESSION_INPUTS:c.convert(sample)
+            HANT_CACHE.write_text(json.dumps(c.recorded,ensure_ascii=False,indent=2)+'\n')
+        finally:c.close()
+        print('Refreshed Traditional cache; editorial reacceptance is required')
+        return
     if args.import_zh and args.check:parser.error('--check cannot import')
     if args.import_zh:import_sources(args.import_zh)
     if args.complete:
@@ -296,8 +332,13 @@ def main():
         assert not stale, list(stale)
     else:
         TARGET.mkdir(parents=True,exist_ok=True)
-        for p,s in stale.items():p.write_text(s)
-    print(f'{"Checked" if args.check else "Built"} {len(expected)-1} complete three-language essays and collection index')
+        for p,s in stale.items():
+            p.parent.mkdir(parents=True,exist_ok=True)
+            p.write_text(s)
+        if len(expected)>26:
+            from build_math_history_full_editions import record
+            record(expected)
+    print(("Checked" if args.check else "Built") + (" 156 pages / 208 language views" if len(expected)>26 else " 25 complete three-language essays and collection index"))
 
 
 if __name__=='__main__':main()

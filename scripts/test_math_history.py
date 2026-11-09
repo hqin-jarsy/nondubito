@@ -21,7 +21,7 @@ class MathematicsTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.items=build.load_items()
-        cls.expected=build.outputs()
+        cls.expected={p:s for p,s in build.outputs().items() if p.parent==build.TARGET}
         cls.c=build.Converter()
 
     @classmethod
@@ -145,13 +145,18 @@ class MathematicsTests(unittest.TestCase):
     def test_complete_release_indexes(self):
         self.assertEqual([i['id'] for i in self.items],list(range(1,26)))
         expected={'essays/math-history/index.html'}|{f'essays/math-history/ep{i:02d}.html' for i in range(1,26)}
+        expanded=(build.ROOT/'data/math-history-full/last-build.json').exists()
         for lang in ('en','zh-hans','zh-hant','ja','fr','de','es','ko'):
             data=json.loads((build.ROOT/f'data/search/{lang}.json').read_text())
             actual={r['u'] for r in data['records'] if r['u'].startswith('essays/math-history/')}
-            self.assertEqual(actual,expected if lang in ('en','zh-hans','zh-hant') else set(),lang)
+            foreign={f'essays/math-history/{lang}/index.html'}|{f'essays/math-history/{lang}/ep{i:02d}.html' for i in range(1,26)}
+            self.assertEqual(actual,expected if lang in ('en','zh-hans','zh-hant') else foreign if expanded else set(),lang)
         urls={n.text for n in ET.parse(build.ROOT/'sitemap.xml').iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
         actual={u for u in urls if u.startswith(build.BASE)}
-        self.assertEqual(actual,{build.BASE}|{build.BASE+f'ep{i:02d}.html' for i in range(1,26)})
+        expected_urls={build.BASE}|{build.BASE+f'ep{i:02d}.html' for i in range(1,26)}
+        if expanded:
+            for lang in ('de','fr','es','ja','ko'):expected_urls|={build.BASE+lang+'/'}|{build.BASE+lang+f'/ep{i:02d}.html' for i in range(1,26)}
+        self.assertEqual(actual,expected_urls)
         source=(build.TARGET/'index.html').read_text()
         self.assertNotIn('class="math-card pending"',source)
         self.assertIn('25 complete essays',source)

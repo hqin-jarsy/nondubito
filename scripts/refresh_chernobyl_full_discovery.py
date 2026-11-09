@@ -24,7 +24,7 @@ def discovery():
  result[p]=s
  p=ROOT/'sitemap.xml';ns='{http://www.sitemaps.org/schemas/sitemap/0.9}';entries={u.find(ns+'loc').text:u.find(ns+'lastmod').text for u in ET.parse(p).getroot()}
  for page in list(SERIES.rglob('*.html'))+[ROOT/'index.html',ROOT/'latest.html']:
-  canonical=parse_page(page).canonical;assert canonical.startswith('https://nondubito.net/');entries[canonical]=DATE
+  canonical=parse_page(page).canonical;assert canonical.startswith('https://nondubito.net/');entries[canonical]=max(entries.get(canonical,DATE),DATE)
  result[p]=sitemap_xml(sorted(entries.items(),key=lambda x:(x[0]!='https://nondubito.net/',x[0])))
  return result
 
