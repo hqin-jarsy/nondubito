@@ -1,0 +1,480 @@
+{
+  "date": "2026-11-09",
+  "series": "nineteen-eighty-four",
+  "status": "complete_author_approved_source_and_full_translations",
+  "editorially_complete": true,
+  "source_essay_count": 4,
+  "source_paragraph_count": 390,
+  "source_heading_count": 32,
+  "source_units": 422,
+  "foreign_article_translations": 24,
+  "foreign_units": 2532,
+  "rendered_files": 30,
+  "current_chinese_source_preserved": false,
+  "traditional_original_entries_preserved": 554,
+  "traditional_title_additions": 5,
+  "review_batches": [
+    4
+  ],
+  "independent_english_units": 422,
+  "independent_other_language_units": 650,
+  "structural_tests": {
+    "count": 15,
+    "result": "pass"
+  },
+  "renderer_check": "30 pages; 0 changed",
+  "scoped_discovery_check": "0 files changed",
+  "browser": {
+    "result": "pass",
+    "views": 80,
+    "viewport_widths": [
+      320,
+      1440
+    ],
+    "directed_language_combinations": 64,
+    "search_result_clicks": 16,
+    "index_neighbor_back_routes": 16,
+    "explicit_query_precedence_and_reload": true,
+    "blocked_storage_direct_reading_and_foreign_return": true,
+    "foreign_javascript_disabled": true,
+    "javascript_errors": [],
+    "visual_review": [
+      "English mobile",
+      "Simplified Chinese mobile",
+      "Japanese desktop"
+    ],
+    "issue_found_and_repaired": "Five foreign article menus were covered by the fixed header. Scoped top clearance and readable colors restored actual language-button clickability.",
+    "final_rerun": "Passed after the approved source and all six translation amendments."
+  },
+  "regression_commands": [
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_web_analytics.py",
+      "returncode": 0,
+      "seconds": 0.06,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/check_web_analytics.py",
+      "returncode": 0,
+      "seconds": 12.98,
+      "output": "OK: 13822 public pages checked; 0 tracking errors; 0 conflict copies\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_epic_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.09,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 2.009s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_epic_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.27,
+      "output": "OK: 20 complete eight-language essays; 126 pages up to date\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_ancient_full_editions.py",
+      "returncode": 0,
+      "seconds": 1.9,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 1.839s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_ancient_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.53,
+      "output": "OK: 19 complete six-language translations; 120 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_fables_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.64,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.576s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_fables_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.62,
+      "output": "OK: 23 complete six-language translations; 144 pages and eight search indexes current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_analects_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.52,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 2.455s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_analects_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.26,
+      "output": "OK: 306 complete Analects pages\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_analects_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.05,
+      "output": "OK: Analects ledger, Latest, library and five language hubs\n"
+    },
+    {
+      "command": "python3 -B scripts/audit_drama_translations.py",
+      "returncode": 0,
+      "seconds": 0.05,
+      "output": "{\"through\": 23, \"translations\": 115, \"paragraphs\": 2375, \"note\": \"Hashes and paragraph coverage verify the reviewed files; they do not themselves establish translation quality.\"}\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_drama_series.py",
+      "returncode": 0,
+      "seconds": 0.5,
+      "output": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.442s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_drama_series.py --check",
+      "returncode": 0,
+      "seconds": 0.16,
+      "output": "OK: 24 drama pages are current\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_drama_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.51,
+      "output": "OK: drama discovery and scoped search are current\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_film_full_editions.py",
+      "returncode": 0,
+      "seconds": 4.0,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 3.935s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_film_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 1.1,
+      "output": "Verified 448 film pages\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_film_targeted_english.py",
+      "returncode": 0,
+      "seconds": 0.26,
+      "output": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.217s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_film_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 2.15,
+      "output": "Verified film discovery, homepage, scoped search and recorded publication dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_wire_full_editions.py",
+      "returncode": 0,
+      "seconds": 0.24,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.185s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_wire_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.08,
+      "output": "Verified 60 Wire pages and 10 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_wire_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.41,
+      "output": "Verified Wire discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_chernobyl_full_editions.py",
+      "returncode": 0,
+      "seconds": 0.19,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.138s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_chernobyl_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.06,
+      "output": "Verified 42 Chernobyl pages and 7 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_chernobyl_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.35,
+      "output": "Verified Chernobyl discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_satc_full_editions.py",
+      "returncode": 0,
+      "seconds": 0.38,
+      "output": "..............\n----------------------------------------------------------------------\nRan 14 tests in 0.321s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_satc_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.09,
+      "output": "Verified 66 Sex and the City pages and 11 protected Traditional Chinese dictionaries\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_satc_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.41,
+      "output": "Verified Sex and the City discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B scripts/build_math_history_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 1.43,
+      "output": "Verified 156 pages / 208 language views\n"
+    },
+    {
+      "command": "python3 -B scripts/test_math_history_full_editions.py --release",
+      "returncode": 0,
+      "seconds": 10.08,
+      "output": "..................\n----------------------------------------------------------------------\nRan 18 tests in 10.011s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_math_history.py --check --complete",
+      "returncode": 0,
+      "seconds": 1.39,
+      "output": "Checked 156 pages / 208 language views\n"
+    },
+    {
+      "command": "python3 -B scripts/test_math_history.py --release",
+      "returncode": 0,
+      "seconds": 4.37,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 4.297s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_math_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 2.33,
+      "output": "Verified Mathematics discovery, scoped search, homepage and sitemap dates\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_classic_full_editions.py",
+      "returncode": 0,
+      "seconds": 2.03,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 1.979s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_classic_full_editions.py sae-nicomachean --check",
+      "returncode": 0,
+      "seconds": 0.8,
+      "output": "Checked 84 pages; 0 changed\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_classic_full_discovery.py sae-nicomachean --check",
+      "returncode": 0,
+      "seconds": 0.36,
+      "output": "Verified scoped search and sitemap; 0 files changed\n"
+    },
+    {
+      "command": "python3 -B scripts/check_site_updates.py",
+      "returncode": 1,
+      "seconds": 0.03,
+      "output": "ERROR: updates[9]: invalid language list\nERROR: updates[10]: invalid language list\nERROR: updates[11]: invalid language list\nERROR: updates[12]: invalid language list\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_home_updates.py",
+      "returncode": 1,
+      "seconds": 0.05,
+      "output": "...F....\n======================================================================\nFAIL: test_latest_keeps_the_whole_ledger (test_home_updates.HomeUpdates)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_home_updates.py\", line 42, in test_latest_keeps_the_whole_ledger\n    self.assertEqual(check(), [])\nAssertionError: Lists differ: ['updates[9]: invalid language list', 'upd[104 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[9]: invalid language list'\n\n+ []\n- ['updates[9]: invalid language list',\n-  'updates[10]: invalid language list',\n-  'updates[11]: invalid language list',\n-  'updates[12]: invalid language list']\n\n----------------------------------------------------------------------\nRan 8 tests in 0.010s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python3 -B scripts/build_home_updates.py --check",
+      "returncode": 0,
+      "seconds": 0.03,
+      "output": "OK: homepage has one editorial pick and four distinct recent series\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_reviewed_series_languages.py",
+      "returncode": 0,
+      "seconds": 1.13,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 1.087s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_rewritten_series_languages.py",
+      "returncode": 0,
+      "seconds": 1.15,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.103s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_companion_languages.py",
+      "returncode": 0,
+      "seconds": 0.31,
+      "output": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.259s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_method_introduction.py",
+      "returncode": 1,
+      "seconds": 0.12,
+      "output": ".........F\n======================================================================\nFAIL: test_update_and_library_entries (test_method_introduction.MethodIntroductionTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_method_introduction.py\", line 139, in test_update_and_library_entries\n    self.assertEqual(check_updates(), [])\nAssertionError: Lists differ: ['updates[9]: invalid language list', 'upd[104 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[9]: invalid language list'\n\n+ []\n- ['updates[9]: invalid language list',\n-  'updates[10]: invalid language list',\n-  'updates[11]: invalid language list',\n-  'updates[12]: invalid language list']\n\n----------------------------------------------------------------------\nRan 10 tests in 0.075s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_action_languages.py",
+      "returncode": 0,
+      "seconds": 0.54,
+      "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.476s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_state_languages.py",
+      "returncode": 0,
+      "seconds": 1.27,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 1.211s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_interstate_languages.py",
+      "returncode": 0,
+      "seconds": 0.58,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.515s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_clustered_language_indexes.py",
+      "returncode": 0,
+      "seconds": 0.05,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_sae_western_navigation.py",
+      "returncode": 0,
+      "seconds": 0.1,
+      "output": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.068s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_sae_western.py",
+      "returncode": 0,
+      "seconds": 0.17,
+      "output": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.118s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_republic_full_editions.py",
+      "returncode": 0,
+      "seconds": 1.7,
+      "output": "...........\n----------------------------------------------------------------------\nRan 11 tests in 1.651s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_classic_full_editions.py sae-republic --check",
+      "returncode": 0,
+      "seconds": 0.67,
+      "output": "Checked 84 pages; 0 changed\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_classic_full_discovery.py sae-republic --check",
+      "returncode": 0,
+      "seconds": 0.35,
+      "output": "Verified scoped search and sitemap; 0 files changed\n"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_1984_full_editions.py",
+      "returncode": 0,
+      "seconds": 1.18,
+      "output": "...............\n----------------------------------------------------------------------\nRan 15 tests in 1.108s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_1984_full_editions.py --check",
+      "returncode": 0,
+      "seconds": 0.36,
+      "output": "Checked 30 pages; 0 changed\n"
+    },
+    {
+      "command": "python3 -B scripts/refresh_1984_full_discovery.py --check",
+      "returncode": 0,
+      "seconds": 0.27,
+      "output": "Verified scoped search and sitemap; 0 files changed\n"
+    }
+  ],
+  "regression_summary": {
+    "commands": 55,
+    "passed": 52,
+    "failed": 3,
+    "failures": "Unchanged pre-existing invalid language lists in updates[9], updates[10], updates[11], updates[12], reported by check_site_updates, test_home_updates and test_method_introduction. The update ledger was not edited."
+  },
+  "pending_source_decisions": [],
+  "publication": "Local commit only; no push or public deployment performed.",
+  "chinese_source_amendments": {
+    "status": "author_approved_applied",
+    "changed_units": 31,
+    "record": "reviews/approved-source-changes.json",
+    "original_hashes_recoverable": true,
+    "all_other_units_and_markup_preserved": true
+  },
+  "pre_amendment_translation_sha256": {
+    "data/nineteen-eighty-four-full/translations/de/1-they-are-deleting-words.json": "5c9d8a42abb6c82b85d5cbd351d81a397dd7c10d3d1031a9d021562efb46db8b",
+    "data/nineteen-eighty-four-full/translations/de/2-what-they-wanted-was-so-small.json": "ac91729e7cc5dc5a20cbde1e090944aa62b776b41f45dfc01ed34de2a81e9e23",
+    "data/nineteen-eighty-four-full/translations/de/3-he-did-not-come-to-punish-him.json": "93a30fe7905b072be4cff69165d4e8db1f9982113bc6bcb9301110a56251e8d6",
+    "data/nineteen-eighty-four-full/translations/de/4-the-appendix-is-in-the-past-tense.json": "50cd8fbe83dfc2b1e1d37002c309f3cc405862d658577b16538743d6800b0680",
+    "data/nineteen-eighty-four-full/translations/de/index.json": "defa30f06db37dbd0dd0d5a1721852adf2d71575ad7dd016a8281529c99bda62",
+    "data/nineteen-eighty-four-full/translations/en/1-they-are-deleting-words.json": "a2de43822c6c99694ca3fbe56c695780ee73b43c8bf25da343588a39bccef110",
+    "data/nineteen-eighty-four-full/translations/en/2-what-they-wanted-was-so-small.json": "648a9b1dc68dae2f10f84280b134ca52aa6d035ab6412ddd5a5963ef03f852ed",
+    "data/nineteen-eighty-four-full/translations/en/3-he-did-not-come-to-punish-him.json": "4c46276e48aa73a42d0c8da5be2ad32af7669c6b3fb04e060b17b9da77144a00",
+    "data/nineteen-eighty-four-full/translations/en/4-the-appendix-is-in-the-past-tense.json": "7b41282815f09dbf003f3609def911b4809c0dfbc1c2caf0dc8d9f5fc7a05809",
+    "data/nineteen-eighty-four-full/translations/en/index.json": "42ae3c9cb1f28580065f48bb050183e208fe0c395d47906c60999577701bb7e0",
+    "data/nineteen-eighty-four-full/translations/es/1-they-are-deleting-words.json": "829feeb148def033651b60707e7d691f0d57ae25756af74cfc24f7b6d5ec23b5",
+    "data/nineteen-eighty-four-full/translations/es/2-what-they-wanted-was-so-small.json": "0322fb455740b99db35b01fb53d3ecf0eba8150c1e81c4cb7d8d5c51675c1fd2",
+    "data/nineteen-eighty-four-full/translations/es/3-he-did-not-come-to-punish-him.json": "4fd47bdab4dd9bae1b0644ef4a4bf8ca9fb5f6e4af5817118c259cfb240dfd26",
+    "data/nineteen-eighty-four-full/translations/es/4-the-appendix-is-in-the-past-tense.json": "dee9b849e56b10bfd45a1da198886f7f77e7b8bc63ff12d8b5b31e95c8d77e54",
+    "data/nineteen-eighty-four-full/translations/es/index.json": "80216ca918db6cf79a3a391ff89ae1b0fe11f227f356ffe49aaa22027cab6fd3",
+    "data/nineteen-eighty-four-full/translations/fr/1-they-are-deleting-words.json": "5d8a3af92dcc2d64923e4dbf5b15a0c8b8b854a5617049a21e92045a9104cd30",
+    "data/nineteen-eighty-four-full/translations/fr/2-what-they-wanted-was-so-small.json": "bd76dc8a391f04299b57a7b97855b26dac7a33f4807152816c514e9822082415",
+    "data/nineteen-eighty-four-full/translations/fr/3-he-did-not-come-to-punish-him.json": "b3bd8484f78cda0951cb9e8a13331a04060f08a6e5a6d5eae2d8c92a04a38561",
+    "data/nineteen-eighty-four-full/translations/fr/4-the-appendix-is-in-the-past-tense.json": "6d412e09e6fe7869a21c0d4001a9471971c2435f2eb3da7bc9ff8e71459d51f6",
+    "data/nineteen-eighty-four-full/translations/fr/index.json": "4b56e6a66067317074e629cb8443074f62237b70101370890d3ef0a25a4c0be4",
+    "data/nineteen-eighty-four-full/translations/ja/1-they-are-deleting-words.json": "987f041f631329020aa4938721710aeb368f301c5ec0697993da25bb3b590f86",
+    "data/nineteen-eighty-four-full/translations/ja/2-what-they-wanted-was-so-small.json": "255585eda9b93144ac41cbf630665b3123c6e48d536c34e2c9cfc493fe27b675",
+    "data/nineteen-eighty-four-full/translations/ja/3-he-did-not-come-to-punish-him.json": "d6f405c1e33eecc25ed3b43691fd1d2ae6c14509b59f49b2993b838cdf266c53",
+    "data/nineteen-eighty-four-full/translations/ja/4-the-appendix-is-in-the-past-tense.json": "3fe82c7748fb39853a0a3d8287846506b10ea09a9dc8f0493c2f4b34883e22d1",
+    "data/nineteen-eighty-four-full/translations/ja/index.json": "32bfa65a489fd2d7f4af403b81fd68c03ada8f5f56de1bbe4e19b1466e20a55b",
+    "data/nineteen-eighty-four-full/translations/ko/1-they-are-deleting-words.json": "c905e2f5bc74fd8a32b062fcf2e81fc95aec935bb9cfd1ee884cf70aae8cbbbb",
+    "data/nineteen-eighty-four-full/translations/ko/2-what-they-wanted-was-so-small.json": "3fb0a0cb93c524950631a8cfbf6fac593701b35aac33ad258cdcfab6e0d560ae",
+    "data/nineteen-eighty-four-full/translations/ko/3-he-did-not-come-to-punish-him.json": "4aeb9f86d76205061817b1ba1cd8fb9237f42907ebee89c65f0f1cbfec64225c",
+    "data/nineteen-eighty-four-full/translations/ko/4-the-appendix-is-in-the-past-tense.json": "5a1f7705268d1aeb38a06aca6b7d1fba908b6dbc528bc3c16f7d48fbfbfe474a",
+    "data/nineteen-eighty-four-full/translations/ko/index.json": "f09b5c2eb6f68ea1e75ef8479969e84491d6db0c9eab12dba7fa2b969b18d428"
+  },
+  "translation_sha256": {
+    "en": {
+      "1-they-are-deleting-words": "b0e9a1324d5f3f1f153e9538b46c95abe6c777087f6f03c1db8502040c25c876",
+      "2-what-they-wanted-was-so-small": "4a1da1415fba5480dd793a13a3183ae3947107487c945ba32ccc1383493ffe4f",
+      "3-he-did-not-come-to-punish-him": "c3b95dd30b2aae0b369fa9952b7b1283b369f3824090b6dc8c9919622b04772f",
+      "4-the-appendix-is-in-the-past-tense": "8498a89c06b1dae47a7589ee46cb00bb25e2ce27342a627f74cfdfc17385720d"
+    },
+    "de": {
+      "1-they-are-deleting-words": "f6bc297906b24679f72a1583bbaaee658f4c572a5583bcc40d581a050a389b35",
+      "2-what-they-wanted-was-so-small": "9401e0ee1e1851bc5044e7ef664341f1f4d65adff81b6226e8716d9f24fa1c29",
+      "3-he-did-not-come-to-punish-him": "cabc6ca17938ea903a63cac1a1a0a504652a47a13e0f774d7804226ad2f78584",
+      "4-the-appendix-is-in-the-past-tense": "671f7473e1b522a864a624ba1a6052db710f5875f5667c962c8fd1d477c70dd3"
+    },
+    "fr": {
+      "1-they-are-deleting-words": "a5ec4853fee574bd038511caf19aa625d73ba250ea571c1cd0154974903421d3",
+      "2-what-they-wanted-was-so-small": "467a013503ba23c480b1f1c10f45139a4848d88fbb3fb38b6eed9a25c664af0c",
+      "3-he-did-not-come-to-punish-him": "97fa90d2ba0b77f301666dff6a5032fdfb97f4b359b8d23f359485b78608bd70",
+      "4-the-appendix-is-in-the-past-tense": "c2b77267f4841a1b8a103159c7f00a8048e56c4422ea2f306f83ee24c865785b"
+    },
+    "ja": {
+      "1-they-are-deleting-words": "a042591078b360d9f22adf486fa205ebe4718347c630bfc42b53e26a7de38191",
+      "2-what-they-wanted-was-so-small": "bcba9cd5d70fab3cf6ecd3f51dd9f7046c41f6dec9d39fd2605f858a9c4304d8",
+      "3-he-did-not-come-to-punish-him": "fd7c85f49c5490d5bf60819208517e2309f6472d1bc89996cc18703643c5a59d",
+      "4-the-appendix-is-in-the-past-tense": "70467f0ec2dd97c873e3e1b5a4708bfdd381f1f92c14a2d092bd8333ec622418"
+    },
+    "ko": {
+      "1-they-are-deleting-words": "035d13e95005a569007c45e4ef7198e651d663fc03f0108edbd7fa2370b0ec78",
+      "2-what-they-wanted-was-so-small": "ecd9f1819f4486a8d46765f873b258febd86c74260137c6825188b6ebc7010ea",
+      "3-he-did-not-come-to-punish-him": "691e14b009764260ffb50b555e462fc4d89a5cd96308c89d1b3b5f8bc7d2e42a",
+      "4-the-appendix-is-in-the-past-tense": "bd5c99ddd50c92531db0bb170a95c955786d3a7666e0a39c2a47db9ed0a2b81e"
+    },
+    "es": {
+      "1-they-are-deleting-words": "450e89d6acd7b703219c77181d9970a2249c3c4f8500eb7892d6e9db0a938405",
+      "2-what-they-wanted-was-so-small": "1bcb01c447691be293d15181b29649a6e7b12c35df89e95a1985f400e1ea84f3",
+      "3-he-did-not-come-to-punish-him": "28f97ad5e23c534027f4130cf5ac9b1c9f1433c82cb1d8d49448125df470bd72",
+      "4-the-appendix-is-in-the-past-tense": "ffe236b5cdc01b2a6705c69fba83df24016b439112b49120342e030c806b722d"
+    }
+  },
+  "final_independent_amendment_review": {
+    "record": "reviews/independent-approved-amendment-review.json",
+    "changed_comparisons": 186,
+    "units_with_neighbors_per_language": 71,
+    "languages": 6,
+    "article_title_deck_pairs": 24,
+    "index_introductions": 6,
+    "unresolved_issues": []
+  },
+  "scoped_diff_verification": {
+    "search_changed_records_per_language": 5,
+    "sitemap_changed_dates": 30,
+    "unrelated_search_records_unchanged": true
+  }
+}

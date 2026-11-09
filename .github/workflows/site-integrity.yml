@@ -53,6 +53,9 @@ jobs:
       - run: python -B -m unittest discover -s scripts -p test_republic_full_editions.py
       - run: python -B scripts/build_classic_full_editions.py sae-republic --check
       - run: python -B scripts/refresh_classic_full_discovery.py sae-republic --check
+      - run: python -B -m unittest discover -s scripts -p test_1984_full_editions.py
+      - run: python -B scripts/build_1984_full_editions.py --check
+      - run: python -B scripts/refresh_1984_full_discovery.py --check
       - run: python -B scripts/check_site_updates.py
       - run: python -B -m unittest discover -s scripts -p test_home_updates.py
       - run: python -B scripts/build_home_updates.py --check
