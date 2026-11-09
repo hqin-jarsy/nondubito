@@ -1,0 +1,44 @@
+{
+  "languages": [
+    "fr",
+    "es"
+  ],
+  "status": "reviewed",
+  "independent_semantic_review": true,
+  "reviewer": "Independent French/Spanish semantic reviewer (/root/check_mac_resume/review_french_spanish_batch), separate from index writer",
+  "review_scope": "Read the complete canonical Chinese index title, deck, route title and introduction, six chapter labels, theory label and theory introduction alongside the complete French and Spanish translations. Checked meaning, qualifications, reading-route claims, conceptual distinctions, chapter01 consistency with reviewed articles01–05, HTML link and exact source identifier. Corrected French chapter labels and Spanish reading-door book title; both records pass structural load validation.",
+  "limitations": "AI linguistic review, not external human certification. Covers only the index translation contract fields in French and Spanish, not the thirty article-card translations, route HTML repair or rendered layout. Does not resolve pending author source decisions.",
+  "findings": [
+    {
+      "file": "fr/index.json",
+      "field": "chapters[1:4]",
+      "before": [
+        "Limites, intimité et refus",
+        "Comprendre, écouter et reconnaître les raisons",
+        "Donner, répondre de ses actes et être redevable"
+      ],
+      "after": [
+        "Limites, vie privée et refus",
+        "Compréhension, écoute et raisons",
+        "Don de soi, responsabilité et dette envers autrui"
+      ],
+      "issue": "Distinguish privacy from intimacy, remove added recognition requirement, and preserve responsibility beyond one's own acts and interpersonal indebtedness.",
+      "resolution": "corrected"
+    },
+    {
+      "file": "es/index.json",
+      "field": "theory_intro.link_text",
+      "before": "Non Dubito en cinco minutos",
+      "after": "Entender Non Dubito en cinco minutos",
+      "issue": "Restore the source book title's understanding and align batch01 entry doors.",
+      "resolution": "corrected"
+    }
+  ],
+  "translation_sha256": {
+    "fr/index.json": "243c4ac6513b8b725f0b9fde4d9d25c216cc03e826f4b6d4df8549d0ee6997c6",
+    "es/index.json": "56d314277537d28ad0d7a229fa631c40aeb44b3712b238643f02b1830efb58b7"
+  },
+  "source_file_sha256": {
+    "index.json": "3f162fea95871f974434b1605b7e978dcbf686d54590c5bdd9cb7804c9a6c36a"
+  }
+}

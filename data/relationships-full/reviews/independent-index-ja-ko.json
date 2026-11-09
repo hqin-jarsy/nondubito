@@ -1,0 +1,61 @@
+{
+  "status": "reviewed",
+  "independent_semantic_review": true,
+  "reviewer": "Independent Japanese/Korean index reviewer, separate from translation writer",
+  "languages": [
+    "ja",
+    "ko"
+  ],
+  "review_scope": [
+    "Read CLAUDE.md and relationships-full/README.md. Compared every index contract text field with the preserved Chinese source: title, full deck, route_title, full route_intro, all six chapters in order, theory_label, and full theory_intro including anchor text and href.",
+    "Read Simplified and Traditional Chinese index metadata; checked language, slug, source_sha256, six-label count, and unchanged theory href. Read current article01 title/deck/chapter for terminology only.",
+    "Independently evaluated meaning, all three deck contrasts, both boundaries on closeness, optional reading order, lack of theoretical prerequisites, and the theory invitation. Made targeted fidelity and naturalness corrections, then reread final target metadata."
+  ],
+  "limitations": [
+    "This report covers only ja/index.json and ko/index.json, not essay bodies, card titles/decks sourced from articles, public HTML, rendering, route repair, or other languages.",
+    "This is an AI linguistic review, not a native-speaker editorial certification. It is a supporting partial-language report, not the aggregate six-language reviews/index.json publication gate.",
+    "Chapter terminology beyond article01 must be kept consistent by subsequent article batches."
+  ],
+  "findings": [
+    {
+      "scope": "ja deck",
+      "finding": "善意 rendered goodness as good intentions; expanded takeover wording added domination.",
+      "resolution": "Restored goodness wording and simplified takeover to taking charge of the other persons life."
+    },
+    {
+      "scope": "ko deck",
+      "finding": "Explicit domination expanded source 接管.",
+      "resolution": "Used deciding the other persons life on their behalf."
+    },
+    {
+      "scope": "ja/ko chapter 1",
+      "finding": "Index terms differed from current article01 chapter labels.",
+      "resolution": "Aligned to 気遣い、助け、支配 and 보살핌, 도움과 통제."
+    },
+    {
+      "scope": "ja/ko chapter 4",
+      "finding": "負い目 and 빚진 마음 emphasize only feelings, narrowing 亏欠.",
+      "resolution": "Used 借り and 빚짐 to retain being indebted without limiting it to a feeling."
+    },
+    {
+      "scope": "ja/ko route_title",
+      "finding": "Six entry articles and the conditional preference could be stated more exactly.",
+      "resolution": "Restored six-article wording and if you do not want to read everything at once."
+    },
+    {
+      "scope": "ja theory_intro",
+      "finding": "Being treated as a function shifts the original becoming a function slightly; complete framework was implicit.",
+      "resolution": "Used becoming merely a function and an integrated philosophical system."
+    },
+    {
+      "scope": "remaining metadata",
+      "finding": "All remaining content preserves the source meaning and six-chapter sequence; theory target is unchanged.",
+      "resolution": "Retained without gratuitous rewriting."
+    }
+  ],
+  "source_file_sha256": "3f162fea95871f974434b1605b7e978dcbf686d54590c5bdd9cb7804c9a6c36a",
+  "translation_sha256": {
+    "ja/index.json": "80522325a6237b7684979d4e91f30af6221d7249197daf5981ea0db75e853da5",
+    "ko/index.json": "49aebd18c1a24cec44445fe7afcf959327cd676752f3b9b62039c55138e9322c"
+  }
+}
