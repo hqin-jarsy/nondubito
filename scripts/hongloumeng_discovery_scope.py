@@ -1,0 +1,77 @@
+"""Path-only boundaries for Red Chamber discovery, checked before reading HTML."""
+from pathlib import Path
+import posixpath
+from urllib.parse import unquote, urlsplit
+
+PUBLIC_HTML = frozenset(('index.html', 'edition.html', *(f'ch{n:03d}.html' for n in range(1, 81))))
+
+
+def private_path(relative: Path) -> bool:
+    return relative.parts[:3] == ('data', 'hongloumeng', 'first80')
+
+
+def excluded(relative: Path) -> bool:
+    if private_path(relative):
+        return True
+    if relative.parts[:2] == ('classics', 'hongloumeng'):
+        return len(relative.parts) != 3 or relative.name not in PUBLIC_HTML
+    return False
+
+
+def excluded_file(root: Path, path: Path) -> bool:
+    """Check both names before opening a file; aliases cannot expose private data."""
+    root, path = root.absolute(), path.absolute()
+    try:
+        relative = path.relative_to(root)
+        if excluded(relative):
+            return True
+        actual = path.resolve(strict=True).relative_to(root.resolve(strict=True))
+    except (OSError, RuntimeError, ValueError):
+        return True
+    return excluded(actual)
+
+
+def site_url_path(value):
+    """Decode an HTTP destination without discarding its original path boundary."""
+    if not isinstance(value, str):
+        raise ValueError('Invalid discovery URL')
+    value = value.strip(''.join(chr(n) for n in range(33))).replace('\\', '/')
+    value = value.replace('\t', '').replace('\r', '').replace('\n', '')
+    parsed = urlsplit(value)
+    if parsed.scheme and parsed.scheme.lower() not in ('http', 'https'):
+        raise ValueError('Unsupported discovery URL scheme')
+    if parsed.netloc and unquote(parsed.hostname or '').lower().rstrip('.') not in ('nondubito.net', 'www.nondubito.net'):
+        return None
+    path = parsed.path
+    for _ in range(12):
+        decoded = unquote(path)
+        if decoded == path:
+            break
+        path = decoded
+    else:
+        raise ValueError('Overencoded discovery URL')
+    return path.replace('\\', '/').lstrip('/')
+
+
+def site_relative_url(value):
+    path = site_url_path(value)
+    return None if path is None else posixpath.normpath('/'+path).lstrip('/')
+
+
+def excluded_url(value):
+    """Check URL names before filesystem resolution can erase a private alias."""
+    try:
+        original = site_url_path(value)
+    except ValueError:
+        return True
+    if original is None:
+        return False
+    normalized = posixpath.normpath('/'+original).lstrip('/')
+    for name in (original, normalized):
+        relative = Path(name)
+        # Directory canonicals refer to the explicitly public contents page.
+        if relative == Path('classics/hongloumeng'):
+            relative /= 'index.html'
+        if excluded(relative):
+            return True
+    return False

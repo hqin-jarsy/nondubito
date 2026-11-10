@@ -14,6 +14,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from normalize_canonicals import local_target, normalized_url
+from hongloumeng_discovery_scope import excluded_file as excluded_hongloumeng_file, excluded_url as excluded_hongloumeng_url
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -133,6 +134,8 @@ def build() -> tuple[str, list[str], int]:
     for page in sorted(ROOT.rglob("*.html")):
         if ".git" in page.parts:
             continue
+        if excluded_hongloumeng_file(ROOT, page):
+            continue
         metadata = parse_page(page)
         parsed_pages[page.resolve()] = metadata
         if "noindex" in metadata.robots or not metadata.canonical:
@@ -145,6 +148,9 @@ def build() -> tuple[str, list[str], int]:
     errors: list[str] = []
     target_by_url: dict[str, Path] = {}
     for url in sorted(candidates):
+        if excluded_hongloumeng_url(url):
+            errors.append(f"canonical URL is outside the public reading allowlist: {url}")
+            continue
         if normalized_url(url) != url:
             errors.append(f"canonical is not normalized: {url}")
             continue
@@ -153,6 +159,9 @@ def build() -> tuple[str, list[str], int]:
             errors.append(f"canonical target is missing: {url}")
             continue
         target = target.resolve()
+        if excluded_hongloumeng_file(ROOT, target):
+            errors.append(f"canonical target is outside the public reading allowlist: {url}")
+            continue
         metadata = parsed_pages.get(target) or parse_page(target)
         if "noindex" in metadata.robots:
             errors.append(f"canonical target is noindex: {url}")

@@ -16,6 +16,7 @@ from pathlib import Path
 
 from build_content_registry import attr_value, clean_text, scan_page
 from web_analytics import COLLISION_NAME
+from hongloumeng_discovery_scope import excluded_file as excluded_hongloumeng_file
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +32,8 @@ def collect_pages() -> list[Path]:
     pages: list[Path] = []
     for path in ROOT.rglob("*.html"):
         relative = path.relative_to(ROOT)
+        if excluded_hongloumeng_file(ROOT, path):
+            continue
         if relative.parts[0] in EXCLUDED_TOP_LEVEL:
             continue
         if COLLISION_NAME.search(relative.name):
@@ -86,6 +89,8 @@ def build() -> tuple[dict, dict[str, list[dict]]]:
     records: list[dict] = []
     skipped_redirects = 0
     for path in collect_pages():
+        if excluded_hongloumeng_file(ROOT, path):
+            continue
         source = path.read_text(encoding="utf-8", errors="replace")
         if is_redirect(source) or re.search(r'<meta\b[^>]*name=["\']robots["\'][^>]*noindex', source, flags=re.I):
             skipped_redirects += 1

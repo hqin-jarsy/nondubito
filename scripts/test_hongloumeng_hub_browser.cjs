@@ -1,6 +1,8 @@
 const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
 const path=require('node:path');
+const fs=require('node:fs');
+const first80=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/site-updates.json'),'utf8')).updates.some(u=>u.id==='hongloumeng-first80-reading');
 const base=process.argv[2]||'http://127.0.0.1:8776';
 (async()=>{
  const browser=await chromium.launch({headless:true,channel:'chrome'});
@@ -17,7 +19,12 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
     assert.equal(await page.locator('.paper').count(),4);
     assert.equal(await page.locator('.reading-card').count(),6);
     assert.equal(await page.locator('.catalog a').count(),48);
-    assert.equal(await page.locator('#continuation a').count(),2);
+    assert.equal(await page.locator('#continuation a').count(),6);
+    assert.equal(await page.locator('#first80').count(),first80?1:0);
+    if(first80){
+     assert.equal(await page.locator('#first80 a').count(),3);
+     assert.ok((await page.locator('#first80 a').evaluateAll(links=>links.map(a=>a.getAttribute('href')))).every(h=>/classics\/hongloumeng\/(index|ch001|edition)\.html$/.test(h)));
+    }
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     await page.locator('.language-menu summary').focus();await page.keyboard.press('Enter');
     assert.equal(await page.locator('[data-edition]:visible').count(),3);
@@ -34,10 +41,12 @@ const base=process.argv[2]||'http://127.0.0.1:8776';
   await page.waitForURL('**/en/index.html?lang=en#zhengce');
   assert.equal(await page.locator('#zhengce[open]').count(),1);
   await page.locator('#zhengce a').first().click();
+  await page.waitForURL('**/z-daiyu.html?lang=en',{waitUntil:'domcontentloaded'});
   assert.equal(await page.locator('html').getAttribute('data-lang'),'en');
   await page.goto(`${base}/essays/literature/hlm/index.html?lang=zh-hant#characters`);
   await page.waitForURL('**/zh-hant/index.html?lang=zh-hant#characters');
-  await page.locator('.featured a').first().click();
+  await page.locator('#characters .featured a').first().click();
+  await page.waitForURL('**/intro.html?lang=zh',{waitUntil:'domcontentloaded'});
   assert.equal(await page.locator('html').getAttribute('data-lang'),'zh');
   if(process.env.HLM_SCREENSHOTS){
    for(const [name,width,dir,lang] of [['desktop',1440,'','zh'],['english',390,'en/','en'],['traditional',390,'zh-hant/','zh-hant']]){

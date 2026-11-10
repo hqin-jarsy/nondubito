@@ -17,6 +17,7 @@ TARGET = ROOT / 'essays/literature/hlm'
 CATALOG = ROOT / 'data/hongloumeng/characters.json'
 EDITIONS = {'zh': ('', 'zh-Hans', '简体中文'), 'en': ('en/', 'en', 'English'), 'zh-hant': ('zh-hant/', 'zh-Hant', '繁體中文')}
 ORIGIN = 'https://nondubito.net/essays/literature/hlm/'
+FIRST80_UPDATE_ID = 'hongloumeng-first80-reading'
 PAPERS = [
  ('人是有情的', 'People Have Qing', '缘起、方法与结论', 'Origins, method and conclusions',
   '为什么接着写，以及哪些依据、推断和创作选择需要分别交代。',
@@ -61,7 +62,19 @@ def capture_catalog():
     print('Captured', sum(len(g['essays']) for g in groups), 'existing essay links.')
 
 
-def render():
+def first80_publication_date():
+    """The published ledger, not the presence of private preview files, opts in."""
+    ledger = json.loads((ROOT/'data/site-updates.json').read_text())
+    return next((item['date'] for item in ledger['updates']
+                 if item['id'] == FIRST80_UPDATE_ID), None)
+
+
+def render(*, include_first80=None, first80_date=None):
+    if include_first80 is None:
+        first80_date = first80_date or first80_publication_date()
+        include_first80 = first80_date is not None
+    if include_first80 and not first80_date:
+        raise ValueError('The first-eighty-chapter entrance needs a publication date')
     groups = json.loads(CATALOG.read_text())
     count = sum(len(g['essays']) for g in groups)
     readings = load_readings()
@@ -84,6 +97,12 @@ def render():
             return a(up+url+'?lang='+choice,title,f'data-legacy-language="{choice}"')
         title = text('人是有情的——重读《红楼梦》', 'Lives Beyond Their Endings: Returning to Dream of the Red Chamber')
         desc = text('人物回顾、持续更新的散文导读、研究论文与秦汉原创后三十回。先从人物和故事进入，不必先读论文。', 'Character essays, an expanding reader-essay series, research papers and Han Qin’s original thirty-chapter continuation. Begin with people and stories; the papers are optional.')
+        first80_navigation = ''
+        first80_section = ''
+        if include_first80:
+            desc = text('《红楼梦》前八十回“大知校正庚辰版”中文正文、人物回顾、散文导读与研究论文；另列秦汉原创续写，目前可读第八十一至八十五回。', 'The first eighty chapters in the Chinese Dazhi Revised Gengchen Edition, character essays, reader essays and research. Han Qin’s original continuation is listed separately; chapters 81–85 are available.')
+            first80_navigation = a('#first80',t('前八十回正文','The first eighty chapters'))
+            first80_section = f'''<section id="first80"><p class="eyebrow">{t('原著阅读 · 前八十回','THE NOVEL · CHAPTERS 1–80')}</p><h2>{t('大知校正庚辰版','Dazhi Revised Gengchen Edition')}</h2><p>{t('这里阅读的是《红楼梦》前八十回原著正文，由秦汉校正整理；与第八十一回起的秦汉原创续写分开编排。', 'Read the first eighty chapters of Dream of the Red Chamber, edited by Han Qin. This edition of the original novel is separate from Han Qin’s new fiction beginning with chapter 81.')}</p><p class="edition-note">{t('本版目前仅提供简体中文正文；外语翻译尚未发布。繁体与英文专题入口中的下列链接均转至简体中文读页。', 'This reading edition is available in Simplified Chinese only. Translations are not yet published; the links below open the Chinese text.')}</p><div class="featured">{a(base+'classics/hongloumeng/index.html',t('前八十回 · 回目目录','Chapters 1–80 · Chinese contents'))}{a(base+'classics/hongloumeng/ch001.html',t('从第一回开始','Start chapter 1 · Chinese'))}{a(base+'classics/hongloumeng/edition.html',t('版本说明','About the edition'))}</div></section>'''
         canonical = ORIGIN+directory
         alternatives = ''.join(f'<link rel="alternate" hreflang="{c}" href="{ORIGIN+d}">' for d,c,_ in EDITIONS.values())
         alternatives += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN}">'
@@ -103,9 +122,9 @@ def render():
             papers.append(f'<article class="paper"><p class="eyebrow">{i:02d} · {t(tag,entag)}</p><h3>{a(url,t(zh,english))}</h3><p>{t(summary,ensummary)}</p></article>')
         body = f'''<section class="hero"><p class="eyebrow">NON DUBITO · {t('红楼梦大专题','A RED CHAMBER PROJECT')}</p>
 <h1>{t('人是有情的','Lives Beyond Their Endings')}<span class="subtitle">{t('重读《红楼梦》','Returning to Dream of the Red Chamber')}</span></h1><p class="deck">{t('我们记得黛玉的眼泪、宝玉的痴，也记得大观园最后散了。但一个人的遭逢，是否就能说尽这个人？从前八十回出发，重读这些人物，也尝试为他们接着写下去。','We remember Daiyu’s tears, Baoyu’s attachments, and the dispersal of a whole household. But does knowing what happens to someone tell us everything about them? This project begins with the first eighty chapters, returns to their people, and ventures to continue their stories.')}</p></section>
-<nav class="jump" aria-label="{t('本页导航','On this page')}">{a('#characters',t('红楼人物','The people'))}{a('#readings',t('先读散文','Reader essays'))}{a('#research',t('研究论文 · 选读','Research · optional'))}{a('#continuation',t('八十回以后','Beyond chapter eighty'))}</nav>
+<nav class="jump" aria-label="{t('本页导航','On this page')}">{first80_navigation}{a('#characters',t('红楼人物','The people'))}{a('#readings',t('先读散文','Reader essays'))}{a('#research',t('研究论文 · 选读','Research · optional'))}{a('#continuation',t('八十回以后','Beyond chapter eighty'))}</nav>
 <section class="project-intro"><h2>{t('先认识这些人，再接着写','First meet the people. Then continue their stories.')}</h2><p>{t('这个项目从网站上的人物解读开始：逐一回顾书中人的处境、关系和选择。后来，问题从“怎样读他们”走向了“怎样写他们的后来”。人物回顾、散文导读、研究论文与原创的后三十回小说，由这一追问连在一起。读者可以先读散文，再决定是否深入论文；不必先掌握术语，才有资格走进故事。','The character essays on this site were the project’s starting point: a sustained return to the people, relationships and choices in the novel. Reading led to another question—how might their stories continue? Character readings, the expanding reader-essay series, research and Han Qin’s original thirty-chapter continuation belong to one undertaking. Start with the essays and choose whether to follow the papers; no theoretical vocabulary is required first.')}</p></section>
-<section id="characters"><p class="eyebrow">01 · {t('人物回顾','CHARACTER ESSAYS')}</p><h2>{t('红楼人物','The People of the Red Chamber')}</h2><p>{t(f'现有 {count} 篇解读，是整个项目最初的铺垫。可以先从一场酒令、一个人物开始，不必按次序通读。',f'These {count} essays laid the groundwork for the project. Start with one scene or one person; there is no required order.')}</p>
+{first80_section}<section id="characters"><p class="eyebrow">01 · {t('人物回顾','CHARACTER ESSAYS')}</p><h2>{t('红楼人物','The People of the Red Chamber')}</h2><p>{t(f'现有 {count} 篇解读，是整个项目最初的铺垫。可以先从一场酒令、一个人物开始，不必按次序通读。',f'These {count} essays laid the groundwork for the project. Start with one scene or one person; there is no required order.')}</p>
 <div class="featured">{featured}</div>
 <p class="edition-note">{t('人物文章目前提供简体中文与英文；繁体入口中的人物链接暂转简体原文。本次整理保留人物正文。','The character essays are available in Simplified Chinese and English. The Traditional Chinese hub links to the Simplified originals. This entrance update leaves the essays themselves unchanged.')}</p>
 <details class="reading-note"><summary>{t('关于目录里的册次与称谓','A note on the registers and labels')}</summary><p>{t('下列分组沿用人物回顾写作时的编排，方便寻找旧文。九册、一百零八人的组合及相应关系解释，是本项目当时采用的阅读方案，不是已经考定的曹雪芹情榜全貌，也不是给人物永久定性。后续论文会说明哪些读法保留、哪些发生了变化；不能把我们的编排反过来当作原作的证据。','The groups below retain the arrangement used when these essays were written, so familiar pieces remain easy to find. The nine-register, 108-person scheme and its relational interpretations are this project’s reading framework—not an authenticated reconstruction of Cao Xueqin’s complete roster, nor permanent verdicts on the characters. Later papers explain where the reading develops or changes; our arrangement is not evidence about the original.')}</p></details>
@@ -120,7 +139,7 @@ def render():
 <div class="featured">{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch081.html',t('读第八十一回：痴公子讨情遣旧婢　花袭人含泪别芳群','Read chapter 81 · English text'))}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch082.html',t('读第八十二回：贾宝玉佯捧万章篇　林黛玉梦承椿庭笔','Read chapter 82 · English text'))}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch083.html',t('读第八十三回：史太君含笑嘱心肝　静琥珀一语传遗命','Read chapter 83 · English text'))}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch084.html',t('读第八十四回：昧心人偏办昧心事　鸳鸯女终全鸳鸯誓','Read chapter 84 · English text'))}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch085.html',t('读第八十五回：敏探春扬帆赴南溟　慧惜春剪发拒西宁','Read chapter 85 · English text'))}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'index.html',t('原创后三十回 · 回目','Original continuation · Chapter list'))}</div>
 <p>{t('这三十回是秦汉的原创小说，不是曹雪芹的佚稿，也不是对已有续书的整理。“诠释性复原”说的是这次创作的方法：以前八十回及相关材料为依据，把一种读法写成故事；并不声称恢复了曹雪芹原稿。','These thirty chapters are original fiction by Han Qin, not a recovered manuscript by Cao Xueqin or an edited compilation of existing continuations. “Interpretive reconstruction” describes the creative method: developing a reading of the first eighty chapters and related materials into a story. It is not a claim to have recovered the lost original.')}</p>
 </section>'''
-        schema={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':desc,'url':canonical,'inLanguage':code,'dateModified':'2026-11-08','isPartOf':{'@type':'WebSite','name':'Non Dubito','url':'https://nondubito.net/'}}
+        schema={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':desc,'url':canonical,'inLanguage':code,'dateModified':first80_date if include_first80 else '2026-11-08','isPartOf':{'@type':'WebSite','name':'Non Dubito','url':'https://nondubito.net/'}}
         pages[TARGET/directory/'index.html']=f'''<!doctype html>
 <html lang="{code}" data-lang="{lang}" data-editions="{code}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)} — Non Dubito</title><meta name="description" content="{html.escape(desc)}"><meta name="author" content="Han Qin">

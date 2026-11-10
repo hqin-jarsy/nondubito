@@ -42,6 +42,7 @@
   var typeNames = {
     'essay': choices('Essay', '文章', '文章', 'エッセイ', 'Essai', 'Essay', 'Ensayo', '에세이'),
     'story': choices('Short story', '短篇小说', '短篇小說', '短編小説', 'Nouvelle', 'Kurzgeschichte', 'Relato', '단편소설'),
+    'novel-chapter': choices('Novel chapter', '小说章回', '小說章回', '小説の章', 'Chapitre de roman', 'Romankapitel', 'Capítulo de novela', '소설의 장'),
     'series-index': choices('Series', '系列', '系列', 'シリーズ', 'Série', 'Reihe', 'Serie', '시리즈'),
     'collection-index': choices('Collection', '合集', '合集', 'コレクション', 'Collection', 'Sammlung', 'Colección', '모음'),
     'language-hub': choices('Language channel', '语言频道', '語言頻道', '言語チャンネル', 'Espace linguistique', 'Sprachbereich', 'Canal de idioma', '언어 채널'),

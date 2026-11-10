@@ -316,11 +316,14 @@ def load_variants(dictionary: Path) -> dict[str, str]:
 
 
 def traditional_variant(root: Path, path: Path, simplified: str) -> str | None:
+    from hongloumeng_discovery_scope import excluded_file
     dictionaries = (
         path.parent / "zh-hant-data" / f"{path.stem}.js",
         root / "zh-hant.js",
     )
     for dictionary in dictionaries:
+        if excluded_file(root, dictionary):
+            continue
         value = load_variants(dictionary).get(simplified)
         if value:
             return value
@@ -415,6 +418,8 @@ def extract_date(source: str) -> str | None:
 
 def infer_domain(relative: Path) -> str:
     value = relative.as_posix()
+    if value.startswith('classics/hongloumeng/'):
+        return 'stories'
     if value.startswith("originals/"):
         return "stories"
     if not value.startswith("essays/"):
@@ -427,7 +432,23 @@ def infer_domain(relative: Path) -> str:
     return "unmapped"
 
 
+def hongloumeng_chapter(relative: Path) -> int | None:
+    """Only the eighty Chinese chapters and the forty published continuation pages."""
+    value = relative.as_posix()
+    match = re.fullmatch(r'classics/hongloumeng/ch(\d{3})\.html', value)
+    if match and 1 <= int(match[1]) <= 80:
+        return int(match[1])
+    match = re.fullmatch(r'originals/hongloumeng/(?:(?:en|zh-hant|de|fr|es|ja|ko)/)?ch(08[1-5])\.html', value)
+    return int(match[1]) if match else None
+
+
 def infer_record_type(relative: Path) -> str:
+    if hongloumeng_chapter(relative) is not None:
+        return 'novel-chapter'
+    if relative.as_posix() == 'classics/hongloumeng/index.html':
+        return 'series-index'
+    if relative.as_posix() == 'classics/hongloumeng/edition.html':
+        return 'site-page'
     if relative.parts[:2] == ("essays", "paleontology") and relative.name == "index.html":
         return "series-index"
     if relative.parts and relative.parts[0] == "originals":
@@ -448,6 +469,8 @@ def infer_record_type(relative: Path) -> str:
 
 
 def infer_taxonomy(relative: Path) -> tuple[str | None, str | None]:
+    if relative.parts[:2] == ('classics', 'hongloumeng'):
+        return 'classics', 'hongloumeng'
     if relative.parts and relative.parts[0] == "originals":
         parts = list(relative.parts[1:-1])
         if not parts:
@@ -470,6 +493,9 @@ def infer_taxonomy(relative: Path) -> tuple[str | None, str | None]:
 
 
 def infer_sequence(path: Path) -> int | None:
+    chapter = hongloumeng_chapter(path)
+    if chapter is not None:
+        return chapter
     match = re.match(r"(?:ep)?0*(\d+)(?:[-_.]|$)", path.stem, flags=re.I)
     return int(match.group(1)) if match else None
 
@@ -481,9 +507,10 @@ def make_content_id(relative: Path) -> str:
     return ".".join(re.sub(r"[^a-zA-Z0-9_-]+", "-", part).strip("-") for part in parts)
 
 
-def scan_page(root: Path, path: Path) -> dict[str, Any]:
+def scan_page(root: Path, path: Path, *, source: str | None = None) -> dict[str, Any]:
     relative = path.relative_to(root)
-    source = path.read_text(encoding="utf-8", errors="replace")
+    if source is None:
+        source = path.read_text(encoding="utf-8", errors="replace")
     edition_language, canonical_candidate = language_from_directory(relative, root)
     identity_path = canonical_candidate or relative
 

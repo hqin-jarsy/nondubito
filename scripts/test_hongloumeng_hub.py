@@ -18,6 +18,28 @@ class Nodes(HTMLParser):
 
 
 class HubTests(unittest.TestCase):
+    def test_first80_preview_keeps_original_and_continuation_separate(self):
+        pages = render(include_first80=True, first80_date='2026-11-10')
+        for lang, (directory, _, _) in EDITIONS.items():
+            source = pages[TARGET/directory/'index.html']
+            section = source.split('<section id="first80">')[1].split('</section>')[0]
+            links = [attrs['href'] for tag, attrs in Nodes(section).nodes if tag == 'a']
+            self.assertEqual(len(links), 3)
+            self.assertEqual([Path(href).name for href in links], ['index.html', 'ch001.html', 'edition.html'])
+            self.assertTrue(all('classics/hongloumeng/' in href for href in links))
+            self.assertNotIn('/en/', ''.join(links))
+            self.assertNotIn('/zh-hant/', ''.join(links))
+            self.assertIn('Simplified Chinese only' if lang == 'en' else ('僅提供簡體中文正文' if lang == 'zh-hant' else '仅提供简体中文正文'), section)
+            self.assertIn('Translations are not yet published' if lang == 'en' else ('外語翻譯尚未發佈' if lang == 'zh-hant' else '外语翻译尚未发布'), section)
+            self.assertIn('edited by Han Qin' if lang == 'en' else ('由秦漢校正整理' if lang == 'zh-hant' else '由秦汉校正整理'), section)
+            continuation = source.split('<section id="continuation">')[1].split('</section>')[0]
+            self.assertEqual(continuation.count('<a '), 6)
+            self.assertNotIn('classics/hongloumeng/', continuation)
+
+    def test_explicit_first80_preview_requires_date(self):
+        with self.assertRaises(ValueError):
+            render(include_first80=True)
+
     def test_generated_current(self):
         for path,source in render().items(): self.assertEqual(source,path.read_text())
 

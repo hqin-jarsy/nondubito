@@ -7,6 +7,7 @@ import argparse
 import re
 from pathlib import Path
 from urllib.parse import unquote, urlsplit, urlunsplit
+from hongloumeng_discovery_scope import excluded_file as excluded_hongloumeng_file, excluded_url as excluded_hongloumeng_url
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -85,17 +86,28 @@ def main() -> int:
     for page in sorted(ROOT.rglob("*.html")):
         if ".git" in page.parts:
             continue
+        if excluded_hongloumeng_file(ROOT, page):
+            continue
         text = page.read_text(encoding="utf-8", errors="replace")
         canonical = ""
+        blocked = False
 
         def replace_tag(match: re.Match[str]) -> str:
-            nonlocal canonical
+            nonlocal canonical, blocked
             tag = match.group(0)
             result = discovery_value(tag)
             if result is None:
                 return tag
             attribute, current = result
+            if excluded_hongloumeng_url(current):
+                errors.append(f"{page.relative_to(ROOT)}: discovery URL is outside the public reading allowlist: {current}")
+                blocked = True
+                return tag
             normalized = normalized_url(current)
+            if excluded_hongloumeng_url(normalized):
+                errors.append(f"{page.relative_to(ROOT)}: discovery URL is outside the public reading allowlist: {current}")
+                blocked = True
+                return tag
             if 'rel="canonical"' in tag.lower():
                 canonical = normalized
             if normalized == current:
@@ -106,6 +118,8 @@ def main() -> int:
             return tag.replace(f'{attribute}="{current}"', f'{attribute}="{normalized}"', 1)
 
         updated = DISCOVERY_TAG_RE.sub(replace_tag, text)
+        if blocked:
+            continue
         if not args.check and updated != text:
             page.write_text(updated, encoding="utf-8")
         if canonical and not is_external_redirect(updated, canonical):
