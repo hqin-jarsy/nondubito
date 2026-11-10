@@ -15,6 +15,10 @@ jobs:
           python-version: '3.12'
       - run: python -B -m unittest discover -s scripts -p test_web_analytics.py
       - run: python -B scripts/check_web_analytics.py
+      - run: python -B scripts/build_hongloumeng_first80_traditional.py --check
+      - run: python -B scripts/test_hongloumeng_first80_traditional.py
+      - run: python -B scripts/test_hongloumeng_reading_traditional.py
+      - run: python -B scripts/test_hongloumeng_reading.py
       - run: python -B -m unittest discover -s scripts -p test_epic_full_editions.py
       - run: python -B scripts/build_epic_full_editions.py --check
       - run: python -B -m unittest discover -s scripts -p test_ancient_full_editions.py

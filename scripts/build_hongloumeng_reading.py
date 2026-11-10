@@ -2,7 +2,7 @@
 """Build the standalone reading edition using only public, allowlisted inputs.
 
 Draft example:
-  python3 -B scripts/build_hongloumeng_reading.py --mode draft --output ./reading-preview
+  python3 -B scripts/build_hongloumeng_reading.py --mode draft --output data/hongloumeng/first80/qa/reading-preview
 Release requires an explicit, hash-bound approval file and finalized input status.
 This renderer never reads editorial records or changes the text.
 """
@@ -14,6 +14,7 @@ import json
 import re
 import stat
 import sys
+import tempfile
 from pathlib import Path
 from urllib.parse import urlsplit
 from web_analytics import tracked_html
@@ -27,11 +28,63 @@ E = html.escape
 ASSET_HASHES = {'fonts/ARPHICPL.TXT': '5590533436c70f10f2f524ee61456238c290175c6662fbe1c700b5f038a6d328', 'fonts/FONT-NOTICE.txt': '34dad42e5094f1929adf71e1e725ee116ac6879e66f5aa2a8ae0323c7800dfac', 'fonts/nd-hlm-24aeb.woff2': 'e706e1976f4b579aa359ee3437e655cd27ce13776b4df1786fd03b13c82a9488'}
 ASSETS_SHA256 = 'daee7ed1cab3d8eb1b2495079f601105601ea7d67db0a9fbcf576ebae19b7e5f'
 
+
+OUTPUT_NAMES = frozenset(('index.html', 'edition.html', *(f'ch{n:03d}.html' for n in range(1,81)), 'reader.css', 'reader.js', *ASSET_HASHES))
+
+
+def checked_input_paths(paths):
+    """Validate the entire read set before reading any bytes; reject file aliases."""
+    paths = [Path(path).absolute() for path in paths]
+    for path in paths:
+        if '..' in path.parts:
+            raise ValueError('Input path must not contain parent traversal')
+        for ancestor in reversed((path, *path.parents)):
+            info = ancestor.lstat()
+            if stat.S_ISLNK(info.st_mode):
+                alias = sys.platform == 'darwin' and ancestor != path and str(ancestor) in ('/tmp', '/var')
+                if not (alias and ancestor.resolve() == Path('/private') / ancestor.relative_to('/')):
+                    raise ValueError('Input path must not contain a symlink: ' + str(ancestor))
+                info = ancestor.stat()
+            if ancestor == path:
+                if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+                    raise ValueError('Input must be a singly linked regular file: ' + str(path))
+            elif not stat.S_ISDIR(info.st_mode):
+                raise ValueError('Input ancestor must be a directory: ' + str(ancestor))
+    return paths
+
+
+
+def checked_public_directory(public_dir):
+    """Repository reads are public-only; independent replay uses system temp."""
+    directory = Path(public_dir).absolute()
+    if '..' in directory.parts:
+        raise ValueError('Input path must not contain parent traversal')
+    physical = directory.resolve()
+    repository = ROOT.resolve()
+    if physical == repository or repository in physical.parents:
+        if physical != repository / 'data/hongloumeng/first80-public':
+            raise ValueError('Repository input must be the exact public reading directory')
+    elif not any(folder in physical.parents for folder in {Path(tempfile.gettempdir()).resolve(), Path('/tmp').resolve()}):
+        raise ValueError('Independent public input must be inside a system temporary directory')
+
+
+def preflight_inputs(public_dir, language='zh-Hans'):
+    checked_public_directory(public_dir)
+    names = ['reading.zh.json', 'manifest.json', *ASSET_HASHES]
+    if language == 'zh-Hant':
+        names += ['reading.zh-hant.json', 'manifest.zh-hant.json']
+    elif language != 'zh-Hans':
+        raise ValueError('Unsupported reading language')
+    checked_input_paths(Path(public_dir) / name for name in names)
+
+
 def as_bytes(content):
     return content if isinstance(content, bytes) else content.encode('utf-8')
 
 
 def load_assets(public_dir=PUBLIC):
+    checked_public_directory(public_dir)
+    checked_input_paths(Path(public_dir) / name for name in ASSET_HASHES)
     folder = Path(public_dir) / 'fonts'
     actual = {str(p.relative_to(public_dir)) for p in folder.rglob('*') if p.is_file()}
     if actual != set(ASSET_HASHES):
@@ -63,9 +116,11 @@ def counts(chapter):
                 diagram_line_count=sum(b['kind'] == 'diagram' for b in blocks))
 
 
-def validate(reading, manifest, raw):
+def validate(reading, manifest, raw, language="zh-Hans"):
+    if language not in ("zh-Hans", "zh-Hant"):
+        raise ValueError("Unsupported reading language")
     exact_keys(reading, ('schema_version', 'title', 'language', 'chapters'))
-    if reading['schema_version'] != 1 or reading['language'] != 'zh-Hans':
+    if reading['schema_version'] != 1 or reading['language'] != language:
         raise ValueError('Unsupported reading schema')
     if not isinstance(reading['title'], str) or not reading['title']:
         raise ValueError('Missing edition title')
@@ -133,6 +188,8 @@ def validate(reading, manifest, raw):
 
 
 def load(public_dir=PUBLIC):
+    public_dir = Path(public_dir)
+    preflight_inputs(public_dir)
     raw = (public_dir / 'reading.zh.json').read_bytes()
     return validate(json.loads(raw), json.loads((public_dir / 'manifest.json').read_bytes()), raw)
 
@@ -142,6 +199,7 @@ def release_gate(manifest, approval_path):
         raise ValueError('Release blocked: text is not finalized')
     if approval_path is None:
         raise ValueError('Release blocked: explicit hash-bound approval required')
+    checked_input_paths([approval_path])
     approval = json.loads(Path(approval_path).read_text(encoding='utf-8'))
     exact_keys(approval, ('action', 'text_version', 'reading_sha256', 'body_sha256', 'boundaries_finalized', 'approved', 'assets_sha256'))
     expected = dict(action='publish-hongloumeng-first80', text_version=manifest['text_version'],
@@ -168,7 +226,7 @@ def shell(title, description, content, filename, draft, edition):
 <html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{robots}<title>{E(title)} — Non Dubito</title><meta name="description" content="{E(description)}">{canonical}<link rel="stylesheet" href="reader.css"><script defer src="reader.js"></script></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><a class="brand" href="index.html">Non <span>Dubito</span></a><nav aria-label="阅读导航"><a href="index.html">前八十回</a><a href="edition.html">版本说明</a></nav>{badge}</header><main id="main" tabindex="-1">{content}</main><footer><p>红楼梦 · {E(edition)}</p></footer></body></html>'''
 
 
-def render(reading, manifest, mode='draft', assets=None):
+def render(reading, manifest, mode='draft', assets=None, bilingual=False):
     if mode not in ('draft', 'release'):
         raise ValueError('Explicit draft or release mode required')
     draft = mode == 'draft'
@@ -197,11 +255,37 @@ def render(reading, manifest, mode='draft', assets=None):
     pages['reader.css'] = CSS
     pages['reader.js'] = JS
     pages.update(load_assets() if assets is None else assets)
+    if bilingual:
+        pages = add_language_links(pages, 'zh-Hans', draft)
     return pages
 
 
+def add_language_links(pages, language, draft):
+    """Add only the two actually available Chinese editions, preserving body bytes."""
+    if language not in ('zh-Hans', 'zh-Hant'):
+        raise ValueError('Unsupported reading language')
+    result = dict(pages)
+    up = '../' if language == 'zh-Hant' else ''
+    for filename, source in pages.items():
+        if not filename.endswith('.html'):
+            continue
+        menu = '<nav class="language-switch" aria-label="Languages">'
+        alternatives = ''
+        for code, directory, label in (('zh-Hans', '', '简体中文'), ('zh-Hant', 'zh-hant/', '繁體中文')):
+            current = ' aria-current="page"' if code == language else ''
+            menu += f'<a href="{up+directory+filename}" lang="{code}"{current}>{label}</a>'
+            url = CANONICAL + directory + ('' if filename == 'index.html' else filename)
+            alternatives += f'<link rel="alternate" hreflang="{code}" href="{url}">'
+        menu += '</nav>'
+        if not draft:
+            alternatives += f'<link rel="alternate" hreflang="x-default" href="{CANONICAL+("" if filename == "index.html" else filename)}">'
+            source = source.replace('</head>', alternatives+'</head>')
+        source = source.replace('</header><main id="main"', menu+'</header><main id="main"', 1)
+        result[filename] = source
+    return result
 
-def plan_output(public_dir, output, mode, filenames):
+
+def plan_output(public_dir, output, mode, filenames, language=None):
     """Validate every destination before any mkdir/write; never follow output links.
 
     Output links are rejected, including links in parent directories. The two
@@ -209,6 +293,24 @@ def plan_output(public_dir, output, mode, filenames):
     resolve to their exact /private counterparts, never as the output root.
     This is a preflight for a local build, not a lock against concurrent mutation.
     """
+    if mode not in ('draft', 'release'):
+        raise ValueError('Explicit draft or release mode required')
+    if set(filenames) != OUTPUT_NAMES:
+        raise ValueError('Output filenames differ from the explicit reader allowlist')
+    if isinstance(filenames, dict):
+        detected = set()
+        for name, source in filenames.items():
+            if name.endswith('.html'):
+                match = re.search(r'<html lang="(zh-Hans|zh-Hant)">', as_bytes(source).decode('utf-8'))
+                if not match:
+                    raise ValueError('Missing output language')
+                detected.add(match[1])
+        if len(detected) != 1 or (language is not None and language not in detected):
+            raise ValueError('Mixed or mismatched output language')
+        language = detected.pop()
+    language = language or 'zh-Hans'
+    if language not in ('zh-Hans', 'zh-Hant'):
+        raise ValueError('Unsupported output language')
     output = Path(output).absolute()
     if '..' in output.parts:
         raise ValueError('Output path must not contain parent traversal')
@@ -241,6 +343,22 @@ def plan_output(public_dir, output, mode, filenames):
 
     directories(output)
     physical = output.resolve()
+    repository = ROOT.resolve()
+    expected = repository / 'classics/hongloumeng'
+    if language == 'zh-Hant':
+        expected /= 'zh-hant'
+    qa = repository / 'data/hongloumeng/first80/qa'
+    if physical == repository or repository in physical.parents:
+        if mode == 'release' and physical == expected:
+            pass
+        elif qa in physical.parents:
+            pass
+        else:
+            raise ValueError('Output is outside the exact language production root or private QA directory')
+    else:
+        temporary_roots = {Path(tempfile.gettempdir()).resolve(), Path('/tmp').resolve()}
+        if not any(folder in physical.parents for folder in temporary_roots):
+            raise ValueError('Independent output must be inside a system temporary directory')
     protected_target(physical)
     destinations = {}
     for filename in filenames:
@@ -260,13 +378,21 @@ def plan_output(public_dir, output, mode, filenames):
     return output, destinations
 
 
-def build(public_dir, output, mode, approval=None):
+def build(public_dir, output, mode, approval=None, bilingual=False, traditional_approval=None):
+    plan_output(public_dir, output, mode, OUTPUT_NAMES, language='zh-Hans')
+    preflight_inputs(public_dir, 'zh-Hant' if bilingual else 'zh-Hans')
+    checked_input_paths([p for p in (approval, traditional_approval) if p is not None])
     reading, manifest = load(public_dir)
     if mode == 'release':
         release_gate(manifest, approval)
     elif mode != 'draft':
         raise ValueError('Explicit draft or release mode required')
-    pages = render(reading, manifest, mode, assets=load_assets(public_dir))
+    if bilingual and mode == 'release':
+        import build_hongloumeng_reading_traditional as traditional
+        _, traditional_manifest = traditional.load(public_dir)
+        traditional.source_gate(public_dir)
+        traditional.release_gate(traditional_manifest, traditional_approval)
+    pages = render(reading, manifest, mode, assets=load_assets(public_dir), bilingual=bilingual)
     output, destinations = plan_output(public_dir, output, mode, pages)
     output.mkdir(parents=True, exist_ok=True)
     for filename, content in pages.items():
@@ -282,9 +408,11 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--mode', choices=('draft', 'release'), required=True)
     parser.add_argument('--release-approval', type=Path)
+    parser.add_argument('--traditional-release-approval', type=Path)
+    parser.add_argument('--bilingual', action='store_true', help='Add links to the verified Traditional edition')
     args = parser.parse_args()
     try:
-        pages = build(args.input, args.output, args.mode, args.release_approval)
+        pages = build(args.input, args.output, args.mode, args.release_approval, args.bilingual, args.traditional_release_approval)
     except (ValueError, OSError, KeyError, TypeError) as error:
         parser.error(str(error))
     print(f'Built {sum(name.endswith(".html") for name in pages)} HTML pages + CSS/JS + {len(ASSET_HASHES)} font/license assets in {args.mode} mode: {args.output}')

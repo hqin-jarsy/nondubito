@@ -69,7 +69,15 @@ def first80_publication_date():
                  if item['id'] == FIRST80_UPDATE_ID), None)
 
 
-def render(*, include_first80=None, first80_date=None):
+def first80_traditional_published():
+    ledger = json.loads((ROOT/'data/site-updates.json').read_text())
+    return any(item['id'] == FIRST80_UPDATE_ID and 'zh-hant' in item.get('languages', [])
+               for item in ledger['updates'])
+
+
+def render(*, include_first80=None, first80_date=None, include_traditional=None):
+    if include_traditional is None:
+        include_traditional = first80_traditional_published()
     if include_first80 is None:
         first80_date = first80_date or first80_publication_date()
         include_first80 = first80_date is not None
@@ -103,6 +111,14 @@ def render(*, include_first80=None, first80_date=None):
             desc = text('《红楼梦》前八十回“大知校正庚辰版”中文正文、人物回顾、散文导读与研究论文；另列秦汉原创续写，目前可读第八十一至八十五回。', 'The first eighty chapters in the Chinese Dazhi Revised Gengchen Edition, character essays, reader essays and research. Han Qin’s original continuation is listed separately; chapters 81–85 are available.')
             first80_navigation = a('#first80',t('前八十回正文','The first eighty chapters'))
             first80_section = f'''<section id="first80"><p class="eyebrow">{t('原著阅读 · 前八十回','THE NOVEL · CHAPTERS 1–80')}</p><h2>{t('大知校正庚辰版','Dazhi Revised Gengchen Edition')}</h2><p>{t('这里阅读的是《红楼梦》前八十回原著正文，由秦汉校正整理；与第八十一回起的秦汉原创续写分开编排。', 'Read the first eighty chapters of Dream of the Red Chamber, edited by Han Qin. This edition of the original novel is separate from Han Qin’s new fiction beginning with chapter 81.')}</p><p class="edition-note">{t('本版目前仅提供简体中文正文；外语翻译尚未发布。繁体与英文专题入口中的下列链接均转至简体中文读页。', 'This reading edition is available in Simplified Chinese only. Translations are not yet published; the links below open the Chinese text.')}</p><div class="featured">{a(base+'classics/hongloumeng/index.html',t('前八十回 · 回目目录','Chapters 1–80 · Chinese contents'))}{a(base+'classics/hongloumeng/ch001.html',t('从第一回开始','Start chapter 1 · Chinese'))}{a(base+'classics/hongloumeng/edition.html',t('版本说明','About the edition'))}</div></section>'''
+            if include_traditional:
+                old_note = t('本版目前仅提供简体中文正文；外语翻译尚未发布。繁体与英文专题入口中的下列链接均转至简体中文读页。', 'This reading edition is available in Simplified Chinese only. Translations are not yet published; the links below open the Chinese text.')
+                new_note = t('本版已有简体与繁体中文正文；外语翻译尚未发布。前八十回原著与第八十一回起的原创续写分别编排。', 'This reading edition is available in Simplified and Traditional Chinese. Foreign-language translations are not yet published. The original chapters 1–80 are separate from Han Qin’s continuation beginning with chapter 81.')
+                first80_section = first80_section.replace(old_note, new_note)
+                if lang == 'zh-hant':
+                    first80_section = first80_section.replace('classics/hongloumeng/', 'classics/hongloumeng/zh-hant/')
+                language_links = a(base+'classics/hongloumeng/index.html', '简体中文') + a(base+'classics/hongloumeng/zh-hant/index.html', '繁體中文')
+                first80_section = first80_section.replace('</div></section>', language_links+'</div></section>')
         canonical = ORIGIN+directory
         alternatives = ''.join(f'<link rel="alternate" hreflang="{c}" href="{ORIGIN+d}">' for d,c,_ in EDITIONS.values())
         alternatives += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN}">'

@@ -3,7 +3,11 @@ const {chromium}=require('playwright');
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
 const mode=process.env.HLM_READING_MODE||'draft';
 assert.ok(['draft','release'].includes(mode),'HLM_READING_MODE must be draft or release');
-const canonicalRoot='https://nondubito.net/classics/hongloumeng/';
+const language=process.env.HLM_READING_LANGUAGE||'zh-Hans';
+assert.ok(['zh-Hans','zh-Hant'].includes(language));
+const traditional=language==='zh-Hant';
+const bilingual=traditional||process.env.HLM_READING_BILINGUAL==='1';
+const canonicalRoot='https://nondubito.net/classics/hongloumeng/'+(traditional?'zh-hant/':'');
 const beaconURL='https://static.cloudflareinsights.com/beacon.min.js';
 const beaconToken='1c920752456e42b5b5469641245a07c2';
 function assertPublicationMetadata(metadata,file,selectedMode){
@@ -28,8 +32,8 @@ function assertPublicationMetadata(metadata,file,selectedMode){
 }
 const root=path.resolve(__dirname,'..');
 const input=path.join(root,'data/hongloumeng/first80-public');
-const reading=JSON.parse(fs.readFileSync(path.join(input,'reading.zh.json')));
-const manifest=JSON.parse(fs.readFileSync(path.join(input,'manifest.json')));
+const reading=JSON.parse(fs.readFileSync(path.join(input,traditional?'reading.zh-hant.json':'reading.zh.json')));
+const manifest=JSON.parse(fs.readFileSync(path.join(input,traditional?'manifest.zh-hant.json':'manifest.json')));
 if(mode==='release')assert.equal(manifest.status,'finalized','Release QA requires finalized inputs');
 const base=process.env.HLM_READING_BASE||'http://127.0.0.1:8793';
 assert.ok(['127.0.0.1','localhost'].includes(new URL(base).hostname),'Local previews only');
@@ -41,7 +45,7 @@ const classes=b=>[b.kind,...[['first','layout-first'],['last','layout-last'],['h
 (async()=>{
   fs.mkdirSync(out,{recursive:true});
   const browser=await chromium.launch({headless:true,channel:'chrome'});
-  const report={status:'running',mode,browser_version:browser.version(),reading_sha256:manifest.reading_sha256,body_sha256:manifest.body_sha256,assets_sha256:manifest.build.assets_sha256,checks:[],screenshots:[],errors:[],blocked_requests:[],stubbed_analytics_requests:0,scope:'Automated DOM, controls, navigation, privacy attributes and responsive geometry. Screenshot inspection is recorded separately; not a full human proofread.'};
+  const report={status:'running',mode,language,browser_version:browser.version(),reading_sha256:manifest.reading_sha256,body_sha256:manifest.body_sha256,assets_sha256:manifest.build.assets_sha256,checks:[],screenshots:[],errors:[],blocked_requests:[],stubbed_analytics_requests:0,scope:'Automated DOM, controls, navigation, privacy attributes and responsive geometry. Screenshot inspection is recorded separately; not a full human proofread.'};
   const contexts=[];
   async function context(options={}){
     const ctx=await browser.newContext({reducedMotion:'reduce',...options});contexts.push(ctx);
@@ -66,6 +70,12 @@ const classes=b=>[b.kind,...[['first','layout-first'],['last','layout-last'],['h
       for(const file of pages){
         assert.equal((await go(file)).status(),200);
         assert.equal(await page.locator('h1').count(),1);
+        assert.equal(await page.locator('html').getAttribute('lang'),language);
+        if(bilingual){
+          assert.equal(await page.locator('.language-switch a').count(),2);
+          assert.equal(await page.locator('.language-switch [aria-current=page]').getAttribute('lang'),language);
+          if(mode==='release')assert.deepEqual(await page.locator('link[rel=alternate]').evaluateAll(nodes=>nodes.map(n=>n.hreflang)),['zh-Hans','zh-Hant','x-default']);
+        }
         const metadata=await page.evaluate(()=>({
           robots:[...document.querySelectorAll('meta[name="robots"],meta[name="googlebot"]')].map(n=>n.content),
           canonicals:[...document.querySelectorAll('link[rel="canonical"]')].map(n=>n.getAttribute('href')),
@@ -94,11 +104,23 @@ const classes=b=>[b.kind,...[['first','layout-first'],['last','layout-last'],['h
     for(const [query,count] of [['第六回',1],['80',1],['不存在的回目',0],['',80]]){
       await search.fill(query);assert.equal(await page.locator('[data-chapter]:visible').count(),count);
     }
-    await search.fill('宝玉');assert.ok(await page.locator('[data-chapter]:visible').count()>1);
+    await search.fill(traditional?'寶玉':'宝玉');assert.ok(await page.locator('[data-chapter]:visible').count()>1);
     await search.fill('');
     await page.reload();await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.className),'skip');
     await page.keyboard.press('Enter');assert.equal(await page.evaluate(()=>document.activeElement.id),'main');
     await go('ch001.html');
+    if(bilingual){
+      const opposite=traditional?'zh-Hans':'zh-Hant';
+      await page.locator('.language-switch a[lang="'+opposite+'"]').click();
+      await page.waitForLoadState();
+      assert.equal(await page.locator('html').getAttribute('lang'),opposite);
+      await page.locator('.language-switch a[lang="'+language+'"]').click();
+      await page.waitForURL(base+'/ch001.html');
+      assert.equal(await page.locator('html').getAttribute('lang'),language);
+      await page.goBack();await page.waitForLoadState();
+      assert.equal(await page.locator('html').getAttribute('lang'),opposite);
+      await page.goForward();await page.waitForURL(base+'/ch001.html');
+    }
     const size=()=>page.locator('.novel-text').evaluate(n=>parseFloat(getComputedStyle(n).fontSize));
     const defaultSize=await size();assert.equal(defaultSize,19);
     await page.locator('[data-font=plus]').focus();await page.keyboard.press('Enter');assert.equal(await size(),20);
@@ -156,6 +178,26 @@ const classes=b=>[b.kind,...[['first','layout-first'],['last','layout-last'],['h
       {file:'ch019.html',name:'quote-mouse-19',text:'这个不难，等我变来。',anchorText:'这个不难，等我变来。'},
       {file:'ch033.html',name:'quote-mother-33',text:'倘或老太太一时不自在了，岂不事大！',anchorText:'倘或老太太一时不自在了，岂不事大！'}
     ];
+    if(traditional){
+      const original=JSON.parse(fs.readFileSync(path.join(input,'reading.zh.json')));
+      for(const sample of samples){
+        if(!sample.text&&!sample.exactText)continue;
+        const index=Number(sample.file.slice(2,5))-1;
+        const position=original.chapters[index].blocks.findIndex(b=>sample.exactText?b.text===sample.exactText:b.text.includes(sample.text));
+        assert.ok(position>=0,'Screenshot source position: '+sample.name);
+        const source=original.chapters[index].blocks[position].text;
+        const target=reading.chapters[index].blocks[position].text;
+        const needle=sample.anchorText||sample.exactText||sample.text;
+        const offset=source.indexOf(needle);
+        assert.ok(offset>=0);
+        const start=Array.from(source.slice(0,offset)).length;
+        const length=Array.from(needle).length;
+        assert.equal(Array.from(source).length,Array.from(target).length,'Script conversion preserves character positions');
+        sample.text=target;
+        sample.anchorText=Array.from(target).slice(start,start+length).join('');
+        delete sample.exactText;
+      }
+    }
     for(const width of [1440,390]){
       await page.setViewportSize({width,height:1000});
       for(const sample of samples){

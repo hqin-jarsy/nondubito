@@ -11,10 +11,11 @@ def private_path(relative: Path) -> bool:
 
 
 def excluded(relative: Path) -> bool:
-    if private_path(relative):
+    if '..' in relative.parts or private_path(relative):
         return True
     if relative.parts[:2] == ('classics', 'hongloumeng'):
-        return len(relative.parts) != 3 or relative.name not in PUBLIC_HTML
+        return not (relative.name in PUBLIC_HTML and (len(relative.parts) == 3 or
+                    len(relative.parts) == 4 and relative.parts[2] == 'zh-hant'))
     return False
 
 
@@ -23,7 +24,9 @@ def excluded_file(root: Path, path: Path) -> bool:
     root, path = root.absolute(), path.absolute()
     try:
         relative = path.relative_to(root)
-        if excluded(relative):
+        if '..' in relative.parts or excluded(relative):
+            return True
+        if not path.is_file() or path.stat().st_nlink != 1:
             return True
         actual = path.resolve(strict=True).relative_to(root.resolve(strict=True))
     except (OSError, RuntimeError, ValueError):
@@ -70,7 +73,7 @@ def excluded_url(value):
     for name in (original, normalized):
         relative = Path(name)
         # Directory canonicals refer to the explicitly public contents page.
-        if relative == Path('classics/hongloumeng'):
+        if relative in (Path('classics/hongloumeng'), Path('classics/hongloumeng/zh-hant')):
             relative /= 'index.html'
         if excluded(relative):
             return True

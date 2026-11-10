@@ -154,14 +154,20 @@ def path_output_regressions(inputs, pages):
         # Canonicalize the fixture root, while clean-tree CLI replay also tests
         # the platform's ordinary tempfile path (macOS /var ancestor alias).
         root = Path(tmp).resolve()
+        local_inputs = root/'public-inputs'
+        local_inputs.mkdir()
+        for name in ('reading.zh.json','manifest.json',*renderer.ASSET_HASHES):
+            target=local_inputs/name; target.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(inputs/name,target)
+        inputs=local_inputs
         for case in cases:
             fixture = root / case
             scripts = fixture / 'scripts'
             scripts.mkdir(parents=True)
             for name in ('build_hongloumeng_reading.py', 'web_analytics.py'):
                 shutil.copyfile(Path(__file__).parent / name, scripts / name)
-            output = fixture / 'preview'
-            output.mkdir()
+            output = fixture / 'data/hongloumeng/first80/qa/preview'
+            output.mkdir(parents=True)
             for name in pages:
                 target = output / name
                 target.parent.mkdir(parents=True, exist_ok=True)
@@ -284,19 +290,19 @@ def main():
             for name in ('reading.zh.json','manifest.json', *renderer.ASSET_HASHES):
                 (inputs/name).parent.mkdir(parents=True,exist_ok=True)
                 shutil.copyfile(args.input/name, inputs/name)
-            output = root/'preview'
+            output = root/'data/hongloumeng/first80/qa/preview'
             build = subprocess.run([sys.executable,'-B',str(scripts/'build_hongloumeng_reading.py'),'--mode','draft','--output',str(output)],capture_output=True,text=True)
             assert build.returncode == 0, build.stdout+build.stderr
             run = subprocess.run([sys.executable,'-B',str(scripts/'test_hongloumeng_reading.py'),'--output',str(output),'--skip-replay'],capture_output=True,text=True)
             assert run.returncode == 0, run.stdout+run.stderr
             for name,text in pages.items():
                 assert (output/name).read_bytes() == renderer.as_bytes(text), 'Isolated replay differs: '+name
-            blocked = subprocess.run([sys.executable,'-B',str(scripts/'build_hongloumeng_reading.py'),'--mode','release','--output',str(root/'must-not-exist')],capture_output=True,text=True)
+            blocked = subprocess.run([sys.executable,'-B',str(scripts/'build_hongloumeng_reading.py'),'--mode','release','--output',str(root/'data/hongloumeng/first80/qa/must-not-exist')],capture_output=True,text=True)
             expected_refusal = 'text is not finalized' if manifest['status'] != 'finalized' else 'explicit hash-bound approval required'
             assert blocked.returncode != 0 and expected_refusal in blocked.stderr
-            assert not (root/'must-not-exist').exists()
-            missing_mode = subprocess.run([sys.executable,'-B',str(scripts/'build_hongloumeng_reading.py'),'--output',str(root/'must-not-exist')],capture_output=True,text=True)
-            assert missing_mode.returncode != 0 and not (root/'must-not-exist').exists()
+            assert not (root/'data/hongloumeng/first80/qa/must-not-exist').exists()
+            missing_mode = subprocess.run([sys.executable,'-B',str(scripts/'build_hongloumeng_reading.py'),'--output',str(root/'data/hongloumeng/first80/qa/must-not-exist')],capture_output=True,text=True)
+            assert missing_mode.returncode != 0 and not (root/'data/hongloumeng/first80/qa/must-not-exist').exists()
             approval = root/'release-approval.json'
             data = dict(action='publish-hongloumeng-first80',text_version=finalized['text_version'],reading_sha256=finalized['reading_sha256'],body_sha256=finalized['body_sha256'],boundaries_finalized=True,approved=True,assets_sha256=finalized['build']['assets_sha256'])
             approval.write_text(json.dumps(data))

@@ -1,0 +1,59 @@
+ND HLM Rare — single-character webfont
+
+Modified 2026-11-10 for Non Dubito: subset to U+24AEB only, rename family to ND HLM Rare, convert to WOFF2. Glyph outlines are unchanged. Licensed under the original Arphic Public License. No warranty.
+
+Original font: BabelStone Han 16.0.3 (2025-01-01), by Andrew West,
+based on Arphic Technology's original public fonts.
+(c) Copyright 1994-1999, Arphic Technology Co., Ltd.; (c) Copyright 2009-2025, Andrew West.
+Official project: https://www.babelstone.co.uk/Fonts/Han.html
+Official versioned download: https://www.babelstone.co.uk/Fonts/Download/BabelStoneHan-16.0.3.zip
+Original ZIP SHA256: 6a928e436ee52d1857c32b5e4d5e71f4f0a9d13ccf660fc4f1ff08df930e12dc
+Original BabelStoneHan.ttf SHA256: d8bb747b3fdccd84a60bd0aa56bb90937270d0bd15f1101cd8f2a5a3709dd0a3
+Subset SHA256: e706e1976f4b579aa359ee3437e655cd27ce13776b4df1786fd03b13c82a9488
+License: original Arphic Public License, reproduced verbatim from the original
+font's name-table license field in ARPHICPL.TXT and retained inside this font.
+The font modification is freely available under that same license. This
+license applies to the font, not the independent text or reader code.
+
+Only U+24AEB (𤫫) is mapped. The original glyph outlines are not modified.
+The typeface has been renamed to ND HLM Rare; it is not the full original font.
+No proprietary system font is included. No system installation is needed.
+
+Reproduction uses fontTools 4.60.2 with WOFF2/brotli support.
+Place the verified original BabelStoneHan.ttf in the working directory and run:
+
+python3 - <<'PYFONT'
+from pathlib import Path
+from hashlib import sha256
+from fontTools import subset
+from fontTools.ttLib import TTFont
+source = Path("BabelStoneHan.ttf")
+if sha256(source.read_bytes()).hexdigest() != "d8bb747b3fdccd84a60bd0aa56bb90937270d0bd15f1101cd8f2a5a3709dd0a3":
+    raise ValueError("Original font checksum mismatch")
+font = TTFont(source, recalcTimestamp=False)
+options = subset.Options()
+options.name_IDs = ["*"]
+options.name_languages = ["*"]
+options.layout_features = []
+options.notdef_glyph = True
+options.notdef_outline = True
+subsetter = subset.Subsetter(options=options)
+subsetter.populate(unicodes=[0x24AEB])
+subsetter.subset(font)
+names = {1: 'ND HLM Rare', 2: 'Regular', 3: 'NonDubito-HLM-Rare-U24AEB-20261110', 4: 'ND HLM Rare Regular', 5: 'Version 1.000; U24AEB subset from 16.0.3', 6: 'NDHLMRare-Regular', 10: 'Modified 2026-11-10 for Non Dubito: subset to U+24AEB only, rename family to ND HLM Rare, convert to WOFF2. Glyph outlines are unchanged. Licensed under the original Arphic Public License. No warranty.', 16: 'ND HLM Rare', 17: 'Regular', 18: 'ND HLM Rare Regular', 21: 'ND HLM Rare', 22: 'Regular'}
+for record in font["name"].names:
+    if record.nameID in names:
+        record.string = names[record.nameID].encode(record.getEncoding())
+for ident, text in names.items():
+    font["name"].setName(text, ident, 3, 1, 0x409)
+font.flavor = "woff2"
+font.recalcTimestamp = False
+font.save("nd-hlm-24aeb.woff2")
+font.close()
+if sha256(Path("nd-hlm-24aeb.woff2").read_bytes()).hexdigest() != "e706e1976f4b579aa359ee3437e655cd27ce13776b4df1786fd03b13c82a9488":
+    raise ValueError("Subset checksum mismatch")
+PYFONT
+
+The command retains the original copyright and license records. Reproduce
+with the recorded fontTools version and WOFF2 encoder; normal reader builds
+use the prepared WOFF2 and require no fontTools or font installation.

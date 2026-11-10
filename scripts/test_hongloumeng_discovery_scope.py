@@ -246,5 +246,35 @@ class DiscoveryScopeTests(unittest.TestCase):
                 self.assertEqual(chunks['zh-Hant'][0]['t'], 'PUBLIC_TRANSLATED_TITLE')
 
 
+    def test_traditional_exact_routes_classification_and_url_boundaries(self):
+        prefix = Path('classics/hongloumeng/zh-hant')
+        for name in PUBLIC_HTML:
+            relative = prefix/name
+            self.assertFalse(excluded(relative))
+            self.assertFalse(excluded_url('https://nondubito.net/'+relative.as_posix()))
+            expected = 'series-index' if name == 'index.html' else 'site-page' if name == 'edition.html' else 'novel-chapter'
+            self.assertEqual(registry.infer_record_type(relative), expected)
+            self.assertEqual(registry.infer_domain(relative), 'stories')
+        self.assertFalse(excluded_url('https://nondubito.net/classics/hongloumeng/zh-hant/'))
+        for name in ('ch000.html', 'ch081.html', 'review.html', 'ch001 2.html', 'en/ch001.html', '../ch001.html'):
+            self.assertTrue(excluded(prefix/name))
+            self.assertTrue(excluded_url('https://nondubito.net/'+(prefix/name).as_posix()))
+        for value in ('/classics/hongloumeng/zh-hant/%2e%2e/ch001.html',
+                      '/data/hongloumeng/first80/../../../classics/hongloumeng/zh-hant/ch001.html'):
+            self.assertTrue(excluded_url(value))
+
+    def test_hardlinked_private_file_never_enters_collectors(self):
+        import os
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            self.fixture(root)
+            target = root/'classics/hongloumeng/zh-hant/ch001.html'
+            target.parent.mkdir()
+            os.link(root/'data/hongloumeng/first80/secret.html', target)
+            self.assertTrue(excluded_file(root, target))
+            with patch.object(search, 'ROOT', root):
+                self.assertNotIn(target, search.collect_pages())
+
+
 if __name__ == '__main__':
     unittest.main()

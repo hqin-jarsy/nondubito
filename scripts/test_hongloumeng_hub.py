@@ -19,7 +19,7 @@ class Nodes(HTMLParser):
 
 class HubTests(unittest.TestCase):
     def test_first80_preview_keeps_original_and_continuation_separate(self):
-        pages = render(include_first80=True, first80_date='2026-11-10')
+        pages = render(include_first80=True, first80_date='2026-11-10', include_traditional=False)
         for lang, (directory, _, _) in EDITIONS.items():
             source = pages[TARGET/directory/'index.html']
             section = source.split('<section id="first80">')[1].split('</section>')[0]
@@ -32,6 +32,22 @@ class HubTests(unittest.TestCase):
             self.assertIn('Simplified Chinese only' if lang == 'en' else ('僅提供簡體中文正文' if lang == 'zh-hant' else '仅提供简体中文正文'), section)
             self.assertIn('Translations are not yet published' if lang == 'en' else ('外語翻譯尚未發佈' if lang == 'zh-hant' else '外语翻译尚未发布'), section)
             self.assertIn('edited by Han Qin' if lang == 'en' else ('由秦漢校正整理' if lang == 'zh-hant' else '由秦汉校正整理'), section)
+            continuation = source.split('<section id="continuation">')[1].split('</section>')[0]
+            self.assertEqual(continuation.count('<a '), 6)
+            self.assertNotIn('classics/hongloumeng/', continuation)
+
+    def test_bilingual_preview_routes_and_continuation_stay_separate(self):
+        pages = render(include_first80=True, first80_date='2026-11-10', include_traditional=True)
+        for lang, (directory, _, _) in EDITIONS.items():
+            source = pages[TARGET/directory/'index.html']
+            section = source.split('<section id="first80">')[1].split('</section>')[0]
+            links = [attrs['href'] for tag, attrs in Nodes(section).nodes if tag == 'a']
+            self.assertEqual(len(links), 5)
+            self.assertEqual('/zh-hant/' in links[0], lang == 'zh-hant')
+            self.assertTrue(links[-2].endswith('classics/hongloumeng/index.html'))
+            self.assertTrue(links[-1].endswith('classics/hongloumeng/zh-hant/index.html'))
+            self.assertNotIn('Simplified Chinese only', section)
+            self.assertNotIn('classics/hongloumeng/en/', source)
             continuation = source.split('<section id="continuation">')[1].split('</section>')[0]
             self.assertEqual(continuation.count('<a '), 6)
             self.assertNotIn('classics/hongloumeng/', continuation)

@@ -14,16 +14,20 @@ import html
 import json
 from pathlib import Path
 import re
+import stat
+import sys
 import xml.etree.ElementTree as ET
 import build_content_registry as registry
 import build_home_updates as home
 import build_search_index as search
 from build_sitemap import PageParser, sitemap_xml
-from hongloumeng_discovery_scope import PUBLIC_HTML, private_path, site_relative_url
+from hongloumeng_discovery_scope import PUBLIC_HTML, private_path, site_relative_url, site_url_path, excluded_url
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://nondubito.net/'
 PREFIX = 'classics/hongloumeng/'
+TRADITIONAL_PREFIX = PREFIX+'zh-hant/'
+READER_HTML = frozenset(prefix+name for prefix in (PREFIX, TRADITIONAL_PREFIX) for name in PUBLIC_HTML)
 UPDATE_ID = 'hongloumeng-first80-reading'
 BASE_FILES = PUBLIC_HTML | {'reader.css', 'reader.js'}
 FONT_ASSETS = frozenset(('fonts/nd-hlm-24aeb.woff2', 'fonts/ARPHICPL.TXT', 'fonts/FONT-NOTICE.txt'))
@@ -42,8 +46,21 @@ def checked_path(root, path, *, must_exist=True):
     """Controlled publication inputs/outputs may not be aliases or leave root."""
     root, path = Path(root).absolute(), Path(path).absolute()
     try:
-        if root.is_symlink():
-            raise ValueError('symlink publication root')
+        if '..' in root.parts:
+            raise ValueError('nonlocal publication root')
+        # Inspect lexical ancestors before resolve can erase a caller's alias.
+        # Match the reader's narrowly defined macOS system-directory exception.
+        for ancestor in reversed((root, *root.parents)):
+            info = ancestor.lstat()
+            if stat.S_ISLNK(info.st_mode):
+                system_alias = (sys.platform == 'darwin' and ancestor != root
+                                and str(ancestor) in ('/tmp', '/var')
+                                and ancestor.resolve() == Path('/private') / ancestor.relative_to('/'))
+                if not system_alias:
+                    raise ValueError('symlink publication root ancestor')
+                info = ancestor.stat()
+            if not stat.S_ISDIR(info.st_mode):
+                raise ValueError('publication root ancestor must be a directory')
         relative = path.relative_to(root)
         if '..' in relative.parts or private_path(relative):
             raise ValueError('private or nonlocal path')
@@ -52,6 +69,12 @@ def checked_path(root, path, *, must_exist=True):
             ancestor /= part
             if ancestor.is_symlink():
                 raise ValueError('symlink in selected path')
+            if ancestor.exists():
+                info = ancestor.stat()
+                if not stat.S_ISDIR(info.st_mode) and (not stat.S_ISREG(info.st_mode) or info.st_nlink != 1):
+                    raise ValueError('non-regular or hardlinked publication input')
+                if ancestor != path and not stat.S_ISDIR(info.st_mode):
+                    raise ValueError('non-directory publication ancestor')
         actual = path.resolve(strict=must_exist).relative_to(root.resolve(strict=True))
         if private_path(actual):
             raise ValueError('private target')
@@ -61,13 +84,16 @@ def checked_path(root, path, *, must_exist=True):
 
 
 def read_text(root, path):
-    return checked_path(root, path).read_text(encoding='utf-8')
+    path = checked_path(root, path)
+    if not path.is_file():
+        raise ValueError('Publication text must be a regular file')
+    return path.read_text(encoding='utf-8')
 
 
 def validate_write_paths(root, outputs):
     for path in outputs:
         path = checked_path(root, path)
-        if path.relative_to(root).as_posix() not in WRITABLE_FILES:
+        if not path.is_file() or path.relative_to(root).as_posix() not in WRITABLE_FILES:
             raise ValueError('Unexpected publication output path')
 
 
@@ -95,10 +121,21 @@ def validate_output_names(outputs):
     return names
 
 
-def validate_published_reader(root=ROOT, approval=None):
-    import build_hongloumeng_reading as builder
+def validate_published_reader(root=ROOT, approval=None, *, traditional_approval=None):
+    paths = validate_reader_edition(root, approval, bilingual=traditional_approval is not None)
+    if traditional_approval is not None:
+        paths += validate_reader_edition(root, traditional_approval, traditional=True, bilingual=True)
+    return paths
+
+
+def validate_reader_edition(root, approval, *, traditional=False, bilingual=False):
+    if traditional:
+        import build_hongloumeng_reading_traditional as builder
+    else:
+        import build_hongloumeng_reading as builder
+    prefix = TRADITIONAL_PREFIX if traditional else PREFIX
     public = root/'data/hongloumeng/first80-public'
-    for name in ('reading.zh.json', 'manifest.json', *FONT_ASSETS):
+    for name in (('reading.zh-hant.json', 'manifest.zh-hant.json') if traditional else ('reading.zh.json', 'manifest.json')) + tuple(FONT_ASSETS):
         checked_path(root, public/name)
     reading, manifest = builder.load(public)
     if manifest['status'] != 'finalized':
@@ -106,19 +143,32 @@ def validate_published_reader(root=ROOT, approval=None):
     expected_approval = {key: manifest[key] for key in ('text_version', 'reading_sha256', 'body_sha256')}
     expected_approval['assets_sha256'] = manifest['build']['assets_sha256']
     expected_approval['boundaries_finalized'] = True
-    if approval != expected_approval or type(approval.get('boundaries_finalized')) is not bool:
+    if traditional:
+        expected_approval.update(action='publish-hongloumeng-first80-traditional', approved=True)
+    if approval != expected_approval or type(approval.get('boundaries_finalized')) is not bool or (traditional and type(approval.get('approved')) is not bool):
         raise ValueError('Discovery blocked: explicit final hashes, version and resolved boundaries required')
+    if traditional:
+        builder.source_gate(public)
     assets = builder.load_assets(public)
-    outputs = builder.render(reading, manifest, mode='release', assets=assets)
+    options = {'bilingual': True} if bilingual else {}
+    outputs = builder.render(reading, manifest, mode='release', assets=assets, **options)
     allowed = validate_output_names(outputs)
-    target = checked_path(root, root/PREFIX)
-    if target.is_symlink() or not target.is_dir() or target.resolve() != root.resolve()/PREFIX:
+    target = checked_path(root, root/prefix)
+    if target.is_symlink() or not target.is_dir() or target.resolve() != root.resolve()/prefix:
         raise ValueError('Discovery blocked: invalid reader directory')
     actual = set()
     # Bounded to one edition. Private source directories are never traversed.
     for path in target.rglob('*'):
+        relative = path.relative_to(target)
+        # The second edition is independently checked against its exact 87-file plan.
+        if bilingual and not traditional and relative.parts[0] == 'zh-hant':
+            checked_path(root, path)
+            continue
         if path.is_symlink():
             raise ValueError('Discovery blocked: symlink in reader directory')
+        checked_path(root, path)
+        if path.is_dir() and relative.as_posix() != 'fonts':
+            raise ValueError('Discovery blocked: directory outside output allowlist')
         if path.is_file():
             actual.add(path.relative_to(target).as_posix())
     if actual != allowed:
@@ -126,12 +176,12 @@ def validate_published_reader(root=ROOT, approval=None):
     for name in sorted(allowed):
         if checked_path(root, target/name).read_bytes() != output_bytes(outputs[name]):
             raise ValueError(f'Discovery blocked: stale release output: {name}')
-    return tuple(root/PREFIX/name for name in sorted(PUBLIC_HTML))
+    return tuple(root/prefix/name for name in sorted(PUBLIC_HTML))
 
 
-def publication_update(published):
+def publication_update(published, *, traditional=False):
     date.fromisoformat(published)
-    return {'id': UPDATE_ID, 'date': published, 'kind': 'new', 'domain': 'literature',
+    update = {'id': UPDATE_ID, 'date': published, 'kind': 'new', 'domain': 'literature',
             'url': PREFIX+'index.html', 'languages': ['zh'],
             'title': {'zh': '红楼梦前八十回：大知校正庚辰版', 'zh-hant': '紅樓夢前八十回：大知校正庚辰版',
                       'en': 'Dream of the Red Chamber: The First Eighty Chapters in Chinese'},
@@ -139,6 +189,16 @@ def publication_update(published):
                 'zh': '前八十回中文正文已整理成独立读页，按回阅读与检索，保留正文诗词的分行。秦汉校正整理的原著与其第八十一回起的原创续写分别编排；本版外语翻译尚未发布。',
                 'zh-hant': '前八十回中文正文已整理成獨立讀頁，按回閱讀與檢索，保留正文詩詞的分行。秦漢校正整理的原著與其第八十一回起的原創續寫分別編排；本版外語翻譯尚未發佈。',
                 'en': 'The first eighty chapters are available as a Chinese reading edition, edited by Han Qin, with chapter navigation and verse lineation. This edition of the original novel is separate from Han Qin’s continuation beginning with chapter 81. Translations of this edition are not yet published.'}}
+
+    if traditional:
+        update['languages'] = ['zh', 'zh-hant']
+        update['title']['zh'] += '（简体／繁体）'
+        update['title']['zh-hant'] += '（簡體／繁體）'
+        update['title']['en'] = 'Dream of the Red Chamber: The First Eighty Chapters in Simplified and Traditional Chinese'
+        update['summary']['zh'] = update['summary']['zh'].replace('前八十回中文正文', '前八十回简体与繁体中文正文')
+        update['summary']['zh-hant'] = update['summary']['zh-hant'].replace('前八十回中文正文', '前八十回簡體與繁體中文正文')
+        update['summary']['en'] = update['summary']['en'].replace('a Chinese reading edition', 'Simplified and Traditional Chinese reading editions')
+    return update
 
 
 def resolve_date(ledger, requested):
@@ -163,7 +223,12 @@ def latest_card(update):
     def localized(values, tag):
         return ''.join(f'<{tag} class="lang-{css}">{html.escape(values[lang])}</{tag}>'
                        for lang, css in (('en', 'en'), ('zh', 'zh'), ('zh-hant', 'hant')))
-    return START+f'''<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-first80"><header class="updates-date"><h2 id="date-first80"><time datetime="{update['date']}">{update['date']}</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="{UPDATE_ID}"><div class="update-meta"><span class="update-kind"><span class="lang-en">Chinese reading edition</span><span class="lang-zh">中文正文</span><span class="lang-hant">中文正文</span></span><span>简体中文</span></div>{localized(update['title'], 'h3')}{localized(update['summary'], 'p')}<a class="update-link" href="{PREFIX}index.html"><span class="lang-en">Read in Chinese →</span><span class="lang-zh">阅读前八十回 →</span><span class="lang-hant">閱讀前八十回（簡體） →</span></a></article></div></section></div></section>'''+END
+    card = START+f'''<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-first80"><header class="updates-date"><h2 id="date-first80"><time datetime="{update['date']}">{update['date']}</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="{UPDATE_ID}"><div class="update-meta"><span class="update-kind"><span class="lang-en">Chinese reading edition</span><span class="lang-zh">中文正文</span><span class="lang-hant">中文正文</span></span><span>简体中文</span></div>{localized(update['title'], 'h3')}{localized(update['summary'], 'p')}<a class="update-link" href="{PREFIX}index.html"><span class="lang-en">Read in Chinese →</span><span class="lang-zh">阅读前八十回 →</span><span class="lang-hant">閱讀前八十回（簡體） →</span></a></article></div></section></div></section>'''+END
+
+    if 'zh-hant' in update['languages']:
+        card = card.replace('<span>简体中文</span>', '<span>简体中文 · 繁體中文</span>')
+        card = card.replace('</a></article>', '</a><a class="update-link" href="'+TRADITIONAL_PREFIX+'index.html">繁體中文 →</a></article>')
+    return card
 
 
 def replace_latest(source, update):
@@ -182,7 +247,7 @@ def replace_latest(source, update):
     return source[:first.start()]+latest_card(update)+'\n'+source[first.start():]
 
 
-def replace_project_card(source, href):
+def replace_project_card(source, href, *, traditional=False):
     matches = list(re.finditer(r'<a href="'+re.escape(href)+r'" class="series-card">.*?</a>', source, re.S))
     if len(matches) != 1:
         raise ValueError('Expected exactly one Red Chamber project card')
@@ -191,6 +256,9 @@ def replace_project_card(source, href):
     texts = {
         'zh': '前八十回“大知校正庚辰版”现有简体中文正文；另有人物回顾、散文导读和研究论文。秦汉原创续写单独编排，第八十一至八十五回已有八语全文，第八十六回起尚未公开。',
         'en': 'Read the first eighty chapters in the Chinese Dazhi Revised Gengchen Edition, alongside character essays, reader essays and research. Han Qin’s original continuation is separate: chapters 81–85 are available in eight languages; chapters 86–110 remain unpublished.'}
+    if traditional:
+        texts['zh'] = texts['zh'].replace('现有简体中文正文', '现有简体与繁体中文正文')
+        texts['en'] = texts['en'].replace('in the Chinese Dazhi', 'in the Simplified and Traditional Chinese Dazhi')
     for lang, text in texts.items():
         pattern = r'(<p class="series-card-desc-'+lang+' lang-'+lang+r'">).*?(</p>)'
         card, count = re.subn(pattern, lambda m: m[1]+html.escape(text)+m[2], card, flags=re.S)
@@ -199,18 +267,18 @@ def replace_project_card(source, href):
     return source[:match.start()]+card+source[match.end():]
 
 
-def editorial_outputs(root, ledger, published):
+def editorial_outputs(root, ledger, published, *, traditional=False):
     import build_hongloumeng_hub as hub
     validate_hub_inputs(root)
-    update = publication_update(published)
+    update = publication_update(published, traditional=traditional)
     ledger = copy.deepcopy(ledger)
     ledger['updates'] = ([update if u['id'] == UPDATE_ID else u for u in ledger['updates']]
                          if any(u['id'] == UPDATE_ID for u in ledger['updates']) else [update, *ledger['updates']])
     outputs = {root/'data/site-updates.json': json.dumps(ledger, ensure_ascii=False, indent=2)+'\n'}
-    for path, source in hub.render(include_first80=True, first80_date=published).items():
+    for path, source in hub.render(include_first80=True, first80_date=published, include_traditional=traditional).items():
         outputs[root/path.relative_to(hub.ROOT)] = source
     for name, href in (('library.html', 'essays/literature/hlm/index.html'), ('essays/literature/index.html', 'hlm/index.html')):
-        outputs[root/name] = replace_project_card(read_text(root, root/name), href)
+        outputs[root/name] = replace_project_card(read_text(root, root/name), href, traditional=traditional)
     outputs[root/'latest.html'] = replace_latest(read_text(root, root/'latest.html'), update)
     config = json.loads(read_text(root, root/'data/home-updates.json'))
     outputs[root/'index.html'] = home.replace_section(read_text(root, root/'index.html'), home.render_section(ledger['updates'], config))
@@ -218,12 +286,13 @@ def editorial_outputs(root, ledger, published):
 
 
 def reject_private_url(value):
+    original = site_url_path(value)
     relative = site_relative_url(value)
     if relative is None:
         return
-    if relative == 'data/hongloumeng' or relative.startswith('data/hongloumeng/'):
+    if any(name == 'data/hongloumeng' or name.startswith('data/hongloumeng/') for name in (original, relative)):
         raise ValueError('Source or private data found in discovery; review before publishing')
-    if relative.startswith(PREFIX) and relative not in {*(PREFIX+name for name in PUBLIC_HTML)}:
+    if excluded_url(value):
         raise ValueError('Non-allowlisted reader URL found in discovery')
 
 
@@ -241,8 +310,10 @@ def search_records(root, sources):
         if not title or search.is_redirect(source) or 'noindex' in metadata.robots:
             raise ValueError('Invalid selected publication search page')
         languages = page['languages'] or ([page['html_lang']] if page['html_lang'] else [])
-        if path.relative_to(root).as_posix().startswith(PREFIX) and languages != ['zh-Hans']:
-            raise ValueError('The first-eighty-chapter edition must be Chinese only')
+        relative = path.relative_to(root).as_posix()
+        expected_language = 'zh-Hant' if relative.startswith(TRADITIONAL_PREFIX) else 'zh-Hans'
+        if relative.startswith(PREFIX) and (languages != [expected_language] or page['html_lang'] != expected_language):
+            raise ValueError('The first-eighty-chapter edition must contain only its own Chinese language')
         for lang in chunks:
             if lang in languages:
                 chunks[lang].append({'u': page['path'], 'k': page['record_type'], 'd': page['domain'],
@@ -254,7 +325,7 @@ def search_records(root, sources):
 
 def discovery_outputs(root, sources, published):
     scope = {path.relative_to(root).as_posix() for path in sources}
-    if not scope <= {*(PREFIX+n for n in PUBLIC_HTML), *EDITORIAL_HTML, *CONTINUATION}:
+    if not scope <= {*READER_HTML, *EDITORIAL_HTML, *CONTINUATION}:
         raise ValueError('Unexpected path in discovery scope')
     fresh = search_records(root, sources)
     manifest = json.loads(read_text(root, root/'data/search-index.json'))
@@ -298,11 +369,11 @@ def discovery_outputs(root, sources, published):
     return outputs
 
 
-def render(root=ROOT, requested_date=None, approval=None):
-    reader_paths = validate_published_reader(root, approval)
+def render(root=ROOT, requested_date=None, approval=None, *, traditional_approval=None):
+    reader_paths = validate_published_reader(root, approval, traditional_approval=traditional_approval)
     ledger = json.loads(read_text(root, root/'data/site-updates.json'))
     published = resolve_date(ledger, requested_date)
-    outputs = editorial_outputs(root, ledger, published)
+    outputs = editorial_outputs(root, ledger, published, traditional=traditional_approval is not None)
     paths = (*reader_paths, *(root/name for name in (*EDITORIAL_HTML, *CONTINUATION)))
     if any(not p.is_file() for p in paths):
         raise ValueError('A required public discovery page is missing')
@@ -325,12 +396,22 @@ def main():
     parser.add_argument('--assets-sha256')
     parser.add_argument('--text-version')
     parser.add_argument('--boundaries-finalized', action='store_true')
+    parser.add_argument('--traditional', action='store_true')
+    for field in ('reading-sha256', 'body-sha256', 'assets-sha256', 'text-version'):
+        parser.add_argument('--traditional-'+field)
+    parser.add_argument('--traditional-approved', action='store_true')
     args = parser.parse_args()
     approval = dict(text_version=args.text_version, reading_sha256=args.reading_sha256,
                     body_sha256=args.body_sha256, assets_sha256=args.assets_sha256,
                     boundaries_finalized=args.boundaries_finalized)
     try:
-        outputs = render(requested_date=args.date, approval=approval)
+        traditional_approval = None
+        if args.traditional:
+            traditional_approval = dict(action='publish-hongloumeng-first80-traditional', approved=args.traditional_approved,
+                text_version=args.traditional_text_version, reading_sha256=args.traditional_reading_sha256,
+                body_sha256=args.traditional_body_sha256, assets_sha256=args.traditional_assets_sha256,
+                boundaries_finalized=args.boundaries_finalized)
+        outputs = render(requested_date=args.date, approval=approval, traditional_approval=traditional_approval)
         validate_write_paths(ROOT, outputs)
         changed = {p: source for p, source in outputs.items() if read_text(ROOT, p) != source}
         if not args.write and changed:
