@@ -1,0 +1,236 @@
+{
+  "status": "passed",
+  "independent": true,
+  "pre_render_status": "passed",
+  "reviewed_at_utc": "2026-11-10T04:16:28.161813+00:00",
+  "manifest_sha256": "e3c200db8cfb4c81bc0a8ff68ce95d5a7bcc7c9c1b105946bd3256ca2ce4051f",
+  "semantic_review_sha256": "5a57a53cc63c2ed88c92f8f6d01e16abc8a020dd75077070b8194ca621e4baf8",
+  "traditional_patches_sha256": "3a40b2d6fd9a395c648eebbf058a124d017e23ef14098382cdd3283bfad664e7",
+  "reviewed_code_sha256": {
+    "scripts/value_author_amendments.py": "05294800a27af0436ca1bf4ace663b46de9e01f1a5a55f35ae9c46c4bfbbf558",
+    "scripts/prepare_value_author_traditional.py": "6211d3229dbc9c08d55eed87ac67c9f29208e43a941bf2cfb71c24892497ca78",
+    "scripts/build_value_full_editions.py": "52c624e51e6579d01d8e6e88b77556451ebf7adda696c4b3dd85a4e9252cc28b",
+    "scripts/test_value_full_editions.py": "cbd4c11954c793fa500f250c7ba2a95f4fd4c1d75aee138306fe4652f68f23eb",
+    "data/sae-value-full/author-amendments/browser-check.cjs": "b3a5d9e706f6ad5437a6ece57147316856a6aad959ea4563157d34b9eb30ba8f"
+  },
+  "checks": [
+    {
+      "name": "preflight_suite",
+      "status": "passed",
+      "tests": 18,
+      "command": "python3 -B scripts/test_value_full_editions.py"
+    },
+    {
+      "name": "traditional_regeneration",
+      "status": "passed",
+      "command": "python3 -B scripts/prepare_value_author_traditional.py --check"
+    },
+    {
+      "name": "independent_dictionary_audit",
+      "status": "passed",
+      "details": "Backups exactly match HEAD and protected hashes. ep01 has 377 entries and replaces one key/value pair; prospect has 301 entries and replaces three pairs. All 674 other entries and both JS wrappers are unchanged. New whole simplified text nodes exactly match new keys; all converted nodes equal approved Traditional after text."
+    },
+    {
+      "name": "source_archives_and_scope",
+      "status": "passed",
+      "details": "Archived Chinese and English bodies equal HEAD. Every non-Traditional before unit equals its baseline. Amendments are idempotent, one-based indices resolve correctly, all unlisted units remain unchanged."
+    },
+    {
+      "name": "old_english_review_compatibility",
+      "status": "passed",
+      "details": "All eight english_body(amended=False) hashes still exactly match the original English review receipt. Chinese accepts only original hashes or approved-patch replay hashes from verified original bodies."
+    },
+    {
+      "name": "review_gate_negative_cases",
+      "status": "passed",
+      "cases": [
+        "status not passed",
+        "independent false",
+        "all_changed_units_read false",
+        "stale manifest hash",
+        "stale Traditional manifest hash",
+        "unresolved finding"
+      ],
+      "details": "In-memory mocks only; no fabricated on-disk receipt or render."
+    },
+    {
+      "name": "write_and_preview_protection",
+      "status": "passed",
+      "details": "Public rendering checks author and original-language reviews. Writer checks every existing page before any write. Unreviewed preview is isolated outside repository and rejects symlink escapes; optimized Python is rejected."
+    },
+    {
+      "name": "final_page_exact_delta_audit",
+      "status": "passed",
+      "checked_pages": 54,
+      "changed_public_html": [
+        "essays/sae-value/ep01.html",
+        "essays/sae-value/prospect.html",
+        "essays/sae-value/ja/ep01.html",
+        "essays/sae-value/ja/prospect.html",
+        "essays/sae-value/de/prospect.html",
+        "essays/sae-value/fr/prospect.html",
+        "essays/sae-value/es/prospect.html",
+        "essays/sae-value/ko/prospect.html"
+      ],
+      "details": "All 54 final public HTML files exactly equal HEAD with only the approved manifest before/after replacements. Eight HTML files changed; all other bytes, including unamended text and page wrappers, remain identical."
+    },
+    {
+      "name": "independent_final_release_rerun",
+      "status": "passed",
+      "build_check_pages": 54,
+      "build_check_changed": 0,
+      "release_tests_passed": 22,
+      "commands": [
+        "python3 -B scripts/build_value_full_editions.py --check",
+        "python3 -B scripts/test_value_full_editions.py --release"
+      ]
+    },
+    {
+      "name": "independent_v2_browser_evidence_review",
+      "status": "passed",
+      "details": "Verified 48 unique real viewport combinations, 30 language-selection checks (24 actual changes in 6 round-trip chains), exact full-body assertions, zero page errors, all 42 current input hashes, all 96 screenshot hashes and all 96 individually opened screenshots. V1 screenshot evidence was explicitly rejected and is not counted."
+    }
+  ],
+  "findings": [],
+  "unresolved": [],
+  "browser": {
+    "status": "passed",
+    "execution_owner": "Parent agent, isolated headless Chrome; not this independent reviewer.",
+    "independent_visual_reviewer": true,
+    "browser_version": "157.0.8103.40",
+    "browser_run": "data/sae-value-full/author-amendments/browser-qa-v2/run.json",
+    "browser_run_sha256": "9d05fb63234cf0e0e6632b354514b801de4b1bda771b85480eab5f3fbef99714",
+    "visual_review": "data/sae-value-full/author-amendments/visual-review.json",
+    "visual_review_sha256": "58c412512bb1ec8f4cd24a5d34d2cff5504d29e91e3b015661034bd3783b2dbd",
+    "coverage": {
+      "viewport_combinations": 48,
+      "languages": [
+        "zh",
+        "zh-hant",
+        "en",
+        "ja",
+        "de",
+        "fr",
+        "es",
+        "ko"
+      ],
+      "slugs": [
+        "ep01",
+        "prospect"
+      ],
+      "widths": [
+        320,
+        375,
+        1440
+      ],
+      "height": 900,
+      "screenshots_individually_viewed": 96,
+      "units": [
+        "ep01:200",
+        "prospect:114",
+        "prospect:137",
+        "prospect:145"
+      ],
+      "language_selection_checks": 30,
+      "round_trip_chains": 6,
+      "actual_language_changes": 24,
+      "initial_same_language_checks": 6,
+      "sequence": [
+        "zh",
+        "zh-hant",
+        "en",
+        "zh-hant",
+        "zh"
+      ]
+    },
+    "full_rendered_body_assertions_passed": true,
+    "page_errors": [],
+    "off_origin_requests_blocked": true,
+    "inputs_unchanged_during_run": true,
+    "input_hashes_rechecked_after_visual_review": true,
+    "screenshot_hashes_rechecked_after_visual_review": true,
+    "first_run_visual_evidence_status": "invalid; retained and superseded by independently inspected v2 evidence",
+    "scope_limits": [
+      "This visual pass covers two articles in eight languages at three viewport widths, focused on four amended or corresponding units. It is not a full-series browser audit.",
+      "Screenshots capture the paragraph start, changed clauses and immediate context, not the entirety of every long paragraph. Ordinary continuation below the 900-pixel viewport is not treated as clipping.",
+      "The first run is not accepted visual evidence. Only its automated text assertions passed; the first eight reviewed images were incorrectly positioned and the other 88 were not visually reviewed.",
+      "No user Chrome profile or Safari was used for v2. The independent reviewer did not resume control of the user browser."
+    ],
+    "temporary_server": "/tmp/value-author-review-20261110/serve.py",
+    "expected_full_text": "/tmp/value-author-review-20261110/expected.json",
+    "server_base": "http://127.0.0.1:8794",
+    "server_session": 85851
+  },
+  "scope_note": "This reviewer wrote audit reports and temporary/browser QA fixtures only. No manifest, aggregate review, other series, adjacent academic repository, public page, homepage announcement, commit or push was made. Engineering checks cover the 54 Value public HTML pages and the bounded amendment pipeline; browser visual checks cover only ep01/prospect and the four specified units.",
+  "final_page_input_sha256": {
+    "classic-reading.js": "74c33f03e1e8dc4cf5445b9e47218c0e13e2966fc404e02014625cc52d3f6a68",
+    "data/sae-value-full/author-amendments/2026-11-10.json": "e3c200db8cfb4c81bc0a8ff68ce95d5a7bcc7c9c1b105946bd3256ca2ce4051f",
+    "data/sae-value-full/author-amendments/traditional-patches.json": "3a40b2d6fd9a395c648eebbf058a124d017e23ef14098382cdd3283bfad664e7",
+    "essays/sae-value/de/ep01.html": "a77deb413c6285890469663b85fe280857af451a758674984907c813d23493a0",
+    "essays/sae-value/de/prospect.html": "96d9d385adccb5051c6b16e9ea7ec348b1278e060baf0563df770cc6947f21b5",
+    "essays/sae-value/ep01.html": "23a1e882fac28fc567d1b3e56173e43455c4dda40c61151c2e22ff500a38e61e",
+    "essays/sae-value/es/ep01.html": "1b85f81b3c7dce6646f8ab97a84fe31bd853c00931a2f4dcca548e9095d9bcef",
+    "essays/sae-value/es/prospect.html": "cb5bb78f7eb573315d8e79abcf7a557a5351f96936af87fbdddfca0200b2925c",
+    "essays/sae-value/fr/ep01.html": "3637ad699962ed5cfcdeff21d9cd8702eeb437a765f8ef4256e0a45dd96515d6",
+    "essays/sae-value/fr/prospect.html": "10165b178be8a4ec56c336b19ebfd5eda848c7b044ea48969ad4a3cdaefd72c6",
+    "essays/sae-value/ja/ep01.html": "2f4cbf7785707f28078763b7c7cb5c312eca59157464a0072db17aba19afaace",
+    "essays/sae-value/ja/prospect.html": "48282ca2dcc022ca144f2fcc5d22c32859a3eda47d8a54d3daefb8edf242faff",
+    "essays/sae-value/ko/ep01.html": "3a343fd4e91ddd5babcba80cb626475f61b2650c717ae5d96015dbd2e2cb3bf9",
+    "essays/sae-value/ko/prospect.html": "176d2910df7dda608a711d7e52c041056c380cb3be937193ce6a499ed21112c5",
+    "essays/sae-value/prospect.html": "4f342fb31c8e813c97b702e9bd1152c6385f824da2af3295fc9ba0eb844ca1a0",
+    "essays/sae-value/zh-hant-data/ep01.js": "696eccefe383b01cf5ec92819801552d5b1844077d6be3e3f4c0e7facbd3bc8a",
+    "essays/sae-value/zh-hant-data/ep02.js": "fd74c751dce2c4e32653343079582084614e307f5c87143a7c4df0173f946624",
+    "essays/sae-value/zh-hant-data/ep03.js": "7d6930bedc03e7bb4d7f48a781ddeab1c90917dc6cec194fddfbbed75ecda872",
+    "essays/sae-value/zh-hant-data/ep04.js": "1eec74941f70bd68e5884ff62ebf309c6a9692b6c891ae109e571549ca04e643",
+    "essays/sae-value/zh-hant-data/ep05.js": "7b5c6085037f715301bd9da5baca5d5dc9982a807da119457d49930eb60b6873",
+    "essays/sae-value/zh-hant-data/ep06.js": "810a52a5adab9337396caef1c0f3e3bf439e67c43f8b3607b1feae18ca1d34b3",
+    "essays/sae-value/zh-hant-data/index.js": "36b0d08274a1a4fd742f68ce1a2375883036ba149184d7fa6ac88d79ccc3667e",
+    "essays/sae-value/zh-hant-data/prequel.js": "fd46e0d126afa71f6be352ac5f8f6022f978c0cf8355d37155d8beca86efdaa4",
+    "essays/sae-value/zh-hant-data/prospect.js": "1ed91ec16da4c911e2b73e2e862e39a666802865029a3e8d3554ead848190b66",
+    "style.css": "dc9f9f0aab77614cde92687d27be08e853d00e9020d6737c712982b531884d7c"
+  },
+  "browser_input_sha256": {
+    "/Users/hanqin/Documents/GitHub/nondubito/classic-reading.js": "74c33f03e1e8dc4cf5445b9e47218c0e13e2966fc404e02014625cc52d3f6a68",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/author-amendments/2026-11-10.json": "e3c200db8cfb4c81bc0a8ff68ce95d5a7bcc7c9c1b105946bd3256ca2ce4051f",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/author-amendments/browser-check.cjs": "b3a5d9e706f6ad5437a6ece57147316856a6aad959ea4563157d34b9eb30ba8f",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/author-amendments/semantic-review.json": "5a57a53cc63c2ed88c92f8f6d01e16abc8a020dd75077070b8194ca621e4baf8",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/author-amendments/traditional-patches.json": "3a40b2d6fd9a395c648eebbf058a124d017e23ef14098382cdd3283bfad664e7",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/reviews/en-ep01.json": "18b9292d3a50f3adc30ab52a4112dea25ff65f3df589d1e640d73b472a850173",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/reviews/en-prospect.json": "4d16f52b8a2b0cd46445869b29a8f9df8f254f961d0b9b9f36f17871cab333f1",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/sources/ep01.json": "d62300a947815a79d8493024665df2b87d317834e7d80c2a9c7ee01dd49f70f6",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/sources/prospect.json": "e5f3827f9515ee84fa47e0c7c61b92a6e1e5957f032394afcdd6a0aa3d32affb",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/translations/de/ep01.json": "0f1da79e01f8a484ac0a342e5eab97a225745ddb50d10b011a202e3dd272fc69",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/translations/de/prospect.json": "3ce57369b3e1aaab6408663d6f4ffd8eca3f815dba619a07c0e4e3054c4125d8",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/translations/es/ep01.json": "15cd78799df5d6a5672ee16b9804e762b3e3068012adbb065c08976d0bec5b4f",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/translations/es/prospect.json": "b026c93766ec65c1abdd4a94a29bc5e6d06fcc44866980e422f25f65095c313f",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/translations/fr/ep01.json": "83c3b63ac30e3ac5388942dfade8cbf8491fa7b8c6e99826e89d796e36f24a94",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/translations/fr/prospect.json": "fe5e7263d3e6394b9b92c9202e14e98da85932fe113fa822a4b04aaf5e3b5637",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/translations/ja/ep01.json": "2821f2ea895beb4796c61f6b9592e8611c144c7784df2c29d4835623dbbc06e4",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/translations/ja/prospect.json": "235fe9f8bb499d66744a5e20b4fef6d936650e2b2864f3966142ff08c102cf79",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/translations/ko/ep01.json": "d079714fc38cfe09e1248467bd0ae25fa2104e7b1249413d250eb5a8ee6eb478",
+    "/Users/hanqin/Documents/GitHub/nondubito/data/sae-value-full/translations/ko/prospect.json": "d2a0d699f88ba98ac5dc5dec73429af9c5209c678370b7fd5c94d8ec8c4f9107",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/de/ep01.html": "a77deb413c6285890469663b85fe280857af451a758674984907c813d23493a0",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/de/prospect.html": "96d9d385adccb5051c6b16e9ea7ec348b1278e060baf0563df770cc6947f21b5",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/ep01.html": "23a1e882fac28fc567d1b3e56173e43455c4dda40c61151c2e22ff500a38e61e",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/es/ep01.html": "1b85f81b3c7dce6646f8ab97a84fe31bd853c00931a2f4dcca548e9095d9bcef",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/es/prospect.html": "cb5bb78f7eb573315d8e79abcf7a557a5351f96936af87fbdddfca0200b2925c",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/fr/ep01.html": "3637ad699962ed5cfcdeff21d9cd8702eeb437a765f8ef4256e0a45dd96515d6",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/fr/prospect.html": "10165b178be8a4ec56c336b19ebfd5eda848c7b044ea48969ad4a3cdaefd72c6",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/ja/ep01.html": "2f4cbf7785707f28078763b7c7cb5c312eca59157464a0072db17aba19afaace",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/ja/prospect.html": "48282ca2dcc022ca144f2fcc5d22c32859a3eda47d8a54d3daefb8edf242faff",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/ko/ep01.html": "3a343fd4e91ddd5babcba80cb626475f61b2650c717ae5d96015dbd2e2cb3bf9",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/ko/prospect.html": "176d2910df7dda608a711d7e52c041056c380cb3be937193ce6a499ed21112c5",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/prospect.html": "4f342fb31c8e813c97b702e9bd1152c6385f824da2af3295fc9ba0eb844ca1a0",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/zh-hant-data/ep01.js": "696eccefe383b01cf5ec92819801552d5b1844077d6be3e3f4c0e7facbd3bc8a",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/zh-hant-data/ep02.js": "fd74c751dce2c4e32653343079582084614e307f5c87143a7c4df0173f946624",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/zh-hant-data/ep03.js": "7d6930bedc03e7bb4d7f48a781ddeab1c90917dc6cec194fddfbbed75ecda872",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/zh-hant-data/ep04.js": "1eec74941f70bd68e5884ff62ebf309c6a9692b6c891ae109e571549ca04e643",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/zh-hant-data/ep05.js": "7b5c6085037f715301bd9da5baca5d5dc9982a807da119457d49930eb60b6873",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/zh-hant-data/ep06.js": "810a52a5adab9337396caef1c0f3e3bf439e67c43f8b3607b1feae18ca1d34b3",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/zh-hant-data/index.js": "36b0d08274a1a4fd742f68ce1a2375883036ba149184d7fa6ac88d79ccc3667e",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/zh-hant-data/prequel.js": "fd46e0d126afa71f6be352ac5f8f6022f978c0cf8355d37155d8beca86efdaa4",
+    "/Users/hanqin/Documents/GitHub/nondubito/essays/sae-value/zh-hant-data/prospect.js": "1ed91ec16da4c911e2b73e2e862e39a666802865029a3e8d3554ead848190b66",
+    "/Users/hanqin/Documents/GitHub/nondubito/style.css": "dc9f9f0aab77614cde92687d27be08e853d00e9020d6737c712982b531884d7c",
+    "/tmp/value-author-review-20261110/expected.json": "25c57f25f57405b8586a5729c820a087a6565696ade1a53758311c3d6a0e4634"
+  }
+}

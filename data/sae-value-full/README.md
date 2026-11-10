@@ -12,13 +12,13 @@ The eight essays are prequel, ep01–ep06 and prospect. Their Chinese source con
 
 The existing English was already complete and has not been wholesale rewritten. All 1,097 Chinese–English units were read for alignment. Seventy-two localized corrections preserve the remaining prose. A second reviewer independently checked every proposed correction against the Chinese and adjacent context, requested two refinements, and reread the refinements. The second English review covers the corrections, not a second full-series reading. `english-baseline-bodies.json`, the eight `reviews/en-*.json` records and `reviews/en-fixes-independent.json` preserve that exact scope.
 
-Chinese body text and Traditional Chinese dictionaries remain unchanged. Traditional Chinese display and structure are tested, but this restoration does not claim a new independent semantic review of all Traditional Chinese wording. No major Chinese argument has been revised without the author.
+At the original restoration commit 07d40c4, Chinese body text and Traditional Chinese dictionaries remained unchanged. The later author-approved amendments described below are a separate, narrowly scoped correction. Traditional Chinese display and structure are tested, but this restoration does not claim a new independent semantic review of all Traditional Chinese wording. No major Chinese argument has been revised without the author.
 
 These are AI linguistic and source-alignment reviews, not an independent professional audit of every philosophical or historical assertion. Structural parity, hashes and automated tests guard coverage and integrity; they do not establish semantic equivalence by themselves.
 
 ## Open authorial source questions
 
-`reviews/author-source-questions.json` separates source questions from translation defects. Two questions concern the prospect essay's historical handovers and its literal claim that 判断力 never occurs in the seven body essays. A third records an apparent ordinal typo in ep01. Current source wording is preserved while the author decides whether and how to amend it. These queries are not presented as resolved by translation review.
+`reviews/author-source-questions.json` separates source questions from translation defects. Two questions concern the prospect essay's historical handovers and its literal claim that 判断力 never occurs in the seven body essays. A third records an apparent ordinal typo in ep01. The author has since clarified the Paper 0 reference and approved the two other corrections. Their source basis and separate review are recorded under `author-amendments/`; the original restoration receipts continue to describe their original, unamended inputs.
 
 ## Build and verification
 
@@ -41,3 +41,16 @@ The first isolated browser matrix found arbitrary word breaks in narrow Latin-sc
 `reviews/integrity-review.json` records a separate final integration review against the actual baseline HEAD, including 193 file hashes, 971 local link/resource targets, 40 academic-source/DOI pairs, exact manuscript/metadata correspondence and search/update scope. It independently rechecks browser evidence without claiming to have performed the browser run or another full semantic reading. It also records a pre-existing nonblocking header link to the homepage’s absent `#essays` anchor; the homepage destination still resolves, and that unrelated historical behavior was not changed. `reviews/integration-qa.json` retains actual command output and the precise global-check limitations.
 
 Local commit only. Never push.
+
+## Author-approved corrections after 07d40c4
+
+The separate amendment manifest records four source units in ep01/prospect across eight readings: the second/fourth-cell typo, two literal zero-occurrence claims about the faculty of judgment, and an explicit identification of the historical references as the academic Paper 0/P1–P6 sequence rather than the prose adaptations. The historical handover argument is retained, supported by a direct read of the academic prequel and P1–P6. There are 27 actual edits and five already-correct neutral back-references among 32 reviewed units.
+
+The original source and translation manuscripts are retained unchanged. A source-bound overlay carries the approved deltas, and a second independent semantic receipt covers every before/after unit. Traditional Chinese updates replace only four full text-node keys and their values, preserving every unrelated dictionary entry. The renderer also requires the amendment and dictionary review hashes, and rejects unknown concurrent edits. Baseline review reports above remain historical evidence for commit 07d40c4; subsequent amendment QA is recorded separately rather than claiming those earlier hashes cover new text.
+
+
+Amendment-specific verification: the independent semantic review read all 32 before/after units. A separate engineering review replayed the authorized edits against HEAD and verified that only eight of 54 HTML files changed, with all other page bytes retained. All 22 release tests pass. Build, Traditional dictionary and scoped discovery checks report zero stale outputs; the analytics scan remains 13,822 pages with zero errors.
+
+Final amendment browser acceptance used isolated headless Chrome against local disk pages, not the user's active browser. It covered 48 actual page/language/viewport combinations, 30 language-button checks in six ZH/Hant/EN round-trip chains (six initial same-language confirmations and 24 actual switches), and complete visible-body text comparisons after every check. All 96 second-run screenshots were individually reviewed. Each shows the start of an amended unit; long paragraphs naturally continue below the viewport, so these are not claimed as screenshots of every full paragraph. The first run's text assertions passed but its screenshots were taken before smooth scrolling finished; those images failed visual review and are not counted as acceptance evidence. The corrected instant-scroll run and its precise coverage are recorded in `author-amendments/browser-qa-v2/`, `visual-review.json` and `engineering-review.json`.
+
+`author-amendments/browser-fixture/` retains the exact local fixture, expected text and input hashes used for this run; its original temporary root was `/tmp/value-author-review-20261110/`. No new homepage, latest-page or update-ledger announcement was added for this narrow amendment commit. The original restoration announcement remains unchanged.

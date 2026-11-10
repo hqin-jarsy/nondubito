@@ -1,0 +1,34 @@
+{
+  "status": "changes_requested",
+  "independent": true,
+  "reviewed_at_utc": "2026-11-10T04:07:19.934846+00:00",
+  "browser_execution": "Parent executed isolated headless Chrome; this reviewer did not execute it.",
+  "browser_run": "data/sae-value-full/author-amendments/browser-qa/run.json",
+  "browser_run_sha256": "971d95c697d5479223a1f824e7a7bca156537eb1f29a324e500c80a336471b1e",
+  "inputs_matched_at_start_of_review": true,
+  "screenshots_individually_viewed": [
+    "data/sae-value-full/author-amendments/browser-qa/screenshots/zh-ep01-320-u200.png",
+    "data/sae-value-full/author-amendments/browser-qa/screenshots/zh-prospect-320-u114.png",
+    "data/sae-value-full/author-amendments/browser-qa/screenshots/zh-prospect-320-u137.png",
+    "data/sae-value-full/author-amendments/browser-qa/screenshots/zh-prospect-320-u145.png",
+    "data/sae-value-full/author-amendments/browser-qa/screenshots/zh-hant-ep01-320-u200.png",
+    "data/sae-value-full/author-amendments/browser-qa/screenshots/zh-hant-prospect-320-u114.png",
+    "data/sae-value-full/author-amendments/browser-qa/screenshots/zh-hant-prospect-320-u137.png",
+    "data/sae-value-full/author-amendments/browser-qa/screenshots/zh-hant-prospect-320-u145.png"
+  ],
+  "findings": [
+    {
+      "severity": "blocking_evidence_gap",
+      "target": "First 8 reviewed screenshots",
+      "finding": "The images are labeled as changed units but show the article title and abstract instead. They do not demonstrate readability of the changed units. DOM full-text assertions passed, but these screenshots cannot pass visual review.",
+      "cause": "style.css line 41 uses scroll-behavior: smooth; the screenshot function used scrollTo(x,y) and captured before scrolling completed.",
+      "remediation": "Updated only the QA fixture to use behavior: instant, wait for the actual target scroll offset, and require the target unit start to be visibly within the viewport below the sticky header. Capture into browser-qa-v2, retaining the first run."
+    }
+  ],
+  "unresolved": [
+    "Await corrected screenshot evidence and independent inspection."
+  ],
+  "first_run_script_backup": "data/sae-value-full/author-amendments/browser-check-v1.cjs",
+  "first_run_script_sha256": "bbe1df39ddd62d10d6efc792e6f20262a2029d8a718564afdd6b3a324dd889fe",
+  "replacement_script_sha256": "b88e837552ef1f9b58d30aade1405d1ee6baa6b9a9680c07030221415cd7c664"
+}

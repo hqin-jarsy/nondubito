@@ -38,7 +38,7 @@ class ValuePreflight(unittest.TestCase):
    source=full.read(full.BASE/'sources'/(slug+'.json'))
    self.assertEqual(len(units),len(source['body_en']))
    p=full.BASE/'reviews'/('en-'+slug+'.json');r=full.read(p) if p.exists() else {};changes={x['unit']-1:x['after'] for x in r.get('changes',[])}
-   self.assertEqual(units,[changes.get(i,u) for i,u in enumerate(source['body_en'])])
+   self.assertEqual(units,full.amendments.units(slug,'en',[changes.get(i,u) for i,u in enumerate(source['body_en'])]))
 
 
  def test_optimized_python_rejected_on_module_import(self):
@@ -97,7 +97,7 @@ class ValuePreflight(unittest.TestCase):
     'translation_sha256s':{slug:'current-translation-hash' for slug in full.SLUGS}}
    if fault=='source':receipt['source_sha256s']['prequel']='stale'
    else:receipt['translation_sha256s']['prequel']='stale'
-   with self.subTest(fault=fault),patch.object(full,'file_sha',return_value='current-translation-hash'),patch.object(full,'read',lambda p:receipt if p==full.BASE/'reviews/ja.json' else original(p)):
+   with self.subTest(fault=fault),patch.object(full.amendments,'verify'),patch.object(full,'file_sha',return_value='current-translation-hash'),patch.object(full,'read',lambda p:receipt if p==full.BASE/'reviews/ja.json' else original(p)):
     with self.assertRaisesRegex(AssertionError,fault+' review stale'):full.verify_reviews()
  def test_discovery_refuses_stale_public_pages_before_building(self):
   import refresh_value_full_discovery as discovery
@@ -105,6 +105,26 @@ class ValuePreflight(unittest.TestCase):
   with patch.object(full,'render',return_value=outputs),patch.object(Path,'read_text',return_value='stale'),patch.object(discovery.search,'build') as build:
    with self.assertRaisesRegex(ValueError,'Render reviewed public pages'):discovery.outputs()
    build.assert_not_called()
+
+ def test_author_amendment_preserves_other_units_and_is_idempotent(self):
+  a=full.amendments;item={'unit':2,'before':'<p>Old <strong>point</strong>.</p>','after':'<p>New <strong>point</strong>.</p>'}
+  body='\n<p>Untouched.</p>\n'+item['before']+'\n'
+  with patch.object(a,'patches',return_value=[item]):
+   result=a.body('ep01','zh',body)
+   self.assertEqual(result,'\n<p>Untouched.</p>\n'+item['after']+'\n')
+   self.assertEqual(a.body('ep01','zh',result),result)
+ def test_author_amendment_rejects_context_markup_and_duplicates(self):
+  a=full.amendments;item={'unit':1,'before':'<p>Old</p>','after':'<p>New</p>'}
+  with patch.object(a,'patches',return_value=[item]):
+   with self.assertRaisesRegex(AssertionError,'context mismatch'):a.body('ep01','zh','<p>User edit</p>')
+  with patch.object(a,'patches',return_value=[dict(item,after='<p><strong>New</strong></p>')]):
+   with self.assertRaisesRegex(AssertionError,'changes markup'):a.body('ep01','zh','<p>Old</p>')
+  with patch.object(a,'patches',return_value=[item,item]):
+   with self.assertRaisesRegex(AssertionError,'duplicate'):a.body('ep01','zh','<p>Old</p>')
+ def test_author_amendment_requires_hash_bound_independent_review(self):
+  a=full.amendments
+  with patch.object(Path,'exists',return_value=True),patch.object(a,'read',return_value={'status':'passed','independent':True,'all_changed_units_read':True,'manifest_sha256':'stale'}),patch.object(a,'file_sha',return_value='current'):
+   with self.assertRaisesRegex(AssertionError,'review stale'):a.verify()
 
 
 class ValueRelease(unittest.TestCase):

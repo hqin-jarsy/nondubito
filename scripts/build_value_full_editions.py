@@ -12,6 +12,7 @@ if not __debug__:
 import argparse, hashlib, html, json, re
 from pathlib import Path
 from prepare_action_sources import Document, Node, one
+import value_author_amendments as amendments
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE=ROOT/'data/sae-value-full'
@@ -35,14 +36,14 @@ def structure(unit):
  doc=Document(unit)
  return [(n.tag,dict(n.attrs)) for n in doc.root.walk() if n.tag not in ('strong','em')]
 
-def english_body(slug):
+def english_body(slug,amended=True):
  original=read(BASE/'english-baseline-bodies.json')[slug]
  source=read(BASE/'sources'/(slug+'.json'))
  assert sha(original)==source['english_sha256'],(slug,'English baseline drift')
  path=BASE/'reviews'/('en-'+slug+'.json')
  receipt=read(path) if path.exists() else {}
  changes=receipt.get('changes',[])
- if not changes:return original
+ if not changes:return amendments.body(slug,'en',original) if amended else original
  assert receipt['source_sha256']==source['source_sha256'],(slug,'English correction stale')
  doc=Document(original);units=[n for n in doc.root.children if isinstance(n,Node)];edits=[];seen=set()
  for item in changes:
@@ -50,7 +51,8 @@ def english_body(slug):
   assert doc.raw(units[i])==item['before']==source['body_en'][i],(slug,i,'English correction context')
   assert structure(item['before'])==structure(item['after']),(slug,i,'English correction markup')
   edits.append((units[i].start,units[i].end,item['after']))
- return patch(original,edits)
+ result=patch(original,edits)
+ return amendments.body(slug,'en',result) if amended else result
 
 def preserved():
  record=read(BASE/'preservation.json')
@@ -60,11 +62,11 @@ def preserved():
    node=one(doc.root.walk(),lambda n:n.has('essay-body','lang-'+lang),(slug,lang))
    current=doc.raw(node,inner=True)
    if lang=='zh':
-    assert sha(current)==record['source_bodies'][slug][key],(slug,lang,'source changed')
-    assert raw_units(doc,node)==source['body_'+lang],(slug,lang,'snapshot drift')
+    assert sha(current) in amendments.allowed_chinese_hashes(slug,record['source_bodies'][slug][key]),(slug,lang,'source changed')
+    assert raw_units(doc,node) in [source['body_'+lang],amendments.units(slug,lang,source['body_'+lang])],(slug,lang,'snapshot drift')
    else:
-    assert sha(current) in {record['source_bodies'][slug][key],sha(english_body(slug))},(slug,lang,'unrecognized English edits')
- for name,digest in record['traditional_files'].items():assert file_sha(ROOT/name)==digest,(name,'Traditional Chinese changed')
+    assert sha(current) in {record['source_bodies'][slug][key],sha(english_body(slug,amended=False)),sha(english_body(slug))},(slug,lang,'unrecognized English edits')
+ for name,digest in record['traditional_files'].items():assert file_sha(ROOT/name) in amendments.traditional_hashes(name,digest),(name,'Traditional Chinese changed')
  return record
 
 def load(lang,slug):
@@ -84,9 +86,11 @@ def load(lang,slug):
   if not source_refs and '十四到十五' in zh:valid_refs.append(['14DD','15DD'])
   assert target_refs in valid_refs,(lang,slug,i,'DD references')
   assert not re.search(r'\[VERIFY|TODO|TBD|PLACEHOLDER',foreign),(lang,slug,i,'placeholder')
+ data=dict(data,body=amendments.units(slug,lang,data['body']))
  return data
 
 def verify_reviews():
+ amendments.verify()
  for lang in (*LANGS,'en'):
   receipt=read(BASE/'reviews'/(lang+'.json'))
   assert receipt['language']==lang and receipt['status']=='passed' and receipt['independent'] is True and receipt['all_units_read'] is True,lang
@@ -95,7 +99,7 @@ def verify_reviews():
   for slug in SLUGS:
    source=read(BASE/'sources'/(slug+'.json'))
    assert receipt['source_sha256s'][slug]==source['source_sha256'],(lang,slug,'source review stale')
-   if lang=='en':assert receipt['english_sha256s'][slug]==sha(english_body(slug)),(lang,slug,'English review stale')
+   if lang=='en':assert receipt['english_sha256s'][slug]==sha(english_body(slug,amended=False)),(lang,slug,'English review stale')
    else:assert receipt['translation_sha256s'][slug]==file_sha(BASE/'translations'/lang/(slug+'.json')),(lang,slug,'translation review stale')
   if lang!='en':assert receipt['index_sha256']==file_sha(BASE/'translations'/lang/'index.json'),(lang,'index review stale')
 
@@ -139,14 +143,15 @@ def render(partial=False):
  preserved()
  if not partial:verify_reviews()
  outputs={}
- # Chinese prose and Traditional dictionaries remain unchanged; existing English
- # receives only source-bound reviewed patches. The shared controller makes
+ # Chinese prose and Traditional dictionaries change only through the separately
+ # approved author amendments; English receives source-bound reviewed patches. The shared controller makes
  # explicit language links survive unavailable storage.
  for slug in ('index',*SLUGS):
   path=DIRECTORY/(slug+'.html');text=path.read_text()
   if slug!='index':
    doc=Document(text);node=one(doc.root.walk(),lambda n:n.has('essay-body','lang-en'),slug)
-   text=patch(text,[inner(node,english_body(slug))])
+   chinese=one(doc.root.walk(),lambda n:n.has('essay-body','lang-zh'),slug)
+   text=patch(text,[inner(node,english_body(slug)),inner(chinese,amendments.body(slug,'zh',doc.raw(chinese,inner=True)))])
   text=re.sub(r'<script>\s*\(function\(\)\{\s*var saved=localStorage\.getItem.*?</script>','<script src="../../classic-reading.js"></script>',text,flags=re.S)
   assert text.count('src="../../classic-reading.js"')==1,(slug,'reader controller')
   text=re.sub(r'<style id="value-full-reader">.*?</style>','',text,flags=re.S)
