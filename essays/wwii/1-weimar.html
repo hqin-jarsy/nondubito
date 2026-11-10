@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh" class="wwii-primary">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,31 +13,9 @@
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <link rel="canonical" href="https://nondubito.net/essays/wwii/1-weimar.html">
 
-  <script>
-(function(){
-  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
-  document.documentElement.setAttribute('data-lang',saved);
-  document.addEventListener('DOMContentLoaded',function(){
-    var btns=document.querySelectorAll('.lang-btn[data-lang]');
-    function update(){
-      var cur=document.documentElement.getAttribute('data-lang')||'zh';
-      btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});
-    }
-    btns.forEach(function(btn){
-      btn.addEventListener('click',function(){
-        var lang=this.getAttribute('data-lang');
-        document.documentElement.setAttribute('data-lang',lang);
-        localStorage.setItem('nd_lang',lang);
-        localStorage.setItem('nondubito-lang',lang);
-        update();
-      });
-    });
-    update();
-  });
-})();
-</script>
+  <script id="wwii-full-controller">(function(){function read(k){try{return localStorage.getItem(k)}catch(e){return null}}function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}function valid(v){return ['en','zh','zh-hant'].indexOf(v)!==-1}var q=new URLSearchParams(location.search).get('lang'),saved=q||read('nd_lang')||read('nondubito-lang')||'zh';if(!valid(saved))saved='zh';save('nd_lang',saved);save('nondubito-lang',saved);function apply(){document.documentElement.dataset.lang=saved;document.documentElement.lang=saved==='zh-hant'?'zh-Hant':saved==='zh'?'zh-Hans':'en';document.querySelectorAll('[data-lang-button]').forEach(function(b){b.classList.toggle('active',b.dataset.langButton===saved);b.setAttribute('aria-pressed',String(b.dataset.langButton===saved))});document.querySelectorAll('a[data-primary-route]').forEach(function(a){var u=new URL(a.href,location.href);u.searchParams.set('lang',saved);a.href=u.pathname+u.search+u.hash})}apply();document.addEventListener('DOMContentLoaded',function(){apply();document.querySelectorAll('[data-lang-button]').forEach(function(b){b.addEventListener('click',function(){var v=b.dataset.langButton;if(!valid(v))return;saved=v;save('nd_lang',saved);save('nondubito-lang',saved);var u=new URL(location.href);u.searchParams.set('lang',saved);history.replaceState(null,'',u);apply()})})})})();</script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
-</head>
+<style id="wwii-full-style">.essay-page-title,.essay-header h1,.series-title,.essay-body,.entry-title,.nav-title{overflow-wrap:anywhere}.essay-page-title,.essay-header h1,.series-title,.entry-title,.nav-title{hyphens:auto;-webkit-hyphens:auto}.essay-card,.card-body,.nav-copy,.entry-row,.series-nav a{min-width:0}.lang-toggle{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}.wwii-primary .lang-en,.wwii-primary .lang-zh,.wwii-primary .lang-hant{display:none!important}.wwii-primary[data-lang="en"] .lang-en,.wwii-primary[data-lang="zh"] .lang-zh,.wwii-primary[data-lang="zh-hant"] .lang-hant{display:revert!important}.wwii-primary[data-lang="en"] .lang-zh,.wwii-primary[data-lang="en"] .lang-hant,.wwii-primary[data-lang="zh"] .lang-en,.wwii-primary[data-lang="zh"] .lang-hant,.wwii-primary[data-lang="zh-hant"] .lang-en,.wwii-primary[data-lang="zh-hant"] .lang-zh{display:none!important}html[lang="ko"] .essay-body{word-break:keep-all}html[lang="ja"] .essay-body,html[lang="ko"] .essay-body{font-family:var(--cjk),serif}</style></head>
 <body>
 
   <header>
@@ -61,11 +39,13 @@
   <div class="essay-page">
     <div class="essay-page-hero">
       <div class="essay-page-inner">
-        <a href="index.html" class="back-link">← 二战与人的目的</a>
+        <a href="index.html" data-primary-route="1" class="back-link"><span class="lang-zh">← 二战与人的目的</span><span class="lang-en">← World War II and the Person as an End</span><span class="lang-hant">← 二戰與人的目的</span></a>
         <div class="lang-toggle" style="margin-bottom:0.5rem;">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang-button="en">EN</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang-button="zh">简体</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang-button="zh-hant">繁體</button>
 <span class="lang-sep">|</span>
 <a class="lang-btn" href="ja/1-weimar.html">日本語</a>
 <span class="lang-sep">|</span>
@@ -78,9 +58,9 @@
 <a class="lang-btn" href="ko/1-weimar.html">한국어</a>
 </div>
 
-        <div class="essay-page-num">Series I of V · 二战与人的目的</div>
-        <h1 class="essay-page-title lang-en">Twenty Years from Civilization to Abyss</h1>
-        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">一个文明社会的二十年坠落</h1>
+        <div class="essay-page-num"><span class="lang-zh">1 / 5 · 二战与人的目的</span><span class="lang-hant">1 / 5 · 二戰與人的目的</span><span class="lang-en">1 / 5 · World War II and the Person as an End</span></div>
+        <h1 class="essay-page-title lang-en">Twenty Years from Civilization to the Abyss</h1>
+        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">一个文明社会的二十年坠落</h1><h1 class="essay-page-title lang-hant" style="font-family:var(--cjk),serif;">一個文明社會的二十年墜落</h1>
         <div class="essay-page-meta">
           <span>Feb 15, 2026</span>
           <span>Han Qin (秦汉)</span>
@@ -90,148 +70,157 @@
     </div>
 
     <div class="essay-body lang-en">
-
-        <h2>I. A Railway Car</h2>
-        <p>In November 1918, in the Forest of Compiègne, German representatives signed the armistice inside a railway car. Twenty-two years later, Hitler specifically located that same car, brought it to the same forest, and made the French sign their surrender inside it. Then he had it transported to Berlin and destroyed.</p>
-        <p>Just a railway car. But how much hatred must a man carry to spend twenty-two years tracking it down, use it to humiliate his enemies, and then personally erase it from the world?</p>
-        <p>More important: that hatred was not his alone. He reached that point because tens of millions of people stood behind him, equally furious. These people were not born evil. Twenty years earlier they had lived inside a civilization that gave the world Goethe, Kant, and Beethoven.</p>
-        <p>Twenty years, from civilization to abyss. What actually happened in those two decades?</p>
-        <h2>II. A Peace Treaty That Was Not Peace</h2>
-        <p>Most people know the terms of Versailles. 132 billion gold marks in reparations. The loss of Alsace-Lorraine. An army capped at a hundred thousand. No air force. A demilitarized Rhineland. And the famous Article 231 — the war guilt clause — requiring Germany to formally accept sole responsibility for the war.</p>
-        <p>These numbers and clauses can each be debated on their own merits. But placed together, what did they mean to an ordinary German?</p>
-        <p>A German factory worker in 1920 goes to work every day, watches a portion of his wages disappear into reparations owed to French and British strangers he has never seen. He does not quite understand why the debt is so large. He only knows that he did not start the war, that he was sent to fight it, that many friends died in the trenches. And now those who came back alive are told: you are guilty.</p>
-        <p>He opens a map. His uncle's town is now Polish. His cousin's Danzig has become something called a "Free City." East Prussia has been severed from the German homeland by a corridor — like a cut across his body.</p>
-        <p>All of this communicated one thing very clearly: the people of this country are not subjects deserving of respect. They are objects to be managed, punished, disposed of.</p>
-        <p>For a society, the most dangerous thing is not poverty, and not even defeat. The most dangerous thing is making tens of millions of people feel simultaneously that they are no longer being treated as human beings.</p>
-        <h2>III. The Year Money Became Paper</h2>
-        <p>Then came 1923. A loaf of bread: 250 marks in January, 1.5 million in September, 200 billion in November.</p>
-        <p>Workers rushed out of factories at noon the moment they received their morning wages — not from eagerness, but because by afternoon the money would buy half as much. Housewives burned banknotes for heat. Not a figure of speech: paper currency was literally cheaper than firewood. A man who had saved his entire life for a pension found that his accumulated savings could not buy a single cup of coffee.</p>
-        <p>The numbers are so large they become abstract. What matters is what this did to people psychologically.</p>
-        <p>Every correct thing a person had done over a lifetime — working hard, saving, planning for the future — zeroed out. Not because they had made a mistake. Because some force they could not begin to understand had decided that all their effort simply did not count.</p>
-        <p>People who lived through this lost more than money. They lost the foundational belief that effort produces results. And that belief is the basis on which a person feels that their own existence has value.</p>
-        <p>After 1924 the economy briefly stabilized. Berlin became the liveliest city in Europe, full of jazz, avant-garde art, literary cafés. On the surface, the wound had healed. It hadn't. It had only sunk deeper, like a crack running through the foundation, waiting for the next earthquake.</p>
-        <h2>IV. The Earthquake Arrived</h2>
-        <p>In 1929 Wall Street collapsed. The blow to Germany was worse than to America, because the prosperity of the Weimar years had been financed largely on American loans. When the loans were withdrawn, the whole economy buckled like a body with its skeleton removed.</p>
-        <p>By 1932, one in three German workers was unemployed. Six million people. Not six million figures — six million people who woke each morning with nowhere to go. Six million husbands and fathers who could no longer look their families in the eye. Six million individuals who had gone from "members of society" to "surplus people."</p>
-        <p>The 1923 crack had split into a faultline. And this time there was no recovery on the horizon. The crisis continued year after year, without end in sight.</p>
-        <p>When a person has lived in despair long enough, they do not become gentle. They become hungry — hungry for anything that might make them feel important again.</p>
-        <p>The stage was set.</p>
-        <h2>V. A Precise Response</h2>
-        <p>The rise of Nazism was not because the German people suddenly became evil. It was because what the Nazis offered matched, with uncanny precision, the deepest deficits of tens of millions of people.</p>
-        <p>You feel superfluous? Every Aryan carries the most superior bloodline on earth. You feel your suffering is meaningless? No — it was deliberately inflicted, by Jews, by Communists, by the architects of Versailles. Your suffering is not evidence of failure; it is evidence of persecution.</p>
-        <p>You feel society has no place for you? The Third Reich gives everyone a place. Workers have organizations. Youth have the Hitler Youth. Women have defined roles. Everyone gets a uniform, a rally, a torchlight procession. Everyone finally belongs to something.</p>
-        <p>This narrative made tens of millions of people feel important again. But there is a question easy to miss: where did this sense of importance come from?</p>
-        <p>It came entirely from contrast — from defining an out-group. You are special because the other is inferior. You matter because the other does not. The moment you take away the contrast, the importance collapses. This is why this kind of importance cannot stop escalating. Once you've identified one enemy, you need more enemies, clearer enemies, enemies everywhere. The machine of self-worth that runs on the degradation of others demands constant fuel.</p>
-        <h2>VI. Twenty Years Is Not a Long Time</h2>
-        <p>From 1918 to 1933 — fifteen years from Versailles to Hitler's chancellorship. From a cultured, constitutional republic to a totalitarian state.</p>
-        <p>This transition is often told as a story of extremism triumphing over moderation, of evil defeating good. But that framing misses what is most important about the story.</p>
-        <p>What the Weimar collapse actually demonstrates is this: when millions of people simultaneously lose the basic sense that their lives have meaning and dignity, a society will manufacture a solution. It will not wait for the correct solution. It will take the first one that appears to work — whatever restores the feeling of mattering, whatever gives suffering a cause and a target, whatever replaces the emptiness with belonging.</p>
-        <p>The Nazi movement did not create that hunger. The hunger had been accumulating for years, layer by layer: the shame of defeat, the humiliation of Versailles, the erasure of savings, the despair of mass unemployment. The Nazis merely provided a match.</p>
-        <p>The question worth sitting with is not "how did Germany produce Hitler?" The question is: what conditions make a population willing to accept any answer at all?</p>
-
-      </div>
+<h2>A railway carriage</h2>
+<p>In November 1918, in the forest of Compiègne, German representatives signed an armistice inside a railway carriage. Twenty-two years later, Hitler had the same carriage brought back to its original position so that French representatives would sign an armistice there. The carriage was then taken to Berlin for display, later moved to Thuringia, and destroyed by fire in 1945.</p>
+<p>Just a railway carriage. But how much hatred must a person carry to have it brought back twenty-two years later, to the very same place, so that the other side must endure the humiliation once endured by his own?</p>
+<p>More importantly, this hatred was not Hitler's alone. He could get that far because tens of millions of people stood behind him, just as angry. These people were not born evil. Twenty years earlier, they had lived in a civilization that had produced Goethe, Kant, and Beethoven.</p>
+<p>Twenty years, from civilization into the abyss. What this essay wants to understand is what happened during those two decades.</p>
+<h2>A peace treaty that was not peace</h2>
+<p>Most people have heard of the Treaty of Versailles and the arrangements that followed it. Reparations of 132 billion gold marks: that sum was fixed in 1921, not written directly into the 1919 treaty. The loss of Alsace-Lorraine. An army limited to a hundred thousand men. No air force. A demilitarized Rhineland. And the famous Article 231, requiring Germany and its allies to accept responsibility for the loss and damage caused by the war. In German society, it was widely understood as a verdict of war guilt. But the wording did not simply say, “The whole war was Germany's fault.”</p>
+<p>Each of these numbers and provisions can be debated on its own merits. Taken together, though, what did they mean to an ordinary German?</p>
+<p>A German worker in 1920 goes to the factory every day. Part of his wages is taken away for reparations, paid to French and British people he has never met. He does not quite understand why so much is owed. All he knows is that he did not start the war. He was sent to fight it. Many of his friends died in the trenches. Now those who came back alive are told: you are guilty.</p>
+<p>He opens a map and discovers that his uncle's town now belongs to Poland. Danzig, where his cousin lives, has become something called a “Free City.” A corridor separates East Prussia from the rest of Germany, like a cut across his body.</p>
+<p>Put together, these experiences conveyed a clear message: the people of this country were not subjects deserving respect, but objects to be watched, punished, and disposed of.</p>
+<p>For a society, the most dangerous condition is not poverty, or even defeat. It is having tens of millions of people feel, at the same time, that they are no longer being treated as human beings.</p>
+<h2>The year money became waste paper</h2>
+<p>Then came 1923. In January, a loaf of bread cost 250 marks. In September, 1.5 million. In November, 200 billion.</p>
+<p>Workers paid in the morning rushed out of the factory at noon to buy things. Not because they were industrious, but because by afternoon their money would buy only half a loaf. Housewives burned banknotes for warmth. This was no elaborate metaphor: paper money was literally cheaper than firewood. Someone who had spent a lifetime saving for a pension found that the money could no longer buy a cup of coffee.</p>
+<p>Numbers this large become abstract. What matters is what the experience meant to ordinary people psychologically.</p>
+<p>Everything a person had done right in life, working hard, living frugally, saving, planning for the future, was wiped out. Not because they had made a mistake, but because some force they could not begin to understand had decided that none of their efforts counted.</p>
+<p>Those who lived through this lost more than money. They lost the basic belief that effort meant something. And that belief is part of the foundation on which a person feels that they have value.</p>
+<p>After 1924, the economy stabilized for a while. Berlin even became Europe's liveliest city, with jazz, avant-garde art, and literary cafés. On the surface, the trauma had passed. But it had not. It had sunk deeper, like a hidden crack in a foundation, waiting for the next earthquake.</p>
+<h2>The earthquake came</h2>
+<p>In 1929, Wall Street crashed. Germany was hit even harder than America, because the “good years” of the Weimar Republic had largely rested on American loans. When those loans were withdrawn, the economy collapsed like a body whose skeleton had been pulled away.</p>
+<p>By 1932, one German worker in three was unemployed. Six million people. Not six million figures, but six million people waking up each morning with nowhere to go. Six million husbands and fathers unable to hold their heads up before their families. Six million living individuals who had gone from “members of society” to “superfluous people.”</p>
+<p>The hidden crack of 1923 had split into a fault line. This time, there was no recovery waiting ahead. The crisis dragged on, year after year, with no end in sight.</p>
+<p>When someone has spent long enough in despair, they do not become gentle. They become hungry, hungry for anything that can make them feel important again.</p>
+<p>The stage was set.</p>
+<h2>A precisely targeted response</h2>
+<p>Nazism did not rise because Germans suddenly turned evil. What the Nazis offered connected with uncanny precision to what tens of millions of people felt most deeply they lacked.</p>
+<p>Feel superfluous? Nazi propaganda answered: no, every “Aryan” carries the finest bloodline on earth. Feel your suffering is meaningless? No, it insisted, outside forces deliberately inflicted it: Jews, Communists, the architects of Versailles. In this story, suffering was not evidence of failure, but proof of persecution.</p>
+<p>Feel society has no place for you? The Third Reich promised everyone a place. Workers had organizations; the young had the Hitler Youth; women had prescribed roles. Everyone had a uniform, a rally, a torchlight procession. At last, everyone belonged to something.</p>
+<p>This narrative made tens of millions of people feel important again. But there is a question easily overlooked: where did that “importance” come from?</p>
+<p>Imagine a watchmaker in Berlin called Hans. A quiet man, good at his craft, with a wife who nags but is kind. On weekends, he takes the children fishing by the lake. Nazism makes Hans feel important, but not because he is Hans. Not because of his skill, his family, or the particular life he has lived. It is because he is “Aryan.” His value comes from the category he belongs to, not from who he is.</p>
+<p>The distinction seems subtle. In fact, it is lethal. There is only half a step between “I matter because I belong to this group” and “I matter only as part of this group.” But once that half-step is taken, a person ceases to be an end and becomes a component, willingly, even ecstatically.</p>
+<p>The pain of being abandoned by the economic system and the exhilaration of being welded into a machine by a racial narrative do the same thing: they turn a person from an end into a function. Exhilaration is far more dangerous than pain, because nobody wants to escape it.</p>
+<h2>Why the Jews?</h2>
+<p>When a group's sense of worth rests entirely on “we are the best,” its logic demands someone who is “the worst” as a point of contrast. Without a valley, how can a mountain seem high?</p>
+<p>This is the structural explanation offered here for antisemitism's escalation from prejudice to extermination. European antisemitism was old, far older than Nazism. For centuries, Jews had faced discrimination, segregation, and recurring violence. But a vast gulf separates discrimination from extermination. What made that gulf crossable at this particular moment?</p>
+<p>The system's needs. When the self-worth of tens of millions depends entirely on a collective identity, sustaining that identity demands an absolute opposite: not “people a little worse than us,” but beings classified as “not human at all.”</p>
+<p>Jews were not merely cast as inferior people. Nazi dehumanization placed them outside humanity. Once that classification was accepted, what followed could be made to look like a logical consequence. People were taught not to feel guilty about exterminating “vermin,” or pain at switching off a machine.</p>
+<p>When a group is removed entirely from the category of “human,” anything done to it can become psychologically bearable to the perpetrators. The Holocaust was therefore not merely a wartime loss of control, or the product of a few deranged individuals. It was the endpoint of the system's logic.</p>
+<p>From the humiliation associated with Versailles, to the collapse of self-worth, to the fabrication of worth through collective identity, to the need for an absolute other to sustain that fabrication: each step points toward the next, like dominoes, the next already tipping as the previous one falls.</p>
+<h2>What the carriage really meant</h2>
+<p>Back to the beginning. Hitler's arrangement for the French to sign an armistice in that same carriage is usually understood as a deliberately staged act of revenge. Following the argument of this essay, the ceremony also carried a deeper meaning.</p>
+<p>Within that revenge narrative, the carriage stood for a condition: a people treated as objects to be disposed of, rather than human beings deserving respect. Reversing the positions of victor and vanquished declared, “We are no longer objects.”</p>
+<p>Yet the ceremony exposed the very problem it sought to resolve. Someone who truly regards themselves as an end does not need to prove it by humiliating others. Having to make others endure humiliation in order to establish one's own subjecthood reveals that subjecthood as fragile and borrowed. It has not grown from within. It has been pasted on from outside.</p>
+<p>A subjecthood pasted on from outside can be sustained only by continually negating others. Once such a system starts, it cannot stop. It needs more and more enemies, more and more extreme violence, to preserve the internal illusion that “we matter.”</p>
+<p>This logic went into operation in 1933 and was stopped by external force in 1945, after swallowing tens of millions of lives. But the condition that set it in motion deserves repeated attention: when large numbers of people no longer feel that they are ends in themselves, they become vulnerable to any counterfeit sense of purpose.</p>
+<p>That condition did not disappear with the defeat of Nazism. It can arise again in any age.</p>
+</div>
 
       <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
-
-      <h2>一节车厢</h2>
-
-      <p>1918年11月，贡比涅森林，在一节火车车厢里，德国代表签下了停战协定。二十二年后，希特勒特意找到了同一节车厢，在同一片森林里，让法国人签了投降书。然后把车厢运回柏林，炸了。</p>
-
-      <p>一节车厢而已。但一个人要带着多大的恨意，才会在二十二年后专门去找到它，用它来羞辱对方，然后亲手把它从世界上抹掉？</p>
-
-      <p>更重要的是，这种恨意不是希特勒一个人的。他之所以能走到那一步，是因为身后站着几千万和他一样愤怒的人。这些人不是天生的恶人。二十年前，他们还生活在一个拥有歌德、康德和贝多芬的文明社会里。</p>
-
-      <p>二十年，从文明到深渊。这篇文章想搞清楚的就是这二十年里到底发生了什么。</p>
-
-      <h2>一份不是和平的和约</h2>
-
-      <p>凡尔赛条约的内容大多数人都听过。1320亿金马克赔款，割让阿尔萨斯-洛林，军队不能超过十万人，不许拥有空军，莱茵兰非军事化。还有那个著名的第231条，战争罪责条款，要求德国必须承认这场战争全是自己的错。</p>
-
-      <p>这些数字和条款，单独拿出来都可以讨论合不合理。但放在一起，它们对一个普通德国人意味着什么？</p>
-
-      <p>一个1920年的德国工人，每天去工厂上班，工资的一部分被抽走去还赔款，去还给他从未见过的法国人、英国人。他不太明白为什么要还这么多钱。他只知道这场仗不是他发动的，他只是去打了，很多朋友死在了战壕里。现在活着回来的人被告知：你们有罪。</p>
-
-      <p>他打开地图，发现叔叔住的地方现在属于波兰了。表弟住的但泽变成了一个什么"自由市"。东普鲁士被一条走廊和德国本土切开了，像是身上被割了一刀。</p>
-
-      <p>这些事情加在一起，传递出来的信息非常清楚：这个国家的人不是需要被尊重的主体，而是需要被看管、被惩罚、被随意处置的对象。</p>
-
-      <p>对一个社会来说，最危险的不是贫穷，甚至不是战败。最危险的是让几千万人同时觉得自己不再被当人看。</p>
-
-      <h2>钱变成废纸的那一年</h2>
-
-      <p>然后是1923年。1月份，一条面包250马克。9月份，150万马克。11月份，2000亿马克。</p>
-
-      <p>工人上午发了工资，中午就冲出工厂去买东西。不是因为勤快，是因为到了下午钱就只够买半条面包了。家庭主妇烧钱取暖，这都不是夸张的比喻，就是字面意思，因为纸币比木柴便宜。有人用一辈子积蓄买了一份养老保险，到头来那笔钱买不到一杯咖啡。</p>
-
-      <p>数字太大了反而变得抽象。真正要理解的是这件事对普通人心理上的意义。</p>
-
-      <p>一个人这辈子做的所有正确的事——努力工作、省吃俭用、存钱、规划未来——全部归零。不是因为他犯了错，而是因为某种他完全无法理解的力量决定了他的一切努力不算数。</p>
-
-      <p>经历过这种事的人，失去的不仅仅是钱。失去的是"努力有意义"这个基本信念。而这个信念，是一个人觉得自己有价值的基础。</p>
-
-      <p>1924年之后经济暂时稳定了。柏林甚至成了全欧洲最热闹的城市，有爵士乐，有先锋艺术，有文学咖啡馆。表面上看，创伤过去了，但它没有，它只是沉下去了，像一条裂在地基里的暗缝，等着下一次地震。</p>
-
-      <h2>地震来了</h2>
-
-      <p>1929年华尔街崩盘。这件事对德国的打击比对美国还大，因为魏玛那几年的"好日子"基本上是靠美国贷款撑着的。贷款一抽走，整个经济像被抽了骨架一样塌下来。</p>
-
-      <p>到1932年，每三个德国工人里就有一个失业。六百万人。不是六百万个数字，是六百万个每天早上醒来无处可去的人。六百万个在家人面前抬不起头的丈夫和父亲。六百万个从"社会成员"变成"多余的人"的活生生的个体。</p>
-
-      <p>1923年的暗缝被撕成了断层。而且这一次没有好转在等着。危机一年又一年地持续，看不到尽头。</p>
-
-      <p>当一个人在绝望中待得足够久，他不会变得温和。他会变得饥渴，变得对任何一种能让他重新觉得自己重要的东西饥渴。</p>
-
-      <p>舞台搭好了。</p>
-
-      <h2>一种精准的回应</h2>
-
-      <p>纳粹的崛起不是因为德国人突然变坏了。而是因为纳粹提供的东西，精准地对接了几千万人最深处的缺失。</p>
-
-      <p>觉得自己是多余的？不，每一个雅利安人都是这个星球上最优秀血脉的传承者。觉得苦难毫无意义？不，这些苦难是外部势力蓄意制造的，可以是犹太人，可以是共产主义者，也可以是凡尔赛条约的策划者。苦难不是无能的证据，是被迫害的证据。</p>
-
-      <p>觉得社会没有自己的位置？第三帝国给每一个人位置。工人有组织，青年有青年团，女人有明确的角色，每个人都有制服、有集会、有火把游行。每一个人终于都属于一个东西了。</p>
-
-      <p>这套叙事让几千万人重新觉得自己很重要。但这里有一个很容易被忽略的问题：这种"重要"是怎么来的？</p>
-
-      <p>柏林有一个叫汉斯的钟表匠。安静的人，手艺不错，妻子唠叨但善良，周末带孩子去湖边钓鱼。纳粹让汉斯觉得自己很重要，可这并不是因为他是汉斯，不是因为他的手艺，他的家庭，他独特的人生。而是因为他是"雅利安人"。他的价值来自他属于哪个类别，而不是来自他是谁。</p>
-
-      <p>这个区别看起来微妙，实际上是致命的。从"因为属于某个群体而重要"到"只有作为这个群体的一部分才重要"，只有半步之遥。但这半步一旦迈出，一个人就从目的变成了零件，而且还是心甘情愿的，甚至是亢奋的。</p>
-
-      <p>被经济系统抛弃的痛苦，和被种族叙事焊入机器的亢奋，做的是同一件事：把一个人从目的变成功能。而亢奋远比痛苦危险，因为没人想从亢奋中逃走。</p>
-
-      <h2>为什么是犹太人</h2>
-
-      <p>当一个群体的自我价值完全建立在"我们是最优秀的"上面，逻辑上就需要一个"最不优秀的"来做对照。没有峡谷，怎么显得出山峰。</p>
-
-      <p>这是反犹主义从偏见升级为灭绝的结构性原因。欧洲的反犹传统很古老，远远早于纳粹。几百年来，犹太人一直遭受歧视、隔离、周期性的暴力。但歧视和灭绝之间有一条巨大的鸿沟。是什么让这条鸿沟在这个特定的时刻被跨越？</p>
-
-      <p>是系统的需要。当几千万人的自我价值完全依附于一个集体身份，维持这个身份就需要一个绝对的对立面——不是"比我们差一点的人"，而是"根本不是人"的存在。</p>
-
-      <p>犹太人不是被定义为低等人。他们被定义为不是人。一旦这个定义被接受，后面发生的一切就是逻辑的展开而已。没有人会为消灭害虫感到内疚。没有人会为关掉一台机器感到痛苦。</p>
-
-      <p>当一个群体被从"人"的范畴中彻底移除，对他们做任何事情都变得在心理上可以承受。所以大屠杀不仅是战争中的一次失控，不仅是因为某些人的变态，它是整个系统逻辑的终点。</p>
-
-      <p>从凡尔赛的羞辱，到自我价值的坍塌，到通过集体身份伪造价值感，到需要一个绝对的他者来维持伪造，每一步都精确地指向下一步，像多米诺骨牌一样，前一块倒下的时候后一块就已经在倾斜了。</p>
-
-      <h2>那节车厢的真正含义</h2>
-
-      <p>回到开头。希特勒炸毁那节火车车厢，通常被当作他个人病态的报复心理。也许是。但沿着这篇文章的脉络走到这里，那个举动还有更深一层的意思。</p>
-
-      <p>那节车厢代表的是一种状态：一个民族被当作可以处置的对象，而不是需要被尊重的人。炸毁它，是在说"我们不再是对象了"。</p>
-
-      <p>但恰恰是这个举动暴露了问题。一个真正把自己当作目的的人，不需要通过炸毁什么东西来证明。需要靠暴力来确认自己的主体性，说明这种主体性是脆弱的，是借来的。它不是从里面长出来的，是从外面贴上去的。</p>
-
-      <p>一种贴上去的主体性，只能靠不断否定他者来维持。所以这个系统一旦启动就停不下来。它需要越来越多的敌人，越来越极端的暴力，来维持内部那种"我们很重要"的幻觉。</p>
-
-      <p>这个逻辑在1933年启动，到1945年吞噬了几千万条人命才被外力终止。但让它启动的那个成因更为值得反复讨论——当大量的人不再觉得自己是目的，他们就会被任何一种伪造的目的感所俘获。</p>
-
-      <p>这个成因并没有随着纳粹的覆灭而消失，它可以在任何时代被重新复活。</p>
-
-    </div>
+<h2>一节车厢</h2>
+<p>1918年11月，贡比涅森林，在一节火车车厢里，德国代表签下了停战协定。二十二年后，希特勒命人把同一节车厢搬回原来的位置，让法国代表在那里签下停战协定。车厢随后被运到柏林展出，后来又转移到图林根，1945年毁于火灾。</p>
+<p>一节车厢而已。但一个人要带着多大的恨意，才会在二十二年后专门把它搬回来，在同一个地方，让对方承受自己曾经承受的屈辱？</p>
+<p>更重要的是，这种恨意不是希特勒一个人的。他之所以能走到那一步，是因为身后站着几千万和他一样愤怒的人。这些人不是天生的恶人。二十年前，他们还生活在一个拥有歌德、康德和贝多芬的文明社会里。</p>
+<p>二十年，从文明到深渊。这篇文章想搞清楚的就是这二十年里到底发生了什么。</p>
+<h2>一份不是和平的和约</h2>
+<p>凡尔赛条约及其后续安排，大多数人都听过。1320亿金马克赔款，这个金额是在1921年确定的，并不是1919年的条约直接写定的。割让阿尔萨斯-洛林，军队不能超过十万人，不许拥有空军，莱茵兰非军事化。还有那个著名的第231条，要求德国及其盟国对战争造成的损失和损害承担责任。它在德国社会被广泛理解为一份战争罪责判决，但条文并不是一句“这场战争全是德国的错”。</p>
+<p>这些数字和条款，单独拿出来都可以讨论合不合理。但放在一起，它们对一个普通德国人意味着什么？</p>
+<p>一个1920年的德国工人，每天去工厂上班，工资的一部分被抽走去还赔款，去还给他从未见过的法国人、英国人。他不太明白为什么要还这么多钱。他只知道这场仗不是他发动的，他只是去打了，很多朋友死在了战壕里。现在活着回来的人被告知：你们有罪。</p>
+<p>他打开地图，发现叔叔住的地方现在属于波兰了。表弟住的但泽变成了一个什么"自由市"。东普鲁士被一条走廊和德国本土切开了，像是身上被割了一刀。</p>
+<p>这些事情加在一起，传递出来的信息非常清楚：这个国家的人不是需要被尊重的主体，而是需要被看管、被惩罚、被随意处置的对象。</p>
+<p>对一个社会来说，最危险的不是贫穷，甚至不是战败。最危险的是让几千万人同时觉得自己不再被当人看。</p>
+<h2>钱变成废纸的那一年</h2>
+<p>然后是1923年。1月份，一条面包250马克。9月份，150万马克。11月份，2000亿马克。</p>
+<p>工人上午发了工资，中午就冲出工厂去买东西。不是因为勤快，是因为到了下午钱就只够买半条面包了。家庭主妇烧钱取暖，这都不是夸张的比喻，就是字面意思，因为纸币比木柴便宜。有人用一辈子积蓄买了一份养老保险，到头来那笔钱买不到一杯咖啡。</p>
+<p>数字太大了反而变得抽象。真正要理解的是这件事对普通人心理上的意义。</p>
+<p>一个人这辈子做的所有正确的事——努力工作、省吃俭用、存钱、规划未来——全部归零。不是因为他犯了错，而是因为某种他完全无法理解的力量决定了他的一切努力不算数。</p>
+<p>经历过这种事的人，失去的不仅仅是钱。失去的是"努力有意义"这个基本信念。而这个信念，是一个人觉得自己有价值的基础。</p>
+<p>1924年之后经济暂时稳定了。柏林甚至成了全欧洲最热闹的城市，有爵士乐，有先锋艺术，有文学咖啡馆。表面上看，创伤过去了，但它没有，它只是沉下去了，像一条裂在地基里的暗缝，等着下一次地震。</p>
+<h2>地震来了</h2>
+<p>1929年华尔街崩盘。这件事对德国的打击比对美国还大，因为魏玛那几年的"好日子"基本上是靠美国贷款撑着的。贷款一抽走，整个经济像被抽了骨架一样塌下来。</p>
+<p>到1932年，每三个德国工人里就有一个失业。六百万人。不是六百万个数字，是六百万个每天早上醒来无处可去的人。六百万个在家人面前抬不起头的丈夫和父亲。六百万个从"社会成员"变成"多余的人"的活生生的个体。</p>
+<p>1923年的暗缝被撕成了断层。而且这一次没有好转在等着。危机一年又一年地持续，看不到尽头。</p>
+<p>当一个人在绝望中待得足够久，他不会变得温和。他会变得饥渴，变得对任何一种能让他重新觉得自己重要的东西饥渴。</p>
+<p>舞台搭好了。</p>
+<h2>一种精准的回应</h2>
+<p>纳粹的崛起不是因为德国人突然变坏了。而是因为纳粹提供的东西，精准地对接了几千万人最深处的缺失。</p>
+<p>觉得自己是多余的？不，每一个雅利安人都是这个星球上最优秀血脉的传承者。觉得苦难毫无意义？不，这些苦难是外部势力蓄意制造的，可以是犹太人，可以是共产主义者，也可以是凡尔赛条约的策划者。苦难不是无能的证据，是被迫害的证据。</p>
+<p>觉得社会没有自己的位置？第三帝国给每一个人位置。工人有组织，青年有青年团，女人有明确的角色，每个人都有制服、有集会、有火把游行。每一个人终于都属于一个东西了。</p>
+<p>这套叙事让几千万人重新觉得自己很重要。但这里有一个很容易被忽略的问题：这种"重要"是怎么来的？</p>
+<p>设想柏林有一位叫汉斯的钟表匠。安静的人，手艺不错，妻子唠叨但善良，周末带孩子去湖边钓鱼。纳粹让汉斯觉得自己很重要，可这并不是因为他是汉斯，不是因为他的手艺，他的家庭，他独特的人生。而是因为他是"雅利安人"。他的价值来自他属于哪个类别，而不是来自他是谁。</p>
+<p>这个区别看起来微妙，实际上是致命的。从"因为属于某个群体而重要"到"只有作为这个群体的一部分才重要"，只有半步之遥。但这半步一旦迈出，一个人就从目的变成了零件，而且还是心甘情愿的，甚至是亢奋的。</p>
+<p>被经济系统抛弃的痛苦，和被种族叙事焊入机器的亢奋，做的是同一件事：把一个人从目的变成功能。而亢奋远比痛苦危险，因为没人想从亢奋中逃走。</p>
+<h2>为什么是犹太人</h2>
+<p>当一个群体的自我价值完全建立在"我们是最优秀的"上面，逻辑上就需要一个"最不优秀的"来做对照。没有峡谷，怎么显得出山峰。</p>
+<p>这是反犹主义从偏见升级为灭绝的结构性原因。欧洲的反犹传统很古老，远远早于纳粹。几百年来，犹太人一直遭受歧视、隔离、周期性的暴力。但歧视和灭绝之间有一条巨大的鸿沟。是什么让这条鸿沟在这个特定的时刻被跨越？</p>
+<p>是系统的需要。当几千万人的自我价值完全依附于一个集体身份，维持这个身份就需要一个绝对的对立面——不是"比我们差一点的人"，而是"根本不是人"的存在。</p>
+<p>犹太人不是被定义为低等人。他们被定义为不是人。一旦这个定义被接受，后面发生的一切就是逻辑的展开而已。没有人会为消灭害虫感到内疚。没有人会为关掉一台机器感到痛苦。</p>
+<p>当一个群体被从"人"的范畴中彻底移除，对他们做任何事情都变得在心理上可以承受。所以大屠杀不仅是战争中的一次失控，不仅是因为某些人的变态，它是整个系统逻辑的终点。</p>
+<p>从凡尔赛的羞辱，到自我价值的坍塌，到通过集体身份伪造价值感，到需要一个绝对的他者来维持伪造，每一步都精确地指向下一步，像多米诺骨牌一样，前一块倒下的时候后一块就已经在倾斜了。</p>
+<h2>那节车厢的真正含义</h2>
+<p>回到开头。希特勒安排法国人在同一节车厢里签下停战协定，通常被看作一次刻意设计的报复。沿着这篇文章的脉络走到这里，这场仪式还有更深一层的意思。</p>
+<p>在这种复仇叙事里，那节车厢代表的是一种状态：一个民族被当作可以处置的对象，而不是需要被尊重的人。把胜败双方的位置调换过来，是在说“我们不再是对象了”。</p>
+<p>但恰恰是这场仪式暴露了问题。一个真正把自己当作目的的人，不需要通过羞辱别人来证明。需要靠让他人承受屈辱来确认自己的主体性，说明这种主体性是脆弱的，是借来的。它不是从里面长出来的，是从外面贴上去的。</p>
+<p>一种贴上去的主体性，只能靠不断否定他者来维持。所以这个系统一旦启动就停不下来。它需要越来越多的敌人，越来越极端的暴力，来维持内部那种"我们很重要"的幻觉。</p>
+<p>这个逻辑在1933年启动，到1945年吞噬了几千万条人命才被外力终止。但让它启动的那个成因更为值得反复讨论——当大量的人不再觉得自己是目的，他们就会被任何一种伪造的目的感所俘获。</p>
+<p>这个成因并没有随着纳粹的覆灭而消失，它可以在任何时代被重新复活。</p>
+</div>
+<div class="essay-body lang-hant" style="font-family:var(--cjk),serif;">
+<h2>一節車廂</h2>
+<p>1918年11月，貢比涅森林，在一節火車車廂裡，德國代表簽下了停戰協定。二十二年後，希特勒命人把同一節車廂搬回原來的位置，讓法國代表在那裡簽下停戰協定。車廂隨後被運到柏林展出，後來又轉移到圖林根，1945年毀於火災。</p>
+<p>一節車廂而已。但一個人要帶著多大的恨意，才會在二十二年後專門把它搬回來，在同一個地方，讓對方承受自己曾經承受的屈辱？</p>
+<p>更重要的是，這種恨意不是希特勒一個人的。他之所以能走到那一步，是因為身後站著幾千萬和他一樣憤怒的人。這些人不是天生的惡人。二十年前，他們還生活在一個擁有歌德、康德和貝多芬的文明社會裡。</p>
+<p>二十年，從文明到深淵。這篇文章想搞清楚的就是這二十年裡到底發生了什麼。</p>
+<h2>一份不是和平的和約</h2>
+<p>凡爾賽條約及其後續安排，大多數人都聽過。1320億金馬克賠款，這個金額是在1921年確定的，並不是1919年的條約直接寫定的。割讓阿爾薩斯-洛林，軍隊不能超過十萬人，不許擁有空軍，萊茵蘭非軍事化。還有那個著名的第231條，要求德國及其盟國對戰爭造成的損失和損害承擔責任。它在德國社會被廣泛理解為一份戰爭罪責判決，但條文並不是一句“這場戰爭全是德國的錯”。</p>
+<p>這些數字和條款，單獨拿出來都可以討論合不合理。但放在一起，它們對一個普通德國人意味著什麼？</p>
+<p>一個1920年的德國工人，每天去工廠上班，工資的一部分被抽走去還賠款，去還給他從未見過的法國人、英國人。他不太明白為什麼要還這麼多錢。他只知道這場仗不是他發動的，他只是去打了，很多朋友死在了戰壕裡。現在活著回來的人被告知：你們有罪。</p>
+<p>他打開地圖，發現叔叔住的地方現在屬於波蘭了。表弟住的但澤變成了一個什麼"自由市"。東普魯士被一條走廊和德國本土切開了，像是身上被割了一刀。</p>
+<p>這些事情加在一起，傳遞出來的信息非常清楚：這個國家的人不是需要被尊重的主體，而是需要被看管、被懲罰、被隨意處置的對象。</p>
+<p>對一個社會來說，最危險的不是貧窮，甚至不是戰敗。最危險的是讓幾千萬人同時覺得自己不再被當人看。</p>
+<h2>錢變成廢紙的那一年</h2>
+<p>然後是1923年。1月份，一條麵包250馬克。9月份，150萬馬克。11月份，2000億馬克。</p>
+<p>工人上午發了工資，中午就衝出工廠去買東西。不是因為勤快，是因為到了下午錢就只夠買半條麵包了。家庭主婦燒錢取暖，這都不是誇張的比喻，就是字面意思，因為紙幣比木柴便宜。有人用一輩子積蓄買了一份養老保險，到頭來那筆錢買不到一杯咖啡。</p>
+<p>數字太大了反而變得抽象。真正要理解的是這件事對普通人心理上的意義。</p>
+<p>一個人這輩子做的所有正確的事——努力工作、省吃儉用、存錢、規劃未來——全部歸零。不是因為他犯了錯，而是因為某種他完全無法理解的力量決定了他的一切努力不算數。</p>
+<p>經歷過這種事的人，失去的不僅僅是錢。失去的是"努力有意義"這個基本信念。而這個信念，是一個人覺得自己有價值的基礎。</p>
+<p>1924年之後經濟暫時穩定了。柏林甚至成了全歐洲最熱鬧的城市，有爵士樂，有先鋒藝術，有文學咖啡館。表面上看，創傷過去了，但它沒有，它只是沉下去了，像一條裂在地基裡的暗縫，等著下一次地震。</p>
+<h2>地震來了</h2>
+<p>1929年華爾街崩盤。這件事對德國的打擊比對美國還大，因為魏瑪那幾年的"好日子"基本上是靠美國貸款撐著的。貸款一抽走，整個經濟像被抽了骨架一樣塌下來。</p>
+<p>到1932年，每三個德國工人裡就有一個失業。六百萬人。不是六百萬個數字，是六百萬個每天早上醒來無處可去的人。六百萬個在家人面前抬不起頭的丈夫和父親。六百萬個從"社會成員"變成"多餘的人"的活生生的個體。</p>
+<p>1923年的暗縫被撕成了斷層。而且這一次沒有好轉在等著。危機一年又一年地持續，看不到盡頭。</p>
+<p>當一個人在絕望中待得足夠久，他不會變得溫和。他會變得飢渴，變得對任何一種能讓他重新覺得自己重要的東西飢渴。</p>
+<p>舞台搭好了。</p>
+<h2>一種精準的回應</h2>
+<p>納粹的崛起不是因為德國人突然變壞了。而是因為納粹提供的東西，精準地對接了幾千萬人最深處的缺失。</p>
+<p>覺得自己是多餘的？不，每一個雅利安人都是這個星球上最優秀血脈的傳承者。覺得苦難毫無意義？不，這些苦難是外部勢力蓄意製造的，可以是猶太人，可以是共產主義者，也可以是凡爾賽條約的策劃者。苦難不是無能的證據，是被迫害的證據。</p>
+<p>覺得社會沒有自己的位置？第三帝國給每一個人位置。工人有組織，青年有青年團，女人有明確的角色，每個人都有制服、有集會、有火把遊行。每一個人終於都屬於一個東西了。</p>
+<p>這套敘事讓幾千萬人重新覺得自己很重要。但這裡有一個很容易被忽略的問題：這種"重要"是怎麼來的？</p>
+<p>設想柏林有一位叫漢斯的鐘錶匠。安靜的人，手藝不錯，妻子嘮叨但善良，週末帶孩子去湖邊釣魚。納粹讓漢斯覺得自己很重要，可這並不是因為他是漢斯，不是因為他的手藝，他的家庭，他獨特的人生。而是因為他是"雅利安人"。他的價值來自他屬於哪個類別，而不是來自他是誰。</p>
+<p>這個區別看起來微妙，實際上是致命的。從"因為屬於某個群體而重要"到"只有作為這個群體的一部分才重要"，只有半步之遙。但這半步一旦邁出，一個人就從目的變成了零件，而且還是心甘情願的，甚至是亢奮的。</p>
+<p>被經濟系統拋棄的痛苦，和被種族敘事焊入機器的亢奮，做的是同一件事：把一個人從目的變成功能。而亢奮遠比痛苦危險，因為沒人想從亢奮中逃走。</p>
+<h2>為什麼是猶太人</h2>
+<p>當一個群體的自我價值完全建立在"我們是最優秀的"上面，邏輯上就需要一個"最不優秀的"來做對照。沒有峽谷，怎麼顯得出山峰。</p>
+<p>這是反猶主義從偏見升級為滅絕的結構性原因。歐洲的反猶傳統很古老，遠遠早於納粹。幾百年來，猶太人一直遭受歧視、隔離、週期性的暴力。但歧視和滅絕之間有一條巨大的鴻溝。是什麼讓這條鴻溝在這個特定的時刻被跨越？</p>
+<p>是系統的需要。當幾千萬人的自我價值完全依附於一個集體身份，維持這個身份就需要一個絕對的對立面——不是"比我們差一點的人"，而是"根本不是人"的存在。</p>
+<p>猶太人不是被定義為低等人。他們被定義為不是人。一旦這個定義被接受，後面發生的一切就是邏輯的展開而已。沒有人會為消滅害蟲感到內疚。沒有人會為關掉一台機器感到痛苦。</p>
+<p>當一個群體被從"人"的範疇中徹底移除，對他們做任何事情都變得在心理上可以承受。所以大屠殺不僅是戰爭中的一次失控，不僅是因為某些人的變態，它是整個系統邏輯的終點。</p>
+<p>從凡爾賽的羞辱，到自我價值的坍塌，到通過集體身份偽造價值感，到需要一個絕對的他者來維持偽造，每一步都精確地指向下一步，像多米諾骨牌一樣，前一塊倒下的時候後一塊就已經在傾斜了。</p>
+<h2>那節車廂的真正含義</h2>
+<p>回到開頭。希特勒安排法國人在同一節車廂裡簽下停戰協定，通常被看作一次刻意設計的報復。沿著這篇文章的脈絡走到這裡，這場儀式還有更深一層的意思。</p>
+<p>在這種復仇敘事裡，那節車廂代表的是一種狀態：一個民族被當作可以處置的對象，而不是需要被尊重的人。把勝敗雙方的位置調換過來，是在說“我們不再是對象了”。</p>
+<p>但恰恰是這場儀式暴露了問題。一個真正把自己當作目的的人，不需要通過羞辱別人來證明。需要靠讓他人承受屈辱來確認自己的主體性，說明這種主體性是脆弱的，是借來的。它不是從裡面長出來的，是從外面貼上去的。</p>
+<p>一種貼上去的主體性，只能靠不斷否定他者來維持。所以這個系統一旦啟動就停不下來。它需要越來越多的敵人，越來越極端的暴力，來維持內部那種"我們很重要"的幻覺。</p>
+<p>這個邏輯在1933年啟動，到1945年吞噬了幾千萬條人命才被外力終止。但讓它啟動的那個成因更為值得反覆討論——當大量的人不再覺得自己是目的，他們就會被任何一種偽造的目的感所俘獲。</p>
+<p>這個成因並沒有隨著納粹的覆滅而消失，它可以在任何時代被重新復活。</p>
+</div>
 
     <div style="max-width:700px; margin:0 auto; padding:0 2.5rem 4rem; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--cream-border); padding-top:2rem;">
-      <a href="index.html" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none;">← 系列总览</a>
-      <a href="2-institutions.html" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none;">下一篇：当制度成为自己的目的 →</a>
+      <a href="index.html" data-primary-route="1" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none;"><span class="lang-zh">← 二战与人的目的</span><span class="lang-en">← World War II and the Person as an End</span><span class="lang-hant">← 二戰與人的目的</span></a>
+      <a href="2-institutions.html" data-primary-route="1" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none;"><span class="lang-zh">→ 当制度成为自己的目的</span><span class="lang-en">→ When Institutions Make Themselves the End</span><span class="lang-hant">→ 當制度成為自己的目的</span></a>
     </div>
   </div>
 

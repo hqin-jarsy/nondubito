@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-10T00:25:15.210403+00:00",
+  "scope": "Final local published WWII complete editions, 5 essays x 8 reading editions on 36 HTML routes; no deployment performed.",
+  "commands": [
+    {
+      "command": "python3 -B scripts/test_wwii_full_editions.py",
+      "result": "9 tests passed, 0 skipped"
+    },
+    {
+      "command": "python3 -B scripts/build_wwii_full_editions.py --check",
+      "result": "Verified 36 complete readers; changed 0"
+    },
+    {
+      "command": "python3 -B scripts/refresh_wwii_full_discovery.py --check",
+      "result": "Checked scoped WWII discovery; 0 changed"
+    },
+    {
+      "command": "python3 -B -m http.server 8788 --bind 127.0.0.1",
+      "result": "Local-only repository test server"
+    },
+    {
+      "command": "NODE_PATH=/Users/hanqin/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules node scripts/test_wwii_full_browser.cjs http://127.0.0.1:8788 --search",
+      "result": {
+        "views": 144,
+        "viewport_widths": [
+          320,
+          375,
+          1440
+        ],
+        "language_transitions": 64,
+        "navigation_languages": 8,
+        "search_result_clicks": 16,
+        "blocked_storage": true,
+        "no_javascript_foreign_readers": true,
+        "page_errors": []
+      }
+    }
+  ],
+  "visual_review": {
+    "screenshots_inspected": [
+      "de-320.png",
+      "de-1440.png",
+      "zh-hant-320.png",
+      "zh-hant-1440.png"
+    ],
+    "judgment": "Readable reader hierarchy, wrapping language switches and German headings, no reader-content overlap or horizontal page overflow. Traditional hero series label uses Traditional characters. Shared legacy global header styling retained. External font and analytics requests were blocked for deterministic local-only testing.",
+    "temporary_screenshot_directory": "/tmp/wwii-reader-qa-edDAml",
+    "screenshot_sha256": {
+      "de-1440.png": "06927be2b5faba9b82f82a40ab9277d66753bd4b982c0525f2f3a4b5140f97e3",
+      "de-320.png": "d14390b6e72eb39164e993600e6e14ea6356790c084b7bb7a6eb4a3ed42bf801",
+      "zh-hant-1440.png": "b77cd15c5c24bcdd05312aa48758479a74e7f2dd91da4430a00d46b587c9a6a7",
+      "zh-hant-320.png": "11d9e4e52bab63ebeb7d516997c59221acf2c6a212f849019b9dd167ab9d2795"
+    }
+  },
+  "source_finalization_sha256": "78113ebc76e540dfcac55e90989abbb25c0a16be1c66f449c5f9fe7a4324908d",
+  "source_file_sha256": {
+    "1-weimar.json": "014bbac717d495e0ce48166bd380e2c719c35adc96826f5db712061e601f11c5",
+    "2-institutions.json": "bb4340af882bd5cf3bcc8725f0695d69595c5e7910b4a1727820eefabec9ea03",
+    "3-four-systems.json": "a888e6eadbc241a3554eb1c58db2fe38bf7b6f056f726a3890d0009d291dfe66",
+    "4-promise.json": "a66e8a144a4efc7932018866d75e6134915fe9a55c46c96424af303c50480270",
+    "5-cracks.json": "92b639fd30b469a54d0af96f92ea20c1e97c8916211d8ba0ad2d80a17903f5c4"
+  },
+  "source_semantic_sha256": {
+    "1-weimar": "a9e0fc1f147bb40ac1055e9974ad69052162f86c6ecdbe4d308151b4d58c9eab",
+    "2-institutions": "92ef615bda012fe86a3381b1a1d9aeb511747a0461df21800c2cc827fb2e9a94",
+    "3-four-systems": "0854801043b6d925e53405f910657b305f488f6caf584cb896dce724105260a6",
+    "4-promise": "e5eaebc69b88f807457e8dc4da53f48e27b4333c5f9688110a720704ae38b1f5",
+    "5-cracks": "16f45c5e9fb3ef5ceecf4825188608aceaac968b955200f70ddafbbbc7dcc4ff"
+  },
+  "independent_review_receipt_sha256": {
+    "en.json": "54158ee1bedb4550afc7d52283534c1e0c9b669db46e918b0c1864ac9b95f8c5",
+    "ja.json": "e58efe164ec1309786d4a9251a1c2a7c0253d19401a64f00c48c6f0ca83b3353",
+    "fr.json": "8be6ebeb1bddc0c1eb0bcf0c1bb1152ae9aacfc9b477bfbb33a00323d923c951",
+    "de.json": "d0407e0383709e2ddcbf6be690f59a45a9b85d27e52f6fa700ee89387caaca9f",
+    "es.json": "d5eb3b4a1b42b694cc920bd588b11eedf95ed5a311140ec26f72b44a22316f20",
+    "ko.json": "c52c593c055ce65b73b8840c2c2576f73beecd41f8744d75074f9487b933e9d4",
+    "zh-Hant.json": "7cdfa6beacbb7394cf70d81a37b63fede90f922340a629e458db0bc174ab17f7"
+  },
+  "translation_file_sha256": {
+    "en/1-weimar.json": "c9b95a60b4e94034733a33290fe094b893108d9b8d2f9bca5869bcd554adcf85",
+    "en/2-institutions.json": "9fe9232a0e2700928e6b21783fd9a499e777c35454a90040a33d97c1e13f7c9a",
+    "en/3-four-systems.json": "77a8fafb989e4d155b0677fcb8a9e7bdc2e6c9aa2325aaffb33b77b90a38ecef",
+    "en/4-promise.json": "855ef3926cc1e4597d92e1e7e3d5fe1cd7075ad9edb4d242a536924446b87a19",
+    "en/5-cracks.json": "45a449fbe5bbec94854d44859f5d7d51dad31e93527c55c1c01c04aab2d2f30c",
+    "ja/1-weimar.json": "6cb5b4320dc87f414927981f9ebf0097f3b5b810793e2bcb866724f53749d212",
+    "ja/2-institutions.json": "6d89efa77674f9a470daae30e08afff8bf1e7a64b1fc34ee3e5ec602ea0d847a",
+    "ja/3-four-systems.json": "469be4445a64b2040cb5ca43de2b76491e92463954b32c5d496d0199ffa3d1df",
+    "ja/4-promise.json": "ce9ab77d73c50360713f1d4b73c93567069bbed48f441432ec27520c8defc86d",
+    "ja/5-cracks.json": "9a56af96d780bc54f347fc8f47ab52bd750494847c6b216ba08c2745766b8f77",
+    "fr/1-weimar.json": "4e7215766c4802862a1ec20893fccb3a104c6dfd19b679e692c751764ab61f07",
+    "fr/2-institutions.json": "eddd8f824fb33d74bb6c87d5d14fea79525e05450f4af49a8ddfa8e305e88f48",
+    "fr/3-four-systems.json": "dde42307192c48d330c839791c8374fe9d23fe0d77171258ba128c5cc03bc72d",
+    "fr/4-promise.json": "654399d1fd1bf0b62ce21d1c847b3819008c61562d325299006f184a10582baf",
+    "fr/5-cracks.json": "04ebea08587fca98f2deb52742fad68424e5673a782b7b4a4aac42bb32aa3f5d",
+    "de/1-weimar.json": "efa92c4662f0892db5b81c8bc4f4d2fa09b5fddd0c54a02eb4955a4b36cc6ae1",
+    "de/2-institutions.json": "402518a835c89d71249de5c03d25917e2b80f156f782b4ed8011f04271903b9e",
+    "de/3-four-systems.json": "08b050ecaae4fcf3963697c9d6f2ca8312206b9bc4dbfa2a793875188557ed93",
+    "de/4-promise.json": "126286e417c0774f2b91d790933341fa8b89f3c1dd71a250f2c337d28535a69c",
+    "de/5-cracks.json": "609b75dd99dc316becfafb12d191ae6b9bdd04a6c1091cc6d44358455e17b0a0",
+    "es/1-weimar.json": "23475584c639503b34e7c7930121f92f96300a28bf97290307027046bcf6ce57",
+    "es/2-institutions.json": "71e086f5ba6e33e4e957789e558956a1a51176dcd985978e0e7c12d1c6a1cb50",
+    "es/3-four-systems.json": "167d3249d070e72750e4d9811c2adebff7415391e656fef607213f074809ecb0",
+    "es/4-promise.json": "072fd970351a1a963816f7e251cd7838acbc4219a73f5ffd0f1f39c8f9223eb6",
+    "es/5-cracks.json": "ccb149db1ed8e4e2b1242c7dd2bad110a8e632ca57e21ab38a3e46578751ba74",
+    "ko/1-weimar.json": "ac85af53db149fa9c6af75657c515aa762d73add2ee31691154d888a4e649b30",
+    "ko/2-institutions.json": "7cfd0f040663e9675b6e0b0404540cd925327bdeab19a9dba1120f812029f271",
+    "ko/3-four-systems.json": "2f2ce1663350f26f7c0011b4342068055398b2563e5767b44319e366d783d217",
+    "ko/4-promise.json": "258aad8e8fb71010d8d1841b9f20526ce0e0b1f2ff082095aecaa44df08da839",
+    "ko/5-cracks.json": "2e3735361ad98b751889ef71d362eed6e027a7d53f15ecd04b52270bfb450f2a",
+    "zh-Hant/1-weimar.json": "f924500fd6ae6700c299ae5681d65895970d08f764f08cfc8b50446a15b8f00a",
+    "zh-Hant/2-institutions.json": "627d1df811568517b62f4710bb404780f3aa8751649c11110d47b6bd884789ad",
+    "zh-Hant/3-four-systems.json": "737cf003aa6e41ebe505eaf987ece34e88fcdf01acb19bbb5c6fb2c3e71a1c43",
+    "zh-Hant/4-promise.json": "60e2900acccb7b5196a38114d5d4ac0a207b6623b5d0ef71783ed908ceca9d70",
+    "zh-Hant/5-cracks.json": "2c02068c9dddfcce17339cfeb20097710d6cb7d29f5bdbab1292c2e0f63dc83b"
+  },
+  "published_html_sha256": {
+    "essays/wwii/1-weimar.html": "ad04463c5a084ae25c449539ab3ec31e02fafa23d5b43dfab3d2756fbb6a791a",
+    "essays/wwii/2-institutions.html": "2fde73fcd7a61832abec4053d4407a0a6503684d9a6382992bfbc83e1a1a2b16",
+    "essays/wwii/3-four-systems.html": "47b2b71f52c1ae6fa43aac88e46fe8a98a473ea614aea257c1ee9374c091a736",
+    "essays/wwii/4-promise.html": "8bb9d1f83d9f0bece95ea25d8614d4cb8a8cec19d9a39e61bdf0f16aa8c22673",
+    "essays/wwii/5-cracks.html": "61e6a9190048ffcb68158b355e453bd92a57e4818bd345ce4266085fdc924f2a",
+    "essays/wwii/de/1-weimar.html": "474bd0f3d25f54ea299eb425c3671c34e8a9cf50480b6ee158f5a7969e78f98f",
+    "essays/wwii/de/2-institutions.html": "6077a1137ff251894d41f4ab6cedbbce55ea04e10dce664b44020bb3b8cca0d3",
+    "essays/wwii/de/3-four-systems.html": "000792e1370c9b1b11f51c369b255619faff6c7d3ea043b9f7c617f03d97117f",
+    "essays/wwii/de/4-promise.html": "f005c19814cdb16d29777e83346bfbbb16a5fd017325d359c0f92859edb08786",
+    "essays/wwii/de/5-cracks.html": "8f5bb129d9ab0a3a859724e681547b29b94793dd4c30b09a4470fa760e01d4c6",
+    "essays/wwii/de/index.html": "af245e292d9aa16b9f428c97513e5b422e466fceeb50066616d9d503612a97fd",
+    "essays/wwii/es/1-weimar.html": "7e1aeae073953f84b204c0ee47767a8d950a5d785f38dbd2002d8758986c71e9",
+    "essays/wwii/es/2-institutions.html": "0661b357704ac9dd1eb370ac976ebe99b17ad6ee090fd55ed0cf35b8989838d0",
+    "essays/wwii/es/3-four-systems.html": "07a1ce691f3ccd618ae367eefdea540b1b35a59a20fc26d200a2c783ac2e3101",
+    "essays/wwii/es/4-promise.html": "4b1f1bb92d210eaaae698fe5546f9a5941a7d026f16e4d6ed98328f8de7b941d",
+    "essays/wwii/es/5-cracks.html": "c4c9768566998bebfb9a4f7872766861c5b43a7e6cae85bc113527496cc8d28a",
+    "essays/wwii/es/index.html": "154a4d1948cf75f6d8a525db210507130ca8fda0b5399a8fe5b7ec8adbb86b0e",
+    "essays/wwii/fr/1-weimar.html": "596b022dea4062e8d294f4a630d3a70e001c1800ca665a4b5446afd990df141a",
+    "essays/wwii/fr/2-institutions.html": "604829c71ccff6bc69fd8059b1170ebc45f40aba57d2a00b3f10b8fbd327f332",
+    "essays/wwii/fr/3-four-systems.html": "acab36a7f9d88ad011be4cb3bf9c1a9ce059114170721d74a996de9d1970db73",
+    "essays/wwii/fr/4-promise.html": "0d1c68b3778d819f3c5676484e746bcc718ebc879d693ed01bdd29377b81f9b6",
+    "essays/wwii/fr/5-cracks.html": "311ffef5a50a05c12cac9cfdd620e00d81e3a8d04b5e9aa113a3f481b150c7c6",
+    "essays/wwii/fr/index.html": "0cfa762578b86d279ef7bddf9bbfd46a0b6fbf2b9fe7d12b4c2597db44624fe1",
+    "essays/wwii/index.html": "68b5cf81664039e6bc9208c6631b145b4019a1c907ede555eaa58f8042702ba4",
+    "essays/wwii/ja/1-weimar.html": "5f3299e606915c85436a32744de88da80e47813885e3653a6b77d688da7a60da",
+    "essays/wwii/ja/2-institutions.html": "4afc1c2172a077c6d1956254a1f88c09027cd8cba2555c5d4051c1f6c757e872",
+    "essays/wwii/ja/3-four-systems.html": "4dcd54ade1a4cd10dda4b622a5e7caf1430f1130494c208fe877160c31fddd9e",
+    "essays/wwii/ja/4-promise.html": "783e52b86cb8cff2fd685f96ea4b91d233274878c909a9429522221c7b39418d",
+    "essays/wwii/ja/5-cracks.html": "3f9c36fd96b167751d316f23caed979f307cbdd9e85666dd21515c0a26668e27",
+    "essays/wwii/ja/index.html": "062c321ea88c602912617b08a9385e6b317579616258858dc6ad6cce13145440",
+    "essays/wwii/ko/1-weimar.html": "13f7ef739463740739fa518851e83281ac0bf2073f885b441b1cf75df39e43b9",
+    "essays/wwii/ko/2-institutions.html": "d5dc0c5930af5c309e8beb53af5b0fb037c43301284f529a490fb1658b570195",
+    "essays/wwii/ko/3-four-systems.html": "b111e98ee5aa42fb494b766aae785adb83bb7eec21de69be5528d6bceaff9e79",
+    "essays/wwii/ko/4-promise.html": "d2e226be93a4a15e84f5b8175787c297ff558fe58f51dbe97069a4b92541e253",
+    "essays/wwii/ko/5-cracks.html": "33c7d5df770abe7af41ce472f1b8455adbaea5bae645412192d16030854a263a",
+    "essays/wwii/ko/index.html": "7e685600d3042e1a660e9692bc3be9d7c129005a1ef75d7918621059952aa8f0"
+  },
+  "qa_script_sha256": {
+    "scripts/build_wwii_full_editions.py": "7e9e23ff9802afe93459e9e0c5d4e00841c09013a42133b491c504507c25a350",
+    "scripts/test_wwii_full_editions.py": "3cafb5dadfcbfcf5a0af699e841bc71fc6bb671e90fd4478a4b8610eb63610a7",
+    "scripts/test_wwii_full_browser.cjs": "247bfefde545099244d12a0e043e88a6be270368f5ba85d7b038199d4db27ea4",
+    "scripts/refresh_wwii_full_discovery.py": "28115ccc3d5f2bf42789cbf5709a5f0650dd71f513b118a367ff9d631da7af0d"
+  },
+  "limitations": [
+    "This is structural/browser QA, not an additional semantic translation certificate.",
+    "No external site requests, deployment, commit or push performed.",
+    "Screenshots are temporary local artifacts; their hashes and visual inspection are recorded here.",
+    "Homepage/latest announcement and global analytics checks are owned by the parent task."
+  ]
+}

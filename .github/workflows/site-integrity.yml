@@ -59,6 +59,9 @@ jobs:
       - run: python -B -m unittest discover -s scripts -p test_relationships_full_editions.py
       - run: python -B scripts/build_relationships_full_editions.py --check --complete --fix-routes
       - run: python -B scripts/refresh_relationships_full_discovery.py --check
+      - run: python -B -m unittest discover -s scripts -p test_wwii_full_editions.py
+      - run: python -B scripts/build_wwii_full_editions.py --check
+      - run: python -B scripts/refresh_wwii_full_discovery.py --check
       - run: python -B scripts/check_site_updates.py
       - run: python -B -m unittest discover -s scripts -p test_home_updates.py
       - run: python -B scripts/build_home_updates.py --check

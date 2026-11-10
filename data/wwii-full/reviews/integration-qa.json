@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-10",
+  "status": "wwii_passed_with_preexisting_global_ledger_failures",
+  "base_commit": "26e9f4976392b6516aab5eb9198e48d4c532bef4",
+  "series_qa": "final-site-qa.json",
+  "passed": [
+    {
+      "command": "python3 -B scripts/check_web_analytics.py --fix",
+      "result": "Repaired 0 public pages"
+    },
+    {
+      "command": "python3 -B scripts/check_web_analytics.py",
+      "result": "13822 public pages; 0 tracking errors; 0 conflict copies"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_web_analytics.py",
+      "result": "6 tests passed"
+    },
+    {
+      "command": "python3 -B scripts/build_home_updates.py --check",
+      "result": "Homepage one editorial pick and four distinct recent series; current"
+    },
+    {
+      "check": "Existing publication ledger preservation",
+      "result": "All original entries byte-equivalent after JSON parsing, new WWII entry only"
+    }
+  ],
+  "preexisting_failures": [
+    {
+      "command": "python3 -B scripts/check_site_updates.py",
+      "result": "Four existing entries lack languages field"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_home_updates.py",
+      "result": "8 tests run; 7 passed; test_latest_keeps_the_whole_ledger failed solely on the four existing missing fields"
+    }
+  ],
+  "unmodified_affected_records": [
+    "2026-11-04-fairy-tales-eight-languages",
+    "2026-11-04-laughter-eight-languages",
+    "2026-11-04-cooperation-histories-eight-languages",
+    "2026-11-04-aesthetics-core-eight-languages"
+  ],
+  "limits": [
+    "No production site deployment or remote push.",
+    "No claim that unrelated full repository CI is wholly green.",
+    "Semantic reviews are AI linguistic/fidelity reviews, not professional historical certification."
+  ]
+}

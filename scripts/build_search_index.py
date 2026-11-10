@@ -24,7 +24,7 @@ CHUNKS_DIR = ROOT / "data" / "search"
 SEARCH_LANGUAGES = ("en", "zh-Hans", "zh-Hant", "ja", "fr", "de", "es", "ko")
 EXCLUDED_TOP_LEVEL = {".git", ".agents", ".codex", "docs", "prototypes", "reports", "_to_delete"}
 EXCLUDED_FILES = {"latest.html", "search.html", "explore.html"}
-EXCLUDED_PREFIXES = (Path("data/anime-full/templates"),)
+EXCLUDED_PREFIXES = (Path("data/anime-full/templates"), Path("data/wwii-full/baseline"))
 
 
 def collect_pages() -> list[Path]:

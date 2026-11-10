@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" data-lang="zh">
+<html lang="zh-Hans" data-lang="zh" class="wwii-primary">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,31 +13,9 @@
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <link rel="canonical" href="https://nondubito.net/essays/wwii/4-promise.html">
 
-  <script>
-(function(){
-  var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
-  document.documentElement.setAttribute('data-lang',saved);
-  document.addEventListener('DOMContentLoaded',function(){
-    var btns=document.querySelectorAll('.lang-btn[data-lang]');
-    function update(){
-      var cur=document.documentElement.getAttribute('data-lang')||'zh';
-      btns.forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===cur);});
-    }
-    btns.forEach(function(btn){
-      btn.addEventListener('click',function(){
-        var lang=this.getAttribute('data-lang');
-        document.documentElement.setAttribute('data-lang',lang);
-        localStorage.setItem('nd_lang',lang);
-        localStorage.setItem('nondubito-lang',lang);
-        update();
-      });
-    });
-    update();
-  });
-})();
-</script>
+  <script id="wwii-full-controller">(function(){function read(k){try{return localStorage.getItem(k)}catch(e){return null}}function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}function valid(v){return ['en','zh','zh-hant'].indexOf(v)!==-1}var q=new URLSearchParams(location.search).get('lang'),saved=q||read('nd_lang')||read('nondubito-lang')||'zh';if(!valid(saved))saved='zh';save('nd_lang',saved);save('nondubito-lang',saved);function apply(){document.documentElement.dataset.lang=saved;document.documentElement.lang=saved==='zh-hant'?'zh-Hant':saved==='zh'?'zh-Hans':'en';document.querySelectorAll('[data-lang-button]').forEach(function(b){b.classList.toggle('active',b.dataset.langButton===saved);b.setAttribute('aria-pressed',String(b.dataset.langButton===saved))});document.querySelectorAll('a[data-primary-route]').forEach(function(a){var u=new URL(a.href,location.href);u.searchParams.set('lang',saved);a.href=u.pathname+u.search+u.hash})}apply();document.addEventListener('DOMContentLoaded',function(){apply();document.querySelectorAll('[data-lang-button]').forEach(function(b){b.addEventListener('click',function(){var v=b.dataset.langButton;if(!valid(v))return;saved=v;save('nd_lang',saved);save('nondubito-lang',saved);var u=new URL(location.href);u.searchParams.set('lang',saved);history.replaceState(null,'',u);apply()})})})})();</script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
-</head>
+<style id="wwii-full-style">.essay-page-title,.essay-header h1,.series-title,.essay-body,.entry-title,.nav-title{overflow-wrap:anywhere}.essay-page-title,.essay-header h1,.series-title,.entry-title,.nav-title{hyphens:auto;-webkit-hyphens:auto}.essay-card,.card-body,.nav-copy,.entry-row,.series-nav a{min-width:0}.lang-toggle{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}.wwii-primary .lang-en,.wwii-primary .lang-zh,.wwii-primary .lang-hant{display:none!important}.wwii-primary[data-lang="en"] .lang-en,.wwii-primary[data-lang="zh"] .lang-zh,.wwii-primary[data-lang="zh-hant"] .lang-hant{display:revert!important}.wwii-primary[data-lang="en"] .lang-zh,.wwii-primary[data-lang="en"] .lang-hant,.wwii-primary[data-lang="zh"] .lang-en,.wwii-primary[data-lang="zh"] .lang-hant,.wwii-primary[data-lang="zh-hant"] .lang-en,.wwii-primary[data-lang="zh-hant"] .lang-zh{display:none!important}html[lang="ko"] .essay-body{word-break:keep-all}html[lang="ja"] .essay-body,html[lang="ko"] .essay-body{font-family:var(--cjk),serif}</style></head>
 <body>
 
   <header>
@@ -61,11 +39,13 @@
   <div class="essay-page">
     <div class="essay-page-hero">
       <div class="essay-page-inner">
-        <a href="index.html" class="back-link">← 二战与人的目的</a>
+        <a href="index.html" data-primary-route="1" class="back-link"><span class="lang-zh">← 二战与人的目的</span><span class="lang-en">← World War II and the Person as an End</span><span class="lang-hant">← 二戰與人的目的</span></a>
         <div class="lang-toggle" style="margin-bottom:0.5rem;">
-<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang-button="en">EN</button>
 <span class="lang-sep">|</span>
-<button class="lang-btn" data-lang="zh">中文</button>
+<button class="lang-btn" data-lang-button="zh">简体</button>
+<span class="lang-sep">|</span>
+<button class="lang-btn" data-lang-button="zh-hant">繁體</button>
 <span class="lang-sep">|</span>
 <a class="lang-btn" href="ja/4-promise.html">日本語</a>
 <span class="lang-sep">|</span>
@@ -78,9 +58,9 @@
 <a class="lang-btn" href="ko/4-promise.html">한국어</a>
 </div>
 
-        <div class="essay-page-num">Series IV of V · 二战与人的目的</div>
-        <h1 class="essay-page-title lang-en">Promises on the Ruins</h1>
-        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">废墟上的承诺</h1>
+        <div class="essay-page-num"><span class="lang-zh">4 / 5 · 二战与人的目的</span><span class="lang-hant">4 / 5 · 二戰與人的目的</span><span class="lang-en">4 / 5 · World War II and the Person as an End</span></div>
+        <h1 class="essay-page-title lang-en">Promises in the Ruins</h1>
+        <h1 class="essay-page-title zh lang-zh" style="font-family:var(--cjk),serif;">废墟上的承诺</h1><h1 class="essay-page-title lang-hant" style="font-family:var(--cjk),serif;">廢墟上的承諾</h1>
         <div class="essay-page-meta">
           <span>Feb 18, 2026</span>
           <span>Han Qin (秦汉)</span>
@@ -90,187 +70,184 @@
     </div>
 
     <div class="essay-body lang-en">
-
-        <h2>I. A Courtroom Defense</h2>
-        <p>November 1945, Nuremberg. Twenty-two senior Nazi officials sat in the dock facing a court unlike anything that had existed before. Hermann Göring wore a gray suit; he had lost a great deal of weight, but he seemed clearer-headed than during the war, answering questions with an incisiveness that unsettled the prosecutors.</p>
-        <p>When the prosecution accused him of crimes against humanity, his defense was simple: I was a government official acting on state policy and following state law. What right does another group of national representatives have to judge me?</p>
-        <p>This defense was not legally absurd. Before Nuremberg, the basic framework of international law was: the state is the subject of international law; the individual is not. An act committed in a state's name, under a state's laws, assigned responsibility to the state. The individual was not personally liable. "I was following orders" was not entirely an excuse — it was the actual operating logic of international law at the time.</p>
-        <p>Nuremberg shattered that framework. It declared: there exist acts which, regardless of the name under which they are committed and regardless of the law under which they are authorized, constitute crimes. Individuals cannot hide behind institutional identity and claim "the system made me do it" as an exemption from accountability.</p>
-        <p>This was a turning point in the history of human institutions. In a single sentence: for the first time, an international tribunal declared — people are larger than the system. At least in principle.</p>
-        <h2>II. The Breakthrough</h2>
-        <p>The principles Nuremberg established, viewed against the long arc of history, were each a revelation.</p>
-        <p>First: individuals must be held personally responsible for their actions, even when executing superior orders or state policy. This meant institutional identity was no longer a passport to a moral vacuum. A person cannot stop being a person by putting on a uniform.</p>
-        <p>Second: there exists a law that transcends national law — crimes against humanity. A state may legally enact any law it chooses, but when those laws result in systematic extermination and persecution, they cannot protect their executors from accountability.</p>
-        <p>Third: state sovereignty is not absolute. What a state does to its own citizens is no longer purely "internal affairs." The international community has the right — at least in principle — to intervene and to judge.</p>
-        <p>These three principles together point in a single direction: institutions are not the ultimate purpose. Above institutions, there is something else — the dignity and life of people themselves. When institutions systematically destroy human dignity and life, the authority of those institutions ceases to hold.</p>
-        <p>But the breakthrough was real, and so were its limitations — and these limitations were not technical flaws. They were structural contradictions.</p>
-        <h2>III. The Victors' Tribunal</h2>
-        <p>The most obvious contradiction: Nuremberg was a victors' tribunal. Everyone in the dock was an official of a defeated nation. No one was tried for Dresden. No one was tried for Hiroshima. No one was tried for the Bengal famine. Soviet judges sat on the bench while Soviet gulags held millions at that very moment.</p>
-        <p>Göring himself made this argument in court: who are the people who bombed Dresden to judge me? He asked no bad question — he simply lacked the standing to ask it.</p>
-        <p>Nuremberg's legitimacy derived from military victory, not from a moral authority that transcended all the warring parties. This meant the lofty principles it proclaimed — individual accountability, crimes against humanity, the limits of sovereignty — were selectively applicable from the moment of their birth. The principles were universal; their application was asymmetric.</p>
-        <p>This is a structural contradiction: a justice system established by victors cannot try the victors themselves. Because the source of the tribunal's power — military victory — and the source of the tribunal's legitimacy — moral principles transcending all nations — are separated by an unbridgeable gap.</p>
-        <p>Nuremberg attempted to inscribe "people are larger than the system" into the institutional record. But the pen that wrote those words was held by the system that had won the war.</p>
-        <h2>IV. A Declaration's Light and Impotence</h2>
-        <p>December 10, 1948. The UN General Assembly adopted the Universal Declaration of Human Rights. The drafting committee was chaired by Eleanor Roosevelt. Committee members came from China, France, Lebanon, the Soviet Union, Britain, Australia, Chile, and ten other countries. They spent two years arguing over every word.</p>
-        <p>The final text's first article reads: "All human beings are born free and equal in dignity and rights."</p>
-        <p>This sentence's weight in the history of human civilization cannot be overstated. Before this moment, no global document had ever declared that every person — regardless of nationality, race, sex, or belief — possesses inalienable dignity simply by virtue of being human. This was not the declaration of one cultural tradition, not the teaching of one religion, not the constitution of one nation. It was humanity as a whole, for the first time, attempting to affirm at the institutional level: people are ends.</p>
-        <p>Then came the problem: how to enforce it? Answer: essentially, you cannot.</p>
-        <p>The Universal Declaration is a declaration, not a treaty. No legal binding force. No enforcement mechanism. No sanctions for violation. Its authority rests entirely on the voluntary compliance of signatory states.</p>
-        <p>Why was no enforcement mechanism designed? Because enforcement would require an authority transcending sovereign states to punish violators. And sovereign states would not accept such an authority. Every nation — including those drafting the declaration — treated sovereignty as an inviolable baseline. A nation might sign, but it would ensure the document contained nothing capable of genuinely constraining itself.</p>
-        <p>There is a deep dilemma here. The realization of human rights requires institutions to guarantee them. But the entities capable of building institutions are states. And states are precisely the kind of system whose instinct is self-maintenance. Asking states to build an institution that might constrain states themselves is like asking a person to sign a contract authorizing others to discipline them — they might sign, but they will ensure the contract contains no part that can actually bind them.</p>
-        <p>The Universal Declaration is exactly that kind of contract without constraint. It points in the right direction. It is a remarkable signpost. But a signpost is not the road.</p>
-        <h2>V. The United Nations: An Honest Compromise</h2>
-        <p>The UN's designers were more honest than the League's designers. The League pretended great powers would submit to collective will, then looked away when they did not. The UN simply wrote great power privilege directly into the Charter — the five permanent Security Council members hold the veto.</p>
-        <p>This was a pragmatic choice. The designers' logic was blunt: a UN that kept the great powers inside through special privileges was better than a UN that insisted on principle and watched the great powers leave one by one. The latter was the League's fate. They did not want to repeat it.</p>
-        <p>From a system-survival perspective, this design was highly successful. The UN has existed for over eighty years, more than three times the League's twenty-six.</p>
-        <p>But what was the cost of successful survival? The cost was that the institution acknowledged from its founding: not all people are equally important. Citizens of permanent-member states have their security guaranteed by the veto; citizens of other states do not. When the Security Council debates whether to intervene in a genocide, any permanent member who decides intervention doesn't serve its interests can obstruct action — without even using the formal veto.</p>
-        <p>In 1994, during the Rwandan genocide, the Security Council took no effective action. In a hundred days, hundreds of thousands of people were massacred.</p>
-        <p>The UN has outlasted the League because it learned one thing: do not do anything beyond what the great powers will tolerate. And what great powers will tolerate is defined more by those powers' systemic self-interest than by the principle that "people are ends."</p>
-        <p>This is not the UN's "defect." It is the prerequisite of the UN's existence. Remove that prerequisite and the UN almost certainly repeats the League's fate. Keep it and the UN can never fully honor the promise of "all people equal." Another crack. Better than nothing. But not yet wide enough, not yet open enough.</p>
-        <h2>VI. The Selectivity of Repair</h2>
-        <p>What postwar reconstruction says most is not what was done, but for whom.</p>
-        <p>The Marshall Plan injected more than $13 billion into Western Europe (roughly $150 billion in today's terms), rebuilt its economic infrastructure, and laid the foundation for European integration. West Germany rose from rubble to become the world's third-largest economy within two decades.</p>
-        <p>But during the same period, Britain, France, the Netherlands, Belgium, and Portugal maintained colonial rule. The hands that signed the Universal Declaration of Human Rights simultaneously signed orders suppressing colonial independence movements. France fought a bloody eight-year colonial war in Algeria. Britain used concentration camps during Kenya's Mau Mau Uprising.</p>
-        <p>On one side: "all human beings are born free." On the other: colonial subjects who had no right even to self-governance. This contradiction was not merely hypocrisy. It had a deeper structural cause: the architects of the postwar order were systems themselves. They could not build an institution that genuinely scrutinized their own behavior.</p>
-        <p>The Marshall Plan's purpose was never simply "to improve Europeans' lives." It was simultaneously a move in the Cold War, a strategic investment to ensure Western Europe did not tilt toward the Soviet Union. Colonial continuation was also part of systemic interest — raw materials, markets, strategic positions.</p>
-        <p>Postwar repair was thus stratified. Those at the system's core — Western European peoples — received comprehensive reconstruction and rights affirmation. Those at the system's margins — colonial peoples — were delayed, conditioned, or simply ignored.</p>
-        <p>Later decolonization movements partially corrected this asymmetry. By the 1960s, most colonies had achieved political independence. But political independence is not economic independence. Changing flags did not change structures. Many post-colonial peoples traded the status of colonial tool for the status of a different tool within the global economic system. Instrumentalization changed its face and kept running.</p>
-        <h2>VII. A Nuclear-Sized Paradox</h2>
-        <p>If one single thing could capture the full contradiction of the postwar order, it is nuclear weapons.</p>
-        <p>The logic of nuclear deterrence: use the capacity to destroy all of humanity as the wager that maintains a state of non-war between two superpowers. Throughout the Cold War, humanity lived under the shadow of possible annihilation at any moment — during the Cuban Missile Crisis, "possible" nearly became "immediate."</p>
-        <p>Nuclear deterrence "worked." No Third World War. Almost no one died in direct conflict between the superpowers (though tens of millions died in proxy wars). "Working" is deterrence's strongest defense.</p>
-        <p>But from the perspective of "people are ends," this "working" is the deepest indictment. When a system requires holding all of humanity's existence as a bargaining chip to function — what does that reveal? It reveals that the system's operation is not aimed at people as its purpose. It is aimed at its own equilibrium. People are not the protected. They are the hostages. The hostage-taker is not a specific villain. It is the system's own logic.</p>
-        <p>And this was called "peace."</p>
-        <h2>VIII. Light and Shadow</h2>
-        <p>The institutional construction after 1945 cannot be evaluated simply.</p>
-        <p>On one side: this was the furthest humanity had ever gone. Before Nuremberg, no international tribunal had ever declared that institutional identity could not exempt a person from moral responsibility. Before the Universal Declaration, no global document had acknowledged that every person possesses dignity by virtue of being human. Before the United Nations, no lasting global institution had even nominally committed that all nations participate equally. These are genuine achievements.</p>
-        <p>On the other side, every achievement carries structural limitation. Nuremberg's justice was selective. The Declaration's commitments were unenforceable. The UN's equality had veto exceptions. And nuclear deterrence, as the entire order's ultimate guarantee, was in itself the most extreme form of treating people as hostages.</p>
-        <p>Perhaps the most accurate summary is this: after 1945, humanity inscribed "people are ends" into the institutional record for the first time. But the institutional system that wrote those words does not operate with people as its ends.</p>
-        <p>The promise is real. The promise's inability to be fulfilled is also real. Both are true simultaneously. And this is not a contradiction.</p>
-        <p>Because "people are ends" is not a state that can be declared by institutions and then automatically realized. It requires cracks — cracks through which dissent can travel, cracks through which errors can be corrected. Nuremberg, the Universal Declaration, the United Nations — what they built was not a completed edifice. They chiseled a few cracks in an enormous wall.</p>
-        <p>Light comes in through the cracks. But the wall remains.</p>
-
-      </div>
+<h2>An argument in a courtroom</h2>
+<p>Nuremberg, November 1945. Twenty-one senior Nazi officials sat in the dock; one more was tried in absentia. They faced an unprecedented tribunal. Hermann Göring wore a gray suit. He had lost considerable weight, but seemed much clearer-headed than during the war, answering questions with coherent, even sharp logic.</p>
+<p>When the prosecution accused him of crimes against humanity, the line of defense was simple: I was a government official carrying out state policy and obeying state law. By what right could representatives of other states judge me?</p>
+<p>Before Nuremberg, international law revolved mainly around states, and international criminal accountability for national leaders was particularly weak. But individual responsibility did not begin at Nuremberg. Individual liability for war crimes had precedents, and attempts at accountability after the First World War had already raised the issue, though their enforcement was extremely limited.</p>
+<p>Nuremberg advanced this principle to a new level: senior state officials, too, had to face individual responsibility. A person could not merely say that they were carrying out state policy and transfer all responsibility to the state. Institutional identity could not serve as a passport to immunity.</p>
+<p>This was a turning point in institutional history. An international tribunal subjected senior national officials to individual criminal accountability. Between system and person, it articulated a principle: people cannot hide behind the system.</p>
+<h2>A breakthrough</h2>
+<p>Seen against the long sweep of history, the principles established at Nuremberg were momentous.</p>
+<p>First, individuals must answer for their actions even when carrying out superior orders or state policy. Institutional identity is no pass into a moral vacuum. Putting on a uniform does not release someone from being human.</p>
+<p>Second, there is law beyond national law: crimes against humanity. A state may enact laws through its own legal system, but when those laws produce systematic extermination and persecution, they cannot shield those who carry them out from accountability.</p>
+<p>Third, state sovereignty is not absolute. What a state does to its own citizens is no longer purely an “internal affair.” The international community has a right, at least in principle, to intervene and to judge.</p>
+<p>Together, these principles point in one direction: institutions are not the final end. Human dignity and life stand above them. When institutions systematically destroy that dignity and life, their authority ceases to hold.</p>
+<p>But the breakthrough was real, and so were its limits. Those limits were not technical imperfections. They were structural contradictions.</p>
+<p>The most obvious: Nuremberg was a victors' tribunal. Those in the dock were all officials of the defeated state. Nobody was tried there for Dresden. Nobody was tried for Hiroshima. Nobody was tried for the Bengal famine. Soviet judges sat on the bench while millions remained in the Soviet Gulag.</p>
+<p>The essay must therefore ask: why were the actions of the side that bombed Dresden not examined under the same principles? This question deserves serious consideration. But questioning the selectivity of the trials does not lessen the guilt of Göring and other responsible Nazi figures.</p>
+<p>Nuremberg drew its legitimacy from military victory, not from a moral authority standing above all belligerents. The lofty principles it proclaimed, individual responsibility, crimes against humanity, limits to sovereignty, were therefore selectively applied from the beginning. The principles were universal; their application was asymmetrical.</p>
+<p>The contradiction was structural. A justice system established by the victors could not put the victors themselves on trial. An unbridgeable gap separated the source of its power, military victory, from the source of its legitimacy, moral principles transcending all states.</p>
+<p>Nuremberg tried to write “the person stands above the system” into institutional life. But the pen was held by the systems that had won the war.</p>
+<h2>A declaration's light and its limits</h2>
+<p>On December 10, 1948, the United Nations General Assembly adopted the Universal Declaration of Human Rights. Eleanor Roosevelt chaired both the Commission on Human Rights and the formal drafting committee. The Commission had eighteen members; the formal drafting committee comprised representatives of eight countries: China, France, Lebanon, the Soviet Union, Britain, Australia, Chile, and the United States. During more than two years of drafting, participants argued repeatedly over every word.</p>
+<p>Article 1 of the final text reads: “All human beings are born free and equal in dignity and rights.”</p>
+<p>It is hard to overstate the weight of that sentence in human civilization. No earlier global document had declared that every person, regardless of nationality, race, sex, or belief, possessed inalienable dignity simply by being human. This was not the declaration of a single cultural tradition, the teaching of a single religion, or the constitution of a single state. It was humanity, taken as a whole, attempting for the first time to affirm at an institutional level that people are ends.</p>
+<p>Then came the question: who would ensure that these words were honored?</p>
+<p>The Universal Declaration was adopted by the General Assembly. It was not a treaty for states to sign and ratify. The 1948 declaration itself established no independent mechanism of coercive enforcement. It set out a common standard without simultaneously creating a power sufficient to guarantee compliance.</p>
+<p>Later, its principles gradually entered international treaties, domestic law, and customary international law, acquiring real legal effect. Yet a long road still separates writing a principle into law from making it part of someone's life.</p>
+<p>Here is the difficulty: human rights need institutions to protect them, but the states able to establish those institutions may themselves be violating rights. Constraints are not impossible to build. But every step toward them encounters resistance from power and selective enforcement.</p>
+<p>The declaration is a remarkable signpost. Later laws and institutions have built some roads in the direction it points. Those roads remain far from reaching everyone.</p>
+<h2>The United Nations: an honest compromise</h2>
+<p>The designers of the United Nations were more candid than those of the League. The League pretended that great powers would submit to the collective will, then looked away when they did not. The UN wrote their special status directly into its Charter: the five permanent members of the Security Council have a veto.</p>
+<p>This was a pragmatic choice. The logic was straightforward: better a United Nations that kept the great powers inside by granting privileges than one that held to principle while the great powers walked out. The latter had been the League's fate. The designers did not want to repeat it.</p>
+<p>Judged by institutional survival, the design has been highly successful. The United Nations has existed for more than eighty years, over three times the League's twenty-six.</p>
+<p>But what is the price of that survival? From the beginning, the institution accepted that not everyone's security would carry equal weight. Citizens of permanent-member states stand behind governments with veto power; others do not. When the Security Council considers responding to genocide, a permanent member that regards intervention as contrary to its interests can obstruct action, whether through a formal veto or less visible means.</p>
+<p>During the 1994 Rwandan genocide, the Security Council failed to take effective action, leaving hundreds of thousands to be murdered within a hundred days.</p>
+<p>The UN has outlasted the League because it learned a lesson: do not act beyond what the great powers will tolerate. Their tolerance is defined more often by their own systemic interests than by the principle that people are ends.</p>
+<p>This is not merely a “flaw” in the UN. It is a condition of its existence. Remove that condition, and the UN would probably repeat the League's fate. Retain it, and the UN can never fully honor its promise of equality. Another crack. Better than none, but still not large or wide enough.</p>
+<h2>Selective repair</h2>
+<p>The most revealing question about postwar reconstruction is not what was done, but for whom.</p>
+<p>The Marshall Plan injected more than thirteen billion dollars into Western Europe, roughly a hundred and fifty billion in today's terms, rebuilding economic infrastructure and laying foundations for European integration. West Germany rose from the ruins to become the world's third-largest economy within twenty years.</p>
+<p>Yet Britain, France, the Netherlands, Belgium, and Portugal were maintaining colonial rule in the same period. Some governments that supported the Universal Declaration at the UN were also suppressing independence movements in their colonies. France fought an eight-year bloody colonial war in Algeria. Britain used detention camps during the Mau Mau uprising in Kenya.</p>
+<p>On one side, “All human beings are born free.” On the other, colonized peoples did not even have the right to govern themselves. The contradiction was more than hypocrisy. It had a deeper structural cause: the builders of the postwar order were themselves systems, unable to establish an institution that would truly scrutinize their own conduct.</p>
+<p>The Marshall Plan was never solely about “giving Europeans a better life.” It was also a move in the Cold War, a strategic investment to keep Western Europe from turning toward the Soviet Union. Preserving colonies likewise served systemic interests: raw materials, markets, strategic positions.</p>
+<p>Postwar repair was therefore stratified. People at the system's center, in Western Europe, received comprehensive reconstruction and recognition of rights. Those on its margins, in the colonies, were made to wait, subjected to conditions, or ignored altogether.</p>
+<p>Decolonization partly corrected this asymmetry. By the 1960s, most colonies had gained political independence. But political independence is not economic independence; a changed flag does not guarantee a changed structure. Many people in postcolonial states went from being instruments of an imperial power to instruments in another part of the global economy. Instrumentalization changed its face and continued.</p>
+<h2>A paradox the size of a nuclear bomb</h2>
+<p>If one thing could encapsulate the contradictions of the postwar order, it would be nuclear weapons.</p>
+<p>Nuclear deterrence works by staking the capacity to destroy humanity against maintaining a condition of non-war between two superpowers. Throughout the Cold War, humanity lived under the shadow of possible extinction at any moment. During the Cuban missile crisis, “any moment” nearly became “this moment.”</p>
+<p>It also “worked.” There was no Third World War, and very few people died in direct conflict between the superpowers, though more than ten million died in proxy wars. “It works” is deterrence's strongest defense.</p>
+<p>From the standpoint of people as ends, that very “usefulness” becomes the deepest indictment. What does it mean when a system must stake humanity's survival in order to operate? It means that the system takes its own equilibrium as its end, not human beings. People are not those being protected, but hostages. The hostage-taker is not one identifiable villain, but the logic of the system itself.</p>
+<p>And this is called “peace.”</p>
+<h2>Light and shadow</h2>
+<p>Institution-building after 1945 cannot be assessed with a simple verdict.</p>
+<p>On one side, humanity had never come so far. Nuremberg advanced individual criminal accountability for senior state officials to a new level, preventing institutional identity from being sufficient to conceal personal responsibility. Before the Universal Declaration, no global document had recognized each person's dignity simply as a human being. Before the UN, no enduring global institution had at least in theory promised all states an equal place. These were real achievements.</p>
+<p>On the other side, each achievement carried structural limits. Nuremberg's justice was selective. The promises expressed in the declaration still lacked sufficient and equal guarantees of realization. UN equality made an exception for veto power. And nuclear deterrence, the order's ultimate guarantee, was itself an extreme form of holding people hostage.</p>
+<p>Perhaps the most accurate summary is this: after 1945, humanity wrote “people are ends” into its institutions for the first time. But the institutional order containing those words did not itself operate with people as its end. The promise was real, and its realization remained far from universal. Both things were true at once, without contradiction.</p>
+<p>Because “people are ends” is not a condition that institutions can declare and thereby automatically achieve. It needs cracks: cracks permitting dissent, cracks permitting correction. Nuremberg, the declaration, the UN did not finish a building. They opened a few cracks in an enormous wall.</p>
+<p>Light comes through the cracks. The wall remains.</p>
+</div>
 
       <div class="essay-body lang-zh" style="font-family:var(--cjk),serif;">
-
-      <h2>一个法庭上的辩词</h2>
-
-      <p>1945年11月，纽伦堡。二十二个纳粹高级官员坐在被告席上，面对一个前所未有的法庭。赫尔曼·戈林穿着一件灰色的西装，瘦了许多，但他看起来比战争期间清醒得多，回答问题时逻辑清晰甚至锐利。</p>
-
-      <p>当检察官指控他犯下反人类罪时，他的辩护思路很简单：我是一个国家的政府官员，执行的是国家的政策，遵守的是国家的法律。凭什么另一群国家的代表来审判我？</p>
-
-      <p>这个辩护在法律上不是无理取闹。在纽伦堡之前，国际法的基本框架是：国家是国际法的主体，个人不是。一个人以国家名义、依据国家法律做出的行为，由国家承担责任，个人不承担。"我在执行命令"不完全是借口，而是当时国际法的实际运作方式。</p>
-
-      <p>但纽伦堡打破了这个框架。它宣告：存在某些行为，无论以什么名义、依据什么法律实施，都构成犯罪。个人不能躲在制度身份后面，说"系统让我做的"就免责。</p>
-
-      <p>这是人类制度史上的一个转折点。用一句话概括就是：在系统和人之间，第一次有一个国际法庭说——人比系统大。至少在原则上是这样。</p>
-
-      <h2>突破</h2>
-
-      <p>纽伦堡确立的几个原则，放在历史长河里看，每一条都是石破天惊的。</p>
-
-      <p>第一，个人必须为自己的行为负责，即使他是在执行上级命令或国家政策。这意味着制度身份不再是道德真空的通行证。一个人不能因为穿着制服就停止做人。</p>
-
-      <p>第二，存在一种超越国家法律的法律——反人类罪。一个国家可以合法地制定任何法律，但当这些法律导致了系统性的灭绝和迫害，它们不能保护执行者免于被追究。</p>
-
-      <p>第三，国家主权不是绝对的。一个国家对自己国民做的事，不再纯粹是"内政"。国际社会有权利——至少在原则上——介入和审判。</p>
-
-      <p>这三条原则加在一起，指向了一个方向：制度不是最终目的。制度之上还有一个东西，就是人本身的尊严和生命。当制度系统性地摧毁人的尊严和生命时，制度的权威就不再成立。</p>
-
-      <p>但突破是真实的，突破的局限也是真实的，而且这些局限不是技术性的瑕疵，是结构性的矛盾。</p>
-
-      <p>最明显的一个：纽伦堡是胜利者的法庭。坐在被告席上的全是战败国的官员。没有人因为德累斯顿被审判。没有人因为广岛被审判。没有人因为孟加拉饥荒被审判。苏联法官坐在审判席上，而同一时期苏联的古拉格里关押着上百万人。</p>
-
-      <p>戈林本人在法庭上就用了这个论点：凭什么轰炸德累斯顿的人来审判我？他问的并非不是个好问题，只是他没有资格问。</p>
-
-      <p>纽伦堡的正当性来源于军事胜利，而不是来源于一个超越所有参战方的道德权威。这意味着它宣告的那些崇高原则——个人责任、反人类罪、主权有限——从诞生那一刻起就是选择性适用的。原则是普遍的，但适用是不对称的。</p>
-
-      <p>这个矛盾是结构性的：一个由胜利者建立的正义体系，无法审判胜利者自己。因为审判的权力来源——军事胜利——和审判的正当性来源——超越于所有国家的道德原则——两者之间有一条无法弥合的裂缝。</p>
-
-      <p>纽伦堡试图在制度中写入"人比系统大"。但写入这行字的那支笔，握在赢了战争的系统手里。</p>
-
-      <h2>一份宣言的光芒与无力</h2>
-
-      <p>1948年12月10日，联合国大会通过了《世界人权宣言》。起草委员会的主席是埃莉诺·罗斯福。委员会的成员来自中国、法国、黎巴嫩、苏联、英国、澳大利亚、智利等十八个国家。他们花了两年时间争论每一个用词。</p>
-
-      <p>最终的文本第一条写道："人人生而自由，在尊严和权利上一律平等。"</p>
-
-      <p>这句话在人类文明史上的分量怎么评价都不过分。在此之前，从来没有一份全球性的文件宣告过每一个人——不分国籍、种族、性别、信仰——仅仅因为是人就拥有不可剥夺的尊严。这不是某一个文化传统的宣言，不是某一个宗教的教义，不是某一个国家的宪法。这是人类作为一个整体，第一次试图在制度层面确认：人是目的。</p>
-
-      <p>然后问题来了：怎么执行？答案是：基本不能执行。</p>
-
-      <p>《世界人权宣言》是宣言，不是条约。它没有法律约束力，没有执行机制，没有违反后的制裁手段。它的权威完全依赖于签署国的自愿遵守。</p>
-
-      <p>为什么没有设计执行机制？因为执行意味着需要一个超越主权国家的权威来惩罚违反者。而主权国家不会接受这样的权威。每一个国家——包括起草宣言的那些国家——都把主权视为不可让渡的底线。</p>
-
-      <p>这里面有一个深层的困境：人权的实现需要制度来保障，但能够建立制度的主体是国家，而国家本身就是一种以自我维护为本能的系统。让国家来建立一个可能约束国家自身的制度，就像让一个人签署一份授权别人管教自己的合同——他可能签，但他会确保合同里没有真正能制约自己的部分。</p>
-
-      <p>《世界人权宣言》就是这样一份没有制约的合同。它是正确的方向，是了不起的路标。但路标，不是道路。</p>
-
-      <h2>联合国：一个诚实的妥协</h2>
-
-      <p>联合国的设计者比国联的设计者更诚实。国联假装大国会服从集体意志，然后在大国不服从时假装没看见。联合国干脆把大国的特殊地位写进了宪章——安理会五个常任理事国拥有否决权。</p>
-
-      <p>这是一个务实的选择。设计者们的逻辑很直白：一个让大国留在里面但给它们特权的联合国，好过一个坚持原则但大国纷纷退出的联合国。后者是国联的命运，他们不想重蹈覆辙。</p>
-
-      <p>从系统存续的角度看，这个设计非常成功。联合国存在了八十余年，比国联的二十六年长了三倍不止。</p>
-
-      <p>但成功存续的代价是什么？代价是制度从一开始就承认：不是所有人都同等重要。五常公民的安全有否决权保障，其他国家公民的安全没有。当安理会讨论是否干预一场种族屠杀时，任何一个常任理事国觉得干预不符合自身利益，就算不直接否决，也可以通过隐性方式阻碍行动。</p>
-
-      <p>1994年卢旺达种族灭绝期间，安理会没有采取有效行动，导致数十万人在一百天内被屠杀。</p>
-
-      <p>联合国的存在比国联长久，因为它学会了一件事：不要做超出大国容忍范围的事。而大国的容忍范围，更多时候是由大国自身的系统利益定义的，不完全是由"人是目的"这个原则定义的。</p>
-
-      <p>这不是联合国的"缺陷"。这是联合国得以存在的前提条件。把这个前提条件去掉，联合国大概率重蹈国联覆辙。但保留这个前提条件，联合国又永远无法完全兑现"人人平等"的承诺。又是一个裂缝。比没有强，但还不够大，还不够宽。</p>
-
-      <h2>修复的选择性</h2>
-
-      <p>战后重建最能说明问题的地方，不是做了什么，而是为谁做了。</p>
-
-      <p>马歇尔计划向西欧注入了超过一百三十亿美元（大约相当于今天的一千五百亿美元），重建了西欧的经济基础设施，奠定了欧洲一体化的基础。西德从废墟中崛起，在二十年内成为全球第三大经济体。</p>
-
-      <p>但同一时期，英法荷比葡仍然在维持殖民统治。签署《世界人权宣言》的那些手，同时也在签署镇压殖民地独立运动的命令。法国在阿尔及利亚打了八年血腥的殖民战争。英国在肯尼亚的茅茅起义中使用了集中营。</p>
-
-      <p>一边是"人人生而自由"，一边是殖民地人民连自治的权利都没有。这种矛盾不仅仅是虚伪，它有一个更深层的结构性原因：战后秩序的建设者本身就是系统，它们不可能建立一个真正审视自身行为的制度。</p>
-
-      <p>马歇尔计划的目的从来不是"让欧洲人过上好日子"那么纯粹，它同时是冷战棋局的一步，是确保西欧不倒向苏联的战略投资。殖民地的存续也是系统利益的一部分——原材料、市场、战略位置。</p>
-
-      <p>所以战后修复是分层的。处于系统核心的人——西欧人民——得到了全面的重建和权利确认。而处于系统边缘的人——殖民地人民——则被推迟、被附上条件、或者被直接忽视。</p>
-
-      <p>后来的去殖民化运动部分纠正了这种不对称。到1960年代，大多数殖民地获得了政治独立。但政治独立不等于经济独立，国旗换了不意味着结构变了。很多后殖民国家的人民只是从宗主国的工具变成了全球经济体系中的另一种工具。工具化换了一张面孔，继续运转。</p>
-
-      <h2>一个核弹大小的悖论</h2>
-
-      <p>如果要用一个单一的事物来概括战后秩序的全部矛盾，那就是核武器。</p>
-
-      <p>核威慑的逻辑是：以毁灭全人类的能力为筹码，来维护两个超级大国之间的不战状态。整个冷战期间，人类一直生活在随时可能灭绝的阴影下——古巴导弹危机期间，这个"随时"几乎变成了"即时"。</p>
-
-      <p>它也确实"有用"。没有第三次世界大战，也几乎没有人死于超级大国之间的直接冲突（虽然有上千万人死于代理人战争）。"有用"是核威慑最强大的辩护。</p>
-
-      <p>但从"人是目的"这个角度看，这个"有用"恰恰是最深的指控。当一个系统需要把全人类的存续当作筹码才能运行，这说明了什么？说明这个系统的运行不是以人为目的，而是以自身的均衡为目的。人不是被保护的对象，是被挟持的人质。只不过挟持者不是一个具体的恶棍，而是系统本身的逻辑。</p>
-
-      <p>而这被叫做"和平"。</p>
-
-      <h2>光芒与阴影</h2>
-
-      <p>1945年之后的制度建设不是一个可以简单评价的东西。</p>
-
-      <p>一方面，这是人类走得最远的一次。在纽伦堡之前，没有任何国际法庭宣告过制度身份不能免除个人的道德责任。在《世界人权宣言》之前，没有任何全球性文件承认过每个人仅因为是人就拥有尊严。在联合国之前，没有任何持久的全球性机构至少在理论上承诺所有国家平等参与。这些是真实的成就。</p>
-
-      <p>另一方面，每一项成就都带着结构性的局限。纽伦堡的正义是选择性的。人权宣言的承诺是没有执行力的。联合国的平等是有否决权例外的。而核威慑作为整个秩序的终极担保，本身就是把人当人质的最极端形式。</p>
-
-      <p>也许最准确的总结是这样的：1945年之后，人类第一次在制度中写入了"人是目的"这句话。但写入这句话的那个制度体系本身，并不是以人为目的来运转的。承诺是真的，承诺无法被兑现也是真的。这两件事同时为真，而且并不矛盾。</p>
-
-      <p>因为"人是目的"不是一种可以由制度来宣告然后自动实现的状态。它需要裂缝——允许异议的裂缝，允许纠错的裂缝。纽伦堡、人权宣言、联合国，它们做的不是建成一座大厦，而是在一面巨大的墙上凿开了几条裂缝。</p>
-
-      <p>光从裂缝中透进来，但墙还在。</p>
-
-    </div>
+<h2>一个法庭上的辩词</h2>
+<p>1945年11月，纽伦堡。二十一名纳粹高级官员坐在被告席上，另有一人被缺席审判，面对一个前所未有的法庭。赫尔曼·戈林穿着一件灰色的西装，瘦了许多，但他看起来比战争期间清醒得多，回答问题时逻辑清晰甚至锐利。</p>
+<p>当检察官指控他犯下反人类罪时，他的辩护思路很简单：我是一个国家的政府官员，执行的是国家的政策，遵守的是国家的法律。凭什么另一群国家的代表来审判我？</p>
+<p>在纽伦堡之前，国际法主要围绕国家展开，对国家领导人的国际刑事追责尤其薄弱。但个人责任并不是从纽伦堡才开始的。战争罪的个人责任已有先例，一战后的追责尝试也已经触及这个问题，只是执行极其有限。</p>
+<p>纽伦堡把这条原则推进到了新的层次：国家的高级官员也必须面对个人责任。一个人不能只说自己在执行国家政策，就把责任全部推给国家。制度身份不能成为免责的通行证。</p>
+<p>这是人类制度史上的一个转折点。一个国际法庭把国家高级官员置于个人刑事追责之下。在系统和人之间，它表达了一个原则：人不能躲在系统后面。</p>
+<h2>突破</h2>
+<p>纽伦堡确立的几个原则，放在历史长河里看，每一条都是石破天惊的。</p>
+<p>第一，个人必须为自己的行为负责，即使他是在执行上级命令或国家政策。这意味着制度身份不再是道德真空的通行证。一个人不能因为穿着制服就停止做人。</p>
+<p>第二，存在一种超越国家法律的法律——反人类罪。一个国家可以合法地制定任何法律，但当这些法律导致了系统性的灭绝和迫害，它们不能保护执行者免于被追究。</p>
+<p>第三，国家主权不是绝对的。一个国家对自己国民做的事，不再纯粹是"内政"。国际社会有权利——至少在原则上——介入和审判。</p>
+<p>这三条原则加在一起，指向了一个方向：制度不是最终目的。制度之上还有一个东西，就是人本身的尊严和生命。当制度系统性地摧毁人的尊严和生命时，制度的权威就不再成立。</p>
+<p>但突破是真实的，突破的局限也是真实的，而且这些局限不是技术性的瑕疵，是结构性的矛盾。</p>
+<p>最明显的一个：纽伦堡是胜利者的法庭。坐在被告席上的全是战败国的官员。没有人因为德累斯顿被审判。没有人因为广岛被审判。没有人因为孟加拉饥荒被审判。苏联法官坐在审判席上，而同一时期苏联的古拉格里关押着上百万人。</p>
+<p>由此，文章必须追问：为什么轰炸德累斯顿一方的行为，没有受到同一套原则的审查？这个问题应当被认真对待。但追问审判的选择性，并不能减轻戈林等纳粹责任者的罪责。</p>
+<p>纽伦堡的正当性来源于军事胜利，而不是来源于一个超越所有参战方的道德权威。这意味着它宣告的那些崇高原则——个人责任、反人类罪、主权有限——从诞生那一刻起就是选择性适用的。原则是普遍的，但适用是不对称的。</p>
+<p>这个矛盾是结构性的：一个由胜利者建立的正义体系，无法审判胜利者自己。因为审判的权力来源——军事胜利——和审判的正当性来源——超越于所有国家的道德原则——两者之间有一条无法弥合的裂缝。</p>
+<p>纽伦堡试图在制度中写入"人比系统大"。但写入这行字的那支笔，握在赢了战争的系统手里。</p>
+<h2>一份宣言的光芒与无力</h2>
+<p>1948年12月10日，联合国大会通过了《世界人权宣言》。埃莉诺·罗斯福担任人权委员会及正式起草委员会的主席。人权委员会有十八名成员，正式起草委员会则由中国、法国、黎巴嫩、苏联、英国、澳大利亚、智利和美国八国代表组成。在两年多的起草过程中，各方反复争论每一个用词。</p>
+<p>最终的文本第一条写道："人人生而自由，在尊严和权利上一律平等。"</p>
+<p>这句话在人类文明史上的分量怎么评价都不过分。在此之前，从来没有一份全球性的文件宣告过每一个人——不分国籍、种族、性别、信仰——仅仅因为是人就拥有不可剥夺的尊严。这不是某一个文化传统的宣言，不是某一个宗教的教义，不是某一个国家的宪法。这是人类作为一个整体，第一次试图在制度层面确认：人是目的。</p>
+<p>然后问题来了：谁来保证这些话被兑现？</p>
+<p>《世界人权宣言》由联合国大会通过，并不是一份供各国签署和批准的条约。1948年的宣言本身没有建立独立的强制执行机制。它提出了共同标准，却没有同时造出一套足以保证各国遵守的力量。</p>
+<p>后来，这些原则逐步进入国际条约、国内法和习惯国际法，开始产生实际的法律作用。但写进法律和落实到一个人的生活之间，仍然隔着很长的路。</p>
+<p>困难就在这里：人权需要制度来保障，而能够建立这些制度的国家，也可能正是侵犯权利的一方。约束不是完全不能建立，而是每建立一步，都要面对权力的抵抗和选择性的执行。</p>
+<p>宣言是了不起的路标。后来的法律和制度沿着它修出了一些道路，但远没有通到每一个人面前。</p>
+<h2>联合国：一个诚实的妥协</h2>
+<p>联合国的设计者比国联的设计者更诚实。国联假装大国会服从集体意志，然后在大国不服从时假装没看见。联合国干脆把大国的特殊地位写进了宪章——安理会五个常任理事国拥有否决权。</p>
+<p>这是一个务实的选择。设计者们的逻辑很直白：一个让大国留在里面但给它们特权的联合国，好过一个坚持原则但大国纷纷退出的联合国。后者是国联的命运，他们不想重蹈覆辙。</p>
+<p>从系统存续的角度看，这个设计非常成功。联合国存在了八十余年，比国联的二十六年长了三倍不止。</p>
+<p>但成功存续的代价是什么？代价是制度从一开始就承认：不是所有人都同等重要。五常公民的安全有否决权保障，其他国家公民的安全没有。当安理会讨论是否干预一场种族屠杀时，任何一个常任理事国觉得干预不符合自身利益，就算不直接否决，也可以通过隐性方式阻碍行动。</p>
+<p>1994年卢旺达种族灭绝期间，安理会没有采取有效行动，导致数十万人在一百天内被屠杀。</p>
+<p>联合国的存在比国联长久，因为它学会了一件事：不要做超出大国容忍范围的事。而大国的容忍范围，更多时候是由大国自身的系统利益定义的，不完全是由"人是目的"这个原则定义的。</p>
+<p>这不是联合国的"缺陷"。这是联合国得以存在的前提条件。把这个前提条件去掉，联合国大概率重蹈国联覆辙。但保留这个前提条件，联合国又永远无法完全兑现"人人平等"的承诺。又是一个裂缝。比没有强，但还不够大，还不够宽。</p>
+<h2>修复的选择性</h2>
+<p>战后重建最能说明问题的地方，不是做了什么，而是为谁做了。</p>
+<p>马歇尔计划向西欧注入了超过一百三十亿美元（大约相当于今天的一千五百亿美元），重建了西欧的经济基础设施，奠定了欧洲一体化的基础。西德从废墟中崛起，在二十年内成为全球第三大经济体。</p>
+<p>但同一时期，英法荷比葡仍然在维持殖民统治。一些在联合国支持《世界人权宣言》的政府，同时仍在镇压殖民地的独立运动。法国在阿尔及利亚打了八年血腥的殖民战争。英国在肯尼亚的茅茅起义中使用了集中营。</p>
+<p>一边是"人人生而自由"，一边是殖民地人民连自治的权利都没有。这种矛盾不仅仅是虚伪，它有一个更深层的结构性原因：战后秩序的建设者本身就是系统，它们不可能建立一个真正审视自身行为的制度。</p>
+<p>马歇尔计划的目的从来不是"让欧洲人过上好日子"那么纯粹，它同时是冷战棋局的一步，是确保西欧不倒向苏联的战略投资。殖民地的存续也是系统利益的一部分——原材料、市场、战略位置。</p>
+<p>所以战后修复是分层的。处于系统核心的人——西欧人民——得到了全面的重建和权利确认。而处于系统边缘的人——殖民地人民——则被推迟、被附上条件、或者被直接忽视。</p>
+<p>后来的去殖民化运动部分纠正了这种不对称。到1960年代，大多数殖民地获得了政治独立。但政治独立不等于经济独立，国旗换了不意味着结构变了。很多后殖民国家的人民只是从宗主国的工具变成了全球经济体系中的另一种工具。工具化换了一张面孔，继续运转。</p>
+<h2>一个核弹大小的悖论</h2>
+<p>如果要用一个单一的事物来概括战后秩序的全部矛盾，那就是核武器。</p>
+<p>核威慑的逻辑是：以毁灭全人类的能力为筹码，来维护两个超级大国之间的不战状态。整个冷战期间，人类一直生活在随时可能灭绝的阴影下——古巴导弹危机期间，这个"随时"几乎变成了"即时"。</p>
+<p>它也确实"有用"。没有第三次世界大战，也几乎没有人死于超级大国之间的直接冲突（虽然有上千万人死于代理人战争）。"有用"是核威慑最强大的辩护。</p>
+<p>但从"人是目的"这个角度看，这个"有用"恰恰是最深的指控。当一个系统需要把全人类的存续当作筹码才能运行，这说明了什么？说明这个系统的运行不是以人为目的，而是以自身的均衡为目的。人不是被保护的对象，是被挟持的人质。只不过挟持者不是一个具体的恶棍，而是系统本身的逻辑。</p>
+<p>而这被叫做"和平"。</p>
+<h2>光芒与阴影</h2>
+<p>1945年之后的制度建设不是一个可以简单评价的东西。</p>
+<p>一方面，这是人类走得最远的一次。纽伦堡把对国家高级官员的个人刑事追责推到了新的层次，让制度身份不再足以遮住个人责任。在《世界人权宣言》之前，没有任何全球性文件承认过每个人仅因为是人就拥有尊严。在联合国之前，没有任何持久的全球性机构至少在理论上承诺所有国家平等参与。这些是真实的成就。</p>
+<p>另一方面，每一项成就都带着结构性的局限。纽伦堡的正义是选择性的。人权宣言提出的承诺，仍缺少充分而平等的落实保障。联合国的平等是有否决权例外的。而核威慑作为整个秩序的终极担保，本身就是把人当人质的最极端形式。</p>
+<p>也许最准确的总结是这样的：1945年之后，人类第一次在制度中写入了"人是目的"这句话。但写入这句话的那个制度体系本身，并不是以人为目的来运转的。承诺是真的，承诺远未被普遍兑现也是真的。这两件事同时为真，而且并不矛盾。</p>
+<p>因为"人是目的"不是一种可以由制度来宣告然后自动实现的状态。它需要裂缝——允许异议的裂缝，允许纠错的裂缝。纽伦堡、人权宣言、联合国，它们做的不是建成一座大厦，而是在一面巨大的墙上凿开了几条裂缝。</p>
+<p>光从裂缝中透进来，但墙还在。</p>
+</div>
+<div class="essay-body lang-hant" style="font-family:var(--cjk),serif;">
+<h2>一個法庭上的辯詞</h2>
+<p>1945年11月，紐倫堡。二十一名納粹高級官員坐在被告席上，另有一人被缺席審判，面對一個前所未有的法庭。赫爾曼·戈林穿著一件灰色的西裝，瘦了許多，但他看起來比戰爭期間清醒得多，回答問題時邏輯清晰甚至銳利。</p>
+<p>當檢察官指控他犯下反人類罪時，他的辯護思路很簡單：我是一個國家的政府官員，執行的是國家的政策，遵守的是國家的法律。憑什麼另一群國家的代表來審判我？</p>
+<p>在紐倫堡之前，國際法主要圍繞國家展開，對國家領導人的國際刑事追責尤其薄弱。但個人責任並不是從紐倫堡才開始的。戰爭罪的個人責任已有先例，一戰後的追責嘗試也已經觸及這個問題，只是執行極其有限。</p>
+<p>紐倫堡把這條原則推進到了新的層次：國家的高級官員也必須面對個人責任。一個人不能只說自己在執行國家政策，就把責任全部推給國家。制度身份不能成為免責的通行證。</p>
+<p>這是人類制度史上的一個轉折點。一個國際法庭把國家高級官員置於個人刑事追責之下。在系統和人之間，它表達了一個原則：人不能躲在系統後面。</p>
+<h2>突破</h2>
+<p>紐倫堡確立的幾個原則，放在歷史長河裡看，每一條都是石破天驚的。</p>
+<p>第一，個人必須為自己的行為負責，即使他是在執行上級命令或國家政策。這意味著制度身份不再是道德真空的通行證。一個人不能因為穿著制服就停止做人。</p>
+<p>第二，存在一種超越國家法律的法律——反人類罪。一個國家可以合法地制定任何法律，但當這些法律導致了系統性的滅絕和迫害，它們不能保護執行者免於被追究。</p>
+<p>第三，國家主權不是絕對的。一個國家對自己國民做的事，不再純粹是"內政"。國際社會有權利——至少在原則上——介入和審判。</p>
+<p>這三條原則加在一起，指向了一個方向：制度不是最終目的。制度之上還有一個東西，就是人本身的尊嚴和生命。當制度系統性地摧毀人的尊嚴和生命時，制度的權威就不再成立。</p>
+<p>但突破是真實的，突破的局限也是真實的，而且這些局限不是技術性的瑕疵，是結構性的矛盾。</p>
+<p>最明顯的一個：紐倫堡是勝利者的法庭。坐在被告席上的全是戰敗國的官員。沒有人因為德累斯頓被審判。沒有人因為廣島被審判。沒有人因為孟加拉飢荒被審判。蘇聯法官坐在審判席上，而同一時期蘇聯的古拉格裡關押著上百萬人。</p>
+<p>由此，文章必須追問：為什麼轟炸德累斯頓一方的行為，沒有受到同一套原則的審查？這個問題應當被認真對待。但追問審判的選擇性，並不能減輕戈林等納粹責任者的罪責。</p>
+<p>紐倫堡的正當性來源於軍事勝利，而不是來源於一個超越所有參戰方的道德權威。這意味著它宣告的那些崇高原則——個人責任、反人類罪、主權有限——從誕生那一刻起就是選擇性適用的。原則是普遍的，但適用是不對稱的。</p>
+<p>這個矛盾是結構性的：一個由勝利者建立的正義體系，無法審判勝利者自己。因為審判的權力來源——軍事勝利——和審判的正當性來源——超越於所有國家的道德原則——兩者之間有一條無法彌合的裂縫。</p>
+<p>紐倫堡試圖在制度中寫入"人比系統大"。但寫入這行字的那支筆，握在贏了戰爭的系統手裡。</p>
+<h2>一份宣言的光芒與無力</h2>
+<p>1948年12月10日，聯合國大會通過了《世界人權宣言》。埃莉諾·羅斯福擔任人權委員會及正式起草委員會的主席。人權委員會有十八名成員，正式起草委員會則由中國、法國、黎巴嫩、蘇聯、英國、澳大利亞、智利和美國八國代表組成。在兩年多的起草過程中，各方反覆爭論每一個用詞。</p>
+<p>最終的文本第一條寫道："人人生而自由，在尊嚴和權利上一律平等。"</p>
+<p>這句話在人類文明史上的分量怎麼評價都不過分。在此之前，從來沒有一份全球性的文件宣告過每一個人——不分國籍、種族、性別、信仰——僅僅因為是人就擁有不可剝奪的尊嚴。這不是某一個文化傳統的宣言，不是某一個宗教的教義，不是某一個國家的憲法。這是人類作為一個整體，第一次試圖在制度層面確認：人是目的。</p>
+<p>然後問題來了：誰來保證這些話被兌現？</p>
+<p>《世界人權宣言》由聯合國大會通過，並不是一份供各國簽署和批准的條約。1948年的宣言本身沒有建立獨立的強制執行機制。它提出了共同標準，卻沒有同時造出一套足以保證各國遵守的力量。</p>
+<p>後來，這些原則逐步進入國際條約、國內法和習慣國際法，開始產生實際的法律作用。但寫進法律和落實到一個人的生活之間，仍然隔著很長的路。</p>
+<p>困難就在這裡：人權需要制度來保障，而能夠建立這些制度的國家，也可能正是侵犯權利的一方。約束不是完全不能建立，而是每建立一步，都要面對權力的抵抗和選擇性的執行。</p>
+<p>宣言是了不起的路標。後來的法律和制度沿著它修出了一些道路，但遠沒有通到每一個人面前。</p>
+<h2>聯合國：一個誠實的妥協</h2>
+<p>聯合國的設計者比國聯的設計者更誠實。國聯假裝大國會服從集體意志，然後在大國不服從時假裝沒看見。聯合國乾脆把大國的特殊地位寫進了憲章——安理會五個常任理事國擁有否決權。</p>
+<p>這是一個務實的選擇。設計者們的邏輯很直白：一個讓大國留在裡面但給它們特權的聯合國，好過一個堅持原則但大國紛紛退出的聯合國。後者是國聯的命運，他們不想重蹈覆轍。</p>
+<p>從系統存續的角度看，這個設計非常成功。聯合國存在了八十餘年，比國聯的二十六年長了三倍不止。</p>
+<p>但成功存續的代價是什麼？代價是制度從一開始就承認：不是所有人都同等重要。五常公民的安全有否決權保障，其他國家公民的安全沒有。當安理會討論是否干預一場種族屠殺時，任何一個常任理事國覺得干預不符合自身利益，就算不直接否決，也可以通過隱性方式阻礙行動。</p>
+<p>1994年盧旺達種族滅絕期間，安理會沒有採取有效行動，導致數十萬人在一百天內被屠殺。</p>
+<p>聯合國的存在比國聯長久，因為它學會了一件事：不要做超出大國容忍範圍的事。而大國的容忍範圍，更多時候是由大國自身的系統利益定義的，不完全是由"人是目的"這個原則定義的。</p>
+<p>這不是聯合國的"缺陷"。這是聯合國得以存在的前提條件。把這個前提條件去掉，聯合國大概率重蹈國聯覆轍。但保留這個前提條件，聯合國又永遠無法完全兌現"人人平等"的承諾。又是一個裂縫。比沒有強，但還不夠大，還不夠寬。</p>
+<h2>修復的選擇性</h2>
+<p>戰後重建最能說明問題的地方，不是做了什麼，而是為誰做了。</p>
+<p>馬歇爾計劃向西歐注入了超過一百三十億美元（大約相當於今天的一千五百億美元），重建了西歐的經濟基礎設施，奠定了歐洲一體化的基礎。西德從廢墟中崛起，在二十年內成為全球第三大經濟體。</p>
+<p>但同一時期，英法荷比葡仍然在維持殖民統治。一些在聯合國支持《世界人權宣言》的政府，同時仍在鎮壓殖民地的獨立運動。法國在阿爾及利亞打了八年血腥的殖民戰爭。英國在肯尼亞的茅茅起義中使用了集中營。</p>
+<p>一邊是"人人生而自由"，一邊是殖民地人民連自治的權利都沒有。這種矛盾不僅僅是虛偽，它有一個更深層的結構性原因：戰後秩序的建設者本身就是系統，它們不可能建立一個真正審視自身行為的制度。</p>
+<p>馬歇爾計劃的目的從來不是"讓歐洲人過上好日子"那麼純粹，它同時是冷戰棋局的一步，是確保西歐不倒向蘇聯的戰略投資。殖民地的存續也是系統利益的一部分——原材料、市場、戰略位置。</p>
+<p>所以戰後修復是分層的。處於系統核心的人——西歐人民——得到了全面的重建和權利確認。而處於系統邊緣的人——殖民地人民——則被推遲、被附上條件、或者被直接忽視。</p>
+<p>後來的去殖民化運動部分糾正了這種不對稱。到1960年代，大多數殖民地獲得了政治獨立。但政治獨立不等於經濟獨立，國旗換了不意味著結構變了。很多後殖民國家的人民只是從宗主國的工具變成了全球經濟體系中的另一種工具。工具化換了一張面孔，繼續運轉。</p>
+<h2>一個核彈大小的悖論</h2>
+<p>如果要用一個單一的事物來概括戰後秩序的全部矛盾，那就是核武器。</p>
+<p>核威懾的邏輯是：以毀滅全人類的能力為籌碼，來維護兩個超級大國之間的不戰狀態。整個冷戰期間，人類一直生活在隨時可能滅絕的陰影下——古巴導彈危機期間，這個"隨時"幾乎變成了"即時"。</p>
+<p>它也確實"有用"。沒有第三次世界大戰，也幾乎沒有人死於超級大國之間的直接衝突（雖然有上千萬人死於代理人戰爭）。"有用"是核威懾最強大的辯護。</p>
+<p>但從"人是目的"這個角度看，這個"有用"恰恰是最深的指控。當一個系統需要把全人類的存續當作籌碼才能運行，這說明了什麼？說明這個系統的運行不是以人為目的，而是以自身的均衡為目的。人不是被保護的對象，是被挾持的人質。只不過挾持者不是一個具體的惡棍，而是系統本身的邏輯。</p>
+<p>而這被叫做"和平"。</p>
+<h2>光芒與陰影</h2>
+<p>1945年之後的制度建設不是一個可以簡單評價的東西。</p>
+<p>一方面，這是人類走得最遠的一次。紐倫堡把對國家高級官員的個人刑事追責推到了新的層次，讓制度身份不再足以遮住個人責任。在《世界人權宣言》之前，沒有任何全球性文件承認過每個人僅因為是人就擁有尊嚴。在聯合國之前，沒有任何持久的全球性機構至少在理論上承諾所有國家平等參與。這些是真實的成就。</p>
+<p>另一方面，每一項成就都帶著結構性的局限。紐倫堡的正義是選擇性的。人權宣言提出的承諾，仍缺少充分而平等的落實保障。聯合國的平等是有否決權例外的。而核威懾作為整個秩序的終極擔保，本身就是把人當人質的最極端形式。</p>
+<p>也許最準確的總結是這樣的：1945年之後，人類第一次在制度中寫入了"人是目的"這句話。但寫入這句話的那個制度體系本身，並不是以人為目的來運轉的。承諾是真的，承諾遠未被普遍兌現也是真的。這兩件事同時為真，而且並不矛盾。</p>
+<p>因為"人是目的"不是一種可以由制度來宣告然後自動實現的狀態。它需要裂縫——允許異議的裂縫，允許糾錯的裂縫。紐倫堡、人權宣言、聯合國，它們做的不是建成一座大廈，而是在一面巨大的牆上鑿開了幾條裂縫。</p>
+<p>光從裂縫中透進來，但牆還在。</p>
+</div>
 
     <div style="max-width:700px; margin:0 auto; padding:0 2.5rem 4rem; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--cream-border); padding-top:2rem;">
-      <a href="3-four-systems.html" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none;">← 上一篇：四种系统，四种活法</a>
-      <a href="5-cracks.html" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none;">下一篇：裂缝与光 →</a>
+      <a href="3-four-systems.html" data-primary-route="1" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none;"><span class="lang-zh">← 四种系统，四种活法</span><span class="lang-en">← Four Systems, Four Ways of Living</span><span class="lang-hant">← 四種系統，四種活法</span></a>
+      <a href="5-cracks.html" data-primary-route="1" style="font-family:var(--sans); font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); text-decoration:none;"><span class="lang-zh">→ 裂缝与光</span><span class="lang-en">→ Cracks and Light</span><span class="lang-hant">→ 裂縫與光</span></a>
     </div>
   </div>
 
