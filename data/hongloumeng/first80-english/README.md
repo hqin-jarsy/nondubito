@@ -1,6 +1,6 @@
 # Independent English translation work in progress
 
-This directory is project data, not a published English reading edition. No English prose has been supplied by initialization. All 4,474 units start **pending**. Chapters 81–85 and every Chinese edition remain unchanged.
+This directory is project data, not a published English reading edition. Chapters 1–5 have passed chapter-level and cumulative model editorial review: 383 units are **accepted** and 4,091 remain **pending**. This is not native-human publication sign-off; the eighty-chapter translation is unfinished and has no public English reading presentation. Chapters 81–85 and every Chinese edition remain unchanged.
 
 ## Frozen source and stable alignment
 
@@ -36,4 +36,6 @@ The global `sourceIssues` registry records explicit source questions, not guesse
 
 Progress imports use a complete same-directory temporary write, flush/fsync, and atomic replacement. A failed write or replacement preserves the previous canonical file. This remains a single-editor workflow, not concurrent merge support. Earlier private reviews remain historical evidence; never mechanically regenerate their hashes to imply a new review.
 
-The current frozen source incorporates six corrected blocks without changing any stable ID or layout. The six English alignment issues are recorded as resolved after the corresponding draft revisions and independent review; the canonical progress remains pending until a separate import and review-recording step. Source correction alone does not resolve an English draft issue; old per-unit hashes in draft files must not be mechanically rewritten.
+The current frozen source incorporates six corrected blocks without changing any stable ID or layout. The six English alignment issues are recorded as resolved after the corresponding draft revisions and independent review; their reviewed revisions are now included in the accepted first batch. Source correction alone does not resolve an English draft issue; old per-unit hashes in draft files must not be mechanically rewritten.
+
+Two frozen translator notes are held separately in `reader-notes.json`, bound to their source units and clearly labelled as translator commentary. They are not original narrative, are not inserted into translation segments, and are not yet integrated into a reading presentation.

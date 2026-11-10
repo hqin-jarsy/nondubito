@@ -166,6 +166,23 @@ def assemble_wip(mapping, progress):
             'units': [dict(s, translation=u) for s, u in zip(mapping['units'], progress['units'])]}
 
 
+def validate_reader_notes(mapping, notes):
+    keys(notes, 'schemaVersion sourceHash notes')
+    require(notes['schemaVersion'] == 1 and notes['sourceHash'] == mapping['sourceHash'], 'Reader notes source binding differs')
+    require(isinstance(notes['notes'], list), 'Reader notes must be separate records')
+    lookup = {u['id']: u for u in mapping['units']}
+    seen = set()
+    for note in notes['notes']:
+        keys(note, 'unitId sourceHash glossaryId type text presentationStatus')
+        require(note['unitId'] in lookup and note['unitId'] not in seen, 'Invalid or duplicate reader-note unit')
+        seen.add(note['unitId'])
+        require(note['sourceHash'] == lookup[note['unitId']]['sourceHash'], 'Reader note unit source binding differs')
+        require(note['type'] == 'translator_note' and note['presentationStatus'] == 'not_integrated_in_reading_presentation', 'Reader note must remain separately labelled')
+        require(isinstance(note['text'], str) and note['text'].strip(), 'Reader note text required')
+        require(isinstance(note['glossaryId'], str) and note['glossaryId'].strip(), 'Reader note glossary reference required')
+    return len(notes['notes'])
+
+
 def save_progress(path, value):
     """Single-editor atomic save; failed writes leave the previous corpus intact."""
     path = Path(path)
@@ -212,6 +229,8 @@ def main():
             progress['units'][i] = draft
     needs_snapshot = any(u.get('reviews') for u in progress['units']) or any(c.get('state') == 'accepted' for c in progress['checkpoints'])
     stats = validate_progress(mapping, progress, standard_snapshot() if needs_snapshot else None)
+    if (DATA / 'reader-notes.json').exists():
+        validate_reader_notes(mapping, json.loads((DATA / 'reader-notes.json').read_text()))
     if args.action == 'import-draft':
         save_progress(DATA / 'progress.json', progress)
     if args.action == 'assemble':

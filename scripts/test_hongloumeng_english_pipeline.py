@@ -144,6 +144,20 @@ class PipelineTests(unittest.TestCase):
             p.save_progress(path, self.progress)
             self.assertEqual(p.json.loads(path.read_text()), self.progress)
 
+    def test_reader_notes_are_separate_and_source_bound(self):
+        unit = self.mapping['units'][0]
+        note = {'unitId': unit['id'], 'sourceHash': unit['sourceHash'], 'glossaryId': 'test', 'type': 'translator_note', 'text': 'A separate explanatory note.', 'presentationStatus': 'not_integrated_in_reading_presentation'}
+        notes = {'schemaVersion': 1, 'sourceHash': self.mapping['sourceHash'], 'notes': [note]}
+        before = copy.deepcopy(self.progress)
+        self.assertEqual(p.validate_reader_notes(self.mapping, notes), 1)
+        self.assertEqual(self.progress, before)
+        self.assertNotIn('notes', p.assemble_wip(self.mapping, self.progress))
+        for field, value in [('sourceHash', 'stale'), ('unitId', 'unknown'), ('type', 'original_text'), ('presentationStatus', 'integrated')]:
+            changed = copy.deepcopy(notes)
+            changed['notes'][0][field] = value
+            with self.assertRaises(ValueError):
+                p.validate_reader_notes(self.mapping, changed)
+
 
 if __name__ == '__main__':
     unittest.main()
