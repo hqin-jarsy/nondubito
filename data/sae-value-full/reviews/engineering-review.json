@@ -1,0 +1,76 @@
+{
+  "scope": "Independent engineering review of the Value Theory renderer, discovery refresh, Python safeguards, browser test and local preview server. Not an independent French semantic certification.",
+  "status": "reviewed_with_fixes_pending_parent_verification",
+  "files": {
+    "scripts/build_value_full_editions.py": "b7245464e3bff4af88eadd6e2440b96d2d5f843a714af996ae5040a4fc555b49",
+    "scripts/refresh_value_full_discovery.py": "7c3ef2f3baf03c669c7769ec31efce6164b5fd8d7c8047f8521c0144fa8f771c",
+    "scripts/test_value_full_editions.py": "7d093641d296bfa1e2091a4a3e8c25dff0510d2ea67adcb36d2e66130c697ca2",
+    "scripts/test_value_full_browser.cjs": "f140ed6c63dfcb9cf2f3b9c2487f16213a68f44baf90d7ddf4ebd7f4dda4ff7a",
+    "scripts/serve_value_preview.py": "99404c52eb9e07183db859bfaed88c239d26ea891583e4c9baf84430af5b19a2"
+  },
+  "findings": [
+    {
+      "id": "preview-public-overwrite",
+      "severity": "high",
+      "status": "fixed",
+      "detail": "Unrestricted --preview-dir could equal the repository and write unreviewed public pages outside write_outputs guards. Safely reproduced with mocked writes. Added resolved directory exclusion and per-output containment checks, including nested symlink escape rejection before writes."
+    },
+    {
+      "id": "index-title-unused",
+      "severity": "medium",
+      "status": "fixed",
+      "detail": "Manuscript index title was used by discovery but not rendered. Added escaped heading, document title and social-title updates with idempotence test."
+    },
+    {
+      "id": "discovery-before-render",
+      "severity": "medium",
+      "status": "fixed",
+      "detail": "Receipt verification alone did not establish that public HTML matched reviewed inputs. Discovery now requires all 54 render outputs to match disk before building updates."
+    },
+    {
+      "id": "optimized-python",
+      "severity": "medium",
+      "status": "fixed",
+      "detail": "Module import now raises RuntimeError if __debug__ is false, protecting direct helper imports and all dependent entrypoints. Subprocess regressions cover explicit -O and PYTHONOPTIMIZE=1."
+    },
+    {
+      "id": "table-browser-subset",
+      "severity": "low",
+      "status": "fixed",
+      "detail": "Dedicated table checks now iterate all eight languages, including Spanish and Traditional Chinese. Syntax verified; runtime browser acceptance remains pending."
+    }
+  ],
+  "verification": {
+    "preflight_command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_value_full_editions.py",
+    "preflight_result": "15 tests passed, including -O and PYTHONOPTIMIZE subprocess failure cases",
+    "preflight_tests": [
+      "test_chinese_traditional_and_english_baselines",
+      "test_completed_manuscripts_preserve_rich_structure",
+      "test_loader_rejects_truncated_copy",
+      "test_loader_rejects_stale_source",
+      "test_table_shape_detects_missing_cells",
+      "test_english_patches_are_local_and_source_bound",
+      "test_optimized_python_rejected_on_module_import",
+      "test_preview_rejects_repository_paths_before_render",
+      "test_preview_resolves_symlinks",
+      "test_preview_rejects_nested_symlink_escape",
+      "test_index_title_updates_heading_and_metadata_safely",
+      "test_writer_rejects_unknown_concurrent_change_before_writing",
+      "test_reviews_reject_missing_receipt",
+      "test_reviews_reject_stale_source_and_translation",
+      "test_discovery_refuses_stale_public_pages_before_building"
+    ],
+    "static_checks": "Python AST parsing passed for all four Python files; node --check passed after eight-language table expansion. No remaining static blocker identified. Optimized Python explicitly rejected at module load.",
+    "source_preservation": "Chinese and Traditional Chinese preservation and recognized English baseline/correction checks passed. No public HTML or other translators’ files changed by this worker.",
+    "release_tests": "Not executed: complete independent receipts and final public rendering are parent-controlled and still pending.",
+    "browser_tests": "Not executed by this reviewer. Parent browser acceptance remains pending; script syntax only checked."
+  },
+  "remaining_caveats": [
+    {
+      "id": "multi-file-write-interruption",
+      "severity": "low",
+      "detail": "All output hashes are prechecked, but 54 writes are not transactional. An I/O interruption may leave a partial batch. Full render/check and rerun hash guards provide recovery verification; complete those checks before publishing. No transaction architecture added."
+    }
+  ],
+  "parent_followup": "Parent independently reviewed the first three fixes and reran the prior 14 tests successfully. Review the optimized-mode and eight-language additions, then complete release and browser acceptance. This report does not mark publication ready."
+}

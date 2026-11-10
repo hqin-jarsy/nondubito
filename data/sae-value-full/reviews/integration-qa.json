@@ -1,0 +1,81 @@
+{
+  "date_utc": "2026-11-10T03:00:00.996453+00:00",
+  "baseline_commit": "2891a8ed0d4299fd1dbea72017bca90998a3ade0",
+  "scope": "Value Theory local integration verification; no remote publication or claim that global ledger checks pass.",
+  "checks": [
+    {
+      "command": "python3 -B scripts/build_value_full_editions.py --check",
+      "exit_code": 0,
+      "stdout": "Checked 54 pages; 0 changed\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 -B scripts/refresh_value_full_discovery.py --check",
+      "exit_code": 0,
+      "stdout": "Verified Value Theory search/sitemap; 0 files changed\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 -B scripts/test_value_full_editions.py --release",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_chinese_traditional_and_english_baselines (__main__.ValuePreflight) ... ok\ntest_completed_manuscripts_preserve_rich_structure (__main__.ValuePreflight) ... ok\ntest_discovery_refuses_stale_public_pages_before_building (__main__.ValuePreflight) ... ok\ntest_english_patches_are_local_and_source_bound (__main__.ValuePreflight) ... ok\ntest_index_title_updates_heading_and_metadata_safely (__main__.ValuePreflight) ... ok\ntest_loader_rejects_stale_source (__main__.ValuePreflight) ... ok\ntest_loader_rejects_truncated_copy (__main__.ValuePreflight) ... ok\ntest_optimized_python_rejected_on_module_import (__main__.ValuePreflight) ... ok\ntest_preview_rejects_nested_symlink_escape (__main__.ValuePreflight) ... ok\ntest_preview_rejects_repository_paths_before_render (__main__.ValuePreflight) ... ok\ntest_preview_resolves_symlinks (__main__.ValuePreflight) ... ok\ntest_reviews_reject_missing_receipt (__main__.ValuePreflight) ... ok\ntest_reviews_reject_stale_source_and_translation (__main__.ValuePreflight) ... ok\ntest_table_shape_detects_missing_cells (__main__.ValuePreflight) ... ok\ntest_writer_rejects_unknown_concurrent_change_before_writing (__main__.ValuePreflight) ... ok\ntest_current_independent_receipts_and_complete_manuscripts (__main__.ValueRelease) ... ok\ntest_discovery_scope_and_search (__main__.ValueRelease) ... ok\ntest_generated_pages_are_current_and_full (__main__.ValueRelease) ... ok\ntest_links_eight_languages_citations_and_analytics (__main__.ValueRelease) ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 3.377s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/check_web_analytics.py",
+      "exit_code": 0,
+      "stdout": "OK: 13822 public pages checked; 0 tracking errors; 0 conflict copies\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_web_analytics.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.005s\n\nOK\n"
+    },
+    {
+      "command": "python3 -B scripts/build_home_updates.py --check",
+      "exit_code": 0,
+      "stdout": "OK: homepage has one editorial pick and four distinct recent series\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 -B scripts/check_site_updates.py",
+      "exit_code": 1,
+      "stdout": "ERROR: updates[11]: invalid language list\nERROR: updates[12]: invalid language list\nERROR: updates[13]: invalid language list\nERROR: updates[14]: invalid language list\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_home_updates.py",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "...F....\n======================================================================\nFAIL: test_latest_keeps_the_whole_ledger (test_home_updates.HomeUpdates)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/hanqin/Documents/GitHub/nondubito/scripts/test_home_updates.py\", line 42, in test_latest_keeps_the_whole_ledger\n    self.assertEqual(check(), [])\nAssertionError: Lists differ: ['updates[11]: invalid language list', 'up[105 chars]ist'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'updates[11]: invalid language list'\n\n+ []\n- ['updates[11]: invalid language list',\n-  'updates[12]: invalid language list',\n-  'updates[13]: invalid language list',\n-  'updates[14]: invalid language list']\n\n----------------------------------------------------------------------\nRan 8 tests in 0.010s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "known_preexisting_failures": {
+    "records_missing_languages": [
+      "2026-11-04-fairy-tales-eight-languages",
+      "2026-11-04-laughter-eight-languages",
+      "2026-11-04-cooperation-histories-eight-languages",
+      "2026-11-04-aesthetics-core-eight-languages"
+    ],
+    "unchanged_previous_records": 241,
+    "home_tests": "7 passed; 1 failed solely because of the four unchanged ledger records"
+  },
+  "language_review_receipt_sha256s": {
+    "en.json": "dbdbf4eeb32becfdf7f06fba6e06b960e672e44bffac93fccd46a7de6c5a05ca",
+    "ja.json": "778c32695481b129adeab5e744749f8af52c7f32538479a648477fa2553c844b",
+    "de.json": "f579627816a79e0798d3ea34ce6eac68409d9de6034895100fd6eebb493a5efe",
+    "fr.json": "b7a8ef3587cb66ab87c3d6f698368c20cc1639ecb51447247c809a6b4437139c",
+    "es.json": "60bd4afe57d8e83a10bc38d7b588aa626c7ae3ee8f479e760d8c42805910a1b9",
+    "ko.json": "75b27dfe26d40cbaf37f9bf7c3b4766af63e04545f786441ebb9657b205006cd"
+  },
+  "rendered_manifest_sha256": "ac51ce397c029619436db3e5ce4e00a227c0b87df3d77b7c8e012593d29f67d0",
+  "author_queries": "reviews/author-source-questions.json; source wording unchanged, author decision still needed."
+}
