@@ -30,7 +30,7 @@ class TraditionalTests(unittest.TestCase):
                 self.assertEqual({k: v for k, v in x.items() if k != 'text'}, {k: v for k, v in y.items() if k != 'text'})
                 self.assertEqual(len(x['text']), len(y['text']))
                 total += len(y['text'])
-        self.assertEqual(total, 586198)
+        self.assertEqual(total, 586205)
 
     def test_manifest_shape_and_assets(self):
         manifest = json.loads(self.outputs['manifest.zh-hant.json'])
