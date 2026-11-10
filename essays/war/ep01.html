@@ -27,39 +27,10 @@
     [data-lang="zh"] .lang-en { display:none; }
     .emperor-ep-num { font-family:var(--sans); font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.4rem; }
   </style>
-  <script>
-    (function() {
-      var saved = localStorage.getItem('nd_lang') || localStorage.getItem('nondubito-lang') || 'zh';
-      if (['en', 'zh', 'zh-hant'].indexOf(saved) === -1) saved = 'zh';
-      document.documentElement.setAttribute('data-lang', saved);
-      document.documentElement.setAttribute('lang', saved === 'zh-hant' ? 'zh-Hant' : (saved === 'zh' ? 'zh-Hans' : 'en'));
-      document.addEventListener('DOMContentLoaded', function() {
-        var btns = document.querySelectorAll('.lang-btn');
-        btns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-            var lang = this.getAttribute('data-lang');
-            document.documentElement.setAttribute('data-lang', lang);
-            document.documentElement.setAttribute('lang', lang === 'zh-hant' ? 'zh-Hant' : (lang === 'zh' ? 'zh-Hans' : 'en'));
-            localStorage.setItem('nd_lang', lang);
-            localStorage.setItem('nondubito-lang', lang);
-          });
-        });
-        updateActive();
-        document.addEventListener('click', function(e) {
-          if (e.target.classList.contains('lang-btn')) updateActive();
-        });
-        function updateActive() {
-          var cur = document.documentElement.getAttribute('data-lang');
-          btns.forEach(function(btn) {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === cur);
-          });
-        }
-      });
-    })();
-  </script>
+  <script src="../../classic-reading.js"></script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1c920752456e42b5b5469641245a07c2"}'></script><!-- End Cloudflare Web Analytics -->
   <script defer src="zh-hant-data/ep01.js"></script>
-</head>
+<style id="war-full-reader">[data-lang="zh"] .source-note>.lang-en,[data-lang="zh-hant"] .source-note>.lang-en,[data-lang="en"] .source-note>.lang-zh{display:none!important}.series-container{width:100%;min-width:0}.series-title,.essay-header h1,.entry-title,.entry-title-en,.entry-title-zh,.essay-body,.series-nav-title,.war-nav,.xiyou-nav-title{overflow-wrap:anywhere}.entry-row,.series-nav a,.war-nav a,.xiyou-nav a{min-width:0}.table-scroll{overflow-x:auto;max-width:100%;margin:1.6rem 0}.v-table{overflow-wrap:normal;width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.82rem;min-width:32rem}.v-table th,.v-table td{padding:.55rem .7rem;border:1px solid var(--cream-border);text-align:left;vertical-align:top}.v-table thead th{font-size:.72rem;color:var(--ink-muted);font-weight:600}.v-table td:first-child{font-weight:600}.essay-body.ko{word-break:keep-all}@media(max-width:620px){.v-table{font-size:.75rem;min-width:26rem}}</style></head>
 <body>
   <header>
     <div class="header-inner">
@@ -317,7 +288,7 @@
 
 <p>This series will establish four theorems, three ending forms, and one constraint on means. All of these are directional principles. But the specific judgment calls are not here. When have all non-war routes genuinely been exhausted? When has cultivation genuinely been pushed to its limit? Is this particular escalation necessary? Is this the moment to stop? Does this specific method, in this specific situation, foreclose the other side's ability to stand back up afterward?</p>
 
-<p>Those judgments belong to soldiers and statesmen.</p>
+<p>Those judgments belong to military strategists and political leaders.</p>
 
 <p>Acknowledging this boundary is a condition of honesty. A philosophy essay is written in a quiet room, not at a front line. It does not face actual soldiers, actual deaths, or a decision that must be made within hours and will determine the fate of thousands. Philosophy can spend months polishing a single sentence. People in that other position often have minutes.</p>
 
@@ -349,7 +320,7 @@
 
 <h2>Next</h2>
 
-<p>Sunzi wrote that the highest use of arms is to attack the opponent's strategy. That line has been quoted for two thousand years, usually as the summit of war wisdom.</p>
+<p>Sunzi wrote that the highest use of arms is to attack the opponent's strategy. That line has been quoted in the Chinese-speaking world for more than two thousand years, usually as the summit of war wisdom.</p>
 
 <p>It is not the summit. There are four levels above it.</p>
 
