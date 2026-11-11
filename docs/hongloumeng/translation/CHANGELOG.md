@@ -16,3 +16,11 @@ First-batch editorial checkpoint: batch-001-005-editorial-2026-11-10.
 ## english-1-110-v0.1 · 2026-11-10
 
 Preserved the supplied six-language v0.2 archive unchanged, recorded hashes, and created the initial English 1–110 execution standard, observed 81–85 glossary and scene-sensitive voice guidance. This English execution version is distinct from the historical six-language package version.
+
+
+## english-1-110-v0.3 · 2026-11-11: chapters 6–10
+
+- Add scoped chapter 6–10 terms, character-stage guards, paired inscriptions and unresolved source-query locations. Retain current 81–85 names and material vocabulary.
+- Record the chapter-title layout and repeated-text rule already used in chapters 1–5. Keep translator notes outside dialogue.
+- Add early-stage voices and boundaries for character medical claims, pulse descriptions and the literary prescription. No modern dosage conversion or invented diagnosis.
+- Existing core term meanings and chapter 1–5 decisions remain unchanged. Changes to a global standard snapshot require a documented delta review before any previous review can be rebound. This frozen standard changes no prose. Existing acceptance is retained only after the documented normative-delta regression; this is not a fresh full bilingual or literary review.

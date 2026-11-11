@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/hongloumeng/first80-english'
 SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
-VERSION = 'english-1-110-v0.2'
+VERSION = 'english-1-110-v0.3'
 READING_SHA = 'd7617874a5807001d13cd11faff212ffd5e7a50c0bba2275309fcf3143a9dfc1'
 MANIFEST_SHA = '074d6795190054b53a006adf3172b638e3b1779661c181db7ea20bd01664b1a4'
 BODY_SHA = '4da79146047e7ef3be8fbc75ef26a091e7e9673a5d7fe944dc6b390fd5e66e55'
@@ -77,7 +77,7 @@ def standard_snapshot():
     # Bind the exact normative texts, not merely a version label. Any edit
     # invalidates prior reviews until an actual regression review is recorded.
     names = ('english-standard.md', 'english-terms.json', 'english-voices.json',
-             'english-batch-001-005.json', 'CHANGELOG.md')
+             'english-batch-001-005.json', 'english-batch-006-010.json', 'CHANGELOG.md')
     require(all((STANDARD / n).is_file() for n in names), 'Standard baseline is not available')
     return sha(encoded({n: sha((STANDARD / n).read_bytes()) for n in names}))
 
