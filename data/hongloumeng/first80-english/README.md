@@ -147,3 +147,10 @@ The full individual chapter-34 r1 review remains historical and correction-requi
 The cumulative report's earlier accepted-baseline hash records its real reading context before v0.8 installation. This integration instead preserves every current installed chapter 1–30 unit object, all 5,079 earlier review records and six old checkpoint objects exactly. It does not rebind historical reading claims. The twenty notes, sixteen resolved source issues, prior integrations, source, source map, normative files, code and website are unchanged.
 
 Current progress is 1,885 accepted and 2,590 pending units, with seven accepted checkpoints and 5,655 current review records. The seventh checkpoint satisfies the preceding-batch structural gate for chapters 36–40; it does not approve a future batch's terminology or prose. The eighty-chapter work remains unfinished, publication is disabled and no English reading page is produced. This is not native-human publication sign-off. Relevant later changes require suitable actual re-review.
+
+
+## Isolated ch38/ch42/ch45 source and current-binding amendment
+
+This candidate follows the explicit ch38 author choice 几霜痕 and the bounded ch42/ch45 source repairs. Chapter40 桃杏树 stays. It preserves all 4,475 IDs and all accepted English wording. Chapters1–35 remain the only accepted corpus: 1,885 accepted, 2,590 pending, 5,655 existing reviews and seven checkpoints. The four changed source units remain pending. Twenty note objects, sixteen source issues, all historical review evidence and chapter11–15 integration records are retained. No B8 acceptance or publication is included.
+
+Actual independent scoped review SOURCE-CH38-42-45-INDEPENDENT-SEMANTIC-R1-20261111 supports current snapshot migration and appended references only. This does not claim a whole earlier-corpus reread.

@@ -31,7 +31,7 @@ class PipelineTests(unittest.TestCase):
     def test_frozen_inventory(self):
         self.assertEqual(len(self.mapping['units']), 4475)
         blocks = [u for u in self.mapping['units'] if u['index']]
-        self.assertEqual(sum(u['characterCount'] for u in blocks), 586222)
+        self.assertEqual(sum(u['characterCount'] for u in blocks), 586224)
         self.assertEqual(len([u for u in blocks if u['chapter'] <= 5]), 378)
         self.assertEqual(sum(u['characterCount'] for u in blocks if u['chapter'] <= 5), 35513)
         self.assertEqual(len({u['id'] for u in self.mapping['units']}), 4475)
@@ -323,7 +323,11 @@ class FinalReadinessV09Tests(unittest.TestCase):
     def test_final_candidate_current_bindings_validate(self):
         mapping = p.source_map(p.load_source())
         progress = json.loads((p.DATA / 'progress.json').read_bytes())
-        self.assertEqual(p.validate_standard_readiness(mapping, progress), p.EXPECTED_NORMATIVE_SNAPSHOT)
+        if p.CURRENT_SOURCE_EVIDENCE_SHA is None:
+            with self.assertRaisesRegex(ValueError, 'Awaiting authenticated current source'):
+                p.validate_standard_readiness(mapping, progress)
+        else:
+            self.assertEqual(p.validate_standard_readiness(mapping, progress), p.EXPECTED_NORMATIVE_SNAPSHOT)
         self.assertEqual(sum(u['state'] == 'accepted' for u in progress['units']), 1885)
         self.assertEqual(sum(u['state'] == 'pending' for u in progress['units']), 2590)
 
@@ -344,7 +348,15 @@ class FreezeReadinessV09Tests(unittest.TestCase):
         self.directory = Path(self.temp.name)
         for name in (*p.NORMATIVE_FILES, 'provenance.json', 'CHECKPOINT.json'):
             (self.directory / name).write_bytes((p.STANDARD / name).read_bytes())
-        self.patches = [patch.object(p, 'STANDARD', self.directory),
+        self.patches = [patch.object(p, 'V09_HISTORICAL_NORMATIVE_SNAPSHOT', p.V09_HISTORICAL_NORMATIVE_SNAPSHOT),
+                        patch.object(p, 'V09_HISTORICAL_PROVENANCE_SHA', p.V09_HISTORICAL_PROVENANCE_SHA),
+                        patch.object(p, 'CURRENT_SOURCE_EVIDENCE_SHA', None),
+                        patch.object(p, 'CURRENT_ACCEPTED_BODIES_SHA', p.CURRENT_ACCEPTED_BODIES_SHA),
+                        patch.object(p, 'CURRENT_REVIEW_CONTENT_SHA', p.CURRENT_REVIEW_CONTENT_SHA),
+                        patch.object(p, 'CURRENT_OLD_REFERENCES_SHA', p.CURRENT_OLD_REFERENCES_SHA),
+                        patch.object(p, 'CURRENT_CHECKPOINT_CORPUS_HASHES', p.CURRENT_CHECKPOINT_CORPUS_HASHES),
+                        patch.object(p, 'CURRENT_SOURCE_DELTA_REFERENCE', 'SYNTHETIC-CURRENT-SOURCE-ONLY'),
+                        patch.object(p, 'STANDARD', self.directory),
                         patch.object(p, 'EXPECTED_NORMATIVE_SNAPSHOT', p.EXPECTED_NORMATIVE_SNAPSHOT),
                         patch.object(p, 'V09_SEMANTIC_EVIDENCE_SHA', None),
                         patch.object(p, 'V09_DELTA_REFERENCES', ('SYNTHETIC-V09-DELTA-NOT-REAL',)),
@@ -361,9 +373,9 @@ class FreezeReadinessV09Tests(unittest.TestCase):
         t = self.provenance['normative_projection_v09']
         t.update(state='frozen_editorial_checkpoint', reviewBindingsMigrated=True, independentEditorialReview='PASS', independentSemanticDeltaReview='PASS', independentTechnicalReview='required_by_installation_contract')
         t['finalStatusReview'] = {'status': 'PASS', 'reference': p.V09_FINAL_STATUS_REFERENCE, 'normativeSnapshot': None, 'scope': 'SYNTHETIC FINAL STATUS TEST ONLY'}
-        t['semanticDeltaReview'] = {'status': 'PASS', 'references': list(p.V09_DELTA_REFERENCES), 'previousNormativeSnapshot': p.V09_PREVIOUS_NORMATIVE_SNAPSHOT, 'normativeSnapshot': None, 'sourceHash': p.READING_SHA, 'sourceMapHash': p.SOURCE_MAP_SHA, 'acceptedBodiesUnchanged': True, 'notFullCorpusReread': True, 'reviewedEarlierUnitIds': ['hlm-c023-b0063'], 'scope': 'SYNTHETIC TEST ONLY'}
+        t['semanticDeltaReview'] = {'status': 'PASS', 'references': list(p.V09_DELTA_REFERENCES), 'previousNormativeSnapshot': p.V09_PREVIOUS_NORMATIVE_SNAPSHOT, 'normativeSnapshot': None, 'sourceHash': p.V09_HISTORICAL_READING_SHA, 'sourceMapHash': p.V09_HISTORICAL_MAP_SHA, 'acceptedBodiesUnchanged': True, 'notFullCorpusReread': True, 'reviewedEarlierUnitIds': ['hlm-c023-b0063'], 'scope': 'SYNTHETIC TEST ONLY'}
         self.progress = p.initial_progress(self.mapping)
-        refs = '; '.join((*p.V09_DELTA_REFERENCES, p.V09_FINAL_STATUS_REFERENCE, *p.NORMATIVE_DELTA_REFERENCES, p.SOURCE_DELTA_REFERENCE))
+        refs = '; '.join((*p.V09_DELTA_REFERENCES, p.V09_FINAL_STATUS_REFERENCE, *p.NORMATIVE_DELTA_REFERENCES, p.SOURCE_DELTA_REFERENCE, p.CURRENT_SOURCE_DELTA_REFERENCE))
         for s, u in zip(self.mapping['units'], self.progress['units']):
             if s['chapter'] <= 35:
                 u.update(state='accepted', segments=[{'kind': s['layout']['kind'], 'text': 'SYNTHETIC TEST TEXT ONLY.'}])
@@ -385,13 +397,15 @@ class FreezeReadinessV09Tests(unittest.TestCase):
         p.EXPECTED_NORMATIVE_SNAPSHOT = p.standard_snapshot()
         self.checkpoint['normative_snapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
         transition = self.provenance['normative_projection_v09']
-        transition['candidateNormativeSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
+        p.V09_HISTORICAL_NORMATIVE_SNAPSHOT = p.EXPECTED_NORMATIVE_SNAPSHOT
+        transition['candidateNormativeSnapshot'] = p.V09_HISTORICAL_NORMATIVE_SNAPSHOT
         transition['semanticDeltaReview']['normativeSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
         p.V09_SEMANTIC_EVIDENCE_SHA = p.sha(p.encoded(transition['semanticDeltaReview']))
         self.checkpoint['normativeTransitionV09'] = {k: transition[k] for k in ('previousNormativeSnapshot', 'previousProvenanceSHA256', 'previousCheckpointSHA256', 'candidateNormativeSnapshot')}
         transition['finalStatusReview']['normativeSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
         p.V09_FINAL_STATUS_EVIDENCE_SHA = p.sha(p.encoded(transition['finalStatusReview']))
         self.checkpoint['readiness'].update(independentFinalStatusReview='PASS', finalStatusReviewReference=p.V09_FINAL_STATUS_REFERENCE, finalStatusEvidenceSHA256=p.V09_FINAL_STATUS_EVIDENCE_SHA)
+        self.coherent_current_amendment()
         self.save('provenance.json', self.provenance)
         self.checkpoint['files'] = [{'path': 'docs/hongloumeng/translation/' + n, 'sha256': p.sha((self.directory/n).read_bytes()), 'bytes': (self.directory/n).stat().st_size} for n in (*p.NORMATIVE_FILES, 'provenance.json')]
         self.save('CHECKPOINT.json', self.checkpoint)
@@ -399,6 +413,35 @@ class FreezeReadinessV09Tests(unittest.TestCase):
             for r in u['reviews']: r['standardSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
         for c in self.progress['checkpoints']:
             if c['state'] == 'accepted': c['standardSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
+
+    def coherent_current_amendment(self):
+        # Only this test fixture manufactures SYNTHETIC evidence. Production
+        # candidates require an independent receipt over exact candidate bytes.
+        a = self.provenance[p.CURRENT_SOURCE_AMENDMENT_KEY]
+        a.update(state='reviewed_binding_migration', previousNormativeSnapshot=p.V09_HISTORICAL_NORMATIVE_SNAPSHOT,
+                 normativeSnapshot=p.EXPECTED_NORMATIVE_SNAPSHOT, reviewBindingsMigrated=True,
+                 reference=p.CURRENT_SOURCE_DELTA_REFERENCE)
+        p.V09_HISTORICAL_PROVENANCE_SHA = p.sha(p.encoded({k:v for k,v in self.provenance.items() if k != p.CURRENT_SOURCE_AMENDMENT_KEY}))
+        a['previousProvenanceSHA256'] = p.V09_HISTORICAL_PROVENANCE_SHA
+        earlier = [u for s,u in zip(self.mapping['units'],self.progress['units']) if s['chapter']<=35]
+        p.CURRENT_ACCEPTED_BODIES_SHA=p.sha(p.encoded([{k:v for k,v in u.items() if k!='reviews'} for u in earlier]))
+        a['acceptedBodiesSHA256']=p.CURRENT_ACCEPTED_BODIES_SHA
+        reviews=[r for u in earlier for r in u['reviews']]
+        p.CURRENT_REVIEW_CONTENT_SHA=p.sha(p.encoded([r['contentHash'] for r in reviews]))
+        a['acceptedReviewContentHashesSHA256']=p.CURRENT_REVIEW_CONTENT_SHA
+        suffix='; '+p.CURRENT_SOURCE_DELTA_REFERENCE
+        p.CURRENT_OLD_REFERENCES_SHA=p.sha(p.encoded([r['reference'][:-len(suffix)] for r in reviews]))
+        p.CURRENT_CHECKPOINT_CORPUS_HASHES=[c['corpusHash'] for c in self.progress['checkpoints'][:7]]
+        a['checkpointCorpusHashes']=p.CURRENT_CHECKPOINT_CORPUS_HASHES
+        e={'status':'PASS','reference':p.CURRENT_SOURCE_DELTA_REFERENCE,
+           'previousNormativeSnapshot':p.V09_HISTORICAL_NORMATIVE_SNAPSHOT,
+           'normativeSnapshot':p.EXPECTED_NORMATIVE_SNAPSHOT,'sourceHash':p.READING_SHA,
+           'sourceMapHash':p.SOURCE_MAP_SHA,'traditionalHash':p.CURRENT_SOURCE_TRADITIONAL_SHA,
+           'changedUnitIds':p.CURRENT_SOURCE_CHANGED_IDS,'acceptedBodiesUnchanged':True,
+           'notFullCorpusReread':True,'reviewBindingsMigrationApproved':True,
+           'reviewRequestSHA256':p.CURRENT_SOURCE_REVIEW_REQUEST_SHA,'scope':'SYNTHETIC ONLY'}
+        a['evidence']=e;p.CURRENT_SOURCE_EVIDENCE_SHA=p.sha(p.encoded(e));a['evidenceSHA256']=p.CURRENT_SOURCE_EVIDENCE_SHA
+        self.checkpoint['currentSourceAmendment']={k:a[k] for k in ('id','state','previousNormativeSnapshot','normativeSnapshot','sourceHash','sourceMapHash','traditionalHash','reference','evidenceSHA256','reviewBindingsMigrated')}
 
     def check(self):
         return p.validate_standard_readiness(self.mapping, self.progress)
@@ -491,7 +534,7 @@ class FreezeReadinessV09Tests(unittest.TestCase):
 
     def test_source_binding(self):
         original = copy.deepcopy(self.batch)
-        for key in ('observedSHA256','installedRepairedSHA256','observedSourceMapSHA256','expectedUnitCount','traditionalSHA256'):
+        for key in ('observedSHA256','boundSHA256','observedSourceMapSHA256','expectedUnitCount','traditionalSHA256'):
             self.batch = copy.deepcopy(original); self.batch['sourceBinding'][key] = 'wrong'; self.coherent_metadata(); self.rejected()
 
     def test_source_unit_layout(self):
@@ -595,6 +638,95 @@ class FreezeReadinessV09Tests(unittest.TestCase):
         c=self.progress['checkpoints'][6]
         c['reviewReference']='; '.join(x for x in c['reviewReference'].split('; ') if x!=p.V09_FINAL_STATUS_REFERENCE)
         with self.assertRaisesRegex(ValueError,'final-status reference'):self.check()
+
+    def save_current_evidence_change(self):
+        self.save('provenance.json', self.provenance)
+        for row in self.checkpoint['files']:
+            if row['path'].endswith('/provenance.json'):
+                raw = (self.directory / 'provenance.json').read_bytes()
+                row.update(sha256=p.sha(raw), bytes=len(raw))
+        self.save('CHECKPOINT.json', self.checkpoint)
+
+    def test_current_source_evidence_is_required(self):
+        p.CURRENT_SOURCE_EVIDENCE_SHA = None
+        with self.assertRaisesRegex(ValueError, 'Awaiting authenticated current source'): self.check()
+
+    def test_current_source_reference_is_required(self):
+        p.CURRENT_SOURCE_DELTA_REFERENCE = None
+        with self.assertRaisesRegex(ValueError, 'Awaiting authenticated current source'): self.check()
+
+    def test_current_source_evidence_hash_cannot_be_relabelled(self):
+        self.provenance[p.CURRENT_SOURCE_AMENDMENT_KEY]['evidence']['scope'] = 'FORGED'
+        self.save_current_evidence_change()
+        with self.assertRaisesRegex(ValueError, 'Current source evidence missing or forged'): self.check()
+
+    def test_current_source_scope_fields_must_match(self):
+        original = copy.deepcopy(self.provenance)
+        for key in ('status', 'reference', 'previousNormativeSnapshot', 'normativeSnapshot', 'sourceHash', 'sourceMapHash', 'traditionalHash', 'changedUnitIds', 'acceptedBodiesUnchanged', 'notFullCorpusReread', 'reviewBindingsMigrationApproved', 'reviewRequestSHA256'):
+            self.provenance = copy.deepcopy(original)
+            a = self.provenance[p.CURRENT_SOURCE_AMENDMENT_KEY]
+            a['evidence'][key] = None
+            p.CURRENT_SOURCE_EVIDENCE_SHA = p.sha(p.encoded(a['evidence']))
+            a['evidenceSHA256'] = p.CURRENT_SOURCE_EVIDENCE_SHA
+            self.checkpoint['currentSourceAmendment']['evidenceSHA256'] = p.CURRENT_SOURCE_EVIDENCE_SHA
+            self.save_current_evidence_change()
+            with self.assertRaisesRegex(ValueError, 'Current source evidence scope differs'): self.check()
+
+    def test_current_source_amendment_missing(self):
+        self.provenance.pop(p.CURRENT_SOURCE_AMENDMENT_KEY)
+        self.save_current_evidence_change()
+        with self.assertRaisesRegex(ValueError, 'Current source amendment missing'): self.check()
+
+    def test_current_source_historical_v09_extra_field_rejected(self):
+        self.provenance['normative_projection_v09']['inventedRetrospectiveClaim'] = 'not historical'
+        self.save_current_evidence_change()
+        with self.assertRaisesRegex(ValueError, 'Historical v0.9 provenance changed'): self.check()
+
+    def test_current_source_historical_checkpoint_exact(self):
+        self.provenance[p.CURRENT_SOURCE_AMENDMENT_KEY]['previousCheckpoint']['scope'] += ' ALTERED'
+        self.save_current_evidence_change()
+        with self.assertRaisesRegex(ValueError, 'Historical v0.9 checkpoint changed'): self.check()
+
+    def test_current_source_historical_binding_exact(self):
+        self.batch['sourceBindingHistory'][0]['observedSHA256'] = 'FORGED'
+        self.coherent_metadata()
+        with self.assertRaisesRegex(ValueError, 'Historical source binding changed'): self.check()
+
+    def test_current_source_cannot_claim_future_installation_commit(self):
+        self.batch['sourceBinding']['sourceCommit'] = 'f' * 40
+        self.coherent_metadata()
+        with self.assertRaisesRegex(ValueError, 'must not invent an installation commit'): self.check()
+
+    def test_current_source_author_override_must_be_distinct(self):
+        self.batch['sourceReadingDecisions'][2]['kind'] = 'historical_repair'
+        self.coherent_metadata()
+        with self.assertRaisesRegex(ValueError, 'Explicit author override missing'): self.check()
+
+    def test_current_source_checkpoint_amendment_must_match(self):
+        self.checkpoint['currentSourceAmendment']['normativeSnapshot'] = 'old'
+        self.save('CHECKPOINT.json', self.checkpoint)
+        with self.assertRaisesRegex(ValueError, 'Current checkpoint amendment differs'): self.check()
+
+    def test_current_source_old_reference_prefix_is_preserved(self):
+        r = self.progress['units'][0]['reviews'][0]
+        r['reference'] = 'REWRITTEN PREFIX; ' + r['reference']
+        with self.assertRaisesRegex(ValueError, 'Original review reference prefixes changed'): self.check()
+
+    def test_current_source_accepted_body_cannot_be_rehashed(self):
+        u = self.progress['units'][0]
+        u['segments'][0]['text'] += ' REWRITTEN'
+        for r in u['reviews']: r['contentHash'] = p.content_hash(u)
+        with self.assertRaisesRegex(ValueError, 'Earlier accepted English bodies changed'): self.check()
+
+    def test_current_source_review_append_required(self):
+        r = self.progress['units'][0]['reviews'][0]
+        r['reference'] = r['reference'].removesuffix('; ' + p.CURRENT_SOURCE_DELTA_REFERENCE)
+        with self.assertRaisesRegex(ValueError, 'Accepted review missing current source reference'): self.check()
+
+    def test_current_source_checkpoint_append_required(self):
+        c = self.progress['checkpoints'][0]
+        c['reviewReference'] = c['reviewReference'].removesuffix('; ' + p.CURRENT_SOURCE_DELTA_REFERENCE)
+        with self.assertRaisesRegex(ValueError, 'Checkpoint missing current source reference'): self.check()
 
     def letter_trial(self):
         source=next(s for s in self.mapping['units'] if s['id']=='hlm-c037-b0003')

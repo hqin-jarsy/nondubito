@@ -13,12 +13,12 @@ DATA = ROOT / 'data/hongloumeng/first80-english'
 SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
 VERSION = 'english-1-110-v0.9'
-READING_SHA = '564585568faa97b3b516443973c6c06a56493e5d91e81189b610c8606511dd4b'
-MANIFEST_SHA = '57feaa65126cdada4056c1bb2165d7cec74f170373801b592fdee252c04046d6'
-BODY_SHA = 'd6caf4a2535137b091928e179d4bee75457cbdff1b7b11f9f7b252bacea939b1'
+READING_SHA = '05b929a0f99d99d6c8ff061eccdb88210e4c2906ee3055a688475a0f629e0c29'
+MANIFEST_SHA = 'da725b0c6ad88c04663181db705cb3ab4271493d4d9684d30a406e4f919eb562'
+BODY_SHA = 'f62b8e051f9fa4749e8b96bcf37855ecf9f5b9ecd28a616806798fe5f1701520'
 NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md')
-SOURCE_MAP_SHA = '191240e0e809bbd230e9647fbaa787f752b820af04b51f98a1bff628d0242a5f'
-EXPECTED_NORMATIVE_SNAPSHOT = '5ec8290e4b6188b2746a7582b541cb0cf207b64bf11b6151519febcbb2b45fd5'
+SOURCE_MAP_SHA = 'bbb80bd819736cf6bab23308018d23bd60960bed6a8c4db0fbbac59964a7c9fc'
+EXPECTED_NORMATIVE_SNAPSHOT = 'b6c7e62662179ce90fecb4ba9eaeb0ab127c3741e7b407ca248654aaf6096c28'
 NORMATIVE_DELTA_REFERENCES = ('EN-V08-PROJECTION-R3-LISTENER-R4-DELTA-20261111', 'EN-V08-G07-11-QUANTITY-FINAL-STATUS-DELTA-20261111')
 V07_BASE_NORMATIVE_SNAPSHOT = '534a727dcfcbd776460d8d357f6c77afb3385821f66a7bee51cc17b1a4c88f90'
 V07_BASE_PROVENANCE_SHA = 'faced2fa7d4efc2271d04ebda9687227c99584d01f036f7d75351e7943f3010d'
@@ -46,6 +46,26 @@ V09_PREVIOUS_CHECKPOINT_SHA = '42a92d4d083caa6e878f34544ed1b017732c4e8f1a4af21e3
 
 V09_FINAL_STATUS_REFERENCE = 'EN-V09-FINAL-STATUS-R1-DELTA-20261111'
 V09_FINAL_STATUS_EVIDENCE_SHA = '5f3bbd11de3293796159b5469808ea80c9f782282e750f403975327dae036479'
+
+V09_HISTORICAL_NORMATIVE_SNAPSHOT = '5ec8290e4b6188b2746a7582b541cb0cf207b64bf11b6151519febcbb2b45fd5'
+V09_HISTORICAL_READING_SHA = '564585568faa97b3b516443973c6c06a56493e5d91e81189b610c8606511dd4b'
+V09_HISTORICAL_MAP_SHA = '191240e0e809bbd230e9647fbaa787f752b820af04b51f98a1bff628d0242a5f'
+V09_HISTORICAL_PROVENANCE_SHA = '90e719ef0d52a62001c74151031c02eb513de334437f0b334b1540ed7e48071f'
+V09_HISTORICAL_CHECKPOINT_SHA = '60b8508ed48cca1d3f2267abeb55fec2d6af8e233645429d30ce259426022ad8'
+V09_HISTORICAL_DECISIONS_SHA = '222226fad0496467ad9965c97377f6e26a64fcbb78094730e08068aaf65d53a9'
+V09_HISTORICAL_BINDING_SHA = '4a87b5a9af9a6b52c50c00e3921df1759b2b9fe11f73ea89e4c2afd1069f1327'
+CURRENT_SOURCE_AMENDMENT_KEY = 'source_amendment_ch38_ch42_ch45_20261111'
+CURRENT_SOURCE_AMENDMENT_ID = 'source-ch38-ch42-ch45-20261111'
+CURRENT_SOURCE_CHANGED_IDS = ['hlm-c038-b0060', 'hlm-c042-title', 'hlm-c042-b0032', 'hlm-c045-b0035']
+CURRENT_SOURCE_EVIDENCE_SHA = '16e37199180a74da5dab6c08670fda969603e9674fcb2411432fe435a9a6ddcd'
+CURRENT_SOURCE_DELTA_REFERENCE = 'SOURCE-CH38-42-45-INDEPENDENT-SEMANTIC-R1-20261111'
+CURRENT_SOURCE_TRADITIONAL_SHA = '52c6deffe02302e665fba2abd14ee2ff40f6ed70f12b319f85ac4867f8926da3'
+CURRENT_SOURCE_REVIEW_ARTIFACT_SHA = 'd64c3e49174fa734b95562dc7829875704729b4a3063fc1dcc4ef06abd4c53ad'
+CURRENT_SOURCE_REVIEW_REQUEST_SHA = '7d17a62eb2b6b224b407fc93de17243c8c01795db418c1f1540c85a865508365'
+CURRENT_ACCEPTED_BODIES_SHA = '5c833abba391398de7e4dee28ba53f8107f64982e4a0bb7652d6e855490a3101'
+CURRENT_REVIEW_CONTENT_SHA = '862d6fae80f441c7378a0d00fd8d1c9d5b29316d2e57ee194c79b03052e03db3'
+CURRENT_OLD_REFERENCES_SHA = '2d9644cfcd70cd6a0d9f67c1ffe9256f42c0fcf03fab1da4feed3b455fc5d091'
+CURRENT_CHECKPOINT_CORPUS_HASHES = ['ab09b0a93682e1ee10dd9ef5ea3504c229b0469b3bf8dec9c7c1355695cc8643', '14b84b8061425a29415d5e6f5eaf4530ad1c55ceaea4cc66ec7b2bc18785dcfb', 'a91a5357313a9ad5a011c92adbb92130721c11d94fe711a0ddba39b5a8440ea7', 'dbfe58abef590696f22d7ff0e9a3401066d8b5d2dcd24530945d9ab2de015943', '625d18c01ad40818cd2f0d93ecec80c4b6e59acdb397be0615df57be9c707507', '7b5c5e49f56e0430837a0cfbe98354fabdd2efacdc073ef781107d305a039e5e', '2f6bb5449185e1fbf9b3bbb2aab74bb3c927159071a6d3b5ae249d5f027ac30f']
 
 REVIEW_TYPES = ('bilingual', 'literary', 'consistency')
 STATES = ('pending', 'draft', 'reviewed', 'accepted')
@@ -142,24 +162,40 @@ def validate_standard_readiness(mapping, progress):
         pointer = '/chapters/' + str(expected['chapter'] - 1) + ('/title' if expected['index'] == 0 else '/blocks/' + str(expected['index'] - 1) + '/text')
         require(actual.get('sourceTextJSONPointer') == pointer, 'Eighth-batch source text pointer differs')
     binding = batch.get('sourceBinding', {})
-    require(binding.get('observedSHA256') == READING_SHA == binding.get('installedRepairedSHA256')
+    require(binding.get('observedSHA256') == READING_SHA == binding.get('boundSHA256')
             and binding.get('observedSourceMapSHA256') == SOURCE_MAP_SHA
             and binding.get('expectedUnitCount') == len(expected_units), 'Eighth-batch source binding differs')
     decisions = batch.get('sourceReadingDecisions', [])
-    require([d.get('unitId') for d in decisions] == ['hlm-c038-b0060', 'hlm-c040-b0011'], 'Portable source decisions missing')
+    require(len(decisions) == 3 and sha(encoded(decisions[:2])) == V09_HISTORICAL_DECISIONS_SHA,
+            'Historical source decisions changed')
+    require([d.get('unitId') for d in decisions] == ['hlm-c038-b0060', 'hlm-c040-b0011', 'hlm-c038-b0060'],
+            'Portable historical decisions and author override missing')
+    require(sha(encoded(batch.get('sourceBindingHistory'))) == V09_HISTORICAL_BINDING_SHA,
+            'Historical source binding changed')
+    require(binding.get('sourceCommit') is None and binding.get('status') == 'current_source_bound',
+            'Current binding must not invent an installation commit')
     mapped = {u['id']: u for u in mapping['units']}
     traditional_raw = (SOURCE / 'reading.zh-hant.json').read_bytes()
     require(sha(traditional_raw) == binding.get('traditionalSHA256'), 'Traditional source binding differs')
     traditional = json.loads(traditional_raw)
-    for decision in decisions:
+    # The prior ch38 decision remains an exact historical record, superseded by
+    # the explicit author choice. The ch40 decision continues to govern ch40.
+    for decision in (decisions[1], decisions[2]):
         source = mapped[decision['unitId']]
-        require(decision.get('installedUnitSourceHash') == source['sourceHash'] == sha(decision.get('adoptedUnit', '')), 'Portable adopted source differs')
-        require(decision.get('traditionalAdoptedUnit') == traditional['chapters'][source['chapter']-1]['blocks'][source['index']-1]['text'], 'Portable Traditional source differs')
+        require(decision.get('installedUnitSourceHash', decision.get('unitSourceHash')) == source['sourceHash']
+                == sha(decision.get('adoptedUnit', '')), 'Portable adopted source differs')
+        require(decision.get('traditionalAdoptedUnit') == traditional['chapters'][source['chapter']-1]['blocks'][source['index']-1]['text'],
+                'Portable Traditional source differs')
         require(bool(decision.get('beforeUnit')) and bool(decision.get('traditionalBeforeUnit'))
                 and bool(decision.get('evidenceLimit')) and bool(decision.get('publicEvidence')), 'Portable source evidence incomplete')
+    require(decisions[2].get('kind') == 'author_aesthetic_override'
+            and decisions[2].get('supersedesDecisionIndex') == 0
+            and decisions[2].get('after') == '几霜痕'
+            and decisions[2].get('englishBodyDelta') == 0,
+            'Explicit author override missing')
     document = json.loads((STANDARD / 'provenance.json').read_bytes())
     transition = document.get('normative_projection_v09', {})
-    history = {k: v for k, v in document.items() if k != 'normative_projection_v09'}
+    history = {k: v for k, v in document.items() if k not in ('normative_projection_v09', CURRENT_SOURCE_AMENDMENT_KEY)}
     require(sha(encoded(history)) == V09_PREVIOUS_PROVENANCE_SHA, 'Historical provenance changed')
     previous = transition.get('previousCheckpoint')
     require(sha(encoded(previous)) == V09_PREVIOUS_CHECKPOINT_SHA, 'Historical checkpoint changed')
@@ -167,8 +203,8 @@ def validate_standard_readiness(mapping, progress):
             and transition.get('previousProvenanceSHA256') == V09_PREVIOUS_PROVENANCE_SHA
             and transition.get('previousCheckpointSHA256') == V09_PREVIOUS_CHECKPOINT_SHA, 'v0.9 predecessor differs')
     require(transition.get('version') == VERSION and transition.get('state') == 'frozen_editorial_checkpoint'
-            and transition.get('candidateNormativeSnapshot') == snapshot
-            and transition.get('sourceHash') == READING_SHA and transition.get('sourceMapHash') == SOURCE_MAP_SHA
+            and transition.get('candidateNormativeSnapshot') == V09_HISTORICAL_NORMATIVE_SNAPSHOT
+            and transition.get('sourceHash') == V09_HISTORICAL_READING_SHA and transition.get('sourceMapHash') == V09_HISTORICAL_MAP_SHA
             and transition.get('reviewBindingsMigrated') is True and transition.get('publicationEnabled') is False
             and transition.get('independentEditorialReview') == 'PASS'
             and transition.get('independentSemanticDeltaReview') == 'PASS'
@@ -178,13 +214,13 @@ def validate_standard_readiness(mapping, progress):
     require(isinstance(evidence, dict) and sha(encoded(evidence)) == V09_SEMANTIC_EVIDENCE_SHA, 'Normative delta evidence differs')
     require(evidence.get('status') == 'PASS' and evidence.get('references') == list(V09_DELTA_REFERENCES)
             and evidence.get('previousNormativeSnapshot') == V09_PREVIOUS_NORMATIVE_SNAPSHOT
-            and evidence.get('normativeSnapshot') == snapshot and evidence.get('sourceHash') == READING_SHA
-            and evidence.get('sourceMapHash') == SOURCE_MAP_SHA and evidence.get('acceptedBodiesUnchanged') is True
+            and evidence.get('normativeSnapshot') == V09_HISTORICAL_NORMATIVE_SNAPSHOT and evidence.get('sourceHash') == V09_HISTORICAL_READING_SHA
+            and evidence.get('sourceMapHash') == V09_HISTORICAL_MAP_SHA and evidence.get('acceptedBodiesUnchanged') is True
             and evidence.get('notFullCorpusReread') is True and bool(evidence.get('reviewedEarlierUnitIds')), 'Normative delta scope differs')
     final_status = transition.get('finalStatusReview')
     require(isinstance(final_status, dict) and sha(encoded(final_status)) == V09_FINAL_STATUS_EVIDENCE_SHA
             and final_status.get('status') == 'PASS' and final_status.get('reference') == V09_FINAL_STATUS_REFERENCE
-            and final_status.get('normativeSnapshot') == snapshot, 'Final-status review evidence differs')
+            and final_status.get('normativeSnapshot') == V09_HISTORICAL_NORMATIVE_SNAPSHOT, 'Final-status review evidence differs')
     readiness = checkpoint.get('readiness', {})
     require(readiness.get('sourceInstalled') is True and readiness.get('independentEditorialReview') == 'PASS'
             and readiness.get('independentSemanticDeltaReview') == 'PASS'
@@ -211,8 +247,72 @@ def validate_standard_readiness(mapping, progress):
         require(SOURCE_DELTA_REFERENCE in item['reviewReference'].split('; '), 'Checkpoint missing historical source delta reference')
         if i < 6:
             require(all(ref in item['reviewReference'].split('; ') for ref in NORMATIVE_DELTA_REFERENCES), 'Checkpoint missing historical normative delta reference')
+    validate_current_source_amendment(document, checkpoint, mapping, progress, snapshot)
     validate_progress(mapping, progress, snapshot)
     return snapshot
+
+
+def validate_current_source_amendment(document, checkpoint, mapping, progress, snapshot):
+    """Separate actual current migration evidence from untouched v0.9 history."""
+    amendment = document.get(CURRENT_SOURCE_AMENDMENT_KEY)
+    require(isinstance(amendment, dict), 'Current source amendment missing')
+    historical = {k: v for k, v in document.items() if k != CURRENT_SOURCE_AMENDMENT_KEY}
+    require(sha(encoded(historical)) == V09_HISTORICAL_PROVENANCE_SHA
+            == amendment.get('previousProvenanceSHA256'), 'Historical v0.9 provenance changed')
+    require(sha(encoded(amendment.get('previousCheckpoint'))) == V09_HISTORICAL_CHECKPOINT_SHA
+            == amendment.get('previousCheckpointSHA256'), 'Historical v0.9 checkpoint changed')
+    require(CURRENT_SOURCE_EVIDENCE_SHA is not None and CURRENT_SOURCE_DELTA_REFERENCE is not None,
+            'Awaiting authenticated current source/norm migration review')
+    evidence = amendment.get('evidence')
+    require(isinstance(evidence, dict) and sha(encoded(evidence)) == CURRENT_SOURCE_EVIDENCE_SHA
+            == amendment.get('evidenceSHA256'), 'Current source evidence missing or forged')
+    require(amendment.get('id') == CURRENT_SOURCE_AMENDMENT_ID
+            and amendment.get('state') == 'reviewed_binding_migration'
+            and amendment.get('previousNormativeSnapshot') == V09_HISTORICAL_NORMATIVE_SNAPSHOT
+            and amendment.get('normativeSnapshot') == snapshot
+            and amendment.get('sourceHash') == READING_SHA
+            and amendment.get('sourceMapHash') == SOURCE_MAP_SHA
+            and amendment.get('traditionalHash') == CURRENT_SOURCE_TRADITIONAL_SHA
+            and amendment.get('changedUnitIds') == CURRENT_SOURCE_CHANGED_IDS
+            and amendment.get('reviewBindingsMigrated') is True
+            and amendment.get('reference') == CURRENT_SOURCE_DELTA_REFERENCE
+            and amendment.get('reviewArtifactSHA256') == CURRENT_SOURCE_REVIEW_ARTIFACT_SHA
+            and amendment.get('notFullCorpusReread') is True
+            and amendment.get('newEnglishAcceptance') is False
+            and amendment.get('publicationEnabled') is False,
+            'Current source migration scope differs')
+    require(evidence.get('status') == 'PASS'
+            and evidence.get('reference') == CURRENT_SOURCE_DELTA_REFERENCE
+            and evidence.get('previousNormativeSnapshot') == V09_HISTORICAL_NORMATIVE_SNAPSHOT
+            and evidence.get('normativeSnapshot') == snapshot
+            and evidence.get('sourceHash') == READING_SHA
+            and evidence.get('sourceMapHash') == SOURCE_MAP_SHA
+            and evidence.get('traditionalHash') == CURRENT_SOURCE_TRADITIONAL_SHA
+            and evidence.get('changedUnitIds') == CURRENT_SOURCE_CHANGED_IDS
+            and evidence.get('acceptedBodiesUnchanged') is True
+            and evidence.get('notFullCorpusReread') is True
+            and evidence.get('reviewBindingsMigrationApproved') is True
+            and evidence.get('reviewRequestSHA256') == CURRENT_SOURCE_REVIEW_REQUEST_SHA
+            == amendment.get('reviewRequestSHA256'), 'Current source evidence scope differs')
+    current = {k: amendment[k] for k in ('id', 'state', 'previousNormativeSnapshot', 'normativeSnapshot',
+               'sourceHash', 'sourceMapHash', 'traditionalHash', 'reference', 'evidenceSHA256', 'reviewBindingsMigrated')}
+    require(checkpoint.get('currentSourceAmendment') == current, 'Current checkpoint amendment differs')
+    earlier = [u for s, u in zip(mapping['units'], progress['units']) if s['chapter'] <= 35]
+    require(len(earlier) == 1885 and sha(encoded([{k: v for k, v in u.items() if k != 'reviews'} for u in earlier]))
+            == CURRENT_ACCEPTED_BODIES_SHA == amendment.get('acceptedBodiesSHA256'),
+            'Earlier accepted English bodies changed')
+    reviews = [r for u in earlier for r in u['reviews']]
+    require(len(reviews) == 5655 and sha(encoded([r['contentHash'] for r in reviews]))
+            == CURRENT_REVIEW_CONTENT_SHA == amendment.get('acceptedReviewContentHashesSHA256'),
+            'Earlier accepted review content hashes changed')
+    suffix = '; ' + CURRENT_SOURCE_DELTA_REFERENCE
+    require(all(r['reference'].endswith(suffix) for r in reviews), 'Accepted review missing current source reference')
+    require(sha(encoded([r['reference'][:-len(suffix)] for r in reviews])) == CURRENT_OLD_REFERENCES_SHA,
+            'Original review reference prefixes changed')
+    require([c['corpusHash'] for c in progress['checkpoints'][:7]] == CURRENT_CHECKPOINT_CORPUS_HASHES
+            == amendment.get('checkpointCorpusHashes'), 'Historical checkpoint corpus hashes changed')
+    require(all(c['reviewReference'].endswith(suffix) for c in progress['checkpoints'][:7]),
+            'Checkpoint missing current source reference')
 
 
 def content_hash(unit, issues=()):

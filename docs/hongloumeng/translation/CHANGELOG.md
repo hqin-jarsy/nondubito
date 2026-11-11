@@ -91,3 +91,10 @@ Freezes reviewed scoped execution rules for chapters 31-35, including the actual
 ## v0.9: chapters 36-40
 
 Freezes scoped terminology, voices, literary execution and portable public Chinese-source evidence after independent editorial and public-projection review. Actual limited semantic-delta review covered 41 complete earlier Chinese-English units, followed by an exact public-locator correction review. The seven historical batch records, accepted English wording and original review references are preserved; current standard bindings append those two actual review references. No new English acceptance or publication.
+
+
+## 2026-11-11: bounded ch38 author-choice and source-binding amendment
+
+The author explicitly chooses 几霜痕 at hlm-c038-b0060. The prior 几痕霜 decision is preserved exactly as historical evidence, with a distinct author override and qualified rationale. Current ch38 source anchors, full-poem quotation and guards follow the choice; the reviewed English a few traces of frost needs no body change. Core terms and every other normative object remain unchanged.
+
+Global source bindings also reflect the separately evidenced ch42 title 雅谬→雅谑, ch42b0032 顶绢箩四个，志箩四个→顶细绢箩四个，粗绢箩四个, and ch45b0035 蓺→爇. The ch40 桃杏树 choice remains. These source changes do not add rules for chapters 41–45 or accept any English units. Migration of current review bindings requires genuine review of this exact source/norm delta; the ch38 poem-only review does not supply that gate. Earlier provenance and review content hashes remain historical and unchanged. Publication remains disabled.

@@ -39,13 +39,13 @@ def release_gate(manifest, approval_path):
 def source_gate(public_dir):
     """Bind this edition to the immutable, approved Simplified baseline."""
     base.preflight_inputs(public_dir, 'zh-Hant')
-    expected = {'reading.zh.json': '564585568faa97b3b516443973c6c06a56493e5d91e81189b610c8606511dd4b',
-                'manifest.json': '57feaa65126cdada4056c1bb2165d7cec74f170373801b592fdee252c04046d6'}
+    expected = {'reading.zh.json': '05b929a0f99d99d6c8ff061eccdb88210e4c2906ee3055a688475a0f629e0c29',
+                'manifest.json': 'da725b0c6ad88c04663181db705cb3ab4271493d4d9684d30a406e4f919eb562'}
     for name, checksum in expected.items():
         if base.digest((Path(public_dir)/name).read_bytes()) != checksum:
             raise ValueError('Traditional release Simplified baseline checksum differs: ' + name)
     reading, manifest = base.load(public_dir)
-    if manifest['status'] != 'finalized' or manifest['body_sha256'] != 'd6caf4a2535137b091928e179d4bee75457cbdff1b7b11f9f7b252bacea939b1':
+    if manifest['status'] != 'finalized' or manifest['body_sha256'] != 'f62b8e051f9fa4749e8b96bcf37855ecf9f5b9ecd28a616806798fe5f1701520':
         raise ValueError('Traditional release Simplified baseline body differs')
 
 
