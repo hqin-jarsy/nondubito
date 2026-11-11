@@ -53,3 +53,16 @@ Preserved the supplied six-language v0.2 archive unchanged, recorded hashes, and
 - Controlled freeze: batch-016-020-editorial-r2-2026-11-11. Prior review bindings retain their original evidence and append EN-V05-R2-DELTA-20261111 after the actual normative-delta review. This is not a fresh full reread of the 751 accepted units and changes no translated prose.
 
 - Candidate correction: 绮霰 at hlm-c020-b0008 inherits Mackerel from the paired current chapter 81 source units 29 and 31. The discarded Qi-xian proposal was a continuity error, not an authorised change of name. The row is inherited usage rather than a newly coined form.
+
+
+## english-1-110-v0.6 · 2026-11-11: chapters 21–25 (frozen editorial checkpoint)
+
+- Add 101 scoped term and application rows, not 101 newly invented terms, with inherited forms and alias layers distinguished. Preserve the four earlier batch files byte for byte and every existing core term and voice field.
+- Reuse The Western Chamber for the linked 会真记 / 西厢记 book and the chapter 82 recollection. Record actual project applications of Rouged Lips, Wen-guan, the Doctrine of the Mean, the Great Learning and Penglai. Preserve Flying Swallow, Wu Ze-tian and the Tai-zhen / Noble Consort Yang identity bridge; add scoped He-de and Xingyi.
+- Explicitly exclude lexical false positives involving Shi-fei, Pearl, lawful-wife birth, Mackerel and Zhou Rui’s wife. Preserve separate person, object, quoted-image and title layers.
+- Preserve complete embedded Zhuangzi text, separate continuation authors, two Clinging Grass works, linked realisation/ground wording, riddles and disclosure order, four chapter 23 poems with 32 body lines, and four chapter 25 groups with 16 lines. Wordplay instructions do not constitute approved English poems.
+- Append relationship-specific scene guidance without changing earlier profiles. Retain sexual meaning, refusals, power, comic rhythm and the attribution of medical, ritual, inheritance and romantic claims.
+- Bind the current chapter 24 correction without closing its open English alignment issue. Five notes and all fourteen source issues remain unchanged.
+- Controlled freeze: batch-021-025-editorial-r4-2026-11-11. Actual normative-delta and targeted earlier-text review EN-V06-R4-DELTA-20261111 supports retention of the accepted text with updated standard bindings and appended neutral references. Original content hashes, references and historical provenance remain preserved. This is not a fresh full 1,056-unit reread. Publication remains disabled; the fourth accepted checkpoint permits 21–25, and chapter 26 still requires the fifth accepted checkpoint.
+
+- Current-batch application scopes distinguish old evidence from present context: established Sweet-rice Village, Jia Huan/Jia Lan clan generations, Jia Yun’s Uncle Bao address, the female Nan’an dowager donor, current roles without stale ages or marital implications, and local wife/nurse/address/poem/sluice meanings. Older batch entries remain unchanged.

@@ -93,7 +93,7 @@ class PipelineTests(unittest.TestCase):
     def test_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -110,7 +110,7 @@ class PipelineTests(unittest.TestCase):
     def test_second_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -127,7 +127,7 @@ class PipelineTests(unittest.TestCase):
     def test_third_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -144,7 +144,7 @@ class PipelineTests(unittest.TestCase):
     def test_fourth_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -158,10 +158,80 @@ class PipelineTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'standard change'):
                     p.validate_progress(self.mapping, self.progress, after)
 
+    def test_fifth_batch_decision_alone_invalidates_review(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = Path(folder)
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
+                (directory / name).write_text('baseline')
+            with patch.object(p, 'STANDARD', directory):
+                before = p.standard_snapshot()
+                unit = self.draft()
+                unit['reviews'] = [{'type': kind, 'contentHash': p.content_hash(unit), 'standardSnapshot': before, 'reference': 'synthetic-test-only'} for kind in p.REVIEW_TYPES]
+                unit['state'] = 'accepted'
+                p.validate_progress(self.mapping, self.progress, before)
+                (directory / 'english-batch-021-025.json').write_text('changed decision only')
+                after = p.standard_snapshot()
+                self.assertNotEqual(before, after)
+                with self.assertRaisesRegex(ValueError, 'standard change'):
+                    p.validate_progress(self.mapping, self.progress, after)
+
+    def test_missing_fifth_normative_file_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = Path(folder)
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'CHANGELOG.md'):
+                (directory / name).write_text('synthetic baseline')
+            with patch.object(p, 'STANDARD', directory):
+                with self.assertRaisesRegex(ValueError, 'Standard baseline'):
+                    p.standard_snapshot()
+
+    def test_every_normative_file_changes_snapshot(self):
+        names = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md')
+        self.assertEqual(len(names), 9)
+        with tempfile.TemporaryDirectory() as folder:
+            directory = Path(folder)
+            for name in names:
+                (directory / name).write_text('synthetic baseline')
+            with patch.object(p, 'STANDARD', directory):
+                before = p.standard_snapshot()
+                for name in names:
+                    with self.subTest(name=name):
+                        (directory / name).write_text('synthetic delta')
+                        self.assertNotEqual(before, p.standard_snapshot())
+                        (directory / name).write_text('synthetic baseline')
+                        self.assertEqual(before, p.standard_snapshot())
+
+    def accept_synthetic_first_twenty(self):
+        # Synthetic test-only evidence, never written to a real corpus.
+        for i, source in enumerate(self.mapping['units']):
+            if source['chapter'] > 20:
+                break
+            unit = self.draft(i)
+            unit['reviews'] = [{'type': kind, 'contentHash': p.content_hash(unit), 'standardSnapshot': 'test-snapshot', 'reference': 'synthetic-test-only'} for kind in p.REVIEW_TYPES]
+            unit['state'] = 'accepted'
+        for c in self.progress['checkpoints'][:4]:
+            units = [u for source,u in zip(self.mapping['units'], self.progress['units']) if c['first'] <= source['chapter'] <= c['last']]
+            c.update(state='accepted', corpusHash=p.batch_hash(units), standardSnapshot='test-snapshot', reviewReference='synthetic-test-only')
+
+    def test_chapter_twenty_one_requires_fourth_checkpoint(self):
+        self.accept_synthetic_first_twenty()
+        i = next(i for i,u in enumerate(self.mapping['units']) if u['chapter'] == 21)
+        self.draft(i)
+        self.assertEqual(p.validate_progress(self.mapping, self.progress, 'test-snapshot')['draft'], 1)
+        self.progress['checkpoints'][3].update(state='pending', corpusHash=None, standardSnapshot=None, reviewReference=None)
+        with self.assertRaisesRegex(ValueError, 'preceding five-chapter'):
+            p.validate_progress(self.mapping, self.progress, 'test-snapshot')
+
+    def test_chapter_twenty_six_waits_for_fifth_checkpoint(self):
+        self.accept_synthetic_first_twenty()
+        i = next(i for i,u in enumerate(self.mapping['units']) if u['chapter'] == 26)
+        self.draft(i)
+        with self.assertRaisesRegex(ValueError, 'preceding five-chapter'):
+            p.validate_progress(self.mapping, self.progress, 'test-snapshot')
+
     def test_missing_fourth_normative_file_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
                 (directory / name).write_text('synthetic baseline')
             with patch.object(p, 'STANDARD', directory):
                 with self.assertRaisesRegex(ValueError, 'Standard baseline'):
