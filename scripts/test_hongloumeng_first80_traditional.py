@@ -20,7 +20,7 @@ class TraditionalTests(unittest.TestCase):
 
     def test_structure_and_no_added_or_removed_characters(self):
         self.assertEqual(len(self.target['chapters']), 80)
-        self.assertEqual(sum(len(c['blocks']) for c in self.target['chapters']), 4394)
+        self.assertEqual(sum(len(c['blocks']) for c in self.target['chapters']), 4395)
         total = 0
         for a, b in zip(self.source['chapters'], self.target['chapters']):
             self.assertEqual(a.keys(), b.keys())
@@ -30,10 +30,12 @@ class TraditionalTests(unittest.TestCase):
                 self.assertEqual({k: v for k, v in x.items() if k != 'text'}, {k: v for k, v in y.items() if k != 'text'})
                 self.assertEqual(len(x['text']), len(y['text']))
                 total += len(y['text'])
-        self.assertEqual(total, 586210)
+        self.assertEqual(total, 586221)
 
     def test_seven_approved_source_decisions(self):
         cases = [
+            (28, 45, '开不完春柳春花满画楼，', '開不完春柳春花滿畫樓，', 1),
+            (28, 126, '玉玦扇坠', '玉玦扇墜', 1),
             (24, 34, '恰值焙茗走来', '恰值焙茗走來', 1),
             (6, 25, '打箩柜筛面', '打籮櫃篩麵', 1),
             (6, 32, '面目清秀，身材俊俏', '面目清秀，身材俊俏', 1),

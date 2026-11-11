@@ -13,9 +13,9 @@ DATA = ROOT / 'data/hongloumeng/first80-english'
 SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
 VERSION = 'english-1-110-v0.6'
-READING_SHA = 'fe9ef8a623509d5569f202e2b6cd33f0019a09eb5af8d61bca56350142aacb99'
-MANIFEST_SHA = 'ad69a6910ebfbe9048eae3ce738cb08058adcf8fad423a6588a20fc74ea45e94'
-BODY_SHA = '858c647e253c66e28caea86251e7e397ddd6e366b9a421dbba324b756a9e24a1'
+READING_SHA = '7454b775774692fd199302d8b68fec8f5d7f22f7823cd06d44bdac98b051aa21'
+MANIFEST_SHA = 'cb6845224b3f02b82c1b5d1962184c57ce9c623aed996a13313af02a1eacb3b8'
+BODY_SHA = 'ed46c59a19ff5960940a26bee1634f6ccd6cc85fc2fdcd555123427ba4b87bf5'
 REVIEW_TYPES = ('bilingual', 'literary', 'consistency')
 STATES = ('pending', 'draft', 'reviewed', 'accepted')
 

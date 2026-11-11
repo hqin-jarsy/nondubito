@@ -27,15 +27,15 @@ class PipelineTests(unittest.TestCase):
             p.validate_progress(self.mapping, self.progress, 'test-snapshot')
 
     def test_frozen_inventory(self):
-        self.assertEqual(len(self.mapping['units']), 4474)
+        self.assertEqual(len(self.mapping['units']), 4475)
         blocks = [u for u in self.mapping['units'] if u['index']]
-        self.assertEqual(sum(u['characterCount'] for u in blocks), 586210)
+        self.assertEqual(sum(u['characterCount'] for u in blocks), 586221)
         self.assertEqual(len([u for u in blocks if u['chapter'] <= 5]), 378)
         self.assertEqual(sum(u['characterCount'] for u in blocks if u['chapter'] <= 5), 35513)
-        self.assertEqual(len({u['id'] for u in self.mapping['units']}), 4474)
+        self.assertEqual(len({u['id'] for u in self.mapping['units']}), 4475)
 
     def test_pending_corpus_is_valid_but_not_publishable(self):
-        self.assertEqual(p.validate_progress(self.mapping, self.progress), {'pending': 4474})
+        self.assertEqual(p.validate_progress(self.mapping, self.progress), {'pending': 4475})
         assembly = p.assemble_wip(self.mapping, self.progress)
         self.assertFalse(assembly['publishable'])
         self.assertEqual(assembly, p.assemble_wip(self.mapping, self.progress))
