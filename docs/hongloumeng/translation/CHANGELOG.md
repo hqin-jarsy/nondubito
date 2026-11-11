@@ -66,3 +66,10 @@ Preserved the supplied six-language v0.2 archive unchanged, recorded hashes, and
 - Controlled freeze: batch-021-025-editorial-r4-2026-11-11. Actual normative-delta and targeted earlier-text review EN-V06-R4-DELTA-20261111 supports retention of the accepted text with updated standard bindings and appended neutral references. Original content hashes, references and historical provenance remain preserved. This is not a fresh full 1,056-unit reread. Publication remains disabled; the fourth accepted checkpoint permits 21–25, and chapter 26 still requires the fifth accepted checkpoint.
 
 - Current-batch application scopes distinguish old evidence from present context: established Sweet-rice Village, Jia Huan/Jia Lan clan generations, Jia Yun’s Uncle Bao address, the female Nan’an dowager donor, current roles without stale ages or marital implications, and local wife/nurse/address/poem/sluice meanings. Older batch entries remain unchanged.
+
+
+## english-1-110-v0.7: chapters 26–30 (frozen editorial checkpoint)
+
+- Adds the sixth scoped batch glossary, current voice applications, literary mechanisms and complete Chinese boundaries, quantity checks, relationship/object guards, and explicit occurrence exclusions. Source IDs remain evidence anchors, not exhaustive execution scopes.
+- All five historical batch files and existing core fields are unchanged. New provisional forms have not been promoted into the core glossary. Source binding targets the 4,475-unit Chinese source and its explicit chapter 28 migration.
+- Freeze identifier: batch-026-030-editorial-r3-2026-11-11. Actual semantic projection and targeted prior-text review EN-V07-PROJECTION-R3-V1-DELTA-20261111 supports retaining the accepted English unchanged. Final freeze-status bytes require their own exact review before current normative bindings are updated. Original content hashes and references, checkpoint corpus hashes, notes, source issues and historical integration records remain preserved. No full earlier-corpus reread or new chapter acceptance is claimed. Chapter 31 waits for actual cumulative 26–30 acceptance, and publication remains disabled.

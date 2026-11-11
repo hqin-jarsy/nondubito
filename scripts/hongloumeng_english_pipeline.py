@@ -12,10 +12,14 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/hongloumeng/first80-english'
 SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
-VERSION = 'english-1-110-v0.6'
+VERSION = 'english-1-110-v0.7'
 READING_SHA = '7454b775774692fd199302d8b68fec8f5d7f22f7823cd06d44bdac98b051aa21'
 MANIFEST_SHA = 'cb6845224b3f02b82c1b5d1962184c57ce9c623aed996a13313af02a1eacb3b8'
 BODY_SHA = 'ed46c59a19ff5960940a26bee1634f6ccd6cc85fc2fdcd555123427ba4b87bf5'
+NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md')
+SOURCE_MAP_SHA = '978e6cdfa5abdfeb6605e3f84d9d6cdab85e3f5f3ee769d05b8de6c8eb67a25b'
+EXPECTED_NORMATIVE_SNAPSHOT = '534a727dcfcbd776460d8d357f6c77afb3385821f66a7bee51cc17b1a4c88f90'
+NORMATIVE_DELTA_REFERENCES = ('EN-V07-PROJECTION-R3-V1-DELTA-20261111', 'EN-V07-FREEZE-STATUS-R2-DELTA-20261111')
 REVIEW_TYPES = ('bilingual', 'literary', 'consistency')
 STATES = ('pending', 'draft', 'reviewed', 'accepted')
 
@@ -76,10 +80,72 @@ def initial_progress(mapping):
 def standard_snapshot():
     # Bind the exact normative texts, not merely a version label. Any edit
     # invalidates prior reviews until an actual regression review is recorded.
-    names = ('english-standard.md', 'english-terms.json', 'english-voices.json',
-             'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md')
+    names = NORMATIVE_FILES
     require(all((STANDARD / n).is_file() for n in names), 'Standard baseline is not available')
     return sha(encoded({n: sha((STANDARD / n).read_bytes()) for n in names}))
+
+
+def validate_standard_readiness(mapping, progress):
+    """Validate frozen configuration consistency, not whether a review happened.
+
+    Exact real editorial artifacts, final bytes, installed source and technical
+    audit are authenticated by the separately reviewed installation contract.
+    These public reference constants are identifiers, not proof of that audit.
+    """
+    snapshot = standard_snapshot()
+    require(snapshot == EXPECTED_NORMATIVE_SNAPSHOT, 'Unexpected normative snapshot')
+    checkpoint = json.loads((STANDARD / 'CHECKPOINT.json').read_bytes())
+    require(checkpoint.get('version') == VERSION and checkpoint.get('state') == 'frozen_editorial_checkpoint',
+            'Normative freeze is not ready')
+    require(checkpoint.get('normative_snapshot') == snapshot, 'Partial or stale normative freeze')
+    freeze_id = checkpoint.get('freeze_id')
+    require(isinstance(freeze_id, str) and bool(freeze_id.strip()), 'Freeze identifier required')
+    rows = checkpoint.get('files', [])
+    require(isinstance(rows, list) and all(isinstance(r, dict) and isinstance(r.get('path'), str) for r in rows), 'Invalid checkpoint file inventory')
+    lookup = {r['path']: r for r in rows}
+    require(len(lookup) == len(rows), 'Duplicate checkpoint file inventory')
+    for name in (*NORMATIVE_FILES, 'provenance.json'):
+        path = 'docs/hongloumeng/translation/' + name
+        raw = (STANDARD / name).read_bytes()
+        require(path in lookup and lookup[path].get('sha256') == sha(raw) and lookup[path].get('bytes') == len(raw),
+                'Partial or stale normative file inventory')
+    batch = json.loads((STANDARD / 'english-batch-026-030.json').read_bytes())
+    require(batch.get('version') == VERSION and batch.get('status') == 'frozen_editorial_checkpoint'
+            and batch.get('freeze_id') == freeze_id, 'Wrong or unfrozen sixth batch')
+    require(batch.get('chapters') == list(range(26, 31)), 'Wrong sixth-batch chapter scope')
+    binding = batch.get('sourceBinding', {})
+    require(binding.get('sha256') == READING_SHA == mapping['sourceHash']
+            and binding.get('manifestSha256') == MANIFEST_SHA == mapping['manifestHash']
+            and binding.get('sourceMapSha256') == SOURCE_MAP_SHA
+            and binding.get('unitCount') == sum(26 <= u['chapter'] <= 30 for u in mapping['units']),
+            'Sixth-batch source binding differs')
+    expected_units = [u for u in mapping['units'] if 26 <= u['chapter'] <= 30]
+    require(batch.get('source_units') == expected_units, 'Sixth-batch source IDs or layouts drifted')
+    readiness = checkpoint.get('readiness', {})
+    require(readiness.get('sourceInstalled') is True and readiness.get('independentEditorialReview') == 'PASS'
+            and readiness.get('independentTechnicalReview') == 'required_by_installation_contract'
+            and readiness.get('reviewBindingsCurrent') is True
+            and readiness.get('publicationEnabled') is False, 'Incomplete freeze readiness configuration')
+    references = readiness.get('normativeDeltaReviewReferences')
+    require(references == list(NORMATIVE_DELTA_REFERENCES), 'Unexpected normative delta references')
+    provenance = json.loads((STANDARD / 'provenance.json').read_bytes()).get('normative_projection_v07', {})
+    require(provenance.get('version') == VERSION and provenance.get('state') == 'frozen_editorial_checkpoint'
+            and provenance.get('sourceHash') == READING_SHA and provenance.get('sourceMapHash') == SOURCE_MAP_SHA
+            and provenance.get('normativeSnapshot') == snapshot
+            and provenance.get('independentNormativeDeltaReview') == NORMATIVE_DELTA_REFERENCES[0]
+            and provenance.get('finalNormativeDeltaReview') == NORMATIVE_DELTA_REFERENCES[1]
+            and provenance.get('independentTechnicalReview') == 'required_by_installation_contract'
+            and provenance.get('reviewBindingsMigrated') is True, 'Incomplete normative provenance binding')
+    for source, unit in zip(mapping['units'], progress['units']):
+        if source['chapter'] <= 25 and unit['state'] == 'accepted':
+            require(all(all(ref in r['reference'].split('; ') for ref in references) for r in unit['reviews']),
+                    'Accepted review missing actual normative delta reference')
+    for record in progress['checkpoints'][:5]:
+        if record['state'] == 'accepted':
+            require(all(ref in record['reviewReference'].split('; ') for ref in references),
+                    'Checkpoint missing normative delta reference')
+    validate_progress(mapping, progress, snapshot)
+    return snapshot
 
 
 def content_hash(unit, issues=()):
@@ -219,6 +285,7 @@ def main():
     require(saved == mapping, 'Stable source map differs from frozen Chinese source')
     progress = json.loads((DATA / 'progress.json').read_text())
     if args.action == 'import-draft':
+        validate_standard_readiness(mapping, progress)
         require(args.chapter is not None, '--chapter is required')
         incoming = json.loads((DATA / 'chapters' / f'ch{args.chapter:03d}.draft.json').read_text())
         positions = [i for i, u in enumerate(mapping['units']) if u['chapter'] == args.chapter]
@@ -228,7 +295,8 @@ def main():
             require(draft.get('state') == 'draft' and draft.get('reviews') == [], 'Import accepts unreviewed drafts only')
             progress['units'][i] = draft
     needs_snapshot = any(u.get('reviews') for u in progress['units']) or any(c.get('state') == 'accepted' for c in progress['checkpoints'])
-    stats = validate_progress(mapping, progress, standard_snapshot() if needs_snapshot else None)
+    current_snapshot = validate_standard_readiness(mapping, progress) if needs_snapshot else None
+    stats = validate_progress(mapping, progress, current_snapshot)
     if (DATA / 'reader-notes.json').exists():
         validate_reader_notes(mapping, json.loads((DATA / 'reader-notes.json').read_text()))
     if args.action == 'import-draft':

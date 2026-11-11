@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Structural tests only; passing these tests never certifies a translation."""
 import copy
+import json
 import unittest
 import tempfile
 from pathlib import Path
@@ -93,7 +94,7 @@ class PipelineTests(unittest.TestCase):
     def test_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -110,7 +111,7 @@ class PipelineTests(unittest.TestCase):
     def test_second_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -127,7 +128,7 @@ class PipelineTests(unittest.TestCase):
     def test_third_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -144,7 +145,7 @@ class PipelineTests(unittest.TestCase):
     def test_fourth_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -161,7 +162,7 @@ class PipelineTests(unittest.TestCase):
     def test_fifth_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -178,15 +179,15 @@ class PipelineTests(unittest.TestCase):
     def test_missing_fifth_normative_file_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
                 (directory / name).write_text('synthetic baseline')
             with patch.object(p, 'STANDARD', directory):
                 with self.assertRaisesRegex(ValueError, 'Standard baseline'):
                     p.standard_snapshot()
 
     def test_every_normative_file_changes_snapshot(self):
-        names = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'CHANGELOG.md')
-        self.assertEqual(len(names), 9)
+        names = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md')
+        self.assertEqual(len(names), 10)
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
             for name in names:
@@ -231,7 +232,7 @@ class PipelineTests(unittest.TestCase):
     def test_missing_fourth_normative_file_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-021-025.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
                 (directory / name).write_text('synthetic baseline')
             with patch.object(p, 'STANDARD', directory):
                 with self.assertRaisesRegex(ValueError, 'Standard baseline'):
@@ -297,6 +298,122 @@ class PipelineTests(unittest.TestCase):
             changed['notes'][0][field] = value
             with self.assertRaises(ValueError):
                 p.validate_reader_notes(self.mapping, changed)
+
+
+
+
+class FreezeReadinessTests(unittest.TestCase):
+    """Synthetic configuration records only; never review evidence for real text."""
+    def setUp(self):
+        self.mapping = p.source_map(p.load_source())
+        self.progress = p.initial_progress(self.mapping)
+        self.temp = tempfile.TemporaryDirectory()
+        self.directory = Path(self.temp.name)
+        self.patcher = patch.object(p, 'STANDARD', self.directory)
+        self.patcher.start()
+        self.ref_patch = patch.object(p, 'NORMATIVE_DELTA_REFERENCES', ('EN-SYNTHETIC-TEST-ONLY', 'EN-SYNTHETIC-FINAL-TEST-ONLY'))
+        self.ref_patch.start()
+        self.snapshot_patch = patch.object(p, 'EXPECTED_NORMATIVE_SNAPSHOT', 'synthetic')
+        self.snapshot_patch.start()
+        for name in p.NORMATIVE_FILES:
+            (self.directory / name).write_text('Synthetic test-only normative fixture.')
+        self.batch = {'version': p.VERSION, 'status': 'frozen_editorial_checkpoint',
+                      'freeze_id': 'SYNTHETIC-TEST-ONLY', 'chapters': list(range(26, 31)),
+                      'sourceBinding': {'sha256': p.READING_SHA, 'manifestSha256': p.MANIFEST_SHA, 'sourceMapSha256': p.SOURCE_MAP_SHA, 'unitCount': 328},
+                      'source_units': [copy.deepcopy(u) for u in self.mapping['units'] if 26 <= u['chapter'] <= 30]}
+        self.checkpoint = {'version': p.VERSION, 'state': 'frozen_editorial_checkpoint', 'freeze_id': 'SYNTHETIC-TEST-ONLY',
+                          'readiness': {'sourceInstalled': True, 'independentEditorialReview': 'PASS',
+                                        'independentTechnicalReview': 'required_by_installation_contract', 'reviewBindingsCurrent': True,
+                                        'normativeDeltaReviewReferences': list(p.NORMATIVE_DELTA_REFERENCES), 'publicationEnabled': False}}
+        self.refresh()
+
+    def tearDown(self):
+        self.snapshot_patch.stop()
+        self.ref_patch.stop()
+        self.patcher.stop()
+        self.temp.cleanup()
+
+    def refresh(self):
+        (self.directory / 'english-batch-026-030.json').write_text(json.dumps(self.batch))
+        self.snapshot = p.standard_snapshot()
+        p.EXPECTED_NORMATIVE_SNAPSHOT = self.snapshot
+        provenance = {'normative_projection_v07': {'version': p.VERSION, 'state': 'frozen_editorial_checkpoint',
+                     'sourceHash': p.READING_SHA, 'sourceMapHash': p.SOURCE_MAP_SHA, 'normativeSnapshot': self.snapshot,
+                     'independentNormativeDeltaReview': 'EN-SYNTHETIC-TEST-ONLY', 'finalNormativeDeltaReview': 'EN-SYNTHETIC-FINAL-TEST-ONLY',
+                     'independentTechnicalReview': 'required_by_installation_contract', 'reviewBindingsMigrated': True}}
+        (self.directory / 'provenance.json').write_text(json.dumps(provenance))
+        self.checkpoint['normative_snapshot'] = self.snapshot
+        self.checkpoint['files'] = [{'path': 'docs/hongloumeng/translation/' + name,
+                                    'sha256': p.sha((self.directory / name).read_bytes()),
+                                    'bytes': (self.directory / name).stat().st_size}
+                                   for name in (*p.NORMATIVE_FILES, 'provenance.json')]
+        self.save_checkpoint()
+
+    def save_checkpoint(self):
+        (self.directory / 'CHECKPOINT.json').write_text(json.dumps(self.checkpoint))
+
+    def test_coherent_synthetic_freeze(self):
+        self.assertEqual(p.validate_standard_readiness(self.mapping, self.progress), self.snapshot)
+        self.assertFalse(p.assemble_wip(self.mapping, self.progress)['publishable'])
+
+    def test_pending_freeze_and_incomplete_readiness_rejected(self):
+        self.checkpoint['state'] = 'editorial_working_candidate'
+        self.save_checkpoint()
+        with self.assertRaisesRegex(ValueError, 'not ready'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+        self.checkpoint['state'] = 'frozen_editorial_checkpoint'
+        for field, value in [('sourceInstalled', False), ('independentEditorialReview', 'pending'),
+                             ('independentTechnicalReview', 'pending'), ('reviewBindingsCurrent', False), ('publicationEnabled', True)]:
+            with self.subTest(field=field):
+                previous = self.checkpoint['readiness'][field]
+                self.checkpoint['readiness'][field] = value
+                self.save_checkpoint()
+                with self.assertRaisesRegex(ValueError, 'Incomplete freeze'):
+                    p.validate_standard_readiness(self.mapping, self.progress)
+                self.checkpoint['readiness'][field] = previous
+
+    def test_new_batch_source_and_identity_drift_rejected(self):
+        self.batch['source_units'][0]['sourceHash'] = 'stale'
+        self.refresh()
+        with self.assertRaisesRegex(ValueError, 'IDs or layouts'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+        self.batch['source_units'] = [copy.deepcopy(u) for u in self.mapping['units'] if 26 <= u['chapter'] <= 30]
+        self.batch['sourceBinding']['sha256'] = 'old-source'
+        self.refresh()
+        with self.assertRaisesRegex(ValueError, 'source binding'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_sixth_batch_wrong_scope_and_partial_freeze_rejected(self):
+        self.batch['chapters'] = [21, 22, 23, 24, 25]
+        self.refresh()
+        with self.assertRaisesRegex(ValueError, 'chapter scope'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+        self.batch['chapters'] = list(range(26, 31))
+        self.refresh()
+        self.checkpoint['files'].pop()
+        self.save_checkpoint()
+        with self.assertRaisesRegex(ValueError, 'file inventory'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_wrong_source_map_sha_rejected(self):
+        self.batch['sourceBinding']['sourceMapSha256'] = '0' * 64
+        self.refresh()
+        with self.assertRaisesRegex(ValueError, 'source binding'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_coherent_fabricated_reference_rejected(self):
+        self.checkpoint['readiness']['normativeDeltaReviewReferences'] = ['EN-FABRICATED-NO-EVIDENCE', 'EN-FABRICATED-FINAL']
+        self.save_checkpoint()
+        with self.assertRaisesRegex(ValueError, 'Unexpected normative delta'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_sixth_batch_missing_or_stale_rejected(self):
+        (self.directory / 'english-batch-026-030.json').write_text('changed')
+        with self.assertRaisesRegex(ValueError, 'Unexpected normative|Partial or stale'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+        (self.directory / 'english-batch-026-030.json').unlink()
+        with self.assertRaisesRegex(ValueError, 'baseline'):
+            p.standard_snapshot()
 
 
 if __name__ == '__main__':
