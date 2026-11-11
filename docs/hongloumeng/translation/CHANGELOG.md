@@ -105,3 +105,8 @@ Global source bindings also reflect the separately evidenced ch42 title 雅谬�
 - 按既有1–85一致原则及自有第85回已发布文本，将凤姐丫头丰儿的当前英文统一为 Felicity。B02-056及五个后续应用中的 Feng-er 对象、历史引文与旧review保持原样，由当前明确覆盖决定其执行效力。
 - 1–35回修订范围为八个已接受完整单元中的十次名字替换；其他已接受正文不变。旧24条review与历史corpus保留认证前像，新内容复验、有限规范迁移和五个受影响累计corpus的当前绑定分别如实记录。
 - 40/41/46相关稿件继续属于其各自QA/后续批次；本项不提供B8接受、全书重读、公开英文或任何未来未完成审校的证明。
+
+
+## v0.10: chapters 41-45
+
+Scoped public standards for chapters 41-45 bind the installed Chinese and the current Felicity naming override. All eight earlier batch files and existing historical object fields are preserved. The public-projection semantic review and R01 correction review are recorded at their actual scope. Final-status approval, current review-binding migration and technical installation verification remain separate requirements. The standards do not themselves accept new English or enable publication.

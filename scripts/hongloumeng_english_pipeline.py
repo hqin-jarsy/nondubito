@@ -13,13 +13,27 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/hongloumeng/first80-english'
 SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
-VERSION = 'english-1-110-v0.9'
+VERSION = 'english-1-110-v0.10'
+V09_VERSION = 'english-1-110-v0.9'
 READING_SHA = '05b929a0f99d99d6c8ff061eccdb88210e4c2906ee3055a688475a0f629e0c29'
 MANIFEST_SHA = 'da725b0c6ad88c04663181db705cb3ab4271493d4d9684d30a406e4f919eb562'
 BODY_SHA = 'f62b8e051f9fa4749e8b96bcf37855ecf9f5b9ecd28a616806798fe5f1701520'
 NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md')
+V09_NORMATIVE_FILES = NORMATIVE_FILES
+NORMATIVE_FILES += ('english-batch-041-045.json',)
 SOURCE_MAP_SHA = 'bbb80bd819736cf6bab23308018d23bd60960bed6a8c4db0fbbac59964a7c9fc'
-EXPECTED_NORMATIVE_SNAPSHOT = 'd63863840a1c4f20e250791f8b4b16f7b60e964011bdad8eea619d59191ebd6b'
+EXPECTED_NORMATIVE_SNAPSHOT = '20567ec192fb1353db5c40c98d2f53735f2a89308c84303a3cc0ea52012ab616'
+V010_PREVIOUS_SNAPSHOT = 'd63863840a1c4f20e250791f8b4b16f7b60e964011bdad8eea619d59191ebd6b'
+V010_BEFORE_FILENAME = 'v010-20261111.before.json'
+V010_BEFORE_PROGRESS_SHA = '966955d4e75fb0ccc4c98b4bc633acc6531548d42414ef8838d8be9b51ff9464'
+V010_PREVIOUS_PROVENANCE_SHA = 'f6b2b0e2a78e50b1be03cd5fd9d24ad7502b6df6b1fcc944936f65840a508ad5'
+V010_PREVIOUS_CHECKPOINT_SHA = '617fca88bede92d026e5489de9e760db4e8147a37fa999f5c9a18f2463de9185'
+V010_CORPUS_HASH = '8c4cd9bf289255f1bd889d783498c54777fca28d04d4a1d55413018134fcd173'
+V010_FINAL_REFERENCE = 'EN-V010-FINAL-STATUS-INDEPENDENT-R1-20261111'
+V010_MIGRATION_REFERENCE = 'EN-V010-CURRENT-1-40-NORM-MIGRATION-INDEPENDENT-R1-20261111'
+V010_CURRENT_REFERENCE = 'EN-041-045-CURRENT-BINDING-INDEPENDENT-R1-20261111'
+V010_EVIDENCE_HASHES = {'finalStatusReview': '000f6e7af6ff5159e10e68177ac6b2d32d74251654facff4859e53ae858fa8bd', 'currentBindingReview': 'e8cb9b6305670f2d70cdcb4041d855f90349174d926007092e5ce32850efa5a9', 'priorNormMigrationReview': '2c2eb327002a94081cc2257dad3a83726676ff96b394e57372222910c729d3d9'}
+V010_B9_REFERENCE = '; '.join(('EN-041-045-CUMULATIVE-20261111', V010_CURRENT_REFERENCE, V010_FINAL_REFERENCE))
 NORMATIVE_DELTA_REFERENCES = ('EN-V08-PROJECTION-R3-LISTENER-R4-DELTA-20261111', 'EN-V08-G07-11-QUANTITY-FINAL-STATUS-DELTA-20261111')
 V07_BASE_NORMATIVE_SNAPSHOT = '534a727dcfcbd776460d8d357f6c77afb3385821f66a7bee51cc17b1a4c88f90'
 V07_BASE_PROVENANCE_SHA = 'faced2fa7d4efc2271d04ebda9687227c99584d01f036f7d75351e7943f3010d'
@@ -149,25 +163,123 @@ def standard_snapshot():
 
 
 def validate_standard_readiness(mapping, progress):
-    """Exact current norm binding. Editorial truth is separately authenticated."""
+    """Current v0.10 binding; retained v0.9 history is validated as history."""
     snapshot = standard_snapshot()
     require(snapshot == EXPECTED_NORMATIVE_SNAPSHOT, 'Unexpected normative snapshot')
     require(mapping == source_map(load_source()), 'Frozen source map differs')
     checkpoint = json.loads((STANDARD / 'CHECKPOINT.json').read_bytes())
     require(checkpoint.get('version') == VERSION and checkpoint.get('state') == 'frozen_editorial_checkpoint', 'Normative freeze is not ready')
     require(checkpoint.get('normative_snapshot') == snapshot, 'Partial or stale normative freeze')
-    freeze_id = checkpoint.get('freeze_id')
-    require(isinstance(freeze_id, str) and bool(freeze_id.strip()), 'Freeze identifier required')
+    require(checkpoint.get('freeze_id') == 'english-v010-ch041-045-20261111', 'Wrong v0.10 freeze identifier')
     rows = checkpoint.get('files', [])
     require(isinstance(rows, list) and all(isinstance(r, dict) and isinstance(r.get('path'), str) for r in rows), 'Invalid checkpoint file inventory')
     lookup = {r['path']: r for r in rows}
-    require(len(lookup) == len(rows), 'Duplicate checkpoint file inventory')
+    require(len(lookup) == len(rows) == len(NORMATIVE_FILES) + 1, 'Duplicate or extra checkpoint file inventory')
     for name in (*NORMATIVE_FILES, 'provenance.json'):
         raw = (STANDARD / name).read_bytes()
         row = lookup.get('docs/hongloumeng/translation/' + name, {})
         require(row.get('sha256') == sha(raw) and row.get('bytes') == len(raw), 'Partial or stale normative file inventory')
-    batch = json.loads((STANDARD / 'english-batch-036-040.json').read_bytes())
+    batch = json.loads((STANDARD / 'english-batch-041-045.json').read_bytes())
     require(batch.get('version') == VERSION and batch.get('status') == 'frozen_editorial_checkpoint'
+            and batch.get('freeze_id') == checkpoint['freeze_id'] and batch.get('chapters') == list(range(41, 46)), 'Wrong or unfrozen ninth batch')
+    expected_units = [u for u in mapping['units'] if 41 <= u['chapter'] <= 45]
+    require(batch.get('source_units') == expected_units, 'Ninth-batch source units differ')
+    binding = batch.get('sourceBinding', {})
+    require(binding.get('sourceSHA256') == READING_SHA and binding.get('sourceMapSHA256') == SOURCE_MAP_SHA
+            and binding.get('unitCount') == len(expected_units) == 200, 'Ninth-batch source binding differs')
+    document = json.loads((STANDARD / 'provenance.json').read_bytes())
+    transition = document.get('normative_projection_v010', {})
+    previous_document = {k: v for k, v in document.items() if k != 'normative_projection_v010'}
+    require(sha(encoded(previous_document)) == V010_PREVIOUS_PROVENANCE_SHA
+            == transition.get('previousProvenanceCanonicalSHA256'), 'v0.10 predecessor provenance changed')
+    previous_checkpoint = transition.get('previousCheckpoint')
+    require(sha(encoded(previous_checkpoint)) == V010_PREVIOUS_CHECKPOINT_SHA
+            == transition.get('previousCheckpointCanonicalSHA256')
+            and checkpoint.get('previousCheckpoint') == previous_checkpoint, 'v0.10 predecessor checkpoint changed')
+    require(transition.get('previousProgressPath') == 'data/hongloumeng/first80-english/' + V010_BEFORE_FILENAME,
+            'v0.10 historical progress path differs')
+    raw = (DATA / V010_BEFORE_FILENAME).read_bytes()
+    require(sha(raw) == V010_BEFORE_PROGRESS_SHA == transition.get('previousProgressSHA256'), 'v0.10 historical progress changed')
+    previous = json.loads(raw)
+    require(transition.get('version') == VERSION and transition.get('state') == 'frozen_editorial_checkpoint'
+            and transition.get('freeze_id') == checkpoint['freeze_id']
+            and transition.get('previousNormativeSnapshot') == V010_PREVIOUS_SNAPSHOT
+            and transition.get('candidateNormativeSnapshot') == snapshot
+            and transition.get('previousCheckpointSHA256') == '54b67bd8e08b81ea23e05abfa5797c2975a390eee1a15b38f696a81d0c8f6afd'
+            and transition.get('previousProvenanceSHA256') == 'b43fe0ab3d35b4034608ea97a58c207e6983bd64978d9c76e90140a07dfb3981'
+            and transition.get('sourceHash') == READING_SHA and transition.get('sourceMapHash') == SOURCE_MAP_SHA
+            and transition.get('reviewBindingsMigrated') is True and transition.get('publicationEnabled') is False
+            and transition.get('currentNamingForm') == 'Felicity' and transition.get('historicalObjectsPreserved') is True
+            and transition.get('independentTechnicalReview') == 'required_by_installation_contract', 'Incomplete v0.10 transition')
+    for name, digest in V010_EVIDENCE_HASHES.items():
+        require(sha(encoded(transition.get(name))) == digest, 'v0.10 scoped review evidence missing or forged: ' + name)
+    require(transition.get('reviewEvidenceCanonicalHashes') == V010_EVIDENCE_HASHES, 'v0.10 evidence hash binding differs')
+    for field in ('independentExactProjectionReview', 'independentSemanticMigrationReview', 'independentFinalStatusReview'):
+        require(transition.get(field) == 'PASS_SCOPED_READY_ONLY', 'Incomplete v0.10 scoped review')
+    readiness = checkpoint.get('readiness', {})
+    require(readiness == {'sourceInstalled': True, 'independentExactProjectionReview': 'PASS_SCOPED_READY_ONLY',
+            'independentSemanticDeltaReview': 'PASS_SCOPED_READY_ONLY', 'independentTechnicalReview': 'required_by_installation_contract',
+            'reviewBindingsCurrent': True, 'publicationEnabled': False, 'independentFinalStatusReview': 'PASS_SCOPED_READY_ONLY',
+            'normativeDeltaReviewReferences': [V010_MIGRATION_REFERENCE, V010_FINAL_REFERENCE],
+            'reviewEvidenceCanonicalHashes': V010_EVIDENCE_HASHES}, 'Incomplete v0.10 readiness')
+    chain = {k: transition[k] for k in ('previousNormativeSnapshot', 'previousCheckpointSHA256', 'previousProvenanceSHA256',
+             'previousCheckpointCanonicalSHA256', 'previousProvenanceCanonicalSHA256', 'previousProgressPath',
+             'previousProgressSHA256', 'candidateNormativeSnapshot', 'reviewEvidenceCanonicalHashes')}
+    require(checkpoint.get('normativeTransitionV010') == chain, 'v0.10 checkpoint transition differs')
+    # The genuine before image is never relabelled or rewritten to pass old guards.
+    validate_v09_readiness(mapping, previous, snapshot=V010_PREVIOUS_SNAPSHOT,
+                           checkpoint=previous_checkpoint, document=previous_document)
+    suffix = '; ' + V010_MIGRATION_REFERENCE + '; ' + V010_FINAL_REFERENCE
+    old_issues = previous['sourceIssues']
+    require(progress['sourceIssues'][:len(old_issues)] == old_issues, 'v0.10 source issues changed')
+    later_ids = {u['id'] for u in mapping['units'] if u['chapter'] > 45}
+    require(all(i['unitId'] in later_ids for i in progress['sourceIssues'][len(old_issues):]), 'v0.10 reviewed source issue scope changed')
+    for source, before, after in zip(mapping['units'], previous['units'], progress['units']):
+        if source['chapter'] <= 40:
+            expected = copy.deepcopy(before)
+            for review in expected['reviews']:
+                review['standardSnapshot'] = snapshot
+                review['reference'] += suffix
+            require(after == expected, 'v0.10 prior body or review lineage changed')
+        elif source['chapter'] <= 45:
+            for review in after['reviews']:
+                require(review['reference'] == V010_B9_REFERENCE, 'v0.10 current review lineage differs')
+    for before, after in zip(previous['checkpoints'][:8], progress['checkpoints'][:8]):
+        expected = dict(before, standardSnapshot=snapshot, reviewReference=before['reviewReference'] + suffix)
+        require(after == expected, 'v0.10 prior checkpoint lineage changed')
+    current = [u for source, u in zip(mapping['units'], progress['units']) if 41 <= source['chapter'] <= 45]
+    # Before import the batch may be pending; partial import remains ordinary WIP.
+    # Once any scoped review is claimed, bind the complete actual reviewed corpus.
+    if any(u['reviews'] for u in current) or progress['checkpoints'][8]['state'] == 'accepted':
+        require(batch_hash(current, progress['sourceIssues']) == V010_CORPUS_HASH, 'v0.10 current pipeline corpus differs')
+    if progress['checkpoints'][8]['state'] == 'accepted':
+        require(progress['checkpoints'][8]['reviewReference'] == V010_B9_REFERENCE, 'v0.10 ninth checkpoint review lineage differs')
+    validate_progress(mapping, progress, snapshot)
+    return snapshot
+
+
+def validate_v09_readiness(mapping, progress, *, snapshot=None, checkpoint=None, document=None):
+    """Exact current norm binding. Editorial truth is separately authenticated."""
+    if checkpoint is None:
+        snapshot = standard_snapshot()
+        require(snapshot == EXPECTED_NORMATIVE_SNAPSHOT, 'Unexpected normative snapshot')
+        require(mapping == source_map(load_source()), 'Frozen source map differs')
+        checkpoint = json.loads((STANDARD / 'CHECKPOINT.json').read_bytes())
+        require(checkpoint.get('version') == V09_VERSION and checkpoint.get('state') == 'frozen_editorial_checkpoint', 'Normative freeze is not ready')
+        require(checkpoint.get('normative_snapshot') == snapshot, 'Partial or stale normative freeze')
+        freeze_id = checkpoint.get('freeze_id')
+        require(isinstance(freeze_id, str) and bool(freeze_id.strip()), 'Freeze identifier required')
+        rows = checkpoint.get('files', [])
+        require(isinstance(rows, list) and all(isinstance(r, dict) and isinstance(r.get('path'), str) for r in rows), 'Invalid checkpoint file inventory')
+        lookup = {r['path']: r for r in rows}
+        require(len(lookup) == len(rows), 'Duplicate checkpoint file inventory')
+        for name in (*NORMATIVE_FILES, 'provenance.json'):
+            raw = (STANDARD / name).read_bytes()
+            row = lookup.get('docs/hongloumeng/translation/' + name, {})
+            require(row.get('sha256') == sha(raw) and row.get('bytes') == len(raw), 'Partial or stale normative file inventory')
+    freeze_id = checkpoint.get('freeze_id')
+    batch = json.loads((STANDARD / 'english-batch-036-040.json').read_bytes())
+    require(batch.get('version') == V09_VERSION and batch.get('status') == 'frozen_editorial_checkpoint'
             and batch.get('freeze_id') == freeze_id, 'Wrong or unfrozen eighth batch')
     require(batch.get('chapters') == list(range(36, 41)), 'Wrong eighth-batch chapter scope')
     expected_units = [u for u in mapping['units'] if 36 <= u['chapter'] <= 40]
@@ -209,7 +321,8 @@ def validate_standard_readiness(mapping, progress):
             and decisions[2].get('after') == '几霜痕'
             and decisions[2].get('englishBodyDelta') == 0,
             'Explicit author override missing')
-    document = json.loads((STANDARD / 'provenance.json').read_bytes())
+    if document is None:
+        document = json.loads((STANDARD / 'provenance.json').read_bytes())
     previous_progress = load_felicity_before(document)
     previous_document = {k: v for k, v in document.items() if k != FELICITY_AMENDMENT_KEY}
     transition = document.get('normative_projection_v09', {})
@@ -220,7 +333,7 @@ def validate_standard_readiness(mapping, progress):
     require(transition.get('previousNormativeSnapshot') == V09_PREVIOUS_NORMATIVE_SNAPSHOT
             and transition.get('previousProvenanceSHA256') == V09_PREVIOUS_PROVENANCE_SHA
             and transition.get('previousCheckpointSHA256') == V09_PREVIOUS_CHECKPOINT_SHA, 'v0.9 predecessor differs')
-    require(transition.get('version') == VERSION and transition.get('state') == 'frozen_editorial_checkpoint'
+    require(transition.get('version') == V09_VERSION and transition.get('state') == 'frozen_editorial_checkpoint'
             and transition.get('candidateNormativeSnapshot') == V09_HISTORICAL_NORMATIVE_SNAPSHOT
             and transition.get('sourceHash') == V09_HISTORICAL_READING_SHA and transition.get('sourceMapHash') == V09_HISTORICAL_MAP_SHA
             and transition.get('reviewBindingsMigrated') is True and transition.get('publicationEnabled') is False
@@ -267,7 +380,7 @@ def validate_standard_readiness(mapping, progress):
             require(all(ref in item['reviewReference'].split('; ') for ref in NORMATIVE_DELTA_REFERENCES), 'Checkpoint missing historical normative delta reference')
     validate_current_source_amendment(previous_document, checkpoint, mapping, previous_progress, FELICITY_BEFORE_NORMATIVE_SNAPSHOT)
     validate_felicity_revision(document, checkpoint, mapping, progress, previous_progress, snapshot)
-    validate_progress(mapping, progress, snapshot)
+    validate_progress(mapping, progress, snapshot, version=V09_VERSION)
     return snapshot
 
 
@@ -459,11 +572,11 @@ def closing_quote_source_ids(mapping):
             and u['sourceHash'] == sha('”')}
 
 
-def validate_progress(mapping, progress, snapshot=None):
+def validate_progress(mapping, progress, snapshot=None, *, version=None):
     keys(progress, 'schemaVersion status sourceHash standardVersion units checkpoints sourceIssues')
     require(progress['schemaVersion'] == 1 and progress['status'] == 'translation-work-in-progress', 'Not a work-in-progress corpus')
     require(progress['sourceHash'] == mapping['sourceHash'] == READING_SHA, 'Wrong source binding')
-    require(progress['standardVersion'] == VERSION, 'Wrong standard version')
+    require(progress['standardVersion'] == (VERSION if version is None else version), 'Wrong standard version')
     require(isinstance(progress['units'], list) and len(progress['units']) == len(mapping['units']), 'Missing or duplicate units')
     require(isinstance(progress['sourceIssues'], list), 'Source issue registry required')
     source_lookup = {u['id']: u for u in mapping['units']}

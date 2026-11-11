@@ -95,7 +95,7 @@ class PipelineTests(unittest.TestCase):
     def test_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md', 'english-batch-041-045.json'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -112,7 +112,7 @@ class PipelineTests(unittest.TestCase):
     def test_second_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md', 'english-batch-041-045.json'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -129,7 +129,7 @@ class PipelineTests(unittest.TestCase):
     def test_third_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md', 'english-batch-041-045.json'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -146,7 +146,7 @@ class PipelineTests(unittest.TestCase):
     def test_fourth_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md', 'english-batch-041-045.json'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -163,7 +163,7 @@ class PipelineTests(unittest.TestCase):
     def test_fifth_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md', 'english-batch-041-045.json'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -180,15 +180,15 @@ class PipelineTests(unittest.TestCase):
     def test_missing_fifth_normative_file_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md', 'english-batch-041-045.json'):
                 (directory / name).write_text('synthetic baseline')
             with patch.object(p, 'STANDARD', directory):
                 with self.assertRaisesRegex(ValueError, 'Standard baseline'):
                     p.standard_snapshot()
 
     def test_every_normative_file_changes_snapshot(self):
-        names = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md')
-        self.assertEqual(len(names), 12)
+        names = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md', 'english-batch-041-045.json')
+        self.assertEqual(len(names), 13)
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
             for name in names:
@@ -233,7 +233,7 @@ class PipelineTests(unittest.TestCase):
     def test_missing_fourth_normative_file_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md', 'english-batch-041-045.json'):
                 (directory / name).write_text('synthetic baseline')
             with patch.object(p, 'STANDARD', directory):
                 with self.assertRaisesRegex(ValueError, 'Standard baseline'):
@@ -328,8 +328,8 @@ class FinalReadinessV09Tests(unittest.TestCase):
                 p.validate_standard_readiness(mapping, progress)
         else:
             self.assertEqual(p.validate_standard_readiness(mapping, progress), p.EXPECTED_NORMATIVE_SNAPSHOT)
-        self.assertEqual(sum(u['state'] == 'accepted' for u in progress['units']), 2261)
-        self.assertEqual(sum(u['state'] == 'pending' for u in progress['units']), 2214)
+        self.assertEqual(sum(u['state'] == 'accepted' for u in progress['units']), 2461)
+        self.assertEqual(sum(u['state'] == 'pending' for u in progress['units']), 2014)
         prior = [u for s,u in zip(mapping['units'],progress['units']) if s['chapter'] <= 35]
         batch = [u for s,u in zip(mapping['units'],progress['units']) if 36 <= s['chapter'] <= 40]
         self.assertEqual(len(prior), 1885)
@@ -339,7 +339,7 @@ class FinalReadinessV09Tests(unittest.TestCase):
         self.assertTrue(all(u['state'] == 'accepted' for u in batch))
         self.assertEqual(sum(len(u['segments']) for u in batch), 1140)
         self.assertEqual(sum(len(u['reviews']) for u in batch), 1128)
-        self.assertEqual(sum(c['state'] == 'accepted' for c in progress['checkpoints']), 8)
+        self.assertEqual(sum(c['state'] == 'accepted' for c in progress['checkpoints']), 9)
 
     def test_eighth_batch_is_normative(self):
         self.assertIn('english-batch-036-040.json', p.NORMATIVE_FILES)
@@ -360,7 +360,7 @@ class FreezeReadinessV09Tests(unittest.TestCase):
         self.directory = Path(self.temp.name)
         for name in (*p.NORMATIVE_FILES, 'provenance.json', 'CHECKPOINT.json'):
             (self.directory / name).write_bytes((p.STANDARD / name).read_bytes())
-        self.patches = [patch.object(p, 'load_felicity_before', lambda document: self.progress),
+        self.patches = [patch.object(p, 'VERSION', p.V09_VERSION), patch.object(p, 'load_felicity_before', lambda document: self.progress),
                         patch.object(p, 'validate_felicity_revision'),
                         patch.object(p, 'FELICITY_BEFORE_NORMATIVE_SNAPSHOT', p.FELICITY_BEFORE_NORMATIVE_SNAPSHOT),
                         patch.object(p, 'V09_HISTORICAL_NORMATIVE_SNAPSHOT', p.V09_HISTORICAL_NORMATIVE_SNAPSHOT),
@@ -381,6 +381,8 @@ class FreezeReadinessV09Tests(unittest.TestCase):
         self.batch = json.loads((self.directory / 'english-batch-036-040.json').read_bytes())
         self.checkpoint = json.loads((self.directory / 'CHECKPOINT.json').read_bytes())
         self.provenance = json.loads((self.directory / 'provenance.json').read_bytes())
+        self.checkpoint = self.checkpoint['previousCheckpoint']
+        self.provenance.pop('normative_projection_v010')
         self.provenance.pop(p.FELICITY_AMENDMENT_KEY)  # Only the synthetic historical layer is under test here.
         self.batch.update(status='frozen_editorial_checkpoint', freeze_id='SYNTHETIC-ONLY')
         self.batch['gate'] = {'formalFreeze': True, 'independentEditorialReview': True, 'sourceMigrationComplete': True, 'englishAcceptance': False, 'publicationEnabled': False}
@@ -461,7 +463,7 @@ class FreezeReadinessV09Tests(unittest.TestCase):
         self.checkpoint['currentSourceAmendment']={k:a[k] for k in ('id','state','previousNormativeSnapshot','normativeSnapshot','sourceHash','sourceMapHash','traditionalHash','reference','evidenceSHA256','reviewBindingsMigrated')}
 
     def check(self):
-        return p.validate_standard_readiness(self.mapping, self.progress)
+        return p.validate_v09_readiness(self.mapping, self.progress)
 
     def rejected(self):
         with self.assertRaises(ValueError): self.check()
@@ -607,7 +609,7 @@ class FreezeReadinessV09Tests(unittest.TestCase):
 
     def test_pending_units_unchanged(self):
         self.assertTrue(all(u['state']=='pending' and not u['segments'] and not u['reviews'] for s,u in zip(self.mapping['units'],self.progress['units']) if s['chapter']>35))
-        self.assertEqual(p.validate_reader_notes(self.mapping,json.loads((p.DATA/'reader-notes.json').read_bytes())),34)
+        self.assertEqual(p.validate_reader_notes(self.mapping,json.loads((p.DATA/'reader-notes.json').read_bytes())),43)
 
     def test_current_batch_may_progress(self):
         self.changed_target(); self.check()
@@ -968,7 +970,7 @@ class FelicityRevisionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.mapping = p.source_map(p.load_source())
-        cls.original_progress = json.loads((p.DATA / 'progress.json').read_bytes())
+        cls.original_progress = json.loads((p.DATA / p.V010_BEFORE_FILENAME).read_bytes())
         cls.original_archive = (p.DATA / p.FELICITY_BEFORE_FILENAME).read_bytes()
         cls.original_notes = (p.DATA / 'reader-notes.json').read_bytes()
         cls.norm_files = {n: (p.STANDARD / n).read_bytes() for n in (*p.NORMATIVE_FILES, 'provenance.json', 'CHECKPOINT.json')}
@@ -983,8 +985,9 @@ class FelicityRevisionTests(unittest.TestCase):
         (self.data / 'reader-notes.json').write_bytes(self.original_notes)
         self.progress = copy.deepcopy(self.original_progress)
         self.provenance = json.loads(self.norm_files['provenance.json'])
-        self.checkpoint = json.loads(self.norm_files['CHECKPOINT.json'])
-        self.patches = [patch.object(p, 'STANDARD', self.standard), patch.object(p, 'DATA', self.data)]
+        self.checkpoint = json.loads(self.norm_files['CHECKPOINT.json'])['previousCheckpoint']
+        self.provenance.pop('normative_projection_v010')
+        self.patches = [patch.object(p, 'EXPECTED_NORMATIVE_SNAPSHOT', p.V010_PREVIOUS_SNAPSHOT), patch.object(p, 'STANDARD', self.standard), patch.object(p, 'DATA', self.data)]
         for item in self.patches: item.start()
 
     def tearDown(self):
@@ -999,7 +1002,8 @@ class FelicityRevisionTests(unittest.TestCase):
         (self.standard / 'CHECKPOINT.json').write_text(json.dumps(self.checkpoint, ensure_ascii=False))
 
     def check(self):
-        return p.validate_standard_readiness(self.mapping, self.progress)
+        return p.validate_v09_readiness(self.mapping, self.progress, snapshot=p.V010_PREVIOUS_SNAPSHOT,
+                                        checkpoint=self.checkpoint, document=self.provenance)
 
     def test_actual_full_chain_and_historical_inventory(self):
         self.assertEqual(self.check(), p.EXPECTED_NORMATIVE_SNAPSHOT)
@@ -1090,6 +1094,178 @@ class FelicityRevisionTests(unittest.TestCase):
         self.check()
         self.progress['checkpoints'][8].update(state='pending', corpusHash=None, standardSnapshot=None, reviewReference=None)
         with self.assertRaisesRegex(ValueError, 'Finish preceding five-chapter quality review before expanding'): self.check()
+
+
+class CurrentV010Tests(unittest.TestCase):
+    """Actual current fixture and complete historical chain, with no guard mocks."""
+    @classmethod
+    def setUpClass(cls):
+        cls.mapping = p.source_map(p.load_source())
+        cls.original_progress = json.loads((p.DATA / 'progress.json').read_bytes())
+        cls.norm_files = {n: (p.STANDARD / n).read_bytes() for n in (*p.NORMATIVE_FILES, 'provenance.json', 'CHECKPOINT.json')}
+        cls.archives = {n: (p.DATA / n).read_bytes() for n in (p.V010_BEFORE_FILENAME, p.FELICITY_BEFORE_FILENAME)}
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.directory = Path(self.temp.name)
+        self.standard = self.directory / 'standard'; self.standard.mkdir()
+        self.data = self.directory / 'data'; self.data.mkdir()
+        for name, raw in self.norm_files.items(): (self.standard / name).write_bytes(raw)
+        for name, raw in self.archives.items(): (self.data / name).write_bytes(raw)
+        self.progress = copy.deepcopy(self.original_progress)
+        self.document = json.loads(self.norm_files['provenance.json'])
+        self.checkpoint = json.loads(self.norm_files['CHECKPOINT.json'])
+        self.patches = [patch.object(p, 'STANDARD', self.standard), patch.object(p, 'DATA', self.data)]
+        for item in self.patches: item.start()
+
+    def tearDown(self):
+        for item in reversed(self.patches): item.stop()
+        self.temp.cleanup()
+
+    def check(self):
+        return p.validate_standard_readiness(self.mapping, self.progress)
+
+    def save_metadata(self):
+        (self.standard / 'provenance.json').write_text(json.dumps(self.document, ensure_ascii=False))
+        for row in self.checkpoint['files']:
+            raw = (self.standard / Path(row['path']).name).read_bytes()
+            row.update(sha256=p.sha(raw), bytes=len(raw))
+        (self.standard / 'CHECKPOINT.json').write_text(json.dumps(self.checkpoint, ensure_ascii=False))
+
+    def reject(self, message):
+        with self.assertRaisesRegex(ValueError, message): self.check()
+
+    def b9(self):
+        return [u for s,u in zip(self.mapping['units'],self.progress['units']) if 41 <= s['chapter'] <= 45]
+
+    def pending_ninth_checkpoint(self):
+        self.progress['checkpoints'][8].update(state='pending', corpusHash=None, standardSnapshot=None, reviewReference=None)
+
+    def draft46(self):
+        unit = next(u for s,u in zip(self.mapping['units'],self.progress['units']) if s['chapter'] == 46)
+        unit.update(state='draft', segments=[{'kind':'title', 'text':'SYNTHETIC FUTURE GATE TEST ONLY.'}])
+        return unit
+
+    def test_actual_v010_full_chain_counts(self):
+        self.assertEqual(self.check(), p.EXPECTED_NORMATIVE_SNAPSHOT)
+        self.assertEqual(p.validate_progress(self.mapping,self.progress,p.EXPECTED_NORMATIVE_SNAPSHOT), {'accepted':2461,'pending':2014})
+        self.assertEqual(sum(len(u['reviews']) for u in self.progress['units']),7383)
+        self.assertEqual(sum(c['state']=='accepted' for c in self.progress['checkpoints']),9)
+
+    def test_ninth_norm_is_bound(self):
+        self.assertIn('english-batch-041-045.json',p.NORMATIVE_FILES)
+        f=self.standard/'english-batch-041-045.json'; f.write_bytes(f.read_bytes()+b' ')
+        self.reject('Unexpected normative snapshot')
+
+    def test_actual_before_raw_bytes_required(self):
+        f=self.data/p.V010_BEFORE_FILENAME; f.write_bytes(f.read_bytes()+b' ')
+        self.reject('v0.10 historical progress changed')
+
+    def test_actual_before_path_required(self):
+        self.document['normative_projection_v010']['previousProgressPath']='../other'
+        self.save_metadata(); self.reject('v0.10 historical progress path differs')
+
+    def test_embedded_old_checkpoint_not_current_checkpoint(self):
+        self.document['normative_projection_v010']['previousCheckpoint']['version']=p.VERSION
+        self.save_metadata(); self.reject('v0.10 predecessor checkpoint changed')
+
+    def test_historical_provenance_not_relabelled(self):
+        self.document['normative_projection_v09']['version']=p.VERSION
+        self.save_metadata(); self.reject('v0.10 predecessor provenance changed')
+
+    def test_felicity_before_guard_still_runs(self):
+        f=self.data/p.FELICITY_BEFORE_FILENAME; f.write_bytes(f.read_bytes()+b' ')
+        self.reject('Felicity historical progress changed')
+
+    def test_three_genuine_scoped_receipts_required(self):
+        original=copy.deepcopy(self.document)
+        for name in p.V010_EVIDENCE_HASHES:
+            with self.subTest(name=name):
+                self.document=copy.deepcopy(original)
+                self.document['normative_projection_v010'][name]['status']='PASS'
+                self.save_metadata(); self.reject('scoped review evidence missing or forged')
+
+    def test_not_full_reread_claim_cannot_be_removed(self):
+        self.document['normative_projection_v010']['priorNormMigrationReview']['notFullCorpusReread']=False
+        self.save_metadata(); self.reject('scoped review evidence missing or forged')
+
+    def test_current_checkpoint_inventory_required(self):
+        self.checkpoint['files'][0]['bytes']+=1
+        (self.standard/'CHECKPOINT.json').write_text(json.dumps(self.checkpoint))
+        self.reject('Partial or stale normative file inventory')
+
+    def test_current_checkpoint_proof_binding_required(self):
+        self.checkpoint['normativeTransitionV010']['previousProgressSHA256']='0'*64
+        self.save_metadata(); self.reject('v0.10 checkpoint transition differs')
+
+    def test_current_readiness_cannot_claim_technical_pass(self):
+        self.checkpoint['readiness']['independentTechnicalReview']='PASS'
+        self.save_metadata(); self.reject('Incomplete v0.10 readiness')
+
+    def test_old_review_prefix_and_type_and_hash_unchanged(self):
+        original=copy.deepcopy(self.progress)
+        for key,value in [('reference',p.V010_MIGRATION_REFERENCE),('type','literary'),('contentHash','0'*64)]:
+            with self.subTest(key=key):
+                self.progress=copy.deepcopy(original)
+                self.progress['units'][0]['reviews'][0][key]=value
+                self.reject('v0.10 prior body or review lineage changed')
+
+    def test_old_body_rehash_does_not_authorize_change(self):
+        u=self.progress['units'][0];u['segments'][0]['text']+=' SYNTHETIC TAMPER'
+        for r in u['reviews']: r['contentHash']=p.content_hash(u,self.progress['sourceIssues'])
+        self.reject('v0.10 prior body or review lineage changed')
+
+    def test_old_checkpoint_corpus_and_reference_unchanged(self):
+        self.progress['checkpoints'][7]['reviewReference']=p.V010_MIGRATION_REFERENCE
+        self.reject('v0.10 prior checkpoint lineage changed')
+
+    def test_old_source_issues_unchanged(self):
+        self.progress['sourceIssues'][0]['description']+=' SYNTHETIC TAMPER'
+        self.reject('v0.10 source issues changed')
+
+    def test_b9_content_rehash_does_not_authorize_change(self):
+        u=self.b9()[0];u['segments'][0]['text']+=' SYNTHETIC TAMPER'
+        for r in u['reviews']:r['contentHash']=p.content_hash(u,self.progress['sourceIssues'])
+        self.reject('v0.10 current pipeline corpus differs')
+
+    def test_b9_review_preserves_historical_complete_reading_reference(self):
+        self.b9()[0]['reviews'][0]['reference']=p.V010_CURRENT_REFERENCE
+        self.reject('v0.10 current review lineage differs')
+
+    def test_b9_checkpoint_reference_required(self):
+        self.progress['checkpoints'][8]['reviewReference']=p.V010_CURRENT_REFERENCE
+        self.reject('v0.10 ninth checkpoint review lineage differs')
+
+    def test_custom_and_historical_hashes_not_pipeline_hashes(self):
+        for digest in ('a7157710618ebcdb8398fef58516dadfd2fdc7f7102aebb96d304395d4c66de9','c6ec2039c8bc90cc9d813c4d5fc27e28faef95169425eb3c86a50c53281e330b'):
+            with self.subTest(digest=digest):
+                self.progress['checkpoints'][8]['corpusHash']=digest
+                self.reject('Batch review is stale')
+
+    def test_norm_migration_does_not_require_new_acceptance(self):
+        for u in self.b9():u.update(state='draft',reviews=[])
+        self.pending_ninth_checkpoint()
+        self.assertEqual(self.check(),p.EXPECTED_NORMATIVE_SNAPSHOT)
+
+    def test_reviewed_b9_does_not_require_acceptance(self):
+        for u in self.b9():u['state']='reviewed'
+        self.pending_ninth_checkpoint();self.check()
+
+    def test_46_gate_accepted_ninth_allows_real_validator(self):
+        self.draft46();self.assertEqual(self.check(),p.EXPECTED_NORMATIVE_SNAPSHOT)
+
+    def test_46_gate_pending_ninth_rejects_real_validator(self):
+        self.pending_ninth_checkpoint();self.draft46()
+        self.reject('Finish preceding five-chapter quality review before expanding')
+
+    def test_future_tenth_acceptance_not_fixed_to_2461(self):
+        for source,u in zip(self.mapping['units'],self.progress['units']):
+            if 46 <= source['chapter'] <= 50:
+                u.update(state='accepted',segments=[{'kind':source['layout']['kind'],'text':'SYNTHETIC FUTURE TEST ONLY.'}])
+                u['reviews']=[{'type':t,'contentHash':p.content_hash(u,self.progress['sourceIssues']),'standardSnapshot':p.EXPECTED_NORMATIVE_SNAPSHOT,'reference':'SYNTHETIC FUTURE TEST ONLY'} for t in p.REVIEW_TYPES]
+        units=[u for source,u in zip(self.mapping['units'],self.progress['units']) if 46<=source['chapter']<=50]
+        self.progress['checkpoints'][9].update(state='accepted',corpusHash=p.batch_hash(units,self.progress['sourceIssues']),standardSnapshot=p.EXPECTED_NORMATIVE_SNAPSHOT,reviewReference='SYNTHETIC FUTURE TEST ONLY')
+        self.check()
 
 
 if __name__ == '__main__':

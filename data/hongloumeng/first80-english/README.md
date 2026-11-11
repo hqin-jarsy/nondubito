@@ -167,3 +167,16 @@ Canonical progress adds 1,128 exact-content-bound bilingual, literary and consis
 Fourteen separately labelled translator notes are included exactly as selected, with valid current glossary or literary pointers and placed-unit source hashes. All twenty earlier note objects remain exact. The thirty-four notes remain outside translation segments and are not integrated into a reading presentation. No additional explanatory material is introduced.
 
 Current progress is 2,261 accepted and 2,214 pending units, with 6,783 current reviews and eight accepted checkpoints. Later chapters still require their own applicable standards, source decisions and actual reviews. No later batch is accepted, publication remains disabled and no public English reading page is produced. This is not native-human publication sign-off; relevant later changes require suitable actual re-review.
+
+
+## Integrated chapters41–45 and scoped v0.10 binding
+
+The exact five draft archives contain200 units and894 segments. Their author states remain draft and review arrays empty. Chapter41 b0002 uses Felicity in the two independently reviewed name positions; every other manuscript object remains exact to the historical complete bilingual and continuous English reading. The current source is unchanged.
+
+EN-041-045-CUMULATIVE-20261111 retains its authentic200-unit/894-segment full bilingual and separate continuous-English reading at its historical source/norm/file hashes. EN-041-045-CURRENT-BINDING-INDEPENDENT-R1-20261111 authenticates the current exact body and note bindings using that reading plus the actual naming and public-projection reviews. The latest scoped review reread the complete41b0002 Chinese and seven English segments, allnine note anchors and the final-status difference. It is not a new whole-batch or earlier-corpus reading.
+
+EN-V010-CURRENT-1-40-NORM-MIGRATION-INDEPENDENT-R1-20261111 and EN-V010-FINAL-STATUS-INDEPENDENT-R1-20261111 support limited new-norm applicability to the unchanged2,261 prior accepted bodies,6,783 review content hashes and eight checkpoint corpora. Every previous reference remains intact with these scoped references appended. The complete pre-migration progress is preserved in v010-20261111.before.json; original source and Felicity histories remain independently enforced.
+
+The current records add600 exact-content-bound reviews and the ninth cumulative checkpoint. Nine selected translator notes remain separate from translation segments; all34 earlier note objects and16 source issues are unchanged. Current totals are2,461 accepted and2,014 pending units,7,383 current reviews,nine accepted checkpoints and43 notes. Notes are not integrated into a reading presentation. Later batches retain their ordinary five-chapter gates.
+
+The normative checkpoint describes scoped internal editorial readiness, not native-human publication sign-off. Technical installation checks remain separately required. Publication remains disabled, no public English reading page is produced and no later batch is accepted by this change.
