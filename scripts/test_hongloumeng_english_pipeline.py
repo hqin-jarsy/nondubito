@@ -30,7 +30,7 @@ class PipelineTests(unittest.TestCase):
     def test_frozen_inventory(self):
         self.assertEqual(len(self.mapping['units']), 4475)
         blocks = [u for u in self.mapping['units'] if u['index']]
-        self.assertEqual(sum(u['characterCount'] for u in blocks), 586221)
+        self.assertEqual(sum(u['characterCount'] for u in blocks), 586222)
         self.assertEqual(len([u for u in blocks if u['chapter'] <= 5]), 378)
         self.assertEqual(sum(u['characterCount'] for u in blocks if u['chapter'] <= 5), 35513)
         self.assertEqual(len({u['id'] for u in self.mapping['units']}), 4475)
@@ -335,8 +335,8 @@ class FreezeReadinessV08Tests(unittest.TestCase):
         self.save('provenance.json', self.provenance)
         p.EXPECTED_NORMATIVE_SNAPSHOT = p.standard_snapshot()
         self.checkpoint['normative_snapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
-        self.checkpoint['normativeTransitionV08']['normativeSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
-        self.provenance['normative_projection_v08']['normativeSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
+        self.checkpoint['sourceAmendment']['normativeSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
+        self.provenance[p.SOURCE_AMENDMENT_KEY]['normativeSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
         self.save('provenance.json', self.provenance)
         for row in self.checkpoint['files']:
             name = Path(row['path']).name
@@ -344,6 +344,76 @@ class FreezeReadinessV08Tests(unittest.TestCase):
                 raw = (self.directory / name).read_bytes()
                 row.update(sha256=p.sha(raw), bytes=len(raw))
         self.save('CHECKPOINT.json', self.checkpoint)
+
+
+    def test_source_amendment_missing_or_forged(self):
+        for field, value in [('state', 'pending'), ('reference', 'forged'), ('reviewBindingsMigrated', False),
+                             ('sourceHash', 'forged'), ('sourceMapHash', 'forged'),
+                             ('previousProvenanceSHA256', 'forged'), ('previousCheckpointSHA256', 'forged'),
+                             ('evidenceSHA256', 'forged')]:
+            saved = copy.deepcopy(self.provenance)
+            self.provenance[p.SOURCE_AMENDMENT_KEY][field] = value
+            self.coherent_metadata()
+            with self.subTest(field=field), self.assertRaises(ValueError): self.check()
+            self.provenance = saved
+
+    def test_source_amendment_previous_checkpoint_preserved(self):
+        self.provenance[p.SOURCE_AMENDMENT_KEY]['previousCheckpoint']['scope'] = 'rewritten'
+        self.coherent_metadata()
+        with self.assertRaisesRegex(ValueError, 'Historical source-amendment checkpoint'): self.check()
+
+    def test_source_amendment_requires_real_evidence(self):
+        saved = p.SOURCE_DELTA_EVIDENCE_SHA
+        try:
+            p.SOURCE_DELTA_EVIDENCE_SHA = None
+            with self.assertRaisesRegex(ValueError, 'awaiting independent delta'): self.check()
+        finally:
+            p.SOURCE_DELTA_EVIDENCE_SHA = saved
+
+    def test_source_amendment_review_reference_required(self):
+        review = self.progress['units'][0]['reviews'][0]
+        review['reference'] = '; '.join(x for x in review['reference'].split('; ') if x != p.SOURCE_DELTA_REFERENCE)
+        with self.assertRaisesRegex(ValueError, 'missing actual source delta'): self.check()
+
+    def test_source_amendment_seventh_checkpoint_reference_required(self):
+        item = self.progress['checkpoints'][6]
+        item['reviewReference'] = '; '.join(x for x in item['reviewReference'].split('; ') if x != p.SOURCE_DELTA_REFERENCE)
+        with self.assertRaisesRegex(ValueError, 'Checkpoint missing actual source delta'): self.check()
+
+    def test_source_amendment_allows_later_target_lifecycle(self):
+        # Installation alone supplies no English. Subsequent explicit work uses normal gates.
+        original = copy.deepcopy(self.progress)
+        for ident, kind in [('hlm-c038-b0060', 'verse'), ('hlm-c040-b0011', 'prose')]:
+            self.progress = copy.deepcopy(original)
+            unit = next(u for u in self.progress['units'] if u['id'] == ident)
+            unit.update(state='draft', segments=[{'kind': kind, 'text': 'Synthetic later-work fixture only.'}])
+            self.check()
+            unit['reviews'] = [{'type': typ, 'contentHash': p.content_hash(unit, self.progress['sourceIssues']),
+                                'standardSnapshot': p.EXPECTED_NORMATIVE_SNAPSHOT, 'reference': 'Synthetic later-work review.'}
+                               for typ in p.REVIEW_TYPES]
+            for state in ('reviewed', 'accepted'):
+                unit['state'] = state
+                self.check()
+        self.progress = original
+
+    def test_source_amendment_later_target_rejects_old_hash(self):
+        unit = next(u for u in self.progress['units'] if u['id'] == 'hlm-c038-b0060')
+        unit.update(state='draft', sourceHash='02cfae97ca536f247487dcbb7053a61f3e11d473a318c81929b43bef67a53672',
+                    segments=[{'kind': 'verse', 'text': 'Synthetic stale-source fixture.'}])
+        with self.assertRaisesRegex(ValueError, 'stale'): self.check()
+
+    def test_source_amendment_later_target_rejects_unreviewed_acceptance(self):
+        unit = next(u for u in self.progress['units'] if u['id'] == 'hlm-c040-b0011')
+        unit.update(state='accepted', segments=[{'kind': 'prose', 'text': 'Synthetic unreviewed fixture.'}])
+        with self.assertRaisesRegex(ValueError, 'review'): self.check()
+
+    def test_source_amendment_later_target_rejects_stale_review(self):
+        unit = next(u for u in self.progress['units'] if u['id'] == 'hlm-c040-b0011')
+        unit.update(state='reviewed', segments=[{'kind': 'prose', 'text': 'Synthetic stale-review fixture.'}])
+        unit['reviews'] = [{'type': typ, 'contentHash': '0'*64,
+                            'standardSnapshot': p.EXPECTED_NORMATIVE_SNAPSHOT, 'reference': 'Synthetic stale review.'}
+                           for typ in p.REVIEW_TYPES]
+        with self.assertRaisesRegex(ValueError, 'stale'): self.check()
 
     def test_installed_configuration(self):
         self.assertEqual(self.check(), p.EXPECTED_NORMATIVE_SNAPSHOT)

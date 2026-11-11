@@ -15,9 +15,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/hongloumeng/first80-public'
-SOURCE_SHA = '7454b775774692fd199302d8b68fec8f5d7f22f7823cd06d44bdac98b051aa21'
-MANIFEST_SHA = 'cb6845224b3f02b82c1b5d1962184c57ce9c623aed996a13313af02a1eacb3b8'
-BODY_SHA = 'ed46c59a19ff5960940a26bee1634f6ccd6cc85fc2fdcd555123427ba4b87bf5'
+SOURCE_SHA = '564585568faa97b3b516443973c6c06a56493e5d91e81189b610c8606511dd4b'
+MANIFEST_SHA = '57feaa65126cdada4056c1bb2165d7cec74f170373801b592fdee252c04046d6'
+BODY_SHA = 'd6caf4a2535137b091928e179d4bee75457cbdff1b7b11f9f7b252bacea939b1'
 
 
 def sha(value: bytes | str) -> str:

@@ -6,7 +6,7 @@ This directory is project data, not a published English reading edition. Chapter
 
 `source-map.json` is reproducible from the already-public `../first80-public/reading.zh.json`. It freezes the file and manifest hashes and maps 80 titles plus 4,395 source blocks. Each unit has a stable chapter/position ID, exact source-text SHA-256, Unicode code-point count, and original layout flags. IDs are scoped to this frozen source; a future Chinese revision requires an explicit source migration, not silent renumbering or acceptance of changed hashes. No private manuscript or editorial approval is copied here.
 
-The full body contains 586,221 code points: 3,399 prose blocks, 929 verse lines, 54 couplet lines, 8 diagram lines, and 5 letter blocks. Chapters 1–5 contain 378 blocks / 35,513 body code points plus five titles (383 units). This is a workload inventory, not an estimate of English word count or translation quality.
+The full body contains 586,222 code points: 3,399 prose blocks, 929 verse lines, 54 couplet lines, 8 diagram lines, and 5 letter blocks. Chapters 1–5 contain 378 blocks / 35,513 body code points plus five titles (383 units). This is a workload inventory, not an estimate of English word count or translation quality.
 
 ## Working records
 

@@ -13,12 +13,12 @@ DATA = ROOT / 'data/hongloumeng/first80-english'
 SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
 VERSION = 'english-1-110-v0.8'
-READING_SHA = '7454b775774692fd199302d8b68fec8f5d7f22f7823cd06d44bdac98b051aa21'
-MANIFEST_SHA = 'cb6845224b3f02b82c1b5d1962184c57ce9c623aed996a13313af02a1eacb3b8'
-BODY_SHA = 'ed46c59a19ff5960940a26bee1634f6ccd6cc85fc2fdcd555123427ba4b87bf5'
+READING_SHA = '564585568faa97b3b516443973c6c06a56493e5d91e81189b610c8606511dd4b'
+MANIFEST_SHA = '57feaa65126cdada4056c1bb2165d7cec74f170373801b592fdee252c04046d6'
+BODY_SHA = 'd6caf4a2535137b091928e179d4bee75457cbdff1b7b11f9f7b252bacea939b1'
 NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'CHANGELOG.md')
-SOURCE_MAP_SHA = '978e6cdfa5abdfeb6605e3f84d9d6cdab85e3f5f3ee769d05b8de6c8eb67a25b'
-EXPECTED_NORMATIVE_SNAPSHOT = '2a6e9fbd6d79e25fded68703579663dd060f0c9327ba987f1af9f951ff9999b0'
+SOURCE_MAP_SHA = '191240e0e809bbd230e9647fbaa787f752b820af04b51f98a1bff628d0242a5f'
+EXPECTED_NORMATIVE_SNAPSHOT = 'e15dd208e033b1cfefdccef85d0c582b43783ea4c30f4edf775beee8d30e00f4'
 NORMATIVE_DELTA_REFERENCES = ('EN-V08-PROJECTION-R3-LISTENER-R4-DELTA-20261111', 'EN-V08-G07-11-QUANTITY-FINAL-STATUS-DELTA-20261111')
 V07_BASE_NORMATIVE_SNAPSHOT = '534a727dcfcbd776460d8d357f6c77afb3385821f66a7bee51cc17b1a4c88f90'
 V07_BASE_PROVENANCE_SHA = 'faced2fa7d4efc2271d04ebda9687227c99584d01f036f7d75351e7943f3010d'
@@ -27,6 +27,15 @@ V07_CLARIFICATION_ID = 'v07-stroke-count-attribution-2026-11-11'
 V08_PREVIOUS_NORMATIVE_SNAPSHOT = '7e5d3fdb84f42130634f65cd51f17bd254a0636157feecd59ecabb1b38bd5eb9'
 V08_PREVIOUS_PROVENANCE_SHA = '2badac48a6c76b555d376b3f1659a73e8766cb75a49f225430ade6f589b41d3a'
 V08_PREVIOUS_CHECKPOINT_SHA = 'a348df10fe818888f00d898e3cfe6d989563060e05f855af46cc2c5496d48fcf'
+SOURCE_AMENDMENT_KEY = 'source_amendment_ch38_ch40_v08'
+SOURCE_AMENDMENT_ID = 'source-ch38-ch40-v08-20261111'
+SOURCE_DELTA_REFERENCE = 'EN-V08-SOURCE-CH38-CH40-DELTA-20261111'
+SOURCE_PREVIOUS_NORMATIVE_SNAPSHOT = '2a6e9fbd6d79e25fded68703579663dd060f0c9327ba987f1af9f951ff9999b0'
+SOURCE_PREVIOUS_READING_SHA = '7454b775774692fd199302d8b68fec8f5d7f22f7823cd06d44bdac98b051aa21'
+SOURCE_PREVIOUS_MAP_SHA = '978e6cdfa5abdfeb6605e3f84d9d6cdab85e3f5f3ee769d05b8de6c8eb67a25b'
+SOURCE_PREVIOUS_PROVENANCE_SHA = '3c081a28aff7a44fb46283f2e74ed96af265cfb821f67f070cfadff4a197ee66'
+SOURCE_PREVIOUS_CHECKPOINT_SHA = '9618cea039f93f541af943485406118cd697b4ef408b8cf6536113d308f93987'
+SOURCE_DELTA_EVIDENCE_SHA = '80b806a16fbca2ae20c8df6fb8346938f7b30c45750334082103539e42deb5ce'
 REVIEW_TYPES = ('bilingual', 'literary', 'consistency')
 STATES = ('pending', 'draft', 'reviewed', 'accepted')
 
@@ -129,19 +138,19 @@ def validate_standard_readiness(mapping, progress):
     require(references == list(NORMATIVE_DELTA_REFERENCES), 'Unexpected normative delta references')
     document = json.loads((STANDARD / 'provenance.json').read_bytes())
     transition = document.get('normative_projection_v08', {})
-    history = {k: v for k, v in document.items() if k != 'normative_projection_v08'}
+    history = {k: v for k, v in document.items() if k not in ('normative_projection_v08', SOURCE_AMENDMENT_KEY)}
     require(sha(encoded(history)) == V08_PREVIOUS_PROVENANCE_SHA, 'Historical provenance changed')
     previous = transition.get('previousCheckpoint', {})
     require(sha(encoded(previous)) == V08_PREVIOUS_CHECKPOINT_SHA, 'Historical checkpoint changed')
     require(previous.get('normative_snapshot') == V08_PREVIOUS_NORMATIVE_SNAPSHOT
             and previous.get('version') == 'english-1-110-v0.7', 'Historical normative binding changed')
     require(checkpoint.get('normativeAmendment') == previous.get('normativeAmendment'), 'Historical clarification chain changed')
-    chain = {'previousNormativeSnapshot': V08_PREVIOUS_NORMATIVE_SNAPSHOT, 'normativeSnapshot': snapshot,
+    chain = {'previousNormativeSnapshot': V08_PREVIOUS_NORMATIVE_SNAPSHOT, 'normativeSnapshot': SOURCE_PREVIOUS_NORMATIVE_SNAPSHOT,
              'previousProvenanceSHA256': V08_PREVIOUS_PROVENANCE_SHA, 'previousCheckpointSHA256': V08_PREVIOUS_CHECKPOINT_SHA,
              'references': references}
     require(all(transition.get(k) == v for k, v in chain.items()) and checkpoint.get('normativeTransitionV08') == chain, 'Incomplete v0.8 transition chain')
     require(transition.get('version') == VERSION and transition.get('state') == 'frozen_editorial_checkpoint'
-            and transition.get('sourceHash') == READING_SHA and transition.get('sourceMapHash') == SOURCE_MAP_SHA
+            and transition.get('sourceHash') == SOURCE_PREVIOUS_READING_SHA and transition.get('sourceMapHash') == SOURCE_PREVIOUS_MAP_SHA
             and transition.get('independentTechnicalReview') == 'required_by_installation_contract'
             and transition.get('reviewBindingsMigrated') is True, 'Incomplete normative provenance binding')
     # The six accepted batches are the actual prerequisite, not synthetic approval
@@ -153,8 +162,52 @@ def validate_standard_readiness(mapping, progress):
     for record in progress['checkpoints'][:6]:
         require(record['state'] == 'accepted', 'Prior six checkpoints must remain accepted')
         require(all(ref in record['reviewReference'].split('; ') for ref in references), 'Checkpoint missing normative delta reference')
+    validate_source_amendment(document, checkpoint, mapping, progress, snapshot)
     validate_progress(mapping, progress, snapshot)
     return snapshot
+
+
+def validate_source_amendment(document, checkpoint, mapping, progress, snapshot):
+    """Require authentic source-only delta evidence; never infer a review from hashes."""
+    transition = document.get(SOURCE_AMENDMENT_KEY, {})
+    previous = {k: v for k, v in document.items() if k != SOURCE_AMENDMENT_KEY}
+    require(sha(encoded(previous)) == SOURCE_PREVIOUS_PROVENANCE_SHA, 'Historical source-amendment provenance changed')
+    require(sha(encoded(transition.get('previousCheckpoint'))) == SOURCE_PREVIOUS_CHECKPOINT_SHA,
+            'Historical source-amendment checkpoint changed')
+    require(transition.get('previousProvenanceSHA256') == SOURCE_PREVIOUS_PROVENANCE_SHA
+            and transition.get('previousCheckpointSHA256') == SOURCE_PREVIOUS_CHECKPOINT_SHA
+            and transition.get('previousNormativeSnapshot') == SOURCE_PREVIOUS_NORMATIVE_SNAPSHOT
+            and transition.get('previousSourceHash') == SOURCE_PREVIOUS_READING_SHA
+            and transition.get('previousSourceMapHash') == SOURCE_PREVIOUS_MAP_SHA, 'Source amendment predecessor differs')
+    expected = {'id': SOURCE_AMENDMENT_ID, 'normativeSnapshot': snapshot,
+                'previousNormativeSnapshot': SOURCE_PREVIOUS_NORMATIVE_SNAPSHOT,
+                'sourceHash': READING_SHA, 'sourceMapHash': SOURCE_MAP_SHA}
+    require(checkpoint.get('sourceAmendment') == expected
+            and all(transition.get(k) == v for k, v in expected.items()), 'Source amendment current bindings differ')
+    changed = ['hlm-c038-b0060', 'hlm-c040-b0011']
+    require(transition.get('version') == VERSION and transition.get('kind') == 'source-only-amendment'
+            and transition.get('changedUnitIds') == changed, 'Source amendment scope differs')
+    require(SOURCE_DELTA_EVIDENCE_SHA is not None and transition.get('state') == 'reviewed'
+            and transition.get('reference') == SOURCE_DELTA_REFERENCE
+            and transition.get('reviewBindingsMigrated') is True, 'Source amendment awaiting independent delta review')
+    evidence = transition.get('evidence')
+    require(isinstance(evidence, dict) and sha(encoded(evidence)) == SOURCE_DELTA_EVIDENCE_SHA
+            and transition.get('evidenceSHA256') == SOURCE_DELTA_EVIDENCE_SHA, 'Source delta evidence changed')
+    require(evidence.get('status') == 'PASS' and evidence.get('reference') == SOURCE_DELTA_REFERENCE
+            and evidence.get('sourceHash') == READING_SHA and evidence.get('sourceMapHash') == SOURCE_MAP_SHA
+            and evidence.get('normativeSnapshot') == snapshot
+            and evidence.get('oldNormativeSnapshot') == SOURCE_PREVIOUS_NORMATIVE_SNAPSHOT
+            and evidence.get('changedUnitIds') == changed and evidence.get('acceptedBodiesUnchanged') is True,
+            'Source delta evidence scope differs')
+    for source, unit in zip(mapping['units'], progress['units']):
+        if source['chapter'] <= 35:
+            require(unit['state'] == 'accepted', 'Source amendment requires seven accepted batches')
+            require(all(SOURCE_DELTA_REFERENCE in r['reference'].split('; ') for r in unit['reviews']),
+                    'Accepted review missing actual source delta reference')
+        # Changed targets use normal progress/source/review gates after installation.
+    for item in progress['checkpoints'][:7]:
+        require(item['state'] == 'accepted' and SOURCE_DELTA_REFERENCE in item['reviewReference'].split('; '),
+                'Checkpoint missing actual source delta reference')
 
 
 def content_hash(unit, issues=()):
