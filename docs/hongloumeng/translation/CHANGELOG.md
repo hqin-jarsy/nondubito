@@ -81,3 +81,8 @@ Preserved the supplied six-language v0.2 archive unchanged, recorded hashes, and
 - Retain the distinction between the rose bush and the isolated character, Bao-yu’s mistaken poetry inference and limited knowledge, the title’s naming, the several-thousand-character hyperbole, and all other local instructions. This clarification changes no source text or English body.
 - Dictionary evidence distinguishes conventions: Taiwan’s Ministry of Education lists 薔 as seventeen strokes (https://dict.concised.moe.edu.tw/dictView.jsp?ID=25494); Hàn Diǎn lists sixteen in its current entry and nineteen in the Kangxi section (https://zdic.net/hant/%E8%96%94), and fourteen for simplified 蔷 (https://zdic.net/hans/%E8%94%B7). No historical explanation for the novel’s eighteen is invented.
 - This is a scoped factual clarification, not a fresh full review of earlier chapters.
+
+
+## english-1-110-v0.8: chapters 31-35
+
+Freezes reviewed scoped execution rules for chapters 31-35, including the actual listener/reference distinction for Second Cousin. Preserves all six earlier batch tables, existing core fields and accepted chapters 1-30. Actual semantic delta, accepted-evidence alignment and final-status review support current normative bindings; no full earlier-corpus reread or new chapter acceptance is claimed. Publication remains disabled.

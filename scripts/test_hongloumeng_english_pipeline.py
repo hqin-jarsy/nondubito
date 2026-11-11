@@ -94,7 +94,7 @@ class PipelineTests(unittest.TestCase):
     def test_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -111,7 +111,7 @@ class PipelineTests(unittest.TestCase):
     def test_second_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -128,7 +128,7 @@ class PipelineTests(unittest.TestCase):
     def test_third_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -145,7 +145,7 @@ class PipelineTests(unittest.TestCase):
     def test_fourth_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -162,7 +162,7 @@ class PipelineTests(unittest.TestCase):
     def test_fifth_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -179,15 +179,15 @@ class PipelineTests(unittest.TestCase):
     def test_missing_fifth_normative_file_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'CHANGELOG.md'):
                 (directory / name).write_text('synthetic baseline')
             with patch.object(p, 'STANDARD', directory):
                 with self.assertRaisesRegex(ValueError, 'Standard baseline'):
                     p.standard_snapshot()
 
     def test_every_normative_file_changes_snapshot(self):
-        names = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md')
-        self.assertEqual(len(names), 10)
+        names = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'CHANGELOG.md')
+        self.assertEqual(len(names), 11)
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
             for name in names:
@@ -232,7 +232,7 @@ class PipelineTests(unittest.TestCase):
     def test_missing_fourth_normative_file_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'CHANGELOG.md'):
                 (directory / name).write_text('synthetic baseline')
             with patch.object(p, 'STANDARD', directory):
                 with self.assertRaisesRegex(ValueError, 'Standard baseline'):
@@ -302,220 +302,167 @@ class PipelineTests(unittest.TestCase):
 
 
 
-class FreezeReadinessTests(unittest.TestCase):
-    """Synthetic configuration records only; never review evidence for real text."""
+class FreezeReadinessV08Tests(unittest.TestCase):
+    """Tamper tests use copies only. These tests never certify editorial quality."""
     def setUp(self):
         self.mapping = p.source_map(p.load_source())
-        self.progress = p.initial_progress(self.mapping)
+        self.progress = json.loads((p.DATA / 'progress.json').read_bytes())
         self.temp = tempfile.TemporaryDirectory()
         self.directory = Path(self.temp.name)
-        self.patcher = patch.object(p, 'STANDARD', self.directory)
-        self.patcher.start()
-        self.ref_patch = patch.object(p, 'NORMATIVE_DELTA_REFERENCES', ('EN-SYNTHETIC-TEST-ONLY', 'EN-SYNTHETIC-FINAL-TEST-ONLY', 'EN-SYNTHETIC-CLARIFICATION-TEST-ONLY'))
-        self.ref_patch.start()
-        self.snapshot_patch = patch.object(p, 'EXPECTED_NORMATIVE_SNAPSHOT', 'synthetic')
-        self.snapshot_patch.start()
-        self.base_patches = [patch.object(p, name, getattr(p, name)) for name in ('V07_BASE_NORMATIVE_SNAPSHOT', 'V07_BASE_PROVENANCE_SHA', 'V07_BASE_CHECKPOINT_SHA')]
-        for item in self.base_patches:
-            item.start()
-        p.V07_BASE_NORMATIVE_SNAPSHOT = 'synthetic-prior-normative-snapshot'
-        for name in p.NORMATIVE_FILES:
-            (self.directory / name).write_text('Synthetic test-only normative fixture.')
-        self.batch = {'version': p.VERSION, 'status': 'frozen_editorial_checkpoint',
-                      'freeze_id': 'SYNTHETIC-TEST-ONLY', 'chapters': list(range(26, 31)),
-                      'sourceBinding': {'sha256': p.READING_SHA, 'manifestSha256': p.MANIFEST_SHA, 'sourceMapSha256': p.SOURCE_MAP_SHA, 'unitCount': 328},
-                      'source_units': [copy.deepcopy(u) for u in self.mapping['units'] if 26 <= u['chapter'] <= 30]}
-        self.checkpoint = {'version': p.VERSION, 'state': 'frozen_editorial_checkpoint', 'freeze_id': 'SYNTHETIC-TEST-ONLY',
-                          'readiness': {'sourceInstalled': True, 'independentEditorialReview': 'PASS',
-                                        'independentTechnicalReview': 'required_by_installation_contract', 'reviewBindingsCurrent': True,
-                                        'normativeDeltaReviewReferences': list(p.NORMATIVE_DELTA_REFERENCES), 'publicationEnabled': False}}
-        self.refresh()
+        for name in (*p.NORMATIVE_FILES, 'provenance.json', 'CHECKPOINT.json'):
+            (self.directory / name).write_bytes((p.STANDARD / name).read_bytes())
+        self.patch = patch.object(p, 'STANDARD', self.directory)
+        self.patch.start()
+        self.expected = patch.object(p, 'EXPECTED_NORMATIVE_SNAPSHOT', p.EXPECTED_NORMATIVE_SNAPSHOT)
+        self.expected.start()
+        self.batch = json.loads((self.directory / 'english-batch-031-035.json').read_bytes())
+        self.checkpoint = json.loads((self.directory / 'CHECKPOINT.json').read_bytes())
+        self.provenance = json.loads((self.directory / 'provenance.json').read_bytes())
 
     def tearDown(self):
-        for item in reversed(self.base_patches):
-            item.stop()
-        self.snapshot_patch.stop()
-        self.ref_patch.stop()
-        self.patcher.stop()
+        self.expected.stop()
+        self.patch.stop()
         self.temp.cleanup()
 
-    def refresh(self):
-        (self.directory / 'english-batch-026-030.json').write_text(json.dumps(self.batch))
-        self.snapshot = p.standard_snapshot()
-        p.EXPECTED_NORMATIVE_SNAPSHOT = self.snapshot
-        provenance = {'normative_projection_v07': {'version': p.VERSION, 'state': 'frozen_editorial_checkpoint',
-                     'sourceHash': p.READING_SHA, 'sourceMapHash': p.SOURCE_MAP_SHA, 'normativeSnapshot': p.V07_BASE_NORMATIVE_SNAPSHOT,
-                     'independentNormativeDeltaReview': 'EN-SYNTHETIC-TEST-ONLY', 'finalNormativeDeltaReview': 'EN-SYNTHETIC-FINAL-TEST-ONLY',
-                     'independentTechnicalReview': 'required_by_installation_contract', 'reviewBindingsMigrated': True}}
-        previous_checkpoint = {'version': p.VERSION, 'state': 'frozen_editorial_checkpoint',
-                               'normative_snapshot': p.V07_BASE_NORMATIVE_SNAPSHOT,
-                               'readiness': {'normativeDeltaReviewReferences': list(p.NORMATIVE_DELTA_REFERENCES[:-1])}}
-        p.V07_BASE_PROVENANCE_SHA = p.sha(p.encoded(provenance['normative_projection_v07']))
-        p.V07_BASE_CHECKPOINT_SHA = p.sha(p.encoded(previous_checkpoint))
-        chain = {'id': p.V07_CLARIFICATION_ID, 'previousNormativeSnapshot': p.V07_BASE_NORMATIVE_SNAPSHOT,
-                 'normativeSnapshot': self.snapshot, 'reference': p.NORMATIVE_DELTA_REFERENCES[-1],
-                 'previousProjectionCanonicalSha256': p.V07_BASE_PROVENANCE_SHA,
-                 'previousCheckpointCanonicalSha256': p.V07_BASE_CHECKPOINT_SHA}
-        provenance['normative_clarification_v07_stroke_count'] = dict(chain, previousCheckpoint=previous_checkpoint,
-            sourceHash=p.READING_SHA, sourceMapHash=p.SOURCE_MAP_SHA,
-            independentTechnicalReview='required_by_installation_contract', reviewBindingsMigrated=True)
-        self.checkpoint['normativeAmendment'] = chain
-        (self.directory / 'provenance.json').write_text(json.dumps(provenance))
-        self.checkpoint['normative_snapshot'] = self.snapshot
-        self.checkpoint['files'] = [{'path': 'docs/hongloumeng/translation/' + name,
-                                    'sha256': p.sha((self.directory / name).read_bytes()),
-                                    'bytes': (self.directory / name).stat().st_size}
-                                   for name in (*p.NORMATIVE_FILES, 'provenance.json')]
-        self.save_checkpoint()
+    def save(self, name, obj):
+        (self.directory / name).write_text(json.dumps(obj))
 
-    def save_checkpoint(self):
-        (self.directory / 'CHECKPOINT.json').write_text(json.dumps(self.checkpoint))
+    def check(self):
+        return p.validate_standard_readiness(self.mapping, self.progress)
 
-    def test_coherent_synthetic_freeze(self):
-        self.assertEqual(p.validate_standard_readiness(self.mapping, self.progress), self.snapshot)
-        self.assertFalse(p.assemble_wip(self.mapping, self.progress)['publishable'])
-
-    def test_pending_freeze_and_incomplete_readiness_rejected(self):
-        self.checkpoint['state'] = 'editorial_working_candidate'
-        self.save_checkpoint()
-        with self.assertRaisesRegex(ValueError, 'not ready'):
-            p.validate_standard_readiness(self.mapping, self.progress)
-        self.checkpoint['state'] = 'frozen_editorial_checkpoint'
-        for field, value in [('sourceInstalled', False), ('independentEditorialReview', 'pending'),
-                             ('independentTechnicalReview', 'pending'), ('reviewBindingsCurrent', False), ('publicationEnabled', True)]:
-            with self.subTest(field=field):
-                previous = self.checkpoint['readiness'][field]
-                self.checkpoint['readiness'][field] = value
-                self.save_checkpoint()
-                with self.assertRaisesRegex(ValueError, 'Incomplete freeze'):
-                    p.validate_standard_readiness(self.mapping, self.progress)
-                self.checkpoint['readiness'][field] = previous
-
-    def test_new_batch_source_and_identity_drift_rejected(self):
-        self.batch['source_units'][0]['sourceHash'] = 'stale'
-        self.refresh()
-        with self.assertRaisesRegex(ValueError, 'IDs or layouts'):
-            p.validate_standard_readiness(self.mapping, self.progress)
-        self.batch['source_units'] = [copy.deepcopy(u) for u in self.mapping['units'] if 26 <= u['chapter'] <= 30]
-        self.batch['sourceBinding']['sha256'] = 'old-source'
-        self.refresh()
-        with self.assertRaisesRegex(ValueError, 'source binding'):
-            p.validate_standard_readiness(self.mapping, self.progress)
-
-    def test_sixth_batch_wrong_scope_and_partial_freeze_rejected(self):
-        self.batch['chapters'] = [21, 22, 23, 24, 25]
-        self.refresh()
-        with self.assertRaisesRegex(ValueError, 'chapter scope'):
-            p.validate_standard_readiness(self.mapping, self.progress)
-        self.batch['chapters'] = list(range(26, 31))
-        self.refresh()
-        self.checkpoint['files'].pop()
-        self.save_checkpoint()
-        with self.assertRaisesRegex(ValueError, 'file inventory'):
-            p.validate_standard_readiness(self.mapping, self.progress)
-
-    def test_wrong_source_map_sha_rejected(self):
-        self.batch['sourceBinding']['sourceMapSha256'] = '0' * 64
-        self.refresh()
-        with self.assertRaisesRegex(ValueError, 'source binding'):
-            p.validate_standard_readiness(self.mapping, self.progress)
-
-    def test_coherent_fabricated_reference_rejected(self):
-        self.checkpoint['readiness']['normativeDeltaReviewReferences'] = ['EN-FABRICATED-NO-EVIDENCE', 'EN-FABRICATED-FINAL']
-        self.save_checkpoint()
-        with self.assertRaisesRegex(ValueError, 'Unexpected normative delta'):
-            p.validate_standard_readiness(self.mapping, self.progress)
-
-    def test_sixth_batch_missing_or_stale_rejected(self):
-        (self.directory / 'english-batch-026-030.json').write_text('changed')
-        with self.assertRaisesRegex(ValueError, 'Unexpected normative|Partial or stale'):
-            p.validate_standard_readiness(self.mapping, self.progress)
-        (self.directory / 'english-batch-026-030.json').unlink()
-        with self.assertRaisesRegex(ValueError, 'baseline'):
-            p.standard_snapshot()
-
-
-class ClarificationChainTests(FreezeReadinessTests):
-    """Negative synthetic chain fixtures, not evidence of actual editorial review."""
-    def mutate_provenance(self, change):
-        document = p.json.loads((self.directory / 'provenance.json').read_bytes())
-        change(document)
-        raw = p.json.dumps(document).encode()
-        (self.directory / 'provenance.json').write_bytes(raw)
+    def coherent_metadata(self):
+        self.save('english-batch-031-035.json', self.batch)
+        self.save('provenance.json', self.provenance)
+        p.EXPECTED_NORMATIVE_SNAPSHOT = p.standard_snapshot()
+        self.checkpoint['normative_snapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
+        self.checkpoint['normativeTransitionV08']['normativeSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
+        self.provenance['normative_projection_v08']['normativeSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
+        self.save('provenance.json', self.provenance)
         for row in self.checkpoint['files']:
-            if row['path'].endswith('/provenance.json'):
+            name = Path(row['path']).name
+            if (self.directory / name).is_file():
+                raw = (self.directory / name).read_bytes()
                 row.update(sha256=p.sha(raw), bytes=len(raw))
-        self.save_checkpoint()
+        self.save('CHECKPOINT.json', self.checkpoint)
 
-    def test_missing_clarification_chain_rejected(self):
-        self.mutate_provenance(lambda doc: doc.pop('normative_clarification_v07_stroke_count'))
-        with self.assertRaisesRegex(ValueError, 'clarification chain'):
-            p.validate_standard_readiness(self.mapping, self.progress)
+    def test_installed_configuration(self):
+        self.assertEqual(self.check(), p.EXPECTED_NORMATIVE_SNAPSHOT)
 
-    def test_wrong_previous_target_id_or_reference_rejected(self):
-        for field in ('previousNormativeSnapshot', 'normativeSnapshot', 'id', 'reference'):
-            self.refresh()
-            self.mutate_provenance(lambda doc: doc['normative_clarification_v07_stroke_count'].update({field: 'wrong'}))
-            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'clarification chain'):
-                p.validate_standard_readiness(self.mapping, self.progress)
+    def test_seventh_batch_missing(self):
+        (self.directory / 'english-batch-031-035.json').unlink()
+        with self.assertRaises(ValueError): self.check()
 
-    def test_wrong_previous_hashes_rejected(self):
-        for field in ('previousProjectionCanonicalSha256', 'previousCheckpointCanonicalSha256'):
-            self.refresh()
-            self.mutate_provenance(lambda doc: doc['normative_clarification_v07_stroke_count'].update({field: '0' * 64}))
-            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'clarification chain'):
-                p.validate_standard_readiness(self.mapping, self.progress)
+    def test_semantic_bytes_changed(self):
+        self.batch['terms'][66]['scope'] += ' Synthetic unauthorized change.'
+        self.save('english-batch-031-035.json', self.batch)
+        with self.assertRaisesRegex(ValueError, 'Unexpected normative snapshot'): self.check()
 
-    def test_missing_or_wrong_checkpoint_chain_rejected(self):
-        self.checkpoint.pop('normativeAmendment')
-        self.save_checkpoint()
-        with self.assertRaisesRegex(ValueError, 'Checkpoint clarification chain'):
-            p.validate_standard_readiness(self.mapping, self.progress)
-        self.refresh()
-        self.checkpoint['normativeAmendment']['reference'] = 'EN-FABRICATED'
-        self.save_checkpoint()
-        with self.assertRaisesRegex(ValueError, 'Checkpoint clarification chain'):
-            p.validate_standard_readiness(self.mapping, self.progress)
+    def test_stale_snapshot(self):
+        p.EXPECTED_NORMATIVE_SNAPSHOT = 'stale'
+        with self.assertRaisesRegex(ValueError, 'Unexpected normative snapshot'): self.check()
 
-    def test_old_projection_object_changed_rejected(self):
-        self.mutate_provenance(lambda doc: doc['normative_projection_v07'].update(normativeSnapshot=self.snapshot))
-        with self.assertRaisesRegex(ValueError, 'Historical v0.7 provenance'):
-            p.validate_standard_readiness(self.mapping, self.progress)
+    def test_pending_checkpoint(self):
+        self.checkpoint['state'] = 'pending'
+        self.save('CHECKPOINT.json', self.checkpoint)
+        with self.assertRaisesRegex(ValueError, 'not ready'): self.check()
 
-    def test_old_projection_reference_changed_rejected(self):
-        self.mutate_provenance(lambda doc: doc['normative_projection_v07'].update(finalNormativeDeltaReview=p.NORMATIVE_DELTA_REFERENCES[-1]))
-        with self.assertRaisesRegex(ValueError, 'Historical v0.7 provenance'):
-            p.validate_standard_readiness(self.mapping, self.progress)
+    def test_stale_checkpoint_snapshot(self):
+        self.checkpoint['normative_snapshot'] = 'old'
+        self.save('CHECKPOINT.json', self.checkpoint)
+        with self.assertRaisesRegex(ValueError, 'Partial or stale'): self.check()
 
-    def test_historical_checkpoint_object_changed_rejected(self):
-        self.mutate_provenance(lambda doc: doc['normative_clarification_v07_stroke_count']['previousCheckpoint'].update(normative_snapshot=self.snapshot))
-        with self.assertRaisesRegex(ValueError, 'Historical v0.7 checkpoint'):
-            p.validate_standard_readiness(self.mapping, self.progress)
+    def test_missing_freeze_id(self):
+        self.checkpoint['freeze_id'] = ''
+        self.save('CHECKPOINT.json', self.checkpoint)
+        with self.assertRaisesRegex(ValueError, 'Freeze identifier'): self.check()
 
-    def test_missing_new_actual_reference_rejected(self):
-        self.checkpoint['readiness']['normativeDeltaReviewReferences'] = list(p.NORMATIVE_DELTA_REFERENCES[:-1])
-        self.save_checkpoint()
-        with self.assertRaisesRegex(ValueError, 'Unexpected normative delta references'):
-            p.validate_standard_readiness(self.mapping, self.progress)
+    def test_bad_inventory(self):
+        for mode in ('duplicate', 'missing', 'hash', 'bytes'):
+            original = copy.deepcopy(self.checkpoint)
+            if mode == 'duplicate': self.checkpoint['files'].append(copy.deepcopy(self.checkpoint['files'][0]))
+            elif mode == 'missing': self.checkpoint['files'].pop(0)
+            elif mode == 'hash': self.checkpoint['files'][0]['sha256'] = 'wrong'
+            else: self.checkpoint['files'][0]['bytes'] = -1
+            self.save('CHECKPOINT.json', self.checkpoint)
+            with self.subTest(mode=mode), self.assertRaises(ValueError): self.check()
+            self.checkpoint = original
 
-    def test_fabricated_new_reference_rejected(self):
-        self.checkpoint['readiness']['normativeDeltaReviewReferences'][-1] = 'EN-FABRICATED-CLARIFICATION'
-        self.save_checkpoint()
-        with self.assertRaisesRegex(ValueError, 'Unexpected normative delta references'):
-            p.validate_standard_readiness(self.mapping, self.progress)
+    def test_batch_status_version_or_freeze(self):
+        for key in ('version', 'status', 'freeze_id'):
+            old = self.batch[key];self.batch[key] = 'wrong';self.coherent_metadata()
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'seventh batch'): self.check()
+            self.batch[key] = old
 
-    def test_stale_expected_snapshot_rejected(self):
-        with patch.object(p, 'EXPECTED_NORMATIVE_SNAPSHOT', p.V07_BASE_NORMATIVE_SNAPSHOT):
-            with self.assertRaisesRegex(ValueError, 'Unexpected normative snapshot'):
-                p.validate_standard_readiness(self.mapping, self.progress)
+    def test_batch_scope(self):
+        self.batch['chapters'] = list(range(26,31));self.coherent_metadata()
+        with self.assertRaisesRegex(ValueError, 'chapter scope'): self.check()
 
-    def test_wrong_amendment_source_or_readiness_rejected(self):
-        for field, value in [('sourceHash', 'wrong'), ('sourceMapHash', 'wrong'),
-                             ('reviewBindingsMigrated', False), ('independentTechnicalReview', 'PASS')]:
-            self.refresh()
-            self.mutate_provenance(lambda doc: doc['normative_clarification_v07_stroke_count'].update({field: value}))
-            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'Incomplete clarification binding'):
-                p.validate_standard_readiness(self.mapping, self.progress)
+    def test_source_binding(self):
+        for key in ('sha256', 'manifestSha256', 'sourceMapSha256', 'sourceMapSHA256', 'unitCount', 'currentBatchUnits', 'totalSourceUnits'):
+            old = self.batch['sourceBinding'][key];self.batch['sourceBinding'][key] = 'wrong';self.coherent_metadata()
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'source binding'): self.check()
+            self.batch['sourceBinding'][key] = old
+
+    def test_source_unit_layout(self):
+        self.batch['source_units'][0]['layout']['kind'] = 'prose';self.coherent_metadata()
+        with self.assertRaisesRegex(ValueError, 'layouts drifted'): self.check()
+
+    def test_readiness_flags(self):
+        for key, value in [('sourceInstalled', False), ('independentEditorialReview', 'pending'), ('independentTechnicalReview', 'PASS'), ('reviewBindingsCurrent', False), ('publicationEnabled', True)]:
+            old = self.checkpoint['readiness'][key];self.checkpoint['readiness'][key] = value;self.save('CHECKPOINT.json', self.checkpoint)
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'Incomplete freeze'): self.check()
+            self.checkpoint['readiness'][key] = old
+
+    def test_fabricated_references(self):
+        self.checkpoint['readiness']['normativeDeltaReviewReferences'] = ['FABRICATED']
+        self.save('CHECKPOINT.json', self.checkpoint)
+        with self.assertRaisesRegex(ValueError, 'Unexpected normative delta'): self.check()
+
+    def test_historical_provenance_mutation(self):
+        self.provenance['normative_projection_v07']['state'] = 'rewritten';self.coherent_metadata()
+        with self.assertRaisesRegex(ValueError, 'Historical provenance'): self.check()
+
+    def test_historical_checkpoint_mutation(self):
+        self.provenance['normative_projection_v08']['previousCheckpoint']['scope'] = 'rewritten';self.coherent_metadata()
+        with self.assertRaisesRegex(ValueError, 'Historical checkpoint'): self.check()
+
+    def test_historical_clarification_rewritten(self):
+        self.checkpoint['normativeAmendment']['reference'] = 'rewritten';self.save('CHECKPOINT.json', self.checkpoint)
+        with self.assertRaisesRegex(ValueError, 'Historical clarification'): self.check()
+
+    def test_transition_missing_or_forged(self):
+        self.provenance['normative_projection_v08']['references'] = ['FABRICATED'];self.coherent_metadata()
+        with self.assertRaisesRegex(ValueError, 'transition chain'): self.check()
+
+    def test_provenance_source_or_flags(self):
+        for key, value in [('sourceHash', 'wrong'), ('sourceMapHash', 'wrong'), ('reviewBindingsMigrated', False), ('independentTechnicalReview', 'PASS')]:
+            old=self.provenance['normative_projection_v08'][key];self.provenance['normative_projection_v08'][key]=value;self.coherent_metadata()
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'provenance binding'): self.check()
+            self.provenance['normative_projection_v08'][key]=old
+
+    def test_missing_review_reference(self):
+        self.progress['units'][0]['reviews'][0]['reference'] = 'OLD-ONLY'
+        with self.assertRaisesRegex(ValueError, 'missing actual normative'): self.check()
+
+    def test_prior_batch_acceptance_removed(self):
+        self.progress['units'][0]['state'] = 'reviewed'
+        with self.assertRaisesRegex(ValueError, 'six batches'): self.check()
+
+    def test_prior_checkpoint_acceptance_removed(self):
+        self.progress['checkpoints'][5]['state'] = 'pending'
+        with self.assertRaisesRegex(ValueError, 'six checkpoints'): self.check()
+
+    def test_checkpoint_reference_removed(self):
+        self.progress['checkpoints'][5]['reviewReference'] = 'OLD-ONLY'
+        with self.assertRaisesRegex(ValueError, 'Checkpoint missing'): self.check()
+
+    def test_accepted_prose_mutation(self):
+        self.progress['units'][0]['segments'][0]['text'] += ' Synthetic change.'
+        with self.assertRaisesRegex(ValueError, 'stale'): self.check()
+
+    def test_pending_units_unchanged(self):
+        self.assertTrue(all(u['state'] == 'pending' and not u['segments'] and not u['reviews'] for m,u in zip(self.mapping['units'],self.progress['units']) if m['chapter'] > 30))
+        self.assertEqual(p.validate_reader_notes(self.mapping,json.loads((p.DATA/'reader-notes.json').read_bytes())),20)
 
 
 class ClosingQuoteTests(unittest.TestCase):

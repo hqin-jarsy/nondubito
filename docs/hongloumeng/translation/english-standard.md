@@ -1,6 +1,6 @@
 # 《红楼梦》1–110回原创英文执行规范
 
-版本：english-1-110-v0.7（规范已冻结；第26–30回正文尚未验收） · 2026-11-11。历史依据：v0.2（2026-10-20）多语言标准；实际连续性依据：本仓库第81–85回英文与对应中文。本文扩展英语执行范围，不替换历史标准，不宣称已经完成80回译文或母语出版终审。
+Version: english-1-110-v0.8. Frozen scoped standards for chapters 31-35; chapters 1-30 are accepted. This does not claim completion of chapters 1-80 or final publication review. Historical sections below retain their original as-of status. Continuity remains grounded in this repository’s English and Chinese chapters 81-85, with one common system through chapter 110.
 
 ## 1. 文件及权威顺序
 
@@ -208,3 +208,54 @@ hlm-c024-b0034现底本为恰值焙茗走来；此处只按已订正中文译写
 第25回检查点仍已接受；已实际审读的规范语义及相符中文底本可用于隔离起稿；canonical导入及验收仍须冻结规范和当前审阅绑定全部就绪，并对最终冻结版本重新核对。第31回须待26–30回实际全文审读和第六累计检查点通过。规范冻结不接受任何新译稿，英文发布门始终关闭。
 
 本轮实际规范增量及所涉旧译审读引用为EN-V07-PROJECTION-R3-V1-DELTA-20261111。原有英文正文和审阅内容hash保持不变，原引用完整保留；通过最终冻结字节复核后，当前规范绑定可追加真实增量引用。这不是重新全文审阅1–25回，不是第26–30回正文验收，也不开放英文发布。
+
+
+## 15. 第七批31–35：误听、传言与物件复现
+
+This section and english-batch-031-035.json contain the reviewed seventh-batch execution rules. Earlier six batch tables, core terms and voice fields remain unchanged. Source IDs are evidence anchors, not exhaustive scopes. Apply each rule to the complete scene, speaker, listener, object and exclusions. Chapters 1-110 continue to use one naming and continuity system.
+
+### 用名与关系
+
+佳蕙沿 Melilot，春纤沿 Chun-xian，琪官／蒋玉菡沿 Bijou／Jiang Yu-han，紫檀堡沿第81回实见的 Zitan Fort。佳蕙在31回拾破扇；次日匿名来报湘云到的人不能指作佳蕙。鹦哥在35回是鸟，不是第3回的侍女 Ying-ge，也不是后文的侍女 Parrot；鸳鸯在32回才子佳人玩物的例子中是鸟纹。蔷薇架不触发蔷字笔画机关，香坠儿不触发侍女 Zhui-er。
+
+李宫裁／宫裁保 Li Gong-cai／Gong-cai 的字称层，与 Li Wan 为同一人。周瑞媳妇、吴新登媳妇和郑好时媳妇是三位女性，不能套丈夫身份。傅二爷家的主人为 Fu Shi，不是宝玉；傅秋芳此时二十三、未许人，宝玉尚未亲见。王太医沿 Doctor Wang；王济仁暂定 Wang Ji-ren，只由本场紧接叙事识别，不等同全书所有王姓医生。
+
+二哥哥等按实际亲属关系取称，不把堂表亲的 Cousin 扩给探春称父系半兄宝玉。妈妈在宝钗向薛姨妈哭诉处为 Mother，不沿用妓院 madam。姨娘可为姨母或妾室；贾母向宝钗说你姨娘指王夫人，薛姨娘在35回指薛姨妈。晴雯讥刺袭人未挣上姑娘、黛玉叫嫂子、王夫人的待遇托付、宝钗暗示受菜须各保言语层，不补正式纳妾。
+
+莺儿常名 Oriole；黄姓保 Huang，可局部解释 yellow；旧名金莺暂用 Golden Oriole。35回目完整名层候选为 Silver Bai 与 Golden Oriole Huang，须在编辑审查中核定英文标题的自然度，不反改普通姓名。金、玉单字不能覆盖姓名、金线、金麒麟等长表达。
+
+### 知情、传言与时序
+
+32回宝玉先当面对黛玉说放心；较长告白仍意指黛玉，却误向袭人说，直到随后才认出她。放心在32与34可用同一英语词根呼应，其他普通安慰不强制逐句相同。黛玉的喜、惊、叹、悲及送帕后的多层心理是原文明叙，不应以避免解释为由删除。
+
+32回王夫人所说损物、宝钗的失足推测，以及33回贾环转述其母的强奸未遂、殴打指控，都不能取代30回实际场面。焙茗猜薛蟠告密并非事实；34回旁白明确说这一次不是他所为，不能漏掉纠错。宝玉梦见琪官被拿和金钏哭诉不是新增现实消息。34回王夫人看见房内无人，不是袭人屏退旁人。
+
+33回贾环四顾、贾政以眼示意、小厮退后是三个施事阶段，不简化成贾环屏人。34回宝钗劝兄少惹事并保留是否他告密的疑问，不替她补道歉或旁白已经掌握的事实。贾母扬言回南京沿既有 Nanjing，不写成实际成行。王夫人吩咐请僧念经是安排，不补僧人到场或仪式完成。
+
+35回5–9段回头补叙薛家早晨，10段接合2段黛玉所见母女入院，不能改成两次来访。薛蟠反复道歉、宝钗哭笑、玉钏怒色渐和及贾母席上逗笑都按本场表达，不套永久人格或把笑解释为完全原谅。
+
+### 诗、戏与回收
+
+34回三首帕上绝句共十二正文行、六个正文 verse 块；其二、其三另作序标，不计诗行。两块旧帕如何承载三首诗并未交代，不补分帕方案。保泪珠、鲛鮹、枕袖、彩线、湘江与竹痕的相互牵连，独立创作诗译，不从受保护英译取句。
+
+首行眼空蓄泪泪空垂中的两个空都保徒然：蓄泪徒然，垂泪亦徒然；不能换成空眼睛，也不省去重复的徒劳感。
+
+35回《西厢记》只引两句；白露为露水，不是节气。双文保 Shuang-wen，可最简说明它与既见 Ying-ying 的别名关系，不换成源文未载名字或续述戏剧情节。鸟复诵六句葬花诗，首尾两联与27回同文，另有一行春残变春尽。须在27回实际最终接受字节核定后复用五句，第三行保 spring wanes／spring ends 差异；现有两不知的 neither knowing of the other 是可辩护的选择，不宣称唯一正确或保尽歧义。
+
+34回君子防不然与自有82回明示复引用同句 A gentleman guards against trouble before it comes.；31回几把扇子能值几何与自有84回回响用 How much could a few fans be worth?。只回收同义语句，不输入后文婚议、悲情或另一场扇子事件。
+
+33回要紧／跳井保原有急语、近音误听与聋婆子的答话，可作局部 yaojin／tiaojing 说明，不另造改变事件的英文笑话。31回阴阳问答保完整推论、反问和主仆笑谑，不修成现代科学或哲学摘要。
+
+### 钱物、工艺与保守读法
+
+白日跌坏扇骨、晚间首把供撕、再夺麝月扇另撕是三段动作。晚间两把明确不同；白日跌扇和首把撕扇同异未明，不补三把总数。四枚戒指后包三枚不补未载交付；两麒麟不定雌雄或未来配偶。汗巾沿 sash，不与手帕混用；35回同色不证明就是28回交换的那件。
+
+松花沿 pine-pollen green，石青沿 dark blue；葱绿沿自有81回 spring green，桃红在本场选该回 peach-pink，保留早译 peach-red 的可容颜色范围，不机械回写。络子先用于汗巾，后改议络玉；只打半截不等于玉络已成。七种花样名与最终所选攒心梅花分开，黑珠儿线保描述，不增材质、颗数或制法。荷叶汤保模印面食、荷香和好汤，不当作仅有荷叶的汤。
+
+端阳虎符是系臂节令护符，不套调兵凭证。山羊血黎洞丸暂以完整源串的 Shanyangxue Lidong Pills 保留药名，断词、配方未证，不自行分为两药，也不认定后文匿名丸药相同。警他的好处取语境中的使对方惊动、留下印象；警通惊的证据不等于词典已证 admire 义。正裁疑间仍在思量如何处置，不是疑虑已解，不冒称固定旧词。现无已证实的本批中文损坏；公开转录同文不排除共承讹误。
+
+气的范围分层：31回湘云阴阳论述可用 vital energy；32回黛玉回想医生所言气弱血亏承接已接受第10回医家用语 qi 和 deficient blood，可作 weak or deficient qi and deficient blood。后者不是怒气或普通心情，也不是经旁白认证的现代诊断。荷叶汤银模花样为 thirty or forty shapes，凤姐命做 ten or so bowls，保两处约数与吩咐层。
+
+### 审查门
+
+The actual chapter 26-30 cumulative checkpoint is accepted. Independent semantic review and targeted accepted-text alignment support these rules. Final-status review and the controlled installation contract authenticate the final frozen bytes and current review bindings. Chapter and cumulative review gates remain mandatory. Norm freeze does not accept new prose or enable English publication. These scoped delta reviews do not claim a full reread of all earlier English chapters.
