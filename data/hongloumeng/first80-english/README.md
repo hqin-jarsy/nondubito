@@ -1,6 +1,6 @@
 # Independent English translation work in progress
 
-This directory is project data, not a published English reading edition. Chapters 1–15 have passed chapter-level and cumulative model editorial review: 751 units are **accepted** and 3,723 remain **pending**. This is not native-human publication sign-off; the eighty-chapter translation is unfinished and has no public English reading presentation. Chapters 81, 82, 84 and 85 remain unchanged; chapter 83 has one separately reviewed funeral-procession correction.
+This directory is project data, not a published English reading edition. Chapters 1–20 have passed chapter-level and cumulative model editorial review: 1,056 units are **accepted** and 3,418 remain **pending**. This is not native-human publication sign-off; the eighty-chapter translation is unfinished and has no public English reading presentation. Chapters 81, 82, 84 and 85 remain unchanged; chapter 83 has one separately reviewed funeral-procession correction.
 
 ## Frozen source and stable alignment
 
@@ -26,7 +26,7 @@ Run from the repository root:
 - `python3 -B scripts/test_hongloumeng_english_pipeline.py`
 - `python3 -B scripts/hongloumeng_english_pipeline.py assemble --output data/hongloumeng/first80/qa/english/assembly.json`
 
-Parallel chapter drafts may be written as ordered arrays to `chapters/ch001.draft.json` (likewise other chapter numbers), using the same unit record schema. `python3 -B scripts/hongloumeng_english_pipeline.py import-draft --chapter 1` validates the entire resulting corpus before saving, accepts only draft records with no review claims, and refuses to overwrite any non-pending unit. Keep a single editor responsible for importing into `progress.json`; concurrent imports are not supported. The chapter files are author or historical draft working copies, not additional canonical corpus units or current acceptance authority. Older chapter 6, 8 and 10 draft copies may retain former gaps. The current complete English text, review records and accepted checkpoints for chapters 1–15 are in `progress.json`.
+Parallel chapter drafts may be written as ordered arrays to `chapters/ch001.draft.json` (likewise other chapter numbers), using the same unit record schema. `python3 -B scripts/hongloumeng_english_pipeline.py import-draft --chapter 1` validates the entire resulting corpus before saving, accepts only draft records with no review claims, and refuses to overwrite any non-pending unit. Keep a single editor responsible for importing into `progress.json`; concurrent imports are not supported. The chapter files are author or historical draft working copies, not additional canonical corpus units or current acceptance authority. Older chapter 6, 8 and 10 draft copies may retain former gaps. The current complete English text, review records and accepted checkpoints for chapters 1–20 are in `progress.json`.
 
 Initialization is deliberately non-overwriting. Assembly is deterministic JSON, preserves unfilled source locations, marks itself `translation-work-in-progress` and `publishable: false`, and is confined to the ignored English QA directory. There is no HTML output or website integration. The `release` action always fails closed. A later publication implementation needs separate review, exact approved scope (selected chapters or all eighty), and explicit authorization; incomplete or unreviewed work must never be silently fed to the public renderer. Existing public reading renderers continue to reject unsupported English input.
 
@@ -38,7 +38,7 @@ Progress imports use a complete same-directory temporary write, flush/fsync, and
 
 The prior frozen source incorporated six corrected blocks without changing any stable ID or layout. The six English alignment issues are recorded as resolved after the corresponding draft revisions and independent review; their reviewed revisions are now included in the accepted first batch. Source correction alone does not resolve an English draft issue; old per-unit hashes in draft files must not be mechanically rewritten.
 
-Two frozen translator notes are held separately in `reader-notes.json`, bound to their source units and clearly labelled as translator commentary. They are not original narrative, are not inserted into translation segments, and are not yet integrated into a reading presentation.
+Five reviewed translator notes are held separately in `reader-notes.json`, bound to their source units and clearly labelled as translator commentary. They are not original narrative, are not inserted into translation segments, and are not yet integrated into a reading presentation.
 
 ## Editorial and source history
 
@@ -46,7 +46,7 @@ The v0.3 standard was frozen on 2026-11-11 after a normative-delta review of the
 
 Seven author-approved readability decisions subsequently changed seven stable Chinese source units (eight textual occurrences) in chapters 6, 8, 10, 17 and 18. Simplified and Traditional data and the corresponding ten chapter pages were rebuilt, with all other source units, titles and layouts unchanged. These are edition-specific readability choices informed by public Chinese transcriptions, not claims of historical-original verification. The source map, canonical progress and translator-note global bindings migrated to that frozen source without changing the 589 existing English translations or their actual review evidence. Historical source-query reports retain their original as-of findings.
 
-The source migration initially left seven English alignment issues open. Four complete new translations in chapters 6–10 have now received independent bilingual, literary and consistency review against the corrected Chinese. Their exact issue resolutions and twelve actual review records are preserved in canonical progress. The other three issues in chapters 17–18 remain open and their units remain pending.
+The source migration initially left seven English alignment issues open. Four complete new translations in chapters 6–10 have now received independent bilingual, literary and consistency review against the corrected Chinese. Their exact issue resolutions and twelve actual review records are preserved in canonical progress. The three later issues in chapters 17–18 are now resolved after complete source-unit translation, independent bilingual/literary/consistency review, and fourth-batch cumulative review. Their exact reviewed resolution objects participate in the current content and batch hashes.
 
 ## Completed chapters 6–10
 
@@ -60,8 +60,14 @@ The preserved cumulative review, `EN-B011-015-CUMULATIVE-20261111`, read all 158
 
 Canonical progress now includes all 158 units as accepted, with an accepted third-batch checkpoint. Review and cumulative evidence must be rechecked if manuscript, relevant source issue, source-unit or normative bindings change. These are model editorial acceptances, not native-human publication sign-off. The eighty-chapter work remains unfinished, and the English publication pipeline remains disabled. No English reading page is published by these data changes.
 
-## Chapters 16–20 and the v0.5 standard
+## Integrated chapters 16–20 and the v0.5 standard
 
-Chapter 16–20 drafting and review are underway; this batch is not canonically accepted. The first three accepted checkpoints permit work on the fourth batch. Chapters 21 onward remain blocked until the fourth checkpoint is accepted, and publication remains disabled.
+The five `chapters/ch016.draft.json` through `ch020.draft.json` files preserve the exact independently reviewed manuscripts: 305 units with author records still marked `draft` and empty `reviews`. Canonical progress now includes the same translation segments as accepted, with all 915 original bilingual, literary and consistency review records. The fourth checkpoint is accepted against their ordered content hash, the three exact reviewed source-issue resolutions, and the official frozen v0.5 snapshot.
 
-The eight-file v0.5 standard was frozen after the actual normative-delta review EN-V05-R2-DELTA-20261111, including the corrected inherited Mackerel identity. All 751 accepted translations, 2,253 review content hashes, original review references, and three accepted batch content hashes are preserved. Only standard bindings and appended delta references migrate; this is not a fresh full bilingual or literary reread of the 751 units. The matching chapter 11–15 review manifest records this migration separately from its preserved source-alignment and canonical-integration provenance. All three chapter 17–18 English alignment issues remain open until actual translation review resolves them.
+`EN-B016-020-CUMULATIVE-V05-20261111` records an actual consecutive English reading of all 305 units with complete current Chinese comparison. It additionally checked 38 complete earlier canonical units and 21 complete paired prose units from chapters 81–85. It is not a fresh full reread of all earlier 751 units or of chapters 81–85, and is not native-human publication sign-off. All ten chapter-18 poems and 68 poem-body lines were checked. No required manuscript changes remain.
+
+Three separately labelled translator notes explain chapter 19’s two retained textual lacunae and chapter 20’s kinship saying and pronunciation play. The original two notes are unchanged. All five remain source-bound and outside narrative segments and any reading presentation. The chapter-19 `glossaryId` explicitly locates the frozen batch standard’s source-treatment entry rather than inventing a glossary number. No optional notes were added. The two `[text missing]` markers preserve real gaps in the chosen Chinese source; acceptance does not claim the missing wording has been recovered.
+
+The eight-file v0.5 standard was frozen after the actual normative-delta review `EN-V05-R2-DELTA-20261111`, including the corrected inherited Mackerel identity. This fourth-batch integration leaves that standard unchanged. All earlier 751 complete accepted unit records, 2,253 review records, and three accepted checkpoints are unchanged. The chapter 11–15 review manifest and all chapter 21–80 pending records are also unchanged.
+
+The fourth checkpoint permits drafting chapters 21–25; chapter 26 remains blocked until the fifth checkpoint is accepted. The eighty-chapter work is unfinished. Publication remains disabled and no English reading page is published by these data changes. Any later manuscript, relevant issue, source or normative change requires suitable re-review before its evidence can be rebound.
