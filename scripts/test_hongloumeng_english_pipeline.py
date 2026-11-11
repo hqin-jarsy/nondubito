@@ -93,7 +93,7 @@ class PipelineTests(unittest.TestCase):
     def test_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -110,7 +110,7 @@ class PipelineTests(unittest.TestCase):
     def test_second_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -127,7 +127,7 @@ class PipelineTests(unittest.TestCase):
     def test_third_batch_decision_alone_invalidates_review(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'CHANGELOG.md'):
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'CHANGELOG.md'):
                 (directory / name).write_text('baseline')
             with patch.object(p, 'STANDARD', directory):
                 before = p.standard_snapshot()
@@ -140,6 +140,42 @@ class PipelineTests(unittest.TestCase):
                 self.assertNotEqual(before, after)
                 with self.assertRaisesRegex(ValueError, 'standard change'):
                     p.validate_progress(self.mapping, self.progress, after)
+
+    def test_fourth_batch_decision_alone_invalidates_review(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = Path(folder)
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'CHANGELOG.md'):
+                (directory / name).write_text('baseline')
+            with patch.object(p, 'STANDARD', directory):
+                before = p.standard_snapshot()
+                unit = self.draft()
+                unit['reviews'] = [{'type': kind, 'contentHash': p.content_hash(unit), 'standardSnapshot': before, 'reference': 'synthetic-test-only'} for kind in p.REVIEW_TYPES]
+                unit['state'] = 'accepted'
+                p.validate_progress(self.mapping, self.progress, before)
+                (directory / 'english-batch-016-020.json').write_text('changed decision only')
+                after = p.standard_snapshot()
+                self.assertNotEqual(before, after)
+                with self.assertRaisesRegex(ValueError, 'standard change'):
+                    p.validate_progress(self.mapping, self.progress, after)
+
+    def test_missing_fourth_normative_file_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = Path(folder)
+            for name in ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'CHANGELOG.md'):
+                (directory / name).write_text('synthetic baseline')
+            with patch.object(p, 'STANDARD', directory):
+                with self.assertRaisesRegex(ValueError, 'Standard baseline'):
+                    p.standard_snapshot()
+
+    def test_wrong_global_source_rejected(self):
+        self.progress['sourceHash'] = 'wrong-source'
+        with self.assertRaisesRegex(ValueError, 'Wrong source binding'):
+            p.validate_progress(self.mapping, self.progress)
+
+    def test_release_always_disabled(self):
+        with patch('sys.argv', ['pipeline', 'release']):
+            with self.assertRaisesRegex(ValueError, 'publication is disabled'):
+                p.main()
 
     def test_open_issue_blocks_acceptance_and_resolution_invalidates_review(self):
         unit = self.draft()

@@ -39,3 +39,17 @@ Preserved the supplied six-language v0.2 archive unchanged, recorded hashes, and
 - Record the chapter 83 funeral-departure/burial legacy discrepancy without changing that text; only accurate local canopy vocabulary is reusable. Distinguish Zhi-shan from Zhu Zhi-shan.
 
 - r3 verifies the subsequent single-sentence chapter 83 correction in the correction layer and generated output. Preserve the earlier discrepancy as history, not as the current text. All 142 term forms and voice content remain unchanged.
+
+
+## english-1-110-v0.5 · 2026-11-11: chapters 16–20 (frozen editorial checkpoint)
+
+- Add 116 scoped candidate/application rows, not 116 newly coined terms, with separate evidence for inherited uses. Preserve all three earlier batch files byte for byte.
+- Keep provisional inscriptions, bestowed names and final poem titles separate. Preserve jade/wax revision and later plantain allusions.
+- Record all ten transmitted chapter 18 poems and their 68 body lines, attribution, separate headings, embedded quotations and the chapter 19 closing couplet. Supply no missing Xi-chun poem or unquoted lyrics.
+- Add relationship-specific scene guidance, complete local sound-play treatments and identity guards. Existing voice profiles and prior batch details remain unchanged.
+- Record the three adopted chapter 17–18 source corrections, conservative treatment of 叶渚 and 一燥, and two explicit chapter 19 lacunae. Permit translation of surviving text without fabricating missing words; acceptance still requires actual review and accurate source-issue treatment.
+- Add scoped chapter 6/8/10 wording for the four restored units, including flour-sifting chest and deficient and lacking vitality. Historical batch files are not rewritten.
+- Replace the obsolete chapter 11–15-only boundary with the specified chapter 16–20 scope, and remove a transient corpus count from the general rule. No statement of canonical integration, human final review or publication is made.
+- Controlled freeze: batch-016-020-editorial-r2-2026-11-11. Prior review bindings retain their original evidence and append EN-V05-R2-DELTA-20261111 after the actual normative-delta review. This is not a fresh full reread of the 751 accepted units and changes no translated prose.
+
+- Candidate correction: 绮霰 at hlm-c020-b0008 inherits Mackerel from the paired current chapter 81 source units 29 and 31. The discarded Qi-xian proposal was a continuity error, not an authorised change of name. The row is inherited usage rather than a newly coined form.
