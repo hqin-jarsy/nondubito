@@ -132,3 +132,16 @@ All earlier 1,365 accepted unit records, 4,095 review records, five accepted che
 ## v0.8 current normative bindings
 
 Chapters 1-30 remain accepted: 1,693 units, 5,079 unchanged review content hashes and six unchanged checkpoint corpus hashes. The 20 separate notes, 16 resolved source issues and all later pending units are preserved. Current snapshot fields and appended actual review references EN-V08-PROJECTION-R3-LISTENER-R4-DELTA-20261111, EN-V08-G07-11-QUANTITY-FINAL-STATUS-DELTA-20261111 bind the reviewed seventh-batch rules and final status. All original reference prefixes, the complete chapter 11-15 canonicalIntegration and all historical provenance remain unchanged. These are scoped delta reviews and targeted accepted-evidence checks, not a full earlier-corpus reread or acceptance of new prose. Publication remains disabled.
+
+
+## Integrated chapters 31–35
+
+The five chapter files retain the exact independently reviewed manuscripts: 192 units and 905 English segments, with archived states still draft and empty review arrays. Canonical progress contains those same words as accepted, with 576 new exact-content-bound bilingual, literary and consistency review records. The seventh checkpoint binds the complete ordered corpus to the installed v0.8 standard.
+
+EN-B031-035-CUMULATIVE-R2-FINAL-20261111 binds the genuine complete 192-unit Chinese-English comparison, separate complete English reading and all four chapter joins recorded in cumulative r1. The final r2 closes the quantity and normative gate through an actual narrow reread of complete chapter-34 units b0042–b0045 and the exact normative delta. It does not claim a second full cumulative reread. Targeted earlier and later comparisons cover 22 earlier accepted units and 11 bilingual passages from chapters 81–85, not complete rereads of either corpus.
+
+The full individual chapter-34 r1 review remains historical and correction-required. Its later four-field delta closes those corrections; only the cumulative review independently read the complete revised chapter. All original manuscripts, individual reviews and cumulative reports remain unchanged. Optional stylistic suggestions were not applied. No reader note or Chinese-source repair is added.
+
+The cumulative report's earlier accepted-baseline hash records its real reading context before v0.8 installation. This integration instead preserves every current installed chapter 1–30 unit object, all 5,079 earlier review records and six old checkpoint objects exactly. It does not rebind historical reading claims. The twenty notes, sixteen resolved source issues, prior integrations, source, source map, normative files, code and website are unchanged.
+
+Current progress is 1,885 accepted and 2,590 pending units, with seven accepted checkpoints and 5,655 current review records. The seventh checkpoint satisfies the preceding-batch structural gate for chapters 36–40; it does not approve a future batch's terminology or prose. The eighty-chapter work remains unfinished, publication is disabled and no English reading page is produced. This is not native-human publication sign-off. Relevant later changes require suitable actual re-review.

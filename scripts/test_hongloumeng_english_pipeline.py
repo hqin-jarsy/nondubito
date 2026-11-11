@@ -460,9 +460,49 @@ class FreezeReadinessV08Tests(unittest.TestCase):
         self.progress['units'][0]['segments'][0]['text'] += ' Synthetic change.'
         with self.assertRaisesRegex(ValueError, 'stale'): self.check()
 
+    def assert_outside_batch_pending(self, progress):
+        last_chapter = max(self.batch['chapters'])
+        self.assertTrue(all(u['state'] == 'pending' and not u['segments'] and not u['reviews']
+                            for m, u in zip(self.mapping['units'], progress['units'])
+                            if m['chapter'] > last_chapter))
+
     def test_pending_units_unchanged(self):
-        self.assertTrue(all(u['state'] == 'pending' and not u['segments'] and not u['reviews'] for m,u in zip(self.mapping['units'],self.progress['units']) if m['chapter'] > 30))
+        self.assert_outside_batch_pending(self.progress)
         self.assertEqual(p.validate_reader_notes(self.mapping,json.loads((p.DATA/'reader-notes.json').read_bytes())),20)
+
+    def test_current_batch_may_progress(self):
+        progress = copy.deepcopy(self.progress)
+        index = next(i for i, m in enumerate(self.mapping['units'])
+                     if m['chapter'] == max(self.batch['chapters']))
+        # Only the boundary assertion is under test; this is not review evidence.
+        for state in ('pending', 'draft', 'reviewed', 'accepted'):
+            progress['units'][index].update(state=state, segments=[], reviews=[])
+            with self.subTest(state=state):
+                self.assert_outside_batch_pending(progress)
+
+    def test_outside_batch_nonpending_rejected(self):
+        for chapter in (max(self.batch['chapters']) + 1, max(m['chapter'] for m in self.mapping['units'])):
+            progress = copy.deepcopy(self.progress)
+            index = next(i for i, m in enumerate(self.mapping['units']) if m['chapter'] == chapter)
+            progress['units'][index]['state'] = 'draft'
+            with self.subTest(chapter=chapter), self.assertRaises(AssertionError):
+                self.assert_outside_batch_pending(progress)
+
+    def test_outside_batch_content_rejected(self):
+        for chapter in (max(self.batch['chapters']) + 1, max(m['chapter'] for m in self.mapping['units'])):
+            progress = copy.deepcopy(self.progress)
+            index = next(i for i, m in enumerate(self.mapping['units']) if m['chapter'] == chapter)
+            progress['units'][index]['segments'] = [{'kind': 'title', 'text': 'Synthetic boundary probe only.'}]
+            with self.subTest(chapter=chapter), self.assertRaises(AssertionError):
+                self.assert_outside_batch_pending(progress)
+
+    def test_outside_batch_review_rejected(self):
+        for chapter in (max(self.batch['chapters']) + 1, max(m['chapter'] for m in self.mapping['units'])):
+            progress = copy.deepcopy(self.progress)
+            index = next(i for i, m in enumerate(self.mapping['units']) if m['chapter'] == chapter)
+            progress['units'][index]['reviews'] = [{'reference': 'synthetic-boundary-probe-only'}]
+            with self.subTest(chapter=chapter), self.assertRaises(AssertionError):
+                self.assert_outside_batch_pending(progress)
 
 
 class ClosingQuoteTests(unittest.TestCase):
