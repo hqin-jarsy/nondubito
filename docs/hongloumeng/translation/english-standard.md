@@ -296,3 +296,16 @@ Xi-feng accepts gifts readily and delays reporting the vacancy. Use Gossamer dri
 Use the complete accepted23b63 line at40b81 with the separate Heaven/tian note. Display actual Chinese claim marks, not invented English initials. Preserve wrist-ornament/autumn-fragrance imagery in Painting Chrysanthemums and align all25 comment echoes to the actual translated poems, distinguishing two compressed restatements. Use Chrysanthemum Dreams consistently. Furong bamboo mats is a limited inheritance from actual accepted28b130, not the same gift. Three cun and one cun are source measures, not English inches.
 
 Independent semantic-delta review covered these scoped rules and 41 complete earlier Chinese-English units; a separate follow-up verified the corrected public evidence locators. The current bindings preserve original references and append this limited review scope, not a new full-corpus reread. Each chapter then requires bilingual, literary and consistency review and a cumulative five-chapter review. No English publication is enabled.
+
+
+## 当前人物命名覆盖：丰儿统一为 Felicity（2026-11-11）
+
+丰儿（王熙凤的丫头）统一译作 **Felicity**，与本项目自有第85回现有英文保持一致。这一当前决定优先于 B02-056 的暂定 Feng-er 形式及其后续继承应用；旧条目、旧引文、旧草稿和旧审阅记录保留原样作为真实历史，不因现行用法变更而追改。
+
+本覆盖按人物身份适用于第1–110回，只指在相关完整中英文上下文中核实为丰儿的此人，不指凤姐 Xi-feng、兴儿 Joker 或其他含 Feng 的姓名，不作字符串全局替换。自有第85回中 Patience 叫 Felicity 换热水的原文保持不变。
+
+覆盖的既有规范定位共六处：english-batch-006-010.json#/entries/55（B02-056）、english-batch-011-015.json#/existing_form_reuse/32、english-batch-016-020.json#/inherited_applications/40、english-batch-021-025.json#/inherited_applications/68、english-batch-026-030.json#/inherited_applications/31、english-batch-036-040.json#/inheritedApplications/27。它们的历史对象及所引原形均原样保留；当前执行形式以本条为准。
+
+既有已接受英文的修订仅限第7回 b0015/b0016、第14回 b0010、第20回 b0004/b0020、第24回 b0028、第25回 b0029、第29回 b0006 八个已逐完整双语单元复核的位置，共十次精确名称替换。旧正文、24条旧单元审阅和旧累计corpus须在认证前像中保留；新正文使用真正对应新内容的复验记录，不将旧内容hash改名冒充新审阅。其他1,877个既有接受单元正文不变。规范迁移和受影响五批的当前累计绑定另须真实、范围明确的复验，不声称全书或五批全文重读。
+
+第40/41回的同名差异稿及第46回相关修订须在各自批次按真实源、规范、稿件与独审证据走正常门槛；本命名覆盖本身不接受这些章节，不放宽后续五回检查，也不限制未来已获审校的正常扩展或规范修订。英文部分发布继续禁用。

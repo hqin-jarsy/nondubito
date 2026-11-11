@@ -339,6 +339,8 @@ class FinalReadinessV09Tests(unittest.TestCase):
 class FreezeReadinessV09Tests(unittest.TestCase):
     """Synthetic current configuration, with untouched real historical metadata.
 
+    This class isolates the historical v0.9/source layer with explicit naming-layer mocks.
+    FelicityRevisionTests separately exercises the actual full chain without mocks.
     The original v0.8 purposes are retained, not bypassed. All newly accepted
     English and current review evidence below are explicitly synthetic.
     """
@@ -348,7 +350,10 @@ class FreezeReadinessV09Tests(unittest.TestCase):
         self.directory = Path(self.temp.name)
         for name in (*p.NORMATIVE_FILES, 'provenance.json', 'CHECKPOINT.json'):
             (self.directory / name).write_bytes((p.STANDARD / name).read_bytes())
-        self.patches = [patch.object(p, 'V09_HISTORICAL_NORMATIVE_SNAPSHOT', p.V09_HISTORICAL_NORMATIVE_SNAPSHOT),
+        self.patches = [patch.object(p, 'load_felicity_before', lambda document: self.progress),
+                        patch.object(p, 'validate_felicity_revision'),
+                        patch.object(p, 'FELICITY_BEFORE_NORMATIVE_SNAPSHOT', p.FELICITY_BEFORE_NORMATIVE_SNAPSHOT),
+                        patch.object(p, 'V09_HISTORICAL_NORMATIVE_SNAPSHOT', p.V09_HISTORICAL_NORMATIVE_SNAPSHOT),
                         patch.object(p, 'V09_HISTORICAL_PROVENANCE_SHA', p.V09_HISTORICAL_PROVENANCE_SHA),
                         patch.object(p, 'CURRENT_SOURCE_EVIDENCE_SHA', None),
                         patch.object(p, 'CURRENT_ACCEPTED_BODIES_SHA', p.CURRENT_ACCEPTED_BODIES_SHA),
@@ -366,6 +371,7 @@ class FreezeReadinessV09Tests(unittest.TestCase):
         self.batch = json.loads((self.directory / 'english-batch-036-040.json').read_bytes())
         self.checkpoint = json.loads((self.directory / 'CHECKPOINT.json').read_bytes())
         self.provenance = json.loads((self.directory / 'provenance.json').read_bytes())
+        self.provenance.pop(p.FELICITY_AMENDMENT_KEY)  # Only the synthetic historical layer is under test here.
         self.batch.update(status='frozen_editorial_checkpoint', freeze_id='SYNTHETIC-ONLY')
         self.batch['gate'] = {'formalFreeze': True, 'independentEditorialReview': True, 'sourceMigrationComplete': True, 'englishAcceptance': False, 'publicationEnabled': False}
         self.checkpoint.update(state='frozen_editorial_checkpoint', freeze_id='SYNTHETIC-ONLY')
@@ -395,6 +401,7 @@ class FreezeReadinessV09Tests(unittest.TestCase):
     def coherent_metadata(self):
         self.save('english-batch-036-040.json', self.batch)
         p.EXPECTED_NORMATIVE_SNAPSHOT = p.standard_snapshot()
+        p.FELICITY_BEFORE_NORMATIVE_SNAPSHOT = p.EXPECTED_NORMATIVE_SNAPSHOT
         self.checkpoint['normative_snapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
         transition = self.provenance['normative_projection_v09']
         p.V09_HISTORICAL_NORMATIVE_SNAPSHOT = p.EXPECTED_NORMATIVE_SNAPSHOT
@@ -944,6 +951,134 @@ class ClosingQuoteTests(unittest.TestCase):
         unit['segments'][0]['text'] = "'"
         with self.assertRaisesRegex(ValueError, 'Review is stale'):
             self.validate(progress)
+
+
+class FelicityRevisionTests(unittest.TestCase):
+    """Actual full readiness chain. No historical/naming guard is mocked here."""
+    @classmethod
+    def setUpClass(cls):
+        cls.mapping = p.source_map(p.load_source())
+        cls.original_progress = json.loads((p.DATA / 'progress.json').read_bytes())
+        cls.original_archive = (p.DATA / p.FELICITY_BEFORE_FILENAME).read_bytes()
+        cls.original_notes = (p.DATA / 'reader-notes.json').read_bytes()
+        cls.norm_files = {n: (p.STANDARD / n).read_bytes() for n in (*p.NORMATIVE_FILES, 'provenance.json', 'CHECKPOINT.json')}
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.directory = Path(self.temp.name)
+        self.standard = self.directory / 'standard'; self.standard.mkdir()
+        self.data = self.directory / 'data'; self.data.mkdir()
+        for n, b in self.norm_files.items(): (self.standard / n).write_bytes(b)
+        (self.data / p.FELICITY_BEFORE_FILENAME).write_bytes(self.original_archive)
+        (self.data / 'reader-notes.json').write_bytes(self.original_notes)
+        self.progress = copy.deepcopy(self.original_progress)
+        self.provenance = json.loads(self.norm_files['provenance.json'])
+        self.checkpoint = json.loads(self.norm_files['CHECKPOINT.json'])
+        self.patches = [patch.object(p, 'STANDARD', self.standard), patch.object(p, 'DATA', self.data)]
+        for item in self.patches: item.start()
+
+    def tearDown(self):
+        for item in reversed(self.patches): item.stop()
+        self.temp.cleanup()
+
+    def save_metadata(self):
+        (self.standard / 'provenance.json').write_text(json.dumps(self.provenance, ensure_ascii=False))
+        for row in self.checkpoint['files']:
+            f = self.standard / Path(row['path']).name
+            row.update(sha256=p.sha(f.read_bytes()), bytes=f.stat().st_size)
+        (self.standard / 'CHECKPOINT.json').write_text(json.dumps(self.checkpoint, ensure_ascii=False))
+
+    def check(self):
+        return p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_actual_full_chain_and_historical_inventory(self):
+        self.assertEqual(self.check(), p.EXPECTED_NORMATIVE_SNAPSHOT)
+        before = json.loads(self.original_archive)
+        old = [u for u in before['units'] if u['state'] == 'accepted']
+        now = [u for u in self.progress['units'] if u['state'] == 'accepted']
+        self.assertEqual(len(old), 1885); self.assertEqual(len(now), 1885)
+        self.assertEqual(sum(len(u['reviews']) for u in now), 5655)
+        self.assertEqual(sum(u['segments'] != v['segments'] for u,v in zip(old, now)), 8)
+        self.assertEqual(sum(c['state'] == 'accepted' for c in self.progress['checkpoints']), 7)
+
+    def test_archive_bytes_tamper_rejected(self):
+        f = self.data / p.FELICITY_BEFORE_FILENAME; f.write_bytes(self.original_archive + b' ')
+        with self.assertRaisesRegex(ValueError, 'Felicity historical progress changed'): self.check()
+
+    def test_archive_path_or_missing_rejected(self):
+        self.provenance[p.FELICITY_AMENDMENT_KEY]['previousProgressPath'] = '../elsewhere'
+        self.save_metadata()
+        with self.assertRaisesRegex(ValueError, 'historical progress path differs'): self.check()
+
+    def test_old_provenance_and_checkpoint_not_rewritten(self):
+        self.provenance[p.FELICITY_AMENDMENT_KEY]['previousCheckpoint']['scope'] = 'tampered'
+        self.save_metadata()
+        with self.assertRaisesRegex(ValueError, 'predecessor checkpoint changed'): self.check()
+
+    def test_norm_evidence_cannot_be_forged(self):
+        self.provenance[p.FELICITY_AMENDMENT_KEY]['normativeMigrationReview']['reference'] = 'SYNTHETIC FORGERY'
+        self.save_metadata()
+        with self.assertRaisesRegex(ValueError, 'normative migration evidence missing or forged'): self.check()
+
+    def test_naming_binding_cannot_be_removed(self):
+        del self.checkpoint['currentNamingRevision']; self.save_metadata()
+        with self.assertRaisesRegex(ValueError, 'Felicity checkpoint binding differs'): self.check()
+
+    def test_exact_changed_content_required(self):
+        u = next(u for u in self.progress['units'] if u['id'] in p.FELICITY_CHANGED_IDS)
+        u['segments'][0]['text'] += ' SYNTHETIC TAMPER'
+        for r in u['reviews']: r['contentHash'] = p.content_hash(u, self.progress['sourceIssues'])
+        with self.assertRaisesRegex(ValueError, 'Felicity reviewed content differs'): self.check()
+
+    def test_old_24_reviews_cannot_be_rebound_as_new(self):
+        before = json.loads(self.original_archive)
+        u = next(u for u in self.progress['units'] if u['id'] in p.FELICITY_CHANGED_IDS)
+        u['reviews'] = copy.deepcopy(next(v for v in before['units'] if v['id'] == u['id'])['reviews'])
+        for r in u['reviews']:
+            r['contentHash'] = p.content_hash(u, self.progress['sourceIssues']); r['standardSnapshot'] = p.EXPECTED_NORMATIVE_SNAPSHOT
+        with self.assertRaisesRegex(ValueError, 'Felicity current review lineage'): self.check()
+
+    def test_other_1877_bodies_cannot_be_rehashed(self):
+        u = self.progress['units'][0]; u['segments'][0]['text'] += ' SYNTHETIC TAMPER'
+        for r in u['reviews']: r['contentHash'] = p.content_hash(u, self.progress['sourceIssues'])
+        with self.assertRaisesRegex(ValueError, 'Earlier accepted English bodies changed'): self.check()
+
+    def test_5631_review_references_are_append_only(self):
+        self.progress['units'][0]['reviews'][0]['reference'] = p.FELICITY_MIGRATION_REFERENCE
+        with self.assertRaisesRegex(ValueError, 'Felicity current review lineage'): self.check()
+
+    def test_limited_checkpoint_review_and_five_corpora_required(self):
+        for i in (0,1,2,3,4,5,6):
+            with self.subTest(index=i):
+                saved = copy.deepcopy(self.progress['checkpoints'][i])
+                self.progress['checkpoints'][i]['corpusHash'] = '0'*64
+                with self.assertRaisesRegex(ValueError, 'Felicity current checkpoint lineage'): self.check()
+                self.progress['checkpoints'][i] = saved
+
+    def test_historical_six_name_objects_unchanged(self):
+        for row in p.FELICITY_HISTORICAL_LOCATORS:
+            f = self.standard / row['file']; original = f.read_bytes()
+            f.write_bytes(original.replace(b'Feng-er', b'Unapproved-Name'))
+            with self.assertRaisesRegex(ValueError, 'Historical Feng-er norm object changed'):
+                p.validate_felicity_revision(self.provenance, self.checkpoint, self.mapping, self.progress, json.loads(self.original_archive), p.EXPECTED_NORMATIVE_SNAPSHOT)
+            f.write_bytes(original)
+
+    def test_b8_and_b9_future_acceptance_not_capped(self):
+        # Synthetic test-only bodies/reviews, never canonical acceptance evidence.
+        for first,last in ((36,40),(41,45)):
+            for s,u in zip(self.mapping['units'], self.progress['units']):
+                if first <= s['chapter'] <= last:
+                    u.update(state='accepted', segments=[{'kind':s['layout']['kind'], 'text':'SYNTHETIC FUTURE TEST ONLY.'}])
+                    u['reviews'] = [{'type':t, 'contentHash':p.content_hash(u,self.progress['sourceIssues']), 'standardSnapshot':p.EXPECTED_NORMATIVE_SNAPSHOT, 'reference':'SYNTHETIC FUTURE TEST ONLY'} for t in p.REVIEW_TYPES]
+            c = self.progress['checkpoints'][(first-1)//5]
+            units = [u for s,u in zip(self.mapping['units'],self.progress['units']) if first<=s['chapter']<=last]
+            c.update(state='accepted', corpusHash=p.batch_hash(units,self.progress['sourceIssues']), standardSnapshot=p.EXPECTED_NORMATIVE_SNAPSHOT, reviewReference='SYNTHETIC FUTURE TEST ONLY')
+            self.assertEqual(self.check(), p.EXPECTED_NORMATIVE_SNAPSHOT)
+        s,u = next((s,u) for s,u in zip(self.mapping['units'],self.progress['units']) if s['chapter']==46)
+        u.update(state='draft',segments=[{'kind':s['layout']['kind'],'text':'SYNTHETIC FUTURE TEST ONLY.'}])
+        self.check()
+        self.progress['checkpoints'][8].update(state='pending', corpusHash=None, standardSnapshot=None, reviewReference=None)
+        with self.assertRaisesRegex(ValueError, 'Finish preceding five-chapter quality review before expanding'): self.check()
 
 
 if __name__ == '__main__':

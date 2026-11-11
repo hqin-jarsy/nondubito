@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Work-in-progress alignment only. No HTML renderer or publication operation."""
 import argparse
+import copy
 from collections import Counter
 import hashlib
 import json
@@ -18,7 +19,7 @@ MANIFEST_SHA = 'da725b0c6ad88c04663181db705cb3ab4271493d4d9684d30a406e4f919eb562
 BODY_SHA = 'f62b8e051f9fa4749e8b96bcf37855ecf9f5b9ecd28a616806798fe5f1701520'
 NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md')
 SOURCE_MAP_SHA = 'bbb80bd819736cf6bab23308018d23bd60960bed6a8c4db0fbbac59964a7c9fc'
-EXPECTED_NORMATIVE_SNAPSHOT = 'b6c7e62662179ce90fecb4ba9eaeb0ab127c3741e7b407ca248654aaf6096c28'
+EXPECTED_NORMATIVE_SNAPSHOT = 'd63863840a1c4f20e250791f8b4b16f7b60e964011bdad8eea619d59191ebd6b'
 NORMATIVE_DELTA_REFERENCES = ('EN-V08-PROJECTION-R3-LISTENER-R4-DELTA-20261111', 'EN-V08-G07-11-QUANTITY-FINAL-STATUS-DELTA-20261111')
 V07_BASE_NORMATIVE_SNAPSHOT = '534a727dcfcbd776460d8d357f6c77afb3385821f66a7bee51cc17b1a4c88f90'
 V07_BASE_PROVENANCE_SHA = 'faced2fa7d4efc2271d04ebda9687227c99584d01f036f7d75351e7943f3010d'
@@ -66,6 +67,21 @@ CURRENT_ACCEPTED_BODIES_SHA = '5c833abba391398de7e4dee28ba53f8107f64982e4a0bb765
 CURRENT_REVIEW_CONTENT_SHA = '862d6fae80f441c7378a0d00fd8d1c9d5b29316d2e57ee194c79b03052e03db3'
 CURRENT_OLD_REFERENCES_SHA = '2d9644cfcd70cd6a0d9f67c1ffe9256f42c0fcf03fab1da4feed3b455fc5d091'
 CURRENT_CHECKPOINT_CORPUS_HASHES = ['ab09b0a93682e1ee10dd9ef5ea3504c229b0469b3bf8dec9c7c1355695cc8643', '14b84b8061425a29415d5e6f5eaf4530ad1c55ceaea4cc66ec7b2bc18785dcfb', 'a91a5357313a9ad5a011c92adbb92130721c11d94fe711a0ddba39b5a8440ea7', 'dbfe58abef590696f22d7ff0e9a3401066d8b5d2dcd24530945d9ab2de015943', '625d18c01ad40818cd2f0d93ecec80c4b6e59acdb397be0615df57be9c707507', '7b5c5e49f56e0430837a0cfbe98354fabdd2efacdc073ef781107d305a039e5e', '2f6bb5449185e1fbf9b3bbb2aab74bb3c927159071a6d3b5ae249d5f027ac30f']
+
+FELICITY_AMENDMENT_KEY = 'naming_revision_felicity_20261111'
+FELICITY_AMENDMENT_ID = 'felicity-naming-revision-20261111'
+FELICITY_BEFORE_FILENAME = 'felicity-20261111.before.json'
+FELICITY_BEFORE_PROGRESS_SHA = '8f4b888bb0a3fb451d76e189712fc6a87328983fd995439fe6802419ba59e444'
+FELICITY_BEFORE_NORMATIVE_SNAPSHOT = 'b6c7e62662179ce90fecb4ba9eaeb0ab127c3741e7b407ca248654aaf6096c28'
+FELICITY_BEFORE_PROVENANCE_SHA = 'fe70e345ac78db95fb4858cdfd4d2772f662a87c5b539eada51cb9c1310dbfcd'
+FELICITY_BEFORE_CHECKPOINT_SHA = '9a56d847f3f84e8d801e8e84f695d9ec14bd3d8cfb09b5222818c63a53735929'
+FELICITY_CONTENT_REFERENCE = 'FENGER-FELICITY-INDEPENDENT-R1-20261111'
+FELICITY_CONTENT_REVIEW_SHA = '7b2fd5d1ad5ee0ccf97e702998175210976a0b19f832b867b7988b4eee023cd5'
+FELICITY_CHANGED_IDS = ('hlm-c007-b0015', 'hlm-c007-b0016', 'hlm-c014-b0010', 'hlm-c020-b0004', 'hlm-c020-b0020', 'hlm-c024-b0028', 'hlm-c025-b0029', 'hlm-c029-b0006')
+FELICITY_AFTER_CONTENT_HASHES = {'hlm-c007-b0015': '72092dc44e8a0ddf20c3dd7e9f6ffebe72bf58be2cc09906ddad5b6bd2798802', 'hlm-c007-b0016': '4979f9a8deac64801011ecdd9a78e74943db223782f8e00b3eb57b901ec6aab9', 'hlm-c014-b0010': 'fe86751c36c86d195c190b1c1e01ca1157bec859475f8b0da8821a3076c8fcf7', 'hlm-c020-b0004': '0ce289c7c1cc331e422fbfbae9e9296e31e489274bfd07e4c0d06c41d9580c50', 'hlm-c020-b0020': 'd627899fb7561ae70ac2a9f560e5b45d5843ba4e21c724ca41e025a6696f5f5d', 'hlm-c024-b0028': 'd3a320e0fc847ef75d0b8efca0f1c497573014574807af3ee5c3862fac7841c2', 'hlm-c025-b0029': '298b374336fedfaf891782ea69b60008092932ca79794e7c9914a381a7919023', 'hlm-c029-b0006': 'c44f2fd2e88757951ba2624d2b667107ff0d59020e7e17496b67c537c4d104cd'}
+FELICITY_HISTORICAL_LOCATORS = [{'file': 'english-batch-006-010.json', 'pointer': '/entries/55', 'sha256': 'b0935e3199f5f4bd1208673124f97266edc00e757d5050680e686e0e3e991f35'}, {'file': 'english-batch-011-015.json', 'pointer': '/existing_form_reuse/32', 'sha256': 'bfd4506049a6c759222ee5a6b7081224d7fd30b2e00c74b44802d1ad3fff052c'}, {'file': 'english-batch-016-020.json', 'pointer': '/inherited_applications/40', 'sha256': '2541e2be147c2536c0dc3bd2f54985a761e476af148838a541721f2cbe3b4239'}, {'file': 'english-batch-021-025.json', 'pointer': '/inherited_applications/68', 'sha256': 'c00cc5f9d1d23ce14178b27de77faef1967ff6d8730390950bd8c0fc9018e3cf'}, {'file': 'english-batch-026-030.json', 'pointer': '/inherited_applications/31', 'sha256': '16c95ecabc72728f5706bddb69888c069808d3606c796fb5c756109b1e8a4993'}, {'file': 'english-batch-036-040.json', 'pointer': '/inheritedApplications/27', 'sha256': '0973ab1fc6dd52db0c4165db87ba771c9c35e3067e78699bc01981ee6307fa8f'}]
+FELICITY_MIGRATION_REFERENCE = 'FELICITY-INDEPENDENT-SEMANTIC-NORM-R1-20261111'
+FELICITY_MIGRATION_EVIDENCE_SHA = 'f465131270d782ee338ba75b99059a54288e9437454f7b1e7ce5e122f79b270c'
 
 REVIEW_TYPES = ('bilingual', 'literary', 'consistency')
 STATES = ('pending', 'draft', 'reviewed', 'accepted')
@@ -194,8 +210,10 @@ def validate_standard_readiness(mapping, progress):
             and decisions[2].get('englishBodyDelta') == 0,
             'Explicit author override missing')
     document = json.loads((STANDARD / 'provenance.json').read_bytes())
+    previous_progress = load_felicity_before(document)
+    previous_document = {k: v for k, v in document.items() if k != FELICITY_AMENDMENT_KEY}
     transition = document.get('normative_projection_v09', {})
-    history = {k: v for k, v in document.items() if k not in ('normative_projection_v09', CURRENT_SOURCE_AMENDMENT_KEY)}
+    history = {k: v for k, v in document.items() if k not in ('normative_projection_v09', CURRENT_SOURCE_AMENDMENT_KEY, FELICITY_AMENDMENT_KEY)}
     require(sha(encoded(history)) == V09_PREVIOUS_PROVENANCE_SHA, 'Historical provenance changed')
     previous = transition.get('previousCheckpoint')
     require(sha(encoded(previous)) == V09_PREVIOUS_CHECKPOINT_SHA, 'Historical checkpoint changed')
@@ -233,7 +251,7 @@ def validate_standard_readiness(mapping, progress):
     chain = {k: transition[k] for k in ('previousNormativeSnapshot', 'previousProvenanceSHA256', 'previousCheckpointSHA256', 'candidateNormativeSnapshot')}
     require(checkpoint.get('normativeTransitionV09') == chain, 'v0.9 checkpoint transition differs')
     # Earlier acceptance is a prerequisite, not a fixed pending-state cap on 36–40.
-    for source, unit in zip(mapping['units'], progress['units']):
+    for source, unit in zip(mapping['units'], previous_progress['units']):
         if source['chapter'] <= 35:
             require(unit['state'] == 'accepted', 'Prior seven batches must remain accepted')
             require(all(all(ref in r['reference'].split('; ') for ref in V09_DELTA_REFERENCES) for r in unit['reviews']), 'Accepted review missing actual normative delta reference')
@@ -241,13 +259,14 @@ def validate_standard_readiness(mapping, progress):
             require(all(SOURCE_DELTA_REFERENCE in r['reference'].split('; ') for r in unit['reviews']), 'Accepted review missing historical source delta reference')
             if source['chapter'] <= 30:
                 require(all(all(ref in r['reference'].split('; ') for ref in NORMATIVE_DELTA_REFERENCES) for r in unit['reviews']), 'Accepted review missing historical normative delta reference')
-    for i, item in enumerate(progress['checkpoints'][:7]):
+    for i, item in enumerate(previous_progress['checkpoints'][:7]):
         require(item['state'] == 'accepted' and all(ref in item['reviewReference'].split('; ') for ref in V09_DELTA_REFERENCES), 'Checkpoint missing actual normative delta reference')
         require(V09_FINAL_STATUS_REFERENCE in item['reviewReference'].split('; '), 'Checkpoint missing final-status reference')
         require(SOURCE_DELTA_REFERENCE in item['reviewReference'].split('; '), 'Checkpoint missing historical source delta reference')
         if i < 6:
             require(all(ref in item['reviewReference'].split('; ') for ref in NORMATIVE_DELTA_REFERENCES), 'Checkpoint missing historical normative delta reference')
-    validate_current_source_amendment(document, checkpoint, mapping, progress, snapshot)
+    validate_current_source_amendment(previous_document, checkpoint, mapping, previous_progress, FELICITY_BEFORE_NORMATIVE_SNAPSHOT)
+    validate_felicity_revision(document, checkpoint, mapping, progress, previous_progress, snapshot)
     validate_progress(mapping, progress, snapshot)
     return snapshot
 
@@ -313,6 +332,113 @@ def validate_current_source_amendment(document, checkpoint, mapping, progress, s
             == amendment.get('checkpointCorpusHashes'), 'Historical checkpoint corpus hashes changed')
     require(all(c['reviewReference'].endswith(suffix) for c in progress['checkpoints'][:7]),
             'Checkpoint missing current source reference')
+
+
+def load_felicity_before(document):
+    amendment = document.get(FELICITY_AMENDMENT_KEY)
+    require(isinstance(amendment, dict), 'Felicity revision missing')
+    require(amendment.get('previousProgressPath') == 'data/hongloumeng/first80-english/' + FELICITY_BEFORE_FILENAME,
+            'Felicity historical progress path differs')
+    raw = (DATA / FELICITY_BEFORE_FILENAME).read_bytes()
+    require(sha(raw) == FELICITY_BEFORE_PROGRESS_SHA == amendment.get('previousProgressSHA256'),
+            'Felicity historical progress changed')
+    return json.loads(raw)
+
+
+def validate_felicity_revision(document, checkpoint, mapping, progress, previous, snapshot):
+    """One exact naming delta; historical source migration is checked separately."""
+    amendment = document[FELICITY_AMENDMENT_KEY]
+    historical = {k: v for k, v in document.items() if k != FELICITY_AMENDMENT_KEY}
+    require(sha(encoded(historical)) == FELICITY_BEFORE_PROVENANCE_SHA == amendment.get('previousProvenanceSHA256'),
+            'Felicity predecessor provenance changed')
+    old_checkpoint = amendment.get('previousCheckpoint')
+    require(sha(encoded(old_checkpoint)) == FELICITY_BEFORE_CHECKPOINT_SHA == amendment.get('previousCheckpointSHA256'),
+            'Felicity predecessor checkpoint changed')
+    require(FELICITY_MIGRATION_EVIDENCE_SHA is not None and FELICITY_MIGRATION_REFERENCE is not None,
+            'Awaiting actual Felicity normative migration review')
+    evidence = amendment.get('normativeMigrationReview')
+    require(isinstance(evidence, dict) and sha(encoded(evidence)) == FELICITY_MIGRATION_EVIDENCE_SHA,
+            'Felicity normative migration evidence missing or forged')
+    require(evidence.get('status') == 'PASS'
+            and evidence.get('reference') == FELICITY_MIGRATION_REFERENCE
+            and evidence.get('previousNormativeSnapshot') == FELICITY_BEFORE_NORMATIVE_SNAPSHOT
+            and evidence.get('normativeSnapshot') == snapshot
+            and evidence.get('sourceHash') == READING_SHA and evidence.get('sourceMapHash') == SOURCE_MAP_SHA
+            and evidence.get('changedUnitIds') == list(FELICITY_CHANGED_IDS)
+            and evidence.get('unchangedAcceptedBodyCount') == 1877
+            and evidence.get('unchangedReviewContentHashCount') == 5631
+            and evidence.get('changedAcceptedUnitCount') == 8
+            and evidence.get('nameReplacementCount') == 10
+            and evidence.get('reviewBindingsMigrationApproved') is True
+            and evidence.get('changedCorpusBatches') == [[6, 10], [11, 15], [16, 20], [21, 25], [26, 30]]
+            and evidence.get('notFullCorpusReread') is True
+            and isinstance(evidence.get('reviewArtifactSHA256'), str) and len(evidence['reviewArtifactSHA256']) == 64,
+            'Felicity normative migration scope differs')
+    require(amendment.get('id') == FELICITY_AMENDMENT_ID
+            and amendment.get('state') == 'reviewed_naming_revision'
+            and amendment.get('previousNormativeSnapshot') == FELICITY_BEFORE_NORMATIVE_SNAPSHOT
+            and amendment.get('normativeSnapshot') == snapshot
+            and amendment.get('sourceHash') == READING_SHA and amendment.get('sourceMapHash') == SOURCE_MAP_SHA
+            and amendment.get('changedUnitIds') == list(FELICITY_CHANGED_IDS)
+            and amendment.get('currentForm') == 'Felicity' and amendment.get('historicalForm') == 'Feng-er'
+            and amendment.get('contentReviewReference') == FELICITY_CONTENT_REFERENCE
+            and amendment.get('contentReviewArtifactSHA256') == FELICITY_CONTENT_REVIEW_SHA
+            and amendment.get('contentReviewHashes') == FELICITY_AFTER_CONTENT_HASHES
+            and amendment.get('historicalLocatorHashes') == FELICITY_HISTORICAL_LOCATORS
+            and amendment.get('publicationEnabled') is False and amendment.get('newChapterAcceptance') is False,
+            'Felicity revision identity or content scope differs')
+    binding = {k: amendment[k] for k in ('id', 'state', 'previousNormativeSnapshot', 'normativeSnapshot',
+               'sourceHash', 'sourceMapHash', 'previousProgressSHA256', 'contentReviewReference')}
+    binding['normativeMigrationReference'] = FELICITY_MIGRATION_REFERENCE
+    binding['normativeMigrationEvidenceSHA256'] = FELICITY_MIGRATION_EVIDENCE_SHA
+    require(checkpoint.get('currentNamingRevision') == binding, 'Felicity checkpoint binding differs')
+    for row in FELICITY_HISTORICAL_LOCATORS:
+        value = json.loads((STANDARD / row['file']).read_bytes())
+        for token in row['pointer'].split('/')[1:]:
+            token = token.replace('~1', '/').replace('~0', '~')
+            value = value[int(token)] if isinstance(value, list) else value[token]
+        require(sha(encoded(value)) == row['sha256'], 'Historical Feng-er norm object changed')
+    require(checkpoint.get('currentSourceAmendment') == old_checkpoint.get('currentSourceAmendment'),
+            'Current checkpoint amendment differs')
+    # Only the previously accepted prefix is constrained here. Later batches
+    # retain their ordinary import/review/checkpoint lifecycle and are not capped.
+    old = [u for s, u in zip(mapping['units'], previous['units']) if s['chapter'] <= 35]
+    current = [u for s, u in zip(mapping['units'], progress['units']) if s['chapter'] <= 35]
+    require(len(old) == len(current) == 1885, 'Felicity prior accepted inventory differs')
+    suffix = '; ' + FELICITY_MIGRATION_REFERENCE
+    replacements = 0
+    for before, after in zip(old, current):
+        require(before['id'] == after['id'], 'Felicity prior unit order differs')
+        expected = copy.deepcopy(before)
+        if before['id'] in FELICITY_CHANGED_IDS:
+            for segment in expected['segments']:
+                replacements += segment['text'].count('Feng-er')
+                segment['text'] = segment['text'].replace('Feng-er', 'Felicity')
+            expected['reviews'] = [{'type': kind, 'contentHash': FELICITY_AFTER_CONTENT_HASHES[before['id']],
+                                    'standardSnapshot': snapshot,
+                                    'reference': FELICITY_CONTENT_REFERENCE + suffix} for kind in REVIEW_TYPES]
+            require(content_hash(after, progress['sourceIssues']) == FELICITY_AFTER_CONTENT_HASHES[before['id']],
+                    'Felicity reviewed content differs')
+        else:
+            for review in expected['reviews']:
+                review['standardSnapshot'] = snapshot
+                review['reference'] += suffix
+        require({k: v for k, v in after.items() if k != 'reviews'} ==
+                {k: v for k, v in expected.items() if k != 'reviews'},
+                'Earlier accepted English bodies changed outside exact Felicity delta')
+        require(after['reviews'] == expected['reviews'], 'Felicity current review lineage or exact binding differs')
+    require(replacements == 10, 'Felicity exact ten-name replacement scope differs')
+    changed_batches = []
+    for index, before in enumerate(previous['checkpoints'][:7]):
+        units = [u for s, u in zip(mapping['units'], progress['units']) if before['first'] <= s['chapter'] <= before['last']]
+        expected = copy.deepcopy(before)
+        expected.update(corpusHash=batch_hash(units, progress['sourceIssues']), standardSnapshot=snapshot,
+                        reviewReference=before['reviewReference'] + suffix)
+        if expected['corpusHash'] != before['corpusHash']:
+            changed_batches.append([before['first'], before['last']])
+        require(progress['checkpoints'][index] == expected, 'Felicity current checkpoint lineage or corpus differs')
+    require(changed_batches == [[6, 10], [11, 15], [16, 20], [21, 25], [26, 30]],
+            'Felicity five-batch corpus delta differs')
 
 
 def content_hash(unit, issues=()):

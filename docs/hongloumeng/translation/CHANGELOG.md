@@ -98,3 +98,10 @@ Freezes scoped terminology, voices, literary execution and portable public Chine
 The author explicitly chooses 几霜痕 at hlm-c038-b0060. The prior 几痕霜 decision is preserved exactly as historical evidence, with a distinct author override and qualified rationale. Current ch38 source anchors, full-poem quotation and guards follow the choice; the reviewed English a few traces of frost needs no body change. Core terms and every other normative object remain unchanged.
 
 Global source bindings also reflect the separately evidenced ch42 title 雅谬→雅谑, ch42b0032 顶绢箩四个，志箩四个→顶细绢箩四个，粗绢箩四个, and ch45b0035 蓺→爇. The ch40 桃杏树 choice remains. These source changes do not add rules for chapters 41–45 or accept any English units. Migration of current review bindings requires genuine review of this exact source/norm delta; the ch38 poem-only review does not supply that gate. Earlier provenance and review content hashes remain historical and unchanged. Publication remains disabled.
+
+
+## 2026-11-11 丰儿 / Felicity 当前命名覆盖
+
+- 按既有1–85一致原则及自有第85回已发布文本，将凤姐丫头丰儿的当前英文统一为 Felicity。B02-056及五个后续应用中的 Feng-er 对象、历史引文与旧review保持原样，由当前明确覆盖决定其执行效力。
+- 1–35回修订范围为八个已接受完整单元中的十次名字替换；其他已接受正文不变。旧24条review与历史corpus保留认证前像，新内容复验、有限规范迁移和五个受影响累计corpus的当前绑定分别如实记录。
+- 40/41/46相关稿件继续属于其各自QA/后续批次；本项不提供B8接受、全书重读、公开英文或任何未来未完成审校的证明。
