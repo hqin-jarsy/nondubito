@@ -157,6 +157,15 @@ def batch_hash(units, issues=()):
     return sha(encoded([content_hash(u, issues) for u in units]))
 
 
+def closing_quote_source_ids(mapping):
+    """Derive the narrow punctuation exception from the verified Chinese source."""
+    frozen = source_map(load_source())
+    require(mapping == frozen, 'Closing-quote source map differs from verified Chinese source')
+    return {u['id'] for u in frozen['units']
+            if u['layout'] == {'kind': 'prose'} and u['characterCount'] == 1
+            and u['sourceHash'] == sha('”')}
+
+
 def validate_progress(mapping, progress, snapshot=None):
     keys(progress, 'schemaVersion status sourceHash standardVersion units checkpoints sourceIssues')
     require(progress['schemaVersion'] == 1 and progress['status'] == 'translation-work-in-progress', 'Not a work-in-progress corpus')
@@ -175,6 +184,7 @@ def validate_progress(mapping, progress, snapshot=None):
         require(isinstance(issue['description'], str) and bool(issue['description'].strip()), 'Source issue description required')
         require((issue['state'] == 'open' and issue['resolution'] is None) or
                 (issue['state'] == 'resolved' and isinstance(issue['resolution'], str) and bool(issue['resolution'].strip())), 'Resolved issue requires an actual resolution')
+    quote_source_ids = None
     for source, unit in zip(mapping['units'], progress['units']):
         keys(unit, 'id sourceHash state segments reviews')
         require((unit['id'], unit['sourceHash']) == (source['id'], source['sourceHash']), 'Unit missing, duplicated, reordered, or stale')
@@ -189,7 +199,12 @@ def validate_progress(mapping, progress, snapshot=None):
             require(segment['kind'] == source['layout']['kind'], 'Verse, diagram, or prose kind lost')
             require(isinstance(segment['text'], str) and segment['text'].strip(), 'Empty translated segment')
             require(sha(segment['text']) != source['sourceHash'], 'Chinese source cannot be a translation placeholder')
-            require(any(c.isascii() and c.isalpha() for c in segment['text']), 'No English letters; auxiliary check only')
+            has_letters = any(c.isascii() and c.isalpha() for c in segment['text'])
+            if not has_letters and quote_source_ids is None:
+                quote_source_ids = closing_quote_source_ids(mapping)
+            require(has_letters or (len(unit['segments']) == 1 and unit['id'] in quote_source_ids
+                                    and segment['text'] in ('’', "'", '"')),
+                    'No English letters; only a verified standalone closing quote is exempt')
         if source['layout']['kind'] != 'prose':
             require(len(unit['segments']) == 1, 'Preserve each title/poem line/diagram line as one mapped unit')
         seen = set()

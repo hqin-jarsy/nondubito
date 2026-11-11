@@ -416,5 +416,191 @@ class FreezeReadinessTests(unittest.TestCase):
             p.standard_snapshot()
 
 
+class ClosingQuoteTests(unittest.TestCase):
+    """Synthetic acceptance fixtures exercise mechanics, never editorial approval."""
+    QUOTES = ('hlm-c028-b0092', 'hlm-c028-b0123', 'hlm-c040-b0055', 'hlm-c040-b0060')
+    SNAPSHOT = 'synthetic-closing-quote-test-only'
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mapping = p.source_map(p.load_source())
+        cls.positions = {u['id']: i for i, u in enumerate(cls.mapping['units'])}
+        cls.fixtures = {}
+        for last in (25, 35):
+            progress = p.initial_progress(cls.mapping)
+            for source, unit in zip(cls.mapping['units'], progress['units']):
+                if source['chapter'] <= last:
+                    unit.update(state='accepted', segments=[{'kind': source['layout']['kind'],
+                                'text': 'Synthetic closing-quote test fixture only.'}])
+                    unit['reviews'] = [{'type': kind, 'contentHash': p.content_hash(unit),
+                                        'standardSnapshot': cls.SNAPSHOT, 'reference': 'synthetic-test-only'}
+                                       for kind in p.REVIEW_TYPES]
+            for checkpoint in progress['checkpoints']:
+                if checkpoint['last'] <= last:
+                    units = [u for s, u in zip(cls.mapping['units'], progress['units'])
+                             if checkpoint['first'] <= s['chapter'] <= checkpoint['last']]
+                    checkpoint.update(state='accepted', corpusHash=p.batch_hash(units),
+                                      standardSnapshot=cls.SNAPSHOT, reviewReference='synthetic-test-only')
+            cls.fixtures[last] = progress
+
+    def trial(self, identifier=QUOTES[0], text='’'):
+        position = self.positions[identifier]
+        last = 25 if self.mapping['units'][position]['chapter'] < 31 else 35
+        progress = copy.deepcopy(self.fixtures[last])
+        unit = progress['units'][position]
+        unit.update(state='draft', segments=[{'kind': 'prose', 'text': text}], reviews=[])
+        return progress, unit
+
+    def validate(self, progress, mapping=None):
+        return p.validate_progress(self.mapping if mapping is None else mapping, progress, self.SNAPSHOT)
+
+    def test_actual_four_source_units_and_supported_closers(self):
+        self.assertEqual(p.closing_quote_source_ids(self.mapping), set(self.QUOTES))
+        for identifier in self.QUOTES:
+            for closer in ('’', "'", '"'):
+                with self.subTest(identifier=identifier, closer=closer):
+                    progress, unit = self.trial(identifier, closer)
+                    self.assertEqual(self.validate(progress)['draft'], 1)
+                    self.assertEqual(unit['segments'], [{'kind': 'prose', 'text': closer}])
+
+    def test_invalid_punctuation_empty_digits_chinese_and_padding(self):
+        for text in ('', ' ', '\n', '”', '‘', '“', '`', '.', '...', '…', '。', ',', '—',
+                     '123', '未译中文', '’’', ' ’', '’ ', '’\n', '\u200b’', '\u202e’'):
+            with self.subTest(text=text):
+                progress, unit = self.trial(text=text)
+                with self.assertRaises(ValueError):
+                    self.validate(progress)
+
+    def test_ordinary_prose_and_title_cannot_use_closer(self):
+        for position in (0, 1):
+            progress = copy.deepcopy(self.fixtures[25])
+            progress['units'][position].update(state='draft', reviews=[], segments=[
+                {'kind': self.mapping['units'][position]['layout']['kind'], 'text': '’'}])
+            with self.subTest(position=position), self.assertRaisesRegex(ValueError, 'No English letters'):
+                self.validate(progress)
+
+    def test_verse_cannot_use_closer(self):
+        position = next(i for i, u in enumerate(self.mapping['units']) if u['layout']['kind'] == 'verse')
+        progress = copy.deepcopy(self.fixtures[25])
+        progress['units'][position].update(state='draft', reviews=[], segments=[{'kind': 'verse', 'text': '’'}])
+        with self.assertRaisesRegex(ValueError, 'No English letters'):
+            self.validate(progress)
+
+    def test_standalone_quote_cannot_split_or_add_filler(self):
+        for other in ('’', 'Synthetic filler.'):
+            progress, unit = self.trial()
+            unit['segments'].append({'kind': 'prose', 'text': other})
+            with self.subTest(other=other), self.assertRaisesRegex(ValueError, 'No English letters'):
+                self.validate(progress)
+
+    def test_wrong_unit_id_or_source_hash_rejected(self):
+        for field, value in [('id', 'hlm-c028-b0093'), ('sourceHash', '0' * 64)]:
+            progress, unit = self.trial()
+            unit[field] = value
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'missing, duplicated, reordered, or stale'):
+                self.validate(progress)
+
+    def test_wrong_segment_kind_rejected(self):
+        progress, unit = self.trial()
+        unit['segments'][0]['kind'] = 'verse'
+        with self.assertRaisesRegex(ValueError, 'kind lost'):
+            self.validate(progress)
+
+    def test_forged_map_unit_hash_id_length_or_layout_rejected(self):
+        for field, value in [('sourceHash', '0' * 64), ('id', 'hlm-c028-b9999'),
+                             ('characterCount', 2), ('layout', {'kind': 'prose', 'first': True})]:
+            mapping = copy.deepcopy(self.mapping)
+            progress, unit = self.trial()
+            source = mapping['units'][self.positions[self.QUOTES[0]]]
+            source[field] = value
+            if field in ('id', 'sourceHash'):
+                unit[field] = value
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'Closing-quote source map differs'):
+                self.validate(progress, mapping)
+
+    def test_forged_title_map_and_matching_segment_rejected(self):
+        mapping = copy.deepcopy(self.mapping)
+        progress, unit = self.trial()
+        mapping['units'][self.positions[self.QUOTES[0]]]['layout'] = {'kind': 'title'}
+        unit['segments'][0]['kind'] = 'title'
+        with self.assertRaisesRegex(ValueError, 'Closing-quote source map differs'):
+            self.validate(progress, mapping)
+
+    def test_wrong_global_source_or_manifest_or_body_rejected(self):
+        for field in ('sourceHash', 'manifestHash', 'bodyHash'):
+            mapping = copy.deepcopy(self.mapping)
+            mapping[field] = '0' * 64
+            progress, unit = self.trial()
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                self.validate(progress, mapping)
+
+    def test_modified_actual_source_or_manifest_rejected(self):
+        original = Path.read_bytes
+        for name in ('reading.zh.json', 'manifest.json'):
+            def read(path):
+                raw = original(path)
+                return raw + b' ' if path == p.SOURCE / name else raw
+            progress, unit = self.trial()
+            with self.subTest(name=name), patch.object(Path, 'read_bytes', read):
+                with self.assertRaisesRegex(ValueError, 'Frozen Chinese source changed'):
+                    self.validate(progress)
+
+    def test_map_order_duplicate_or_missing_unit_rejected(self):
+        for mode in ('reordered', 'duplicate', 'missing'):
+            mapping = copy.deepcopy(self.mapping)
+            progress, unit = self.trial()
+            if mode == 'reordered':
+                mapping['units'][-2:] = reversed(mapping['units'][-2:])
+            elif mode == 'duplicate':
+                mapping['units'][-1] = copy.deepcopy(mapping['units'][-2])
+            else:
+                mapping['units'].pop()
+            with self.subTest(mode=mode), self.assertRaises(ValueError):
+                self.validate(progress, mapping)
+
+    def test_no_source_reload_for_ordinary_accepted_fixture(self):
+        with patch.object(p, 'load_source', side_effect=AssertionError('Unexpected fallback')):
+            self.validate(copy.deepcopy(self.fixtures[25]))
+
+    def test_source_validation_once_for_two_quote_units_per_call(self):
+        progress, unit = self.trial()
+        other = progress['units'][self.positions[self.QUOTES[1]]]
+        other.update(state='draft', segments=[{'kind': 'prose', 'text': '’'}], reviews=[])
+        with patch.object(p, 'load_source', wraps=p.load_source) as load:
+            self.assertEqual(self.validate(progress)['draft'], 2)
+            self.assertEqual(load.call_count, 1)
+
+    def test_quote_does_not_bypass_preceding_batch_gate(self):
+        progress = p.initial_progress(self.mapping)
+        position = self.positions[self.QUOTES[-1]]
+        progress['units'][position].update(state='draft', segments=[{'kind': 'prose', 'text': '’'}])
+        with self.assertRaisesRegex(ValueError, 'preceding five-chapter'):
+            self.validate(progress)
+
+    def test_quote_does_not_bypass_review_or_issue_acceptance(self):
+        progress, unit = self.trial()
+        unit['state'] = 'accepted'
+        with self.assertRaisesRegex(ValueError, 'all required'):
+            self.validate(progress)
+        unit['reviews'] = [{'type': kind, 'contentHash': p.content_hash(unit),
+                            'standardSnapshot': self.SNAPSHOT, 'reference': 'synthetic-test-only'}
+                           for kind in p.REVIEW_TYPES]
+        progress['sourceIssues'] = [{'id': 'synthetic-quote-issue', 'unitId': unit['id'],
+                                   'sourceHash': unit['sourceHash'], 'state': 'open',
+                                   'description': 'Synthetic test only.', 'resolution': None}]
+        for review in unit['reviews']:
+            review['contentHash'] = p.content_hash(unit, progress['sourceIssues'])
+        with self.assertRaisesRegex(ValueError, 'blocked by open source issue'):
+            self.validate(progress)
+
+    def test_quote_content_change_invalidates_review(self):
+        progress, unit = self.trial()
+        unit['reviews'] = [{'type': 'bilingual', 'contentHash': p.content_hash(unit),
+                            'standardSnapshot': self.SNAPSHOT, 'reference': 'synthetic-test-only'}]
+        unit['segments'][0]['text'] = "'"
+        with self.assertRaisesRegex(ValueError, 'Review is stale'):
+            self.validate(progress)
+
+
 if __name__ == '__main__':
     unittest.main()
