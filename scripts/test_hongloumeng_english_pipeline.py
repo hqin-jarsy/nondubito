@@ -29,7 +29,7 @@ class PipelineTests(unittest.TestCase):
     def test_frozen_inventory(self):
         self.assertEqual(len(self.mapping['units']), 4474)
         blocks = [u for u in self.mapping['units'] if u['index']]
-        self.assertEqual(sum(u['characterCount'] for u in blocks), 586205)
+        self.assertEqual(sum(u['characterCount'] for u in blocks), 586209)
         self.assertEqual(len([u for u in blocks if u['chapter'] <= 5]), 378)
         self.assertEqual(sum(u['characterCount'] for u in blocks if u['chapter'] <= 5), 35513)
         self.assertEqual(len({u['id'] for u in self.mapping['units']}), 4474)

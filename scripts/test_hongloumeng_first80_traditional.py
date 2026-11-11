@@ -30,7 +30,21 @@ class TraditionalTests(unittest.TestCase):
                 self.assertEqual({k: v for k, v in x.items() if k != 'text'}, {k: v for k, v in y.items() if k != 'text'})
                 self.assertEqual(len(x['text']), len(y['text']))
                 total += len(y['text'])
-        self.assertEqual(total, 586205)
+        self.assertEqual(total, 586209)
+
+    def test_seven_approved_source_decisions(self):
+        cases = [
+            (6, 25, '打箩柜筛面', '打籮櫃篩麵', 1),
+            (6, 32, '面目清秀，身材俊俏', '面目清秀，身材俊俏', 1),
+            (8, 38, '吃了半碗碧粳粥', '吃了半碗碧粳粥', 1),
+            (10, 23, '右关虚而无神', '右關虛而無神', 2),
+            (17, 43, '此处蕉棠两植', '此處蕉棠兩植', 1),
+            (18, 22, '说不尽帘卷虾须', '說不盡簾捲蝦鬚', 1),
+            (18, 125, '是赐厨役、优伶、百戏、杂行人丁的', '是賜廚役、優伶、百戲、雜行人丁的', 1),
+        ]
+        for chapter, index, simplified, traditional, count in cases:
+            self.assertEqual(self.source['chapters'][chapter-1]['blocks'][index-1]['text'].count(simplified), count)
+            self.assertEqual(self.target['chapters'][chapter-1]['blocks'][index-1]['text'].count(traditional), count)
 
     def test_manifest_shape_and_assets(self):
         manifest = json.loads(self.outputs['manifest.zh-hant.json'])
