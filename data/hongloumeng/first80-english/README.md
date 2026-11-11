@@ -6,7 +6,7 @@ This directory is project data, not a published English reading edition. Chapter
 
 `source-map.json` is reproducible from the already-public `../first80-public/reading.zh.json`. It freezes the file and manifest hashes and maps 80 titles plus 4,394 source blocks. Each unit has a stable chapter/position ID, exact source-text SHA-256, Unicode code-point count, and original layout flags. IDs are scoped to this frozen source; a future Chinese revision requires an explicit source migration, not silent renumbering or acceptance of changed hashes. No private manuscript or editorial approval is copied here.
 
-The full body contains 586,209 code points: 3,399 prose blocks, 928 verse lines, 54 couplet lines, 8 diagram lines, and 5 letter blocks. Chapters 1–5 contain 378 blocks / 35,513 body code points plus five titles (383 units). This is a workload inventory, not an estimate of English word count or translation quality.
+The full body contains 586,210 code points: 3,399 prose blocks, 928 verse lines, 54 couplet lines, 8 diagram lines, and 5 letter blocks. Chapters 1–5 contain 378 blocks / 35,513 body code points plus five titles (383 units). This is a workload inventory, not an estimate of English word count or translation quality.
 
 ## Working records
 
@@ -71,3 +71,9 @@ Three separately labelled translator notes explain chapter 19’s two retained t
 The eight-file v0.5 standard was frozen after the actual normative-delta review `EN-V05-R2-DELTA-20261111`, including the corrected inherited Mackerel identity. This fourth-batch integration leaves that standard unchanged. All earlier 751 complete accepted unit records, 2,253 review records, and three accepted checkpoints are unchanged. The chapter 11–15 review manifest and all chapter 21–80 pending records are also unchanged.
 
 The fourth checkpoint permits drafting chapters 21–25; chapter 26 remains blocked until the fifth checkpoint is accepted. The eighty-chapter work is unfinished. Publication remains disabled and no English reading page is published by these data changes. Any later manuscript, relevant issue, source or normative change requires suitable re-review before its evidence can be rebound.
+
+## Chapter 24 source alignment
+
+One explicitly approved edition-specific readability correction changes only hlm-c024-b0034, from 恰当很走来 to 恰值焙茗走来, with the corresponding Traditional text. All 4,474 IDs, source order, kinds and layout flags remain unchanged. Current global source and source-map bindings migrate; the 1,056 accepted translations, their 3,168 review records, four accepted checkpoints, five translator notes, thirteen resolved issues and frozen eight-file v0.5 standard remain unchanged. Historical drafts, review reports and normative provenance retain their as-of bindings. The chapter 11–15 manifest updates only current global source bindings and appends explicit provenance; earlier evidence is preserved.
+
+alignment-c024-b0034 remains open because this pending unit has no English translation or review. Chinese approval and application are not English acceptance. The translation must be composed and reviewed against the corrected source before that alignment issue can be resolved. No English reading page is produced.

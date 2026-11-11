@@ -30,10 +30,11 @@ class TraditionalTests(unittest.TestCase):
                 self.assertEqual({k: v for k, v in x.items() if k != 'text'}, {k: v for k, v in y.items() if k != 'text'})
                 self.assertEqual(len(x['text']), len(y['text']))
                 total += len(y['text'])
-        self.assertEqual(total, 586209)
+        self.assertEqual(total, 586210)
 
     def test_seven_approved_source_decisions(self):
         cases = [
+            (24, 34, '恰值焙茗走来', '恰值焙茗走來', 1),
             (6, 25, '打箩柜筛面', '打籮櫃篩麵', 1),
             (6, 32, '面目清秀，身材俊俏', '面目清秀，身材俊俏', 1),
             (8, 38, '吃了半碗碧粳粥', '吃了半碗碧粳粥', 1),
