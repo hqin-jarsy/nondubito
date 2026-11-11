@@ -73,3 +73,11 @@ Preserved the supplied six-language v0.2 archive unchanged, recorded hashes, and
 - Adds the sixth scoped batch glossary, current voice applications, literary mechanisms and complete Chinese boundaries, quantity checks, relationship/object guards, and explicit occurrence exclusions. Source IDs remain evidence anchors, not exhaustive execution scopes.
 - All five historical batch files and existing core fields are unchanged. New provisional forms have not been promoted into the core glossary. Source binding targets the 4,475-unit Chinese source and its explicit chapter 28 migration.
 - Freeze identifier: batch-026-030-editorial-r3-2026-11-11. Actual semantic projection and targeted prior-text review EN-V07-PROJECTION-R3-V1-DELTA-20261111 supports retaining the accepted English unchanged. Final freeze-status bytes require their own exact review before current normative bindings are updated. Original content hashes and references, checkpoint corpus hashes, notes, source issues and historical integration records remain preserved. No full earlier-corpus reread or new chapter acceptance is claimed. Chapter 31 waits for actual cumulative 26–30 acceptance, and publication remains disabled.
+
+
+## english-1-110-v0.7 · 2026-11-11: chapter 30 stroke-count attribution clarification
+
+- Clarify nine execution fields: the eighteen strokes at hlm-c030-b0026 are counted by Bao-yu in the selected narrative. They are not asserted as a universal dictionary count for traditional 薔. Preserve the chosen Chinese 蔷 and the English eighteen.
+- Retain the distinction between the rose bush and the isolated character, Bao-yu’s mistaken poetry inference and limited knowledge, the title’s naming, the several-thousand-character hyperbole, and all other local instructions. This clarification changes no source text or English body.
+- Dictionary evidence distinguishes conventions: Taiwan’s Ministry of Education lists 薔 as seventeen strokes (https://dict.concised.moe.edu.tw/dictView.jsp?ID=25494); Hàn Diǎn lists sixteen in its current entry and nineteen in the Kangxi section (https://zdic.net/hant/%E8%96%94), and fourteen for simplified 蔷 (https://zdic.net/hans/%E8%94%B7). No historical explanation for the novel’s eighteen is invented.
+- This is a scoped factual clarification, not a fresh full review of earlier chapters.

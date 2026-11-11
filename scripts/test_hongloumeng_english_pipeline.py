@@ -311,10 +311,14 @@ class FreezeReadinessTests(unittest.TestCase):
         self.directory = Path(self.temp.name)
         self.patcher = patch.object(p, 'STANDARD', self.directory)
         self.patcher.start()
-        self.ref_patch = patch.object(p, 'NORMATIVE_DELTA_REFERENCES', ('EN-SYNTHETIC-TEST-ONLY', 'EN-SYNTHETIC-FINAL-TEST-ONLY'))
+        self.ref_patch = patch.object(p, 'NORMATIVE_DELTA_REFERENCES', ('EN-SYNTHETIC-TEST-ONLY', 'EN-SYNTHETIC-FINAL-TEST-ONLY', 'EN-SYNTHETIC-CLARIFICATION-TEST-ONLY'))
         self.ref_patch.start()
         self.snapshot_patch = patch.object(p, 'EXPECTED_NORMATIVE_SNAPSHOT', 'synthetic')
         self.snapshot_patch.start()
+        self.base_patches = [patch.object(p, name, getattr(p, name)) for name in ('V07_BASE_NORMATIVE_SNAPSHOT', 'V07_BASE_PROVENANCE_SHA', 'V07_BASE_CHECKPOINT_SHA')]
+        for item in self.base_patches:
+            item.start()
+        p.V07_BASE_NORMATIVE_SNAPSHOT = 'synthetic-prior-normative-snapshot'
         for name in p.NORMATIVE_FILES:
             (self.directory / name).write_text('Synthetic test-only normative fixture.')
         self.batch = {'version': p.VERSION, 'status': 'frozen_editorial_checkpoint',
@@ -328,6 +332,8 @@ class FreezeReadinessTests(unittest.TestCase):
         self.refresh()
 
     def tearDown(self):
+        for item in reversed(self.base_patches):
+            item.stop()
         self.snapshot_patch.stop()
         self.ref_patch.stop()
         self.patcher.stop()
@@ -338,9 +344,22 @@ class FreezeReadinessTests(unittest.TestCase):
         self.snapshot = p.standard_snapshot()
         p.EXPECTED_NORMATIVE_SNAPSHOT = self.snapshot
         provenance = {'normative_projection_v07': {'version': p.VERSION, 'state': 'frozen_editorial_checkpoint',
-                     'sourceHash': p.READING_SHA, 'sourceMapHash': p.SOURCE_MAP_SHA, 'normativeSnapshot': self.snapshot,
+                     'sourceHash': p.READING_SHA, 'sourceMapHash': p.SOURCE_MAP_SHA, 'normativeSnapshot': p.V07_BASE_NORMATIVE_SNAPSHOT,
                      'independentNormativeDeltaReview': 'EN-SYNTHETIC-TEST-ONLY', 'finalNormativeDeltaReview': 'EN-SYNTHETIC-FINAL-TEST-ONLY',
                      'independentTechnicalReview': 'required_by_installation_contract', 'reviewBindingsMigrated': True}}
+        previous_checkpoint = {'version': p.VERSION, 'state': 'frozen_editorial_checkpoint',
+                               'normative_snapshot': p.V07_BASE_NORMATIVE_SNAPSHOT,
+                               'readiness': {'normativeDeltaReviewReferences': list(p.NORMATIVE_DELTA_REFERENCES[:-1])}}
+        p.V07_BASE_PROVENANCE_SHA = p.sha(p.encoded(provenance['normative_projection_v07']))
+        p.V07_BASE_CHECKPOINT_SHA = p.sha(p.encoded(previous_checkpoint))
+        chain = {'id': p.V07_CLARIFICATION_ID, 'previousNormativeSnapshot': p.V07_BASE_NORMATIVE_SNAPSHOT,
+                 'normativeSnapshot': self.snapshot, 'reference': p.NORMATIVE_DELTA_REFERENCES[-1],
+                 'previousProjectionCanonicalSha256': p.V07_BASE_PROVENANCE_SHA,
+                 'previousCheckpointCanonicalSha256': p.V07_BASE_CHECKPOINT_SHA}
+        provenance['normative_clarification_v07_stroke_count'] = dict(chain, previousCheckpoint=previous_checkpoint,
+            sourceHash=p.READING_SHA, sourceMapHash=p.SOURCE_MAP_SHA,
+            independentTechnicalReview='required_by_installation_contract', reviewBindingsMigrated=True)
+        self.checkpoint['normativeAmendment'] = chain
         (self.directory / 'provenance.json').write_text(json.dumps(provenance))
         self.checkpoint['normative_snapshot'] = self.snapshot
         self.checkpoint['files'] = [{'path': 'docs/hongloumeng/translation/' + name,
@@ -414,6 +433,89 @@ class FreezeReadinessTests(unittest.TestCase):
         (self.directory / 'english-batch-026-030.json').unlink()
         with self.assertRaisesRegex(ValueError, 'baseline'):
             p.standard_snapshot()
+
+
+class ClarificationChainTests(FreezeReadinessTests):
+    """Negative synthetic chain fixtures, not evidence of actual editorial review."""
+    def mutate_provenance(self, change):
+        document = p.json.loads((self.directory / 'provenance.json').read_bytes())
+        change(document)
+        raw = p.json.dumps(document).encode()
+        (self.directory / 'provenance.json').write_bytes(raw)
+        for row in self.checkpoint['files']:
+            if row['path'].endswith('/provenance.json'):
+                row.update(sha256=p.sha(raw), bytes=len(raw))
+        self.save_checkpoint()
+
+    def test_missing_clarification_chain_rejected(self):
+        self.mutate_provenance(lambda doc: doc.pop('normative_clarification_v07_stroke_count'))
+        with self.assertRaisesRegex(ValueError, 'clarification chain'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_wrong_previous_target_id_or_reference_rejected(self):
+        for field in ('previousNormativeSnapshot', 'normativeSnapshot', 'id', 'reference'):
+            self.refresh()
+            self.mutate_provenance(lambda doc: doc['normative_clarification_v07_stroke_count'].update({field: 'wrong'}))
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'clarification chain'):
+                p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_wrong_previous_hashes_rejected(self):
+        for field in ('previousProjectionCanonicalSha256', 'previousCheckpointCanonicalSha256'):
+            self.refresh()
+            self.mutate_provenance(lambda doc: doc['normative_clarification_v07_stroke_count'].update({field: '0' * 64}))
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'clarification chain'):
+                p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_missing_or_wrong_checkpoint_chain_rejected(self):
+        self.checkpoint.pop('normativeAmendment')
+        self.save_checkpoint()
+        with self.assertRaisesRegex(ValueError, 'Checkpoint clarification chain'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+        self.refresh()
+        self.checkpoint['normativeAmendment']['reference'] = 'EN-FABRICATED'
+        self.save_checkpoint()
+        with self.assertRaisesRegex(ValueError, 'Checkpoint clarification chain'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_old_projection_object_changed_rejected(self):
+        self.mutate_provenance(lambda doc: doc['normative_projection_v07'].update(normativeSnapshot=self.snapshot))
+        with self.assertRaisesRegex(ValueError, 'Historical v0.7 provenance'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_old_projection_reference_changed_rejected(self):
+        self.mutate_provenance(lambda doc: doc['normative_projection_v07'].update(finalNormativeDeltaReview=p.NORMATIVE_DELTA_REFERENCES[-1]))
+        with self.assertRaisesRegex(ValueError, 'Historical v0.7 provenance'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_historical_checkpoint_object_changed_rejected(self):
+        self.mutate_provenance(lambda doc: doc['normative_clarification_v07_stroke_count']['previousCheckpoint'].update(normative_snapshot=self.snapshot))
+        with self.assertRaisesRegex(ValueError, 'Historical v0.7 checkpoint'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_missing_new_actual_reference_rejected(self):
+        self.checkpoint['readiness']['normativeDeltaReviewReferences'] = list(p.NORMATIVE_DELTA_REFERENCES[:-1])
+        self.save_checkpoint()
+        with self.assertRaisesRegex(ValueError, 'Unexpected normative delta references'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_fabricated_new_reference_rejected(self):
+        self.checkpoint['readiness']['normativeDeltaReviewReferences'][-1] = 'EN-FABRICATED-CLARIFICATION'
+        self.save_checkpoint()
+        with self.assertRaisesRegex(ValueError, 'Unexpected normative delta references'):
+            p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_stale_expected_snapshot_rejected(self):
+        with patch.object(p, 'EXPECTED_NORMATIVE_SNAPSHOT', p.V07_BASE_NORMATIVE_SNAPSHOT):
+            with self.assertRaisesRegex(ValueError, 'Unexpected normative snapshot'):
+                p.validate_standard_readiness(self.mapping, self.progress)
+
+    def test_wrong_amendment_source_or_readiness_rejected(self):
+        for field, value in [('sourceHash', 'wrong'), ('sourceMapHash', 'wrong'),
+                             ('reviewBindingsMigrated', False), ('independentTechnicalReview', 'PASS')]:
+            self.refresh()
+            self.mutate_provenance(lambda doc: doc['normative_clarification_v07_stroke_count'].update({field: value}))
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'Incomplete clarification binding'):
+                p.validate_standard_readiness(self.mapping, self.progress)
 
 
 class ClosingQuoteTests(unittest.TestCase):

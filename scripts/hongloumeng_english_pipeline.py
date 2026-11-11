@@ -18,8 +18,12 @@ MANIFEST_SHA = 'cb6845224b3f02b82c1b5d1962184c57ce9c623aed996a13313af02a1eacb3b8
 BODY_SHA = 'ed46c59a19ff5960940a26bee1634f6ccd6cc85fc2fdcd555123427ba4b87bf5'
 NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'CHANGELOG.md')
 SOURCE_MAP_SHA = '978e6cdfa5abdfeb6605e3f84d9d6cdab85e3f5f3ee769d05b8de6c8eb67a25b'
-EXPECTED_NORMATIVE_SNAPSHOT = '534a727dcfcbd776460d8d357f6c77afb3385821f66a7bee51cc17b1a4c88f90'
-NORMATIVE_DELTA_REFERENCES = ('EN-V07-PROJECTION-R3-V1-DELTA-20261111', 'EN-V07-FREEZE-STATUS-R2-DELTA-20261111')
+EXPECTED_NORMATIVE_SNAPSHOT = '7e5d3fdb84f42130634f65cd51f17bd254a0636157feecd59ecabb1b38bd5eb9'
+NORMATIVE_DELTA_REFERENCES = ('EN-V07-PROJECTION-R3-V1-DELTA-20261111', 'EN-V07-FREEZE-STATUS-R2-DELTA-20261111', 'EN-V07-STROKE-CLARIFICATION-DELTA-20261111')
+V07_BASE_NORMATIVE_SNAPSHOT = '534a727dcfcbd776460d8d357f6c77afb3385821f66a7bee51cc17b1a4c88f90'
+V07_BASE_PROVENANCE_SHA = 'faced2fa7d4efc2271d04ebda9687227c99584d01f036f7d75351e7943f3010d'
+V07_BASE_CHECKPOINT_SHA = 'e62aaf0ea3dbe4aff7cf2da17c21dcde0875a194c77d0e46d2b9d6fa5f9894d6'
+V07_CLARIFICATION_ID = 'v07-stroke-count-attribution-2026-11-11'
 REVIEW_TYPES = ('bilingual', 'literary', 'consistency')
 STATES = ('pending', 'draft', 'reviewed', 'accepted')
 
@@ -128,14 +132,33 @@ def validate_standard_readiness(mapping, progress):
             and readiness.get('publicationEnabled') is False, 'Incomplete freeze readiness configuration')
     references = readiness.get('normativeDeltaReviewReferences')
     require(references == list(NORMATIVE_DELTA_REFERENCES), 'Unexpected normative delta references')
-    provenance = json.loads((STANDARD / 'provenance.json').read_bytes()).get('normative_projection_v07', {})
+    provenance_document = json.loads((STANDARD / 'provenance.json').read_bytes())
+    provenance = provenance_document.get('normative_projection_v07', {})
+    require(sha(encoded(provenance)) == V07_BASE_PROVENANCE_SHA, 'Historical v0.7 provenance changed')
     require(provenance.get('version') == VERSION and provenance.get('state') == 'frozen_editorial_checkpoint'
             and provenance.get('sourceHash') == READING_SHA and provenance.get('sourceMapHash') == SOURCE_MAP_SHA
-            and provenance.get('normativeSnapshot') == snapshot
+            and provenance.get('normativeSnapshot') == V07_BASE_NORMATIVE_SNAPSHOT
             and provenance.get('independentNormativeDeltaReview') == NORMATIVE_DELTA_REFERENCES[0]
             and provenance.get('finalNormativeDeltaReview') == NORMATIVE_DELTA_REFERENCES[1]
             and provenance.get('independentTechnicalReview') == 'required_by_installation_contract'
             and provenance.get('reviewBindingsMigrated') is True, 'Incomplete normative provenance binding')
+    amendment = provenance_document.get('normative_clarification_v07_stroke_count', {})
+    expected_chain = {'id': V07_CLARIFICATION_ID,
+                      'previousNormativeSnapshot': V07_BASE_NORMATIVE_SNAPSHOT,
+                      'normativeSnapshot': snapshot, 'reference': NORMATIVE_DELTA_REFERENCES[-1],
+                      'previousProjectionCanonicalSha256': V07_BASE_PROVENANCE_SHA,
+                      'previousCheckpointCanonicalSha256': V07_BASE_CHECKPOINT_SHA}
+    require(isinstance(amendment, dict) and all(amendment.get(k) == v for k, v in expected_chain.items()),
+            'Missing or incorrect normative clarification chain')
+    require(checkpoint.get('normativeAmendment') == expected_chain, 'Checkpoint clarification chain differs')
+    previous_checkpoint = amendment.get('previousCheckpoint', {})
+    require(sha(encoded(previous_checkpoint)) == V07_BASE_CHECKPOINT_SHA
+            and previous_checkpoint.get('normative_snapshot') == V07_BASE_NORMATIVE_SNAPSHOT
+            and previous_checkpoint.get('readiness', {}).get('normativeDeltaReviewReferences')
+                == list(NORMATIVE_DELTA_REFERENCES[:-1]), 'Historical v0.7 checkpoint changed')
+    require(amendment.get('sourceHash') == READING_SHA and amendment.get('sourceMapHash') == SOURCE_MAP_SHA
+            and amendment.get('independentTechnicalReview') == 'required_by_installation_contract'
+            and amendment.get('reviewBindingsMigrated') is True, 'Incomplete clarification binding')
     for source, unit in zip(mapping['units'], progress['units']):
         if source['chapter'] <= 25 and unit['state'] == 'accepted':
             require(all(all(ref in r['reference'].split('; ') for ref in references) for r in unit['reviews']),
