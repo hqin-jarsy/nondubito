@@ -3,6 +3,7 @@ import html
 import json
 import re
 import unittest
+from unittest.mock import patch
 import hashlib
 import subprocess
 from urllib.parse import urlsplit,unquote
@@ -11,6 +12,58 @@ import build_search_index as search
 from hongloumeng_translations import edition, FOREIGN, DATA, DATE, received_path
 
 class OriginalTests(unittest.TestCase):
+    CH083_PROCESSION_BEFORE = "When Master Rong's wife was buried over at the Ning mansion"
+    CH083_PROCESSION_AFTER = "When the funeral procession for Master Rong's wife left the Ning mansion"
+
+    def expected_historical_body(self, path, prior):
+        # Only the reviewed 2026-11-11 ch083 English correction may differ.
+        if path == build.TARGET / 'en/ch083.html':
+            before = html.escape(self.CH083_PROCESSION_BEFORE)
+            after = html.escape(self.CH083_PROCESSION_AFTER)
+            self.assertEqual(prior.count(before), 1)
+            self.assertEqual(prior.count(after), 0)
+            prior = prior.replace(before, after, 1)
+        return prior
+
+    def test_ch083_procession_correction_is_exact_and_reproducible(self):
+        received = received_path('ch083', 'en').read_bytes()
+        self.assertEqual(hashlib.sha256(received).hexdigest(),
+                         '030e946fbd159b00cd85a09208b17df5c40cf27f6fe1e3e90cc44c095fa1dd19')
+        self.assertEqual(received.decode().count(self.CH083_PROCESSION_BEFORE), 1)
+        self.assertEqual(received.decode().count(self.CH083_PROCESSION_AFTER), 0)
+        correction_path = DATA / 'corrections.json'
+        fixes = json.loads(correction_path.read_text())
+        self.assertEqual(fixes[-1], {
+            'chapter': 'ch083', 'language': 'en',
+            'before': self.CH083_PROCESSION_BEFORE,
+            'after': self.CH083_PROCESSION_AFTER, 'count': 1,
+            'reason': '出殡 denotes the funeral procession leaving the mansion, not burial there. Chapter 14 prepares the lodging of the coffin at Iron Threshold Temple; chapter 15 describes its arrival and placement there.'})
+        # Removing this sole new entry must reproduce the frozen pre-correction data.
+        previous_corrections = json.dumps(fixes[:-1], ensure_ascii=False, indent=2) + '\n'
+        self.assertEqual(hashlib.sha256(previous_corrections.encode()).hexdigest(),
+                         '6b2d8f56d97a0e0307cfac9871d6a375071c311e75a56cc5fff58d407f3ad7bf')
+        original_read_text = type(correction_path).read_text
+        def without_procession_fix(path, *args, **kwargs):
+            if path == correction_path:
+                return previous_corrections
+            return original_read_text(path, *args, **kwargs)
+        with patch.object(type(correction_path), 'read_text', without_procession_fix):
+            previous_pages = build.render()
+        current_pages = build.render()
+        target = build.TARGET / 'en/ch083.html'
+        self.assertEqual(len(current_pages), 48)
+        self.assertEqual(current_pages.keys(), previous_pages.keys())
+        self.assertEqual([p for p in current_pages if current_pages[p] != previous_pages[p]], [target])
+        before = html.escape(self.CH083_PROCESSION_BEFORE)
+        after = html.escape(self.CH083_PROCESSION_AFTER)
+        self.assertEqual(previous_pages[target].count(before), 1)
+        self.assertEqual(previous_pages[target].count(after), 0)
+        self.assertEqual(current_pages[target].count(before), 0)
+        self.assertEqual(current_pages[target].count(after), 1)
+        self.assertEqual(current_pages[target], previous_pages[target].replace(before, after, 1))
+        for path, rendered in current_pages.items():
+            self.assertEqual(path.read_text(), rendered, str(path))
+
     def test_author_revision_20261019(self):
         publication=json.loads((build.ROOT/'data/originals/hongloumeng/publication.json').read_text())
         self.assertEqual(publication['author_revision']['date'],'2026-10-19')
@@ -198,7 +251,7 @@ class OriginalTests(unittest.TestCase):
                 path=build.TARGET/directory/(stem+'.html')
                 prior=subprocess.check_output(['git','show',baseline+':'+str(path.relative_to(build.ROOT))],cwd=build.ROOT,text=True)
                 body=lambda text:text.split('<div class="novel-text">')[1].split('</article>')[0]
-                self.assertEqual(body(path.read_text()),body(prior),str(path))
+                self.assertEqual(body(path.read_text()),body(self.expected_historical_body(path, prior)),str(path))
         received=DATA/'received/ch084'
         files=[p for p in received.rglob('*') if p.is_file()]
         self.assertEqual(len(files),32)
@@ -218,7 +271,7 @@ class OriginalTests(unittest.TestCase):
                 path=build.TARGET/directory/(stem+'.html')
                 prior=subprocess.check_output(['git','show','b5a4afb:'+str(path.relative_to(build.ROOT))],cwd=build.ROOT,text=True)
                 body=lambda text:text.split('<div class="novel-text">')[1].split('</article>')[0]
-                self.assertEqual(body(path.read_text()),body(prior),str(path))
+                self.assertEqual(body(path.read_text()),body(self.expected_historical_body(path, prior)),str(path))
         for lang in FOREIGN:
             title,units,notes=edition('ch085',lang)
             self.assertEqual(len(units),156)

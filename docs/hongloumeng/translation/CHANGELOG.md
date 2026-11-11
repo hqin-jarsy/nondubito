@@ -24,3 +24,18 @@ Preserved the supplied six-language v0.2 archive unchanged, recorded hashes, and
 - Record the chapter-title layout and repeated-text rule already used in chapters 1–5. Keep translator notes outside dialogue.
 - Add early-stage voices and boundaries for character medical claims, pulse descriptions and the literary prescription. No modern dosage conversion or invented diagnosis.
 - Existing core term meanings and chapter 1–5 decisions remain unchanged. Changes to a global standard snapshot require a documented delta review before any previous review can be rebound. This frozen standard changes no prose. Existing acceptance is retained only after the documented normative-delta regression; this is not a fresh full bilingual or literary review.
+
+
+## english-1-110-v0.4 · 2026-11-11: chapters 11–15
+
+- Add scoped names, titles, rites, rosters, material wording and whole-sentence inscription checks.
+- Align six new duke titles with Duke of Rong/Ning while retaining descendants’ actual inherited ranks.
+- Retain Gem, Ascension Pavilion, established prince titles and the chapter 83 roll-call time correspondence.
+- Record two conservative material phrases already present in chapter 6, without specialist claims.
+- Append chapter 11–15 scene guidance without changing the existing profiles or earlier batch details.
+- Permit only specified isolated chapter 11–15 drafting/review while earlier source-query units remain wholly empty; canonical import, final acceptance and publication gates stay unchanged.
+- Core entries and the first two batch glossaries remain unchanged. Prior binding migration requires actual delta review, not blind hash replacement.
+
+- Record the chapter 83 funeral-departure/burial legacy discrepancy without changing that text; only accurate local canopy vocabulary is reusable. Distinguish Zhi-shan from Zhu Zhi-shan.
+
+- r3 verifies the subsequent single-sentence chapter 83 correction in the correction layer and generated output. Preserve the earlier discrepancy as history, not as the current text. All 142 term forms and voice content remain unchanged.
