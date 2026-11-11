@@ -86,3 +86,8 @@ Preserved the supplied six-language v0.2 archive unchanged, recorded hashes, and
 ## english-1-110-v0.8: chapters 31-35
 
 Freezes reviewed scoped execution rules for chapters 31-35, including the actual listener/reference distinction for Second Cousin. Preserves all six earlier batch tables, existing core fields and accepted chapters 1-30. Actual semantic delta, accepted-evidence alignment and final-status review support current normative bindings; no full earlier-corpus reread or new chapter acceptance is claimed. Publication remains disabled.
+
+
+## v0.9: chapters 36-40
+
+Freezes scoped terminology, voices, literary execution and portable public Chinese-source evidence after independent editorial and public-projection review. Actual limited semantic-delta review covered 41 complete earlier Chinese-English units, followed by an exact public-locator correction review. The seven historical batch records, accepted English wording and original review references are preserved; current standard bindings append those two actual review references. No new English acceptance or publication.

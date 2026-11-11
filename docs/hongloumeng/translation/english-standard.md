@@ -1,6 +1,6 @@
 # 《红楼梦》1–110回原创英文执行规范
 
-Version: english-1-110-v0.8. Frozen scoped standards for chapters 31-35; chapters 1-30 are accepted. This does not claim completion of chapters 1-80 or final publication review. Historical sections below retain their original as-of status. Continuity remains grounded in this repository’s English and Chinese chapters 81-85, with one common system through chapter 110.
+Version: english-1-110-v0.9. Frozen scoped standards for chapters 36–40; chapters 1–35 are accepted. English acceptance of chapters 36–40 remains separate. Historical sections retain their as-of status. Original English composition, project continuity through chapter 110 and disabled publication remain unchanged.
 
 ## 1. 文件及权威顺序
 
@@ -259,3 +259,40 @@ This section and english-batch-031-035.json contain the reviewed seventh-batch e
 ### 审查门
 
 The actual chapter 26-30 cumulative checkpoint is accepted. Independent semantic review and targeted accepted-text alignment support these rules. Final-status review and the controlled installation contract authenticate the final frozen bytes and current review bindings. Chapter and cumulative review gates remain mandatory. Norm freeze does not accept new prose or enable English publication. These scoped delta reviews do not claim a full reread of all earlier English chapters.
+
+
+## v0.9 supplement: chapters 36–40
+
+This supplement and english-batch-036-040.json record frozen scoped standards. Chapter acceptance and publication remain separate.
+
+## Source authority and readable repairs
+A readable repair supported by a specified common Chinese edition must record the chosen text, original text, fixed source/version, exact stable ID and rationale; keep historical evidence and synchronise Simplified/Traditional text and bindings, then report the repair. This does not authorise guessing, modernising archaic language, back-translating English into Chinese, or silently selecting a materially different version without supporting evidence. Unsupported substantive variants or added content remain for author decision. The two chapter19 authored [text missing] positions remain unchanged.
+
+The installed Chinese source at commit aadc6128e6e71615e2d785aabab104a7dec0bbb6 includes hlm-c038-b0060 几霜痕→几痕霜 and hlm-c040-b0011 倚树→桃杏树. No translated verse may bind itself to the unrepaired historical Chinese. 奴几、名攻利敌、一些山滴水、通用门 and铁锁练孤舟 are retained. Historical source records do not override the installed source or current acceptance status.
+
+## Names, social status and knowledge
+Aroma’s two taels and one string come from Lady Wang’s personal twenty-tael allowance. Comparable treatment is not a completed ceremony: the proposal to open her face and install her is refused. Bao-yu learns the arrangement at night. His gold/jade and wood/stone words are shouted in sleep and heard by Bao-chai after Dai-yu and Xiang-yun have left.
+
+Use inherited narrative names and places. Literary bynames are new scoped choices. Preserve Tan-chun’s first proposal, Bao-yu’s discarded old name and two teasing alternatives, the later actual signatures, and the 湘→霞 revision performed by Bao-yu. English initials cannot replace the Chinese claim marks. The same display form can have a different type, such as Lotus Pavilion as Xi-chun’s byname; it must not merge person, residence and maid Lotus.
+
+Ling-guan’s refusal is genuine. The bird is released and its cage broken; the doctor visit is proposed but stopped. Chapter30’s unrecognised girl and guessed poem become recognition and understanding only here.
+
+## Literary execution
+The inventory contains six begonia poems, twelve chrysanthemum poems and three crab poems, each eight Chinese lines, plus two two-line couplets, two letters, embedded quotations and twenty-five game replies. Metadata, signatures, poem lines and interrupted comments are separately bound. Untitled poems must not acquire inventory labels as source titles.
+
+Translate verse directly and originally. Rhyme, allusion and recurring phrases must be considered together; counts and hashes do not assess literary quality. Preserve the full thematic movement and author’s distinct image choices. Do not turn a broad allusion into a spoiler or a biological identification. 38b0060 is rebound to the actual repaired reading; b0078 and b0112’s previously restored wording is protected.
+
+For the domino game preserve the three tiles, their order and full-hand name, the aptness of replies, rhyme demand and actual penalties. The prose-embedded line at40b0068 counts. Quote-only b0055/b0060 must retain mapping without invented prose. The accepted23b63 Peony Pavilion line is a continuity candidate, not proof that40’s Heaven/rhyme mechanism already works in English. Reuse the complete accepted23 line with N08-tian; the final note and full game English still need review. No silent earlier-text rewriting.
+
+## Voices and narrated truth
+Letters, domestic banter, poems, criticism, storytelling and game answers need distinct registers. Grannie Liu can improvise and knowingly cooperate without a comic imported dialect. The narrator expressly marks her invented stories; the fire and paid inquiry are separate real actions, and Tealeaf’s discovered statue remains his report. Account figures, crab-price arithmetic, silver-testing claims and forecast expenses retain their speakers. Contradictions in counts or relative days are not silently repaired.
+
+At breakfast keep the private cue, public performance, separate bodily laughter and later assent. This is not proof Liu knew every device in advance. Gauze is misidentified then corrected; proposed window cloth, garden painting, room ornaments and curtains are not already delivered.
+
+## Material and literary execution
+
+Xi-feng accepts gifts readily and delays reporting the vacancy. Use Gossamer drifts in the clear air for the incipit; rhinoceros-horn mounts with the separate baixi note; linked-pearl vases with both shape/decoration explanations; coarse Ding-ware; and tang-wood pleasure boats. Evidence and explicit interpretation limits are embedded in the batch file.
+
+Use the complete accepted23b63 line at40b81 with the separate Heaven/tian note. Display actual Chinese claim marks, not invented English initials. Preserve wrist-ornament/autumn-fragrance imagery in Painting Chrysanthemums and align all25 comment echoes to the actual translated poems, distinguishing two compressed restatements. Use Chrysanthemum Dreams consistently. Furong bamboo mats is a limited inheritance from actual accepted28b130, not the same gift. Three cun and one cun are source measures, not English inches.
+
+Independent semantic-delta review covered these scoped rules and 41 complete earlier Chinese-English units; a separate follow-up verified the corrected public evidence locators. The current bindings preserve original references and append this limited review scope, not a new full-corpus reread. Each chapter then requires bilingual, literary and consistency review and a cumulative five-chapter review. No English publication is enabled.
