@@ -328,8 +328,18 @@ class FinalReadinessV09Tests(unittest.TestCase):
                 p.validate_standard_readiness(mapping, progress)
         else:
             self.assertEqual(p.validate_standard_readiness(mapping, progress), p.EXPECTED_NORMATIVE_SNAPSHOT)
-        self.assertEqual(sum(u['state'] == 'accepted' for u in progress['units']), 1885)
-        self.assertEqual(sum(u['state'] == 'pending' for u in progress['units']), 2590)
+        self.assertEqual(sum(u['state'] == 'accepted' for u in progress['units']), 2261)
+        self.assertEqual(sum(u['state'] == 'pending' for u in progress['units']), 2214)
+        prior = [u for s,u in zip(mapping['units'],progress['units']) if s['chapter'] <= 35]
+        batch = [u for s,u in zip(mapping['units'],progress['units']) if 36 <= s['chapter'] <= 40]
+        self.assertEqual(len(prior), 1885)
+        self.assertTrue(all(u['state'] == 'accepted' for u in prior))
+        self.assertEqual(sum(len(u['reviews']) for u in prior), 5655)
+        self.assertEqual(len(batch), 376)
+        self.assertTrue(all(u['state'] == 'accepted' for u in batch))
+        self.assertEqual(sum(len(u['segments']) for u in batch), 1140)
+        self.assertEqual(sum(len(u['reviews']) for u in batch), 1128)
+        self.assertEqual(sum(c['state'] == 'accepted' for c in progress['checkpoints']), 8)
 
     def test_eighth_batch_is_normative(self):
         self.assertIn('english-batch-036-040.json', p.NORMATIVE_FILES)
@@ -597,7 +607,7 @@ class FreezeReadinessV09Tests(unittest.TestCase):
 
     def test_pending_units_unchanged(self):
         self.assertTrue(all(u['state']=='pending' and not u['segments'] and not u['reviews'] for s,u in zip(self.mapping['units'],self.progress['units']) if s['chapter']>35))
-        self.assertEqual(p.validate_reader_notes(self.mapping,json.loads((p.DATA/'reader-notes.json').read_bytes())),20)
+        self.assertEqual(p.validate_reader_notes(self.mapping,json.loads((p.DATA/'reader-notes.json').read_bytes())),34)
 
     def test_current_batch_may_progress(self):
         self.changed_target(); self.check()
@@ -995,11 +1005,12 @@ class FelicityRevisionTests(unittest.TestCase):
         self.assertEqual(self.check(), p.EXPECTED_NORMATIVE_SNAPSHOT)
         before = json.loads(self.original_archive)
         old = [u for u in before['units'] if u['state'] == 'accepted']
-        now = [u for u in self.progress['units'] if u['state'] == 'accepted']
+        historical_ids = {u['id'] for u in old}
+        now = [u for u in self.progress['units'] if u['id'] in historical_ids]
         self.assertEqual(len(old), 1885); self.assertEqual(len(now), 1885)
         self.assertEqual(sum(len(u['reviews']) for u in now), 5655)
         self.assertEqual(sum(u['segments'] != v['segments'] for u,v in zip(old, now)), 8)
-        self.assertEqual(sum(c['state'] == 'accepted' for c in self.progress['checkpoints']), 7)
+        self.assertEqual(sum(c['state'] == 'accepted' for c in self.progress['checkpoints'][:7]), 7)
 
     def test_archive_bytes_tamper_rejected(self):
         f = self.data / p.FELICITY_BEFORE_FILENAME; f.write_bytes(self.original_archive + b' ')

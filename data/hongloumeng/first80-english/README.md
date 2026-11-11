@@ -154,3 +154,16 @@ Current progress is 1,885 accepted and 2,590 pending units, with seven accepted 
 This candidate follows the explicit ch38 author choice 几霜痕 and the bounded ch42/ch45 source repairs. Chapter40 桃杏树 stays. It preserves all 4,475 IDs and all accepted English wording. Chapters1–35 remain the only accepted corpus: 1,885 accepted, 2,590 pending, 5,655 existing reviews and seven checkpoints. The four changed source units remain pending. Twenty note objects, sixteen source issues, all historical review evidence and chapter11–15 integration records are retained. No B8 acceptance or publication is included.
 
 Actual independent scoped review SOURCE-CH38-42-45-INDEPENDENT-SEMANTIC-R1-20261111 supports current snapshot migration and appended references only. This does not claim a whole earlier-corpus reread.
+
+
+## Integrated chapters 36–40
+
+The five draft archives retain the independently reviewed wording and segment layout: 376 units and 1,140 segments. Their author states remain draft and review arrays empty. Chapter38 b0060 carries the author-approved 几霜痕 source hash with no English wording change. Chapter40 b0002 uses Felicity in the two independently reviewed name positions; all other English words remain exact to the complete final reading.
+
+EN-036-040-CUMULATIVE-FINAL-STATUS-R1-20261111 preserves the actual full bilingual reading, separate complete final English reading, four chapter joins and targeted earlier/81–85 comparisons at their historical source and normative bindings. EN-036-040-CURRENT-BINDING-INDEPENDENT-R1-20261111 adds a real limited current-source, naming, normative and note review: 49 complete bilingual units, the actual own85 identity passage, all fourteen selected notes and the exact changed normative content. It is not a new complete 376-unit or earlier-corpus reread. The distinct chapter38 author-choice and chapter40 naming reviews remain authenticated evidence, rather than being relabelled as older reviewers seeing later bytes.
+
+Canonical progress adds 1,128 exact-content-bound bilingual, literary and consistency records and the eighth cumulative checkpoint at the installed normative snapshot. All 1,885 previous accepted unit objects, 5,655 current review records, seven earlier checkpoints, sixteen source issues, Felicity historical preimage and source/normative history remain exact. All 2,214 later pending units are unchanged.
+
+Fourteen separately labelled translator notes are included exactly as selected, with valid current glossary or literary pointers and placed-unit source hashes. All twenty earlier note objects remain exact. The thirty-four notes remain outside translation segments and are not integrated into a reading presentation. No additional explanatory material is introduced.
+
+Current progress is 2,261 accepted and 2,214 pending units, with 6,783 current reviews and eight accepted checkpoints. Later chapters still require their own applicable standards, source decisions and actual reviews. No later batch is accepted, publication remains disabled and no public English reading page is produced. This is not native-human publication sign-off; relevant later changes require suitable actual re-review.
