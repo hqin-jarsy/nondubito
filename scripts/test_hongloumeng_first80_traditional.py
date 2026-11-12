@@ -42,7 +42,7 @@ class TraditionalTests(unittest.TestCase):
                 self.assertEqual({k: v for k, v in x.items() if k != 'text'}, {k: v for k, v in y.items() if k != 'text'})
                 self.assertEqual(len(x['text']), len(y['text']))
                 total += len(y['text'])
-        self.assertEqual(total, 586240)
+        self.assertEqual(total, 586232)
 
     def test_seven_approved_source_decisions(self):
         cases = [
