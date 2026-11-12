@@ -141,3 +141,8 @@ Preserves the exact independently approved four-file public guidance and binds 2
 ## v0.14 B13 scoped continuation: chapters 61-65
 
 Preserves the independently reviewed four-file public guidance and binds 284 reviewed units with three selected separate notes to the exact installed B12 predecessor. All 3388 earlier accepted bodies, historical reviews, 12 checkpoints, 69 notes and 16 issues retain their authentic contexts. Current merged-norm readiness requires independent semantic and technical receipts. No fresh whole-corpus reread is claimed. English publication remains disabled.
+
+
+## v0.15 B14 continuation: chapters 66-70
+
+Binds the independently reviewed final 224 units and four separate reader notes to the installed corrected Chinese source. Preserves all earlier accepted English, reviews, notes and source decisions. Full historical chapter readings, bounded successor rechecks and the complete cumulative reading retain their actual scopes. Current binding requires independent semantic and technical receipts. English publication remains disabled.

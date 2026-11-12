@@ -571,3 +571,96 @@ At 64.52, reading Er-jie as the person who sits beside the eastern partition is 
 Use exactly three reader notes: the song's dramatic source and speaker after 63.17; a restrained tumi identification after the verse in 63.21; and the names behind the Five Beauties after Bao-chai's criticism in 64.37. Keep the selected texts and complete-segment anchors unchanged. Do not add the four declined notes, identify the private offering's recipient or reveal later plot.
 
 Keep the chapter title's parallel halves divided by a semicolon. In Joker's complaint at 65.28, Lady Xing names Xi-feng's mother-in-law without turning his report into narrator fact. At each five-chapter checkpoint, read the complete bilingual text and then the continuous English; after narrow changes, reread complete affected contexts. Mechanical checks alone do not supply semantic approval.
+
+
+## Chapters 66–70 supplement
+
+### Scope, authority and method
+
+This supplement extends the established chapters 1–65 standard with bounded guidance for chapters 66–70. Read it with the complete Chinese and the scene, relationship, voice, literary, quantity and material inventories. A glossary hit is not an identity verdict. This candidate does not assert installation or acceptance.
+
+Compose original literary English directly from the Chinese. Continue the project's existing names and high-level register through 81–85 and the later 86–110 work without borrowing copyrighted third-party English sentences or importing later events. British spelling, natural dialogue, lightly audible storytelling, complete stable-ID mapping and separate verse treatment remain inherited defaults. Direct address follows relationship and audience rather than a fixed name substitution.
+
+The chapter source has 224 complete units: five titles and 219 body units. Fourteen narrow reading repairs affect fifteen spans in each script and twelve units. Preserve the complete author-approved chapter 66 proposal-and-sword passage, the eleven prior author-selected repairs, the deliberate chapter 69 ending gap and all retained readings. Modern public Chinese transcriptions and dictionaries provide limited comparison, not proof of a unique manuscript or of how corruption arose. The modern chapter 67 comparison page deliberately adjusts travel and the ending; never import it wholesale.
+
+Use current established names ahead of superseded forms. Joker is the existing English name of Jia Lian's page 兴儿. Chapter 53 and the project's own complete 84.39 support it, the latter twice in the same explicit inquiry about Er-jie and Doctor Hu. Autumn for 秋桐, Shan-jie and Hu Jun-rong / Doctor Hu are also established by complete author 84.39. Felicity, Parfumée, Bi-yue, Tong-xi, Kingfisher and Ebony keep their existing identities and spellings. Si-er was already introduced as 'Si-er, Number Four' in chapter 21; it is not a new naming error.
+
+### Identity, kinship and status
+
+You Er-jie, You San-jie, Old Mrs You and You-shi are four identities. Old Mrs You is You-shi's stepmother and the mother of the two younger sisters. Do not manufacture shared biological parentage. 尤氏 denotes Er-jie in 66.12, 68.9/11/14/15 and 69.27/39, but You-shi in the Ning-house confrontation and the other identified passages. The glossary records each occurrence. 姐姐, 妹子, 姨娘, 二爷 and 大奶奶 remain contextual addresses.
+
+You San-jie's chosen husband is Liu Xiang-lian. 柳二郎 and 冷二郎 retain the Second-Liu epithet, not another man. In 66.13 his 姑娘 is his aunt, not a young woman he intends to marry. The birthday in 66.7 took place at the older maternal relative's home, with the mother bringing the girls; do not collapse that older relative into the mother then present. The men’s brotherly addresses and Xue Pan's sworn brotherhood do not establish biological kinship.
+
+Joker's account of Bao-yu's schooling and future marriage is his partial, performative report. It neither abolishes earlier school attendance nor certifies a Bao-yu–Dai-yu engagement. You San-jie's counterexamples are her remembered observations. Preserve the nesting of Bao-yu's quoted words within hers.
+
+In chapter 68 Xi-feng and Er-jie exchange ceremonious self-deprecation. 奴家 is a polite first-person form here, not a declaration of enslavement. Xi-feng offers sisterly equality while insisting that Patience is their maid. Secondary wife, concubine and lawful wife remain distinct. Jia Rong's 'son' and 'aunt' language is relational and tactical, not a change of parents. The dead mother Xi-feng invokes is not the living You-shi.
+
+The current wife of Bao Er is not silently identified with the woman who died in chapter 44. No imported remarriage account is allowed. The male page Xi-er is distinct from chapter 35's maid. Old Mamma Zhu preserves the accepted name root for 祝; the recurring household role supports continuity, but a shared surname alone cannot establish a biography. 小燕 in 70.5 is a provisional contextual application of Swallow, based on the maid serving in Bao-yu's rooms; there is no narrated renaming. The identification remains provisional.
+
+Parfumée's Xiong-nu and Wen-du-li-na are aliases of the same girl in 70.4, not new male servants. Preserve the 那/纳 source difference without rewriting Chinese. The temporary Glass in chapter 63 is not the actual maid Glass in author 83.10. The poetic cuckoos, swallows, orioles, mandarin ducks and butterflies are not automatically maids with bird names. 鸳鸯剑 and 鸳鸯锦 do not refer to Faithful.
+
+### Chapters 66–67: trust, knowledge and conflicting accounts
+
+The road meeting contains Xue Pan's report of the rescue, the sworn brotherhood and Jia Lian's proposal. Jia Lian conceals that San-jie chose Xiang-lian herself. Xiang-lian keeps his ordinary defensive sword and offers a different heirloom pair. Do not insert a transfer action from another edition into the approved passage.
+
+The paired swords fit together, bear 鸳 and 鸯 separately and have dragon/kui ornament and jewels. Their clear blades are compared to autumn water. San-jie hides the female blade, offers the other blade with its scabbard in her left hand and kills herself with the right. Xiang-lian later uses the male blade to cut his hair. The jade hairpin broken earlier as an oath is not thereby the damaged hairpin in Er-jie's later chest.
+
+Xiang-lian's contemptuous allegation about Ning mansion is his allegation. The aunt's earlier engagement is his stated reason for withdrawing, not independently narrated fact. Er-jie's claim that he did not force San-jie to die is her intervention, not a legal acquittal. Xiang-lian's late reverence and grief must coexist with his earlier suspicion. Preserve the narrator's elegiac couplet without converting it to clinical description.
+
+At first the apparent new house, Xue servant and returning San-jie are presented as experienced. Reveal the ruined temple when the text does. Her account of Disenchantment, the register and spirits of love remains in that encounter. Keep the repeated 情 roots and the repudiation, not a renewed offer of marriage. The unnamed louse-catching Taoist is not identified as an earlier named figure. Buddhist tonsure imagery and the title's religious language coexist with this Taoist; do not force one religion on the episode.
+
+In chapter 67 Bao-chai's 'not taking it to heart' is expressly narrated. Translate it, but do not turn it into a universal diagnosis of cruelty. Xue Pan's real grief and the partners' speculative explanation of Xiang-lian's disappearance retain their different authority. Bao-yu knows the cause of Dai-yu's homesickness and distracts her deliberately. Nightingale also knows, but avoids saying it directly.
+
+The two trunks contain private purchases outside the trading accounts. Aunt Xue and Bao-chai distribute their shares through different servants. Dai-yu's portion is doubled. Aunt Zhao's claim of equal treatment is her impression. Oriole reports the recipients' thanks and the reward money she received; she does not return or surrender that money. Retain every listed toy and material without inventing a mechanism for the walking figure, sand lamp or drinking-game object.
+
+Aroma's visit is narrative backfill. She advises breathable fruit bags but no implementation is narrated. Unripe fruit and the first offering to the seniors are separate reasons not to eat. Do not turn 上头 into an identified Buddhist altar. Her tactful arrival and withdrawal do not make her a witness to the subsequent interrogation.
+
+Keep the chain of disclosure: two pages, overhearing maid, Patience, Xi-feng. Oriole and Crimson see indications of anger without knowing the secret's details. Joker strikes his own face; Wang-er is stopped from striking him. Retain the involuntary 'Second Mistress' and its correction. Xi-feng asks about betrothal, withdrawal, wedding, house and attendants, not a marriage document. The earlier chapter 64 withdrawal document remains separate background. Her invitation to tell Jia Lian is a threat in sarcastic form.
+
+### Chapters 68–69: coercion, rhetoric and action
+
+Xi-feng's long courteous speech is a performance. Preserve its sustained rhythm, repetitions, tears and the specific promises. Do not shorten it into a plot explanation. The narrator's explicit account of motives may be translated; do not add motives where the narrator withholds them.
+
+Er-jie enters through the garden's back gate, stays temporarily with Li Wan and loses her own maids. Xi-feng assigns her own maid, later named Shan-jie, and orders the women to prevent escape. The subsequent mistreatment starts after three days, not necessarily on the third day. Food, hair oil, missed visits and threats carry the coercion.
+
+The petition, coached testimony, bribed judgment, threats to Zhang Hua and the family's cover story remain distinct speech acts. The Censorate is a period institution, not a modern civil court. Preserve the four separately stated grounds: national mourning, family mourning, marrying secretly against parents' knowledge, and taking another wife while the first remains. Do not invent the full petition or statutory citations.
+
+Xi-feng's claim to have stolen five hundred taels from Lady Wang is not an audited explanation of the actual separate three-hundred and two-hundred bribes. Her script that Er-jie's parents and sisters have all died is false cover, not new narrator information. Grandmother Jia's permission to consummate after a year does not undo the prior secret marriage.
+
+Zhang Hua and his father leave with approximately a hundred in silver. Wang-er refuses in practice to execute the killing order and invents their deaths. Never narrate them as actually murdered. Autumn is granted as a concubine with a hundred taels and is seventeen. Xi-feng's intention to use her against Er-jie and later destroy her is a plan, not a completed second killing.
+
+Preserve the distinction between flirtation/old acquaintance and sexual consummation in 69.18: the narrative says Jia Lian and Autumn had not previously consummated it. Keep the narrator's gendered moral judgments, the women's accusations, Xi-feng's feigned kindness and the cruel servants' conduct at their stated levels. Patience's secret food and money and Er-jie's defense of her are substantive actions, not decorative sympathy.
+
+San-jie's severe moral indictment in Er-jie's dream is dream speech, including the incestuous animal comparison. Do not sanitize it or certify heavenly judgment. Er-jie refuses the proposed revenge. Her six months refer to living here; she separately says she is pregnant. Jia Lian separately reports three months without menstruation. Do not infer six months' gestation or reconcile it with other chronology.
+
+Doctor Hu's diagnosis, sexual distraction, treatment, loss of the formed male foetus and flight follow the local narrative. Doctor Wang is absent on military service seeking favour. No bribe to Doctor Hu is stated in this source. The later author's investigation must not be imported as proof of one. Preserve period medical vocabulary, reported prognosis and divination as historical speech, not modern diagnostic truth or useful medical instructions. The prescription's ingredients and quantities are absent and stay absent.
+
+The raw-gold death remains a tragic literary episode. Preserve the unknown weight, attribution of the belief and the narrated sequence without practical elaboration or a claim of physiological efficacy. Nobody is identified as the person who emptied the savings chest. The retained broken-hairpin reading has bounded support, with 拆 variants acknowledged.
+
+Funeral plans change. Five days is rejected; Jia Lian chooses seven, proposes further rites and burial south the next year, and is then forbidden the family temple in chapter 70. The actual burial is near and above San-jie's grave, not in the same grave or necessarily at the originally planned temple. The diviner's reported death hour is not an eyewitness timestamp. Distinguish five sevens from five or seven days. The five-hundred-tael coffin boards are bought on credit; Patience's two hundred do not become payment of the entire bill. Preserve the skirt kept as a remembrance and the chapter 69 uncompleted 'As the saying goes' ending without supplying a couplet.
+
+### Chapter 70: renewal, poetry and play
+
+Do not kill Wu-er: the source says she fell ill. Preserve Cai-yun, not Cai-xia. Faithful's refusal and silence toward Bao-yu remain as written, even when the wider chronology seems awkward. Eight twenty-five-year-old pages need wives, but no complete pairing list is supplied. The two 'aunts' in Bi-yue's report are the Li-family girls in household kinship usage, not two concubines. Springtime play among the girls and Bao-yu must remain lively without sexual elaboration.
+
+The Peach-blossom Society replaces the Begonia Society as a proposal and then an arrangement. Naiad, Lady of Allspice, Old Farmer of Sweet-rice Village, Guest beneath the Plantain and Old Friend of Rosy Clouds retain their person identities. Abbreviated bynames do not create people or locations. Bao-qin's teasing claim to the poem and Bao-yu's reference to the Allspice manner must keep their awkward local association; do not change Bao-qin into Bao-chai to resolve it.
+
+The Song of Peach Blossom has thirty-four seven-character lines across seventeen display blocks. Preserve curtain inside/outside, person/flower, wind, tears, colour, flame-like brocade, pillow, basin and cuckoo, and the final empty moonlit trace. No new prophecy of a specific character's death belongs in a note. Bao-yu's recognition and concealed tears are narrated after he reads.
+
+Bao-chai quotes three brief Du Fu passages to show variety of voice, not to endorse one unvarying emotional style. Translate all three independently from the exact novel text; do not substitute another collected-poem variant or provide unquoted lines. 一百韵 is a rejected proposal, not a missing composition.
+
+The proposed second day of the third month conflicts with Tan-chun's birthday and shifts to the fifth. The father's letter says the middle of the sixth month, the family's response says the sixth or seventh, and the disaster relief assignment later delays him to winter's end. Preserve those layers and the initial/middle/late-spring wording without harmonizing a calendar. Reading lessons and calligraphy are separate. The girls can copy handwriting for Bao-yu but cannot learn his books for him. Dai-yu's apparently impatient suspension of the society is considerate camouflage, explicitly explained. Keep his real work and subsequent renewed idleness.
+
+There are five complete willow-catkin lyrics, plus the earlier peach-blossom poem: six works, seventy-nine punctuation-defined verse lines, twenty-four displayed verse units. Xiang-yun writes before the lots are drawn. Five subsequent lots include Bao-yu's Butterfly Loves Flowers, which he erases and does not submit. His later completion of Tan-chun's Nan ke zi is one jointly authored work, not his assigned entry. Do not invent a sixth catkin lyric.
+
+Keep each tune name distinct from the common subject. Ru meng ling repeats its short plea; Nan ke zi has separate four-line halves; Tang duo ling holds the drifting/poor-fated sound association, the question of who rejects or receives, and the indifferent east wind; Xi jiang yue retains Han garden/Sui embankment and north/south; Lin jiang xian turns weightlessness into ascent. These are characters' poems and judgments, not certified forecasts. Keep the interruption after Bao-chai's first two lines, and repeat the second line exactly when Xiang-yun praises it. Preserve 好风频借力, not a familiar alternative. Semantic units and poetic momentum outrank obligatory rhyme.
+
+Track the kites individually. Bao-yu guesses that the butterfly belongs to Jiao-hong; Nightingale challenges that inference, and it goes to the gatekeeper to await a claimant. Dai-yu's beauty and Bao-yu's later beauty are different kites. The fish has already been released and the crab given to Jia Huan. After the failed beauty is sent for a bridle repair, Bao-yu takes another kite whose form is not supplied. Bao-qin has the red bat, Bao-chai seven linked geese and Tan-chun the soft-winged phoenix. The other phoenix and joy-character kite have unidentified owners.
+
+Nightingale takes the small Western silver scissors from Snowgoose and cuts Dai-yu's line. Bao-yu cuts his own to accompany it. Tan-chun's intended cut is interrupted: three entangled lines subsequently snap. Keep deliberate release distinct from breakage, and the bad-luck/illness custom as the characters' belief. Do not translate the entanglement into a prophecy about Tan-chun's later marriage. The chapter returns quietly to Dai-yu resting.
+
+### Review gates and later continuity
+
+Use exactly the four selected reader notes: the fifth seven-day observance, Zhong and Wang as calligraphic models, the lyric patterns drawn by lot, and the absent closing couplet at chapter 69. Preserve their selected wording and exact English anchors. Do not add the four unselected notes or new ke/youzhu explanations.
+
+After every chapter, review complete bilingual units and literary flow; after each five-chapter group, reread continuously and compare cumulatively with the established earlier chapters and the project's own 81–85. Preserve identity exclusions, the provisional 小燕 alias, verse boundaries, claims versus events and source choices. Hash checks prove identity of bytes, not literary or semantic correctness. At chapter 80, collect all repairs and retained variants for global Chinese review without claiming absolute freedom from error.

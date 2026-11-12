@@ -204,3 +204,8 @@ Exact drafts for chapters 56–60 and three selected notes are proposed for acce
 ## B13 checkpoint
 
 Exact chapters 61-65 and three selected notes are prepared over the installed B12 predecessor. Normal readiness requires genuine independent current-binding semantic and technical receipts. Historical full readings retain their original scope. Earlier accepted bodies and notes remain unchanged. Later drafting and five-chapter gates continue beyond chapter65. English publication remains disabled.
+
+
+## B14 checkpoint
+
+Final chapters 66-70 and four separate notes are bound to the corrected Chinese source. Current readiness requires genuine independent binding receipts. Earlier English and historical reviews remain unchanged in their original contexts. English publication remains disabled.
