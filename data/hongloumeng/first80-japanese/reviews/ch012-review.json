@@ -152,5 +152,47 @@
     "未读取原待译[0,58)段，未恢复、扩大或缩小占位。",
     "未重新校勘中文，中文和源哈希不变。",
     "未commit或push。"
-  ]
+  ],
+  "incrementalRangeReview": {
+    "reviewType": "incremental_review_only",
+    "previousReviewIsHistorical": true,
+    "actualCoverageThisPass": {
+      "sourceBlockIndex": 11,
+      "newlyReadAndTranslated": [
+        0,
+        40
+      ],
+      "retainedOwnerRange": [
+        40,
+        58
+      ],
+      "followingSegment": [
+        58,
+        171
+      ],
+      "followingSegmentStatus": "unchanged; not independently reread this pass",
+      "coordinateSystem": "zero-based Unicode code points; end-exclusive"
+    },
+    "correction": "原[0,58)留空过宽，恢复非露骨动作和对白，仅[40,58)18字待作者译。相手沉默不等于同意，译文不美化强迫或扩写色情。年龄不下定论。",
+    "beforeFileSha256": "2cfe76f3a7d3854fa2dc6e6c50023a8542a99f07c1728c2deb4155cc3df55290",
+    "afterFileSha256": "a47bb4911957e2fa3f9f76a4a061abc927186edbede758a3cf7a4ff2e0c51f5a",
+    "change": {
+      "before": "owner_translation_needed [0,58)",
+      "afterTranslatedPrefix": "そう言いながら、相手を抱きかかえて部屋の炕へ運び、口づけしてズボンを引っ張った。「母ちゃん」「父ちゃん」と、口から出まかせに呼び続けたが、相手はただ黙っていた。",
+      "afterOwnerRange": [
+        40,
+        58
+      ]
+    },
+    "scopeLimit": "No second full-chapter review; original review coverage and exclusions describe its earlier pass.",
+    "validation": {
+      "command": "python3 -B scripts/hongloumeng_japanese_pipeline.py --start 12 --end 12 --allow-partial",
+      "result": "partial_alignment_validated_not_complete",
+      "ownerRange": [
+        40,
+        58
+      ],
+      "diffCheck": "git diff --check passed"
+    }
+  }
 }
