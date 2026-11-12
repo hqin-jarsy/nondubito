@@ -1,5 +1,6 @@
 """Path-only boundaries for Red Chamber discovery, checked before reading HTML."""
 from pathlib import Path
+from hongloumeng_english_availability import english_published
 import posixpath
 from urllib.parse import unquote, urlsplit
 
@@ -10,12 +11,12 @@ def private_path(relative: Path) -> bool:
     return relative.parts[:3] == ('data', 'hongloumeng', 'first80')
 
 
-def excluded(relative: Path) -> bool:
+def excluded(relative: Path, *, root=None, english=None) -> bool:
     if '..' in relative.parts or private_path(relative):
         return True
     if relative.parts[:2] == ('classics', 'hongloumeng'):
         return not (relative.name in PUBLIC_HTML and (len(relative.parts) == 3 or
-                    len(relative.parts) == 4 and relative.parts[2] == 'zh-hant'))
+                    len(relative.parts) == 4 and (relative.parts[2] == 'zh-hant' or relative.parts[2] == 'en' and (english_published(root) if english is None else english))))
     return False
 
 
@@ -24,14 +25,14 @@ def excluded_file(root: Path, path: Path) -> bool:
     root, path = root.absolute(), path.absolute()
     try:
         relative = path.relative_to(root)
-        if '..' in relative.parts or excluded(relative):
+        if '..' in relative.parts or excluded(relative, root=root):
             return True
         if not path.is_file() or path.stat().st_nlink != 1:
             return True
         actual = path.resolve(strict=True).relative_to(root.resolve(strict=True))
     except (OSError, RuntimeError, ValueError):
         return True
-    return excluded(actual)
+    return excluded(actual, root=root)
 
 
 def site_url_path(value):
@@ -61,7 +62,7 @@ def site_relative_url(value):
     return None if path is None else posixpath.normpath('/'+path).lstrip('/')
 
 
-def excluded_url(value):
+def excluded_url(value, *, root=None, english=None):
     """Check URL names before filesystem resolution can erase a private alias."""
     try:
         original = site_url_path(value)
@@ -73,8 +74,8 @@ def excluded_url(value):
     for name in (original, normalized):
         relative = Path(name)
         # Directory canonicals refer to the explicitly public contents page.
-        if relative in (Path('classics/hongloumeng'), Path('classics/hongloumeng/zh-hant')):
+        if relative in (Path('classics/hongloumeng'), Path('classics/hongloumeng/zh-hant'), Path('classics/hongloumeng/en')):
             relative /= 'index.html'
-        if excluded(relative):
+        if excluded(relative, root=root, english=english):
             return True
     return False

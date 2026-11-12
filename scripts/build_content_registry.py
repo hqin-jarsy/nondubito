@@ -333,12 +333,12 @@ def traditional_variant(root: Path, path: Path, simplified: str) -> str | None:
 def language_from_directory(relative: Path, root: Path) -> tuple[str | None, Path | None]:
     parts = list(relative.parts)
 
-    # The two first-eighty Chinese editions share one content identity.
-    if len(parts) == 4 and parts[:3] == ['classics', 'hongloumeng', 'zh-hant']:
+    # The three first-eighty editions share one finite content identity.
+    if len(parts) == 4 and parts[:2] == ['classics', 'hongloumeng'] and parts[2] in ('zh-hant', 'en'):
         from hongloumeng_discovery_scope import PUBLIC_HTML
         candidate = Path('classics', 'hongloumeng', parts[3])
         if parts[3] in PUBLIC_HTML and (root / candidate).is_file():
-            return 'zh-Hant', candidate
+            return ('en' if parts[2] == 'en' else 'zh-Hant'), candidate
 
     # Paleontology gives all eight editions their own static URL, including EN/Hant.
     if len(parts) == 4 and parts[:2] == ["essays", "paleontology"]:
@@ -440,9 +440,9 @@ def infer_domain(relative: Path) -> str:
 
 
 def hongloumeng_chapter(relative: Path) -> int | None:
-    """Only the eighty Chinese chapters and the forty published continuation pages."""
+    """Only the eighty original chapters and the forty published continuation pages."""
     value = relative.as_posix()
-    match = re.fullmatch(r'classics/hongloumeng/(?:zh-hant/)?ch(\d{3})\.html', value)
+    match = re.fullmatch(r'classics/hongloumeng/(?:(?:zh-hant|en)/)?ch(\d{3})\.html', value)
     if match and 1 <= int(match[1]) <= 80:
         return int(match[1])
     match = re.fullmatch(r'originals/hongloumeng/(?:(?:en|zh-hant|de|fr|es|ja|ko)/)?ch(08[1-5])\.html', value)
@@ -452,9 +452,9 @@ def hongloumeng_chapter(relative: Path) -> int | None:
 def infer_record_type(relative: Path) -> str:
     if hongloumeng_chapter(relative) is not None:
         return 'novel-chapter'
-    if relative.as_posix() in ('classics/hongloumeng/index.html', 'classics/hongloumeng/zh-hant/index.html'):
+    if relative.as_posix() in ('classics/hongloumeng/index.html', 'classics/hongloumeng/zh-hant/index.html', 'classics/hongloumeng/en/index.html'):
         return 'series-index'
-    if relative.as_posix() in ('classics/hongloumeng/edition.html', 'classics/hongloumeng/zh-hant/edition.html'):
+    if relative.as_posix() in ('classics/hongloumeng/edition.html', 'classics/hongloumeng/zh-hant/edition.html', 'classics/hongloumeng/en/edition.html'):
         return 'site-page'
     if relative.parts[:2] == ("essays", "paleontology") and relative.name == "index.html":
         return "series-index"

@@ -98,6 +98,17 @@ def edition(stem, lang):
     return '\n'.join(title), units, notes
 
 
+def directory_title(stem, lang):
+    """Remove one received Markdown marker from the English chapter82 listing only."""
+    title = edition(stem, lang)[0]
+    if (stem, lang) == ('ch082', 'en'):
+        marker = '\n## '
+        if title.count(marker) != 1:
+            raise ValueError('Unexpected chapter82 English directory title')
+        title = title.replace(marker, '\n', 1)
+    return title
+
+
 def inline(text):
     # Received body text contains only emphasis, not arbitrary HTML or links.
     return re.sub(r'\*([^*]+)\*', r'<em>\1</em>', html.escape(text))
@@ -144,8 +155,8 @@ def render_foreign(editions, language_menu, origin, target):
                 content += f'<details class="reading-note"><summary>{e(note_title)}</summary><p>{e(note)}</p>'+''.join(f'<p>{inline(n)}</p>' for n in notes)+'</details>'
                 content += f'<nav class="chapter-nav" aria-label="{e(contents)}"><a href="index.html">{e(contents)}</a>{navigation}</nav>'
             else:
-                schema['hasPart'] = [{'@type':'Chapter','name':edition(ch,lang)[0].replace('\n',' · '),'url':origin+lang+'/'+ch+'.html'} for ch in chapters]
-                cards = ''.join(f'<a class="chapter-card" href="{ch}.html">{e(edition(ch,lang)[0]).replace(chr(10),"<br>")}<small>{e(read)} →</small></a>' for ch in chapters)
+                schema['hasPart'] = [{'@type':'Chapter','name':directory_title(ch,lang).replace('\n',' · '),'url':origin+lang+'/'+ch+'.html'} for ch in chapters]
+                cards = ''.join(f'<a class="chapter-card" href="{ch}.html">{e(directory_title(ch,lang)).replace(chr(10),"<br>")}<small>{e(read)} →</small></a>' for ch in chapters)
                 content = f'<header class="collection-head"><p class="eyebrow">Han Qin · 81–110</p><h1>{e(collection)}</h1><p class="authorship">{e(notice)}</p></header><section class="introduction"><p>{e(intro)}</p></section><section class="contents"><h2>{e(contents)}</h2>{cards}</section>'
             pages[target/lang/(stem+'.html')] = f'''<!DOCTYPE html>
 <html lang="{lang}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title.replace(chr(10),' · '))} — Non Dubito</title><meta name="description" content="{e(notice+' '+collection+' · '+('81–85' if not story else str(int(stem[2:]))))}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{url}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title.replace(chr(10),' · '))}"><meta property="og:description" content="{e(notice)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../novel.css?v=20261020"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e(skip)}</a><header class="site-header"><a class="brand" href="../../../index.html?lang=en">Non <span>Dubito</span></a><nav><a href="../../../originals/index.html?lang=en">{e(shelf)}</a><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><a href="../../../library.html?lang=en">{e(library)}</a></nav>{language_menu(lang,stem+'.html')}</header><main id="main">{content}</main><footer><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><p>© 2026 Han Qin (秦汉) · Non Dubito</p></footer></body></html>

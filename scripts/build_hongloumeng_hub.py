@@ -119,6 +119,15 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None)
                     first80_section = first80_section.replace('classics/hongloumeng/', 'classics/hongloumeng/zh-hant/')
                 language_links = a(base+'classics/hongloumeng/index.html', '简体中文') + a(base+'classics/hongloumeng/zh-hant/index.html', '繁體中文')
                 first80_section = first80_section.replace('</div></section>', language_links+'</div></section>')
+        from hongloumeng_english_availability import english_published
+        if include_first80 and english_published(ROOT):
+            # Replace only this reader section, never essays or continuation bodies.
+            old = t('本版已有简体与繁体中文正文；外语翻译尚未发布。前八十回原著与第八十一回起的原创续写分别编排。', 'This reading edition is available in Simplified and Traditional Chinese. Foreign-language translations are not yet published. The original chapters 1–80 are separate from Han Qin’s continuation beginning with chapter 81.')
+            new = t('本版提供简体、繁体中文及独立英文译本。前八十回原著与秦汉原创续写分别编排。', 'Read the original chapters in Simplified Chinese, Traditional Chinese or an independent English translation. Han Qin’s original continuation is presented separately.')
+            first80_section = first80_section.replace(old, new)
+            first80_section = first80_section.replace('</div></section>', a(base+'classics/hongloumeng/en/index.html', 'English')+'</div></section>')
+            if lang == 'en':
+                first80_section = first80_section.replace("classics/hongloumeng/index.html", "classics/hongloumeng/en/index.html", 1).replace("classics/hongloumeng/ch001.html", "classics/hongloumeng/en/ch001.html", 1).replace("classics/hongloumeng/edition.html", "classics/hongloumeng/en/edition.html", 1).replace('Chapters 1–80 · Chinese contents', 'Chapters 1–80 · English contents').replace('Start chapter 1 · Chinese', 'Start chapter 1 · English')
         canonical = ORIGIN+directory
         alternatives = ''.join(f'<link rel="alternate" hreflang="{c}" href="{ORIGIN+d}">' for d,c,_ in EDITIONS.values())
         alternatives += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN}">'

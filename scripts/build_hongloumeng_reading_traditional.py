@@ -40,7 +40,7 @@ def source_gate(public_dir):
     """Bind this edition to the immutable, approved Simplified baseline."""
     base.preflight_inputs(public_dir, 'zh-Hant')
     expected = {'reading.zh.json': '50310f960b03693b869d8aea1662d96f3895282963f0553dac4f5709b1b79a99',
-                'manifest.json': 'f7016fad5b2d5ae3021e4b3672fd70bca1822119d473ebc59293937efa8743fd'}
+                'manifest.json': '43ab14dc99da4cf82982d6a66d03abf0f040693c68ecf7053f7ad1170b5dd718'}
     for name, checksum in expected.items():
         if base.digest((Path(public_dir)/name).read_bytes()) != checksum:
             raise ValueError('Traditional release Simplified baseline checksum differs: ' + name)

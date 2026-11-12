@@ -122,7 +122,10 @@ def keys(obj, expected):
 def load_source():
     raw = (SOURCE / 'reading.zh.json').read_bytes()
     manifest = (SOURCE / 'manifest.json').read_bytes()
-    require(sha(raw) == READING_SHA and sha(manifest) == MANIFEST_SHA, 'Frozen Chinese source changed')
+    require(sha(raw) == READING_SHA, 'Frozen Chinese source changed')
+    if sha(manifest) != MANIFEST_SHA:
+        from hongloumeng_reading_presentation_binding import authenticate_final_manifest
+        authenticate_final_manifest(ROOT, 'data/hongloumeng/first80-public/manifest.json', manifest, MANIFEST_SHA)
     reading = json.loads(raw)
     from build_hongloumeng_reading import validate
     validate(reading, json.loads(manifest), raw)
@@ -165,7 +168,7 @@ def standard_snapshot():
 
 def validate_standard_readiness(mapping, progress):
     """B11 and the explicit chapter25 accepted-content delta over exact B10 history."""
-    from hongloumeng_b16_binding import validate_readiness
+    from hongloumeng_english_presentation_readiness import validate_readiness
     return validate_readiness(sys.modules[__name__], mapping, progress)
 
 

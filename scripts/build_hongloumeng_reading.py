@@ -271,7 +271,11 @@ def add_language_links(pages, language, draft):
             continue
         menu = '<nav class="language-switch" aria-label="Languages">'
         alternatives = ''
-        for code, directory, label in (('zh-Hans', '', '简体中文'), ('zh-Hant', 'zh-hant/', '繁體中文')):
+        from hongloumeng_english_availability import english_published
+        editions = [('zh-Hans', '', '简体中文'), ('zh-Hant', 'zh-hant/', '繁體中文')]
+        if english_published(ROOT):
+            editions.append(('en', 'en/', 'English'))
+        for code, directory, label in editions:
             current = ' aria-current="page"' if code == language else ''
             menu += f'<a href="{up+directory+filename}" lang="{code}"{current}>{label}</a>'
             url = CANONICAL + directory + ('' if filename == 'index.html' else filename)

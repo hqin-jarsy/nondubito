@@ -20,10 +20,21 @@ class DiscoveryScopeTests(unittest.TestCase):
             self.assertFalse(excluded(Path('classics/hongloumeng')/name))
         for name in ('review.html', 'ch000.html', 'ch081.html', 'ch001 2.html',
                      'en/ch001.html', 'backup/index.html', 'fonts/private.html'):
-            self.assertTrue(excluded(Path('classics/hongloumeng')/name))
+            self.assertTrue(excluded(Path('classics/hongloumeng')/name, english=False))
         self.assertTrue(excluded(Path('data/hongloumeng/first80/report.html')))
         self.assertTrue(excluded(Path('data/hongloumeng/first80/public-preview/index.html')))
         self.assertFalse(excluded(Path('essays/another-series/index.html')))
+
+    def test_english_boundary_tracks_explicit_and_genuine_current_state(self):
+        relative = Path('classics/hongloumeng/en/ch001.html')
+        self.assertTrue(excluded(relative, english=False))
+        self.assertFalse(excluded(relative, english=True))
+        root = Path(__file__).resolve().parents[1]
+        from hongloumeng_english_availability import english_publication
+        current = english_publication(root)
+        self.assertEqual(excluded(relative, root=root), current is None)
+        for name in ('ch000.html', 'ch081.html', 'ch001 2.html', 'review.html'):
+            self.assertTrue(excluded(Path('classics/hongloumeng/en')/name, english=True))
 
     def fixture(self, root):
         paths = ['index.html', 'classics/hongloumeng/ch001.html',
