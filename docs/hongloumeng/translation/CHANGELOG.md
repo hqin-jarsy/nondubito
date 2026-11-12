@@ -131,3 +131,8 @@ The earlier candidate entries above are preserved historical records. The curren
 ## v0.12 prospective current integration: chapters 51-55
 
 Adds the independently reviewed B11 public guidance to the exact B10 baseline without replacing earlier entries or batches. The proposed acceptance payload carries 292 exact units and five selected separate notes. Two chapter 25 bodies have exactly eight jin-to-catty/catties token changes under a separate limited semantic delta, with new content reviews and the batch 21-25 delta requiring current-binding approval. All other accepted bodies, the chapter 2 author ending, Felicity, 61 existing notes and 16 source issues are preserved. Original full readings, limited reviews and prospective public approvals retain their actual historical contexts. No new complete reread or production installation is asserted; publication stays disabled and later five-chapter gates remain available.
+
+
+## v0.13 prospective B12 current binding: chapters 56-60
+
+Preserves the exact independently approved four-file public guidance and binds 233 reviewed units with three selected separate notes to the receipt-bound source56-65 predecessor. All 3155 earlier accepted bodies, historical reviews, 11 prior checkpoints, 66 notes and 16 issues retain their authentic contexts. No old accepted body changes. Current merged-norm readiness requires separate genuine independent semantic and technical receipts; no fresh whole-corpus reread or actual installation is claimed. English publication remains disabled.

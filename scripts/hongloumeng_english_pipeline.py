@@ -14,16 +14,16 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/hongloumeng/first80-english'
 SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
-VERSION = 'english-1-110-v0.12'
+VERSION = 'english-1-110-v0.13'
 V09_VERSION = 'english-1-110-v0.9'
 READING_SHA = 'be7d7b7e07ef60f39957a95334eae46bb61b779a7d4326275bdec5502764768e'
 MANIFEST_SHA = '2e3fda303395472cc99949be04df8590f72eff1f19601919b45b184d8edd38bb'
 BODY_SHA = '19624a589a8c32a5eca96d05f889277d26a5ca2e53cbcec0a13560af2d243485'
 NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md')
 V09_NORMATIVE_FILES = NORMATIVE_FILES
-NORMATIVE_FILES += ('english-batch-041-045.json', 'source-binding-ch46-ch55.json', 'source-binding-ch002-ending.json', 'english-batch-046-050.json', 'english-batch-051-055.json', 'source-binding-ch56-ch65.json')
+NORMATIVE_FILES += ('english-batch-041-045.json', 'source-binding-ch46-ch55.json', 'source-binding-ch002-ending.json', 'english-batch-046-050.json', 'english-batch-051-055.json', 'source-binding-ch56-ch65.json', 'english-batch-056-060.json', 'english-binding-056-060.json')
 SOURCE_MAP_SHA = '7e9b67163a9fd9c54420ff443b51e4edc73036cd98a97d91262b09d1fc2f0032'
-EXPECTED_NORMATIVE_SNAPSHOT = 'cbcf8cd3d72957563db33c12c22ad04a8a8aaffd2345020ebc06a1af21370d5f'
+EXPECTED_NORMATIVE_SNAPSHOT = 'cf0790b6191679fac2d5d2826b96d2d4ac7ce0966eb44592e1f0e3aa4be77c33'
 V010_PREVIOUS_SNAPSHOT = 'd63863840a1c4f20e250791f8b4b16f7b60e964011bdad8eea619d59191ebd6b'
 V010_BEFORE_FILENAME = 'v010-20261111.before.json'
 V010_BEFORE_PROGRESS_SHA = '966955d4e75fb0ccc4c98b4bc633acc6531548d42414ef8838d8be9b51ff9464'
@@ -165,7 +165,7 @@ def standard_snapshot():
 
 def validate_standard_readiness(mapping, progress):
     """B11 and the explicit chapter25 accepted-content delta over exact B10 history."""
-    from hongloumeng_source5665_binding import validate_readiness
+    from hongloumeng_b12_binding import validate_readiness
     return validate_readiness(sys.modules[__name__], mapping, progress)
 
 

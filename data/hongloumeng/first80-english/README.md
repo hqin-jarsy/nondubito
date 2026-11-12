@@ -194,3 +194,8 @@ The ten accepted five-chapter checkpoints cover 2,863 accepted units, leaving 1,
 ## Prospective B11 current-binding checkpoint
 
 The B11 preparation proposes 3,155 accepted units through chapter 55, with 1,320 pending units and 66 separate notes. Normal readiness remains closed until a genuine independent current-binding and technical receipt covers the exact final merged norm, the 292-unit B11 corpus and five selected notes, and the two chapter 25 accepted-content changes with the limited batch 21–25 delta. Historical reviews remain in their original contexts; no fresh complete reread or production installation is claimed. Later chapter drafting and subsequent five-chapter review gates are not capped at chapter 55. Publication remains disabled.
+
+
+## Prospective B12 checkpoint
+
+Exact drafts for chapters 56–60 and three selected notes are proposed for acceptance over the receipt-bound source56–65 predecessor. Normal readiness is closed pending genuine independent current-binding and technical receipts. Historical full readings retain their original scope; no fresh whole-corpus reread is claimed. Prior accepted bodies and notes remain unchanged. Later drafting and five-chapter gates continue beyond chapter 60. English publication remains disabled.

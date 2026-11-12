@@ -455,3 +455,46 @@ Carry exactly five selected texts after complete segments: the zither bridges at
 Three other substantial note proposals remain deferred. The eighteen B10 selections and forty-three installed earlier notes remain unchanged. The historical complete 292-unit bilingual and continuous-English review is supplemented by the genuine later limited review of two changed units. This projection claims no new full 292-unit reading.
 
 The exact historical public r2 delta has an independent review. This subsequent merged final state requires its own semantic current-binding and technical review, covering the current source and map including the chapter 2 author amendment, exact drafts and selected notes, the unchanged earlier bodies, and the separate chapter 25 delta. Actual installation additionally requires observed predecessor commits and exact before-images. No new full 292-unit or earlier-corpus reread is claimed. English publication remains disabled.
+
+
+## v0.13 English translation guidance for chapters 56–60
+
+### Scope and continuity
+
+This supplement and english-batch-056-060.json extend the existing project in specific scenes and senses. Earlier chapters, terms, voices and historical evidence remain unchanged. Translate directly from the complete Chinese into original literary English. Use the project’s own chapters 81–85 for established names, diction and explicit recollections, and carry the same continuity into chapters 86–110 without importing later events or knowledge. Do not borrow protected external English prose.
+
+Use Parfumée for 芳官, Swallow for 春燕, Mamma He for 何婆, Chan-jie for 蝉姐儿 and the other established names. Felicity remains Xi-feng’s maid 丰儿. Preserve the distinctions among Jia Bao-yu, the reported Zhen boy and the dream counterpart. Shared names, stage roles, respectful addresses and literal character matches do not decide identity. Apply household funds to money, household staff to people, and news to the inquiry after Bao-yu. The servant-origin contrast applies to the reported release plan, not to household custom, outside powder or family money.
+
+### Source and narrative boundaries
+
+The selected working source projects only three changes: 窃 before 尧舜 in chapter 56 block 8, 莽玉 in the chapter 57 title, and 玫瑰 in the chapter 60 title, retaining 引来. Keep the other recorded uncertainties and the author’s 修树 reading. Early breakfast and breakfast at chapter 58 block 10 remain meals, distinct from the noon and evening sacrifices. 奴几 retains the servant-status sense. Do not harmonize the wake, Qingming, mourning journey, illness or narrative backfill into a newly invented calendar.
+
+Nightingale’s Suzhou story is a test. Bao-yu’s initial collapse differs from his later conscious pretence. At chapter 57 block 29 her recollection begins ‘Before the New Year I heard’; the engaged family is ‘Academician Mei’s family’. Preserve the actual Xue Ke–Xiu-yan engagement and distinguish Aunt Xue’s later Bao-yu–Dai-yu suggestion. Keep the pawn ticket’s public cover story separate from the private explanation. You-shi’s reported childbirth is an excuse, and Aunt Xue’s care for the girls is not an assumption of household management.
+
+Swallow’s mother Mamma He, her maternal aunt Mamma Xia and her unnamed paternal aunt are three women. Mamma He is Parfumée’s godmother. Mamma Xia is Ou-guan’s godmother and Chan-jie’s maternal grandmother. Xiao-jiu is Swallow’s younger sister. Wu-er’s sick maternal cousin is not the unwanted suitor Qian Huai. The deceased imperial consort and the two consorts of the Prince of Beijing’s household are different people.
+
+Both Swallow and Mamma He apologize to Oriole at Allspice Court, away from Bao-chai. Swallow enters alone only after returning to Bao-yu’s rooms. Preserve the silent exchange with Bao-yu and the private transfer of Rui-guan’s packet. Do not assign a separate concealment action to Oriole. Plans for release, offers of help, ordered punishments and hoped-for appointments are not completed events.
+
+### Voices and literary form
+
+Keep Tan-chun’s questioning, anger and restraint distinct from Bao-chai’s learned teasing and practical generosity. Patience’s tact, Aroma’s mediation, Musk’s authority and Skybright’s sharp or feigned interventions have different purposes. Oriole’s skill and joking, Swallow’s fear, the older women’s dependence on household income, Parfumée’s pride and Aunt Zhao’s status grievance retain their individual audiences and motives. Their claims do not become the narrator’s verdict.
+
+All eight named former actresses are girls. Male and female stage roles explain the husband-and-wife language without changing their sex. Preserve Ou-guan’s love and grief without reducing it to ordinary friendship or imposing a modern identity label. Di-guan’s identity is disclosed through Parfumée’s private account. Bao-yu’s religious theory remains his message, and Ai-guan’s accusation remains partly inference.
+
+Translate titles, embedded quotations, proverbs, reported documents and gift lists as carefully as displayed verse. Leave the Jizi quotation incomplete where the speaker withholds the next line. Repeat the apricot line in exactly the same original English, preserving leaves, shade, fruit and the children association. Keep the stage phoenix imagery, Oriole and Swallow’s bird-name play, the mock military language and the maid-name saying. Do not invent missing lyrics, letters, edicts or closing poems.
+
+Reuse the exact core recalled in the author’s chapter 84: “There, I've settled another matter. I wonder how much I'll get in matchmaker's fees.” Also translate the preceding statement about meddling in other people’s affairs. Carry the Western gold mechanical boat and the dead-pearl and fish’s-eye images without importing later ownership, departures, mourning or marriage-card exchanges.
+
+### Materials and quantities
+
+Preserve every allowance, gift-list category, contribution, vacancy, assignment and approximation with its speaker and status. The first twelve bolts in chapter 56 cover two kinds of satin together. Chapter 57’s needlework gifts are of two kinds; the total number of individual pieces is unstated. This corrects the older summary’s misleading two-gift wording. Keep the three or four days of birthday activity separate. Do not reconcile twelve actresses, four or five departures and eight named assignments by altering the source.
+
+Use catty or catties for quantified mass in its applicable sense; the two catties of cake are a future promise. Four or five hundred cash is the surplus Swallow reports after her placement, not a stated flower profit. Preserve two or three mirrors as approximate. Distinguish the large fitted mirror, the small portable mirrors and the display boat. Use the flower-patterned mirror root without claiming its outline or material.
+
+Keep rose medicinal powder, jasmine powder, rose essence and fuling frost distinct. Preserve the approximately five-cun glass bottle, its red contents, the authorized gift and the subsequent sharing. The smaller bottle in chapter 34 is not silently resized or identified as the same object. A mistaken comparison with Western grape wine does not establish alcohol. Medical terms and claims remain historical character speech, not modern diagnoses, formulas or evidence of efficacy.
+
+### Reader notes and review
+
+Carry exactly three reader notes: the fruit and children association after chapter 58 block 15, segment 4; Gongye Chang after the complete internal utterance in chapter 58 block 17, segment 1; and the Mei-xiang saying after chapter 60 block 17, segment 1. These segment numbers are one-based; the companion file supplies zero-based anchors and exact text. The other three proposals are not selected. Do not add a Du Mu attribution, pregnancy prediction, spoiler or medical claim.
+
+Continue complete bilingual review and continuous English reading at every five-chapter checkpoint, with targeted rereading after changes. A limited review remains limited. This isolated semantic projection neither installs source or norms nor accepts prose, migrates prior reviews or enables English publication. Actual current source and norm bindings require a separate verified step.
