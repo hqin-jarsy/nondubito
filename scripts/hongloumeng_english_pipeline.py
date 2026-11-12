@@ -16,14 +16,14 @@ SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
 VERSION = 'english-1-110-v0.14'
 V09_VERSION = 'english-1-110-v0.9'
-READING_SHA = 'be7d7b7e07ef60f39957a95334eae46bb61b779a7d4326275bdec5502764768e'
-MANIFEST_SHA = '2e3fda303395472cc99949be04df8590f72eff1f19601919b45b184d8edd38bb'
-BODY_SHA = '19624a589a8c32a5eca96d05f889277d26a5ca2e53cbcec0a13560af2d243485'
+READING_SHA = '50310f960b03693b869d8aea1662d96f3895282963f0553dac4f5709b1b79a99'
+MANIFEST_SHA = 'f7016fad5b2d5ae3021e4b3672fd70bca1822119d473ebc59293937efa8743fd'
+BODY_SHA = 'afe998565385af02b9d749a6f4f1f843cdee2689f37b2d1851e1eb3614c74d4d'
 NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md')
 V09_NORMATIVE_FILES = NORMATIVE_FILES
-NORMATIVE_FILES += ('english-batch-041-045.json', 'source-binding-ch46-ch55.json', 'source-binding-ch002-ending.json', 'english-batch-046-050.json', 'english-batch-051-055.json', 'source-binding-ch56-ch65.json', 'english-batch-056-060.json', 'english-binding-056-060.json', 'english-batch-061-065.json', 'english-binding-061-065.json')
-SOURCE_MAP_SHA = '7e9b67163a9fd9c54420ff443b51e4edc73036cd98a97d91262b09d1fc2f0032'
-EXPECTED_NORMATIVE_SNAPSHOT = '77478ba611615b9de857967893482789016bc5587726be1d412e5eba4f6b4201'
+NORMATIVE_FILES += ('english-batch-041-045.json', 'source-binding-ch46-ch55.json', 'source-binding-ch002-ending.json', 'english-batch-046-050.json', 'english-batch-051-055.json', 'source-binding-ch56-ch65.json', 'english-batch-056-060.json', 'english-binding-056-060.json', 'english-batch-061-065.json', 'english-binding-061-065.json', 'source-binding-ch66-ch80.json')
+SOURCE_MAP_SHA = '734118abc9b094db951c04486bd26cdee613ee1911599d95caa09a0d147e7ac6'
+EXPECTED_NORMATIVE_SNAPSHOT = 'f665d4fa0a3c1816ffbfd408f4143007f96b74a80aa429ebbfbfd61eb46f45c7'
 V010_PREVIOUS_SNAPSHOT = 'd63863840a1c4f20e250791f8b4b16f7b60e964011bdad8eea619d59191ebd6b'
 V010_BEFORE_FILENAME = 'v010-20261111.before.json'
 V010_BEFORE_PROGRESS_SHA = '966955d4e75fb0ccc4c98b4bc633acc6531548d42414ef8838d8be9b51ff9464'
@@ -165,7 +165,7 @@ def standard_snapshot():
 
 def validate_standard_readiness(mapping, progress):
     """B11 and the explicit chapter25 accepted-content delta over exact B10 history."""
-    from hongloumeng_b13_binding import validate_readiness
+    from hongloumeng_source6680_binding import validate_readiness
     return validate_readiness(sys.modules[__name__], mapping, progress)
 
 
