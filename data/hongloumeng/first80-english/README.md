@@ -189,3 +189,8 @@ This internal work-in-progress corpus carries the exact reviewed chapter 46 r3, 
 The current source includes the separately reviewed chapter 2 author ending and chapters 46–55 source repairs. Their authentic prior validators, source choices and archived review evidence remain in place. B10 changes no Chinese or previously accepted English, including the chapter 2 ending and Felicity names. Its 18 selected translator notes retain their exact texts and local anchors, separately from prose; the 43 earlier notes and 16 source issues remain unchanged.
 
 The ten accepted five-chapter checkpoints cover 2,863 accepted units, leaving 1,612 pending units. There are 8,589 current review slots and 61 separate reader notes. Later batches retain the ordinary draft, content-review and five-chapter checkpoint gates. The public normative proposal’s old snapshot is historical; all 16 current normative inputs and the exact source/map require their separately authenticated current-binding receipt. English publication remains disabled.
+
+
+## Prospective B11 current-binding checkpoint
+
+The B11 preparation proposes 3,155 accepted units through chapter 55, with 1,320 pending units and 66 separate notes. Normal readiness remains closed until a genuine independent current-binding and technical receipt covers the exact final merged norm, the 292-unit B11 corpus and five selected notes, and the two chapter 25 accepted-content changes with the limited batch 21–25 delta. Historical reviews remain in their original contexts; no fresh complete reread or production installation is claimed. Later chapter drafting and subsequent five-chapter review gates are not capped at chapter 55. Publication remains disabled.

@@ -394,3 +394,64 @@ The exact r2 projection received a genuine full 402-unit independent bilingual r
 Use catty or catties for numeric 斤 in the chapter 48 heavy-olive simile, retaining its approximate thousands and deliberate exaggeration without modern conversion. The selected chapter 48 r4 application changes only the mass-unit word and does not alter the poetic quotations or commentary.
 
 In chapter 46, Xi-feng compares the dangerous approach to poking a straw up a tiger’s nostril. Her private calculation allows that Faithful might yet agree and weighs both outcomes. In chapter 48, Caltrop correctly assigns xian to shan but mistakes the invitation to rest for a suggested rhyme unsuitable for her han poem; do not make her rhyme classification itself wrong.
+
+
+## v0.12 English translation guidance for chapters 51–55
+
+This is the proposed scoped editorial checkpoint after the exact B10 final payload. It does not assert installation, bypass the independent current-binding receipt, or publish English. The companion english-batch-051-055.json supplies stable IDs, exact source and draft locators, complete inventories, voice guidance and five selected reader notes.
+
+The exact prospective B10 predecessor has its genuine independent review. Earlier immutable normative objects remain in their original files. The current merged normative fingerprint is checked separately from historical prospective public approvals.
+
+## Original English and continuity
+
+Translate directly from the complete project Chinese. Use the project's own chapters 81–85 for established identities, voices and relevant objects, and continue this cumulative standard through chapters 86–110. Do not borrow external copyrighted English prose or import later events, status or knowledge. A shared material term does not prove that two passages describe the same object.
+
+Read complete units in context. At each five-chapter checkpoint, review bilingual units and then continuous English, including names, address, voice, verse, objects, numbers and knowledge boundaries. After changes, reread the complete affected units and necessary context. A limited review does not become a new complete-corpus reading through a hash check.
+
+## People, institutions and address
+
+Distinguish people before choosing an address. Zhuan-er and Zhui-er are different maids. The unnamed woman reporting school business in hlm-c055-b0021 is not Mrs Zhu. Under the selected source proposal, Lou-shi is Jia Jun's mother, not Jia Lan's. Preserve both Tan-chun's formal parentage and Aunt Zhao's biological maternity.
+
+Use Parfumée for 芳官 in hlm-c054-b0029, supported by the project's own chapter 81 paragraph 12. This carries the name only. Felicity remains the installed form for Xi-feng's maid 丰儿; historical Feng-er records are preserved.
+
+Use Sacrificial Bureau of the Board of Rites for 礼部祠祭司 and Board of Rites for 礼部 in the adjoining report. Minister of War is a separate officeholder title. The Court of Imperial Entertainments is a separate institution.
+
+## Voice, verse and performance
+
+Keep Bao-yu's affection and naive judgement, Skybright's courage and cruelty, Musk's care and enforcement of rank, Patience's tact and service, and Xi-feng's wit and self-interest together. Tan-chun's measured questioning, anger and subsequent restraint belong to one continuous voice. Characters' social prejudices, medical beliefs and financial reports are not automatically the narrator's conclusions.
+
+The ten historical poem-riddles retain ten titles and forty poetic lines without answers. The foreign girl's poem retains eight lines, its contrasts and Bao-qin's remembered attribution. Preserve three shrine couplets and their separate attributions. Do not invent unquoted poems, opera lyrics, calendars or inscriptions, or finish an interrupted story.
+
+Distinguish whole plays, scenes, tunes and recollections. Eight scenes from The Eight Righteous Men does not mean its eighth scene. Preserve the actual 'just now' in hlm-c054-b0030 and the earlier performance in hlm-c053-b0055 rather than categorically denying an earlier performance. Keep the subsequent recollections separate. Retain the unresolved source 至 and the limited tiqin-and-pipe accompaniment without certifying a modern violin or importing another version's orchestration.
+
+## Clothes, furnishings and illness
+
+The coat shared by chapters 51 and 81 is lined with sand-fox fur. The separate coat in hlm-c052-b0035 is with sand-fox fur; no lining or edging is inferred. Use broadcloth for 猩猩毡, adding scarlet only when red is explicit. Ermine and couched gold follow scoped historical decisions, not modern species or manufacturing certificates. Keep outer material, padding, lining, colour, pattern, edging and recipient separate.
+
+Preserve Hui embroidery becoming Hui patterns. Keep the sixteen screen panels separate from the flower-filled vases, and the several tables around Grandmother Jia's couch in their actual positions. Inner third gate does not mean three inner gates. Retain counter game in its earlier project sense and embroidered gauze rather than pierced gauze.
+
+Medical terminology belongs to the period setting. Do not certify modern diseases, doses, ingredients or efficacy. Preserve Xi-feng's miscarriage, bleeding and lack of needed rest and care, and the explicit anticipation of her later recovery. Keep the management gap in the main house and Ripple's imagined nose covered in ashes in their received meanings.
+
+## Money and quantities
+
+Keep thirty-seven tribute rows and five extra gifts complete. Live chickens, ducks and geese are two hundred each; wind-dried chickens, ducks and geese are two hundred in all. Mixed-fineness gold and the ingot count do not establish pure-gold weight per ingot.
+
+In hlm-c051-b0082, retain the five-tael ingot, the remaining piece of at least two taels, the balance-reading joke and the woman's taking the silver to deal with the matter. The surplus may be intended for her, but the text does not fix its final division or establish that the doctor receives the whole piece.
+
+Preserve the twenty- and forty-tael ordinary funeral grants and the separate additions of sixty and twenty taels. Keep annual school expenditure distinct from monthly allowances; Jia Lan's monthly amount is not supplied. Each of three maids carries three covered tea bowls.
+
+Retain 一万, the three-thousand-tael wedding estimate and the three-to-five-thousand-tael miscellaneous funeral estimate. These are Xi-feng's plans, not an audited balance sheet or proof of a Bao-yu–Dai-yu engagement. Private savings and household funds remain distinct.
+
+## Bounded numerical-mass rule
+
+For quantified mass in hlm-c025-b0012, hlm-c025-b0013 and hlm-c053-b0014, use catty after one or half a and catties for the plural quantities. Preserve Chinese quantities, names containing Jin or jin, idioms and all other wording. Do not convert to modern weights or extend this choice automatically to other contexts.
+
+The eight chapter 53 tokens and eight quantity-table entries are represented in the exact reviewed draft. The two chapter 25 units are a separately bounded eight-token accepted-content amendment in this proposed payload, requiring fresh current-content review and a limited batch 21–25 delta. Old reviews remain bound only to their original bodies in the B10 historical context. Historical jin is not intrinsically wrong.
+
+## Notes, evidence and remaining gates
+
+Carry exactly five selected texts after complete segments: the zither bridges at hlm-c051-b0053, segment 0; the First xian rhyme group at hlm-c052-b0018, segment 5; Golden Flower at hlm-c054-b0011, segment 5; the child in motley at hlm-c054-b0024, segment 0; and the disputed uncle at hlm-c055-b0018, segment 0, after the full answer. Keep original selection proof separate from current draft proof. Do not expand notes, reveal riddles or add future knowledge.
+
+Three other substantial note proposals remain deferred. The eighteen B10 selections and forty-three installed earlier notes remain unchanged. The historical complete 292-unit bilingual and continuous-English review is supplemented by the genuine later limited review of two changed units. This projection claims no new full 292-unit reading.
+
+The exact historical public r2 delta has an independent review. This subsequent merged final state requires its own semantic current-binding and technical review, covering the current source and map including the chapter 2 author amendment, exact drafts and selected notes, the unchanged earlier bodies, and the separate chapter 25 delta. Actual installation additionally requires observed predecessor commits and exact before-images. No new full 292-unit or earlier-corpus reread is claimed. English publication remains disabled.
