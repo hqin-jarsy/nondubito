@@ -15,9 +15,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/hongloumeng/first80-public'
-SOURCE_SHA = '05b929a0f99d99d6c8ff061eccdb88210e4c2906ee3055a688475a0f629e0c29'
-MANIFEST_SHA = 'da725b0c6ad88c04663181db705cb3ab4271493d4d9684d30a406e4f919eb562'
-BODY_SHA = 'f62b8e051f9fa4749e8b96bcf37855ecf9f5b9ecd28a616806798fe5f1701520'
+SOURCE_SHA = '7621062e63ee03957e5de4a8a16a877d412599f24ee544ece9a7f1b0792e7aaf'
+MANIFEST_SHA = 'de3a5e7e594b80a34093da8de178b25b070c29f1b25e44c2eeb91981d3e50071'
+BODY_SHA = '36541c4b7a8dfe6dfb4d30f4107697c306feb813859259093dec562cdab6e18c'
 
 
 def sha(value: bytes | str) -> str:
@@ -97,7 +97,7 @@ def outputs(data=DATA):
     rules = json.loads((data / 'conversion.zh-hant.json').read_text())
     target = apply_rules(source, rules)
     manifest = copy.deepcopy(manifest)
-    manifest['status'] = 'finalized' if rules['status'] == 'reviewed' else 'draft'
+    manifest['status'] = 'finalized' if manifest['status'] == 'finalized' and rules['status'] == 'reviewed' else 'draft'
     manifest['text_version'] += '-zh-hant'
     manifest['reading_sha256'] = sha(encoded(target))
     manifest['body_sha256'] = sha(''.join(b['text'] for ch in target['chapters'] for b in ch['blocks']))

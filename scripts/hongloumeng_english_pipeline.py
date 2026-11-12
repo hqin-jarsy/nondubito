@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 import tempfile
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,14 +16,14 @@ SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
 VERSION = 'english-1-110-v0.10'
 V09_VERSION = 'english-1-110-v0.9'
-READING_SHA = '05b929a0f99d99d6c8ff061eccdb88210e4c2906ee3055a688475a0f629e0c29'
-MANIFEST_SHA = 'da725b0c6ad88c04663181db705cb3ab4271493d4d9684d30a406e4f919eb562'
-BODY_SHA = 'f62b8e051f9fa4749e8b96bcf37855ecf9f5b9ecd28a616806798fe5f1701520'
+READING_SHA = '7621062e63ee03957e5de4a8a16a877d412599f24ee544ece9a7f1b0792e7aaf'
+MANIFEST_SHA = 'de3a5e7e594b80a34093da8de178b25b070c29f1b25e44c2eeb91981d3e50071'
+BODY_SHA = '36541c4b7a8dfe6dfb4d30f4107697c306feb813859259093dec562cdab6e18c'
 NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md')
 V09_NORMATIVE_FILES = NORMATIVE_FILES
-NORMATIVE_FILES += ('english-batch-041-045.json',)
-SOURCE_MAP_SHA = 'bbb80bd819736cf6bab23308018d23bd60960bed6a8c4db0fbbac59964a7c9fc'
-EXPECTED_NORMATIVE_SNAPSHOT = '20567ec192fb1353db5c40c98d2f53735f2a89308c84303a3cc0ea52012ab616'
+NORMATIVE_FILES += ('english-batch-041-045.json', 'source-binding-ch46-ch55.json')
+SOURCE_MAP_SHA = '11eab06a2cca2659cfe1821ad8398da5a178f289a4e3cf374fd843679c9bbc4c'
+EXPECTED_NORMATIVE_SNAPSHOT = '7786d177dead8a27301bf753835bec4e676c0a2b6f056269a6bf2464dab08696'
 V010_PREVIOUS_SNAPSHOT = 'd63863840a1c4f20e250791f8b4b16f7b60e964011bdad8eea619d59191ebd6b'
 V010_BEFORE_FILENAME = 'v010-20261111.before.json'
 V010_BEFORE_PROGRESS_SHA = '966955d4e75fb0ccc4c98b4bc633acc6531548d42414ef8838d8be9b51ff9464'
@@ -163,7 +164,16 @@ def standard_snapshot():
 
 
 def validate_standard_readiness(mapping, progress):
-    """Current v0.10 binding; retained v0.9 history is validated as history."""
+    """Current source4655 overlay; genuine independent review receipts are required."""
+    from hongloumeng_source4655_binding import validate_readiness
+    return validate_readiness(sys.modules[__name__], mapping, progress)
+
+
+def validate_pre_source4655_readiness(mapping, progress):
+    """Retained old implementation. Invoke it only in the exact historical context."""
+    require(READING_SHA == '05b929a0f99d99d6c8ff061eccdb88210e4c2906ee3055a688475a0f629e0c29'
+            and SOURCE_MAP_SHA == 'bbb80bd819736cf6bab23308018d23bd60960bed6a8c4db0fbbac59964a7c9fc',
+            'Historical v0.10 readiness requires the exact pre-source4655 context')
     snapshot = standard_snapshot()
     require(snapshot == EXPECTED_NORMATIVE_SNAPSHOT, 'Unexpected normative snapshot')
     require(mapping == source_map(load_source()), 'Frozen source map differs')

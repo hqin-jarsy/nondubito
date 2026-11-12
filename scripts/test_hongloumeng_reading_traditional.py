@@ -5,6 +5,8 @@ import copy
 import json
 import os
 import shutil
+import subprocess
+import sys
 from unittest.mock import patch
 from pathlib import Path
 import tempfile
@@ -169,13 +171,47 @@ def safety_regressions():
         assert len(written)==87
     print(f'PASS hardened reader: {checks} no-read namespace/alias and source-binding negative checks; isolated release positive')
 
+def finalized_test_fixture():
+    """Draft remains unreleasable; positive release tests use a separate fixture."""
+    rejected(lambda: traditional.source_gate(base.PUBLIC))
+    with tempfile.TemporaryDirectory(prefix='hlm-hant-finalized-test-') as directory:
+        root = Path(directory).resolve()
+        public = root/'data/hongloumeng/first80-public'
+        public.mkdir(parents=True)
+        for name in ('reading.zh.json', 'manifest.json', 'reading.zh-hant.json', 'manifest.zh-hant.json', *base.ASSET_HASHES):
+            target = public/name; target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(base.PUBLIC/name, target)
+        original = (public/'manifest.json').read_bytes()
+        manifest = json.loads(original); manifest['status'] = 'finalized'
+        final = (json.dumps(manifest, ensure_ascii=False, indent=2)+'\n').encode()
+        (public/'manifest.json').write_bytes(final)
+        scripts = root/'scripts'; scripts.mkdir()
+        for name in ('build_hongloumeng_reading.py', 'build_hongloumeng_reading_traditional.py',
+                     'test_hongloumeng_reading.py', 'test_hongloumeng_reading_traditional.py', 'web_analytics.py'):
+            source = Path(__file__).resolve().parent/name
+            raw = source.read_bytes()
+            if name == 'build_hongloumeng_reading_traditional.py':
+                before = base.digest(original).encode(); after = base.digest(final).encode()
+                if raw.count(before) != 1:
+                    raise ValueError('Test fixture expected exactly one source manifest binding')
+                raw = raw.replace(before, after)
+            (scripts/name).write_bytes(raw)
+        # This is Chinese test-only fixture execution, never English release.
+        subprocess.run([sys.executable, '-B', str(scripts/'test_hongloumeng_reading_traditional.py')],
+                       cwd=root, env={**os.environ, 'PYTHONDONTWRITEBYTECODE':'1'}, check=True)
+    print('PASS actual draft source gate rejected; explicit finalized Chinese test fixture passed')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', type=Path, default=base.PUBLIC)
     args = parser.parse_args()
     reading, manifest = traditional.load(args.input)
     check(reading, manifest)
-    safety_regressions()
+    if base.load()[1]['status'] == 'draft':
+        finalized_test_fixture()
+    else:
+        safety_regressions()
 
 
 if __name__ == '__main__':

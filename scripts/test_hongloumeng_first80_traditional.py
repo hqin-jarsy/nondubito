@@ -14,6 +14,18 @@ class TraditionalTests(unittest.TestCase):
         cls.target = build.apply_rules(cls.source, cls.rules)
         cls.outputs = build.outputs()
 
+    def test_source_finalization_requires_both_source_and_rules(self):
+        from pathlib import Path
+        from unittest.mock import patch
+        read_text = Path.read_text
+        for source_status in ('draft', 'finalized'):
+            for rules_status in ('review-in-progress', 'reviewed'):
+                manifest = copy.deepcopy(self.source_manifest); manifest['status'] = source_status
+                rules = copy.deepcopy(self.rules); rules['status'] = rules_status
+                with patch.object(build, 'load_source', return_value=(self.source, manifest)), patch.object(Path, 'read_text', lambda path,*a,**k: json.dumps(rules) if path == build.DATA/'conversion.zh-hant.json' else read_text(path,*a,**k)):
+                    result = json.loads(build.outputs()['manifest.zh-hant.json'])
+                self.assertEqual(result['status'], 'finalized' if (source_status, rules_status) == ('finalized', 'reviewed') else 'draft')
+
     def test_reproducible(self):
         for name, expected in self.outputs.items():
             self.assertEqual((build.DATA / name).read_text(), expected)
@@ -30,7 +42,7 @@ class TraditionalTests(unittest.TestCase):
                 self.assertEqual({k: v for k, v in x.items() if k != 'text'}, {k: v for k, v in y.items() if k != 'text'})
                 self.assertEqual(len(x['text']), len(y['text']))
                 total += len(y['text'])
-        self.assertEqual(total, 586224)
+        self.assertEqual(total, 586228)
 
     def test_seven_approved_source_decisions(self):
         cases = [
