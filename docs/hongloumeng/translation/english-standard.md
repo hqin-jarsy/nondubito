@@ -775,3 +775,91 @@ This batch has no displayed verse block, no supplied independent poem and no sup
 The two source ellipses in 75.47–48 remain; the excluded editorial annotations do not return as narrative. Do not invent an ellipsis for Jia Huan or lyrics for Wen-hua. Same-source quotations reuse accepted project wording where exactly identical, while received variants such as 齿竭唇亡, 守如处女 and 雪窗荧火 remain distinguishable. Translate the novel's quoted wording, not a corrected external classical text.
 
 Use exactly the selected notes explaining Parfumée’s Glass nickname and the absent feast poems, preserving their wording and exact English anchors. The other seven proposals remain unselected. Notes may not identify the scent-bag’s owner, disclose later deaths, turn accusations into truth or insert source criticism into the story. Review complete bilingual units and continuous English after each chapter and cumulatively after each five-chapter group. Technical identity checks are not literary or semantic approval.
+
+
+## Chapters 76–80 supplement
+
+### Status and continuity
+
+This supplement extends the translation standard to chapters 76–80 while preserving the preceding chapters’ guidance.
+
+Compose original English from this edition's Chinese. Hawkes compatibility concerns established names and general literary conventions, not protected sentences. Use British spelling, flexible literary past-tense narration, natural dialogue and relationship-sensitive address. Keep the author’s chapters 81–110 continuation distinct from the original first80. Later memories guide names, not what anyone knows now.
+
+These chapters contain 342 units: five titles and 337 body units, 41 scenes, 136 regular poetic lines, 19 additional soul-summoning lines and the complete ten-block memorial. Eleven narrow reading repairs affect nine units. Twenty-five prior textual decisions and 48 retained-reading records remain in force. A modern Chinese transcription is not a facsimile, proof of a unique authorial reading or proof of an OCR accident.
+
+### Identity and ordinary prose
+
+Keep Skybright, Aroma, Musk, Ripple, Faithful, Nightingale, Kingfisher, Parfumée, Chess, Xiu-ju and the other established identities. Chapter 63 supplies Yelü Xiong-nu for Parfumée. Si-er and Hui-xiang are one maid; Wu-er is different. Lady Wang's assertion that Wu-er died is retained as her assertion, not certified by the narrator. The retained 灯姑娘儿 is Mrs Duo, explicitly recalled from21, not another woman. Her husband is Skybright's older cousin, not her brother by birth. Nanny Lai is distinct from Mrs Lai.
+
+Provisional new forms include Xia Jin-gui, Bao-chan, Xiao-she, Sun Shao-zu, Zhi-tong, Yuan-xin and Wang One-Patch. Xiao-she is a young female servant. Wang One-Patch is a Taoist with a plaster nickname, not Doctor Wang. Prince Heng uses恒; do not add衡.
+
+Chapter 75 establishes Green Crest Lodge for 凸碧山庄; use Green Crest Hall for 凸碧堂. Crystal Hollow Lodge remains the new proposal for 凹晶馆, with Streamside retained in the full 凹晶溪馆 where appropriate. The paired names preserve the low-water/high-hill images; retain the discussion of the Chinese characters and their colloquial readings in concise intelligible English. Distinguish hall, lodge and streamside wording where expressed. Established Amaryllis Eyot, Lotus Pavilion and Green Bower Hermitage remain. The poem's栊翠寺 may say Green Bower Temple without changing the prose庵.
+
+Caltrop remains the narrative name when the Chinese continues香菱. Lily corresponds to the imposed秋菱 in explicit new-name contexts, following chapter 82.18. A brief semantic bridge must explain xiang/fragrance and qiu/autumn in the actual naming dialogue. Do not falsely identify Lily with the literal water-caltrop plant or replace Caltrop throughout the narrator's text. The香菱 among water-plants at79.8 is a plant, not the maid. 金桂 is a personal name in the domestic narrative and golden osmanthus in the taboo discussion; the two layers must remain connected. Autumn is the established name of a different woman, 秋桐.
+
+### Chapter76: company, solitude and linked verse
+
+Chapter 76 continues chapter 75 on the same Mid-Autumn night, after the men leave well into the second watch. The later fourth-watch dialogue does not begin a new festival night. Let the feast move from fellowship and gently risqué teasing to loneliness and sleepiness. You-shi's four-sons joke is unfinished: invent no punchline. Bao-chai and Bao-qin are absent; Li Wan and Xi-feng are ill. The musicians' second, slower performance differs from the first. Faithful brings protective clothes. The missing cup is not proven stolen, broken or recovered.
+
+Dai-yu and Xiang-yun shift between consolation, social unease, learning and competitive delight. Thirteen railings select十三元; sixteen and一先 are hypothetical. Preserve the local image and critical word in both verse and dialogue: jade cassia/golden day-lily, three calls, silk-tree leaves, autumn torrent, crane shadow and flower soul. Do not make English rhyme more important than these recoverable words.
+
+The linked work contains70 lines,35 rhyming couplets. Dai-yu opens alone; Xiang-yun then supplies two consecutive lines, Dai-yu two, and so on, with Dai-yu closing the first44. They each contribute22 lines. Adamantina supplies26. Poetic couplets are not the same as speaker turns. The actually startled crane inspires a line; a real ghost is not revealed. Adamantina's statement about destiny is hers. She orders her maid to brew tea, transcribes the first44 herself and adds her continuation. The continuation still includes empty rooms, cold surfaces and disturbing shapes before dawn and tea; do not turn it into uncomplicated cheer.
+
+Preserve all70 line-images without adding plant species or exact architectural construction. 赑屃 and罘罳 have bounded architectural readings, not newly identified artefacts. The postscript naming35 rhymes is not a71st line. Cuilu's question about where to sleep precedes the decision not to disturb Li Wan; Nightingale lowers the curtains before the intimate sleepless talk. Keep the unfinished final phrase and dash instead of supplying a familiar chapter-ending formula.
+
+### Chapter77: dismissal, care and death
+
+Ginseng procurement remains a sequence of searching, assessing old stock and arranging new purchase, not completed preparation at once. Two taels is weight; the doctor's百年 and三十换 are period assertions, not verified pharmacology. Bao-chai's description of cut and pieced roots does not authorize a modern recipe or soaking process.
+
+Chess's removal is coerced, not a free departure. Ying-chun's inability to retain her coexists with tears, a bundle and a promise of later intercession. Bao-yu's attempt to stop the party fails. The later nurse's abuse concerns Skybright and explicitly goes unheard by Bao-yu. His misogynistic account of married women is his angry belief, not the translator's summary of women.
+
+Lady Wang's expulsion uses threats, confiscation and marriage commands. Wang Shan-bao's wife and unnamed informants are mentioned; Aroma is not proven the informer. In the subsequent conversation preserve suspicion, Aroma's startled silence, defensive teasing and practical care. Her claim that Skybright is better does not overwrite the sick girl's real condition. Bao-yu's plant omens remain his theory.
+
+Keep the poverty of the room and the exact tea sequence: bowl washed twice and rinsed, Bao-yu tastes first, Skybright drinks. Her regret about a false reputation is intimate and counterfactual; invent neither intercourse nor a formal shared-grave vow. Four silver bracelets go under her pillow. Two long LEFT fingernails are cut off and given to Bao-yu. Their jackets are exchanged. Neither bracelets nor fingernails are mutually exchanged. Mrs Duo's sexual testing changes into protection after overhearing them, without a new sexual act.
+
+Aroma's recent restraint and old illness are retrospective context. Her move to the outer bed and serving tea happen this night. Bao-yu calls Skybright by habit, then later dreams her farewell. Do not merge the waking care and dream. The three actresses' choice of religious life exists within coercion and the nuns' interest in unpaid labour. Parfumée goes with Zhi-tong to Water-Moon Hermitage; the other two with Yuan-xin to Kshitigarbha Convent. Translate their resolve without declaring emancipation.
+
+### Chapter78: household accounts, official verse and private elegy
+
+Lady Wang's account to Grandmother Jia is a selected justification, including the illness label. Two years of observing Aroma precede the changed allowance; do not claim two years of payment. The older woman's former hopes for Skybright and secret favour for Aroma are not new wedding scenes.
+
+Xi-feng explains Bao-chai's possible avoidance of suspicion aloud to Lady Wang. Bao-chai's own reasons are separately spoken: mother's health, staffing, wedding preparations, unguarded access and retrenchment. Do not add an unspoken explanation or a Xi-chun motive.
+
+The three boys receive three fans, three fan pendants, six boxes of brushes/ink, three strings of scented beads and three jade cord-rings in total. Fan pendants have no stated material. The Duke of Qing separately gives Bao-yu a sandalwood protective Buddha. His red trousers sewn by Skybright are not the jacket exchanged in77.
+
+The first little maid reports what Mamma Song said of Skybright's near-death state. The second invents a visit, dialogue, divine appointment and both times, 未正二刻 and未正三刻. Bao-yu does not correct the clock. His question about the flower office prompts further fabrication. Only the subsequent narrator reports the death and removal for cremation. Bao-yu neither witnesses the cremation nor receives invented ashes.
+
+Jia Zheng tells the Prince Heng story; its rebels' labels do not establish Han chronology. The secretaries quote圣朝无阙事 and Jia Zheng agrees. Keep their flattery distinct from his intermittently exacting criticism. Jia Lan's four-line quatrain, Jia Huan's eight-line regulated poem and Bao-yu's46-line song are separate. The retained恒王后 does not invent a queen. Preserve the short quoted keywords that prompt each criticism or praise, especially绦 and the turn to the precious sword. Jia Zheng writes while Bao-yu recites; do not erase interruptions.
+
+The memorial's elegiac and soul-summoning voice is Bao-yu's. It praises, exaggerates, grieves, accuses and fantasizes. Its claims do not retroactively certify every prior action. Keep all ten source blocks, the complete19-line invocation and the final richly patterned coda. The four actual offerings are flower stamens, gauze, Drenched Blossoms water and Maple-dew tea, not invented wine and food.
+
+Use hibiscus as a provisional literary continuity choice from chapter 63, not a botanical finding; pond-side芙蓉 remains semantically noted. Preserve the echo between flower and person without asserting a real divine appointment. Musk and Sandal in the dressing-object passage retain both the names and ornamental resonance. The servants and violent women condemned are not named by the text. Retain threats as rhetoric, not completed revenge.
+
+Keep冰鲛縠、楼空鳷鹊、籍葳蕤而成坛畤、文瓟匏、枪蒲、龟呈洛浦 and the other retained difficult readings. Two approved repairs in the invocation do not authorize replacing entire disputed lines. Name and functional hints for celestial figures may make the procession readable, but do not add a second mythology lesson or silently exchange寒簧、风廉 for remembered variants. The last block returns through uncertain vision to bamboo, birds, fish and ritual completion. Chapter78's shadow is not named Dai-yu until79.
+
+### Chapters79–80: revision, renaming and coercion
+
+Dai-yu quotes78 with different word order, 公子多情/女儿薄命 rather than情深/命薄. Translate the local variation; never harmonize backwards. The madder-red gauze phrase then passes through young gentleman/young lady/maid and finally I/you. Preserve the recognizable scaffold and changed referents, since her concealed alarm depends on it. Use Rosy-cloud Gauze for 霞影纱, preserving the named textile from chapter 40.13. Keep 霞影 rather than 霞彩, and distinguish the poetic madder-red gauze.
+
+The eight-line Amaryllis Eyot song is brotherly grief at a sister's departure, not a newly erotic farewell. Bao-yu's sense of loss, Caltrop's optimism about a new poet and her offended misunderstanding all retain their timing. The removed editorial annotation near79.17 does not authorize inventing missing conversation. Illness, one month of recovery, hundred-day restrictions and marriage reports are not forced into an invented calendar.
+
+In80 Jin-gui raises the hypothetical objection from Bao-chai to renaming; Caltrop answers it. Bao-chai has no new dialogue in that scene. Preserve manipulative permission, concealed instruction through Xiao-she, accidental interruption and subsequent assault. Bao-chan's words alleging force have no specified listener. Neither narration of半推半就 nor a character accusation should be converted into a blanket verdict about consent.
+
+The five-needled effigy comes from Jin-gui's pillow; who removes or planted it is unspecified. Xue Pan grabs the door-bar and beats Caltrop; Aunt Xue objects to punishment without inquiry. Jin-gui repeats the thorn/nail saying aloud through the window. Bao-chai's taking Caltrop away ends neither dependency nor illness. Keep source medical language without modern diagnosis.
+
+At the temple Bao-yu fulfils a vow. Wang One-Patch's120-ingredient patter and pear remedy must be read through their punchline and admission of fraud. Tealeaf understands the sexual guess before Bao-yu does. Keep the complete recipe quantities as fictional dialogue, with no practical medical elaboration.
+
+Ying-chun reports gambling, drinking, sexual misconduct, threats and Sun's five-thousand-silver claim. It is quoted accusation, not a checked account proving sale. Lady Wang's consolation reduces abuse to ordinary marital quarrelling; retain the speaker and coercion rather than endorse that reduction. Garden stay is three days, then two at Lady Xing's, before compulsory return. Preserve80's forward-looking chapter close. This is not the ending of a reconstructed Cao novel or an occasion to import the author's81 opening.
+
+### Layout, notes and review gates
+
+Preserve the source’s prose, verse and couplet layout. Verse embedded in a prose passage may retain its line breaks within that passage. Titles contain exactly three lines: the chapter number, the first title half ending in a semicolon, and the second title half.
+
+Use exactly the two selected notes with their exact wording and anchors: the animal allusions at the end of the chapter 79 title, and the Caltrop/Lily renaming at Lily in 80.3. Omit the other six proposals. Preserve all earlier selected notes.
+
+
+## Inherited aliases and semantic safeguards
+
+Gold-flecked Glass and the contextual Glass nickname identify Parfumée in chapters 73–74; Yelü Xiong-nu in chapter 77 identifies that same girl. Neither is the unrelated maid Glass attending Grandmother. Retain Simpleton, Carmine, Peppercorn Feng and A Bedful of Official Tablets if their established identities or artwork recur; do not manufacture their presence here. Kinship and service address remain contextual: Second Sister at 79.5 is Ying-chun, while Second Master depends on the speaker and household. Four-son jokes are not mentions of Si-er.
+
+The 131-entry concordance is a declared lexical scope, not all meaningful words. Money, medicinal weights, paper offerings, night watches, names nested inside longer words, and literary titles require the separate contextual guidance. 大言不惭 is boasting, not Great Words; 魇魔 in Bao-yu’s illness is nightmares, not the later curse allegation. Repeated or overlapping surfaces are not additional people. Apply these distinctions in their complete source contexts.

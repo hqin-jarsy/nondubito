@@ -151,3 +151,8 @@ Binds the independently reviewed final 224 units and four separate reader notes 
 ## v0.16 B15 continuation: chapters 71-75
 
 Binds 237 reviewed units and two separate reader notes. The effective public norm correctly identifies the paternal-aunt cousin relation, with the historical report retained and an explicit erratum. All earlier accepted prose, notes and source decisions are preserved. Fourteen exact untracked historical witnesses are classified as historical evidence, not current runtime dependencies. Current tracked validation remains strict; absent witnesses do not establish exact historical runtime replay. Independent current-binding receipts are still required. English publication remains disabled.
+
+
+## v0.17 B16 continuation: chapters 76–80
+
+Binds 342 reviewed units and two separate reader notes. The effective norm preserves cross-cousin ambiguity in chapters 77 and 79, updates two chapter78 invocation helpers to the already established Chinese readings, and retains historical source layers explicitly. Original frozen guidance and prior reviews remain preserved as history, with bounded corrections rather than retroactive approval. All 4133 earlier accepted English bodies, 78 notes and 16 source issues remain unchanged. Independent current-binding receipts are required. Completing chapter80 does not enable publication; the old release handler remains disabled.

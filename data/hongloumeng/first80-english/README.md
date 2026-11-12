@@ -214,3 +214,8 @@ Final chapters 66-70 and four separate notes are bound to the corrected Chinese 
 ## B15 checkpoint
 
 Chapters 71-75 and two notes are bound to the current source. Earlier accepted bodies and historical review context are retained. Current tracked replay is separate from authenticating historical manifest evidence. Independent current-binding receipts are required. English publication remains disabled.
+
+
+## B16 checkpoint
+
+Chapters 76–80 and two notes are bound to the current source. Earlier accepted bodies, historical review context and frozen source layers remain preserved. Current tracked validation is separate from exact historical runtime replay. Independent current-binding receipts are required. English publication remains disabled and needs separate review.
