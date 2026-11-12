@@ -1,0 +1,77 @@
+#!/usr/bin/env python3
+import copy
+import hashlib
+import unittest
+from hongloumeng_japanese_pipeline import source_hash, validate, validate_partial, render
+
+class JapaneseDraftTests(unittest.TestCase):
+    def setUp(self):
+        self.source = {'number': 1, 'title': '第一回', 'blocks': [{'kind':'verse','text':'诗行','first':True,'last':True}]}
+        self.draft = {'schemaVersion':1,'language':'ja','number':1,'title':'第一回', 'sourceTitle':'第一回',
+                      'sourceSha256':source_hash(self.source), 'blocks':[{'kind':'verse','sourceText':'诗行','text':'歌の一行','first':True,'last':True}], 'notes':[]}
+    def test_valid(self):
+        self.assertEqual(validate(self.source,self.draft)['blocks'],1)
+    def test_stale_source(self):
+        self.source['blocks'][0]['text']='別字'
+        with self.assertRaises(ValueError):validate(self.source,self.draft)
+    def test_missing_block(self):
+        self.draft['blocks']=[]
+        with self.assertRaises(ValueError):validate(self.source,self.draft)
+    def test_blank(self):
+        self.draft['blocks'][0]['text']=' '
+        with self.assertRaises(ValueError):validate(self.source,self.draft)
+    def test_wrong_verse_boundary(self):
+        self.draft['blocks'][0]['last']=False
+        with self.assertRaises(ValueError):validate(self.source,self.draft)
+    def test_escaped_private_reader(self):
+        self.draft['blocks'][0]['text']='<script>\n歌'
+        output=render(self.draft)
+        self.assertIn('&lt;script&gt;<br>歌',output)
+        self.assertIn('noindex,nofollow',output)
+        self.assertNotIn('<script>',output)
+
+class PartialDraftTests(unittest.TestCase):
+    def setUp(self):
+        self.source = {'number': 1, 'title': '一', 'blocks': [{'kind':'prose','text':'甲'}, {'kind':'prose','text':'乙'}]}
+        self.draft = {'schemaVersion':1,'language':'ja','number':1,'status':'partial','sourceSha256':source_hash(self.source),
+                      'omittedSourceBlockIndices':[1], 'blocks':[{'sourceIndex':0,'kind':'prose','sourceText':'甲','text':'第一の文'}, {'sourceIndex':1,'kind':'prose','omitted':True}]}
+    def test_partial_explicit(self):
+        self.assertEqual(validate_partial(self.source,self.draft)['status'],'partial_alignment_validated_not_complete')
+    def test_partial_cannot_claim_complete(self):
+        self.draft['complete']=True
+        with self.assertRaises(ValueError):validate_partial(self.source,self.draft)
+    def test_partial_cannot_hide_another_missing_block(self):
+        self.draft['blocks']=self.draft['blocks'][1:]
+        with self.assertRaises(ValueError):validate_partial(self.source,self.draft)
+    def test_partial_no_duplicate_index(self):
+        self.draft['blocks'].append(self.draft['blocks'][0])
+        with self.assertRaises(ValueError):validate_partial(self.source,self.draft)
+    def test_withheld_must_not_contain_source_copy(self):
+        self.draft['blocks'][1]['sourceText']='乙'
+        with self.assertRaises(ValueError):validate_partial(self.source,self.draft)
+    def test_full_validation_rejects_partial(self):
+        with self.assertRaises(ValueError):validate(self.source,self.draft)
+
+class SegmentedDraftTests(unittest.TestCase):
+    def setUp(self):
+        self.source={'number':1,'title':'一','blocks':[{'kind':'prose','text':'甲乙丙'}]}
+        self.draft={'schemaVersion':1,'language':'ja','number':1,'status':'partial','sourceSha256':source_hash(self.source),
+                    'omittedSourceBlockIndices':[],'partialSourceBlockIndices':[0],'blocks':[{'kind':'prose','sourceIndex':0,'sourceSegments':[
+                        {'start':0,'end':1,'sourceText':'甲','text':'初め'},
+                        {'start':1,'end':2,'sourceTextSha256':hashlib.sha256('乙'.encode()).hexdigest(),'status':'owner_translation_needed'},
+                        {'start':2,'end':3,'sourceText':'丙','text':'終わり'}]}]}
+    def test_valid_segmentation(self):
+        result=validate_partial(self.source,self.draft)
+        self.assertEqual(result['partiallyTranslatedBlocks'],1)
+        self.assertEqual(result['ownerTranslationRanges'],[{'sourceBlockIndex':0,'start':1,'end':2}])
+    def test_no_missing_character(self):
+        self.draft['blocks'][0]['sourceSegments'][2]['start']=3
+        with self.assertRaises(ValueError):validate_partial(self.source,self.draft)
+    def test_no_unbound_gap(self):
+        self.draft['blocks'][0]['sourceSegments'][1]['sourceTextSha256']='wrong'
+        with self.assertRaises(ValueError):validate_partial(self.source,self.draft)
+    def test_preserve_segmented_kind(self):
+        self.draft['blocks'][0]['kind']='verse'
+        with self.assertRaises(ValueError):validate_partial(self.source,self.draft)
+
+if __name__=='__main__':unittest.main()

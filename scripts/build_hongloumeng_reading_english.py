@@ -253,12 +253,13 @@ def production_plan(approval, *, root=None):
     mapping, progress, notes, snapshot = load_validated()
     require_complete(mapping, progress)
     from hongloumeng_reading_presentation_binding import BINDING_SHA256, REVIEW_SHA256
-    expected = dict(schemaVersion=1, scope='english-first80-local-generation',
+    from hongloumeng_ch005_author_binding import BINDING_SHA256 as CH005_BINDING_SHA256, REVIEW_SHA256 as CH005_REVIEW_SHA256
+    expected = dict(chapter5BindingSHA256=CH005_BINDING_SHA256, chapter5ReviewSHA256=CH005_REVIEW_SHA256, schemaVersion=1, scope='english-first80-local-generation',
         presentationBindingSHA256=BINDING_SHA256, presentationReviewSHA256=REVIEW_SHA256,
         publicationDate=launch_date, sourceHash=mapping['sourceHash'], standardSnapshot=snapshot,
         progressHash=pipeline.sha((pipeline.DATA/'progress.json').read_bytes()),
         notesHash=pipeline.sha((pipeline.DATA/'reader-notes.json').read_bytes()),
-        implementationHashes={name: pipeline.sha((Path(__file__).parent/name).read_bytes()) for name in ('build_hongloumeng_reading_english.py', 'build_hongloumeng_reading.py', 'hongloumeng_english_availability.py', 'build_hongloumeng_hub.py', 'hongloumeng_discovery_scope.py', 'refresh_hongloumeng_reading_discovery.py', 'build_content_registry.py', 'hongloumeng_english_pipeline.py', 'build_hongloumeng_reading_traditional.py', 'hongloumeng_translations.py', 'hongloumeng_reading_presentation_binding.py', 'hongloumeng_english_presentation_readiness.py')})
+        implementationHashes={name: pipeline.sha((Path(__file__).parent/name).read_bytes()) for name in ('build_hongloumeng_reading_english.py', 'build_hongloumeng_reading.py', 'hongloumeng_english_availability.py', 'build_hongloumeng_hub.py', 'hongloumeng_discovery_scope.py', 'refresh_hongloumeng_reading_discovery.py', 'build_content_registry.py', 'hongloumeng_english_pipeline.py', 'build_hongloumeng_reading_traditional.py', 'hongloumeng_translations.py', 'hongloumeng_reading_presentation_binding.py', 'hongloumeng_english_presentation_readiness.py', 'hongloumeng_ch005_author_binding.py')})
     if approval != expected:
         raise ValueError('Explicit exact-input local-generation approval required')
     chapters = project(mapping, progress, notes, range(1,81))
