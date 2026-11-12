@@ -110,3 +110,19 @@ Global source bindings also reflect the separately evidenced ch42 title 雅谬�
 ## v0.10: chapters 41-45
 
 Scoped public standards for chapters 41-45 bind the installed Chinese and the current Felicity naming override. All eight earlier batch files and existing historical object fields are preserved. The public-projection semantic review and R01 correction review are recorded at their actual scope. Final-status approval, current review-binding migration and technical installation verification remain separate requirements. The standards do not themselves accept new English or enable publication.
+
+
+## v0.11 candidate: chapters 46-50
+
+Append a scoped public normative proposal against explicitly pending proposed source bytes. Preserve all nine earlier batch files and old normative objects/references. Include the reviewed four-field material overlay and 18 exact selected notes. Independent exact projection review and later installed-source binding remain pending. No freeze, migration, acceptance or publication.
+
+### Candidate r3 revision
+
+Clarify public guidance and historical locators. Add the separately reviewed chapter 50 broadcloth and size decisions, current five-draft corpus binding and unchanged 18-note recheck. Preserve the exact-r2 CHANGES REQUIRED verdict and every earlier historical record. Independent semantic review of this exact r3 proposal and later installed-source binding remain pending.
+
+The final candidate records three semantic corrections in the new public guidance separately from language editing, four clarity fixes, and the limited chapter 48 r4 mass-unit application. The latest cumulative binding includes both chapter 48 r4 and chapter 50 r4, with no new full-corpus reading claim. Independent review of the final exact normative bytes remains pending.
+
+
+## v0.11 current source2 integration: chapters 46–50
+
+The earlier candidate entries above are preserved historical records. The current scoped editorial checkpoint carries the independently reviewed r3 guidance onto the exact source2 source and map, retaining both source amendment histories and all nine previous batch files. Final-state and current-binding review remain separately authenticated in the pipeline. The five unchanged final drafts supply 402 units and 1,083 segments; their full-reading and limited-delta evidence retains its actual scope. Exactly 18 selected notes are added separately from English prose. Earlier accepted bodies, the chapter 2 author ending, Felicity naming, 43 existing notes and 16 source issues remain unchanged. The new norm reference is appended to the earlier review lineage without pretending that the historical r3 snapshot was current. Publication remains disabled; subsequent batches retain ordinary five-chapter gates.

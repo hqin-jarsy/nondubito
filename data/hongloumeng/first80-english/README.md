@@ -180,3 +180,12 @@ EN-V010-CURRENT-1-40-NORM-MIGRATION-INDEPENDENT-R1-20261111 and EN-V010-FINAL-ST
 The current records add600 exact-content-bound reviews and the ninth cumulative checkpoint. Nine selected translator notes remain separate from translation segments; all34 earlier note objects and16 source issues are unchanged. Current totals are2,461 accepted and2,014 pending units,7,383 current reviews,nine accepted checkpoints and43 notes. Notes are not integrated into a reading presentation. Later batches retain their ordinary five-chapter gates.
 
 The normative checkpoint describes scoped internal editorial readiness, not native-human publication sign-off. Technical installation checks remain separately required. Publication remains disabled, no public English reading page is produced and no later batch is accepted by this change.
+
+
+## Chapters 46–50: current v0.11 checkpoint
+
+This internal work-in-progress corpus carries the exact reviewed chapter 46 r3, 47 r2, 48 r4, 49 r5 and 50 r4 drafts: 402 units and 1,083 English segments. The full prior bilingual and continuous-English reading plus actual scoped revisions remain bound to their own hashes. The current binding is a limited source2/final-state and normative-applicability review, not another whole-corpus reading.
+
+The current source includes the separately reviewed chapter 2 author ending and chapters 46–55 source repairs. Their authentic prior validators, source choices and archived review evidence remain in place. B10 changes no Chinese or previously accepted English, including the chapter 2 ending and Felicity names. Its 18 selected translator notes retain their exact texts and local anchors, separately from prose; the 43 earlier notes and 16 source issues remain unchanged.
+
+The ten accepted five-chapter checkpoints cover 2,863 accepted units, leaving 1,612 pending units. There are 8,589 current review slots and 61 separate reader notes. Later batches retain the ordinary draft, content-review and five-chapter checkpoint gates. The public normative proposal’s old snapshot is historical; all 16 current normative inputs and the exact source/map require their separately authenticated current-binding receipt. English publication remains disabled.

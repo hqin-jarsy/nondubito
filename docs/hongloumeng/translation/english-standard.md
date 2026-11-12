@@ -357,3 +357,40 @@ Independent semantic-delta review covered these scoped rules and 41 complete ear
 丰儿沿当前项目明确覆盖使用 Felicity，包括41b0002；旧表中的 Feng-er 原对象及历史审查保留，不作为现行形式，也不改凤姐 Xi-feng。
 
 本规范仅携带累计候选审查最终选定的九条读者注。十九条早期拟注不自动全选；正文及注位的当前最终绑定仍须复验。本补充不接受41–45正文，不自动迁移旧审阅，也不启用英文发布。
+
+
+## v0.11 supplement: chapters 46–50
+
+This supplement is a scoped internal editorial checkpoint. The earlier standard and nine earlier batch files retain their historical text and review references. The current source and map bindings in english-batch-046-050.json include the separately reviewed chapter 2 author ending and chapters 46–55 source repairs. The two source-binding records and their authentic prior validation contexts remain unchanged. Normative readiness does not publish English or replace content-bound chapter and cumulative review gates.
+
+### Original English and continuity
+
+Translate complete Chinese directly into original literary English. Preserve the established names and material vocabulary used in the project's own chapters 81–85 and carry that discipline into 86–110, without importing later events, knowledge, relationships or tones. The 38 scoped terms and 12 voice records are contextual instructions, not global substitutions. Felicity remains the current name of Xi-feng's maid 丰儿; all six old Feng-er records remain historical, and Xi-feng is a different identity.
+
+### Meaning, voice and sequence
+
+Keep Faithful's withdrawal and silence as resistance. Xi-feng's shift from warning to ingratiating agreement is not sincere endorsement. Promised bridal grooming and acknowledged concubine status differ from prior intimacy. Preserve the exact escalation and coarse force of angry speech without inventing insults. The pox comparison concerns a historically auspicious eruption grade, not an examination champion or modern prognosis.
+
+At cards, preserve the order of first draw, signalling and deliberate card transfer without importing modern mahjong rules. Xue Pan's assumption, cries about injury and Aunt Xue's cover story remain attributed claims. Patience's fan report does not certify Stony's death from chapter 84. Retain all 25 relationship, knowledge, chronology, object and cash guards: offers, forecasts, jokes, purchases and actual payments must not be conflated.
+
+### Poetry, quoted language and riddles
+
+Preserve the three moon poems' development and chapter boundary. Reuse straight/round, white/blue-green, remains/rises and lingering in their precise poem/commentary relations. Keep all 70 linked-poem lines with their actual speakers, interruptions and competitive actions. The inventory comprises 15 verse works, 146 displayed lines, three heading/author metadata blocks, 41 embedded expressions and a separate prose character riddle, not 15 lyric poems.
+
+Retain the five chapter headings and actual short endings. Repeat the spoken and written first snow-poem line exactly. Preserve the seven-character quotation called five without repairing Chinese. Keep snow-drenched bamboo's figurative tipsiness and fragrance floating through immortal realms on the Crimson River raft as bounded readings, not certified unique interpretations. The phrase rain-cape and hat does not add straw as a material. The forms of address sisters and Fourth Sister do not identify an otherwise unspecified listener. Eight riddles are present; the final three remain unanswered. Do not supply absent poems or move explanations ahead of the characters' discoveries.
+
+### Materials, quantities and evidence limits
+
+Keep all 37 material descriptions and their limits, including facing, lining, colour, cut and Xiu-yan's lack of snow protection. 猩猩毡 is broadcloth; scarlet is used only where red is explicit, including no added scarlet to Bao-yu's cloak at hlm-c049-b0035. 银鼠 uses established historical ermine, without modern species identification. 盘金 uses couched gold, without invented stitch spacing or fibre ratios. Sand-fox fur is limited to the garment group discussed in chapter 51 and the project’s own chapter 81; it is not inserted into chapter 49. Other 毡, fabrics, dress names and uncertain milu retain their own contexts. In hlm-c050-b0172, the shortened 猩毡 is also broadcloth, while 大红 supplies scarlet without implying size or grandeur. The selected sentence is “Just then, from behind Bao-qin stepped someone in a scarlet broadcloth cloak.” Preserve the anonymous introduction until hlm-c050-b0173. This local decision does not change the red felt cloth in hlm-c047-b0007 or the scarlet felt curtain in hlm-c050-b0169.
+
+Preserve sums, units, alternatives, approximate dates and counts without reconciling textual tensions into new facts. The four separately reviewed source repairs for this batch are 凤儿姐→凤姐儿, 湘涟道→湘莲道, the damaged Zhaojun-hood material→猩猩毡, and 拗垤→坳垤. They belong to the separately integrated source amendment and are not changes made by this supplement. Retain the other 27 scoped reading choices and do not add an outside opening sentence to chapter 50.
+
+### Notes and review gates
+
+Carry only the 18 selected exact reader-note texts and anchors in the batch file. No new notes, early riddle answers or age-repair note are selected. Historical full review and later limited deltas apply only to their recorded bytes and scope. The exact historical r3 public projection has its own independent semantic review. A separate current-binding review authenticates the final-state delta, exact current source and map, all 16 normative inputs, five final drafts and 18 selected notes. Scoped applicability to the unchanged accepted chapters 1–45 preserves their original review references and corpus hashes with the new review reference appended. Neither metadata nor candidate approval substitutes for actual reading evidence.
+
+The exact r2 projection received a genuine full 402-unit independent bilingual reading and a CHANGES REQUIRED verdict. A later limited review read eight complete units and 40 English segments, including the changed chapter 50 r4 unit, and rechecked the 18 unchanged notes. That earlier binding combined 401 unchanged units with the actual chapter 50 changed-unit recheck. A subsequent limited review actually read complete before and after English with Chinese for chapter 48 blocks 23–25 and verified the use of catties in the deliberately impossible heavy-olive simile. The latest corpus binding preserves 400 units unchanged from the original full reading and uses actual limited reviews for the two changed units. Neither limited review is a second full reading. The independent r3 normative approval remains bound to its historical prospective snapshot; the current binding separately includes the chapter 2 author amendment without changing its accepted ending. No new full reading of chapters 1–50 is claimed.
+
+Use catty or catties for numeric 斤 in the chapter 48 heavy-olive simile, retaining its approximate thousands and deliberate exaggeration without modern conversion. The selected chapter 48 r4 application changes only the mass-unit word and does not alter the poetic quotations or commentary.
+
+In chapter 46, Xi-feng compares the dangerous approach to poking a straw up a tiger’s nostril. Her private calculation allows that Faithful might yet agree and weighs both outcomes. In chapter 48, Caltrop correctly assigns xian to shan but mistakes the invitation to rest for a suggested rhyme unsuitable for her han poem; do not make her rhyme classification itself wrong.

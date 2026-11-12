@@ -14,16 +14,16 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/hongloumeng/first80-english'
 SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
-VERSION = 'english-1-110-v0.10'
+VERSION = 'english-1-110-v0.11'
 V09_VERSION = 'english-1-110-v0.9'
 READING_SHA = 'feb85ce4efd6219c5e3c3b168935ac1f612e1abac88b7c6369cbeb084f7e33d0'
 MANIFEST_SHA = 'af42240acc73e9fa94388c01da680a6b90ecc37f084d6a951b77e42282cfea5f'
 BODY_SHA = '364fe7e83f67dc46c1d542ffb600dbd5c6e0038f7fe69e3ea6fdc97231530559'
 NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md')
 V09_NORMATIVE_FILES = NORMATIVE_FILES
-NORMATIVE_FILES += ('english-batch-041-045.json', 'source-binding-ch46-ch55.json', 'source-binding-ch002-ending.json')
+NORMATIVE_FILES += ('english-batch-041-045.json', 'source-binding-ch46-ch55.json', 'source-binding-ch002-ending.json', 'english-batch-046-050.json')
 SOURCE_MAP_SHA = '7feab025d9155906be188d9cc51a55ebb19f5ff797cd053d8542e68d4a5e85c4'
-EXPECTED_NORMATIVE_SNAPSHOT = 'f6326c33bb869033a215f845eb8e80c87950dc5197153f7fd325fca576a7cc89'
+EXPECTED_NORMATIVE_SNAPSHOT = '8c2ef3dbbdc686f1f81ccab81f75c26590cf35bd441c5c2a96eac3e6785f8826'
 V010_PREVIOUS_SNAPSHOT = 'd63863840a1c4f20e250791f8b4b16f7b60e964011bdad8eea619d59191ebd6b'
 V010_BEFORE_FILENAME = 'v010-20261111.before.json'
 V010_BEFORE_PROGRESS_SHA = '966955d4e75fb0ccc4c98b4bc633acc6531548d42414ef8838d8be9b51ff9464'
@@ -164,9 +164,9 @@ def standard_snapshot():
 
 
 def validate_standard_readiness(mapping, progress):
-    """One chapter2 author amendment after the separately verified source4655 parent."""
-    from hongloumeng_ch002_ending_binding import validate_readiness
-    return validate_readiness(sys.modules[__name__], mapping, progress)
+    """B10 normative continuation over the preserved source2 author/source lineage."""
+    from hongloumeng_ch002_ending_binding import validate_batch046050_readiness
+    return validate_batch046050_readiness(sys.modules[__name__], mapping, progress)
 
 
 def validate_pre_source4655_readiness(mapping, progress):
