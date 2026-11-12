@@ -209,3 +209,8 @@ Exact chapters 61-65 and three selected notes are prepared over the installed B1
 ## B14 checkpoint
 
 Final chapters 66-70 and four separate notes are bound to the corrected Chinese source. Current readiness requires genuine independent binding receipts. Earlier English and historical reviews remain unchanged in their original contexts. English publication remains disabled.
+
+
+## B15 checkpoint
+
+Chapters 71-75 and two notes are bound to the current source. Earlier accepted bodies and historical review context are retained. Current tracked replay is separate from authenticating historical manifest evidence. Independent current-binding receipts are required. English publication remains disabled.

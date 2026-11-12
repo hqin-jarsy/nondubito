@@ -146,3 +146,8 @@ Preserves the independently reviewed four-file public guidance and binds 284 rev
 ## v0.15 B14 continuation: chapters 66-70
 
 Binds the independently reviewed final 224 units and four separate reader notes to the installed corrected Chinese source. Preserves all earlier accepted English, reviews, notes and source decisions. Full historical chapter readings, bounded successor rechecks and the complete cumulative reading retain their actual scopes. Current binding requires independent semantic and technical receipts. English publication remains disabled.
+
+
+## v0.16 B15 continuation: chapters 71-75
+
+Binds 237 reviewed units and two separate reader notes. The effective public norm correctly identifies the paternal-aunt cousin relation, with the historical report retained and an explicit erratum. All earlier accepted prose, notes and source decisions are preserved. Fourteen exact untracked historical witnesses are classified as historical evidence, not current runtime dependencies. Current tracked validation remains strict; absent witnesses do not establish exact historical runtime replay. Independent current-binding receipts are still required. English publication remains disabled.
