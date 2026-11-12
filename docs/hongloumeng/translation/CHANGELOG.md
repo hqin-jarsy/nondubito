@@ -136,3 +136,8 @@ Adds the independently reviewed B11 public guidance to the exact B10 baseline wi
 ## v0.13 prospective B12 current binding: chapters 56-60
 
 Preserves the exact independently approved four-file public guidance and binds 233 reviewed units with three selected separate notes to the receipt-bound source56-65 predecessor. All 3155 earlier accepted bodies, historical reviews, 11 prior checkpoints, 66 notes and 16 issues retain their authentic contexts. No old accepted body changes. Current merged-norm readiness requires separate genuine independent semantic and technical receipts; no fresh whole-corpus reread or actual installation is claimed. English publication remains disabled.
+
+
+## v0.14 B13 scoped continuation: chapters 61-65
+
+Preserves the independently reviewed four-file public guidance and binds 284 reviewed units with three selected separate notes to the exact installed B12 predecessor. All 3388 earlier accepted bodies, historical reviews, 12 checkpoints, 69 notes and 16 issues retain their authentic contexts. Current merged-norm readiness requires independent semantic and technical receipts. No fresh whole-corpus reread is claimed. English publication remains disabled.

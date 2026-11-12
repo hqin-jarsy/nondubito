@@ -199,3 +199,8 @@ The B11 preparation proposes 3,155 accepted units through chapter 55, with 1,320
 ## Prospective B12 checkpoint
 
 Exact drafts for chapters 56–60 and three selected notes are proposed for acceptance over the receipt-bound source56–65 predecessor. Normal readiness is closed pending genuine independent current-binding and technical receipts. Historical full readings retain their original scope; no fresh whole-corpus reread is claimed. Prior accepted bodies and notes remain unchanged. Later drafting and five-chapter gates continue beyond chapter 60. English publication remains disabled.
+
+
+## B13 checkpoint
+
+Exact chapters 61-65 and three selected notes are prepared over the installed B12 predecessor. Normal readiness requires genuine independent current-binding semantic and technical receipts. Historical full readings retain their original scope. Earlier accepted bodies and notes remain unchanged. Later drafting and five-chapter gates continue beyond chapter65. English publication remains disabled.

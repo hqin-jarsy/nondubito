@@ -498,3 +498,76 @@ Keep rose medicinal powder, jasmine powder, rose essence and fuling frost distin
 Carry exactly three reader notes: the fruit and children association after chapter 58 block 15, segment 4; Gongye Chang after the complete internal utterance in chapter 58 block 17, segment 1; and the Mei-xiang saying after chapter 60 block 17, segment 1. These segment numbers are one-based; the companion file supplies zero-based anchors and exact text. The other three proposals are not selected. Do not add a Du Mu attribution, pregnancy prediction, spoiler or medical claim.
 
 Continue complete bilingual review and continuous English reading at every five-chapter checkpoint, with targeted rereading after changes. A limited review remains limited. This isolated semantic projection neither installs source or norms nor accepts prose, migrates prior reviews or enables English publication. Actual current source and norm bindings require a separate verified step.
+
+
+## Chapters 61–65 supplement
+
+This proposed supplement covers chapters 61–65. It extends the installed v0.13 standard while preserving every earlier rule, term and voice object. It does not state that these chapters or their notes have been accepted or installed.
+
+### How to use this supplement
+
+Read this appendix together with the complete chapter and the scene, voice, relationship, quantity, material and literary records. The 38 scene records cover all 284 units, including the five titles. The glossary contains bounded choices, not automatic replacements. Use each entry's source anchors and exclusions; raw substring matches do not establish identity or sense.
+
+Write natural, original English. Use Hawkes-compatible project naming, not borrowed Hawkes prose. Preserve the narrative's shifts between comedy, intimate conversation, administrative argument, lyric play and sexual exploitation. Avoid invented dialect, compressed shorthand, modern diagnoses and explanatory narration the Chinese does not supply.
+
+### Inheritance and current authority
+
+Current names include Parfumée, Felicity, Aroma, Skybright, Musk, Patience, Faithful, Caltrop, Nightingale and Oriole. Preserve established pinyin names and hyphenation. Jia Bin is already used for 贾㻞 in accepted 13.12 and 29.13; the new glyph restoration does not authorize Bian. New romanized forms that lack an earlier verified occurrence remain proposals, visibly marked in the glossary. Ordinary forms of address still depend on speaker and relationship. Joker names Jia Lian's page at 65.25–39, continuing the same identity in the project's own 84.39. Preserve Lady Xing and Xing Xiu-yan; the page's name is not a generic Xing replacement.
+
+Use catty/catties for the bounded quantified weight sense of 斤, not a global replacement of every jin in the repository. Preserve historical silver, copper-cash, distance, volume and time units where their distinctions matter. Current institution forms are Board of Rites and Court of Imperial Entertainments.
+
+### Chapters 61–62: responsibility, gifts and birthdays
+
+Continue the gate scene from the end of chapter 60 rather than reintroducing its people. Mrs Liu's coarse sexual insults, domestic accounting and flattery belong to one forceful voice. Lotus embellishes a report. Chess orders destruction, but threats and orders must not become acts that never happened.
+
+Keep the two gift chains separate. The rose essence given through Bao-yu, Aroma and Parfumée is not Lady Wang's stolen essence. The fuling frost comes through Wu-er's uncle's share and Mrs Liu. Wu-er wraps half the frost separately in paper for Parfumée; the quantity is not half of a packet. Patience's alternative Bao-yu provenance is a cover story. Cai-yun admits the theft; suspicion about Silver must not turn into her confession. Bao-yu's accepted blame and Patience's protection of Tan-chun are deliberate social choices.
+
+Preserve overnight detention and its discomforts. The forty blows, disposal of Wu-er and later proposed torture remain unexecuted. Xi-feng's exhaustion and punitive reasoning coexist with Patience's tactical mercy. The later six-or-seven-month pregnancy statement must not be erased to harmonize it with chapter 55's unspecific miscarriage.
+
+Four people share the birthday: Bao-yu, Bao-qin, Xiu-yan and Patience. Xiang-yun is not a fifth celebrant. Two additional tables for Patience lead to four final tables for the whole party. Aunt Xue is elsewhere. Daoist Zhang's gifts of four kinds and Xue Ke's four kinds do not establish exact counts of individual objects. Keep every food, vessel and transfer count separate, including the two fresh tea cups and Parfumée's delivered meal.
+
+Translate the concealed-word game through its actual connecting words and quotations. Do not invent a missing explanation for 瓢/绿. Each composite drinking answer has five different kinds of source, not one continuous ancient poem. Preserve the duck-head/maid joke, the girls' objection, the plant-name pairings and the loquat/pipa echo. A small note may assist a necessary sound joke, but must not replace the actual objects.
+
+The author explicitly confirms 汗巴 as the Beijing sound for 胡掰. Render the dismissal as talking nonsense or making things up while retaining the Chinese. The go scene is not chess; two eyes are secure, while 官着 remains a cautious working interpretation rather than a reconstructed board position.
+
+### Chapter 63: private celebration and abrupt mourning
+
+The eight named contributors provide two taels plus one tael two qian, a total of three taels two qian. The parenthesis 他们有假的不算 is best read as excluding staff on leave or absent from the pool. The dictionary supports 假 jià, and the arithmetic still includes all eight named contributors. Do not invent counterfeit coins, a named absentee or a ninth contributor. This is a strong working preference, not proof of an archetypal text.
+
+Keep every flower lot complete: image, heading, verse, instruction, drinkers and reaction. There are eight lots and none for Bao-yu. The peony line must repeat identically when he repeats it. Preserve the actual lottery sequence and dice totals. Do not turn a lot's flattering prediction or the party's princess joke into certified future history. Under Musk's lot, everyone takes three mouthfuls in place of three cups. Hibiscus remains the working choice for Dai-yu's 芙蓉, not a uniquely demonstrated botanical identification.
+
+Parfumée first begins one birthday line, then sings the complete quoted tune and continuation. The public Handan play establishes its dramatic speaker and addressee, but local wording controls. Adamantina's complete card and Bao-yu's complete reply require coherent threshold language. Xiu-yan's explanation also establishes a separate contrast between the outsider and the person in the world. Do not invent a meeting with Adamantina.
+
+The actresses remain girls while wearing male costumes and receiving male names. Preserve the sequence Xiong-nu, Yelü Xiong-nu, Wild Ass, Wen-du-li-na and Glass without creating new people. Parfumée's Glass is not the actual maid Glass in the author's chapter 83. Bao-yu's ethnic, imperial and foreign-material claims remain his claims; neither endorse them nor sanitize the hierarchy and the captured-servant background. Preserve Parfumée's reply.
+
+The festivities turn suddenly to Jia Jing's death. The death announcement's inflated register does not make him an emperor. Distinguish physicians' observations, Daoist explanations, You-shi's practical decisions, the official memorial and the imperial edict. Keep the edict's full quoted scope through 钦此. Neither a modern poisoning diagnosis nor a falsely precise modern conversion of 子初初刻十分 belongs in the narration.
+
+### Chapters 64–65: withheld knowledge and coercive relationships
+
+At 64.3, the funeral context favours a completed morning meal offering. The ordinary-breakfast interpretation used elsewhere is not a blanket rule for 供. This remains a reviewable contextual choice.
+
+Dai-yu's private offering has no securely identified recipient. Snowgoose does not know, Bao-yu speculates and later evidence establishes only that an offering took place. Do not settle the question by invoking parents, the Five Beauties or later events.
+
+The Five Beauties require five headings and twenty complete seven-character lines. Preserve each poem's argument against an expected judgment, not merely its tragic atmosphere. Historical and literary sources help identify Xiang Yu, Qing Bu/Ying Bu, Peng Yue, Shi Chong, Yang Su and Li Jing. They do not certify every legendary event. Bao-chai's subsequent four quoted lines remain complete and properly attributed.
+
+You-shi's stepmother brought the two younger sisters from a previous marriage. Do not invent a shared biological mother or father. Jia Rong's kinship addresses follow the household relationship. At 64.43, 尤氏姐妹 means You Er-jie and You San-jie, not You-shi. At 65.5, 65.31 and 65.36 the repeated 尤氏 forms do not mean the absent You-shi; read the mother and younger daughter, You Er-jie, and the two sisters respectively.
+
+The secret marriage, pressure on the earlier betrothed, harassment, sexual bargaining and obscene servant speech retain their force. Keep source assertions, implications, accusations and narrator judgments separate. Do not romanticize coercion or expand innuendo into a described act. You Er-jie's accommodating hope and You San-jie's combative demand for choice must remain distinct.
+
+Bao Er's earlier wife died in chapter 44, but the current local text does not include the public composite edition's remarriage story. Do not import it. Bao Er and his wife are separately counted identities. The male page Xi-er is not the female Xi-er of chapter 35. Joker's account is partial, performative speech, not an authoritative family register. Later continuity may guard against overstatement but supplies no wording to insert early.
+
+### Materials, quantities and uncertainty
+
+Maintain the distinction between essence and medicinal frost; damask, satin, gauze and patchwork; huali wood and a named botanical species; gold-flecked glass and a person's nickname. The compressed 玉色红青酡绒三色缎子 phrase remains uncertain in segmentation. Do not assert that 酡绒 is a separate fabric or finish, substitute 驼绒, or replace the uncertainty with a definite colour claim. Translate what can be securely understood without inventing a modern textile specification.
+
+Keep funeral debt, incoming gifts, money sent home, betrothal estimates, actual compensation, monthly support and private savings separate. Distinguish the elapsed 三日后 interval from lunar month-days 初二, 初三 and 初四; no month is supplied and these episodes cannot be forced into one month. Keep the approximate two months separate. 回籍 identifies removal of the coffin to the family's native place after the hundred days, not an unspecified return home. Historical remedy claims remain character beliefs rather than medical advice.
+
+Retain the negative in 他也不是好意的. Retain 如胶授漆 and give it a natural contextual English sense without claiming a Chinese correction. Source sameness in a public transcription is evidence of a reading, not evidence of autograph authority, an OCR mechanism or a unique pronunciation.
+
+### Notes and review
+
+At 64.52, reading Er-jie as the person who sits beside the eastern partition is contextually defensible with moderate confidence, not a uniquely established parse. Keep the contrary possibility visible. The plums-and-sweat complaint and plant classifications remain colloquial or character-level claims, not objective physiology or taxonomy.
+
+Use exactly three reader notes: the song's dramatic source and speaker after 63.17; a restrained tumi identification after the verse in 63.21; and the names behind the Five Beauties after Bao-chai's criticism in 64.37. Keep the selected texts and complete-segment anchors unchanged. Do not add the four declined notes, identify the private offering's recipient or reveal later plot.
+
+Keep the chapter title's parallel halves divided by a semicolon. In Joker's complaint at 65.28, Lady Xing names Xi-feng's mother-in-law without turning his report into narrator fact. At each five-chapter checkpoint, read the complete bilingual text and then the continuous English; after narrow changes, reread complete affected contexts. Mechanical checks alone do not supply semantic approval.
