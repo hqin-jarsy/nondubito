@@ -138,6 +138,13 @@ def build() -> tuple[dict, dict[str, list[dict]]]:
                     ROOT / "essays" / "method",
                     ROOT / "essays" / "zhuangzi",
                     ROOT / "essays" / "math-history",
+                    ROOT / "essays" / "second-enlightenment",
+                    ROOT / "essays" / "cultivation",
+                    ROOT / "essays" / "parent-child",
+                    ROOT / "essays" / "cooperation",
+                    ROOT / "essays" / "company",
+                    ROOT / "essays" / "market",
+                    ROOT / "essays" / "disciplines",
                 ) else {},
                 "search_text": extract_search_text(source),
             }

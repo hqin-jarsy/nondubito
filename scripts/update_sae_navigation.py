@@ -12,6 +12,7 @@ from build_long_consensus import library_card as consensus_card
 from build_interstate import library_card as interstate_card
 from build_marriage_series import library_card as marriage_card
 from build_political_economy import library_card as political_economy_card
+from build_reader_series import registry as reader_registry, library_card as reader_card
 
 ROOT = Path(__file__).resolve().parents[1]
 CARD = re.compile(r'<a\b(?=[^>]*\bclass="series-card")[^>]*>.*?</a>',re.S)
@@ -31,6 +32,8 @@ def tri_library(en,zh,conv,tag='span',css=''):
 def render_library(source,groups,conv):
     start,end,old = library_block(source)
     cards = {re.search(r'href="([^"]+)"',m[0])[1]:m[0] for m in CARD.finditer(old)}
+    for series in reader_registry():
+        cards[f'essays/{series["slug"]}/index.html'] = reader_card(series,conv)
     cards['essays/interstate/index.html'] = interstate_card(conv)
     cards['essays/marriage/index.html'] = marriage_card(conv)
     cards['essays/political-economy/index.html'] = political_economy_card(conv)

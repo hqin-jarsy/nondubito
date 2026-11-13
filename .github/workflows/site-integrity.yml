@@ -70,6 +70,8 @@ jobs:
       - run: python -B scripts/refresh_wwii_full_discovery.py --check
       - run: python -B scripts/check_site_updates.py
       - run: python -B -m unittest discover -s scripts -p test_home_updates.py
+      - run: python -B scripts/build_reader_series.py --check
+      - run: python -B scripts/test_reader_series.py
       - run: python -B scripts/build_home_updates.py --check
       - run: python -B -m unittest discover -s scripts -p test_reviewed_series_languages.py
       - run: python -B -m unittest discover -s scripts -p test_rewritten_series_languages.py
