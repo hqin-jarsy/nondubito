@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "chapters": [
+    59
+  ],
+  "stage": "translator_self_check_not_independent_review",
+  "source": "data/hongloumeng/first80-public/reading.zh.json",
+  "sourceSha256": "0fe0d49b34338b2ec9bb39975846499851beca3b714643f66e2fc43301922f7d",
+  "referenceFile": "/Users/hanqin/Desktop/SAE_PDFs/红楼梦/癸酉本石头记.md",
+  "referenceSha256": "818bfe3f8f7a4a9663c4390f6d7d8d70cef7a5ef237755dfc3446092f6e9f04e",
+  "reviewedBlocks": 30,
+  "sourceCharacters": 4950,
+  "translationCharacters": 8824,
+  "coverage": "Read all 30 Chinese blocks and the complete Guiyou chapter 59 at lines 11561–11699. Read the Japanese standard and terms, chapter 51 format and chapter 55 opening, and style excerpts from current Japanese chapters 81–85. Translated directly from Chinese. Reread all saved Japanese blocks in ranges 0–15 and 16–29; corrected age/rank inference and wording. Read all comparison notes and corrected one reference quotation. Translator self-check only; independent review pending.",
+  "comparisonDecisions": [
+    {
+      "type": "reference",
+      "text": "癸酉本第五十九回（11561–11699行）を全篇参校。真偽を除外基準にせず、文脈と読者の理解から比較し、現行中文30区画に従った。参校本の評語や後の筋への予告は本文に入れない。"
+    },
+    {
+      "type": "source-variation",
+      "text": "回目は現行「绛云轩」、参校本「绛芸轩」。現行どおり「絳雲軒」とした。参校本の本文には「杏叶渚」とあるが、現行「柳叶渚」と回目・柳堤の描写に従い「柳葉渚」を維持。"
+    },
+    {
+      "type": "kinship",
+      "sourceBlockIndex": 15,
+      "text": "「我姑娘」「他姑娘」はこの文脈では春燕の父方のおば。参校本15・17相当は「姑妈」で、20相当は「姑娘」。母の姉（藕官の仮母）、母（芳官の仮母）、父方のおば（花柳の管理者）を区別。姑娘をお嬢さまとは訳さない。中文の語形統一は候補として報告し、ここでは変更しない。"
+    },
+    {
+      "type": "source-reading",
+      "sourceBlockIndex": 24,
+      "text": "現行「他有情呢，你说两句」は老女にも二言ほど言える余地がある意で訳した。参校本「说你两句」へは置換しない。"
+    },
+    {
+      "type": "source-ending",
+      "sourceBlockIndex": 29,
+      "text": "現行は襲人が何事かと問う結び。参校本は平児が何を語るかという結び。双方意味は通じるため、現行の視点を保持。"
+    },
+    {
+      "type": "medicine",
+      "sourceBlockIndex": 5,
+      "text": "杏斑癬と薔薇硝は作中の病名・薬名として残す。現代の診断名や処方指示へ置き換えない。"
+    },
+    {
+      "type": "dialogue",
+      "sourceBlockIndex": 19,
+      "text": "洗顔の湯を焦がすという不可能な言い回しと、母親の粗い罵倒を人物の発言として保持。既に頬を打った母が27区画で打てなかったと言う矛盾も、語り手の訂正で消さない。"
+    }
+  ],
+  "selfCorrections": [
+    {
+      "sourceBlockIndex": 2,
+      "before": "大小の侍女",
+      "after": "年長年少の侍女",
+      "reason": "自然な年齢区分にする。"
+    },
+    {
+      "sourceBlockIndex": 12,
+      "before": "何婆の末の娘",
+      "after": "何婆の娘",
+      "reason": "小女は末娘とは限らず、後段には妹が登場。"
+    },
+    {
+      "sourceBlockIndex": 15,
+      "before": "父方の伯母さん",
+      "after": "父方のおばさん",
+      "reason": "父との年齢順は不明。"
+    },
+    {
+      "sourceBlockIndex": 20,
+      "before": "お義姉さん、またどうしたんです？",
+      "after": "おばさん、またどうしたんです？",
+      "reason": "夫の姉妹の年齢順を断定しない。"
+    }
+  ],
+  "checked": [
+    "All 30 source strings and prose block boundaries retained, including continuing dialogue across blocks.",
+    "Retained six maids, ten women, four or five advance attendants, four/five hundred cash monthly, forty strokes and eight/nine incidents in three/four days.",
+    "No source/shared files changed; no commit or push."
+  ],
+  "files": {
+    "data/hongloumeng/first80-japanese/chapters/ch059.draft.json": {
+      "sha256": "5b6cce502d2921cdd99642a59a123a6c6c5923e1027f8a6a2df1c95f879665f4"
+    }
+  },
+  "validation": {
+    "command": "python3 -B scripts/hongloumeng_japanese_pipeline.py --start 59 --end 59",
+    "result": {
+      "chapter": 59,
+      "blocks": 30,
+      "sourceSha256": "0fe0d49b34338b2ec9bb39975846499851beca3b714643f66e2fc43301922f7d",
+      "translationCharacters": 8824,
+      "status": "structurally_validated_not_literary_acceptance"
+    },
+    "literaryStatus": "Full-text translator self-check complete; independent literary review pending"
+  }
+}
