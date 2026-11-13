@@ -19,3 +19,11 @@ python3 -B scripts/hongloumeng_japanese_pipeline.py --start 1 --end 10 --allow-p
 `--allow-partial` は部分稿の範囲を確認する指定であり、完全版への昇格ではありません。完全な回だけを校閲HTMLへ出すときは `--render-private` を指定します。中国語の源文が変わった場合は、その回の源ハッシュと対応文を確認し直す必要があります。
 
 五回ごとに内容と文体を振り返ってローカルでcommitします。pushは行いません。未完成部分、確認待ちの作者訳文、未実施の検査を、完了と表示しません。
+
+## 未完成箇所の一意なプレースホルダー
+
+`placeholder-index.json` は回番号・マーカー・原文内位置・ハッシュのみの索引です。原文本文は収録しません。第6回は CH006-P01〜P03、第9回は CH009-P01〜P02、第12回は CH012-P01 です。`【日訳未完 CH006-P01】` のような文字列で検索できます。
+
+`private-review/ch006.partial.html`、`ch009.partial.html`、`ch012.partial.html` には既存の日訳と黄色のマーカーだけを表示します。作者が手動補完する位置の確認用です。HTML編集はJSON原稿へ自動反映されません。原稿の正本は `chapters/chNNN.partial.json` です。マーカーだけを消しても完成扱いにはなりません。
+
+再生成：`python3 -B scripts/hongloumeng_partial_private.py`。検査：`python3 -B scripts/test_hongloumeng_partial_private.py`。この独立レンダラーは中国語原文ファイルを読み込まず、欠落した訳文を原文で埋めません。構造検査は原文照合・文学的審読ではなく、旧reviewやprogressを変更しません。非公開はローカル用途の意味で、HTMLのnoindexはアクセス制御ではありません。公開・pushは行っていません。
