@@ -3,8 +3,8 @@
 The hash-pinned navigation binding and its predecessor replay were retired on
 2026-11-13 with the rest of the binding chain; its record
 (data/hongloumeng/first80-english/japanese-navigation-binding.json) stays as
-historical evidence. Current checks: the Japanese reader must validate exactly
-(require_japanese_reader), and every builder output, including these exact
+historical evidence. Current checks: the hand-edited Japanese reader must pass structural checks
+(require_japanese_reader), and other language builder outputs, including these exact
 reversible insertions, must equal the files on disk.
 """
 from pathlib import Path

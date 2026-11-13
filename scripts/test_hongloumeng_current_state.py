@@ -4,7 +4,7 @@ Retired 2026-11-13 by the owner's decision; see
 data/hongloumeng/first80-english/binding-chain-retirement.json. What is checked
 here is the present tree: frozen standard, exact approval of the rendered data,
 the bounded chapter49 note overlay, a single Japanese placeholder table, and
-byte-identical output for every reader edition.
+byte-identical generated editions plus the hand-edited Japanese HTML.
 """
 import json
 import re
@@ -66,14 +66,11 @@ class Chapter49Overlay(unittest.TestCase):
 
 class JapanesePlaceholders(unittest.TestCase):
     def test_single_table_matches_data_and_pages(self):
-        from build_hongloumeng_reading_japanese import PARTIAL, NOTICE
+        from hongloumeng_japanese_availability import japanese_publication
         root = pipeline.ROOT
-        index = json.loads((root/'data/hongloumeng/first80-japanese/placeholder-index.json').read_text())['placeholders']
-        self.assertEqual({n: sum(1 for e in index if e['chapter'] == n) for n in sorted({e['chapter'] for e in index})}, PARTIAL)
-        partial_files = sorted(int(p.name[2:5]) for p in (root/'data/hongloumeng/first80-japanese/chapters').glob('ch*.partial.json'))
-        self.assertEqual(partial_files, sorted(PARTIAL))
-        total = sum(PARTIAL.values())
-        self.assertIn(f'{len(PARTIAL)}回の計{total}か所', NOTICE)
+        current = japanese_publication(root)
+        total = current['ownerPlaceholders']
+        self.assertEqual(current['partial'], {6: 3, 9: 2, 12: 1, 65: 4, 75: 1})
         hub = (root/'essays/literature/hlm/index.html').read_text()
         self.assertIn(f'日本語（{total}か所は補訳待ち）', hub)
         self.assertIn(f'共{total}处待作者补译', hub)

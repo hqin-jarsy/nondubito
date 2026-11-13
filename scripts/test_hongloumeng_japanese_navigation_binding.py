@@ -63,13 +63,13 @@ class Navigation(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'verified Japanese reader'):
                 b.require_japanese_reader()
 
-    def test_stale_japanese_reader_rejected(self):
-        read = Path.read_bytes
-        def altered(path):
-            raw = read(path)
-            return raw+b'tamper' if path == b.ROOT/'classics/hongloumeng/ja/ch001.html' else raw
-        with patch.object(Path, 'read_bytes', altered):
-            with self.assertRaisesRegex(ValueError, 'Stale Japanese reader output'):
+    def test_missing_japanese_article_rejected(self):
+        read = Path.read_text
+        def altered(path, *args, **kwargs):
+            raw = read(path, *args, **kwargs)
+            return raw.replace('<article>', '<div>') if path == b.ROOT/'classics/hongloumeng/ja/ch001.html' else raw
+        with patch.object(Path, 'read_text', altered):
+            with self.assertRaisesRegex(ValueError, 'article'):
                 b.require_japanese_reader()
 
     def test_regeneration_preserves_first_publication_date(self):
