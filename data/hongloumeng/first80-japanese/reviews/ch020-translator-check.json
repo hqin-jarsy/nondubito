@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "chapters": [
+    20
+  ],
+  "stage": "translator_self_check_not_independent_review",
+  "source": "data/hongloumeng/first80-public/reading.zh.json",
+  "sourceSha256": "3591ad3a451188153eab90f0f821f6d73dc60a613a6519ad9f8558cb4f7526cc",
+  "coverage": {
+    "sourceBlocks": 29,
+    "fullyTranslatedBlocks": 29,
+    "omittedBlocks": [],
+    "allBlocksReadBack": true,
+    "sourceMetadataPreserved": true
+  },
+  "styleReferences": [
+    "data/hongloumeng/first80-japanese/chapters/ch008.draft.json",
+    "data/hongloumeng/first80-japanese/chapters/ch013.draft.json",
+    "data/hongloumeng/first80-japanese/chapters/ch015.draft.json",
+    "data/originals/hongloumeng/translations/received/ch081/ch081_ja.md",
+    "docs/hongloumeng/translation/japanese-terms.json"
+  ],
+  "referenceFile": "/Users/hanqin/Desktop/SAE_PDFs/红楼梦/癸酉本石头记.md",
+  "referenceSha256": "818bfe3f8f7a4a9663c4390f6d7d8d70cef7a5ef237755dfc3446092f6e9f04e",
+  "referenceScope": "第20回对应段落，尤其骰点、亲疏先后格言、袭人诉说和青肷披风；仅参校，不移植其他版本。",
+  "sourceChangesApplied": [],
+  "sourceQuestions": [
+    {
+      "blockIndex": 11,
+      "issue": "骰点中五加幺与说是个六点的歧义",
+      "reference": "本地癸酉本同样保留这些数字",
+      "decision": "原数不改，译文不强定为总和或单枚点数，notes明示。"
+    },
+    {
+      "blockIndex": 22,
+      "issue": "亲不间疏，先不僭后",
+      "reference": "本地癸酉本同文",
+      "decision": "根据随后宝玉自己解释译亲疏先后，保留中文，notes说明。"
+    },
+    {
+      "blockIndex": 5,
+      "issue": "说的好说不好听",
+      "reference": "本地癸酉本为说得好听不好听",
+      "decision": "未改中文；现文按说者与听者感受对比译出，交独立审读者判断是否为转写修复候选。"
+    }
+  ],
+  "selfCorrections": [
+    "读回29块全文后，将小売女改为売女の小娘，避免日文误读。",
+    "将老妈妈子们改译年配の女中たち，不把所有老女仆误认为乳母。",
+    "将贾环不敢则声改为何も言い出せなかった，保留不敢出声而非主观不愿回答。",
+    "青肷保留材料名与注释，撤去过具体的狐种与色味认定。"
+  ],
+  "semanticChecks": [
+    "保留全章29块和跨块对白衔接，无缩写或概要代替正文。",
+    "保留李嬷嬷辱骂、袭人委屈、麝月留守、晴雯婚礼双关及镜中对视。",
+    "保留十文、一二百文、一贯及骰点各数字。",
+    "宝玉正出、贾环庶出及王熙凤对赵姨娘的主仆等级话语均保留。",
+    "元春与探春译同父姊妹，不误称同母；姑舅与两姨关系以宝玉本人论亲疏保留。",
+    "湘云二与爱的发音玩笑同时保留排行二、爱和计数，辅以简注；不虚加姓名读音。",
+    "保留说书人询问呆意、回目和结尾下回分解。"
+  ],
+  "validationCommand": "python3 -B scripts/hongloumeng_japanese_pipeline.py --start 20 --end 20",
+  "validationStatus": "passed_structure_and_source_binding_not_literary_acceptance",
+  "files": {
+    "data/hongloumeng/first80-japanese/chapters/ch020.draft.json": {
+      "sha256": "f86b9e33f87699f92fd9c53074dacb9674816127997a2a5827f2cdde4751d95e"
+    }
+  },
+  "limitations": "译者自校不是独立文学验收；待16–20五回批次质量回顾。未修改中文或其他语言，未commit/push。"
+}
