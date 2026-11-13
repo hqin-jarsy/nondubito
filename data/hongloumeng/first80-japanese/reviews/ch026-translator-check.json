@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "chapter": 26,
+  "stage": "translator_self_check_not_independent_review",
+  "source": "data/hongloumeng/first80-public/reading.zh.json",
+  "sourceSha256": "70b672465a481daf9e97895a12bf7fa860b22da3426cba0b302e760e4b527539",
+  "reviewedBlocks": 46,
+  "readMethod": "Read all current Chinese blocks 0-19 and 20-45, entire Guiyou chapter lines 4845-5044, then all saved Japanese blocks 0-22 and 23-45. Confirmed full block alignment with pipeline.",
+  "referenceFile": "/Users/hanqin/Desktop/SAE_PDFs/红楼梦/癸酉本石头记.md",
+  "referenceSha256": "818bfe3f8f7a4a9663c4390f6d7d8d70cef7a5ef237755dfc3446092f6e9f04e",
+  "selfCorrections": [
+    {
+      "block": 27,
+      "change": "Preserved source 果銀 rather than changing its character to 菓銀 in the wordplay."
+    },
+    {
+      "block": 42,
+      "change": "Rendered 绣闺 with embroidery rather than substituting brocade."
+    }
+  ],
+  "checked": [
+    "33-day recovery and two/three months recollection are distinct.",
+    "Hongyu sees her lost handkerchief, but Jia Yun deliberately gives his own to Zhui-er.",
+    "Jiahui reward grievance remains her speech, including parental influence claim.",
+    "Two cranes, two maids aged fifteen/sixteen, two deer, two large wine cups, eight/ten days preserved.",
+    "Dreamy quoted song, reproach and apology kept non-graphic; no invented physical intimacy.",
+    "Xue Pan false parental summons, four food gifts, Tang Yin misreading and wordplay preserved.",
+    "Feng Ziying hunting, facial wound, dates and unspoken fortunate incident kept without added future explanation.",
+    "Qingwen fails to recognize Daiyu; her claim of Baoyu orders not promoted to narrator fact.",
+    "Six final verse lines retained as separate source blocks."
+  ],
+  "newCandidates": [
+    {
+      "block": 11,
+      "current": "那个月",
+      "reference": "那日",
+      "decision": "Retain month, annotate."
+    },
+    {
+      "block": 22,
+      "current": "焙茗",
+      "reference": "茗烟, with one 烟茗",
+      "decision": "Retain current spelling as same known servant."
+    },
+    {
+      "block": 24,
+      "current": "小么儿",
+      "reference": "一个小子",
+      "decision": "Retain source as a provisional performer appellation, annotate uncertainty."
+    },
+    {
+      "block": 30,
+      "current": "三月二十八日 / 初三四儿; next birthday 五月初三日",
+      "reference": "same dates",
+      "decision": "Retain dates, do not invent an omitted month."
+    },
+    {
+      "block": 33,
+      "current": "我不吃他",
+      "reference": "我不吃空",
+      "decision": "Current source reads coherently as refusal; do not adopt reference apparent transcription defect."
+    }
+  ],
+  "commentaryBoundary": "Guiyou bracketed interpretive comments, including future martial title and scent provenance, not imported. Authenticity not used to exclude variants.",
+  "files": {
+    "data/hongloumeng/first80-japanese/chapters/ch026.draft.json": {
+      "sha256": "be617e37a7abba6864ffb162c0923aee7bcf89868f795a12fc185647e2055a60"
+    }
+  },
+  "validation": "python3 -B scripts/hongloumeng_japanese_pipeline.py --start 26 --end 26 passed",
+  "limitations": [
+    "Translator self-check only; independent review and 26–30 batch acceptance pending.",
+    "Only chapter 26 draft and translator-check file written. No commit or push."
+  ]
+}

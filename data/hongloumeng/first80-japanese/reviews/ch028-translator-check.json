@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "chapters": [
+    28
+  ],
+  "stage": "translator_self_check_not_independent_review",
+  "source": "data/hongloumeng/first80-public/reading.zh.json",
+  "sourceSha256": "811b1e7fe69917132f1f7723bc269be53ff7a7a03fa91044f1688da171e3d9ca",
+  "referenceFile": "/Users/hanqin/Desktop/SAE_PDFs/红楼梦/癸酉本石头记.md",
+  "referenceSha256": "818bfe3f8f7a4a9663c4390f6d7d8d70cef7a5ef237755dfc3446092f6e9f04e",
+  "reviewedBlocks": 137,
+  "coverage": "Read all 137 Chinese blocks and the full Guiyou chapter 28 (lines 5232–5508). Reread every saved Japanese block; recovered truncated middle output by rereading blocks 18–53 beside Chinese. Original translation; not independent review.",
+  "selfCorrections": [
+    {
+      "sourceBlockIndex": 1,
+      "before": "どんな物言わぬ生き物になれば",
+      "after": "どんな愚かな生き物になれば",
+      "reason": "蠢物 expresses unknowing dullness, not inability to speak."
+    },
+    {
+      "sourceBlockIndex": 38,
+      "before": "若い盛りを過ぎても",
+      "after": "もう年ごろになっても",
+      "reason": "青春已大 does not require that youthful prime is over."
+    },
+    {
+      "sourceBlockIndex": 44,
+      "before": "絵の楼閣",
+      "after": "彩りの楼閣",
+      "reason": "画楼 is a decorated building, not a picture of one."
+    },
+    {
+      "sourceBlockIndex": 98,
+      "before": "婚礼の夜を明かし",
+      "after": "婚礼の灯の下で夜を明かし",
+      "reason": "Retain the wedding-lamp image in 洞房花烛."
+    },
+    {
+      "sourceBlockIndex": 113,
+      "before": "百の媚び、千の愛らしさ",
+      "after": "百の媚びをそなえた愛らしさ",
+      "reason": "Avoid an added numerical parallel absent in source."
+    }
+  ],
+  "comparisonDecisions": [
+    {
+      "blocks": [
+        0,
+        2,
+        3
+      ],
+      "current": "Complete 黛玉 speech, covering her mouth after 短命, and departure",
+      "reference": "Adds 是黛玉之声, but truncates her speech at 原来是这",
+      "decision": "Keep complete base sequence, do not import damaged reference."
+    },
+    {
+      "blocks": [
+        5
+      ],
+      "current": "两个/隔母/独出",
+      "reference": "same basic claim",
+      "decision": "Preserve character speech, annotate relationship rather than harmonizing genealogy."
+    },
+    {
+      "blocks": [
+        10,
+        11
+      ],
+      "current": "Separate subordinate drugs from 为君; 三尺上用大红纱",
+      "reference": "Punctuation joins 群药/为君; adds 库 to 纱",
+      "decision": "Keep base hierarchy and length; no extra material claim."
+    },
+    {
+      "blocks": [
+        12,
+        13
+      ],
+      "current": "支吾着我 / 桌子",
+      "reference": "直问着我 / 炕子",
+      "decision": "Contextual accusatory meaning; keep table."
+    },
+    {
+      "blocks": [
+        20,
+        21,
+        22
+      ],
+      "current": "焙茗 / 令表兄弟",
+      "reference": "茗烟 / 令姑表兄弟",
+      "decision": "Keep Baoming and generic cousins. Baoyu and Xue Pan are cousins through their mothers; do not adopt 姑表."
+    },
+    {
+      "blocks": [
+        36
+      ],
+      "current": "席上生风",
+      "reference": "same",
+      "decision": "Read against actual objects chosen in subsequent rounds; do not alter Chinese."
+    },
+    {
+      "blocks": [
+        89,
+        92,
+        93,
+        94,
+        95
+      ],
+      "current": "Full hesitation, questioning and restarts before Xue Pan verses",
+      "reference": "Missing narrative lines at opening and after 瞪了一",
+      "decision": "Translate complete base dialogue."
+    },
+    {
+      "blocks": [
+        100
+      ],
+      "current": "Explicit vulgar verse",
+      "reference": "Same wording with character-shape substitutions",
+      "decision": "Preserve original register, no omission or expansion."
+    },
+    {
+      "blocks": [
+        120,
+        123
+      ],
+      "current": "Two drinking statements; Yun explains",
+      "reference": "Same two drinks; adds 犹问原故",
+      "decision": "Keep both drinks; no added question."
+    },
+    {
+      "blocks": [
+        129,
+        130,
+        131
+      ],
+      "current": "Gift counts, 百二十两, 初一到初三, 五更天, 别人都没了",
+      "reference": "same",
+      "decision": "Retain counts and time unit. Read gift limitation in its immediately surrounding list."
+    }
+  ],
+  "checked": [
+    "All 137 sourceText strings and non-text block metadata preserved.",
+    "Every verse in the five酒令rounds and Yun opening song retained, including interruptions and vulgar line.",
+    "360 taels and over 1000 taels for medicine versus three chi of gauze; 120 taels for ritual.",
+    "40/40/100 bolts and four necklaces; full imperial gift allocation; three ritual days and fifth watch.",
+    "Sweatband chain: Xiren to Baoyu to Jiang; Jiang to Baoyu to Xiren.",
+    "No existing Japanese edition used; no Chinese/English/traditional source, other chapter, progress, commit or push changes."
+  ],
+  "files": {
+    "data/hongloumeng/first80-japanese/chapters/ch028.draft.json": {
+      "sha256": "ad0a795a60fd26175dde67a93c545c1865b22671ce7ce8f3c7f07c317d3ed070"
+    }
+  },
+  "validation": {
+    "command": "python3 -B scripts/hongloumeng_japanese_pipeline.py --start 28 --end 28",
+    "result": "passed after final self-check corrections: 137 blocks, 15884 Japanese characters",
+    "literaryStatus": "Translator self-check only; independent review pending",
+    "diffCheck": "git diff --check passed"
+  },
+  "reviewerAttention": [
+    "空着头 (block 17)",
+    "照不见菱花镜里形容瘦 (block 48)",
+    "别人都没了 (block 130)",
+    "Register of vulgar speech (blocks 20, 90, 100)"
+  ]
+}
