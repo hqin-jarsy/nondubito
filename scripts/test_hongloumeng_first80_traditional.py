@@ -42,7 +42,9 @@ class TraditionalTests(unittest.TestCase):
                 self.assertEqual({k: v for k, v in x.items() if k != 'text'}, {k: v for k, v in y.items() if k != 'text'})
                 self.assertEqual(len(x['text']), len(y['text']))
                 total += len(y['text'])
-        self.assertEqual(total, 586250)
+        # 586250 at 033ecb2; +1 for the chapter 44 rose-paste reading (a1f0874) and
+        # +1 for the author-selected chapter 72 reading 也不要 (a7af815).
+        self.assertEqual(total, 586252)
 
     def test_seven_approved_source_decisions(self):
         cases = [

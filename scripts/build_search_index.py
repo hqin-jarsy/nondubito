@@ -91,6 +91,11 @@ def build() -> tuple[dict, dict[str, list[dict]]]:
     for path in collect_pages():
         if excluded_hongloumeng_file(ROOT, path):
             continue
+        # Scoped discovery scripts replace collect_pages(); keep the same
+        # top-level exclusions (latest.html, search.html, explore.html).
+        relative = path.relative_to(ROOT)
+        if len(relative.parts) == 1 and relative.name in EXCLUDED_FILES:
+            continue
         source = path.read_text(encoding="utf-8", errors="replace")
         if is_redirect(source) or re.search(r'<meta\b[^>]*name=["\']robots["\'][^>]*noindex', source, flags=re.I):
             skipped_redirects += 1

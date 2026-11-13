@@ -14,6 +14,7 @@ from urllib.parse import urljoin
 import build_hongloumeng_reading as base
 import build_hongloumeng_reading_traditional as traditional
 from test_hongloumeng_reading import Page, rejected, path_output_regressions
+from hongloumeng_english_availability import english_published
 
 
 def check(reading, manifest):
@@ -24,6 +25,8 @@ def check(reading, manifest):
     pages = traditional.render(reading, manifest, 'release', assets=assets)
     draft = traditional.render(reading, manifest, 'draft', assets=assets)
     assert set(pages) == set(original)
+    # The published English edition adds its own alternate link (render() checks the same gate).
+    english = english_published(base.ROOT)
     for name, value in pages.items():
         if not name.endswith('.html'):
             continue
@@ -33,7 +36,9 @@ def check(reading, manifest):
         assert attrs('html') == [{'lang': 'zh-Hant'}]
         assert [a['href'] for a in attrs('link') if a.get('rel') == 'canonical'] == [traditional.CANONICAL + ('' if name == 'index.html' else name)]
         alternatives = {a['hreflang']: a['href'] for a in attrs('link') if a.get('rel') == 'alternate'}
-        assert set(alternatives) == {'zh-Hans', 'zh-Hant', 'x-default'}
+        assert set(alternatives) == {'zh-Hans', 'zh-Hant', 'x-default'} | ({'en'} if english else set())
+        if english:
+            assert alternatives['en'] == base.CANONICAL + 'en/' + ('' if name == 'index.html' else name)
         assert alternatives['zh-Hant'] == traditional.CANONICAL + ('' if name == 'index.html' else name)
         assert alternatives['zh-Hans'] == alternatives['x-default'] == base.CANONICAL + ('' if name == 'index.html' else name)
         assert 'noindex' not in value
