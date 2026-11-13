@@ -16,9 +16,9 @@ SOURCE = ROOT / 'data/hongloumeng/first80-public'
 STANDARD = ROOT / 'docs/hongloumeng/translation'
 VERSION = 'english-1-110-v0.17'
 V09_VERSION = 'english-1-110-v0.9'
-READING_SHA = 'b6663559707862d7ba7ffb717b6be004681717555ca437e86715e0bc36491189'
-MANIFEST_SHA = 'bbb00e7242c57b5b2d96f766c07976988ab254873bb5eb180b3f239afc93fbf6'
-BODY_SHA = 'e3dffbd8a444ae1a79b0b1a4de52b4fb55977d43436d1b5ee29a8457a30a069b'
+READING_SHA = '594ba90b7740d748d196bf44f1e34a3c5a871bcf7c8612bbeacc73c39755c28a'
+MANIFEST_SHA = '8a6da86d46973187ec18fae0f579d9b6bdf0c398d41282ec1bdce2e5eab853b3'
+BODY_SHA = '406451989df65db1a784611bef32612e55f38311afd2202f5f6a422a28879322'
 NORMATIVE_FILES = ('english-standard.md', 'english-terms.json', 'english-voices.json', 'english-batch-001-005.json', 'english-batch-006-010.json', 'english-batch-011-015.json', 'english-batch-016-020.json', 'english-batch-021-025.json', 'english-batch-026-030.json', 'english-batch-031-035.json', 'english-batch-036-040.json', 'CHANGELOG.md')
 V09_NORMATIVE_FILES = NORMATIVE_FILES
 NORMATIVE_FILES += ('english-batch-041-045.json', 'source-binding-ch46-ch55.json', 'source-binding-ch002-ending.json', 'english-batch-046-050.json', 'english-batch-051-055.json', 'source-binding-ch56-ch65.json', 'english-batch-056-060.json', 'english-binding-056-060.json', 'english-batch-061-065.json', 'english-binding-061-065.json', 'source-binding-ch66-ch80.json', 'english-batch-066-070.json', 'english-binding-066-070.json', 'english-batch-071-075.json', 'english-binding-071-075.json', 'english-batch-076-080.json', 'english-binding-076-080.json')
@@ -171,7 +171,7 @@ def standard_snapshot():
 
 def validate_standard_readiness(mapping, progress):
     """B11 and the explicit chapter25 accepted-content delta over exact B10 history."""
-    from hongloumeng_seven_character_binding import validate_readiness
+    from hongloumeng_later_two_readings_binding import validate_readiness
     return validate_readiness(sys.modules[__name__], mapping, progress)
 
 
