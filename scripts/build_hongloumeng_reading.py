@@ -266,15 +266,15 @@ def add_language_links(pages, language, draft):
         raise ValueError('Unsupported reading language')
     result = dict(pages)
     up = '../' if language == 'zh-Hant' else ''
+    from hongloumeng_english_availability import english_published
+    editions = [('zh-Hans', '', '简体中文'), ('zh-Hant', 'zh-hant/', '繁體中文')]
+    if english_published(ROOT):
+        editions.append(('en', 'en/', 'English'))
     for filename, source in pages.items():
         if not filename.endswith('.html'):
             continue
         menu = '<nav class="language-switch" aria-label="Languages">'
         alternatives = ''
-        from hongloumeng_english_availability import english_published
-        editions = [('zh-Hans', '', '简体中文'), ('zh-Hant', 'zh-hant/', '繁體中文')]
-        if english_published(ROOT):
-            editions.append(('en', 'en/', 'English'))
         for code, directory, label in editions:
             current = ' aria-current="page"' if code == language else ''
             menu += f'<a href="{up+directory+filename}" lang="{code}"{current}>{label}</a>'
@@ -397,6 +397,10 @@ def build(public_dir, output, mode, approval=None, bilingual=False, traditional_
         traditional.source_gate(public_dir)
         traditional.release_gate(traditional_manifest, traditional_approval)
     pages = render(reading, manifest, mode, assets=load_assets(public_dir), bilingual=bilingual)
+    if mode == 'release':
+        from hongloumeng_japanese_navigation_binding import navigation_outputs, require_japanese_reader
+        require_japanese_reader()
+        pages = navigation_outputs('classics/hongloumeng/', pages)
     output, destinations = plan_output(public_dir, output, mode, pages)
     output.mkdir(parents=True, exist_ok=True)
     for filename, content in pages.items():

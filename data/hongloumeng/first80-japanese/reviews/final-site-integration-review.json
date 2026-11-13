@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_LOCAL_SITE_INTEGRATION_WITH_EXPLICIT_PLACEHOLDERS",
+  "dateUTC": "2026-11-13",
+  "reviewer": "Integration coordinator; independent of reader and navigation implementations",
+  "sourceFileSha256": "d960102b70e88c9dd567c3a4da82425c2f88d5029c9fd2597aaabf4208854307",
+  "navigationBindingSha256": "726c6e1879868a5473bca2294c44c27c6d865fccef6287c0c966e01ab5521e90",
+  "implementationReview": [
+    "Read full Japanese reader, availability validator, reversible navigation transform, successor binding and all changed legacy entry-point diffs.",
+    "Independent review identified missing pre-write source/coverage validation; fixed and tested before acceptance.",
+    "Corrected edition-name typo in new footer from 大治 to 大知; body and placeholders unchanged."
+  ],
+  "independentChecks": {
+    "japaneseStructuralPipeline": "All80 passed with explicit partial mode.",
+    "translationAndPartialUnitTests": "37 passed.",
+    "publicReaderUnitTests": "Final14 passed in0.201s, including missing-block, source-hash and partial-coverage failures before writing.",
+    "navigationUnitTests": "Final14 passed in17.227s, including real predecessor replay, current English/Japanese output checks, missing/stale Japanese rejection and preservation of first-publication date.",
+    "legacyBodies": "All248 pages reverse byte-for-byte to a7af815; navigation only.",
+    "japaneseExactOutput": "82HTML plus CSS/JS verified;75 complete chapters,5 partial chapters,11 unique markers.",
+    "searchAndSitemap": "Independently counted82 unique Japanese reader records and82 unique sitemap URLs. All three existing language hubs expose Japanese with incomplete-status wording.",
+    "poetryContinuity": "All929 verse objects identical to90768bf after final prose/kinship corrections.",
+    "privateProjection": "No sourceSegments/sourceSha256/sourceBlockIndex or internal review fields in82 public HTML pages.",
+    "predecessorArchive": "All9 archived predecessor files match0ca6467 byte-for-byte.",
+    "whitespace": "All current non-archive staged files pass. One original trailing-space line201 remains in archived English renderer, preserved to retain exact predecessor bytes."
+  },
+  "browserQA": {
+    "execution": "Implementation worker ran isolated Chromium desktop1280x900/mobile390x844; external requests blocked. Final integrated run passed.",
+    "coordinatorPixelInspection": [
+      "Mobile placeholder",
+      "Desktop chapter76 poem",
+      "Mobile contents",
+      "Desktop chapter78 elegy",
+      "Mobile English page-top language switch",
+      "Mobile chapter81 return-to80"
+    ],
+    "testedFlows": [
+      "Same-chapter simplified/traditional/English/Japanese round trips",
+      "80 to81 and back",
+      "TOC search",
+      "Font size/reset",
+      "Visible unique placeholders",
+      "Poetry and elegy layout",
+      "No horizontal overflow in tested pages"
+    ],
+    "scopeNote": "Footer edition-name one-character correction followed browser run; output comparison confirmed no other page changes."
+  },
+  "discoveryGeneration": "Worker reports full bounded discovery generation passed in102.07s; only6 of11 planned outputs changed. Site-updates ledger preserved. Coordinator independently checked final search/sitemap/hub output.",
+  "limitations": [
+    "No new full-book prose reread is claimed; earlier chapter reviews and final targeted literary audits remain distinct.",
+    "Eleven owner placeholders remain; not unabridged or fully complete.",
+    "No push, remote deployment or live-site verification."
+  ]
+}

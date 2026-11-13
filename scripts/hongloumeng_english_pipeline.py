@@ -171,7 +171,7 @@ def standard_snapshot():
 
 def validate_standard_readiness(mapping, progress):
     """B11 and the explicit chapter25 accepted-content delta over exact B10 history."""
-    from hongloumeng_ch072_decisions_binding import validate_readiness
+    from hongloumeng_japanese_navigation_binding import validate_readiness
     return validate_readiness(sys.modules[__name__], mapping, progress)
 
 

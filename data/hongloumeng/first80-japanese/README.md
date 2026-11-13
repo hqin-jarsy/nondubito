@@ -13,7 +13,7 @@
 
 ```sh
 python3 -B scripts/test_hongloumeng_japanese_pipeline.py
-python3 -B scripts/hongloumeng_japanese_pipeline.py --start 1 --end 10 --allow-partial
+python3 -B scripts/hongloumeng_japanese_pipeline.py --start 1 --end 80 --allow-partial
 ```
 
 `--allow-partial` は部分稿の範囲を確認する指定であり、完全版への昇格ではありません。完全な回だけを校閲HTMLへ出すときは `--render-private` を指定します。中国語の源文が変わった場合は、その回の源ハッシュと対応文を確認し直す必要があります。
@@ -27,3 +27,15 @@ python3 -B scripts/hongloumeng_japanese_pipeline.py --start 1 --end 10 --allow-p
 `private-review/ch006.partial.html`、`ch009.partial.html`、`ch012.partial.html`、`ch065.partial.html`、`ch075.partial.html` には既存の日訳と黄色のマーカーだけを表示します。作者が手動補完する位置の確認用です。HTML編集はJSON原稿へ自動反映されません。原稿の正本は `chapters/chNNN.partial.json` です。マーカーだけを消しても完成扱いにはなりません。
 
 再生成：`python3 -B scripts/hongloumeng_partial_private.py`。検査：`python3 -B scripts/test_hongloumeng_partial_private.py`。この独立レンダラーは中国語原文ファイルを読み込まず、欠落した訳文を原文で埋めません。構造検査は原文照合・文学的審読ではなく、旧reviewやprogressを変更しません。非公開はローカル用途の意味で、HTMLのnoindexはアクセス制御ではありません。公開・pushは行っていません。
+
+## サイトの日本語読書ページ
+
+`classics/hongloumeng/ja/` は公開用の生成先です。ローカルのファイル生成とリモート公開は別の操作です。push は所有者が行います。75回の全文稿と5回の部分稿を区別し、11か所の未訳マーカーと版の説明を表示します。内部の校閲メモや中国語への自動フォールバックは表示しません。
+
+生成：`python3 -B scripts/build_hongloumeng_reading_japanese.py`。
+構造と表示の単体検査：`PYTHONPATH=scripts python3 -B -m unittest test_hongloumeng_reading_japanese`。
+ブラウザー検査：`scripts/test_hongloumeng_reading_japanese_browser.cjs`。ローカルHTTPサーバーと隔離したPlaywright環境を使用します。
+
+旧言語ページへの日本語リンクは `scripts/integrate_hongloumeng_japanese.py` の限定的で可逆な変換で挿入します。旧版の校閲記録を新しい全面審読の証拠に書き換えません。第80回から第81回へのリンクには、曹雪芹の原著と秦漢の独自続編の境界を明記します。
+
+終審記録：`reviews/final-poetry-audit.json` は929の詩区画と127の本文候補の実読範囲を記録します。`reviews/final-names-style-audit.json` は人物名・親族呼称・残存する中国語呼称の対象別修正を記録します。いずれも全散文の新たな逐段再読を主張しません。

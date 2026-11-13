@@ -105,6 +105,10 @@ def build(public_dir, output, mode, approval=None):
     elif mode != 'draft':
         raise ValueError('Explicit draft or release mode required')
     pages = render(reading, manifest, mode, assets=load_assets(public_dir))
+    if mode == 'release':
+        from hongloumeng_japanese_navigation_binding import navigation_outputs, require_japanese_reader
+        require_japanese_reader()
+        pages = navigation_outputs('classics/hongloumeng/zh-hant/', pages)
     output, destinations = base.plan_output(public_dir, output, mode, pages, language='zh-Hant')
     output.mkdir(parents=True, exist_ok=True)
     for filename, content in pages.items():

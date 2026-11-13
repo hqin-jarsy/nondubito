@@ -8,6 +8,7 @@ This never builds the reader, scans the whole repository, or reads review data.
 """
 from __future__ import annotations
 from hongloumeng_english_availability import english_publication
+from hongloumeng_japanese_availability import japanese_publication
 import argparse
 import copy
 from datetime import date
@@ -39,7 +40,7 @@ FONT_ASSETS = frozenset(('fonts/nd-hlm-24aeb.woff2', 'fonts/ARPHICPL.TXT', 'font
 HUBS = tuple('essays/literature/hlm/'+d+'index.html' for d in ('', 'en/', 'zh-hant/'))
 CONTINUATION = tuple('originals/hongloumeng/'+d+f'ch{n:03d}.html'
                      for d in ('', 'en/', 'zh-hant/', 'de/', 'fr/', 'es/', 'ja/', 'ko/')
-                     for n in range(81, 86)) + ('originals/hongloumeng/en/index.html',)
+                     for n in range(81, 86)) + ('originals/hongloumeng/en/index.html', 'originals/hongloumeng/ja/index.html')
 EDITORIAL_HTML = (*HUBS, 'library.html', 'essays/literature/index.html', 'index.html', 'latest.html')
 START = '<!-- RED CHAMBER FIRST80 LATEST START -->'
 END = '<!-- RED CHAMBER FIRST80 LATEST END -->'
@@ -133,10 +134,12 @@ def validate_published_reader(root=ROOT, approval=None, *, traditional_approval=
     paths = validate_reader_edition(root, approval, bilingual=traditional_approval is not None, english=english)
     if traditional_approval is not None:
         paths += validate_reader_edition(root, traditional_approval, traditional=True, bilingual=True, english=english)
-    return paths + (tuple(english["paths"]) if english else ())
+    japanese = japanese_publication(root)
+    return paths + (tuple(english["paths"]) if english else ()) + (tuple(japanese["paths"]) if japanese else ())
 
 
 def validate_reader_edition(root, approval, *, traditional=False, bilingual=False, english=None):
+    japanese = japanese_publication(root)
     if not traditional and (root/ENGLISH_PREFIX).exists():
         english = english_publication(root) if english is None else english
         if english is None or english['root'] != root.resolve():
@@ -164,6 +167,9 @@ def validate_reader_edition(root, approval, *, traditional=False, bilingual=Fals
     assets = builder.load_assets(public)
     options = {'bilingual': True} if bilingual else {}
     outputs = builder.render(reading, manifest, mode='release', assets=assets, **options)
+    from hongloumeng_japanese_navigation_binding import navigation_outputs
+    if japanese:
+        outputs = navigation_outputs(prefix, outputs)
     allowed = validate_output_names(outputs)
     target = checked_path(root, root/prefix)
     if target.is_symlink() or not target.is_dir() or target.resolve() != root.resolve()/prefix:
@@ -173,6 +179,9 @@ def validate_reader_edition(root, approval, *, traditional=False, bilingual=Fals
     for path in target.rglob('*'):
         relative = path.relative_to(target)
         # The second edition is independently checked against its exact 87-file plan.
+        if not traditional and relative.parts[0] == 'ja' and japanese:
+            checked_path(root, path)
+            continue
         if english and not traditional and relative.parts[0] == 'en':
             checked_path(root, path)
             continue
@@ -251,6 +260,12 @@ def resolve_english_date(ledger, requested):
     if date.fromisoformat(published).isoformat() != published:
         raise ValueError('English-launch date must use YYYY-MM-DD')
     return published
+
+
+def english_launch_date(ledger, publication):
+    """Keep first publication distinct from a later local regeneration."""
+    existing = any(u['id'] == ENGLISH_UPDATE_ID for u in ledger['updates'])
+    return resolve_english_date(ledger, None if existing else publication['date'])
 
 
 def english_publication_update(published):
@@ -351,7 +366,7 @@ def editorial_outputs(root, ledger, published, *, traditional=False, english=Non
                          if any(u['id'] == UPDATE_ID for u in ledger['updates']) else [update, *ledger['updates']])
     english_update = None
     if english:
-        launch = resolve_english_date(ledger, english['date'])
+        launch = english_launch_date(ledger, english)
         english_update = english_publication_update(launch)
         ledger['updates'] = ([english_update if u['id'] == ENGLISH_UPDATE_ID else u for u in ledger['updates']]
                              if any(u['id'] == ENGLISH_UPDATE_ID for u in ledger['updates']) else [english_update, *ledger['updates']])
@@ -393,7 +408,7 @@ def search_records(root, sources):
             raise ValueError('Invalid selected publication search page')
         languages = page['languages'] or ([page['html_lang']] if page['html_lang'] else [])
         relative = path.relative_to(root).as_posix()
-        expected_language = 'en' if relative.startswith(ENGLISH_PREFIX) else ('zh-Hant' if relative.startswith(TRADITIONAL_PREFIX) else 'zh-Hans')
+        expected_language = 'ja' if relative.startswith(PREFIX+'ja/') else 'en' if relative.startswith(ENGLISH_PREFIX) else ('zh-Hant' if relative.startswith(TRADITIONAL_PREFIX) else 'zh-Hans')
         if relative.startswith(PREFIX) and (languages != [expected_language] or page['html_lang'] != expected_language):
             raise ValueError('The first-eighty-chapter edition must contain only its declared English language' if expected_language == 'en' else 'The first-eighty-chapter edition must contain only its own Chinese language')
         for lang in chunks:
@@ -407,7 +422,8 @@ def search_records(root, sources):
 
 def discovery_outputs(root, sources, published, *, english=None):
     scope = {path.relative_to(root).as_posix() for path in sources}
-    reader_html = READER_HTML | ({ENGLISH_PREFIX+n for n in PUBLIC_HTML} if english else set())
+    japanese = japanese_publication(root)
+    reader_html = READER_HTML | ({ENGLISH_PREFIX+n for n in PUBLIC_HTML} if english else set()) | ({'classics/hongloumeng/ja/'+n for n in PUBLIC_HTML} if japanese else set())
     changed_presentation = set(english.get('modifiedPaths', ())) if english else set()
     if not changed_presentation <= {*READER_HTML, 'originals/hongloumeng/en/index.html'}:
         raise ValueError('Unexpected modified presentation date scope')
@@ -450,7 +466,7 @@ def discovery_outputs(root, sources, published, *, english=None):
         if metadata.canonical != expected or 'noindex' in metadata.robots:
             raise ValueError(f'Non-public or non-normalized canonical: {relative}')
         if expected not in entries or source != read_text(root, path) or relative in changed_presentation:
-            entries[expected] = english['date'] if english and (relative.startswith(ENGLISH_PREFIX) or relative in changed_presentation or expected in entries and source != read_text(root, path)) else published
+            entries[expected] = english['date'] if english and (relative.startswith((ENGLISH_PREFIX, PREFIX+'ja/')) or relative in changed_presentation or expected in entries and source != read_text(root, path)) else published
     outputs[sitemap] = sitemap_xml(sorted(entries.items(), key=lambda pair: (pair[0] != ORIGIN, pair[0])))
     return outputs
 
