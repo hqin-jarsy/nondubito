@@ -92,5 +92,16 @@ class PartialPrivateTests(unittest.TestCase):
             self.assertEqual(output.count(entry["label"]), 1)
             self.assertEqual(output.count('id="' + entry["id"] + '"'), 1)
 
+    def test_chapter75_single_metadata_only_placeholder(self):
+        draft = json.loads((DATA / "chapters/ch075.partial.json").read_text())
+        entries = inspect_partial(draft)
+        self.assertEqual([(e["sourceBlockIndex"], e["start"], e["end"]) for e in entries], [(28, 177, 218)])
+        self.assertEqual([e["id"] for e in entries], ["CH075-P01"])
+        self.assertEqual(entries[0]["sourceTextSha256"], "9e7e416c971ed13b96f9ad49f823d79123baedf65aea10012d2cc66a07572cd3")
+        output = render(draft)
+        self.assertEqual(output.count("data-source-block="), 53)
+        self.assertEqual(output.count(entries[0]["label"]), 1)
+        self.assertEqual(output.count('id="CH075-P01"'), 1)
+
 if __name__ == "__main__":
     unittest.main()

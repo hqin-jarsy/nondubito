@@ -89,7 +89,7 @@ def render(draft):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--chapters", type=int, nargs="+", default=[6, 9, 12, 65])
+    parser.add_argument("--chapters", type=int, nargs="+", default=[6, 9, 12, 65, 75])
     args = parser.parse_args()
     index = []
     outputs = []
