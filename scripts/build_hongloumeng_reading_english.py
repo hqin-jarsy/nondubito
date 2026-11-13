@@ -74,6 +74,9 @@ def note_location(note, source, unit, documents, source_texts):
     if not isinstance(records, list) or int(position) >= len(records):
         raise ValueError('Missing explicit reader-note record')
     record = records[int(position)]
+    if unit['id']=='hlm-c049-b0033':
+        from hongloumeng_seven_character_binding import note_record
+        record=note_record(record,note,source,unit,pipeline.ROOT)
     if record.get('text') != note['text'] or note.get('sourceHash') != source['sourceHash']:
         raise ValueError('Explicit reader-note source or wording differs')
     if 'textSHA256' in record and record['textSHA256'] != pipeline.sha(note['text'].encode()):
@@ -256,12 +259,13 @@ def production_plan(approval, *, root=None):
     from hongloumeng_ch005_author_binding import BINDING_SHA256 as CH005_BINDING_SHA256, REVIEW_SHA256 as CH005_REVIEW_SHA256
     from hongloumeng_two_readings_binding import BINDING_SHA256 as TWO_BINDING_SHA256, REVIEW_SHA256 as TWO_REVIEW_SHA256
     from hongloumeng_rose_paste_binding import BINDING_SHA256 as ROSE_BINDING_SHA256, REVIEW_SHA256 as ROSE_REVIEW_SHA256
-    expected = dict(rosePasteBindingSHA256=ROSE_BINDING_SHA256, rosePasteReviewSHA256=ROSE_REVIEW_SHA256, twoReadingsBindingSHA256=TWO_BINDING_SHA256, twoReadingsReviewSHA256=TWO_REVIEW_SHA256, chapter5BindingSHA256=CH005_BINDING_SHA256, chapter5ReviewSHA256=CH005_REVIEW_SHA256, schemaVersion=1, scope='english-first80-local-generation',
+    from hongloumeng_seven_character_binding import BINDING_SHA256 as SEVEN_BINDING_SHA256, REVIEW_SHA256 as SEVEN_REVIEW_SHA256
+    expected = dict(sevenCharacterBindingSHA256=SEVEN_BINDING_SHA256, sevenCharacterReviewSHA256=SEVEN_REVIEW_SHA256, rosePasteBindingSHA256=ROSE_BINDING_SHA256, rosePasteReviewSHA256=ROSE_REVIEW_SHA256, twoReadingsBindingSHA256=TWO_BINDING_SHA256, twoReadingsReviewSHA256=TWO_REVIEW_SHA256, chapter5BindingSHA256=CH005_BINDING_SHA256, chapter5ReviewSHA256=CH005_REVIEW_SHA256, schemaVersion=1, scope='english-first80-local-generation',
         presentationBindingSHA256=BINDING_SHA256, presentationReviewSHA256=REVIEW_SHA256,
         publicationDate=launch_date, sourceHash=mapping['sourceHash'], standardSnapshot=snapshot,
         progressHash=pipeline.sha((pipeline.DATA/'progress.json').read_bytes()),
         notesHash=pipeline.sha((pipeline.DATA/'reader-notes.json').read_bytes()),
-        implementationHashes={name: pipeline.sha((Path(__file__).parent/name).read_bytes()) for name in ('build_hongloumeng_reading_english.py', 'build_hongloumeng_reading.py', 'hongloumeng_english_availability.py', 'build_hongloumeng_hub.py', 'hongloumeng_discovery_scope.py', 'refresh_hongloumeng_reading_discovery.py', 'build_content_registry.py', 'hongloumeng_english_pipeline.py', 'build_hongloumeng_reading_traditional.py', 'hongloumeng_translations.py', 'hongloumeng_reading_presentation_binding.py', 'hongloumeng_english_presentation_readiness.py', 'hongloumeng_ch005_author_binding.py', 'hongloumeng_two_readings_binding.py', 'hongloumeng_rose_paste_binding.py')})
+        implementationHashes={name: pipeline.sha((Path(__file__).parent/name).read_bytes()) for name in ('build_hongloumeng_reading_english.py', 'build_hongloumeng_reading.py', 'hongloumeng_english_availability.py', 'build_hongloumeng_hub.py', 'hongloumeng_discovery_scope.py', 'refresh_hongloumeng_reading_discovery.py', 'build_content_registry.py', 'hongloumeng_english_pipeline.py', 'build_hongloumeng_reading_traditional.py', 'hongloumeng_translations.py', 'hongloumeng_reading_presentation_binding.py', 'hongloumeng_english_presentation_readiness.py', 'hongloumeng_ch005_author_binding.py', 'hongloumeng_two_readings_binding.py', 'hongloumeng_rose_paste_binding.py', 'hongloumeng_seven_character_binding.py')})
     if approval != expected:
         raise ValueError('Explicit exact-input local-generation approval required')
     chapters = project(mapping, progress, notes, range(1,81))
