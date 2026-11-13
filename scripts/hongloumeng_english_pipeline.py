@@ -170,9 +170,17 @@ def standard_snapshot():
 
 
 def validate_standard_readiness(mapping, progress):
-    """B11 and the explicit chapter25 accepted-content delta over exact B10 history."""
-    from hongloumeng_japanese_navigation_binding import validate_readiness
-    return validate_readiness(sys.modules[__name__], mapping, progress)
+    """Current-state readiness: the frozen normative texts are unchanged.
+
+    The hash-pinned predecessor chain (B10 through the Japanese navigation
+    layer) was retired on 2026-11-13; its records stay archived under
+    data/hongloumeng/first80-english/ (see binding-chain-retirement.json).
+    Every unit and batch review is checked against this snapshot by
+    validate_progress().
+    """
+    snapshot = standard_snapshot()
+    require(snapshot == EXPECTED_NORMATIVE_SNAPSHOT, 'Unexpected normative snapshot')
+    return snapshot
 
 
 def validate_pre_source4655_readiness(mapping, progress):

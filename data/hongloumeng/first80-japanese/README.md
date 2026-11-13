@@ -39,3 +39,14 @@ python3 -B scripts/hongloumeng_japanese_pipeline.py --start 1 --end 80 --allow-p
 旧言語ページへの日本語リンクは `scripts/integrate_hongloumeng_japanese.py` の限定的で可逆な変換で挿入します。旧版の校閲記録を新しい全面審読の証拠に書き換えません。第80回から第81回へのリンクには、曹雪芹の原著と秦漢の独自続編の境界を明記します。
 
 終審記録：`reviews/final-poetry-audit.json` は929の詩区画と127の本文候補の実読範囲を記録します。`reviews/final-names-style-audit.json` は人物名・親族呼称・残存する中国語呼称の対象別修正を記録します。いずれも全散文の新たな逐段再読を主張しません。
+
+## 検証方式の変更（2026-11-13）
+
+ハッシュで固定した検証チェーン（B10から日本語ナビゲーションまでの各バインディング層）は、所有者の判断で廃止しました。各記録は `data/hongloumeng/first80-english/` に履歴としてそのまま残し、再生しません（`binding-chain-retirement.json`）。現在は今のファイルだけを検査します：`python3 -B -m unittest discover -s scripts -p test_hongloumeng_current_state.py`。
+
+未訳箇所を補う手順：
+
+1. 該当回の原稿に訳文を入れる。全箇所を補った回は `chNNN.partial.json` を `chNNN.draft.json`（区画ごとの `sourceText` と `text`）に置き換え、`python3 -B scripts/hongloumeng_japanese_pipeline.py --start 1 --end 80 --allow-partial` で確認する。
+2. `scripts/build_hongloumeng_reading_japanese.py` の `PARTIAL` を更新する。告知文、版の説明、可用性検査の件数はここから決まる。`scripts/build_hongloumeng_hub.py` の件数表記（「11か所」「5回共11处」など）と、関連テストの期待値も合わせる。
+3. `python3 -B scripts/hongloumeng_partial_private.py`（未完の回だけを自動で対象にする）と `python3 -B scripts/build_hongloumeng_reading_japanese.py` を実行し、macOS で `scripts/refresh_hongloumeng_reading_discovery.py --write`（入口ページ・検索・sitemap）を実行する。
+4. 新しい審読記録を `reviews/` に加える。既存の審読記録は書き換えない。

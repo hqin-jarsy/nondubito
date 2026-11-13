@@ -89,8 +89,11 @@ def render(draft):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--chapters", type=int, nargs="+", default=[6, 9, 12, 65, 75])
+    parser.add_argument("--chapters", type=int, nargs="+",
+                        help="Defaults to every chapter that still has a chNNN.partial.json draft")
     args = parser.parse_args()
+    if args.chapters is None:
+        args.chapters = sorted(int(p.name[2:5]) for p in (DATA / "chapters").glob("ch[0-9][0-9][0-9].partial.json"))
     index = []
     outputs = []
     for n in args.chapters:

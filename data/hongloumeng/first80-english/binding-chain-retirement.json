@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "status": "binding_chain_retired_current_state_checks_only",
+  "decision": "The owner (Han Qin) retired the hash-pinned binding chain of the Red Chamber first-eighty-chapter editions. Routine changes no longer add a binding layer; the current tree is checked directly.",
+  "predecessorCommit": "c3ebe45",
+  "retiredFromActivePaths": [
+    "hongloumeng_english_pipeline.validate_standard_readiness no longer replays the B10 to Japanese-navigation predecessor layers.",
+    "build_hongloumeng_reading_english.production_plan no longer requires implementation hashes or binding and review record hashes.",
+    "The chapter49 reader-note overlay is called directly from hongloumeng_seven_character_binding, pinned to its own decision records, not through the chain.",
+    "hongloumeng_japanese_navigation_binding keeps only the exact reversible insertions and the Japanese reader gate."
+  ],
+  "currentChecks": [
+    "Frozen Chinese source: READING_SHA, MANIFEST_SHA and BODY_SHA in hongloumeng_english_pipeline.load_source; build_hongloumeng_first80_traditional.py --check.",
+    "Frozen English standard: standard_snapshot() equals EXPECTED_NORMATIVE_SNAPSHOT, and every unit and batch review is current (validate_progress).",
+    "Approval: reading-publication.json must equal the data actually rendered (source, standard snapshot, progress, notes) plus its recorded first-generation date.",
+    "Japanese alignment: hongloumeng_japanese_pipeline validate/validate_partial, no source fallback, unique placeholder markers, one PARTIAL table for the builder, availability and notices.",
+    "Byte-identical outputs: the zh-Hans, zh-Hant, English and Japanese readers equal their builders; legacy-page Japanese navigation insertions are exactly reversible.",
+    "Tests: test_hongloumeng_current_state.py (new), test_hongloumeng_japanese_navigation_binding.py (rewritten), test_hongloumeng_reading_japanese.py, test_hongloumeng_partial_private.py, test_hongloumeng_japanese_pipeline.py, test_hongloumeng_reading_english.py, test_hongloumeng_reading.py."
+  ],
+  "archive": {
+    "records": "All binding, review, self-check, history and receipt records under data/hongloumeng/first80-english/ and data/hongloumeng/first80-japanese/ are unchanged and remain historical evidence. They are no longer replayed, and no earlier review is claimed for later changes.",
+    "approvalBefore": "data/hongloumeng/first80-english/history/chain-retirement-before/data/hongloumeng/first80-english/reading-publication.json",
+    "scriptsBefore": "git commit c3ebe45"
+  },
+  "changedFiles": {
+    "scripts/hongloumeng_english_pipeline.py": {
+      "beforeSHA256": "7cd31fb509a0503a4c934a41d38dc7e23f9e110e768093d829dee6e7e78b7ee8",
+      "afterSHA256": "00c0a880468f984ad346ddf8c7557b97ffa55482c32ce8e630953e9f04665d14"
+    },
+    "scripts/build_hongloumeng_reading_english.py": {
+      "beforeSHA256": "579ce1dd083e8e36cc45d1b465c141ae6f5137fea96a5c68919da951acf582a5",
+      "afterSHA256": "1380c6e8ec91eaf071536901cf32471364d1c3c43d9fba348364e57159d9aab8"
+    },
+    "scripts/hongloumeng_japanese_navigation_binding.py": {
+      "beforeSHA256": "00ff2085438f2c3ff207af3d155cb9c2a4bc42360c319ea4451727f7831fc519",
+      "afterSHA256": "55ca335841397d19933ec081dc3a016ee3b92822e1ddfa8d4c0187f82368b5f7"
+    },
+    "scripts/hongloumeng_japanese_availability.py": {
+      "beforeSHA256": "edf11c89c757f477e1e59e54145148263215712561fdc84897036f90fe30b234",
+      "afterSHA256": "726e0e9b1a5938c86fe5c15848e045152432b1da8f1a665b37347c0b4875eca8"
+    },
+    "scripts/build_hongloumeng_reading_japanese.py": {
+      "beforeSHA256": "f73e4b035216a0c0ca2560176c767697b5039aa0b757b80f9f7593ae97a63143",
+      "afterSHA256": "d04a0808270ab21cbaf7cd6bbb71b6f047216d891cd7c7899f2aa26a394d6f83"
+    },
+    "scripts/hongloumeng_partial_private.py": {
+      "beforeSHA256": "0388b849232fb847ad0d4cb7921ceba58a3664a0d15dee9dabe02dbc899034a9",
+      "afterSHA256": "97214ed34ba6cf2fec7404bf14c6c86e74417548db42852100aa3e9afb819846"
+    },
+    "data/hongloumeng/first80-english/reading-publication.json": {
+      "beforeSHA256": "d03feaf4a127f4a1ec6df9f47ddbaf21331dd9af5d2d6aa8da1f6f148d2c10c2",
+      "afterSHA256": "e569ecccd77987742877f0bf089d3b33dfb7b13142a2e324ca558fc38e345798"
+    },
+    "scripts/test_hongloumeng_japanese_navigation_binding.py": {
+      "beforeSHA256": "493fbd05afcf69dcb132b5f4b4a4bc34d0dacd4219b5cbbea6dd0939c6c61fa5",
+      "afterSHA256": "c80004792638d48acb9a99d1b3b00d9291ae3c767ff05ecad90820c5bba28929"
+    },
+    "scripts/test_hongloumeng_current_state.py": {
+      "beforeSHA256": null,
+      "afterSHA256": "54cedf0db4ffd90a76a3e44420486211e3bd954f10a35ed5bcb2f113df389a5d"
+    }
+  },
+  "verification": {
+    "readerEditionsByteIdentical": {
+      "zh-Hans": 82,
+      "zh-Hant": 82,
+      "en": 82,
+      "ja": 82
+    },
+    "japaneseRebuild": "build_hongloumeng_reading_japanese.py rewrote 84 files with no diff; hongloumeng_partial_private.py rewrote the placeholder index and 5 private partial pages with no diff.",
+    "zhHansRelease": "test_hongloumeng_reading.py: 87 byte-identical outputs.",
+    "chapter49Overlay": "Direct overlay result equals the former chain result.",
+    "discoveryHubSearchSitemap": "Not regenerated here: refresh_hongloumeng_reading_discovery.py needs macOS CoreFoundation for the Traditional hub converter. None of its inputs changed; run its --check on macOS to confirm.",
+    "timings": {
+      "navigationTests": "14 tests in 23s before, 11 tests in 2s after",
+      "discoveryScopeTests": "45s before, 1s after",
+      "englishNoteOverlay": "14s chain replay before, direct call after"
+    }
+  },
+  "historicalLayerTests": {
+    "note": "These tests check retired layers against the current tree. They already failed before this change because later layers changed their pinned files, and they stay byte-identical because producer layers pin some of them. They are not current checks.",
+    "files": [
+      "test_hongloumeng_b10_binding.py",
+      "test_hongloumeng_b11_binding.py",
+      "test_hongloumeng_b12_binding.py",
+      "test_hongloumeng_b13_binding.py",
+      "test_hongloumeng_b14_binding.py",
+      "test_hongloumeng_b15_binding.py",
+      "test_hongloumeng_b16_binding.py",
+      "test_hongloumeng_ch002_ending_binding.py",
+      "test_hongloumeng_ch005_author_binding.py",
+      "test_hongloumeng_ch072_decisions_binding.py",
+      "test_hongloumeng_current_presentation_binding.py",
+      "test_hongloumeng_later_two_readings_binding.py",
+      "test_hongloumeng_rose_paste_binding.py",
+      "test_hongloumeng_seven_character_binding.py",
+      "test_hongloumeng_source4655_binding.py",
+      "test_hongloumeng_source5665_binding.py",
+      "test_hongloumeng_source6680_binding.py",
+      "test_hongloumeng_two_readings_binding.py",
+      "test_hongloumeng_current_presentation.py",
+      "test_hongloumeng_english_pipeline.py",
+      "test_hongloumeng_reading_presentation.py",
+      "test_hongloumeng_installed_presentation.py"
+    ],
+    "changedByThisRetirement": "The chapter72, later-two-readings and seven-character layer tests each gain one error: the approval record no longer carries implementationHashes."
+  },
+  "preexistingFailuresUnrelatedToThisChange": [
+    "test_hongloumeng_first80_traditional.py expects 586250 characters; the current Traditional text has 586252.",
+    "test_hongloumeng_reading_traditional.py expects only zh-Hans, zh-Hant and x-default alternates; the pages also list en and ja.",
+    "test_hongloumeng_reading_english_anchors.py: one projected anchor differs (' Do tell me' vs 'Do tell me.').",
+    "test_hongloumeng_first80.py: six failures.",
+    "test_hongloumeng_hub.py, test_hongloumeng_original.py, test_hongloumeng_readings.py: need macOS CoreFoundation.",
+    "build_hongloumeng_first80.py --check: untracked private review and audit files for chapters 44 and 49 are stale."
+  ]
+}

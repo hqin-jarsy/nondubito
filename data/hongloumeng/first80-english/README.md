@@ -219,3 +219,12 @@ Chapters 71-75 and two notes are bound to the current source. Earlier accepted b
 ## B16 checkpoint
 
 Chapters 76–80 and two notes are bound to the current source. Earlier accepted bodies, historical review context and frozen source layers remain preserved. Current tracked validation is separate from exact historical runtime replay. Independent current-binding receipts are required. English publication remains disabled and needs separate review.
+
+
+## Binding chain retired (2026-11-13)
+
+The owner retired the hash-pinned binding chain (B10 through the Japanese navigation layer). Routine changes no longer add a binding layer, and the predecessor layers are no longer replayed. All binding, review, self-check, history and receipt records in this directory stay unchanged as historical evidence; no earlier review is claimed for later changes. See `binding-chain-retirement.json`.
+
+Current checks look at the present tree only: the frozen Chinese source hashes; `standard_snapshot()` equal to `EXPECTED_NORMATIVE_SNAPSHOT`, with every unit and batch review current; `reading-publication.json` equal to the data actually rendered (source, standard snapshot, progress, notes) plus its recorded first-generation date; and every reader edition (zh-Hans, zh-Hant, English, Japanese) byte-identical to its builder. Run `python3 -B -m unittest discover -s scripts -p test_hongloumeng_current_state.py`.
+
+The tests of retired layers (for example `test_hongloumeng_b16_binding.py`) check each layer against the current tree; they already failed before the retirement and are not current checks.

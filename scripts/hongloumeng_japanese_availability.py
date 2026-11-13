@@ -50,7 +50,8 @@ def japanese_publication(root=None):
             raise ValueError('Stale Japanese reader output: ' + name)
     return dict(root=root.resolve(), paths=tuple(target / name for name in sorted(NAMES)
                                                if name.endswith('.html')),
-                completeChapters=75, partialChapters=5, ownerPlaceholders=11,
+                completeChapters=80 - len(PARTIAL), partialChapters=len(PARTIAL),
+                ownerPlaceholders=sum(PARTIAL.values()),
                 literaryAcceptance=False)
 
 
