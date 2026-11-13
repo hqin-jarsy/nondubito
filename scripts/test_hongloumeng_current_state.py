@@ -71,7 +71,7 @@ class JapanesePlaceholders(unittest.TestCase):
         current = japanese_publication(root)
         self.assertEqual(current['partial'], {})
         hub = (root/'essays/literature/hlm/index.html').read_text()
-        self.assertIn('日文版有4处依作者决定保留中文原文', hub)
+        self.assertIn('本版提供简体、繁体中文、独立英文译本及日文译本。前八十回原著', hub)
 
 
 class ReaderEditions(unittest.TestCase):
