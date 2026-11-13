@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "chapters": [
+    25
+  ],
+  "stage": "translator_self_check_not_independent_review",
+  "source": "data/hongloumeng/first80-public/reading.zh.json",
+  "sourceSha256": "91cef10bea15ee9cb39b445318fe19f47301bbcf737d62fc7e9c9c742e5be027",
+  "referenceFile": "/Users/hanqin/Desktop/SAE_PDFs/红楼梦/癸酉本石头记.md",
+  "referenceSha256": "818bfe3f8f7a4a9663c4390f6d7d8d70cef7a5ef237755dfc3446092f6e9f04e",
+  "reviewedBlocks": 60,
+  "coverage": "Read all 60 source blocks, then all local Guiyou chapter 25 lines 4623-4844; reread every saved Japanese block in ranges 0-21 and 22-59, comparing against source already read. Not an independent literary acceptance.",
+  "selfCorrections": [
+    {
+      "sourceBlockIndex": 12,
+      "before": "四両でも半斤でも",
+      "after": "油が四両でも半斤でも",
+      "reason": "Specify that 両 is oil weight, not silver payment."
+    },
+    {
+      "sourceBlockIndex": 15,
+      "before": "まあ、お気を確かに。",
+      "after": "まあ、ご心配なさらず。",
+      "reason": "放心 means do not worry, not recover from shock."
+    },
+    {
+      "sourceBlockIndex": 29,
+      "before": "誰よりも十倍忙しかった",
+      "after": "誰にもまして忙しかった",
+      "reason": "十分 describes intensity, not literal tenfold multiplication."
+    },
+    {
+      "sourceBlockIndex": 30,
+      "before": "宝玉と兄嫁の鳳姐は",
+      "after": "宝玉と、従兄の妻である鳳姐は",
+      "reason": "叔嫂 is extended family relation; Jia Lian is cousin, not biological elder brother."
+    },
+    {
+      "sourceBlockIndex": 36,
+      "before": "明けの星",
+      "after": "輝く星",
+      "reason": "明星 means a bright star here; no basis to specify morning."
+    },
+    {
+      "sourceBlockIndex": 56,
+      "before": "じかの妻や母以外の女性",
+      "after": "本人の妻や母以外の女性",
+      "reason": "More natural wording; preserve the unusual source restriction rather than inventing husbands."
+    }
+  ],
+  "comparisonDecisions": [
+    {
+      "block": 2,
+      "current": "喷壶 named in request",
+      "reference": "object omitted in request, named on return",
+      "decision": "Keep explicit source object as 如雨露."
+    },
+    {
+      "block": 3,
+      "current": "贾母不自在",
+      "reference": "贾母不去",
+      "decision": "Keep illness as reason for Wang Furen not going."
+    },
+    {
+      "block": 4,
+      "current": "彩云 then 彩霞",
+      "reference": "彩云 then 彩霞",
+      "decision": "Preserve both names."
+    },
+    {
+      "block": 7,
+      "current": "热油 / 油",
+      "reference": "蜡灯里的滚油 / 蜡油 and damaged phrase 烫瞎他一大",
+      "decision": "Retain candle context and source oil term; do not import damaged wording."
+    },
+    {
+      "block": 12,
+      "current": "也不当家花花的",
+      "reference": "也不当家",
+      "decision": "Contextual sense of unnecessary household expenditure; no Chinese change."
+    },
+    {
+      "block": 22,
+      "current": "两篇书; 宝钗 comments on flavor/color",
+      "reference": "二三篇书; 宝玉 continues flavor/color remark",
+      "decision": "Keep source count and speaker."
+    },
+    {
+      "block": 25,
+      "current": "人物儿、门第 / 根基 / 家私",
+      "reference": "adds 模样儿",
+      "decision": "Keep source list; no extra category."
+    },
+    {
+      "block": 27,
+      "current": "周瑞家 named among gathering",
+      "reference": "omitted at corresponding list",
+      "decision": "Keep named person."
+    },
+    {
+      "block": 32,
+      "current": "surround Baoyu",
+      "reference": "surround both",
+      "decision": "Keep source staging."
+    },
+    {
+      "block": 33,
+      "current": "都不是你们调唆着",
+      "reference": "都是你们调唆着",
+      "decision": "Read source rhetorically in context; annotate."
+    },
+    {
+      "block": 46,
+      "current": "十三载",
+      "reference": "十三载",
+      "decision": "Preserve thirteen years without age harmonization."
+    },
+    {
+      "block": 56,
+      "current": "亲身妻母 / 三十三日",
+      "reference": "same",
+      "decision": "Retain source terms and count; annotate unusual relationship restriction."
+    },
+    {
+      "block": 58,
+      "current": "凤姐 named as example of sharp tongue",
+      "reference": "those sharp-tongued people, no name",
+      "decision": "Keep source explicit Fengjie reference."
+    }
+  ],
+  "checked": [
+    "All 60 blocks preserve source metadata, sourceText and stanza boundaries.",
+    "48/24/5/3/1 jin oil, 1 jin lamp rush, 4 liang/half jin oil, suggested 7/5 jin and agreed 5 jin daily collected monthly.",
+    "500 cash offering versus 500 silver tael debt; ten paper ghosts divided five per victim and two paper figures.",
+    "Jump of three or four chi, third-day decline and fourth-day speech, thirteen years and thirty-three days.",
+    "No commentary imported; no existing Japanese edition used; no source, English, traditional Chinese, other chapter or progress edits."
+  ],
+  "files": {
+    "data/hongloumeng/first80-japanese/chapters/ch025.draft.json": {
+      "sha256": "bc5bb6b3435962e699b593df7517b5d85085f40b046e2fafb8ab1c5ff85c76c0"
+    }
+  },
+  "validation": {
+    "command": "python3 -B scripts/hongloumeng_japanese_pipeline.py --start 25 --end 25",
+    "result": "passed after final self-check corrections: 60 blocks, 13231 Japanese characters",
+    "diffCheck": "git diff --check passed",
+    "literaryStatus": "Translator self-check only; independent review pending"
+  }
+}
