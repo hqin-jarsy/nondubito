@@ -30,6 +30,86 @@ class JapaneseDraftTests(unittest.TestCase):
         self.assertIn('noindex,nofollow',output)
         self.assertNotIn('<script>',output)
 
+
+class UnchangedBylineTests(unittest.TestCase):
+    def setUp(self):
+        self.source = {'number': 38, 'title': '第三十八回', 'blocks': [
+            {'kind': 'verse', 'text': '诗行', 'first': False, 'last': False}
+            for _ in range(90)]}
+        for index, name, heading in [
+            (39, '枕霞旧友', '对菊'), (45, '枕霞旧友', '供菊'),
+            (69, '蕉下客', '簪菊'), (75, '枕霞旧友', '菊影'),
+            (87, '蕉下客', '残菊'),
+        ]:
+            self.source['blocks'][index]['text'] = name
+            self.source['blocks'][index - 1].update(text=heading, first=True)
+        self.draft = {'schemaVersion': 1, 'language': 'ja', 'number': 38,
+                      'title': '第三十八回', 'sourceTitle': '第三十八回',
+                      'blocks': [dict(b, sourceText=b['text'], text='歌の一行')
+                                 for b in self.source['blocks']]}
+        for index in (39, 45, 69, 75, 87):
+            self.draft['blocks'][index]['text'] = self.source['blocks'][index]['text']
+        self.rebind()
+
+    def rebind(self):
+        self.draft['sourceSha256'] = source_hash(self.source)
+
+    def assert_untranslated(self):
+        self.rebind()
+        with self.assertRaisesRegex(ValueError, 'untranslated source copy'):
+            validate(self.source, self.draft)
+
+    def test_all_five_exact_bylines_allowed(self):
+        self.assertEqual(validate(self.source, self.draft)['blocks'], 90)
+
+    def test_other_chapter_rejected(self):
+        self.source['number'] = self.draft['number'] = 37
+        self.assert_untranslated()
+
+    def test_same_name_at_other_position_rejected(self):
+        self.source['blocks'][40]['text'] = '枕霞旧友'
+        self.draft['blocks'][40].update(sourceText='枕霞旧友', text='枕霞旧友')
+        self.assert_untranslated()
+
+    def test_different_name_at_allowed_position_rejected(self):
+        self.source['blocks'][39]['text'] = '蕉下客'
+        self.draft['blocks'][39].update(sourceText='蕉下客', text='蕉下客')
+        self.assert_untranslated()
+
+    def test_changed_byline_structure_rejected(self):
+        for field, value in [('kind', 'prose'), ('first', True), ('last', True),
+                             ('extra', 'unexpected')]:
+            with self.subTest(field=field):
+                self.setUp()
+                self.source['blocks'][39][field] = value
+                self.draft['blocks'][39][field] = value
+                self.assert_untranslated()
+
+    def test_changed_heading_structure_or_text_rejected(self):
+        for field, value in [('kind', 'prose'), ('first', False), ('last', True),
+                             ('text', '另一诗题')]:
+            with self.subTest(field=field):
+                self.setUp()
+                self.source['blocks'][38][field] = value
+                if field == 'text':
+                    self.draft['blocks'][38]['sourceText'] = value
+                else:
+                    self.draft['blocks'][38][field] = value
+                self.assert_untranslated()
+
+    def test_copied_verse_rejected(self):
+        self.draft['blocks'][40]['text'] = self.source['blocks'][40]['text']
+        self.assert_untranslated()
+
+    def test_copied_prose_rejected(self):
+        self.source['blocks'][0] = {'kind': 'prose', 'text': '正文'}
+        self.draft['blocks'][0] = {'kind': 'prose', 'sourceText': '正文', 'text': '正文'}
+        self.assert_untranslated()
+
+    def test_copied_heading_rejected(self):
+        self.draft['blocks'][38]['text'] = self.source['blocks'][38]['text']
+        self.assert_untranslated()
+
 class PartialDraftTests(unittest.TestCase):
     def setUp(self):
         self.source = {'number': 1, 'title': '一', 'blocks': [{'kind':'prose','text':'甲'}, {'kind':'prose','text':'乙'}]}

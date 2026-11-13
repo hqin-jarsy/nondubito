@@ -14,6 +14,29 @@ SOURCE = ROOT / 'data/hongloumeng/first80-public/reading.zh.json'
 DATA = ROOT / 'data/hongloumeng/first80-japanese'
 
 
+
+# Zero-based source positions: these are poem bylines, not untranslated verse.
+# Bind each exception to its exact source block and preceding poem heading.
+UNCHANGED_BYLINES = {
+    39: ('枕霞旧友', '对菊'),
+    45: ('枕霞旧友', '供菊'),
+    69: ('蕉下客', '簪菊'),
+    75: ('枕霞旧友', '菊影'),
+    87: ('蕉下客', '残菊'),
+}
+
+
+def is_unchanged_byline(chapter, index):
+    if chapter['number'] != 38 or index not in UNCHANGED_BYLINES:
+        return False
+    name, heading = UNCHANGED_BYLINES[index]
+    return (chapter['blocks'][index] == {
+        'kind': 'verse', 'text': name, 'first': False, 'last': False,
+    } and chapter['blocks'][index - 1] == {
+        'kind': 'verse', 'text': heading, 'first': True, 'last': False,
+    })
+
+
 def source_hash(chapter):
     return hashlib.sha256(json.dumps(chapter, ensure_ascii=False, sort_keys=True,
                                     separators=(',', ':')).encode()).hexdigest()
@@ -39,7 +62,7 @@ def validate(chapter, draft):
         text = translated.get('text')
         if not isinstance(text, str) or not text.strip() or '\ufffd' in text:
             raise ValueError(f'Chapter {n} block {i}: blank or damaged translation')
-        if text == source['text']:
+        if text == source['text'] and not is_unchanged_byline(chapter, i - 1):
             raise ValueError(f'Chapter {n} block {i}: untranslated source copy')
     if not isinstance(draft.get('notes', []), list):
         raise ValueError(f'Chapter {n}: notes must be a list')
