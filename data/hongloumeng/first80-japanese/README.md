@@ -22,8 +22,8 @@ python3 -B scripts/hongloumeng_japanese_pipeline.py --start 1 --end 10 --allow-p
 
 ## 未完成箇所の一意なプレースホルダー
 
-`placeholder-index.json` は回番号・マーカー・原文内位置・ハッシュのみの索引です。原文本文は収録しません。第6回は CH006-P01〜P03、第9回は CH009-P01〜P02、第12回は CH012-P01 です。`【日訳未完 CH006-P01】` のような文字列で検索できます。
+`placeholder-index.json` は回番号・マーカー・原文内位置・ハッシュのみの索引です。原文本文は収録しません。第6回は CH006-P01〜P03、第9回は CH009-P01〜P02、第12回は CH012-P01、第65回は CH065-P01〜P04、第75回は CH075-P01 です。計11箇所が作者の手動補完待ちです。`【日訳未完 CH006-P01】` のような文字列で検索できます。
 
-`private-review/ch006.partial.html`、`ch009.partial.html`、`ch012.partial.html` には既存の日訳と黄色のマーカーだけを表示します。作者が手動補完する位置の確認用です。HTML編集はJSON原稿へ自動反映されません。原稿の正本は `chapters/chNNN.partial.json` です。マーカーだけを消しても完成扱いにはなりません。
+`private-review/ch006.partial.html`、`ch009.partial.html`、`ch012.partial.html`、`ch065.partial.html`、`ch075.partial.html` には既存の日訳と黄色のマーカーだけを表示します。作者が手動補完する位置の確認用です。HTML編集はJSON原稿へ自動反映されません。原稿の正本は `chapters/chNNN.partial.json` です。マーカーだけを消しても完成扱いにはなりません。
 
 再生成：`python3 -B scripts/hongloumeng_partial_private.py`。検査：`python3 -B scripts/test_hongloumeng_partial_private.py`。この独立レンダラーは中国語原文ファイルを読み込まず、欠落した訳文を原文で埋めません。構造検査は原文照合・文学的審読ではなく、旧reviewやprogressを変更しません。非公開はローカル用途の意味で、HTMLのnoindexはアクセス制御ではありません。公開・pushは行っていません。
