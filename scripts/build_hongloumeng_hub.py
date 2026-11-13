@@ -135,9 +135,9 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None)
         alternatives += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN}">'
         language_links = ''.join(a(up+d+'index.html?lang='+key, name, f'data-edition="{key}" lang="{c}"'+(' aria-current="page"' if key==lang else '')) for key,(d,c,name) in EDITIONS.items())
         if japanese_available:
-            note = t('本版提供简体、繁体中文、独立英文译本及日文译本。日文有5回共11处待作者补译，并非无删节完译。前八十回原著与秦汉原创续写分别编排。', 'Read in Simplified Chinese, Traditional Chinese, independent English or Japanese translation. The Japanese edition retains 11 marked passages across five chapters awaiting the author’s translation and is not unabridged. Han Qin’s original continuation is presented separately.')
+            note = t('本版提供简体、繁体中文、独立英文译本及日文译本。日文版有7处依作者决定保留中文原文。前八十回原著与秦汉原创续写分别编排。', 'Read in Simplified Chinese, Traditional Chinese, independent English or Japanese translation. By the author’s decision, seven passages in the Japanese edition remain in the original Chinese. Han Qin’s original continuation is presented separately.')
             first80_section = re.sub(r'(<p class="edition-note">).*?(</p>)', lambda m: m[1]+note+m[2], first80_section, count=1, flags=re.S)
-            first80_section = first80_section.replace('</div></section>', a(base+'classics/hongloumeng/ja/index.html', '日本語（11か所は補訳待ち）')+'</div></section>')
+            first80_section = first80_section.replace('</div></section>', a(base+'classics/hongloumeng/ja/index.html', '日本語')+'</div></section>')
         featured = ''.join(legacy(url,t(zh,english)) for url,zh,english in [
             ('intro.html','从一场酒令开始','Begin with a drinking game'),
             ('z-daiyu.html','走近黛玉','Meet Daiyu'),

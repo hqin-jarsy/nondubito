@@ -37,12 +37,11 @@ class Navigation(unittest.TestCase):
     def test_real_current_outputs(self):
         from hongloumeng_english_availability import english_publication
         from hongloumeng_japanese_availability import japanese_publication
-        from build_hongloumeng_reading_japanese import PARTIAL
         self.assertEqual(len(english_publication()['paths']), 82)
         ja = japanese_publication()
         self.assertEqual((len(ja['paths']), ja['completeChapters'], ja['partialChapters'],
                           ja['ownerPlaceholders'], ja['literaryAcceptance']),
-                         (82, 80-len(PARTIAL), len(PARTIAL), sum(PARTIAL.values()), False))
+                         (82, 80, 0, 0, False))
 
     def test_english_body_change_rejected(self):
         from hongloumeng_english_availability import english_publication

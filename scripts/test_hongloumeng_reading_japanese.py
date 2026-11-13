@@ -14,7 +14,7 @@ class JapaneseReaderTests(unittest.TestCase):
     def test_current_inventory_and_placeholders(self):
         result = japanese_publication()
         self.assertEqual(len(result['paths']), 82)
-        self.assertEqual(result['partial'], {6: 3, 9: 2, 12: 1, 65: 4, 75: 1})
+        self.assertEqual(result['partial'], {})
 
     def test_local_links_and_fragments(self):
         base = ROOT/PREFIX
@@ -53,7 +53,7 @@ class JapaneseReaderTests(unittest.TestCase):
             # No data/ directory exists here. Publication cannot depend on JSON.
             with patch.object(builder, 'ROOT', root), patch('sys.argv', ['builder']):
                 builder.main()
-            self.assertEqual(japanese_publication(root)['completeChapters'], 75)
+            self.assertEqual(japanese_publication(root)['completeChapters'], 80)
             self.assertEqual(before, {name: (target/name).read_bytes() for name in NAMES})
             with patch.object(builder, 'ROOT', root), patch('sys.argv', ['builder', '--check']):
                 builder.main()

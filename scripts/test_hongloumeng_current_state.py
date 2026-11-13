@@ -69,11 +69,9 @@ class JapanesePlaceholders(unittest.TestCase):
         from hongloumeng_japanese_availability import japanese_publication
         root = pipeline.ROOT
         current = japanese_publication(root)
-        total = current['ownerPlaceholders']
-        self.assertEqual(current['partial'], {6: 3, 9: 2, 12: 1, 65: 4, 75: 1})
+        self.assertEqual(current['partial'], {})
         hub = (root/'essays/literature/hlm/index.html').read_text()
-        self.assertIn(f'日本語（{total}か所は補訳待ち）', hub)
-        self.assertIn(f'共{total}处待作者补译', hub)
+        self.assertIn('日文版有7处依作者决定保留中文原文', hub)
 
 
 class ReaderEditions(unittest.TestCase):
