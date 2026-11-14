@@ -449,7 +449,7 @@ def infer_domain(relative: Path) -> str:
 def hongloumeng_chapter(relative: Path) -> int | None:
     """Only the eighty original chapters and the forty published continuation pages."""
     value = relative.as_posix()
-    match = re.fullmatch(r'classics/hongloumeng/(?:(?:zh-hant|en|ja|fr|de|es)/)?ch(\d{3})\.html', value)
+    match = re.fullmatch(r'classics/hongloumeng/(?:(?:zh-hant|en|ja|fr|de|es|ko)/)?ch(\d{3})\.html', value)
     if match and 1 <= int(match[1]) <= 80:
         return int(match[1])
     match = re.fullmatch(r'originals/hongloumeng/(?:(?:en|zh-hant|de|fr|es|ja|ko)/)?ch(08[1-5])\.html', value)
@@ -459,9 +459,9 @@ def hongloumeng_chapter(relative: Path) -> int | None:
 def infer_record_type(relative: Path) -> str:
     if hongloumeng_chapter(relative) is not None:
         return 'novel-chapter'
-    if relative.as_posix() in ('classics/hongloumeng/index.html', 'classics/hongloumeng/zh-hant/index.html', 'classics/hongloumeng/en/index.html', 'classics/hongloumeng/ja/index.html', 'classics/hongloumeng/fr/index.html', 'classics/hongloumeng/de/index.html', 'classics/hongloumeng/es/index.html'):
+    if relative.as_posix() in ('classics/hongloumeng/index.html', 'classics/hongloumeng/zh-hant/index.html', 'classics/hongloumeng/en/index.html', 'classics/hongloumeng/ja/index.html', 'classics/hongloumeng/fr/index.html', 'classics/hongloumeng/de/index.html', 'classics/hongloumeng/es/index.html', 'classics/hongloumeng/ko/index.html'):
         return 'series-index'
-    if relative.as_posix() in ('classics/hongloumeng/edition.html', 'classics/hongloumeng/zh-hant/edition.html', 'classics/hongloumeng/en/edition.html', 'classics/hongloumeng/ja/edition.html', 'classics/hongloumeng/fr/edition.html', 'classics/hongloumeng/de/edition.html', 'classics/hongloumeng/es/edition.html'):
+    if relative.as_posix() in ('classics/hongloumeng/edition.html', 'classics/hongloumeng/zh-hant/edition.html', 'classics/hongloumeng/en/edition.html', 'classics/hongloumeng/ja/edition.html', 'classics/hongloumeng/fr/edition.html', 'classics/hongloumeng/de/edition.html', 'classics/hongloumeng/es/edition.html', 'classics/hongloumeng/ko/edition.html'):
         return 'site-page'
     if relative.parts[:2] == ("essays", "paleontology") and relative.name == "index.html":
         return "series-index"
