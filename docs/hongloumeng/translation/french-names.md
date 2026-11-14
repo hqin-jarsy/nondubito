@@ -39,3 +39,7 @@
 | 冯紫英 | Feng Fleur Pourpre | 沿现行81–85，28回统一 |
 | 金钏／玉钏／碧痕 | Bracelet d’Or / Bracelet de Jade / Trace d’Émeraude | 沿现行81–85 |
 | 绮霰／紫绡 | Grésil de Soie / Gaze Pourpre | 前者沿81，后者26–27新增 |
+| 史湘云／鸳鸯／翠缕 | Shi Brume de Rivière / Yuanyang / Cuilü | 沿现行83等正文；叙述可略Shi |
+| 汗巾（系腰用途） | ceinture | 系腰布带，不机械译为écharpe或foulard；依场景区分手帕 |
+| 麒麟（佩饰） | licorne | 沿现行81及29；可短注指中国qilin，相关代词保持阴性 |
+| 蒋玉菡／秋纹／琥珀／彩霞 | Jiang Lotus de Jade / Moire d’Automne / Ambre / Caixia | 分别沿28、81、83及23–25现行正文 |
