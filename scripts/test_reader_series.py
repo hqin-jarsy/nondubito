@@ -6,7 +6,7 @@ import re
 import unittest
 import xml.etree.ElementTree as ET
 from urllib.parse import unquote,urlsplit
-from build_reader_series import ROOT,registry,load_items,render
+from build_reader_series import ROOT,registry,load_items,render,ReaderTraditionalConverter
 from build_content_registry import scan_page
 from test_language_writing import Tags
 from update_sae_navigation import CARD,library_block
@@ -14,6 +14,19 @@ from web_analytics import TOKEN
 
 
 class ReaderSeriesPublication(unittest.TestCase):
+    def test_traditional_context(self):
+        converter = ReaderTraditionalConverter()
+        try:
+            for source, expected in (
+                ('量得准不准；量得很准；校准记录', '量得準不準；量得很準；校準記錄'),
+                ('钢制储罐；划明范围；划窄；划出边界', '鋼製儲罐；劃明範圍；劃窄；劃出邊界'),
+                ('咨询答复；发明了规则；发布者', '諮詢答覆；發明了規則；發佈者'),
+                ('注明来源；标注范围；获准发问', '註明來源；標註範圍；獲准發問'),
+            ):
+                self.assertEqual(converter.convert(source),expected)
+        finally:
+            converter.close()
+
     def test_manuscripts_and_rendering(self):
         for s in registry():
             items = load_items(s)
