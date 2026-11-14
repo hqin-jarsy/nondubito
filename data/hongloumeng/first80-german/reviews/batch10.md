@@ -2,7 +2,7 @@
 
 Completed 14 November 2026. Each chapter received full original translation, complete self-review and a separate full Chinese–German review. All reported substantive revisions were applied.
 
-46: 43 source blocks. 47: 37. 48: 53. 49: 54. 50: 210. Total: 497 source blocks, approximately 26,967 German words (5,912 / 5,473 / 5,052 / 5,251 / 5,279).
+46: 43 source blocks. 47: 37. 48: 53. 49: 54. 50: 210. Total: 397 source blocks, approximately 26,967 German words (5,912 / 5,473 / 5,052 / 5,251 / 5,279).
 
 Chapter 46 preserves Yuanyang's refusal, the pressure exerted by relatives and Jia She, the mistaken rebuke and Tanchun's intervention. The uncle title is explicit without expanding the coercive situation. The named pox condition is treated as a historical disease name, not an illness suffered by an examination winner. Its identification was checked against the Zhuangyuan-dou entry in volume two of Douzhen Zhengzong: https://www.shidianguji.com/book/YCM294300067/chapter/1l1pjlicjwahw . The edited chapter ending remains incomplete where the source does.
 
