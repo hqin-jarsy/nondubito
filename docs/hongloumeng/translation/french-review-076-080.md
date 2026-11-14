@@ -13,3 +13,7 @@ The source Chinese HTML agrees with the working JSON in chapters 71-80. Final pa
 The index now lists all 80 chapters. Chapter 80 links to the existing original continuation at /originals/hongloumeng/fr/ch081.html. Author credit in 71-73 and 80 is normalized to Han Qin, matching that continuation. The index still accurately discloses two marked passages in chapter 9 and the non-graphic formulation in chapter 12. Chapter 75's missing poems originate in the supplied Chinese text and are documented in its own batch review.
 
 New pages retain local reader.css/js but omit third-party analytics, unlike the older site configuration retained elsewhere. All commits are local; no push.
+
+## 第9回后续修订
+
+按用户明确指定的淡化方向，第9回第20、23段两处占位已替换为非露骨法文，目录和定位清单同步。上文占位说明为当时状态；现行正文无待补占位，详见 [定位及处理记录](french-placeholder-locations.md)。其他正文未改。
