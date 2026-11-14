@@ -28,3 +28,7 @@
 ## Final integration
 
 All2,813 blocks through50 pass source/class/order/local-link/metadata checks; Chinese and continuation bindings unchanged. 43 discovery tests pass; scoped search current; git diff --check passed. Korean styles/scripts, analytics and navigation normalized. No native-editor or browser/mobile final review claimed.
+
+## Cross-batch name check
+
+Corrected chapters 49 and 50: Nongchui Hermitage now uses the current Korean continuation’s spelling 농취암. Checked other surname matches and preserved Liu/Yu references that are not You (尤). No source edits.
