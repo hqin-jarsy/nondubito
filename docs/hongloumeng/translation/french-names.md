@@ -35,3 +35,7 @@
 | 大观园／花溆 | Jardin du Grand Spectacle / Rive fleurie | 17、18统一 |
 | 贵妃／妙玉 | Noble Épouse impériale / Jade mystique | 后者沿现85 |
 | 小红／红玉 | Petite Rougeote / Hongyu, « Jade rouge » | 小红沿现81，首次说明改名 |
+| 颦儿／颦颦 | Sourcil froncé | 沿第3回取字；不用另添高傲义的Sourcilleuse，复称保留两遍 |
+| 冯紫英 | Feng Fleur Pourpre | 沿现行81–85，28回统一 |
+| 金钏／玉钏／碧痕 | Bracelet d’Or / Bracelet de Jade / Trace d’Émeraude | 沿现行81–85 |
+| 绮霰／紫绡 | Grésil de Soie / Gaze Pourpre | 前者沿81，后者26–27新增 |
