@@ -4,6 +4,7 @@ from hongloumeng_english_availability import english_published
 from hongloumeng_japanese_availability import japanese_published
 from hongloumeng_french_availability import french_published
 from hongloumeng_german_availability import german_available
+from hongloumeng_spanish_availability import spanish_available
 import posixpath
 from urllib.parse import unquote, urlsplit
 
@@ -19,7 +20,7 @@ def excluded(relative: Path, *, root=None, english=None) -> bool:
         return True
     if relative.parts[:2] == ('classics', 'hongloumeng'):
         return not (relative.name in PUBLIC_HTML and (len(relative.parts) == 3 or
-                    len(relative.parts) == 4 and (relative.parts[2] == 'de' and german_available(relative.name, root) or relative.parts[2] == 'ja' and japanese_published(root) or relative.parts[2] == 'zh-hant' or relative.parts[2] == 'fr' and french_published(root) or relative.parts[2] == 'en' and (english_published(root) if english is None else english))))
+                    len(relative.parts) == 4 and (relative.parts[2] == 'es' and spanish_available(relative.name, root) or relative.parts[2] == 'de' and german_available(relative.name, root) or relative.parts[2] == 'ja' and japanese_published(root) or relative.parts[2] == 'zh-hant' or relative.parts[2] == 'fr' and french_published(root) or relative.parts[2] == 'en' and (english_published(root) if english is None else english))))
     return False
 
 
@@ -77,7 +78,7 @@ def excluded_url(value, *, root=None, english=None):
     for name in (original, normalized):
         relative = Path(name)
         # Directory canonicals refer to the explicitly public contents page.
-        if relative in (Path('classics/hongloumeng'), Path('classics/hongloumeng/zh-hant'), Path('classics/hongloumeng/en'), Path('classics/hongloumeng/ja'), Path('classics/hongloumeng/fr'), Path('classics/hongloumeng/de')):
+        if relative in (Path('classics/hongloumeng'), Path('classics/hongloumeng/zh-hant'), Path('classics/hongloumeng/en'), Path('classics/hongloumeng/ja'), Path('classics/hongloumeng/fr'), Path('classics/hongloumeng/de'), Path('classics/hongloumeng/es')):
             relative /= 'index.html'
         if excluded(relative, root=root, english=english):
             return True

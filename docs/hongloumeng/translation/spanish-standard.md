@@ -1,0 +1,11 @@
+# 西班牙语前八十回翻译标准
+
+2026-11-14。以 classics/hongloumeng/ch001.html 至 ch080.html 中站内现行大知校正中文正文为唯一底本，不从德、法、日或现成西译转译。中文疑点遵循已有校勘和作者裁定，不擅改中文。
+
+正文直接保存在 classics/hongloumeng/es/chNNN.html，用户可直接编辑，不另设一份必须同步的译文稿件。data-source-block 连续对应中文正文段落，data-kind 区分散文、诗、联语等；编号只帮助对读，不代替语义检查。
+
+书名沿用 Sueño en el pabellón rojo。人名、称呼和行文以 originals/hongloumeng/es/ch081.html 至 ch085.html 当前正文为基准；早期术语表仅作参考，不覆盖后来的正文修订。沿用 Baoyu、Daiyu、Baochai、Xifeng、Xiren、Pinger、la dama Wang、la Anciana Dama、la señora Xue、mansión Rong / Ning 等。新出现的名字采用本项目拼音或必要的含义译法，不冒称已对照现成西班牙语译本核定。叙述和人物当面称呼依语境区别。
+
+保存对话的身份和语气、诗歌的意象和语义、数字及衣食礼俗细节，不强行押韵，不在正文提前揭示判词未明说的人物结局。古代币值和历法保留，不凭空换算。非露骨文学文字如实处理；如确有无法处理之处，必须明确标注并报告，不静默删节。
+
+每五回完成全文中西对读与跨回称名检查后，写明实际检查范围、改正项和未完成检查，再更新 reviewed_through 并本地提交。未完成批次不开放目录和搜索入口。结构和搜索测试不等同于文学审校；只报告真正完成的审校。禁止 push。

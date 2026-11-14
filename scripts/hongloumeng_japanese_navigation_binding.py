@@ -23,5 +23,6 @@ def navigation_outputs(prefix, pages):
     """Pure postprocessing; callers retain their independent publication gates."""
     from integrate_hongloumeng_french import navigation_outputs as french_navigation
     from integrate_hongloumeng_german import navigation_outputs as german_navigation
-    return german_navigation(prefix, french_navigation(prefix, {name: (transform(prefix+name, value.encode() if isinstance(value, str) else value).decode()
-                   if name.endswith('.html') else value) for name, value in pages.items()}))
+    from integrate_hongloumeng_spanish import navigation_outputs as spanish_navigation
+    return spanish_navigation(prefix, german_navigation(prefix, french_navigation(prefix, {name: (transform(prefix+name, value.encode() if isinstance(value, str) else value).decode()
+                   if name.endswith('.html') else value) for name, value in pages.items()})))
