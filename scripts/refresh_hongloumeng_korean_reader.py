@@ -58,7 +58,9 @@ def main():
         elif n==80:nav+='<a href="/originals/hongloumeng/ko/ch081.html">창작 속편 제81회 →</a>'
         nav+='</nav>'
         new,count=re.subn(r'<nav\b[^>]*class="chapter-nav"[^>]*>.*?</nav>',nav,old,flags=re.S)
-        assert count>=1, ('Missing chapter navigation',n)
+        if count == 0:
+            new = re.sub(r'(<article\b[^>]*>)', lambda m: nav + m[1], new, count=1)
+            new = new.replace('</article>', '</article>' + nav, 1)
         # Unify only reader chrome, never the hand-edited article or its notes.
         heading=re.search(r'<h1[^>]*>(.*?)</h1>',new,re.S)[1]
         title=html.unescape(re.sub('<[^>]+>','',heading))
