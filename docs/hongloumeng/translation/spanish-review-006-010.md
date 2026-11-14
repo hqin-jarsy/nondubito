@@ -21,3 +21,5 @@
 仅本地commit，不push。第11回以后不属于本批完成范围。
 
 Supplementary checks: 52 discovery regressions, 4 French navigation checks and 11 Japanese navigation checks passed after integration (67 total). Non-Spanish-reader search records are byte-equivalent as parsed JSON. git diff --check passed.
+
+更新（2026-11-14，按用户明确批准）：第9回P20现以“在后院子不知干什么见不得人的勾当”方向淡化，P23以粗鲁的“关你什么事”方向淡化，两个占位已取消。独立复核确认语义、人物和语气符合授权，译注说明是淡化而非逐字原译。第6回的4处占位保持不变；可安全直译的非露骨叙述已保留，不擅自以概述消除占位。
