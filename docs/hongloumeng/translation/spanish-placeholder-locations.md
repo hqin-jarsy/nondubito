@@ -12,3 +12,11 @@
 已解决：第9回原P20/P23两处占位已按用户明确批准改为非露骨表达：前者保留后院见不得人勾当的指控，后者保留茗烟粗鲁的“关你什么事”。正文不再有占位，译注明确两处淡化，不冒称逐字原译。
 
 第10回P27药方制/醋归属留有译注，属于底本文字断句疑义，不是上述占位。
+
+新增已审占位（第11—15批）：
+- classics/hongloumeng/es/ch012.html 第17行，P12第1处：前“Dicho esto, lo llevó en brazos hasta el kang de la habitación.”；后“La otra persona no decía nada.”。
+- 同文件第17行，P12第2处：前“La otra persona no decía nada.”；后“De pronto brilló una luz: Jia Qiang alzó una mecha encendida”。
+- classics/hongloumeng/es/ch015.html 第28行，P23末：前“Llevó a Zhineng en brazos hasta el kang.”；该段末尾为占位。
+- 同文件第29行，P24开头：占位后“Entró alguien y los sujetó a los dos sin decir palabra.”。
+
+以上均保留可安全直译的中性叙述，具体内容仍有明确标记，未擅用概述取消占位。行号可能随编辑变化。
