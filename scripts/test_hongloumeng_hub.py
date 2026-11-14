@@ -33,7 +33,7 @@ class HubTests(unittest.TestCase):
             self.assertIn('Translations are not yet published' if lang == 'en' else ('外語翻譯尚未發佈' if lang == 'zh-hant' else '外语翻译尚未发布'), section)
             self.assertIn('edited by Han Qin' if lang == 'en' else ('由秦漢校正整理' if lang == 'zh-hant' else '由秦汉校正整理'), section)
             continuation = source.split('<section id="continuation">')[1].split('</section>')[0]
-            self.assertEqual(continuation.count('<a '), 6)
+            self.assertEqual(continuation.count('<a '), 7)
             self.assertNotIn('classics/hongloumeng/', continuation)
 
     def test_bilingual_preview_routes_and_continuation_stay_separate(self):
@@ -49,7 +49,7 @@ class HubTests(unittest.TestCase):
             self.assertNotIn('Simplified Chinese only', section)
             self.assertNotIn('classics/hongloumeng/en/', source)
             continuation = source.split('<section id="continuation">')[1].split('</section>')[0]
-            self.assertEqual(continuation.count('<a '), 6)
+            self.assertEqual(continuation.count('<a '), 7)
             self.assertNotIn('classics/hongloumeng/', continuation)
 
     def test_explicit_first80_preview_requires_date(self):
@@ -104,8 +104,9 @@ class HubTests(unittest.TestCase):
             self.assertIn('ch083.html',section)
             self.assertIn('ch084.html',section)
             self.assertIn('ch085.html',section)
+            self.assertIn('ch086.html',section)
             self.assertIn('original fiction by Han Qin' if lang=='en' else ('秦漢的原創小說' if lang=='zh-hant' else '秦汉的原创小说'),section)
-            self.assertIn('Chapters 81–85 published' if lang=='en' else ('第八十一至八十五回定稿已發佈' if lang=='zh-hant' else '第八十一至八十五回定稿已发布'),section)
+            self.assertIn('Chapters 81–86 published' if lang=='en' else ('第八十一至八十六回定稿已發佈' if lang=='zh-hant' else '第八十一至八十六回定稿已发布'),section)
 
 
 if __name__=='__main__': unittest.main()

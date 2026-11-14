@@ -1,0 +1,265 @@
+# Quatre-vingt-sixième récit — La timide Printemps Deuxième-née perd la vie aux griffes du loup de Zhongshan ; l’obstinée Madame Xing, en vérifiant les comptes, exhume d’anciens forfaits
+
+<!-- P1 -->
+Or, après le départ du navire officiel qui emportait la Demoiselle Printemps Tierce-née, on ferma les portes du Cabinet de la Fraîcheur d’Automne et l’on remit les clefs à la Seconde Dame Wang. Celle-ci se rappelait que, la fois précédente, Jade mystique avait gardé porte close et refusé toute visite. Quelques jours plus tard, elle envoya de nouveau la femme de Zhou Rui au Couvent enclos de Verdure, accompagnée de deux vieilles servantes, pour demander d’abord si l’on y manquait de riz ou de charbon. Arrivées à la porte, elles trouvèrent les deux battants entrebâillés. Une mince couche d’aiguilles de pin couvrait les marches de pierre ; sous la galerie, la cloche rituelle de bronze pendait toujours à sa place. Le vent la faisait légèrement bouger, sans qu’elle rendît aucun son.
+
+<!-- P2 -->
+La femme de Zhou Rui appela plusieurs fois du dehors. N’obtenant aucune réponse, elle poussa la porte et entra. La couche de méditation était soigneusement rangée ; dans le brûle-parfum reposait un pouce de cendre froide, et le vieux coussin de jonc s’appuyait de biais contre le mur. Quelques ustensiles à thé ordinaires étaient encore sur l’étagère, mais le petit fourneau dont Jade mystique se servait elle-même, son récipient à eau et deux volumes de livres sacrés avaient disparu. Sous la fenêtre, le vase qui accompagnait ses lectures était vide ; à côté gisait une moitié de feuille de prunier desséchée. Tous les tiroirs étaient ouverts : ni lettre ni le moindre mot.
+
+<!-- P3 -->
+Une petite servante dit : « Hier encore, j’ai vu Mademoiselle cueillir des feuilles sur la pente de derrière. Comment peut-elle avoir disparu aujourd’hui ? »
+
+<!-- P4 -->
+La vieille gardienne du couvent accourut : « Avant la cinquième veille, il m’a semblé entendre un bruit à la porte de côté. J’ai cru que c’était le vent ; je ne me suis pas levée pour voir. »
+
+<!-- P5 -->
+La femme de Zhou Rui demanda : « Une voiture ou un palanquin est-il venu la chercher ? »
+
+<!-- P6 -->
+La vieille répondit : « Je ne crois pas. Sur le chemin boueux, au sud, on ne voit qu’une seule suite de pas, qui s’efface au-delà des bambous. »
+
+<!-- P7 -->
+Elles allèrent chercher derrière le couvent. Le verrou de la petite porte était posé par terre ; au-dehors, la rosée avait courbé quelques tiges d’herbe. Plus au sud, on débouchait sur la rue de derrière. Au loin, des passants allaient et venaient : comment distinguer encore qui était qui ? La femme de Zhou Rui revint rendre compte à la Seconde Dame. « A-t-elle laissé quelque message ? » demanda celle-ci.
+
+<!-- P8 -->
+« Pas un seul mot », répondit la femme de Zhou Rui.
+
+<!-- P9 -->
+La Seconde Dame resta un moment assise, puis dit : « Soit. Qu’on ferme le couvent à clef, qu’on dresse l’inventaire de ce qui s’y trouve et qu’on le conserve. »
+
+<!-- P10 -->
+Dès lors, le Couvent enclos de Verdure fut vide, lui aussi. Mais laissons cela pour l’instant.
+
+<!-- P11 -->
+Depuis son mariage chez les Sun, la Demoiselle Printemps Deuxième-née parlait peu. Une vieille servante lui ayant naguère rapporté que toutes ses pierres de jeu se trouvaient encore à l’Îlot aux Cornioles pourpres, elle avait fait demander au frérot Jade de lui envoyer ce jeu. Il était allé lui-même le chercher dans le jardin, en avait compté les pierres une à une et les avait rangées dans le coffret de santal pourpre, incrusté de nacre et orné d’incrustations affleurantes d’or et d’argent, puis avait chargé une personne sûre de porter le tout chez les Sun. Ces pierres de go en ivoire teint de rouge et de vert, gravées de fleurs et d’oiseaux dans le contraste des couleurs, avaient appartenu à l’empereur Minghuang des Tang. Autrefois, quelqu’un avait offert, par un intermédiaire, dix mille taels pour les acheter ; la jeune fille avait refusé. Maintenant que le jeu lui était parvenu, elle l’avait simplement rangé dans son coffre et n’avait pas joué une seule partie.
+
+<!-- P12 -->
+Sun Shaozu buvait et jouait au-dehors. Tantôt il restait absent trois ou cinq jours, tantôt il rentrait au milieu de la nuit, empestant le vin ; à la moindre contrariété, il cassait les tasses, battait les gens et les injuriait. Printemps Deuxième-née se retirait dans sa chambre, copiait des livres sacrés matin et soir et feuilletait parfois le Traité du Très-Haut sur les rétributions.
+
+<!-- P13 -->
+Ce soir-là, Sun Shaozu rentra après avoir bu. Dès l’entrée, il injuria le petit domestique qui avait oublié de raviver la lampe, puis trouva la soupe froide et lança une tasse à terre. Jeunes et vieilles servantes s’esquivèrent. Printemps Deuxième-née était assise près de la lampe, avec le même livre devant elle. En le voyant, Sun Shaozu eut un rire mauvais : « Foutue garce, encore à lire ces inutilités ! »
+
+<!-- P14 -->
+Elle fronça les sourcils, mais retint son souffle et ne dit rien.
+
+<!-- P15 -->
+Un coup retentit : Sun Shaozu avait envoyé rouler un petit tabouret d’un coup de pied. Il s’assit en face d’elle et ricana : « Tu te crois encore la Deuxième Demoiselle du palais du duc ? Ton père m’a pris cinq mille taels, en me promettant sans cesse une bonne charge. Et je n’en ai jamais vu la couleur ! Ensuite, il m’a fallu porter encore cinq mille taels chez Jia Yucun pour obtenir le chapeau que je porte aujourd’hui. En tout, dix mille taels ! Ma charge, je l’ai achetée ; et toi aussi, on me t’a vendue en règlement de dette. De quel droit viens-tu faire la grande demoiselle devant moi ? »
+
+<!-- P16 -->
+Elle gardait la tête baissée, la main fortement appuyée sur les pages.
+
+<!-- P17 -->
+Plus Sun Shaozu l’injuriait, plus il s’emportait. Il lui arracha le livre ; voyant sur la couverture le titre du Traité du Très-Haut sur les rétributions, au lieu de se fâcher davantage il éclata de rire : « Et tu lis encore cette foutue chose ! » Il le jeta près du brasero, puis leva le pied droit pour essuyer, sur un coin du livre, la boue de sa botte. « Si ton livre a des pouvoirs, qu’il commence par te protéger ! Moi, j’ai déboursé mon argent et obtenu ma charge. Est-il tombé du ciel ne fût-ce qu’une demi-sapèque pour m’en empêcher ? »
+
+<!-- P18 -->
+Un coin du livre prit feu au contact des braises ; le bord du papier se recroquevilla, laissant monter un filet de fumée bleue. Printemps Deuxième-née se pencha vivement pour le ramasser et étouffa les étincelles avec sa main. Ses doigts rougirent sous la brûlure, mais elle ne dit rien. Elle aplanit doucement la partie noircie et reposa le livre à sa place.
+
+<!-- P19 -->
+Devant cette attitude, Sun Shaozu, plus dépité encore, se leva. « Demain, la femme de mon supérieur, Monsieur Zhou, viendra nous rendre visite. Tu sortiras pour lui tenir compagnie. Aux fêtes et au nouvel an, elle va de maison en maison ; elle sait même quelles friandises aime chaque vieille dame. Combien d’affaires, dans nos bureaux, n’a-t-elle pas arrangées d’un seul mot ! Apprends donc d’elle à recevoir les gens, au lieu de garder toute la journée tes airs empesés de demoiselle ducale. Essaie encore de te dire malade pour ne pas la recevoir, et tu verras si je te ménage ! » Il écarta le rideau d’un coup de pied et sortit.
+
+<!-- P20 -->
+Ce qui suivit fut encore une autre épreuve. Les domestiques des Sun n’osaient rien en dire au-dehors, et personne de la maison Jia ne venait s’enquérir de rien. Tous les quelques jours, Xiuju faisait demander un médecin par un intermédiaire ; mais, à la porte, on disait toujours que leur jeune maîtresse avait un caractère étrange et refusait les remèdes.
+
+<!-- P21 -->
+Une nuit, il était déjà tard ; Sun Shaozu buvait encore dehors, et presque tous les habitants de la cour intérieure dormaient. Printemps Deuxième-née demanda tout bas à Xiuju de fermer la porte de la chambre, puis de lui apporter son nécessaire de toilette. Sa voix était si calme que Xiuju ne devina rien. Elle obéit et le posa sous la lampe.
+
+<!-- P22 -->
+Tout au fond, Printemps Deuxième-née prit une vieille bourse de satin de qualité impériale et en vida sur la table les morceaux d’argent, un à un. Puis elle retira de ses cheveux une épingle d’or sans ornements, ôta son bracelet d’argent et les posa avec deux paires de pendants d’oreilles. Elle compta l’argent. « Il y a ici trente-deux taels en espèces. L’épingle d’or est légère, mais elle vaut encore quelques taels. Garde le bracelet pour les dépenses du voyage. Ne vends les pendants que si tu es dans une véritable difficulté. »
+
+<!-- P23 -->
+Xiuju sursauta. « De quel voyage parle Mademoiselle ? »
+
+<!-- P24 -->
+« Cette nuit, à la troisième veille, on change la garde à la petite porte de derrière. La charrette qui va chercher l’eau doit sortir ; son conducteur est le neveu de la mère Zhang, des cuisines. J’ai déjà fait accepter à la mère Zhang mon épingle sertie de perles. Tu mettras une vieille veste de sa femme à lui, et tu passeras derrière la réserve à bois. Il croira seulement que tu rentres chez toi porter un message et ne t’arrêtera pas. »
+
+<!-- P25 -->
+Xiuju tomba à genoux. « Vous me dites de partir ; et vous, Mademoiselle, que deviendrez-vous ? Partons ensemble ! »
+
+<!-- P26 -->
+Printemps Deuxième-née secoua la tête. « Tu peux partir, moi non. Mon père a reçu de lui cinq mille taels ; il n’a pas fait ce qu’il avait promis et n’a pas rendu l’argent. Cette dette, c’est avec moi qu’on l’a payée. »
+
+<!-- P27 -->
+Xiuju lui étreignit les genoux. « Alors je ne partirai pas. Là où sera Mademoiselle, je serai aussi. Au pire, nous mourrons ici ensemble. »
+
+<!-- P28 -->
+Printemps Deuxième-née tendit la main pour la relever, mit dans la bourse l’argent, le bracelet et les pendants, puis la lui glissa entre les mains. « Si tu restes, on n’aura fait que sacrifier inutilement une autre jeune fille pleine de vie. Si tu pars, tu pourras te chercher une issue. »
+
+<!-- P29 -->
+Xiuju pleura. « Puisque Mademoiselle sait qu’on peut partir, pourquoi ne part-elle pas ? »
+
+<!-- P30 -->
+Printemps Deuxième-née prit sur la table l’épingle d’or et la lui plaça dans les cheveux. Avec un sourire, elle dit : « Si vaste que soit le monde, où y aurait-il une place pour moi ? »
+
+<!-- P31 -->
+« Retournez au palais, sanglotait Xiuju. Allez trouver le Deuxième Maître, Madame, Mademoiselle Joyau ; il y aura bien quelqu’un pour vous accueillir. »
+
+<!-- P32 -->
+Printemps Deuxième-née ne répondit pas. Elle reprit simplement la bourse, tira encore une ceinture ouatée de son nécessaire et répartit l’argent en plusieurs endroits, le cousant entre les deux épaisseurs. D’ordinaire, elle maniait lentement l’aiguille ; cette nuit-là, sa main était d’une parfaite sûreté. Chaque poche terminée, elle la pressait du bout des doigts et ne passait à la suivante qu’après s’être assurée que rien ne se voyait du dehors. Elle prit aussi un phénix d’or en filigrane, serti de perles, et le cousit dans la ceinture.
+
+<!-- P33 -->
+À côté d’elle, Xiuju ne cessait de pleurer en la regardant. « Pas de bruit, dit Printemps Deuxième-née. Si l’on t’entend dehors, toi non plus tu ne pourras plus partir. »
+
+<!-- P34 -->
+Elle ajouta : « Si quelqu’un te pose des questions, dis seulement que je t’ai envoyée chercher des affaires dans ma famille. Dès que tu auras franchi la porte de derrière, va vers le sud. Ne va pas au palais de la Gloire et ne reviens pas sur tes pas. Commence par trouver refuge chez des parents à toi. Quand quelques jours auront passé et que le bruit sera retombé, tu aviseras. »
+
+<!-- P35 -->
+Xiuju dit en pleurant : « Dès que je serai installée, je viendrai vous chercher. »
+
+<!-- P36 -->
+Printemps Deuxième-née lui arrangea le col. « Surtout, ne reviens pas. »
+
+<!-- P37 -->
+Xiuju secouait sans cesse la tête, tout en pleurant.
+
+<!-- P38 -->
+Printemps Deuxième-née reprit : « Si l’on t’interroge plus tard, dis bien que c’est moi qui t’ai ordonné de partir. Ne les laisse pas dire que tu as volé ces objets. »
+
+<!-- P39 -->
+Xiuju repoussa la ceinture et la bourse sur la table. « Gardez-les pour vous, Mademoiselle. Avec de l’argent, vous vous en tirerez mieux au-dehors. »
+
+<!-- P40 -->
+Mais Printemps Deuxième-née les lui remit contre la poitrine. « Je n’en ai plus besoin. »
+
+<!-- P41 -->
+Elle avait parlé très bas. Xiuju demeura interdite ; ses larmes tombèrent sur le dos de la main de sa maîtresse. Celle-ci retira sa main et prit un mouchoir pour essuyer le visage de la jeune fille. « Tes yeux sont gonflés d’avoir pleuré, on se méfiera à la porte. Va t’asseoir un moment dans la pièce extérieure. Tu partiras quand cela se verra moins. »
+
+<!-- P42 -->
+La troisième veille approchait lorsque, effectivement, on entendit dans la cour de derrière le faible bruit de roues de bois. Printemps Deuxième-née posa elle-même la vieille veste sur les épaules de Xiuju, puis retira de ses cheveux l’épingle d’or et la cacha dans le côté de sa chaussure. « Il y a du monde sur les routes. Tu ne dois pas porter cela dans les cheveux. »
+
+<!-- P43 -->
+Arrivée à la porte, Xiuju s’agenouilla encore et frappa trois fois le sol de son front. Printemps Deuxième-née la regarda debout, sans l’aider à se relever. Xiuju se leva, ouvrit la porte et, à peine avait-elle franchi le seuil, se retourna. « Attendez-moi, Mademoiselle. »
+
+<!-- P44 -->
+« Va vite », répondit Printemps Deuxième-née.
+
+<!-- P45 -->
+Xiuju quitta la cour en longeant l’ombre de la galerie. La vieille qui gardait la petite porte de derrière toussa une fois près de la réserve à bois ; la porte s’entrouvrit. Xiuju se glissa dehors et suivit la charrette à eau à travers deux ruelles. Arrivée au petit pont du sud, elle ne put s’empêcher de se retourner. Derrière les hauts murs des Sun, la lampe de la chambre principale brillait encore. Elle resta un moment immobile, puis finit par se détourner et s’en alla.
+
+<!-- P46 -->
+Lorsque Printemps Deuxième-née entendit résonner au loin la planche du veilleur, elle barra la porte de sa chambre, puis la fenêtre de derrière. Du fond du coffre, elle tira le coffret à jeu de santal pourpre, l’ouvrit, en essuya doucement l’intérieur, le referma et le posa sur la table où Sun Shaozu avait coutume de s’asseoir. Revenue près de la lampe, elle prit dans le tiroir le Traité du Très-Haut sur les rétributions, dont un coin était brûlé, et le feuilleta du début à la fin. Les quelques lignes de caractères rouges qu’elle avait décalquées dans son enfance y étaient encore. Elle sourit sans émoi, referma pourtant le livre et le replaça bien droit dans le tiroir, qu’elle repoussa jusqu’au bout. Elle versa le reste du thé dans une cuvette, retourna la tasse et aligna ses deux chaussures sur le marchepied devant le lit. Tout cela terminé, elle dénoua enfin la bande d’étoffe qui servait d’ordinaire à retenir les rideaux de sa couche.
+
+<!-- P47 -->
+La lampe de la pièce extérieure s’éteignit la première. Celle de la chambre principale brûla jusqu’à la quatrième veille.
+
+<!-- P48 -->
+Le lendemain, à la porte des Sun, on disait seulement que la Deuxième Jeune Dame avait eu une rechute de son ancienne maladie ; nul étranger n’était admis. Quelques jours plus tard, on introduisit discrètement dans la cour de derrière un cercueil de bois mince. On ne suspendit aucune marque de deuil à l’entrée et l’on n’avertit pas les Jia. Sun Shaozu se contenta d’ordonner à ses gens : « Sa famille est déjà en deuil. Attendons quelque temps avant d’en parler. » Il fit aussi mettre une serrure neuve à la petite porte de derrière. Au palais de la Gloire, on ne savait encore rien de tout cela. Laissons ici cette affaire.
+
+<!-- P49 -->
+Revenons au palais de la Gloire. Depuis les funérailles de l’Aïeule, les allocations des différents appartements avaient été réduites à plusieurs reprises. À celle de la concubine Zhao, il manquait encore une quinzaine de jours ; le riz envoyé des cuisines était mêlé de vieille balle. Elle avait pesté plusieurs jours dans sa chambre lorsque des servantes mariées et de vieilles femmes vinrent se plaindre du retard de leur paie. De propos en propos, on en vint aux manœuvres des intendants.
+
+<!-- P50 -->
+Une servante frappa dans ses mains. « Qu’il nous manque une seule ligature de sapèques, et on nous harcèle à nous faire mourir ! Mais tout l’argent qui est passé entre les mains de Lai Da, qui lui en a jamais demandé un mot ? Son jardin à lui, avec ses pavillons et ses terrasses au bord de l’eau, est encore mieux aménagé que celui du palais ! »
+
+<!-- P51 -->
+Une autre rit. « Il n’y a que Lai Da ? Lai Sheng et Yu Lu au palais de la Paix, la femme de Zhang Cai ici, qui donc n’a pas quelques coffrets bien cachés ? Quand la fille de la femme de Zhang Cai s’est mariée, il y a deux ans, son trousseau faisait bien seize charges à deux porteurs. Je les ai comptées moi-même à la porte ! Pour une simple intendante, d’où cela venait-il ? »
+
+<!-- P52 -->
+Une vieille leva trois doigts. « Amitabha ! Et ne parlons pas des deux fils de la nourrice Zhao. Quand ils accompagnaient le deuxième jeune maître Qiang à Gusu, ces années-là, pour acheter des costumes de théâtre et louer des bateaux, ils portaient trois taels au compte pour un tael dépensé. Les costumes restaient dans leurs coffres, mais l’argent, lui, se multipliait dans leurs manches ! »
+
+<!-- P53 -->
+La concubine Zhao, qui les écoutait couchée sur le kang, se redressa. « Sainte mère ! Si vous savez toutes cela, pourquoi n’en parlez-vous pas aux maîtres ? »
+
+<!-- P54 -->
+« À qui ? » dit la première. Une autre se hâta d’ajouter : « Quand Madame Phénix était là, qui aurait osé ouvrir la bouche ? » La vieille reprit : « C’est maintenant qu’elle est malade, et que la Première Dame ne s’occupe pas de ces affaires, que nous osons venir nous plaindre un peu. »
+
+<!-- P55 -->
+La concubine Zhao cracha dans leur direction. « Vous n’avez donc aucune honte ! Elle ne s’en occupe pas ? Eh bien, moi, je vais l’y obliger. »
+
+<!-- P56 -->
+Elle ordonna vivement à une petite servante de lui apporter ses chaussures, les enfila, puis conduisit droit chez Madame Xing les femmes mariées et les vieilles domestiques. Madame Xing faisait rassembler les listes des offrandes funéraires encore dues pour les obsèques de l’Aïeule. Voyant entrer la concubine Zhao suivie de toute cette troupe, elle fronça les sourcils. « Qu’y a-t-il encore ? »
+
+<!-- P57 -->
+La concubine Zhao se mit d’abord à pleurer. « Madame doit nous rendre justice, à nous que personne ne défend ! On nous réduit l’allocation, on nous réduit le riz ; quand on demande pourquoi, on dit seulement que la caisse est vide. Amitabha ! Où donc est passé l’argent ? Ce ne sont tout de même pas des gens honnêtes comme nous qui l’ont avalé ! Combien Lai Da a-t-il empoché pour bâtir son jardin ? Combien Lai Sheng et Yu Lu, du palais de la Paix, ont-ils caché ? Et cette graine de scélérat de Wu Xindeng ! Combien de fois le deuxième maître Lian lui a-t-il demandé de rendre l’argent détourné ? Il s’obstine à nier et accuse encore les autres ! Et maintenant, c’est nous qui devons économiser ! Économiser quoi ? De quoi lui offrir son jardin ? »
+
+<!-- P58 -->
+Madame Xing demanda : « De qui tiens-tu que Lai Da a détourné de l’argent ? »
+
+<!-- P59 -->
+La concubine Zhao se retourna et désigna les femmes derrière elle. « Ce n’est pas une seule personne qui le dit. Laquelle ici ne le sait pas ? Son jardin est là, sous les yeux de tout le monde. Il n’est tout de même pas tombé du ciel ! »
+
+<!-- P60 -->
+Une servante mariée intervint vivement : « Il y a aussi les deux fils de la nourrice Zhao. Autrefois, quand ils partaient faire des achats à Gusu avec les autres, ils gonflaient beaucoup les comptes. » Toutes se disputèrent ensuite la parole pour dire que la femme de Zhang Cai prêtait secrètement de l’argent à intérêt.
+
+<!-- P61 -->
+Après les avoir écoutées, Madame Xing chargea seulement la femme de Wang Shanbao de noter quelques noms. « Je suis informée. On ne se met pas à vérifier les comptes parce que vos bouches le réclament. Rentrez chacune chez vous. Si vous vous rassemblez encore pour faire du tapage, je commencerai par retenir vos allocations. »
+
+<!-- P62 -->
+La concubine Zhao dit : « Madame a entendu ; qu’elle n’aille pas en rester là ! »
+
+<!-- P63 -->
+Madame Xing répondit : « Quand je dis que je suis informée, je suis informée. »
+
+<!-- P64 -->
+Voyant son visage fermé, elles durent se retirer. Quand toutes furent parties, la femme de Wang Shanbao lui tendit la feuille couverte de noms et sourit. « Elles osent en dire, tout de même. Si l’on enquête vraiment, Lai Da sera sans doute le premier à ne pouvoir s’en tirer. »
+
+<!-- P65 -->
+Madame Xing plia la feuille et posa sa tasse dessus. « Lai Da et sa bande, ricana-t-elle, on les a laissés devenir sans foi ni loi du vivant de notre vieille maîtresse. Maintenant que je voudrais enquêter, de qui pourrais-je invoquer les ordres pour le faire répondre ? Mais l’argent de la maison, au fil des années, par quelles mains est-il surtout passé ? N’était-ce pas la femme de Lian qui tenait la maison ? Du vivant de notre vieille maîtresse, tout allait à la seconde branche ; moi, l’épouse du fils aîné, je ne pouvais pas même placer un mot. Maintenant qu’elle n’est plus, voilà que Wang Ziteng, à ce qu’on dit, a reçu l’ordre de quitter la capitale pour une autre affectation. Une fois retiré ce grand pilier de sa famille, qui donc, ici, la soutiendra encore ? La femme de Lian est la nièce de la Seconde Dame, la fille de son frère, et c’est pour elle qu’elle administre cette maison. L’examiner, elle seule, c’est porter l’enquête jusque devant la Seconde Dame. Cela apprendra aussi à la seconde branche que sa voix n’est pas la seule à compter dans ce palais. Après toutes ces années où elle a fait la loi, il est grand temps que quelqu’un mette un peu d’ordre dans ses comptes pour toute la famille. »
+
+<!-- P66 -->
+La femme de Wang Shanbao comprit, se rapprocha et prit un sourire complaisant. « Madame raisonne fort bien. Le jardin de Lai Da, à bien y penser, remonte à de nombreuses années. Il a les bons approuvés par Monsieur et par le premier maître Zhen, et la considération dont il jouissait du vivant de notre vieille maîtresse : qui pourrait le toucher ? Lai Sheng appartient au palais de la Paix ; si nous y portons l’enquête, on dira là-bas que nous outrepassons nos droits. Toucher à Yu Lu ou à la femme de Zhang Cai, c’est toucher aux achats de tous les appartements. Wu Xindeng tient le magasin depuis tant d’années : de qui n’a-t-il pas les bons de retrait ? Si l’on suit vraiment toute cette liste, on arrêtera quelqu’un aujourd’hui, on entraînera un appartement demain, et l’année prochaine on n’aura pas fini d’y voir clair. Entre-temps, on se sera mis à dos les deux palais. Examiner seulement la deuxième jeune Madame Lian, c’est tout autre chose. Elle est la bru de Madame, c’est elle qui administre la maison ; tous les comptes sont passés entre ses mains. Il est parfaitement légitime de les vérifier, personne ne pourra rien dire. Et c’est aussi elle qui s’est fait le plus d’ennemis : qu’on lui trouve un seul tort, et les domestiques, contents, applaudiront. Les comptes des autres, personne ne songera plus à les réclamer. »
+
+<!-- P67 -->
+Madame Xing changea sa chaufferette de main. « Qu’importent toutes ces personnes qu’on risque d’entraîner ! Je ne fais que rétablir une règle dans cette maison. Demain, on fermera son bureau des comptes. »
+
+<!-- P68 -->
+Le lendemain, Madame Xing fit apposer les scellés sur le petit bureau où Phénix gérait autrefois les affaires. Caiming, malade, ne put venir et remit seulement les clefs à Petite Quiète. Celle-ci les apporta à Madame Xing. « Madame Phénix ne peut plus se lever. Les registres sont tous là, il n’en manque pas un. Si Madame veut les vérifier, qu’elle le fasse. Seulement, certains bons de retrait sont restés dans les différents appartements ; il faudra les rapprocher des comptes. »
+
+<!-- P69 -->
+Madame Xing répondit : « Puisque nous avons les registres, commençons par eux. S’il manque des bons, nous interrogerons ceux qui ont reçu les objets. »
+
+<!-- P70 -->
+La femme de Wang Shanbao fit ouvrir les armoires. Sur les rayons du haut se trouvaient les comptes mensuels de la maison ; au-dessous, quelques petits coffrets contenaient des relevés de fermages, des billets de gage et des reconnaissances de dette. Chaque registre portait une étiquette avec le mois et l’année ; de petits billets de la main de Caiming étaient glissés entre les pages. Madame Xing commença par les funérailles de l’Aïeule. Objets rituels en papier, abris pour les récitations sacrées, riz et farine, repas funéraires : chaque dépense avait son poste. Les cuisines avaient déclaré cent vingt tables, mais les comptes en avaient payé cent cinquante. « Voilà déjà trente tables de différence », dit la femme de Wang Shanbao. L’intendante des cuisines, prosternée les deux mains à terre, se hâta de répondre : « Certaines étaient pour les gens des suites ; ailleurs, on en a ajouté à la dernière minute. » Madame Xing demanda : « Si on les a ajoutées, pourquoi n’y a-t-il pas de noms ? » La femme ne sut répondre ; après quelques balbutiements, elle parla de la confusion de ce jour-là. Madame Xing replia le coin de la page. « Notez cela. Faites aussi apporter les listes d’achats des cuisines pour ce jour-là. »
+
+<!-- P71 -->
+On passa ensuite aux allocations mensuelles. Ce qu’il fallait distribuer chaque mois, ce qui avait réellement été versé, le nombre de jours de retard : tout était chiffré. La femme de Wang Shanbao lisait en regardant Madame Xing à la dérobée, s’interrompant un instant aux endroits importants. Pour quelques mois, toutefois, l’argent retiré n’avait pas été aussitôt distribué ; une mention séparée portait « transféré au-dehors ». La femme de Wang Shanbao sourit. « Voilà les prêts à intérêt. » Petite Quiète dit : « La maison a souvent des besoins urgents. Madame Phénix prêtait provisoirement cet argent ; quand il rentrait, capital et intérêts servaient à combler les manques de la caisse. Toutes les entrées et sorties sont inscrites aux pages suivantes. » Madame Xing répliqua : « Je ne t’ai rien demandé. Qu’on lise d’abord ces pages. » Le comptable lut dans le registre : « Troisième mois de telle année : transfert de huit cents taels prélevés sur les allocations. Sixième mois : rentrée du capital, huit cents taels ; intérêts, soixante-quatre taels. Dépenses : vingt taels de drogues médicinales pour notre vieille maîtresse ; trente taels pour la glace des différents appartements ; douze taels pour réparer la petite porte de l’est. » Il lut encore : « Dixième mois de telle année : transfert de mille deux cents taels. L’année suivante, les fermiers ayant eu une mauvaise récolte, rentrée de quatre cents taels seulement ; le reste reporté jusqu’à ce printemps. » La femme de Wang Shanbao dit : « Elle a fait disparaître le capital. » Petite Quiète répondit : « Les reconnaissances de dette sont toutes là. Ce n’est pas qu’on ignore où il est : les gens du dehors ne peuvent pas rembourser. » Madame Xing feuilleta ces billets. « Qu’ils puissent ou non rembourser, c’est elle qui a fait l’opération. De quel droit emportait-elle au-dehors l’argent commun ? » Petite Quiète baissa la tête sans répondre.
+
+<!-- P72 -->
+Madame Xing ordonna de mettre ces registres à part. On découvrit encore dans la chambre de Phénix quelques livres de comptes privés et plusieurs reconnaissances de dette. Celles-ci étaient explicites : à telle date, tant d’argent prêté à telle personne, à tel intérêt mensuel ; au-dessous figuraient les paraphes et les empreintes digitales. Le registre des intérêts consignait, paiement par paiement, les sommes reçues chaque mois, qui atteignaient au total plusieurs centaines de taels. La femme de Wang Shanbao réunit les comptes privés, les billets et le livre des intérêts, et remit le tout à Madame Xing avec les registres de la maison dont les chiffres ne concordaient pas. Ces livres étaient pourtant d’une parfaite clarté : à qui l’on avait prêté, à quelle date, combien d’intérêt était dû et si le remboursement avait eu lieu. Les sommes sorties étaient chiffrées ; celles qu’on ne pouvait recouvrer l’étaient aussi. Quelques opérations plus anciennes s’y trouvaient également consignées.
+
+<!-- P73 -->
+Lai Da, mandé, entra vêtu d’un habit de deuil à demi usé, portant plusieurs bons jaunis. « Le jardin remonte à bien des années. Le bois, les pierres, les arbres et les fleurs avaient chacun leur responsable ; votre serviteur n’en supervisait que l’ensemble. Voici les approbations de Monsieur et du premier maître Zhen, et les montants signés à l’époque par le deuxième maître Lian. » Madame Xing demanda : « Et ton jardin à toi, quand l’as-tu fait bâtir ? » Lai Da sourit. « Les quelques masures de votre serviteur, ce sont ses enfants et petits-enfants qui y ont tous contribué. Un jardin ? Tout au plus avons-nous monté une scène devant et planté quelques arbres derrière. Comment oserions-nous nous comparer au palais ? » Madame Xing examina les bons : chaque poste portait le paraphe d’un maître. « Tu peux te retirer. Ne déplace aucun compte ancien. Tu reviendras quand je te ferai appeler. » Lai Da se prosterna et partit.
+
+<!-- P74 -->
+Madame Xing voulait aussi faire apporter de l’autre palais les anciens comptes des préparatifs de la visite impériale à la famille. La femme de Wang Shanbao intervint vivement : « Là-bas, c’est le premier maître Zhen qui dirige, et il est aussi chef du clan. Madame ne peut pas faire comparaître ses gens d’ici. » Madame Xing dut y renoncer. Wu Xindeng arriva avec les clefs du magasin et les bons de retrait. Il les posa en ordre sur la table, avec un sourire empressé. « Puisque Madame veut vérifier, cela m’épargnera justement bien des discussions. Depuis toutes ces années, chaque tael qui entre ou sort a son bon. Que Madame m’indique seulement une opération : je la reconnaîtrai devant elle. Mais si l’on ne peut m’en indiquer une seule, c’est qu’on profite du désordre pour me calomnier. On ne saurait me laisser porter ce crime sans raison. » Irritée par son ton ferme, Madame Xing allait ordonner qu’on le mît aux fers pour l’interroger. La femme de Wang Shanbao lui fit aussitôt un signe et s’approcha. « Pas encore, Madame. Il tient les bons de tous les appartements. Poussé à bout, il criera qui a reçu trop, qui a touché indûment ; nous aurons encore combien d’affaires aujourd’hui ? Gardez les bons, renvoyez-le d’abord. Tous ces registres, il faudra bien le rappeler pour les confronter avec lui. » Madame Xing réfléchit. « Soit. Qu’il laisse les bons et qu’il se retire pour le moment. » Ce ne fut qu’une fois sorti que Wu Xindeng essuya de sa manche la sueur de son front.
+
+<!-- P75 -->
+L’enquête se poursuivit ainsi plusieurs jours. Lai Da, Wu Xindeng et quelques autres avaient tous de quoi éveiller le soupçon, mais chacun se protégeait derrière des autorisations et des libellés. Les petits registres de Phénix, eux, étaient plus clairs les uns que les autres ; plus ils étaient clairs, plus ils fournissaient de preuves. Chaque jour, la femme de Wang Shanbao consignait sur des billets les sommes découvertes. Les femmes qui attendaient dehors, apprenant que l’on enquêtait sur Phénix, échangeaient des regards et s’en réjouissaient secrètement. La concubine Zhao revint demander ce qu’il en était de Lai Da. La femme de Wang Shanbao répondit : « On a découvert que la deuxième jeune Madame Lian prêtait les allocations à intérêt. Le capital immobilisé dehors atteint à lui seul plusieurs milliers de taels. Et l’on examine encore des affaires anciennes plus graves : comment s’occuper de Lai Da ? » Apprenant que l’enquête avait atteint Phénix, la concubine Zhao sourit aussitôt. « Je disais bien qu’elle n’avait pas les mains propres ! Nous allions soupçonner les autres pour rien. Cette fois, Madame nous aura vraiment vengées ! » Sans attendre de réponse, elle repartit avec sa petite servante. Lai Da, au début, quand on avait parlé de vérifier les comptes, s’était montré tout souriant, tout en cachant chez lui quelques objets trop voyants. Puis, constatant que l’on ne vérifiait toujours que les affaires de la deuxième jeune Madame Lian et qu’on ne lui posait plus de questions, il se rassura et reprit ses occupations comme auparavant.
+
+<!-- P76 -->
+En remontant de plusieurs années dans les anciens comptes, on trouva, caché dans la doublure d’un vieux registre, un reçu pour une somme apportée par Jingxu, du couvent des Pains cuits à la vapeur : trois mille taels. Madame Xing s’écria aussitôt : « Faut-il encore enquêter ? Une religieuse qui offre ainsi trois mille taels : elle a forcément acheté une faveur. » La femme de Wang Shanbao prit le reçu et parcourut les pages suivantes. « Regardez aussi la suite, Madame. Au début, ces trois mille taels ne figuraient pas dans les comptes. Plus tard, quand la maison a manqué d’argent, on les a finalement portés à la caisse commune. On a d’abord payé deux mois d’allocations dans le jardin, puis réglé plusieurs arriérés d’achats ; les quelques centaines de taels restants ont même été ajoutés aux cadeaux d’anniversaire de notre vieille maîtresse. Sur le papier, tout est net. » Madame Xing dit : « Puisque l’argent a fini dans les comptes communs, il serait difficile de l’attaquer là-dessus. » La femme de Wang Shanbao répondit : « Sans doute, mais sa provenance reste malhonnête. À mon humble avis, c’est justement parce qu’il est entré dans la caisse qu’il faut demander qui l’a fait envoyer. C’est cela qu’il faut examiner, non les trois mille taels. » Madame Xing hocha la tête. « Voilà la bonne question. Faites venir les personnes qui fréquentaient Jingxu. »
+
+<!-- P77 -->
+On fit venir sur l’ordre de Madame Xing une vieille servante qui avait jadis des rapports fréquents avec Jingxu. Elle prétendit d’abord que tout cela était trop ancien et qu’elle avait oublié. Voyant qu’on possédait encore le reçu, elle finit par avouer : « Cette année-là, la mère Jingxu est venue solliciter la Deuxième Jeune Dame pour le mariage de la demoiselle Zhang, de la préfecture de Chang’an. La fille des Zhang était déjà promise au fils d’un commandant de garnison ; ensuite, un jeune seigneur Li avait voulu l’épouser de force, en usant de son influence. La Deuxième Jeune Dame a fait porter un mot au gouvernement militaire de Chang’an, et les Zhang ont rompu les fiançailles. Plus tard, on a appris que la jeune fille et celui auquel elle avait d’abord été promise étaient morts tous les deux. » Madame Xing demanda : « Qui a porté le message de la Deuxième Jeune Dame au-dehors ? » La vieille répondit : « Je ne le sais pas. J’ai seulement vu Wanger venir deux fois. » Madame Xing fit noter son nom et entoura aussi les trois caractères du nom de Zhang Jinge.
+
+<!-- P78 -->
+La femme de Wang Shanbao mena de nouveau une fouille dans la chambre de Phénix. Derrière une armoire, on découvrit des lettres incomplètes. L’une, dont il ne restait qu’une demi-page, évoquait les remèdes pris par la deuxième sœur You durant sa maladie, les querelles que Qiutong lui faisait jour et nuit, la plainte déposée au-dehors par Zhang Hua et d’autres affaires. Madame Xing fit alors appeler la femme de Bao Er. Celle-ci avait servi la deuxième sœur You dans la petite ruelle des Rameaux fleuris, hors du palais ; en entrant et en voyant Madame Xing sur le siège d’honneur, elle tomba à genoux, épouvantée. Madame Xing demanda : « Quand la deuxième sœur You était au palais, tu allais souvent la voir. Sais-tu comment elle est morte ? » La femme de Bao Er répondit : « Plusieurs médecins sont effectivement venus pendant sa maladie. Ensuite, elle a pris une dose prescrite par le médecin impérial Hu, et dans la nuit son état s’est aggravé. Shanjie disait aussi que la deuxième sœur était déjà faible et qu’on ne pouvait en rendre personne responsable. Je ne sais que cela. » Madame Xing demanda : « Qui avait fait venir le médecin impérial Hu ? » La femme de Bao Er secoua la tête. « On disait que quelqu’un du dehors l’avait recommandé. Qui au juste, je ne le sais pas. »
+
+<!-- P79 -->
+La femme de Wang Shanbao envoya aussi chercher Shanjie. Celle-ci, apprenant qu’on la mandait, s’était déjà cachée ailleurs, et on ne put la retrouver sur-le-champ. Quelqu’un, en revanche, ramena Zhuier. Jadis au service de l’Enclos égayé de Rouge, elle faisait depuis son renvoi de menus travaux pour les gens du dehors. Elle avait entendu dire que la Première Dame examinait d’anciennes affaires et qu’en se rendant utile elle pourrait peut-être rentrer au palais. Elle vint donc, vêtue d’une veste de cotonnade bleue délavée. Sous ses poignets apparaissait le dos de ses mains, où demeuraient quelques anciennes cicatrices de piqûres. La femme de Wang Shanbao lui demanda si, à l’Enclos égayé de Rouge, elle avait vu passer des gens de la chambre de Phénix. Zhuier répondit : « Après que notre sœur Petite Rougeote a été prise au service de la Deuxième Jeune Dame, la femme de Wanger venait souvent porter des messages à l’Enclos. Il y avait aussi une femme qui portait un foulard de soie bleue sur la tête ; elle est venue deux fois la nuit. Elle passait toujours par la galerie de derrière pour ne pas être vue. » On lui ordonna ensuite d’accompagner plusieurs personnes afin de reconnaître d’anciens domestiques en différents endroits, et de chercher au-dehors la pharmacie où l’on s’était procuré les drogues. Après deux jours de démarches, Zhuier retrouva effectivement un ancien commis. Il affirma que la prescription du médecin impérial Hu contenait de très fortes doses de carthame et d’amandes de noyaux de pêche, et que la personne venue chercher les drogues était une femme qui boitait légèrement. Zhuier revint transmettre ces renseignements, mais ne repartit pas ; elle demeura sous la galerie, comme si elle avait encore quelque chose à dire. Sortant de la pièce, la femme de Wang Shanbao lui demanda : « Pourquoi n’es-tu pas encore partie ? » Zhuier prit un sourire suppliant. « Ma bonne mère, voilà des années qu’une vieille affaire me pèse sur le cœur. Puisque Madame enquête aujourd’hui, je voudrais que l’on y voie clair. » Et elle poursuivit sans s’arrêter : « Quand j’étais à l’Enclos égayé de Rouge, on m’a accusée d’avoir volé le bracelet de Mademoiselle Quiète, et Mademoiselle Nuée d’Azur m’a chassée. Ce bracelet, ce n’est pas moi qui voulais le voler ; c’est la Deuxième Jeune Dame qui m’avait ordonné de le prendre. Elle m’avait dit de déposer en cachette le bracelet de Mademoiselle Quiète à la tête du lit du deuxième jeune maître Jade. Je n’y comprenais rien, mais je n’osais pas désobéir. Je venais de le prendre et ne l’avais pas encore posé quand la mère Song m’a vue ; elle l’a repris et rendu à Mademoiselle Quiète. Je porte cette injustice depuis des années. Je demande seulement que Madame en témoigne pour moi : je n’étais pas une fille qui convoitait cet objet. » Sous la galerie, plusieurs femmes occupées à recopier les comptes arrêtèrent leur travail. La femme de Wang Shanbao entra rapporter ces paroles à Madame Xing. Celle-ci resta immobile sur son siège. Au bout d’un long moment, elle ordonna qu’on donnât quelques taels à la jeune fille. « J’ai noté ce que tu as dit. Prends cet argent. À l’avenir, tu ne souffleras plus un mot de cette affaire à personne du dehors. » Zhuier voulut encore parler, mais on l’emmena, moitié par des paroles, moitié en la poussant, jusqu’à la porte de côté. Elle ne put donc pas rentrer au service du palais. Serrant ses quelques morceaux d’argent, elle s’en alla la tête basse.
+
+<!-- P80 -->
+Madame Xing fit encore enfermer Wanger dans une pièce vide. D’abord, il avoua seulement avoir prêté de l’argent pour Phénix ; pour tout le reste, il prétendait ne rien savoir. Madame Xing en éprouva quelque satisfaction et allait ordonner qu’on le battît, lorsque la femme de Wang Shanbao l’arrêta vivement. « Si on le frappe, il s’obstinera à ne rien savoir, et l’on dira qu’on lui arrache des aveux par la force. Mieux vaut commencer par l’affamer quelques jours, puis le tromper avec cette demi-lettre. S’il ne peut dire où se trouve le cadavre de Zhang Hua, il aura menti à ses maîtres comme aux autorités. Que Madame menace seulement de le dénoncer : il prendra peur. » Madame Xing suivit ce conseil. On monta la garde à la porte, et il ne reçut qu’un bol de riz froid par jour. Le troisième jour, elle vint elle-même l’interroger. « Où est enterré Zhang Hua ? » Prosterné, Wanger répondit : « Je ne le sais pas. » Madame Xing déplia le fragment de lettre avec un sourire. « Quand la Deuxième Jeune Dame t’a ordonné de te débarrasser de Zhang Hua, n’es-tu pas revenu dire que des brigands l’avaient assommé sur la route et qu’il était mort au bord du chemin ? Puisqu’il est mort là, où est sa tombe ? Qui a relevé le corps ? Voilà des années que tu couvres ta maîtresse avec cette histoire de mort qui ne peut plus témoigner. Maintenant, si tu ne peux me dire où est le corps, je considérerai que tu as trompé tes maîtres et les autorités. Je n’aurai qu’à te dénoncer. » À ces mots, des nappes de sueur couvrirent le front de Wanger. Il dut frapper le sol de son front. « Zhang Hua n’est pas mort. Cette année-là, Madame m’avait ordonné de régler l’affaire sans laisser de traces. Mais la vie d’un homme engage le Ciel ; je n’ai pas pu m’y résoudre. J’ai seulement dépensé vingt taels pour me cacher dehors quelques jours, puis je suis revenu dire qu’il était mort sur la route. » Madame Xing demanda : « Vingt taels ? À qui étaient-ils ? » Wanger répondit : « Je les avais pris au bureau des comptes. » Madame Xing dit : « Notez cela. »
+
+<!-- P81 -->
+Cette enquête avait commencé pour l’argent de la maison. Au bout du compte, on ne recouvra guère les sommes manquantes ; mais plusieurs vieilles affaires où des vies humaines avaient été en jeu remontèrent une à une à la surface. Madame Xing n’en fit pas de bruit. Elle se contenta d’enfermer à part, dans un coffre, les registres passés entre les mains de Phénix et chargea la femme de Wang Shanbao d’y apposer les scellés. Quant aux comptes de Lai Da et des autres, elle dit seulement qu’on les examinerait plus tard.
+
+<!-- P82 -->
+Jour après jour, l’écho de l’enquête parvenait dans la chambre de Phénix. On avait d’abord parlé de son petit bureau mis sous scellés ; puis des allocations prêtées à intérêt ; ensuite, les noms de Jingxu, de la deuxième sœur You et de Zhang Hua avaient été prononcés. Quiconque venait rapporter des nouvelles des comptes était arrêté au-dehors par Petite Quiète, qui ne laissait rien passer dans la chambre. Mais Phénix demandait toujours : « Qui a-t-on fait venir aujourd’hui ? » Petite Quiète dut répondre : « La femme de Wang Shanbao a mandé Wanger. » Phénix, les yeux fermés, demanda : « Qu’a-t-il dit ? » Petite Quiète répondit : « On ne sait pas encore. » Peu après, quelqu’un vint réclamer l’ancien sceau personnel de Phénix. Petite Quiète refusa de le remettre et entra prévenir sa maîtresse. Phénix dit : « Donne-le. Puisqu’ils veulent enquêter, si je le garde, ils diront que je cache quelque chose. » Petite Quiète dut l’envoyer.
+
+<!-- P83 -->
+Phénix demeura quelque temps couchée, puis demanda soudain du papier et un pinceau, et fit venir Caiming. Celui-ci étala le papier, trempa le pinceau dans l’encre et attendit. « Écris les deux caractères : “Madame” », dit Phénix. Caiming les traça et leva les yeux pour attendre la suite. Phénix regarda les deux caractères ; après un moment, elle dit : « Il n’est pas nécessaire de l’envoyer. » Caiming retourna la feuille, la glissa sous la boîte à crachats et se retira. Petite Quiète dit : « Si Madame savait que la plus grande partie des intérêts servait à combler les manques de la maison, peut-être n’irait-elle pas jusqu’à… » Phénix ouvrit les yeux et la regarda ; Petite Quiète se tut. « Tout figure aux pages suivantes, dit Phénix. Si elles veulent regarder, qu’elles regardent. Sinon, qu’importe. » Elle demanda encore : « Combien d’argent des allocations est immobilisé au-dehors ? » Petite Quiète répondit : « Capital et intérêts, un peu plus de quatre mille taels. L’année a été mauvaise ; quelques familles ne peuvent vraiment pas payer. » Phénix dit : « Ne perds pas les reconnaissances de dette. » Petite Quiète répondit : « Elles sont toutes sous scellés, avec les comptes. » Phénix hocha la tête et referma les yeux. Au-dehors, sous la fenêtre, des vieilles servantes murmuraient que l’on avait éclairci l’affaire des trois mille taels de Jingxu. Phénix les entendit et remonta seulement un coin de sa couverture. Un registre des dépenses des funérailles de l’Aïeule, non encore apurées, reposait près du lit ; elle tendit la main pour le feuilleter. Après deux pages, les forces lui manquèrent ; le livre lui glissa des mains au bord du matelas. Petite Quiète le ramassa vivement et le remit près de l’oreiller. Phénix resta ainsi couchée. Chaque fois qu’un nom lui parvenait du dehors, ses yeux bougeaient légèrement ; mais jamais elle ne demanda qu’on allât solliciter qui que ce fût.
+
+<!-- P84 -->
+Ce jour-là, le frérot Jade vint au pavillon Xiaoxiang. La table de la cithare était vide et la housse de l’instrument pendait au mur. Il demanda à la sœurette Lin : « Jade mystique était venue t’écouter jouer l’autre fois ; comment a-t-elle pu partir ainsi et disparaître ? Elle n’a pas laissé un seul mot au couvent. J’y suis allé : les autres ustensiles à thé sont toujours sur l’étagère, mais elle a emporté aussi la coupe de jade vert dans laquelle elle buvait elle-même. » La sœurette Lin, assise près de la fenêtre, mettait en ordre une ancienne partition. Elle eut un rire froid. « Puisqu’elle voulait partir, à quoi bon laisser un mot ? » Le frérot Jade se hâta de sourire. « Elle t’avait dit qu’elle partirait, mais sans te dire où ; cela ne fait pas vraiment des adieux. » La sœurette Lin répondit : « Si l’on ne se reconnaît comme âmes à l’unisson que grâce à une parole d’adieu, on ne l’est pas vraiment. » Il s’assit près de la table, prit la partition et en tourna deux pages. « Et vous deux, Boya et Ziqi, que jouiez-vous ce jour-là ? » demanda-t-il en souriant. Elle fit mine de cracher. « À t’entendre, Ziqi est parti ; il ne reste donc plus à Boya que je suis qu’à briser ses cordes ! » Puis elle ajouta : « Le dernier morceau était la Mélodie en mémoire des sages. » Le frérot Jade demanda : « Les Larmes pour Yan Hui ? Qu’en a-t-elle dit ? » La sœurette Lin regarda par la fenêtre. « Elle l’a trouvé trop triste. Mais un morceau est un morceau. Si celui qui l’écoute y entend de la tristesse, ce n’est pas la faute de celui qui joue. » Le frérot Jade réfléchit un moment, puis demanda : « Quand on dit que le qin et le se s’accordent, faut-il donc que les deux cithares soient accordées sur une seule et même note ? » La sœurette Lin se retourna vers lui. « C’est parce que chacune a ses propres cordes qu’on peut entendre leur accord. Si l’on force toutes les cordes de l’une à devenir celles de l’autre, elles ne se contrarieront peut-être plus, mais il ne restera qu’une seule voix. » Le frérot Jade appuya la main sur la partition. Longtemps après, il dit : « Et si quelqu’un d’autre règle les cordes à leur place ? » Elle répondit : « Les autres ne peuvent qu’écouter. Comment le feraient-ils à leur place ? » Elle roula lentement la partition et ajouta : « Mais cet accord lui-même est une chose bien difficile à dire. Ceux qui peuvent s’accorder ne peuvent pas toujours s’unir. » Le frérot Jade ne répondit plus. Le silence se fit un instant dans la chambre. La sœurette Lin plaça la partition dans son coffret et appuya sur le fermoir ; elle dut s’y reprendre à deux fois pour le fermer. « Repose-toi, petite sœur, dit le frérot Jade. Je reviendrai demain. » Elle dit : « Il vente fort dehors. » Il acquiesça et se retira.
+
+<!-- P85 -->
+Deux jours plus tard, profitant de ce que Jia le Politique était rentré tôt de ses bureaux, le frérot Jade alla seul au cabinet extérieur. Il y resta le temps d’un repas et ressortit les mains toujours vides. Brume de Thé lui demanda ce que Monsieur avait dit. « Rien », répondit-il seulement, puis il retourna au jardin.
+
+<!-- P86 -->
+Chaque jour, Hirondelle de Printemps et sa petite sœur Jiuer portaient de l’eau pour arroser les fleurs et examinaient, une à une, les plantes encore vivantes. Devant un treillage de rosiers dont plus de la moitié était desséchée, Jiuer demanda : « Faut-il encore arroser ceux-là ? » Hirondelle de Printemps répondit : « Les racines ne sont pas mortes. Arrosons toujours. » Tout en parlant, les deux sœurs passèrent à l’endroit suivant. Quant à savoir comment se terminerait l’enquête de Madame Xing, il faudra écouter le récit qui suit.
+
+<!-- P87 -->
+C’est bien le cas de dire :
+
+<!-- P88 -->
+Sans un mot, le livre brûlé ensevelit la fille délaissée ; les traces des vieux comptes perdent celle qui tenait la maison.
