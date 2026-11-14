@@ -18,7 +18,10 @@ class ReaderTraditionalConverter(ConsensusTraditionalConverter):
     def convert(self,text):
         result = super().convert(text)
         for old,new in (('啓','啟'),('面館','麵館'),('一碗面','一碗麵'),('下遊人','下游人'),
-                        ('上遊資源','上游資源'),('下周','下週'),('上周','上週'),('松一點','鬆一點')):
+                        ('上遊資源','上游資源'),('下周','下週'),('上周','上週'),('松一點','鬆一點'),
+                        ('幹脆','乾脆'),('咸麵包','鹹麵包'),('看得准','看得準'),('看准','看準'),
+                        ('說不准','說不準'),('划了一句','劃了一句'),('燒制','燒製'),('界面','介面'),
+                        ('面怎麼醒','麵怎麼醒')):
             result = result.replace(old,new)
         return result
 

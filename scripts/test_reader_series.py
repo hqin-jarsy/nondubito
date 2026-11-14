@@ -17,6 +17,13 @@ class ReaderSeriesPublication(unittest.TestCase):
     def test_manuscripts_and_rendering(self):
         for s in registry():
             items = load_items(s)
+            self.assertEqual(len({i['title_zh'] for i in items}),len(items))
+            self.assertEqual(len({i['title_en'] for i in items}),len(items))
+            receipt = json.loads((ROOT/f'data/{s["slug"]}/publication.json').read_text())
+            for i in items:
+                self.assertEqual(receipt['counts'][i['slug']],{'zh_han':len(re.findall(r'[\u3400-\u9fff]',''.join(i['body_zh']))),'en_words':len(' '.join(i['body_en']).split())})
+                for lang in ('zh','en'):
+                    self.assertNotRegex('\n'.join(i['body_'+lang]),r'https?://|\]\(')
             pages = render(s['slug'])
             self.assertEqual(len(pages),len(items)+1)
             for path,text in pages.items():
