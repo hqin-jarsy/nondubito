@@ -1,5 +1,7 @@
 # Spanish chapters 76-80 and final checks
 
+Latest update, 2026-11-14: the user subsequently approved non-explicit adaptations of the remaining ten markers. There are now no pending markers; details and chronological corrections are recorded in spanish-placeholder-locations.md and spanish-review-nonexplicit-adaptation.md. Earlier counts and pending-state descriptions below are historical, not current.
+
 Later update, 2026-11-14: a subsequent narrow restoration recovered neutral narrative inside chapter6 gaps and split one gap to preserve source order. Current total is10 markers rather than9, with less omitted text. Chapter12 age evidence was clarified without filling its two gaps. See spanish-placeholder-locations.md and spanish-review-placeholder-restoration.md. The batch results below describe commit a5c6ba7.
 
 

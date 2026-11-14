@@ -1,5 +1,7 @@
 # Narrow restoration of Spanish placeholder surroundings
 
+Latest update, 2026-11-14: the user subsequently approved non-explicit adaptations of the remaining ten markers. There are now no pending markers; details and chronological corrections are recorded in spanish-placeholder-locations.md and spanish-review-nonexplicit-adaptation.md. Earlier counts and pending-state descriptions below are historical, not current.
+
 2026-11-14. Starting commit:a5c6ba7. This is not a new full80-chapter literary review.
 
 Chapter6 source blocks1/4 were reread against the current Chinese. Restored only independently translatable non-graphic narrative: tying the waistband, startled withdrawal/question, covering the face and bending with laughter, longstanding affection, the character's judgment about propriety and the absence of discovery. Original order is preserved. One former large placeholder is split around restored sentences; chapter6 therefore has5 markers and the whole text10 instead of9, despite less omitted text. No new omission was introduced. The narrowed action marker retains an explicit non-graphic coercion label. Chapter6 translation note now says five.
