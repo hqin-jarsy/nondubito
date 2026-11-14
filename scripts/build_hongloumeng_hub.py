@@ -89,6 +89,8 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None)
     converter = TraditionalConverter()
     from hongloumeng_japanese_availability import japanese_published
     japanese_available = include_first80 and japanese_published(ROOT)
+    from hongloumeng_french_availability import french_published
+    french_available = include_first80 and french_published(ROOT)
     pages = {}
     for lang, (directory, code, label) in EDITIONS.items():
         en = lang == 'en'
@@ -138,6 +140,8 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None)
             note = t('本版提供简体、繁体中文、独立英文译本及日文译本。前八十回原著与秦汉原创续写分别编排。', 'Read in Simplified Chinese, Traditional Chinese, independent English or Japanese translation. Han Qin’s original continuation is presented separately.')
             first80_section = re.sub(r'(<p class="edition-note">).*?(</p>)', lambda m: m[1]+note+m[2], first80_section, count=1, flags=re.S)
             first80_section = first80_section.replace('</div></section>', a(base+'classics/hongloumeng/ja/index.html', '日本語')+'</div></section>')
+        if french_available:
+            first80_section = first80_section.replace('</div></section>', a(base+'classics/hongloumeng/fr/index.html', 'Fran\u00e7ais')+'</div></section>')
         featured = ''.join(legacy(url,t(zh,english)) for url,zh,english in [
             ('intro.html','从一场酒令开始','Begin with a drinking game'),
             ('z-daiyu.html','走近黛玉','Meet Daiyu'),

@@ -21,5 +21,6 @@ def require_japanese_reader(root=ROOT):
 
 def navigation_outputs(prefix, pages):
     """Pure postprocessing; callers retain their independent publication gates."""
-    return {name: (transform(prefix+name, value.encode() if isinstance(value, str) else value).decode()
-                   if name.endswith('.html') else value) for name, value in pages.items()}
+    from integrate_hongloumeng_french import navigation_outputs as french_navigation
+    return french_navigation(prefix, {name: (transform(prefix+name, value.encode() if isinstance(value, str) else value).decode()
+                   if name.endswith('.html') else value) for name, value in pages.items()})
