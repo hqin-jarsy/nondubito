@@ -54,6 +54,12 @@ def main():
         path = ROOT / f'classics/hongloumeng/ko/ch{n:03}.html'
         doc = read(path)
         assert doc.lang == 'ko', (n, 'language')
+        raw = path.read_text()
+        expected = f'https://nondubito.net/classics/hongloumeng/ko/ch{n:03}.html'
+        assert f'rel="canonical" href="{expected}"' in raw, (n, 'canonical metadata')
+        description = re.search(r'<meta name="description" content="([^\"]*)"', raw)
+        assert description and f'\uc81c{n}\ud68c' in description[1], (n, 'description chapter number')
+
         assert len(source.blocks) == len(doc.blocks), (n, 'block count', len(source.blocks), len(doc.blocks))
         for i, (s, b) in enumerate(zip(source.blocks, doc.blocks), 1):
             a = b['attrs']; kind = next(k for k in s['attrs']['class'].split() if k in KINDS)

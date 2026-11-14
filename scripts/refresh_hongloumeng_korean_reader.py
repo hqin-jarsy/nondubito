@@ -63,6 +63,9 @@ def main():
         heading=re.search(r'<h1[^>]*>(.*?)</h1>',new,re.S)[1]
         title=html.unescape(re.sub('<[^>]+>','',heading))
         new=re.sub(r'<title>.*?</title>', '<title>'+html.escape(title)+' — Non Dubito</title>',new,count=1,flags=re.S)
+        # Copied chapter shells may retain another chapter's metadata.
+        new=re.sub(r'<meta\b[^>]*name="description"[^>]*>', '', new, flags=re.I)
+        new=re.sub(r'<link\b[^>]*rel="canonical"[^>]*>', '', new, flags=re.I)
         if 'name="description"' not in new:new=new.replace('</head>',f'<meta name="description" content="홍루몽 제{n}회 · 교정 중국어 본문에서 옮긴 한국어 번역"></head>',1)
         if 'rel="canonical"' not in new:new=new.replace('</head>',f'<link rel="canonical" href="https://nondubito.net/classics/hongloumeng/ko/ch{n:03}.html"></head>',1)
         if 'name="author"' not in new:new=new.replace('</head>','<meta name="author" content="조설근"></head>',1)
