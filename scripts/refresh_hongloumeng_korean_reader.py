@@ -6,7 +6,7 @@ import json
 import re
 from pathlib import Path
 from integrate_hongloumeng_korean import transform, reverse
-from web_analytics import tracked_html
+from web_analytics import tracked_html, ensure_analytics
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / 'classics/hongloumeng/ko'
 PROGRESS = ROOT / 'data/hongloumeng/first80-korean/progress.json'
@@ -71,10 +71,17 @@ def main():
         if 'name="author"' not in new:new=new.replace('</head>','<meta name="author" content="조설근"></head>',1)
         language_nav='<nav class="language-switch" aria-label="언어">'+''.join(f'<a lang="{lang}" href="{prefix}ch{n:03}.html"'+(' aria-current="page"' if lang=='ko' else '')+f'>{label}</a>' for lang,prefix,label in LANGS)+'</nav>'
         new,count=re.subn(r'<nav\b[^>]*class="language-switch"[^>]*>.*?</nav>',language_nav,new,count=1,flags=re.S)
-        assert count==1, ('Missing language navigation',n)
+        if count==0:
+            # Early drafts may have a bare single-language nav or no language bar.
+            bare=r'<nav><a href="\.\./ch\d{3}\.html">.*?</a></nav>'
+            new,count=re.subn(bare,lambda m:language_nav,new,count=1,flags=re.S)
+            if count==0:new=new.replace('<body>','<body>'+language_nav,1)
+        new=re.sub(r'href="(?:\.\./)?reader\.css"','href="reader.css"',new)
+        new=re.sub(r'src="(?:\.\./)?reader\.js"','src="reader.js"',new)
+        new=ensure_analytics(new)
         if 'class="skip"' not in new:new=new.replace('<body>','<body><a class="skip" href="#main">본문으로 건너뛰기</a>',1)
         if 'data-size=' not in new:
-            new=new.replace('<article>','<div aria-label="글자 크기"><button data-size="-1" aria-label="글자 줄이기">A−</button> <button data-size="reset" aria-label="기본 글자 크기">A</button> <button data-size="1" aria-label="글자 키우기">A+</button></div><article>',1)
+            new=re.sub(r'(<article\b[^>]*>)',lambda m:'<div aria-label="글자 크기"><button data-size="-1" aria-label="글자 줄이기">A−</button> <button data-size="reset" aria-label="기본 글자 크기">A</button> <button data-size="1" aria-label="글자 키우기">A+</button></div>'+m[1],new,count=1)
         if new.count('class="chapter-nav"')==1:new=new.replace('</main>',nav+'</main>',1)
         if n in a.attenuated and '<!-- KOREAN-ADAPTATION:START -->' not in new:
             note='<!-- KOREAN-ADAPTATION:START --><aside class="notice"><h2>번역에 관한 안내</h2><p>이 회의 일부 구체적인 성적 표현은 비노골적으로 옮겼습니다. 사건의 흐름, 인물 관계와 강압·거부는 유지했습니다. 세부까지 모두 그대로 옮긴 직역과는 다릅니다. <a href="edition.html">이 판본에 관하여</a></p></aside><!-- KOREAN-ADAPTATION:END -->'
