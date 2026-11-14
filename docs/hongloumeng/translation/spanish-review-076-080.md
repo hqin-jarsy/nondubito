@@ -1,5 +1,8 @@
 # Spanish chapters 76-80 and final checks
 
+Later update, 2026-11-14: a subsequent narrow restoration recovered neutral narrative inside chapter6 gaps and split one gap to preserve source order. Current total is10 markers rather than9, with less omitted text. Chapter12 age evidence was clarified without filling its two gaps. See spanish-placeholder-locations.md and spanish-review-placeholder-restoration.md. The batch results below describe commit a5c6ba7.
+
+
 2026-11-14. This batch has337 source blocks; all80 chapters total4395. Each author completed full Chinese/Spanish block-by-block self-review and continuous Spanish reading. Independent reviewers read every chapter and title; all final changes received affected-block rereading. No new placeholders, abridgments or summary substitutions.
 
 - 76:128 blocks,6184 words. All70 linked-poem lines checked:44 by Daiyu/Xiangyun (22 each),26 by Miaoyu. Complete conversation, comments, repeated lines, imagery, actions and timing retained; unfinished joke and ending not completed. Author corrections include fungus/dew, stone/cloud image, poetic rank not age, lamp, praise without invented applause and lunar ascent. Independent b126 place-name correction uses Gran Vista from earlier chapters/56 bridge, not a false claim that81-85 directly says Gran Vista. Architectural/ice-fat terms remain conservative.

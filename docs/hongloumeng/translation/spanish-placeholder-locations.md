@@ -1,25 +1,43 @@
 # 西班牙语当前占位位置
 
-这些段落编号是HTML中的data-source-block。可译的其他叙述均保留，不是整回或整段空缺。
+2026-11-14更新。当前共10个明确标记：第6回5处、第12回2处、第15回2处、第19回1处。第6回恢复了原占位中可独立直译的中性叙述；为保持原顺序，其中一个旧占位拆成两小处，所以标记总数从9变10，但缺文范围缩小，未新增删文。P为data-source-block，行号随编辑可变。
 
-- classics/hongloumeng/es/ch006.html 第6行，P1：1处明确占位。前文“se levantó para arreglarse la ropa.”，后文“Xiren le preguntó qué había ocurrido.”
-- 同文件第9行，P4第1处：前接上一段“¿Qué cosas has soñado?”，后接“Baoyu respondió: «Es largo de contar».”
-- 同文件第9行，P4第2处：前文“Le relató entonces con detalle lo que había soñado.”，后文“Xiren sabía desde hacía tiempo que la Anciana Dama la había destinado a Baoyu.”
-- 同文件第9行，P4第3处：前文为上述家庭安排句，后文“Desde entonces, Baoyu distinguió a Xiren aún más que a las demás”.
+以下中文前后定位均来自相应的现行中文HTML，列安全定位文字而不复述缺口。正文仍只有西语HTML一份可编辑稿。
 
-第6回页首及目录亦提示待补片段。行号可能随编辑变化，区块属性和前后文字为更稳定的定位。
+## 第6回：classics/hongloumeng/es/ch006.html
 
-已解决：第9回原P20/P23两处占位已按用户明确批准改为非露骨表达：前者保留后院见不得人勾当的指控，后者保留茗烟粗鲁的“关你什么事”。正文不再有占位，译注明确两处淡化，不冒称逐字原译。
+1. 第6行，P1。中文前“袭人伸手与他系裤带时”；后“唬的忙退出手来”。西文已恢复系衣带、惊讶收手及提问；只留中间具体细节。
+2. 第9行，P4第1处。中文前P3末“你梦见什么故事了？”；后“宝玉道：‘一言难尽。’”。原问句仍有明确占位。
+3. 第9行，P4第2处。中文前“说着便把梦中之事细说与袭人听了”；后“羞的袭人掩面伏身而笑”。掩面、俯身而笑已恢复。
+4. 第9行，P4第3处。中文前“宝玉亦素喜袭人柔媚娇俏”；后“袭人素知贾母已将自己与了宝玉的”。非露骨的好感叙述已恢复；此处与上一项由原一个大占位拆出，中间译文按原顺序保留。
+5. 第9行，P4第4处。中文前“今便如此，亦不为越礼”；后“幸得无人撞见”。人物的礼法判断及无人撞见的周边叙述已恢复；具体行为仍标记。
 
-第10回P27药方制/醋归属留有译注，属于底本文字断句疑义，不是上述占位。
+第6回页首、页尾及目录继续提示缺口，不能称无缺文全译。未用概述替换占位中的具体行为，也没有把第9回淡化许可用于此回。
 
-新增已审占位（第11—15批）：
-- classics/hongloumeng/es/ch012.html 第17行，P12第1处：前“Dicho esto, lo llevó en brazos hasta el kang de la habitación.”；后“La otra persona no decía nada.”。
-- 同文件第17行，P12第2处：前“La otra persona no decía nada.”；后“De pronto brilló una luz: Jia Qiang alzó una mecha encendida”。
-- classics/hongloumeng/es/ch015.html 第28行，P23末：前“Llevó a Zhineng en brazos hasta el kang.”；该段末尾为占位。
-- 同文件第29行，P24开头：占位后“Entró alguien y los sujetó a los dos sin decir palabra.”。
+## 第12回：classics/hongloumeng/es/ch012.html
 
-以上均保留可安全直译的中性叙述，具体内容仍有明确标记，未擅用概述取消占位。行号可能随编辑变化。
+6. 第17行，P12第1处。中文前“说着，抱到屋里炕上”；后“那人只不做声”。
+7. 同行P12第2处。中文前“那人只不做声”；后“忽然灯光一闪，只见贾蔷举着个捻子照道”。
 
-新增已审占位（第16—20批）：
-- classics/hongloumeng/es/ch019.html 第10行，data-source-block="5" 唯一占位。前“La mujer del rollo no había cobrado vida.”；后“Baoyu no pudo contener un grito: «¡Esto es el colmo!»”。只留该具体句，周边叙事完整；页首与目录已提示。行号会随编辑变化，以区块属性和定位文字为准。
+两处仍未翻译。此前只说成年未确立，未充分记载相邻回目的年龄证据，本次已修正正文说明：
+- 当前中文第2回P24记贾蓉“今年才十六岁”。
+- 第13回P19履历明确“年二十岁”。
+- 但第12回P6事件在腊月；P18有“不上一年”，P19再“腊尽春回”，P27到“这年冬底”，第13回承接贾琏送黛玉出行。因此不能把第13回年龄直接前移到P12，也不应反过来断言P12必定未成年。
+本次没有擅定精确年龄或重排年表，保留待厘清的两个具体缺口。问题不在成年人物的亲密内容本身，而在本处角色年龄尚不能可靠落定。
+
+## 第15回：classics/hongloumeng/es/ch015.html
+
+8. 第28行，P23末。中文前“满屋漆黑，将智能抱到炕上”；下一处之后的安全定位是P24“只见一人进来，将他二人按住，也不则声”。
+9. 第29行，P24开头。与上一缺口紧邻，中间没有独立的安全定位句；后同上“只见一人进来，将他二人按住，也不则声”。
+本轮正文未改，吹灯、黑暗、抱至炕上和后续叙述继续保留。
+
+## 第19回：classics/hongloumeng/es/ch019.html
+
+10. 第10行，P5。中文前“那轴美人却不曾活”；后“宝玉禁不住大叫：‘了不得！’”。本轮未改。
+本回P7角色说女孩“大不过十六七岁了”，不是第12回同样的年龄证据情况。
+
+## 已解决与非占位事项
+
+第9回原P20/P23两处已按用户明确批准采用非露骨表达，并有淡化说明；没有恢复成占位，也未扩大该授权。
+第10回P27药方制/醋归属属于底本断句译注，不计占位。
+本轮未改任何中文底本、其他占位或原创81—85回。仅本地commit，不push。
