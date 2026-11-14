@@ -11,10 +11,22 @@ def addition(relative):
 def transform(relative,text):
     block=addition(relative)
     if START in text or END in text:
-        if text.count(block)==text.count(START)==text.count(END)==1:return text
-        raise ValueError('Malformed German navigation')
+        if text.count(block)!=1 or text.count(START)!=1 or text.count(END)!=1:
+            raise ValueError('Malformed German navigation')
+        # Normalize earlier insertions without changing any non-German bytes.
+        text=text.replace(block,'',1)
     pattern=r'(<nav\b[^>]*(?:class="language-switch"|aria-label="Langues?")[^>]*>)(.*?)(</nav>)'
-    result,count=re.subn(pattern,lambda m:m[1]+m[2]+block+m[3],text,count=1,flags=re.S)
+    def insert(match):
+        contents=match[2]
+        # French regeneration inserts immediately before Japanese. Keep both
+        # older bounded insertions and Japanese's closing-nav anchor intact.
+        anchor=None
+        if '<!-- JAPANESE-NAV:START -->' in contents:
+            anchor=('<!-- FRENCH-NAV:START -->' if '<!-- FRENCH-NAV:START -->' in contents
+                    else '<!-- JAPANESE-NAV:START -->')
+        contents=contents.replace(anchor,block+anchor,1) if anchor else contents+block
+        return match[1]+contents+match[3]
+    result,count=re.subn(pattern,insert,text,count=1,flags=re.S)
     if count!=1:raise ValueError('Missing language navigation: '+relative)
     return result
 

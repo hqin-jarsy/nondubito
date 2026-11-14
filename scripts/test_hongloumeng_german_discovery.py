@@ -34,6 +34,25 @@ class GermanDiscoveryTests(unittest.TestCase):
             progress.write_text('{"reviewed_through":5}')
             (target/'ch001.html').unlink();(target/'ch001.html').symlink_to(target/'ch002.html')
             self.assertFalse(german_available('ch001.html',root))
+    def test_navigation_preserves_older_bounded_insertions(self):
+        from integrate_hongloumeng_german import addition, transform, reverse
+        relative='classics/hongloumeng/ch001.html'
+        french='<!-- FRENCH-NAV:START --><a>Français</a><!-- FRENCH-NAV:END -->'
+        japanese='<!-- JAPANESE-NAV:START --><a>日本語</a><!-- JAPANESE-NAV:END -->'
+        for older in (french+japanese, japanese, french, ''):
+            original='<header><nav class="language-switch">Existing'+older+'</nav></header>'
+            result=transform(relative,original)
+            self.assertEqual(reverse(relative,result),original)
+            self.assertEqual(transform(relative,result),result)
+            previous=original.replace('</nav>',addition(relative)+'</nav>',1)
+            self.assertEqual(transform(relative,previous),result)
+            if japanese in older:
+                self.assertTrue(result.endswith(japanese+'</nav></header>'))
+                if french in older:
+                    self.assertLess(result.index('GERMAN-NAV:START'),result.index('FRENCH-NAV:START'))
+            elif french in older:
+                self.assertLess(result.index('FRENCH-NAV:START'),result.index('GERMAN-NAV:START'))
+
     def test_refresh_preserves_other_records_and_is_idempotent(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);self.fixture(root);(root/'data/search').mkdir()
