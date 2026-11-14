@@ -26,7 +26,8 @@ def transform(relative, text):
         raise ValueError('Missing language switch: ' + relative)
     nav = match.group()
     # Keep the pre-existing reversible Japanese insertion intact.
-    anchor = '<!-- JAPANESE-NAV:START -->' if '<!-- JAPANESE-NAV:START -->' in nav else '</nav>'
+    anchor = ('<!-- JAPANESE-NAV:START -->' if '<!-- JAPANESE-NAV:START -->' in nav else
+              '<!-- GERMAN-NAV:START -->' if '<!-- GERMAN-NAV:START -->' in nav else '</nav>')
     return text[:match.start()] + nav.replace(anchor, block + anchor, 1) + text[match.end():]
 
 

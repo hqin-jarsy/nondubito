@@ -1,0 +1,49 @@
+"""German completed-batch discovery and scoped search regression tests."""
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from hongloumeng_german_availability import german_available, PREFIX
+from hongloumeng_discovery_scope import excluded, excluded_url
+from refresh_hongloumeng_german_search import outputs
+from build_content_registry import infer_record_type, infer_sequence
+
+class GermanDiscoveryTests(unittest.TestCase):
+    def fixture(self, root):
+        target=root/PREFIX; target.mkdir(parents=True)
+        progress=root/'data/hongloumeng/first80-german/progress.json';progress.parent.mkdir(parents=True)
+        progress.write_text('{"reviewed_through":5}')
+        for name in ('index.html','edition.html',*(f'ch{n:03}.html' for n in range(1,7))):
+            (target/name).write_text('<html lang="de"><head><title>Der Traum der roten Kammer</title></head><body><article>Deutscher Text.</article></body></html>')
+        return target,progress
+    def test_only_reviewed_batch_is_discoverable(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d); self.fixture(root)
+            for name in ('index.html','edition.html','ch001.html','ch005.html'):
+                self.assertTrue(german_available(name,root)); self.assertFalse(excluded(Path(PREFIX)/name,root=root))
+            for name in ('ch006.html','ch080.html','nested/index.html','ch001 2.html'):
+                self.assertFalse(german_available(name,root)); self.assertTrue(excluded(Path(PREFIX)/name,root=root))
+            self.assertFalse(excluded_url('/'+PREFIX,root=root))
+            self.assertTrue(excluded_url('/'+PREFIX+'../ch001.html',root=root))
+            self.assertEqual(infer_record_type(Path(PREFIX+'ch005.html')),'novel-chapter')
+            self.assertEqual(infer_sequence(Path(PREFIX+'ch005.html')),5)
+    def test_invalid_batch_or_alias_fails_closed(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d); target,progress=self.fixture(root)
+            progress.write_text('{"reviewed_through":6}');self.assertFalse(german_available('ch001.html',root))
+            progress.write_text('{"reviewed_through":5}')
+            (target/'ch001.html').unlink();(target/'ch001.html').symlink_to(target/'ch002.html')
+            self.assertFalse(german_available('ch001.html',root))
+    def test_refresh_preserves_other_records_and_is_idempotent(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);self.fixture(root);(root/'data/search').mkdir()
+            m=root/'data/search-index.json'; c=root/'data/search/de.json'
+            m.write_text(json.dumps({'record_count':10,'languages':{'de':{'count':1},'en':{'count':9}}}))
+            old={'u':'essays/other/de/index.html','t':'Unchanged'}
+            c.write_text(json.dumps({'language':'de','records':[old]}))
+            result=outputs(root);self.assertEqual(json.loads(result[m])['record_count'],17)
+            self.assertEqual(json.loads(result[c])['records'][0],old)
+            self.assertEqual(len(json.loads(result[c])['records']),8)
+            for p,s in result.items():p.write_text(s)
+            self.assertEqual(outputs(root),result)
+if __name__=='__main__':unittest.main()
