@@ -20,3 +20,6 @@
 - 同文件第29行，P24开头：占位后“Entró alguien y los sujetó a los dos sin decir palabra.”。
 
 以上均保留可安全直译的中性叙述，具体内容仍有明确标记，未擅用概述取消占位。行号可能随编辑变化。
+
+新增已审占位（第16—20批）：
+- classics/hongloumeng/es/ch019.html 第10行，data-source-block="5" 唯一占位。前“La mujer del rollo no había cobrado vida.”；后“Baoyu no pudo contener un grito: «¡Esto es el colmo!»”。只留该具体句，周边叙事完整；页首与目录已提示。行号会随编辑变化，以区块属性和定位文字为准。
