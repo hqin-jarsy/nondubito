@@ -26,3 +26,10 @@
 | 太虚幻境 | Domaine illusoire du Grand Vide | 1、5回统一 |
 | 警幻 | l’Immortelle qui avertit des Illusions | 1、5回统一 |
 | 兼美／可卿 | Beautés réunies / Digne d’Amour | 第5回新增；梦中与现实呼应保留 |
+
+| 恭人／龙禁尉 | Dame Respectueuse / officier de la Garde du Dragon | 官阶与爵等分别保留 |
+| 会芳园／登仙阁 | jardin de la Réunion des Parfums / pavillon Dengxian | 前者与第5、11回对齐，后者沿现84 |
+| 北静王水溶／忠靖侯 | Shui Rong, prince de la Quiétude du Nord / marquis Zhongjing | 新爵号保守统一 |
+| 铁槛寺 | temple Tiejian | 现行84用名 |
+| 蘅芜苑／潇湘馆 | Cour des Herbes odorantes / pavillon Xiaoxiang | 现行85／82 |
+| 沁芳亭／稻香村／藕香榭 | kiosque Qin-Fang / Village du Parfum de Riz / Pavillon des Senteurs de Lotus | 已应用修正后的现行正文 |
