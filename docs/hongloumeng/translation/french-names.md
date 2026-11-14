@@ -47,3 +47,4 @@
 | 蘅芜君／蕉下客／枕霞旧友 | la Dame des Herbes odorantes / l’Hôte sous les Bananiers / l’Ancienne Amie du Repos sur les Nuées | 37–38诗社别号 |
 | 莺儿 | Yinger | 沿现行84正文，不另改Loriot |
 | 怡红院／栊翠庵 | Enclos égayé de Rouge / ermitage de la Verdure enclose | 沿41及46–50统一用名 |
+| 芳官 | la Rectrice des Fragrances | 沿现行81及58–62正文；63–64已统一，不另用Fangguan |
