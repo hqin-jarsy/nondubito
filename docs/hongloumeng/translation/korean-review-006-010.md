@@ -35,3 +35,5 @@
 ## Integration review
 
 Coordinator checked current chapter headings and naming against source and continuation; corrections to chapters 7 and 8 are described above. Full source self-review was by the translator, not an independent full second review. Reader chrome, adjacent links, reversible eight-language navigation and scoped search are integrated through chapter 10. Source bindings and 583 block checks passed; 43 discovery tests passed; scoped search is current; git diff --check passed. No new browser session was used for this batch. Chapters 6 and 9 are honestly marked as containing non-graphic adaptation; no placeholders.
+
+Follow-up content-scale audit: chapter9 P20 no longer asserts that Jinrong saw nothing, since the source does not establish that fact; the non-graphic accusation remains.

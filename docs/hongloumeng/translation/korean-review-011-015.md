@@ -60,3 +60,5 @@
 ## Integration verification
 
 Reader and reversible navigation integrated through chapter 15; scoped Korean search updated and verified current. Chinese and Korean continuation article bindings unchanged; all 736 source blocks through chapter 15 passed structure/link checks. Discovery tests: 43 passed; git diff --check passed. Additional non-graphic adaptation is marked for chapters 12 and 15. No separate browser or native-speaker final review is claimed.
+
+Follow-up content-scale audit: chapter15 P23 restores the source kiss and movement to the bed, and states coerced intercourse non-graphically rather than merely imposing desire. Resistance and refusal remain explicit; no erotic detail was added.
