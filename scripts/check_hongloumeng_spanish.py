@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 ROOT = Path(__file__).resolve().parents[1]
-KINDS = {'prose', 'verse', 'couplet', 'letter'}
+KINDS = {'prose', 'verse', 'couplet', 'letter', 'diagram'}
 class Reader(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
@@ -52,6 +52,7 @@ def main():
             a = b['attrs']; kind = next(k for k in s['attrs']['class'].split() if k in KINDS)
             assert a.get('data-source-block') == str(i), (n, i, 'block order')
             assert a.get('data-kind') == kind and kind in a.get('class', '').split(), (n, i, 'block kind')
+            assert set(s['attrs']['class'].split()) <= set(a.get('class', '').split()), (n, i, 'source layout classes')
             assert b['text'].strip(), (n, i, 'empty')
             assert '\ufffd' not in b['text'], (n, i, 'replacement character')
         for link in doc.links:
