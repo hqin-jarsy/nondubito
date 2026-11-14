@@ -43,3 +43,5 @@
 | 汗巾（系腰用途） | ceinture | 系腰布带，不机械译为écharpe或foulard；依场景区分手帕 |
 | 麒麟（佩饰） | licorne | 沿现行81及29；可短注指中国qilin，相关代词保持阴性 |
 | 蒋玉菡／秋纹／琥珀／彩霞 | Jiang Lotus de Jade / Moire d’Automne / Ambre / Caixia | 分别沿28、81、83及23–25现行正文 |
+| 潇湘妃子／怡红公子 | la Princesse de Xiaoxiang / le Jeune Seigneur du Rouge réjoui | 37–38诗社别号 |
+| 蘅芜君／蕉下客／枕霞旧友 | la Dame des Herbes odorantes / l’Hôte sous les Bananiers / l’Ancienne Amie du Repos sur les Nuées | 37–38诗社别号 |
