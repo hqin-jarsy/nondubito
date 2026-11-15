@@ -67,7 +67,7 @@ def edition(stem, lang):
     blocks = re.split(r'\n\s*\n', text.strip())
     title = []
     while blocks and (blocks[0].startswith('#') or (lang == 'en' and blocks[0].startswith('*'))):
-        title.append(re.sub(r'^#+\s*', '', blocks.pop(0), flags=re.M if stem == 'ch085' else 0).replace('*', '').replace('  \n', '\n'))
+        title.append(re.sub(r'^#+\s*', '', blocks.pop(0), flags=re.M).replace('*', '').replace('  \n', '\n'))
     notes = []
     if blocks[-1].startswith('Nota 1.'):
         notes.append(blocks.pop())
@@ -95,18 +95,17 @@ def edition(stem, lang):
                 units.append((len(units)+1, value.strip()))
     expected = json.loads((DATA.parent/'publication.json').read_text())['chapter_sources'][stem]['paragraphs']
     assert [n for n, _ in units] == list(range(1, expected+1)), (stem, lang)
-    return '\n'.join(title), units, notes
+    heading = '\n'.join(title)
+    if lang == 'en':
+        heading = re.sub(r'^Chapter (?:Eighty-(?:one|two|three|four|five|six)|8[1-6])', 'Chapter '+str(int(stem[2:])), heading)
+    # A colon joins the number and couplet in some received headings.
+    heading = re.sub(r'^(Chapter \d+|Sechsundachtzigstes Kapitel|Capítulo 81):\s*', r'\1\n', heading)
+    heading = re.sub(r'^(Capítulo LXXXI) · ', r'\1\n', heading)
+    return heading, units, notes
 
 
 def directory_title(stem, lang):
-    """Remove one received Markdown marker from the English chapter82 listing only."""
-    title = edition(stem, lang)[0]
-    if (stem, lang) == ('ch082', 'en'):
-        marker = '\n## '
-        if title.count(marker) != 1:
-            raise ValueError('Unexpected chapter82 English directory title')
-        title = title.replace(marker, '\n', 1)
-    return title
+    return edition(stem, lang)[0]
 
 
 def inline(text):

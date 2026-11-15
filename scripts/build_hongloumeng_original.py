@@ -44,6 +44,9 @@ def manuscript(stem):
     if stem in ('ch085', 'ch086'):
         assert lines[0].startswith('# ')
         lines[0] = lines[0][2:]
+    # Approved small orthographic correction; keep received manuscript bytes intact.
+    if stem == 'ch085':
+        lines = [line.replace('爪洼', '爪哇') for line in lines]
     return lines
 ORIGIN = 'https://nondubito.net/originals/hongloumeng/'
 EDITIONS = {'zh': ('', 'zh-Hans', '简体中文'), 'zh-hant': ('zh-hant/', 'zh-Hant', '繁體中文'),
@@ -70,7 +73,7 @@ def render():
                     return value
                 value = converter.convert(value)
                 # Context-sensitive script choices, never changes to the author's wording.
-                choices = {'城東二十裡':'城東二十里', '一乾人':'一干人', '對不准針眼':'對不準針眼', '我系了送給':'我繫了送給'}
+                choices = {'幾上':'几上', '束發':'束髮', '鉸發':'鉸髮', '口佔':'口占', '米面':'米麵', '那只':'那隻', '兩只':'兩隻', '只字':'隻字', '剪發':'剪髮', '城東二十裡':'城東二十里', '一乾人':'一干人', '對不准針眼':'對不準針眼', '我系了送給':'我繫了送給'}
                 if stem == 'ch081':
                     choices.update({'我系了這幾年了':'我繫了這幾年了', '鄰捨':'鄰舍'})
                 if stem == 'ch082':
