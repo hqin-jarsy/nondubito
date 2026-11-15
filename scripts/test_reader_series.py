@@ -6,7 +6,7 @@ import re
 import unittest
 import xml.etree.ElementTree as ET
 from urllib.parse import unquote,urlsplit
-from build_reader_series import ROOT,registry,load_items,render,ReaderTraditionalConverter
+from build_reader_series import ROOT,registry,load_items,render,ReaderTraditionalConverter,multilingual,library_card
 from build_content_registry import scan_page
 from test_language_writing import Tags
 from update_sae_navigation import CARD,library_block
@@ -84,7 +84,12 @@ class ReaderSeriesPublication(unittest.TestCase):
         for s in registry():
             receipt = json.loads((ROOT/f'data/{s["slug"]}/publication.json').read_text())
             for url,digest in receipt['preceding_library_cards'].items():
-                self.assertEqual(hashlib.sha256(cards[url].encode()).hexdigest(),digest,url)
+                translated = next((item for item in registry() if url==f'essays/{item["slug"]}/index.html' and multilingual(item['slug'])),None)
+                if translated:
+                    # Later approved language editions update only their own card.
+                    self.assertEqual(cards[url],library_card(translated,None),url)
+                else:
+                    self.assertEqual(hashlib.sha256(cards[url].encode()).hexdigest(),digest,url)
             url = f'essays/{s["slug"]}/index.html'
             self.assertEqual(sum(i[0]==url for g in groups for i in g['items']),1)
             self.assertIn(url,cards)

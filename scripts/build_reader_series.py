@@ -38,6 +38,17 @@ class ReaderTraditionalConverter(ConsensusTraditionalConverter):
         return result
 
 
+def multilingual(slug):
+    return (ROOT/f"data/{slug}/multilingual/profile.json").is_file()
+
+
+def connect_languages(text,slug,page_slug):
+    if multilingual(slug):
+        from full_series_languages import upgrade_primary
+        return upgrade_primary(text,slug,page_slug)
+    return text
+
+
 def registry():
     path = ROOT/'data/reader-series.json'
     return json.loads(path.read_text())['series'] if path.exists() else []
@@ -99,9 +110,11 @@ def reading_note(s,conv,item=None):
 
 
 def landing(s,items,conv):
+    editions_en = 'eight languages' if multilingual(s['slug']) else 'English, Simplified & Traditional Chinese'
+    editions_zh = '八种语言' if multilingual(s['slug']) else '英文、简体中文与繁体中文'
     cards = ''.join(f'<a class="lw-card" href="{i["slug"]}.html"><p class="lw-kicker">{i["id"]:02d}</p>{loc(i["title_en"],i["title_zh"],conv,"h2")}{loc(i["deck_en"],i["deck_zh"],conv,"p")}{loc("Read essay →","阅读全文 →",conv,"span","lw-read")}</a>' for i in items)
-    content = '<main class="lw-wrap">'+breadcrumb(s,conv)+'<section class="lw-hero"><p class="lw-kicker">Non Dubito · SAE</p>'+loc(s['en'],s['zh'],conv,'h1')+loc(s['deck_en'],s['deck_zh'],conv,'p','lw-deck lw-search-deck')+loc(f'{s["count"]} complete essays · English, Simplified & Traditional Chinese',f'{s["count"]} 篇完整散文 · 英文、简体中文与繁体中文',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc(s['opening_en'],s['opening_zh'],conv,'p')+'<a href="ep01.html">'+loc('Begin here →','从第一篇开始 →',conv)+'</a></aside><section class="lw-grid">'+cards+'</section>'+reading_note(s,conv)+related(s,conv)+'</main>'
-    return page(content,s['en'],s['deck_en'],f'essays/{s["slug"]}/index.html',conv,publication_date=s['date'])
+    content = '<main class="lw-wrap">'+breadcrumb(s,conv)+'<section class="lw-hero"><p class="lw-kicker">Non Dubito · SAE</p>'+loc(s['en'],s['zh'],conv,'h1')+loc(s['deck_en'],s['deck_zh'],conv,'p','lw-deck lw-search-deck')+loc(f'{s["count"]} complete essays · {editions_en}',f'{s["count"]} 篇完整散文 · {editions_zh}',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc(s['opening_en'],s['opening_zh'],conv,'p')+'<a href="ep01.html">'+loc('Begin here →','从第一篇开始 →',conv)+'</a></aside><section class="lw-grid">'+cards+'</section>'+reading_note(s,conv)+related(s,conv)+'</main>'
+    return connect_languages(page(content,s['en'],s['deck_en'],f'essays/{s["slug"]}/index.html',conv,publication_date=s['date']),s['slug'],'index')
 
 
 def article(s,item,items,conv):
@@ -115,7 +128,7 @@ def article(s,item,items,conv):
         else:
             neighbors.append('<a href="index.html">'+loc('All essays','全部篇目',conv,'small')+loc(s['en'],s['zh'],conv)+'</a>')
     content = '<main class="lw-wrap">'+breadcrumb(s,conv,True)+'<article class="lw-article"><div class="lw-head"><p class="lw-kicker">'+loc(s['en'],s['zh'],conv)+f' · {item["id"]:02d}</p>'+loc(item['title_en'],item['title_zh'],conv,'h1')+loc(item['deck_en'],item['deck_zh'],conv,'p','lw-deck lw-search-deck')+f'<p class="lw-meta">Han Qin · <time datetime="{s["date"]}">{s["date"]}</time></p></div>'+bodies+reading_note(s,conv,item)+'<nav class="lw-series-nav" aria-label="Series navigation">'+''.join(neighbors)+'</nav>'+related(s,conv)+'</article></main>'
-    return page(content,item['title_en'],item['deck_en'],f'essays/{s["slug"]}/{item["slug"]}.html',conv,item['source_url'],(f'https://nondubito.net/essays/{s["slug"]}/',s['en']),publication_date=s['date'])
+    return connect_languages(page(content,item['title_en'],item['deck_en'],f'essays/{s["slug"]}/{item["slug"]}.html',conv,item['source_url'],(f'https://nondubito.net/essays/{s["slug"]}/',s['en']),publication_date=s['date']),s['slug'],item['slug'])
 
 
 def library_card(s,conv):
@@ -129,7 +142,9 @@ def library_card(s,conv):
 def _library_card(s,conv):
     def t(en,zh,tag='span',css=''):
         return loc(en,zh,conv,tag,css).replace('lang-zh','lang-zh cl-zh').replace('lang-hant','lang-zh cl-hant')
-    return f'<a href="essays/{s["slug"]}/index.html" class="series-card"><span class="series-card-count">'+t(f'{s["count"]} essays · EN / 简 / 繁',f'{s["count"]} 篇 · 英 / 简 / 繁')+'</span><div class="series-card-title-zh cl-zh">'+html.escape(s['zh'])+'</div><div class="series-card-title-zh cl-hant">'+html.escape(conv.convert(s['zh']))+'</div><div class="series-card-title-en">'+html.escape(s['en'])+'</div>'+t(s['deck_en'],s['deck_zh'],'p','series-card-desc')+t('Read series →','阅读系列 →','span','series-card-arrow')+'</a>'
+    label_en = '8 languages' if multilingual(s['slug']) else 'EN / 简 / 繁'
+    label_zh = '八语' if multilingual(s['slug']) else '英 / 简 / 繁'
+    return f'<a href="essays/{s["slug"]}/index.html" class="series-card"><span class="series-card-count">'+t(f'{s["count"]} essays · {label_en}',f'{s["count"]} 篇 · {label_zh}')+'</span><div class="series-card-title-zh cl-zh">'+html.escape(s['zh'])+'</div><div class="series-card-title-zh cl-hant">'+html.escape(conv.convert(s['zh']))+'</div><div class="series-card-title-en">'+html.escape(s['en'])+'</div>'+t(s['deck_en'],s['deck_zh'],'p','series-card-desc')+t('Read series →','阅读系列 →','span','series-card-arrow')+'</a>'
 
 
 def render(slug=None):

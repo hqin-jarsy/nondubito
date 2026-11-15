@@ -224,6 +224,11 @@ def load_language(series, language):
         original = original_article(series,spec,article['slug'])
         if spec.get('complete_article_source_note'):
             assert isinstance(article.get('source_note'),str) and article['source_note'].strip(), (language,article['slug'],'missing full individual reading note')
+        if spec.get('preserve_reader_references'):
+            expected = original.get('references', [])
+            actual = article.get('references', [])
+            assert [r['url'] for r in actual] == [r['url'] for r in expected], (series, language, article['slug'], 'changed reference links')
+            assert all(isinstance(r.get('title'), str) and r['title'].strip() for r in actual)
         source = original['body_zh']
         assert len(article['body']) == len(source), (language, article['slug'], 'missing argument units')
         assert len(article['coverage']) == len(source)
@@ -486,7 +491,10 @@ def sources(spec, data, article=None):
     if article and spec.get('numbered_sources'):
         refs='<ol class="st-source-list">'+''.join('<li><a href="'+E(s['url'])+'">'+E(s['title'])+'</a><p>'+inline_markdown(s['note'])+'</p></li>' for s in article['sources'])+'</ol>'
         return f'<details class="lw-sources"><summary>{E(ui["sources"])}</summary>{paragraphs}{refs}<p><a href="{E(spec["source"])}">{E(ui["paper"])} ↗</a></p></details>'
-    return f'<details class="lw-sources"><summary>{E(ui["sources"])}</summary>{paragraphs}<p><a href="{E(url)}">{E(ui["paper"])} ↗</a></p></details>'
+    references = ''
+    if spec.get('preserve_reader_references') and article:
+        references = ''.join('<p><a href="'+E(r['url'],quote=True)+'">'+E(r['title'])+' ↗</a></p>' for r in article.get('references', []))
+    return f'<details class="lw-sources"><summary>{E(ui["sources"])}</summary>{paragraphs}<p><a href="{E(url)}">{E(ui["paper"])} ↗</a></p>{references}</details>'
 
 
 def inline_markdown(text):

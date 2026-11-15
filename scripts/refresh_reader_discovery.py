@@ -13,6 +13,16 @@ def render(slug):
     s = next(s for s in registry() if s['slug']==slug)
     paths = sorted((ROOT/f'essays/{slug}').glob('*.html'))
     assert len(paths)==s['count']+1
+    profile = ROOT/f'data/{slug}/multilingual/profile.json'
+    date = s['date']
+    if profile.is_file():
+        spec = json.loads(profile.read_text())
+        date = spec['date']
+        for language in spec['languages']:
+            translated = sorted((ROOT/f'essays/{slug}'/language).glob('*.html'))
+            assert len(translated)==s['count']+1
+            paths += translated
+        paths += [ROOT/f'essays/{language}/index.html' for language in spec['languages']]
     paths += [ROOT/p for p in ('index.html','library.html','essays/sae/index.html')]
     scope = {p.relative_to(ROOT).as_posix() for p in paths}
     with patch.object(search,'collect_pages',lambda:paths):
@@ -38,8 +48,8 @@ def render(slug):
     for path in paths+[ROOT/'latest.html']:
         canonical = parse_page(path).canonical
         assert canonical.startswith('https://nondubito.net/')
-        entries[canonical]=s['date']
-    outputs[sitemap]=sitemap_xml(sorted(entries.items(),key=lambda x:(x[0]!='https://nondubito.net/',x[0])))
+        entries[canonical]=max(entries.get(canonical,date),date)
+    outputs[sitemap]=sitemap_xml(list(entries.items()))
     return outputs
 
 
