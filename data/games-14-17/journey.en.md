@@ -86,7 +86,7 @@ A relationship without negotiation does not eliminate power. It can hide power i
 
 # The Mountain and the Credits
 
-On the mountain, the wind blows backward. The scarf that once carried you through the air is torn and exhausted. Calls shrink in the storm. Each step becomes slow.
+On the mountain, the wind blows backward. The scarf that once carried you through the air is frozen and drained of energy. Calls shrink in the storm. Each step becomes slow.
 
 The weakness is constructed. The team created hundreds of animations and adjusted movement, wind, cloth, and sound so that the traveler’s capacity would visibly collapse. Earlier sections teach the player to move farther and more freely; the mountain removes those gains without accusing the player of failure.
 
