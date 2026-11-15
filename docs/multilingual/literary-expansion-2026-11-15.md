@@ -49,3 +49,9 @@ https://www.gutenberg.org/files/1342/1342-h/1342-h.htm .
 Checks: all 30 pages parse, routes/local links/analytics pass; six full editions
 cover 400 blocks; traditional dictionary keys cover corrected Chinese text nodes.
 Search and sitemap scoped to this series; no push.
+
+## The Dispossessed / 一无所有
+
+Five complete new editions (Japanese, French, German, Spanish, Korean), each with five essays and a local index. All 108 prose/heading blocks are retained (19 / 23 / 22 / 22 / 22). Original English and both Chinese bodies were reviewed and left unchanged. Edition-specific spoiler notices, the distinction between social exclusion and massacre, the costs of care, Vea's refusal, and the risks attached to gifting knowledge remain explicit. Existing embedded navigation was replaced only in new editions by their localized navigation, not treated as prose.
+
+Each translator reviewed the full five-essay batch; a second reader reviewed each language against Chinese. Two Japanese usages of 開き直る were corrected to clearly mean reopening rather than defiant self-justification. Thirty-six HTML pages passed strict parsing, body alignment, relative-link, eight-language alternate-link and analytics checks. Search and sitemap additions were scoped to this series. No browser-rendered or native-reader certification is claimed. No Chinese source changes and no push.
