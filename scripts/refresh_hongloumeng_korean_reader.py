@@ -18,6 +18,16 @@ def shell(name,title,body):
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} — Non Dubito</title><meta name="description" content="홍루몽 전80회 · 이 프로젝트의 교정된 중국어 본문을 바탕으로 한 한국어 번역"><link rel="canonical" href="https://nondubito.net/classics/hongloumeng/ko/{"" if name == "index.html" else name}"><link rel="stylesheet" href="reader.css"><script defer src="reader.js"></script></head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header><a href="/">Non Dubito</a><nav><a href="index.html">목차</a><a href="edition.html">이 판본에 관하여</a><a href="/search.html?ui=ko&amp;in=ko">검색</a></nav><nav class="language-switch" aria-label="언어">{nav}</nav></header><main id="main">{body}</main><footer>홍루몽 · 한국어 번역</footer></body></html>'''
     from hongloumeng_language_metadata import apply
     return apply(text, name)
+def normalize_reader_chrome(text, nav):
+    """One footer navigator and one supported font toolbar; preserve the story."""
+    text = re.sub(r'<nav\b[^>]*class="chapter-nav"[^>]*>.*?</nav>', '', text, flags=re.S)
+    nav = nav.replace('class="chapter-nav"', 'class="chapter-nav" id="chapter-nav"', 1)
+    assert '</main>' in text
+    text = text.replace('</main>', nav + '</main>', 1)
+    # Old copied templates used data-font, which ko/reader.js does not bind.
+    text = re.sub(r'<div class="reader-tools">(?:(?!</div>).)*data-font=(?:(?!</div>).)*</div>', '', text, flags=re.S)
+    return text
+
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--through',type=int,required=True);p.add_argument('--attenuated',type=int,nargs='*',default=[]);a=p.parse_args()
     last=a.through
@@ -85,7 +95,7 @@ def main():
         if 'class="skip"' not in new:new=new.replace('<body>','<body><a class="skip" href="#main">본문으로 건너뛰기</a>',1)
         if 'data-size=' not in new:
             new=re.sub(r'(<article\b[^>]*>)',lambda m:'<div aria-label="글자 크기"><button data-size="-1" aria-label="글자 줄이기">A−</button> <button data-size="reset" aria-label="기본 글자 크기">A</button> <button data-size="1" aria-label="글자 키우기">A+</button></div>'+m[1],new,count=1)
-        if new.count('class="chapter-nav"')==1:new=new.replace('</main>',nav+'</main>',1)
+        new=normalize_reader_chrome(new, nav)
         if n in a.attenuated and '<!-- KOREAN-ADAPTATION:START -->' not in new:
             note='<!-- KOREAN-ADAPTATION:START --><aside class="notice"><h2>번역에 관한 안내</h2><p>이 회의 일부 구체적인 성적 표현은 비노골적으로 옮겼습니다. 사건의 흐름, 인물 관계와 강압·거부는 유지했습니다. 세부까지 모두 그대로 옮긴 직역과는 다릅니다. <a href="edition.html">이 판본에 관하여</a></p></aside><!-- KOREAN-ADAPTATION:END -->'
             new=new.replace('</article>','</article>'+note,1)
