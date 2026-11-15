@@ -15,8 +15,9 @@ LANGS = [('zh-Hans','../','简体中文'),('zh-Hant','../zh-hant/','繁體中文
 def shell(name,title,body):
     nav=''.join(f'<a lang="{lang}" href="{prefix}{name}"'+(' aria-current="page"' if lang=='ko' else '')+f'>{label}</a>' for lang,prefix,label in LANGS)
     text=f'''<!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} — Non Dubito</title><meta name="description" content="홍루몽 전80회 · 이 프로젝트의 교정된 중국어 본문을 바탕으로 한 한국어 번역"><link rel="canonical" href="https://nondubito.net/classics/hongloumeng/ko/{name}"><link rel="stylesheet" href="reader.css"><script defer src="reader.js"></script></head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header><a href="/">Non Dubito</a><nav><a href="index.html">목차</a><a href="edition.html">이 판본에 관하여</a><a href="/search.html?ui=ko&amp;in=ko">검색</a></nav><nav class="language-switch" aria-label="언어">{nav}</nav></header><main id="main">{body}</main><footer>홍루몽 · 한국어 번역</footer></body></html>'''
-    return text
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} — Non Dubito</title><meta name="description" content="홍루몽 전80회 · 이 프로젝트의 교정된 중국어 본문을 바탕으로 한 한국어 번역"><link rel="canonical" href="https://nondubito.net/classics/hongloumeng/ko/{"" if name == "index.html" else name}"><link rel="stylesheet" href="reader.css"><script defer src="reader.js"></script></head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header><a href="/">Non Dubito</a><nav><a href="index.html">목차</a><a href="edition.html">이 판본에 관하여</a><a href="/search.html?ui=ko&amp;in=ko">검색</a></nav><nav class="language-switch" aria-label="언어">{nav}</nav></header><main id="main">{body}</main><footer>홍루몽 · 한국어 번역</footer></body></html>'''
+    from hongloumeng_language_metadata import apply
+    return apply(text, name)
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--through',type=int,required=True);p.add_argument('--attenuated',type=int,nargs='*',default=[]);a=p.parse_args()
     last=a.through
@@ -27,7 +28,7 @@ def main():
     titles=[]
     for n in range(1,last+1):
         path=DEST/f'ch{n:03}.html';s=path.read_text();m=re.search(r'<h1[^>]*>(.*?)</h1>',s,re.S);assert m
-        titles.append(html.unescape(re.sub('<[^>]+>','',m[1])))
+        titles.append(re.sub(r'^(제\d+회)\s+(?!·)', r'\1 · ', html.unescape(re.sub('<[^>]+>','',m[1]))))
     body=f'<h1>홍루몽</h1><p>조설근의 전80회 · 한국어 번역</p><p>현재 제1회부터 제{last}회까지 번역과 중한 대조 검토를 마쳤습니다.</p>'
     if a.attenuated:
         numbers='·'.join(map(str,a.attenuated));body+=f'<p>제{numbers}회의 일부 구체적인 성적 표현은 비노골적으로 옮겼습니다. 사건의 흐름과 인물 관계, 거부와 강압은 유지했습니다. 이 처리는 세부를 모두 그대로 옮긴 직역과는 다릅니다.</p>'
@@ -38,9 +39,9 @@ def main():
             title=html.escape(titles[n-1]);badge=' <span class="badge">일부 비노골적 표현</span>' if n in a.attenuated else ''
             body+=f'<li data-search="{n} {title}"><a href="ch{n:03}.html">{title}</a>{badge}</li>'
         body+='</ol></section>'
-    body+='<p><a href="edition.html">이 번역과 저본에 관하여</a></p><p><a href="/originals/hongloumeng/ko/index.html">진한(秦漢)의 창작 속편 제81–85회 읽기</a></p>'
+    body+='<p><a href="edition.html">이 번역과 저본에 관하여</a></p><p><a href="/originals/hongloumeng/ko/index.html">진한(秦漢)의 창작 속편 제81–86회 읽기</a></p>'
     (DEST/'index.html').write_text(shell('index.html','홍루몽 · 목차',body))
-    edition='''<h1>이 판본과 번역에 관하여</h1><p>이 한국어 번역은 이 프로젝트에서 교정하고 저자가 판정을 마친 중국어 전80회 본문을 직접 저본으로 삼았습니다. 다른 언어 번역을 다시 옮긴 것이 아닙니다.</p><p>인명과 호칭, 이야기의 문체는 이 사이트의 한국어 창작 속편 제81–85회 현행 본문을 기준으로 맞추었습니다. 시와 대련은 원문의 뜻과 이미지, 행 구분을 살리고 한국어에서 억지로 운을 맞추지 않았습니다. 옛 화폐와 날짜, 생활 풍속을 임의로 현대의 수치로 바꾸지 않았습니다.</p><p>다섯 회마다 중국어와 한국어를 대조하고 검토한 범위와 남은 사항을 기록합니다. 문단 번호와 구조 검사는 의미와 문체의 검토를 대신하지 않습니다. 번역 본문은 각 회차의 HTML에 직접 들어 있어 수정할 수 있습니다.</p><p>일부 구체적인 성적 표현을 비노골적으로 처리한 회차는 목차에서 따로 표시합니다. 사건과 인물 관계, 거부와 강압은 보존하되 세부를 완전히 그대로 옮겼다고 주장하지 않습니다. 일반적인 성인 서사와 비노골적인 내용은 생략하지 않습니다.</p><p>제1–80회는 조설근의 작품이며, 제81–85회는 진한(秦漢)의 창작 속편입니다. 두 부분의 저자를 혼동하지 않도록 나누어 싣습니다.</p><p><a href="index.html">목차로 돌아가기</a></p>'''
+    edition='''<h1>이 판본과 번역에 관하여</h1><p>이 한국어 번역은 이 프로젝트에서 교정하고 저자가 판정을 마친 중국어 전80회 본문을 직접 저본으로 삼았습니다. 다른 언어 번역을 다시 옮긴 것이 아닙니다.</p><p>인명과 호칭, 이야기의 문체는 이 사이트의 한국어 창작 속편 제81–85회 현행 본문을 기준으로 맞추었습니다. 시와 대련은 원문의 뜻과 이미지, 행 구분을 살리고 한국어에서 억지로 운을 맞추지 않았습니다. 옛 화폐와 날짜, 생활 풍속을 임의로 현대의 수치로 바꾸지 않았습니다.</p><p>전80회의 한국어 번역을 모두 읽으실 수 있습니다.</p><p>일부 구체적인 성적 표현을 비노골적으로 처리한 회차는 목차에서 따로 표시합니다. 사건과 인물 관계, 거부와 강압은 보존하되 세부를 완전히 그대로 옮겼다고 주장하지 않습니다. 일반적인 성인 서사와 비노골적인 내용은 생략하지 않습니다.</p><p>제1–80회는 조설근의 작품이며, 제81회부터는 진한(秦漢)의 창작 속편입니다. 현재 제81–86회가 공개되어 있습니다. 두 부분의 저자를 혼동하지 않도록 나누어 싣습니다.</p><p><a href="index.html">목차로 돌아가기</a></p>'''
     (DEST/'edition.html').write_text(shell('edition.html','홍루몽 · 이 판본에 관하여',edition))
     for lang in ['', 'zh-hant','en','ja','fr','de','es']:
         base=ROOT/'classics/hongloumeng'/lang
@@ -88,6 +89,8 @@ def main():
         if n in a.attenuated and '<!-- KOREAN-ADAPTATION:START -->' not in new:
             note='<!-- KOREAN-ADAPTATION:START --><aside class="notice"><h2>번역에 관한 안내</h2><p>이 회의 일부 구체적인 성적 표현은 비노골적으로 옮겼습니다. 사건의 흐름, 인물 관계와 강압·거부는 유지했습니다. 세부까지 모두 그대로 옮긴 직역과는 다릅니다. <a href="edition.html">이 판본에 관하여</a></p></aside><!-- KOREAN-ADAPTATION:END -->'
             new=new.replace('</article>','</article>'+note,1)
+        from hongloumeng_language_metadata import apply
+        new = apply(new, path.name)
         if new!=old:path.write_text(new)
     # Bounded entry links do not touch the Chinese, traditional or English copy.
     for relative in ['essays/literature/hlm/index.html','essays/literature/hlm/zh-hant/index.html','essays/literature/hlm/en/index.html']:

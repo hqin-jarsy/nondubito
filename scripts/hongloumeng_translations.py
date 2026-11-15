@@ -150,6 +150,9 @@ def render_foreign(editions, language_menu, origin, target):
                         other=chapters[neighbor]
                         other_title=edition(other,lang)[0].splitlines()[0].split('　')[0].split(' — ')[0]
                         navigation += f'<a href="{other}.html">{e("← " if step<0 else "")}{e(other_title)}{e(" →" if step>0 else "")}</a>'
+                    elif step < 0:
+                        previous_label = {'en':'Original novel · Chapter 80','ja':'原著・第80回','fr':'Texte original · Récit 80','de':'Originalroman · Kapitel 80','es':'Novela original · Capítulo 80','ko':'원작 제80회'}[lang]
+                        navigation += f'<a rel="prev" href="/classics/hongloumeng/{lang}/ch080.html">← {e(previous_label)}</a>'
                     elif step>0: navigation += f'<span>{e(pending)}</span>'
                 content = f'<article><header class="chapter-head"><p class="eyebrow">Han Qin · {e(collection)}</p><h1>{h1}</h1><p class="authorship">{e(notice)}</p></header><div class="novel-text">'+ '\n'.join(body) + '</div></article>'
                 content += f'<details class="reading-note"><summary>{e(note_title)}</summary><p>{e(note)}</p>'+''.join(f'<p>{inline(n)}</p>' for n in notes)+'</details>'

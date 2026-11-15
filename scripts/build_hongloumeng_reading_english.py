@@ -19,8 +19,9 @@ EDITION = 'Dazhi Revised Gengchen Edition · English'
 BASE = '/classics/hongloumeng/'
 ORIGIN = 'https://nondubito.net'
 CONTINUATION = '/originals/hongloumeng/en/ch081.html'
-NOTICE = ('The first eighty chapters end here. Chapters 81–85 are Han Qin’s original '
-          'continuation, not a recovered manuscript by Cao Xueqin. Chapters 86–110 remain unpublished.')
+NOTICE = ('The first eighty chapters end here. Han Qin’s original continuation is a separate contemporary work, '
+          'not a recovered manuscript by Cao Xueqin. Chapters 81–86 are currently available; '
+          'chapters 87–110 have not yet been published here.')
 
 
 def load_validated():
@@ -184,6 +185,9 @@ def shell(title, content, filename, preview):
         f'<link rel="canonical" href="{ORIGIN+BASE}en/{"" if filename == "index.html" else filename}">' + ''.join(
         f'<link rel="alternate" hreflang="{code}" href="{ORIGIN+BASE+d}{"" if filename == "index.html" else filename}">'
         for code,d in [('zh-Hans',''),('zh-Hant','zh-hant/'),('en','en/'),('x-default','')]))
+    if not preview:
+        from hongloumeng_language_metadata import alternatives
+        metadata = re.sub(r'<link\b[^>]*hreflang="[^"]*"[^>]*>', '', metadata) + alternatives(filename)
     badge = '<p class="draft-notice">Private rendering preview. Not a published edition.</p>' if preview else ''
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{E(title)} — Non Dubito</title><meta name="description" content="An independent English translation of chapters 1–80 of Dream of the Red Chamber, from the Dazhi Revised Gengchen Edition.">{metadata}<link rel="stylesheet" href="reader.css"><script defer src="reader.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="/">Non <span>Dubito</span></a><nav aria-label="Reading"><a href="index.html">Contents</a><a href="edition.html">About this edition</a></nav>{languages(filename)}</header><main id="main" tabindex="-1">{badge}{content}</main><footer>{E(EDITION)} · Cao Xueqin’s novel, edited by Han Qin.<br>Independent English translation. <a href="edition.html">Source and translation</a></footer></body></html>'''
@@ -267,4 +271,5 @@ def production_plan(approval, *, root=None):
         raise ValueError('Explicit exact-input local-generation approval required')
     chapters = project(mapping, progress, notes, range(1,81))
     from hongloumeng_japanese_navigation_binding import navigation_outputs
-    return {'classics/hongloumeng/en/'+name: content for name,content in navigation_outputs('classics/hongloumeng/en/', render(chapters,preview=False)).items()}
+    from hongloumeng_language_metadata import apply
+    return {'classics/hongloumeng/en/'+name: apply(content, name) if name.endswith('.html') else content for name,content in navigation_outputs('classics/hongloumeng/en/', render(chapters,preview=False)).items()}

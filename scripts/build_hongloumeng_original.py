@@ -140,7 +140,7 @@ def render():
                         if line == verse_end or any(unit == end for _, end in ranges): paragraphs.append('</div>')
                     keys = list(CHAPTERS)
                     position = keys.index(stem)
-                    previous = (f'<a href="{keys[position-1]}.html">{e("← " + CHAPTERS[keys[position-1]]["number"])}</a>' if position else '')
+                    previous = (f'<a href="{keys[position-1]}.html">{e("← " + CHAPTERS[keys[position-1]]["number"])}</a>' if position else f'<a rel="prev" href="/classics/hongloumeng/{directory}ch080.html">{e("← 前八十回 · 第80回")}</a>')
                     following = (f'<a href="{keys[position+1]}.html">{e(CHAPTERS[keys[position+1]]["number"] + " →")}</a>' if position+1 < len(keys) else f'<span>{e("第八十七回 · 待发布")}</span>')
                     title_parts = title.split('　')
                     heading = ''.join(f'<span class="{"chapter-number" if i==0 else "chapter-couplet"}">{e(part)}'+('　' if i<len(title_parts)-1 else '')+'</span>' for i,part in enumerate(title_parts))

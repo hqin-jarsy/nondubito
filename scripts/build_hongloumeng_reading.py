@@ -223,7 +223,7 @@ def shell(title, description, content, filename, draft, edition):
     canonical = '' if draft else f'<link rel="canonical" href="{canonical_url}">'
     badge = '<span class="draft-badge">本地预览 · 未定稿</span>' if draft else ''
     return f'''<!doctype html>
-<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{robots}<title>{E(title)} — Non Dubito</title><meta name="description" content="{E(description)}">{canonical}<link rel="stylesheet" href="reader.css"><script defer src="reader.js"></script></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><a class="brand" href="index.html">Non <span>Dubito</span></a><nav aria-label="阅读导航"><a href="index.html">前八十回</a><a href="edition.html">版本说明</a></nav>{badge}</header><main id="main" tabindex="-1">{content}</main><footer><p>红楼梦 · {E(edition)}</p></footer></body></html>'''
+<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{robots}<title>{E(title)} — Non Dubito</title><meta name="description" content="{E(description)}">{canonical}<link rel="stylesheet" href="reader.css"><script defer src="reader.js"></script></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><a class="brand" href="/">Non <span>Dubito</span></a><nav aria-label="阅读导航"><a href="index.html">前八十回</a><a href="edition.html">版本说明</a></nav>{badge}</header><main id="main" tabindex="-1">{content}</main><footer><p>红楼梦 · {E(edition)}</p></footer></body></html>'''
 
 
 def render(reading, manifest, mode='draft', assets=None, bilingual=False):
@@ -237,7 +237,7 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=False):
         n = chapter['number']
         heading = ' '.join('<span class="' + ('chapter-number' if i == 0 else 'chapter-couplet') + '">' + E(part) + '</span>' for i, part in enumerate(chapter['title'].split()))
         previous = f'<a rel="prev" href="ch{n-1:03d}.html">← 第{n-1}回</a>' if n > 1 else '<span>第一回</span>'
-        following = f'<a rel="next" href="ch{n+1:03d}.html">第{n+1}回 →</a>' if n < 80 else f'<a href="{CONTINUATION}">秦汉原创续写目录 →</a>'
+        following = f'<a rel="next" href="ch{n+1:03d}.html">第{n+1}回 →</a>' if n < 80 else f'<a href="{CONTINUATION.replace("index.html", "ch081.html")}">秦汉原创续写 · 第81回 →</a>'
         content = f'<article><header class="chapter-head"><p class="eyebrow">红楼梦 · 前八十回</p><p class="edition-name">{E(edition)}</p><h1>{heading}</h1><div class="reader-tools"><button type="button" data-font="minus" aria-label="缩小正文字号">字 −</button><button type="button" data-font="reset" aria-label="恢复正文字号">默认字号</button><button type="button" data-font="plus" aria-label="放大正文字号">字 ＋</button><a href="#chapter-nav">至回末</a></div></header><div class="novel-text">' + ''.join(paragraph(b) for b in chapter['blocks']) + f'</div></article><nav class="chapter-nav" id="chapter-nav" aria-label="章回翻页">{previous}<a href="index.html#batch{(n-1)//5+1:02d}">回目目录</a>{following}</nav>'
         if n == 80:
             content += '<p class="edition-note">前八十回至此。秦汉原创第八十一至第一百一十回为当代续写，与曹雪芹原著分别编排。</p>'
@@ -285,6 +285,9 @@ def add_language_links(pages, language, draft):
             alternatives += f'<link rel="alternate" hreflang="x-default" href="{CANONICAL+("" if filename == "index.html" else filename)}">'
             source = source.replace('</head>', alternatives+'</head>')
         source = source.replace('</header><main id="main"', menu+'</header><main id="main"', 1)
+        if not draft:
+            from hongloumeng_language_metadata import apply
+            source = apply(source, filename)
         result[filename] = source
     return result
 
