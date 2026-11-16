@@ -104,3 +104,20 @@ wording were clarified. Chinese and Traditional Chinese prose is unchanged.
 Final checks: 24 HTML pages parse; eight-language routes and local links pass;
 64 desktop/mobile cases passed after the final corrections, as did git whitespace
 checks. Search and sitemap updates scoped to this series. No push performed.
+
+## Final independent spot-check
+
+An independent reader sampled the five groups, not a second full audit of every
+page. Four definite findings were corrected: Spanish Zhivago unbuttons a shirt
+collar rather than ambiguously opens a neck; Korean All Quiet explicitly says
+the former joy will never return; Zhivago's Traditional Chinese refers to Italian
+and Russian editions rather than written characters; To Live's Chinese reader
+analogy says afterwards rather than incorrectly after Fugui's death, with the
+Traditional mapping updated. Kokoro's Chinese naming and outsider-impact claims
+are left unchanged for the owner's editorial decision.
+
+After corrections, all 150 HTML pages passed structural checks and 240 additional
+browser cases covering the three affected series passed. The initial five-group
+browser pass covered 400 cases. These are mechanical rendering checks, not
+substitutes for the language reviews documented above. Search indexes were
+refreshed for affected groups; there was no resulting excerpt change. No push.
