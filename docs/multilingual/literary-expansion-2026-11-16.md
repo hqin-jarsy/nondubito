@@ -85,3 +85,22 @@ Checks: 30 HTML pages, language routes, local links, encoding and placeholders
 pass. 80 desktop/mobile cases passed before these wording-only corrections;
 final structure and whitespace checks passed after them. Scoped search and
 sitemap updated. No push performed.
+
+## All Quiet on the Western Front: three essays
+
+Three expanded English essays and fifteen new Japanese, French, German, Spanish
+and Korean essays, plus five contents pages. A separate post-draft pass reread
+all three Chinese and all eighteen foreign essays in their final HTML, paragraph
+by paragraph for story, argument, negation and natural prose. This is distinct
+from automated validation; there was no independent full second-language review
+of every version in this group.
+
+Review restored Kat's sentence about those at the top, the clear distinction
+between forgetting and hypocrisy, and Paul's inability to recall the dead man
+once outside the shell hole. An added didactic aside was removed from all six
+versions. English/German family references and German canteen/French margarine-tin
+wording were clarified. Chinese and Traditional Chinese prose is unchanged.
+
+Final checks: 24 HTML pages parse; eight-language routes and local links pass;
+64 desktop/mobile cases passed after the final corrections, as did git whitespace
+checks. Search and sitemap updates scoped to this series. No push performed.
