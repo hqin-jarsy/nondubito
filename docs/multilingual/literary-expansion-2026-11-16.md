@@ -44,3 +44,23 @@ Checks: 36 HTML pages parse with eight language routes and valid local links;
 96 desktop/mobile language cases passed. Traditional dictionaries parse, git
 whitespace checks pass. Search and sitemap updated for this series only.
 Published HTML remains editable. No push performed.
+
+## Hulan River: four essays
+
+Twenty full essays and five contents pages added in Japanese, French, German,
+Spanish and Korean. Existing English was read against Chinese and retained as
+complete. All five new language versions received a full self-review and a
+second full cross-reading (the latter read the translation payloads, not rendered
+pages). Corrections included a Japanese particle, the German exit metaphor,
+French noun gender, and Korean scalding agency and sticky-cake terminology.
+The distinction between sympathy and exoneration and the limits of the garden
+are retained, rather than reduced to reassuring lessons.
+
+One Chinese factual clarification, also in Traditional: the young wife underwent
+the scalding baths and eventually died, not necessarily in the tub itself. Chapter
+5 of the public Chinese novel describes her revival and subsequent death.
+
+Checks: 30 HTML pages, eight-language links, local references, placeholders and
+encoding passed; 80 desktop/mobile cases passed before the final wording-only
+corrections. Final structure and whitespace checks passed. Search and sitemap
+updates are limited to this series. No push performed.
