@@ -54,7 +54,7 @@ Search and sitemap scoped to this series; no push.
 
 Five complete new editions (Japanese, French, German, Spanish, Korean), each with five essays and a local index. All 108 prose/heading blocks are retained (19 / 23 / 22 / 22 / 22). Original English and both Chinese bodies were reviewed and left unchanged. Edition-specific spoiler notices, the distinction between social exclusion and massacre, the costs of care, Vea's refusal, and the risks attached to gifting knowledge remain explicit. Existing embedded navigation was replaced only in new editions by their localized navigation, not treated as prose.
 
-Each translator reviewed the full five-essay batch; a second reader reviewed each language against Chinese. Two Japanese usages of 開き直る were corrected to clearly mean reopening rather than defiant self-justification. Thirty-six HTML pages passed strict parsing, body alignment, relative-link, eight-language alternate-link and analytics checks. Search and sitemap additions were scoped to this series. No browser-rendered or native-reader certification is claimed. No Chinese source changes and no push.
+Each translator reviewed the full five-essay batch; a second reader reviewed each language against Chinese. Two Japanese usages of 開き直る were corrected to clearly mean reopening rather than defiant self-justification. Thirty-six HTML pages passed strict parsing, body alignment, relative-link, eight-language alternate-link and analytics checks. Search and sitemap additions were scoped to this series. No native-reader certification is claimed; browser layout checks are recorded below. No Chinese source changes and no push.
 
 ## Journey / 风之旅人
 
@@ -65,3 +65,17 @@ Minimal source corrections, synchronized with Traditional Chinese: proximity rec
 Mechanics references: [PlayStation official retrospective](https://blog.playstation.com/archive/2020/05/01/8-years-on-journey-is-still-as-serenely-captivating-as-ever) (mutual charging, freezing on the mountain); [Apple developer interview](https://apps.apple.com/us/iphone/story/id1461521896) (symbols extend scarves; recharging concerns flight energy). The historical one-off importer uses external Chinese manuscripts; the corrected published HTML and its companion Hant dictionary are the edited site copy, and must not be replaced by an old import.
 
 24 HTML pages passed parsing, body alignment, local-link, eight-language alternate-link and analytics checks; search/sitemap updated only for this series. No push.
+
+## Theatre & Musicals / 戏剧与音乐剧
+
+Twenty essays in each of Japanese, French, German, Spanish and Korean, with five localized indexes: 105 new directly editable HTML pages. Each edition preserves all 697 Chinese prose/heading units, with the same section positions, edition/spoiler boundaries and source-method notices. No lyric excerpts or claims of personally attending a performance were added. Four five-essay self-review batches per language and independent full cross-reading completed. Corrections included the Spanish guidebook/person distinction in *The Light in the Piazza*, German authority versus authoritarianism in *Caroline, or Change*, and French classroom location in *Wicked*. These were meaning and readability corrections, not additions of academic apparatus.
+
+Chinese manuscripts remain unchanged. The existing English essays were read in full and retained as readable independent editions. Two small phrases were adjusted: the pineapple in *Cabaret* is a non-necessity, not useless; the wishes attached to Johanna in *Sweeney Todd* are different, not necessarily incompatible. Their existing manuscript fixtures were updated accordingly. No new parallel source JSON or mandatory validation workflow was added. New foreign-language HTML is the editable published copy; the existing native-page builder retains the eight-language links when rerun.
+
+All 126 theatre pages passed paragraph/heading alignment, metadata, local-link/asset and analytics checks. The existing theatre builder check and content/discovery test pass. One pre-existing test assumed the homepage still had a fixed theatre feature card, which was already absent before this work; the assertion now checks the real homepage → Explore → theatre shelf route instead, without changing the homepage. Search and sitemap updates are scoped to this series.
+
+## Final browser and repository review
+
+Across all five series, 656 automated browser scenarios passed at 390px and 1440px: every new foreign page, plus each existing primary page in English, Simplified Chinese and Traditional Chinese. Checks cover overflow, page language, foreign-page heading/navigation presence, and native language switching. A representative mobile page was also visually inspected. This is not a claim of native-reader certification or exhaustive browser/device coverage.
+
+The separate navigation-spacing commit touches only the previous/next layout in the first four series; no prose changes. Five project commits keep the content boundaries independent. All work is local only; the owner retains responsibility for the final push.

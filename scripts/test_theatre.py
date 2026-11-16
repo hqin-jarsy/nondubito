@@ -85,7 +85,9 @@ assert len(categories) == len({c['number'] for c in categories}) == 18
 assert any(c['href'] == 'essays/theatre/index.html' for c in categories)
 library = (ROOT / 'library.html').read_text()
 assert library_block() in library
-for filename in ('index.html', 'explore.html', 'library.html', 'latest.html'):
+# The curated homepage reaches this shelf through Explore, not a fixed feature card.
+assert 'href="explore.html"' in (ROOT / 'index.html').read_text()
+for filename in ('explore.html', 'library.html', 'latest.html'):
     assert 'essays/theatre/index.html' in (ROOT / filename).read_text(), filename
 for language in ('en', 'zh-hans', 'zh-hant'):
     records = json.loads((ROOT / f'data/search/{language}.json').read_text())['records']

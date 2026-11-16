@@ -56,7 +56,7 @@ Their mutual use looks familiar. Managing someone’s troubles becomes an expect
 
 Johanna is another opening in the picture. Turpin claims her as ward and prospective wife; Todd seeks his lost family; Lovett imagines motherhood. Each has a story assigning the girl a future.
 
-“Green Finch and Linnet Bird” first expresses confinement. In the second-act “Johanna,” Anthony seeks her, her father remembers her, and she awaits escape. The name holds incompatible wishes: recovered past, anticipated future, release from the present.
+“Green Finch and Linnet Bird” first expresses confinement. In the second-act “Johanna,” Anthony seeks her, her father remembers her, and she awaits escape. The name holds different wishes: recovered past, anticipated future, release from the present.
 
 These wishes are not interchangeable. Survival and choosing a destination matter more than restoring an old household. Paternal love does not make Todd’s current world safe. Seeing only his lost daughter can obscure the person now trying to escape.
 

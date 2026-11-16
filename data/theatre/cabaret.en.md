@@ -14,7 +14,7 @@ The story begins in late 1929 Berlin. Audiences know the Nazis will take power; 
 
 Cliff, a young American writer, rents a room from Schneider. She knows how to negotiate and endure. She is not a girl awaiting romantic rescue; experience has taught her not to hold wishes too tightly.
 
-Schultz’s courtship does not magically rejuvenate them. They know age, loneliness and the difficulty of a livelihood, yet spend a little extra thought on each other. A pineapple’s very uselessness brings something beyond survival into the room.
+Schultz’s courtship does not magically rejuvenate them. They know age, loneliness and the difficulty of a livelihood, yet spend a little extra thought on each other. The pineapple is not a necessity; that is precisely how it brings something beyond survival into the room.
 
 Their practical prospect contrasts with the improvisations of Cliff and singer Sally. The older pair merely want meals and years together. Such a small hope ought to be safer.
 

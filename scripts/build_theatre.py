@@ -13,6 +13,7 @@ DATE = '2026-10-13'
 UPDATED = '2026-10-18'
 EN = 'Theatre & Musicals'
 ZH = '戏剧与音乐剧'
+EXTRA_EDITIONS = {'ja': '日本語', 'fr': 'Français', 'de': 'Deutsch', 'es': 'Español', 'ko': '한국어'}
 DECK_EN = 'Twenty musical-theatre essays, beginning with characters, song, and staging: belonging, work, care, and lives shared without becoming the same.'
 DECK_ZH = '二十部音乐剧，从人物、歌声与舞台出发，谈归属、劳动、照顾，以及怎样共同生活而不必活成彼此。'
 
@@ -39,7 +40,9 @@ def page_head(title, deck, filename, work=None):
                                  'creator': [{'@type': 'Person', 'name': name} for name in work['creators']]},
                        'isPartOf': {'@type': 'CollectionPage', 'name': EN, 'url': 'https://nondubito.net/essays/theatre/'}})
         result = result.replace('content="website"', 'content="article"')
-    return result.replace(match.group(1), json.dumps(schema, ensure_ascii=False))
+    result = result.replace(match.group(1), json.dumps(schema, ensure_ascii=False))
+    alternates = ''.join(f'<link rel="alternate" hreflang="{lang}" href="https://nondubito.net/essays/theatre/{lang}/{filename}">' for lang in EXTRA_EDITIONS)
+    return result.replace('</head>', alternates + '</head>')
 
 
 @tracked_html
@@ -52,6 +55,7 @@ def wrap(content, title, deck, filename, converter, work=None):
 <body class="site-shell-page explicit-hant rf-page">{navigation()}
 <main class="rf-wrap{' rf-article' if work else ''}" data-search="{esc('Theatre Musicals 戏剧 音乐剧 戲劇 音樂劇 ' + names)}">
 <nav class="reading-breadcrumbs" aria-label="Breadcrumb"><a href="../../explore.html#stories">{localized('Books, Screen &amp; Narrative', '书籍、影视与叙事', converter)}</a><span aria-hidden="true"> / </span><a href="index.html">{localized(esc(EN), ZH, converter)}</a>{current}</nav>
+<nav aria-label="Other editions" style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0 2rem">{''.join(f'<a href="{lang}/{filename}" lang="{lang}">{label}</a>' for lang, label in EXTRA_EDITIONS.items())}</nav>
 {content}
 </main>{footer(converter)}</body></html>'''
 
@@ -70,10 +74,10 @@ def library_block():
         for w in catalog():
             et, _, _ = load('en', w['slug'])
             zt, _, _ = load('zh', w['slug'])
-            cards.append(f'''<a href="essays/theatre/{w['slug']}.html" class="series-card"><span class="series-card-count">{w['year']} · EN / 简 / 繁</span><div class="series-card-title-en">{esc(et)}</div><div class="series-card-title-zh cl-zh">{esc(zt)}</div><div class="series-card-title-zh cl-hant">{esc(c.convert(zt))}</div><p class="series-card-desc-en lang-en">{esc(w['deck_en'])}</p><p class="series-card-desc-zh lang-zh cl-zh">{esc(w['deck_zh'])}</p><p class="series-card-desc-zh lang-zh cl-hant">{esc(c.convert(w['deck_zh']))}</p><span class="series-card-arrow lang-en">Read essay →</span><span class="series-card-arrow lang-zh cl-zh">阅读文章 →</span><span class="series-card-arrow lang-zh cl-hant">閱讀文章 →</span></a>''')
+            cards.append(f'''<a href="essays/theatre/{w['slug']}.html" class="series-card"><span class="series-card-count">{w['year']} · 8 languages / 八语</span><div class="series-card-title-en">{esc(et)}</div><div class="series-card-title-zh cl-zh">{esc(zt)}</div><div class="series-card-title-zh cl-hant">{esc(c.convert(zt))}</div><p class="series-card-desc-en lang-en">{esc(w['deck_en'])}</p><p class="series-card-desc-zh lang-zh cl-zh">{esc(w['deck_zh'])}</p><p class="series-card-desc-zh lang-zh cl-hant">{esc(c.convert(w['deck_zh']))}</p><span class="series-card-arrow lang-en">Read essay →</span><span class="series-card-arrow lang-zh cl-zh">阅读文章 →</span><span class="series-card-arrow lang-zh cl-hant">閱讀文章 →</span></a>''')
         return '''<!-- THEATRE CATEGORY START -->
 <hr class="lib-divider">
-<section class="lib-section" id="theatre"><div class="lib-section-header"><span class="lib-section-tag">Category 18</span><a href="essays/theatre/index.html" class="lib-section-name" style="text-decoration:none"><span class="en">Theatre &amp; Musicals</span><span class="zh cl-zh">戏剧与音乐剧</span><span class="zh cl-hant">戲劇與音樂劇</span></a><p class="lib-section-desc lang-en">Twenty musical-theatre essays on belonging, work, care and shared lives. Complete English, Simplified and Traditional Chinese editions.</p><p class="lib-section-desc lang-zh cl-zh">二十部音乐剧，谈归属、劳动、照顾与共同生活，英、简、繁全文。</p><p class="lib-section-desc lang-zh cl-hant">二十部音樂劇，談歸屬、勞動、照顧與共同生活，英、簡、繁全文。</p></div><div class="series-grid">''' + '\n'.join(cards) + '''</div></section>
+<section class="lib-section" id="theatre"><div class="lib-section-header"><span class="lib-section-tag">Category 18</span><a href="essays/theatre/index.html" class="lib-section-name" style="text-decoration:none"><span class="en">Theatre &amp; Musicals</span><span class="zh cl-zh">戏剧与音乐剧</span><span class="zh cl-hant">戲劇與音樂劇</span></a><p class="lib-section-desc lang-en">Twenty musical-theatre essays on belonging, work, care and shared lives. Complete editions in English, Simplified and Traditional Chinese, Japanese, French, German, Spanish and Korean.</p><p class="lib-section-desc lang-zh cl-zh">二十部音乐剧，谈归属、劳动、照顾与共同生活，英、简、繁、日、法、德、西、韩八语全文。</p><p class="lib-section-desc lang-zh cl-hant">二十部音樂劇，談歸屬、勞動、照顧與共同生活，英、簡、繁、日、法、德、西、韓八語全文。</p></div><div class="series-grid">''' + '\n'.join(cards) + '''</div></section>
 <!-- THEATRE CATEGORY END -->'''
     finally:
         c.close()
@@ -85,7 +89,7 @@ def outputs():
     try:
         tr = lambda en, zh, tag='span', classes='': localized(en, zh, c, tag, classes)
         cards = '\n'.join(render_card(w, c) for w in works)
-        shelf = f'''<section class="rf-shelf-hero"><div><p class="rf-kicker">{tr('Stage &amp; people · 20 works', '舞台与人 · 20部作品')}</p>{tr(esc(EN), ZH, 'h1')}{tr(DECK_EN, DECK_ZH, 'p', 'rf-hero-deck')}</div><div class="rf-editor-note">{tr('These essays attend to what a scene makes possible: who can speak, who must wait, and what changes when another person sings. Plot context accompanies the discussion.', '留意一场戏让谁开口、让谁等待，又怎样通过另一人的歌声改变问题。没有看过作品，也能跟着情节进入。', 'p')}{tr('Each essay identifies its version and spoiler scope. Complete English, Simplified Chinese and Traditional Chinese editions; the original Hamilton essay remains available.', '每篇说明版本与剧透范围，提供英、简、繁全文。《汉密尔顿》原文继续保留。', 'p')}</div></section><section class="rf-year-section"><div class="rf-shelf-heading">{tr('Twenty ways into musical theatre', '从二十部音乐剧开始', 'h2')}</div><div class="rf-book-grid">{cards}</div></section>'''
+        shelf = f'''<section class="rf-shelf-hero"><div><p class="rf-kicker">{tr('Stage &amp; people · 20 works', '舞台与人 · 20部作品')}</p>{tr(esc(EN), ZH, 'h1')}{tr(DECK_EN, DECK_ZH, 'p', 'rf-hero-deck')}</div><div class="rf-editor-note">{tr('These essays attend to what a scene makes possible: who can speak, who must wait, and what changes when another person sings. Plot context accompanies the discussion.', '留意一场戏让谁开口、让谁等待，又怎样通过另一人的歌声改变问题。没有看过作品，也能跟着情节进入。', 'p')}{tr('Each essay identifies its version and spoiler scope. Eight complete language editions; the original Hamilton essay remains available.', '每篇说明版本与剧透范围，提供英、简、繁、日、法、德、西、韩八语全文。《汉密尔顿》原文继续保留。', 'p')}</div></section><section class="rf-year-section"><div class="rf-shelf-heading">{tr('Twenty ways into musical theatre', '从二十部音乐剧开始', 'h2')}</div><div class="rf-book-grid">{cards}</div></section>'''
         result = {ROOT / 'essays/theatre/index.html': wrap(shelf, EN + ' · ' + ZH, DECK_EN, 'index.html', c)}
         for i, w in enumerate(works):
             et, en, eb = load('en', w['slug'])
