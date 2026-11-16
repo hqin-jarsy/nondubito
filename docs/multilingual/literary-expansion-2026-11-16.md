@@ -64,3 +64,24 @@ Checks: 30 HTML pages, eight-language links, local references, placeholders and
 encoding passed; 80 desktop/mobile cases passed before the final wording-only
 corrections. Final structure and whitespace checks passed. Search and sitemap
 updates are limited to this series. No push performed.
+
+## To Live: four essays
+
+Twenty full essays and five contents pages added in Japanese, French, German,
+Spanish and Korean. All five received complete source-based self-review and
+independent full cross-reading; English was read against Chinese, with selected
+passages cross-checked again. Review retained the rice shop, coins, blood-taking,
+shoes, sheep, borrowed life, marriage and old ox, rather than compress the plot.
+
+English corrections: remove the incorrect home location for Jiazhen's plea;
+restore li rather than miles; identify the county magistrate's wife rather than
+an important patient's wife; avoid claiming the ox has no remaining use. Spanish
+wife/blood-taking references and Korean magistrate, aftermath and maternity
+phrasing were clarified. A Chinese death-sequence contradiction in essay 3 was
+removed: the point is the destitute family's lack of property, not that only
+Fugui and Kugen survived Jiazhen. Traditional and all six foreign versions agree.
+
+Checks: 30 HTML pages, language routes, local links, encoding and placeholders
+pass. 80 desktop/mobile cases passed before these wording-only corrections;
+final structure and whitespace checks passed after them. Scoped search and
+sitemap updated. No push performed.
