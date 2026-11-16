@@ -19,3 +19,28 @@ body presence and placeholder/encoding checks pass. Headless Chrome checks passe
 80 page/language/viewport cases at 390 and 1440 pixels, including the three primary
 reading modes. The French mobile page was visually inspected. Search and sitemap
 updates are scoped to this series. No push was performed.
+
+## Doctor Zhivago: five essays
+
+Five full English revisions and twenty-five new essays in Japanese, French,
+German, Spanish and Korean, each with a contents page. The English revisions
+restore the forest battle, Pamphil, family and political roles, the sledge, the
+laundress, the manuscripts and publication history, rather than summarize them.
+
+All six language versions were reread against the Chinese scenes and argument.
+English/German and Japanese/Korean also received independent cross-reading;
+the French candle essay was separately checked in full. Review corrected the
+age-sixteen subject to Lara, the person whose decision Komarovsky takes away,
+being kept free versus being released, stabbing versus necessarily killing, and
+spoken words versus an unspoken thought. Illness vocabulary was aligned across
+languages (English typhus / German Fleckfieber); Japanese naming was unified.
+
+Three Chinese clarifications, mirrored in Traditional Chinese: the two amulets'
+shared prayer does not invent a documented mother for the telephonist; Zhivago
+is explicitly named as the person escaping the forest; the funeral room is the
+room of the candle, not the room of the shooting. No argument is changed.
+
+Checks: 36 HTML pages parse with eight language routes and valid local links;
+96 desktop/mobile language cases passed. Traditional dictionaries parse, git
+whitespace checks pass. Search and sitemap updated for this series only.
+Published HTML remains editable. No push performed.
