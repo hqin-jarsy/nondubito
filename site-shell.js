@@ -4,16 +4,30 @@
   var queryLanguage = new URLSearchParams(window.location.search).get('lang');
   var savedLanguage = queryLanguage || localStorage.getItem('nd_lang') || 'en';
   if (['en', 'zh', 'zh-hant'].indexOf(savedLanguage) === -1) savedLanguage = 'en';
+  // An untranslated article must not open with its only body hidden. The
+  // fallback is local to this page; keep the reader's wider-site preference.
+  // Opt in explicitly: older pages use several edition-metadata conventions.
+  var availableLanguages = (document.documentElement.dataset.readerLanguages || 'en zh zh-hant')
+    .split(/\s+/).filter(function (language) {
+      return ['en', 'zh', 'zh-hant'].indexOf(language) !== -1;
+    });
+  if (!availableLanguages.length) availableLanguages = ['en', 'zh', 'zh-hant'];
 
   function applyLanguage(language) {
+    var requestedLanguage = language;
+    if (availableLanguages.indexOf(language) === -1) language = availableLanguages[0];
     document.documentElement.dataset.lang = language;
+    document.documentElement.dataset.languageFallback = String(requestedLanguage !== language);
     document.documentElement.lang = language === 'zh-hant' ? 'zh-Hant' : (language === 'zh' ? 'zh-Hans' : 'en');
-    localStorage.setItem('nd_lang', language);
-    localStorage.setItem('nondubito-lang', language);
+    if (requestedLanguage === language) {
+      localStorage.setItem('nd_lang', language);
+      localStorage.setItem('nondubito-lang', language);
+    }
     document.querySelectorAll('a[data-edition-en]').forEach(function (link) {
       var target = link.getAttribute('data-edition-' + language);
       if (target) link.setAttribute('href', target);
     });
+    return language;
   }
 
   applyLanguage(savedLanguage);
@@ -31,7 +45,7 @@
     }
 
     function updateLanguage(language) {
-      applyLanguage(language);
+      language = applyLanguage(language);
       currentLabels.forEach(function (node) {
         node.textContent = languageLabel(language);
       });
@@ -41,6 +55,12 @@
     }
 
     document.querySelectorAll('[data-set-language]').forEach(function (button) {
+      if (availableLanguages.indexOf(button.dataset.setLanguage) === -1) {
+        button.hidden = true;
+        button.disabled = true;
+        button.style.display = 'none';
+        return;
+      }
       button.addEventListener('click', function () {
         updateLanguage(button.dataset.setLanguage);
         if (languageDetails) languageDetails.open = false;

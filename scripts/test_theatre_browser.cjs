@@ -17,8 +17,10 @@ const shots = process.env.THEATRE_SCREENSHOTS;
       page.on('pageerror', e => errors.push(e.message));
       await page.route('https://fonts.googleapis.com/**', route => route.abort());
       await page.route('https://fonts.gstatic.com/**', route => route.abort());
+      await page.route('https://static.cloudflareinsights.com/**', route => route.abort());
       for (const route of ['index.html',...works.map(w=>`${w.slug}.html`)]) {
-        for (const lang of ['en','zh','zh-hant']) {
+        const work = works.find(w => `${w.slug}.html` === route);
+        for (const lang of (work?.languages || ['en','zh','zh-hant'])) {
           const response = await page.goto(`${base}/essays/theatre/${route}?lang=${lang}`);
           assert.ok(response.ok());
           await page.waitForFunction(l => document.documentElement.dataset.lang === l, lang);
@@ -32,9 +34,13 @@ const shots = process.env.THEATRE_SCREENSHOTS;
             assert.ok(await page.locator('article.rf-prose:visible h2').count() >= 3);
             assert.ok((await page.locator('article.rf-prose:visible').innerText()).length > 3000);
           } else {
-            assert.equal(await page.locator('.rf-book-card').count(),20);
+            assert.equal(await page.locator('.rf-book-card').count(),works.length);
           }
-          if (shots && lang === 'zh' && ['index.html','caroline-or-change.html','the-bands-visit.html'].includes(route)) await page.screenshot({path:`${shots}/${width}-${route}.png`,fullPage:false});
+          if (shots && lang === 'zh' && ['index.html','a-man-of-no-importance.html','once-on-this-island.html','the-secret-garden.html'].includes(route)) await page.screenshot({path:`${shots}/${width}-${route}.png`,fullPage:false});
+          if (shots && lang === 'zh' && route === 'index.html') {
+            await page.locator('.rf-book-card[href="the-last-five-years.html"]').scrollIntoViewIfNeeded();
+            await page.screenshot({path:`${shots}/${width}-new-chinese-cards.png`,fullPage:false});
+          }
           checks++;
         }
       }
@@ -51,11 +57,39 @@ const shots = process.env.THEATRE_SCREENSHOTS;
       await page.reload();
       assert.equal(await page.locator('article.lang-en:visible').count(),1);
       checks++;
+      // An English reader follows a Chinese-only card. Do not hide its body,
+      // advertise nonexistent editions, or silently replace the site preference.
+      await page.evaluate(() => localStorage.setItem('nd_lang','en'));
+      await page.goto(`${base}/essays/theatre/a-man-of-no-importance.html?lang=en`);
+      await page.waitForFunction(() => document.documentElement.dataset.lang === 'zh');
+      assert.equal(await page.locator('article.rf-prose:visible').count(),1);
+      assert.equal(await page.locator('article.lang-en').count(),0);
+      assert.equal(await page.evaluate(() => localStorage.getItem('nd_lang')),'en');
+      assert.equal(await page.locator('nav[aria-label="Other editions"]').count(),0);
+      await page.reload();
+      assert.equal(await page.evaluate(() => localStorage.getItem('nd_lang')),'en');
+      assert.equal(await page.locator('article.lang-zh:visible').count(),1);
+      if (width < 600) {
+        await page.locator('[data-site-shell-menu]').click();
+        assert.equal(await page.locator('.site-shell-mobile-languages [data-set-language="en"]:visible').count(),0);
+        await page.locator('.site-shell-mobile-languages [data-set-language="zh-hant"]').click();
+      } else {
+        await page.locator('.site-shell-language summary').click();
+        assert.equal(await page.locator('.site-shell-language [data-set-language="en"]:visible').count(),0);
+        await page.locator('.site-shell-language [data-set-language="zh-hant"]').click();
+      }
+      await page.waitForFunction(() => document.documentElement.dataset.lang === 'zh-hant');
+      await page.reload();
+      assert.equal(await page.locator('article.lang-hant:visible').count(),1);
+      assert.equal(await page.evaluate(() => localStorage.getItem('nd_lang')),'zh-hant');
+      await page.goto(`${base}/essays/theatre/hamilton.html?lang=en`);
+      assert.equal(await page.locator('article.lang-en:visible').count(),1);
+      checks++;
       for (const route of ['index.html','explore.html','library.html','latest.html']) {
         await page.goto(`${base}/${route}?lang=zh`);
         assert.ok(await page.locator('a[href="essays/theatre/index.html"]:visible').count() > 0, route);
       }
-      for (const [query,slug,lang] of [['Hamilton','hamilton','en'],['西区故事','west-side-story','zh'],['樂隊來訪','the-bands-visit','zh-hant'],['Falsettos','falsettos','en']]) {
+      for (const [query,slug,lang] of [['Hamilton','hamilton','en'],['西区故事','west-side-story','zh'],['樂隊來訪','the-bands-visit','zh-hant'],['Falsettos','falsettos','en'],['他们天天见面','a-man-of-no-importance','zh'],['牆倒了','once-on-this-island','zh-hant'],['舞动人生','billy-elliot','zh']]) {
         await page.goto(`${base}/search.html?q=${encodeURIComponent(query)}&lang=${lang}`);
         await page.waitForSelector(`a[href*="essays/theatre/${slug}.html"]`);
         checks++;

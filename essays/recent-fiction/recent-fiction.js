@@ -10,7 +10,8 @@
 
     // A search-result language must not override the reader's subsequent choice on reload.
     var url = new URL(window.location.href);
-    if (url.searchParams.has('lang') && url.searchParams.get('lang') !== language) {
+    if (document.documentElement.dataset.languageFallback !== 'true' &&
+        url.searchParams.has('lang') && url.searchParams.get('lang') !== language) {
       url.searchParams.set('lang', language);
       window.history.replaceState(window.history.state, '', url);
     }
