@@ -111,6 +111,7 @@ DOMAIN_PREFIXES = (
     ("essays/classical-concepts/", "sae-philosophy"),
     ("essays/teacher-student/", "sae-philosophy"),
     ("essays/university/", "sae-philosophy"),
+    ("essays/own-faith/", "sae-philosophy"),
     ("essays/sae/", "sae-philosophy"),
     ("essays/art/", "sae-philosophy"),
     ("essays/aesthetics/", "sae-philosophy"),
