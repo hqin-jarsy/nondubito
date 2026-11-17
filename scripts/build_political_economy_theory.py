@@ -10,6 +10,7 @@ import re
 from build_language_writing import page, prose
 from build_political_economy import ROOT, DATE, loc, PoliticalTraditionalConverter, load_items as load_cases
 from political_economy_routes import theory_data
+from reader_supplements import render_parent_extensions
 
 TARGET = ROOT / 'essays/political-economy/theory'
 DATA = ROOT / 'data/political-economy/theory'
@@ -128,6 +129,7 @@ def render():
             from full_series_languages import upgrade_primary
             pages = {path:upgrade_primary(text, 'political-economy-theory', path.stem)
                      for path,text in pages.items()}
+        pages[TARGET/'index.html'] = render_parent_extensions(pages[TARGET/'index.html'], 'essays/political-economy/theory/index.html')
         return pages
     finally:
         conv.close()

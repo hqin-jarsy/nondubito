@@ -12,6 +12,7 @@ import re
 
 from build_language_writing import ROOT, loc, page, prose
 from build_long_consensus import ConsensusTraditionalConverter
+from reader_supplements import parent_backlink
 
 
 class ReaderTraditionalConverter(ConsensusTraditionalConverter):
@@ -84,6 +85,8 @@ def load_items(series):
 
 def breadcrumb(s,conv,article=False):
     out = f'<nav class="lw-crumb" aria-label="Breadcrumb"><a href="../sae/index.html#{s["shelf"]}">{loc("SAE & Philosophy","SAE 与哲学",conv)}</a>'
+    if s.get('parent'):
+        out += '<span aria-hidden="true">/</span>'+parent_backlink(s,conv)
     if article:
         out += '<span aria-hidden="true">/</span><a href="index.html">'+loc(s['en'],s['zh'],conv)+'</a>'
     return out+'</nav>'

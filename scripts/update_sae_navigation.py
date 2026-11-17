@@ -13,6 +13,7 @@ from build_interstate import library_card as interstate_card
 from build_marriage_series import library_card as marriage_card
 from build_political_economy import library_card as political_economy_card
 from build_reader_series import registry as reader_registry, library_card as reader_card
+from reader_supplements import is_standalone
 
 ROOT = Path(__file__).resolve().parents[1]
 CARD = re.compile(r'<a\b(?=[^>]*\bclass="series-card")[^>]*>.*?</a>',re.S)
@@ -33,6 +34,8 @@ def render_library(source,groups,conv):
     start,end,old = library_block(source)
     cards = {re.search(r'href="([^"]+)"',m[0])[1]:m[0] for m in CARD.finditer(old)}
     for series in reader_registry():
+        if not is_standalone(series):
+            continue
         cards[f'essays/{series["slug"]}/index.html'] = reader_card(series,conv)
     cards['essays/interstate/index.html'] = interstate_card(conv)
     cards['essays/marriage/index.html'] = marriage_card(conv)

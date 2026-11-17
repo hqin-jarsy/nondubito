@@ -11,6 +11,7 @@ from build_content_registry import scan_page
 from test_language_writing import Tags
 from update_sae_navigation import CARD,library_block
 from web_analytics import TOKEN
+from reader_supplements import is_standalone,parent_spec,parent_discovery_paths,START,END,SCOPED_STYLE
 
 
 class ReaderSeriesPublication(unittest.TestCase):
@@ -91,8 +92,27 @@ class ReaderSeriesPublication(unittest.TestCase):
                 else:
                     self.assertEqual(hashlib.sha256(cards[url].encode()).hexdigest(),digest,url)
             url = f'essays/{s["slug"]}/index.html'
-            self.assertEqual(sum(i[0]==url for g in groups for i in g['items']),1)
-            self.assertIn(url,cards)
+            if is_standalone(s):
+                self.assertEqual(sum(i[0]==url for g in groups for i in g['items']),1)
+                self.assertIn(url,cards)
+            else:
+                self.assertEqual(sum(i[0]==url for g in groups for i in g['items']),0)
+                self.assertNotIn(url,cards)
+                parent = parent_spec(s)
+                text = (ROOT/parent[0]).read_text()
+                self.assertEqual(text.count(START),1)
+                self.assertEqual(text.count(END),1)
+                block = text.split(START)[1].split(END)[0]
+                self.assertIn(SCOPED_STYLE,block)
+                for css,mode in (('en','en'),('zh','zh'),('hant','zh-hant')):
+                    section = re.search(r'<aside class="[^"]*reader-extensions lang-'+css+r'".*?</aside>',block,re.S)[0]
+                    self.assertEqual(section.count('<a href='),s['count'])
+                    for i in load_items(s):
+                        self.assertIn(f'/{s["slug"]}/{i["slug"]}.html?lang={mode}',section)
+                for page_text in render(s['slug']).values():
+                    for mode in ('en','zh','zh-hant'):
+                        self.assertIn('data-edition-'+mode+'=',page_text)
+                        self.assertIn(parent[0].removeprefix('essays/')+'?lang='+mode,page_text)
             self.assertIn(url,(ROOT/'latest.html').read_text())
             updates = json.loads((ROOT/'data/site-updates.json').read_text())['updates']
             update = [u for u in updates if u['id']==f'{s["date"]}-{s["slug"]}-reader-series']
@@ -102,6 +122,9 @@ class ReaderSeriesPublication(unittest.TestCase):
             records = json.loads((ROOT/f'data/search/{lang}.json').read_text())['records']
             urls = {r['u'] for r in records}
             for path in render():self.assertTrue(path.relative_to(ROOT).as_posix() in urls,f'Missing search entry ({lang}): {path}')
+            for s in registry():
+                for path in parent_discovery_paths(s,ROOT):
+                    self.assertIn(path.relative_to(ROOT).as_posix(),urls)
         sitemap = {e.text for e in ET.fromstring((ROOT/'sitemap.xml').read_text()).findall('{*}url/{*}loc')}
         for path in render():
             self.assertTrue('https://nondubito.net/'+path.relative_to(ROOT).as_posix().removesuffix('index.html') in sitemap,f'Missing sitemap URL: {path}')

@@ -179,11 +179,14 @@ def render_article(item: dict, items: list[dict], converter: TraditionalConverte
 
 
 def render() -> dict[Path,str]:
+    from reader_supplements import render_parent_extensions
     items = load_items()
     converter = RelationTraditionalConverter()
     try:
         pages={TARGET/'index.html':render_index(items, converter), **{TARGET/(item['slug']+'.html'):render_article(item,items,converter) for item in items}}
-        return {path:upgrade_primary(text,'relation',path.stem) for path,text in pages.items()}
+        upgraded = {path:upgrade_primary(text,'relation',path.stem) for path,text in pages.items()}
+        upgraded[TARGET/'index.html'] = render_parent_extensions(upgraded[TARGET/'index.html'], 'essays/relation/index.html')
+        return upgraded
     finally:
         converter.close()
 

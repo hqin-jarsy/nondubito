@@ -7,6 +7,7 @@ from unittest.mock import patch
 import build_search_index as search
 from build_reader_series import ROOT,registry
 from build_sitemap import parse_page,sitemap_xml
+from reader_supplements import parent_discovery_paths
 
 
 def render(slug):
@@ -24,6 +25,7 @@ def render(slug):
             paths += translated
         paths += [ROOT/f'essays/{language}/index.html' for language in spec['languages']]
     paths += [ROOT/p for p in ('index.html','library.html','essays/sae/index.html')]
+    paths += parent_discovery_paths(s,ROOT)
     scope = {p.relative_to(ROOT).as_posix() for p in paths}
     with patch.object(search,'collect_pages',lambda:paths):
         _,fresh = search.build()

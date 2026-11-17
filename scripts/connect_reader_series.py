@@ -7,6 +7,7 @@ from build_reader_series import ROOT, registry, loc, ReaderTraditionalConverter
 from build_language_writing import reading_map, WritingTraditionalConverter
 from build_home_updates import render_home
 from update_sae_navigation import render_library
+from reader_supplements import parent_spec, render_parent_extensions
 
 
 def main():
@@ -16,23 +17,31 @@ def main():
     s = next(s for s in registry() if s['slug'] == args.series)
     conv = ReaderTraditionalConverter()
     try:
-        path = ROOT/'data/sae-reading-map.json'
-        map_text = path.read_text()
-        data = json.loads(map_text)
         target = f'essays/{s["slug"]}/index.html'
-        group = next(g for g in data['groups'] if g['id']==s['shelf'])
-        if not any(i[0]==target for g in data['groups'] for i in g['items']):
-            item = [target,s['zh'],s['en']]
-            previous = json.dumps(group['items'][-1],ensure_ascii=False,separators=(',',':'))
-            assert map_text.count(previous)==1,'Preserve the existing compact reading-map format'
-            map_text = map_text.replace(previous,previous+',\n      '+json.dumps(item,ensure_ascii=False,separators=(',',':')),1)
-            group['items'].append(item)
-            path.write_text(map_text)
-        lib = ROOT/'library.html'
-        lib.write_text(render_library(lib.read_text(),data['groups'],conv))
-        map_conv = WritingTraditionalConverter()
-        try:(ROOT/'essays/sae/index.html').write_text(reading_map(map_conv))
-        finally:map_conv.close()
+        parent = parent_spec(s)
+        if parent:
+            path = ROOT/parent[0]
+            before = path.read_text()
+            after = render_parent_extensions(before,parent[0],converter=conv)
+            if after != before:
+                path.write_text(after)
+        else:
+            path = ROOT/'data/sae-reading-map.json'
+            map_text = path.read_text()
+            data = json.loads(map_text)
+            group = next(g for g in data['groups'] if g['id']==s['shelf'])
+            if not any(i[0]==target for g in data['groups'] for i in g['items']):
+                item = [target,s['zh'],s['en']]
+                previous = json.dumps(group['items'][-1],ensure_ascii=False,separators=(',',':'))
+                assert map_text.count(previous)==1,'Preserve the existing compact reading-map format'
+                map_text = map_text.replace(previous,previous+',\n      '+json.dumps(item,ensure_ascii=False,separators=(',',':')),1)
+                group['items'].append(item)
+                path.write_text(map_text)
+            lib = ROOT/'library.html'
+            lib.write_text(render_library(lib.read_text(),data['groups'],conv))
+            map_conv = WritingTraditionalConverter()
+            try:(ROOT/'essays/sae/index.html').write_text(reading_map(map_conv))
+            finally:map_conv.close()
         ledger = ROOT/'data/site-updates.json'
         updates = json.loads(ledger.read_text())
         update_id = f'{s["date"]}-{s["slug"]}-reader-series'
