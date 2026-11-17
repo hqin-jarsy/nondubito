@@ -116,7 +116,7 @@ def landing(s,items,conv):
     editions_en = 'eight languages' if multilingual(s['slug']) else 'English, Simplified & Traditional Chinese'
     editions_zh = '八种语言' if multilingual(s['slug']) else '英文、简体中文与繁体中文'
     cards = ''.join(f'<a class="lw-card" href="{i["slug"]}.html"><p class="lw-kicker">{i["id"]:02d}</p>{loc(i["title_en"],i["title_zh"],conv,"h2")}{loc(i["deck_en"],i["deck_zh"],conv,"p")}{loc("Read essay →","阅读全文 →",conv,"span","lw-read")}</a>' for i in items)
-    content = '<main class="lw-wrap">'+breadcrumb(s,conv)+'<section class="lw-hero"><p class="lw-kicker">Non Dubito · SAE</p>'+loc(s['en'],s['zh'],conv,'h1')+loc(s['deck_en'],s['deck_zh'],conv,'p','lw-deck lw-search-deck')+loc(f'{s["count"]} complete essays · {editions_en}',f'{s["count"]} 篇完整散文 · {editions_zh}',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc(s['opening_en'],s['opening_zh'],conv,'p')+'<a href="ep01.html">'+loc('Begin here →','从第一篇开始 →',conv)+'</a></aside><section class="lw-grid">'+cards+'</section>'+reading_note(s,conv)+related(s,conv)+'</main>'
+    content = '<main class="lw-wrap">'+breadcrumb(s,conv)+'<section class="lw-hero"><p class="lw-kicker">Non Dubito · SAE</p>'+loc(s['en'],s['zh'],conv,'h1')+loc(s['deck_en'],s['deck_zh'],conv,'p','lw-deck lw-search-deck')+loc(f'{s["count"]} complete {"essay" if s["count"] == 1 else "essays"} · {editions_en}',f'{s["count"]} 篇完整散文 · {editions_zh}',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc(s['opening_en'],s['opening_zh'],conv,'p')+'<a href="ep01.html">'+loc('Begin here →','从第一篇开始 →',conv)+'</a></aside><section class="lw-grid">'+cards+'</section>'+reading_note(s,conv)+related(s,conv)+'</main>'
     return connect_languages(page(content,s['en'],s['deck_en'],f'essays/{s["slug"]}/index.html',conv,publication_date=s['date']),s['slug'],'index')
 
 
@@ -147,7 +147,7 @@ def _library_card(s,conv):
         return loc(en,zh,conv,tag,css).replace('lang-zh','lang-zh cl-zh').replace('lang-hant','lang-zh cl-hant')
     label_en = '8 languages' if multilingual(s['slug']) else 'EN / 简 / 繁'
     label_zh = '八语' if multilingual(s['slug']) else '英 / 简 / 繁'
-    return f'<a href="essays/{s["slug"]}/index.html" class="series-card"><span class="series-card-count">'+t(f'{s["count"]} essays · {label_en}',f'{s["count"]} 篇 · {label_zh}')+'</span><div class="series-card-title-zh cl-zh">'+html.escape(s['zh'])+'</div><div class="series-card-title-zh cl-hant">'+html.escape(conv.convert(s['zh']))+'</div><div class="series-card-title-en">'+html.escape(s['en'])+'</div>'+t(s['deck_en'],s['deck_zh'],'p','series-card-desc')+t('Read series →','阅读系列 →','span','series-card-arrow')+'</a>'
+    return f'<a href="essays/{s["slug"]}/index.html" class="series-card"><span class="series-card-count">'+t(f'{s["count"]} {"essay" if s["count"] == 1 else "essays"} · {label_en}',f'{s["count"]} 篇 · {label_zh}')+'</span><div class="series-card-title-zh cl-zh">'+html.escape(s['zh'])+'</div><div class="series-card-title-zh cl-hant">'+html.escape(conv.convert(s['zh']))+'</div><div class="series-card-title-en">'+html.escape(s['en'])+'</div>'+t(s['deck_en'],s['deck_zh'],'p','series-card-desc')+t('Read series →','阅读系列 →','span','series-card-arrow')+'</a>'
 
 
 def render(slug=None):
