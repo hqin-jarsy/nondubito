@@ -1,0 +1,66 @@
+{
+  "language": "de",
+  "reviewed_slugs": [
+    "ep01",
+    "ep02",
+    "ep03",
+    "ep04",
+    "ep05",
+    "ep06",
+    "ep07",
+    "ep08"
+  ],
+  "batches": [
+    {
+      "slugs": [
+        "ep01",
+        "ep02",
+        "ep03",
+        "ep04",
+        "ep05"
+      ],
+      "paragraphs": 127,
+      "result": "完整逐段对照中文，核对标题、deck及说明；发现ep03门卡误分词及source_note来源范围漏项。未见整段或论述省略。"
+    },
+    {
+      "slugs": [
+        "ep06",
+        "ep07",
+        "ep08"
+      ],
+      "paragraphs": 75,
+      "result": "完整逐段对照中文；历史引用范围、儿童内心不可认证、原则冲突条件、交出与法律保护区分均保留。ep06枝干细节可补全。"
+    }
+  ],
+  "issues": [
+    {
+      "id": "de-ts-01",
+      "severity": "medium",
+      "location": "ep03 paragraph 11",
+      "current": "wo die Zugangskarte liegt",
+      "reason": "门卡在哪里指门在哪里卡住，不是门卡/通行卡在哪里。当前德文将识别障碍替换成寻找卡片。",
+      "suggested": "wo der Zugang blockiert ist",
+      "status": "resolved and verified"
+    },
+    {
+      "id": "de-ts-02",
+      "severity": "low",
+      "location": "series.source_note",
+      "reason": "八篇据师生论总览与七篇正文改写只在scope；article阅读说明仅显示source_note，来源范围应独立完整。",
+      "suggested": "在开头补 Die acht Essays beruhen auf dem Überblick und den sieben Haupttexten zur Lehrer-Schüler-Beziehung.",
+      "status": "resolved and verified"
+    },
+    {
+      "id": "de-ts-03",
+      "severity": "low",
+      "location": "ep06 paragraph 16",
+      "current": "diese Linien der Äste gefielen ihm",
+      "reason": "原文枝干包括树枝和树干，德文只保留枝。",
+      "suggested": "diese Linien der Äste und des Stammes gefielen ihm",
+      "status": "resolved and verified"
+    }
+  ],
+  "remaining": [],
+  "limitations": "独立于译者的模型逐段对照，不声称人工母语审阅或外部史料独立核验。",
+  "verification": "Re-read all three corrected locations in final de.json: the blocked access replaces the mistranslated access card, branches and trunk are both present, and source_note independently specifies all eight essays and their theoretical source. All identified issues resolved."
+}
