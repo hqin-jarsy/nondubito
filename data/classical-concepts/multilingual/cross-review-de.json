@@ -1,0 +1,62 @@
+{
+  "language": "de",
+  "reviewed_slugs": [
+    "ep01",
+    "ep02",
+    "ep03",
+    "ep04",
+    "ep05",
+    "ep06"
+  ],
+  "batches": [
+    {
+      "slugs": [
+        "ep01",
+        "ep02",
+        "ep03",
+        "ep04",
+        "ep05"
+      ],
+      "method": "逐段对照中文正文，核对标题、deck、阅读说明和引用标题及URL。",
+      "result": "发现1处判断主体被动化、1处标题范围过宽、1处阅读说明遗漏。未见段落缺失。"
+    },
+    {
+      "slugs": [
+        "ep06"
+      ],
+      "method": "完整逐段对照中文，重点核对个人宽恕/公共刑罚及地域时点、报告与心理断言边界。",
+      "result": "未发现需要修改的实质问题。"
+    }
+  ],
+  "issues": [
+    {
+      "id": "de-01",
+      "severity": "medium",
+      "location": "articles[3].body[19] (ep04 paragraph 20)",
+      "current": "Wessen Leben wartet gerade darauf, anhand dieser Nachrichten beurteilt zu werden?",
+      "reason": "中文问的是谁的生活正在等这些消息以自行判断；德文被动式变成生命等待被他人评判，逆转判断主体。",
+      "suggested": "Wer wartet hier auf diese Nachrichten, um über das eigene Leben urteilen zu können?",
+      "status": "resolved and verified"
+    },
+    {
+      "id": "de-02",
+      "severity": "low",
+      "location": "articles[1].title",
+      "current": "Über die dreihundert Yuan hinaus steht mir nichts zu",
+      "reason": "原标题限定三百以外不归我处置的是对方其余生活；现标题泛化成三百以外一切皆不属于我，与正文保留拒借或其他权利的表述不够协调。",
+      "suggested": "Über die dreihundert Yuan hinaus kann ich nicht über dich verfügen",
+      "status": "resolved and verified"
+    },
+    {
+      "id": "de-03",
+      "severity": "low",
+      "location": "series.source_note",
+      "reason": "registry note_zh末尾简繁中文同文、英文独立重写未保留。其他规范、证据与范围限制齐全。",
+      "suggested": "Die chinesischen Fassungen in vereinfachten und traditionellen Schriftzeichen enthalten denselben Text; die englische Fassung ist eigenständig neu geschrieben. Die deutsche Fassung folgt den chinesischen Leseressays.",
+      "status": "resolved and verified"
+    }
+  ],
+  "remaining": [],
+  "limitations": "独立于德文作者的模型对照审核，不是人工母语审阅或法律历史独立事实核验。",
+  "verification": "Re-read the three corrected locations in the final de.json. The question restores the learner as judging subject; the title limits disposal over the other person rather than all rights; the source note preserves the Chinese-script and independent-English distinction. All three identified issues are resolved."
+}
