@@ -23,6 +23,7 @@ class ReaderSeriesPublication(unittest.TestCase):
                 ('钢制储罐；划明范围；划窄；划出边界', '鋼製儲罐；劃明範圍；劃窄；劃出邊界'),
                 ('咨询答复；发明了规则；发布者', '諮詢答覆；發明了規則；發佈者'),
                 ('注明来源；标注范围；获准发问', '註明來源；標註範圍；獲准發問'),
+                ('心智能力法；心智能力评估', '心智能力法；心智能力評估'),
             ):
                 self.assertEqual(converter.convert(source),expected)
         finally:

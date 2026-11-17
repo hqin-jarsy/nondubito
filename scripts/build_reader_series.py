@@ -34,7 +34,7 @@ class ReaderTraditionalConverter(ConsensusTraditionalConverter):
                         ('校准','校準'),('鋼制','鋼製'),('划明','劃明'),('划窄','劃窄'),
                         ('划在','劃在'),('答復','答覆'),('咨詢','諮詢'),
                         ('發明瞭','發明了'),('髮布者','發佈者'),('划出','劃出'),
-                        ('注明','註明'),('標注','標註')):
+                        ('注明','註明'),('標注','標註'),('心智慧力','心智能力')):
             result = result.replace(old,new)
         return result
 
