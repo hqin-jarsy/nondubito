@@ -49,7 +49,14 @@ def render(series):
     config = json.loads((ROOT/'data/home-updates.json').read_text())
     pages[ROOT/'index.html'] = replace_section((ROOT/'index.html').read_text(), render_section(ledger['updates'],config))
     for language in spec['languages']:
-        _, data = load_language(series,language)
+        if spec.get('source_format') == 'literary-html':
+            # Literary editions retain their published HTML as their source.
+            # Their editorial/body validation belongs to their own renderer.
+            data = json.loads((ROOT/'data'/series/'multilingual'/f'{language}.json').read_text())
+            assert [a['slug'] for a in data['articles']] == spec['slugs']
+            assert data['series']['title'].strip() and data['series']['deck'].strip()
+        else:
+            _, data = load_language(series,language)
         path = ROOT/f'essays/{language}/index.html'
         source = path.read_text()
         anchor = '<div id="language-library" class="language-channel-library-anchor" aria-hidden="true"></div>'
@@ -58,6 +65,10 @@ def render(series):
         href='../'+spec['directory'].removeprefix('essays/')+'/'+language+'/'+suffix
         card = f'<section class="essays-section" style="padding:2rem 0"><a href="{href}" class="essay-card" style="display:block;text-decoration:none;border-left:3px solid var(--gold);padding:2rem"><p style="font-family:var(--sans);font-size:.8rem;color:var(--green)">{html.escape(data["ui"]["series"])}</p><h2 style="font-size:1.6rem;font-weight:400">{html.escape(item["title"])}</h2><p>{html.escape(item["deck"])}</p><p>{edition_count(language,len(data["articles"]),spec)}</p></a></section>'
         pages[path] = block(source,'FULL SERIES '+series.upper()+' CHANNEL',card,anchor)
+    # Supplements remain under their existing parent; do not relabel the
+    # entire parent's language coverage after expanding only the supplement.
+    if 'library_count' not in entry:
+        return pages
     path = ROOT/'library.html'
     source = path.read_text()
     pattern = r'(<a href="'+re.escape(entry.get('library_url',entry['url']))+r'" class="series-card(?: series-card-flagship)?">\s*<span class="series-card-count">).*?(</span>\s*<div class="series-card-title-zh)'
@@ -69,6 +80,14 @@ def render(series):
     source, n = re.subn(pattern,count,source,flags=re.S)
     assert n == 1, ('Library series card missing or ambiguous',series)
     pages[path] = source
+    if spec.get('source_format') == 'literary-html':
+        path = ROOT/'essays/literature/index.html'
+        source = path.read_text()
+        local_url = entry['url'].removeprefix('essays/literature/')
+        local_pattern = pattern.replace(re.escape(entry.get('library_url',entry['url'])), re.escape(local_url), 1)
+        source, n = re.subn(local_pattern, count, source, flags=re.S)
+        assert n == 1, ('Literature series card missing or ambiguous',series)
+        pages[path] = source
     return pages
 
 
