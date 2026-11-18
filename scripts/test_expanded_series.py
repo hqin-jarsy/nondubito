@@ -32,8 +32,12 @@ def check(series):
             text = (directory/language/(article['slug']+'.html')).read_text()
             assert render_prose(article['body']) in text, (language,article['slug'],'body drift')
             assert not re.search(r'TODO|FIXME|\ufffd', '\n'.join(article['body']))
-            if 'coverage' in article:
+            if isinstance(article.get('coverage'), list):
                 assert len(article['body']) == len(article['coverage'])
+            elif 'coverage' in article:
+                # Some literary editions describe coverage in prose. Their
+                # per-block alignment is checked by the series validator.
+                assert isinstance(article['coverage'], str) and article['coverage'].strip()
         records = json.loads((ROOT/'data/search'/f'{language}.json').read_text())['records']
         indexed = {r['u'] for r in records}
         assert len(indexed) == len(records), (language,'duplicate search record')
