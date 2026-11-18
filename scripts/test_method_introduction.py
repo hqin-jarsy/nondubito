@@ -92,8 +92,9 @@ class MethodIntroductionTests(unittest.TestCase):
     def test_primary_directory_sequence_and_feature(self):
         source = (PAGE.parent / "index.html").read_text()
         listing = re.search(r'<ul class="entry-list">(.*?)</ul>', source, re.S).group(1)
-        links = re.findall(r'<a href="([^"]+)"', listing)
+        links = re.findall(r'<a href="([^"]+)" class="entry-row"', listing)
         self.assertEqual(links, [slug + ".html" for slug in ["0", "i", "ii", "iii", "iv", "v", "vi", "vii", "00", "00e", "viii", "ix", "x"]])
+        self.assertEqual(listing.count('href="https://self-as-an-end.net/papers/sae-negativa.html"'), 2)
         self.assertIn('<div class="method-start">', source)
         self.assertIn('introductory essay 00E', source)
         self.assertNotIn('<div class="series-title-en lang-en">方法论系列</div>', source)
