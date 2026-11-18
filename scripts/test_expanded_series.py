@@ -5,6 +5,7 @@ Review records must separately describe the real semantic review and its limits.
 Supports literary HTML and full reader editions without rewriting either source.
 """
 import argparse
+import html
 import json
 import re
 import xml.etree.ElementTree as ET
@@ -33,7 +34,17 @@ def check(series):
             assert render_prose(article['body']) in text, (language,article['slug'],'body drift')
             assert not re.search(r'TODO|FIXME|\ufffd', '\n'.join(article['body']))
             if isinstance(article.get('coverage'), list):
-                assert len(article['body']) == len(article['coverage'])
+                if (spec.get('source_format') == 'literary-html'
+                        and article.get('source_note')
+                        and len(article['coverage']) == len(article['body']) + 1):
+                    # The final bibliographical source block may be rendered
+                    # separately as an aside, never silently dropped.
+                    source = json.loads((base/'source.json').read_text())['articles']
+                    original = next(a for a in source if a['slug'] == article['slug'])
+                    assert len(article['coverage']) == len(original['body_zh'])
+                    assert html.escape(article['source_note']) in text
+                else:
+                    assert len(article['body']) == len(article['coverage'])
             elif 'coverage' in article:
                 # Some literary editions describe coverage in prose. Their
                 # per-block alignment is checked by the series validator.

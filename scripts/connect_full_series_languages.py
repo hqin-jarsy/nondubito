@@ -81,12 +81,13 @@ def render(series):
     assert n == 1, ('Library series card missing or ambiguous',series)
     pages[path] = source
     if spec.get('source_format') == 'literary-html':
-        path = ROOT/'essays/literature/index.html'
+        category = spec['directory'].rsplit('/', 1)[0]
+        path = ROOT/(category+'/index.html')
         source = path.read_text()
-        local_url = entry['url'].removeprefix('essays/literature/')
+        local_url = entry['url'].removeprefix(category+'/')
         local_pattern = pattern.replace(re.escape(entry.get('library_url',entry['url'])), re.escape(local_url), 1)
         source, n = re.subn(local_pattern, count, source, flags=re.S)
-        assert n == 1, ('Literature series card missing or ambiguous',series)
+        assert n == 1, ('Category series card missing or ambiguous',series)
         pages[path] = source
     return pages
 

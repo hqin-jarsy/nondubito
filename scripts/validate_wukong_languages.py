@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+"""Scoped structural integrity and source coverage, not literary/native review."""
+from pathlib import Path
+from urllib.parse import urlsplit,unquote
+import json,re,hashlib
+from prepare_action_sources import Document,Node
+from full_series_languages import render_prose
+from web_analytics import issue,Document as AnalyticsDocument
+R=Path(__file__).resolve().parents[1];D=R/'data/black-myth-wukong/multilingual';P=R/'essays/games/black-myth-wukong'
+source=json.loads((D/'source.json').read_text())['articles'];original=json.loads((D/'source-original.json').read_text())['articles'];corrections=json.loads((D.parent/'source-corrections.json').read_text())['corrections'];allowed={(x['article'],x['source_block']) for x in corrections};counts=[len(a['body_zh']) for a in source];errors=[];blocks={};link_count=0
+for lang in ['en','ja','fr','de','es','ko']:
+ data=json.loads((D/(lang+'.json')).read_text());assert [a['slug'] for a in data['articles']]==[a['slug'] for a in source]
+ blocks[lang]=[]
+ for i,(a,s) in enumerate(zip(data['articles'],source)):
+  if lang=='en':
+   assert len(a['body'])==len(original[i]['body_en']),(lang,i)
+  else:
+   assert len(a['body']) in (counts[i],counts[i]-1),(lang,i)
+   assert len(a['body'])==counts[i] or a.get('source_note')
+  assert all(p.strip() and '�' not in p for p in a['body'])
+  if lang!='en': assert [j for j,x in enumerate(a['body']) if x.startswith('## ')]==[j for j,x in enumerate(s['body_zh']) if x.startswith('## ')]
+  p=P/(a['slug']+'.html') if lang=='en' else P/lang/(a['slug']+'.html')
+  assert render_prose(a['body']) in p.read_text(),(lang,a['slug'],'body not rendered')
+  blocks[lang].append(len(a['body']))
+english=json.loads((D/'en.json').read_text())['articles'];en_changes=json.loads((D.parent/'english-corrections.json').read_text())['articles']
+for a,o,record in zip(english,original,en_changes):
+ assert record['original_body']==o['body_en']
+ assert record['revised_body']==a['body']
+ assert len(record['block_mapping'])==len(a['body'])
+ assert [m['original_block'] for m in record['block_mapping'] if 'original_block' in m]==list(range(1,len(o['body_en'])+1))
+for i,(s,o) in enumerate(zip(source,original)):
+ p=R/s['source_html'];d=Document(p.read_text());n=next(n for n in d.root.walk() if n.has('essay-body','lang-zh'))
+ actual=[('## ' if x.tag=='h2' else '')+x.text().strip() for x in n.children if isinstance(x,Node) and x.text().strip() and '版本说明' not in x.text()]
+ assert actual==s['body_zh'],s['slug']
+ v=json.loads(re.search(r'var variants = (\{.*?\});',(P/'zh-hant-data'/(s['slug']+'.js')).read_text(),re.S).group(1))
+ lookup={c['source_block']:c for c in corrections if c['article']==i+1}
+ expected=[lookup.get(j,{}).get('after',b) for j,b in enumerate(o['body_zh'],1)]
+ assert [b for b in expected if b is not None]==actual,(i,'unrecorded Chinese changes')
+ for c in lookup.values():
+  assert c['before']==o['body_zh'][c['source_block']-1]
+  if c['after'] is not None:assert v.get(c['after'].removeprefix('## '))==c['zh_hant'].removeprefix('## '),(i,'Traditional mapping mismatch')
+pages=[*P.glob('*.html'),*P.glob('*/*.html')];assert len(pages)==30
+for p in pages:
+ d=Document(p.read_text());nodes=list(d.root.walk());links=[n for n in nodes if n.tag=='link']
+ assert len([n for n in links if n.attrs.get('rel')=='alternate'])==8,p
+ assert len([n for n in links if n.attrs.get('rel')=='canonical'])==1,p
+ assert issue(AnalyticsDocument(p.read_text())) is None,p
+ assert not any(n.tag=='h3' for n in nodes),p
+ for n in nodes:
+  for attr in ['href','src']:
+   href=n.attrs.get(attr) or '';u=urlsplit(href)
+   if not href or u.scheme or href.startswith('//') or not u.path:continue
+   link_count+=1;q=(p.parent/unquote(u.path)).resolve()
+   if not q.exists():errors.append([str(p.relative_to(R)),href])
+assert not errors,errors
+for change in json.loads((D.parent/'shared-metadata-corrections.json').read_text())['changes']:
+ text=(R/change['path']).read_text()
+ assert change['after'] in text,(change['path'],'shared correction missing')
+ assert change['before'] not in text,(change['path'],'stale shared description')
+result={'result':'passed','pages':30,'new_language_pages':25,'source_blocks':counts,'target_body_blocks':blocks,'local_links_checked':link_count,'checks':['Five new languages cover full Chinese; English retains original argument with recorded local corrections','All language body prose present in generated pages','8 alternates and one canonical per page','Local links exist; analytics clean; no unstyled h3','Chinese changes limited to recorded blocks; modified Traditional Chinese mappings nonempty'],'limitations':['No native-speaker or scholarly certification','Browser/mobile visual checks performed separately by coordinator'],'language_sha256':{l:hashlib.sha256((D/(l+'.json')).read_bytes()).hexdigest() for l in blocks}}
+(D/'validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps(result,ensure_ascii=False))

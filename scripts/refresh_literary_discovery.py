@@ -21,7 +21,8 @@ def render(slug):
         assert len(translated) == len(spec['slugs'])+1
         paths += translated
     paths += [ROOT/f'essays/{language}/index.html' for language in spec['languages']]
-    paths += [ROOT/p for p in ('index.html','library.html','essays/literature/index.html')]
+    paths += [ROOT/p for p in ('index.html','library.html',spec['directory'].rsplit('/',1)[0]+'/index.html')]
+    paths += [ROOT/p for p in spec.get('additional_discovery_paths', [])]
     scope = {p.relative_to(ROOT).as_posix() for p in paths}
     with patch.object(search,'collect_pages',lambda:paths):
         _,fresh = search.build()

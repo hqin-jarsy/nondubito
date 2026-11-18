@@ -21,8 +21,9 @@ def main():
     spec = profile(args.series)
     assert spec['source_format'] == 'literary-html'
     prefix = spec['directory'] + '/'
-    shared = {'index.html', 'library.html', 'essays/literature/index.html'}
+    shared = {'index.html', 'library.html', spec['directory'].rsplit('/', 1)[0]+'/index.html'}
     shared.update(f'essays/{language}/index.html' for language in spec['languages'])
+    shared.update(spec.get('additional_discovery_paths', []))
 
     def previous(path):
         return subprocess.check_output(['git', 'show', f'{args.base}:{path}'], cwd=ROOT)

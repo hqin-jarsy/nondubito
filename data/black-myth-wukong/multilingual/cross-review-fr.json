@@ -1,0 +1,75 @@
+{
+  "status": "complete",
+  "language": "fr",
+  "review_type": "independent full AI review, not native external review",
+  "scope": "Read all four frozen Chinese essays and correction ledger, then all four French essays in full, every heading and source paragraph, series/title/deck/edition/source metadata. Not sampled. Re-read each final changed paragraph.",
+  "source_sha256": "d5340902c7c6b9ee182bf59f6cff89da2702572d0b3d0a6e61e7e7ad3a4484ce",
+  "units_per_article": [
+    90,
+    87,
+    89,
+    85
+  ],
+  "total_units": 351,
+  "findings_fixed": [
+    {
+      "article": 1,
+      "source_block": 14,
+      "before": "Décomposons les trois caractères de son nom chinois, Tianming ren.",
+      "after": "Décomposons les trois caractères de son nom chinois, 天命人, Tianming ren.",
+      "reason": "Show the three characters being analyzed rather than only their romanization."
+    },
+    {
+      "article": 1,
+      "source_block": 77,
+      "before": "Après des dizaines d’heures de combat, il dispose devant vous ces notices, une à une, pour montrer la vie que menaient les êtres vaincus.",
+      "after": "Après des dizaines d’heures de combat, le jeu dispose devant vous ces notices, une à une, pour montrer la vie que menaient les êtres vaincus.",
+      "reason": "Disambiguate the game from the protagonist as subject."
+    },
+    {
+      "article": 2,
+      "source_block": 68,
+      "before": "Dans cette lecture, la sixième déplace la question : faut-il le faire, pourquoi, au nom de qui ?",
+      "after": "Dans cette lecture, la sixième déplace la question : veut-on le faire, pourquoi, au nom de qui ?",
+      "reason": "Chinese 要不要做 asks volition, not moral obligation faut-il."
+    },
+    {
+      "article": 2,
+      "source_block": 75,
+      "before": "Il ressemble plus que quiconque à un guide. Son ton est bienveillant, ses paroles se veulent bonnes pour le jeune singe, chaque apparition lui ordonne le pas suivant.",
+      "after": "Il ressemble plus que quiconque à un guide. Son ton est bienveillant, ses paroles se veulent bonnes pour le jeune singe ; à chaque apparition, il lui éclaire le pas suivant.",
+      "reason": "理顺 means clarifies the next step, not orders it; preserve benevolent-guidance ambiguity."
+    },
+    {
+      "article": 3,
+      "source_block": 88,
+      "before": "L’essai suivant parlera de sa fin et de ce qui décide tout au dernier moment, cette chose dont les essais précédents n’ont pas encore nommé directement le nom.",
+      "after": "L’essai suivant parlera de sa fin et de ce qui décide tout au dernier moment, cette chose dont les essais précédents n’ont pas encore abordé directement le nom.",
+      "reason": "Remove awkward named-the-name repetition."
+    },
+    {
+      "article": 4,
+      "source_block": 31,
+      "before": "Inversons la phrase : le contrôle le plus efficace ne consiste pas à contenir quelqu’un qui possède une position, mais à trouver quelqu’un qui ne l’a pas encore formulée.",
+      "after": "Inversons la phrase : le contrôle le plus efficace ne consiste pas à contenir quelqu’un qui possède une position propre, mais à trouver quelqu’un qui n’en a pas encore.",
+      "reason": "No view is not merely an unspoken view; retain the source conceptual distinction without turning silence into lack of will."
+    }
+  ],
+  "checkpoints": [
+    "All argument stages present, no summary substitution.",
+    "Silent protagonist vs explicit strong will maintained; wanting vs obligation corrected.",
+    "Young monk debate, Jinchi wall death, killed serpent and turtle sinking retained.",
+    "Sixth root requires Erlang combat and transfer; hidden ending first run distinguished from new-cycle selectable effects.",
+    "Two-end interpretation, incomplete coordination evidence, and remembered Wukong departure not future protagonist action retained.",
+    "FR bibliography remains final body unit plus metadata; renderer must avoid duplicate output."
+  ],
+  "remaining": [],
+  "limitations": [
+    "No game replay or verification of all official French UI terms; edition explicitly says semantic renderings.",
+    "No browser/build tests performed by reviewer."
+  ],
+  "reviewed_sha256": "990d5cc34773270d28bd0761907d60b1bfa957516c20c4bb2b2e0202878a552f",
+  "target_sha256": "990d5cc34773270d28bd0761907d60b1bfa957516c20c4bb2b2e0202878a552f",
+  "reviewer": "cities (independent full review; not draft author)",
+  "hash_note": "The former input_sha256 field recorded the post-review final manuscript, not an original-draft hash. Renamed reviewed_sha256 to state its meaning; no original hash reconstructed."
+}
