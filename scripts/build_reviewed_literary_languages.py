@@ -57,6 +57,8 @@ def main(key):
   write(p,ensure_analytics(text))
  hp=folder/'zh-hant-data/index.js';ht=hp.read_text();match=re.search(r'var variants\s*=\s*(\{.*?\});',ht,re.S);variants=json.loads(match[1]);variants.update({'八语阅读':'八語閱讀','八语 · 作品解读':'八語 · 作品解讀'});write(hp,ht[:match.start(1)]+json.dumps(variants,ensure_ascii=False,separators=(',',':'))+ht[match.end(1):])
  r.render(directory,key)
+ from apply_reviewed_literary_metadata import apply
+ apply(key)
  print(key,': reviewed primary corrections and',5*(len(slugs)+1),'new-language pages; shared navigation untouched')
 if __name__=='__main__':
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('series');main(parser.parse_args().series)

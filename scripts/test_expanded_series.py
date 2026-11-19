@@ -45,6 +45,20 @@ def check(series):
                     assert html.escape(article['source_note']) in text
                 else:
                     assert len(article['body']) == len(article['coverage'])
+            elif isinstance(article.get('coverage'), dict):
+                # Structured author receipts declare exact block counts. Check
+                # them against both rendered text and the frozen source.
+                coverage = article['coverage']
+                assert set(coverage) == {'source_zh_blocks', 'translation_body_blocks', 'source_note_blocks'}
+                assert all(type(v) is int and v >= 0 for v in coverage.values())
+                source = json.loads((base/'source.json').read_text())['articles']
+                original = next(a for a in source if a['slug'] == article['slug'])
+                assert coverage['source_zh_blocks'] == len(original['body_zh'])
+                assert coverage['translation_body_blocks'] == len(article['body'])
+                assert coverage['source_note_blocks'] == int(bool(article.get('source_note')))
+                assert coverage['source_zh_blocks'] == coverage['translation_body_blocks'] + coverage['source_note_blocks']
+                if article.get('source_note'):
+                    assert html.escape(article['source_note']) in text
             elif 'coverage' in article:
                 # Some literary editions describe coverage in prose. Their
                 # per-block alignment is checked by the series validator.
