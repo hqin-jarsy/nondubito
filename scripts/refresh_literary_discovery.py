@@ -14,8 +14,9 @@ def render(slug):
     assert spec['source_format'] == 'literary-html'
     date = spec['date']
     directory = ROOT/spec['directory']
-    paths = sorted(directory.glob('*.html'))
-    assert len(paths) == len(spec['slugs'])+1
+    redirects = set(spec.get('historical_redirects', {}))
+    paths = sorted(p for p in directory.glob('*.html') if p.stem not in redirects)
+    assert {p.stem for p in paths} == {'index', *spec['slugs']}
     for language in spec['languages']:
         translated = sorted((directory/language).glob('*.html'))
         assert len(translated) == len(spec['slugs'])+1

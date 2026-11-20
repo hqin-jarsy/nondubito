@@ -21,8 +21,21 @@ def check(series):
     sitemap = ET.parse(ROOT/'sitemap.xml').getroot()
     ns = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
     urls = {node.find(ns+'loc').text for node in sitemap}
+    redirects = spec.get('historical_redirects', {})
     paths = sorted(directory.glob('*.html'))
-    assert {p.stem for p in paths} == {'index',*spec['slugs']}
+    assert {p.stem for p in paths} == {'index', *spec['slugs'], *redirects}
+    for old_slug, target in redirects.items():
+        old_path = directory / f'{old_slug}.html'
+        target_path = directory / f'{target}.html'
+        assert target in spec['slugs']
+        redirect = Document(old_path.read_text())
+        assert any(n.tag == 'meta' and n.attrs.get('name') == 'robots'
+                   and 'noindex' in n.attrs.get('content', '') for n in redirect.root.walk()), old_path
+        canonical = [n.attrs['href'] for n in redirect.root.walk()
+                     if n.tag == 'link' and n.attrs.get('rel') == 'canonical']
+        assert canonical == [f"https://nondubito.net/{spec['directory']}/{target_path.name}"], old_path
+        assert f"https://nondubito.net/{spec['directory']}/{old_path.name}" not in urls, old_path
+    paths = [p for p in paths if p.stem not in redirects]
     for language in spec['languages']:
         data = json.loads((base/f'{language}.json').read_text())
         assert [a['slug'] for a in data['articles']] == spec['slugs']
