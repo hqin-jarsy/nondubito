@@ -153,6 +153,7 @@ def build() -> tuple[dict, dict[str, list[dict]]]:
                     ROOT / "essays" / "political-economy-choices",
                     ROOT / "essays" / "monopoly",
                     ROOT / "essays" / "school",
+                    ROOT / "essays" / "cultivation-propagation",
                 ) else {},
                 "search_text": extract_search_text(source),
             }

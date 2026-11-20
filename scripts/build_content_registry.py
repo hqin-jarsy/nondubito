@@ -116,6 +116,7 @@ DOMAIN_PREFIXES = (
     ("essays/political-economy-choices/", "sae-philosophy"),
     ("essays/monopoly/", "sae-philosophy"),
     ("essays/school/", "sae-philosophy"),
+    ("essays/cultivation-propagation/", "sae-philosophy"),
     ("essays/sae/", "sae-philosophy"),
     ("essays/art/", "sae-philosophy"),
     ("essays/aesthetics/", "sae-philosophy"),
