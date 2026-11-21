@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export and replace seven legacy essay bodies in five locales (Power by default).
+"""Export and replace legacy essay bodies in five locales (Power by default).
 
 The repository source for Simplified Chinese and English remains its existing
 HTML; Traditional keeps its offline dictionaries. No discovery routes, page
@@ -20,7 +20,6 @@ from build_search_index import extract_search_text, serialized
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCALES = ('ja', 'fr', 'de', 'es', 'ko')
-SLUGS = tuple(f'ep{i:02d}' for i in range(1, 8))
 HEADINGS = {'h2', 'h3', 'h4', 'h5', 'h6'}
 
 
@@ -30,6 +29,12 @@ class Series:
     slug: str
     scratch_slug: str
     source_heading: str
+    count: int = 7
+    reference_emphasis: tuple[str, ...] = ()
+
+    @property
+    def slugs(self):
+        return tuple(f'ep{i:02d}' for i in range(1, self.count + 1))
 
     @property
     def pages(self):
@@ -45,7 +50,7 @@ class Series:
 
 
 POWER = Series('Power', 'quanli', 'power', 'h3')
-PAGES, CHANGES, SCRATCH = POWER.pages, POWER.changes, POWER.scratch
+PAGES, CHANGES, SCRATCH, SLUGS = POWER.pages, POWER.changes, POWER.scratch, POWER.slugs
 
 
 def require(condition, message):
@@ -119,18 +124,25 @@ def metadata(html):
     return {'title': plain(titles[0]), 'deck': metas[0]}
 
 
-def original_blocks(html, language):
+def original_blocks(html, language, *, ignore_reference_emphasis=False):
     start, end = body_span(html, language)
-    return tokenize(html[start:end])
+    body = html[start:end]
+    if ignore_reference_emphasis:
+        # Book titles in the separate English reference edition are italic.
+        # Keep its text in the export; this never writes the reference HTML.
+        require(body.count('<em>') == body.count('</em>') > 0,
+                'expected paired inline emphasis in the reference body')
+        body = body.replace('<em>', '').replace('</em>', '')
+    return tokenize(body)
 
 
 def extract(series=POWER):
     articles = []
-    for slug in SLUGS:
+    for slug in series.slugs:
         p = series.pages / (slug+'.html')
         html = read(p)
         out = {'slug': slug, 'body': original_blocks(html, 'zh'),
-               'body_en': original_blocks(html, 'en'),
+               'body_en': original_blocks(html, 'en', ignore_reference_emphasis=slug in series.reference_emphasis),
                'source_sha256': digest(p), 'editions': {}}
         for lang in LOCALES:
             old = read(series.pages / lang / p.name)
@@ -144,7 +156,7 @@ def validate(locale, payload, source):
     require(isinstance(payload, dict) and isinstance(payload.get('articles'), list),
             f'{locale}: expected articles array')
     articles = payload['articles']
-    require([a.get('slug') for a in articles] == list(SLUGS), f'{locale}: wrong articles/slugs/order')
+    require([a.get('slug') for a in articles] == [a['slug'] for a in source['articles']], f'{locale}: wrong articles/slugs/order')
     for essay, origin in zip(articles, source['articles']):
         slug = essay['slug']
         prefix = f'{locale}/{slug}'
@@ -247,7 +259,7 @@ def main(series=POWER):
         if args.extract:
             write(args.extract, pretty(source))
             counts = ', '.join(str(len(a['body'])) for a in source['articles'])
-            print(f'Exported all seven ZH and EN {series.label} essays; ZH blocks: {counts}')
+            print(f'Exported all {series.count} ZH and EN {series.label} essays; ZH blocks: {counts}')
             return
         imports = args.check_inputs or args.apply
         payloads = load_editions(args.import_dir if imports else series.changes, source,
@@ -261,7 +273,7 @@ def main(series=POWER):
             for path, content in expected.items():
                 if not path.exists() or read(path) != content:
                     write(path, content)
-            print(f'Refreshed 35 {series.label} bodies and heading queries; all existing page shells retained')
+            print(f'Refreshed {series.count * len(LOCALES)} {series.label} bodies and heading queries; all existing page shells retained')
         else:
             changed = [p.relative_to(ROOT).as_posix() for p, expected_text in expected.items()
                        if read(p) != expected_text]

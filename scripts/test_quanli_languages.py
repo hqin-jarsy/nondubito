@@ -11,7 +11,7 @@ import xml.etree.ElementTree as ET
 from build_content_registry import extract_canonical
 from build_search_index import extract_search_text
 from revise_quanli_languages import (
-    ROOT, POWER, SLUGS, LOCALES, body_span, digest, extract,
+    ROOT, POWER, LOCALES, body_span, digest, extract,
     load_editions, outputs, pretty, read, tokenize, write,
 )
 
@@ -32,7 +32,7 @@ class Page(HTMLParser):
 
 
 def article_paths(series=POWER):
-    return [series.pages/lang/f'{slug}.html' for lang in LOCALES for slug in SLUGS]
+    return [series.pages/lang/f'{slug}.html' for lang in LOCALES for slug in series.slugs]
 
 
 def canonical(url):
@@ -45,7 +45,7 @@ def check_routes(series=POWER):
     urls = {canonical(el.text) for el in ET.parse(ROOT/'sitemap.xml').findall('.//{*}loc')}
     for language in ('', *LOCALES):
         base = series.pages / language
-        for slug in ['index', *SLUGS]:
+        for slug in ['index', *series.slugs]:
             path = base/f'{slug}.html'
             text = read(path)
             url = 'https://nondubito.net/' + path.relative_to(ROOT).as_posix()
@@ -64,14 +64,14 @@ def check_routes(series=POWER):
                 if target.parent == base:
                     actual.add(target.stem)
             if slug == 'index':
-                assert set(SLUGS) <= actual, path
+                assert set(series.slugs) <= actual, path
             else:
                 assert 'index' in actual, path
-                n = SLUGS.index(slug)
+                n = series.slugs.index(slug)
                 if n:
-                    assert SLUGS[n-1] in actual, path
-                if n+1 < len(SLUGS):
-                    assert SLUGS[n+1] in actual, path
+                    assert series.slugs[n-1] in actual, path
+                if n+1 < len(series.slugs):
+                    assert series.slugs[n+1] in actual, path
 
 
 def snapshot(series=POWER):
@@ -91,7 +91,7 @@ def snapshot(series=POWER):
     for locale in LOCALES:
         path = ROOT/f'data/search/{locale}.json'
         chunk = json.loads(read(path))
-        paths = {f'essays/{series.slug}/{locale}/{slug}.html' for slug in SLUGS}
+        paths = {f'essays/{series.slug}/{locale}/{slug}.html' for slug in series.slugs}
         for record in chunk['records']:
             if record['u'] in paths:
                 record.pop('q')
@@ -104,7 +104,7 @@ def main(series=POWER):
     p.add_argument('--snapshot', type=Path,
                    help='write the baseline before the translation-only import')
     p.add_argument('--baseline', type=Path,
-                   help='verify that everything except the 35 bodies and their 35 search queries stayed unchanged')
+                   help='verify that everything except localized bodies and their search queries stayed unchanged')
     args = p.parse_args()
     check_routes(series)
     if args.snapshot:
@@ -130,7 +130,9 @@ def main(series=POWER):
             assert baseline[section].keys() == current[section].keys(), section
             for name, value in current[section].items():
                 assert baseline[section][name] == value, (section, name)
-    print(f'Checked 48 existing routes; 35 exact localized bodies/search queries; baseline={bool(args.baseline)}')
+    routes = (series.count + 1) * (len(LOCALES) + 1)
+    bodies = series.count * len(LOCALES)
+    print(f'Checked {routes} existing routes; {bodies} exact localized bodies/search queries; baseline={bool(args.baseline)}')
 
 
 if __name__ == '__main__':
