@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export and replace only the seven Power essay bodies in five locales.
+"""Export and replace seven legacy essay bodies in five locales (Power by default).
 
 The repository source for Simplified Chinese and English remains its existing
 HTML; Traditional keeps its offline dictionaries. No discovery routes, page
@@ -9,6 +9,7 @@ query for each revised translation, not its identity or description.
 import argparse
 import json
 import re
+from dataclasses import dataclass
 from hashlib import sha256
 from html import escape, unescape
 from pathlib import Path
@@ -18,12 +19,33 @@ from build_search_index import extract_search_text, serialized
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ROOT / 'essays' / 'quanli'
 LOCALES = ('ja', 'fr', 'de', 'es', 'ko')
 SLUGS = tuple(f'ep{i:02d}' for i in range(1, 8))
-CHANGES = ROOT / 'data' / 'quanli' / 'multilingual'
-SCRATCH = Path('/tmp/nd_power_final')
 HEADINGS = {'h2', 'h3', 'h4', 'h5', 'h6'}
+
+
+@dataclass(frozen=True)
+class Series:
+    label: str
+    slug: str
+    scratch_slug: str
+    source_heading: str
+
+    @property
+    def pages(self):
+        return ROOT / 'essays' / self.slug
+
+    @property
+    def changes(self):
+        return ROOT / 'data' / self.slug / 'multilingual'
+
+    @property
+    def scratch(self):
+        return Path(f'/tmp/nd_{self.scratch_slug}_final')
+
+
+POWER = Series('Power', 'quanli', 'power', 'h3')
+PAGES, CHANGES, SCRATCH = POWER.pages, POWER.changes, POWER.scratch
 
 
 def require(condition, message):
@@ -66,7 +88,7 @@ def body_span(html, language=None):
     raise ValueError(f'unclosed body {language}')
 
 
-def tokenize(html, *, source=True):
+def tokenize(html, *, source=True, source_heading=POWER.source_heading):
     """Prose blocks; remove separately rendered academic footer notes only."""
     html = re.sub(r'<div class="essay-footer-note">.*?</div>', '', html, flags=re.S)
     html = re.sub(r'<p class="essay-footer-note">.*?</p>', '', html, flags=re.S)
@@ -82,7 +104,7 @@ def tokenize(html, *, source=True):
         if strong:
             block['strong'] = plain(strong[1])
         if not source and m[1] == 'h2':
-            block['tag'] = 'h3'  # older compressed bodies use h2 presentation
+            block['tag'] = source_heading  # older compressed bodies use h2 presentation
         blocks.append(block)
     require(bool(blocks) and not re.sub(regex, '', html, flags=re.S).strip(),
             'unexpected structure/text outside prose blocks')
@@ -102,20 +124,20 @@ def original_blocks(html, language):
     return tokenize(html[start:end])
 
 
-def extract():
+def extract(series=POWER):
     articles = []
     for slug in SLUGS:
-        p = PAGES / (slug+'.html')
+        p = series.pages / (slug+'.html')
         html = read(p)
         out = {'slug': slug, 'body': original_blocks(html, 'zh'),
                'body_en': original_blocks(html, 'en'),
                'source_sha256': digest(p), 'editions': {}}
         for lang in LOCALES:
-            old = read(PAGES / lang / p.name)
-            a, b = body_span(old)
+            old = read(series.pages / lang / p.name)
+            body_span(old)
             out['editions'][lang] = {**metadata(old)}
         articles.append(out)
-    return {'source': 'essays/quanli', 'articles': articles}
+    return {'source': f'essays/{series.slug}', 'articles': articles}
 
 
 def validate(locale, payload, source):
@@ -173,10 +195,10 @@ def body_update(original, blocks):
     return original[:start] + render_body(blocks) + original[end:]
 
 
-def load_editions(directory, source, *, scratch_names):
+def load_editions(directory, source, *, scratch_names, series=POWER):
     payloads = {}
     for lang in LOCALES:
-        path = directory / (f'nd_power_{lang}.json' if scratch_names else f'{lang}.json')
+        path = directory / (f'nd_{series.scratch_slug}_{lang}.json' if scratch_names else f'{lang}.json')
         payload = json.loads(read(path))
         validate(lang, payload, source)
         source_hashes = {a['slug']: sha256(pretty([a['body'], a['body_en']]).encode()).hexdigest()
@@ -190,16 +212,17 @@ def load_editions(directory, source, *, scratch_names):
     return payloads
 
 
-def outputs(payloads):
+def outputs(payloads, series=POWER):
     out = {}
     for lang, payload in payloads.items():
         search = ROOT / 'data' / 'search' / f'{lang}.json'
         chunk = json.loads(read(search))
         for article in payload['articles']:
-            path = PAGES / lang / (article['slug']+'.html')
+            path = series.pages / lang / (article['slug']+'.html')
             old = read(path)
             new = body_update(old, article['body'])
-            require(tokenize(new[slice(*body_span(new))], source=False) == article['body'],
+            require(tokenize(new[slice(*body_span(new))], source=False,
+                             source_heading=series.source_heading) == article['body'],
                     f'{path}: rendered prose differs from input')
             out[path] = new
             url = path.relative_to(ROOT).as_posix()
@@ -210,42 +233,42 @@ def outputs(payloads):
     return out
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+def main(series=POWER):
+    parser = argparse.ArgumentParser(description=f'{series.label}: export or update five unabridged translations.')
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument('--extract', type=Path, metavar='FILE')
     mode.add_argument('--check-inputs', action='store_true')
     mode.add_argument('--apply', action='store_true')
     mode.add_argument('--check', action='store_true')
-    parser.add_argument('--import-dir', type=Path, default=SCRATCH)
+    parser.add_argument('--import-dir', type=Path, default=series.scratch)
     args = parser.parse_args()
     try:
-        source = extract()
+        source = extract(series)
         if args.extract:
             write(args.extract, pretty(source))
             counts = ', '.join(str(len(a['body'])) for a in source['articles'])
-            print(f'Exported all seven ZH and EN Power essays; ZH blocks: {counts}')
+            print(f'Exported all seven ZH and EN {series.label} essays; ZH blocks: {counts}')
             return
         imports = args.check_inputs or args.apply
-        payloads = load_editions(args.import_dir if imports else CHANGES, source,
-                                 scratch_names=imports)
-        expected = outputs(payloads)
+        payloads = load_editions(args.import_dir if imports else series.changes, source,
+                                 scratch_names=imports, series=series)
+        expected = outputs(payloads, series)
         if args.check_inputs:
-            print('Checked all five Power locales, body/heading/strong coverage and search identities; no writes')
+            print(f'Checked all five {series.label} locales, body/heading/strong coverage and search identities; no writes')
             return
         if args.apply:
-            expected.update({CHANGES/f'{lang}.json': pretty(doc) for lang, doc in payloads.items()})
+            expected.update({series.changes/f'{lang}.json': pretty(doc) for lang, doc in payloads.items()})
             for path, content in expected.items():
                 if not path.exists() or read(path) != content:
                     write(path, content)
-            print('Refreshed 35 Power bodies and heading queries; all existing page shells retained')
+            print(f'Refreshed 35 {series.label} bodies and heading queries; all existing page shells retained')
         else:
             changed = [p.relative_to(ROOT).as_posix() for p, expected_text in expected.items()
                        if read(p) != expected_text]
             require(not changed, f'refresh required: {", ".join(changed)}')
-            print(f'Checked reproducibility of {len(expected)} Power outputs')
+            print(f'Checked reproducibility of {len(expected)} {series.label} outputs')
     except (OSError, ValueError, TypeError, AttributeError, KeyError) as err:
-        parser.exit(1, f'Power revision: {err}\n')
+        parser.exit(1, f'{series.label} revision: {err}\n')
 
 
 if __name__ == '__main__':
