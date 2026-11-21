@@ -118,7 +118,15 @@ class ReaderSeriesPublication(unittest.TestCase):
             updates = json.loads((ROOT/'data/site-updates.json').read_text())['updates']
             update = [u for u in updates if u['id']==f'{s["date"]}-{s["slug"]}-reader-series']
             self.assertEqual(len(update),1)
-            self.assertEqual(set(update[0]['languages']),{'en','zh','zh-hant'})
+            expected_languages = {'en','zh','zh-hant'}
+            # Most older translations have a separate expansion announcement.
+            # If discovery explicitly updates the original listing instead,
+            # its published languages must also match the profile.
+            translation_root = ROOT/f'data/{s["slug"]}/multilingual'
+            discovery = translation_root/'discovery.json'
+            if discovery.is_file() and json.loads(discovery.read_text())['id'] == update[0]['id']:
+                expected_languages.update(json.loads((translation_root/'profile.json').read_text())['languages'])
+            self.assertEqual(set(update[0]['languages']),expected_languages)
         for lang in ('en','zh-hans','zh-hant'):
             records = json.loads((ROOT/f'data/search/{lang}.json').read_text())['records']
             urls = {r['u'] for r in records}
