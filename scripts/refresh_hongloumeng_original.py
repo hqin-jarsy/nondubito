@@ -11,7 +11,9 @@ DATE = max(ch['modified'] for ch in CHAPTERS.values())
 def refresh():
     paths=list(render())
     paths += [search.ROOT/'essays/literature/hlm'/d/'index.html' for d in ('','en','zh-hant')]
-    paths += [search.ROOT/name for name in ('originals/index.html','index.html','library.html')]
+    paths += [search.ROOT/name for name in ('originals/index.html','index.html','library.html',
+                                           'essays/literature/index.html',
+                                           *('classics/hongloumeng/en/'+n+'.html' for n in ('index','edition','ch080')))]
     scope={str(p.relative_to(search.ROOT)) for p in paths}
     previous=search.collect_pages
     try:
@@ -39,7 +41,7 @@ def refresh():
         # A discovery refresh must not redate byte-identical older chapters.
         if canonical not in entries or prior.returncode or prior.stdout != p.read_bytes():
             entries[canonical]=DATE
-    path.write_text(sitemap_xml(sorted(entries.items(),key=lambda x:(x[0]!='https://nondubito.net/',x[0]))))
+    path.write_text(sitemap_xml(list(entries.items())))
     print(f'Refreshed {len(scope)} discovery pages; added {len(added)} source records')
 
 if __name__=='__main__':refresh()

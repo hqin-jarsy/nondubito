@@ -118,8 +118,8 @@ class ReadingDiscoveryTests(unittest.TestCase):
         card = '<a href="hlm/index.html" class="series-card"><p class="series-card-desc-zh lang-zh">OLD</p><p class="series-card-desc-en lang-en">OLD</p></a>'
         replaced = refresh.replace_project_card('PREFIX'+card+'SUFFIX', 'hlm/index.html')
         self.assertTrue(replaced.startswith('PREFIX') and replaced.endswith('SUFFIX'))
-        self.assertIn('第八十一至八十五回', replaced)
-        self.assertIn('chapters 86–110 remain unpublished', replaced)
+        self.assertIn('第八十一至八十六回已有八语全文，第八十七回已发布简繁中文', replaced)
+        self.assertIn('chapter 87 in Chinese only, and chapters 88–110 remain unpublished', replaced)
         self.assertEqual(refresh.replace_project_card(replaced, 'hlm/index.html'), replaced)
 
     def discovery_fixture(self):

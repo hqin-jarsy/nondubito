@@ -8,7 +8,7 @@ import re
 import subprocess
 import unittest
 from urllib.parse import urlsplit, unquote
-from build_hongloumeng_hub import ROOT, TARGET, CATALOG, EDITIONS, render
+from build_hongloumeng_hub import CH087_TITLE_ZH, ROOT, TARGET, CATALOG, EDITIONS, render
 
 
 class Nodes(HTMLParser):
@@ -19,7 +19,8 @@ class Nodes(HTMLParser):
 
 class HubTests(unittest.TestCase):
     def test_first80_preview_keeps_original_and_continuation_separate(self):
-        pages = render(include_first80=True, first80_date='2026-11-10', include_traditional=False)
+        pages = render(include_first80=True, first80_date='2026-11-10', include_traditional=False,
+                       include_ch087=False, include_first80_translations=False)
         for lang, (directory, _, _) in EDITIONS.items():
             source = pages[TARGET/directory/'index.html']
             section = source.split('<section id="first80">')[1].split('</section>')[0]
@@ -37,7 +38,8 @@ class HubTests(unittest.TestCase):
             self.assertNotIn('classics/hongloumeng/', continuation)
 
     def test_bilingual_preview_routes_and_continuation_stay_separate(self):
-        pages = render(include_first80=True, first80_date='2026-11-10', include_traditional=True)
+        pages = render(include_first80=True, first80_date='2026-11-10', include_traditional=True,
+                       include_ch087=False, include_first80_translations=False)
         for lang, (directory, _, _) in EDITIONS.items():
             source = pages[TARGET/directory/'index.html']
             section = source.split('<section id="first80">')[1].split('</section>')[0]
@@ -90,7 +92,10 @@ class HubTests(unittest.TestCase):
                 url=a.get('href',a.get('src',''))
                 if not url or urlsplit(url).scheme: continue
                 parsed=urlsplit(html.unescape(url))
-                target=(path.parent/unquote(parsed.path)).resolve() if parsed.path else path
+                if parsed.path.startswith('/'):
+                    target = ROOT / unquote(parsed.path).lstrip('/')
+                else:
+                    target = (path.parent/unquote(parsed.path)).resolve() if parsed.path else path
                 self.assertTrue(target.exists(),str(target))
                 if parsed.fragment and target==path: self.assertIn(parsed.fragment,ids)
             schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)[1])
@@ -98,7 +103,7 @@ class HubTests(unittest.TestCase):
             self.assertEqual(schema['inLanguage'],code)
             self.assertNotIn('恢复曹雪芹原稿',source)
             section=source.split('<section id="continuation">')[1].split('</section>')[0]
-            self.assertEqual(section.count('<a '),6)
+            self.assertEqual(section.count('<a '),8)
             self.assertIn('ch081.html',section)
             self.assertIn('ch082.html',section)
             self.assertIn('ch083.html',section)
@@ -106,7 +111,27 @@ class HubTests(unittest.TestCase):
             self.assertIn('ch085.html',section)
             self.assertIn('ch086.html',section)
             self.assertIn('original fiction by Han Qin' if lang=='en' else ('秦漢的原創小說' if lang=='zh-hant' else '秦汉的原创小说'),section)
-            self.assertIn('Chapters 81–86 published' if lang=='en' else ('第八十一至八十六回定稿已發佈' if lang=='zh-hant' else '第八十一至八十六回定稿已发布'),section)
+            self.assertIn('Chapters 81–87 published' if lang=='en' else ('第八十一至八十七回定稿已發佈' if lang=='zh-hant' else '第八十一至八十七回定稿已发布'),section)
+            chapter_links = [a for tag,a in Nodes(section).nodes if tag=='a' and a['href'].endswith('ch087.html')]
+            self.assertEqual(len(chapter_links), 1)
+            chinese_target = 'originals/hongloumeng/' + ('zh-hant/' if lang=='zh-hant' else '') + 'ch087.html'
+            self.assertEqual((path.parent/chapter_links[0]['href']).resolve(), ROOT/chinese_target)
+            self.assertEqual(chapter_links[0]['hreflang'], 'zh-Hant' if lang=='zh-hant' else 'zh-Hans')
+            self.assertIn('Chapters 88–110 remain unpublished' if lang=='en' else '第八十八至第一百一十回', section)
+            self.assertNotRegex(section, r'ch(?:088|089|09[0-9]|10[0-9]|110)\.html')
+            if lang=='en':
+                self.assertIn('Read chapter 87 · Chinese text', section)
+            elif lang=='zh':
+                self.assertIn(CH087_TITLE_ZH, section)
+
+    def test_existing_first80_links_preserved(self):
+        for directory, _, _ in EDITIONS.values():
+            path = TARGET/directory/'index.html'
+            source = path.read_text().split('<section id="first80">')[1].split('</section>')[0]
+            for code, marker in (('de','GERMAN'), ('es','SPANISH'), ('ko','KOREAN')):
+                self.assertIn(f'<!-- {marker}-ENTRY:START --><a href="/classics/hongloumeng/{code}/index.html" lang="{code}">', source)
+                self.assertIn(f'<!-- {marker}-ENTRY:END -->', source)
+
 
 
 if __name__=='__main__': unittest.main()

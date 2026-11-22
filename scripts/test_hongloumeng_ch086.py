@@ -70,7 +70,7 @@ class Chapter86Tests(unittest.TestCase):
             self.assertIn('href="ch085.html"',s)
             self.assertIn('ch086.html',(path.parent/'ch085.html').read_text())
             self.assertIn('ch086.html',(path.parent/'index.html').read_text())
-            self.assertNotIn('ch087.html',s)
+            (self.assertIn if code.startswith('zh-') else self.assertNotIn)('ch087.html',s)
             self.assertEqual(s.count('rel="alternate" hreflang='),9)
             for href in re.findall(r'href="([^"]+)"',s):
                 u=urlsplit(html.unescape(href))

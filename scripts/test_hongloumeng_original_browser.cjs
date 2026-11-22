@@ -3,8 +3,8 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const base=process.argv[2]||'http://127.0.0.1:8786';
-const chapter=process.argv[3]||'ch086';
-const chapters=['ch081','ch082','ch083','ch084','ch085','ch086'];
+const chapter=process.argv[3]||'ch087';
+const chapters=['ch081','ch082','ch083','ch084','ch085','ch086','ch087'];
 const editions=['','zh-hant/','en/','de/','fr/','es/','ja/','ko/'];
 assert.ok(chapters.includes(chapter));
 (async()=>{
@@ -17,16 +17,16 @@ assert.ok(chapters.includes(chapter));
   let checks=0;
   for(const width of [1440,768,390,320]){
    await page.setViewportSize({width,height:900});
-   for(const dir of editions)for(const filename of ['index.html',...chapters.map(c=>c+'.html')]){
+   for(const dir of editions)for(const filename of ['index.html',...chapters.filter(c=>c!=='ch087'||['','zh-hant/'].includes(dir)).map(c=>c+'.html')]){
     await page.goto(`${base}/originals/hongloumeng/${dir}${filename}`);
     assert.equal(await page.locator('h1:visible').count(),1);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-    assert.equal(await page.locator('a[href*="ch087"]').count(),0);
-    assert.equal(await page.locator('.language-menu a').count(),8);
+    assert.equal(await page.locator('a[href*="ch088"]').count(),0);
+    assert.equal(await page.locator('.language-menu a').count(),filename==='ch087.html'?2:8);
     if(filename!=='index.html'){
      const lines=fs.readFileSync(path.join(__dirname,`../data/originals/hongloumeng/${filename.replace('.html','.zh.txt')}`),'utf8').split('\n');
      if(!dir||dir==='zh-hant/'){
-      assert.equal(await page.locator('.verse p').count(),{'ch081.html':8,'ch082.html':2,'ch083.html':1,'ch084.html':0,'ch085.html':36,'ch086.html':2}[filename]);
+      assert.equal(await page.locator('.verse p').count(),{'ch081.html':8,'ch082.html':2,'ch083.html':1,'ch084.html':0,'ch085.html':36,'ch086.html':2,'ch087.html':0}[filename]);
       assert.equal(await page.locator('.novel-text p').count(),lines.slice(1).filter(Boolean).length);
       if(!dir)assert.deepEqual(await page.locator('.novel-text p').allTextContents(),lines.slice(1).filter(Boolean));
      }else{

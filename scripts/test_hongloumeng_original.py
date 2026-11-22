@@ -51,7 +51,7 @@ class OriginalTests(unittest.TestCase):
             previous_pages = build.render()
         current_pages = build.render()
         target = build.TARGET / 'en/ch083.html'
-        self.assertEqual(len(current_pages), 56)
+        self.assertEqual(len(current_pages), 58)
         self.assertEqual(current_pages.keys(), previous_pages.keys())
         self.assertEqual([p for p in current_pages if current_pages[p] != previous_pages[p]], [target])
         before = html.escape(self.CH083_PROCESSION_BEFORE)
@@ -101,7 +101,7 @@ class OriginalTests(unittest.TestCase):
                 actual=[(int(n),html.unescape(re.sub('<[^>]+>','',v))) for n,v in re.findall(r'<p data-source-line="(\d+)">(.*?)</p>',s)]
                 self.assertEqual([n for n,v in actual],[i for i,v in enumerate(lines,1) if i>1 and v])
                 verses = s.split('<div class="verse">')
-                self.assertEqual(sum(len(re.findall('data-source-line=',v.split('</div>')[0])) for v in verses[1:]),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36,'ch086':2}[p.stem])
+                self.assertEqual(sum(len(re.findall('data-source-line=',v.split('</div>')[0])) for v in verses[1:]),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36,'ch086':2,'ch087':0}[p.stem])
                 if p.parent==build.TARGET:
                     self.assertEqual(actual,[(i,v) for i,v in enumerate(lines,1) if i>1 and v])
                     self.assertEqual(html.unescape(re.sub('<[^>]+>','',re.search('<h1>(.*?)</h1>',s)[1])),lines[0])
@@ -123,9 +123,10 @@ class OriginalTests(unittest.TestCase):
                 u=urlsplit(html.unescape(href))
                 if u.scheme or not u.path:continue
                 self.assertTrue((p.parent/unquote(u.path)).resolve().exists(),href)
-            self.assertNotIn('ch087.html',s)
-            self.assertEqual(len(re.findall(r'rel="alternate" hreflang=',s)),9)
-            for directory,code,_ in build.EDITIONS.values():
+            self.assertNotIn('ch088.html',s)
+            page_editions=build.page_editions(p.name)
+            self.assertEqual(len(re.findall(r'rel="alternate" hreflang=',s)),1+len(page_editions))
+            for directory,code,_ in page_editions.values():
                 self.assertIn(f'hreflang="{code}" href="{build.ORIGIN+directory+(p.name if p.stem in build.CHAPTERS else "")}"',s)
             self.assertIn('<details class="language-menu">',s)
             self.assertEqual(s.count('aria-current="page"'),1)
@@ -141,25 +142,29 @@ class OriginalTests(unittest.TestCase):
                 self.assertEqual(schema['dateModified'], translation_date if foreign else build.CHAPTERS[p.stem].get('modified', build.DATE))
                 if foreign:self.assertEqual(schema['translationOfWork']['url'],build.ORIGIN+p.stem+'.html')
                 nav=s.split('<nav class="chapter-nav"')[1].split('</nav>')[0]
-                keys=list(build.CHAPTERS);position=keys.index(p.stem)
+                keys=[key for key in build.CHAPTERS if (not foreign or p.parent.name in build.page_editions(key+'.html'))]
+                position=keys.index(p.stem)
                 for step in (-1,1):
                     if 0<=position+step<len(keys):self.assertIn(keys[position+step]+'.html',nav)
             else:
-                self.assertEqual(len(schema['hasPart']),len(build.CHAPTERS))
-                self.assertEqual(schema['dateModified'],max(ch.get('modified',ch['published']) for ch in build.CHAPTERS.values()))
+                keys=[key for key in build.CHAPTERS if (not foreign or p.parent.name in build.page_editions(key+'.html'))]
+                self.assertEqual(len(schema['hasPart']),len(keys))
+                self.assertEqual(schema['dateModified'],max(build.CHAPTERS[key]['modified'] for key in keys))
 
     def test_discovery(self):
         for lang,d in [('zh-hans',''),('zh-hant','zh-hant/'),*((lang,lang+'/') for lang in FOREIGN)]:
             records=json.loads((search.CHUNKS_DIR/f'{lang}.json').read_text())['records']
             for name in ('index.html',*(ch+'.html' for ch in build.CHAPTERS)):
                 url=f'originals/hongloumeng/{d}{name}'
-                self.assertEqual(sum(r['u']==url for r in records),1,url)
+                expected=0 if name=='ch087.html' and lang in FOREIGN else 1
+                self.assertEqual(sum(r['u']==url for r in records),expected,url)
 
     def test_received_manuscripts_and_source_parity(self):
         publication=json.loads((build.ROOT/'data/originals/hongloumeng/publication.json').read_text())
         for path,sha in publication['multilingual_publication']['received_files'].items():
             self.assertEqual(hashlib.sha256((DATA.parent/path).read_bytes()).hexdigest(),sha,path)
         for stem in build.CHAPTERS:
+            if stem=='ch087': continue  # exact attachment is the author source itself
             received=received_path(stem,'zh-Hans').read_text()
             normalize=lambda value: re.sub(r'\s+','',value.lstrip('# '))
             self.assertEqual(normalize(received),normalize('\n'.join(build.manuscript(stem))))
@@ -168,6 +173,7 @@ class OriginalTests(unittest.TestCase):
         normalize=lambda value: re.sub(r'\s+','',value.replace('*',''))
         for lang in FOREIGN:
             for stem in build.CHAPTERS:
+                if lang not in build.page_editions(stem+'.html'): continue
                 title,units,notes=edition(stem,lang)
                 page=(build.TARGET/lang/(stem+'.html')).read_text()
                 body=page.split('<div class="novel-text">')[1].split('</article>')[0]

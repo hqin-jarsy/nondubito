@@ -20,8 +20,8 @@ BASE = '/classics/hongloumeng/'
 ORIGIN = 'https://nondubito.net'
 CONTINUATION = '/originals/hongloumeng/en/ch081.html'
 NOTICE = ('The first eighty chapters end here. Han Qin’s original continuation is a separate contemporary work, '
-          'not a recovered manuscript by Cao Xueqin. Chapters 81–86 are currently available; '
-          'chapters 87–110 have not yet been published here.')
+          'not a recovered manuscript by Cao Xueqin. Chapters 81–86 are available in eight languages. '
+          'Chapter 87 is available in Simplified and Traditional Chinese only; chapters 88–110 remain unpublished.')
 
 
 def load_validated():

@@ -336,14 +336,14 @@ def replace_project_card(source, href, *, traditional=False, english=False):
     match = matches[0]
     card = match[0]
     texts = {
-        'zh': '前八十回“大知校正庚辰版”现有简体中文正文；另有人物回顾、散文导读和研究论文。秦汉原创续写单独编排，第八十一至八十五回已有八语全文，第八十六回起尚未公开。',
-        'en': 'Read the first eighty chapters in the Chinese Dazhi Revised Gengchen Edition, alongside character essays, reader essays and research. Han Qin’s original continuation is separate: chapters 81–85 are available in eight languages; chapters 86–110 remain unpublished.'}
+        'zh': '前八十回“大知校正庚辰版”现有简体中文正文；另有人物回顾、散文导读和研究论文。秦汉原创续写单独编排，第八十一至八十六回已有八语全文，第八十七回已发布简繁中文，第八十八回起尚未公开。',
+        'en': 'Read the first eighty chapters in the Chinese Dazhi Revised Gengchen Edition, alongside character essays, reader essays and research. Han Qin’s original continuation is separate: chapters 81–86 are available in eight languages, chapter 87 in Chinese only, and chapters 88–110 remain unpublished.'}
     if traditional:
         texts['zh'] = texts['zh'].replace('现有简体中文正文', '现有简体与繁体中文正文')
         texts['en'] = texts['en'].replace('in the Chinese Dazhi', 'in the Simplified and Traditional Chinese Dazhi')
     if english:
         texts['zh'] = texts['zh'].replace('现有简体与繁体中文正文', '现有简体、繁体中文及独立英文译本').replace('现有简体中文正文', '现有简体、繁体中文及独立英文译本')
-        texts['en'] = 'Read the first eighty chapters of the Dazhi Revised Gengchen Edition in Chinese and independent English translation, alongside character essays, reader essays and research. Han Qin’s original continuation is separate: chapters 81–85 are available in eight languages; chapters 86–110 remain unpublished.'
+        texts['en'] = 'Read the first eighty chapters of the Dazhi Revised Gengchen Edition in Chinese and independent English translation, alongside character essays, reader essays and research. Han Qin’s original continuation is separate: chapters 81–86 are available in eight languages, chapter 87 in Chinese only, and chapters 88–110 remain unpublished.'
     for lang, text in texts.items():
         pattern = r'(<p class="series-card-desc-'+lang+' lang-'+lang+r'">).*?(</p>)'
         card, count = re.subn(pattern, lambda m: m[1]+html.escape(text)+m[2], card, flags=re.S)
