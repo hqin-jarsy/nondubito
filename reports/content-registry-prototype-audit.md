@@ -1,6 +1,6 @@
 # Content registry prototype audit
 
-Theatre was updated incrementally on 2026-11-15. Other series retain their prior snapshot records and diagnostics; this is not a new all-site audit.
+Theatre editions were updated incrementally on 2026-11-22. Other series retain their prior snapshot records and diagnostics; this is not a new all-site audit.
 
 Generated from the public HTML snapshot dated 2026-09-05. The scanner is
 read-only with respect to published pages.
@@ -9,7 +9,7 @@ read-only with respect to published pages.
 
 | Measure | Count |
 | --- | ---: |
-| Scanned HTML pages | 1403 |
+| Scanned HTML pages | 1418 |
 | Canonical candidate records | 499 |
 | Library categories parsed | 18 |
 | Library series cards parsed | 394 |
@@ -31,12 +31,12 @@ HTML files.
 
 | Language | Records |
 | --- | ---: |
-| de | 184 |
-| en | 349 |
-| es | 184 |
-| fr | 184 |
-| ja | 184 |
-| ko | 184 |
+| de | 187 |
+| en | 352 |
+| es | 187 |
+| fr | 187 |
+| ja | 187 |
+| ko | 187 |
 | zh-Hans | 365 |
 | zh-Hant | 370 |
 
@@ -45,10 +45,10 @@ HTML files.
 | Edition count | Records |
 | ---: | ---: |
 | 1 | 137 |
-| 2 | 15 |
+| 2 | 12 |
 | 3 | 167 |
 | 7 | 104 |
-| 8 | 76 |
+| 8 | 79 |
 
 ## Missing canonical links
 

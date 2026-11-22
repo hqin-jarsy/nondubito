@@ -8,6 +8,8 @@ from urllib.parse import urlsplit, unquote
 
 from build_theatre import ROOT, catalog, load, outputs, library_block
 from build_content_registry import scan_page, parse_library_categories
+from theatre_language_batch import DATE, LANGUAGES, SLUGS, alternatives
+from connect_theatre_languages import ID
 
 
 def sha(value):
@@ -32,8 +34,14 @@ fixture = json.loads((ROOT / 'scripts/fixtures/theatre-2026-10-18-approved.json'
 batch = json.loads((ROOT / 'scripts/fixtures/theatre-2026-11-15-approved.json').read_text())
 new_articles = {item['slug']: item for item in batch['articles']}
 assert len(new_articles) == 15
+expanded = {w['slug'] for w in works if w.get('editions_added') == DATE}
+chinese_only_slugs = set(new_articles) - expanded
+assert expanded == set(SLUGS) and len(chinese_only_slugs) == 12
+assert sum('en' in w.get('languages',['en']) for w in works) == 23
 assert set(fixture['articles']) == {w['slug'] for w in works if w['slug'] != 'hamilton' and w['slug'] not in new_articles}
 for filename, expected in batch['protected_files'].items():
+    if filename in {f'essays/theatre/{lang}/index.html' for lang in LANGUAGES}:
+        continue  # Existing shelves gain only the separate bounded edition block.
     assert hashlib.sha256((ROOT / filename).read_bytes()).hexdigest() == expected, filename
 for item in batch['articles']:
     received = ROOT / 'data/theatre/received/20261115' / item['source']
@@ -45,16 +53,17 @@ for item in batch['articles']:
     body = '\n\n'.join(p for i, p in enumerate(blocks) if i not in (0, notice_index))
     imported = blocks[0] + '\n\n*' + notice + '*\n\n' + body + '\n'
     target = ROOT / f"data/theatre/{item['slug']}.zh.md"
-    assert target.read_text() == imported, (item['slug'], 'lossless import')
+    if item['slug'] not in expanded:
+        assert target.read_text() == imported, (item['slug'], 'lossless import')
     assert sha(imported) == item['imported_sha256']
     count_body = '\n'.join(p for i, p in enumerate(blocks)
                            if i not in (0, notice_index)
                            and i not in item['excluded_count_indices'] and not p.startswith('#'))
     assert len(re.findall(r'[\u3400-\u4dbf\u4e00-\u9fff]', count_body)) == item['conservative_han'] >= 3000
     assert sha(body) == item['zh_body_sha256']
-    assert not (ROOT / f"data/theatre/{item['slug']}.en.md").exists()
-    for language in ('ja', 'fr', 'de', 'es', 'ko'):
-        assert not (ROOT / f"essays/theatre/{language}/{item['slug']}.html").exists()
+    assert (ROOT / f"data/theatre/{item['slug']}.en.md").exists() == (item['slug'] in expanded)
+    for language in LANGUAGES:
+        assert (ROOT / f"essays/theatre/{language}/{item['slug']}.html").exists() == (item['slug'] in expanded)
 
 for lang, expected in fixture['hamilton_files'].items():
     assert sha((ROOT / f'data/theatre/hamilton.{lang}.md').read_text()) == expected, 'Hamilton source changed'
@@ -64,12 +73,8 @@ for path, expected in outputs().items():
     assert source == expected, path
     record = scan_page(ROOT, path)
     assert record['domain'] == 'stories' and record['category'] == 'theatre', record
-    chinese_only = path.stem in new_articles
-    expected_languages = {'zh-Hans', 'zh-Hant'} if chinese_only else {'en', 'zh-Hans', 'zh-Hant'}
-    assert set(record['languages']) == expected_languages, record
-    assert all(record['titles'].get(l) for l in expected_languages)
-    expected_editions = 'zh zh-hant' if chinese_only else 'en zh zh-hant'
-    assert f'data-editions="{expected_editions}"' in source
+    locale = path.parent.name
+    # Check relative assets and navigation alike on native and primary pages.
     links = Links()
     links.feed(source)
     for href in links.links:
@@ -78,8 +83,34 @@ for path, expected in outputs().items():
             continue
         target = (path.parent / unquote(url.path)).resolve()
         assert target.is_file(), (path, href)
+    schema = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', source, re.S).group(1))
+    if locale in LANGUAGES:
+        assert set(record['languages']) == {locale}
+        assert alternatives(path.name) in source
+        assert schema['inLanguage'] == locale and schema['dateModified'] == DATE
+        assert source.count('cloudflareinsights.com/beacon.min.js') == 1
+        if path.stem == 'index':
+            assert source.count('class="essay-card"') == 23
+            assert schema['@type'] == 'CollectionPage'
+        else:
+            assert path.stem in expanded and schema['datePublished'] == '2026-11-15'
+            assert schema['translationOfWork']['url'].endswith(f'/theatre/{path.name}')
+            _,_,body = load(locale,path.stem)
+            _,_,zh = load('zh',path.stem)
+            assert len(body.split('\n\n')) == len(zh.split('\n\n'))
+            assert body.count('\n## ') == zh.count('\n## ')
+            assert len(body) >= 4500 and '<h3>' not in source
+            assert not re.search(r'待补|待核|待写|\bTODO\b|\bTBD\b|\ufffd',body)
+        continue
+    chinese_only = path.stem in chinese_only_slugs
+    expected_languages = {'zh-Hans', 'zh-Hant'} if chinese_only else {'en', 'zh-Hans', 'zh-Hant'}
+    assert set(record['languages']) == expected_languages, record
+    assert all(record['titles'].get(l) for l in expected_languages)
+    expected_editions = 'zh zh-hant' if chinese_only else 'en zh zh-hant'
+    assert f'data-editions="{expected_editions}"' in source
     if path.name == 'index.html':
         assert source.count('class="rf-book-card"') == 35
+        assert schema['dateModified'] == DATE and alternatives(path.name) in source
         continue
     slug = path.stem
     work = next(w for w in works if w['slug'] == slug)
@@ -92,7 +123,11 @@ for path, expected in outputs().items():
     assert schema['@type'] == 'Article'
     assert schema['about']['@type'] == 'CreativeWork'
     assert schema['about']['name'] == work['name']
-    assert schema['datePublished'] == schema['dateModified'] == work['published']
+    assert schema['datePublished'] == work['published']
+    assert schema['dateModified'] == work.get('editions_added',work['published'])
+    if slug in expanded:
+        assert alternatives(path.name) in source
+        assert work['languages'] == ['en','zh','zh-hant',*LANGUAGES]
     assert schema['about']['creator']
     assert schema['about']['genre'] == 'Musical theatre'
     assert len(re.findall(r'rel="canonical"', source)) == 1
@@ -110,6 +145,9 @@ for path, expected in outputs().items():
         assert sha(zh) == approved['zh_body_sha256']
         assert articles[0].count('<h2>') == approved['sections']
         assert articles[0].count('<p') == approved['paragraphs']
+    elif slug in expanded:
+        assert len(en.split()) >= 1800
+        assert len(re.findall(r'[\u3400-\u9fff]',zh)) >= 3000
     elif slug != 'hamilton':
         approved = fixture['articles'][slug]
         assert sha(zh) == approved['zh_body_sha256'], slug
@@ -130,15 +168,26 @@ assert library_block() in library
 assert 'href="explore.html"' in (ROOT / 'index.html').read_text()
 for filename in ('explore.html', 'library.html', 'latest.html'):
     assert 'essays/theatre/index.html' in (ROOT / filename).read_text(), filename
-for language in ('en', 'zh-hans', 'zh-hant'):
+for language in ('en', 'zh-hans', 'zh-hant', *LANGUAGES):
     records = json.loads((ROOT / f'data/search/{language}.json').read_text())['records']
     matches = [r for r in records if r['u'].startswith('essays/theatre/')]
-    expected_works = [w for w in works if language != 'en' or w['slug'] not in new_articles]
-    assert len(matches) == len(expected_works) + 1 and all(r['d'] == 'stories' for r in matches), (language, len(matches))
-    assert {r['u'] for r in matches} == {'essays/theatre/index.html'} | {f'essays/theatre/{w["slug"]}.html' for w in expected_works}
+    if language in LANGUAGES:
+        assert {r['u'] for r in matches if r['u'].startswith(f'essays/theatre/{language}/')} >= {
+            f'essays/theatre/{language}/{slug}.html' for slug in ('index',*SLUGS)}
+    else:
+        expected_works = [w for w in works if language != 'en' or w['slug'] not in chinese_only_slugs]
+        assert len(matches) == len(expected_works) + 1 and all(r['d'] == 'stories' for r in matches), (language,len(matches))
+        assert {r['u'] for r in matches} == {'essays/theatre/index.html'} | {f'essays/theatre/{w["slug"]}.html' for w in expected_works}
 sitemap = (ROOT / 'sitemap.xml').read_text()
-for suffix in [''] + [w['slug'] + '.html' for w in works]:
+for suffix in [''] + [w['slug'] + '.html' for w in works] + [
+        f'{lang}/{slug}.html' for lang in LANGUAGES for slug in ('index',*SLUGS)]:
     assert sitemap.count(f'<loc>https://nondubito.net/essays/theatre/{suffix}</loc>') == 1
+registry = json.loads((ROOT/'data/content-registry-prototype.json').read_text())['records']
+for slug in ('index',*SLUGS):
+    record, = (r for r in registry if r['canonical_path'] == f'essays/theatre/{slug}.html')
+    assert set(record['editions']) == {'en','zh-Hans','zh-Hant',*LANGUAGES}
+    assert record['updated_at'] == DATE and record['update_kind'] == 'expanded'
+assert ID in (ROOT/'latest.html').read_text()
 assert '2026-10-18-theatre-twenty' in (ROOT / 'latest.html').read_text()
 assert '2026-11-15-theatre-fifteen' in (ROOT / 'latest.html').read_text()
-print('OK: 35 theatre essays; 15 lossless Chinese imports, 164 protected files, language scope, metadata, links and discovery')
+print('OK: 35 theatre essays; 23 at eight languages, 12 Chinese-only; preserved originals, metadata, links and discovery')

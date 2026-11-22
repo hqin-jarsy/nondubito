@@ -7,9 +7,18 @@ import xml.etree.ElementTree as ET
 from unittest.mock import patch
 
 import build_search_index as search
-from build_theatre import ROOT, UPDATED, catalog
+from build_theatre import ROOT
+from theatre_language_batch import DATE, LANGUAGES, SLUGS
 from build_sitemap import parse_page, sitemap_xml
 from build_content_registry import scan_page, group_pages, parse_library_categories, render_audit
+
+
+def publication_paths():
+    primary = [ROOT / 'essays/theatre/index.html'] + [
+        ROOT / f'essays/theatre/{slug}.html' for slug in SLUGS]
+    localized = [ROOT / f'essays/theatre/{lang}/{slug}.html'
+                 for lang in LANGUAGES for slug in ('index', *SLUGS)]
+    return primary + localized
 
 
 def registry_outputs(baseline=None):
@@ -17,23 +26,30 @@ def registry_outputs(baseline=None):
     audit_path = ROOT / 'reports/content-registry-prototype-audit.json'
     registry = baseline['registry'] if baseline else json.loads(registry_path.read_text())
     audit = baseline['audit'] if baseline else json.loads(audit_path.read_text())
-    prior_ids = {r['content_id'] for r in registry['records']}
-    paths = [ROOT / f'essays/theatre/{w["slug"]}.html'
-             for w in catalog() if w['published'] == UPDATED]
-    paths += [ROOT / 'essays/theatre/index.html']
-    paths += [ROOT / f'essays/theatre/{lang}/index.html' for lang in ('ja', 'fr', 'de', 'es', 'ko')]
-    records, collisions = group_pages([scan_page(ROOT, path) for path in paths])
+    records, collisions = group_pages([scan_page(ROOT, path) for path in publication_paths()])
     assert not collisions
     by_id = {r['content_id']: r for r in records}
-    added = [r for r in records if r['content_id'] not in prior_ids]
-    registry['records'] = [by_id.pop(r['content_id'], r) for r in registry['records']]
-    registry['records'].extend(by_id.values())
+    assert len(by_id) == 4 and set(by_id) <= {r['content_id'] for r in registry['records']}
+    new_paths = set()
+    current = []
+    for old in registry['records']:
+        refreshed = by_id.get(old['content_id'])
+        if refreshed:
+            # This is an edition expansion, not a new work or identity.
+            new_paths.update({e['path'] for e in refreshed['editions'].values()} -
+                             {e['path'] for e in old['editions'].values()})
+            current.append(dict(old, titles=refreshed['titles'], editions=refreshed['editions'],
+                                description=refreshed['description'], updated_at=DATE,
+                                update_kind='expanded'))
+        else:
+            current.append(old)
+    registry['records'] = current
     categories = parse_library_categories(ROOT / 'library.html')
     theatre = next(c for c in categories if c['href'] == 'essays/theatre/index.html')
     registry['library_categories'] = [theatre if c['href'] == theatre['href'] else c
                                       for c in registry['library_categories']]
     all_records = registry['records']
-    audit['scanned_html_pages'] += len(added)  # each new record has one HTML file
+    audit['scanned_html_pages'] += len(new_paths)
     audit['canonical_records'] = len(all_records)
     audit['library_category_count'] = len(registry['library_categories'])
     audit['library_series_card_count'] = sum(c['series_count'] for c in registry['library_categories'])
@@ -41,7 +57,7 @@ def registry_outputs(baseline=None):
     audit['language_record_counts'] = dict(sorted(Counter(l for r in all_records for l in r['editions']).items()))
     audit['edition_count_distribution'] = {str(n): count for n, count in
                                            sorted(Counter(len(r['editions']) for r in all_records).items())}
-    note = ('Theatre was updated incrementally on 2026-11-15. Other series retain '
+    note = (f'Theatre editions were updated incrementally on {DATE}. Other series retain '
             'their prior snapshot records and diagnostics; this is not a new all-site audit.')
     audit['scoped_update'] = note
     report = render_audit(audit).replace('# Content registry prototype audit\n',
@@ -52,9 +68,8 @@ def registry_outputs(baseline=None):
 
 
 def outputs(registry_baseline=None):
-    primary = [ROOT / 'essays/theatre/index.html']
-    primary += [ROOT / f'essays/theatre/{w["slug"]}.html' for w in catalog()]
-    paths = primary + [ROOT / p for p in ('index.html', 'library.html')]
+    paths = publication_paths() + [ROOT / p for p in ('index.html', 'library.html')]
+    paths += [ROOT / f'essays/{lang}/index.html' for lang in LANGUAGES]
     scope = {p.relative_to(ROOT).as_posix() for p in paths}
     with patch.object(search, 'collect_pages', lambda: paths):
         _, fresh = search.build()
@@ -86,17 +101,15 @@ def outputs(registry_baseline=None):
     ns = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
     entries = {u.findtext(ns + 'loc'): u.findtext(ns + 'lastmod')
                for u in ET.parse(sitemap).getroot()}
-    # Only actual HTML changes receive a new lastmod; original article dates stay.
-    changed = [ROOT / 'essays/theatre/index.html', ROOT / 'essays/theatre/falsettos.html']
-    changed += [ROOT / f'essays/theatre/{w["slug"]}.html'
-                for w in catalog() if w['published'] == UPDATED]
-    changed += [ROOT / p for p in ('index.html', 'library.html', 'explore.html', 'latest.html')]
+    # Mapping insertion order preserves the existing sitemap order. Append only
+    # new canonical URLs; existing originals retain their datePublished on page.
+    changed = paths + [ROOT / p for p in ('explore.html', 'latest.html')]
     for page in changed:
         metadata = parse_page(page)
         assert metadata.canonical.startswith('https://nondubito.net/')
         assert metadata.title and metadata.description and metadata.html_lang
         assert 'noindex' not in metadata.robots
-        entries[metadata.canonical] = max(entries.get(metadata.canonical, UPDATED), UPDATED)
+        entries[metadata.canonical] = max(entries.get(metadata.canonical, DATE), DATE)
     result[sitemap] = sitemap_xml(list(entries.items()))
     result.update(registry_outputs(registry_baseline))
     return result

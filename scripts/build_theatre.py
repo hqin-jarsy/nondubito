@@ -7,15 +7,16 @@ from pathlib import Path
 
 from build_recent_fiction import TraditionalConverter, esc, localized, prose, head, navigation, footer
 from web_analytics import tracked_html
+import theatre_language_batch as batch
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE = '2026-10-13'
-UPDATED = '2026-11-15'
+UPDATED = '2026-11-15'  # Original Chinese release; not this batch’s language availability.
 EN = 'Theatre & Musicals'
 ZH = '戏剧与音乐剧'
 EXTRA_EDITIONS = {'ja': '日本語', 'fr': 'Français', 'de': 'Deutsch', 'es': 'Español', 'ko': '한국어'}
-DECK_EN = 'Thirty-five musical-theatre essays, beginning with characters, song, and staging. All in Chinese; the first twenty also have six complete foreign-language editions.'
-DECK_ZH = '三十五部音乐剧，从人物、歌声与舞台出发，谈归属、劳动、照顾与共同生活。全篇提供简繁中文，前二十部另有六种外语全文。'
+DECK_EN = 'Thirty-five musical-theatre essays, beginning with characters, song, and staging. All in Chinese; twenty-three also have six complete foreign-language editions.'
+DECK_ZH = '三十五部音乐剧，从人物、歌声与舞台出发，谈归属、劳动、照顾与共同生活。全篇提供简繁中文，二十三部另有六种外语全文。'
 
 
 def catalog():
@@ -45,14 +46,14 @@ def load(language, slug='hamilton'):
 
 
 def page_head(title, deck, filename, work=None):
-    result = head(title, deck, filename, modified=work['published'] if work else UPDATED,
+    result = head(title, deck, filename, modified=work.get('editions_added', work['published']) if work else batch.DATE,
                   collection='theatre', collection_name=EN, collection_published=DATE,
                   asset_prefix='../recent-fiction/')
     match = re.search(r'<script type="application/ld\+json">(.*?)</script>', result, re.S)
     schema = json.loads(match.group(1))
     if work:
         schema.update({'@type': 'Article', 'headline': title,
-                       'datePublished': work['published'], 'dateModified': work['published'],
+                       'datePublished': work['published'], 'dateModified': work.get('editions_added', work['published']),
                        'about': {'@type': 'CreativeWork', 'name': work['name'], 'genre': 'Musical theatre',
                                  'creator': [{'@type': 'Person', 'name': name} for name in work['creators']]},
                        'isPartOf': {'@type': 'CollectionPage', 'name': EN, 'url': 'https://nondubito.net/essays/theatre/'}})
@@ -64,7 +65,10 @@ def page_head(title, deck, filename, work=None):
             result = result.replace('recent-fiction.js?v=20260911', 'recent-fiction.js?v=20261115')
     result = result.replace(match.group(1), json.dumps(schema, ensure_ascii=False))
     alternates = ''.join(f'<link rel="alternate" hreflang="{lang}" href="https://nondubito.net/essays/theatre/{lang}/{filename}">' for lang in editions(work))
-    return result.replace('</head>', alternates + '</head>')
+    result = result.replace('</head>', alternates + '</head>')
+    if work is None or work.get('editions_added') == batch.DATE:
+        result = batch.switch_links(result, filename)
+    return result
 
 
 @tracked_html
@@ -76,10 +80,15 @@ def wrap(content, title, deck, filename, converter, work=None):
         html_language = 'lang="zh-Hans" data-lang="zh" data-editions="zh zh-hant" data-reader-languages="zh zh-hant"'
     other_editions = ''.join(f'<a href="{lang}/{filename}" lang="{lang}">{label}</a>' for lang, label in editions(work).items())
     edition_nav = f'<nav aria-label="Other editions" style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0 2rem">{other_editions}</nav>' if other_editions else ''
+    header = navigation()
+    if work is None or work.get('editions_added') == batch.DATE:
+        pattern = r'(<div class="site-shell-(?:language-options|mobile-languages)">.*?)(</div>)'
+        header,n = re.subn(pattern,lambda m:m[1]+other_editions+m[2],header,flags=re.S)
+        assert n == 2, filename
     return f'''<!DOCTYPE html>
 <html {html_language}>
 {page_head(title, deck, filename, work)}
-<body class="site-shell-page explicit-hant rf-page">{navigation()}
+<body class="site-shell-page explicit-hant rf-page">{header}
 <main class="rf-wrap{' rf-article' if work else ''}" data-search="{esc('Theatre Musicals 戏剧 音乐剧 戲劇 音樂劇 ' + names)}">
 <nav class="reading-breadcrumbs" aria-label="Breadcrumb"><a href="../../explore.html#stories">{localized('Books, Screen &amp; Narrative', '书籍、影视与叙事', converter)}</a><span aria-hidden="true"> / </span><a href="index.html">{localized(esc(EN), ZH, converter)}</a>{current}</nav>
 {edition_nav}
@@ -103,8 +112,8 @@ def library_block():
             zt, _, _ = load('zh', w['slug'])
             en_languages, zh_languages = language_note(w)
             cards.append(f'''<a href="essays/theatre/{w['slug']}.html" class="series-card"><span class="series-card-count">{w['year']} · {en_languages} / {zh_languages}</span><div class="series-card-title-en">{esc(et)}</div><div class="series-card-title-zh cl-zh">{esc(zt)}</div><div class="series-card-title-zh cl-hant">{esc(c.convert(zt))}</div><p class="series-card-desc-en lang-en">{esc(w['deck_en'])}</p><p class="series-card-desc-zh lang-zh cl-zh">{esc(w['deck_zh'])}</p><p class="series-card-desc-zh lang-zh cl-hant">{esc(c.convert(w['deck_zh']))}</p><span class="series-card-arrow lang-en">Read essay →</span><span class="series-card-arrow lang-zh cl-zh">阅读文章 →</span><span class="series-card-arrow lang-zh cl-hant">閱讀文章 →</span></a>''')
-        description_en = 'Thirty-five musical-theatre essays. All have complete Simplified and Traditional Chinese editions; the first twenty also have complete English, Japanese, French, German, Spanish and Korean editions.'
-        description_zh = '三十五部音乐剧，全部提供简繁中文全文；前二十部另有英、日、法、德、西、韩全文。新增十五篇暂不提供外语译文。'
+        description_en = 'Thirty-five musical-theatre essays. All have complete Simplified and Traditional Chinese editions; twenty-three also have complete English, Japanese, French, German, Spanish and Korean editions; twelve are Chinese-only.'
+        description_zh = '三十五部音乐剧，全部提供简繁中文全文；二十三部另有英、日、法、德、西、韩全文，其余十二部仅有简繁中文。'
         return '''<!-- THEATRE CATEGORY START -->
 <hr class="lib-divider">
 <section class="lib-section" id="theatre"><div class="lib-section-header"><span class="lib-section-tag">Category 18</span><a href="essays/theatre/index.html" class="lib-section-name" style="text-decoration:none"><span class="en">Theatre &amp; Musicals</span><span class="zh cl-zh">戏剧与音乐剧</span><span class="zh cl-hant">戲劇與音樂劇</span></a>''' + f'''<p class="lib-section-desc lang-en">{description_en}</p><p class="lib-section-desc lang-zh cl-zh">{description_zh}</p><p class="lib-section-desc lang-zh cl-hant">{c.convert(description_zh)}</p></div><div class="series-grid">''' + '\n'.join(cards) + '''</div></section>
@@ -144,7 +153,7 @@ def outputs():
     try:
         tr = lambda en, zh, tag='span', classes='': localized(en, zh, c, tag, classes)
         cards = '\n'.join(render_card(w, c) for w in works)
-        shelf = f'''<section class="rf-shelf-hero"><div><p class="rf-kicker">{tr(f'Stage &amp; people · {len(works)} works', f'舞台与人 · {len(works)}部作品')}</p>{tr(esc(EN), ZH, 'h1')}{tr(DECK_EN, DECK_ZH, 'p', 'rf-hero-deck')}</div><div class="rf-editor-note">{tr('These essays attend to what a scene makes possible: who can speak, who must wait, and what changes when another person sings. Plot context accompanies the discussion.', '留意一场戏让谁开口、让谁等待，又怎样通过另一人的歌声改变问题。没有看过作品，也能跟着情节进入。', 'p')}{tr('Language availability is marked on each card. The fifteen new essays are in Simplified and Traditional Chinese; the original twenty retain their eight complete editions.', '每张卡片标明可用语言。新增十五篇先提供简繁中文，原有二十篇八语全文保持不变。', 'p')}</div></section><section class="rf-year-section"><div class="rf-shelf-heading">{tr('Ways into musical theatre', '从人物与舞台进入音乐剧', 'h2')}</div><div class="rf-book-grid">{cards}</div></section>'''
+        shelf = f'''<section class="rf-shelf-hero"><div><p class="rf-kicker">{tr(f'Stage &amp; people · {len(works)} works', f'舞台与人 · {len(works)}部作品')}</p>{tr(esc(EN), ZH, 'h1')}{tr(DECK_EN, DECK_ZH, 'p', 'rf-hero-deck')}</div><div class="rf-editor-note">{tr('These essays attend to what a scene makes possible: who can speak, who must wait, and what changes when another person sings. Plot context accompanies the discussion.', '留意一场戏让谁开口、让谁等待，又怎样通过另一人的歌声改变问题。没有看过作品，也能跟着情节进入。', 'p')}{tr('Language availability is marked on each card. Twenty-three essays have eight complete editions. The remaining twelve are available in Simplified and Traditional Chinese.', '每张卡片标明可用语言。二十三篇提供八语全文，其余十二篇提供简繁中文。', 'p')}</div></section><section class="rf-year-section"><div class="rf-shelf-heading">{tr('Ways into musical theatre', '从人物与舞台进入音乐剧', 'h2')}</div><div class="rf-book-grid">{cards}</div></section>'''
         result = {ROOT / 'essays/theatre/index.html': wrap(shelf, EN + ' · ' + ZH, DECK_EN, 'index.html', c)}
         for i, w in enumerate(works):
             if not has_english(w):
@@ -169,6 +178,7 @@ def outputs():
 <aside class="rf-sources">{tr('About this introduction', '关于本文', 'h2')}{tr(esc(source_en), esc(source_zh), 'p', 'rf-source-note')}</aside>
 <nav class="rf-next" aria-label="More reading">{''.join(neighbors)}</nav>'''
             result[ROOT / f'essays/theatre/{w["slug"]}.html'] = wrap(article, et + ' · ' + zt, w['deck_en'], w['slug'] + '.html', c, w)
+        result.update(batch.outputs(works, load))
         return result
     finally:
         c.close()

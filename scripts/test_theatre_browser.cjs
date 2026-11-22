@@ -4,6 +4,10 @@ const {chromium} = require('playwright');
 const fs = require('node:fs');
 const path = require('node:path');
 const works = JSON.parse(fs.readFileSync(path.join(__dirname,'../data/theatre/catalog.json'),'utf8')).works;
+const sharedLanguages = ['en','zh','zh-hant'];
+const foreignLanguages = ['ja','fr','de','es','ko'];
+const expanded = works.filter(w => w.editions_added === '2026-11-22').map(w => w.slug);
+assert.equal(expanded.length, 3);
 const base = process.argv[2] || 'http://127.0.0.1:8788';
 const shots = process.env.THEATRE_SCREENSHOTS;
 (async () => {
@@ -20,7 +24,7 @@ const shots = process.env.THEATRE_SCREENSHOTS;
       await page.route('https://static.cloudflareinsights.com/**', route => route.abort());
       for (const route of ['index.html',...works.map(w=>`${w.slug}.html`)]) {
         const work = works.find(w => `${w.slug}.html` === route);
-        for (const lang of (work?.languages || ['en','zh','zh-hant'])) {
+        for (const lang of (work?.languages || sharedLanguages).filter(lang => sharedLanguages.includes(lang))) {
           const response = await page.goto(`${base}/essays/theatre/${route}?lang=${lang}`);
           assert.ok(response.ok());
           await page.waitForFunction(l => document.documentElement.dataset.lang === l, lang);
@@ -41,6 +45,33 @@ const shots = process.env.THEATRE_SCREENSHOTS;
             await page.locator('.rf-book-card[href="the-last-five-years.html"]').scrollIntoViewIfNeeded();
             await page.screenshot({path:`${shots}/${width}-new-chinese-cards.png`,fullPage:false});
           }
+          checks++;
+        }
+      }
+      for (const lang of foreignLanguages) {
+        const response = await page.goto(`${base}/essays/theatre/${lang}/index.html`);
+        assert.ok(response.ok());
+        assert.equal(await page.locator('.essay-card').count(),23);
+        for (const slug of expanded) {
+          await page.locator(`.essay-card[href="${slug}.html"]`).click();
+          await page.waitForURL(`**/theatre/${lang}/${slug}.html`);
+          assert.equal(await page.locator('html').getAttribute('lang'),lang);
+          assert.equal(await page.locator('.lang-toggle a').count(),8);
+          assert.ok(await page.locator('.essay-body h2').count() >= 5);
+          assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+          await page.locator('.lang-toggle a[lang="zh-Hant"]').click();
+          await page.waitForFunction(() => document.documentElement.dataset.lang === 'zh-hant');
+          assert.equal(await page.locator('article.rf-prose.lang-hant:visible').count(),1);
+          if (width < 600) {
+            await page.locator('[data-site-shell-menu]').click();
+            await page.locator(`.site-shell-mobile-languages a[lang="${lang}"]`).click();
+          } else {
+            await page.locator('.site-shell-language summary').click();
+            await page.locator(`.site-shell-language a[lang="${lang}"]`).click();
+          }
+          await page.waitForURL(`**/theatre/${lang}/${slug}.html`);
+          await page.locator('.back-link').click();
+          await page.waitForURL(`**/theatre/${lang}/index.html`);
           checks++;
         }
       }
@@ -97,6 +128,6 @@ const shots = process.env.THEATRE_SCREENSHOTS;
       await context.close();
     }
     assert.deepEqual(errors,[]);
-    console.log(`OK: ${checks} theatre browser scenarios, EN/Hans/Hant, mobile/desktop, navigation and search`);
+    console.log(`OK: ${checks} theatre browser scenarios, eight languages, mobile/desktop, navigation and search`);
   } finally { await browser.close(); }
 })().catch(e => {console.error(e); process.exit(1);});
