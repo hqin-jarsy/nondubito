@@ -22,6 +22,16 @@ CONTINUATION = '/originals/hongloumeng/en/ch081.html'
 NOTICE = ('The first eighty chapters end here. Han Qin’s original continuation is a separate contemporary work, '
           'not a recovered manuscript by Cao Xueqin. Chapters 81–86 are available in eight languages. '
           'Chapter 87 is available in Simplified and Traditional Chinese only; chapters 88–110 remain unpublished.')
+NOTICE_COMPLETE = ('The first eighty chapters end here. Han Qin’s original continuation is a separate contemporary work, '
+                   'not a recovered manuscript by Cao Xueqin. Chapters 81–87 are available in eight languages; '
+                   'chapters 88–110 remain unpublished.')
+
+
+def continuation_notice():
+    from hongloumeng_translations import ch087_multilingual
+    publication = json.loads((Path(__file__).resolve().parents[1] / 'data/originals/hongloumeng/publication.json').read_text())
+    return NOTICE_COMPLETE if ch087_multilingual(publication) else NOTICE
+
 
 
 def load_validated():
@@ -235,11 +245,11 @@ def render(chapters, *, preview=True):
         nxt = f'<a rel="next" href="ch{n+1:03d}.html">Chapter {n+1} →</a>' if n+1 in numbers else (f'<a href="{CONTINUATION}">Han Qin’s continuation · Chapter 81 →</a>' if n == 80 else '<span>End of private preview</span>')
         note_html = '<section class="reader-notes" role="doc-endnotes" aria-labelledby="notes-heading"><h2 id="notes-heading">Translator’s notes</h2><ol>'+''.join(notes)+'</ol></section>' if notes else ''
         content = f'<article><header class="chapter-head"><p class="edition-name">{E(EDITION)}</p><h1>{heading}</h1><div class="reader-tools"><button data-font="minus" aria-label="Smaller text">A −</button><button data-font="reset">Reset text</button><button data-font="plus" aria-label="Larger text">A +</button><a href="#chapter-nav">Chapter end</a></div></header><div class="novel-text">'+''.join(paragraphs)+'</div>'+note_html+f'</article><nav class="chapter-nav" id="chapter-nav" aria-label="Chapter navigation">{prev}<a href="index.html#ch{n:03d}">Contents</a>{nxt}</nav>'
-        if n == 80: content += f'<p class="edition-note">{E(NOTICE)}</p>'
+        if n == 80: content += f'<p class="edition-note">{E(continuation_notice())}</p>'
         pages[f'ch{n:03d}.html'] = shell(c['title'], content, f'ch{n:03d}.html', preview)
     catalog = ''.join(f'<li id="ch{c["number"]:03d}"><a href="ch{c["number"]:03d}.html">{E(c["title"])}</a></li>' for c in chapters)
-    pages['index.html'] = shell(TITLE, f'<header class="book-head"><h1>{TITLE}</h1><p class="deck">{EDITION}</p><p>Chapters 1–80 · An independent English translation</p></header><section class="chapter-batch"><h2>Contents</h2><ol>{catalog}</ol></section><section class="continuation"><h2>Beyond chapter eighty</h2><p>{NOTICE}</p><a href="/originals/hongloumeng/en/index.html">Han Qin’s continuation</a></section>', 'index.html', preview)
-    about = f'<section class="editorial"><h1>About this edition</h1><h2>{EDITION}</h2><p>Cao Xueqin’s novel, edited and revised in Chinese by Han Qin. This independent English translation follows that Chinese reading edition, including its declared editorial choices. It does not reproduce an existing English translation.</p><p>The edition name does not claim a verbatim reproduction of the Gengchen manuscript. The selected Chinese source includes material from several witnesses. Editorial repairs are choices of this edition, not a claim to recover a unique original.</p><p>Names follow the project’s established reading tradition, consistent with its independently translated continuation. Translator’s notes are separately labelled and linked to the relevant passage. Source commentary is not silently inserted into the novel.</p><p><a href="../edition.html">Chinese edition and source statement</a></p><h2>The novel and its continuation</h2><p>{NOTICE}</p></section>'
+    pages['index.html'] = shell(TITLE, f'<header class="book-head"><h1>{TITLE}</h1><p class="deck">{EDITION}</p><p>Chapters 1–80 · An independent English translation</p></header><section class="chapter-batch"><h2>Contents</h2><ol>{catalog}</ol></section><section class="continuation"><h2>Beyond chapter eighty</h2><p>{continuation_notice()}</p><a href="/originals/hongloumeng/en/index.html">Han Qin’s continuation</a></section>', 'index.html', preview)
+    about = f'<section class="editorial"><h1>About this edition</h1><h2>{EDITION}</h2><p>Cao Xueqin’s novel, edited and revised in Chinese by Han Qin. This independent English translation follows that Chinese reading edition, including its declared editorial choices. It does not reproduce an existing English translation.</p><p>The edition name does not claim a verbatim reproduction of the Gengchen manuscript. The selected Chinese source includes material from several witnesses. Editorial repairs are choices of this edition, not a claim to recover a unique original.</p><p>Names follow the project’s established reading tradition, consistent with its independently translated continuation. Translator’s notes are separately labelled and linked to the relevant passage. Source commentary is not silently inserted into the novel.</p><p><a href="../edition.html">Chinese edition and source statement</a></p><h2>The novel and its continuation</h2><p>{continuation_notice()}</p></section>'
     pages['edition.html'] = shell('About this edition', about, 'edition.html', preview)
     # Reuse the existing reading design, without its Chinese-only font dependency.
     pages['reader.css'] = chinese.CSS[chinese.CSS.index(':root'):]+ '\nbody{font-family:Georgia,"Times New Roman",serif}.novel-text{line-height:1.85;line-break:auto;overflow-wrap:break-word}.novel-text p{text-indent:1.5em;white-space:pre-line}.reader-notes{font-size:16px;line-height:1.8;margin:40px 0}.reader-notes li{margin:1em 0}.language-switch{font:13px system-ui,sans-serif}h1{overflow-wrap:break-word}.chapter-batch a{white-space:pre-line}.novel-text p.verse,.novel-text p.couplet{padding-left:1em;text-indent:-1em;white-space:pre-line}.novel-text p.letter,.novel-text p.diagram{white-space:pre-line}.reader-notes :target,.novel-text :target{background:#eee5d3}sup{font:12px system-ui,sans-serif}sup a{padding:4px}\n'

@@ -19,6 +19,7 @@ EDITIONS = {'zh': ('', 'zh-Hans', '简体中文'), 'en': ('en/', 'en', 'English'
 ORIGIN = 'https://nondubito.net/essays/literature/hlm/'
 FIRST80_UPDATE_ID = 'hongloumeng-first80-reading'
 CH087_UPDATE_ID = '2026-11-22-red-chamber-ch087'
+CH087_EXPANSION_ID = '2026-11-22-red-chamber-ch087-eight-languages'
 CH087_TITLE_ZH = '第八十七回　凤辣子失势尝世冷　痴公子有问立菱洲'
 PAPERS = [
  ('人是有情的', 'People Have Qing', '缘起、方法与结论', 'Origins, method and conclusions',
@@ -93,6 +94,15 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None,
     if include_ch087 and ch087_date is None:
         raise ValueError('Chapter 87 needs a Chinese publication record')
     include_ch087 = ch087_date is not None
+    from hongloumeng_translations import ch087_multilingual
+    pub = json.loads((ROOT/'data/originals/hongloumeng/publication.json').read_text())
+    has_ch087_translations = include_ch087 and ch087_multilingual(pub)
+    if has_ch087_translations:
+        ledger = json.loads((ROOT/'data/site-updates.json').read_text())
+        expansion = next((item for item in ledger['updates'] if item['id'] == CH087_EXPANSION_ID), None)
+        if expansion is None or set(expansion['languages']) != {'zh', 'zh-hant', 'en', 'fr', 'de', 'es', 'ja', 'ko'}:
+            raise ValueError('Missing full Chapter 87 multilingual release record')
+        ch087_date = max(ch087_date, expansion['date'])
     if include_traditional is None:
         include_traditional = first80_traditional_published()
     if include_first80 is None:
@@ -145,6 +155,9 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None,
             if include_ch087:
                 desc = text('《红楼梦》前八十回“大知校正庚辰版”正文、人物回顾、散文导读与研究论文；秦汉原创续写单列，第八十一至八十六回有八语版，第八十七回有简繁中文。',
                             'The first eighty chapters in the Dazhi Revised Gengchen Edition, character essays, reader essays and research. Han Qin’s separate continuation reaches chapter 87: chapters 81–86 in eight languages and chapter 87 in Chinese.')
+            if has_ch087_translations:
+                desc = text('《红楼梦》前八十回“大知校正庚辰版”正文、人物回顾、散文导读与研究论文；秦汉原创续写单列，第八十一至八十七回均有八语版。',
+                            'The first eighty chapters in the Dazhi Revised Gengchen Edition, character essays, reader essays and research. Chapters 81–87 of Han Qin’s separate continuation are available in eight languages.')
             first80_navigation = a('#first80',t('前八十回正文','The first eighty chapters'))
             first80_section = f'''<section id="first80"><p class="eyebrow">{t('原著阅读 · 前八十回','THE NOVEL · CHAPTERS 1–80')}</p><h2>{t('大知校正庚辰版','Dazhi Revised Gengchen Edition')}</h2><p>{t('这里阅读的是《红楼梦》前八十回原著正文，由秦汉校正整理；与第八十一回起的秦汉原创续写分开编排。', 'Read the first eighty chapters of Dream of the Red Chamber, edited by Han Qin. This edition of the original novel is separate from Han Qin’s new fiction beginning with chapter 81.')}</p><p class="edition-note">{t('本版目前仅提供简体中文正文；外语翻译尚未发布。繁体与英文专题入口中的下列链接均转至简体中文读页。', 'This reading edition is available in Simplified Chinese only. Translations are not yet published; the links below open the Chinese text.')}</p><div class="featured">{a(base+'classics/hongloumeng/index.html',t('前八十回 · 回目目录','Chapters 1–80 · Chinese contents'))}{a(base+'classics/hongloumeng/ch001.html',t('从第一回开始','Start chapter 1 · Chinese'))}{a(base+'classics/hongloumeng/edition.html',t('版本说明','About the edition'))}</div></section>'''
             if include_traditional:
@@ -204,9 +217,13 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None,
             continuation_copy = t(
                 '秦汉原创的第八十一至第一百一十回，共三十回，已经完成，正在逐回打磨与发布。第八十一至八十六回有八语全文；第八十七回已发布简繁中文，外语译本尚未发布。第八十八至第一百一十回尚未公开。可以直接读小说，不必先读论文。',
                 'Han Qin has completed an original continuation comprising chapters 81–110 and is refining it chapter by chapter. Chapters 81–86 are available in eight languages. Chapter 87 is available in Simplified and Traditional Chinese only. Chapters 88–110 remain unpublished. You can start with the fiction; the papers are optional.')
-            chapter_dir = 'zh-hant/' if lang == 'zh-hant' else ''
-            chapter_lang = 'zh-Hant' if lang == 'zh-hant' else 'zh-Hans'
-            label_ch087 = t(CH087_TITLE_ZH, 'Read chapter 87 · Chinese text')
+            if has_ch087_translations:
+                continuation_copy = t(
+                    '秦汉原创的第八十一至第一百一十回，共三十回，已经完成，正在逐回打磨与发布。第八十一至八十七回均有八语全文，第八十八至第一百一十回尚未公开。可以直接读小说，不必先读论文。',
+                    'Han Qin has completed an original continuation comprising chapters 81–110 and is refining it chapter by chapter. Chapters 81–87 are available in eight languages. Chapters 88–110 remain unpublished. You can start with the fiction; the papers are optional.')
+            chapter_dir = 'zh-hant/' if lang == 'zh-hant' else ('en/' if en and has_ch087_translations else '')
+            chapter_lang = 'zh-Hant' if lang == 'zh-hant' else ('en' if en and has_ch087_translations else 'zh-Hans')
+            label_ch087 = t(CH087_TITLE_ZH, 'Read chapter 87 · English text' if has_ch087_translations else 'Read chapter 87 · Chinese text')
             continuation_ch087 = a(base+'originals/hongloumeng/'+chapter_dir+'ch087.html',
                                    label_ch087, f'hreflang="{chapter_lang}"')
         body = f'''<section class="hero"><p class="eyebrow">NON DUBITO · {t('红楼梦大专题','A RED CHAMBER PROJECT')}</p>

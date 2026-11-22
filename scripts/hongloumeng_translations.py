@@ -47,6 +47,35 @@ FOREIGN = {
 }
 
 
+CH087_LANGS = {'zh-Hans', 'zh-Hant', *FOREIGN}
+CH087_COMPLETED = {
+    'en': ('Chapters 81–87 are available in eight languages. Chapters 88–110 remain unpublished.', 'Chapter 88 · Not yet published'),
+    'de': ('Die Kapitel 81–87 sind in acht Sprachen lesbar. Die Kapitel 88–110 sind noch nicht veröffentlicht.', 'Kapitel 88 · Noch nicht veröffentlicht'),
+    'fr': ('Les récits 81–87 sont disponibles en huit langues. Les récits 88–110 ne sont pas encore publiés.', 'Récit 88 · Non encore publié'),
+    'es': ('Los capítulos 81–87 están disponibles en ocho lenguas. Los capítulos 88–110 aún no se han publicado.', 'Capítulo 88 · Aún no publicado'),
+    'ja': ('第八十一〜八十七回を八言語で公開しています。第八十八〜百十回は未公開です。', '第八十八回・未公開'),
+    'ko': ('제81~87회를 여덟 언어로 읽을 수 있습니다. 제88~110회는 아직 공개하지 않았습니다.', '제88회 · 미공개'),
+}
+CH087_OLD_INTRO_END = {
+    'en': 'unpublished. ',
+    'de': 'veröffentlicht. ',
+    'fr': 'publiés. ',
+    'es': 'publicado. ',
+    'ja': '未公開です。',
+    'ko': '공개하지 않았습니다. ',
+}
+
+
+def ch087_multilingual(publication):
+    """Only the Chinese release or all six reviewed translations may be live."""
+    ready = set(publication.get('chapter_publications', {}).get('ch087', {}).get('languages', []))
+    if not ready or ready == {'zh-Hans', 'zh-Hant'}:
+        return False
+    if ready != CH087_LANGS:
+        raise ValueError('Chapter 87 must publish all six foreign editions together')
+    return True
+
+
 def received_path(stem, lang):
     record = json.loads((DATA.parent / 'publication.json').read_text())
     layout = record.get('chapter_publications', {}).get(stem, {}).get('text_layout', f'{stem}_{{language}}.md')
@@ -97,9 +126,9 @@ def edition(stem, lang):
     assert [n for n, _ in units] == list(range(1, expected+1)), (stem, lang)
     heading = '\n'.join(title)
     if lang == 'en':
-        heading = re.sub(r'^Chapter (?:Eighty-(?:one|two|three|four|five|six)|8[1-6])', 'Chapter '+str(int(stem[2:])), heading)
+        heading = re.sub(r'^Chapter (?:Eighty-(?:one|two|three|four|five|six|seven)|8[1-7])', 'Chapter '+str(int(stem[2:])), heading)
     # A colon joins the number and couplet in some received headings.
-    heading = re.sub(r'^(Chapter \d+|Sechsundachtzigstes Kapitel|Capítulo 81):\s*', r'\1\n', heading)
+    heading = re.sub(r'^(Chapter \d+|Sechsundachtzigstes Kapitel|Siebenundachtzigstes Kapitel|Capítulo 8[17]):\s*', r'\1\n', heading)
     heading = re.sub(r'^(Capítulo LXXXI) · ', r'\1\n', heading)
     return heading, units, notes
 
@@ -117,12 +146,20 @@ def render_foreign(editions, language_menu, origin, target):
     pages = {}
     publication = json.loads((DATA.parent/'publication.json').read_text())
     publications = publication.get('chapter_publications', {})
+    has_ch087 = ch087_multilingual(publication)
     all_chapters = tuple(f'ch{n:03}' for n in publication['published_chapters'])
     for lang, ui in FOREIGN.items():
         chapters = tuple(ch for ch in all_chapters
                          if lang in publications.get(ch, {}).get('languages', FOREIGN))
-        dates = {ch: publications.get(ch, {}).get('published', DATE) for ch in chapters}
+        dates = {ch: publications.get(ch, {}).get('foreign_published',
+                                               publications.get(ch, {}).get('published', DATE))
+                 for ch in chapters}
         label, collection, notice, intro, shelf, project, library, skip, contents, read, pending, note_title, note = ui
+        if has_ch087:
+            old_end = CH087_OLD_INTRO_END[lang]
+            assert old_end in intro
+            intro = CH087_COMPLETED[lang][0] + (' ' if lang != 'ja' else '') + intro.split(old_end, 1)[1]
+            pending = CH087_COMPLETED[lang][1]
         for stem in ('index', *chapters):
             story = stem != 'index'
             title, units, notes = edition(stem, lang) if story else (collection, [], [])
@@ -166,6 +203,6 @@ def render_foreign(editions, language_menu, origin, target):
                     cards += f'<a class="chapter-card" href="../ch087.html" hreflang="zh-Hans"><span>{e(pending)}</span><small lang="zh-Hans">简体中文 →</small></a>'
                 content = f'<header class="collection-head"><p class="eyebrow">Han Qin · 81–110</p><h1>{e(collection)}</h1><p class="authorship">{e(notice)}</p></header><section class="introduction"><p>{e(intro)}</p></section><section class="contents"><h2>{e(contents)}</h2>{cards}</section>'
             pages[target/lang/(stem+'.html')] = f'''<!DOCTYPE html>
-<html lang="{lang}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title.replace(chr(10),' · '))} — Non Dubito</title><meta name="description" content="{e(notice+' '+collection+' · '+('81–86' if not story else str(int(stem[2:]))))}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{url}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title.replace(chr(10),' · '))}"><meta property="og:description" content="{e(notice)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../novel.css?v=20261020"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e(skip)}</a><header class="site-header"><a class="brand" href="../../../index.html?lang=en">Non <span>Dubito</span></a><nav><a href="../../../originals/index.html?lang=en">{e(shelf)}</a><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><a href="../../../library.html?lang=en">{e(library)}</a></nav>{language_menu(lang,stem+'.html')}</header><main id="main">{content}</main><footer><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><p>© 2026 Han Qin (秦汉) · Non Dubito</p></footer></body></html>
+<html lang="{lang}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title.replace(chr(10),' · '))} — Non Dubito</title><meta name="description" content="{e(notice+' '+collection+' · '+(('81–87' if has_ch087 else '81–86') if not story else str(int(stem[2:]))))}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{url}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title.replace(chr(10),' · '))}"><meta property="og:description" content="{e(notice)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../novel.css?v=20261020"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e(skip)}</a><header class="site-header"><a class="brand" href="../../../index.html?lang=en">Non <span>Dubito</span></a><nav><a href="../../../originals/index.html?lang=en">{e(shelf)}</a><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><a href="../../../library.html?lang=en">{e(library)}</a></nav>{language_menu(lang,stem+'.html')}</header><main id="main">{content}</main><footer><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><p>© 2026 Han Qin (秦汉) · Non Dubito</p></footer></body></html>
 '''
     return pages

@@ -329,7 +329,7 @@ def replace_latest(source, update):
     return source[:first.start()]+latest_card(update)+'\n'+source[first.start():]
 
 
-def replace_project_card(source, href, *, traditional=False, english=False):
+def replace_project_card(source, href, *, traditional=False, english=False, ch087_multilingual=False):
     matches = list(re.finditer(r'<a href="'+re.escape(href)+r'" class="series-card">.*?</a>', source, re.S))
     if len(matches) != 1:
         raise ValueError('Expected exactly one Red Chamber project card')
@@ -344,6 +344,13 @@ def replace_project_card(source, href, *, traditional=False, english=False):
     if english:
         texts['zh'] = texts['zh'].replace('现有简体与繁体中文正文', '现有简体、繁体中文及独立英文译本').replace('现有简体中文正文', '现有简体、繁体中文及独立英文译本')
         texts['en'] = 'Read the first eighty chapters of the Dazhi Revised Gengchen Edition in Chinese and independent English translation, alongside character essays, reader essays and research. Han Qin’s original continuation is separate: chapters 81–86 are available in eight languages, chapter 87 in Chinese only, and chapters 88–110 remain unpublished.'
+    if ch087_multilingual:
+        texts['zh'] = texts['zh'].replace(
+            '第八十一至八十六回已有八语全文，第八十七回已发布简繁中文，第八十八回起尚未公开。',
+            '第八十一至八十七回均有八语全文，第八十八回起尚未公开。')
+        texts['en'] = texts['en'].replace(
+            'chapters 81–86 are available in eight languages, chapter 87 in Chinese only, and chapters 88–110 remain unpublished.',
+            'chapters 81–87 are available in eight languages, and chapters 88–110 remain unpublished.')
     for lang, text in texts.items():
         pattern = r'(<p class="series-card-desc-'+lang+' lang-'+lang+r'">).*?(</p>)'
         card, count = re.subn(pattern, lambda m: m[1]+html.escape(text)+m[2], card, flags=re.S)
@@ -374,7 +381,9 @@ def editorial_outputs(root, ledger, published, *, traditional=False, english=Non
     for path, source in hub.render(include_first80=True, first80_date=published, include_traditional=traditional).items():
         outputs[root/path.relative_to(hub.ROOT)] = source
     for name, href in (('library.html', 'essays/literature/hlm/index.html'), ('essays/literature/index.html', 'hlm/index.html')):
-        outputs[root/name] = replace_project_card(read_text(root, root/name), href, traditional=traditional, english=bool(english))
+        outputs[root/name] = replace_project_card(
+            read_text(root, root/name), href, traditional=traditional, english=bool(english),
+            ch087_multilingual=any(item['id']==hub.CH087_EXPANSION_ID for item in ledger['updates']))
     latest = read_text(root, root/'latest.html')
     outputs[root/'latest.html'] = replace_english_latest(latest, english_update) if english_update else replace_latest(latest, update)
     config = json.loads(read_text(root, root/'data/home-updates.json'))

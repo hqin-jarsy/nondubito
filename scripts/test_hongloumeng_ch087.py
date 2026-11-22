@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the exact author attachment and chapter 87's Chinese-only release."""
+"""Verify the exact author attachment and chapter 87's declared release editions."""
 import hashlib
 import html
 import json
@@ -34,8 +34,12 @@ class Chapter87Tests(unittest.TestCase):
         for bad in ('沈在外頭', '查明瞭', '不乾奴才', '幾只封了口'):
             self.assertNotIn(bad, hant)
 
-    def test_release_reach_and_only_chinese_is_indexed(self):
-        expected = {'originals/hongloumeng/ch087.html', 'originals/hongloumeng/zh-hant/ch087.html'}
+    def test_release_reach_and_exactly_declared_editions_are_indexed(self):
+        full = build.ch087_multilingual(build.PUBLICATION)
+        locales = build.EDITIONS if full else {k:build.EDITIONS[k] for k in ('zh','zh-hant')}
+        expected_paths = {lang:'originals/hongloumeng/'+directory+'ch087.html'
+                          for lang,(directory,_,_) in locales.items()}
+        expected = set(expected_paths.values())
         urls = {el.text.removeprefix('https://nondubito.net/') for el in
                 ET.parse(build.ROOT/'sitemap.xml').getroot().iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
         self.assertEqual({url for url in urls if url.startswith('originals/hongloumeng/') and url.endswith('/ch087.html')}, expected)
@@ -45,30 +49,43 @@ class Chapter87Tests(unittest.TestCase):
                      if r['u'].startswith('originals/hongloumeng/') and r['u'].endswith('/ch087.html')]
             if found:
                 hits[path.stem] = found
-        self.assertEqual(hits, {'zh-hans': ['originals/hongloumeng/ch087.html'],
-                                'zh-hant': ['originals/hongloumeng/zh-hant/ch087.html']})
+        expected_hits = {'zh-hans' if l=='zh' else l:[url] for l,url in expected_paths.items()}
+        self.assertEqual(hits, expected_hits)
         for lang, (directory, _, _) in build.EDITIONS.items():
             folder = build.TARGET/directory
             index = (folder/'index.html').read_text()
-            if lang in ('zh', 'zh-hant'):
+            if lang in locales:
                 page = (folder/'ch087.html').read_text()
-                self.assertEqual(re.findall('hreflang="([^"]+)"', page), ['zh-Hans', 'zh-Hant', 'x-default'])
+                expected_alts = [code for _,code,_ in locales.values()]+['x-default']
+                self.assertEqual(re.findall('hreflang="([^"]+)"', page), expected_alts)
                 self.assertIn('href="ch085.html"', (folder/'ch086.html').read_text())
                 self.assertIn('href="ch087.html"', (folder/'ch086.html').read_text())
                 self.assertIn('href="ch086.html"', page)
                 self.assertIn('href="ch087.html"', index)
-                self.assertIn('第八十八回', page)
+                if lang in ('zh','zh-hant'):
+                    self.assertIn('第八十八回', page)
+                else:
+                    from hongloumeng_translations import CH087_COMPLETED, edition
+                    self.assertIn(html.escape(CH087_COMPLETED[lang][1]), page)
+                    self.assertNotIn('href="../ch087.html" hreflang="zh-Hans"', index)
+                    _, units, notes = edition('ch087',lang)
+                    body=page.split('<div class="novel-text">',1)[1].split('</article>',1)[0]
+                    self.assertEqual([int(n) for n in re.findall(r'data-source-unit="(\d+)"', body)], list(range(1,149)))
+                    self.assertEqual(len(units),148)
+                    self.assertFalse(notes)
             else:
                 self.assertFalse((folder/'ch087.html').exists())
                 self.assertIn('href="../ch087.html" hreflang="zh-Hans"', index)
                 self.assertNotIn('href="ch087.html"', index)
 
-    def test_earlier_chapters_narratives_unchanged(self):
+    def test_earlier_and_ch087_chinese_narratives_unchanged(self):
         body = lambda s: s.split('<div class="novel-text">', 1)[1].split('</article>', 1)[0]
-        for filename in ('ch081', 'ch082', 'ch083', 'ch084', 'ch085', 'ch086'):
-            for directory, _, _ in build.EDITIONS.values():
+        for filename in ('ch081', 'ch082', 'ch083', 'ch084', 'ch085', 'ch086', 'ch087'):
+            chapter_editions = (build.EDITIONS.values() if filename != 'ch087'
+                                else (build.EDITIONS[k] for k in ('zh','zh-hant')))
+            for directory, _, _ in chapter_editions:
                 page = build.TARGET/directory/(filename+'.html')
-                earlier = subprocess.check_output(['git', 'show', 'd021f50:'+str(page.relative_to(build.ROOT))],
+                earlier = subprocess.check_output(['git', 'show', 'de27614:'+str(page.relative_to(build.ROOT))],
                                                   cwd=build.ROOT, text=True)
                 self.assertEqual(body(page.read_text()), body(earlier), str(page))
 

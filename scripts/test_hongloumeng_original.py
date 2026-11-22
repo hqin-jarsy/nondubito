@@ -51,7 +51,7 @@ class OriginalTests(unittest.TestCase):
             previous_pages = build.render()
         current_pages = build.render()
         target = build.TARGET / 'en/ch083.html'
-        self.assertEqual(len(current_pages), 58)
+        self.assertEqual(len(current_pages), 64 if build.ch087_multilingual(build.PUBLICATION) else 58)
         self.assertEqual(current_pages.keys(), previous_pages.keys())
         self.assertEqual([p for p in current_pages if current_pages[p] != previous_pages[p]], [target])
         before = html.escape(self.CH083_PROCESSION_BEFORE)
@@ -122,7 +122,8 @@ class OriginalTests(unittest.TestCase):
             for href in re.findall(r'href="([^"]+)"',s):
                 u=urlsplit(html.unescape(href))
                 if u.scheme or not u.path:continue
-                self.assertTrue((p.parent/unquote(u.path)).resolve().exists(),href)
+                link = build.ROOT/unquote(u.path).lstrip('/') if u.path.startswith('/') else p.parent/unquote(u.path)
+                self.assertTrue(link.resolve().exists(),href)
             self.assertNotIn('ch088.html',s)
             page_editions=build.page_editions(p.name)
             self.assertEqual(len(re.findall(r'rel="alternate" hreflang=',s)),1+len(page_editions))
@@ -137,7 +138,7 @@ class OriginalTests(unittest.TestCase):
             self.assertEqual(schema['@type'],'Chapter' if p.stem in build.CHAPTERS else 'CollectionPage')
             self.assertEqual(schema['inLanguage'],p.parent.name if foreign else 'zh-Hant' if p.parent.name=='zh-hant' else 'zh-Hans')
             if p.stem in build.CHAPTERS:
-                translation_date={'ch083':'2026-10-24','ch084':'2026-11-03','ch085':'2026-11-08','ch086':'2026-11-14'}.get(p.stem,DATE)
+                translation_date={'ch083':'2026-10-24','ch084':'2026-11-03','ch085':'2026-11-08','ch086':'2026-11-14','ch087':build.PUBLICATION['chapter_publications']['ch087'].get('foreign_published')}.get(p.stem,DATE)
                 self.assertEqual(schema['datePublished'],translation_date if foreign else build.CHAPTERS[p.stem]['published'])
                 self.assertEqual(schema['dateModified'], translation_date if foreign else build.CHAPTERS[p.stem].get('modified', build.DATE))
                 if foreign:self.assertEqual(schema['translationOfWork']['url'],build.ORIGIN+p.stem+'.html')
@@ -156,7 +157,7 @@ class OriginalTests(unittest.TestCase):
             records=json.loads((search.CHUNKS_DIR/f'{lang}.json').read_text())['records']
             for name in ('index.html',*(ch+'.html' for ch in build.CHAPTERS)):
                 url=f'originals/hongloumeng/{d}{name}'
-                expected=0 if name=='ch087.html' and lang in FOREIGN else 1
+                expected=0 if name=='ch087.html' and lang in FOREIGN and not build.ch087_multilingual(build.PUBLICATION) else 1
                 self.assertEqual(sum(r['u']==url for r in records),expected,url)
 
     def test_received_manuscripts_and_source_parity(self):
@@ -180,9 +181,9 @@ class OriginalTests(unittest.TestCase):
                 # Reconstruct all source units, including the eight distinct song lines.
                 pieces=re.split(r'<div data-source-unit="(\d+)"[^>]*>',body)[1:]
                 actual=[(int(pieces[i]),html.unescape(re.sub('<[^>]*>','',pieces[i+1]))) for i in range(0,len(pieces),2)]
-                self.assertEqual([n for n,_ in actual],list(range(1,{'ch081':102,'ch082':68,'ch083':33,'ch084':52,'ch085':157,'ch086':89}[stem])))
+                self.assertEqual([n for n,_ in actual],list(range(1,{'ch081':102,'ch082':68,'ch083':33,'ch084':52,'ch085':157,'ch086':89,'ch087':149}[stem])))
                 self.assertEqual([(n,normalize(v)) for n,v in actual],[(n,normalize(v)) for n,v in units])
-                self.assertEqual(len(re.findall(r'data-source-unit="\d+" class="verse"',page)),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36,'ch086':2}[stem])
+                self.assertEqual(len(re.findall(r'data-source-unit="\d+" class="verse"',page)),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36,'ch086':2,'ch087':0}[stem])
                 self.assertNotIn('<!-- P',body)
                 if lang=='es' and stem=='ch081':
                     self.assertNotIn('Nota 1.',body)

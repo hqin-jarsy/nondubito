@@ -9,6 +9,7 @@ import subprocess
 import unittest
 from urllib.parse import urlsplit, unquote
 from build_hongloumeng_hub import CH087_TITLE_ZH, ROOT, TARGET, CATALOG, EDITIONS, render
+from hongloumeng_translations import ch087_multilingual
 
 
 class Nodes(HTMLParser):
@@ -76,6 +77,7 @@ class HubTests(unittest.TestCase):
             self.assertEqual(file.read_bytes(),original,e['url'])
 
     def test_links_metadata_and_scope(self):
+        ch087_foreign = ch087_multilingual(json.loads((ROOT/'data/originals/hongloumeng/publication.json').read_text()))
         for lang,(directory,code,_) in EDITIONS.items():
             path=TARGET/directory/'index.html';source=path.read_text();nodes=Nodes(source).nodes
             ids=[a['id'] for _,a in nodes if 'id' in a]
@@ -114,13 +116,15 @@ class HubTests(unittest.TestCase):
             self.assertIn('Chapters 81–87 published' if lang=='en' else ('第八十一至八十七回定稿已發佈' if lang=='zh-hant' else '第八十一至八十七回定稿已发布'),section)
             chapter_links = [a for tag,a in Nodes(section).nodes if tag=='a' and a['href'].endswith('ch087.html')]
             self.assertEqual(len(chapter_links), 1)
-            chinese_target = 'originals/hongloumeng/' + ('zh-hant/' if lang=='zh-hant' else '') + 'ch087.html'
-            self.assertEqual((path.parent/chapter_links[0]['href']).resolve(), ROOT/chinese_target)
-            self.assertEqual(chapter_links[0]['hreflang'], 'zh-Hant' if lang=='zh-hant' else 'zh-Hans')
+            chapter_dir = 'zh-hant/' if lang=='zh-hant' else ('en/' if lang=='en' and ch087_foreign else '')
+            chapter_lang = 'zh-Hant' if lang=='zh-hant' else ('en' if lang=='en' and ch087_foreign else 'zh-Hans')
+            chapter_target = 'originals/hongloumeng/' + chapter_dir + 'ch087.html'
+            self.assertEqual((path.parent/chapter_links[0]['href']).resolve(), ROOT/chapter_target)
+            self.assertEqual(chapter_links[0]['hreflang'], chapter_lang)
             self.assertIn('Chapters 88–110 remain unpublished' if lang=='en' else '第八十八至第一百一十回', section)
             self.assertNotRegex(section, r'ch(?:088|089|09[0-9]|10[0-9]|110)\.html')
             if lang=='en':
-                self.assertIn('Read chapter 87 · Chinese text', section)
+                self.assertIn('Read chapter 87 · English text' if ch087_foreign else 'Read chapter 87 · Chinese text', section)
             elif lang=='zh':
                 self.assertIn(CH087_TITLE_ZH, section)
 

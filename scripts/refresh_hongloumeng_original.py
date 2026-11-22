@@ -5,8 +5,9 @@ import subprocess
 import xml.etree.ElementTree as ET
 import build_search_index as search
 from build_sitemap import parse_page, sitemap_xml
-from build_hongloumeng_original import render, CHAPTERS
-DATE = max(ch['modified'] for ch in CHAPTERS.values())
+from build_hongloumeng_original import render, CHAPTERS, PUBLICATION
+DATE = max(*(ch['modified'] for ch in CHAPTERS.values()),
+           PUBLICATION['chapter_publications'].get('ch087',{}).get('foreign_published',''))
 
 def refresh():
     paths=list(render())
