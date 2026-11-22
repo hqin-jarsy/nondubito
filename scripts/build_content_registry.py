@@ -154,6 +154,7 @@ DOMAIN_PREFIXES = (
     ("essays/worldcup/", "history"),
     ("essays/math-history/", "history"),
     ("essays/paleontology/", "history"),
+    ("essays/ai-history/", "history"),
     ("essays/sae-", "sae-philosophy"),
     ("essays/method/", "sae-philosophy"),
     ("essays/meaning/", "sae-philosophy"),
@@ -356,10 +357,10 @@ def language_from_directory(relative: Path, root: Path) -> tuple[str | None, Pat
         if parts[3] in PUBLIC_HTML and (root / candidate).is_file():
             return LANGUAGE_CODES[parts[2]], candidate
 
-    # Paleontology gives all eight editions their own static URL, including EN/Hant.
-    if len(parts) == 4 and parts[:2] == ["essays", "paleontology"]:
+    # These series give all eight editions their own static URL, including EN/Hant.
+    if len(parts) == 4 and parts[0] == "essays" and parts[1] in {"paleontology", "ai-history"}:
         language = LANGUAGE_CODES.get(parts[2])
-        candidate = Path("essays", "paleontology", parts[3])
+        candidate = Path("essays", parts[1], parts[3])
         if language and (root / candidate).exists():
             return language, candidate
 
@@ -472,7 +473,7 @@ def infer_record_type(relative: Path) -> str:
         return 'series-index'
     if relative.as_posix() in ('classics/hongloumeng/edition.html', 'classics/hongloumeng/zh-hant/edition.html', 'classics/hongloumeng/en/edition.html', 'classics/hongloumeng/ja/edition.html', 'classics/hongloumeng/fr/edition.html', 'classics/hongloumeng/de/edition.html', 'classics/hongloumeng/es/edition.html', 'classics/hongloumeng/ko/edition.html'):
         return 'site-page'
-    if relative.parts[:2] == ("essays", "paleontology") and relative.name == "index.html":
+    if relative.parts[:2] in {("essays", "paleontology"), ("essays", "ai-history")} and relative.name == "index.html":
         return "series-index"
     if relative.parts and relative.parts[0] == "originals":
         if relative.name != "index.html":
