@@ -76,6 +76,9 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=True):
             content += '<p class="edition-note">前八十回至此。秦漢原創第八十一至第一百一十回為當代續寫，與曹雪芹原著分別編排。</p>'
         name = f'ch{n:03d}.html'
         pages[name] = shell(chapter['title'] + ' · ' + edition, '紅樓夢前八十回中文正文。', content, name, draft, edition)
+        if not draft and n in (21, 77):
+            from check_hongloumeng_duo_name import edited
+            pages[name] = edited('zh-hant/' + name, pages[name])
     batches = []
     for start in range(1, 81, 5):
         cards = ''.join(f'<li data-chapter="{c["number"]}" data-title="{E(c["title"])}"><a href="ch{c["number"]:03d}.html"><span class="chapter-index">{c["number"]:02d}</span><span>{E(c["title"])}</span></a></li>' for c in chapters[start-1:start+4])
