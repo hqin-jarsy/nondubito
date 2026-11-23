@@ -11,9 +11,12 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1] / 'classics/hongloumeng'
 PROSE = re.compile(r'(<p\b[^>]*\bclass="prose"[^>]*>)(.*?)(</p>)', re.S)
+# The crowd's spoken nickname keeps its rhotic ending; the narrator does not.
+SPOKEN = {
+    'ch021.html': ('众人都呼他作', '儿'),
+    'zh-hant/ch021.html': ('眾人都呼他作', '兒'),
+}
 EDITS = {
-    'ch021.html': [('多姑娘儿', '多姑娘', 2)],
-    'zh-hant/ch021.html': [('多姑娘兒', '多姑娘', 2)],
     'ch077.html': [('多浑虫灯姑娘儿的便是了', '多浑虫和多姑娘了', 1), ('灯姑娘', '多姑娘', 4)],
     'zh-hant/ch077.html': [('多渾蟲燈姑娘兒的便是了', '多渾蟲和多姑娘了', 1), ('燈姑娘', '多姑娘', 4)],
     'ja/ch077.html': [('灯姑娘', '多姑娘', 5)],
@@ -32,7 +35,26 @@ def prose(html):
     return '\n'.join(m[2] for m in PROSE.finditer(html))
 
 
+def chapter21(name, text):
+    intro, suffix = SPOKEN[name]
+    spoken = f'{intro}“多姑娘{suffix}”'
+    uninflected = f'{intro}“多姑娘”'
+    narrator = '那多姑娘'
+    body = prose(text)
+    if body.count(spoken) + body.count(uninflected) != 1 or body.count(narrator) != 1:
+        raise ValueError(f'{name}: expected a quoted nickname and its narrator reference')
+    def replace(match):
+        value = match[2].replace(uninflected, spoken).replace(narrator + suffix, narrator)
+        return match[1] + value + match[3]
+    result = PROSE.sub(replace, text)
+    if prose(result).count('多姑娘' + suffix) != 1:
+        raise ValueError(f'{name}: rhotic ending outside the quoted nickname')
+    return result
+
+
 def edited(name, text):
+    if name in SPOKEN:
+        return chapter21(name, text)
     pairs = EDITS[name]
     before = prose(text)
     if not any(old in before for old, _, _ in pairs):
@@ -59,6 +81,8 @@ def validate(root, results):
             floor = 2 if chapter == 21 else 3 if language == 'fr' else 5 if language != 'en' else 4
             if body.casefold().count(preferred.casefold()) < floor:
                 raise ValueError(f'{name}: preferred nickname missing from the chapter prose')
+            if name in SPOKEN and chapter21(name, html) != html:
+                raise ValueError(f'{name}: narration and quotation are not distinguished')
             if any(old in body for old, _, _ in EDITS.get(name, [])):
                 raise ValueError(f'{name}: superseded nickname remains in the chapter prose')
 
@@ -67,10 +91,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--write', action='store_true')
     args = parser.parse_args()
-    originals = {name: (ROOT / name).read_text(encoding='utf-8') for name in EDITS}
+    pages = (*SPOKEN, *EDITS)
+    originals = {name: (ROOT / name).read_text(encoding='utf-8') for name in pages}
     planned = {name: edited(name, html) for name, html in originals.items()}
     validate(ROOT, planned)
-    changed = [name for name in EDITS if originals[name] != planned[name]]
+    changed = [name for name in pages if originals[name] != planned[name]]
     if changed and not args.write:
         raise SystemExit(f'Nickname overlay missing: {", ".join(changed)}')
     for name in changed:
