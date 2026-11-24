@@ -51,7 +51,7 @@ const shots = process.env.THEATRE_SCREENSHOTS;
       for (const lang of foreignLanguages) {
         const response = await page.goto(`${base}/essays/theatre/${lang}/index.html`);
         assert.ok(response.ok());
-        assert.equal(await page.locator('.essay-card').count(),23);
+        assert.equal(await page.locator('.essay-card').count(),26);
         for (const slug of expanded) {
           await page.locator(`.essay-card[href="${slug}.html"]`).click();
           await page.waitForURL(`**/theatre/${lang}/${slug}.html`);

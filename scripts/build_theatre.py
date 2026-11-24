@@ -15,8 +15,8 @@ UPDATED = '2026-11-15'  # Original Chinese release; not this batch’s language 
 EN = 'Theatre & Musicals'
 ZH = '戏剧与音乐剧'
 EXTRA_EDITIONS = {'ja': '日本語', 'fr': 'Français', 'de': 'Deutsch', 'es': 'Español', 'ko': '한국어'}
-DECK_EN = 'Thirty-five musical-theatre essays, beginning with characters, song, and staging. All in Chinese; twenty-three also have six complete foreign-language editions.'
-DECK_ZH = '三十五部音乐剧，从人物、歌声与舞台出发，谈归属、劳动、照顾与共同生活。全篇提供简繁中文，二十三部另有六种外语全文。'
+DECK_EN = 'Thirty-five musical-theatre essays, beginning with characters, song, and staging. All in Chinese; twenty-six also have six complete foreign-language editions.'
+DECK_ZH = '三十五部音乐剧，从人物、歌声与舞台出发，谈归属、劳动、照顾与共同生活。全篇提供简繁中文，二十六部另有六种外语全文。'
 
 
 def catalog():
@@ -42,7 +42,7 @@ def language_note(work):
 
 def load(language, slug='hamilton'):
     title, notice, body = (ROOT / f'data/theatre/{slug}.{language}.md').read_text().strip().split('\n\n', 2)
-    return title.removeprefix('# '), notice.strip('*'), body
+    return title.removeprefix('# '), notice.removeprefix('> ').strip('*'), body
 
 
 def page_head(title, deck, filename, work=None):
@@ -66,7 +66,7 @@ def page_head(title, deck, filename, work=None):
     result = result.replace(match.group(1), json.dumps(schema, ensure_ascii=False))
     alternates = ''.join(f'<link rel="alternate" hreflang="{lang}" href="https://nondubito.net/essays/theatre/{lang}/{filename}">' for lang in editions(work))
     result = result.replace('</head>', alternates + '</head>')
-    if work is None or work.get('editions_added') == batch.DATE:
+    if work is None or work.get('editions_added') in (batch.PRIOR_DATE, batch.DATE):
         result = batch.switch_links(result, filename)
     return result
 
@@ -81,7 +81,7 @@ def wrap(content, title, deck, filename, converter, work=None):
     other_editions = ''.join(f'<a href="{lang}/{filename}" lang="{lang}">{label}</a>' for lang, label in editions(work).items())
     edition_nav = f'<nav aria-label="Other editions" style="display:flex;gap:1rem;flex-wrap:wrap;margin:1rem 0 2rem">{other_editions}</nav>' if other_editions else ''
     header = navigation()
-    if work is None or work.get('editions_added') == batch.DATE:
+    if work is None or work.get('editions_added') in (batch.PRIOR_DATE, batch.DATE):
         pattern = r'(<div class="site-shell-(?:language-options|mobile-languages)">.*?)(</div>)'
         header,n = re.subn(pattern,lambda m:m[1]+other_editions+m[2],header,flags=re.S)
         assert n == 2, filename
@@ -112,8 +112,8 @@ def library_block():
             zt, _, _ = load('zh', w['slug'])
             en_languages, zh_languages = language_note(w)
             cards.append(f'''<a href="essays/theatre/{w['slug']}.html" class="series-card"><span class="series-card-count">{w['year']} · {en_languages} / {zh_languages}</span><div class="series-card-title-en">{esc(et)}</div><div class="series-card-title-zh cl-zh">{esc(zt)}</div><div class="series-card-title-zh cl-hant">{esc(c.convert(zt))}</div><p class="series-card-desc-en lang-en">{esc(w['deck_en'])}</p><p class="series-card-desc-zh lang-zh cl-zh">{esc(w['deck_zh'])}</p><p class="series-card-desc-zh lang-zh cl-hant">{esc(c.convert(w['deck_zh']))}</p><span class="series-card-arrow lang-en">Read essay →</span><span class="series-card-arrow lang-zh cl-zh">阅读文章 →</span><span class="series-card-arrow lang-zh cl-hant">閱讀文章 →</span></a>''')
-        description_en = 'Thirty-five musical-theatre essays. All have complete Simplified and Traditional Chinese editions; twenty-three also have complete English, Japanese, French, German, Spanish and Korean editions; twelve are Chinese-only.'
-        description_zh = '三十五部音乐剧，全部提供简繁中文全文；二十三部另有英、日、法、德、西、韩全文，其余十二部仅有简繁中文。'
+        description_en = 'Thirty-five musical-theatre essays. All have complete Simplified and Traditional Chinese editions; twenty-six also have complete English, Japanese, French, German, Spanish and Korean editions; nine are Chinese-only.'
+        description_zh = '三十五部音乐剧，全部提供简繁中文全文；二十六部另有英、日、法、德、西、韩全文，其余九部仅有简繁中文。'
         return '''<!-- THEATRE CATEGORY START -->
 <hr class="lib-divider">
 <section class="lib-section" id="theatre"><div class="lib-section-header"><span class="lib-section-tag">Category 18</span><a href="essays/theatre/index.html" class="lib-section-name" style="text-decoration:none"><span class="en">Theatre &amp; Musicals</span><span class="zh cl-zh">戏剧与音乐剧</span><span class="zh cl-hant">戲劇與音樂劇</span></a>''' + f'''<p class="lib-section-desc lang-en">{description_en}</p><p class="lib-section-desc lang-zh cl-zh">{description_zh}</p><p class="lib-section-desc lang-zh cl-hant">{c.convert(description_zh)}</p></div><div class="series-grid">''' + '\n'.join(cards) + '''</div></section>
@@ -153,7 +153,7 @@ def outputs():
     try:
         tr = lambda en, zh, tag='span', classes='': localized(en, zh, c, tag, classes)
         cards = '\n'.join(render_card(w, c) for w in works)
-        shelf = f'''<section class="rf-shelf-hero"><div><p class="rf-kicker">{tr(f'Stage &amp; people · {len(works)} works', f'舞台与人 · {len(works)}部作品')}</p>{tr(esc(EN), ZH, 'h1')}{tr(DECK_EN, DECK_ZH, 'p', 'rf-hero-deck')}</div><div class="rf-editor-note">{tr('These essays attend to what a scene makes possible: who can speak, who must wait, and what changes when another person sings. Plot context accompanies the discussion.', '留意一场戏让谁开口、让谁等待，又怎样通过另一人的歌声改变问题。没有看过作品，也能跟着情节进入。', 'p')}{tr('Language availability is marked on each card. Twenty-three essays have eight complete editions. The remaining twelve are available in Simplified and Traditional Chinese.', '每张卡片标明可用语言。二十三篇提供八语全文，其余十二篇提供简繁中文。', 'p')}</div></section><section class="rf-year-section"><div class="rf-shelf-heading">{tr('Ways into musical theatre', '从人物与舞台进入音乐剧', 'h2')}</div><div class="rf-book-grid">{cards}</div></section>'''
+        shelf = f'''<section class="rf-shelf-hero"><div><p class="rf-kicker">{tr(f'Stage &amp; people · {len(works)} works', f'舞台与人 · {len(works)}部作品')}</p>{tr(esc(EN), ZH, 'h1')}{tr(DECK_EN, DECK_ZH, 'p', 'rf-hero-deck')}</div><div class="rf-editor-note">{tr('These essays attend to what a scene makes possible: who can speak, who must wait, and what changes when another person sings. Plot context accompanies the discussion.', '留意一场戏让谁开口、让谁等待，又怎样通过另一人的歌声改变问题。没有看过作品，也能跟着情节进入。', 'p')}{tr('Language availability is marked on each card. Twenty-six essays have eight complete editions. The remaining nine are available in Simplified and Traditional Chinese.', '每张卡片标明可用语言。二十六篇提供八语全文，其余九篇提供简繁中文。', 'p')}</div></section><section class="rf-year-section"><div class="rf-shelf-heading">{tr('Ways into musical theatre', '从人物与舞台进入音乐剧', 'h2')}</div><div class="rf-book-grid">{cards}</div></section>'''
         result = {ROOT / 'essays/theatre/index.html': wrap(shelf, EN + ' · ' + ZH, DECK_EN, 'index.html', c)}
         for i, w in enumerate(works):
             if not has_english(w):

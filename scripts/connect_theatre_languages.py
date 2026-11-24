@@ -1,4 +1,4 @@
-"""Connect the 2026-11-22 theatre edition expansion to existing discovery."""
+"""Connect the 2026-11-24 theatre edition expansion to existing discovery."""
 import argparse
 import json
 import re
@@ -9,20 +9,20 @@ from theatre_language_batch import ROOT, DATE, LANGUAGES, CATALOG, E
 ID = f'{DATE}-theatre-three-eight-languages'
 URL = 'essays/theatre/index.html'
 TITLE = {'en':'Theatre & Musicals: three essays now in eight languages',
-         'zh':'戏剧与音乐剧：《舞动人生》《大彗星》《紫色》补齐八语',
-         'zh-hant':'戲劇與音樂劇：《舞動人生》《大彗星》《紫色》補齊八語'}
+         'zh':'戏剧与音乐剧：《过去五年》《激情》《拉格泰姆》补齐八语',
+         'zh-hant':'戲劇與音樂劇：《過去五年》《激情》《拉格泰姆》補齊八語'}
 SUMMARY = {
-    'en':'Billy Elliot, The Great Comet and The Color Purple now have complete English, Japanese, French, German, Spanish and Korean editions alongside the Chinese originals. Twenty-three of the thirty-five essays are available in all eight languages.',
-    'zh':'《舞动人生》《大彗星》《紫色》在简繁中文版之外，新增英、日、法、德、西、韩全文。三十五篇中已有二十三篇可读八语。',
-    'zh-hant':'《舞動人生》《大彗星》《紫色》在簡繁中文版之外，新增英、日、法、德、西、韓全文。三十五篇中已有二十三篇可讀八語。'
+    'en':'The Last Five Years, Passion and Ragtime now have complete English, Japanese, French, German, Spanish and Korean editions alongside the Chinese originals. Twenty-six of the thirty-five essays are available in all eight languages.',
+    'zh':'《过去五年》《激情》《拉格泰姆》在简繁中文版之外，新增英、日、法、德、西、韩全文。三十五篇中已有二十六篇可读八语。',
+    'zh-hant':'《過去五年》《激情》《拉格泰姆》在簡繁中文版之外，新增英、日、法、德、西、韓全文。三十五篇中已有二十六篇可讀八語。'
 }
 
 
 def shelf_copy():
     return {
-        'en':'Thirty-five essays on characters, songs and shared lives. Twenty-three are in all eight languages; the other twelve have Simplified and Traditional Chinese editions.',
-        'zh':'三十五部音乐剧，从人物、歌声与舞台谈共同生活。二十三篇提供八语，其余十二篇提供简繁中文。',
-        'zh-hant':'三十五部音樂劇，從人物、歌聲與舞台談共同生活。二十三篇提供八語，其餘十二篇提供簡繁中文。'}
+        'en':'Thirty-five essays on characters, songs and shared lives. Twenty-six are in all eight languages; the other nine have Simplified and Traditional Chinese editions.',
+        'zh':'三十五部音乐剧，从人物、歌声与舞台谈共同生活。二十六篇提供八语，其余九篇提供简繁中文。',
+        'zh-hant':'三十五部音樂劇，從人物、歌聲與舞台談共同生活。二十六篇提供八語，其餘九篇提供簡繁中文。'}
 
 
 def outputs():
@@ -36,9 +36,9 @@ def outputs():
     updates = baseline[:index] + [item] + baseline[index:]
     ledger['updates'] = updates
     result = {ledger_path:json.dumps(ledger,ensure_ascii=False,indent=2)+'\n'}
-    prefix = 'THEATRE 2026-11-22 LATEST'
-    section = (f'<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-theatre-languages">'
-               f'<header class="updates-date"><h2 id="date-theatre-languages"><time datetime="{DATE}">{DATE}</time></h2></header>'
+    prefix = 'THEATRE 2026-11-24 LATEST'
+    section = (f'<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-theatre-languages-20261124">'
+               f'<header class="updates-date"><h2 id="date-theatre-languages-20261124"><time datetime="{DATE}">{DATE}</time></h2></header>'
                f'<div class="updates-grid"><article class="update-card" data-update-id="{ID}"><div class="update-meta"><span class="update-kind">'
                +localized({'en':'Expanded','zh':'语言拓展','zh-hant':'語言拓展'})
                +'</span><span>EN · 简 · 繁 · 日本語 · Français · Deutsch · Español · 한국어</span></div>'
@@ -98,7 +98,7 @@ def main():
             assert path.read_text()==text,path
         elif path.read_text()!=text:
             path.write_text(text)
-    print('OK: scoped theatre channels, Explore, Home and 2026-11-22 update')
+    print('OK: scoped theatre channels, Explore, Home and 2026-11-24 update')
 
 
 if __name__ == '__main__':

@@ -8,7 +8,7 @@ from urllib.parse import urlsplit, unquote
 
 from build_theatre import ROOT, catalog, load, outputs, library_block
 from build_content_registry import scan_page, parse_library_categories
-from theatre_language_batch import DATE, LANGUAGES, SLUGS, alternatives
+from theatre_language_batch import DATE, LANGUAGES, SLUGS, ALL_SLUGS, alternatives
 from connect_theatre_languages import ID
 
 
@@ -34,15 +34,21 @@ fixture = json.loads((ROOT / 'scripts/fixtures/theatre-2026-10-18-approved.json'
 batch = json.loads((ROOT / 'scripts/fixtures/theatre-2026-11-15-approved.json').read_text())
 new_articles = {item['slug']: item for item in batch['articles']}
 assert len(new_articles) == 15
-expanded = {w['slug'] for w in works if w.get('editions_added') == DATE}
+expanded = {w['slug'] for w in works if w.get('editions_added')}
 chinese_only_slugs = set(new_articles) - expanded
-assert expanded == set(SLUGS) and len(chinese_only_slugs) == 12
-assert sum('en' in w.get('languages',['en']) for w in works) == 23
+assert expanded == set(ALL_SLUGS) and len(chinese_only_slugs) == 9
+assert sum('en' in w.get('languages',['en']) for w in works) == 26
 assert set(fixture['articles']) == {w['slug'] for w in works if w['slug'] != 'hamilton' and w['slug'] not in new_articles}
 for filename, expected in batch['protected_files'].items():
     if filename in {f'essays/theatre/{lang}/index.html' for lang in LANGUAGES}:
         continue  # Existing shelves gain only the separate bounded edition block.
     assert hashlib.sha256((ROOT / filename).read_bytes()).hexdigest() == expected, filename
+# Only these two documented corrections may alter the newly translated Chinese sources.
+RAGTIME_ZH_CORRECTIONS = (
+    ('一群白人消防队员', '一群白人志愿消防队员'),
+    ('Coalhouse杀死了参与毁车的消防队员，也与追随者发动纵火，后来占据',
+     'Coalhouse枪杀了参与毁车的消防队员，烧了他们的消防站。他的追随者后来在城里多处放火。Coalhouse随后占据'),
+)
 for item in batch['articles']:
     received = ROOT / 'data/theatre/received/20261115' / item['source']
     raw = received.read_bytes()
@@ -53,7 +59,14 @@ for item in batch['articles']:
     body = '\n\n'.join(p for i, p in enumerate(blocks) if i not in (0, notice_index))
     imported = blocks[0] + '\n\n*' + notice + '*\n\n' + body + '\n'
     target = ROOT / f"data/theatre/{item['slug']}.zh.md"
-    if item['slug'] not in expanded:
+    if item['slug'] in SLUGS:
+        current = imported
+        if item['slug'] == 'ragtime':
+            for old, new in RAGTIME_ZH_CORRECTIONS:
+                assert current.count(old) == 1
+                current = current.replace(old, new)
+        assert target.read_text() == current, (item['slug'], 'bounded factual source change')
+    elif item['slug'] not in expanded:
         assert target.read_text() == imported, (item['slug'], 'lossless import')
     assert sha(imported) == item['imported_sha256']
     count_body = '\n'.join(p for i, p in enumerate(blocks)
@@ -87,10 +100,10 @@ for path, expected in outputs().items():
     if locale in LANGUAGES:
         assert set(record['languages']) == {locale}
         assert alternatives(path.name) in source
-        assert schema['inLanguage'] == locale and schema['dateModified'] == DATE
+        assert schema['inLanguage'] == locale and schema['dateModified'] == (DATE if path.stem == 'index' else next(w['editions_added'] for w in works if w['slug'] == path.stem))
         assert source.count('cloudflareinsights.com/beacon.min.js') == 1
         if path.stem == 'index':
-            assert source.count('class="essay-card"') == 23
+            assert source.count('class="essay-card"') == 26
             assert schema['@type'] == 'CollectionPage'
         else:
             assert path.stem in expanded and schema['datePublished'] == '2026-11-15'
@@ -190,4 +203,4 @@ for slug in ('index',*SLUGS):
 assert ID in (ROOT/'latest.html').read_text()
 assert '2026-10-18-theatre-twenty' in (ROOT / 'latest.html').read_text()
 assert '2026-11-15-theatre-fifteen' in (ROOT / 'latest.html').read_text()
-print('OK: 35 theatre essays; 23 at eight languages, 12 Chinese-only; preserved originals, metadata, links and discovery')
+print('OK: 35 theatre essays; 26 at eight languages, 9 Chinese-only; preserved originals, metadata, links and discovery')
