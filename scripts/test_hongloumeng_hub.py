@@ -105,7 +105,7 @@ class HubTests(unittest.TestCase):
             self.assertEqual(schema['inLanguage'],code)
             self.assertNotIn('恢复曹雪芹原稿',source)
             section=source.split('<section id="continuation">')[1].split('</section>')[0]
-            self.assertEqual(section.count('<a '),8)
+            self.assertEqual(section.count('<a '),9)
             self.assertIn('ch081.html',section)
             self.assertIn('ch082.html',section)
             self.assertIn('ch083.html',section)
@@ -113,7 +113,7 @@ class HubTests(unittest.TestCase):
             self.assertIn('ch085.html',section)
             self.assertIn('ch086.html',section)
             self.assertIn('original fiction by Han Qin' if lang=='en' else ('秦漢的原創小說' if lang=='zh-hant' else '秦汉的原创小说'),section)
-            self.assertIn('Chapters 81–87 published' if lang=='en' else ('第八十一至八十七回定稿已發佈' if lang=='zh-hant' else '第八十一至八十七回定稿已发布'),section)
+            self.assertIn('Chapters 81–88 published' if lang=='en' else ('第八十一至八十八回定稿已發佈' if lang=='zh-hant' else '第八十一至八十八回定稿已发布'),section)
             chapter_links = [a for tag,a in Nodes(section).nodes if tag=='a' and a['href'].endswith('ch087.html')]
             self.assertEqual(len(chapter_links), 1)
             chapter_dir = 'zh-hant/' if lang=='zh-hant' else ('en/' if lang=='en' and ch087_foreign else '')
@@ -121,8 +121,11 @@ class HubTests(unittest.TestCase):
             chapter_target = 'originals/hongloumeng/' + chapter_dir + 'ch087.html'
             self.assertEqual((path.parent/chapter_links[0]['href']).resolve(), ROOT/chapter_target)
             self.assertEqual(chapter_links[0]['hreflang'], chapter_lang)
-            self.assertIn('Chapters 88–110 remain unpublished' if lang=='en' else '第八十八至第一百一十回', section)
-            self.assertNotRegex(section, r'ch(?:088|089|09[0-9]|10[0-9]|110)\.html')
+            ch088_link, = [a for tag,a in Nodes(section).nodes if tag=='a' and a['href'].endswith('ch088.html')]
+            self.assertEqual(ch088_link['hreflang'], chapter_lang)
+            self.assertEqual((path.parent/ch088_link['href']).resolve(), ROOT/chapter_target.replace('ch087','ch088'))
+            self.assertIn('Chapters 89–110 remain unpublished' if lang=='en' else '第八十九至第一百一十回', section)
+            self.assertNotRegex(section, r'ch(?:089|09[0-9]|10[0-9]|110)\.html')
             if lang=='en':
                 self.assertIn('Read chapter 87 · English text' if ch087_foreign else 'Read chapter 87 · Chinese text', section)
             elif lang=='zh':

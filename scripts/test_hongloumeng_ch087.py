@@ -62,11 +62,14 @@ class Chapter87Tests(unittest.TestCase):
                 self.assertIn('href="ch087.html"', (folder/'ch086.html').read_text())
                 self.assertIn('href="ch086.html"', page)
                 self.assertIn('href="ch087.html"', index)
-                if lang in ('zh','zh-hant'):
+                if build.ch088_multilingual(build.PUBLICATION):
+                    self.assertIn('href="ch088.html"', page)
+                elif lang in ('zh','zh-hant'):
                     self.assertIn('第八十八回', page)
-                else:
+                if lang not in ('zh','zh-hant'):
                     from hongloumeng_translations import CH087_COMPLETED, edition
-                    self.assertIn(html.escape(CH087_COMPLETED[lang][1]), page)
+                    if not build.ch088_multilingual(build.PUBLICATION):
+                        self.assertIn(html.escape(CH087_COMPLETED[lang][1]), page)
                     self.assertNotIn('href="../ch087.html" hreflang="zh-Hans"', index)
                     _, units, notes = edition('ch087',lang)
                     body=page.split('<div class="novel-text">',1)[1].split('</article>',1)[0]

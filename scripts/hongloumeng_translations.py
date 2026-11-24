@@ -76,6 +76,26 @@ def ch087_multilingual(publication):
     return True
 
 
+CH088_COMPLETED = {
+    'en': ('Chapters 81–88 are available in eight languages. Chapters 89–110 remain unpublished.', 'Chapter 89 · Not yet published', 'Chapter 88'),
+    'de': ('Die Kapitel 81–88 sind in acht Sprachen lesbar. Die Kapitel 89–110 sind noch nicht veröffentlicht.', 'Kapitel 89 · Noch nicht veröffentlicht', 'Achtundachtzigstes Kapitel'),
+    'fr': ('Les récits 81–88 sont disponibles en huit langues. Les récits 89–110 ne sont pas encore publiés.', 'Récit 89 · Non encore publié', 'Quatre-vingt-huitième récit'),
+    'es': ('Los capítulos 81–88 están disponibles en ocho lenguas. Los capítulos 89–110 aún no se han publicado.', 'Capítulo 89 · Aún no publicado', 'Capítulo LXXXVIII'),
+    'ja': ('第八十一〜八十八回を八言語で公開しています。第八十九〜百十回は未公開です。', '第八十九回・未公開', '第八十八回'),
+    'ko': ('제81~88회를 여덟 언어로 읽을 수 있습니다. 제89~110회는 아직 공개하지 않았습니다.', '제89회 · 미공개', '제88회'),
+}
+
+
+def ch088_multilingual(publication):
+    ready = set(publication.get("chapter_publications", {}).get("ch088", {}).get("languages", []))
+    published = 88 in publication.get("published_chapters", [])
+    if not published and not ready:
+        return False
+    if not published or ready != CH087_LANGS:
+        raise ValueError("Chapter 88 must publish all eight editions together")
+    return True
+
+
 def received_path(stem, lang):
     record = json.loads((DATA.parent / 'publication.json').read_text())
     layout = record.get('chapter_publications', {}).get(stem, {}).get('text_layout', f'{stem}_{{language}}.md')
@@ -146,6 +166,9 @@ def edition(stem, lang):
     # A colon joins the number and couplet in some received headings.
     heading = re.sub(r'^(Chapter \d+|Sechsundachtzigstes Kapitel|Siebenundachtzigstes Kapitel|Capítulo 8[17]):\s*', r'\1\n', heading)
     heading = re.sub(r'^(Capítulo LXXXI) · ', r'\1\n', heading)
+    if stem == 'ch088':
+        prefix = CH088_COMPLETED[lang][2]
+        heading = re.sub(r'^'+re.escape(prefix)+r'(?: · |:\s*)', prefix+'\n', heading)
     return heading, units, notes
 
 
@@ -163,6 +186,7 @@ def render_foreign(editions, language_menu, origin, target):
     publication = json.loads((DATA.parent/'publication.json').read_text())
     publications = publication.get('chapter_publications', {})
     has_ch087 = ch087_multilingual(publication)
+    has_ch088 = ch088_multilingual(publication)
     all_chapters = tuple(f'ch{n:03}' for n in publication['published_chapters'])
     for lang, ui in FOREIGN.items():
         chapters = tuple(ch for ch in all_chapters
@@ -177,8 +201,9 @@ def render_foreign(editions, language_menu, origin, target):
         if has_ch087:
             old_end = CH087_OLD_INTRO_END[lang]
             assert old_end in intro
-            intro = CH087_COMPLETED[lang][0] + (' ' if lang != 'ja' else '') + intro.split(old_end, 1)[1]
-            pending = CH087_COMPLETED[lang][1]
+            completed = CH088_COMPLETED if has_ch088 else CH087_COMPLETED
+            intro = completed[lang][0] + (' ' if lang != 'ja' else '') + intro.split(old_end, 1)[1]
+            pending = completed[lang][1]
         for stem in ('index', *chapters):
             story = stem != 'index'
             title, units, notes = edition(stem, lang) if story else (collection, [], [])
@@ -191,7 +216,7 @@ def render_foreign(editions, language_menu, origin, target):
                 schema.update(position=int(stem[2:]), isPartOf={'@type':'CreativeWork','name':collection,'url':origin+lang+'/'}, translationOfWork={'@type':'Chapter','url':origin+stem+'.html','inLanguage':'zh-Hans'})
                 body = []
                 for number, value in units:
-                    verse = (stem == 'ch081' and 91 <= number <= 98) or (stem == 'ch082' and number in (38,39)) or (stem == 'ch083' and number == 33) or (stem in ('ch085', 'ch086') and any(a <= number <= b for a,b in publication['chapter_sources'][stem]['verse_units']))
+                    verse = (stem == 'ch081' and 91 <= number <= 98) or (stem == 'ch082' and number in (38,39)) or (stem == 'ch083' and number == 33) or (stem in ('ch085', 'ch086', 'ch088') and any(a <= number <= b for a,b in publication['chapter_sources'][stem]['verse_units']))
                     if stem == 'ch083' and number == 33:
                         if lang == 'ja': value=value.replace('　','　\n',1)
                         elif lang == 'ko': value=value.replace('뭇 꽃이 싸늘하고, ','뭇 꽃이 싸늘하고,\n',1)
@@ -221,6 +246,6 @@ def render_foreign(editions, language_menu, origin, target):
                     cards += f'<a class="chapter-card" href="../ch087.html" hreflang="zh-Hans"><span>{e(pending)}</span><small lang="zh-Hans">简体中文 →</small></a>'
                 content = f'<header class="collection-head"><p class="eyebrow">Han Qin · 81–110</p><h1>{e(collection)}</h1><p class="authorship">{e(notice)}</p></header><section class="introduction"><p>{e(intro)}</p></section><section class="contents"><h2>{e(contents)}</h2>{cards}</section>'
             pages[target/lang/(stem+'.html')] = f'''<!DOCTYPE html>
-<html lang="{lang}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title.replace(chr(10),' · '))} — Non Dubito</title><meta name="description" content="{e(notice+' '+collection+' · '+(('81–87' if has_ch087 else '81–86') if not story else str(int(stem[2:]))))}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{url}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title.replace(chr(10),' · '))}"><meta property="og:description" content="{e(notice)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../novel.css?v=20261020"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e(skip)}</a><header class="site-header"><a class="brand" href="../../../index.html?lang=en">Non <span>Dubito</span></a><nav><a href="../../../originals/index.html?lang=en">{e(shelf)}</a><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><a href="../../../library.html?lang=en">{e(library)}</a></nav>{language_menu(lang,stem+'.html')}</header><main id="main">{content}</main><footer><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><p>© 2026 Han Qin (秦汉) · Non Dubito</p></footer></body></html>
+<html lang="{lang}" data-lang="{lang}" data-editions="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title.replace(chr(10),' · '))} — Non Dubito</title><meta name="description" content="{e(notice+' '+collection+' · '+(('81–88' if has_ch088 else '81–87' if has_ch087 else '81–86') if not story else str(int(stem[2:]))))}"><meta name="author" content="Han Qin (秦汉)"><link rel="canonical" href="{url}">{alternatives}<meta property="og:type" content="{'article' if story else 'website'}"><meta property="og:title" content="{e(title.replace(chr(10),' · '))}"><meta property="og:description" content="{e(notice)}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Non Dubito"><meta name="twitter:card" content="summary"><link rel="icon" href="../../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../novel.css?v=20261020"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><a class="skip" href="#main">{e(skip)}</a><header class="site-header"><a class="brand" href="../../../index.html?lang=en">Non <span>Dubito</span></a><nav><a href="../../../originals/index.html?lang=en">{e(shelf)}</a><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><a href="../../../library.html?lang=en">{e(library)}</a></nav>{language_menu(lang,stem+'.html')}</header><main id="main">{content}</main><footer><a href="../../../essays/literature/hlm/en/index.html">{e(project)}</a><p>© 2026 Han Qin (秦汉) · Non Dubito</p></footer></body></html>
 '''
     return pages
