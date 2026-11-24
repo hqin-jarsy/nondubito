@@ -235,6 +235,9 @@ def render(spec: dict[str, object]) -> dict[Path, str]:
     if spec['id'] == 'sex-and-the-city':
         from build_satc_full_editions import upgrade_outputs
         outputs = upgrade_outputs(outputs)
+    if spec['id'] == 'six-feet-under':
+        from build_six_feet_full_editions import upgrade_outputs
+        outputs = upgrade_outputs(outputs)
     if spec['id'] == 'chernobyl':
         from build_chernobyl_full_editions import upgrade_outputs
         outputs = upgrade_outputs(outputs)
