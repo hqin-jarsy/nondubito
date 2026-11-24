@@ -8,7 +8,7 @@ import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from build_reader_series import ROOT, registry, load_items, render, landing, ReaderTraditionalConverter
+from build_reader_series import ROOT, registry, load_items, render, landing, multilingual, ReaderTraditionalConverter
 from build_content_registry import scan_page
 from prepare_action_sources import Document, one, Node
 from refresh_reader_discovery import render as discovery
@@ -128,8 +128,12 @@ class FairnessPublication(unittest.TestCase):
                     self.assertEqual(record['x'], item['deck_'+key] if key in ('en','zh') else converted_hant(item['deck_zh']))
                 self.assertEqual(scan_page(ROOT,path)['domain'], 'sae-philosophy')
         sitemap = {u.find('{*}loc').text:u.find('{*}lastmod').text for u in ET.parse(ROOT/'sitemap.xml').getroot()}
+        date = self.series['date']
+        if multilingual('fairness'):
+            profile = json.loads((ROOT/'data/fairness/multilingual/profile.json').read_text())
+            date = profile['date']
         for path in self.pages:
-            self.assertEqual(sitemap['https://nondubito.net/'+path.relative_to(ROOT).as_posix().removesuffix('index.html')], '2026-11-23')
+            self.assertEqual(sitemap['https://nondubito.net/'+path.relative_to(ROOT).as_posix().removesuffix('index.html')], date)
 
 
 def converted_hant(text):
