@@ -8,6 +8,8 @@
 @media(max-width:620px){.series-container{padding:80px 1.5rem 60px}.series-tail{padding:0 1.25rem 60px}.series-nav{flex-direction:column}.series-nav a:last-child{text-align:left}}
 </style><script>
 (function(){
+  var requested=new URLSearchParams(location.search).get('lang');
+  if(['en','zh','zh-hant'].indexOf(requested)!==-1) localStorage.setItem('nd_lang',requested);
   var saved=localStorage.getItem('nd_lang')||localStorage.getItem('nondubito-lang')||'zh';
   if(['en','zh','zh-hant'].indexOf(saved)===-1) saved='zh';
   document.documentElement.setAttribute('data-lang',saved);
