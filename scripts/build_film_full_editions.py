@@ -180,6 +180,15 @@ def outputs():
         out[ROOT/'essays/film'/lang/'index.html']=page({'slug':'','chapters':[]},lang,c,hub=True)
     p=ROOT/'essays/film/index.html';out[p]=legacy(p,{'slug':''},hub=True)
     out.update(targeted.traditional_outputs(out))
+    # The legacy film archive still owns its 18 prior releases. Keep the
+    # later scoped packages on its shared catalogue when rebuilding them.
+    from build_film_locale_expansions import catalog, native_hub, releases
+    extra=releases()
+    if extra:
+        out[p]=catalog(p,extra,hub=True,source=out[p])
+        for lang in LANGS:
+            hub=ROOT/'essays/film'/lang/'index.html'
+            out[hub]=native_hub(hub,lang,extra,source=out[hub])
     return out
 
 if __name__=='__main__':
