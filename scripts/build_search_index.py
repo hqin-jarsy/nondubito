@@ -120,6 +120,7 @@ def build() -> tuple[dict, dict[str, list[dict]]]:
                 "description": page["description"] or "",
                 "descriptions": extract_recent_fiction_descriptions(source)
                 if path.parent in (
+                    ROOT / "essays" / "fairness",
                     ROOT / "essays" / "political-economy",
                     ROOT / "essays" / "political-economy" / "theory",
                     ROOT / "essays" / "marriage",

@@ -46,7 +46,9 @@ def main():
         updates = json.loads(ledger.read_text())
         update_id = f'{s["date"]}-{s["slug"]}-reader-series'
         entry = dict(id=update_id,date=s['date'],kind='new',domain='sae',series_key=f'essays/{s["slug"]}',url=target,languages=['en','zh','zh-hant'],title={'en':s['en'],'zh':s['zh'],'zh-hant':conv.convert(s['zh'])},summary={'en':s['deck_en'],'zh':s['deck_zh'],'zh-hant':conv.convert(s['deck_zh'])})
-        updates['updates'] = [entry]+[u for u in updates['updates'] if u['id']!=update_id]
+        # Editorial dates can precede already-published entries. Keep older
+        # cards and their relative order, rather than changing their dates.
+        updates['updates'] = sorted([entry]+[u for u in updates['updates'] if u['id']!=update_id],key=lambda u:u['date'],reverse=True)
         ledger.write_text(json.dumps(updates,ensure_ascii=False,indent=2)+'\n')
         marker = f'READER SERIES {s["slug"].upper()} LATEST'
         section = f'<section class="updates-section"><div class="latest-inner"><section class="updates-day" aria-labelledby="date-reader-{s["slug"]}"><header class="updates-date"><h2 id="date-reader-{s["slug"]}"><time datetime="{s["date"]}">{s["date"]}</time></h2></header><div class="updates-grid"><article class="update-card" data-update-id="{update_id}"><div class="update-meta"><span class="update-kind">'+loc('New reader series','新增散文系列',conv)+'</span><span>EN / 简 / 繁</span></div>'+loc(s['en'],s['zh'],conv,'h3')+loc(s['deck_en'],s['deck_zh'],conv,'p')+f'<a href="{target}">'+loc('Read the series →','进入系列 →',conv)+'</a></article></div></section></div></section>'
@@ -54,11 +56,16 @@ def main():
         latest_path = ROOT/'latest.html'
         latest = latest_path.read_text()
         pattern = re.compile(r'<!-- '+re.escape(marker)+r' START -->.*?<!-- '+re.escape(marker)+r' END -->\n?',re.S)
-        if pattern.search(latest):
-            latest = pattern.sub(wrapped+'\n',latest,count=1)
+        latest = pattern.sub('',latest,count=1)
+        position = next(i for i,u in enumerate(updates['updates']) if u['id']==update_id)
+        following = next((u for u in updates['updates'][position+1:] if f'data-update-id="{u["id"]}"' in latest),None)
+        if following:
+            card = latest.index(f'data-update-id="{following["id"]}"')
+            first = latest.rfind('<!--',latest.index('<main class="site-shell-main">'),card)
+            assert first >= 0,'The following update must retain its archive marker'
         else:
-            first = latest.index('<!--',latest.index('<main class="site-shell-main">'))
-            latest = latest[:first]+wrapped+'\n'+latest[first:]
+            first = latest.index('</main>',latest.index('<main class="site-shell-main">'))
+        latest = latest[:first]+wrapped+'\n'+latest[first:]
         latest_path.write_text(latest)
         (ROOT/'index.html').write_text(render_home())
     finally:

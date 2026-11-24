@@ -116,7 +116,18 @@ def landing(s,items,conv):
     editions_en = 'eight languages' if multilingual(s['slug']) else 'English, Simplified & Traditional Chinese'
     editions_zh = '八种语言' if multilingual(s['slug']) else '英文、简体中文与繁体中文'
     cards = ''.join(f'<a class="lw-card" href="{i["slug"]}.html"><p class="lw-kicker">{i["id"]:02d}</p>{loc(i["title_en"],i["title_zh"],conv,"h2")}{loc(i["deck_en"],i["deck_zh"],conv,"p")}{loc("Read essay →","阅读全文 →",conv,"span","lw-read")}</a>' for i in items)
-    content = '<main class="lw-wrap">'+breadcrumb(s,conv)+'<section class="lw-hero"><p class="lw-kicker">Non Dubito · SAE</p>'+loc(s['en'],s['zh'],conv,'h1')+loc(s['deck_en'],s['deck_zh'],conv,'p','lw-deck lw-search-deck')+loc(f'{s["count"]} complete {"essay" if s["count"] == 1 else "essays"} · {editions_en}',f'{s["count"]} 篇完整散文 · {editions_zh}',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc(s['opening_en'],s['opening_zh'],conv,'p')+'<a href="ep01.html">'+loc('Begin here →','从第一篇开始 →',conv)+'</a></aside><section class="lw-grid">'+cards+'</section>'+reading_note(s,conv)+related(s,conv)+'</main>'
+    shelves = '<section class="lw-grid">'+cards+'</section>'
+    if s.get('reading_groups'):
+        groups = s['reading_groups']
+        assert [n for group in groups for n in group['episodes']] == list(range(1,len(items)+1)), 'Reading groups must cover every essay once, in order'
+        assert len({g['id'] for g in groups}) == len(groups)
+        shelves = '<nav class="sae-jump" aria-label="Reading sections">'+''.join('<a href="#'+html.escape(g['id'],quote=True)+'">'+loc(g['en'],g['zh'],conv)+'</a>' for g in groups)+'</nav>'
+        for g in groups:
+            local = ''.join(f'<a class="lw-card" href="{i["slug"]}.html"><p class="lw-kicker">{i["id"]:02d}</p>{loc(i["title_en"],i["title_zh"],conv,"h3")}{loc(i["deck_en"],i["deck_zh"],conv,"p")}{loc("Read essay","阅读全文",conv,"span","lw-read")}</a>' for i in items if i['id'] in g['episodes'])
+            shelves += '<section class="sae-group" id="'+html.escape(g['id'],quote=True)+'"><div class="sae-group-head">'+loc(g['en'],g['zh'],conv,'h2')+loc(g['deck_en'],g['deck_zh'],conv,'p')+'</div><div class="lw-grid">'+local+'</div></section>'
+        # Reuse the established card typography without changing other series.
+        shelves = '<style>.sae-group .lw-card h3{font-size:1.4rem;font-weight:400;line-height:1.6;margin-bottom:.9rem}.sae-group .lw-card:hover h3{color:var(--green)}</style>'+shelves
+    content = '<main class="lw-wrap">'+breadcrumb(s,conv)+'<section class="lw-hero"><p class="lw-kicker">Non Dubito · SAE</p>'+loc(s['en'],s['zh'],conv,'h1')+loc(s['deck_en'],s['deck_zh'],conv,'p','lw-deck lw-search-deck')+loc(f'{s["count"]} complete {"essay" if s["count"] == 1 else "essays"} · {editions_en}',f'{s["count"]} 篇完整散文 · {editions_zh}',conv,'p','lw-meta')+'</section><aside class="lw-opening">'+loc(s['opening_en'],s['opening_zh'],conv,'p')+'<a href="ep01.html">'+loc('Begin here →','从第一篇开始 →',conv)+'</a></aside>'+shelves+reading_note(s,conv)+related(s,conv)+'</main>'
     return connect_languages(page(content,s['en'],s['deck_en'],f'essays/{s["slug"]}/index.html',conv,publication_date=s['date']),s['slug'],'index')
 
 
