@@ -33,14 +33,16 @@ class OriginalTests(unittest.TestCase):
         self.assertEqual(received.decode().count(self.CH083_PROCESSION_AFTER), 0)
         correction_path = DATA / 'corrections.json'
         fixes = json.loads(correction_path.read_text())
-        self.assertEqual(fixes[-1], {
+        at = next(i for i, f in enumerate(fixes) if f['chapter'] == 'ch083' and f['language'] == 'en' and f['before'] == self.CH083_PROCESSION_BEFORE)
+        self.assertEqual(fixes[at], {
             'chapter': 'ch083', 'language': 'en',
             'before': self.CH083_PROCESSION_BEFORE,
             'after': self.CH083_PROCESSION_AFTER, 'count': 1,
             'reason': '出殡 denotes the funeral procession leaving the mansion, not burial there. Chapter 14 prepares the lodging of the coffin at Iron Threshold Temple; chapter 15 describes its arrival and placement there.'})
         # Removing this sole new entry must reproduce the frozen pre-correction data.
-        previous_corrections = json.dumps(fixes[:-1], ensure_ascii=False, indent=2) + '\n'
-        self.assertEqual(hashlib.sha256(previous_corrections.encode()).hexdigest(),
+        previous_corrections = json.dumps(fixes[:at] + fixes[at+1:], ensure_ascii=False, indent=2) + '\n'
+        original_predecessors = json.dumps(fixes[:at], ensure_ascii=False, indent=2) + '\n'
+        self.assertEqual(hashlib.sha256(original_predecessors.encode()).hexdigest(),
                          '6b2d8f56d97a0e0307cfac9871d6a375071c311e75a56cc5fff58d407f3ad7bf')
         original_read_text = type(correction_path).read_text
         def without_procession_fix(path, *args, **kwargs):
@@ -73,7 +75,8 @@ class OriginalTests(unittest.TestCase):
             self.assertEqual(record['source_sha256'],build.CHAPTERS[stem]['sha256'])
             self.assertEqual(record['source_bytes'],(build.ROOT/f'data/originals/hongloumeng/{stem}.zh.txt').stat().st_size)
             self.assertEqual(record['modified'],build.CHAPTERS[stem]['modified'])
-            self.assertEqual(record['modified'],'2026-10-19')
+            self.assertEqual(record['modified'],'2026-11-24')
+            # The date retained above refers to the earlier author approval.
         ch81='\n'.join(build.manuscript('ch081'))
         self.assertIn('站了一站，心下想道',ch81)
         self.assertIn('隔了这几年，尚有一缕香气',ch81)
@@ -140,7 +143,7 @@ class OriginalTests(unittest.TestCase):
             if p.stem in build.CHAPTERS:
                 translation_date={'ch083':'2026-10-24','ch084':'2026-11-03','ch085':'2026-11-08','ch086':'2026-11-14','ch087':build.PUBLICATION['chapter_publications']['ch087'].get('foreign_published')}.get(p.stem,DATE)
                 self.assertEqual(schema['datePublished'],translation_date if foreign else build.CHAPTERS[p.stem]['published'])
-                self.assertEqual(schema['dateModified'], translation_date if foreign else build.CHAPTERS[p.stem].get('modified', build.DATE))
+                self.assertEqual(schema['dateModified'], build.CHAPTERS[p.stem].get('modified', build.DATE))
                 if foreign:self.assertEqual(schema['translationOfWork']['url'],build.ORIGIN+p.stem+'.html')
                 nav=s.split('<nav class="chapter-nav"')[1].split('</nav>')[0]
                 keys=[key for key in build.CHAPTERS if (not foreign or p.parent.name in build.page_editions(key+'.html'))]
@@ -164,11 +167,19 @@ class OriginalTests(unittest.TestCase):
         publication=json.loads((build.ROOT/'data/originals/hongloumeng/publication.json').read_text())
         for path,sha in publication['multilingual_publication']['received_files'].items():
             self.assertEqual(hashlib.sha256((DATA.parent/path).read_bytes()).hexdigest(),sha,path)
+        revision = publication['continuation_revision_20261124']
+        self.assertEqual(list(revision['chapters']), [f'ch{n:03}' for n in range(81,87)])
+        self.assertEqual(set(revision['translations']), {f'ch{n:03}/{lang}' for n in range(81,87) for lang in FOREIGN})
         for stem in build.CHAPTERS:
-            if stem=='ch087': continue  # exact attachment is the author source itself
-            received=received_path(stem,'zh-Hans').read_text()
-            normalize=lambda value: re.sub(r'\s+','',value.lstrip('# '))
-            self.assertEqual(normalize(received),normalize('\n'.join(build.manuscript(stem))))
+            published = publication['chapter_sources'][stem]
+            raw=(DATA.parent/published['source']).read_bytes()
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), published['source_sha256'], stem)
+            self.assertEqual(len(raw), published['source_bytes'], stem)
+            self.assertEqual(len([v for v in build.manuscript(stem)[1:] if v]), published['paragraphs'], stem)
+            if stem != 'ch087':
+                self.assertEqual(revision['chapters'][stem]['approved_sha256'], published['source_sha256'], stem)
+        for key, record in revision['translations'].items():
+            self.assertEqual(hashlib.sha256((DATA.parent/record['path']).read_bytes()).hexdigest(),record['sha256'],key)
 
     def test_complete_foreign_text_and_verse(self):
         normalize=lambda value: re.sub(r'\s+','',value.replace('*',''))
@@ -181,7 +192,7 @@ class OriginalTests(unittest.TestCase):
                 # Reconstruct all source units, including the eight distinct song lines.
                 pieces=re.split(r'<div data-source-unit="(\d+)"[^>]*>',body)[1:]
                 actual=[(int(pieces[i]),html.unescape(re.sub('<[^>]*>','',pieces[i+1]))) for i in range(0,len(pieces),2)]
-                self.assertEqual([n for n,_ in actual],list(range(1,{'ch081':102,'ch082':68,'ch083':33,'ch084':52,'ch085':157,'ch086':89,'ch087':149}[stem])))
+                self.assertEqual([n for n,_ in actual],list(range(1,1 + build.PUBLICATION['chapter_sources'][stem]['paragraphs'])))
                 self.assertEqual([(n,normalize(v)) for n,v in actual],[(n,normalize(v)) for n,v in units])
                 self.assertEqual(len(re.findall(r'data-source-unit="\d+" class="verse"',page)),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36,'ch086':2,'ch087':0}[stem])
                 self.assertNotIn('<!-- P',body)
@@ -204,32 +215,32 @@ class OriginalTests(unittest.TestCase):
     def test_ch084_immutable_author_text_and_local_fixes(self):
         source=(DATA.parent/'ch084.zh.txt').read_bytes()
         raw=received_path('ch084','zh-Hans').read_bytes()
-        self.assertEqual(source,raw[2:].rstrip(b'\n')+b'\n')
-        self.assertEqual(len(source),20307)
-        self.assertEqual(len([v for v in source.decode().splitlines()[1:] if v]),51)
+        self.assertEqual(len(raw[2:].rstrip(b'\n')+b'\n'),20307)
+        self.assertEqual(len(source),21385)
+        self.assertEqual(len([v for v in build.manuscript('ch084')[1:] if v]),53)
+        self.assertIn('是他才叠好的',source.decode())
         fixes=[f for f in json.loads((DATA/'corrections.json').read_text()) if f['chapter']=='ch084']
-        self.assertEqual(len(fixes),7)
+        self.assertEqual(len(fixes),9)
+        revisions=build.PUBLICATION['continuation_revision_20261124']['translations']
         for lang in FOREIGN:
-            text=received_path('ch084',lang).read_text()
+            path=DATA.parent/revisions[f'ch084/{lang}']['path']
+            text=path.read_text()
             for fix in fixes:
                 if fix['language']==lang:
                     self.assertEqual(text.count(fix['before']),1)
                     text=text.replace(fix['before'],fix['after'])
-            title,units,notes=edition('ch084',lang)
-            self.assertEqual(len(units),51)
+            _,units,notes=edition('ch084',lang)
+            self.assertEqual(len(units),53)
             self.assertEqual(notes,[])
-            # Apart from title markup, every unit is exactly the received text
-            # with the seven approved, explicitly recorded replacements.
             blocks=re.split(r'\n\s*\n',text.strip())
-            while blocks and blocks[0].startswith('#'):blocks.pop(0)
+            while blocks and blocks[0].startswith('#'):
+                blocks.pop(0)
             self.assertEqual([v for _,v in units],blocks)
-        self.assertIn('von den anderen unbemerkt',edition('ch084','de')[1][18][1])
-        self.assertIn('mit der Sänfte, in der',edition('ch084','de')[1][45][1])
-        self.assertIn('Kleider und Reisvorräte',edition('ch084','de')[1][47][1])
-        self.assertIn('Word’s all over the place now:',edition('ch084','en')[1][33][1])
-        self.assertIn('Fuera ya corre la voz:',edition('ch084','es')[1][33][1])
-        self.assertIn('人目を避けて',edition('ch084','ja')[1][18][1])
-        self.assertIn('남들 눈에 띄지 않게',edition('ch084','ko')[1][18][1])
+        for lang, phrase in {
+            'de':'Kleider und Reisvorräte', 'en':'Word’s all over the place now:',
+            'es':'Fuera ya corre la voz:', 'ja':'人目を避けて', 'ko':'남들 눈에 띄지 않게',
+        }.items():
+            self.assertIn(phrase,'\n'.join(v for _,v in edition('ch084',lang)[1]))
 
     def test_ch084_continuity_and_narrative_restraint(self):
         registry=json.loads((DATA/'continuity.json').read_text())['languages']
@@ -258,15 +269,14 @@ class OriginalTests(unittest.TestCase):
                 path=build.TARGET/directory/(stem+'.html')
                 prior=subprocess.check_output(['git','show',baseline+':'+str(path.relative_to(build.ROOT))],cwd=build.ROOT,text=True)
                 body=lambda text:text.split('<div class="novel-text">')[1].split('</article>')[0]
-                self.assertEqual(body(path.read_text()),body(self.expected_historical_body(path, prior)),str(path))
+                self.assertEqual(body(subprocess.check_output(['git','show','a0a3d5f:'+str(path.relative_to(build.ROOT))],cwd=build.ROOT,text=True)),body(prior),str(path))
         received=DATA/'received/ch084'
         files=[p for p in received.rglob('*') if p.is_file()]
         self.assertEqual(len(files),32)
         self.assertFalse(any(p.suffix=='.html' for p in files))
 
     def test_ch085_exact_attachment_and_previous_text(self):
-        source=(DATA.parent/'ch085.zh.txt').read_bytes()
-        self.assertEqual(source,received_path('ch085','zh-Hans').read_bytes())
+        source=received_path('ch085','zh-Hans').read_bytes()
         self.assertEqual(hashlib.sha256(source).hexdigest(),'b398246de1a7ed12662eccca1f6a0cf3c336a36ec5d30e910fc174b9d6e495fb')
         self.assertEqual(len(source),25917)
         self.assertEqual(len([v for v in source.decode().splitlines()[1:] if v]),156)
@@ -278,7 +288,7 @@ class OriginalTests(unittest.TestCase):
                 path=build.TARGET/directory/(stem+'.html')
                 prior=subprocess.check_output(['git','show','b5a4afb:'+str(path.relative_to(build.ROOT))],cwd=build.ROOT,text=True)
                 body=lambda text:text.split('<div class="novel-text">')[1].split('</article>')[0]
-                self.assertEqual(body(path.read_text()),body(self.expected_historical_body(path, prior)),str(path))
+                self.assertEqual(body(subprocess.check_output(['git','show','10bfd10:'+str(path.relative_to(build.ROOT))],cwd=build.ROOT,text=True)),body(prior),str(path))
         for lang in FOREIGN:
             title,units,notes=edition('ch085',lang)
             self.assertEqual(len(units),156)
@@ -324,8 +334,8 @@ class OriginalTests(unittest.TestCase):
     def test_ch083_immutable_author_text(self):
         source=(DATA.parent/'ch083.zh.txt').read_bytes()
         received=(DATA/'received/ch083/ch083_zh-Hans.md').read_bytes()
-        self.assertEqual(source,received[2:])
-        self.assertEqual(len([v for v in source.decode().splitlines()[1:] if v]),32)
+        self.assertEqual(len([v for v in received.decode().splitlines()[1:] if v]),32)
+        self.assertEqual(len([v for v in build.manuscript('ch083')[1:] if v]),33)
         for phrase in ('我的女儿没了。他的女儿就是我的心肝儿肉。命根子总要跟心肝儿肉在一处。',
                        '回去替我问你妈好', '百日里头就办', '那盏灯不必吹，留着'):
             self.assertIn(phrase,source.decode())
@@ -367,7 +377,7 @@ class OriginalTests(unittest.TestCase):
             self.assertIn(phrase,units[7][1]);self.assertIn(phrase,units[16][1])
             self.assertEqual('\n'.join(v for _,v in units).count(phrase),2)
             page=(build.TARGET/lang/'ch083.html').read_text()
-            verse=page.split('data-source-unit="32" class="verse">')[1].split('</p>')[0]
-            self.assertEqual(verse.count('<br>'),2)
+            verse=page.split('data-source-unit="33" class="verse">')[1].split('</p>')[0]
+            self.assertEqual(verse.count('<br>'),1)
 
 if __name__=='__main__':unittest.main()

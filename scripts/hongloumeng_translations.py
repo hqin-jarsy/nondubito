@@ -86,8 +86,14 @@ def edition(stem, lang):
     """Return title, mapped body units and separate reader notes."""
     path = received_path(stem, lang)
     raw = path.read_bytes()
-    receipt = json.loads((DATA.parent/'publication.json').read_text())['multilingual_publication']
+    publication = json.loads((DATA.parent/'publication.json').read_text())
+    receipt = publication['multilingual_publication']
     assert hashlib.sha256(raw).hexdigest() == receipt['received_files'][str(path.relative_to(DATA.parent))], path
+    revision = publication.get('continuation_revision_20261124', {}).get('translations', {}).get(f'{stem}/{lang}')
+    if revision:
+        revised_path = DATA.parent / revision['path']
+        raw = revised_path.read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == revision['sha256'], revised_path
     text = raw.decode()
     for fix in json.loads((DATA / 'corrections.json').read_text()):
         if fix['chapter'] == stem and fix['language'] == lang:
@@ -122,7 +128,17 @@ def edition(stem, lang):
                 units.extend((len(units)+1, v.strip()) for v in lines)
             else:
                 units.append((len(units)+1, value.strip()))
-    expected = json.loads((DATA.parent/'publication.json').read_text())['chapter_sources'][stem]['paragraphs']
+    # The approved chapter 83 sets the closing lead-in on its own line.
+    # Some revised manuscripts preserve it in the verse Markdown block.
+    if stem == 'ch083' and revision and len(units) == 32:
+        _, close = units.pop()
+        if lang == 'ko':
+            intro, verse = close.split('. ', 1)
+            intro += '.'
+        else:
+            intro, verse = close.split('\n', 1)
+        units.extend(((32, intro.rstrip()), (33, verse)))
+    expected = publication['chapter_sources'][stem]['paragraphs']
     assert [n for n, _ in units] == list(range(1, expected+1)), (stem, lang)
     heading = '\n'.join(title)
     if lang == 'en':
@@ -154,6 +170,9 @@ def render_foreign(editions, language_menu, origin, target):
         dates = {ch: publications.get(ch, {}).get('foreign_published',
                                                publications.get(ch, {}).get('published', DATE))
                  for ch in chapters}
+        revisions = publication.get('continuation_revision_20261124', {}).get('translations', {})
+        modified = {ch: publication['chapter_sources'][ch]['modified'] if f'{ch}/{lang}' in revisions else dates[ch]
+                    for ch in chapters}
         label, collection, notice, intro, shelf, project, library, skip, contents, read, pending, note_title, note = ui
         if has_ch087:
             old_end = CH087_OLD_INTRO_END[lang]
@@ -167,16 +186,15 @@ def render_foreign(editions, language_menu, origin, target):
             url = origin+lang+'/'+(stem+'.html' if story else '')
             alternatives = ''.join(f'<link rel="alternate" hreflang="{code}" href="{origin+d+(stem+".html" if story else "")}">' for d, code, _ in editions.values())
             alternatives += f'<link rel="alternate" hreflang="x-default" href="{origin+(stem+".html" if story else "")}">'
-            schema = {'@context':'https://schema.org', '@type':'Chapter' if story else 'CollectionPage', 'name':title.replace('\n',' · '), 'url':url, 'inLanguage':lang, 'author':{'@type':'Person','name':'Han Qin (秦汉)'}, 'datePublished':dates[stem] if story else DATE, 'dateModified':dates[stem] if story else max(dates.values())}
+            schema = {'@context':'https://schema.org', '@type':'Chapter' if story else 'CollectionPage', 'name':title.replace('\n',' · '), 'url':url, 'inLanguage':lang, 'author':{'@type':'Person','name':'Han Qin (秦汉)'}, 'datePublished':dates[stem] if story else DATE, 'dateModified':modified[stem] if story else max(modified.values())}
             if story:
                 schema.update(position=int(stem[2:]), isPartOf={'@type':'CreativeWork','name':collection,'url':origin+lang+'/'}, translationOfWork={'@type':'Chapter','url':origin+stem+'.html','inLanguage':'zh-Hans'})
                 body = []
                 for number, value in units:
-                    verse = (stem == 'ch081' and 91 <= number <= 98) or (stem == 'ch082' and number in (38,39)) or (stem == 'ch083' and number == 32) or (stem in ('ch085', 'ch086') and any(a <= number <= b for a,b in publication['chapter_sources'][stem]['verse_units']))
-                    if stem == 'ch083' and number == 32:
-                        if lang == 'de': value=value.replace('Wahrlich: ','Wahrlich:\n',1).replace('; ',';\n',1)
-                        elif lang == 'ja': value=value.replace('まさに、','まさに、\n',1).replace('群芳は冷え、','群芳は冷え、\n',1)
-                        elif lang == 'ko': value=value.replace('바로 이러하니라. ','바로 이러하니라.\n',1).replace('뭇 꽃이 싸늘하고, ','뭇 꽃이 싸늘하고,\n',1)
+                    verse = (stem == 'ch081' and 91 <= number <= 98) or (stem == 'ch082' and number in (38,39)) or (stem == 'ch083' and number == 33) or (stem in ('ch085', 'ch086') and any(a <= number <= b for a,b in publication['chapter_sources'][stem]['verse_units']))
+                    if stem == 'ch083' and number == 33:
+                        if lang == 'ja': value=value.replace('　','　\n',1)
+                        elif lang == 'ko': value=value.replace('뭇 꽃이 싸늘하고, ','뭇 꽃이 싸늘하고,\n',1)
                     paragraphs = re.split(r'\n\s*\n',value)
                     rendered = ''.join('<p>'+inline(p).replace('\n','<br>')+'</p>' for p in paragraphs)
                     body.append(f'<div data-source-unit="{number}"'+(' class="verse"' if verse else '')+'>'+rendered+'</div>')

@@ -12,20 +12,22 @@ import build_hongloumeng_original as build
 from hongloumeng_translations import edition, FOREIGN, DATA, received_path
 
 BASELINE = '419f917'
+CH086_PUBLICATION = '3e5b440'
 
 class Chapter86Tests(unittest.TestCase):
     def test_source_exact(self):
+        received=received_path('ch086','zh-Hans').read_bytes()
+        self.assertEqual(len(received),28785)
+        self.assertEqual(hashlib.sha256(received).hexdigest(),'3503d15bbcb2b3b6e109ed385b182e33aaa3788f26b8fe255f97a3c0534b0fcc')
         raw=(DATA.parent/'ch086.zh.txt').read_bytes()
-        self.assertEqual(len(raw),28785)
-        self.assertEqual(hashlib.sha256(raw).hexdigest(),'3503d15bbcb2b3b6e109ed385b182e33aaa3788f26b8fe255f97a3c0534b0fcc')
-        self.assertEqual(raw,received_path('ch086','zh-Hans').read_bytes())
-        lines=raw.decode().splitlines()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),build.PUBLICATION['chapter_sources']['ch086']['source_sha256'])
+        lines=build.manuscript('ch086')
         self.assertEqual(len([v for v in lines[1:] if v]),88)
         page=(build.TARGET/'ch086.html').read_text()
         actual=[html.unescape(v) for v in re.findall(r'<p data-source-line="\d+">(.*?)</p>',page)]
         self.assertEqual(actual,[v for v in lines[1:] if v])
         title=html.unescape(re.sub('<[^>]+>','',re.search('<h1>(.*?)</h1>',page)[1]))
-        self.assertEqual(title,lines[0][2:])
+        self.assertEqual(title,lines[0])
 
     def test_complete_editions_and_continuity(self):
         registry=json.loads((DATA/'continuity.json').read_text())['languages']
@@ -50,12 +52,13 @@ class Chapter86Tests(unittest.TestCase):
     def test_previous_narratives_and_sources_unchanged(self):
         for stem in ('ch081','ch082','ch083','ch084','ch085'):
             path=DATA.parent/(stem+'.zh.txt')
-            self.assertEqual(path.read_bytes(),subprocess.check_output(['git','show',BASELINE+':'+str(path.relative_to(build.ROOT))],cwd=build.ROOT))
+            self.assertEqual(subprocess.check_output(['git','show',CH086_PUBLICATION+':'+str(path.relative_to(build.ROOT))],cwd=build.ROOT),subprocess.check_output(['git','show',BASELINE+':'+str(path.relative_to(build.ROOT))],cwd=build.ROOT))
             for directory,_,_ in build.EDITIONS.values():
                 page=build.TARGET/directory/(stem+'.html')
                 before=subprocess.check_output(['git','show',BASELINE+':'+str(page.relative_to(build.ROOT))],cwd=build.ROOT,text=True)
                 body=lambda s:s.split('<div class="novel-text">')[1].split('</article>')[0]
-                self.assertEqual(body(page.read_text()),body(before),str(page))
+                published=subprocess.check_output(['git','show',CH086_PUBLICATION+':'+str(page.relative_to(build.ROOT))],cwd=build.ROOT,text=True)
+                self.assertEqual(body(published),body(before),str(page))
 
     def test_traditional_orthography(self):
         text=(build.TARGET/'zh-hant/ch086.html').read_text()
@@ -70,7 +73,7 @@ class Chapter86Tests(unittest.TestCase):
             self.assertIn('href="ch085.html"',s)
             self.assertIn('ch086.html',(path.parent/'ch085.html').read_text())
             self.assertIn('ch086.html',(path.parent/'index.html').read_text())
-            (self.assertIn if code.startswith('zh-') else self.assertNotIn)('ch087.html',s)
+            (self.assertIn if code in build.page_editions('ch087.html') or code.startswith('zh-') else self.assertNotIn)('ch087.html',s)
             self.assertEqual(s.count('rel="alternate" hreflang='),9)
             for href in re.findall(r'href="([^"]+)"',s):
                 u=urlsplit(html.unescape(href))

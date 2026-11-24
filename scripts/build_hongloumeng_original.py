@@ -13,24 +13,24 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'originals/hongloumeng'
 DATE = '2026-10-07'
 CHAPTERS = {
-    'ch081': {'sha256': 'c30b86a317dcf6246743480d96e0267d00247c4314b6da54fb8a0146c9b67cfa',
-              'published': '2026-10-05', 'modified': '2026-10-19', 'number': '第八十一回',
+    'ch081': {'sha256': '98d3f261938ccd922d081d6770f7f7422ee22d5ca396ac902e54d82f25da6ac6',
+              'published': '2026-10-05', 'modified': '2026-11-24', 'number': '第八十一回',
               'verse': ('忘不了灯前替我缝衣袖，', '才叫声好姐姐，忽又住了口。')},
-    'ch082': {'sha256': '6ca8c8c89cc8f1250078832f5321f4e167b25af905c12cbea31c15c841ccfa44',
-              'published': DATE, 'modified': '2026-10-19', 'number': '第八十二回',
+    'ch082': {'sha256': 'd866a270ecc72c4e592077b94ebc8bb2b585885a94c946e0bfada44bc2c696f1',
+              'published': DATE, 'modified': '2026-11-24', 'number': '第八十二回',
               'verse': ('淡粉新妆，藕丝衫子迎风软。晚凉初转，相约莲塘玩。',
                         '一棹轻舟，影共莲花乱。回头晚，藕花深浅，只载闲愁返。')},
-    'ch083': {'sha256': '6486aac1927a9e446ea6f85f653769428b142d540556f0cc07342c7fb1d34dcc',
-              'published': '2026-10-24', 'modified': '2026-10-24', 'number': '第八十三回',
-              'verse': ('正是：慈云一去群芳冷，寿烛才残满院昏。',
-                        '正是：慈云一去群芳冷，寿烛才残满院昏。')},
-    'ch084': {'sha256': '68367c0b5c424717d4c26343b4086a79de663d137a3b4bcd4868a3182bf0081d',
-              'published': '2026-11-03', 'modified': '2026-11-03', 'number': '第八十四回'},
-    'ch085': {'sha256': 'b398246de1a7ed12662eccca1f6a0cf3c336a36ec5d30e910fc174b9d6e495fb',
-              'published': '2026-11-08', 'modified': '2026-11-08', 'number': '第八十五回',
+    'ch083': {'sha256': '9dc8ccfa7635836253bdc9a4f48ed2c8394187253e3aee58c7432cb682f042d7',
+              'published': '2026-10-24', 'modified': '2026-11-24', 'number': '第八十三回',
+              'verse': ('慈云一去群芳冷　寿烛才残满院昏',
+                        '慈云一去群芳冷　寿烛才残满院昏')},
+    'ch084': {'sha256': '85315f8f780a03508bb3cb713e9493e3b0367658b6f4787e9cbfcde99ad8743f',
+              'published': '2026-11-03', 'modified': '2026-11-24', 'number': '第八十四回'},
+    'ch085': {'sha256': 'fc5d39f5a61090558b191142cbaf8324f73e8c6cfc41dd56c2e070103ebdd251',
+              'published': '2026-11-08', 'modified': '2026-11-24', 'number': '第八十五回',
               'verse_units': [[21, 24], [26, 29], [43, 44], [51, 52], [56, 57], [61, 62], [65, 66], [103, 120]]},
-    'ch086': {'sha256': '3503d15bbcb2b3b6e109ed385b182e33aaa3788f26b8fe255f97a3c0534b0fcc',
-              'published': '2026-11-14', 'modified': '2026-11-14', 'number': '第八十六回',
+    'ch086': {'sha256': '1b492c1eeda3f84f00bd7e33c1a5f4a41761c8f238bd02d50c1fe3c74c201feb',
+              'published': '2026-11-14', 'modified': '2026-11-24', 'number': '第八十六回',
               'verse_units': [[87, 88]]},
     'ch087': {'sha256': '00da7a7593b913a5c02f578967e1dac05bd36dab771f33c2706498a2d2b33b6e',
               'published': '2026-11-22', 'modified': '2026-11-22', 'number': '第八十七回'},
@@ -41,11 +41,13 @@ def manuscript(stem):
     raw = (ROOT / f'data/originals/hongloumeng/{stem}.zh.txt').read_bytes()
     assert hashlib.sha256(raw).hexdigest() == CHAPTERS[stem]['sha256'], 'Final manuscript changed: obtain author approval first.'
     lines = raw.decode().splitlines()
-    # The chapter 85–87 attachments are archived byte-for-byte, including their Markdown marker.
-    # Suppress only that presentation marker in the HTML heading.
-    if stem in ('ch085', 'ch086', 'ch087'):
-        assert lines[0].startswith('# ')
+    # Suppress Markdown-only markers, but preserve all approved prose and spacing.
+    if lines[0].startswith('# '):
         lines[0] = lines[0][2:]
+    if lines[-1] == '---':
+        lines.pop()
+        if lines[-1] == '':
+            lines.pop()
     # Approved small orthographic correction; keep received manuscript bytes intact.
     if stem == 'ch085':
         lines = [line.replace('爪洼', '爪哇') for line in lines]
@@ -161,8 +163,8 @@ def render():
                         unit += 1
                         if line == verse_start or any(unit == start for start, _ in ranges): paragraphs.append('<div class="verse">')
                         text = e(line)
-                        if stem == 'ch083' and line == verse_start:
-                            text = text.replace('，', '，<br>', 1)
+                        if stem == 'ch083' and line == verse_end:
+                            text = text.replace('　', '　<br>', 1)
                         paragraphs.append(f'<p data-source-line="{number}">{text}</p>')
                         if line == verse_end or any(unit == end for _, end in ranges): paragraphs.append('</div>')
                     keys = list(CHAPTERS)

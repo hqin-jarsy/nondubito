@@ -87,7 +87,10 @@ class Chapter87Tests(unittest.TestCase):
                 page = build.TARGET/directory/(filename+'.html')
                 earlier = subprocess.check_output(['git', 'show', 'de27614:'+str(page.relative_to(build.ROOT))],
                                                   cwd=build.ROOT, text=True)
-                self.assertEqual(body(page.read_text()), body(earlier), str(page))
+                at_ch087 = subprocess.check_output(['git','show','c0abfe1:'+str(page.relative_to(build.ROOT))],cwd=build.ROOT,text=True)
+                self.assertEqual(body(at_ch087), body(earlier), str(page))
+                if filename == 'ch087':
+                    self.assertEqual(body(page.read_text()), body(earlier), str(page))
 
 
 if __name__ == '__main__':
