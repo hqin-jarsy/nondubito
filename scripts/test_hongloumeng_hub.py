@@ -59,6 +59,13 @@ class HubTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             render(include_first80=True)
 
+    def test_language_trigger_describes_project_edition(self):
+        for lang, (directory, _, label) in EDITIONS.items():
+            path = TARGET/directory/'index.html'
+            trigger = re.search(r'<details class="language-menu"><summary>([^<]+)', path.read_text())
+            self.assertIsNotNone(trigger, lang)
+            self.assertEqual(html.unescape(trigger[1]).strip(), label, lang)
+
     def test_generated_current(self):
         for path,source in render().items(): self.assertEqual(source,path.read_text())
 

@@ -200,13 +200,13 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None,
         if extra_first80_links:
             entries = []
             markers = {'de': 'GERMAN', 'es': 'SPANISH', 'ko': 'KOREAN'}
-            for key, label in extra_first80_links:
+            for key, novel_label in extra_first80_links:
                 url = f'/classics/hongloumeng/{key}/index.html'
                 if key in markers:
                     marker = markers[key] + '-ENTRY'
-                    entries.append(f'<!-- {marker}:START --><a href="{url}" lang="{key}">{label}</a><!-- {marker}:END -->')
+                    entries.append(f'<!-- {marker}:START --><a href="{url}" lang="{key}">{novel_label}</a><!-- {marker}:END -->')
                 else:
-                    entries.append(f'<a href="{url}">{label}</a>')
+                    entries.append(f'<a href="{url}">{novel_label}</a>')
             first80_section = first80_section.replace('</div></section>', ''.join(entries)+'</div></section>')
         featured = ''.join(legacy(url,t(zh,english)) for url,zh,english in [
             ('intro.html','从一场酒令开始','Begin with a drinking game'),
