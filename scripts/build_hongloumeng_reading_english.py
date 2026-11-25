@@ -285,4 +285,7 @@ def production_plan(approval, *, root=None):
     from hongloumeng_japanese_navigation_binding import navigation_outputs
     from hongloumeng_language_metadata import apply
     from hongloumeng_english_verse_layout import apply as verse_layout
-    return {'classics/hongloumeng/en/'+name: verse_layout(apply(content, name), name) if name.endswith('.html') else content for name,content in navigation_outputs('classics/hongloumeng/en/', render(chapters,preview=False)).items()}
+    from hongloumeng_ch003_title import apply as ch003_title
+    pages = render(chapters, preview=False)
+    pages['ch003.html'] = ch003_title(pages['ch003.html'], 'en')
+    return {'classics/hongloumeng/en/'+name: verse_layout(apply(content, name), name) if name.endswith('.html') else content for name,content in navigation_outputs('classics/hongloumeng/en/', pages).items()}

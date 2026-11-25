@@ -243,6 +243,9 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=False):
             content += '<p class="edition-note">前八十回至此。秦汉原创第八十一至第一百一十回为当代续写，与曹雪芹原著分别编排。</p>'
         name = f'ch{n:03d}.html'
         pages[name] = shell(chapter['title'] + ' · ' + edition, '红楼梦前八十回中文正文。', content, name, draft, edition)
+        if not draft and n == 3:
+            from hongloumeng_ch003_title import apply
+            pages[name] = apply(pages[name], 'zh-Hans')
         if not draft and n in (21, 77):
             from check_hongloumeng_duo_name import edited
             pages[name] = edited(name, pages[name])
