@@ -246,6 +246,9 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=False):
         if not draft and n == 3:
             from hongloumeng_ch003_title import apply
             pages[name] = apply(pages[name], 'zh-Hans')
+        if not draft and n == 14:
+            from hongloumeng_ch014_pavilion import apply
+            pages[name] = apply(pages[name], 'zh-Hans')
         if not draft and n in (21, 77):
             from check_hongloumeng_duo_name import edited
             pages[name] = edited(name, pages[name])
