@@ -469,6 +469,9 @@ def hongloumeng_chapter(relative: Path) -> int | None:
 
 
 def infer_record_type(relative: Path) -> str:
+    if (relative.parts[:3] == ('essays','literature','hlm') and len(relative.parts) == 5
+            and relative.parts[3] in LANGUAGE_DIRS and relative.name == 'readings.html'):
+        return 'series-index'
     if hongloumeng_chapter(relative) is not None:
         return 'novel-chapter'
     if relative.as_posix() in ('classics/hongloumeng/index.html', 'classics/hongloumeng/zh-hant/index.html', 'classics/hongloumeng/en/index.html', 'classics/hongloumeng/ja/index.html', 'classics/hongloumeng/fr/index.html', 'classics/hongloumeng/de/index.html', 'classics/hongloumeng/es/index.html', 'classics/hongloumeng/ko/index.html'):

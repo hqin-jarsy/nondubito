@@ -103,6 +103,23 @@ class ReadingTests(unittest.TestCase):
             fiction=source.split('<section id="continuation">')[1].split('</section>')[0]
             self.assertIn('ch081.html',fiction)
             self.assertIn('ch087.html',fiction)
-            self.assertNotIn('ch088.html',fiction)
+            from hongloumeng_translations import ch088_multilingual
+            receipt=json.loads((build.ROOT/'data/originals/hongloumeng/publication.json').read_text())
+            if ch088_multilingual(receipt):
+                self.assertIn('ch088.html',fiction)
+            else:
+                self.assertNotIn('ch088.html',fiction)
+            self.assertNotIn('ch089.html',fiction)
+
+    def test_reviewed_guide_language_expansion(self):
+        import build_hongloumeng_guide_expansions as expansion
+        if not expansion.DATA.is_file():
+            self.skipTest('Five reviewed guide editions are not present')
+        release = expansion.read(expansion.DATA)
+        pages = expansion.outputs(release)
+        self.assertEqual(len(pages), 56)
+        expansion.verify_pages(release, pages)
+        for path, text in pages.items():
+            self.assertEqual(path.read_text(), text, path)
 
 if __name__=='__main__':unittest.main()

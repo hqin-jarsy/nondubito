@@ -273,6 +273,10 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None,
 <main id="main">{body}</main><footer>{a(base+'essays/literature/index.html?lang='+lang,t('回到文学频道','Back to literature'))}<p>Non Dubito · {t('秦汉','Han Qin')}</p></footer>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token":"1c920752456e42b5b5469641245a07c2"}}'></script></body></html>\n'''
     converter.close()
+    # Only the six-reader-guide access block is localized, not this whole hub.
+    from build_hongloumeng_guide_expansions import DATA, primary_hub
+    if DATA.is_file():
+        pages={p:primary_hub(s,p.parent.name if p.parent.name in ('en','zh-hant') else 'zh') for p,s in pages.items()}
     return pages
 
 
