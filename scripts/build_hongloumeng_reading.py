@@ -281,6 +281,9 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=False):
     pages['index.html'] = shell('红楼梦 · ' + edition, '红楼梦前八十回中文正文与回目目录。', intro, 'index.html', draft, edition)
     edition_content = f'<header class="chapter-head"><p class="eyebrow">红楼梦 · 前八十回</p><h1>版本说明</h1></header><section class="editorial"><h2>{E(edition)}</h2><p>曹雪芹原著，秦汉整理校订。本版据指定的汇校底本，以可读性为目标，尽量保留原作语言风味；必要修补是本版的编辑选择，不宣称复原唯一古本。</p><p>“大知校正庚辰版”为本版名称。底本含甲戌、庚辰等来源的材料，不是庚辰原抄本的逐字复刻。本版不收批注与其他回前题诗；第一回开卷自述后的八句诗为唯一例外，按作者决定保留。第十九回回末联去版本标签与重复引语后保留原联文。第四、九回的异本尾联依作者决定删除。叙事中的诗词曲文照常保留。</p>{notice}<h2>原著与续写</h2><p>前八十回与秦汉原创第八十一至第一百一十回分别编排。后者为当代续写，并非曹雪芹佚稿。</p></section>'
     pages['edition.html'] = shell('版本说明 · ' + edition, '红楼梦前八十回版本及原著与原创续写的边界。', edition_content, 'edition.html', draft, edition)
+    if not draft:
+        from hongloumeng_ch018_heading import apply_pages as apply_ch018_heading
+        apply_ch018_heading(pages, 'zh-Hans')
     pages['reader.css'] = CSS
     pages['reader.js'] = JS
     pages.update(load_assets() if assets is None else assets)

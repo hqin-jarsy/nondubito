@@ -114,6 +114,9 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=True):
     pages['index.html'] = shell('紅樓夢 · ' + edition, '紅樓夢前八十回中文正文與回目目錄。', intro, 'index.html', draft, edition)
     edition_content = f'<header class="chapter-head"><p class="eyebrow">紅樓夢 · 前八十回</p><h1>版本說明</h1></header><section class="editorial"><h2>{E(edition)}</h2><p>曹雪芹原著，秦漢整理校訂。本版據指定的匯校底本，以可讀性為目標，盡量保留原作語言風味；必要修補是本版的編輯選擇，不宣稱復原唯一古本。</p><p>“大知校正庚辰版”為本版名稱。底本含甲戌、庚辰等來源的材料，不是庚辰原抄本的逐字復刻。本版不收批註與其他回前題詩；第一回開卷自述後的八句詩為唯一例外，按作者決定保留。第十九回回末聯去版本標籤與重複引語後保留原聯文。第四、九回的異本尾聯依作者決定刪除。敘事中的詩詞曲文照常保留。</p><p>繁體版依本版已校訂的簡體正文轉寫，保留原文措辭、回目及詩詞分行；只依語境辨別繁簡字形，不作地域詞彙替換或改寫。</p>{notice}<h2>原著與續寫</h2><p>前八十回與秦漢原創第八十一至第一百一十回分別編排。後者為當代續寫，並非曹雪芹佚稿。</p></section>'
     pages['edition.html'] = shell('版本說明 · ' + edition, '紅樓夢前八十回版本及原著與原創續寫的邊界。', edition_content, 'edition.html', draft, edition)
+    if not draft:
+        from hongloumeng_ch018_heading import apply_pages as apply_ch018_heading
+        apply_ch018_heading(pages, 'zh-Hant')
     pages['reader.css'] = CSS
     pages['reader.js'] = JS
     pages.update(load_assets() if assets is None else assets)
