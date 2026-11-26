@@ -258,6 +258,9 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=False):
             pages[name] = edited(name, pages[name])
         if not draft and n in CHAPTERS:
             pages[name] = apply_copyedits(pages[name], n, 'zh-Hans')
+        if not draft and n == 12:
+            from hongloumeng_ch012_lin_letter import apply as apply_lin_letter
+            pages[name] = apply_lin_letter(pages[name], 'zh-Hans')
         if not draft and n == 62:
             from hongloumeng_ch062_birthdays import apply as apply_birthdays
             pages[name] = apply_birthdays(pages[name], 'zh-Hans')
