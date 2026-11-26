@@ -267,6 +267,9 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=False):
         if not draft and n == 62:
             from hongloumeng_ch062_birthdays import apply as apply_birthdays
             pages[name] = apply_birthdays(pages[name], 'zh-Hans')
+        if not draft and n == 72:
+            from hongloumeng_ch072_you_visit import apply as apply_you_visit
+            pages[name] = apply_you_visit(pages[name], 'zh-Hans')
         if not draft and n in NAME_EDITS:
             pages[name] = apply_qiaojie_name(pages[name], n, 'zh-Hans')
     batches = []

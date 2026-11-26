@@ -296,6 +296,8 @@ def production_plan(approval, *, root=None):
     pages['ch036.html'] = apply_xue_vow(pages['ch036.html'], 'en')
     from hongloumeng_ch062_birthdays import apply as apply_birthdays
     pages['ch062.html'] = apply_birthdays(pages['ch062.html'], 'en')
+    from hongloumeng_ch072_you_visit import apply as apply_you_visit
+    pages['ch072.html'] = apply_you_visit(pages['ch072.html'], 'en')
     from hongloumeng_qiaojie_name import EDITS as name_edits, apply as apply_qiaojie_name
     for n in name_edits:
         name = f'ch{n:03d}.html'
