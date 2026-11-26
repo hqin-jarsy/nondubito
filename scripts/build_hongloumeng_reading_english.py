@@ -292,6 +292,8 @@ def production_plan(approval, *, root=None):
     pages['ch006.html'] = apply_copyedits(pages['ch006.html'], 6, 'en')
     from hongloumeng_ch012_lin_letter import apply as apply_lin_letter
     pages['ch012.html'] = apply_lin_letter(pages['ch012.html'], 'en')
+    from hongloumeng_ch036_xue_vow import apply as apply_xue_vow
+    pages['ch036.html'] = apply_xue_vow(pages['ch036.html'], 'en')
     from hongloumeng_ch062_birthdays import apply as apply_birthdays
     pages['ch062.html'] = apply_birthdays(pages['ch062.html'], 'en')
     from hongloumeng_qiaojie_name import EDITS as name_edits, apply as apply_qiaojie_name

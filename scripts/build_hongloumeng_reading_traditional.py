@@ -94,6 +94,9 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=True):
         if not draft and n == 12:
             from hongloumeng_ch012_lin_letter import apply as apply_lin_letter
             pages[name] = apply_lin_letter(pages[name], 'zh-Hant')
+        if not draft and n == 36:
+            from hongloumeng_ch036_xue_vow import apply as apply_xue_vow
+            pages[name] = apply_xue_vow(pages[name], 'zh-Hant')
         if not draft and n == 62:
             from hongloumeng_ch062_birthdays import apply as apply_birthdays
             pages[name] = apply_birthdays(pages[name], 'zh-Hant')
