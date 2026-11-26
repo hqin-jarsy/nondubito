@@ -233,6 +233,7 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=False):
     chapters = reading['chapters']
     edition = reading['title']
     pages = {}
+    from hongloumeng_first80_copyedits import CHAPTERS, apply as apply_copyedits
     for chapter in chapters:
         n = chapter['number']
         heading = ' '.join('<span class="' + ('chapter-number' if i == 0 else 'chapter-couplet') + '">' + E(part) + '</span>' for i, part in enumerate(chapter['title'].split()))
@@ -254,6 +255,8 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=False):
         if not draft and n in (21, 77):
             from check_hongloumeng_duo_name import edited
             pages[name] = edited(name, pages[name])
+        if not draft and n in CHAPTERS:
+            pages[name] = apply_copyedits(pages[name], n, 'zh-Hans')
     batches = []
     for start in range(1, 81, 5):
         cards = ''.join(f'<li data-chapter="{c["number"]}" data-title="{E(c["title"])}"><a href="ch{c["number"]:03d}.html"><span class="chapter-index">{c["number"]:02d}</span><span>{E(c["title"])}</span></a></li>' for c in chapters[start-1:start+4])
