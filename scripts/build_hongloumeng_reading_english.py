@@ -290,4 +290,8 @@ def production_plan(approval, *, root=None):
     pages['ch003.html'] = ch003_title(pages['ch003.html'], 'en')
     from hongloumeng_first80_copyedits import apply as apply_copyedits
     pages['ch006.html'] = apply_copyedits(pages['ch006.html'], 6, 'en')
+    from hongloumeng_qiaojie_name import EDITS as name_edits, apply as apply_qiaojie_name
+    for n in name_edits:
+        name = f'ch{n:03d}.html'
+        pages[name] = apply_qiaojie_name(pages[name], n, 'en')
     return {'classics/hongloumeng/en/'+name: verse_layout(apply(content, name), name) if name.endswith('.html') else content for name,content in navigation_outputs('classics/hongloumeng/en/', pages).items()}
