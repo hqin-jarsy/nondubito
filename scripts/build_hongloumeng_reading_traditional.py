@@ -91,6 +91,9 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=True):
             pages[name] = edited('zh-hant/' + name, pages[name])
         if not draft and n in CHAPTERS:
             pages[name] = apply_copyedits(pages[name], n, 'zh-Hant')
+        if not draft and n == 62:
+            from hongloumeng_ch062_birthdays import apply as apply_birthdays
+            pages[name] = apply_birthdays(pages[name], 'zh-Hant')
         if not draft and n in NAME_EDITS:
             pages[name] = apply_qiaojie_name(pages[name], n, 'zh-Hant')
     batches = []

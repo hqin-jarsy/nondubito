@@ -290,6 +290,8 @@ def production_plan(approval, *, root=None):
     pages['ch003.html'] = ch003_title(pages['ch003.html'], 'en')
     from hongloumeng_first80_copyedits import apply as apply_copyedits
     pages['ch006.html'] = apply_copyedits(pages['ch006.html'], 6, 'en')
+    from hongloumeng_ch062_birthdays import apply as apply_birthdays
+    pages['ch062.html'] = apply_birthdays(pages['ch062.html'], 'en')
     from hongloumeng_qiaojie_name import EDITS as name_edits, apply as apply_qiaojie_name
     for n in name_edits:
         name = f'ch{n:03d}.html'
