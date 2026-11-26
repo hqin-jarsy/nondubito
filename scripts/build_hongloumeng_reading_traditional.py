@@ -79,6 +79,8 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=True):
         if not draft and n == 3:
             from hongloumeng_ch003_title import apply
             pages[name] = apply(pages[name], 'zh-Hant')
+            from hongloumeng_ch003_portrait import apply as apply_portrait
+            pages[name] = apply_portrait(pages[name], 'zh-Hant')
         if not draft and n == 14:
             from hongloumeng_ch014_pavilion import apply
             pages[name] = apply(pages[name], 'zh-Hant')

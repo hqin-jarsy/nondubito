@@ -246,6 +246,8 @@ def render(reading, manifest, mode='draft', assets=None, bilingual=False):
         if not draft and n == 3:
             from hongloumeng_ch003_title import apply
             pages[name] = apply(pages[name], 'zh-Hans')
+            from hongloumeng_ch003_portrait import apply as apply_portrait
+            pages[name] = apply_portrait(pages[name], 'zh-Hans')
         if not draft and n == 14:
             from hongloumeng_ch014_pavilion import apply
             pages[name] = apply(pages[name], 'zh-Hans')
