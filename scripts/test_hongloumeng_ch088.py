@@ -63,7 +63,7 @@ class Chapter88Tests(unittest.TestCase):
                 nav = page.split('<nav class="chapter-nav"',1)[1]
                 self.assertIn('href="ch087.html"', nav)
                 self.assertIn('href="index.html"', nav)
-                self.assertNotIn('ch089.html', nav)
+                self.assertIn('href="ch089.html"', nav)
                 self.assertIn(PREFIX, url)
                 self.check_exact_body(lang, page)
 
@@ -102,7 +102,7 @@ class Chapter88Tests(unittest.TestCase):
             below = hub.split('<section id="continuation">',1)[1].split('</section>',1)[0]
             link, = re.findall(r'href="([^"]*ch088.html)" hreflang="'+code+'"',below)
             self.assertEqual(urljoin(hub_path, link), PREFIX+directory+'ch088.html')
-            self.assertIn('81–88' if code=='en' else '第八十一至八十八回', below)
+            self.assertIn('81–89' if code=='en' else '第八十一至八十九回', below)
         ns='{http://www.sitemaps.org/schemas/sitemap/0.9}'
         sitemap=ET.fromstring(self.get('sitemap.xml'))
         all88=[x.text for x in sitemap.iter(ns+'loc') if x.text.endswith('/ch088.html')]
@@ -113,8 +113,7 @@ class Chapter88Tests(unittest.TestCase):
             rows=json.loads(self.get('data/search/'+code.lower()+'.json'))['records']
             self.assertEqual([r['u'] for r in rows if r['u'].endswith('/ch088.html')],[url])
         self.assertCountEqual(all88,paths)
-        for path in ('index.html','latest.html'):
-            self.assertIn('2026-11-24-red-chamber-ch088-eight-languages',self.get(path))
+        self.assertIn('2026-11-24-red-chamber-ch088-eight-languages', self.get('latest.html'))
 
 
 if __name__ == '__main__':

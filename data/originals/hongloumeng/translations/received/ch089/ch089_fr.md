@@ -1,0 +1,378 @@
+# Quatre-vingt-neuvième récit
+
+## Brume de Rivière et la sœurette Lin reprennent les vers de l’étang froid sur une rime nouvelle ; Première-née met son père en garde dans un songe
+
+<!-- P1 -->
+Au lendemain de cette nuit au Belvédère de Verdure, le Parc ouvrit à l’aube et ferma à la nuit comme à l’ordinaire. On alla chercher les repas, on fit bouillir les remèdes, on vérifia les comptes, on tourna les clefs aux heures habituelles. Au-dehors pourtant, une rumeur s’était élevée et chacun disait que le Deuxième Jeune Maître Jade était promis à la demoiselle Joyau de la famille Xue.
+
+<!-- P2 -->
+Un jour que Jia le Politique avait terminé ses affaires à l’administration et s’apprêtait à rentrer, un collègue avec qui il s’entendait bien lui dit en souriant : « J’apprends qu’on se réjouit chez vous. Comment n’en avez-vous rien laissé filtrer ? » Jia le Politique en resta interdit. « Il n’en est rien. D’où vous vient cette idée ? — On le dit partout, c’est la demoiselle Xue. » Il n’osa pousser plus loin et fit une réponse évasive. En rentrant, il trouva une lettre que son ancien élève Fu Shi avait fait remettre à la porte. Celui-ci commençait par le féliciter, parlait ensuite de mille choses et revenait au mariage de sa sœur, qui lui donnait toujours du souci. Au bout du compte, il posait la même question.
+
+<!-- P3 -->
+Jia le Politique mit la lettre de côté et fit venir Lin Zhixiao. Il portait encore ses habits unis de deuil, et deux dossiers attendaient sur son bureau. Lin Zhixiao entra avec un plateau de laque où quelques marchands avaient fait porter leurs billets, et s’arrêta devant le bureau. Jia le Politique n’y jeta pas même un regard. « D’où vient ce qu’on raconte dehors ? »
+
+<!-- P4 -->
+Lin Zhixiao s’inclina : « Votre serviteur s’est déjà renseigné. » Il leva un instant les yeux sur Jia le Politique, puis reprit : « Depuis quinze jours, on a envoyé quatre ou cinq fois la femme de Zhou Rui faire des courses pour Madame. Chez le marchand de satin, elle s’est renseignée sur l’étoffe, en disant que l’habit devait être fait aux anciennes mesures de Mademoiselle Joyau. Elle a demandé au bijoutier quelles tailles essayer pour les bracelets et au marchand d’encens et de cierges quelles bougies on employait pour un banquet de noces. Les commis n’en ont entendu que la moitié et l’ont dit à leurs patrons ; les patrons l’ont répété à leurs parents et amis. De bouche en bouche, les fiançailles se sont trouvées conclues. Ces derniers jours deux ou trois boutiques ont même envoyé demander la date du mariage, pour pouvoir préparer leurs marchandises. »
+
+<!-- P5 -->
+« Madame lui avait-elle dit de nommer la demoiselle Joyau ? »
+
+<!-- P6 -->
+« La femme de Zhou Rui a seulement dit que Madame lui faisait préparer un habit aux anciennes mesures de Mademoiselle Joyau. De fiançailles, Madame n’a rien dit expressément. »
+
+<!-- P7 -->
+D’un geste brusque, Jia le Politique écarta son presse-papier d’un demi-pouce. Il réfléchit un instant, puis dit : « Faites savoir que la maison est encore en deuil et qu’aucun mariage n’a été arrêté pour nos enfants. Si les boutiques envoient quelqu’un s’informer, éconduisez-le. Pas un mot de plus. »
+
+<!-- P8 -->
+« Et si l’on vient me demander de nouveau qui est la demoiselle promise, que dois-je répondre, Monsieur ? »
+
+<!-- P9 -->
+Jia le Politique leva les yeux sur lui. Lin Zhixiao se hâta de baisser la tête. « Votre serviteur a compris. » Il emporta son plateau de laque.
+
+<!-- P10 -->
+Jia le Politique demeura seul un moment. Sur la table se trouvaient deux bougies que le marchand d’encens avait envoyées pour modèle l’avant-veille. Quatre caractères y étaient peints en or : « Que la salle soit pleine d’or et de jade. » Il les regarda quelque temps, fit apporter un brasero par un petit valet et les brûla sous ses yeux. La cire tombait goutte à goutte dans la cendre.
+
+<!-- P11 -->
+Dans les appartements intérieurs, Jade avait lui aussi entendu la rumeur. Sa main alla d’abord à la bourse qu’il portait contre sa poitrine. Il la pressa à travers son vêtement et ne la lâcha plus. Il n’avait personne à qui en dire un mot.
+
+<!-- P12 -->
+Il ne fallut que quelques jours pour que la rumeur parvînt chez les Wei. Le lendemain après-midi, on annonça soudain à la porte du palais de la Gloire que Madame Shi était arrivée. Brume de Rivière franchit la deuxième porte avec Cuilü. Elle portait une veste de satin façonné bleu pâle, un manteau bleu sombre doublé de renard noir et, dans les cheveux, deux simples fleurs sans couleur vive. La femme de service l’accueillit avec un sourire : « Madame Shi est-elle venue présenter ses félicitations ? »
+
+<!-- P13 -->
+Brume de Rivière s’arrêta. « À qui ? » demanda-t-elle en souriant.
+
+<!-- P14 -->
+« Mais au Deuxième Jeune Maître Jade et à Mademoiselle Joyau, bien sûr ! » répondit la femme avec le même sourire.
+
+<!-- P15 -->
+Brume de Rivière se mit à rire. « Vous n’y comprenez rien vous-mêmes, et vous venez me demander ! Aujourd’hui, je viens voir mes sœurs. À la prochaine qui me parlera de félicitations, je demanderai où l’on sert le vin des noces. » Et elle poursuivit son chemin. Derrière elle, Cuilü reprit en riant : « Madame a dit tout le long de la route qu’elle n’en croyait pas un mot ; à peine entrée, la voilà qui s’informe du vin ! » La femme la prit au mot. « Ce sera d’ici quelques jours, dit-elle avec empressement. Le jour venu, on ne manquera pas d’inviter Madame Shi à boire une coupe. » Brume de Rivière se retourna et fit : « Peuh ! C’est à vos langues que je m’intéresse. Qui t’a dit qu’il y aurait du vin de noces ? » Sur ce, elle fila tout droit vers le Parc.
+
+<!-- P16 -->
+Baoqin et Xiuyan se trouvaient chez tante Xue. Li Wen et Li Qi étaient venues porter des ouvrages de couture au Parc. En apprenant l’arrivée de Brume de Rivière, toutes quatre la rejoignirent au pavillon Xiaoxiang. Joyau avait chargé Yinger d’y apporter quelques écheveaux neufs à la sœurette Lin. Assise près de la fenêtre, elle nouait un cordon à motif de queue de phénix, mêlant le bleu de lune au rose clair. Brume de Rivière la retint, elle aussi.
+
+<!-- P17 -->
+La sœurette Lin se sentait assez bien ce jour-là. Vêtue d’une veste doublée gris clair et d’un gilet de satin sombre, elle lisait près de la fenêtre un volume de vieux poèmes chantés. Son visage était pâle, mais ses joues brûlaient un peu. Cri de Coucou venait de lui apporter son remède. Il en montait une odeur de vieux ginseng, et la sœurette Lin avait repoussé sa tasse après n’en avoir bu que la moitié.
+
+<!-- P18 -->
+En entrant, Brume de Rivière regarda tout le monde l’un après l’autre, puis alla jusqu’au lit de repos et prit la main de la sœurette Lin. « On ne sait plus où donner de la tête là-dehors, dit-elle en souriant, et toi, te voilà bien tranquille. »
+
+<!-- P19 -->
+La sœurette Lin sourit : « Qu’ils fassent leur tapage. En quoi cela me regarde ? »
+
+<!-- P20 -->
+Brume de Rivière allait reprendre quand Baoqin lui tira doucement la manche. Elle s’arrêta et sourit : « Laissons cela. Je suis venue voir mes sœurs, pas parler de ces choses-là. »
+
+<!-- P21 -->
+Xiuyan prit la tasse de remède posée près de la sœurette Lin, l’examina et dit : « Ce ginseng sent le vieux. Comment peut-on boire ça ? »
+
+<!-- P22 -->
+Cri de Coucou répondit : « Au magasin, on dit que tout le bon ginseng a été distribué depuis longtemps. Depuis quelques jours, on se débrouille avec des radicelles de ginseng. Il en reste un peu du bon qu’on a reçu l’autre jour, mais Mademoiselle a dit de le garder et de ne pas y toucher. »
+
+<!-- P23 -->
+Brume de Rivière prit la tasse, l’approcha de son nez et fronça les sourcils. « Une maison si grande, et pas une seule bonne racine de ginseng à fournir ! » Elle reposa la tasse près de la sœurette Lin.
+
+<!-- P24 -->
+La sœurette Lin sourit : « Le ginseng, ce n’est pas du riz. Je ne vais pas mourir de faim pour m’en passer un jour. »
+
+<!-- P25 -->
+Brume de Rivière rit : « Te voilà bien accommodante ! Autrefois, il suffisait qu’il manque un pétale à une fleur pour que tu en parles une demi-journée. »
+
+<!-- P26 -->
+« Autrefois, c’était autrefois. Maintenant les fleurs s’ouvrent comme elles veulent. Qu’est-ce que j’ai à m’en mêler ? » La sœurette Lin reprit sa tasse et but lentement ce qui restait.
+
+<!-- P27 -->
+Brume de Rivière la regarda et sourit. « Voilà qui est mieux. Je n’ai pas apporté de bon ginseng aujourd’hui, seulement ma bouche. Il faudra bien que je me fasse pardonner avec quelques vers. »
+
+<!-- P28 -->
+Baoqin dit : « On étouffe ici. Il n’y a guère de vent dehors. Si nous allions nous asseoir au Pavillon du Cristal en Creux ? L’air est frais au bord de l’eau et le soleil y donne bien. »
+
+<!-- P29 -->
+« Mademoiselle vient de prendre son remède, dit Cri de Coucou. Elle ne peut pas s’exposer au vent de l’étang. »
+
+<!-- P30 -->
+« Prenons un coussin bien épais et une chaufferette de plus, dit Xiuyan. Si nous n’y restons qu’une heure, cela ne devrait pas lui faire de mal. »
+
+<!-- P31 -->
+Brume de Rivière était déjà debout. « Si elle tousse une seule fois, je la rapporte sur mon dos ! »
+
+<!-- P32 -->
+La sœurette Lin se mit à rire. « Tu es mariée à présent et tu fais encore de grandes promesses comme ça ? Prends garde de ne pas pouvoir me porter et de tomber toi-même à l’eau. »
+
+<!-- P33 -->
+Brume de Rivière se retourna et montra Cuilü en riant. « Si je tombe, Cuilü te tirera de l’eau d’abord, et moi ensuite. »
+
+<!-- P34 -->
+Cuilü agita vivement les mains. « Je ne tire personne de l’eau. Je reste sur la rive et j’appelle au secours ! » Toutes se mirent à rire. La sœurette Lin se leva en riant elle aussi. Cri de Coucou lui apporta un manteau. « Pas celui-là », dit-elle. Cri de Coucou alla chercher le manteau aux fils de paon et le lui mit sur les épaules. Xiuyan lui tendit sa propre chaufferette.
+
+<!-- P35 -->
+Brume de Rivière parlait avec Baoqin. En voyant ce que portait la sœurette Lin, elle s’approcha, tâta le col et sourit. « Celui-là est épais. » Puis elle sortit la première.
+
+<!-- P36 -->
+Barnacle des Neiges emporta d’abord le coussin au Pavillon du Cristal en Creux, l’étendit sous l’auvent et apporta un petit brasero pour réchauffer la décoction de poires. Les autres arrivèrent à pas lents. L’eau avait beaucoup baissé et découvrait une bande de pierre sous la balustrade de bambou. Personne n’avait arraché les lotus flétris. Ils tenaient encore debout et se frôlaient avec un bruit sec au passage du vent. Sur la rive, tout un pan de roseaux avait blanchi. Une couche de givre couvrait les marches de pierre sous l’auvent. Là où le soleil avait donné, elle avait fondu ; à l’ombre, elle tenait encore. La lumière dansait sur l’eau, éclairant et assombrissant tour à tour les marches.
+
+<!-- P37 -->
+Toutes prirent place. Yinger avait emporté son cordon et passait le fil près de la balustrade. Li Qi étala le papier et Li Wen broya l’encre. Baoqin remarqua les deux tabourets de bambou tacheté, toujours bien à leur place. « Ceux-là sont encore là, dit-elle. C’est nous qui sommes moins nombreuses. »
+
+<!-- P38 -->
+« Moins nombreuses, oui, mais cette soirée-là, nous l’avons encore », dit Brume de Rivière. Puis, à la sœurette Lin : « Te souviens-tu de la Mi-Automne, il y a deux ans ? Nous en étions à “Sur l’étang froid passe l’ombre d’une grue ; Sous la lune glacée s’ensevelit l’âme des fleurs.” Et voilà que Jade mystique surgit de derrière les rochers et nous défendit de continuer ! »
+
+<!-- P39 -->
+La sœurette Lin rit : « Tout ce dont je me souviens, c’est que tu as lancé une pierre et fait lever la grue. Et celle qui a pris peur, il me semble que c’était toi. »
+
+<!-- P40 -->
+« C’est bien toi qui as eu peur, rit Brume de Rivière. Et te voilà qui veux me le mettre sur le dos. »
+
+<!-- P41 -->
+Cuilü dit en riant : « Quand Madame est rentrée ce soir-là, elle avait de la boue tout autour de ses souliers. Et elle disait qu’elle n’était pas descendue au bord de l’étang ! » Brume de Rivière se leva pour la pincer ; Cuilü se réfugia derrière Baoqin. Toutes se remirent à rire.
+
+<!-- P42 -->
+Barnacle des Neiges alla chercher au pavillon Xiaoxiang un rouleau de vieux vers. Brume de Rivière le déplia : c’était bien la copie que Jade mystique avait faite pour elles. Au début, les caractères serrés formaient leurs vers alternés. Après leur dernier distique venaient les nombreux vers ajoutés par Jade mystique. Brume de Rivière y jeta un coup d’œil, roula le papier et le posa sur la table. « Cette rime est par trop froide. Prenons du papier neuf et une rime plus claire. Défense de prendre le pinceau à sa voisine : celle qui tient le pinceau écrit un vers. »
+
+<!-- P43 -->
+« C’est toi qui dis qu’on ne doit pas le prendre, répondit la sœurette Lin en riant. Si c’est toi qui le prends la première, ne viens pas m’en faire le reproche. »
+
+<!-- P44 -->
+Brume de Rivière avait déjà levé le pinceau. « Si je le fais, Cuilü devra écrire le vers suivant pour payer mon gage. »
+
+<!-- P45 -->
+« Je veux bien vous servir une autre tasse, dit aussitôt Cuilü en riant. Mais un autre vers, ça, je ne sais pas faire ! »
+
+<!-- P46 -->
+Li Qi étendit une nouvelle feuille fleurie d’un blanc rosé et Li Wen broya encore un peu d’encre. Brume de Rivière jeta un regard à l’eau et écrivit la première : « L’eau d’après la pluie recueille la soie du ciel clair. » La sœurette Lin prit le pinceau et répondit : « Entre les barreaux passe la fraîcheur de la nuit. » Li Wen sourit : « Je ne sais écrire que ce que j’ai sous les yeux. » Elle écrivit : « Les lotus flétris portent un peu de rosée. » Li Qi poursuivit : « Le vent se parfume aux fleurs neuves de l’osmanthe. »
+
+<!-- P47 -->
+Baoqin leva les yeux vers la rive. « Il y a longtemps que l’osmanthe a défleuri », dit-elle en riant.
+
+<!-- P48 -->
+La sœurette Lin sourit elle aussi. « Nous voilà hors du sujet. Gardons-le tout de même. Demain, nous y réfléchirons. »
+
+<!-- P49 -->
+Baoqin brûlait déjà de s’y mettre. Elle prit le pinceau et écrivit : « Le soleil du matin réchauffe le cabinet de toilette. » Xiuyan réfléchit un instant et répondit : « Le vent de givre glace le métier à broder. » Brume de Rivière reprit : « Un trait d’oies sauvages traverse la Voie lactée. » La sœurette Lin enchaîna aussitôt : « Des ombres de mouettes ponctuent les longues rides de l’eau. » Baoqin lança un autre vers : « Les hirondelles filent devant le rideau. » Xiuyan répondit : « Sous l’herbe, les grillons chantent à l’envi. » Brume de Rivière écrivit : « Nous faisons le thé, la lune mêlée à sa vapeur. » La sœurette Lin : « Des ombres de fleurs entrent dans nos manches. »
+
+<!-- P50 -->
+Yinger tenait un fil à perles entre les doigts. À ce dernier vers, elle sourit : « Cette fois, on dirait bien que c’est vrai. L’ombre d’une fleur tombait justement tout à l’heure sur la manche de Mademoiselle Lin. » La sœurette Lin baissa les yeux : un panache de roseau projetait en effet son ombre sur sa manche. Au premier souffle de vent, elle se défit.
+
+<!-- P51 -->
+Li Wen en profita pour écrire : « La rosée lourde mouille les manches bleu sombre. » Li Qi lui répondit : « Des nuages oisifs passent au-dessus du mur blanc. » Brume de Rivière écrivit : « Sur le vieux papier, quelques vers brefs. » La sœurette Lin reprit : « De rares bougies éclairent un visage paré de frais. » Baoqin ajouta : « Une poudre de jade vole sur les marches précieuses. » Xiuyan : « Le froid naît dans la salle de jade blanc. » Brume de Rivière écrivit : « Ce soir, ne demandons pas l’heure. » La sœurette Lin poursuivit : « Demain, nous apporterons de nouveau nos coupes. »
+
+<!-- P52 -->
+Xiuyan rit. « Nous avons à peine bu quelques gorgées de décoction de poires que vous voilà déjà à vous promettre du vin pour demain. »
+
+<!-- P53 -->
+« Il n’y a pas forcément du vin dans une coupe, répondit la sœurette Lin en souriant. La décoction de poires y va très bien. »
+
+<!-- P54 -->
+Enfin, Li Wen écrivit : « Ne laissons pas se perdre un si beau moment. » Li Qi répondit : « N’oublions pas si vite cette paisible promenade. » Brume de Rivière, le menton dans la main, réfléchit un instant, puis écrivit : « Quand nous reviendrons ici, dans quelques années, » La sœurette Lin leva le pinceau. Elle attendit longtemps avant de poser le dernier vers : « Nous nous assiérons encore sous la vieille galerie. »
+
+<!-- P55 -->
+Quand ce fut fini, Brume de Rivière prit la feuille et relut le poème depuis le début. « L’osmanthe a défleuri, les hirondelles sont parties, dit-elle en riant. La moitié de notre poème est déjà de l’année prochaine. Pour aujourd’hui, laissons-le là. »
+
+<!-- P56 -->
+Comme elles riaient encore, la sœurette Lin tendit la main vers le poème. Sa manche bougea : un fil d’or brilla au soleil sur le devant de son manteau. Brume de Rivière le vit et se tourna brusquement vers Yinger. « Ton cordon, depuis le temps que tu le noues, il n’est toujours pas fini ? »
+
+<!-- P57 -->
+« Madame disputait des vers et voulait pincer les gens, répondit Yinger en souriant. J’ai regardé le spectacle et pris du retard. »
+
+<!-- P58 -->
+« Fais-m’en donc un bien solide, dit Brume de Rivière. Qu’il ne se défasse pas dès qu’on tire dessus. »
+
+<!-- P59 -->
+« Si je serre le nœud au point que vous ne puissiez plus le défaire, ne m’en veuillez pas après », répondit Yinger en riant.
+
+<!-- P60 -->
+« Tant mieux s’il ne se défait pas. » Brume de Rivière se leva et gagna la balustrade. La sœurette Lin baissa les yeux sur le devant de son manteau, puis regarda vers l’eau, elle aussi.
+
+<!-- P61 -->
+Elles relurent plusieurs fois les nouveaux vers. Les ombres s’allongeaient et une brise légère se leva sur l’eau. La sœurette Lin toussa deux fois. Cri de Coucou dit : « Cela suffit bien pour aujourd’hui. Il faut rentrer. »
+
+<!-- P62 -->
+Brume de Rivière posa d’abord la main sur la feuille. « Deux petits coups de toux, et on nous chasse », dit-elle en riant. Elle se leva tout de même, roula soigneusement le poème et le tendit à la sœurette Lin. « Garde-le. La prochaine fois que je viens, nous reprendrons à partir de “sous la vieille galerie”. »
+
+<!-- P63 -->
+La sœurette Lin sourit : « Si tu viens vraiment, nous reprendrons. Pourvu que les Wei ne t’enferment pas et ne t’empêchent pas de courir par tout le Parc ! »
+
+<!-- P64 -->
+Brume de Rivière éclata de rire. « Mes jambes sont à moi. Qui m’enfermerait ? » Puis elle ajouta : « Et ces histoires qu’on raconte dehors, tu n’as pas à t’en soucier. Ce qui est faux reste faux. Toute la ville aurait beau dire que c’est vrai, ça ne compterait pas. »
+
+<!-- P65 -->
+« Depuis quand est-ce que je m’en soucie ? » répondit la sœurette Lin.
+
+<!-- P66 -->
+Brume de Rivière se contenta de sourire. Ses yeux se posèrent un instant sur le manteau de la sœurette Lin. Elle ne dit plus rien et se détourna de la balustrade. Les rires durèrent encore un peu, puis toutes rentrèrent ensemble.
+
+<!-- P67 -->
+Cette nuit-là, Jia le Politique, qui n’arrivait pas à venir à bout des affaires de ces derniers jours, resta de nouveau au cabinet d’étude extérieur jusqu’à la deuxième veille. D’un côté s’empilaient les billets de félicitations à retourner, de l’autre des pièces de l’affaire de la sorcière Ma, et il y avait encore les papiers de l’expulsion de Jia Huan. À force de lire, il eut les yeux qui lui piquaient et s’accouda sur le bureau pour se reposer un instant.
+
+<!-- P68 -->
+Il ne sut combien de temps avait passé. Il se vit debout dans une très longue galerie du palais. De chaque côté se succédaient les piliers vermillon, chacun éclairé par les lanternes du palais, mais on n’entendait pas une voix. Au bout se tenait Première-née, en robe de cour, sous une lourde couronne de phénix. « Votre Altesse », appela Jia le Politique. Première-née ne répondit pas. Lentement, elle leva la main, retira d’abord le phénix d’or sur le côté de sa couronne, puis enleva ses deux pendants d’oreilles et tira une épingle de ses cheveux. Les perles d’or tombèrent sans le moindre bruit. Elle allait très lentement et, à chaque parure ôtée, marquait un temps d’arrêt. Enfin, elle prit la couronne à deux mains, la souleva et la posa près du seuil. Il ne restait plus que sa chevelure noire.
+
+<!-- P69 -->
+Première-née se retourna et poussa devant elle une porte vermillon. Elle s’ouvrit en grinçant ; derrière se dressait une autre porte fermée. Première-née la poussa, et une autre encore apparut. Porte après porte, enceinte après enceinte, impossible de sortir. Quand elle se retourna, toutes les portes qu’elle avait ouvertes s’étaient refermées sans un bruit. Au-delà, tout était calme et profond, et l’on n’en voyait pas la fin. À la longue, Première-née s’arrêta. Elle se retourna, regarda Jia le Politique de loin et ne dit qu’une phrase : « Père, c’est peut-être mieux si la route est longue. » Puis elle poussa la porte et entra. La porte se referma derrière elle sans un bruit.
+
+<!-- P70 -->
+Jia le Politique se réveilla en sursaut. Son cœur cognait ; il était couvert de sueur froide. Derrière la fenêtre, il ne faisait pas encore jour.
+
+<!-- P71 -->
+Jia le Politique repassa le songe du début à la fin sans vouloir tout à fait y croire. Après être resté assis un moment, il se leva et appela discrètement un domestique de confiance. À l’insu des autres, il lui fit prendre des vêtements ordinaires et cacher sur lui quelques taëls d’argent en petits morceaux. Il devait aller sans tarder attendre devant la porte du palais et trouver moyen de faire sortir une connaissance parmi les gens de l’eunuque Xia, pour demander seulement si Son Altesse se portait bien ces jours-ci. Qu’il ne présentât pas de carte de visite du palais de la Gloire et n’en parlât à personne d’autre. Qu’il vît ou non quelqu’un, il devait rentrer chaque jour en rendre compte. Le domestique reçut les ordres et sortit par la porte latérale de l’ouest avant le jour.
+
+<!-- P72 -->
+Le domestique parti, Jia le Politique resta assis. Il lut deux fois la même pièce sans y porter le moindre caractère, puis posa son pinceau. « Que le songe soit vrai ou faux, dit-il à mi-voix, l’affaire de l’Aïeule ne peut plus attendre. » Il se rendit aussitôt aux appartements principaux.
+
+<!-- P73 -->
+La Seconde Dame Wang n’avait pris qu’un demi-bol de bouillie. Surprise de voir Jia le Politique si tôt, elle fit vivement servir du thé par Bracelet de Jade. Jia le Politique s’assit. « Pour fixer le jour du mariage de Jade, nous n’attendrons plus. »
+
+<!-- P74 -->
+La Seconde Dame Wang cessa d’égrener son chapelet. Elle attendit un instant avant de répondre : « Les bruits du dehors viennent à peine de se calmer. Si nous pressons les choses à présent, j’ai peur qu’on les prenne plus au sérieux encore. »
+
+<!-- P75 -->
+« La rumeur portait sur la demoiselle Joyau, pas sur la petite Lin. »
+
+<!-- P76 -->
+« Monsieur sait dans quel état est Mademoiselle Lin. Il lui faut des remèdes tous les jours et nous n’arrivons même pas à lui fournir du ginseng. Quant à Jade, il ne sait pas quand il faut se couvrir ou se découvrir. Tous deux ont besoin qu’on veille sur eux. Ensuite, lequel veillera sur l’autre ? »
+
+<!-- P77 -->
+« La petite Lin, on pourra la soigner avec le temps, dit Jia le Politique. Si l’on remet sans cesse son mariage, à quoi bon la soigner ? »
+
+<!-- P78 -->
+« Avant de mourir, l’Aïeule a dit : “N’attendez pas trois ans. Faites-le dans les cent jours.” Il y a longtemps que les cent jours sont passés. Puisque nous avons laissé passer le délai, raison de plus pour prendre le temps de voir. À nous hâter d’un coup, nous paraîtrons encore plus étranges aux gens du dehors. »
+
+<!-- P79 -->
+« Nous avons laissé passer les cent jours. C’était à moi d’y voir. Si nous remettons encore, ce sera trois ans. Qui peut attendre jusque-là ? »
+
+<!-- P80 -->
+« Encore faudrait-il attendre au moins une lettre de mon frère. »
+
+<!-- P81 -->
+« Cela ne peut pas attendre. »
+
+<!-- P82 -->
+La Seconde Dame Wang baissa la tête et fit glisser les grains de son chapelet un à un. Elle resta longtemps sans parler.
+
+<!-- P83 -->
+Jia le Politique la regarda puis reprit : « Avant de mourir, l’Aïeule m’a laissé des paroles secrètes. Elle a chargé Ambre de me les transmettre à l’écart, sans y ajouter un seul mot. Elle a dit : “Ma fille n’est plus. Sa fille est la chair même de mon cœur. L’être qui est toute ma vie doit toujours demeurer auprès de la chair de mon cœur.” »
+
+<!-- P84 -->
+« L’Aïeule a donc dit cela aussi ? Je ne l’avais jamais entendu. »
+
+<!-- P85 -->
+« Cela, vous ne l’aviez pas entendu. Mais elle a encore dit : “Il faut régler au plus tôt la grande affaire du frérot Jade, sans m’attendre. S’il m’arrivait quelque chose, je vous interdis aussi de vous laisser entraver par les règles du deuil et de retarder cette affaire sérieuse qui le concerne.” Ces paroles-là, elle les a dites devant vous. Vous les avez entendues. On ne peut pas écouter l’Aïeule à moitié. »
+
+<!-- P86 -->
+La Seconde Dame Wang serra son chapelet. « Qui ne sait combien l’Aïeule aimait Mademoiselle Lin ? Mais une vieille dame qui parle par tendresse pour ses enfants ne pense pas forcément à la façon dont ils devront vivre ensemble au jour le jour. »
+
+<!-- P87 -->
+« Cette année-là, Cri de Coucou n’a dit qu’un mot pour plaisanter. Vous avez vu de vos yeux dans quel état Jade est tombé. »
+
+<!-- P88 -->
+« C’était un enfant. Il a perdu la tête un instant. »
+
+<!-- P89 -->
+« S’il n’a même pas le droit de dire un mot sur son propre mariage, alors tout ce que les autres disent à sa place doit compter pour lui ? »
+
+<!-- P90 -->
+La Seconde Dame Wang se tut. Au bout d’un long moment, elle relâcha les doigts qui serraient le chapelet. « Puisque c’est la volonté secrète de l’Aïeule et la décision de Monsieur, je ferai comme vous le dites. Mais si une lettre de mon frère arrive, il faut me la montrer aussitôt. »
+
+<!-- P91 -->
+« Bien entendu. »
+
+<!-- P92 -->
+« Alors, comme Mademoiselle Lin est encore si faible, reprit la Seconde Dame Wang, mieux vaut ne pas faire trop de bruit. »
+
+<!-- P93 -->
+« Que ce soit fait vite, et simplement. Ni musique ni invités, et pas un mot au-dehors. Faites chercher aujourd’hui même le premier jour propice. » Jia le Politique se leva et sortit.
+
+<!-- P94 -->
+La Seconde Dame Wang resta assise sur le kang. Elle attendit que Jia le Politique eût passé la porte pour dire à Bracelet de Jade : « Le thé a refroidi. Emporte-le. » Pourtant, elle gardait la main sur la tasse sans la lui tendre. Un moment plus tard, elle appela la femme de Zhou Rui. « S’il vient des nouvelles de mon frère, ne tarde pas à me les porter non plus. »
+
+<!-- P95 -->
+Le jour même, on fit venir un homme qui savait choisir les dates propices. Dans le mois qui venait, il ne se trouva qu’un seul jour propice, à neuf jours de là. Jia le Politique y jeta les yeux et dit seulement : « Ce jour-là. » À peine le petit billet rouge fut-il parvenu aux appartements intérieurs qu’on s’affaira de toutes parts.
+
+<!-- P96 -->
+Pour que rien ne s’ébruitât, on se pressa de faire vêtements et literie à l’intérieur de la maison. Les couturières sortirent tout le satin et toute la soie rouge sombre dont elles disposaient. On décousit et lava le vieux linge ; là où il manquait de l’étoffe, on ajouta une bordure. Li Wan vérifia la vaisselle ; Petite Quiète passait de porte en porte pour la Seconde Dame Wang et notait ce que chaque logement avait retiré du magasin. Cri de Coucou et Barnacle des Neiges ne connaissaient de répit ni le jour ni la nuit : tantôt elles prenaient des mesures, tantôt elles fouillaient dans les coffres, tantôt elles allaient presser le bureau des comptes de leur donner de l’ouate de coton.
+
+<!-- P97 -->
+La Seconde Dame Wang envoya la femme de Zhou Rui au pavillon Xiaoxiang. Elle dit seulement que le jour était fixé et que Mademoiselle n’avait plus qu’à se reposer sans inquiétude. La sœurette Lin se plia à l’usage, évita Jade pour quelques jours et resta tranquillement chez elle. Cri de Coucou étendit sur le lit de repos le vieux rideau de lit fleuri couleur mauve lotus. « Les coins et les bords sont usés. Nous avons encore le temps de défaire la bordure et d’en coudre une neuve. Que préfère Mademoiselle, du rose argenté ou le même mauve ? »
+
+<!-- P98 -->
+« La couleur d’origine est encore belle. Pourquoi défaire la bordure ? Raccommode seulement les endroits usés. »
+
+<!-- P99 -->
+« Cela n’arrive qu’une fois dans la vie, Mademoiselle. Pourquoi faire avec du vieux partout ? C’est Madame la Deuxième qui vous a fait envoyer ce rideau le jour même de votre arrivée au palais. »
+
+<!-- P100 -->
+La sœurette Lin sourit. « Avec une bordure neuve, est-ce que je serais neuve, moi aussi ? »
+
+<!-- P101 -->
+Barnacle des Neiges entra, deux vêtements dans les bras. « Les couturières disent qu’il y a assez d’étoffe pour la veste, mais qu’il manque un demi-lé pour la jupe. Elles demandent si Mademoiselle veut une autre couleur. »
+
+<!-- P102 -->
+« Qu’elles décousent la vieille jupe qui est dans le coffre. Il y en aura assez. »
+
+<!-- P103 -->
+« Que Mademoiselle ne s’occupe pas de ces choses-là, dit Cri de Coucou en souriant. Reposez-vous. Si vous ne toussez pas ce jour-là, vous nous aurez déjà bien aidées. » La sœurette Lin prit la feuille des nouveaux vers du Pavillon du Cristal en Creux et se mit à les relire. Cri de Coucou mesurait ses manches : quand elle lui demandait de tendre le bras, elle le tendait ; de se tourner, elle se tournait. Le remède qu’on lui apporta était encore fait de radicelles, et elle le but comme de coutume. Quand la toux la reprit un peu plus fort, elle se reposa un moment, puis remit la feuille bien à plat et posa un poids dessus.
+
+<!-- P104 -->
+Quand Jade apprit que le jour était fixé, il se rendit d’abord au pavillon Xiaoxiang. À peine arrivé au pont de bambou, il vit Cri de Coucou venir à lui. « Ces jours-ci, le Deuxième Jeune Maître doit se tenir à l’écart. Madame a dit que vous ne deviez pas vous voir. »
+
+<!-- P105 -->
+Jade s’arrêta aussitôt. « Je n’entre pas. Je demande seulement si la sœurette Lin a pris son remède aujourd’hui. »
+
+<!-- P106 -->
+« Elle l’a pris. »
+
+<!-- P107 -->
+« Tousse-t-elle moins ? »
+
+<!-- P108 -->
+« Comme hier. »
+
+<!-- P109 -->
+« Et la bonne racine de ginseng ? »
+
+<!-- P110 -->
+« Il n’en reste que ce petit bout. On n’y a pas touché aujourd’hui. Mademoiselle a dit de le garder pour quand elle en aura vraiment besoin. »
+
+<!-- P111 -->
+Jade posa la main sur la balustrade. « Qu’est-ce qu’elle entend par “vraiment besoin” ? Elle tousse comme ça, et elle n’en aurait pas besoin maintenant ? »
+
+<!-- P112 -->
+« Le bureau des comptes ne peut plus nous en donner. Mademoiselle craint qu’une fois le reste fini, on n’en trouve plus. Alors elle l’économise. »
+
+<!-- P113 -->
+Debout à l’entrée du pont, Jade dit : « Je trouverai un moyen. »
+
+<!-- P114 -->
+« Il ne faut pas que vous alliez courir au-dehors maintenant, Deuxième Jeune Maître. Mademoiselle m’a chargée de vous dire de faire comme Monsieur et Madame l’ont demandé, d’attendre tranquillement et de ne pas faire de nouvelles histoires. »
+
+<!-- P115 -->
+« C’est elle qui l’a dit de sa propre bouche ? »
+
+<!-- P116 -->
+Cri de Coucou répondit seulement : « Oui. » Jade se détourna enfin. Il alla s’asseoir au kiosque Qin-Fang et resta longtemps à regarder vers le pavillon Xiaoxiang. De retour chez lui, il fit prendre par Lune de Musc l’argent qui restait de la dernière fois, le remit à Brume de Thé et l’envoya demander de nouveau du ginseng à la même boutique. Le lendemain, il chargea Lune de Musc d’apporter une boîte de pâte de poires et la suivit de loin. Cri de Coucou prit la boîte mais lui barra de nouveau le passage au pont de bambou. Jade demanda trois fois : « Va-t-elle bien ? » Cri de Coucou ne répondit que : « Bien. »
+
+<!-- P117 -->
+Ce soir-là, Jade était assis seul auprès de la lampe quand il sentit tout à coup que le jade qu’il portait à la poitrine était glacé. Il le pressa de la main. À peine l’eut-il tenu un instant que la pierre se réchauffa peu à peu, jusqu’à lui paraître plus brûlante que sa paume. Il la sortit et la retourna à la lumière. Pas une fêlure ni d’un côté ni de l’autre ; les inscriptions étaient les mêmes qu’avant. Lune de Musc s’aperçut qu’il n’avait pas son air ordinaire. « Que regardez-vous, Deuxième Jeune Maître ? »
+
+<!-- P118 -->
+« Tout à l’heure, il était froid ; puis il est devenu chaud. »
+
+<!-- P119 -->
+Lune de Musc prit le jade et le tâta. « Il est à peine tiède, dit-elle en souriant. C’est votre cœur que vous sentez battre, et vous dites que c’est le jade qui bouge. »
+
+<!-- P120 -->
+« Ce n’est pas mon cœur. Il est là, contre ma poitrine. Je sais faire la différence. »
+
+<!-- P121 -->
+Lune de Musc examina de près le cordon de soie. « Le nœud ne s’est pas défait, et le jade n’a rien. » Deux vieilles femmes de garde dans la pièce voisine l’entendirent. L’une dit que le cordon devait être trop serré. L’autre entra en se frottant les yeux, jeta un coup d’œil et dit que par ce froid, un objet qu’on avait porté longtemps à même la peau pouvait bien être tour à tour chaud et froid. Elle ressortit. Jade ne tint compte d’aucune des deux. Il rattacha le jade contre sa poitrine et, de temps à autre, le pressa de la main.
+
+<!-- P122 -->
+Durant plusieurs jours, le domestique envoyé à la porte du palais était rentré avec les mêmes nouvelles : pas moyen de faire passer un mot, pas une seule connaissance en vue. Ce jour-là, il y retourna. À l’heure d’allumer les lampes, il n’était pas encore revenu. Sous la pierre à encre du cabinet extérieur, un billet rouge portait, tout frais écrit, le jour propice. Les lampes allumées, on entendit de temps à autre des roues au-dehors, près de la porte latérale de l’ouest. Le portier sortit avec une lanterne. La première fois, c’était une charrette qui livrait du riz. La deuxième, un petit valet venu du palais de la Paix. La troisième, rien qu’une charrette vide qui passait au bout de la rue.
+
+<!-- P123 -->
+Dans la cour de l’ouest, Phénix, depuis qu’elle était tombée malade, avait d’abord trouvé la force de rester assise un moment. À présent, elle ne faisait que rester couchée, tandis que Fenger lui donnait en silence à boire ou un peu de bouillon. Ce jour-là, une vieille femme passant devant la cour dit tout bas à quelqu’un : « On raconte dans les pièces de devant que Monsieur s’est réveillé en sursaut cette nuit. Avant même le jour, il avait envoyé quelqu’un à la porte du palais. Pour quoi faire, personne ne le sait. » Les voix s’éloignèrent peu à peu.
+
+<!-- P124 -->
+Phénix entendit ces mots, la tête sur l’oreiller, et ferma lentement les yeux. Fenger, la voyant immobile, la crut lasse et prête à dormir ; elle baissa doucement le rideau du lit. Au chevet, le remède refroidissait peu à peu.
+
+<!-- P125 -->
+Au bout d’un long moment, on entendit derrière le rideau : « Le remède est froid. Jette-le. Demain, fais-le plus fort. » Fenger acquiesça vivement et demanda à travers le rideau : « Madame voudrait-elle se redresser un peu ? » La voix répondit : « Je ne peux plus bouger. » Pour savoir la suite, qu’on lise le prochain récit.

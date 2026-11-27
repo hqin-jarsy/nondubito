@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from import_fairy_tales import TraditionalConverter
 from web_analytics import tracked_html
-from hongloumeng_translations import FOREIGN, ch087_multilingual, ch088_multilingual, render_foreign
+from hongloumeng_translations import FOREIGN, ch087_multilingual, ch088_multilingual, ch089_multilingual, render_foreign
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'originals/hongloumeng'
@@ -37,6 +37,8 @@ CHAPTERS = {
     'ch088': {'sha256': '4b00f0ddf514fdb93afc14a94987375882db5e50cc81cbc0ecc8c0fe243021ff',
               'published': '2026-11-24', 'modified': '2026-11-24', 'number': '第八十八回',
               'verse_units': [[65, 68]]},
+    'ch089': {'sha256': 'ebcaccef6ae35840135e716ba65f7aa0114354bac48f66b29a21f78cf1283021',
+              'published': '2026-11-27', 'modified': '2026-11-27', 'number': '第八十九回'},
 }
 
 
@@ -81,13 +83,18 @@ def language_menu(lang, filename):
 def render():
     manuscripts = {stem: manuscript(stem) for stem in CHAPTERS}
     released_088 = ch088_multilingual(PUBLICATION)
-    if released_088:
-        r = PUBLICATION["chapter_sources"]["ch088"]
+    released_089 = ch089_multilingual(PUBLICATION)
+    fixed_traditional = {}
+    for key, ready in (('ch088', released_088), ('ch089', released_089)):
+        if not ready:
+            continue
+        r = PUBLICATION["chapter_sources"][key]
         raw_hant = (ROOT / "data/originals/hongloumeng" / r["traditional_source"]).read_bytes()
         assert hashlib.sha256(raw_hant).hexdigest() == r["traditional_sha256"]
-        hant_088 = raw_hant.decode().splitlines()
-        hant_088[0] = hant_088[0].removeprefix("# ")
-        assert [bool(x) for x in hant_088] == [bool(x) for x in manuscripts["ch088"]]
+        hant = raw_hant.decode().splitlines()
+        hant[0] = hant[0].removeprefix("# ")
+        assert [bool(x) for x in hant] == [bool(x) for x in manuscripts[key]]
+        fixed_traditional[key] = hant
     converter = TraditionalConverter()
     pages = {}
     has_ch087_translations = ch087_multilingual(PUBLICATION)
@@ -96,6 +103,8 @@ def render():
         summary = '后三十回已完成，正在逐回打磨与发布。目前第八十一至八十七回有八语阅读版。第八十八至第一百一十回尚未公开。'
     if released_088:
         summary = '后三十回已完成，正在逐回打磨与发布。目前第八十一至八十八回有八语阅读版。第八十九至第一百一十回尚未公开。'
+    if released_089:
+        summary = '后三十回已完成，正在逐回打磨与发布。目前第八十一至八十九回有八语阅读版。第九十至第一百一十回尚未公开。'
     try:
         for lang, (directory, code, label) in EDITIONS.items():
             if lang in FOREIGN:
@@ -154,19 +163,21 @@ def render():
                 published = CHAPTERS[stem]['published'] if story else '2026-10-05'
                 title = lines[0] if story else '红楼梦·后三十回'
                 canonical = ORIGIN + directory + (filename if story else '')
-                if released_088 and stem == 'ch088' and lang == 'zh-hant':
-                    lines = hant_088
+                if stem in fixed_traditional and lang == 'zh-hant':
+                    lines = fixed_traditional[stem]
                     title = lines[0]
-                title_markup = html.escape(title) if released_088 and stem == "ch088" and lang == "zh-hant" else e(title)
+                title_markup = html.escape(title) if stem in fixed_traditional and lang == "zh-hant" else e(title)
                 description = '秦汉原创《红楼梦》续写，第八十一至第一百一十回。第八十一至八十六回有八语阅读版，第八十七回有简繁中文定稿；不是曹雪芹佚稿。'
                 if has_ch087_translations and (not story or stem == 'ch087'):
                     description = '秦汉原创《红楼梦》续写，第八十一至第一百一十回。第八十一至八十七回有八语阅读版；不是曹雪芹佚稿。'
                 if released_088 and (not story or stem == 'ch088'):
                     description = '秦汉原创《红楼梦》续写，第八十一至第一百一十回。第八十一至八十八回有八语阅读版；不是曹雪芹佚稿。'
+                if released_089 and (not story or stem == 'ch089'):
+                    description = '秦汉原创《红楼梦》续写，第八十一至第一百一十回。第八十一至八十九回有八语阅读版；不是曹雪芹佚稿。'
                 alternatives = ''.join(f'<link rel="alternate" hreflang="{c}" href="{ORIGIN+d+(filename if story else "")}">' for d,c,_ in page_editions(filename).values())
                 alternatives += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN+(filename if story else "")}">'
                 languages = language_menu(lang, filename)
-                schema = {'@context':'https://schema.org','@type':'Chapter' if story else 'CollectionPage','name':title if released_088 and stem == 'ch088' and lang == 'zh-hant' else t(title),'url':canonical,'inLanguage':code,'author':{'@type':'Person','name':'Han Qin (秦汉)'},'datePublished':published,'dateModified':CHAPTERS[stem].get('modified', CHAPTERS[stem]['published']) if story else max(ch.get('modified',ch['published']) for ch in CHAPTERS.values())}
+                schema = {'@context':'https://schema.org','@type':'Chapter' if story else 'CollectionPage','name':title if stem in fixed_traditional and lang == 'zh-hant' else t(title),'url':canonical,'inLanguage':code,'author':{'@type':'Person','name':'Han Qin (秦汉)'},'datePublished':published,'dateModified':CHAPTERS[stem].get('modified', CHAPTERS[stem]['published']) if story else max(ch.get('modified',ch['published']) for ch in CHAPTERS.values())}
                 if story:
                     schema['isPartOf'] = {'@type':'CreativeWork','name':t('红楼梦·后三十回'),'url':ORIGIN+directory}
                     schema['position'] = int(stem[2:])
@@ -181,7 +192,7 @@ def render():
                         if not line: continue
                         unit += 1
                         if line == verse_start or any(unit == start for start, _ in ranges): paragraphs.append('<div class="verse">')
-                        text = html.escape(line) if stem == "ch088" and lang == "zh-hant" else e(line)
+                        text = html.escape(line) if stem in fixed_traditional and lang == "zh-hant" else e(line)
                         if stem == 'ch083' and line == verse_end:
                             text = text.replace('　', '　<br>', 1)
                         paragraphs.append(f'<p data-source-line="{number}">{text}</p>')
@@ -189,15 +200,15 @@ def render():
                     keys = list(CHAPTERS)
                     position = keys.index(stem)
                     previous = (f'<a href="{keys[position-1]}.html">{e("← " + CHAPTERS[keys[position-1]]["number"])}</a>' if position else f'<a rel="prev" href="/classics/hongloumeng/{directory}ch080.html">{e("← 前八十回 · 第80回")}</a>')
-                    following = (f'<a href="{keys[position+1]}.html">{e(CHAPTERS[keys[position+1]]["number"] + " →")}</a>' if position+1 < len(keys) else f'<span>{e("第八十九回 · 待发布" if released_088 else "第八十八回 · 待发布")}</span>')
+                    following = (f'<a href="{keys[position+1]}.html">{e(CHAPTERS[keys[position+1]]["number"] + " →")}</a>' if position+1 < len(keys) else f'<span>{e("第九十回 · 待发布" if released_089 else "第八十九回 · 待发布" if released_088 else "第八十八回 · 待发布")}</span>')
                     title_parts = title.split('　')
-                    chapter_escape = html.escape if stem == "ch088" and lang == "zh-hant" else e
+                    chapter_escape = html.escape if stem in fixed_traditional and lang == "zh-hant" else e
                     heading = ''.join(f'<span class="{"chapter-number" if i==0 else "chapter-couplet"}">{chapter_escape(part)}'+('　' if i<len(title_parts)-1 else '')+'</span>' for i,part in enumerate(title_parts))
                     content = f'<article><header class="chapter-head"><p class="eyebrow">{e("秦汉原创 · 红楼梦后三十回")}</p><h1>{heading}</h1><p class="edition-note">{e("定稿原文" if not directory else "定稿繁体阅读版")} · <time datetime="{published}">{published}</time></p><p class="authorship">{e("本篇是秦汉的原创续写，不是曹雪芹佚稿。")}</p></header><div class="novel-text">'+ '\n'.join(paragraphs) +f'</div></article><nav class="chapter-nav" aria-label="{e("章节导航")}">{previous}<a href="index.html">{e("返回回目")}</a>{following}</nav>'
                 else:
-                    schema['hasPart'] = [{'@type': 'Chapter', 'name': hant_088[0] if released_088 and lang == 'zh-hant' and key == 'ch088' else t(manuscripts[key][0]),
+                    schema['hasPart'] = [{'@type': 'Chapter', 'name': fixed_traditional[key][0] if lang == 'zh-hant' and key in fixed_traditional else t(manuscripts[key][0]),
                                           'url': ORIGIN+directory+key+'.html'} for key in CHAPTERS]
-                    cards = ''.join(f'<a class="chapter-card" href="{key}.html"><span>{html.escape(hant_088[0]) if released_088 and lang == "zh-hant" and key == "ch088" else e(manuscripts[key][0])}</span><small>{e("定稿 · 阅读正文 →")}</small></a>' for key in CHAPTERS)
+                    cards = ''.join(f'<a class="chapter-card" href="{key}.html"><span>{html.escape(fixed_traditional[key][0]) if lang == "zh-hant" and key in fixed_traditional else e(manuscripts[key][0])}</span><small>{e("定稿 · 阅读正文 →")}</small></a>' for key in CHAPTERS)
                     content = f'''<header class="collection-head"><p class="eyebrow">{e('秦汉原创 · 第八十一至第一百一十回')}</p><h1>{e(title)}</h1><p class="deck">{e('从八十回以后，接着写这些人的故事。')}</p></header>
 <section class="introduction"><h2>{e('关于这部续写')}</h2><p>{e(summary)}</p><p>{e('这三十回是秦汉的原创小说，不是曹雪芹的佚稿，也不是对已有续书的整理；不声称恢复了曹雪芹原稿。')}</p><p>{e('可以直接开始读小说。若想了解写作背后的阅读与研究，可另访红楼梦专题；其中的论文含后续情节与结局，请按自己的阅读顺序选择。')}</p></section>
 <section class="contents"><h2>{e('已发布回目')}</h2>{cards}<p class="edition-note">{e('后续回目将在定稿发布后加入。')}</p></section>'''

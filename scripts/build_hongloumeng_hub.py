@@ -94,7 +94,7 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None,
     if include_ch087 and ch087_date is None:
         raise ValueError('Chapter 87 needs a Chinese publication record')
     include_ch087 = ch087_date is not None
-    from hongloumeng_translations import ch087_multilingual, ch088_multilingual
+    from hongloumeng_translations import ch087_multilingual, ch088_multilingual, ch089_multilingual
     pub = json.loads((ROOT/'data/originals/hongloumeng/publication.json').read_text())
     has_ch087_translations = include_ch087 and ch087_multilingual(pub)
     if has_ch087_translations:
@@ -112,6 +112,14 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None,
         if len(rows) != 1 or rows[0]['date'] != chapter['published'] or set(rows[0]['languages']) != {'zh', 'zh-hant', 'en', 'fr', 'de', 'es', 'ja', 'ko'}:
             raise ValueError('Missing full Chapter 88 release record')
         ch088_date = chapter['published']
+    has_ch089_translations = has_ch088_translations and ch089_multilingual(pub)
+    ch089_date = None
+    if has_ch089_translations:
+        chapter = pub['chapter_publications']['ch089']
+        rows = [i for i in ledger['updates'] if i['url'] == 'originals/hongloumeng/ch089.html']
+        if len(rows) != 1 or rows[0]['date'] != chapter['published'] or set(rows[0]['languages']) != {'zh', 'zh-hant', 'en', 'fr', 'de', 'es', 'ja', 'ko'}:
+            raise ValueError('Missing full Chapter 89 release record')
+        ch089_date = chapter['published']
     if include_traditional is None:
         include_traditional = first80_traditional_published()
     if include_first80 is None:
@@ -170,6 +178,8 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None,
             if has_ch088_translations:
                 desc = text('《红楼梦》前八十回“大知校正庚辰版”正文、人物回顾、散文导读与研究论文；秦汉原创续写单列，第八十一至八十八回均有八语版。',
                             'The first eighty chapters in the Dazhi Revised Gengchen Edition, character essays, reader essays and research. Chapters 81–88 of Han Qin’s separate continuation are available in eight languages.')
+            if has_ch089_translations:
+                desc = desc.replace('八十一至八十八', '八十一至八十九').replace('81–88', '81–89')
             first80_navigation = a('#first80',t('前八十回正文','The first eighty chapters'))
             first80_section = f'''<section id="first80"><p class="eyebrow">{t('原著阅读 · 前八十回','THE NOVEL · CHAPTERS 1–80')}</p><h2>{t('大知校正庚辰版','Dazhi Revised Gengchen Edition')}</h2><p>{t('这里阅读的是《红楼梦》前八十回原著正文，由秦汉校正整理；与第八十一回起的秦汉原创续写分开编排。', 'Read the first eighty chapters of Dream of the Red Chamber, edited by Han Qin. This edition of the original novel is separate from Han Qin’s new fiction beginning with chapter 81.')}</p><p class="edition-note">{t('本版目前仅提供简体中文正文；外语翻译尚未发布。繁体与英文专题入口中的下列链接均转至简体中文读页。', 'This reading edition is available in Simplified Chinese only. Translations are not yet published; the links below open the Chinese text.')}</p><div class="featured">{a(base+'classics/hongloumeng/index.html',t('前八十回 · 回目目录','Chapters 1–80 · Chinese contents'))}{a(base+'classics/hongloumeng/ch001.html',t('从第一回开始','Start chapter 1 · Chinese'))}{a(base+'classics/hongloumeng/edition.html',t('版本说明','About the edition'))}</div></section>'''
             if include_traditional:
@@ -243,6 +253,11 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None,
             continuation_copy = continuation_copy.replace('第八十一至八十七回', '第八十一至八十八回').replace('第八十八至第一百一十回', '第八十九至第一百一十回').replace('81–87', '81–88').replace('88–110 remain unpublished', '89–110 remain unpublished')
             continuation_ch087 += a(base+'originals/hongloumeng/'+chapter_dir+'ch088.html',
                                      t('第八十八回　明翻旧案夫妻反目　暗结青丝儿女同心', 'Read chapter 88 · English text'), f'hreflang="{chapter_lang}"')
+        if has_ch089_translations:
+            continuation_status = t('第八十一至八十九回定稿已发布 · 后续逐回开放', 'Chapters 81–89 published · Further chapters to follow')
+            continuation_copy = continuation_copy.replace('八十一至八十八', '八十一至八十九').replace('第八十九至第一百一十', '第九十至第一百一十').replace('81–88', '81–89').replace('89–110 remain', '90–110 remain')
+            continuation_ch087 += a(base+'originals/hongloumeng/'+chapter_dir+'ch089.html',
+                                     t('第八十九回　联新韵湘黛续寒塘　警天伦元春诉幽梦', 'Read chapter 89 · English text'), f'hreflang="{chapter_lang}"')
         body = f'''<section class="hero"><p class="eyebrow">NON DUBITO · {t('红楼梦大专题','A RED CHAMBER PROJECT')}</p>
 <h1>{t('人是有情的','Lives Beyond Their Endings')}<span class="subtitle">{t('重读《红楼梦》','Returning to Dream of the Red Chamber')}</span></h1><p class="deck">{t('我们记得黛玉的眼泪、宝玉的痴，也记得大观园最后散了。但一个人的遭逢，是否就能说尽这个人？从前八十回出发，重读这些人物，也尝试为他们接着写下去。','We remember Daiyu’s tears, Baoyu’s attachments, and the dispersal of a whole household. But does knowing what happens to someone tell us everything about them? This project begins with the first eighty chapters, returns to their people, and ventures to continue their stories.')}</p></section>
 <nav class="jump" aria-label="{t('本页导航','On this page')}">{first80_navigation}{a('#characters',t('红楼人物','The people'))}{a('#readings',t('先读散文','Reader essays'))}{a('#research',t('研究论文 · 选读','Research · optional'))}{a('#continuation',t('八十回以后','Beyond chapter eighty'))}</nav>
@@ -262,7 +277,7 @@ def render(*, include_first80=None, first80_date=None, include_traditional=None,
 <div class="featured">{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch081.html',t('读第八十一回：痴公子讨情遣旧婢　花袭人含泪别芳群','Read chapter 81 · English text'))}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch082.html',t('读第八十二回：贾宝玉佯捧万章篇　林黛玉梦承椿庭笔','Read chapter 82 · English text'))}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch083.html',t('读第八十三回：史太君含笑嘱心肝　静琥珀一语传遗命','Read chapter 83 · English text'))}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch084.html',t('读第八十四回：昧心人偏办昧心事　鸳鸯女终全鸳鸯誓','Read chapter 84 · English text'))}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch085.html',t('读第八十五回：敏探春扬帆赴南溟　慧惜春剪发拒西宁','Read chapter 85 · English text'))}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'ch086.html',t('读第八十六回：懦迎春命断中山狼　执邢氏查账翻旧恶','Read chapter 86 · English text'))}{continuation_ch087}{a(base+'originals/hongloumeng/'+('zh-hant/' if lang=='zh-hant' else 'en/' if lang=='en' else '')+'index.html',t('原创后三十回 · 回目','Original continuation · Chapter list'))}</div>
 <p>{t('这三十回是秦汉的原创小说，不是曹雪芹的佚稿，也不是对已有续书的整理。“诠释性复原”说的是这次创作的方法：以前八十回及相关材料为依据，把一种读法写成故事；并不声称恢复了曹雪芹原稿。','These thirty chapters are original fiction by Han Qin, not a recovered manuscript by Cao Xueqin or an edited compilation of existing continuations. “Interpretive reconstruction” describes the creative method: developing a reading of the first eighty chapters and related materials into a story. It is not a claim to have recovered the lost original.')}</p>
 </section>'''
-        schema={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':desc,'url':canonical,'inLanguage':code,'dateModified':max(first80_date if include_first80 else '2026-11-08', '2026-11-14', ch087_date or '', ch088_date or ''),'isPartOf':{'@type':'WebSite','name':'Non Dubito','url':'https://nondubito.net/'}}
+        schema={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':desc,'url':canonical,'inLanguage':code,'dateModified':max(first80_date if include_first80 else '2026-11-08', '2026-11-14', ch087_date or '', ch088_date or '', ch089_date or ''),'isPartOf':{'@type':'WebSite','name':'Non Dubito','url':'https://nondubito.net/'}}
         pages[TARGET/directory/'index.html']=f'''<!doctype html>
 <html lang="{code}" data-lang="{lang}" data-editions="{code}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)} — Non Dubito</title><meta name="description" content="{html.escape(desc)}"><meta name="author" content="Han Qin">

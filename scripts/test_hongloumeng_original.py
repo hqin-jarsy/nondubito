@@ -53,7 +53,7 @@ class OriginalTests(unittest.TestCase):
             previous_pages = build.render()
         current_pages = build.render()
         target = build.TARGET / 'en/ch083.html'
-        self.assertEqual(len(current_pages), 72 if build.ch088_multilingual(build.PUBLICATION) else 64 if build.ch087_multilingual(build.PUBLICATION) else 58)
+        self.assertEqual(len(current_pages), 80 if build.ch089_multilingual(build.PUBLICATION) else 72 if build.ch088_multilingual(build.PUBLICATION) else 64 if build.ch087_multilingual(build.PUBLICATION) else 58)
         self.assertEqual(current_pages.keys(), previous_pages.keys())
         self.assertEqual([p for p in current_pages if current_pages[p] != previous_pages[p]], [target])
         before = html.escape(self.CH083_PROCESSION_BEFORE)
@@ -104,7 +104,7 @@ class OriginalTests(unittest.TestCase):
                 actual=[(int(n),html.unescape(re.sub('<[^>]+>','',v))) for n,v in re.findall(r'<p data-source-line="(\d+)">(.*?)</p>',s)]
                 self.assertEqual([n for n,v in actual],[i for i,v in enumerate(lines,1) if i>1 and v])
                 verses = s.split('<div class="verse">')
-                self.assertEqual(sum(len(re.findall('data-source-line=',v.split('</div>')[0])) for v in verses[1:]),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36,'ch086':2,'ch087':0,'ch088':4}[p.stem])
+                self.assertEqual(sum(len(re.findall('data-source-line=',v.split('</div>')[0])) for v in verses[1:]),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36,'ch086':2,'ch087':0,'ch088':4,'ch089':0}[p.stem])
                 if p.parent==build.TARGET:
                     self.assertEqual(actual,[(i,v) for i,v in enumerate(lines,1) if i>1 and v])
                     self.assertEqual(html.unescape(re.sub('<[^>]+>','',re.search('<h1>(.*?)</h1>',s)[1])),lines[0])
@@ -127,7 +127,7 @@ class OriginalTests(unittest.TestCase):
                 if u.scheme or not u.path:continue
                 link = build.ROOT/unquote(u.path).lstrip('/') if u.path.startswith('/') else p.parent/unquote(u.path)
                 self.assertTrue(link.resolve().exists(),href)
-            self.assertNotIn('ch089.html',s)
+            self.assertNotIn('ch090.html',s)
             page_editions=build.page_editions(p.name)
             self.assertEqual(len(re.findall(r'rel="alternate" hreflang=',s)),1+len(page_editions))
             for directory,code,_ in page_editions.values():
@@ -141,7 +141,7 @@ class OriginalTests(unittest.TestCase):
             self.assertEqual(schema['@type'],'Chapter' if p.stem in build.CHAPTERS else 'CollectionPage')
             self.assertEqual(schema['inLanguage'],p.parent.name if foreign else 'zh-Hant' if p.parent.name=='zh-hant' else 'zh-Hans')
             if p.stem in build.CHAPTERS:
-                translation_date={'ch083':'2026-10-24','ch084':'2026-11-03','ch085':'2026-11-08','ch086':'2026-11-14','ch087':build.PUBLICATION['chapter_publications']['ch087'].get('foreign_published'),'ch088':build.PUBLICATION['chapter_publications']['ch088'].get('foreign_published')}.get(p.stem,DATE)
+                translation_date={'ch083':'2026-10-24','ch084':'2026-11-03','ch085':'2026-11-08','ch086':'2026-11-14','ch087':build.PUBLICATION['chapter_publications']['ch087'].get('foreign_published'),'ch088':build.PUBLICATION['chapter_publications']['ch088'].get('foreign_published'),'ch089':build.PUBLICATION['chapter_publications']['ch089'].get('foreign_published')}.get(p.stem,DATE)
                 self.assertEqual(schema['datePublished'],translation_date if foreign else build.CHAPTERS[p.stem]['published'])
                 self.assertEqual(schema['dateModified'], build.CHAPTERS[p.stem].get('modified', build.DATE))
                 if foreign:self.assertEqual(schema['translationOfWork']['url'],build.ORIGIN+p.stem+'.html')
@@ -194,7 +194,7 @@ class OriginalTests(unittest.TestCase):
                 actual=[(int(pieces[i]),html.unescape(re.sub('<[^>]*>','',pieces[i+1]))) for i in range(0,len(pieces),2)]
                 self.assertEqual([n for n,_ in actual],list(range(1,1 + build.PUBLICATION['chapter_sources'][stem]['paragraphs'])))
                 self.assertEqual([(n,normalize(v)) for n,v in actual],[(n,normalize(v)) for n,v in units])
-                self.assertEqual(len(re.findall(r'data-source-unit="\d+" class="verse"',page)),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36,'ch086':2,'ch087':0,'ch088':4}[stem])
+                self.assertEqual(len(re.findall(r'data-source-unit="\d+" class="verse"',page)),{'ch081':8,'ch082':2,'ch083':1,'ch084':0,'ch085':36,'ch086':2,'ch087':0,'ch088':4,'ch089':0}[stem])
                 self.assertNotIn('<!-- P',body)
                 if lang=='es' and stem=='ch081':
                     self.assertNotIn('Nota 1.',body)

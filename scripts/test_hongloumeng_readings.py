@@ -103,13 +103,14 @@ class ReadingTests(unittest.TestCase):
             fiction=source.split('<section id="continuation">')[1].split('</section>')[0]
             self.assertIn('ch081.html',fiction)
             self.assertIn('ch087.html',fiction)
-            from hongloumeng_translations import ch088_multilingual
+            from hongloumeng_translations import ch088_multilingual, ch089_multilingual
             receipt=json.loads((build.ROOT/'data/originals/hongloumeng/publication.json').read_text())
             if ch088_multilingual(receipt):
                 self.assertIn('ch088.html',fiction)
             else:
                 self.assertNotIn('ch088.html',fiction)
-            self.assertNotIn('ch089.html',fiction)
+            self.assertEqual('ch089.html' in fiction, ch089_multilingual(receipt))
+            self.assertNotIn('ch090.html',fiction)
 
     def test_reviewed_guide_language_expansion(self):
         import build_hongloumeng_guide_expansions as expansion

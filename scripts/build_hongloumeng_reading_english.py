@@ -28,8 +28,10 @@ NOTICE_COMPLETE = ('The first eighty chapters end here. Han Qin’s original con
 
 
 def continuation_notice():
-    from hongloumeng_translations import ch087_multilingual, ch088_multilingual
+    from hongloumeng_translations import ch087_multilingual, ch088_multilingual, ch089_multilingual
     publication = json.loads((Path(__file__).resolve().parents[1] / 'data/originals/hongloumeng/publication.json').read_text())
+    if ch089_multilingual(publication):
+        return NOTICE_COMPLETE.replace('81–87', '81–89').replace('88–110', '90–110')
     if ch088_multilingual(publication):
         return NOTICE_COMPLETE.replace("81–87", "81–88").replace("88–110", "89–110")
     return NOTICE_COMPLETE if ch087_multilingual(publication) else NOTICE
