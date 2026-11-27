@@ -123,12 +123,59 @@ HEADINGS_67 = {
     ),
 }
 
+HEADINGS_80 = {
+    'zh-Hans': (
+        ('美香菱屈受贪夫棒', '王道士胡诌妒妇方'),
+        ('苦香菱含冤暂栖身', '孤迎春忍情别旧园'),
+    ),
+    'zh-Hant': (
+        ('美香菱屈受貪夫棒', '王道士胡謅妒婦方'),
+        ('苦香菱含冤暫棲身', '孤迎春忍情別舊園'),
+    ),
+    'en': (
+        ('Fair Caltrop suffers unjustly under a lustful husband’s cudgel',
+         'The Taoist Wang invents a cure for jealous wives'),
+        ('Wronged and sorely tried, Caltrop finds shelter for a time',
+         'Ying-chun, with no one to turn to, holds back her grief and bids the old garden farewell'),
+    ),
+    'de': (
+        ('Die schöne Xiangling erleidet unschuldig die Schläge ihres lüsternen Herrn',
+         'der Daoist Wang erfindet ein Mittel gegen eifersüchtige Frauen'),
+        ('Die leidgeprüfte Xiangling wird zu Unrecht beschuldigt und findet vorerst Zuflucht',
+         'die auf sich allein gestellte Yingchun hält ihren Schmerz zurück und nimmt Abschied vom vertrauten Garten'),
+    ),
+    'es': (
+        ('La hermosa Xiangling sufre injustamente los golpes de un marido lascivo',
+         'el taoísta Wang inventa un remedio contra los celos de las esposas'),
+        ('La desdichada Xiangling, acusada en falso, halla refugio por un tiempo',
+         'Yingchun, sin amparo, se despide del jardín de antaño conteniendo la pena'),
+    ),
+    'fr': (
+        ('La belle Parfum de Corniole subit injustement le bâton d’un homme avide',
+         'le taoïste Wang invente un remède aux femmes jalouses'),
+        ('L’infortunée Parfum de Corniole, accusée à tort, trouve un temps refuge',
+         'Deuxième-née, sans appui, retient sa peine en quittant le jardin familier'),
+    ),
+    'ja': (
+        ('美しき香菱は理不尽に貪欲な夫の棒を受け', '王道士は嫉妬を治す処方をでっち上げる'),
+        ('薄幸の香菱は濡れ衣を着せられ、しばし身を寄せ', '寄る辺なき迎春は悲しみをこらえ、住み慣れた園に別れを告げる'),
+    ),
+    'ko': (
+        ('고운 향릉은 억울하게 탐욕스러운 사내의 매를 맞고', '왕 도사는 질투하는 아내를 고칠 처방을 꾸며 내다'),
+        ('가엾은 향릉은 누명을 쓰고 잠시 몸을 의탁하고', '의지할 데 없는 영춘은 슬픔을 삼키며 옛 정원을 떠나다'),
+    ),
+}
+
 HEADINGS = {18: HEADINGS_18, 64: HEADINGS_64,
-            67: {lang: ((old,), (new,)) for lang, (old, new) in HEADINGS_67.items()}}
+            67: {lang: ((old,), (new,)) for lang, (old, new) in HEADINGS_67.items()},
+            80: HEADINGS_80}
 
 
 def replace_heading(text, lang, count, *, number=18, escaped=False):
     old, new = HEADINGS[number][lang]
+    # The separate Spanish h1 span and search text capitalize the old second half.
+    if number == 80 and lang == 'es':
+        text = text.replace('El' + old[1][2:], old[1])
     if escaped:
         old, new = tuple(map(escape, old)), tuple(map(escape, new))
     counts = tuple(text.count(part) for part in (*old, *new))
