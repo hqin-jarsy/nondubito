@@ -93,7 +93,38 @@ HEADINGS_64 = {
     ),
 }
 
-HEADINGS = {18: HEADINGS_18, 64: HEADINGS_64}
+# Chapter 67 retains its first half in every edition.
+HEADINGS_67 = {
+    'zh-Hans': ('闻秘事凤姐讯家童', '闻秘事凤姐问新房'),
+    'zh-Hant': ('聞秘事鳳姐訊家童', '聞秘事鳳姐問新房'),
+    'en': (
+        'On hearing a secret, Xi-feng questions a household page',
+        'On hearing a secret, Xi-feng asks where the bridal quarters are',
+    ),
+    'de': (
+        'Ein Geheimnis dringt zu Phönix, und sie verhört die Dienerburschen',
+        'Ein Geheimnis dringt zu Phönix, und sie fragt, wo das Haus für die neue Frau liegt',
+    ),
+    'es': (
+        'Al enterarse de un secreto, Xifeng interroga a un criado',
+        'Al enterarse de un secreto, Xifeng pregunta dónde está la casa de los recién casados',
+    ),
+    'fr': (
+        'informée d’un secret, Phénix interroge un domestique',
+        'informée d’un secret, Phénix demande où se trouve le logis des nouveaux mariés',
+    ),
+    'ja': (
+        '秘め事を聞いて鳳姐は家僕を問い詰める',
+        '秘め事を聞いて鳳姐は新所帯の家はどこかと問い詰める',
+    ),
+    'ko': (
+        '비밀을 들은 희봉은 집안 종을 심문하다',
+        '비밀을 들은 희봉은 신방이 어디인지 캐묻다',
+    ),
+}
+
+HEADINGS = {18: HEADINGS_18, 64: HEADINGS_64,
+            67: {lang: ((old,), (new,)) for lang, (old, new) in HEADINGS_67.items()}}
 
 
 def replace_heading(text, lang, count, *, number=18, escaped=False):
@@ -101,11 +132,13 @@ def replace_heading(text, lang, count, *, number=18, escaped=False):
     if escaped:
         old, new = tuple(map(escape, old)), tuple(map(escape, new))
     counts = tuple(text.count(part) for part in (*old, *new))
-    if counts == (0, 0, count, count):
+    if counts == (0,) * len(old) + (count,) * len(new):
         return text
-    if counts != (count, count, 0, 0):
+    if counts != (count,) * len(old) + (0,) * len(new):
         raise ValueError(f'Unexpected Chapter {number} heading surfaces in {lang}: {counts}')
-    return text.replace(old[0], new[0]).replace(old[1], new[1])
+    for before, after in zip(old, new):
+        text = text.replace(before, after)
+    return text
 
 
 def chapter(text, lang, number=18):

@@ -32,7 +32,7 @@ class ChapterHeadingsTest(unittest.TestCase):
                             self.assertNotIn(before, row[field])
                             self.assertIn(after, row[field])
                     if lang.startswith('zh-'):
-                        self.assertEqual(tuple(len(half) for half in new), (8, 8))
+                        self.assertEqual(tuple(len(half) for half in new), (8,) * len(new))
 
     def test_chinese_release_regeneration(self):
         for module, lang in ((simplified, 'zh-Hans'), (traditional, 'zh-Hant')):
