@@ -287,8 +287,8 @@ def production_plan(approval, *, root=None):
     from hongloumeng_english_verse_layout import apply as verse_layout
     from hongloumeng_ch003_title import apply as ch003_title
     pages = render(chapters, preview=False)
-    from hongloumeng_ch018_heading import apply_pages as apply_ch018_heading
-    apply_ch018_heading(pages, 'en')
+    from hongloumeng_chapter_headings import apply_pages as apply_chapter_headings
+    apply_chapter_headings(pages, 'en')
     pages['ch003.html'] = ch003_title(pages['ch003.html'], 'en')
     from hongloumeng_first80_copyedits import apply as apply_copyedits
     pages['ch006.html'] = apply_copyedits(pages['ch006.html'], 6, 'en')
